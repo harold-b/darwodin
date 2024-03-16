@@ -1,0 +1,108 @@
+---
+
+Defs: ../definitions/macos/quartzcore.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^CA.+
+    - ^_*CGL.+
+    - ^_*GL.+
+    - ^_*cl_device
+    - ^EAGL.+ # iOS
+
+  ExportMethods:
+    - ^::CA.+
+    - ^::CGL.+
+    - ^EAGL.+
+
+  ExportVars:
+    - ^::k?CA.+
+    - ^::k?CGL.+
+    - ^::k?EAGL.+
+
+  IgnoreTypes  :
+    - ^GLvoid
+
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/Foundation.exports.yml
+
+  BitSetMap:
+    - (Flags|Mask)$
+
+  Packages:
+    - Name  : QuartzCore
+      Export: CA
+      DarwinLinkLibs: [system:QuartzCore.framework]
+      RequiredLink: true
+      Filter: .*
+
+      Imports:
+        - |
+          MTLDevice :: NS.Object
+          MTLTexture :: NS.Object
+          MTLDrawable :: NS.Object
+          MTLPixelFormat :: cffi.ulong
+          CVTimeStamp :: struct {}
+
+      TypeMap:
+        MTLDevice: MTLDevice
+        MTLTexture: MTLTexture
+        MTLPixelFormat: MTLPixelFormat
+        MTLDrawable: MTLDrawable
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: .*
+    Transforms:
+    - Kind  : RemoveTypeWordsFromElements
+    - Kind  : RemovePartialTypeNamePrefix
+    - Kind  : RemoveUnderscorePrefix
+    - Kind  : UnderscoreNumbers
+
+  TypeTransforms:
+    - Type: ^(CA).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+ 
+  ProcTransforms:
+    - Type: ^(_*CA).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+
+  VarTransforms:
+    - Type: ^kCATransition$
+      Transforms:
+        - Kind  : ReplacePrefix
+          Source: kCA
+          Target: k
+    - Type: ^(_*k?CA).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0
+    - Type: ^kCGL.+
+      Transforms:
+        - Kind  : ReplacePrefix
+          Source: kCGL
+          Target: GL

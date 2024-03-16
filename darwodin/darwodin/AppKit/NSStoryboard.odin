@@ -1,0 +1,482 @@
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSStoryboard
+///
+@(objc_class="NSStoryboard")
+Storyboard :: struct { using _: NS.Object, }
+
+@(objc_type=Storyboard, objc_name="init")
+Storyboard_init :: proc "c" (self: ^Storyboard) -> ^Storyboard {
+    return msgSend(^Storyboard, self, "init")
+}
+
+
+@(objc_type=Storyboard, objc_name="storyboardWithName", objc_is_class_method=true)
+Storyboard_storyboardWithName :: #force_inline proc "c" (name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> ^Storyboard {
+    return msgSend(^Storyboard, Storyboard, "storyboardWithName:bundle:", name, storyboardBundleOrNil)
+}
+@(objc_type=Storyboard, objc_name="instantiateInitialController")
+Storyboard_instantiateInitialController :: #force_inline proc "c" (self: ^Storyboard) -> id {
+    return msgSend(id, self, "instantiateInitialController")
+}
+@(objc_type=Storyboard, objc_name="instantiateInitialControllerWithCreator")
+Storyboard_instantiateInitialControllerWithCreator :: #force_inline proc "c" (self: ^Storyboard, block: StoryboardControllerCreator) -> id {
+    return msgSend(id, self, "instantiateInitialControllerWithCreator:", block)
+}
+@(objc_type=Storyboard, objc_name="instantiateControllerWithIdentifier_")
+Storyboard_instantiateControllerWithIdentifier_ :: #force_inline proc "c" (self: ^Storyboard, identifier: ^NS.String) -> id {
+    return msgSend(id, self, "instantiateControllerWithIdentifier:", identifier)
+}
+@(objc_type=Storyboard, objc_name="instantiateControllerWithIdentifier_creator")
+Storyboard_instantiateControllerWithIdentifier_creator :: #force_inline proc "c" (self: ^Storyboard, identifier: ^NS.String, block: StoryboardControllerCreator) -> id {
+    return msgSend(id, self, "instantiateControllerWithIdentifier:creator:", identifier, block)
+}
+@(objc_type=Storyboard, objc_name="mainStoryboard", objc_is_class_method=true)
+Storyboard_mainStoryboard :: #force_inline proc "c" () -> ^Storyboard {
+    return msgSend(^Storyboard, Storyboard, "mainStoryboard")
+}
+@(objc_type=Storyboard, objc_name="load", objc_is_class_method=true)
+Storyboard_load :: #force_inline proc "c" () {
+    msgSend(nil, Storyboard, "load")
+}
+@(objc_type=Storyboard, objc_name="initialize", objc_is_class_method=true)
+Storyboard_initialize :: #force_inline proc "c" () {
+    msgSend(nil, Storyboard, "initialize")
+}
+@(objc_type=Storyboard, objc_name="new", objc_is_class_method=true)
+Storyboard_new :: #force_inline proc "c" () -> ^Storyboard {
+    return msgSend(^Storyboard, Storyboard, "new")
+}
+@(objc_type=Storyboard, objc_name="allocWithZone", objc_is_class_method=true)
+Storyboard_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^Storyboard {
+    return msgSend(^Storyboard, Storyboard, "allocWithZone:", zone)
+}
+@(objc_type=Storyboard, objc_name="alloc", objc_is_class_method=true)
+Storyboard_alloc :: #force_inline proc "c" () -> ^Storyboard {
+    return msgSend(^Storyboard, Storyboard, "alloc")
+}
+@(objc_type=Storyboard, objc_name="copyWithZone", objc_is_class_method=true)
+Storyboard_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
+    return msgSend(id, Storyboard, "copyWithZone:", zone)
+}
+@(objc_type=Storyboard, objc_name="mutableCopyWithZone", objc_is_class_method=true)
+Storyboard_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
+    return msgSend(id, Storyboard, "mutableCopyWithZone:", zone)
+}
+@(objc_type=Storyboard, objc_name="instancesRespondToSelector", objc_is_class_method=true)
+Storyboard_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, Storyboard, "instancesRespondToSelector:", aSelector)
+}
+@(objc_type=Storyboard, objc_name="conformsToProtocol", objc_is_class_method=true)
+Storyboard_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, Storyboard, "conformsToProtocol:", protocol)
+}
+@(objc_type=Storyboard, objc_name="instanceMethodForSelector", objc_is_class_method=true)
+Storyboard_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, Storyboard, "instanceMethodForSelector:", aSelector)
+}
+@(objc_type=Storyboard, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
+Storyboard_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
+    return msgSend(^NS.MethodSignature, Storyboard, "instanceMethodSignatureForSelector:", aSelector)
+}
+@(objc_type=Storyboard, objc_name="isSubclassOfClass", objc_is_class_method=true)
+Storyboard_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, Storyboard, "isSubclassOfClass:", aClass)
+}
+@(objc_type=Storyboard, objc_name="resolveClassMethod", objc_is_class_method=true)
+Storyboard_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Storyboard, "resolveClassMethod:", sel)
+}
+@(objc_type=Storyboard, objc_name="resolveInstanceMethod", objc_is_class_method=true)
+Storyboard_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Storyboard, "resolveInstanceMethod:", sel)
+}
+@(objc_type=Storyboard, objc_name="hash", objc_is_class_method=true)
+Storyboard_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, Storyboard, "hash")
+}
+@(objc_type=Storyboard, objc_name="superclass", objc_is_class_method=true)
+Storyboard_superclass :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, Storyboard, "superclass")
+}
+@(objc_type=Storyboard, objc_name="class", objc_is_class_method=true)
+Storyboard_class :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, Storyboard, "class")
+}
+@(objc_type=Storyboard, objc_name="description", objc_is_class_method=true)
+Storyboard_description :: #force_inline proc "c" () -> ^NS.String {
+    return msgSend(^NS.String, Storyboard, "description")
+}
+@(objc_type=Storyboard, objc_name="debugDescription", objc_is_class_method=true)
+Storyboard_debugDescription :: #force_inline proc "c" () -> ^NS.String {
+    return msgSend(^NS.String, Storyboard, "debugDescription")
+}
+@(objc_type=Storyboard, objc_name="version", objc_is_class_method=true)
+Storyboard_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, Storyboard, "version")
+}
+@(objc_type=Storyboard, objc_name="setVersion", objc_is_class_method=true)
+Storyboard_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
+    msgSend(nil, Storyboard, "setVersion:", aVersion)
+}
+@(objc_type=Storyboard, objc_name="poseAsClass", objc_is_class_method=true)
+Storyboard_poseAsClass :: #force_inline proc "c" (aClass: Class) {
+    msgSend(nil, Storyboard, "poseAsClass:", aClass)
+}
+@(objc_type=Storyboard, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
+Storyboard_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
+    msgSend(nil, Storyboard, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
+}
+@(objc_type=Storyboard, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
+Storyboard_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
+    msgSend(nil, Storyboard, "cancelPreviousPerformRequestsWithTarget:", aTarget)
+}
+@(objc_type=Storyboard, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
+Storyboard_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Storyboard, "accessInstanceVariablesDirectly")
+}
+@(objc_type=Storyboard, objc_name="useStoredAccessor", objc_is_class_method=true)
+Storyboard_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Storyboard, "useStoredAccessor")
+}
+@(objc_type=Storyboard, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
+Storyboard_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
+    return msgSend(^NS.Set, Storyboard, "keyPathsForValuesAffectingValueForKey:", key)
+}
+@(objc_type=Storyboard, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
+Storyboard_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, Storyboard, "automaticallyNotifiesObserversForKey:", key)
+}
+@(objc_type=Storyboard, objc_name="setKeys", objc_is_class_method=true)
+Storyboard_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {
+    msgSend(nil, Storyboard, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
+}
+@(objc_type=Storyboard, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
+Storyboard_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
+    return msgSend(^NS.Array, Storyboard, "classFallbacksForKeyedArchiver")
+}
+@(objc_type=Storyboard, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
+Storyboard_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, Storyboard, "classForKeyedUnarchiver")
+}
+@(objc_type=Storyboard, objc_name="exposeBinding", objc_is_class_method=true)
+Storyboard_exposeBinding :: #force_inline proc "c" (binding: ^NS.String) {
+    msgSend(nil, Storyboard, "exposeBinding:", binding)
+}
+@(objc_type=Storyboard, objc_name="setDefaultPlaceholder", objc_is_class_method=true)
+Storyboard_setDefaultPlaceholder :: #force_inline proc "c" (placeholder: id, marker: id, binding: ^NS.String) {
+    msgSend(nil, Storyboard, "setDefaultPlaceholder:forMarker:withBinding:", placeholder, marker, binding)
+}
+@(objc_type=Storyboard, objc_name="defaultPlaceholderForMarker", objc_is_class_method=true)
+Storyboard_defaultPlaceholderForMarker :: #force_inline proc "c" (marker: id, binding: ^NS.String) -> id {
+    return msgSend(id, Storyboard, "defaultPlaceholderForMarker:withBinding:", marker, binding)
+}
+@(objc_type=Storyboard, objc_name="instantiateControllerWithIdentifier")
+Storyboard_instantiateControllerWithIdentifier :: proc {
+    Storyboard_instantiateControllerWithIdentifier_,
+    Storyboard_instantiateControllerWithIdentifier_creator,
+}
+
+@(objc_type=Storyboard, objc_name="cancelPreviousPerformRequestsWithTarget")
+Storyboard_cancelPreviousPerformRequestsWithTarget :: proc {
+    Storyboard_cancelPreviousPerformRequestsWithTarget_selector_object,
+    Storyboard_cancelPreviousPerformRequestsWithTarget_,
+}
+
+Storyboard_VTable :: struct {
+    super: NS.Object_VTable,
+    storyboardWithName: proc(name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> ^Storyboard,
+    instantiateInitialController: proc(self: ^Storyboard) -> id,
+    instantiateInitialControllerWithCreator: proc(self: ^Storyboard, block: StoryboardControllerCreator) -> id,
+    instantiateControllerWithIdentifier_: proc(self: ^Storyboard, identifier: ^NS.String) -> id,
+    instantiateControllerWithIdentifier_creator: proc(self: ^Storyboard, identifier: ^NS.String, block: StoryboardControllerCreator) -> id,
+    mainStoryboard: proc() -> ^Storyboard,
+    load: proc(),
+    initialize: proc(),
+    new: proc() -> ^Storyboard,
+    allocWithZone: proc(zone: ^NS._NSZone) -> ^Storyboard,
+    alloc: proc() -> ^Storyboard,
+    copyWithZone: proc(zone: ^NS._NSZone) -> id,
+    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> id,
+    instancesRespondToSelector: proc(aSelector: SEL) -> bool,
+    conformsToProtocol: proc(protocol: ^Protocol) -> bool,
+    instanceMethodForSelector: proc(aSelector: SEL) -> IMP,
+    instanceMethodSignatureForSelector: proc(aSelector: SEL) -> ^NS.MethodSignature,
+    isSubclassOfClass: proc(aClass: Class) -> bool,
+    resolveClassMethod: proc(sel: SEL) -> bool,
+    resolveInstanceMethod: proc(sel: SEL) -> bool,
+    hash: proc() -> NS.UInteger,
+    superclass: proc() -> Class,
+    class: proc() -> Class,
+    description: proc() -> ^NS.String,
+    debugDescription: proc() -> ^NS.String,
+}
+
+Storyboard_odin_extend :: proc(cls: Class, vt: ^Storyboard_VTable) {
+    assert(vt != nil);
+    meta := ObjC.object_getClass(auto_cast cls)
+    _=meta
+    if vt.storyboardWithName != nil {
+        storyboardWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> ^Storyboard {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).storyboardWithName( name, storyboardBundleOrNil)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("storyboardWithName:bundle:"), auto_cast storyboardWithName, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.instantiateInitialController != nil {
+        instantiateInitialController :: proc "c" (self: ^Storyboard, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).instantiateInitialController(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateInitialController"), auto_cast instantiateInitialController, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.instantiateInitialControllerWithCreator != nil {
+        instantiateInitialControllerWithCreator :: proc "c" (self: ^Storyboard, _: SEL, block: StoryboardControllerCreator) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).instantiateInitialControllerWithCreator(self, block)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateInitialControllerWithCreator:"), auto_cast instantiateInitialControllerWithCreator, "@@:?") do panic("Failed to register objC method.")
+    }
+    if vt.instantiateControllerWithIdentifier_ != nil {
+        instantiateControllerWithIdentifier_ :: proc "c" (self: ^Storyboard, _: SEL, identifier: ^NS.String) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).instantiateControllerWithIdentifier_(self, identifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateControllerWithIdentifier:"), auto_cast instantiateControllerWithIdentifier_, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.instantiateControllerWithIdentifier_creator != nil {
+        instantiateControllerWithIdentifier_creator :: proc "c" (self: ^Storyboard, _: SEL, identifier: ^NS.String, block: StoryboardControllerCreator) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).instantiateControllerWithIdentifier_creator(self, identifier, block)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateControllerWithIdentifier:creator:"), auto_cast instantiateControllerWithIdentifier_creator, "@@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.mainStoryboard != nil {
+        mainStoryboard :: proc "c" (self: Class, _: SEL) -> ^Storyboard {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).mainStoryboard()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("mainStoryboard"), auto_cast mainStoryboard, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.load != nil {
+        load :: proc "c" (self: Class, _: SEL) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Storyboard_VTable)vt_ctx.super_vt).load()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("load"), auto_cast load, "v#:") do panic("Failed to register objC method.")
+    }
+    if vt.initialize != nil {
+        initialize :: proc "c" (self: Class, _: SEL) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Storyboard_VTable)vt_ctx.super_vt).initialize()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("initialize"), auto_cast initialize, "v#:") do panic("Failed to register objC method.")
+    }
+    if vt.new != nil {
+        new :: proc "c" (self: Class, _: SEL) -> ^Storyboard {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).new()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.allocWithZone != nil {
+        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> ^Storyboard {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).allocWithZone( zone)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allocWithZone:"), auto_cast allocWithZone, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.alloc != nil {
+        alloc :: proc "c" (self: Class, _: SEL) -> ^Storyboard {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).alloc()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("alloc"), auto_cast alloc, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.copyWithZone != nil {
+        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).copyWithZone( zone)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("copyWithZone:"), auto_cast copyWithZone, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.mutableCopyWithZone != nil {
+        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).mutableCopyWithZone( zone)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("mutableCopyWithZone:"), auto_cast mutableCopyWithZone, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.instancesRespondToSelector != nil {
+        instancesRespondToSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).instancesRespondToSelector( aSelector)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("instancesRespondToSelector:"), auto_cast instancesRespondToSelector, "B#::") do panic("Failed to register objC method.")
+    }
+    if vt.conformsToProtocol != nil {
+        conformsToProtocol :: proc "c" (self: Class, _: SEL, protocol: ^Protocol) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).conformsToProtocol( protocol)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("conformsToProtocol:"), auto_cast conformsToProtocol, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.instanceMethodForSelector != nil {
+        instanceMethodForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> IMP {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).instanceMethodForSelector( aSelector)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodForSelector:"), auto_cast instanceMethodForSelector, "?#::") do panic("Failed to register objC method.")
+    }
+    if vt.instanceMethodSignatureForSelector != nil {
+        instanceMethodSignatureForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> ^NS.MethodSignature {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).instanceMethodSignatureForSelector( aSelector)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodSignatureForSelector:"), auto_cast instanceMethodSignatureForSelector, "@#::") do panic("Failed to register objC method.")
+    }
+    if vt.isSubclassOfClass != nil {
+        isSubclassOfClass :: proc "c" (self: Class, _: SEL, aClass: Class) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).isSubclassOfClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("isSubclassOfClass:"), auto_cast isSubclassOfClass, "B#:#") do panic("Failed to register objC method.")
+    }
+    if vt.resolveClassMethod != nil {
+        resolveClassMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).resolveClassMethod( sel)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveClassMethod:"), auto_cast resolveClassMethod, "B#::") do panic("Failed to register objC method.")
+    }
+    if vt.resolveInstanceMethod != nil {
+        resolveInstanceMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).resolveInstanceMethod( sel)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveInstanceMethod:"), auto_cast resolveInstanceMethod, "B#::") do panic("Failed to register objC method.")
+    }
+    if vt.hash != nil {
+        hash :: proc "c" (self: Class, _: SEL) -> NS.UInteger {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).hash()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("hash"), auto_cast hash, "L#:") do panic("Failed to register objC method.")
+    }
+    if vt.superclass != nil {
+        superclass :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).superclass()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("superclass"), auto_cast superclass, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.class != nil {
+        class :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).class()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("class"), auto_cast class, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.description != nil {
+        description :: proc "c" (self: Class, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).description()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("description"), auto_cast description, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.debugDescription != nil {
+        debugDescription :: proc "c" (self: Class, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Storyboard_VTable)vt_ctx.super_vt).debugDescription()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+}
+

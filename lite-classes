@@ -1,0 +1,64 @@
+Foundation:
+  - NSArray
+  - NSAutoreleasePool
+  - NSBundle
+  - NSCoder
+  - NSCoding
+  - NSCopying
+  - NSData
+  - NSDictionary
+  - NSError
+  - NSException
+  - NSHashTable
+  - NSMapTable
+  - NSMutableCopying
+  - NSNotification
+  - NSNumber
+  - NSObject
+  - NSRunLoop
+  - NSSecureCoding
+  - NSSet
+  - NSString
+  - NSTimer
+  - NSURL
+    - NSValue
+
+AppKit:
+  - NSApplication
+  - NSApplicationDelegate
+  - NSEvent
+  - NSResponder
+  - NSScreen
+  - NSTouch
+  - NSTrackingArea
+  - NSView
+  - NSViewController
+  - NSWindow
+  - NSWindowController
+  - NSWindowDelegate
+
+UIKit:
+  - UIApplication
+  - UIApplicationDelegate
+  - UIResponder
+  - UIScreen
+  - UIScreenMode
+  - UIWindow
+  - UIView
+  - UIViewController
+  - UIColor
+
+QuartzCore:
+  - CADisplayLink
+  - CALayer
+  - CALayerArray
+  - CALayerDelegate
+  - CALayoutManager
+  - CAMediaTiming
+  - CAMediaTimingFunction
+  - CAMetalDisplayLink
+  - CAMetalDisplayLinkDelegate
+  - CAMetalDisplayLinkUpdate
+  - CAMetalDrawable
+  - CAMetalLayer
+  - CAOpenGLLayer

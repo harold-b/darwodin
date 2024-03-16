@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+app_name=OdinMetal
+bin_dir=.bin
+app_bundle_dir="${bin_dir}/${app_name}.app"
+ios_src_dir=samples/ios_app
+
+# set -x
+echo 'Create bundle dir'
+rm -rf "${app_bundle_dir}"
+mkdir -p "${app_bundle_dir}"
+
+
+echo 'Copy bundle files'
+cp ${bin_dir}/main ${app_bundle_dir}/
+cp ${ios_src_dir}/Info.plist ${app_bundle_dir}/
+plutil -convert binary1 ${app_bundle_dir}/Info.plist
+
+# Compile LaunchScreen
+echo 'Compile LaunchScreen'
+ibtool --errors --warnings --notices \
+  --module ${app_name} \
+  --target-device iphone \
+  --minimum-deployment-target 17.0 \
+  --auto-activate-custom-fonts \
+  --output-format human-readable-text \
+  --output-partial-info-plist "${bin_dir}/LaunchScreen-SBPartialInfo.plist" \
+  --compilation-directory "${bin_dir}" \
+  "${ios_src_dir}/LaunchScreen.storyboard"
+
+# Link LaunchScreen
+echo 'Link LaunchScreen'
+ibtool --errors --warnings --notices \
+  --module ${app_name} \
+  --target-device iphone \
+  --minimum-deployment-target 17.0 \
+  --output-format human-readable-text \
+  --link "${app_bundle_dir}" \
+  "${bin_dir}/LaunchScreen.storyboardc"
+
+
+# Sign
+echo 'Codesign'
+/usr/bin/codesign --force --sign - \
+  --entitlements "${ios_src_dir}/Entitelments.plist" \
+  --timestamp=none \
+  --generate-entitlement-der ${app_bundle_dir}
+
+
+

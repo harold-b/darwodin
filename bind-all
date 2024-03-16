@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+use_ios=
+lite=
+
+while true; do
+  case $1 in
+    -ios)
+      use_ios=1
+    ;;
+    -l)
+      lite=1
+    ;;
+    -lite)
+      lite=1
+    ;;
+  esac
+  shift || break
+done
+
+frameworks=(
+    CoreFoundation
+    CoreGraphics
+    Foundation
+    QuartzCore
+    Metal
+    GameController
+)
+
+ios_arg=
+if [[ ${use_ios} -ne 1 ]]; then
+    frameworks+=(AppKit)
+else
+    frameworks+=(UIKit)
+    ios_arg=-ios
+fi
+
+if [[ ${lite} -eq 1 ]]; then
+    lite="-l"
+fi
+
+./bind ${frameworks[@]} ${lite} ${ios_arg}

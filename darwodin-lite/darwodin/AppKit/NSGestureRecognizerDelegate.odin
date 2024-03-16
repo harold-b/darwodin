@@ -1,0 +1,24 @@
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSGestureRecognizerDelegate
+///
+@(objc_class="NSGestureRecognizerDelegate")
+GestureRecognizerDelegate :: struct { using _: intrinsics.objc_object, 
+    using _: NS.ObjectProtocol,
+}
+
+GestureRecognizerDelegate_VTable :: struct {
+}
+

@@ -1,0 +1,87 @@
+---
+
+Defs: ../definitions/macos/gamecontroller.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*GC.+
+
+  ExportMethods:
+    - ^::GC.+
+
+  ExportVars:
+    - ^::k?GC.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/Foundation.exports.yml
+    # - ../exports/AppKit.exports.yml
+
+  BitSetMap:
+    - (Flags|Mask)$
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : GameController
+      Export: GC
+      DarwinLinkLibs: [system:GameController.framework]
+      Filter: .*
+
+      Imports:
+        - |
+          CHHapticEngine :: NS.Object
+          IOHIDDeviceRef :: struct {}
+
+      TypeMap:
+        CHHapticEngine: CHHapticEngine
+        IOHIDDeviceRef: IOHIDDeviceRef
+
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: .*
+    Transforms:
+    # - Kind  : RemoveTypeWordsFromElements
+    - Kind  : RemovePartialTypeNamePrefix
+    - Kind  : RemoveUnderscorePrefix
+    - Kind  : UnderscoreNumbers
+
+  TypeTransforms:
+  - Type: ^(GC).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+ 
+  ProcTransforms:
+  - Type: ^(_*GC).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+
+  VarTransforms:
+    - Type: ^(_*GC).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

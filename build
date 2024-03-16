@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+
+out_dir=.bin
+thread_count=8
+
+if [[ $OSTYPE == 'darwin'* ]]; then
+    thread_count=$(sysctl -n hw.logicalcpu)
+else
+    thread_count=$(nproc --all)
+fi
+
+debug_args=(
+  "-o:speed"
+)
+
+lite=
+ios=
+
+while true; do
+  case $1 in
+    -j)
+      shift && thread_count=$1 || exit 1
+    ;;
+    -debug)
+      debug_args=(
+        "-o:none"
+        "-debug"
+        #"-show-debug-messages"
+        # -show-more-timings
+        "-keep-temp-files"
+      )
+    ;;
+    -lite)
+      lite=1
+    ;;
+    -l)
+      lite=1
+    ;;
+    -ios)
+      ios=1
+    ;;
+    -out)
+        shift && out_dir=$1 || exit 1
+    ;;
+  esac
+  shift || break
+done
+
+extra_args=()
+
+root='.'
+if [[ ${lite} -eq 1 ]]; then
+  root="./darwodin-lite"
+fi
+
+if [[ ${ios} -eq 1 ]]; then
+  root="./darwodin-ios"
+  # extra_args+=(-subtarget:ios)
+  extra_args+=(-subtarget:iphonesim)
+  if [[ ${lite} -eq 1 ]]; then
+    root="./darwodin-ios-lite"
+  fi
+fi
+
+mkdir -p "${out_dir}"
+
+set -x
+odin build samples/metal_app \
+    "-collection:samples=./samples" \
+    "-collection:root=${root}" \
+    "-out:${out_dir}/main" \
+    ${debug_args[@]} \
+    -thread-count:${thread_count} \
+    -target:darwin_arm64 \
+    ${extra_args[@]}
+
+set +x
+if [[ ${ios} -eq 1 ]]; then
+  ./make-ios-app
+fi

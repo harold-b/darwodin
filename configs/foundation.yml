@@ -1,0 +1,124 @@
+---
+
+Defs: ../definitions/macos/foundation.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*NS.+
+    - ^_*Sec.+
+    - ^SSL.+
+    - ^tls.+
+    - ^cssm_.+
+    - ^CSSM_.+
+    - ^_*CE_.+
+    - ^x509.+
+    - ^.*GrafP
+    - x509_validity
+    - _xpc_type_s
+    - xpc_type_t
+    - ^unichar
+    - ^(Opaque)?AE.+
+    - ^AppleEvent
+    - ^DescType
+    - ^au_asid_t
+
+
+  ExportMethods:
+    - ^::NS.+
+
+  ExportVars:
+    - ^::k?NS.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit             : true
+  ExportPath       : ..
+  BasePackageName  : darwodin
+  SingleFile       : false
+  EmitObjCExtenders: true
+  TargetPlatform   : Darwin
+  ExportTypeMapDir : ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+
+  BitSetMap:
+    - (Flags|Mask)$
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : Foundation
+      Export: NS
+      DarwinLinkLibs: [system:Foundation.framework]
+      RequiredLink: true
+      Filter: .*
+
+      Imports:
+        - |
+          OpaqueSecTransformImplementation :: struct {}
+          OpaqueSecIdentitySearchRef :: struct {}
+          OpaquePolicySearchRef :: struct {}
+
+      TypeMap: {}
+
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: .*
+    Transforms:
+    - Kind  : RemoveTypeWordsFromElements
+    - Kind  : RemovePartialTypeNamePrefix
+    - Kind  : RemoveUnderscorePrefix
+    - Kind  : UnderscoreNumbers
+    
+  - Type: ^CE_GeneralNameType$
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: GNT_
+
+  - Type: ^CE_DataType$
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: DT_
+
+  - Type: ^CE_CrlDistributionPointNameType$
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: DNT_
+
+  - Type: ^CSSM_X509EXT_DATA_FORMAT$
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: X509_DATAFORMAT_
+
+
+  TypeTransforms:
+  - Type: ^(NS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+ 
+  ProcTransforms:
+  - Type: ^(_*NS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+
+  VarTransforms:
+    - Type: ^(_*k?NS).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

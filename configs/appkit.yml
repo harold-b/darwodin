@@ -1,0 +1,152 @@
+---
+
+Defs: ../definitions/macos/appkit.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*NS.+
+
+  ExportMethods:
+    - ^::NS.+
+
+  ExportVars:
+    - ^::k?NS.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit             : true
+  ExportPath       : ..
+  BasePackageName  : darwodin
+  SingleFile       : false
+  EmitObjCExtenders: true
+  TargetPlatform   : Darwin
+  ExportTypeMapDir : ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/Foundation.exports.yml
+    - ../exports/QuartzCore.exports.yml
+
+  BitSetMap:
+    - (Flags|Mask)$
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : AppKit
+      Export: AK
+      DarwinLinkLibs: [system:AppKit.framework]
+      RequiredLink: true
+      Filter: .*
+
+      Imports:
+        - |
+          OpaqueSecTransformImplementation :: struct {}
+          OpaqueSecIdentitySearchRef :: struct {}
+          OpaquePolicySearchRef :: struct {}
+          OpaqueIconRef :: struct {}
+          CVTimeStamp :: struct {}
+
+          CIBarcodeDescriptor :: NS.Object
+          CKShare :: NS.Object
+          CKContainer :: NS.Object
+          CIImage :: NS.Object
+          INIntent :: NS.Object
+          CIColor :: NS.Object
+          CIFilter  :: NS.Object
+          CIContext :: NS.Object
+          CKShareMetadata :: NS.Object
+          QTMovie :: NS.Object
+          UTType :: NS.Object
+
+          GCGamepadSnapShotDataV100 :: struct {}
+          GCExtendedGamepadSnapshotData :: struct {}
+          GCExtendedGamepadSnapShotDataV100 :: struct {}
+          GCMicroGamepadSnapshotData :: struct {}
+          GCMicroGamepadSnapShotDataV100 :: struct {}
+
+      TypeMap:
+        CKShare: CKShare
+        CKShareMetadata: CKShareMetadata
+        CKContainer: CKContainer
+        INIntent: INIntent
+        CIImage: CIImage
+        CIColor: CIColor
+        CIFilter: CIFilter
+        CIContext: CIContext
+        QTMovie: QTMovie
+        UTType: UTType
+        CVTimeStamp: CVTimeStamp
+
+        # CG
+        GCGamepadSnapShotDataV100: GCGamepadSnapShotDataV100
+        GCExtendedGamepadSnapshotData: GCExtendedGamepadSnapshotData
+        GCExtendedGamepadSnapShotDataV100: GCExtendedGamepadSnapShotDataV100
+        GCMicroGamepadSnapshotData: GCMicroGamepadSnapshotData
+        GCMicroGamepadSnapShotDataV100: GCMicroGamepadSnapShotDataV100
+
+      IgnoreExtendObjCTypes:
+        - ^NSOpenGLLayer$
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: ^NSFontAssetRequestOptions$
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: NSFontAssetRequestOption
+  - Type: ^NSApplicationPrintReply$
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: NSPrinting
+  - Type: ^NSImageScaling$
+    Transforms:
+    - Kind  : ReplacePrefix
+      Source: NSScale
+      Target: DEPRECATED_
+    - Kind  : RemovePrefix
+      Source: NSImageScale
+      
+      
+  
+  - Type: .*
+    Transforms:
+      - Kind  : RemoveTypeWordsFromElements
+      # - Kind  : RemovePartialTypeNamePrefix
+      - Kind  : RemoveUnderscorePrefix
+      - Kind  : UnderscoreNumbers
+  - Type: Flags$
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: Flag
+
+  TypeTransforms:
+  - Type: ^(NS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+ 
+  ProcTransforms:
+  - Type: ^(_*NS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+
+  VarTransforms:
+    - Type: ^(_*NS).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0
+        - Kind  : RemoveUnderscorePrefix
+        - Kind  : UnderscoreNumbers

@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+frameworks=()
+use_ios=
+lite=
+cgen_args=()
+
+while true; do
+  case $1 in
+    -ios)
+      use_ios=1
+    ;;
+    -l)
+      lite=1
+    ;;
+    -lite)
+      lite=1
+    ;;
+    *)
+      frameworks+=($1)
+    ;;
+  esac
+  shift || break
+done
+
+if [[ 0 -eq ${#frameworks[@]} ]]; then
+  echo "Error: No frameworks specified."
+  exit 1
+fi
+
+out_folder=darwodin
+appkit=AppKit
+
+if [[ ${lite} -eq 1 ]]; then
+  out_folder=darwodin-lite 
+  cgen_args+=(--odin-elaborated-objc-classes ../lite-classes)
+fi
+
+if [[ ${use_ios} -eq 1 ]]; then
+  out_folder=darwodin-ios
+  appkit=UIKit
+  
+  if [[ ${lite} -eq 1 ]]; then
+    out_folder=darwodin-ios-lite
+  fi
+fi
+
+cgen_args+=()
+
+out_path=../${out_folder}
+for f in ${frameworks[@]}; do
+    echo "$f"
+    framework_lower="$(echo $f | tr '[:upper:]' '[:lower:]')"
+    framework_cfg="configs/${framework_lower}.yml"
+
+    args=()
+    if [[ ${use_ios} -eq 1 ]]; then
+      args=(--def definitions/ios/${framework_lower}.json)
+    fi
+
+    if [ ${framework_lower} != "corefoundation" ] &&
+       [ ${framework_lower} != "coregraphics" ] &&
+       [ ${framework_lower} != "foundation" ] &&
+       [ ${framework_lower} != "quartzcore" ] &&
+       [ ${framework_lower} != "appkit" ] &&
+       [ ${framework_lower} != "uikit" ]; then
+
+        args+=(--odin-external-type ../exports/${appkit}.exports.yml)
+    fi
+
+    csgen ${cgen_args[@]} ${args[@]} --odin-out "${out_path}" "$framework_cfg"
+done
+
+# Copy Objective-C sources
+if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
+  if [[ ! -h "${out_folder}/darwodin/ObjectiveC" ]]; then
+    # ln -s "$(pwd)/darwodin/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
+    cp -r "darwodin/ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
+  fi
+fi

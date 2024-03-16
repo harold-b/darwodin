@@ -1,0 +1,426 @@
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UISwipeGestureRecognizer
+///
+@(objc_class="UISwipeGestureRecognizer")
+SwipeGestureRecognizer :: struct { using _: GestureRecognizer, }
+
+@(objc_type=SwipeGestureRecognizer, objc_name="init")
+SwipeGestureRecognizer_init :: proc "c" (self: ^SwipeGestureRecognizer) -> ^SwipeGestureRecognizer {
+    return msgSend(^SwipeGestureRecognizer, self, "init")
+}
+
+
+@(objc_type=SwipeGestureRecognizer, objc_name="numberOfTouchesRequired")
+SwipeGestureRecognizer_numberOfTouchesRequired :: #force_inline proc "c" (self: ^SwipeGestureRecognizer) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "numberOfTouchesRequired")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="setNumberOfTouchesRequired")
+SwipeGestureRecognizer_setNumberOfTouchesRequired :: #force_inline proc "c" (self: ^SwipeGestureRecognizer, numberOfTouchesRequired: NS.UInteger) {
+    msgSend(nil, self, "setNumberOfTouchesRequired:", numberOfTouchesRequired)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="direction")
+SwipeGestureRecognizer_direction :: #force_inline proc "c" (self: ^SwipeGestureRecognizer) -> SwipeGestureRecognizerDirection {
+    return msgSend(SwipeGestureRecognizerDirection, self, "direction")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="setDirection")
+SwipeGestureRecognizer_setDirection :: #force_inline proc "c" (self: ^SwipeGestureRecognizer, direction: SwipeGestureRecognizerDirection) {
+    msgSend(nil, self, "setDirection:", direction)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="load", objc_is_class_method=true)
+SwipeGestureRecognizer_load :: #force_inline proc "c" () {
+    msgSend(nil, SwipeGestureRecognizer, "load")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="initialize", objc_is_class_method=true)
+SwipeGestureRecognizer_initialize :: #force_inline proc "c" () {
+    msgSend(nil, SwipeGestureRecognizer, "initialize")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="new", objc_is_class_method=true)
+SwipeGestureRecognizer_new :: #force_inline proc "c" () -> ^SwipeGestureRecognizer {
+    return msgSend(^SwipeGestureRecognizer, SwipeGestureRecognizer, "new")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="allocWithZone", objc_is_class_method=true)
+SwipeGestureRecognizer_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^SwipeGestureRecognizer {
+    return msgSend(^SwipeGestureRecognizer, SwipeGestureRecognizer, "allocWithZone:", zone)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="alloc", objc_is_class_method=true)
+SwipeGestureRecognizer_alloc :: #force_inline proc "c" () -> ^SwipeGestureRecognizer {
+    return msgSend(^SwipeGestureRecognizer, SwipeGestureRecognizer, "alloc")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="copyWithZone", objc_is_class_method=true)
+SwipeGestureRecognizer_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
+    return msgSend(id, SwipeGestureRecognizer, "copyWithZone:", zone)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="mutableCopyWithZone", objc_is_class_method=true)
+SwipeGestureRecognizer_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
+    return msgSend(id, SwipeGestureRecognizer, "mutableCopyWithZone:", zone)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="instancesRespondToSelector", objc_is_class_method=true)
+SwipeGestureRecognizer_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, SwipeGestureRecognizer, "instancesRespondToSelector:", aSelector)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="conformsToProtocol", objc_is_class_method=true)
+SwipeGestureRecognizer_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, SwipeGestureRecognizer, "conformsToProtocol:", protocol)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="instanceMethodForSelector", objc_is_class_method=true)
+SwipeGestureRecognizer_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, SwipeGestureRecognizer, "instanceMethodForSelector:", aSelector)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
+SwipeGestureRecognizer_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
+    return msgSend(^NS.MethodSignature, SwipeGestureRecognizer, "instanceMethodSignatureForSelector:", aSelector)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="isSubclassOfClass", objc_is_class_method=true)
+SwipeGestureRecognizer_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, SwipeGestureRecognizer, "isSubclassOfClass:", aClass)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="resolveClassMethod", objc_is_class_method=true)
+SwipeGestureRecognizer_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, SwipeGestureRecognizer, "resolveClassMethod:", sel)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="resolveInstanceMethod", objc_is_class_method=true)
+SwipeGestureRecognizer_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, SwipeGestureRecognizer, "resolveInstanceMethod:", sel)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="hash", objc_is_class_method=true)
+SwipeGestureRecognizer_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, SwipeGestureRecognizer, "hash")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="superclass", objc_is_class_method=true)
+SwipeGestureRecognizer_superclass :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, SwipeGestureRecognizer, "superclass")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="class", objc_is_class_method=true)
+SwipeGestureRecognizer_class :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, SwipeGestureRecognizer, "class")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="description", objc_is_class_method=true)
+SwipeGestureRecognizer_description :: #force_inline proc "c" () -> ^NS.String {
+    return msgSend(^NS.String, SwipeGestureRecognizer, "description")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="debugDescription", objc_is_class_method=true)
+SwipeGestureRecognizer_debugDescription :: #force_inline proc "c" () -> ^NS.String {
+    return msgSend(^NS.String, SwipeGestureRecognizer, "debugDescription")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="version", objc_is_class_method=true)
+SwipeGestureRecognizer_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, SwipeGestureRecognizer, "version")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="setVersion", objc_is_class_method=true)
+SwipeGestureRecognizer_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
+    msgSend(nil, SwipeGestureRecognizer, "setVersion:", aVersion)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
+SwipeGestureRecognizer_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
+    msgSend(nil, SwipeGestureRecognizer, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
+SwipeGestureRecognizer_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
+    msgSend(nil, SwipeGestureRecognizer, "cancelPreviousPerformRequestsWithTarget:", aTarget)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
+SwipeGestureRecognizer_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, SwipeGestureRecognizer, "accessInstanceVariablesDirectly")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="useStoredAccessor", objc_is_class_method=true)
+SwipeGestureRecognizer_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, SwipeGestureRecognizer, "useStoredAccessor")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
+SwipeGestureRecognizer_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
+    return msgSend(^NS.Set, SwipeGestureRecognizer, "keyPathsForValuesAffectingValueForKey:", key)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
+SwipeGestureRecognizer_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, SwipeGestureRecognizer, "automaticallyNotifiesObserversForKey:", key)
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
+SwipeGestureRecognizer_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
+    return msgSend(^NS.Array, SwipeGestureRecognizer, "classFallbacksForKeyedArchiver")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
+SwipeGestureRecognizer_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, SwipeGestureRecognizer, "classForKeyedUnarchiver")
+}
+@(objc_type=SwipeGestureRecognizer, objc_name="cancelPreviousPerformRequestsWithTarget")
+SwipeGestureRecognizer_cancelPreviousPerformRequestsWithTarget :: proc {
+    SwipeGestureRecognizer_cancelPreviousPerformRequestsWithTarget_selector_object,
+    SwipeGestureRecognizer_cancelPreviousPerformRequestsWithTarget_,
+}
+
+SwipeGestureRecognizer_VTable :: struct {
+    super: GestureRecognizer_VTable,
+    numberOfTouchesRequired: proc(self: ^SwipeGestureRecognizer) -> NS.UInteger,
+    setNumberOfTouchesRequired: proc(self: ^SwipeGestureRecognizer, numberOfTouchesRequired: NS.UInteger),
+    direction: proc(self: ^SwipeGestureRecognizer) -> SwipeGestureRecognizerDirection,
+    setDirection: proc(self: ^SwipeGestureRecognizer, direction: SwipeGestureRecognizerDirection),
+    load: proc(),
+    initialize: proc(),
+    new: proc() -> ^SwipeGestureRecognizer,
+    allocWithZone: proc(zone: ^NS._NSZone) -> ^SwipeGestureRecognizer,
+    alloc: proc() -> ^SwipeGestureRecognizer,
+    copyWithZone: proc(zone: ^NS._NSZone) -> id,
+    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> id,
+    instancesRespondToSelector: proc(aSelector: SEL) -> bool,
+    conformsToProtocol: proc(protocol: ^Protocol) -> bool,
+    instanceMethodForSelector: proc(aSelector: SEL) -> IMP,
+    instanceMethodSignatureForSelector: proc(aSelector: SEL) -> ^NS.MethodSignature,
+    isSubclassOfClass: proc(aClass: Class) -> bool,
+    resolveClassMethod: proc(sel: SEL) -> bool,
+    resolveInstanceMethod: proc(sel: SEL) -> bool,
+    hash: proc() -> NS.UInteger,
+    superclass: proc() -> Class,
+    class: proc() -> Class,
+    description: proc() -> ^NS.String,
+    debugDescription: proc() -> ^NS.String,
+}
+
+SwipeGestureRecognizer_odin_extend :: proc(cls: Class, vt: ^SwipeGestureRecognizer_VTable) {
+    assert(vt != nil);
+    meta := ObjC.object_getClass(auto_cast cls)
+    _=meta
+    if vt.numberOfTouchesRequired != nil {
+        numberOfTouchesRequired :: proc "c" (self: ^SwipeGestureRecognizer, _: SEL) -> NS.UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).numberOfTouchesRequired(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfTouchesRequired"), auto_cast numberOfTouchesRequired, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setNumberOfTouchesRequired != nil {
+        setNumberOfTouchesRequired :: proc "c" (self: ^SwipeGestureRecognizer, _: SEL, numberOfTouchesRequired: NS.UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).setNumberOfTouchesRequired(self, numberOfTouchesRequired)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNumberOfTouchesRequired:"), auto_cast setNumberOfTouchesRequired, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.direction != nil {
+        direction :: proc "c" (self: ^SwipeGestureRecognizer, _: SEL) -> SwipeGestureRecognizerDirection {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).direction(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("direction"), auto_cast direction, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDirection != nil {
+        setDirection :: proc "c" (self: ^SwipeGestureRecognizer, _: SEL, direction: SwipeGestureRecognizerDirection) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).setDirection(self, direction)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDirection:"), auto_cast setDirection, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.load != nil {
+        load :: proc "c" (self: Class, _: SEL) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).load()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("load"), auto_cast load, "v#:") do panic("Failed to register objC method.")
+    }
+    if vt.initialize != nil {
+        initialize :: proc "c" (self: Class, _: SEL) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).initialize()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("initialize"), auto_cast initialize, "v#:") do panic("Failed to register objC method.")
+    }
+    if vt.new != nil {
+        new :: proc "c" (self: Class, _: SEL) -> ^SwipeGestureRecognizer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).new()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.allocWithZone != nil {
+        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> ^SwipeGestureRecognizer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).allocWithZone( zone)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allocWithZone:"), auto_cast allocWithZone, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.alloc != nil {
+        alloc :: proc "c" (self: Class, _: SEL) -> ^SwipeGestureRecognizer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).alloc()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("alloc"), auto_cast alloc, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.copyWithZone != nil {
+        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).copyWithZone( zone)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("copyWithZone:"), auto_cast copyWithZone, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.mutableCopyWithZone != nil {
+        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).mutableCopyWithZone( zone)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("mutableCopyWithZone:"), auto_cast mutableCopyWithZone, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.instancesRespondToSelector != nil {
+        instancesRespondToSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).instancesRespondToSelector( aSelector)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("instancesRespondToSelector:"), auto_cast instancesRespondToSelector, "B#::") do panic("Failed to register objC method.")
+    }
+    if vt.conformsToProtocol != nil {
+        conformsToProtocol :: proc "c" (self: Class, _: SEL, protocol: ^Protocol) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).conformsToProtocol( protocol)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("conformsToProtocol:"), auto_cast conformsToProtocol, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.instanceMethodForSelector != nil {
+        instanceMethodForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> IMP {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).instanceMethodForSelector( aSelector)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodForSelector:"), auto_cast instanceMethodForSelector, "?#::") do panic("Failed to register objC method.")
+    }
+    if vt.instanceMethodSignatureForSelector != nil {
+        instanceMethodSignatureForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> ^NS.MethodSignature {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).instanceMethodSignatureForSelector( aSelector)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodSignatureForSelector:"), auto_cast instanceMethodSignatureForSelector, "@#::") do panic("Failed to register objC method.")
+    }
+    if vt.isSubclassOfClass != nil {
+        isSubclassOfClass :: proc "c" (self: Class, _: SEL, aClass: Class) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).isSubclassOfClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("isSubclassOfClass:"), auto_cast isSubclassOfClass, "B#:#") do panic("Failed to register objC method.")
+    }
+    if vt.resolveClassMethod != nil {
+        resolveClassMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).resolveClassMethod( sel)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveClassMethod:"), auto_cast resolveClassMethod, "B#::") do panic("Failed to register objC method.")
+    }
+    if vt.resolveInstanceMethod != nil {
+        resolveInstanceMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).resolveInstanceMethod( sel)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveInstanceMethod:"), auto_cast resolveInstanceMethod, "B#::") do panic("Failed to register objC method.")
+    }
+    if vt.hash != nil {
+        hash :: proc "c" (self: Class, _: SEL) -> NS.UInteger {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).hash()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("hash"), auto_cast hash, "L#:") do panic("Failed to register objC method.")
+    }
+    if vt.superclass != nil {
+        superclass :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).superclass()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("superclass"), auto_cast superclass, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.class != nil {
+        class :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).class()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("class"), auto_cast class, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.description != nil {
+        description :: proc "c" (self: Class, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).description()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("description"), auto_cast description, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.debugDescription != nil {
+        debugDescription :: proc "c" (self: Class, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SwipeGestureRecognizer_VTable)vt_ctx.super_vt).debugDescription()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+}
+

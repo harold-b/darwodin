@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+frameworks=(
+    CoreFoundation
+    CoreGraphics
+    Foundation
+    QuartzCore
+    Metal
+    GameController
+    # CoreData
+)
+
+macos_frameworks=(
+    ${frameworks[@]}
+    AppKit
+)
+
+ios_frameworks=(
+    ${frameworks[@]}
+    UIKit
+)
+
+# MacOS
+echo "Generating macOS definitions..."
+for f in ${macos_frameworks[@]}; do
+    flist=($(echo "$f" | tr ',' ' '))
+    for ((i=0; i < ${#flist[@]}; i++ )); do
+        flist[$i]="-f ${flist[$i]}"
+    done
+    ./gen-def ${flist[@]}
+done
+
+# echo ""
+# echo "Generating iOS definitions..."
+# for f in ${ios_frameworks[@]}; do
+# flist=($(echo "$f" | tr ',' ' '))
+#     for ((i=0; i < ${#flist[@]}; i++ )); do
+#         flist[$i]="-f ${flist[$i]}"
+#     done
+#     ./bind -ios ${flist[@]}
+# done

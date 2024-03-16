@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+export sysroot_macos="$(xcode-select -p)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+export sysroot_ios="$(xcode-select -p)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"
+export xcode_toolchain_include="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"
+
+export sdk_frameworks_macos="${sysroot_macos}/System/Library/Frameworks"
+export sdk_frameworks_ios="${sysroot_ios}/System/Library/Frameworks"
+
+frameworks_path=${sdk_frameworks_macos}
+sysroot=${sysroot_macos}
+target=arm64-apple-macos13.3
+target_ios=arm64-apple-ios17.0
+
+use_ios=
+framework=
+
+while true; do
+  case $1 in
+    -ios)
+      use_ios=1
+    ;;
+    -framework)
+      shift && framework=$1 || exit 1
+    ;;
+    -f)
+      shift && framework=$1 || exit 1
+    ;;
+  esac
+  shift || break
+done
+
+if [[ -z "$framework" ]]; then
+  echo "Error: No framework specified."
+  exit 1
+fi
+
+out_dir=definitions/macos
+if [[ ${use_ios} -eq 1 ]]; then
+  frameworks_path=${sdk_frameworks_ios}
+  sysroot=${sysroot_ios}
+  target=${target_ios}
+  out_dir=definitions/ios
+fi
+
+echo "Framework: '$framework'"
+out_file="$(echo $framework | tr '[:upper:]' '[:lower:]').json"
+
+header="$(mktemp).h"
+echo "#import <${framework}/${framework}.h>" > $header
+
+cgen -ObjC --no-sysroot -isysroot "${sysroot}" \
+  -DOS_OBJECT_USE_OBJC=0 \
+  "-isystem${sysroot}/usr/include/c++/v1" \
+  "-isystem${sysroot}/usr/include" \
+  "-isystem${xcode_toolchain_include}" \
+  "-F${frameworks_path}/" -target ${target} ${header} ${out_dir}/${out_file}

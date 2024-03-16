@@ -1,0 +1,44 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "${workspaceFolder}/build",
+            "args": [ "-debug", "-l" ],
+            "problemMatcher": {
+                "owner": "odin",
+                "fileLocation": ["absolute"],
+                "pattern": {
+                    "regexp": "^(.+)\\(([0-9]+)\\:([0-9]+)\\) (.+)\\:(.+)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+
+        {
+            "label": "build-ios",
+            "type": "shell",
+            "command": "${workspaceFolder}/build",
+            "args": [ "-debug", "-ios", "-l" ],
+            "problemMatcher": {
+                "owner": "odin",
+                "fileLocation": ["absolute"],
+                "pattern": {
+                    "regexp": "^(.+)\\(([0-9]+)\\:([0-9]+)\\) (.+)\\:(.+)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        }
+    ]
+}

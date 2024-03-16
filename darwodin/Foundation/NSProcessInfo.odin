@@ -1,0 +1,535 @@
+package darwodin_Foundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+
+
+
+///
+/// NSProcessInfo
+///
+@(objc_class="NSProcessInfo")
+ProcessInfo :: struct { using _: Object, }
+
+@(objc_type=ProcessInfo, objc_name="init")
+ProcessInfo_init :: proc "c" (self: ^ProcessInfo) -> ^ProcessInfo {
+    return msgSend(^ProcessInfo, self, "init")
+}
+
+
+@(objc_type=ProcessInfo, objc_name="operatingSystem")
+ProcessInfo_operatingSystem :: #force_inline proc "c" (self: ^ProcessInfo) -> UInteger {
+    return msgSend(UInteger, self, "operatingSystem")
+}
+@(objc_type=ProcessInfo, objc_name="operatingSystemName")
+ProcessInfo_operatingSystemName :: #force_inline proc "c" (self: ^ProcessInfo) -> ^String {
+    return msgSend(^String, self, "operatingSystemName")
+}
+@(objc_type=ProcessInfo, objc_name="isOperatingSystemAtLeastVersion")
+ProcessInfo_isOperatingSystemAtLeastVersion :: #force_inline proc "c" (self: ^ProcessInfo, version: OperatingSystemVersion) -> bool {
+    return msgSend(bool, self, "isOperatingSystemAtLeastVersion:", version)
+}
+@(objc_type=ProcessInfo, objc_name="disableSuddenTermination")
+ProcessInfo_disableSuddenTermination :: #force_inline proc "c" (self: ^ProcessInfo) {
+    msgSend(nil, self, "disableSuddenTermination")
+}
+@(objc_type=ProcessInfo, objc_name="enableSuddenTermination")
+ProcessInfo_enableSuddenTermination :: #force_inline proc "c" (self: ^ProcessInfo) {
+    msgSend(nil, self, "enableSuddenTermination")
+}
+@(objc_type=ProcessInfo, objc_name="disableAutomaticTermination")
+ProcessInfo_disableAutomaticTermination :: #force_inline proc "c" (self: ^ProcessInfo, reason: ^String) {
+    msgSend(nil, self, "disableAutomaticTermination:", reason)
+}
+@(objc_type=ProcessInfo, objc_name="enableAutomaticTermination")
+ProcessInfo_enableAutomaticTermination :: #force_inline proc "c" (self: ^ProcessInfo, reason: ^String) {
+    msgSend(nil, self, "enableAutomaticTermination:", reason)
+}
+@(objc_type=ProcessInfo, objc_name="processInfo", objc_is_class_method=true)
+ProcessInfo_processInfo :: #force_inline proc "c" () -> ^ProcessInfo {
+    return msgSend(^ProcessInfo, ProcessInfo, "processInfo")
+}
+@(objc_type=ProcessInfo, objc_name="environment")
+ProcessInfo_environment :: #force_inline proc "c" (self: ^ProcessInfo) -> ^Dictionary {
+    return msgSend(^Dictionary, self, "environment")
+}
+@(objc_type=ProcessInfo, objc_name="arguments")
+ProcessInfo_arguments :: #force_inline proc "c" (self: ^ProcessInfo) -> ^Array {
+    return msgSend(^Array, self, "arguments")
+}
+@(objc_type=ProcessInfo, objc_name="hostName")
+ProcessInfo_hostName :: #force_inline proc "c" (self: ^ProcessInfo) -> ^String {
+    return msgSend(^String, self, "hostName")
+}
+@(objc_type=ProcessInfo, objc_name="processName")
+ProcessInfo_processName :: #force_inline proc "c" (self: ^ProcessInfo) -> ^String {
+    return msgSend(^String, self, "processName")
+}
+@(objc_type=ProcessInfo, objc_name="setProcessName")
+ProcessInfo_setProcessName :: #force_inline proc "c" (self: ^ProcessInfo, processName: ^String) {
+    msgSend(nil, self, "setProcessName:", processName)
+}
+@(objc_type=ProcessInfo, objc_name="processIdentifier")
+ProcessInfo_processIdentifier :: #force_inline proc "c" (self: ^ProcessInfo) -> cffi.int {
+    return msgSend(cffi.int, self, "processIdentifier")
+}
+@(objc_type=ProcessInfo, objc_name="globallyUniqueString")
+ProcessInfo_globallyUniqueString :: #force_inline proc "c" (self: ^ProcessInfo) -> ^String {
+    return msgSend(^String, self, "globallyUniqueString")
+}
+@(objc_type=ProcessInfo, objc_name="operatingSystemVersionString")
+ProcessInfo_operatingSystemVersionString :: #force_inline proc "c" (self: ^ProcessInfo) -> ^String {
+    return msgSend(^String, self, "operatingSystemVersionString")
+}
+@(objc_type=ProcessInfo, objc_name="operatingSystemVersion")
+ProcessInfo_operatingSystemVersion :: #force_inline proc "c" (self: ^ProcessInfo) -> OperatingSystemVersion {
+    return msgSend(OperatingSystemVersion, self, "operatingSystemVersion")
+}
+@(objc_type=ProcessInfo, objc_name="processorCount")
+ProcessInfo_processorCount :: #force_inline proc "c" (self: ^ProcessInfo) -> UInteger {
+    return msgSend(UInteger, self, "processorCount")
+}
+@(objc_type=ProcessInfo, objc_name="activeProcessorCount")
+ProcessInfo_activeProcessorCount :: #force_inline proc "c" (self: ^ProcessInfo) -> UInteger {
+    return msgSend(UInteger, self, "activeProcessorCount")
+}
+@(objc_type=ProcessInfo, objc_name="physicalMemory")
+ProcessInfo_physicalMemory :: #force_inline proc "c" (self: ^ProcessInfo) -> cffi.ulonglong {
+    return msgSend(cffi.ulonglong, self, "physicalMemory")
+}
+@(objc_type=ProcessInfo, objc_name="systemUptime")
+ProcessInfo_systemUptime :: #force_inline proc "c" (self: ^ProcessInfo) -> TimeInterval {
+    return msgSend(TimeInterval, self, "systemUptime")
+}
+@(objc_type=ProcessInfo, objc_name="automaticTerminationSupportEnabled")
+ProcessInfo_automaticTerminationSupportEnabled :: #force_inline proc "c" (self: ^ProcessInfo) -> bool {
+    return msgSend(bool, self, "automaticTerminationSupportEnabled")
+}
+@(objc_type=ProcessInfo, objc_name="setAutomaticTerminationSupportEnabled")
+ProcessInfo_setAutomaticTerminationSupportEnabled :: #force_inline proc "c" (self: ^ProcessInfo, automaticTerminationSupportEnabled: bool) {
+    msgSend(nil, self, "setAutomaticTerminationSupportEnabled:", automaticTerminationSupportEnabled)
+}
+@(objc_type=ProcessInfo, objc_name="beginActivityWithOptions")
+ProcessInfo_beginActivityWithOptions :: #force_inline proc "c" (self: ^ProcessInfo, options: ActivityOptions, reason: ^String) -> ^ObjectProtocol {
+    return msgSend(^ObjectProtocol, self, "beginActivityWithOptions:reason:", options, reason)
+}
+@(objc_type=ProcessInfo, objc_name="endActivity")
+ProcessInfo_endActivity :: #force_inline proc "c" (self: ^ProcessInfo, activity: ^ObjectProtocol) {
+    msgSend(nil, self, "endActivity:", activity)
+}
+@(objc_type=ProcessInfo, objc_name="performActivityWithOptions")
+ProcessInfo_performActivityWithOptions :: #force_inline proc "c" (self: ^ProcessInfo, options: ActivityOptions, reason: ^String, block: proc "c" ()) {
+    msgSend(nil, self, "performActivityWithOptions:reason:usingBlock:", options, reason, block)
+}
+@(objc_type=ProcessInfo, objc_name="performExpiringActivityWithReason")
+ProcessInfo_performExpiringActivityWithReason :: #force_inline proc "c" (self: ^ProcessInfo, reason: ^String, block: proc "c" (expired: bool)) {
+    msgSend(nil, self, "performExpiringActivityWithReason:usingBlock:", reason, block)
+}
+@(objc_type=ProcessInfo, objc_name="userName")
+ProcessInfo_userName :: #force_inline proc "c" (self: ^ProcessInfo) -> ^String {
+    return msgSend(^String, self, "userName")
+}
+@(objc_type=ProcessInfo, objc_name="fullUserName")
+ProcessInfo_fullUserName :: #force_inline proc "c" (self: ^ProcessInfo) -> ^String {
+    return msgSend(^String, self, "fullUserName")
+}
+@(objc_type=ProcessInfo, objc_name="thermalState")
+ProcessInfo_thermalState :: #force_inline proc "c" (self: ^ProcessInfo) -> ProcessInfoThermalState {
+    return msgSend(ProcessInfoThermalState, self, "thermalState")
+}
+@(objc_type=ProcessInfo, objc_name="isLowPowerModeEnabled")
+ProcessInfo_isLowPowerModeEnabled :: #force_inline proc "c" (self: ^ProcessInfo) -> bool {
+    return msgSend(bool, self, "isLowPowerModeEnabled")
+}
+@(objc_type=ProcessInfo, objc_name="isMacCatalystApp")
+ProcessInfo_isMacCatalystApp :: #force_inline proc "c" (self: ^ProcessInfo) -> bool {
+    return msgSend(bool, self, "isMacCatalystApp")
+}
+@(objc_type=ProcessInfo, objc_name="isiOSAppOnMac")
+ProcessInfo_isiOSAppOnMac :: #force_inline proc "c" (self: ^ProcessInfo) -> bool {
+    return msgSend(bool, self, "isiOSAppOnMac")
+}
+@(objc_type=ProcessInfo, objc_name="load", objc_is_class_method=true)
+ProcessInfo_load :: #force_inline proc "c" () {
+    msgSend(nil, ProcessInfo, "load")
+}
+@(objc_type=ProcessInfo, objc_name="initialize", objc_is_class_method=true)
+ProcessInfo_initialize :: #force_inline proc "c" () {
+    msgSend(nil, ProcessInfo, "initialize")
+}
+@(objc_type=ProcessInfo, objc_name="new", objc_is_class_method=true)
+ProcessInfo_new :: #force_inline proc "c" () -> ^ProcessInfo {
+    return msgSend(^ProcessInfo, ProcessInfo, "new")
+}
+@(objc_type=ProcessInfo, objc_name="allocWithZone", objc_is_class_method=true)
+ProcessInfo_allocWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> ^ProcessInfo {
+    return msgSend(^ProcessInfo, ProcessInfo, "allocWithZone:", zone)
+}
+@(objc_type=ProcessInfo, objc_name="alloc", objc_is_class_method=true)
+ProcessInfo_alloc :: #force_inline proc "c" () -> ^ProcessInfo {
+    return msgSend(^ProcessInfo, ProcessInfo, "alloc")
+}
+@(objc_type=ProcessInfo, objc_name="copyWithZone", objc_is_class_method=true)
+ProcessInfo_copyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
+    return msgSend(id, ProcessInfo, "copyWithZone:", zone)
+}
+@(objc_type=ProcessInfo, objc_name="mutableCopyWithZone", objc_is_class_method=true)
+ProcessInfo_mutableCopyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
+    return msgSend(id, ProcessInfo, "mutableCopyWithZone:", zone)
+}
+@(objc_type=ProcessInfo, objc_name="instancesRespondToSelector", objc_is_class_method=true)
+ProcessInfo_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, ProcessInfo, "instancesRespondToSelector:", aSelector)
+}
+@(objc_type=ProcessInfo, objc_name="conformsToProtocol", objc_is_class_method=true)
+ProcessInfo_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, ProcessInfo, "conformsToProtocol:", protocol)
+}
+@(objc_type=ProcessInfo, objc_name="instanceMethodForSelector", objc_is_class_method=true)
+ProcessInfo_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, ProcessInfo, "instanceMethodForSelector:", aSelector)
+}
+@(objc_type=ProcessInfo, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
+ProcessInfo_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^MethodSignature {
+    return msgSend(^MethodSignature, ProcessInfo, "instanceMethodSignatureForSelector:", aSelector)
+}
+@(objc_type=ProcessInfo, objc_name="isSubclassOfClass", objc_is_class_method=true)
+ProcessInfo_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, ProcessInfo, "isSubclassOfClass:", aClass)
+}
+@(objc_type=ProcessInfo, objc_name="resolveClassMethod", objc_is_class_method=true)
+ProcessInfo_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, ProcessInfo, "resolveClassMethod:", sel)
+}
+@(objc_type=ProcessInfo, objc_name="resolveInstanceMethod", objc_is_class_method=true)
+ProcessInfo_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, ProcessInfo, "resolveInstanceMethod:", sel)
+}
+@(objc_type=ProcessInfo, objc_name="hash", objc_is_class_method=true)
+ProcessInfo_hash :: #force_inline proc "c" () -> UInteger {
+    return msgSend(UInteger, ProcessInfo, "hash")
+}
+@(objc_type=ProcessInfo, objc_name="superclass", objc_is_class_method=true)
+ProcessInfo_superclass :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, ProcessInfo, "superclass")
+}
+@(objc_type=ProcessInfo, objc_name="class", objc_is_class_method=true)
+ProcessInfo_class :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, ProcessInfo, "class")
+}
+@(objc_type=ProcessInfo, objc_name="description", objc_is_class_method=true)
+ProcessInfo_description :: #force_inline proc "c" () -> ^String {
+    return msgSend(^String, ProcessInfo, "description")
+}
+@(objc_type=ProcessInfo, objc_name="debugDescription", objc_is_class_method=true)
+ProcessInfo_debugDescription :: #force_inline proc "c" () -> ^String {
+    return msgSend(^String, ProcessInfo, "debugDescription")
+}
+@(objc_type=ProcessInfo, objc_name="version", objc_is_class_method=true)
+ProcessInfo_version :: #force_inline proc "c" () -> Integer {
+    return msgSend(Integer, ProcessInfo, "version")
+}
+@(objc_type=ProcessInfo, objc_name="setVersion", objc_is_class_method=true)
+ProcessInfo_setVersion :: #force_inline proc "c" (aVersion: Integer) {
+    msgSend(nil, ProcessInfo, "setVersion:", aVersion)
+}
+@(objc_type=ProcessInfo, objc_name="poseAsClass", objc_is_class_method=true)
+ProcessInfo_poseAsClass :: #force_inline proc "c" (aClass: Class) {
+    msgSend(nil, ProcessInfo, "poseAsClass:", aClass)
+}
+@(objc_type=ProcessInfo, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
+ProcessInfo_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
+    msgSend(nil, ProcessInfo, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
+}
+@(objc_type=ProcessInfo, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
+ProcessInfo_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
+    msgSend(nil, ProcessInfo, "cancelPreviousPerformRequestsWithTarget:", aTarget)
+}
+@(objc_type=ProcessInfo, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
+ProcessInfo_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, ProcessInfo, "accessInstanceVariablesDirectly")
+}
+@(objc_type=ProcessInfo, objc_name="useStoredAccessor", objc_is_class_method=true)
+ProcessInfo_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, ProcessInfo, "useStoredAccessor")
+}
+@(objc_type=ProcessInfo, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
+ProcessInfo_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^String) -> ^Set {
+    return msgSend(^Set, ProcessInfo, "keyPathsForValuesAffectingValueForKey:", key)
+}
+@(objc_type=ProcessInfo, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
+ProcessInfo_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^String) -> bool {
+    return msgSend(bool, ProcessInfo, "automaticallyNotifiesObserversForKey:", key)
+}
+@(objc_type=ProcessInfo, objc_name="setKeys", objc_is_class_method=true)
+ProcessInfo_setKeys :: #force_inline proc "c" (keys: ^Array, dependentKey: ^String) {
+    msgSend(nil, ProcessInfo, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
+}
+@(objc_type=ProcessInfo, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
+ProcessInfo_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^Array {
+    return msgSend(^Array, ProcessInfo, "classFallbacksForKeyedArchiver")
+}
+@(objc_type=ProcessInfo, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
+ProcessInfo_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, ProcessInfo, "classForKeyedUnarchiver")
+}
+@(objc_type=ProcessInfo, objc_name="cancelPreviousPerformRequestsWithTarget")
+ProcessInfo_cancelPreviousPerformRequestsWithTarget :: proc {
+    ProcessInfo_cancelPreviousPerformRequestsWithTarget_selector_object,
+    ProcessInfo_cancelPreviousPerformRequestsWithTarget_,
+}
+
+ProcessInfo_VTable :: struct {
+    super: Object_VTable,
+    operatingSystem: proc(self: ^ProcessInfo) -> UInteger,
+    operatingSystemName: proc(self: ^ProcessInfo) -> ^String,
+    isOperatingSystemAtLeastVersion: proc(self: ^ProcessInfo, version: OperatingSystemVersion) -> bool,
+    disableSuddenTermination: proc(self: ^ProcessInfo),
+    enableSuddenTermination: proc(self: ^ProcessInfo),
+    disableAutomaticTermination: proc(self: ^ProcessInfo, reason: ^String),
+    enableAutomaticTermination: proc(self: ^ProcessInfo, reason: ^String),
+    environment: proc(self: ^ProcessInfo) -> ^Dictionary,
+    arguments: proc(self: ^ProcessInfo) -> ^Array,
+    hostName: proc(self: ^ProcessInfo) -> ^String,
+    processName: proc(self: ^ProcessInfo) -> ^String,
+    setProcessName: proc(self: ^ProcessInfo, processName: ^String),
+    processIdentifier: proc(self: ^ProcessInfo) -> cffi.int,
+    globallyUniqueString: proc(self: ^ProcessInfo) -> ^String,
+    operatingSystemVersionString: proc(self: ^ProcessInfo) -> ^String,
+    operatingSystemVersion: proc(self: ^ProcessInfo) -> OperatingSystemVersion,
+    processorCount: proc(self: ^ProcessInfo) -> UInteger,
+    activeProcessorCount: proc(self: ^ProcessInfo) -> UInteger,
+    physicalMemory: proc(self: ^ProcessInfo) -> cffi.ulonglong,
+    systemUptime: proc(self: ^ProcessInfo) -> TimeInterval,
+    automaticTerminationSupportEnabled: proc(self: ^ProcessInfo) -> bool,
+    setAutomaticTerminationSupportEnabled: proc(self: ^ProcessInfo, automaticTerminationSupportEnabled: bool),
+}
+
+ProcessInfo_odin_extend :: proc(cls: Class, vt: ^ProcessInfo_VTable) {
+    assert(vt != nil)
+    if vt.operatingSystem != nil {
+        operatingSystem :: proc "c" (self: ^ProcessInfo, _: SEL) -> UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).operatingSystem(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("operatingSystem"), auto_cast operatingSystem, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.operatingSystemName != nil {
+        operatingSystemName :: proc "c" (self: ^ProcessInfo, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).operatingSystemName(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("operatingSystemName"), auto_cast operatingSystemName, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.isOperatingSystemAtLeastVersion != nil {
+        isOperatingSystemAtLeastVersion :: proc "c" (self: ^ProcessInfo, _: SEL, version: OperatingSystemVersion) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).isOperatingSystemAtLeastVersion(self, version)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isOperatingSystemAtLeastVersion:"), auto_cast isOperatingSystemAtLeastVersion, "B@:{NSOperatingSystemVersion=lll}") do panic("Failed to register objC method.")
+    }
+    if vt.disableSuddenTermination != nil {
+        disableSuddenTermination :: proc "c" (self: ^ProcessInfo, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ProcessInfo_VTable)vt_ctx.super_vt).disableSuddenTermination(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("disableSuddenTermination"), auto_cast disableSuddenTermination, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.enableSuddenTermination != nil {
+        enableSuddenTermination :: proc "c" (self: ^ProcessInfo, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ProcessInfo_VTable)vt_ctx.super_vt).enableSuddenTermination(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enableSuddenTermination"), auto_cast enableSuddenTermination, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.disableAutomaticTermination != nil {
+        disableAutomaticTermination :: proc "c" (self: ^ProcessInfo, _: SEL, reason: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ProcessInfo_VTable)vt_ctx.super_vt).disableAutomaticTermination(self, reason)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("disableAutomaticTermination:"), auto_cast disableAutomaticTermination, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.enableAutomaticTermination != nil {
+        enableAutomaticTermination :: proc "c" (self: ^ProcessInfo, _: SEL, reason: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ProcessInfo_VTable)vt_ctx.super_vt).enableAutomaticTermination(self, reason)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enableAutomaticTermination:"), auto_cast enableAutomaticTermination, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.environment != nil {
+        environment :: proc "c" (self: ^ProcessInfo, _: SEL) -> ^Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).environment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("environment"), auto_cast environment, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.arguments != nil {
+        arguments :: proc "c" (self: ^ProcessInfo, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).arguments(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("arguments"), auto_cast arguments, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.hostName != nil {
+        hostName :: proc "c" (self: ^ProcessInfo, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).hostName(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hostName"), auto_cast hostName, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.processName != nil {
+        processName :: proc "c" (self: ^ProcessInfo, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).processName(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("processName"), auto_cast processName, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setProcessName != nil {
+        setProcessName :: proc "c" (self: ^ProcessInfo, _: SEL, processName: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ProcessInfo_VTable)vt_ctx.super_vt).setProcessName(self, processName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setProcessName:"), auto_cast setProcessName, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.processIdentifier != nil {
+        processIdentifier :: proc "c" (self: ^ProcessInfo, _: SEL) -> cffi.int {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).processIdentifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("processIdentifier"), auto_cast processIdentifier, "i@:") do panic("Failed to register objC method.")
+    }
+    if vt.globallyUniqueString != nil {
+        globallyUniqueString :: proc "c" (self: ^ProcessInfo, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).globallyUniqueString(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("globallyUniqueString"), auto_cast globallyUniqueString, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.operatingSystemVersionString != nil {
+        operatingSystemVersionString :: proc "c" (self: ^ProcessInfo, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).operatingSystemVersionString(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("operatingSystemVersionString"), auto_cast operatingSystemVersionString, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.operatingSystemVersion != nil {
+        operatingSystemVersion :: proc "c" (self: ^ProcessInfo, _: SEL) -> OperatingSystemVersion {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).operatingSystemVersion(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("operatingSystemVersion"), auto_cast operatingSystemVersion, "{NSOperatingSystemVersion=lll}@:") do panic("Failed to register objC method.")
+    }
+    if vt.processorCount != nil {
+        processorCount :: proc "c" (self: ^ProcessInfo, _: SEL) -> UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).processorCount(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("processorCount"), auto_cast processorCount, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.activeProcessorCount != nil {
+        activeProcessorCount :: proc "c" (self: ^ProcessInfo, _: SEL) -> UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).activeProcessorCount(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("activeProcessorCount"), auto_cast activeProcessorCount, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.physicalMemory != nil {
+        physicalMemory :: proc "c" (self: ^ProcessInfo, _: SEL) -> cffi.ulonglong {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).physicalMemory(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("physicalMemory"), auto_cast physicalMemory, "Q@:") do panic("Failed to register objC method.")
+    }
+    if vt.systemUptime != nil {
+        systemUptime :: proc "c" (self: ^ProcessInfo, _: SEL) -> TimeInterval {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).systemUptime(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("systemUptime"), auto_cast systemUptime, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.automaticTerminationSupportEnabled != nil {
+        automaticTerminationSupportEnabled :: proc "c" (self: ^ProcessInfo, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProcessInfo_VTable)vt_ctx.super_vt).automaticTerminationSupportEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("automaticTerminationSupportEnabled"), auto_cast automaticTerminationSupportEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticTerminationSupportEnabled != nil {
+        setAutomaticTerminationSupportEnabled :: proc "c" (self: ^ProcessInfo, _: SEL, automaticTerminationSupportEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ProcessInfo_VTable)vt_ctx.super_vt).setAutomaticTerminationSupportEnabled(self, automaticTerminationSupportEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticTerminationSupportEnabled:"), auto_cast setAutomaticTerminationSupportEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+}
+

@@ -1,0 +1,23 @@
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSMutableParagraphStyle
+///
+@(objc_class="NSMutableParagraphStyle")
+MutableParagraphStyle :: struct { using _: ParagraphStyle, }
+
+MutableParagraphStyle_VTable :: struct {
+    super: ParagraphStyle_VTable,
+}
+

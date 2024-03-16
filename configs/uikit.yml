@@ -1,0 +1,126 @@
+---
+
+Defs: ../definitions/ios/uikit.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+
+  ExportTypes:
+    - ^_*UI.+
+    - ^_*NS.+
+
+  ExportMethods:
+    - ^::UI.+
+    - ^::NS.+
+
+  ExportVars:
+    - ^::k?UI.+
+    - ^::k?NS.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit             : true
+  ExportPath       : ..
+  BasePackageName  : darwodin
+  SingleFile       : false
+  EmitObjCExtenders: true
+  TargetPlatform   : Darwin
+  ExportTypeMapDir : ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/Foundation.exports.yml
+    - ../exports/QuartzCore.exports.yml
+
+  BitSetMap:
+    - (Flags|Mask)$
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+    - ^NSFileProviderItem$
+
+  Packages:
+    - Name  : UIKit
+      Export: UI
+      DarwinLinkLibs: [system:UIKit.framework]
+      RequiredLink: true
+      Filter: .*
+
+      Imports:
+        - |
+          LPLinkMetadata :: NS.Object
+          INIntent :: NS.Object
+          INIntentResponse :: NS.Object
+          CKShareMetadata :: NS.Object
+          CKShare :: NS.Object
+          CKContainer :: NS.Object
+          CIColor :: NS.Object
+          CIImage :: NS.Object
+          CLRegion :: NS.Object
+          UNNotificationResponse :: NS.Object
+          AVAudioSession :: NS.Object
+          UTType :: struct {}
+          CTTextAlignment :: distinct cffi.uint8_t
+
+      TypeMap:
+        LPLinkMetadata: LPLinkMetadata
+        INIntent: INIntent
+        INIntentResponse: INIntentResponse
+        CKShareMetadata: CKShareMetadata
+        CKShare: CKShare
+        CKContainer: CKContainer
+        CIColor: CIColor
+        CIImage: CIImage
+        CLRegion: CLRegion
+        UNNotificationResponse: UNNotificationResponse
+        AVAudioSession: AVAudioSession
+        UTType: UTType
+        CTTextAlignment: CTTextAlignment
+        # NSSymbolEffect: NSSymbolEffect
+        # NSSymbolContentTransition: NSSymbolContentTransition
+        # ^NSCollectionLayoutSection
+        # ^NSCollectionLayoutEnvironment
+      # IgnoreExtendObjCTypes:
+      #   - ^NSOpenGLLayer$
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: .*
+    Transforms:
+      - Kind  : RemoveTypeWordsFromElements
+      # - Kind  : RemovePartialTypeNamePrefix
+      - Kind  : RemoveUnderscorePrefix
+      - Kind  : UnderscoreNumbers
+  - Type: Flags$
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: Flag
+
+  TypeTransforms:
+  - Type: ^(UI).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+ 
+  ProcTransforms:
+  - Type: ^(_*UI).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+
+  VarTransforms:
+    - Type: ^(_*UI).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0
+        - Kind  : RemoveUnderscorePrefix
+        - Kind  : UnderscoreNumbers

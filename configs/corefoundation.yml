@@ -1,0 +1,253 @@
+---
+
+Defs: ../definitions/macos/corefoundation.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*CF.+
+    - ^_*dispatch_.+
+    - ^OSErr
+    - ^OSStatus
+    - ^LogicalAddress
+    - ^ConstLogicalAddress
+    - ^PhysicalAddress
+    - ^Ptr
+    - ^BytePtr
+    - ^ByteCount
+    - ^ByteOffset
+    - ^Duration
+    - ^AbsoluteTime
+    - ^OptionBits
+    - ^ItemCount
+    - ^PBVersion
+    - ^ScriptCode
+    - ^LangCode
+    - ^RegionCode
+    - ^FourCharCode
+    - ^OSType
+    - ^ResType
+    - ^OSTypePtr
+    - ^ResTypePtr
+    - ^SRefCon
+    - ^IconRef
+    - ^OpaqueIconRef
+    - ^AppleEvent
+    - ^Handle
+    - ^Size
+    - ^UInt8
+    - ^SInt8
+    - ^UInt16
+    - ^SInt16
+    - ^UInt32
+    - ^SInt32
+    - ^UInt64
+    - ^SInt64
+    - ^Boolean
+    - ^UnicodeScalarValue;
+    - ^UTF32Char
+    - ^UniChar
+    - ^UTF16Char
+    - ^UTF8Char
+    - ^UniCharPtr
+    - ^UniCharCount
+    - ^UniCharCountPtr
+    - ^Str255
+    - ^Str63
+    - ^Str32
+    - ^Str31
+    - ^Str27
+    - ^Str15
+    - ^Bit
+    - ^StrFileName
+    - ^StringPtr
+    - ^StringHandle
+    - ^ConstStringPtr
+    - ^ConstStr255Param
+    - ^ConstStr63Param
+    - ^ConstStr32Param
+    - ^ConstStr31Param
+    - ^ConstStr27Param
+    - ^ConstStr15Param
+    - ^ConstStrFileNameParam
+    - ^UnsignedWide
+    - ^integer_t
+    - ^u_int32_t
+    - ^cpu_type_t
+    - ^__darwin_      
+    - ^mach_port_t
+    - ^pid_t
+    - ^acl_t
+    - ^uid_t
+    - ^gid_t
+    - ^mode_t
+    - ^_acl
+    - ^_acl_entry
+    - ^_acl_permset
+    - ^_acl_flagset
+    - ^io_object_t     
+    - ^io_connect_t
+    - ^io_enumerator_t
+    - ^io_ident_t
+    - ^io_iterator_t
+    - ^io_registry_entry_t
+    - ^io_service_t
+    - ^uext_object_t
+    - ^qos_class_t
+    - ^unichar
+    - ^natural_t
+    - ^off_t
+    - ^timespec
+    - ^[Oo][Ss]_
+    - ^_opaque_
+    - ^__mbstate_t
+
+
+  ExportMethods:
+    - ^::CF.+
+    - ^::dispatch_.+
+
+  ExportVars:
+    - ^::k?CF.+
+    - ^::k?[Oo][Ss].+
+    - ^::k?Dispatch.+
+    - ^::k?dispatch.+
+    - ^::DISPATCH.+
+
+  IgnoreTypes  :
+    - ^OS_object$
+    - ^OS_os_workgroup
+    - ^OS_dispatch
+
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+
+  # LinkLibraryNameDarwin: system:Cocoa.framework
+  BitSetMap:
+    - (Flags|Mask)$
+
+  ResolvedTypedefs:
+    - off_t
+    - boolean_t
+    - CSSM_.+
+    - cssm_.+
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : CoreFoundation
+      Filter: .*
+      Export: CF
+      DarwinLinkLibs: [system:CoreFoundation.framework]
+      RequiredLink: true
+
+      Imports:
+        - |
+          FSRef    :: struct {}
+          NSObject :: intrinsics.objc_object
+          NSString :: NSObject
+          NSMethodSignature :: NSObject
+          OS_object :: NSObject
+          OS_os_workgroup :: NSObject
+          NSUInteger :: cffi.ulong
+          _NSZone  :: struct {}
+
+          KERN_SUCCESS            :: 0
+          DISPATCH_TIME_NOW       :: 0
+          DISPATCH_TIME_FOREVER   :: 0xFFFFFFFFFFFFFFFF
+
+
+      TypeMap:
+        NSObject: NSObject
+        CFAbsoluteTime: CFAbsoluteTime
+        NSMethodSignature: NSMethodSignature
+        NSString: NSString
+        NSUInteger: NSUInteger
+        _NSZone: _NSZone
+        OS_object: OS_object
+        OS_os_workgroup: OS_os_workgroup
+
+      # ExternalTypes:
+
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: ^CFURLBookmarkResolutionOptions$
+    Transforms:
+    - Kind  : ReplacePrefix
+      Source: kCFBookmarkResolution
+      Target: _k
+  
+  - Type: ^(CFURL|CFXML).+
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: k
+      - Kind  : RemovePrefix
+        Source: CFBookmarkResolution
+      - Kind  : RemoveTypeWordsFromElements
+  - Type: ^CFComparisonResult$
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: kCFCompare
+  - Type: ^CFStringBuiltInEncodings$
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: kCFStringEncoding
+  - Type: ^CFISO8601DateFormatOptions$
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: kCFISO8601DateFormatWith
+
+  - Type: ^CFStringEncodings$
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: kCFStringEncoding
+  
+  
+  - Type: ^(CF).+
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: kCF
+  - Type: .*
+    Transforms:
+      - Kind  : RemoveTypeWordsFromElements
+      - Kind  : RemovePartialTypeNamePrefix
+      - Kind  : RemoveUnderscorePrefix
+      - Kind  : UnderscoreNumbers
+
+  TypeTransforms:
+  - Type: ^(CF).+
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+ 
+  ProcTransforms:
+  - Type: ^(_*CF).+
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+
+  VarTransforms:
+    - Type: ^(kCFLocaleIdentifier|kCFNumberFormatterRoundingMode)$
+      Transforms:
+        - Kind  : ReplacePrefix
+          Source: kCF
+          Target: k
+    - Type: ^(_*k?CF).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

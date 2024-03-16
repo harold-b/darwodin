@@ -1,0 +1,10 @@
+.[Bb]in/
+.[Oo]bj/
+[Bb]in/
+[Oo]bj/
+.sandbox/
+darwodin*.json
+ols.json
+definitions/**/*.json
+.DS_Store
+*.o
