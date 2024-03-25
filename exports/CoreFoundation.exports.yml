@@ -76,21 +76,11 @@ Structs:
     os_workgroup_attr_opaque_s: CF.os_workgroup_attr_opaque_s
     os_workgroup_interval_data_opaque_s: CF.os_workgroup_interval_data_opaque_s
     os_workgroup_join_token_opaque_s: CF.os_workgroup_join_token_opaque_s
-    os_workgroup_s: CF.os_workgroup_s
     os_workgroup_max_parallel_threads_attr_s: CF.os_workgroup_max_parallel_threads_attr_s
-    dispatch_object_t::_os_object_s: CF._os_object_s
-    dispatch_object_t::dispatch_object_s: CF.dispatch_object_s
-    dispatch_object_t::dispatch_queue_s: CF.dispatch_queue_s
-    dispatch_object_t::dispatch_queue_attr_s: CF.dispatch_queue_attr_s
-    dispatch_object_t::dispatch_group_s: CF.dispatch_group_s
-    dispatch_object_t::dispatch_source_s: CF.dispatch_source_s
-    dispatch_object_t::dispatch_channel_s: CF.dispatch_channel_s
-    dispatch_object_t::dispatch_mach_s: CF.dispatch_mach_s
-    dispatch_object_t::dispatch_mach_msg_s: CF.dispatch_mach_msg_s
-    dispatch_object_t::dispatch_semaphore_s: CF.dispatch_semaphore_s
-    dispatch_object_t::dispatch_data_s: CF.dispatch_data_s
-    dispatch_object_t::dispatch_io_s: CF.dispatch_io_s
+    dispatch_queue_s: CF.dispatch_queue_s
+    dispatch_queue_attr_s: CF.dispatch_queue_attr_s
     dispatch_source_type_s: CF.dispatch_source_type_s
+    dispatch_data_s: CF.dispatch_data_s
     CFStreamError: CF.StreamError
     CFStreamClientContext: CF.StreamClientContext
     __CFReadStream: CF.__CFReadStream
@@ -118,23 +108,7 @@ Structs:
     __CFFileDescriptor: CF.__CFFileDescriptor
     CFFileDescriptorContext: CF.FileDescriptorContext
     __CFUserNotification: CF.__CFUserNotification
-    __CFXMLNode: CF.__CFXMLNode
-    CFXMLElementInfo: CF.XMLElementInfo
-    CFXMLProcessingInstructionInfo: CF.XMLProcessingInstructionInfo
-    CFXMLDocumentInfo: CF.XMLDocumentInfo
-    CFXMLExternalID: CF.XMLExternalID
-    CFXMLDocumentTypeInfo: CF.XMLDocumentTypeInfo
-    CFXMLNotationInfo: CF.XMLNotationInfo
-    CFXMLElementTypeDeclarationInfo: CF.XMLElementTypeDeclarationInfo
-    CFXMLAttributeDeclarationInfo: CF.XMLAttributeDeclarationInfo
-    CFXMLAttributeListDeclarationInfo: CF.XMLAttributeListDeclarationInfo
-    CFXMLEntityInfo: CF.XMLEntityInfo
-    CFXMLEntityReferenceInfo: CF.XMLEntityReferenceInfo
-    __CFXMLParser: CF.__CFXMLParser
-    CFXMLParserCallBacks: CF.XMLParserCallBacks
-    CFXMLParserContext: CF.XMLParserContext
     __mbstate_t: CF.__mbstate_t
-    dispatch_object_t: CF.dispatch_object_t
 
 Typedefs:
     __darwin_natural_t: CF.__darwin_natural_t
@@ -347,6 +321,7 @@ Typedefs:
     os_workgroup_parallel_t: CF.os_workgroup_parallel_t
     dispatch_function_t: CF.dispatch_function_t
     dispatch_time_t: CF.dispatch_time_t
+    dispatch_object_t: CF.dispatch_object_t
     dispatch_block_t: CF.dispatch_block_t
     dispatch_qos_class_t: CF.dispatch_qos_class_t
     dispatch_queue_t: CF.dispatch_queue_t
@@ -422,17 +397,6 @@ Typedefs:
     CFFileDescriptorCallBack: CF.FileDescriptorCallBack
     CFUserNotificationRef: CF.UserNotificationRef
     CFUserNotificationCallBack: CF.UserNotificationCallBack
-    CFXMLNodeRef: CF.XMLNodeRef
-    CFXMLTreeRef: CF.XMLTreeRef
-    CFXMLParserRef: CF.XMLParserRef
-    CFXMLParserCreateXMLStructureCallBack: CF.XMLParserCreateXMLStructureCallBack
-    CFXMLParserAddChildCallBack: CF.XMLParserAddChildCallBack
-    CFXMLParserEndXMLStructureCallBack: CF.XMLParserEndXMLStructureCallBack
-    CFXMLParserResolveExternalEntityCallBack: CF.XMLParserResolveExternalEntityCallBack
-    CFXMLParserHandleErrorCallBack: CF.XMLParserHandleErrorCallBack
-    CFXMLParserRetainCallBack: CF.XMLParserRetainCallBack
-    CFXMLParserReleaseCallBack: CF.XMLParserReleaseCallBack
-    CFXMLParserCopyDescriptionCallBack: CF.XMLParserCopyDescriptionCallBack
 
 Enums:
     os_clockid_t: CF.os_clockid_t
@@ -445,11 +409,11 @@ Enums:
     __CFByteOrder: CF.__CFByteOrder
     CFNotificationSuspensionBehavior: CF.NotificationSuspensionBehavior
     CFLocaleLanguageDirection: CF.LocaleLanguageDirection
-    CFGregorianUnitFlags: CF.GregorianUnitFlagsFlags
-    CFDataSearchFlags: CF.DataSearchFlagsFlags
+    CFGregorianUnitFlags: CF.GregorianUnitFlags
+    CFDataSearchFlags: CF.DataSearchFlags
     CFCharacterSetPredefinedSet: CF.CharacterSetPredefinedSet
     CFStringBuiltInEncodings: CF.StringBuiltInEncodings
-    CFStringCompareFlags: CF.StringCompareFlagsFlags
+    CFStringCompareFlags: CF.StringCompareFlags
     CFStringNormalizationForm: CF.StringNormalizationForm
     CFTimeZoneNameStyle: CF.TimeZoneNameStyle
     CFCalendarUnit: CF.CalendarUnit
@@ -457,7 +421,7 @@ Enums:
     CFISO8601DateFormatOptions: CF.ISO8601DateFormatOptions
     CFNumberType: CF.NumberType
     CFNumberFormatterStyle: CF.NumberFormatterStyle
-    CFNumberFormatterOptionFlags: CF.NumberFormatterOptionFlagsFlags
+    CFNumberFormatterOptionFlags: CF.NumberFormatterOptionFlags
     CFNumberFormatterRoundingMode: CF.NumberFormatterRoundingMode
     CFNumberFormatterPadPosition: CF.NumberFormatterPadPosition
     CFURLPathStyle: CF.URLPathStyle
@@ -479,10 +443,6 @@ Enums:
     CFURLEnumeratorResult: CF.URLEnumeratorResult
     CFFileSecurityClearOptions: CF.FileSecurityClearOptions
     CFStringTokenizerTokenType: CF.StringTokenizerTokenType
-    CFXMLNodeTypeCode: CF.XMLNodeTypeCode
-    CFXMLEntityTypeCode: CF.XMLEntityTypeCode
-    CFXMLParserOptions: CF.XMLParserOptions
-    CFXMLParserStatusCode: CF.XMLParserStatusCode
 
 ObjCClasses:
 
@@ -603,7 +563,6 @@ Functions:
     ::CFDictionaryRemoveAllValues: CF.DictionaryRemoveAllValues
     ::CFNotificationCenterGetTypeID: CF.NotificationCenterGetTypeID
     ::CFNotificationCenterGetLocalCenter: CF.NotificationCenterGetLocalCenter
-    ::CFNotificationCenterGetDistributedCenter: CF.NotificationCenterGetDistributedCenter
     ::CFNotificationCenterGetDarwinNotifyCenter: CF.NotificationCenterGetDarwinNotifyCenter
     ::CFNotificationCenterAddObserver: CF.NotificationCenterAddObserver
     ::CFNotificationCenterRemoveObserver: CF.NotificationCenterRemoveObserver
@@ -1386,34 +1345,6 @@ Functions:
     ::CFUserNotificationCreateRunLoopSource: CF.UserNotificationCreateRunLoopSource
     ::CFUserNotificationDisplayNotice: CF.UserNotificationDisplayNotice
     ::CFUserNotificationDisplayAlert: CF.UserNotificationDisplayAlert
-    ::CFXMLNodeGetTypeID: CF.XMLNodeGetTypeID
-    ::CFXMLNodeCreate: CF.XMLNodeCreate
-    ::CFXMLNodeCreateCopy: CF.XMLNodeCreateCopy
-    ::CFXMLNodeGetTypeCode: CF.XMLNodeGetTypeCode
-    ::CFXMLNodeGetString: CF.XMLNodeGetString
-    ::CFXMLNodeGetInfoPtr: CF.XMLNodeGetInfoPtr
-    ::CFXMLNodeGetVersion: CF.XMLNodeGetVersion
-    ::CFXMLTreeCreateWithNode: CF.XMLTreeCreateWithNode
-    ::CFXMLTreeGetNode: CF.XMLTreeGetNode
-    ::CFXMLParserGetTypeID: CF.XMLParserGetTypeID
-    ::CFXMLParserCreate: CF.XMLParserCreate
-    ::CFXMLParserCreateWithDataFromURL: CF.XMLParserCreateWithDataFromURL
-    ::CFXMLParserGetContext: CF.XMLParserGetContext
-    ::CFXMLParserGetCallBacks: CF.XMLParserGetCallBacks
-    ::CFXMLParserGetSourceURL: CF.XMLParserGetSourceURL
-    ::CFXMLParserGetLocation: CF.XMLParserGetLocation
-    ::CFXMLParserGetLineNumber: CF.XMLParserGetLineNumber
-    ::CFXMLParserGetDocument: CF.XMLParserGetDocument
-    ::CFXMLParserGetStatusCode: CF.XMLParserGetStatusCode
-    ::CFXMLParserCopyErrorDescription: CF.XMLParserCopyErrorDescription
-    ::CFXMLParserAbort: CF.XMLParserAbort
-    ::CFXMLParserParse: CF.XMLParserParse
-    ::CFXMLTreeCreateFromData: CF.XMLTreeCreateFromData
-    ::CFXMLTreeCreateFromDataWithError: CF.XMLTreeCreateFromDataWithError
-    ::CFXMLTreeCreateWithDataFromURL: CF.XMLTreeCreateWithDataFromURL
-    ::CFXMLTreeCreateXMLData: CF.XMLTreeCreateXMLData
-    ::CFXMLCreateStringByEscapingEntities: CF.XMLCreateStringByEscapingEntities
-    ::CFXMLCreateStringByUnescapingEntities: CF.XMLCreateStringByUnescapingEntities
 
 ExternVars:
     ::kCFCoreFoundationVersionNumber: CF.CoreFoundationVersionNumber
@@ -1775,10 +1706,6 @@ ExternVars:
     ::kCFUserNotificationPopUpSelectionKey: CF.UserNotificationPopUpSelectionKey
     ::kCFUserNotificationAlertTopMostKey: CF.UserNotificationAlertTopMostKey
     ::kCFUserNotificationKeyboardTypesKey: CF.UserNotificationKeyboardTypesKey
-    ::kCFXMLTreeErrorDescription: CF.XMLTreeErrorDescription
-    ::kCFXMLTreeErrorLineNumber: CF.XMLTreeErrorLineNumber
-    ::kCFXMLTreeErrorLocation: CF.XMLTreeErrorLocation
-    ::kCFXMLTreeErrorStatusCode: CF.XMLTreeErrorStatusCode
 
 ConstVars:
     ::OSUnknownByteOrder: CF.OSUnknownByteOrder
@@ -1828,6 +1755,5 @@ ConstVars:
     ::kCFUserNotificationCancelResponse: CF.UserNotificationCancelResponse
     ::kCFUserNotificationNoDefaultButtonFlag: CF.UserNotificationNoDefaultButtonFlag
     ::kCFUserNotificationUseRadioButtonsFlag: CF.UserNotificationUseRadioButtonsFlag
-    ::kCFXMLNodeCurrentVersion: CF.XMLNodeCurrentVersion
     ::kCFNotFound: CF.NotFound
 

@@ -21,7 +21,7 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-@require foreign import UIKit "system:UIKit.framework"
+@require foreign import lib "system:UIKit.framework"
 
 LPLinkMetadata :: NS.Object
 INIntent :: NS.Object
@@ -68,7 +68,7 @@ TextWritingDirectionLeftToRight :: 0
 TextWritingDirectionRightToLeft :: 1
 StackViewSpacingUseDefault :: 340282346638528859811704183484516925440.000000
 StackViewSpacingUseSystem :: 0.000000
-foreign UIKit {
+foreign lib {
     @(link_name="UIAccessibilityTraitNone") AccessibilityTraitNone: AccessibilityTraits
     @(link_name="UIAccessibilityTraitButton") AccessibilityTraitButton: AccessibilityTraits
     @(link_name="UIAccessibilityTraitLink") AccessibilityTraitLink: AccessibilityTraits
@@ -649,7 +649,7 @@ foreign UIKit {
     @(link_name="UIPrintErrorDomain") PrintErrorDomain: ^NS.String
 }
 @(default_calling_convention="c")
-foreign UIKit {
+foreign lib {
     @(require_results)
     @(link_name="NSStringFromCGPoint")
     NSStringFromCGPoint :: proc(point: CG.Point) -> ^NS.String ---
@@ -1513,7 +1513,7 @@ MenuElementSize :: enum cffi.long {
 }
 
 /// UIKeyModifierFlags
-KeyModifierFlagsFlags :: enum cffi.long {
+KeyModifierFlags :: enum cffi.long {
     AlphaShift = 16,
     Shift = 17,
     Control = 18,
@@ -1521,7 +1521,7 @@ KeyModifierFlagsFlags :: enum cffi.long {
     Command = 20,
     NumericPad = 21,
 }
-KeyModifierFlags :: bit_set[KeyModifierFlagsFlags; cffi.long]
+KeyModifierFlagsSet :: bit_set[KeyModifierFlags; cffi.long]
 
 /// UIEventType
 EventType :: enum cffi.long {
@@ -1551,11 +1551,11 @@ EventSubtype :: enum cffi.long {
 }
 
 /// UIEventButtonMask
-EventButtonMaskFlags :: enum cffi.long {
+EventButtonMask :: enum cffi.long {
     Primary = 0,
     Secondary = 1,
 }
-EventButtonMask :: bit_set[EventButtonMaskFlags; cffi.long]
+EventButtonMaskSet :: bit_set[EventButtonMask; cffi.long]
 
 /// UIEditingInteractionConfiguration
 EditingInteractionConfiguration :: enum cffi.long {
@@ -1733,7 +1733,7 @@ InterfaceOrientation :: enum cffi.long {
 }
 
 /// UIInterfaceOrientationMask
-InterfaceOrientationMaskFlags :: enum cffi.ulong {
+InterfaceOrientationMask :: enum cffi.ulong {
     Portrait = 1,
     LandscapeLeft = 4,
     LandscapeRight = 3,
@@ -1742,7 +1742,7 @@ InterfaceOrientationMaskFlags :: enum cffi.ulong {
     All = 4,
     AllButUpsideDown = 4,
 }
-InterfaceOrientationMask :: bit_set[InterfaceOrientationMaskFlags; cffi.ulong]
+InterfaceOrientationMaskSet :: bit_set[InterfaceOrientationMask; cffi.ulong]
 
 /// UIDeviceBatteryState
 DeviceBatteryState :: enum cffi.long {
@@ -2784,12 +2784,12 @@ TableViewCellAccessoryType :: enum cffi.long {
 }
 
 /// UITableViewCellStateMask
-TableViewCellStateMaskFlags :: enum cffi.ulong {
+TableViewCellStateMask :: enum cffi.ulong {
     DefaultMask = 0,
     ShowingEditControlMask = 0,
     ShowingDeleteConfirmationMask = 1,
 }
-TableViewCellStateMask :: bit_set[TableViewCellStateMaskFlags; cffi.ulong]
+TableViewCellStateMaskSet :: bit_set[TableViewCellStateMask; cffi.ulong]
 
 /// UITableViewCellDragState
 TableViewCellDragState :: enum cffi.long {
@@ -3233,14 +3233,14 @@ NSFileProviderItemFields :: enum cffi.ulong {
 }
 
 /// NSFileProviderFileSystemFlags
-NSFileProviderFileSystemFlagsFlags :: enum cffi.ulong {
+NSFileProviderFileSystemFlags :: enum cffi.ulong {
     UserExecutable = 0,
     UserReadable = 1,
     UserWritable = 2,
     Hidden = 3,
     PathExtensionHidden = 4,
 }
-NSFileProviderFileSystemFlags :: bit_set[NSFileProviderFileSystemFlagsFlags; cffi.ulong]
+NSFileProviderFileSystemFlagsSet :: bit_set[NSFileProviderFileSystemFlags; cffi.ulong]
 
 /// NSFileProviderContentPolicy
 NSFileProviderContentPolicy :: enum cffi.long {
@@ -3302,12 +3302,12 @@ ScrollType :: enum cffi.ulong {
 }
 
 /// UIScrollTypeMask
-ScrollTypeMaskFlags :: enum cffi.long {
+ScrollTypeMask :: enum cffi.long {
     Discrete = 0,
     Continuous = 1,
     All = 1,
 }
-ScrollTypeMask :: bit_set[ScrollTypeMaskFlags; cffi.long]
+ScrollTypeMaskSet :: bit_set[ScrollTypeMask; cffi.long]
 
 /// UINavigationControllerOperation
 NavigationControllerOperation :: enum cffi.long {

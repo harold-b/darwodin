@@ -13,6 +13,7 @@ import NSF "root:darwodin/Foundation"
 import CA  "root:darwodin/QuartzCore"
 import MTL "root:darwodin/Metal"
 import GC  "root:darwodin/GameController"
+// import MDL "root:darwodin/ModelIO"
 
 import UI  "root:darwodin/UIKit"
 import NS  "root:darwodin/AppKit"
@@ -72,12 +73,11 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 
         app := NS.Application.sharedApplication()
 
-        style: NS.WindowStyleMask = {
-            .Closable,
-            .Titled,
-            .Resizable,
-            .Miniaturizable,
-        }
+        style: NS.WindowStyleMask = 
+            .Closable       |
+            .Titled         |
+            .Resizable      |
+            .Miniaturizable
 
         rect := NSF.Rect {
             size = {

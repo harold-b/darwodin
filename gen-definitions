@@ -10,6 +10,7 @@ frameworks=(
     Metal
     GameController
     # CoreData
+    # ModelIO
 )
 
 macos_frameworks=(

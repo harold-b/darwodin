@@ -20,7 +20,7 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-@require foreign import QuartzCore "system:QuartzCore.framework"
+@require foreign import lib "system:QuartzCore.framework"
 
 MTLDevice :: NS.Object
 MTLTexture :: NS.Object
@@ -29,7 +29,7 @@ MTLPixelFormat :: cffi.ulong
 CVTimeStamp :: struct {}
 
 
-foreign QuartzCore {
+foreign lib {
     @(link_name="CATransform3DIdentity") Transform3DIdentity: Transform3D
     @(link_name="kCAFillModeForwards") FillModeForwards: ^NS.String
     @(link_name="kCAFillModeBackwards") FillModeBackwards: ^NS.String
@@ -142,7 +142,7 @@ foreign QuartzCore {
     @(link_name="kCAValueFunctionTranslateZ") ValueFunctionTranslateZ: ^NS.String
 }
 @(default_calling_convention="c")
-foreign QuartzCore {
+foreign lib {
     @(require_results)
     @(link_name="CGLayerCreateWithContext")
     CGLayerCreateWithContext :: proc(_context: CG.ContextRef, size: CG.Size, auxiliaryInfo: CF.DictionaryRef) -> CG.LayerRef ---
@@ -296,22 +296,22 @@ TextLayerAlignmentMode :: distinct ^NS.String
 ValueFunctionName :: distinct ^NS.String
 
 /// CAEdgeAntialiasingMask
-EdgeAntialiasingMaskFlags :: enum cffi.uint {
+EdgeAntialiasingMask :: enum cffi.uint {
     kCALayerLeftEdge = 0,
     kCALayerRightEdge = 1,
     kCALayerBottomEdge = 2,
     kCALayerTopEdge = 3,
 }
-EdgeAntialiasingMask :: bit_set[EdgeAntialiasingMaskFlags; cffi.uint]
+EdgeAntialiasingMaskSet :: bit_set[EdgeAntialiasingMask; cffi.uint]
 
 /// CACornerMask
-CornerMaskFlags :: enum cffi.ulong {
+CornerMask :: enum cffi.ulong {
     kCALayerMinXMinYCorner = 0,
     kCALayerMaxXMinYCorner = 1,
     kCALayerMinXMaxYCorner = 2,
     kCALayerMaxXMaxYCorner = 3,
 }
-CornerMask :: bit_set[CornerMaskFlags; cffi.ulong]
+CornerMaskSet :: bit_set[CornerMask; cffi.ulong]
 
 /// EAGLRenderingAPI
 EAGLRenderingAPI :: enum cffi.ulong {

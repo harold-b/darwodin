@@ -18,6 +18,7 @@ debug_args=(
 
 lite=
 ios=
+iphonesim=
 
 while true; do
   case $1 in
@@ -42,6 +43,9 @@ while true; do
     -ios)
       ios=1
     ;;
+    -iphonesim)
+      iphonesim=1
+    ;;
     -out)
         shift && out_dir=$1 || exit 1
     ;;
@@ -53,13 +57,20 @@ extra_args=()
 
 root='.'
 if [[ ${lite} -eq 1 ]]; then
-  root="./darwodin-lite"
+  root="./darwodin-macos-lite"
+else
+  root="./darwodin-macos"
 fi
 
-if [[ ${ios} -eq 1 ]]; then
+if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
   root="./darwodin-ios"
-  # extra_args+=(-subtarget:ios)
-  extra_args+=(-subtarget:iphonesim)
+
+  if [[ "${ios}" -eq 1 ]]; then
+    extra_args+=(-subtarget:ios)
+  else
+    extra_args+=(-subtarget:iphonesim)
+  fi
+
   if [[ ${lite} -eq 1 ]]; then
     root="./darwodin-ios-lite"
   fi
@@ -78,6 +89,7 @@ odin build samples/metal_app \
     ${extra_args[@]}
 
 set +x
-if [[ ${ios} -eq 1 ]]; then
+
+if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
   ./make-ios-app
 fi

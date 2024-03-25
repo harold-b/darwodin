@@ -21,6 +21,16 @@
             "program": "${workspaceFolder}/.bin/OdinMetal.app",
             "preLaunchTask": "build-ios",
             "iosBundleId": "myodinapp.OdinMetal",
+            "iosTarget": "select",
+        },
+
+        {
+            "name": "iPhoneSim Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/.bin/OdinMetal.app",
+            // "preLaunchTask": "build-iphonesim",
+            "iosBundleId": "myodinapp.OdinMetal",
             "iosTarget": "last-selected", //"select",
         }
     ]

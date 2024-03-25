@@ -169,12 +169,12 @@ Enums:
     NSWorkspaceLaunchOptions: AK.WorkspaceLaunchOptions
     NSTouchPhase: AK.TouchPhase
     NSTouchType: AK.TouchType
-    NSTouchTypeMask: AK.TouchTypeMaskFlags
+    NSTouchTypeMask: AK.TouchTypeMask
     NSEventType: AK.EventType
-    NSEventMask: AK.EventMaskFlags
-    NSEventModifierFlags: AK.EventModifierFlagsFlags
+    NSEventMask: AK.EventMask
+    NSEventModifierFlags: AK.EventModifierFlags
     NSPointingDeviceType: AK.PointingDeviceType
-    NSEventButtonMask: AK.EventButtonMaskFlags
+    NSEventButtonMask: AK.EventButtonMask
     NSEventPhase: AK.EventPhase
     NSEventGestureAxis: AK.EventGestureAxis
     NSEventSwipeTrackingOptions: AK.EventSwipeTrackingOptions
@@ -209,7 +209,7 @@ Enums:
     NSCellAttribute: AK.CellAttribute
     NSCellImagePosition: AK.CellImagePosition
     NSImageScaling: AK.ImageScaling
-    NSCellStyleMask: AK.CellStyleMaskFlags
+    NSCellStyleMask: AK.CellStyleMask
     NSControlTint: AK.ControlTint
     NSControlSize: AK.ControlSize
     NSCellHitResult: AK.CellHitResult
@@ -257,10 +257,10 @@ Enums:
     NSMultibyteGlyphPacking: AK.MultibyteGlyphPacking
     NSFontAssetRequestOptions: AK.FontAssetRequestOptions
     NSFontCollectionVisibility: AK.FontCollectionVisibility
-    NSFontTraitMask: AK.FontTraitMaskFlags
+    NSFontTraitMask: AK.FontTraitMask
     NSFontCollectionOptions: AK.FontCollectionOptions
     NSFontAction: AK.FontAction
-    NSWindowStyleMask: AK.WindowStyleMaskFlags
+    NSWindowStyleMask: AK.WindowStyleMask
     NSWindowSharingType: AK.WindowSharingType
     NSWindowCollectionBehavior: AK.WindowCollectionBehavior
     NSWindowAnimationBehavior: AK.WindowAnimationBehavior
@@ -274,7 +274,7 @@ Enums:
     NSWindowTabbingMode: AK.WindowTabbingMode
     NSTitlebarSeparatorStyle: AK.TitlebarSeparatorStyle
     NSWindowBackingLocation: AK.WindowBackingLocation
-    NSFontPanelModeMask: AK.FontPanelModeMaskFlags
+    NSFontPanelModeMask: AK.FontPanelModeMask
     NSMatrixMode: AK.MatrixMode
     NSMenuItemBadgeType: AK.MenuItemBadgeType
     NSColorSpaceModel: AK.ColorSpaceModel
@@ -404,7 +404,7 @@ Enums:
     NSTextTableLayoutAlgorithm: AK.TextTableLayoutAlgorithm
     NSDatePickerStyle: AK.DatePickerStyle
     NSDatePickerMode: AK.DatePickerMode
-    NSDatePickerElementFlags: AK.DatePickerElementFlagsFlags
+    NSDatePickerElementFlags: AK.DatePickerElementFlags
     NSLevelIndicatorStyle: AK.LevelIndicatorStyle
     NSLevelIndicatorPlaceholderVisibility: AK.LevelIndicatorPlaceholderVisibility
     NSRuleEditorNestingMode: AK.RuleEditorNestingMode

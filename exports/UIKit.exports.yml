@@ -137,10 +137,10 @@ Enums:
     UIMenuElementAttributes: UI.MenuElementAttributes
     UIMenuOptions: UI.MenuOptions
     UIMenuElementSize: UI.MenuElementSize
-    UIKeyModifierFlags: UI.KeyModifierFlagsFlags
+    UIKeyModifierFlags: UI.KeyModifierFlags
     UIEventType: UI.EventType
     UIEventSubtype: UI.EventSubtype
-    UIEventButtonMask: UI.EventButtonMaskFlags
+    UIEventButtonMask: UI.EventButtonMask
     UIEditingInteractionConfiguration: UI.EditingInteractionConfiguration
     UIBarStyle: UI.BarStyle
     UIUserInterfaceSizeClass: UI.UserInterfaceSizeClass
@@ -160,7 +160,7 @@ Enums:
     NSLayoutFormatOptions: UI.NSLayoutFormatOptions
     UIDeviceOrientation: UI.DeviceOrientation
     UIInterfaceOrientation: UI.InterfaceOrientation
-    UIInterfaceOrientationMask: UI.InterfaceOrientationMaskFlags
+    UIInterfaceOrientationMask: UI.InterfaceOrientationMask
     UIDeviceBatteryState: UI.DeviceBatteryState
     UIUserInterfaceIdiom: UI.UserInterfaceIdiom
     UITouchPhase: UI.TouchPhase
@@ -280,7 +280,7 @@ Enums:
     UITableViewCellFocusStyle: UI.TableViewCellFocusStyle
     UITableViewCellEditingStyle: UI.TableViewCellEditingStyle
     UITableViewCellAccessoryType: UI.TableViewCellAccessoryType
-    UITableViewCellStateMask: UI.TableViewCellStateMaskFlags
+    UITableViewCellStateMask: UI.TableViewCellStateMask
     UITableViewCellDragState: UI.TableViewCellDragState
     UITableViewStyle: UI.TableViewStyle
     UITableViewScrollPosition: UI.TableViewScrollPosition
@@ -313,13 +313,13 @@ Enums:
     UICloudSharingPermissionOptions: UI.CloudSharingPermissionOptions
     NSFileProviderItemCapabilities: UI.NSFileProviderItemCapabilities
     NSFileProviderItemFields: UI.NSFileProviderItemFields
-    NSFileProviderFileSystemFlags: UI.NSFileProviderFileSystemFlagsFlags
+    NSFileProviderFileSystemFlags: UI.NSFileProviderFileSystemFlags
     NSFileProviderContentPolicy: UI.NSFileProviderContentPolicy
     UIBlurEffectStyle: UI.BlurEffectStyle
     UIVibrancyEffectStyle: UI.VibrancyEffectStyle
     UIGraphicsImageRendererFormatRange: UI.GraphicsImageRendererFormatRange
     UIScrollType: UI.ScrollType
-    UIScrollTypeMask: UI.ScrollTypeMaskFlags
+    UIScrollTypeMask: UI.ScrollTypeMask
     UINavigationControllerOperation: UI.NavigationControllerOperation
     UIImagePickerControllerSourceType: UI.ImagePickerControllerSourceType
     UIImagePickerControllerQualityType: UI.ImagePickerControllerQualityType

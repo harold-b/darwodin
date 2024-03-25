@@ -1,0 +1,132 @@
+PackageName: "ModelIO"
+ImportName: "MDL"
+
+Structs:
+    MDLAxisAlignedBoundingBox: MDL.AxisAlignedBoundingBox
+    MDLVoxelIndexExtent: MDL.VoxelIndexExtent
+
+Typedefs:
+    MDLVoxelIndex: MDL.VoxelIndex
+
+Enums:
+    MDLIndexBitDepth: MDL.IndexBitDepth
+    MDLGeometryType: MDL.GeometryType
+    MDLProbePlacement: MDL.ProbePlacement
+    MDLDataPrecision: MDL.DataPrecision
+    MDLMeshBufferType: MDL.MeshBufferType
+    MDLVertexFormat: MDL.VertexFormat
+    MDLAnimatedValueInterpolation: MDL.AnimatedValueInterpolation
+    MDLCameraProjection: MDL.CameraProjection
+    MDLLightType: MDL.LightType
+    MDLMaterialSemantic: MDL.MaterialSemantic
+    MDLMaterialPropertyType: MDL.MaterialPropertyType
+    MDLMaterialTextureWrapMode: MDL.MaterialTextureWrapMode
+    MDLMaterialTextureFilterMode: MDL.MaterialTextureFilterMode
+    MDLMaterialMipMapFilterMode: MDL.MaterialMipMapFilterMode
+    MDLMaterialFace: MDL.MaterialFace
+    MDLTextureChannelEncoding: MDL.TextureChannelEncoding
+    MDLTransformOpRotationOrder: MDL.TransformOpRotationOrder
+
+ObjCClasses:
+    MDLAsset: MDL.Asset
+    MDLRelativeAssetResolver: MDL.RelativeAssetResolver
+    MDLPathAssetResolver: MDL.PathAssetResolver
+    MDLBundleAssetResolver: MDL.BundleAssetResolver
+    MDLObject: MDL.Object
+    MDLTransform: MDL.Transform
+    MDLObjectContainer: MDL.ObjectContainer
+    MDLMeshBufferMap: MDL.MeshBufferMap
+    MDLMeshBufferData: MDL.MeshBufferData
+    MDLMeshBufferDataAllocator: MDL.MeshBufferDataAllocator
+    MDLMeshBufferZoneDefault: MDL.MeshBufferZoneDefault
+    MDLVertexBufferLayout: MDL.VertexBufferLayout
+    MDLVertexAttribute: MDL.VertexAttribute
+    MDLVertexDescriptor: MDL.VertexDescriptor
+    MDLMatrix4x4Array: MDL.Matrix4x4Array
+    MDLAnimatedValue: MDL.AnimatedValue
+    MDLAnimatedScalarArray: MDL.AnimatedScalarArray
+    MDLAnimatedVector3Array: MDL.AnimatedVector3Array
+    MDLAnimatedQuaternionArray: MDL.AnimatedQuaternionArray
+    MDLAnimatedScalar: MDL.AnimatedScalar
+    MDLAnimatedVector2: MDL.AnimatedVector2
+    MDLAnimatedVector3: MDL.AnimatedVector3
+    MDLAnimatedVector4: MDL.AnimatedVector4
+    MDLAnimatedQuaternion: MDL.AnimatedQuaternion
+    MDLAnimatedMatrix4x4: MDL.AnimatedMatrix4x4
+    MDLSkeleton: MDL.Skeleton
+    MDLPackedJointAnimation: MDL.PackedJointAnimation
+    MDLAnimationBindComponent: MDL.AnimationBindComponent
+    MDLLightProbe: MDL.LightProbe
+    MDLTexture: MDL.Texture
+    MDLCamera: MDL.Camera
+    MDLStereoscopicCamera: MDL.StereoscopicCamera
+    MDLColorSpec: MDL.ColorSpec
+    MDLLight: MDL.Light
+    MDLPhysicallyPlausibleLight: MDL.PhysicallyPlausibleLight
+    MDLAreaLight: MDL.AreaLight
+    MDLPhotometricLight: MDL.PhotometricLight
+    MDLTextureFilter: MDL.TextureFilter
+    MDLTextureSampler: MDL.TextureSampler
+    MDLMaterialProperty: MDL.MaterialProperty
+    MDLMaterialPropertyConnection: MDL.MaterialPropertyConnection
+    MDLMaterialPropertyNode: MDL.MaterialPropertyNode
+    MDLMaterialPropertyGraph: MDL.MaterialPropertyGraph
+    MDLScatteringFunction: MDL.ScatteringFunction
+    MDLPhysicallyPlausibleScatteringFunction: MDL.PhysicallyPlausibleScatteringFunction
+    MDLMaterial: MDL.Material
+    MDLSubmesh: MDL.Submesh
+    MDLSubmeshTopology: MDL.SubmeshTopology
+    MDLVertexAttributeData: MDL.VertexAttributeData
+    MDLMesh: MDL.Mesh
+    MDLURLTexture: MDL.URLTexture
+    MDLCheckerboardTexture: MDL.CheckerboardTexture
+    MDLSkyCubeTexture: MDL.SkyCubeTexture
+    MDLColorSwatchTexture: MDL.ColorSwatchTexture
+    MDLNoiseTexture: MDL.NoiseTexture
+    MDLNormalMapTexture: MDL.NormalMapTexture
+    MDLTransformRotateXOp: MDL.TransformRotateXOp
+    MDLTransformRotateYOp: MDL.TransformRotateYOp
+    MDLTransformRotateZOp: MDL.TransformRotateZOp
+    MDLTransformRotateOp: MDL.TransformRotateOp
+    MDLTransformTranslateOp: MDL.TransformTranslateOp
+    MDLTransformScaleOp: MDL.TransformScaleOp
+    MDLTransformMatrixOp: MDL.TransformMatrixOp
+    MDLTransformOrientOp: MDL.TransformOrientOp
+    MDLTransformStack: MDL.TransformStack
+    MDLVoxelArray: MDL.VoxelArray
+
+ObjCProtocols:
+    MDLAssetResolver: MDL.AssetResolver
+    MDLNamed: MDL.Named
+    MDLComponent: MDL.Component
+    MDLObjectContainerComponent: MDL.ObjectContainerComponent
+    MDLTransformComponent: MDL.TransformComponent
+    MDLMeshBuffer: MDL.MeshBuffer
+    MDLMeshBufferAllocator: MDL.MeshBufferAllocator
+    MDLMeshBufferZone: MDL.MeshBufferZone
+    MDLJointAnimation: MDL.JointAnimation
+    MDLLightProbeIrradianceDataSource: MDL.LightProbeIrradianceDataSource
+    MDLTransformOp: MDL.TransformOp
+
+
+Functions:
+
+ExternVars:
+    ::MDLVertexAttributeAnisotropy: MDL.VertexAttributeAnisotropy
+    ::MDLVertexAttributeBinormal: MDL.VertexAttributeBinormal
+    ::MDLVertexAttributeBitangent: MDL.VertexAttributeBitangent
+    ::MDLVertexAttributeColor: MDL.VertexAttributeColor
+    ::MDLVertexAttributeEdgeCrease: MDL.VertexAttributeEdgeCrease
+    ::MDLVertexAttributeJointIndices: MDL.VertexAttributeJointIndices
+    ::MDLVertexAttributeJointWeights: MDL.VertexAttributeJointWeights
+    ::MDLVertexAttributeNormal: MDL.VertexAttributeNormal
+    ::MDLVertexAttributeOcclusionValue: MDL.VertexAttributeOcclusionValue
+    ::MDLVertexAttributePosition: MDL.VertexAttributePosition
+    ::MDLVertexAttributeShadingBasisU: MDL.VertexAttributeShadingBasisU
+    ::MDLVertexAttributeShadingBasisV: MDL.VertexAttributeShadingBasisV
+    ::MDLVertexAttributeSubdivisionStencil: MDL.VertexAttributeSubdivisionStencil
+    ::MDLVertexAttributeTangent: MDL.VertexAttributeTangent
+    ::MDLVertexAttributeTextureCoordinate: MDL.VertexAttributeTextureCoordinate
+
+ConstVars:
+

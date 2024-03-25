@@ -1,0 +1,101 @@
+---
+
+Defs: ../definitions/macos/modelio.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*MDL.+
+
+  ExportMethods:
+    - ^::MDL.+
+
+  ExportVars:
+    - ^::k?MDL.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/Foundation.exports.yml
+    - ../exports/QuartzCore.exports.yml
+    - ../exports/Metal.exports.yml
+    # - ../exports/AppKit.exports.yml
+
+  BitSetMap:
+    - (Flags|Mask)$
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : ModelIO
+      Export: MDL
+      DarwinLinkLibs: [system:ModelIO.framework]
+      Filter: .*
+
+      # Imports:
+      #   - 
+
+      TypeMap:
+       simd_float4x4: matrix[4,4]f32
+       simd_double4x4: matrix[4,4]f64
+       simd_quatf: quaternion128
+       simd_quatd: quaternion256
+
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: .*
+    Transforms:
+    - Kind  : RemoveTypeWordsFromElements
+    - Kind  : RemovePartialTypeNamePrefix
+    - Kind  : RemoveUnderscorePrefix
+    - Kind  : UnderscoreNumbers
+
+  TypeTransforms:
+    - Type: ^(MD)Label.+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: ^(MDL).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+ 
+  ProcTransforms:
+    - Type: ^(MD)Label.+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: ^(_*MDL).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+
+  VarTransforms:
+    - Type: ^(kMD)Label.+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0
+    - Type: ^(_*MDL).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

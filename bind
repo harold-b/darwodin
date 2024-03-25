@@ -30,11 +30,11 @@ if [[ 0 -eq ${#frameworks[@]} ]]; then
   exit 1
 fi
 
-out_folder=darwodin
+out_folder=darwodin-macos
 appkit=AppKit
 
 if [[ ${lite} -eq 1 ]]; then
-  out_folder=darwodin-lite 
+  out_folder=darwodin-macos-lite
   cgen_args+=(--odin-elaborated-objc-classes ../lite-classes)
 fi
 
@@ -77,6 +77,6 @@ done
 if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
   if [[ ! -h "${out_folder}/darwodin/ObjectiveC" ]]; then
     # ln -s "$(pwd)/darwodin/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
-    cp -r "darwodin/ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
+    cp -r "darwodin-macos/darwodin/ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
   fi
 fi
