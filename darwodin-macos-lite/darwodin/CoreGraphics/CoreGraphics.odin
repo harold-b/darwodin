@@ -18,7 +18,7 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-@require foreign import CoreGraphics "system:CoreGraphics.framework"
+@require foreign import lib "system:CoreGraphics.framework"
 
 NSObject  :: intrinsics.objc_object
 MTLDevice :: intrinsics.objc_object
@@ -30,7 +30,7 @@ FontIndexInvalid :: 65535
 GlyphMax :: 65534
 BitmapByteOrder16Host :: 4096
 BitmapByteOrder32Host :: 8192
-foreign CoreGraphics {
+foreign lib {
     @(link_name="CGPointZero") PointZero: Point
     @(link_name="CGSizeZero") SizeZero: Size
     @(link_name="CGRectZero") RectZero: Rect
@@ -819,7 +819,7 @@ ConfigureOption :: enum cffi.uint {
 }
 
 /// CGDisplayChangeSummaryFlags
-DisplayChangeSummaryFlagsFlags :: enum cffi.uint {
+DisplayChangeSummaryFlags :: enum cffi.uint {
     BeginConfigurationFlag = 0,
     MovedFlag = 1,
     SetMainFlag = 2,
@@ -832,7 +832,7 @@ DisplayChangeSummaryFlagsFlags :: enum cffi.uint {
     UnMirrorFlag = 11,
     DesktopShapeChangedFlag = 12,
 }
-DisplayChangeSummaryFlags :: bit_set[DisplayChangeSummaryFlagsFlags; cffi.uint]
+DisplayChangeSummaryFlagsSet :: bit_set[DisplayChangeSummaryFlags; cffi.uint]
 
 /// CGDisplayStreamUpdateRectType
 DisplayStreamUpdateRectType :: enum cffi.int {
@@ -858,12 +858,12 @@ ScreenUpdateOperation :: enum cffi.uint {
 }
 
 /// CGEventFilterMask
-EventFilterMaskFlags :: enum cffi.uint {
+EventFilterMask :: enum cffi.uint {
     PermitLocalMouseEvents = 0,
     PermitLocalKeyboardEvents = 1,
     PermitSystemDefinedEvents = 2,
 }
-EventFilterMask :: bit_set[EventFilterMaskFlags; cffi.uint]
+EventFilterMaskSet :: bit_set[EventFilterMask; cffi.uint]
 
 /// CGEventSuppressionState
 EventSuppressionState :: enum cffi.uint {
@@ -913,7 +913,7 @@ GesturePhase :: enum cffi.uint {
 }
 
 /// CGEventFlags
-EventFlagsFlags :: enum cffi.ulonglong {
+EventFlags :: enum cffi.ulonglong {
     FlagMaskAlphaShift = 16,
     FlagMaskShift = 17,
     FlagMaskControl = 18,
@@ -924,7 +924,7 @@ EventFlagsFlags :: enum cffi.ulonglong {
     FlagMaskNumericPad = 21,
     FlagMaskNonCoalesced = 8,
 }
-EventFlags :: bit_set[EventFlagsFlags; cffi.ulonglong]
+EventFlagsSet :: bit_set[EventFlags; cffi.ulonglong]
 
 /// CGEventType
 EventType :: enum cffi.uint {

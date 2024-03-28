@@ -21,14 +21,14 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-foreign import GameController "system:GameController.framework"
+foreign import lib "system:GameController.framework"
 
 CHHapticEngine :: NS.Object
 IOHIDDeviceRef :: struct {}
 
 
 DualSenseAdaptiveTriggerDiscretePositionCount :: 10
-foreign GameController {
+foreign lib {
     @(link_name="GCProductCategoryDualSense") ProductCategoryDualSense: ^NS.String
     @(link_name="GCProductCategoryDualShock4") ProductCategoryDualShock4: ^NS.String
     @(link_name="GCProductCategoryMFi") ProductCategoryMFi: ^NS.String
@@ -375,7 +375,7 @@ foreign GameController {
     @(link_name="GCHapticDurationInfinite") HapticDurationInfinite: cffi.float
 }
 @(default_calling_convention="c")
-foreign GameController {
+foreign lib {
     @(require_results)
     @(link_name="GCInputArcadeButtonName")
     InputArcadeButtonName :: proc(row: NS.Integer, column: NS.Integer) -> ^NS.String ---

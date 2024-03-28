@@ -30,8 +30,9 @@ while true; do
         "-o:none"
         "-debug"
         #"-show-debug-messages"
-        # -show-more-timings
-        "-keep-temp-files"
+        -show-more-timings
+        -keep-temp-files
+        # -use-separate-modules
       )
     ;;
     -lite)
@@ -78,7 +79,9 @@ fi
 
 mkdir -p "${out_dir}"
 
+TIMEFORMAT='Build Time: %R seconds'
 set -x
+time {
 odin build samples/metal_app \
     "-collection:samples=./samples" \
     "-collection:root=${root}" \
@@ -87,8 +90,9 @@ odin build samples/metal_app \
     -thread-count:${thread_count} \
     -target:darwin_arm64 \
     ${extra_args[@]}
-
+}
 set +x
+
 
 if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
   ./make-ios-app

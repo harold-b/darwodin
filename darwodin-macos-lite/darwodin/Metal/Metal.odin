@@ -22,12 +22,12 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-foreign import Metal "system:Metal.framework"
+foreign import lib "system:Metal.framework"
 
 
 BufferLayoutStrideDynamic :: 18446744073709551615
 AttributeStrideStatic :: 18446744073709551615
-foreign Metal {
+foreign lib {
     @(link_name="MTLLibraryErrorDomain") LibraryErrorDomain: ^NS.String
     @(link_name="MTLCommonCounterTimestamp") CommonCounterTimestamp: ^NS.String
     @(link_name="MTLCommonCounterTessellationInputPatches") CommonCounterTessellationInputPatches: ^NS.String
@@ -59,7 +59,7 @@ foreign Metal {
     @(link_name="MTLIOErrorDomain") IOErrorDomain: ^NS.String
 }
 @(default_calling_convention="c")
-foreign Metal {
+foreign lib {
     @(require_results)
     @(link_name="MTLCreateSystemDefaultDevice")
     CreateSystemDefaultDevice :: proc() -> ^Device ---
@@ -1087,7 +1087,7 @@ BlendOperation :: enum cffi.ulong {
 }
 
 /// MTLColorWriteMask
-ColorWriteMaskFlags :: enum cffi.ulong {
+ColorWriteMask :: enum cffi.ulong {
     None = 0,
     Red = 3,
     Green = 2,
@@ -1095,7 +1095,7 @@ ColorWriteMaskFlags :: enum cffi.ulong {
     Alpha = 0,
     All = 3,
 }
-ColorWriteMask :: bit_set[ColorWriteMaskFlags; cffi.ulong]
+ColorWriteMaskSet :: bit_set[ColorWriteMask; cffi.ulong]
 
 /// MTLPrimitiveTopologyClass
 PrimitiveTopologyClass :: enum cffi.ulong {

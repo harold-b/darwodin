@@ -19,7 +19,7 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-@require foreign import Foundation "system:Foundation.framework"
+@require foreign import lib "system:Foundation.framework"
 
 OpaqueSecTransformImplementation :: struct {}
 OpaqueSecIdentitySearchRef :: struct {}
@@ -314,7 +314,7 @@ OperationQueueDefaultMaxConcurrentOperationCount :: -1
 UndoCloseGroupingRunLoopOrdering :: 350000
 NotificationDeliverImmediately :: 1
 NotificationPostToAllSessions :: 2
-foreign Foundation {
+foreign lib {
     @(link_name="NSFoundationVersionNumber") FoundationVersionNumber: cffi.double
     @(link_name="NSItemProviderPreferredImageSizeKey") ItemProviderPreferredImageSizeKey: ^String
     @(link_name="NSExtensionJavaScriptPreprocessingResultsKey") ExtensionJavaScriptPreprocessingResultsKey: ^String
@@ -1137,7 +1137,7 @@ foreign Foundation {
     @(link_name="NSUserNotificationDefaultSoundName") UserNotificationDefaultSoundName: ^String
 }
 @(default_calling_convention="c")
-foreign Foundation {
+foreign lib {
     @(require_results)
     @(link_name="NSStringFromSelector")
     StringFromSelector :: proc(aSelector: SEL) -> ^String ---
@@ -3957,14 +3957,14 @@ SearchPathDirectory :: enum cffi.ulong {
 }
 
 /// NSSearchPathDomainMask
-SearchPathDomainMaskFlags :: enum cffi.ulong {
+SearchPathDomainMask :: enum cffi.ulong {
     UserDomainMask = 0,
     LocalDomainMask = 1,
     NetworkDomainMask = 2,
     SystemDomainMask = 3,
     AllDomainsMask = 15,
 }
-SearchPathDomainMask :: bit_set[SearchPathDomainMaskFlags; cffi.ulong]
+SearchPathDomainMaskSet :: bit_set[SearchPathDomainMask; cffi.ulong]
 
 /// NSURLHandleStatus
 URLHandleStatus :: enum cffi.ulong {
@@ -4322,14 +4322,14 @@ MatchingOptions :: enum cffi.ulong {
 }
 
 /// NSMatchingFlags
-MatchingFlagsFlags :: enum cffi.ulong {
+MatchingFlags :: enum cffi.ulong {
     Progress = 0,
     Completed = 1,
     HitEnd = 2,
     RequiredEnd = 3,
     InternalError = 4,
 }
-MatchingFlags :: bit_set[MatchingFlagsFlags; cffi.ulong]
+MatchingFlagsSet :: bit_set[MatchingFlags; cffi.ulong]
 
 /// NSStreamStatus
 StreamStatus :: enum cffi.ulong {
@@ -4388,7 +4388,7 @@ SecKeyUsage :: enum cffi.uint {
 }
 
 /// SecAccessControlCreateFlags
-SecAccessControlCreateFlagsFlags :: enum cffi.ulong {
+SecAccessControlCreateFlags :: enum cffi.ulong {
     kSecAccessControlUserPresence = 0,
     kSecAccessControlBiometryAny = 1,
     kSecAccessControlTouchIDAny = 1,
@@ -4401,7 +4401,7 @@ SecAccessControlCreateFlagsFlags :: enum cffi.ulong {
     kSecAccessControlPrivateKeyUsage = 30,
     kSecAccessControlApplicationPassword = 31,
 }
-SecAccessControlCreateFlags :: bit_set[SecAccessControlCreateFlagsFlags; cffi.ulong]
+SecAccessControlCreateFlagsSet :: bit_set[SecAccessControlCreateFlags; cffi.ulong]
 
 /// SecCredentialType
 SecCredentialType :: enum cffi.uint {
@@ -4521,7 +4521,7 @@ SecKeychainEvent :: enum cffi.uint {
 }
 
 /// SecKeychainEventMask
-SecKeychainEventMaskFlags :: enum cffi.uint {
+SecKeychainEventMask :: enum cffi.uint {
     kSecLockEventMask = 1,
     kSecUnlockEventMask = 2,
     kSecAddEventMask = 3,
@@ -4534,7 +4534,7 @@ SecKeychainEventMaskFlags :: enum cffi.uint {
     kSecTrustSettingsChangedEventMask = 12,
     kSecEveryEventMask = 31,
 }
-SecKeychainEventMask :: bit_set[SecKeychainEventMaskFlags; cffi.uint]
+SecKeychainEventMaskSet :: bit_set[SecKeychainEventMask; cffi.uint]
 
 /// SecPreferencesDomain
 SecPreferencesDomain :: enum cffi.int {
@@ -4574,18 +4574,18 @@ SecExternalItemType :: enum cffi.uint {
 }
 
 /// SecItemImportExportFlags
-SecItemImportExportFlagsFlags :: enum cffi.uint {
+SecItemImportExportFlags :: enum cffi.uint {
     kSecItemPemArmour = 0,
 }
-SecItemImportExportFlags :: bit_set[SecItemImportExportFlagsFlags; cffi.uint]
+SecItemImportExportFlagsSet :: bit_set[SecItemImportExportFlags; cffi.uint]
 
 /// SecKeyImportExportFlags
-SecKeyImportExportFlagsFlags :: enum cffi.uint {
+SecKeyImportExportFlags :: enum cffi.uint {
     kSecKeyImportOnlyOne = 0,
     kSecKeySecurePassphrase = 1,
     kSecKeyNoAccessControl = 2,
 }
-SecKeyImportExportFlags :: bit_set[SecKeyImportExportFlagsFlags; cffi.uint]
+SecKeyImportExportFlagsSet :: bit_set[SecKeyImportExportFlags; cffi.uint]
 
 /// SecTrustResultType
 SecTrustResultType :: enum cffi.uint {
@@ -4600,7 +4600,7 @@ SecTrustResultType :: enum cffi.uint {
 }
 
 /// SecTrustOptionFlags
-SecTrustOptionFlagsFlags :: enum cffi.uint {
+SecTrustOptionFlags :: enum cffi.uint {
     kSecTrustOptionAllowExpired = 0,
     kSecTrustOptionLeafIsCA = 1,
     kSecTrustOptionFetchIssuerFromNet = 2,
@@ -4609,7 +4609,7 @@ SecTrustOptionFlagsFlags :: enum cffi.uint {
     kSecTrustOptionUseTrustSettings = 5,
     kSecTrustOptionImplicitAnchors = 6,
 }
-SecTrustOptionFlags :: bit_set[SecTrustOptionFlagsFlags; cffi.uint]
+SecTrustOptionFlagsSet :: bit_set[SecTrustOptionFlags; cffi.uint]
 
 /// SSLCiphersuiteGroup
 SSLCiphersuiteGroup :: enum cffi.int {
@@ -4766,7 +4766,7 @@ SecTrustSettingsDomain :: enum cffi.uint {
 }
 
 /// SecCSFlags
-SecCSFlagsFlags :: enum cffi.uint {
+SecCSFlags :: enum cffi.uint {
     kSecCSDefaultFlags = 0,
     kSecCSConsiderExpiration = 31,
     kSecCSEnforceRevocationChecks = 30,
@@ -4777,10 +4777,10 @@ SecCSFlagsFlags :: enum cffi.uint {
     kSecCSApplyEmbeddedPolicy = 25,
     kSecCSStripDisallowedXattrs = 24,
 }
-SecCSFlags :: bit_set[SecCSFlagsFlags; cffi.uint]
+SecCSFlagsSet :: bit_set[SecCSFlags; cffi.uint]
 
 /// SecCodeSignatureFlags
-SecCodeSignatureFlagsFlags :: enum cffi.uint {
+SecCodeSignatureFlags :: enum cffi.uint {
     kSecCodeSignatureHost = 0,
     kSecCodeSignatureAdhoc = 1,
     kSecCodeSignatureForceHard = 8,
@@ -4792,7 +4792,7 @@ SecCodeSignatureFlagsFlags :: enum cffi.uint {
     kSecCodeSignatureRuntime = 16,
     kSecCodeSignatureLinkerSigned = 17,
 }
-SecCodeSignatureFlags :: bit_set[SecCodeSignatureFlagsFlags; cffi.uint]
+SecCodeSignatureFlagsSet :: bit_set[SecCodeSignatureFlags; cffi.uint]
 
 /// SecCodeStatus
 SecCodeStatus :: enum cffi.uint {
