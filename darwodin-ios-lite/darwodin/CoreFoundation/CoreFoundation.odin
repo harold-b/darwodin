@@ -17,7 +17,7 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-@require foreign import CoreFoundation "system:CoreFoundation.framework"
+@require foreign import lib "system:CoreFoundation.framework"
 
 FSRef    :: struct {}
 NSObject :: intrinsics.objc_object
@@ -81,7 +81,7 @@ UserNotificationCancelResponse :: 3
 UserNotificationNoDefaultButtonFlag :: 32
 UserNotificationUseRadioButtonsFlag :: 64
 NotFound :: -1
-foreign CoreFoundation {
+foreign lib {
     @(link_name="kCFCoreFoundationVersionNumber") CoreFoundationVersionNumber: cffi.double
     @(link_name="kCFNull") Null: NullRef
     @(link_name="kCFAllocatorDefault") AllocatorDefault: AllocatorRef
@@ -443,7 +443,7 @@ foreign CoreFoundation {
     @(link_name="kCFUserNotificationKeyboardTypesKey") UserNotificationKeyboardTypesKey: StringRef
 }
 @(default_calling_convention="c")
-foreign CoreFoundation {
+foreign lib {
     @(require_results)
     @(link_name="CFNullGetTypeID")
     NullGetTypeID :: proc() -> TypeID ---
@@ -1295,10 +1295,6 @@ foreign CoreFoundation {
     @(require_results)
     @(link_name="CFStringGetCharactersPtr")
     StringGetCharactersPtr :: proc(theString: StringRef) -> ^UniChar ---
-
-    // @(require_results)
-    // @(link_name="CFStringGetBytes")
-    // StringGetBytes :: proc(theString: StringRef, range: Range, encoding: StringEncoding, lossByte: UInt8, isExternalRepresentation: Boolean, buffer: ^UInt8, maxBufLen: Index, usedBufLen: ^Index) -> Index ---
 
     @(require_results)
     @(link_name="CFStringCreateFromExternalRepresentation")
@@ -4735,7 +4731,7 @@ LocaleLanguageDirection :: enum cffi.long {
 }
 
 /// CFGregorianUnitFlags
-GregorianUnitFlagsFlags :: enum cffi.ulong {
+GregorianUnitFlags :: enum cffi.ulong {
     sYears = 0,
     sMonths = 1,
     sDays = 2,
@@ -4744,14 +4740,14 @@ GregorianUnitFlagsFlags :: enum cffi.ulong {
     sSeconds = 5,
     AllUnits = 23,
 }
-GregorianUnitFlags :: bit_set[GregorianUnitFlagsFlags; cffi.ulong]
+GregorianUnitFlagsSet :: bit_set[GregorianUnitFlags; cffi.ulong]
 
 /// CFDataSearchFlags
-DataSearchFlagsFlags :: enum cffi.ulong {
+DataSearchFlags :: enum cffi.ulong {
     Backwards = 0,
     Anchored = 1,
 }
-DataSearchFlags :: bit_set[DataSearchFlagsFlags; cffi.ulong]
+DataSearchFlagsSet :: bit_set[DataSearchFlags; cffi.ulong]
 
 /// CFCharacterSetPredefinedSet
 CharacterSetPredefinedSet :: enum cffi.long {
@@ -4791,7 +4787,7 @@ StringBuiltInEncodings :: enum cffi.uint {
 }
 
 /// CFStringCompareFlags
-StringCompareFlagsFlags :: enum cffi.ulong {
+StringCompareFlags :: enum cffi.ulong {
     CaseInsensitive = 0,
     Backwards = 2,
     Anchored = 3,
@@ -4802,7 +4798,7 @@ StringCompareFlagsFlags :: enum cffi.ulong {
     WidthInsensitive = 8,
     ForcedOrdering = 9,
 }
-StringCompareFlags :: bit_set[StringCompareFlagsFlags; cffi.ulong]
+StringCompareFlagsSet :: bit_set[StringCompareFlags; cffi.ulong]
 
 /// CFStringNormalizationForm
 StringNormalizationForm :: enum cffi.long {
@@ -4903,10 +4899,10 @@ NumberFormatterStyle :: enum cffi.long {
 }
 
 /// CFNumberFormatterOptionFlags
-NumberFormatterOptionFlagsFlags :: enum cffi.ulong {
+NumberFormatterOptionFlags :: enum cffi.ulong {
     ParseIntegersOnly = 0,
 }
-NumberFormatterOptionFlags :: bit_set[NumberFormatterOptionFlagsFlags; cffi.ulong]
+NumberFormatterOptionFlagsSet :: bit_set[NumberFormatterOptionFlags; cffi.ulong]
 
 /// CFNumberFormatterRoundingMode
 NumberFormatterRoundingMode :: enum cffi.long {

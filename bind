@@ -74,9 +74,9 @@ for f in ${frameworks[@]}; do
 done
 
 # Copy Objective-C sources
-if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
+# if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
   if [[ ! -h "${out_folder}/darwodin/ObjectiveC" ]]; then
-    # ln -s "$(pwd)/darwodin/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
-    cp -r "darwodin-macos/darwodin/ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
+    # ln -s "$(pwd)/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
+    cp -r "ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
   fi
-fi
+# fi

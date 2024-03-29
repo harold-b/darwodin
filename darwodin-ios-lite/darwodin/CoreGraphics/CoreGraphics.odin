@@ -18,7 +18,7 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-@require foreign import CoreGraphics "system:CoreGraphics.framework"
+@require foreign import lib "system:CoreGraphics.framework"
 
 NSObject  :: intrinsics.objc_object
 MTLDevice :: intrinsics.objc_object
@@ -30,7 +30,7 @@ FontIndexInvalid :: 65535
 GlyphMax :: 65534
 BitmapByteOrder16Host :: 4096
 BitmapByteOrder32Host :: 8192
-foreign CoreGraphics {
+foreign lib {
     @(link_name="CGPointZero") PointZero: Point
     @(link_name="CGSizeZero") SizeZero: Size
     @(link_name="CGRectZero") RectZero: Rect

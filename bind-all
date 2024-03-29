@@ -27,6 +27,7 @@ frameworks=(
     QuartzCore
     Metal
     GameController
+    ModelIO
 )
 
 ios_arg=

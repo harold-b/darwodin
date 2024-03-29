@@ -719,7 +719,6 @@ Functions:
     ::CFStringGetPascalStringPtr: CF.StringGetPascalStringPtr
     ::CFStringGetCStringPtr: CF.StringGetCStringPtr
     ::CFStringGetCharactersPtr: CF.StringGetCharactersPtr
-    ::CFStringGetBytes: CF.StringGetBytes
     ::CFStringCreateFromExternalRepresentation: CF.StringCreateFromExternalRepresentation
     ::CFStringCreateExternalRepresentation: CF.StringCreateExternalRepresentation
     ::CFStringGetSmallestEncoding: CF.StringGetSmallestEncoding

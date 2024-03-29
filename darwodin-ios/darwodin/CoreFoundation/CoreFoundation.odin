@@ -1297,10 +1297,6 @@ foreign lib {
     StringGetCharactersPtr :: proc(theString: StringRef) -> ^UniChar ---
 
     @(require_results)
-    @(link_name="CFStringGetBytes")
-    StringGetBytes :: proc(theString: StringRef, range: Range, encoding: StringEncoding, lossByte: UInt8, isExternalRepresentation: Boolean, buffer: ^UInt8, maxBufLen: Index, usedBufLen: ^Index) -> Index ---
-
-    @(require_results)
     @(link_name="CFStringCreateFromExternalRepresentation")
     StringCreateFromExternalRepresentation :: proc(alloc: AllocatorRef, data: DataRef, encoding: StringEncoding) -> StringRef ---
 

@@ -126,7 +126,8 @@ Cpp:
     - ^OS_os_workgroup
     - ^OS_dispatch
 
-  IgnoreMethods: []
+  IgnoreMethods:
+    - ^::CFStringGetBytes # Conflicts with sys/darwin/core_foundation
 
 
 Odin:

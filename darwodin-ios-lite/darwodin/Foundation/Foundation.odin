@@ -19,7 +19,7 @@ Class    :: ^intrinsics.objc_class
 IMP      :: rawptr
 Protocol :: distinct id
 
-@require foreign import Foundation "system:Foundation.framework"
+@require foreign import lib "system:Foundation.framework"
 
 OpaqueSecTransformImplementation :: struct {}
 OpaqueSecIdentitySearchRef :: struct {}
@@ -225,7 +225,7 @@ MapTableObjectPointerPersonality :: 512
 MapTableWeakMemory :: 5
 OperationQueueDefaultMaxConcurrentOperationCount :: -1
 UndoCloseGroupingRunLoopOrdering :: 350000
-foreign Foundation {
+foreign lib {
     @(link_name="NSFoundationVersionNumber") FoundationVersionNumber: cffi.double
     @(link_name="NSItemProviderPreferredImageSizeKey") ItemProviderPreferredImageSizeKey: ^String
     @(link_name="NSExtensionJavaScriptPreprocessingResultsKey") ExtensionJavaScriptPreprocessingResultsKey: ^String
@@ -987,7 +987,7 @@ foreign Foundation {
     @(link_name="NSUserActivityTypeBrowsingWeb") UserActivityTypeBrowsingWeb: ^String
 }
 @(default_calling_convention="c")
-foreign Foundation {
+foreign lib {
     @(require_results)
     @(link_name="NSStringFromSelector")
     StringFromSelector :: proc(aSelector: SEL) -> ^String ---
@@ -2091,14 +2091,14 @@ SearchPathDirectory :: enum cffi.ulong {
 }
 
 /// NSSearchPathDomainMask
-SearchPathDomainMaskFlags :: enum cffi.ulong {
+SearchPathDomainMask :: enum cffi.ulong {
     UserDomainMask = 0,
     LocalDomainMask = 1,
     NetworkDomainMask = 2,
     SystemDomainMask = 3,
     AllDomainsMask = 15,
 }
-SearchPathDomainMask :: bit_set[SearchPathDomainMaskFlags; cffi.ulong]
+SearchPathDomainMaskSet :: bit_set[SearchPathDomainMask; cffi.ulong]
 
 /// NSURLBookmarkCreationOptions
 URLBookmarkCreationOptions :: enum cffi.ulong {
@@ -2410,14 +2410,14 @@ MatchingOptions :: enum cffi.ulong {
 }
 
 /// NSMatchingFlags
-MatchingFlagsFlags :: enum cffi.ulong {
+MatchingFlags :: enum cffi.ulong {
     Progress = 0,
     Completed = 1,
     HitEnd = 2,
     RequiredEnd = 3,
     InternalError = 4,
 }
-MatchingFlags :: bit_set[MatchingFlagsFlags; cffi.ulong]
+MatchingFlagsSet :: bit_set[MatchingFlags; cffi.ulong]
 
 /// NSStreamStatus
 StreamStatus :: enum cffi.ulong {
@@ -2459,7 +2459,7 @@ URLCacheStoragePolicy :: enum cffi.ulong {
 }
 
 /// SecAccessControlCreateFlags
-SecAccessControlCreateFlagsFlags :: enum cffi.ulong {
+SecAccessControlCreateFlags :: enum cffi.ulong {
     kSecAccessControlUserPresence = 0,
     kSecAccessControlBiometryAny = 1,
     kSecAccessControlTouchIDAny = 1,
@@ -2472,7 +2472,7 @@ SecAccessControlCreateFlagsFlags :: enum cffi.ulong {
     kSecAccessControlPrivateKeyUsage = 30,
     kSecAccessControlApplicationPassword = 31,
 }
-SecAccessControlCreateFlags :: bit_set[SecAccessControlCreateFlagsFlags; cffi.ulong]
+SecAccessControlCreateFlagsSet :: bit_set[SecAccessControlCreateFlags; cffi.ulong]
 
 /// SecPadding
 SecPadding :: enum cffi.uint {
