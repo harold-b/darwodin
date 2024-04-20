@@ -208,6 +208,13 @@ Orthography_VTable :: struct {
     initWithCoder: proc(self: ^Orthography, coder: ^Coder) -> ^Orthography,
     dominantScript: proc(self: ^Orthography) -> ^String,
     languageMap: proc(self: ^Orthography) -> ^Dictionary,
+    languagesForScript: proc(self: ^Orthography, script: ^String) -> ^Array,
+    dominantLanguageForScript: proc(self: ^Orthography, script: ^String) -> ^String,
+    defaultOrthographyForLanguage: proc(language: ^String) -> ^Orthography,
+    dominantLanguage: proc(self: ^Orthography) -> ^String,
+    allScripts: proc(self: ^Orthography) -> ^Array,
+    allLanguages: proc(self: ^Orthography) -> ^Array,
+    orthographyWithDominantScript: proc(script: ^String, _map: ^Dictionary) -> ^Orthography,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -228,12 +235,27 @@ Orthography_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 Orthography_odin_extend :: proc(cls: Class, vt: ^Orthography_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.initWithDominantScript != nil {
         initWithDominantScript :: proc "c" (self: ^Orthography, _: SEL, script: ^String, _map: ^Dictionary) -> ^Orthography {
 
@@ -273,6 +295,76 @@ Orthography_odin_extend :: proc(cls: Class, vt: ^Orthography_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("languageMap"), auto_cast languageMap, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.languagesForScript != nil {
+        languagesForScript :: proc "c" (self: ^Orthography, _: SEL, script: ^String) -> ^Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).languagesForScript(self, script)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("languagesForScript:"), auto_cast languagesForScript, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.dominantLanguageForScript != nil {
+        dominantLanguageForScript :: proc "c" (self: ^Orthography, _: SEL, script: ^String) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).dominantLanguageForScript(self, script)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dominantLanguageForScript:"), auto_cast dominantLanguageForScript, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultOrthographyForLanguage != nil {
+        defaultOrthographyForLanguage :: proc "c" (self: Class, _: SEL, language: ^String) -> ^Orthography {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).defaultOrthographyForLanguage( language)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultOrthographyForLanguage:"), auto_cast defaultOrthographyForLanguage, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.dominantLanguage != nil {
+        dominantLanguage :: proc "c" (self: ^Orthography, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).dominantLanguage(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dominantLanguage"), auto_cast dominantLanguage, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.allScripts != nil {
+        allScripts :: proc "c" (self: ^Orthography, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).allScripts(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allScripts"), auto_cast allScripts, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.allLanguages != nil {
+        allLanguages :: proc "c" (self: ^Orthography, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).allLanguages(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allLanguages"), auto_cast allLanguages, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.orthographyWithDominantScript != nil {
+        orthographyWithDominantScript :: proc "c" (self: Class, _: SEL, script: ^String, _map: ^Dictionary) -> ^Orthography {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).orthographyWithDominantScript( script, _map)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("orthographyWithDominantScript:languageMap:"), auto_cast orthographyWithDominantScript, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -473,6 +565,126 @@ Orthography_odin_extend :: proc(cls: Class, vt: ^Orthography_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Orthography_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Orthography_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Orthography_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Orthography_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Orthography_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Orthography_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

@@ -894,6 +894,44 @@ Cell_VTable :: struct {
     setUserInterfaceLayoutDirection: proc(self: ^Cell, userInterfaceLayoutDirection: UserInterfaceLayoutDirection),
     usesSingleLineMode: proc(self: ^Cell) -> bool,
     setUsesSingleLineMode: proc(self: ^Cell, usesSingleLineMode: bool),
+    performClick: proc(self: ^Cell, sender: id),
+    drawFocusRingMaskWithFrame: proc(self: ^Cell, cellFrame: NS.Rect, controlView: ^View),
+    focusRingMaskBoundsForFrame: proc(self: ^Cell, cellFrame: NS.Rect, controlView: ^View) -> NS.Rect,
+    refusesFirstResponder: proc(self: ^Cell) -> bool,
+    setRefusesFirstResponder: proc(self: ^Cell, refusesFirstResponder: bool),
+    acceptsFirstResponder: proc(self: ^Cell) -> bool,
+    showsFirstResponder: proc(self: ^Cell) -> bool,
+    setShowsFirstResponder: proc(self: ^Cell, showsFirstResponder: bool),
+    focusRingType: proc(self: ^Cell) -> FocusRingType,
+    setFocusRingType: proc(self: ^Cell, focusRingType: FocusRingType),
+    defaultFocusRingType: proc() -> FocusRingType,
+    wantsNotificationForMarkedText: proc(self: ^Cell) -> bool,
+    attributedStringValue: proc(self: ^Cell) -> ^NS.AttributedString,
+    setAttributedStringValue: proc(self: ^Cell, attributedStringValue: ^NS.AttributedString),
+    allowsEditingTextAttributes: proc(self: ^Cell) -> bool,
+    setAllowsEditingTextAttributes: proc(self: ^Cell, allowsEditingTextAttributes: bool),
+    importsGraphics: proc(self: ^Cell) -> bool,
+    setImportsGraphics: proc(self: ^Cell, importsGraphics: bool),
+    setNextState: proc(self: ^Cell),
+    allowsMixedState: proc(self: ^Cell) -> bool,
+    setAllowsMixedState: proc(self: ^Cell, allowsMixedState: bool),
+    nextState: proc(self: ^Cell) -> NS.Integer,
+    hitTestForEvent: proc(self: ^Cell, event: ^Event, cellFrame: NS.Rect, controlView: ^View) -> CellHitResult,
+    expansionFrameWithFrame: proc(self: ^Cell, cellFrame: NS.Rect, view: ^View) -> NS.Rect,
+    drawWithExpansionFrame: proc(self: ^Cell, cellFrame: NS.Rect, view: ^View),
+    backgroundStyle: proc(self: ^Cell) -> BackgroundStyle,
+    setBackgroundStyle: proc(self: ^Cell, backgroundStyle: BackgroundStyle),
+    interiorBackgroundStyle: proc(self: ^Cell) -> BackgroundStyle,
+    entryType: proc(self: ^Cell) -> NS.Integer,
+    setEntryType: proc(self: ^Cell, type: NS.Integer),
+    isEntryAcceptable: proc(self: ^Cell, string: ^NS.String) -> bool,
+    setFloatingPointFormat: proc(self: ^Cell, autoRange: bool, leftDigits: NS.UInteger, rightDigits: NS.UInteger),
+    setMnemonicLocation: proc(self: ^Cell, location: NS.UInteger),
+    mnemonicLocation: proc(self: ^Cell) -> NS.UInteger,
+    mnemonic: proc(self: ^Cell) -> ^NS.String,
+    setTitleWithMnemonic: proc(self: ^Cell, stringWithAmpersand: ^NS.String),
+    controlTint: proc(self: ^Cell) -> ControlTint,
+    setControlTint: proc(self: ^Cell, controlTint: ControlTint),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Cell,
@@ -913,12 +951,30 @@ Cell_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 Cell_odin_extend :: proc(cls: Class, vt: ^Cell_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.init != nil {
         init :: proc "c" (self: ^Cell, _: SEL) -> ^Cell {
 
@@ -2069,6 +2125,386 @@ Cell_odin_extend :: proc(cls: Class, vt: ^Cell_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesSingleLineMode:"), auto_cast setUsesSingleLineMode, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.performClick != nil {
+        performClick :: proc "c" (self: ^Cell, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).performClick(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performClick:"), auto_cast performClick, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.drawFocusRingMaskWithFrame != nil {
+        drawFocusRingMaskWithFrame :: proc "c" (self: ^Cell, _: SEL, cellFrame: NS.Rect, controlView: ^View) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).drawFocusRingMaskWithFrame(self, cellFrame, controlView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("drawFocusRingMaskWithFrame:inView:"), auto_cast drawFocusRingMaskWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
+    }
+    if vt.focusRingMaskBoundsForFrame != nil {
+        focusRingMaskBoundsForFrame :: proc "c" (self: ^Cell, _: SEL, cellFrame: NS.Rect, controlView: ^View) -> NS.Rect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).focusRingMaskBoundsForFrame(self, cellFrame, controlView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("focusRingMaskBoundsForFrame:inView:"), auto_cast focusRingMaskBoundsForFrame, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
+    }
+    if vt.refusesFirstResponder != nil {
+        refusesFirstResponder :: proc "c" (self: ^Cell, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).refusesFirstResponder(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("refusesFirstResponder"), auto_cast refusesFirstResponder, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRefusesFirstResponder != nil {
+        setRefusesFirstResponder :: proc "c" (self: ^Cell, _: SEL, refusesFirstResponder: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setRefusesFirstResponder(self, refusesFirstResponder)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRefusesFirstResponder:"), auto_cast setRefusesFirstResponder, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.acceptsFirstResponder != nil {
+        acceptsFirstResponder :: proc "c" (self: ^Cell, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).acceptsFirstResponder(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptsFirstResponder"), auto_cast acceptsFirstResponder, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.showsFirstResponder != nil {
+        showsFirstResponder :: proc "c" (self: ^Cell, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).showsFirstResponder(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showsFirstResponder"), auto_cast showsFirstResponder, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setShowsFirstResponder != nil {
+        setShowsFirstResponder :: proc "c" (self: ^Cell, _: SEL, showsFirstResponder: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setShowsFirstResponder(self, showsFirstResponder)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsFirstResponder:"), auto_cast setShowsFirstResponder, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.focusRingType != nil {
+        focusRingType :: proc "c" (self: ^Cell, _: SEL) -> FocusRingType {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).focusRingType(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("focusRingType"), auto_cast focusRingType, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setFocusRingType != nil {
+        setFocusRingType :: proc "c" (self: ^Cell, _: SEL, focusRingType: FocusRingType) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setFocusRingType(self, focusRingType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setFocusRingType:"), auto_cast setFocusRingType, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.defaultFocusRingType != nil {
+        defaultFocusRingType :: proc "c" (self: Class, _: SEL) -> FocusRingType {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).defaultFocusRingType()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultFocusRingType"), auto_cast defaultFocusRingType, "L#:") do panic("Failed to register objC method.")
+    }
+    if vt.wantsNotificationForMarkedText != nil {
+        wantsNotificationForMarkedText :: proc "c" (self: ^Cell, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).wantsNotificationForMarkedText(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("wantsNotificationForMarkedText"), auto_cast wantsNotificationForMarkedText, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.attributedStringValue != nil {
+        attributedStringValue :: proc "c" (self: ^Cell, _: SEL) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).attributedStringValue(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributedStringValue"), auto_cast attributedStringValue, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAttributedStringValue != nil {
+        setAttributedStringValue :: proc "c" (self: ^Cell, _: SEL, attributedStringValue: ^NS.AttributedString) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setAttributedStringValue(self, attributedStringValue)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedStringValue:"), auto_cast setAttributedStringValue, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.allowsEditingTextAttributes != nil {
+        allowsEditingTextAttributes :: proc "c" (self: ^Cell, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).allowsEditingTextAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsEditingTextAttributes"), auto_cast allowsEditingTextAttributes, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsEditingTextAttributes != nil {
+        setAllowsEditingTextAttributes :: proc "c" (self: ^Cell, _: SEL, allowsEditingTextAttributes: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setAllowsEditingTextAttributes(self, allowsEditingTextAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsEditingTextAttributes:"), auto_cast setAllowsEditingTextAttributes, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.importsGraphics != nil {
+        importsGraphics :: proc "c" (self: ^Cell, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).importsGraphics(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("importsGraphics"), auto_cast importsGraphics, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setImportsGraphics != nil {
+        setImportsGraphics :: proc "c" (self: ^Cell, _: SEL, importsGraphics: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setImportsGraphics(self, importsGraphics)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setImportsGraphics:"), auto_cast setImportsGraphics, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.setNextState != nil {
+        setNextState :: proc "c" (self: ^Cell, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setNextState(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNextState"), auto_cast setNextState, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.allowsMixedState != nil {
+        allowsMixedState :: proc "c" (self: ^Cell, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).allowsMixedState(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsMixedState"), auto_cast allowsMixedState, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsMixedState != nil {
+        setAllowsMixedState :: proc "c" (self: ^Cell, _: SEL, allowsMixedState: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setAllowsMixedState(self, allowsMixedState)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsMixedState:"), auto_cast setAllowsMixedState, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.nextState != nil {
+        nextState :: proc "c" (self: ^Cell, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).nextState(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("nextState"), auto_cast nextState, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.hitTestForEvent != nil {
+        hitTestForEvent :: proc "c" (self: ^Cell, _: SEL, event: ^Event, cellFrame: NS.Rect, controlView: ^View) -> CellHitResult {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).hitTestForEvent(self, event, cellFrame, controlView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hitTestForEvent:inRect:ofView:"), auto_cast hitTestForEvent, "L@:@{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
+    }
+    if vt.expansionFrameWithFrame != nil {
+        expansionFrameWithFrame :: proc "c" (self: ^Cell, _: SEL, cellFrame: NS.Rect, view: ^View) -> NS.Rect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).expansionFrameWithFrame(self, cellFrame, view)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("expansionFrameWithFrame:inView:"), auto_cast expansionFrameWithFrame, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
+    }
+    if vt.drawWithExpansionFrame != nil {
+        drawWithExpansionFrame :: proc "c" (self: ^Cell, _: SEL, cellFrame: NS.Rect, view: ^View) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).drawWithExpansionFrame(self, cellFrame, view)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("drawWithExpansionFrame:inView:"), auto_cast drawWithExpansionFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
+    }
+    if vt.backgroundStyle != nil {
+        backgroundStyle :: proc "c" (self: ^Cell, _: SEL) -> BackgroundStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).backgroundStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundStyle"), auto_cast backgroundStyle, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBackgroundStyle != nil {
+        setBackgroundStyle :: proc "c" (self: ^Cell, _: SEL, backgroundStyle: BackgroundStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setBackgroundStyle(self, backgroundStyle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundStyle:"), auto_cast setBackgroundStyle, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.interiorBackgroundStyle != nil {
+        interiorBackgroundStyle :: proc "c" (self: ^Cell, _: SEL) -> BackgroundStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).interiorBackgroundStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("interiorBackgroundStyle"), auto_cast interiorBackgroundStyle, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.entryType != nil {
+        entryType :: proc "c" (self: ^Cell, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).entryType(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("entryType"), auto_cast entryType, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setEntryType != nil {
+        setEntryType :: proc "c" (self: ^Cell, _: SEL, type: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setEntryType(self, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setEntryType:"), auto_cast setEntryType, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.isEntryAcceptable != nil {
+        isEntryAcceptable :: proc "c" (self: ^Cell, _: SEL, string: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).isEntryAcceptable(self, string)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isEntryAcceptable:"), auto_cast isEntryAcceptable, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.setFloatingPointFormat != nil {
+        setFloatingPointFormat :: proc "c" (self: ^Cell, _: SEL, autoRange: bool, leftDigits: NS.UInteger, rightDigits: NS.UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setFloatingPointFormat(self, autoRange, leftDigits, rightDigits)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setFloatingPointFormat:left:right:"), auto_cast setFloatingPointFormat, "v@:BLL") do panic("Failed to register objC method.")
+    }
+    if vt.setMnemonicLocation != nil {
+        setMnemonicLocation :: proc "c" (self: ^Cell, _: SEL, location: NS.UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setMnemonicLocation(self, location)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMnemonicLocation:"), auto_cast setMnemonicLocation, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.mnemonicLocation != nil {
+        mnemonicLocation :: proc "c" (self: ^Cell, _: SEL) -> NS.UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).mnemonicLocation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mnemonicLocation"), auto_cast mnemonicLocation, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.mnemonic != nil {
+        mnemonic :: proc "c" (self: ^Cell, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).mnemonic(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mnemonic"), auto_cast mnemonic, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTitleWithMnemonic != nil {
+        setTitleWithMnemonic :: proc "c" (self: ^Cell, _: SEL, stringWithAmpersand: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setTitleWithMnemonic(self, stringWithAmpersand)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleWithMnemonic:"), auto_cast setTitleWithMnemonic, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.controlTint != nil {
+        controlTint :: proc "c" (self: ^Cell, _: SEL) -> ControlTint {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).controlTint(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("controlTint"), auto_cast controlTint, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setControlTint != nil {
+        setControlTint :: proc "c" (self: ^Cell, _: SEL, controlTint: ControlTint) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setControlTint(self, controlTint)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setControlTint:"), auto_cast setControlTint, "v@:L") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -2258,6 +2694,156 @@ Cell_odin_extend :: proc(cls: Class, vt: ^Cell_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Cell_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Cell_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

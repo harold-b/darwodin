@@ -546,6 +546,55 @@ Color_VTable :: struct {
     brownColor: proc() -> ^Color,
     clearColor: proc() -> ^Color,
     _CIColor: proc(self: ^Color) -> ^CIColor,
+    colorNamed_: proc(name: ^NS.String) -> ^Color,
+    colorNamed_inBundle_compatibleWithTraitCollection: proc(name: ^NS.String, bundle: ^NS.Bundle, traitCollection: ^TraitCollection) -> ^Color,
+    colorWithDynamicProvider: proc(dynamicProvider: proc "c" (traitCollection: ^TraitCollection) -> ^Color) -> ^Color,
+    initWithDynamicProvider: proc(self: ^Color, dynamicProvider: proc "c" (traitCollection: ^TraitCollection) -> ^Color) -> ^Color,
+    resolvedColorWithTraitCollection: proc(self: ^Color, traitCollection: ^TraitCollection) -> ^Color,
+    systemRedColor: proc() -> ^Color,
+    systemGreenColor: proc() -> ^Color,
+    systemBlueColor: proc() -> ^Color,
+    systemOrangeColor: proc() -> ^Color,
+    systemYellowColor: proc() -> ^Color,
+    systemPinkColor: proc() -> ^Color,
+    systemPurpleColor: proc() -> ^Color,
+    systemTealColor: proc() -> ^Color,
+    systemIndigoColor: proc() -> ^Color,
+    systemBrownColor: proc() -> ^Color,
+    systemMintColor: proc() -> ^Color,
+    systemCyanColor: proc() -> ^Color,
+    systemGrayColor: proc() -> ^Color,
+    systemGray2Color: proc() -> ^Color,
+    systemGray3Color: proc() -> ^Color,
+    systemGray4Color: proc() -> ^Color,
+    systemGray5Color: proc() -> ^Color,
+    systemGray6Color: proc() -> ^Color,
+    tintColor: proc() -> ^Color,
+    labelColor: proc() -> ^Color,
+    secondaryLabelColor: proc() -> ^Color,
+    tertiaryLabelColor: proc() -> ^Color,
+    quaternaryLabelColor: proc() -> ^Color,
+    linkColor: proc() -> ^Color,
+    placeholderTextColor: proc() -> ^Color,
+    separatorColor: proc() -> ^Color,
+    opaqueSeparatorColor: proc() -> ^Color,
+    systemBackgroundColor: proc() -> ^Color,
+    secondarySystemBackgroundColor: proc() -> ^Color,
+    tertiarySystemBackgroundColor: proc() -> ^Color,
+    systemGroupedBackgroundColor: proc() -> ^Color,
+    secondarySystemGroupedBackgroundColor: proc() -> ^Color,
+    tertiarySystemGroupedBackgroundColor: proc() -> ^Color,
+    systemFillColor: proc() -> ^Color,
+    secondarySystemFillColor: proc() -> ^Color,
+    tertiarySystemFillColor: proc() -> ^Color,
+    quaternarySystemFillColor: proc() -> ^Color,
+    lightTextColor: proc() -> ^Color,
+    darkTextColor: proc() -> ^Color,
+    groupTableViewBackgroundColor: proc() -> ^Color,
+    viewFlipsideBackgroundColor: proc() -> ^Color,
+    scrollViewTexturedBackgroundColor: proc() -> ^Color,
+    underPageBackgroundColor: proc() -> ^Color,
+    accessibilityName: proc(self: ^Color) -> ^NS.String,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -566,6 +615,16 @@ Color_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 Color_odin_extend :: proc(cls: Class, vt: ^Color_VTable) {
@@ -952,6 +1011,496 @@ Color_odin_extend :: proc(cls: Class, vt: ^Color_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("CIColor"), auto_cast _CIColor, "@@:") do panic("Failed to register objC method.")
     }
+    if vt.colorNamed_ != nil {
+        colorNamed_ :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).colorNamed_( name)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("colorNamed:"), auto_cast colorNamed_, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.colorNamed_inBundle_compatibleWithTraitCollection != nil {
+        colorNamed_inBundle_compatibleWithTraitCollection :: proc "c" (self: Class, _: SEL, name: ^NS.String, bundle: ^NS.Bundle, traitCollection: ^TraitCollection) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).colorNamed_inBundle_compatibleWithTraitCollection( name, bundle, traitCollection)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("colorNamed:inBundle:compatibleWithTraitCollection:"), auto_cast colorNamed_inBundle_compatibleWithTraitCollection, "@#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.colorWithDynamicProvider != nil {
+        colorWithDynamicProvider :: proc "c" (self: Class, _: SEL, dynamicProvider: proc "c" (traitCollection: ^TraitCollection) -> ^Color) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).colorWithDynamicProvider( dynamicProvider)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("colorWithDynamicProvider:"), auto_cast colorWithDynamicProvider, "@#:?") do panic("Failed to register objC method.")
+    }
+    if vt.initWithDynamicProvider != nil {
+        initWithDynamicProvider :: proc "c" (self: ^Color, _: SEL, dynamicProvider: proc "c" (traitCollection: ^TraitCollection) -> ^Color) -> ^Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).initWithDynamicProvider(self, dynamicProvider)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDynamicProvider:"), auto_cast initWithDynamicProvider, "@@:?") do panic("Failed to register objC method.")
+    }
+    if vt.resolvedColorWithTraitCollection != nil {
+        resolvedColorWithTraitCollection :: proc "c" (self: ^Color, _: SEL, traitCollection: ^TraitCollection) -> ^Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).resolvedColorWithTraitCollection(self, traitCollection)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resolvedColorWithTraitCollection:"), auto_cast resolvedColorWithTraitCollection, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.systemRedColor != nil {
+        systemRedColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemRedColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemRedColor"), auto_cast systemRedColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemGreenColor != nil {
+        systemGreenColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemGreenColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemGreenColor"), auto_cast systemGreenColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemBlueColor != nil {
+        systemBlueColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemBlueColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemBlueColor"), auto_cast systemBlueColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemOrangeColor != nil {
+        systemOrangeColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemOrangeColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemOrangeColor"), auto_cast systemOrangeColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemYellowColor != nil {
+        systemYellowColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemYellowColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemYellowColor"), auto_cast systemYellowColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemPinkColor != nil {
+        systemPinkColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemPinkColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemPinkColor"), auto_cast systemPinkColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemPurpleColor != nil {
+        systemPurpleColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemPurpleColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemPurpleColor"), auto_cast systemPurpleColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemTealColor != nil {
+        systemTealColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemTealColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemTealColor"), auto_cast systemTealColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemIndigoColor != nil {
+        systemIndigoColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemIndigoColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemIndigoColor"), auto_cast systemIndigoColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemBrownColor != nil {
+        systemBrownColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemBrownColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemBrownColor"), auto_cast systemBrownColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemMintColor != nil {
+        systemMintColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemMintColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemMintColor"), auto_cast systemMintColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemCyanColor != nil {
+        systemCyanColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemCyanColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemCyanColor"), auto_cast systemCyanColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemGrayColor != nil {
+        systemGrayColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemGrayColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemGrayColor"), auto_cast systemGrayColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemGray2Color != nil {
+        systemGray2Color :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemGray2Color()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemGray2Color"), auto_cast systemGray2Color, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemGray3Color != nil {
+        systemGray3Color :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemGray3Color()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemGray3Color"), auto_cast systemGray3Color, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemGray4Color != nil {
+        systemGray4Color :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemGray4Color()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemGray4Color"), auto_cast systemGray4Color, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemGray5Color != nil {
+        systemGray5Color :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemGray5Color()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemGray5Color"), auto_cast systemGray5Color, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemGray6Color != nil {
+        systemGray6Color :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemGray6Color()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemGray6Color"), auto_cast systemGray6Color, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.tintColor != nil {
+        tintColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).tintColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("tintColor"), auto_cast tintColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.labelColor != nil {
+        labelColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).labelColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("labelColor"), auto_cast labelColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.secondaryLabelColor != nil {
+        secondaryLabelColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).secondaryLabelColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("secondaryLabelColor"), auto_cast secondaryLabelColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.tertiaryLabelColor != nil {
+        tertiaryLabelColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).tertiaryLabelColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("tertiaryLabelColor"), auto_cast tertiaryLabelColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.quaternaryLabelColor != nil {
+        quaternaryLabelColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).quaternaryLabelColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("quaternaryLabelColor"), auto_cast quaternaryLabelColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.linkColor != nil {
+        linkColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).linkColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("linkColor"), auto_cast linkColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.placeholderTextColor != nil {
+        placeholderTextColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).placeholderTextColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("placeholderTextColor"), auto_cast placeholderTextColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.separatorColor != nil {
+        separatorColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).separatorColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("separatorColor"), auto_cast separatorColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.opaqueSeparatorColor != nil {
+        opaqueSeparatorColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).opaqueSeparatorColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("opaqueSeparatorColor"), auto_cast opaqueSeparatorColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemBackgroundColor != nil {
+        systemBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemBackgroundColor"), auto_cast systemBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.secondarySystemBackgroundColor != nil {
+        secondarySystemBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).secondarySystemBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("secondarySystemBackgroundColor"), auto_cast secondarySystemBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.tertiarySystemBackgroundColor != nil {
+        tertiarySystemBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).tertiarySystemBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("tertiarySystemBackgroundColor"), auto_cast tertiarySystemBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemGroupedBackgroundColor != nil {
+        systemGroupedBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemGroupedBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemGroupedBackgroundColor"), auto_cast systemGroupedBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.secondarySystemGroupedBackgroundColor != nil {
+        secondarySystemGroupedBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).secondarySystemGroupedBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("secondarySystemGroupedBackgroundColor"), auto_cast secondarySystemGroupedBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.tertiarySystemGroupedBackgroundColor != nil {
+        tertiarySystemGroupedBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).tertiarySystemGroupedBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("tertiarySystemGroupedBackgroundColor"), auto_cast tertiarySystemGroupedBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.systemFillColor != nil {
+        systemFillColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).systemFillColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemFillColor"), auto_cast systemFillColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.secondarySystemFillColor != nil {
+        secondarySystemFillColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).secondarySystemFillColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("secondarySystemFillColor"), auto_cast secondarySystemFillColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.tertiarySystemFillColor != nil {
+        tertiarySystemFillColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).tertiarySystemFillColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("tertiarySystemFillColor"), auto_cast tertiarySystemFillColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.quaternarySystemFillColor != nil {
+        quaternarySystemFillColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).quaternarySystemFillColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("quaternarySystemFillColor"), auto_cast quaternarySystemFillColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.lightTextColor != nil {
+        lightTextColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).lightTextColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("lightTextColor"), auto_cast lightTextColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.darkTextColor != nil {
+        darkTextColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).darkTextColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("darkTextColor"), auto_cast darkTextColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.groupTableViewBackgroundColor != nil {
+        groupTableViewBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).groupTableViewBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("groupTableViewBackgroundColor"), auto_cast groupTableViewBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.viewFlipsideBackgroundColor != nil {
+        viewFlipsideBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).viewFlipsideBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("viewFlipsideBackgroundColor"), auto_cast viewFlipsideBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.scrollViewTexturedBackgroundColor != nil {
+        scrollViewTexturedBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).scrollViewTexturedBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("scrollViewTexturedBackgroundColor"), auto_cast scrollViewTexturedBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.underPageBackgroundColor != nil {
+        underPageBackgroundColor :: proc "c" (self: Class, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).underPageBackgroundColor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("underPageBackgroundColor"), auto_cast underPageBackgroundColor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.accessibilityName != nil {
+        accessibilityName :: proc "c" (self: ^Color, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).accessibilityName(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityName"), auto_cast accessibilityName, "@@:") do panic("Failed to register objC method.")
+    }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
 
@@ -1151,6 +1700,106 @@ Color_odin_extend :: proc(cls: Class, vt: ^Color_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Color_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Color_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Color_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

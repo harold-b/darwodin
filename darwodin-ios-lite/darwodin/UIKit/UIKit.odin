@@ -650,51 +650,39 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(require_results)
     @(link_name="NSStringFromCGPoint")
     NSStringFromCGPoint :: proc(point: CG.Point) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSStringFromCGVector")
     NSStringFromCGVector :: proc(vector: CG.Vector) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSStringFromCGSize")
     NSStringFromCGSize :: proc(size: CG.Size) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSStringFromCGRect")
     NSStringFromCGRect :: proc(rect: CG.Rect) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSStringFromCGAffineTransform")
     NSStringFromCGAffineTransform :: proc(transform: CG.AffineTransform) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSStringFromUIEdgeInsets")
     NSStringFromUIEdgeInsets :: proc(insets: EdgeInsets) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSStringFromDirectionalEdgeInsets")
     NSStringFromDirectionalEdgeInsets :: proc(insets: NSDirectionalEdgeInsets) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSStringFromUIOffset")
     NSStringFromUIOffset :: proc(offset: Offset) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="UIEdgeInsetsFromString")
     EdgeInsetsFromString :: proc(string: ^NS.String) -> EdgeInsets ---
 
-    @(require_results)
     @(link_name="NSDirectionalEdgeInsetsFromString")
     NSDirectionalEdgeInsetsFromString :: proc(string: ^NS.String) -> NSDirectionalEdgeInsets ---
 
-    @(require_results)
     @(link_name="UIOffsetFromString")
     OffsetFromString :: proc(string: ^NS.String) -> Offset ---
 
-    @(require_results)
     @(link_name="UIGraphicsGetCurrentContext")
     GraphicsGetCurrentContext :: proc() -> CG.ContextRef ---
 
@@ -725,14 +713,12 @@ foreign lib {
     @(link_name="UIGraphicsBeginImageContextWithOptions")
     GraphicsBeginImageContextWithOptions :: proc(size: CG.Size, opaque: bool, scale: CG.Float) ---
 
-    @(require_results)
     @(link_name="UIGraphicsGetImageFromCurrentImageContext")
     GraphicsGetImageFromCurrentImageContext :: proc() -> ^Image ---
 
     @(link_name="UIGraphicsEndImageContext")
     GraphicsEndImageContext :: proc() ---
 
-    @(require_results)
     @(link_name="UIGraphicsBeginPDFContextToFile")
     GraphicsBeginPDFContextToFile :: proc(path: ^NS.String, bounds: CG.Rect, documentInfo: ^NS.Dictionary) -> bool ---
 
@@ -748,7 +734,6 @@ foreign lib {
     @(link_name="UIGraphicsBeginPDFPageWithInfo")
     GraphicsBeginPDFPageWithInfo :: proc(bounds: CG.Rect, pageInfo: ^NS.Dictionary) ---
 
-    @(require_results)
     @(link_name="UIGraphicsGetPDFContextBounds")
     GraphicsGetPDFContextBounds :: proc() -> CG.Rect ---
 
@@ -761,47 +746,36 @@ foreign lib {
     @(link_name="UIGraphicsSetPDFContextDestinationForRect")
     GraphicsSetPDFContextDestinationForRect :: proc(name: ^NS.String, rect: CG.Rect) ---
 
-    @(require_results)
     @(link_name="UIImagePNGRepresentation")
     ImagePNGRepresentation :: proc(image: ^Image) -> ^NS.Data ---
 
-    @(require_results)
     @(link_name="UIImageJPEGRepresentation")
     ImageJPEGRepresentation :: proc(image: ^Image, compressionQuality: CG.Float) -> ^NS.Data ---
 
-    @(require_results)
     @(link_name="UIImageHEICRepresentation")
     ImageHEICRepresentation :: proc(image: ^Image) -> ^NS.Data ---
 
-    @(require_results)
     @(link_name="UIFontWeightForImageSymbolWeight")
     FontWeightForImageSymbolWeight :: proc(symbolWeight: ImageSymbolWeight) -> FontWeight ---
 
-    @(require_results)
     @(link_name="UIImageSymbolWeightForFontWeight")
     ImageSymbolWeightForFontWeight :: proc(fontWeight: FontWeight) -> ImageSymbolWeight ---
 
-    @(require_results)
     @(link_name="NSTextAlignmentToCTTextAlignment")
     NSTextAlignmentToCTTextAlignment :: proc(nsTextAlignment: NSTextAlignment) -> CTTextAlignment ---
 
-    @(require_results)
     @(link_name="NSTextAlignmentFromCTTextAlignment")
     NSTextAlignmentFromCTTextAlignment :: proc(ctTextAlignment: CTTextAlignment) -> NSTextAlignment ---
 
-    @(require_results)
     @(link_name="UIEventButtonMaskForButtonNumber")
     EventButtonMaskForButtonNumber :: proc(buttonNumber: NS.Integer) -> EventButtonMask ---
 
-    @(require_results)
     @(link_name="UIContentSizeCategoryIsAccessibilityCategory")
     ContentSizeCategoryIsAccessibilityCategory :: proc(category: ContentSizeCategory) -> bool ---
 
-    @(require_results)
     @(link_name="UIContentSizeCategoryCompareToCategory")
     ContentSizeCategoryCompareToCategory :: proc(lhs: ContentSizeCategory, rhs: ContentSizeCategory) -> NS.ComparisonResult ---
 
-    @(require_results)
     @(link_name="UIApplicationMain")
     ApplicationMain :: proc(argc: cffi.int, argv: ^cstring, principalClassName: ^NS.String, delegateClassName: ^NS.String) -> cffi.int ---
 
@@ -811,134 +785,105 @@ foreign lib {
     @(link_name="UIAccessibilityRegisterGestureConflictWithZoom")
     AccessibilityRegisterGestureConflictWithZoom :: proc() ---
 
-    @(require_results)
     @(link_name="UIGuidedAccessRestrictionStateForIdentifier")
     GuidedAccessRestrictionStateForIdentifier :: proc(restrictionIdentifier: ^NS.String) -> GuidedAccessRestrictionState ---
 
     @(link_name="UIGuidedAccessConfigureAccessibilityFeatures")
     GuidedAccessConfigureAccessibilityFeatures :: proc(features: GuidedAccessAccessibilityFeature, enabled: bool, completion: proc "c" (success: bool, error: ^NS.Error)) ---
 
-    @(require_results)
     @(link_name="UIAccessibilityConvertFrameToScreenCoordinates")
     AccessibilityConvertFrameToScreenCoordinates :: proc(rect: CG.Rect, view: ^View) -> CG.Rect ---
 
-    @(require_results)
     @(link_name="UIAccessibilityConvertPathToScreenCoordinates")
     AccessibilityConvertPathToScreenCoordinates :: proc(path: ^BezierPath, view: ^View) -> ^BezierPath ---
 
-    @(require_results)
     @(link_name="UIAccessibilityFocusedElement")
     AccessibilityFocusedElement :: proc(assistiveTechnologyIdentifier: AccessibilityAssistiveTechnologyIdentifier) -> id ---
 
     @(link_name="UIAccessibilityPostNotification")
     AccessibilityPostNotification :: proc(notification: AccessibilityNotifications, argument: id) ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsVoiceOverRunning")
     AccessibilityIsVoiceOverRunning :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsMonoAudioEnabled")
     AccessibilityIsMonoAudioEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsClosedCaptioningEnabled")
     AccessibilityIsClosedCaptioningEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsInvertColorsEnabled")
     AccessibilityIsInvertColorsEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsGuidedAccessEnabled")
     AccessibilityIsGuidedAccessEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsBoldTextEnabled")
     AccessibilityIsBoldTextEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityButtonShapesEnabled")
     AccessibilityButtonShapesEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsGrayscaleEnabled")
     AccessibilityIsGrayscaleEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsReduceTransparencyEnabled")
     AccessibilityIsReduceTransparencyEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsReduceMotionEnabled")
     AccessibilityIsReduceMotionEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityPrefersCrossFadeTransitions")
     AccessibilityPrefersCrossFadeTransitions :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsVideoAutoplayEnabled")
     AccessibilityIsVideoAutoplayEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityDarkerSystemColorsEnabled")
     AccessibilityDarkerSystemColorsEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsSwitchControlRunning")
     AccessibilityIsSwitchControlRunning :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsSpeakSelectionEnabled")
     AccessibilityIsSpeakSelectionEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsSpeakScreenEnabled")
     AccessibilityIsSpeakScreenEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsShakeToUndoEnabled")
     AccessibilityIsShakeToUndoEnabled :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsAssistiveTouchRunning")
     AccessibilityIsAssistiveTouchRunning :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityShouldDifferentiateWithoutColor")
     AccessibilityShouldDifferentiateWithoutColor :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="UIAccessibilityIsOnOffSwitchLabelsEnabled")
     AccessibilityIsOnOffSwitchLabelsEnabled :: proc() -> bool ---
 
     @(link_name="UIAccessibilityRequestGuidedAccessSession")
     AccessibilityRequestGuidedAccessSession :: proc(enable: bool, completionHandler: proc "c" (didSucceed: bool)) ---
 
-    @(require_results)
     @(link_name="UIAccessibilityHearingDevicePairedEar")
     AccessibilityHearingDevicePairedEar :: proc() -> AccessibilityHearingDeviceEar ---
 
-    @(require_results)
     @(link_name="UICellAccessoryPositionBeforeAccessoryOfClass")
     CellAccessoryPositionBeforeAccessoryOfClass :: proc(accessoryClass: Class) -> CellAccessoryPosition ---
 
-    @(require_results)
     @(link_name="UICellAccessoryPositionAfterAccessoryOfClass")
     CellAccessoryPositionAfterAccessoryOfClass :: proc(accessoryClass: Class) -> CellAccessoryPosition ---
 
     @(link_name="UIImageWriteToSavedPhotosAlbum")
     ImageWriteToSavedPhotosAlbum :: proc(image: ^Image, completionTarget: id, completionSelector: SEL, contextInfo: rawptr) ---
 
-    @(require_results)
     @(link_name="UIVideoAtPathIsCompatibleWithSavedPhotosAlbum")
     VideoAtPathIsCompatibleWithSavedPhotosAlbum :: proc(videoPath: ^NS.String) -> bool ---
 
     @(link_name="UISaveVideoAtPathToSavedPhotosAlbum")
     SaveVideoAtPathToSavedPhotosAlbum :: proc(videoPath: ^NS.String, completionTarget: id, completionSelector: SEL, contextInfo: rawptr) ---
 
-    @(require_results)
     @(link_name="UIFloatRangeIsInfinite")
     FloatRangeIsInfinite :: proc(range: FloatRange) -> bool ---
 
@@ -1263,7 +1208,7 @@ AccessibilityContainerType :: enum cffi.long {
 /// UIAccessibilityDirectTouchOptions
 AccessibilityDirectTouchOptions :: enum cffi.ulong {
     OptionNone = 0,
-    OptionSilentOnTouch = 1,
+    ilentOnTouch = 1,
     OptionRequiresActivation = 2,
 }
 
@@ -1890,7 +1835,7 @@ ViewAnimationOptions :: enum cffi.ulong {
     OptionOverrideInheritedDuration = 32,
     OptionOverrideInheritedCurve = 64,
     OptionAllowAnimatedContent = 128,
-    OptionShowHideTransitionViews = 256,
+    howHideTransitionViews = 256,
     OptionOverrideInheritedOptions = 512,
     OptionCurveEaseInOut = 0,
     OptionCurveEaseIn = 65536,
@@ -1993,7 +1938,7 @@ ControlEvents :: enum cffi.ulong {
     EventAllTouchEvents = 4095,
     EventAllEditingEvents = 983040,
     EventApplicationReserved = 251658240,
-    EventSystemReserved = 4026531840,
+    ystemReserved = 4026531840,
     EventAllEvents = 4294967295,
 }
 
@@ -2255,7 +2200,7 @@ ViewAnimatingPosition :: enum cffi.long {
 /// UITextDragOptions
 TextDragOptions :: enum cffi.long {
     None = 0,
-    OptionStripTextColorFromPreviews = 1,
+    tripTextColorFromPreviews = 1,
 }
 
 /// UITextDropAction
@@ -3101,7 +3046,7 @@ DataDetectorTypes :: enum cffi.ulong {
     TypeLink = 2,
     TypeAddress = 4,
     TypeCalendarEvent = 8,
-    TypeShipmentTrackingNumber = 16,
+    hipmentTrackingNumber = 16,
     TypeFlightNumber = 32,
     TypeLookupSuggestion = 64,
     TypeMoney = 128,

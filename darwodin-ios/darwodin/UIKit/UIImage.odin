@@ -612,6 +612,14 @@ Image_VTable :: struct {
     configuration: proc(self: ^Image) -> ^ImageConfigurationProtocol,
     symbolConfiguration: proc(self: ^Image) -> ^ImageSymbolConfiguration,
     isHighDynamicRange: proc(self: ^Image) -> bool,
+    actionsImage: proc() -> ^Image,
+    addImage: proc() -> ^Image,
+    removeImage: proc() -> ^Image,
+    checkmarkImage: proc() -> ^Image,
+    strokedCheckmarkImage: proc() -> ^Image,
+    stretchableImageWithLeftCapWidth: proc(self: ^Image, leftCapWidth: NS.Integer, topCapHeight: NS.Integer) -> ^Image,
+    leftCapWidth: proc(self: ^Image) -> NS.Integer,
+    topCapHeight: proc(self: ^Image) -> NS.Integer,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -632,12 +640,25 @@ Image_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 Image_odin_extend :: proc(cls: Class, vt: ^Image_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.systemImageNamed_ != nil {
         systemImageNamed_ :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^Image {
 
@@ -1328,6 +1349,86 @@ Image_odin_extend :: proc(cls: Class, vt: ^Image_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isHighDynamicRange"), auto_cast isHighDynamicRange, "B@:") do panic("Failed to register objC method.")
     }
+    if vt.actionsImage != nil {
+        actionsImage :: proc "c" (self: Class, _: SEL) -> ^Image {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).actionsImage()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("actionsImage"), auto_cast actionsImage, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.addImage != nil {
+        addImage :: proc "c" (self: Class, _: SEL) -> ^Image {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).addImage()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("addImage"), auto_cast addImage, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.removeImage != nil {
+        removeImage :: proc "c" (self: Class, _: SEL) -> ^Image {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).removeImage()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("removeImage"), auto_cast removeImage, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.checkmarkImage != nil {
+        checkmarkImage :: proc "c" (self: Class, _: SEL) -> ^Image {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).checkmarkImage()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("checkmarkImage"), auto_cast checkmarkImage, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.strokedCheckmarkImage != nil {
+        strokedCheckmarkImage :: proc "c" (self: Class, _: SEL) -> ^Image {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).strokedCheckmarkImage()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("strokedCheckmarkImage"), auto_cast strokedCheckmarkImage, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.stretchableImageWithLeftCapWidth != nil {
+        stretchableImageWithLeftCapWidth :: proc "c" (self: ^Image, _: SEL, leftCapWidth: NS.Integer, topCapHeight: NS.Integer) -> ^Image {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).stretchableImageWithLeftCapWidth(self, leftCapWidth, topCapHeight)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("stretchableImageWithLeftCapWidth:topCapHeight:"), auto_cast stretchableImageWithLeftCapWidth, "@@:ll") do panic("Failed to register objC method.")
+    }
+    if vt.leftCapWidth != nil {
+        leftCapWidth :: proc "c" (self: ^Image, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).leftCapWidth(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("leftCapWidth"), auto_cast leftCapWidth, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.topCapHeight != nil {
+        topCapHeight :: proc "c" (self: ^Image, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).topCapHeight(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("topCapHeight"), auto_cast topCapHeight, "l@:") do panic("Failed to register objC method.")
+    }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
 
@@ -1527,6 +1628,106 @@ Image_odin_extend :: proc(cls: Class, vt: ^Image_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Image_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Image_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Image_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Image_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

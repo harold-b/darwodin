@@ -988,31 +988,24 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(require_results)
     @(link_name="NSStringFromSelector")
     StringFromSelector :: proc(aSelector: SEL) -> ^String ---
 
-    @(require_results)
     @(link_name="NSSelectorFromString")
     SelectorFromString :: proc(aSelectorName: ^String) -> SEL ---
 
-    @(require_results)
     @(link_name="NSStringFromClass")
     StringFromClass :: proc(aClass: Class) -> ^String ---
 
-    @(require_results)
     @(link_name="NSClassFromString")
     ClassFromString :: proc(aClassName: ^String) -> Class ---
 
-    @(require_results)
     @(link_name="NSStringFromProtocol")
     StringFromProtocol :: proc(proto: ^Protocol) -> ^String ---
 
-    @(require_results)
     @(link_name="NSProtocolFromString")
     ProtocolFromString :: proc(namestr: ^String) -> ^Protocol ---
 
-    @(require_results)
     @(link_name="NSGetSizeAndAlignment")
     GetSizeAndAlignment :: proc(typePtr: cstring, sizep: ^UInteger, alignp: ^UInteger) -> cstring ---
 
@@ -1022,11 +1015,9 @@ foreign lib {
     @(link_name="NSLogv")
     Logv :: proc(_0: id, _1: va_list) ---
 
-    @(require_results)
     @(link_name="NSDefaultMallocZone")
     DefaultMallocZone :: proc() -> ^Zone ---
 
-    @(require_results)
     @(link_name="NSCreateZone")
     CreateZone :: proc(startSize: UInteger, granularity: UInteger, canFree: bool) -> ^Zone ---
 
@@ -1036,46 +1027,36 @@ foreign lib {
     @(link_name="NSSetZoneName")
     SetZoneName :: proc(zone: ^Zone, name: ^String) ---
 
-    @(require_results)
     @(link_name="NSZoneName")
     ZoneName :: proc(zone: ^Zone) -> ^String ---
 
-    @(require_results)
     @(link_name="NSZoneFromPointer")
     ZoneFromPointer :: proc(ptr: rawptr) -> ^Zone ---
 
-    @(require_results)
     @(link_name="NSZoneMalloc")
     ZoneMalloc :: proc(zone: ^Zone, size: UInteger) -> rawptr ---
 
-    @(require_results)
     @(link_name="NSZoneCalloc")
     ZoneCalloc :: proc(zone: ^Zone, numElems: UInteger, byteSize: UInteger) -> rawptr ---
 
-    @(require_results)
     @(link_name="NSZoneRealloc")
     ZoneRealloc :: proc(zone: ^Zone, ptr: rawptr, size: UInteger) -> rawptr ---
 
     @(link_name="NSZoneFree")
     ZoneFree :: proc(zone: ^Zone, ptr: rawptr) ---
 
-    @(require_results)
     @(link_name="NSPageSize")
     PageSize :: proc() -> UInteger ---
 
-    @(require_results)
     @(link_name="NSLogPageSize")
     LogPageSize :: proc() -> UInteger ---
 
-    @(require_results)
     @(link_name="NSRoundUpToMultipleOfPageSize")
     RoundUpToMultipleOfPageSize :: proc(bytes: UInteger) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSRoundDownToMultipleOfPageSize")
     RoundDownToMultipleOfPageSize :: proc(bytes: UInteger) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSAllocateMemoryPages")
     AllocateMemoryPages :: proc(bytes: UInteger) -> rawptr ---
 
@@ -1085,49 +1066,39 @@ foreign lib {
     @(link_name="NSCopyMemoryPages")
     CopyMemoryPages :: proc(source: rawptr, dest: rawptr, bytes: UInteger) ---
 
-    @(require_results)
     @(link_name="NSRealMemoryAvailable")
     RealMemoryAvailable :: proc() -> UInteger ---
 
-    @(require_results)
     @(link_name="NSAllocateObject")
     AllocateObject :: proc(aClass: Class, extraBytes: UInteger, zone: ^Zone) -> id ---
 
     @(link_name="NSDeallocateObject")
     DeallocateObject :: proc(object: id) ---
 
-    @(require_results)
     @(link_name="NSCopyObject")
     CopyObject :: proc(object: id, extraBytes: UInteger, zone: ^Zone) -> id ---
 
-    @(require_results)
     @(link_name="NSShouldRetainWithZone")
     ShouldRetainWithZone :: proc(anObject: id, requestedZone: ^Zone) -> bool ---
 
     @(link_name="NSIncrementExtraRefCount")
     IncrementExtraRefCount :: proc(object: id) ---
 
-    @(require_results)
     @(link_name="NSDecrementExtraRefCountWasZero")
     DecrementExtraRefCountWasZero :: proc(object: id) -> bool ---
 
-    @(require_results)
     @(link_name="NSExtraRefCount")
     ExtraRefCount :: proc(object: id) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSUnionRange")
     UnionRange :: proc(range1: _NSRange, range2: _NSRange) -> _NSRange ---
 
-    @(require_results)
     @(link_name="NSIntersectionRange")
     IntersectionRange :: proc(range1: _NSRange, range2: _NSRange) -> _NSRange ---
 
-    @(require_results)
     @(link_name="NSStringFromRange")
     StringFromRange :: proc(range: _NSRange) -> ^String ---
 
-    @(require_results)
     @(link_name="NSRangeFromString")
     RangeFromString :: proc(aString: ^String) -> _NSRange ---
 
@@ -1137,77 +1108,60 @@ foreign lib {
     @(link_name="NSDecimalCompact")
     DecimalCompact :: proc(number: ^Decimal) ---
 
-    @(require_results)
     @(link_name="NSDecimalCompare")
     DecimalCompare :: proc(leftOperand: ^Decimal, rightOperand: ^Decimal) -> ComparisonResult ---
 
     @(link_name="NSDecimalRound")
     DecimalRound :: proc(result: ^Decimal, number: ^Decimal, scale: Integer, roundingMode: RoundingMode) ---
 
-    @(require_results)
     @(link_name="NSDecimalNormalize")
     DecimalNormalize :: proc(number1: ^Decimal, number2: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalAdd")
     DecimalAdd :: proc(result: ^Decimal, leftOperand: ^Decimal, rightOperand: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalSubtract")
     DecimalSubtract :: proc(result: ^Decimal, leftOperand: ^Decimal, rightOperand: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalMultiply")
     DecimalMultiply :: proc(result: ^Decimal, leftOperand: ^Decimal, rightOperand: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalDivide")
     DecimalDivide :: proc(result: ^Decimal, leftOperand: ^Decimal, rightOperand: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalPower")
     DecimalPower :: proc(result: ^Decimal, number: ^Decimal, power: UInteger, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalMultiplyByPowerOf10")
     DecimalMultiplyByPowerOf10 :: proc(result: ^Decimal, number: ^Decimal, power: cffi.short, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalString")
     DecimalString :: proc(dcm: ^Decimal, locale: id) -> ^String ---
 
-    @(require_results)
     @(link_name="NSGetUncaughtExceptionHandler")
     GetUncaughtExceptionHandler :: proc() -> UncaughtExceptionHandler ---
 
     @(link_name="NSSetUncaughtExceptionHandler")
     SetUncaughtExceptionHandler :: proc(_0: UncaughtExceptionHandler) ---
 
-    @(require_results)
     @(link_name="NSUserName")
     UserName :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSFullUserName")
     FullUserName :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSHomeDirectory")
     HomeDirectory :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSHomeDirectoryForUser")
     HomeDirectoryForUser :: proc(userName: ^String) -> ^String ---
 
-    @(require_results)
     @(link_name="NSTemporaryDirectory")
     TemporaryDirectory :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSOpenStepRootDirectory")
     OpenStepRootDirectory :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSSearchPathForDirectoriesInDomains")
     SearchPathForDirectoriesInDomains :: proc(directory: SearchPathDirectory, domainMask: SearchPathDomainMask, expandTilde: bool) -> ^Array ---
 
@@ -1217,15 +1171,12 @@ foreign lib {
     @(link_name="NSResetHashTable")
     ResetHashTable :: proc(table: ^HashTable) ---
 
-    @(require_results)
     @(link_name="NSCompareHashTables")
     CompareHashTables :: proc(table1: ^HashTable, table2: ^HashTable) -> bool ---
 
-    @(require_results)
     @(link_name="NSCopyHashTableWithZone")
     CopyHashTableWithZone :: proc(table: ^HashTable, zone: ^Zone) -> ^HashTable ---
 
-    @(require_results)
     @(link_name="NSHashGet")
     HashGet :: proc(table: ^HashTable, pointer: rawptr) -> rawptr ---
 
@@ -1235,41 +1186,33 @@ foreign lib {
     @(link_name="NSHashInsertKnownAbsent")
     HashInsertKnownAbsent :: proc(table: ^HashTable, pointer: rawptr) ---
 
-    @(require_results)
     @(link_name="NSHashInsertIfAbsent")
     HashInsertIfAbsent :: proc(table: ^HashTable, pointer: rawptr) -> rawptr ---
 
     @(link_name="NSHashRemove")
     HashRemove :: proc(table: ^HashTable, pointer: rawptr) ---
 
-    @(require_results)
     @(link_name="NSEnumerateHashTable")
     EnumerateHashTable :: proc(table: ^HashTable) -> HashEnumerator ---
 
-    @(require_results)
     @(link_name="NSNextHashEnumeratorItem")
     NextHashEnumeratorItem :: proc(enumerator: ^HashEnumerator) -> rawptr ---
 
     @(link_name="NSEndHashTableEnumeration")
     EndHashTableEnumeration :: proc(enumerator: ^HashEnumerator) ---
 
-    @(require_results)
     @(link_name="NSCountHashTable")
     CountHashTable :: proc(table: ^HashTable) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSStringFromHashTable")
     StringFromHashTable :: proc(table: ^HashTable) -> ^String ---
 
-    @(require_results)
     @(link_name="NSAllHashTableObjects")
     AllHashTableObjects :: proc(table: ^HashTable) -> ^Array ---
 
-    @(require_results)
     @(link_name="NSCreateHashTableWithZone")
     CreateHashTableWithZone :: proc(callBacks: HashTableCallBacks, capacity: UInteger, zone: ^Zone) -> ^HashTable ---
 
-    @(require_results)
     @(link_name="NSCreateHashTable")
     CreateHashTable :: proc(callBacks: HashTableCallBacks, capacity: UInteger) -> ^HashTable ---
 
@@ -1279,19 +1222,15 @@ foreign lib {
     @(link_name="NSResetMapTable")
     ResetMapTable :: proc(table: ^MapTable) ---
 
-    @(require_results)
     @(link_name="NSCompareMapTables")
     CompareMapTables :: proc(table1: ^MapTable, table2: ^MapTable) -> bool ---
 
-    @(require_results)
     @(link_name="NSCopyMapTableWithZone")
     CopyMapTableWithZone :: proc(table: ^MapTable, zone: ^Zone) -> ^MapTable ---
 
-    @(require_results)
     @(link_name="NSMapMember")
     MapMember :: proc(table: ^MapTable, key: rawptr, originalKey: ^rawptr, value: ^rawptr) -> bool ---
 
-    @(require_results)
     @(link_name="NSMapGet")
     MapGet :: proc(table: ^MapTable, key: rawptr) -> rawptr ---
 
@@ -1301,45 +1240,36 @@ foreign lib {
     @(link_name="NSMapInsertKnownAbsent")
     MapInsertKnownAbsent :: proc(table: ^MapTable, key: rawptr, value: rawptr) ---
 
-    @(require_results)
     @(link_name="NSMapInsertIfAbsent")
     MapInsertIfAbsent :: proc(table: ^MapTable, key: rawptr, value: rawptr) -> rawptr ---
 
     @(link_name="NSMapRemove")
     MapRemove :: proc(table: ^MapTable, key: rawptr) ---
 
-    @(require_results)
     @(link_name="NSEnumerateMapTable")
     EnumerateMapTable :: proc(table: ^MapTable) -> MapEnumerator ---
 
-    @(require_results)
     @(link_name="NSNextMapEnumeratorPair")
     NextMapEnumeratorPair :: proc(enumerator: ^MapEnumerator, key: ^rawptr, value: ^rawptr) -> bool ---
 
     @(link_name="NSEndMapTableEnumeration")
     EndMapTableEnumeration :: proc(enumerator: ^MapEnumerator) ---
 
-    @(require_results)
     @(link_name="NSCountMapTable")
     CountMapTable :: proc(table: ^MapTable) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSStringFromMapTable")
     StringFromMapTable :: proc(table: ^MapTable) -> ^String ---
 
-    @(require_results)
     @(link_name="NSAllMapTableKeys")
     AllMapTableKeys :: proc(table: ^MapTable) -> ^Array ---
 
-    @(require_results)
     @(link_name="NSAllMapTableValues")
     AllMapTableValues :: proc(table: ^MapTable) -> ^Array ---
 
-    @(require_results)
     @(link_name="NSCreateMapTableWithZone")
     CreateMapTableWithZone :: proc(keyCallBacks: MapTableKeyCallBacks, valueCallBacks: MapTableValueCallBacks, capacity: UInteger, zone: ^Zone) -> ^MapTable ---
 
-    @(require_results)
     @(link_name="NSCreateMapTable")
     CreateMapTable :: proc(keyCallBacks: MapTableKeyCallBacks, valueCallBacks: MapTableValueCallBacks, capacity: UInteger) -> ^MapTable ---
 
@@ -2521,10 +2451,10 @@ SSLCiphersuiteGroup :: enum cffi.int {
 
 /// tls_protocol_version_t
 tls_protocol_version_t :: enum cffi.ushort {
-    TLSv10 = 769,
-    TLSv11 = 770,
-    TLSv12 = 771,
-    TLSv13 = 772,
+    LSv10 = 769,
+    LSv11 = 770,
+    LSv12 = 771,
+    LSv13 = 772,
     DTLSv10 = 65279,
     DTLSv12 = 65277,
 }

@@ -84,6 +84,9 @@ ObjCClasses:
     GCSteeringWheelElement: GC.SteeringWheelElement
     GCGearShifterElement: GC.GearShifterElement
     GCRacingWheelInputState: GC.RacingWheelInputState
+    GCVirtualControllerConfiguration: GC.VirtualControllerConfiguration
+    GCVirtualControllerElementConfiguration: GC.VirtualControllerElementConfiguration
+    GCVirtualController: GC.VirtualController
 
 ObjCProtocols:
     GCDevice: GC.Device

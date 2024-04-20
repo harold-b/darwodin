@@ -355,6 +355,30 @@ FileHandle_VTable :: struct {
     synchronizeAndReturnError: proc(self: ^FileHandle, error: ^^Error) -> bool,
     closeAndReturnError: proc(self: ^FileHandle, error: ^^Error) -> bool,
     availableData: proc(self: ^FileHandle) -> ^Data,
+    fileHandleForReadingAtPath: proc(path: ^String) -> ^FileHandle,
+    fileHandleForWritingAtPath: proc(path: ^String) -> ^FileHandle,
+    fileHandleForUpdatingAtPath: proc(path: ^String) -> ^FileHandle,
+    fileHandleForReadingFromURL: proc(url: ^URL, error: ^^Error) -> ^FileHandle,
+    fileHandleForWritingToURL: proc(url: ^URL, error: ^^Error) -> ^FileHandle,
+    fileHandleForUpdatingURL: proc(url: ^URL, error: ^^Error) -> ^FileHandle,
+    fileHandleWithStandardInput: proc() -> ^FileHandle,
+    fileHandleWithStandardOutput: proc() -> ^FileHandle,
+    fileHandleWithStandardError: proc() -> ^FileHandle,
+    fileHandleWithNullDevice: proc() -> ^FileHandle,
+    readInBackgroundAndNotifyForModes: proc(self: ^FileHandle, modes: ^Array),
+    readInBackgroundAndNotify: proc(self: ^FileHandle),
+    readToEndOfFileInBackgroundAndNotifyForModes: proc(self: ^FileHandle, modes: ^Array),
+    readToEndOfFileInBackgroundAndNotify: proc(self: ^FileHandle),
+    acceptConnectionInBackgroundAndNotifyForModes: proc(self: ^FileHandle, modes: ^Array),
+    acceptConnectionInBackgroundAndNotify: proc(self: ^FileHandle),
+    waitForDataInBackgroundAndNotifyForModes: proc(self: ^FileHandle, modes: ^Array),
+    waitForDataInBackgroundAndNotify: proc(self: ^FileHandle),
+    readabilityHandler: proc(self: ^FileHandle) -> proc "c" (),
+    setReadabilityHandler: proc(self: ^FileHandle, readabilityHandler: proc "c" ()),
+    writeabilityHandler: proc(self: ^FileHandle) -> proc "c" (),
+    setWriteabilityHandler: proc(self: ^FileHandle, writeabilityHandler: proc "c" ()),
+    initWithFileDescriptor_: proc(self: ^FileHandle, fd: cffi.int) -> ^FileHandle,
+    fileDescriptor: proc(self: ^FileHandle) -> cffi.int,
     readDataToEndOfFile: proc(self: ^FileHandle) -> ^Data,
     readDataOfLength: proc(self: ^FileHandle, length: UInteger) -> ^Data,
     writeData_: proc(self: ^FileHandle, data: ^Data),
@@ -384,12 +408,25 @@ FileHandle_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 FileHandle_odin_extend :: proc(cls: Class, vt: ^FileHandle_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.initWithFileDescriptor_closeOnDealloc != nil {
         initWithFileDescriptor_closeOnDealloc :: proc "c" (self: ^FileHandle, _: SEL, fd: cffi.int, closeopt: bool) -> ^FileHandle {
 
@@ -509,6 +546,246 @@ FileHandle_odin_extend :: proc(cls: Class, vt: ^FileHandle_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("availableData"), auto_cast availableData, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleForReadingAtPath != nil {
+        fileHandleForReadingAtPath :: proc "c" (self: Class, _: SEL, path: ^String) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleForReadingAtPath( path)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForReadingAtPath:"), auto_cast fileHandleForReadingAtPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleForWritingAtPath != nil {
+        fileHandleForWritingAtPath :: proc "c" (self: Class, _: SEL, path: ^String) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleForWritingAtPath( path)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForWritingAtPath:"), auto_cast fileHandleForWritingAtPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleForUpdatingAtPath != nil {
+        fileHandleForUpdatingAtPath :: proc "c" (self: Class, _: SEL, path: ^String) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleForUpdatingAtPath( path)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForUpdatingAtPath:"), auto_cast fileHandleForUpdatingAtPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleForReadingFromURL != nil {
+        fileHandleForReadingFromURL :: proc "c" (self: Class, _: SEL, url: ^URL, error: ^^Error) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleForReadingFromURL( url, error)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForReadingFromURL:error:"), auto_cast fileHandleForReadingFromURL, "@#:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleForWritingToURL != nil {
+        fileHandleForWritingToURL :: proc "c" (self: Class, _: SEL, url: ^URL, error: ^^Error) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleForWritingToURL( url, error)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForWritingToURL:error:"), auto_cast fileHandleForWritingToURL, "@#:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleForUpdatingURL != nil {
+        fileHandleForUpdatingURL :: proc "c" (self: Class, _: SEL, url: ^URL, error: ^^Error) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleForUpdatingURL( url, error)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForUpdatingURL:error:"), auto_cast fileHandleForUpdatingURL, "@#:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleWithStandardInput != nil {
+        fileHandleWithStandardInput :: proc "c" (self: Class, _: SEL) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleWithStandardInput()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleWithStandardInput"), auto_cast fileHandleWithStandardInput, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleWithStandardOutput != nil {
+        fileHandleWithStandardOutput :: proc "c" (self: Class, _: SEL) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleWithStandardOutput()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleWithStandardOutput"), auto_cast fileHandleWithStandardOutput, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleWithStandardError != nil {
+        fileHandleWithStandardError :: proc "c" (self: Class, _: SEL) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleWithStandardError()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleWithStandardError"), auto_cast fileHandleWithStandardError, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.fileHandleWithNullDevice != nil {
+        fileHandleWithNullDevice :: proc "c" (self: Class, _: SEL) -> ^FileHandle {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileHandleWithNullDevice()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleWithNullDevice"), auto_cast fileHandleWithNullDevice, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.readInBackgroundAndNotifyForModes != nil {
+        readInBackgroundAndNotifyForModes :: proc "c" (self: ^FileHandle, _: SEL, modes: ^Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).readInBackgroundAndNotifyForModes(self, modes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readInBackgroundAndNotifyForModes:"), auto_cast readInBackgroundAndNotifyForModes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.readInBackgroundAndNotify != nil {
+        readInBackgroundAndNotify :: proc "c" (self: ^FileHandle, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).readInBackgroundAndNotify(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readInBackgroundAndNotify"), auto_cast readInBackgroundAndNotify, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.readToEndOfFileInBackgroundAndNotifyForModes != nil {
+        readToEndOfFileInBackgroundAndNotifyForModes :: proc "c" (self: ^FileHandle, _: SEL, modes: ^Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).readToEndOfFileInBackgroundAndNotifyForModes(self, modes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readToEndOfFileInBackgroundAndNotifyForModes:"), auto_cast readToEndOfFileInBackgroundAndNotifyForModes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.readToEndOfFileInBackgroundAndNotify != nil {
+        readToEndOfFileInBackgroundAndNotify :: proc "c" (self: ^FileHandle, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).readToEndOfFileInBackgroundAndNotify(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readToEndOfFileInBackgroundAndNotify"), auto_cast readToEndOfFileInBackgroundAndNotify, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.acceptConnectionInBackgroundAndNotifyForModes != nil {
+        acceptConnectionInBackgroundAndNotifyForModes :: proc "c" (self: ^FileHandle, _: SEL, modes: ^Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).acceptConnectionInBackgroundAndNotifyForModes(self, modes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptConnectionInBackgroundAndNotifyForModes:"), auto_cast acceptConnectionInBackgroundAndNotifyForModes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.acceptConnectionInBackgroundAndNotify != nil {
+        acceptConnectionInBackgroundAndNotify :: proc "c" (self: ^FileHandle, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).acceptConnectionInBackgroundAndNotify(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptConnectionInBackgroundAndNotify"), auto_cast acceptConnectionInBackgroundAndNotify, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.waitForDataInBackgroundAndNotifyForModes != nil {
+        waitForDataInBackgroundAndNotifyForModes :: proc "c" (self: ^FileHandle, _: SEL, modes: ^Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).waitForDataInBackgroundAndNotifyForModes(self, modes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("waitForDataInBackgroundAndNotifyForModes:"), auto_cast waitForDataInBackgroundAndNotifyForModes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.waitForDataInBackgroundAndNotify != nil {
+        waitForDataInBackgroundAndNotify :: proc "c" (self: ^FileHandle, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).waitForDataInBackgroundAndNotify(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("waitForDataInBackgroundAndNotify"), auto_cast waitForDataInBackgroundAndNotify, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.readabilityHandler != nil {
+        readabilityHandler :: proc "c" (self: ^FileHandle, _: SEL) -> proc "c" () {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).readabilityHandler(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readabilityHandler"), auto_cast readabilityHandler, "?@:") do panic("Failed to register objC method.")
+    }
+    if vt.setReadabilityHandler != nil {
+        setReadabilityHandler :: proc "c" (self: ^FileHandle, _: SEL, readabilityHandler: proc "c" ()) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).setReadabilityHandler(self, readabilityHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setReadabilityHandler:"), auto_cast setReadabilityHandler, "v@:?") do panic("Failed to register objC method.")
+    }
+    if vt.writeabilityHandler != nil {
+        writeabilityHandler :: proc "c" (self: ^FileHandle, _: SEL) -> proc "c" () {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).writeabilityHandler(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writeabilityHandler"), auto_cast writeabilityHandler, "?@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWriteabilityHandler != nil {
+        setWriteabilityHandler :: proc "c" (self: ^FileHandle, _: SEL, writeabilityHandler: proc "c" ()) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).setWriteabilityHandler(self, writeabilityHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWriteabilityHandler:"), auto_cast setWriteabilityHandler, "v@:?") do panic("Failed to register objC method.")
+    }
+    if vt.initWithFileDescriptor_ != nil {
+        initWithFileDescriptor_ :: proc "c" (self: ^FileHandle, _: SEL, fd: cffi.int) -> ^FileHandle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).initWithFileDescriptor_(self, fd)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFileDescriptor:"), auto_cast initWithFileDescriptor_, "@@:i") do panic("Failed to register objC method.")
+    }
+    if vt.fileDescriptor != nil {
+        fileDescriptor :: proc "c" (self: ^FileHandle, _: SEL) -> cffi.int {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).fileDescriptor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileDescriptor"), auto_cast fileDescriptor, "i@:") do panic("Failed to register objC method.")
     }
     if vt.readDataToEndOfFile != nil {
         readDataToEndOfFile :: proc "c" (self: ^FileHandle, _: SEL) -> ^Data {
@@ -799,6 +1076,106 @@ FileHandle_odin_extend :: proc(cls: Class, vt: ^FileHandle_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FileHandle_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FileHandle_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

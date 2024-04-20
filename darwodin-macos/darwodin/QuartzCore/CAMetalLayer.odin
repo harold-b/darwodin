@@ -99,8 +99,8 @@ MetalLayer_EDRMetadata :: #force_inline proc "c" (self: ^MetalLayer) -> ^EDRMeta
     return msgSend(^EDRMetadata, self, "EDRMetadata")
 }
 @(objc_type=MetalLayer, objc_name="setEDRMetadata")
-MetalLayer_setEDRMetadata :: #force_inline proc "c" (self: ^MetalLayer, EDRMetadata: ^EDRMetadata) {
-    msgSend(nil, self, "setEDRMetadata:", EDRMetadata)
+MetalLayer_setEDRMetadata :: #force_inline proc "c" (self: ^MetalLayer, _EDRMetadata: ^EDRMetadata) {
+    msgSend(nil, self, "setEDRMetadata:", _EDRMetadata)
 }
 @(objc_type=MetalLayer, objc_name="displaySyncEnabled")
 MetalLayer_displaySyncEnabled :: #force_inline proc "c" (self: ^MetalLayer) -> bool {

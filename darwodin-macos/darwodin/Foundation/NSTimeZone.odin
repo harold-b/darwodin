@@ -299,6 +299,29 @@ TimeZone_VTable :: struct {
     nextDaylightSavingTimeTransitionAfterDate: proc(self: ^TimeZone, aDate: ^Date) -> ^Date,
     name: proc(self: ^TimeZone) -> ^String,
     data: proc(self: ^TimeZone) -> ^Data,
+    resetSystemTimeZone: proc(),
+    abbreviationDictionary: proc() -> ^Dictionary,
+    isEqualToTimeZone: proc(self: ^TimeZone, aTimeZone: ^TimeZone) -> bool,
+    localizedName: proc(self: ^TimeZone, style: TimeZoneNameStyle, locale: ^Locale) -> ^String,
+    systemTimeZone: proc() -> ^TimeZone,
+    defaultTimeZone: proc() -> ^TimeZone,
+    setDefaultTimeZone: proc(defaultTimeZone: ^TimeZone),
+    localTimeZone: proc() -> ^TimeZone,
+    knownTimeZoneNames: proc() -> ^Array,
+    setAbbreviationDictionary: proc(abbreviationDictionary: ^Dictionary),
+    timeZoneDataVersion: proc() -> ^String,
+    secondsFromGMT: proc(self: ^TimeZone) -> Integer,
+    abbreviation: proc(self: ^TimeZone) -> ^String,
+    isDaylightSavingTime: proc(self: ^TimeZone) -> bool,
+    daylightSavingTimeOffset: proc(self: ^TimeZone) -> TimeInterval,
+    nextDaylightSavingTimeTransition: proc(self: ^TimeZone) -> ^Date,
+    description: proc(self: ^TimeZone) -> ^String,
+    timeZoneWithName_: proc(tzName: ^String) -> ^TimeZone,
+    timeZoneWithName_data: proc(tzName: ^String, aData: ^Data) -> ^TimeZone,
+    initWithName_: proc(self: ^TimeZone, tzName: ^String) -> ^TimeZone,
+    initWithName_data: proc(self: ^TimeZone, tzName: ^String, aData: ^Data) -> ^TimeZone,
+    timeZoneForSecondsFromGMT: proc(seconds: Integer) -> ^TimeZone,
+    timeZoneWithAbbreviation: proc(abbreviation: ^String) -> ^TimeZone,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -319,12 +342,27 @@ TimeZone_VTable :: struct {
     class: proc() -> Class,
     descriptionStatic: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 TimeZone_odin_extend :: proc(cls: Class, vt: ^TimeZone_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.secondsFromGMTForDate != nil {
         secondsFromGMTForDate :: proc "c" (self: ^TimeZone, _: SEL, aDate: ^Date) -> Integer {
 
@@ -394,6 +432,236 @@ TimeZone_odin_extend :: proc(cls: Class, vt: ^TimeZone_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("data"), auto_cast data, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.resetSystemTimeZone != nil {
+        resetSystemTimeZone :: proc "c" (self: Class, _: SEL) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TimeZone_VTable)vt_ctx.super_vt).resetSystemTimeZone()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("resetSystemTimeZone"), auto_cast resetSystemTimeZone, "v#:") do panic("Failed to register objC method.")
+    }
+    if vt.abbreviationDictionary != nil {
+        abbreviationDictionary :: proc "c" (self: Class, _: SEL) -> ^Dictionary {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).abbreviationDictionary()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("abbreviationDictionary"), auto_cast abbreviationDictionary, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.isEqualToTimeZone != nil {
+        isEqualToTimeZone :: proc "c" (self: ^TimeZone, _: SEL, aTimeZone: ^TimeZone) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).isEqualToTimeZone(self, aTimeZone)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isEqualToTimeZone:"), auto_cast isEqualToTimeZone, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.localizedName != nil {
+        localizedName :: proc "c" (self: ^TimeZone, _: SEL, style: TimeZoneNameStyle, locale: ^Locale) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).localizedName(self, style, locale)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedName:locale:"), auto_cast localizedName, "@@:l@") do panic("Failed to register objC method.")
+    }
+    if vt.systemTimeZone != nil {
+        systemTimeZone :: proc "c" (self: Class, _: SEL) -> ^TimeZone {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).systemTimeZone()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemTimeZone"), auto_cast systemTimeZone, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.defaultTimeZone != nil {
+        defaultTimeZone :: proc "c" (self: Class, _: SEL) -> ^TimeZone {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).defaultTimeZone()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultTimeZone"), auto_cast defaultTimeZone, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultTimeZone != nil {
+        setDefaultTimeZone :: proc "c" (self: Class, _: SEL, defaultTimeZone: ^TimeZone) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TimeZone_VTable)vt_ctx.super_vt).setDefaultTimeZone( defaultTimeZone)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultTimeZone:"), auto_cast setDefaultTimeZone, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.localTimeZone != nil {
+        localTimeZone :: proc "c" (self: Class, _: SEL) -> ^TimeZone {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).localTimeZone()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localTimeZone"), auto_cast localTimeZone, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.knownTimeZoneNames != nil {
+        knownTimeZoneNames :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).knownTimeZoneNames()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("knownTimeZoneNames"), auto_cast knownTimeZoneNames, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.setAbbreviationDictionary != nil {
+        setAbbreviationDictionary :: proc "c" (self: Class, _: SEL, abbreviationDictionary: ^Dictionary) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TimeZone_VTable)vt_ctx.super_vt).setAbbreviationDictionary( abbreviationDictionary)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setAbbreviationDictionary:"), auto_cast setAbbreviationDictionary, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.timeZoneDataVersion != nil {
+        timeZoneDataVersion :: proc "c" (self: Class, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).timeZoneDataVersion()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("timeZoneDataVersion"), auto_cast timeZoneDataVersion, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.secondsFromGMT != nil {
+        secondsFromGMT :: proc "c" (self: ^TimeZone, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).secondsFromGMT(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("secondsFromGMT"), auto_cast secondsFromGMT, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.abbreviation != nil {
+        abbreviation :: proc "c" (self: ^TimeZone, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).abbreviation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("abbreviation"), auto_cast abbreviation, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.isDaylightSavingTime != nil {
+        isDaylightSavingTime :: proc "c" (self: ^TimeZone, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).isDaylightSavingTime(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isDaylightSavingTime"), auto_cast isDaylightSavingTime, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.daylightSavingTimeOffset != nil {
+        daylightSavingTimeOffset :: proc "c" (self: ^TimeZone, _: SEL) -> TimeInterval {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).daylightSavingTimeOffset(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("daylightSavingTimeOffset"), auto_cast daylightSavingTimeOffset, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.nextDaylightSavingTimeTransition != nil {
+        nextDaylightSavingTimeTransition :: proc "c" (self: ^TimeZone, _: SEL) -> ^Date {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).nextDaylightSavingTimeTransition(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("nextDaylightSavingTimeTransition"), auto_cast nextDaylightSavingTimeTransition, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.description != nil {
+        description :: proc "c" (self: ^TimeZone, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).description(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("description"), auto_cast description, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.timeZoneWithName_ != nil {
+        timeZoneWithName_ :: proc "c" (self: Class, _: SEL, tzName: ^String) -> ^TimeZone {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).timeZoneWithName_( tzName)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("timeZoneWithName:"), auto_cast timeZoneWithName_, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.timeZoneWithName_data != nil {
+        timeZoneWithName_data :: proc "c" (self: Class, _: SEL, tzName: ^String, aData: ^Data) -> ^TimeZone {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).timeZoneWithName_data( tzName, aData)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("timeZoneWithName:data:"), auto_cast timeZoneWithName_data, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithName_ != nil {
+        initWithName_ :: proc "c" (self: ^TimeZone, _: SEL, tzName: ^String) -> ^TimeZone {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).initWithName_(self, tzName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:"), auto_cast initWithName_, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithName_data != nil {
+        initWithName_data :: proc "c" (self: ^TimeZone, _: SEL, tzName: ^String, aData: ^Data) -> ^TimeZone {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).initWithName_data(self, tzName, aData)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:data:"), auto_cast initWithName_data, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.timeZoneForSecondsFromGMT != nil {
+        timeZoneForSecondsFromGMT :: proc "c" (self: Class, _: SEL, seconds: Integer) -> ^TimeZone {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).timeZoneForSecondsFromGMT( seconds)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("timeZoneForSecondsFromGMT:"), auto_cast timeZoneForSecondsFromGMT, "@#:l") do panic("Failed to register objC method.")
+    }
+    if vt.timeZoneWithAbbreviation != nil {
+        timeZoneWithAbbreviation :: proc "c" (self: Class, _: SEL, abbreviation: ^String) -> ^TimeZone {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).timeZoneWithAbbreviation( abbreviation)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("timeZoneWithAbbreviation:"), auto_cast timeZoneWithAbbreviation, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -594,6 +862,126 @@ TimeZone_odin_extend :: proc(cls: Class, vt: ^TimeZone_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TimeZone_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TimeZone_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TimeZone_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TimeZone_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TimeZone_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TimeZone_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

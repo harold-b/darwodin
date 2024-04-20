@@ -143,90 +143,69 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(require_results)
     @(link_name="CGLayerCreateWithContext")
     CGLayerCreateWithContext :: proc(_context: CG.ContextRef, size: CG.Size, auxiliaryInfo: CF.DictionaryRef) -> CG.LayerRef ---
 
-    @(require_results)
     @(link_name="CGLayerRetain")
     CGLayerRetain :: proc(layer: CG.LayerRef) -> CG.LayerRef ---
 
     @(link_name="CGLayerRelease")
     CGLayerRelease :: proc(layer: CG.LayerRef) ---
 
-    @(require_results)
     @(link_name="CGLayerGetSize")
     CGLayerGetSize :: proc(layer: CG.LayerRef) -> CG.Size ---
 
-    @(require_results)
     @(link_name="CGLayerGetContext")
     CGLayerGetContext :: proc(layer: CG.LayerRef) -> CG.ContextRef ---
 
-    @(require_results)
     @(link_name="CGLayerGetTypeID")
     CGLayerGetTypeID :: proc() -> CF.TypeID ---
 
-    @(require_results)
     @(link_name="CACurrentMediaTime")
     CurrentMediaTime :: proc() -> CF.TimeInterval ---
 
-    @(require_results)
     @(link_name="CATransform3DIsIdentity")
     Transform3DIsIdentity :: proc(t: Transform3D) -> cffi.bool ---
 
-    @(require_results)
     @(link_name="CATransform3DEqualToTransform")
     Transform3DEqualToTransform :: proc(a: Transform3D, b: Transform3D) -> cffi.bool ---
 
-    @(require_results)
     @(link_name="CATransform3DMakeTranslation")
     Transform3DMakeTranslation :: proc(tx: CG.Float, ty: CG.Float, tz: CG.Float) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DMakeScale")
     Transform3DMakeScale :: proc(sx: CG.Float, sy: CG.Float, sz: CG.Float) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DMakeRotation")
     Transform3DMakeRotation :: proc(angle: CG.Float, x: CG.Float, y: CG.Float, z: CG.Float) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DTranslate")
     Transform3DTranslate :: proc(t: Transform3D, tx: CG.Float, ty: CG.Float, tz: CG.Float) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DScale")
     Transform3DScale :: proc(t: Transform3D, sx: CG.Float, sy: CG.Float, sz: CG.Float) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DRotate")
     Transform3DRotate :: proc(t: Transform3D, angle: CG.Float, x: CG.Float, y: CG.Float, z: CG.Float) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DConcat")
     Transform3DConcat :: proc(a: Transform3D, b: Transform3D) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DInvert")
     Transform3DInvert :: proc(t: Transform3D) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DMakeAffineTransform")
     Transform3DMakeAffineTransform :: proc(m: CG.AffineTransform) -> Transform3D ---
 
-    @(require_results)
     @(link_name="CATransform3DIsAffine")
     Transform3DIsAffine :: proc(t: Transform3D) -> cffi.bool ---
 
-    @(require_results)
     @(link_name="CATransform3DGetAffineTransform")
     Transform3DGetAffineTransform :: proc(t: Transform3D) -> CG.AffineTransform ---
 
-    @(require_results)
     @(link_name="CAFrameRateRangeMake")
     FrameRateRangeMake :: proc(minimum: cffi.float, maximum: cffi.float, preferred: cffi.float) -> FrameRateRange ---
 
-    @(require_results)
     @(link_name="CAFrameRateRangeIsEqualToRange")
     FrameRateRangeIsEqualToRange :: proc(range: FrameRateRange, other: FrameRateRange) -> cffi.bool ---
 

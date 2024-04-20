@@ -367,13 +367,43 @@ Slider_VTable :: struct {
     altIncrementValue: proc(self: ^Slider) -> cffi.double,
     setAltIncrementValue: proc(self: ^Slider, altIncrementValue: cffi.double),
     knobThickness: proc(self: ^Slider) -> CG.Float,
+    isVertical: proc(self: ^Slider) -> bool,
     setVertical: proc(self: ^Slider, vertical: bool),
     trackFillColor: proc(self: ^Slider) -> ^Color,
     setTrackFillColor: proc(self: ^Slider, trackFillColor: ^Color),
+    tickMarkValueAtIndex: proc(self: ^Slider, index: NS.Integer) -> cffi.double,
+    rectOfTickMarkAtIndex: proc(self: ^Slider, index: NS.Integer) -> NS.Rect,
+    indexOfTickMarkAtPoint: proc(self: ^Slider, point: CG.Point) -> NS.Integer,
+    closestTickMarkValueToValue: proc(self: ^Slider, value: cffi.double) -> cffi.double,
+    numberOfTickMarks: proc(self: ^Slider) -> NS.Integer,
+    setNumberOfTickMarks: proc(self: ^Slider, numberOfTickMarks: NS.Integer),
+    tickMarkPosition: proc(self: ^Slider) -> TickMarkPosition,
+    setTickMarkPosition: proc(self: ^Slider, tickMarkPosition: TickMarkPosition),
+    allowsTickMarkValuesOnly: proc(self: ^Slider) -> bool,
+    setAllowsTickMarkValuesOnly: proc(self: ^Slider, allowsTickMarkValuesOnly: bool),
+    sliderWithTarget: proc(target: id, action: SEL) -> ^Slider,
+    sliderWithValue: proc(value: cffi.double, minValue: cffi.double, maxValue: cffi.double, target: id, action: SEL) -> ^Slider,
+    setTitleCell: proc(self: ^Slider, cell: ^Cell),
+    titleCell: proc(self: ^Slider) -> id,
+    setTitleColor: proc(self: ^Slider, newColor: ^Color),
+    titleColor: proc(self: ^Slider) -> ^Color,
+    setTitleFont: proc(self: ^Slider, fontObj: ^Font),
+    titleFont: proc(self: ^Slider) -> ^Font,
+    title: proc(self: ^Slider) -> ^NS.String,
+    setTitle: proc(self: ^Slider, string: ^NS.String),
+    setKnobThickness: proc(self: ^Slider, thickness: CG.Float),
+    setImage: proc(self: ^Slider, backgroundImage: ^NS.Image),
+    image: proc(self: ^Slider) -> ^NS.Image,
+    cellClass: proc() -> Class,
+    setCellClass: proc(cellClass: Class),
     focusView: proc() -> ^View,
     defaultMenu: proc() -> ^Menu,
     isCompatibleWithResponsiveScrolling: proc() -> bool,
+    defaultFocusRingType: proc() -> FocusRingType,
+    requiresConstraintBasedLayout: proc() -> bool,
     defaultAnimationForKey: proc(key: ^NS.String) -> id,
+    allowedClassesForRestorableStateKeyPath: proc(keyPath: ^NS.String) -> ^NS.Array,
+    restorableStateKeyPaths: proc() -> ^NS.Array,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Slider,
@@ -393,12 +423,30 @@ Slider_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 Slider_odin_extend :: proc(cls: Class, vt: ^Slider_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Control_odin_extend(cls, &vt.super)
+
     if vt.acceptsFirstMouse != nil {
         acceptsFirstMouse :: proc "c" (self: ^Slider, _: SEL, event: ^Event) -> bool {
 
@@ -499,6 +547,16 @@ Slider_odin_extend :: proc(cls: Class, vt: ^Slider_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("knobThickness"), auto_cast knobThickness, "d@:") do panic("Failed to register objC method.")
     }
+    if vt.isVertical != nil {
+        isVertical :: proc "c" (self: ^Slider, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).isVertical(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isVertical"), auto_cast isVertical, "B@:") do panic("Failed to register objC method.")
+    }
     if vt.setVertical != nil {
         setVertical :: proc "c" (self: ^Slider, _: SEL, vertical: bool) {
 
@@ -528,6 +586,256 @@ Slider_odin_extend :: proc(cls: Class, vt: ^Slider_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTrackFillColor:"), auto_cast setTrackFillColor, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.tickMarkValueAtIndex != nil {
+        tickMarkValueAtIndex :: proc "c" (self: ^Slider, _: SEL, index: NS.Integer) -> cffi.double {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).tickMarkValueAtIndex(self, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tickMarkValueAtIndex:"), auto_cast tickMarkValueAtIndex, "d@:l") do panic("Failed to register objC method.")
+    }
+    if vt.rectOfTickMarkAtIndex != nil {
+        rectOfTickMarkAtIndex :: proc "c" (self: ^Slider, _: SEL, index: NS.Integer) -> NS.Rect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).rectOfTickMarkAtIndex(self, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rectOfTickMarkAtIndex:"), auto_cast rectOfTickMarkAtIndex, "{CGRect={CGPoint=dd}{CGSize=dd}}@:l") do panic("Failed to register objC method.")
+    }
+    if vt.indexOfTickMarkAtPoint != nil {
+        indexOfTickMarkAtPoint :: proc "c" (self: ^Slider, _: SEL, point: CG.Point) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).indexOfTickMarkAtPoint(self, point)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfTickMarkAtPoint:"), auto_cast indexOfTickMarkAtPoint, "l@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.closestTickMarkValueToValue != nil {
+        closestTickMarkValueToValue :: proc "c" (self: ^Slider, _: SEL, value: cffi.double) -> cffi.double {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).closestTickMarkValueToValue(self, value)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("closestTickMarkValueToValue:"), auto_cast closestTickMarkValueToValue, "d@:d") do panic("Failed to register objC method.")
+    }
+    if vt.numberOfTickMarks != nil {
+        numberOfTickMarks :: proc "c" (self: ^Slider, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).numberOfTickMarks(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfTickMarks"), auto_cast numberOfTickMarks, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setNumberOfTickMarks != nil {
+        setNumberOfTickMarks :: proc "c" (self: ^Slider, _: SEL, numberOfTickMarks: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setNumberOfTickMarks(self, numberOfTickMarks)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNumberOfTickMarks:"), auto_cast setNumberOfTickMarks, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.tickMarkPosition != nil {
+        tickMarkPosition :: proc "c" (self: ^Slider, _: SEL) -> TickMarkPosition {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).tickMarkPosition(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tickMarkPosition"), auto_cast tickMarkPosition, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTickMarkPosition != nil {
+        setTickMarkPosition :: proc "c" (self: ^Slider, _: SEL, tickMarkPosition: TickMarkPosition) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setTickMarkPosition(self, tickMarkPosition)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTickMarkPosition:"), auto_cast setTickMarkPosition, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.allowsTickMarkValuesOnly != nil {
+        allowsTickMarkValuesOnly :: proc "c" (self: ^Slider, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).allowsTickMarkValuesOnly(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsTickMarkValuesOnly"), auto_cast allowsTickMarkValuesOnly, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsTickMarkValuesOnly != nil {
+        setAllowsTickMarkValuesOnly :: proc "c" (self: ^Slider, _: SEL, allowsTickMarkValuesOnly: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setAllowsTickMarkValuesOnly(self, allowsTickMarkValuesOnly)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsTickMarkValuesOnly:"), auto_cast setAllowsTickMarkValuesOnly, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.sliderWithTarget != nil {
+        sliderWithTarget :: proc "c" (self: Class, _: SEL, target: id, action: SEL) -> ^Slider {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).sliderWithTarget( target, action)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("sliderWithTarget:action:"), auto_cast sliderWithTarget, "@#:@:") do panic("Failed to register objC method.")
+    }
+    if vt.sliderWithValue != nil {
+        sliderWithValue :: proc "c" (self: Class, _: SEL, value: cffi.double, minValue: cffi.double, maxValue: cffi.double, target: id, action: SEL) -> ^Slider {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).sliderWithValue( value, minValue, maxValue, target, action)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("sliderWithValue:minValue:maxValue:target:action:"), auto_cast sliderWithValue, "@#:ddd@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTitleCell != nil {
+        setTitleCell :: proc "c" (self: ^Slider, _: SEL, cell: ^Cell) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setTitleCell(self, cell)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleCell:"), auto_cast setTitleCell, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.titleCell != nil {
+        titleCell :: proc "c" (self: ^Slider, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).titleCell(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("titleCell"), auto_cast titleCell, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTitleColor != nil {
+        setTitleColor :: proc "c" (self: ^Slider, _: SEL, newColor: ^Color) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setTitleColor(self, newColor)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleColor:"), auto_cast setTitleColor, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.titleColor != nil {
+        titleColor :: proc "c" (self: ^Slider, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).titleColor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("titleColor"), auto_cast titleColor, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTitleFont != nil {
+        setTitleFont :: proc "c" (self: ^Slider, _: SEL, fontObj: ^Font) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setTitleFont(self, fontObj)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleFont:"), auto_cast setTitleFont, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.titleFont != nil {
+        titleFont :: proc "c" (self: ^Slider, _: SEL) -> ^Font {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).titleFont(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("titleFont"), auto_cast titleFont, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.title != nil {
+        title :: proc "c" (self: ^Slider, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).title(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTitle != nil {
+        setTitle :: proc "c" (self: ^Slider, _: SEL, string: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setTitle(self, string)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKnobThickness != nil {
+        setKnobThickness :: proc "c" (self: ^Slider, _: SEL, thickness: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setKnobThickness(self, thickness)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setKnobThickness:"), auto_cast setKnobThickness, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.setImage != nil {
+        setImage :: proc "c" (self: ^Slider, _: SEL, backgroundImage: ^NS.Image) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setImage(self, backgroundImage)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.image != nil {
+        image :: proc "c" (self: ^Slider, _: SEL) -> ^NS.Image {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).image(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.cellClass != nil {
+        cellClass :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).cellClass()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cellClass"), auto_cast cellClass, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.setCellClass != nil {
+        setCellClass :: proc "c" (self: Class, _: SEL, cellClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setCellClass( cellClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setCellClass:"), auto_cast setCellClass, "v#:#") do panic("Failed to register objC method.")
     }
     if vt.focusView != nil {
         focusView :: proc "c" (self: Class, _: SEL) -> ^View {
@@ -559,6 +867,26 @@ Slider_odin_extend :: proc(cls: Class, vt: ^Slider_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("isCompatibleWithResponsiveScrolling"), auto_cast isCompatibleWithResponsiveScrolling, "B#:") do panic("Failed to register objC method.")
     }
+    if vt.defaultFocusRingType != nil {
+        defaultFocusRingType :: proc "c" (self: Class, _: SEL) -> FocusRingType {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).defaultFocusRingType()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultFocusRingType"), auto_cast defaultFocusRingType, "L#:") do panic("Failed to register objC method.")
+    }
+    if vt.requiresConstraintBasedLayout != nil {
+        requiresConstraintBasedLayout :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).requiresConstraintBasedLayout()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("requiresConstraintBasedLayout"), auto_cast requiresConstraintBasedLayout, "B#:") do panic("Failed to register objC method.")
+    }
     if vt.defaultAnimationForKey != nil {
         defaultAnimationForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> id {
 
@@ -568,6 +896,26 @@ Slider_odin_extend :: proc(cls: Class, vt: ^Slider_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultAnimationForKey:"), auto_cast defaultAnimationForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.allowedClassesForRestorableStateKeyPath != nil {
+        allowedClassesForRestorableStateKeyPath :: proc "c" (self: Class, _: SEL, keyPath: ^NS.String) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.restorableStateKeyPaths != nil {
+        restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).restorableStateKeyPaths()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -758,6 +1106,156 @@ Slider_odin_extend :: proc(cls: Class, vt: ^Slider_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Slider_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Slider_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

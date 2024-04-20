@@ -332,6 +332,39 @@ CollectionViewLayout_VTable :: struct {
     registerClass: proc(self: ^CollectionViewLayout, viewClass: Class, elementKind: ^NS.String),
     registerNib: proc(self: ^CollectionViewLayout, nib: ^Nib, elementKind: ^NS.String),
     collectionView: proc(self: ^CollectionViewLayout) -> ^CollectionView,
+    prepareLayout: proc(self: ^CollectionViewLayout),
+    layoutAttributesForElementsInRect: proc(self: ^CollectionViewLayout, rect: NS.Rect) -> ^NS.Array,
+    layoutAttributesForItemAtIndexPath: proc(self: ^CollectionViewLayout, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    layoutAttributesForSupplementaryViewOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    layoutAttributesForDecorationViewOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    layoutAttributesForDropTargetAtPoint: proc(self: ^CollectionViewLayout, pointInCollectionView: CG.Point) -> ^CollectionViewLayoutAttributes,
+    layoutAttributesForInterItemGapBeforeIndexPath: proc(self: ^CollectionViewLayout, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    shouldInvalidateLayoutForBoundsChange: proc(self: ^CollectionViewLayout, newBounds: NS.Rect) -> bool,
+    invalidationContextForBoundsChange: proc(self: ^CollectionViewLayout, newBounds: NS.Rect) -> ^CollectionViewLayoutInvalidationContext,
+    shouldInvalidateLayoutForPreferredLayoutAttributes: proc(self: ^CollectionViewLayout, preferredAttributes: ^CollectionViewLayoutAttributes, originalAttributes: ^CollectionViewLayoutAttributes) -> bool,
+    invalidationContextForPreferredLayoutAttributes: proc(self: ^CollectionViewLayout, preferredAttributes: ^CollectionViewLayoutAttributes, originalAttributes: ^CollectionViewLayoutAttributes) -> ^CollectionViewLayoutInvalidationContext,
+    targetContentOffsetForProposedContentOffset_withScrollingVelocity: proc(self: ^CollectionViewLayout, proposedContentOffset: CG.Point, velocity: CG.Point) -> CG.Point,
+    targetContentOffsetForProposedContentOffset_: proc(self: ^CollectionViewLayout, proposedContentOffset: CG.Point) -> CG.Point,
+    layoutAttributesClass: proc() -> Class,
+    invalidationContextClass: proc() -> Class,
+    collectionViewContentSize: proc(self: ^CollectionViewLayout) -> NS.Size,
+    prepareForCollectionViewUpdates: proc(self: ^CollectionViewLayout, updateItems: ^NS.Array),
+    finalizeCollectionViewUpdates: proc(self: ^CollectionViewLayout),
+    prepareForAnimatedBoundsChange: proc(self: ^CollectionViewLayout, oldBounds: NS.Rect),
+    finalizeAnimatedBoundsChange: proc(self: ^CollectionViewLayout),
+    prepareForTransitionToLayout: proc(self: ^CollectionViewLayout, newLayout: ^CollectionViewLayout),
+    prepareForTransitionFromLayout: proc(self: ^CollectionViewLayout, oldLayout: ^CollectionViewLayout),
+    finalizeLayoutTransition: proc(self: ^CollectionViewLayout),
+    initialLayoutAttributesForAppearingItemAtIndexPath: proc(self: ^CollectionViewLayout, itemIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    finalLayoutAttributesForDisappearingItemAtIndexPath: proc(self: ^CollectionViewLayout, itemIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    initialLayoutAttributesForAppearingSupplementaryElementOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String, elementIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    finalLayoutAttributesForDisappearingSupplementaryElementOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String, elementIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    initialLayoutAttributesForAppearingDecorationElementOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String, decorationIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    finalLayoutAttributesForDisappearingDecorationElementOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String, decorationIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
+    indexPathsToDeleteForSupplementaryViewOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String) -> ^NS.Set,
+    indexPathsToDeleteForDecorationViewOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String) -> ^NS.Set,
+    indexPathsToInsertForSupplementaryViewOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String) -> ^NS.Set,
+    indexPathsToInsertForDecorationViewOfKind: proc(self: ^CollectionViewLayout, elementKind: ^NS.String) -> ^NS.Set,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^CollectionViewLayout,
@@ -351,12 +384,30 @@ CollectionViewLayout_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 CollectionViewLayout_odin_extend :: proc(cls: Class, vt: ^CollectionViewLayout_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.invalidateLayout != nil {
         invalidateLayout :: proc "c" (self: ^CollectionViewLayout, _: SEL) {
 
@@ -406,6 +457,336 @@ CollectionViewLayout_odin_extend :: proc(cls: Class, vt: ^CollectionViewLayout_V
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView"), auto_cast collectionView, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.prepareLayout != nil {
+        prepareLayout :: proc "c" (self: ^CollectionViewLayout, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).prepareLayout(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prepareLayout"), auto_cast prepareLayout, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.layoutAttributesForElementsInRect != nil {
+        layoutAttributesForElementsInRect :: proc "c" (self: ^CollectionViewLayout, _: SEL, rect: NS.Rect) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).layoutAttributesForElementsInRect(self, rect)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttributesForElementsInRect:"), auto_cast layoutAttributesForElementsInRect, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+    }
+    if vt.layoutAttributesForItemAtIndexPath != nil {
+        layoutAttributesForItemAtIndexPath :: proc "c" (self: ^CollectionViewLayout, _: SEL, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).layoutAttributesForItemAtIndexPath(self, indexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttributesForItemAtIndexPath:"), auto_cast layoutAttributesForItemAtIndexPath, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.layoutAttributesForSupplementaryViewOfKind != nil {
+        layoutAttributesForSupplementaryViewOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).layoutAttributesForSupplementaryViewOfKind(self, elementKind, indexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttributesForSupplementaryViewOfKind:atIndexPath:"), auto_cast layoutAttributesForSupplementaryViewOfKind, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.layoutAttributesForDecorationViewOfKind != nil {
+        layoutAttributesForDecorationViewOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).layoutAttributesForDecorationViewOfKind(self, elementKind, indexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttributesForDecorationViewOfKind:atIndexPath:"), auto_cast layoutAttributesForDecorationViewOfKind, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.layoutAttributesForDropTargetAtPoint != nil {
+        layoutAttributesForDropTargetAtPoint :: proc "c" (self: ^CollectionViewLayout, _: SEL, pointInCollectionView: CG.Point) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).layoutAttributesForDropTargetAtPoint(self, pointInCollectionView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttributesForDropTargetAtPoint:"), auto_cast layoutAttributesForDropTargetAtPoint, "@@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.layoutAttributesForInterItemGapBeforeIndexPath != nil {
+        layoutAttributesForInterItemGapBeforeIndexPath :: proc "c" (self: ^CollectionViewLayout, _: SEL, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).layoutAttributesForInterItemGapBeforeIndexPath(self, indexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttributesForInterItemGapBeforeIndexPath:"), auto_cast layoutAttributesForInterItemGapBeforeIndexPath, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.shouldInvalidateLayoutForBoundsChange != nil {
+        shouldInvalidateLayoutForBoundsChange :: proc "c" (self: ^CollectionViewLayout, _: SEL, newBounds: NS.Rect) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).shouldInvalidateLayoutForBoundsChange(self, newBounds)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldInvalidateLayoutForBoundsChange:"), auto_cast shouldInvalidateLayoutForBoundsChange, "B@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+    }
+    if vt.invalidationContextForBoundsChange != nil {
+        invalidationContextForBoundsChange :: proc "c" (self: ^CollectionViewLayout, _: SEL, newBounds: NS.Rect) -> ^CollectionViewLayoutInvalidationContext {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).invalidationContextForBoundsChange(self, newBounds)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("invalidationContextForBoundsChange:"), auto_cast invalidationContextForBoundsChange, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+    }
+    if vt.shouldInvalidateLayoutForPreferredLayoutAttributes != nil {
+        shouldInvalidateLayoutForPreferredLayoutAttributes :: proc "c" (self: ^CollectionViewLayout, _: SEL, preferredAttributes: ^CollectionViewLayoutAttributes, originalAttributes: ^CollectionViewLayoutAttributes) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).shouldInvalidateLayoutForPreferredLayoutAttributes(self, preferredAttributes, originalAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:"), auto_cast shouldInvalidateLayoutForPreferredLayoutAttributes, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.invalidationContextForPreferredLayoutAttributes != nil {
+        invalidationContextForPreferredLayoutAttributes :: proc "c" (self: ^CollectionViewLayout, _: SEL, preferredAttributes: ^CollectionViewLayoutAttributes, originalAttributes: ^CollectionViewLayoutAttributes) -> ^CollectionViewLayoutInvalidationContext {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).invalidationContextForPreferredLayoutAttributes(self, preferredAttributes, originalAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("invalidationContextForPreferredLayoutAttributes:withOriginalAttributes:"), auto_cast invalidationContextForPreferredLayoutAttributes, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.targetContentOffsetForProposedContentOffset_withScrollingVelocity != nil {
+        targetContentOffsetForProposedContentOffset_withScrollingVelocity :: proc "c" (self: ^CollectionViewLayout, _: SEL, proposedContentOffset: CG.Point, velocity: CG.Point) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).targetContentOffsetForProposedContentOffset_withScrollingVelocity(self, proposedContentOffset, velocity)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("targetContentOffsetForProposedContentOffset:withScrollingVelocity:"), auto_cast targetContentOffsetForProposedContentOffset_withScrollingVelocity, "{CGPoint=dd}@:{CGPoint=dd}{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.targetContentOffsetForProposedContentOffset_ != nil {
+        targetContentOffsetForProposedContentOffset_ :: proc "c" (self: ^CollectionViewLayout, _: SEL, proposedContentOffset: CG.Point) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).targetContentOffsetForProposedContentOffset_(self, proposedContentOffset)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("targetContentOffsetForProposedContentOffset:"), auto_cast targetContentOffsetForProposedContentOffset_, "{CGPoint=dd}@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.layoutAttributesClass != nil {
+        layoutAttributesClass :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).layoutAttributesClass()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("layoutAttributesClass"), auto_cast layoutAttributesClass, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.invalidationContextClass != nil {
+        invalidationContextClass :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).invalidationContextClass()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("invalidationContextClass"), auto_cast invalidationContextClass, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.collectionViewContentSize != nil {
+        collectionViewContentSize :: proc "c" (self: ^CollectionViewLayout, _: SEL) -> NS.Size {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).collectionViewContentSize(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionViewContentSize"), auto_cast collectionViewContentSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
+    }
+    if vt.prepareForCollectionViewUpdates != nil {
+        prepareForCollectionViewUpdates :: proc "c" (self: ^CollectionViewLayout, _: SEL, updateItems: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).prepareForCollectionViewUpdates(self, updateItems)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prepareForCollectionViewUpdates:"), auto_cast prepareForCollectionViewUpdates, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.finalizeCollectionViewUpdates != nil {
+        finalizeCollectionViewUpdates :: proc "c" (self: ^CollectionViewLayout, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).finalizeCollectionViewUpdates(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("finalizeCollectionViewUpdates"), auto_cast finalizeCollectionViewUpdates, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.prepareForAnimatedBoundsChange != nil {
+        prepareForAnimatedBoundsChange :: proc "c" (self: ^CollectionViewLayout, _: SEL, oldBounds: NS.Rect) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).prepareForAnimatedBoundsChange(self, oldBounds)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prepareForAnimatedBoundsChange:"), auto_cast prepareForAnimatedBoundsChange, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+    }
+    if vt.finalizeAnimatedBoundsChange != nil {
+        finalizeAnimatedBoundsChange :: proc "c" (self: ^CollectionViewLayout, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).finalizeAnimatedBoundsChange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("finalizeAnimatedBoundsChange"), auto_cast finalizeAnimatedBoundsChange, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.prepareForTransitionToLayout != nil {
+        prepareForTransitionToLayout :: proc "c" (self: ^CollectionViewLayout, _: SEL, newLayout: ^CollectionViewLayout) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).prepareForTransitionToLayout(self, newLayout)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prepareForTransitionToLayout:"), auto_cast prepareForTransitionToLayout, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.prepareForTransitionFromLayout != nil {
+        prepareForTransitionFromLayout :: proc "c" (self: ^CollectionViewLayout, _: SEL, oldLayout: ^CollectionViewLayout) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).prepareForTransitionFromLayout(self, oldLayout)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prepareForTransitionFromLayout:"), auto_cast prepareForTransitionFromLayout, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.finalizeLayoutTransition != nil {
+        finalizeLayoutTransition :: proc "c" (self: ^CollectionViewLayout, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).finalizeLayoutTransition(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("finalizeLayoutTransition"), auto_cast finalizeLayoutTransition, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.initialLayoutAttributesForAppearingItemAtIndexPath != nil {
+        initialLayoutAttributesForAppearingItemAtIndexPath :: proc "c" (self: ^CollectionViewLayout, _: SEL, itemIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).initialLayoutAttributesForAppearingItemAtIndexPath(self, itemIndexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initialLayoutAttributesForAppearingItemAtIndexPath:"), auto_cast initialLayoutAttributesForAppearingItemAtIndexPath, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.finalLayoutAttributesForDisappearingItemAtIndexPath != nil {
+        finalLayoutAttributesForDisappearingItemAtIndexPath :: proc "c" (self: ^CollectionViewLayout, _: SEL, itemIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).finalLayoutAttributesForDisappearingItemAtIndexPath(self, itemIndexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("finalLayoutAttributesForDisappearingItemAtIndexPath:"), auto_cast finalLayoutAttributesForDisappearingItemAtIndexPath, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.initialLayoutAttributesForAppearingSupplementaryElementOfKind != nil {
+        initialLayoutAttributesForAppearingSupplementaryElementOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String, elementIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).initialLayoutAttributesForAppearingSupplementaryElementOfKind(self, elementKind, elementIndexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:"), auto_cast initialLayoutAttributesForAppearingSupplementaryElementOfKind, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.finalLayoutAttributesForDisappearingSupplementaryElementOfKind != nil {
+        finalLayoutAttributesForDisappearingSupplementaryElementOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String, elementIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).finalLayoutAttributesForDisappearingSupplementaryElementOfKind(self, elementKind, elementIndexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:"), auto_cast finalLayoutAttributesForDisappearingSupplementaryElementOfKind, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.initialLayoutAttributesForAppearingDecorationElementOfKind != nil {
+        initialLayoutAttributesForAppearingDecorationElementOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String, decorationIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).initialLayoutAttributesForAppearingDecorationElementOfKind(self, elementKind, decorationIndexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:"), auto_cast initialLayoutAttributesForAppearingDecorationElementOfKind, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.finalLayoutAttributesForDisappearingDecorationElementOfKind != nil {
+        finalLayoutAttributesForDisappearingDecorationElementOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String, decorationIndexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).finalLayoutAttributesForDisappearingDecorationElementOfKind(self, elementKind, decorationIndexPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:"), auto_cast finalLayoutAttributesForDisappearingDecorationElementOfKind, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.indexPathsToDeleteForSupplementaryViewOfKind != nil {
+        indexPathsToDeleteForSupplementaryViewOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).indexPathsToDeleteForSupplementaryViewOfKind(self, elementKind)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathsToDeleteForSupplementaryViewOfKind:"), auto_cast indexPathsToDeleteForSupplementaryViewOfKind, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.indexPathsToDeleteForDecorationViewOfKind != nil {
+        indexPathsToDeleteForDecorationViewOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).indexPathsToDeleteForDecorationViewOfKind(self, elementKind)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathsToDeleteForDecorationViewOfKind:"), auto_cast indexPathsToDeleteForDecorationViewOfKind, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.indexPathsToInsertForSupplementaryViewOfKind != nil {
+        indexPathsToInsertForSupplementaryViewOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).indexPathsToInsertForSupplementaryViewOfKind(self, elementKind)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathsToInsertForSupplementaryViewOfKind:"), auto_cast indexPathsToInsertForSupplementaryViewOfKind, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.indexPathsToInsertForDecorationViewOfKind != nil {
+        indexPathsToInsertForDecorationViewOfKind :: proc "c" (self: ^CollectionViewLayout, _: SEL, elementKind: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).indexPathsToInsertForDecorationViewOfKind(self, elementKind)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathsToInsertForDecorationViewOfKind:"), auto_cast indexPathsToInsertForDecorationViewOfKind, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -596,6 +977,156 @@ CollectionViewLayout_odin_extend :: proc(cls: Class, vt: ^CollectionViewLayout_V
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionViewLayout_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

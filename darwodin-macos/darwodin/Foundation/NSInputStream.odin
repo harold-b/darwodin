@@ -206,6 +206,13 @@ InputStream_VTable :: struct {
     initWithData: proc(self: ^InputStream, data: ^Data) -> ^InputStream,
     initWithURL: proc(self: ^InputStream, url: ^URL) -> ^InputStream,
     hasBytesAvailable: proc(self: ^InputStream) -> bool,
+    initWithFileAtPath: proc(self: ^InputStream, path: ^String) -> ^InputStream,
+    inputStreamWithData: proc(data: ^Data) -> ^InputStream,
+    inputStreamWithFileAtPath: proc(path: ^String) -> ^InputStream,
+    inputStreamWithURL: proc(url: ^URL) -> ^InputStream,
+    getStreamsToHostWithName: proc(hostname: ^String, port: Integer, inputStream: ^^InputStream, outputStream: ^^OutputStream),
+    getStreamsToHost: proc(host: ^Host, port: Integer, inputStream: ^^InputStream, outputStream: ^^OutputStream),
+    getBoundStreamsWithBufferSize: proc(bufferSize: UInteger, inputStream: ^^InputStream, outputStream: ^^OutputStream),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^InputStream,
@@ -225,12 +232,27 @@ InputStream_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 InputStream_odin_extend :: proc(cls: Class, vt: ^InputStream_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Stream_odin_extend(cls, &vt.super)
+
     if vt.read != nil {
         read :: proc "c" (self: ^InputStream, _: SEL, buffer: ^cffi.uint8_t, len: UInteger) -> Integer {
 
@@ -280,6 +302,76 @@ InputStream_odin_extend :: proc(cls: Class, vt: ^InputStream_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasBytesAvailable"), auto_cast hasBytesAvailable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.initWithFileAtPath != nil {
+        initWithFileAtPath :: proc "c" (self: ^InputStream, _: SEL, path: ^String) -> ^InputStream {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).initWithFileAtPath(self, path)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFileAtPath:"), auto_cast initWithFileAtPath, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.inputStreamWithData != nil {
+        inputStreamWithData :: proc "c" (self: Class, _: SEL, data: ^Data) -> ^InputStream {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).inputStreamWithData( data)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("inputStreamWithData:"), auto_cast inputStreamWithData, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.inputStreamWithFileAtPath != nil {
+        inputStreamWithFileAtPath :: proc "c" (self: Class, _: SEL, path: ^String) -> ^InputStream {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).inputStreamWithFileAtPath( path)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("inputStreamWithFileAtPath:"), auto_cast inputStreamWithFileAtPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.inputStreamWithURL != nil {
+        inputStreamWithURL :: proc "c" (self: Class, _: SEL, url: ^URL) -> ^InputStream {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).inputStreamWithURL( url)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("inputStreamWithURL:"), auto_cast inputStreamWithURL, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.getStreamsToHostWithName != nil {
+        getStreamsToHostWithName :: proc "c" (self: Class, _: SEL, hostname: ^String, port: Integer, inputStream: ^^InputStream, outputStream: ^^OutputStream) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^InputStream_VTable)vt_ctx.super_vt).getStreamsToHostWithName( hostname, port, inputStream, outputStream)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("getStreamsToHostWithName:port:inputStream:outputStream:"), auto_cast getStreamsToHostWithName, "v#:@l^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.getStreamsToHost != nil {
+        getStreamsToHost :: proc "c" (self: Class, _: SEL, host: ^Host, port: Integer, inputStream: ^^InputStream, outputStream: ^^OutputStream) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^InputStream_VTable)vt_ctx.super_vt).getStreamsToHost( host, port, inputStream, outputStream)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("getStreamsToHost:port:inputStream:outputStream:"), auto_cast getStreamsToHost, "v#:@l^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.getBoundStreamsWithBufferSize != nil {
+        getBoundStreamsWithBufferSize :: proc "c" (self: Class, _: SEL, bufferSize: UInteger, inputStream: ^^InputStream, outputStream: ^^OutputStream) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^InputStream_VTable)vt_ctx.super_vt).getBoundStreamsWithBufferSize( bufferSize, inputStream, outputStream)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("getBoundStreamsWithBufferSize:inputStream:outputStream:"), auto_cast getBoundStreamsWithBufferSize, "v#:L^void^void") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -470,6 +562,126 @@ InputStream_odin_extend :: proc(cls: Class, vt: ^InputStream_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^InputStream_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^InputStream_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^InputStream_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^InputStream_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^InputStream_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^InputStream_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

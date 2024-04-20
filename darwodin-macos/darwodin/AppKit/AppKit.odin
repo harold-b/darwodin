@@ -2037,31 +2037,24 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(require_results)
     @(link_name="NSBestDepth")
     BestDepth :: proc(colorSpace: ColorSpaceName, bps: NS.Integer, bpp: NS.Integer, planar: bool, exactMatch: ^bool) -> WindowDepth ---
 
-    @(require_results)
     @(link_name="NSPlanarFromDepth")
     PlanarFromDepth :: proc(depth: WindowDepth) -> bool ---
 
-    @(require_results)
     @(link_name="NSColorSpaceFromDepth")
     ColorSpaceFromDepth :: proc(depth: WindowDepth) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSBitsPerSampleFromDepth")
     BitsPerSampleFromDepth :: proc(depth: WindowDepth) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSBitsPerPixelFromDepth")
     BitsPerPixelFromDepth :: proc(depth: WindowDepth) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSNumberOfColorComponents")
     NumberOfColorComponents :: proc(colorSpaceName: ColorSpaceName) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSAvailableWindowDepths")
     AvailableWindowDepths :: proc() -> ^WindowDepth ---
 
@@ -2101,7 +2094,6 @@ foreign lib {
     @(link_name="NSRectClipList")
     RectClipList :: proc(rects: ^NS.Rect, count: NS.Integer) ---
 
-    @(require_results)
     @(link_name="NSDrawTiledRects")
     DrawTiledRects :: proc(boundsRect: NS.Rect, clipRect: NS.Rect, sides: ^NS.RectEdge, grays: ^CG.Float, count: NS.Integer) -> NS.Rect ---
 
@@ -2120,7 +2112,6 @@ foreign lib {
     @(link_name="NSEraseRect")
     EraseRect :: proc(rect: NS.Rect) ---
 
-    @(require_results)
     @(link_name="NSReadPixel")
     ReadPixel :: proc(passedPoint: CG.Point) -> ^Color ---
 
@@ -2133,11 +2124,9 @@ foreign lib {
     @(link_name="NSBeep")
     Beep :: proc() ---
 
-    @(require_results)
     @(link_name="NSGetWindowServerMemory")
     GetWindowServerMemory :: proc(_context: NS.Integer, virtualMemory: ^NS.Integer, windowBackingMemory: ^NS.Integer, windowDumpString: ^^NS.String) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSDrawColorTiledRects")
     DrawColorTiledRects :: proc(boundsRect: NS.Rect, clipRect: NS.Rect, sides: ^NS.RectEdge, colors: ^^Color, count: NS.Integer) -> NS.Rect ---
 
@@ -2183,65 +2172,51 @@ foreign lib {
     @(link_name="NSAccessibilityPostNotificationWithUserInfo")
     AccessibilityPostNotificationWithUserInfo :: proc(element: id, notification: AccessibilityNotificationName, userInfo: ^NS.Dictionary) ---
 
-    @(require_results)
     @(link_name="NSAccessibilityFrameInView")
     AccessibilityFrameInView :: proc(parentView: ^View, frame: NS.Rect) -> NS.Rect ---
 
-    @(require_results)
     @(link_name="NSAccessibilityPointInView")
     AccessibilityPointInView :: proc(parentView: ^View, point: CG.Point) -> CG.Point ---
 
-    @(require_results)
     @(link_name="NSAccessibilitySetMayContainProtectedContent")
     AccessibilitySetMayContainProtectedContent :: proc(flag: bool) -> bool ---
 
-    @(require_results)
     @(link_name="NSAccessibilityRoleDescription")
     AccessibilityRoleDescription :: proc(role: AccessibilityRole, subrole: AccessibilitySubrole) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSAccessibilityRoleDescriptionForUIElement")
     AccessibilityRoleDescriptionForUIElement :: proc(element: id) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSAccessibilityActionDescription")
     AccessibilityActionDescription :: proc(action: AccessibilityActionName) -> ^NS.String ---
 
     @(link_name="NSAccessibilityRaiseBadArgumentException")
     AccessibilityRaiseBadArgumentException :: proc(element: id, attribute: AccessibilityAttributeName, value: id) ---
 
-    @(require_results)
     @(link_name="NSAccessibilityUnignoredAncestor")
     AccessibilityUnignoredAncestor :: proc(element: id) -> id ---
 
-    @(require_results)
     @(link_name="NSAccessibilityUnignoredDescendant")
     AccessibilityUnignoredDescendant :: proc(element: id) -> id ---
 
-    @(require_results)
     @(link_name="NSAccessibilityUnignoredChildren")
     AccessibilityUnignoredChildren :: proc(originalChildren: ^NS.Array) -> ^NS.Array ---
 
-    @(require_results)
     @(link_name="NSAccessibilityUnignoredChildrenForOnlyChild")
     AccessibilityUnignoredChildrenForOnlyChild :: proc(originalChild: id) -> ^NS.Array ---
 
     @(link_name="NSAccessibilityPostNotification")
     AccessibilityPostNotification :: proc(element: id, notification: AccessibilityNotificationName) ---
 
-    @(require_results)
     @(link_name="NSCreateFilenamePboardType")
     CreateFilenamePboardType :: proc(fileType: ^NS.String) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSCreateFileContentsPboardType")
     CreateFileContentsPboardType :: proc(fileType: ^NS.String) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSGetFileType")
     GetFileType :: proc(pboardType: PasteboardType) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="NSGetFileTypes")
     GetFileTypes :: proc(pboardTypes: ^NS.Array) -> ^NS.Array ---
 
@@ -2251,30 +2226,24 @@ foreign lib {
     @(link_name="NSDrawNinePartImage")
     DrawNinePartImage :: proc(frame: NS.Rect, topLeftCorner: ^NS.Image, topEdgeFill: ^NS.Image, topRightCorner: ^NS.Image, leftEdgeFill: ^NS.Image, centerFill: ^NS.Image, rightEdgeFill: ^NS.Image, bottomLeftCorner: ^NS.Image, bottomEdgeFill: ^NS.Image, bottomRightCorner: ^NS.Image, op: CompositingOperation, alphaFraction: CG.Float, flipped: bool) ---
 
-    @(require_results)
     @(link_name="NSIsControllerMarker")
     IsControllerMarker :: proc(object: id) -> bool ---
 
-    @(require_results)
     @(link_name="NSApplicationMain")
     ApplicationMain :: proc(argc: cffi.int, argv: ^cstring) -> cffi.int ---
 
-    @(require_results)
     @(link_name="NSApplicationLoad")
     ApplicationLoad :: proc() -> bool ---
 
-    @(require_results)
     @(link_name="NSShowsServicesMenuItem")
     ShowsServicesMenuItem :: proc(itemName: ^NS.String) -> bool ---
 
-    @(require_results)
     @(link_name="NSSetShowsServicesMenuItem")
     SetShowsServicesMenuItem :: proc(itemName: ^NS.String, enabled: bool) -> NS.Integer ---
 
     @(link_name="NSUpdateDynamicServices")
     UpdateDynamicServices :: proc() ---
 
-    @(require_results)
     @(link_name="NSPerformService")
     PerformService :: proc(itemName: ^NS.String, pboard: ^Pasteboard) -> bool ---
 
@@ -2284,31 +2253,24 @@ foreign lib {
     @(link_name="NSUnregisterServicesProvider")
     UnregisterServicesProvider :: proc(name: ServiceProviderName) ---
 
-    @(require_results)
     @(link_name="NSConvertGlyphsToPackedGlyphs")
     ConvertGlyphsToPackedGlyphs :: proc(glBuf: ^Glyph, count: NS.Integer, packing: MultibyteGlyphPacking, packedGlyphs: cstring) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSRunAlertPanelRelativeToWindow")
     RunAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSRunInformationalAlertPanelRelativeToWindow")
     RunInformationalAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSRunCriticalAlertPanelRelativeToWindow")
     RunCriticalAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSRunAlertPanel")
     RunAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSRunInformationalAlertPanel")
     RunInformationalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> NS.Integer ---
 
-    @(require_results)
     @(link_name="NSRunCriticalAlertPanel")
     RunCriticalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> NS.Integer ---
 
@@ -2321,22 +2283,18 @@ foreign lib {
     @(link_name="NSBeginCriticalAlertSheet")
     BeginCriticalAlertSheet :: proc(title: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, modalDelegate: id, didEndSelector: SEL, didDismissSelector: SEL, contextInfo: rawptr, msgFormat: ^NS.String) ---
 
-    @(require_results)
     @(link_name="NSGetAlertPanel")
     GetAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> id ---
 
-    @(require_results)
     @(link_name="NSGetInformationalAlertPanel")
     GetInformationalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> id ---
 
-    @(require_results)
     @(link_name="NSGetCriticalAlertPanel")
     GetCriticalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> id ---
 
     @(link_name="NSReleaseAlertPanel")
     ReleaseAlertPanel :: proc(panel: id) ---
 
-    @(require_results)
     @(link_name="NSInterfaceStyleForKey")
     InterfaceStyleForKey :: proc(key: ^NS.String, responder: ^Responder) -> InterfaceStyle ---
 
@@ -3105,7 +3063,7 @@ EventMaskSet :: bit_set[EventMask; cffi.ulonglong]
 /// NSEventModifierFlags
 EventModifierFlags :: enum cffi.ulong {
     CapsLock = 16,
-    Shift = 17,
+    hift = 17,
     Control = 18,
     Option = 19,
     Command = 20,

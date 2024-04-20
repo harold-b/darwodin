@@ -466,6 +466,30 @@ DecimalNumber_VTable :: struct {
     setDefaultBehavior: proc(defaultBehavior: ^DecimalNumberBehaviors),
     objCType: proc(self: ^DecimalNumber) -> cstring,
     doubleValue: proc(self: ^DecimalNumber) -> cffi.double,
+    numberWithChar: proc(value: cffi.char) -> ^Number,
+    numberWithUnsignedChar: proc(value: cffi.uchar) -> ^Number,
+    numberWithShort: proc(value: cffi.short) -> ^Number,
+    numberWithUnsignedShort: proc(value: cffi.ushort) -> ^Number,
+    numberWithInt: proc(value: cffi.int) -> ^Number,
+    numberWithUnsignedInt: proc(value: cffi.uint) -> ^Number,
+    numberWithLong: proc(value: cffi.long) -> ^Number,
+    numberWithUnsignedLong: proc(value: cffi.ulong) -> ^Number,
+    numberWithLongLong: proc(value: cffi.longlong) -> ^Number,
+    numberWithUnsignedLongLong: proc(value: cffi.ulonglong) -> ^Number,
+    numberWithFloat: proc(value: cffi.float) -> ^Number,
+    numberWithDouble: proc(value: cffi.double) -> ^Number,
+    numberWithBool: proc(value: bool) -> ^Number,
+    numberWithInteger: proc(value: Integer) -> ^Number,
+    numberWithUnsignedInteger: proc(value: UInteger) -> ^Number,
+    valueWithBytes: proc(value: rawptr, type: cstring) -> ^Value,
+    value: proc(value: rawptr, type: cstring) -> ^Value,
+    valueWithNonretainedObject: proc(anObject: id) -> ^Value,
+    valueWithPointer: proc(pointer: rawptr) -> ^Value,
+    valueWithRange: proc(range: _NSRange) -> ^Value,
+    valueWithPoint: proc(point: CG.Point) -> ^Value,
+    valueWithSize: proc(size: Size) -> ^Value,
+    valueWithRect: proc(rect: Rect) -> ^Value,
+    valueWithEdgeInsets: proc(insets: EdgeInsets) -> ^Value,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -486,12 +510,27 @@ DecimalNumber_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 DecimalNumber_odin_extend :: proc(cls: Class, vt: ^DecimalNumber_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Number_odin_extend(cls, &vt.super)
+
     if vt.initWithMantissa != nil {
         initWithMantissa :: proc "c" (self: ^DecimalNumber, _: SEL, mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> ^DecimalNumber {
 
@@ -822,6 +861,246 @@ DecimalNumber_odin_extend :: proc(cls: Class, vt: ^DecimalNumber_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("doubleValue"), auto_cast doubleValue, "d@:") do panic("Failed to register objC method.")
     }
+    if vt.numberWithChar != nil {
+        numberWithChar :: proc "c" (self: Class, _: SEL, value: cffi.char) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithChar( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithChar:"), auto_cast numberWithChar, "@#:c") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithUnsignedChar != nil {
+        numberWithUnsignedChar :: proc "c" (self: Class, _: SEL, value: cffi.uchar) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithUnsignedChar( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithUnsignedChar:"), auto_cast numberWithUnsignedChar, "@#:C") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithShort != nil {
+        numberWithShort :: proc "c" (self: Class, _: SEL, value: cffi.short) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithShort( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithShort:"), auto_cast numberWithShort, "@#:s") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithUnsignedShort != nil {
+        numberWithUnsignedShort :: proc "c" (self: Class, _: SEL, value: cffi.ushort) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithUnsignedShort( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithUnsignedShort:"), auto_cast numberWithUnsignedShort, "@#:S") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithInt != nil {
+        numberWithInt :: proc "c" (self: Class, _: SEL, value: cffi.int) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithInt( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithInt:"), auto_cast numberWithInt, "@#:i") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithUnsignedInt != nil {
+        numberWithUnsignedInt :: proc "c" (self: Class, _: SEL, value: cffi.uint) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithUnsignedInt( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithUnsignedInt:"), auto_cast numberWithUnsignedInt, "@#:I") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithLong != nil {
+        numberWithLong :: proc "c" (self: Class, _: SEL, value: cffi.long) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithLong( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithLong:"), auto_cast numberWithLong, "@#:l") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithUnsignedLong != nil {
+        numberWithUnsignedLong :: proc "c" (self: Class, _: SEL, value: cffi.ulong) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithUnsignedLong( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithUnsignedLong:"), auto_cast numberWithUnsignedLong, "@#:L") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithLongLong != nil {
+        numberWithLongLong :: proc "c" (self: Class, _: SEL, value: cffi.longlong) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithLongLong( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithLongLong:"), auto_cast numberWithLongLong, "@#:q") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithUnsignedLongLong != nil {
+        numberWithUnsignedLongLong :: proc "c" (self: Class, _: SEL, value: cffi.ulonglong) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithUnsignedLongLong( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithUnsignedLongLong:"), auto_cast numberWithUnsignedLongLong, "@#:Q") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithFloat != nil {
+        numberWithFloat :: proc "c" (self: Class, _: SEL, value: cffi.float) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithFloat( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithFloat:"), auto_cast numberWithFloat, "@#:f") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithDouble != nil {
+        numberWithDouble :: proc "c" (self: Class, _: SEL, value: cffi.double) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithDouble( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithDouble:"), auto_cast numberWithDouble, "@#:d") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithBool != nil {
+        numberWithBool :: proc "c" (self: Class, _: SEL, value: bool) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithBool( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithBool:"), auto_cast numberWithBool, "@#:B") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithInteger != nil {
+        numberWithInteger :: proc "c" (self: Class, _: SEL, value: Integer) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithInteger( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithInteger:"), auto_cast numberWithInteger, "@#:l") do panic("Failed to register objC method.")
+    }
+    if vt.numberWithUnsignedInteger != nil {
+        numberWithUnsignedInteger :: proc "c" (self: Class, _: SEL, value: UInteger) -> ^Number {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).numberWithUnsignedInteger( value)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("numberWithUnsignedInteger:"), auto_cast numberWithUnsignedInteger, "@#:L") do panic("Failed to register objC method.")
+    }
+    if vt.valueWithBytes != nil {
+        valueWithBytes :: proc "c" (self: Class, _: SEL, value: rawptr, type: cstring) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).valueWithBytes( value, type)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("valueWithBytes:objCType:"), auto_cast valueWithBytes, "@#:^void*") do panic("Failed to register objC method.")
+    }
+    if vt.value != nil {
+        value :: proc "c" (self: Class, _: SEL, value: rawptr, type: cstring) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).value( value, type)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("value:withObjCType:"), auto_cast value, "@#:^void*") do panic("Failed to register objC method.")
+    }
+    if vt.valueWithNonretainedObject != nil {
+        valueWithNonretainedObject :: proc "c" (self: Class, _: SEL, anObject: id) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).valueWithNonretainedObject( anObject)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("valueWithNonretainedObject:"), auto_cast valueWithNonretainedObject, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.valueWithPointer != nil {
+        valueWithPointer :: proc "c" (self: Class, _: SEL, pointer: rawptr) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).valueWithPointer( pointer)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("valueWithPointer:"), auto_cast valueWithPointer, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.valueWithRange != nil {
+        valueWithRange :: proc "c" (self: Class, _: SEL, range: _NSRange) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).valueWithRange( range)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("valueWithRange:"), auto_cast valueWithRange, "@#:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.valueWithPoint != nil {
+        valueWithPoint :: proc "c" (self: Class, _: SEL, point: CG.Point) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).valueWithPoint( point)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("valueWithPoint:"), auto_cast valueWithPoint, "@#:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.valueWithSize != nil {
+        valueWithSize :: proc "c" (self: Class, _: SEL, size: Size) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).valueWithSize( size)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("valueWithSize:"), auto_cast valueWithSize, "@#:{CGSize=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.valueWithRect != nil {
+        valueWithRect :: proc "c" (self: Class, _: SEL, rect: Rect) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).valueWithRect( rect)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("valueWithRect:"), auto_cast valueWithRect, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+    }
+    if vt.valueWithEdgeInsets != nil {
+        valueWithEdgeInsets :: proc "c" (self: Class, _: SEL, insets: EdgeInsets) -> ^Value {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).valueWithEdgeInsets( insets)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("valueWithEdgeInsets:"), auto_cast valueWithEdgeInsets, "@#:{NSEdgeInsets=dddd}") do panic("Failed to register objC method.")
+    }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
 
@@ -1021,6 +1300,126 @@ DecimalNumber_odin_extend :: proc(cls: Class, vt: ^DecimalNumber_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DecimalNumber_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DecimalNumber_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DecimalNumber_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DecimalNumber_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DecimalNumber_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DecimalNumber_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

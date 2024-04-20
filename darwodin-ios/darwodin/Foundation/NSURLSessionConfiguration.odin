@@ -198,8 +198,8 @@ URLSessionConfiguration_HTTPCookieAcceptPolicy :: #force_inline proc "c" (self: 
     return msgSend(HTTPCookieAcceptPolicy, self, "HTTPCookieAcceptPolicy")
 }
 @(objc_type=URLSessionConfiguration, objc_name="setHTTPCookieAcceptPolicy")
-URLSessionConfiguration_setHTTPCookieAcceptPolicy :: #force_inline proc "c" (self: ^URLSessionConfiguration, HTTPCookieAcceptPolicy: HTTPCookieAcceptPolicy) {
-    msgSend(nil, self, "setHTTPCookieAcceptPolicy:", HTTPCookieAcceptPolicy)
+URLSessionConfiguration_setHTTPCookieAcceptPolicy :: #force_inline proc "c" (self: ^URLSessionConfiguration, _HTTPCookieAcceptPolicy: HTTPCookieAcceptPolicy) {
+    msgSend(nil, self, "setHTTPCookieAcceptPolicy:", _HTTPCookieAcceptPolicy)
 }
 @(objc_type=URLSessionConfiguration, objc_name="HTTPAdditionalHeaders")
 URLSessionConfiguration_HTTPAdditionalHeaders :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^Dictionary {
@@ -222,24 +222,24 @@ URLSessionConfiguration_HTTPCookieStorage :: #force_inline proc "c" (self: ^URLS
     return msgSend(^HTTPCookieStorage, self, "HTTPCookieStorage")
 }
 @(objc_type=URLSessionConfiguration, objc_name="setHTTPCookieStorage")
-URLSessionConfiguration_setHTTPCookieStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration, HTTPCookieStorage: ^HTTPCookieStorage) {
-    msgSend(nil, self, "setHTTPCookieStorage:", HTTPCookieStorage)
+URLSessionConfiguration_setHTTPCookieStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration, _HTTPCookieStorage: ^HTTPCookieStorage) {
+    msgSend(nil, self, "setHTTPCookieStorage:", _HTTPCookieStorage)
 }
 @(objc_type=URLSessionConfiguration, objc_name="URLCredentialStorage")
 URLSessionConfiguration_URLCredentialStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^URLCredentialStorage {
     return msgSend(^URLCredentialStorage, self, "URLCredentialStorage")
 }
 @(objc_type=URLSessionConfiguration, objc_name="setURLCredentialStorage")
-URLSessionConfiguration_setURLCredentialStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration, URLCredentialStorage: ^URLCredentialStorage) {
-    msgSend(nil, self, "setURLCredentialStorage:", URLCredentialStorage)
+URLSessionConfiguration_setURLCredentialStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration, _URLCredentialStorage: ^URLCredentialStorage) {
+    msgSend(nil, self, "setURLCredentialStorage:", _URLCredentialStorage)
 }
 @(objc_type=URLSessionConfiguration, objc_name="URLCache")
 URLSessionConfiguration_URLCache :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^URLCache {
     return msgSend(^URLCache, self, "URLCache")
 }
 @(objc_type=URLSessionConfiguration, objc_name="setURLCache")
-URLSessionConfiguration_setURLCache :: #force_inline proc "c" (self: ^URLSessionConfiguration, URLCache: ^URLCache) {
-    msgSend(nil, self, "setURLCache:", URLCache)
+URLSessionConfiguration_setURLCache :: #force_inline proc "c" (self: ^URLSessionConfiguration, _URLCache: ^URLCache) {
+    msgSend(nil, self, "setURLCache:", _URLCache)
 }
 @(objc_type=URLSessionConfiguration, objc_name="shouldUseExtendedBackgroundIdleMode")
 URLSessionConfiguration_shouldUseExtendedBackgroundIdleMode :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
@@ -434,23 +434,24 @@ URLSessionConfiguration_VTable :: struct {
     _HTTPShouldSetCookies: proc(self: ^URLSessionConfiguration) -> bool,
     setHTTPShouldSetCookies: proc(self: ^URLSessionConfiguration, HTTPShouldSetCookies: bool),
     _HTTPCookieAcceptPolicy: proc(self: ^URLSessionConfiguration) -> HTTPCookieAcceptPolicy,
-    setHTTPCookieAcceptPolicy: proc(self: ^URLSessionConfiguration, HTTPCookieAcceptPolicy: HTTPCookieAcceptPolicy),
+    setHTTPCookieAcceptPolicy: proc(self: ^URLSessionConfiguration, _HTTPCookieAcceptPolicy: HTTPCookieAcceptPolicy),
     _HTTPAdditionalHeaders: proc(self: ^URLSessionConfiguration) -> ^Dictionary,
     setHTTPAdditionalHeaders: proc(self: ^URLSessionConfiguration, HTTPAdditionalHeaders: ^Dictionary),
     _HTTPMaximumConnectionsPerHost: proc(self: ^URLSessionConfiguration) -> Integer,
     setHTTPMaximumConnectionsPerHost: proc(self: ^URLSessionConfiguration, HTTPMaximumConnectionsPerHost: Integer),
     _HTTPCookieStorage: proc(self: ^URLSessionConfiguration) -> ^HTTPCookieStorage,
-    setHTTPCookieStorage: proc(self: ^URLSessionConfiguration, HTTPCookieStorage: ^HTTPCookieStorage),
+    setHTTPCookieStorage: proc(self: ^URLSessionConfiguration, _HTTPCookieStorage: ^HTTPCookieStorage),
     _URLCredentialStorage: proc(self: ^URLSessionConfiguration) -> ^URLCredentialStorage,
-    setURLCredentialStorage: proc(self: ^URLSessionConfiguration, URLCredentialStorage: ^URLCredentialStorage),
+    setURLCredentialStorage: proc(self: ^URLSessionConfiguration, _URLCredentialStorage: ^URLCredentialStorage),
     _URLCache: proc(self: ^URLSessionConfiguration) -> ^URLCache,
-    setURLCache: proc(self: ^URLSessionConfiguration, URLCache: ^URLCache),
+    setURLCache: proc(self: ^URLSessionConfiguration, _URLCache: ^URLCache),
     shouldUseExtendedBackgroundIdleMode: proc(self: ^URLSessionConfiguration) -> bool,
     setShouldUseExtendedBackgroundIdleMode: proc(self: ^URLSessionConfiguration, shouldUseExtendedBackgroundIdleMode: bool),
     protocolClasses: proc(self: ^URLSessionConfiguration) -> ^Array,
     setProtocolClasses: proc(self: ^URLSessionConfiguration, protocolClasses: ^Array),
     multipathServiceType: proc(self: ^URLSessionConfiguration) -> URLSessionMultipathServiceType,
     setMultipathServiceType: proc(self: ^URLSessionConfiguration, multipathServiceType: URLSessionMultipathServiceType),
+    backgroundSessionConfiguration: proc(identifier: ^String) -> ^URLSessionConfiguration,
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^_NSZone) -> ^URLSessionConfiguration,
@@ -469,12 +470,25 @@ URLSessionConfiguration_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 URLSessionConfiguration_odin_extend :: proc(cls: Class, vt: ^URLSessionConfiguration_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.backgroundSessionConfigurationWithIdentifier != nil {
         backgroundSessionConfigurationWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^String) -> ^URLSessionConfiguration {
 
@@ -926,11 +940,11 @@ URLSessionConfiguration_odin_extend :: proc(cls: Class, vt: ^URLSessionConfigura
         if !class_addMethod(cls, intrinsics.objc_find_selector("HTTPCookieAcceptPolicy"), auto_cast _HTTPCookieAcceptPolicy, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setHTTPCookieAcceptPolicy != nil {
-        setHTTPCookieAcceptPolicy :: proc "c" (self: ^URLSessionConfiguration, _: SEL, HTTPCookieAcceptPolicy: HTTPCookieAcceptPolicy) {
+        setHTTPCookieAcceptPolicy :: proc "c" (self: ^URLSessionConfiguration, _: SEL, _HTTPCookieAcceptPolicy: HTTPCookieAcceptPolicy) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setHTTPCookieAcceptPolicy(self, HTTPCookieAcceptPolicy)
+            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setHTTPCookieAcceptPolicy(self, _HTTPCookieAcceptPolicy)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHTTPCookieAcceptPolicy:"), auto_cast setHTTPCookieAcceptPolicy, "v@:L") do panic("Failed to register objC method.")
@@ -986,11 +1000,11 @@ URLSessionConfiguration_odin_extend :: proc(cls: Class, vt: ^URLSessionConfigura
         if !class_addMethod(cls, intrinsics.objc_find_selector("HTTPCookieStorage"), auto_cast _HTTPCookieStorage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setHTTPCookieStorage != nil {
-        setHTTPCookieStorage :: proc "c" (self: ^URLSessionConfiguration, _: SEL, HTTPCookieStorage: ^HTTPCookieStorage) {
+        setHTTPCookieStorage :: proc "c" (self: ^URLSessionConfiguration, _: SEL, _HTTPCookieStorage: ^HTTPCookieStorage) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setHTTPCookieStorage(self, HTTPCookieStorage)
+            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setHTTPCookieStorage(self, _HTTPCookieStorage)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHTTPCookieStorage:"), auto_cast setHTTPCookieStorage, "v@:@") do panic("Failed to register objC method.")
@@ -1006,11 +1020,11 @@ URLSessionConfiguration_odin_extend :: proc(cls: Class, vt: ^URLSessionConfigura
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLCredentialStorage"), auto_cast _URLCredentialStorage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setURLCredentialStorage != nil {
-        setURLCredentialStorage :: proc "c" (self: ^URLSessionConfiguration, _: SEL, URLCredentialStorage: ^URLCredentialStorage) {
+        setURLCredentialStorage :: proc "c" (self: ^URLSessionConfiguration, _: SEL, _URLCredentialStorage: ^URLCredentialStorage) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setURLCredentialStorage(self, URLCredentialStorage)
+            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setURLCredentialStorage(self, _URLCredentialStorage)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setURLCredentialStorage:"), auto_cast setURLCredentialStorage, "v@:@") do panic("Failed to register objC method.")
@@ -1026,11 +1040,11 @@ URLSessionConfiguration_odin_extend :: proc(cls: Class, vt: ^URLSessionConfigura
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLCache"), auto_cast _URLCache, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setURLCache != nil {
-        setURLCache :: proc "c" (self: ^URLSessionConfiguration, _: SEL, URLCache: ^URLCache) {
+        setURLCache :: proc "c" (self: ^URLSessionConfiguration, _: SEL, _URLCache: ^URLCache) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setURLCache(self, URLCache)
+            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setURLCache(self, _URLCache)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setURLCache:"), auto_cast setURLCache, "v@:@") do panic("Failed to register objC method.")
@@ -1094,6 +1108,16 @@ URLSessionConfiguration_odin_extend :: proc(cls: Class, vt: ^URLSessionConfigura
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMultipathServiceType:"), auto_cast setMultipathServiceType, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.backgroundSessionConfiguration != nil {
+        backgroundSessionConfiguration :: proc "c" (self: Class, _: SEL, identifier: ^String) -> ^URLSessionConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).backgroundSessionConfiguration( identifier)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("backgroundSessionConfiguration:"), auto_cast backgroundSessionConfiguration, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -1274,6 +1298,106 @@ URLSessionConfiguration_odin_extend :: proc(cls: Class, vt: ^URLSessionConfigura
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSessionConfiguration_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

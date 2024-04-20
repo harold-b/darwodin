@@ -132,8 +132,8 @@ PrintOperation_PDFPanel :: #force_inline proc "c" (self: ^PrintOperation) -> ^PD
     return msgSend(^PDFPanel, self, "PDFPanel")
 }
 @(objc_type=PrintOperation, objc_name="setPDFPanel")
-PrintOperation_setPDFPanel :: #force_inline proc "c" (self: ^PrintOperation, PDFPanel: ^PDFPanel) {
-    msgSend(nil, self, "setPDFPanel:", PDFPanel)
+PrintOperation_setPDFPanel :: #force_inline proc "c" (self: ^PrintOperation, _PDFPanel: ^PDFPanel) {
+    msgSend(nil, self, "setPDFPanel:", _PDFPanel)
 }
 @(objc_type=PrintOperation, objc_name="canSpawnSeparateThread")
 PrintOperation_canSpawnSeparateThread :: #force_inline proc "c" (self: ^PrintOperation) -> bool {
@@ -390,7 +390,7 @@ PrintOperation_VTable :: struct {
     printPanel: proc(self: ^PrintOperation) -> ^PrintPanel,
     setPrintPanel: proc(self: ^PrintOperation, printPanel: ^PrintPanel),
     _PDFPanel: proc(self: ^PrintOperation) -> ^PDFPanel,
-    setPDFPanel: proc(self: ^PrintOperation, PDFPanel: ^PDFPanel),
+    setPDFPanel: proc(self: ^PrintOperation, _PDFPanel: ^PDFPanel),
     canSpawnSeparateThread: proc(self: ^PrintOperation) -> bool,
     setCanSpawnSeparateThread: proc(self: ^PrintOperation, canSpawnSeparateThread: bool),
     pageOrder: proc(self: ^PrintOperation) -> PrintingPageOrder,
@@ -401,6 +401,12 @@ PrintOperation_VTable :: struct {
     _context: proc(self: ^PrintOperation) -> ^GraphicsContext,
     pageRange: proc(self: ^PrintOperation) -> NS._NSRange,
     currentPage: proc(self: ^PrintOperation) -> NS.Integer,
+    setAccessoryView: proc(self: ^PrintOperation, view: ^View),
+    accessoryView: proc(self: ^PrintOperation) -> ^View,
+    setJobStyleHint: proc(self: ^PrintOperation, hint: ^NS.String),
+    jobStyleHint: proc(self: ^PrintOperation) -> ^NS.String,
+    setShowPanels: proc(self: ^PrintOperation, flag: bool),
+    showPanels: proc(self: ^PrintOperation) -> bool,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^PrintOperation,
@@ -420,12 +426,30 @@ PrintOperation_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 PrintOperation_odin_extend :: proc(cls: Class, vt: ^PrintOperation_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.printOperationWithView_printInfo != nil {
         printOperationWithView_printInfo :: proc "c" (self: Class, _: SEL, view: ^View, printInfo: ^PrintInfo) -> ^PrintOperation {
 
@@ -697,11 +721,11 @@ PrintOperation_odin_extend :: proc(cls: Class, vt: ^PrintOperation_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("PDFPanel"), auto_cast _PDFPanel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPDFPanel != nil {
-        setPDFPanel :: proc "c" (self: ^PrintOperation, _: SEL, PDFPanel: ^PDFPanel) {
+        setPDFPanel :: proc "c" (self: ^PrintOperation, _: SEL, _PDFPanel: ^PDFPanel) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^PrintOperation_VTable)vt_ctx.super_vt).setPDFPanel(self, PDFPanel)
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).setPDFPanel(self, _PDFPanel)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPDFPanel:"), auto_cast setPDFPanel, "v@:@") do panic("Failed to register objC method.")
@@ -805,6 +829,66 @@ PrintOperation_odin_extend :: proc(cls: Class, vt: ^PrintOperation_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentPage"), auto_cast currentPage, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAccessoryView != nil {
+        setAccessoryView :: proc "c" (self: ^PrintOperation, _: SEL, view: ^View) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).setAccessoryView(self, view)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessoryView:"), auto_cast setAccessoryView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessoryView != nil {
+        accessoryView :: proc "c" (self: ^PrintOperation, _: SEL) -> ^View {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).accessoryView(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessoryView"), auto_cast accessoryView, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setJobStyleHint != nil {
+        setJobStyleHint :: proc "c" (self: ^PrintOperation, _: SEL, hint: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).setJobStyleHint(self, hint)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setJobStyleHint:"), auto_cast setJobStyleHint, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.jobStyleHint != nil {
+        jobStyleHint :: proc "c" (self: ^PrintOperation, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).jobStyleHint(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("jobStyleHint"), auto_cast jobStyleHint, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setShowPanels != nil {
+        setShowPanels :: proc "c" (self: ^PrintOperation, _: SEL, flag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).setShowPanels(self, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShowPanels:"), auto_cast setShowPanels, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.showPanels != nil {
+        showPanels :: proc "c" (self: ^PrintOperation, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).showPanels(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showPanels"), auto_cast showPanels, "B@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -995,6 +1079,156 @@ PrintOperation_odin_extend :: proc(cls: Class, vt: ^PrintOperation_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PrintOperation_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PrintOperation_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

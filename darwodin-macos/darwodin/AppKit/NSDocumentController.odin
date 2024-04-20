@@ -477,6 +477,20 @@ DocumentController_VTable :: struct {
     recentDocumentURLs: proc(self: ^DocumentController) -> ^NS.Array,
     defaultType: proc(self: ^DocumentController) -> ^NS.String,
     documentClassNames: proc(self: ^DocumentController) -> ^NS.Array,
+    openDocumentWithContentsOfURL_display_error: proc(self: ^DocumentController, url: ^NS.URL, displayDocument: bool, outError: ^^NS.Error) -> id,
+    reopenDocumentForURL_withContentsOfURL_error: proc(self: ^DocumentController, url: ^NS.URL, contentsURL: ^NS.URL, outError: ^^NS.Error) -> bool,
+    fileExtensionsFromType: proc(self: ^DocumentController, typeName: ^NS.String) -> ^NS.Array,
+    typeFromFileExtension: proc(self: ^DocumentController, fileNameExtensionOrHFSFileType: ^NS.String) -> ^NS.String,
+    documentForFileName: proc(self: ^DocumentController, fileName: ^NS.String) -> id,
+    fileNamesFromRunningOpenPanel: proc(self: ^DocumentController) -> ^NS.Array,
+    makeDocumentWithContentsOfFile: proc(self: ^DocumentController, fileName: ^NS.String, type: ^NS.String) -> id,
+    makeDocumentWithContentsOfURL_ofType: proc(self: ^DocumentController, url: ^NS.URL, type: ^NS.String) -> id,
+    makeUntitledDocumentOfType_: proc(self: ^DocumentController, type: ^NS.String) -> id,
+    openDocumentWithContentsOfFile: proc(self: ^DocumentController, fileName: ^NS.String, display: bool) -> id,
+    openDocumentWithContentsOfURL_display: proc(self: ^DocumentController, url: ^NS.URL, display: bool) -> id,
+    openUntitledDocumentOfType: proc(self: ^DocumentController, type: ^NS.String, display: bool) -> id,
+    setShouldCreateUI: proc(self: ^DocumentController, flag: bool),
+    shouldCreateUI: proc(self: ^DocumentController) -> bool,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^DocumentController,
@@ -496,12 +510,30 @@ DocumentController_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 DocumentController_odin_extend :: proc(cls: Class, vt: ^DocumentController_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.init != nil {
         init :: proc "c" (self: ^DocumentController, _: SEL) -> ^DocumentController {
 
@@ -952,6 +984,146 @@ DocumentController_odin_extend :: proc(cls: Class, vt: ^DocumentController_VTabl
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentClassNames"), auto_cast documentClassNames, "@@:") do panic("Failed to register objC method.")
     }
+    if vt.openDocumentWithContentsOfURL_display_error != nil {
+        openDocumentWithContentsOfURL_display_error :: proc "c" (self: ^DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, outError: ^^NS.Error) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).openDocumentWithContentsOfURL_display_error(self, url, displayDocument, outError)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openDocumentWithContentsOfURL:display:error:"), auto_cast openDocumentWithContentsOfURL_display_error, "@@:@B^void") do panic("Failed to register objC method.")
+    }
+    if vt.reopenDocumentForURL_withContentsOfURL_error != nil {
+        reopenDocumentForURL_withContentsOfURL_error :: proc "c" (self: ^DocumentController, _: SEL, url: ^NS.URL, contentsURL: ^NS.URL, outError: ^^NS.Error) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).reopenDocumentForURL_withContentsOfURL_error(self, url, contentsURL, outError)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("reopenDocumentForURL:withContentsOfURL:error:"), auto_cast reopenDocumentForURL_withContentsOfURL_error, "B@:@@^void") do panic("Failed to register objC method.")
+    }
+    if vt.fileExtensionsFromType != nil {
+        fileExtensionsFromType :: proc "c" (self: ^DocumentController, _: SEL, typeName: ^NS.String) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).fileExtensionsFromType(self, typeName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileExtensionsFromType:"), auto_cast fileExtensionsFromType, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.typeFromFileExtension != nil {
+        typeFromFileExtension :: proc "c" (self: ^DocumentController, _: SEL, fileNameExtensionOrHFSFileType: ^NS.String) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).typeFromFileExtension(self, fileNameExtensionOrHFSFileType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("typeFromFileExtension:"), auto_cast typeFromFileExtension, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.documentForFileName != nil {
+        documentForFileName :: proc "c" (self: ^DocumentController, _: SEL, fileName: ^NS.String) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).documentForFileName(self, fileName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("documentForFileName:"), auto_cast documentForFileName, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.fileNamesFromRunningOpenPanel != nil {
+        fileNamesFromRunningOpenPanel :: proc "c" (self: ^DocumentController, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).fileNamesFromRunningOpenPanel(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileNamesFromRunningOpenPanel"), auto_cast fileNamesFromRunningOpenPanel, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.makeDocumentWithContentsOfFile != nil {
+        makeDocumentWithContentsOfFile :: proc "c" (self: ^DocumentController, _: SEL, fileName: ^NS.String, type: ^NS.String) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).makeDocumentWithContentsOfFile(self, fileName, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("makeDocumentWithContentsOfFile:ofType:"), auto_cast makeDocumentWithContentsOfFile, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.makeDocumentWithContentsOfURL_ofType != nil {
+        makeDocumentWithContentsOfURL_ofType :: proc "c" (self: ^DocumentController, _: SEL, url: ^NS.URL, type: ^NS.String) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).makeDocumentWithContentsOfURL_ofType(self, url, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("makeDocumentWithContentsOfURL:ofType:"), auto_cast makeDocumentWithContentsOfURL_ofType, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.makeUntitledDocumentOfType_ != nil {
+        makeUntitledDocumentOfType_ :: proc "c" (self: ^DocumentController, _: SEL, type: ^NS.String) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).makeUntitledDocumentOfType_(self, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("makeUntitledDocumentOfType:"), auto_cast makeUntitledDocumentOfType_, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.openDocumentWithContentsOfFile != nil {
+        openDocumentWithContentsOfFile :: proc "c" (self: ^DocumentController, _: SEL, fileName: ^NS.String, display: bool) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).openDocumentWithContentsOfFile(self, fileName, display)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openDocumentWithContentsOfFile:display:"), auto_cast openDocumentWithContentsOfFile, "@@:@B") do panic("Failed to register objC method.")
+    }
+    if vt.openDocumentWithContentsOfURL_display != nil {
+        openDocumentWithContentsOfURL_display :: proc "c" (self: ^DocumentController, _: SEL, url: ^NS.URL, display: bool) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).openDocumentWithContentsOfURL_display(self, url, display)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openDocumentWithContentsOfURL:display:"), auto_cast openDocumentWithContentsOfURL_display, "@@:@B") do panic("Failed to register objC method.")
+    }
+    if vt.openUntitledDocumentOfType != nil {
+        openUntitledDocumentOfType :: proc "c" (self: ^DocumentController, _: SEL, type: ^NS.String, display: bool) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).openUntitledDocumentOfType(self, type, display)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openUntitledDocumentOfType:display:"), auto_cast openUntitledDocumentOfType, "@@:@B") do panic("Failed to register objC method.")
+    }
+    if vt.setShouldCreateUI != nil {
+        setShouldCreateUI :: proc "c" (self: ^DocumentController, _: SEL, flag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentController_VTable)vt_ctx.super_vt).setShouldCreateUI(self, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShouldCreateUI:"), auto_cast setShouldCreateUI, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.shouldCreateUI != nil {
+        shouldCreateUI :: proc "c" (self: ^DocumentController, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).shouldCreateUI(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldCreateUI"), auto_cast shouldCreateUI, "B@:") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -1141,6 +1313,156 @@ DocumentController_odin_extend :: proc(cls: Class, vt: ^DocumentController_VTabl
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentController_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentController_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentController_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentController_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentController_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentController_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentController_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentController_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

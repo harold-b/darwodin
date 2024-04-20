@@ -57,6 +57,8 @@ ProtocolChecker_VTable :: struct {
     super: Proxy_VTable,
     protocol: proc(self: ^ProtocolChecker) -> ^Protocol,
     target: proc(self: ^ProtocolChecker) -> ^Object,
+    protocolCheckerWithTarget: proc(anObject: ^Object, aProtocol: ^Protocol) -> ^ProtocolChecker,
+    initWithTarget: proc(self: ^ProtocolChecker, anObject: ^Object, aProtocol: ^Protocol) -> ^ProtocolChecker,
     alloc: proc() -> ^ProtocolChecker,
     allocWithZone: proc(zone: ^Zone) -> ^ProtocolChecker,
     class: proc() -> Class,
@@ -67,6 +69,9 @@ ProtocolChecker_odin_extend :: proc(cls: Class, vt: ^ProtocolChecker_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Proxy_odin_extend(cls, &vt.super)
+
     if vt.protocol != nil {
         protocol :: proc "c" (self: ^ProtocolChecker, _: SEL) -> ^Protocol {
 
@@ -86,6 +91,26 @@ ProtocolChecker_odin_extend :: proc(cls: Class, vt: ^ProtocolChecker_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.protocolCheckerWithTarget != nil {
+        protocolCheckerWithTarget :: proc "c" (self: Class, _: SEL, anObject: ^Object, aProtocol: ^Protocol) -> ^ProtocolChecker {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProtocolChecker_VTable)vt_ctx.super_vt).protocolCheckerWithTarget( anObject, aProtocol)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("protocolCheckerWithTarget:protocol:"), auto_cast protocolCheckerWithTarget, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithTarget != nil {
+        initWithTarget :: proc "c" (self: ^ProtocolChecker, _: SEL, anObject: ^Object, aProtocol: ^Protocol) -> ^ProtocolChecker {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ProtocolChecker_VTable)vt_ctx.super_vt).initWithTarget(self, anObject, aProtocol)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTarget:protocol:"), auto_cast initWithTarget, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.alloc != nil {
         alloc :: proc "c" (self: Class, _: SEL) -> ^ProtocolChecker {

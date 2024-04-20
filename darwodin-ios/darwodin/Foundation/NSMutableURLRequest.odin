@@ -329,6 +329,20 @@ MutableURLRequest_VTable :: struct {
     setAttribution: proc(self: ^MutableURLRequest, attribution: URLRequestAttribution),
     requiresDNSSECValidation: proc(self: ^MutableURLRequest) -> bool,
     setRequiresDNSSECValidation: proc(self: ^MutableURLRequest, requiresDNSSECValidation: bool),
+    setValue: proc(self: ^MutableURLRequest, value: ^String, field: ^String),
+    addValue: proc(self: ^MutableURLRequest, value: ^String, field: ^String),
+    _HTTPMethod: proc(self: ^MutableURLRequest) -> ^String,
+    setHTTPMethod: proc(self: ^MutableURLRequest, HTTPMethod: ^String),
+    allHTTPHeaderFields: proc(self: ^MutableURLRequest) -> ^Dictionary,
+    setAllHTTPHeaderFields: proc(self: ^MutableURLRequest, allHTTPHeaderFields: ^Dictionary),
+    _HTTPBody: proc(self: ^MutableURLRequest) -> ^Data,
+    setHTTPBody: proc(self: ^MutableURLRequest, HTTPBody: ^Data),
+    _HTTPBodyStream: proc(self: ^MutableURLRequest) -> ^InputStream,
+    setHTTPBodyStream: proc(self: ^MutableURLRequest, HTTPBodyStream: ^InputStream),
+    _HTTPShouldHandleCookies: proc(self: ^MutableURLRequest) -> bool,
+    setHTTPShouldHandleCookies: proc(self: ^MutableURLRequest, HTTPShouldHandleCookies: bool),
+    _HTTPShouldUsePipelining: proc(self: ^MutableURLRequest) -> bool,
+    setHTTPShouldUsePipelining: proc(self: ^MutableURLRequest, HTTPShouldUsePipelining: bool),
     requestWithURL_: proc(_URL: ^URL) -> ^URLRequest,
     requestWithURL_cachePolicy_timeoutInterval: proc(_URL: ^URL, cachePolicy: URLRequestCachePolicy, timeoutInterval: TimeInterval) -> ^URLRequest,
     supportsSecureCoding: proc() -> bool,
@@ -351,12 +365,25 @@ MutableURLRequest_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 MutableURLRequest_odin_extend :: proc(cls: Class, vt: ^MutableURLRequest_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    URLRequest_odin_extend(cls, &vt.super)
+
     if vt._URL != nil {
         _URL :: proc "c" (self: ^MutableURLRequest, _: SEL) -> ^URL {
 
@@ -577,6 +604,146 @@ MutableURLRequest_odin_extend :: proc(cls: Class, vt: ^MutableURLRequest_VTable)
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRequiresDNSSECValidation:"), auto_cast setRequiresDNSSECValidation, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.setValue != nil {
+        setValue :: proc "c" (self: ^MutableURLRequest, _: SEL, value: ^String, field: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setValue(self, value, field)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setValue:forHTTPHeaderField:"), auto_cast setValue, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.addValue != nil {
+        addValue :: proc "c" (self: ^MutableURLRequest, _: SEL, value: ^String, field: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).addValue(self, value, field)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addValue:forHTTPHeaderField:"), auto_cast addValue, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt._HTTPMethod != nil {
+        _HTTPMethod :: proc "c" (self: ^MutableURLRequest, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt)._HTTPMethod(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("HTTPMethod"), auto_cast _HTTPMethod, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHTTPMethod != nil {
+        setHTTPMethod :: proc "c" (self: ^MutableURLRequest, _: SEL, HTTPMethod: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setHTTPMethod(self, HTTPMethod)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHTTPMethod:"), auto_cast setHTTPMethod, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.allHTTPHeaderFields != nil {
+        allHTTPHeaderFields :: proc "c" (self: ^MutableURLRequest, _: SEL) -> ^Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).allHTTPHeaderFields(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allHTTPHeaderFields"), auto_cast allHTTPHeaderFields, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllHTTPHeaderFields != nil {
+        setAllHTTPHeaderFields :: proc "c" (self: ^MutableURLRequest, _: SEL, allHTTPHeaderFields: ^Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setAllHTTPHeaderFields(self, allHTTPHeaderFields)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllHTTPHeaderFields:"), auto_cast setAllHTTPHeaderFields, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt._HTTPBody != nil {
+        _HTTPBody :: proc "c" (self: ^MutableURLRequest, _: SEL) -> ^Data {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt)._HTTPBody(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("HTTPBody"), auto_cast _HTTPBody, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHTTPBody != nil {
+        setHTTPBody :: proc "c" (self: ^MutableURLRequest, _: SEL, HTTPBody: ^Data) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setHTTPBody(self, HTTPBody)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHTTPBody:"), auto_cast setHTTPBody, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt._HTTPBodyStream != nil {
+        _HTTPBodyStream :: proc "c" (self: ^MutableURLRequest, _: SEL) -> ^InputStream {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt)._HTTPBodyStream(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("HTTPBodyStream"), auto_cast _HTTPBodyStream, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHTTPBodyStream != nil {
+        setHTTPBodyStream :: proc "c" (self: ^MutableURLRequest, _: SEL, HTTPBodyStream: ^InputStream) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setHTTPBodyStream(self, HTTPBodyStream)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHTTPBodyStream:"), auto_cast setHTTPBodyStream, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt._HTTPShouldHandleCookies != nil {
+        _HTTPShouldHandleCookies :: proc "c" (self: ^MutableURLRequest, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt)._HTTPShouldHandleCookies(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("HTTPShouldHandleCookies"), auto_cast _HTTPShouldHandleCookies, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHTTPShouldHandleCookies != nil {
+        setHTTPShouldHandleCookies :: proc "c" (self: ^MutableURLRequest, _: SEL, HTTPShouldHandleCookies: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setHTTPShouldHandleCookies(self, HTTPShouldHandleCookies)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHTTPShouldHandleCookies:"), auto_cast setHTTPShouldHandleCookies, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt._HTTPShouldUsePipelining != nil {
+        _HTTPShouldUsePipelining :: proc "c" (self: ^MutableURLRequest, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt)._HTTPShouldUsePipelining(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("HTTPShouldUsePipelining"), auto_cast _HTTPShouldUsePipelining, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHTTPShouldUsePipelining != nil {
+        setHTTPShouldUsePipelining :: proc "c" (self: ^MutableURLRequest, _: SEL, HTTPShouldUsePipelining: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setHTTPShouldUsePipelining(self, HTTPShouldUsePipelining)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHTTPShouldUsePipelining:"), auto_cast setHTTPShouldUsePipelining, "v@:B") do panic("Failed to register objC method.")
+    }
     if vt.requestWithURL_ != nil {
         requestWithURL_ :: proc "c" (self: Class, _: SEL, _URL: ^URL) -> ^URLRequest {
 
@@ -796,6 +963,106 @@ MutableURLRequest_odin_extend :: proc(cls: Class, vt: ^MutableURLRequest_VTable)
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

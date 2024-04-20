@@ -970,6 +970,38 @@ LayoutManager_VTable :: struct {
     extraLineFragmentRect: proc(self: ^LayoutManager) -> NS.Rect,
     extraLineFragmentUsedRect: proc(self: ^LayoutManager) -> NS.Rect,
     extraLineFragmentTextContainer: proc(self: ^LayoutManager) -> ^TextContainer,
+    rulerMarkersForTextView: proc(self: ^LayoutManager, view: ^TextView, style: ^ParagraphStyle, ruler: ^RulerView) -> ^NS.Array,
+    rulerAccessoryViewForTextView: proc(self: ^LayoutManager, view: ^TextView, style: ^ParagraphStyle, ruler: ^RulerView, isEnabled: bool) -> ^View,
+    layoutManagerOwnsFirstResponderInWindow: proc(self: ^LayoutManager, window: ^Window) -> bool,
+    firstTextView: proc(self: ^LayoutManager) -> ^TextView,
+    textViewForBeginningOfSelection: proc(self: ^LayoutManager) -> ^TextView,
+    glyphAtIndex_isValidIndex: proc(self: ^LayoutManager, glyphIndex: NS.UInteger, isValidIndex: ^bool) -> Glyph,
+    glyphAtIndex_: proc(self: ^LayoutManager, glyphIndex: NS.UInteger) -> Glyph,
+    rectArrayForCharacterRange: proc(self: ^LayoutManager, charRange: NS._NSRange, selCharRange: NS._NSRange, container: ^TextContainer, rectCount: ^NS.UInteger) -> NS.RectArray,
+    rectArrayForGlyphRange: proc(self: ^LayoutManager, glyphRange: NS._NSRange, selGlyphRange: NS._NSRange, container: ^TextContainer, rectCount: ^NS.UInteger) -> NS.RectArray,
+    substituteFontForFont: proc(self: ^LayoutManager, originalFont: ^Font) -> ^Font,
+    insertGlyphs: proc(self: ^LayoutManager, glyphs: ^Glyph, length: NS.UInteger, glyphIndex: NS.UInteger, charIndex: NS.UInteger),
+    insertGlyph: proc(self: ^LayoutManager, glyph: Glyph, glyphIndex: NS.UInteger, charIndex: NS.UInteger),
+    replaceGlyphAtIndex: proc(self: ^LayoutManager, glyphIndex: NS.UInteger, newGlyph: Glyph),
+    deleteGlyphsInRange: proc(self: ^LayoutManager, glyphRange: NS._NSRange),
+    setCharacterIndex: proc(self: ^LayoutManager, charIndex: NS.UInteger, glyphIndex: NS.UInteger),
+    setIntAttribute: proc(self: ^LayoutManager, attributeTag: NS.Integer, val: NS.Integer, glyphIndex: NS.UInteger),
+    invalidateGlyphsOnLayoutInvalidationForGlyphRange: proc(self: ^LayoutManager, glyphRange: NS._NSRange),
+    intAttribute: proc(self: ^LayoutManager, attributeTag: NS.Integer, glyphIndex: NS.UInteger) -> NS.Integer,
+    getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits: proc(self: ^LayoutManager, glyphRange: NS._NSRange, glyphBuffer: ^Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^GlyphInscription, elasticBuffer: ^bool) -> NS.UInteger,
+    getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits_bidiLevels: proc(self: ^LayoutManager, glyphRange: NS._NSRange, glyphBuffer: ^Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^GlyphInscription, elasticBuffer: ^bool, bidiLevelBuffer: ^cffi.uchar) -> NS.UInteger,
+    getGlyphs: proc(self: ^LayoutManager, glyphArray: ^Glyph, glyphRange: NS._NSRange) -> NS.UInteger,
+    invalidateLayoutForCharacterRange_isSoft_actualCharacterRange: proc(self: ^LayoutManager, charRange: NS._NSRange, flag: bool, actualCharRange: ^NS._NSRange),
+    textStorage_edited_range_changeInLength_invalidatedRange: proc(self: ^LayoutManager, str: ^TextStorage, editedMask: TextStorageEditedOptions, newCharRange: NS._NSRange, delta: NS.Integer, invalidatedCharRange: NS._NSRange),
+    setLocations: proc(self: ^LayoutManager, locations: ^CG.Point, glyphIndexes: ^NS.UInteger, count: NS.UInteger, glyphRange: NS._NSRange),
+    showPackedGlyphs: proc(self: ^LayoutManager, glyphs: cstring, glyphLen: NS.UInteger, glyphRange: NS._NSRange, point: CG.Point, font: ^Font, color: ^Color, printingAdjustment: NS.Size),
+    showCGGlyphs_positions_count_font_matrix_attributes_inContext: proc(self: ^LayoutManager, glyphs: ^CG.Glyph, positions: ^CG.Point, glyphCount: NS.UInteger, font: ^Font, textMatrix: ^NS.AffineTransform, attributes: ^NS.Dictionary, graphicsContext: ^GraphicsContext),
+    usesScreenFonts: proc(self: ^LayoutManager) -> bool,
+    setUsesScreenFonts: proc(self: ^LayoutManager, usesScreenFonts: bool),
+    hyphenationFactor: proc(self: ^LayoutManager) -> cffi.float,
+    setHyphenationFactor: proc(self: ^LayoutManager, hyphenationFactor: cffi.float),
+    glyphGenerator: proc(self: ^LayoutManager) -> ^GlyphGenerator,
+    setGlyphGenerator: proc(self: ^LayoutManager, glyphGenerator: ^GlyphGenerator),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -990,12 +1022,30 @@ LayoutManager_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 LayoutManager_odin_extend :: proc(cls: Class, vt: ^LayoutManager_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.init != nil {
         init :: proc "c" (self: ^LayoutManager, _: SEL) -> ^LayoutManager {
 
@@ -2176,6 +2226,326 @@ LayoutManager_odin_extend :: proc(cls: Class, vt: ^LayoutManager_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("extraLineFragmentTextContainer"), auto_cast extraLineFragmentTextContainer, "@@:") do panic("Failed to register objC method.")
     }
+    if vt.rulerMarkersForTextView != nil {
+        rulerMarkersForTextView :: proc "c" (self: ^LayoutManager, _: SEL, view: ^TextView, style: ^ParagraphStyle, ruler: ^RulerView) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).rulerMarkersForTextView(self, view, style, ruler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rulerMarkersForTextView:paragraphStyle:ruler:"), auto_cast rulerMarkersForTextView, "@@:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.rulerAccessoryViewForTextView != nil {
+        rulerAccessoryViewForTextView :: proc "c" (self: ^LayoutManager, _: SEL, view: ^TextView, style: ^ParagraphStyle, ruler: ^RulerView, isEnabled: bool) -> ^View {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).rulerAccessoryViewForTextView(self, view, style, ruler, isEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rulerAccessoryViewForTextView:paragraphStyle:ruler:enabled:"), auto_cast rulerAccessoryViewForTextView, "@@:@@@B") do panic("Failed to register objC method.")
+    }
+    if vt.layoutManagerOwnsFirstResponderInWindow != nil {
+        layoutManagerOwnsFirstResponderInWindow :: proc "c" (self: ^LayoutManager, _: SEL, window: ^Window) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).layoutManagerOwnsFirstResponderInWindow(self, window)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManagerOwnsFirstResponderInWindow:"), auto_cast layoutManagerOwnsFirstResponderInWindow, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.firstTextView != nil {
+        firstTextView :: proc "c" (self: ^LayoutManager, _: SEL) -> ^TextView {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).firstTextView(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("firstTextView"), auto_cast firstTextView, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.textViewForBeginningOfSelection != nil {
+        textViewForBeginningOfSelection :: proc "c" (self: ^LayoutManager, _: SEL) -> ^TextView {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).textViewForBeginningOfSelection(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewForBeginningOfSelection"), auto_cast textViewForBeginningOfSelection, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.glyphAtIndex_isValidIndex != nil {
+        glyphAtIndex_isValidIndex :: proc "c" (self: ^LayoutManager, _: SEL, glyphIndex: NS.UInteger, isValidIndex: ^bool) -> Glyph {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).glyphAtIndex_isValidIndex(self, glyphIndex, isValidIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("glyphAtIndex:isValidIndex:"), auto_cast glyphAtIndex_isValidIndex, "I@:L^void") do panic("Failed to register objC method.")
+    }
+    if vt.glyphAtIndex_ != nil {
+        glyphAtIndex_ :: proc "c" (self: ^LayoutManager, _: SEL, glyphIndex: NS.UInteger) -> Glyph {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).glyphAtIndex_(self, glyphIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("glyphAtIndex:"), auto_cast glyphAtIndex_, "I@:L") do panic("Failed to register objC method.")
+    }
+    if vt.rectArrayForCharacterRange != nil {
+        rectArrayForCharacterRange :: proc "c" (self: ^LayoutManager, _: SEL, charRange: NS._NSRange, selCharRange: NS._NSRange, container: ^TextContainer, rectCount: ^NS.UInteger) -> NS.RectArray {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).rectArrayForCharacterRange(self, charRange, selCharRange, container, rectCount)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rectArrayForCharacterRange:withinSelectedCharacterRange:inTextContainer:rectCount:"), auto_cast rectArrayForCharacterRange, "^void@:{_NSRange=LL}{_NSRange=LL}@^void") do panic("Failed to register objC method.")
+    }
+    if vt.rectArrayForGlyphRange != nil {
+        rectArrayForGlyphRange :: proc "c" (self: ^LayoutManager, _: SEL, glyphRange: NS._NSRange, selGlyphRange: NS._NSRange, container: ^TextContainer, rectCount: ^NS.UInteger) -> NS.RectArray {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).rectArrayForGlyphRange(self, glyphRange, selGlyphRange, container, rectCount)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rectArrayForGlyphRange:withinSelectedGlyphRange:inTextContainer:rectCount:"), auto_cast rectArrayForGlyphRange, "^void@:{_NSRange=LL}{_NSRange=LL}@^void") do panic("Failed to register objC method.")
+    }
+    if vt.substituteFontForFont != nil {
+        substituteFontForFont :: proc "c" (self: ^LayoutManager, _: SEL, originalFont: ^Font) -> ^Font {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).substituteFontForFont(self, originalFont)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("substituteFontForFont:"), auto_cast substituteFontForFont, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.insertGlyphs != nil {
+        insertGlyphs :: proc "c" (self: ^LayoutManager, _: SEL, glyphs: ^Glyph, length: NS.UInteger, glyphIndex: NS.UInteger, charIndex: NS.UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).insertGlyphs(self, glyphs, length, glyphIndex, charIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:"), auto_cast insertGlyphs, "v@:^voidLLL") do panic("Failed to register objC method.")
+    }
+    if vt.insertGlyph != nil {
+        insertGlyph :: proc "c" (self: ^LayoutManager, _: SEL, glyph: Glyph, glyphIndex: NS.UInteger, charIndex: NS.UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).insertGlyph(self, glyph, glyphIndex, charIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertGlyph:atGlyphIndex:characterIndex:"), auto_cast insertGlyph, "v@:ILL") do panic("Failed to register objC method.")
+    }
+    if vt.replaceGlyphAtIndex != nil {
+        replaceGlyphAtIndex :: proc "c" (self: ^LayoutManager, _: SEL, glyphIndex: NS.UInteger, newGlyph: Glyph) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).replaceGlyphAtIndex(self, glyphIndex, newGlyph)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceGlyphAtIndex:withGlyph:"), auto_cast replaceGlyphAtIndex, "v@:LI") do panic("Failed to register objC method.")
+    }
+    if vt.deleteGlyphsInRange != nil {
+        deleteGlyphsInRange :: proc "c" (self: ^LayoutManager, _: SEL, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).deleteGlyphsInRange(self, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("deleteGlyphsInRange:"), auto_cast deleteGlyphsInRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.setCharacterIndex != nil {
+        setCharacterIndex :: proc "c" (self: ^LayoutManager, _: SEL, charIndex: NS.UInteger, glyphIndex: NS.UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setCharacterIndex(self, charIndex, glyphIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCharacterIndex:forGlyphAtIndex:"), auto_cast setCharacterIndex, "v@:LL") do panic("Failed to register objC method.")
+    }
+    if vt.setIntAttribute != nil {
+        setIntAttribute :: proc "c" (self: ^LayoutManager, _: SEL, attributeTag: NS.Integer, val: NS.Integer, glyphIndex: NS.UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setIntAttribute(self, attributeTag, val, glyphIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIntAttribute:value:forGlyphAtIndex:"), auto_cast setIntAttribute, "v@:llL") do panic("Failed to register objC method.")
+    }
+    if vt.invalidateGlyphsOnLayoutInvalidationForGlyphRange != nil {
+        invalidateGlyphsOnLayoutInvalidationForGlyphRange :: proc "c" (self: ^LayoutManager, _: SEL, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).invalidateGlyphsOnLayoutInvalidationForGlyphRange(self, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateGlyphsOnLayoutInvalidationForGlyphRange:"), auto_cast invalidateGlyphsOnLayoutInvalidationForGlyphRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.intAttribute != nil {
+        intAttribute :: proc "c" (self: ^LayoutManager, _: SEL, attributeTag: NS.Integer, glyphIndex: NS.UInteger) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).intAttribute(self, attributeTag, glyphIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("intAttribute:forGlyphAtIndex:"), auto_cast intAttribute, "l@:lL") do panic("Failed to register objC method.")
+    }
+    if vt.getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits != nil {
+        getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits :: proc "c" (self: ^LayoutManager, _: SEL, glyphRange: NS._NSRange, glyphBuffer: ^Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^GlyphInscription, elasticBuffer: ^bool) -> NS.UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits(self, glyphRange, glyphBuffer, charIndexBuffer, inscribeBuffer, elasticBuffer)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:"), auto_cast getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits, "L@:{_NSRange=LL}^void^void^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits_bidiLevels != nil {
+        getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits_bidiLevels :: proc "c" (self: ^LayoutManager, _: SEL, glyphRange: NS._NSRange, glyphBuffer: ^Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^GlyphInscription, elasticBuffer: ^bool, bidiLevelBuffer: ^cffi.uchar) -> NS.UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits_bidiLevels(self, glyphRange, glyphBuffer, charIndexBuffer, inscribeBuffer, elasticBuffer, bidiLevelBuffer)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:bidiLevels:"), auto_cast getGlyphsInRange_glyphs_characterIndexes_glyphInscriptions_elasticBits_bidiLevels, "L@:{_NSRange=LL}^void^void^void^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.getGlyphs != nil {
+        getGlyphs :: proc "c" (self: ^LayoutManager, _: SEL, glyphArray: ^Glyph, glyphRange: NS._NSRange) -> NS.UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).getGlyphs(self, glyphArray, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("getGlyphs:range:"), auto_cast getGlyphs, "L@:^void{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.invalidateLayoutForCharacterRange_isSoft_actualCharacterRange != nil {
+        invalidateLayoutForCharacterRange_isSoft_actualCharacterRange :: proc "c" (self: ^LayoutManager, _: SEL, charRange: NS._NSRange, flag: bool, actualCharRange: ^NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).invalidateLayoutForCharacterRange_isSoft_actualCharacterRange(self, charRange, flag, actualCharRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateLayoutForCharacterRange:isSoft:actualCharacterRange:"), auto_cast invalidateLayoutForCharacterRange_isSoft_actualCharacterRange, "v@:{_NSRange=LL}B^void") do panic("Failed to register objC method.")
+    }
+    if vt.textStorage_edited_range_changeInLength_invalidatedRange != nil {
+        textStorage_edited_range_changeInLength_invalidatedRange :: proc "c" (self: ^LayoutManager, _: SEL, str: ^TextStorage, editedMask: TextStorageEditedOptions, newCharRange: NS._NSRange, delta: NS.Integer, invalidatedCharRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).textStorage_edited_range_changeInLength_invalidatedRange(self, str, editedMask, newCharRange, delta, invalidatedCharRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textStorage:edited:range:changeInLength:invalidatedRange:"), auto_cast textStorage_edited_range_changeInLength_invalidatedRange, "v@:@L{_NSRange=LL}l{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.setLocations != nil {
+        setLocations :: proc "c" (self: ^LayoutManager, _: SEL, locations: ^CG.Point, glyphIndexes: ^NS.UInteger, count: NS.UInteger, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setLocations(self, locations, glyphIndexes, count, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLocations:startingGlyphIndexes:count:forGlyphRange:"), auto_cast setLocations, "v@:^void^voidL{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.showPackedGlyphs != nil {
+        showPackedGlyphs :: proc "c" (self: ^LayoutManager, _: SEL, glyphs: cstring, glyphLen: NS.UInteger, glyphRange: NS._NSRange, point: CG.Point, font: ^Font, color: ^Color, printingAdjustment: NS.Size) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).showPackedGlyphs(self, glyphs, glyphLen, glyphRange, point, font, color, printingAdjustment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showPackedGlyphs:length:glyphRange:atPoint:font:color:printingAdjustment:"), auto_cast showPackedGlyphs, "v@:*L{_NSRange=LL}{CGPoint=dd}@@{CGSize=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.showCGGlyphs_positions_count_font_matrix_attributes_inContext != nil {
+        showCGGlyphs_positions_count_font_matrix_attributes_inContext :: proc "c" (self: ^LayoutManager, _: SEL, glyphs: ^CG.Glyph, positions: ^CG.Point, glyphCount: NS.UInteger, font: ^Font, textMatrix: ^NS.AffineTransform, attributes: ^NS.Dictionary, graphicsContext: ^GraphicsContext) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).showCGGlyphs_positions_count_font_matrix_attributes_inContext(self, glyphs, positions, glyphCount, font, textMatrix, attributes, graphicsContext)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showCGGlyphs:positions:count:font:matrix:attributes:inContext:"), auto_cast showCGGlyphs_positions_count_font_matrix_attributes_inContext, "v@:^void^voidL@@@@") do panic("Failed to register objC method.")
+    }
+    if vt.usesScreenFonts != nil {
+        usesScreenFonts :: proc "c" (self: ^LayoutManager, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).usesScreenFonts(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesScreenFonts"), auto_cast usesScreenFonts, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesScreenFonts != nil {
+        setUsesScreenFonts :: proc "c" (self: ^LayoutManager, _: SEL, usesScreenFonts: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setUsesScreenFonts(self, usesScreenFonts)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesScreenFonts:"), auto_cast setUsesScreenFonts, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.hyphenationFactor != nil {
+        hyphenationFactor :: proc "c" (self: ^LayoutManager, _: SEL) -> cffi.float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).hyphenationFactor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hyphenationFactor"), auto_cast hyphenationFactor, "f@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHyphenationFactor != nil {
+        setHyphenationFactor :: proc "c" (self: ^LayoutManager, _: SEL, hyphenationFactor: cffi.float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setHyphenationFactor(self, hyphenationFactor)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHyphenationFactor:"), auto_cast setHyphenationFactor, "v@:f") do panic("Failed to register objC method.")
+    }
+    if vt.glyphGenerator != nil {
+        glyphGenerator :: proc "c" (self: ^LayoutManager, _: SEL) -> ^GlyphGenerator {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).glyphGenerator(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("glyphGenerator"), auto_cast glyphGenerator, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setGlyphGenerator != nil {
+        setGlyphGenerator :: proc "c" (self: ^LayoutManager, _: SEL, glyphGenerator: ^GlyphGenerator) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setGlyphGenerator(self, glyphGenerator)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setGlyphGenerator:"), auto_cast setGlyphGenerator, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
 
@@ -2375,6 +2745,156 @@ LayoutManager_odin_extend :: proc(cls: Class, vt: ^LayoutManager_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^LayoutManager_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^LayoutManager_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

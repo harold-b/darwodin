@@ -1859,7 +1859,85 @@ Window_VTable :: struct {
     tabGroup: proc(self: ^Window) -> ^WindowTabGroup,
     hasActiveWindowSharingSession: proc(self: ^Window) -> bool,
     windowTitlebarLayoutDirection: proc(self: ^Window) -> UserInterfaceLayoutDirection,
+    trackEventsMatchingMask: proc(self: ^Window, mask: EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: proc "c" (event: ^Event, stop: ^bool)),
+    nextEventMatchingMask_: proc(self: ^Window, mask: EventMask) -> ^Event,
+    nextEventMatchingMask_untilDate_inMode_dequeue: proc(self: ^Window, mask: EventMask, expiration: ^NS.Date, mode: ^NS.String, deqFlag: bool) -> ^Event,
+    discardEventsMatchingMask: proc(self: ^Window, mask: EventMask, lastEvent: ^Event),
+    postEvent: proc(self: ^Window, event: ^Event, flag: bool),
+    sendEvent: proc(self: ^Window, event: ^Event),
+    currentEvent: proc(self: ^Window) -> ^Event,
+    acceptsMouseMovedEvents: proc(self: ^Window) -> bool,
+    setAcceptsMouseMovedEvents: proc(self: ^Window, acceptsMouseMovedEvents: bool),
+    ignoresMouseEvents: proc(self: ^Window) -> bool,
+    setIgnoresMouseEvents: proc(self: ^Window, ignoresMouseEvents: bool),
+    mouseLocationOutsideOfEventStream: proc(self: ^Window) -> CG.Point,
+    disableCursorRects: proc(self: ^Window),
+    enableCursorRects: proc(self: ^Window),
+    discardCursorRects: proc(self: ^Window),
+    invalidateCursorRectsForView: proc(self: ^Window, view: ^View),
+    resetCursorRects: proc(self: ^Window),
+    areCursorRectsEnabled: proc(self: ^Window) -> bool,
+    dragImage: proc(self: ^Window, image: ^NS.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool),
+    registerForDraggedTypes: proc(self: ^Window, newTypes: ^NS.Array),
+    unregisterDraggedTypes: proc(self: ^Window),
+    initWithWindowRef: proc(self: ^Window, windowRef: rawptr) -> ^Window,
+    windowRef: proc(self: ^Window) -> rawptr,
+    displayLinkWithTarget: proc(self: ^Window, target: id, selector: SEL) -> ^CA.DisplayLink,
+    cacheImageInRect: proc(self: ^Window, rect: NS.Rect),
+    restoreCachedImage: proc(self: ^Window),
+    discardCachedImage: proc(self: ^Window),
+    menuChanged: proc(menu: ^Menu),
+    gState: proc(self: ^Window) -> NS.Integer,
+    convertBaseToScreen: proc(self: ^Window, point: CG.Point) -> CG.Point,
+    convertScreenToBase: proc(self: ^Window, point: CG.Point) -> CG.Point,
+    userSpaceScaleFactor: proc(self: ^Window) -> CG.Float,
+    useOptimizedDrawing: proc(self: ^Window, flag: bool),
+    canStoreColor: proc(self: ^Window) -> bool,
+    disableFlushWindow: proc(self: ^Window),
+    enableFlushWindow: proc(self: ^Window),
+    flushWindow: proc(self: ^Window),
+    flushWindowIfNeeded: proc(self: ^Window),
+    isFlushWindowDisabled: proc(self: ^Window) -> bool,
+    isAutodisplay: proc(self: ^Window) -> bool,
+    setAutodisplay: proc(self: ^Window, autodisplay: bool),
+    graphicsContext: proc(self: ^Window) -> ^GraphicsContext,
+    isOneShot: proc(self: ^Window) -> bool,
+    setOneShot: proc(self: ^Window, oneShot: bool),
+    preferredBackingLocation: proc(self: ^Window) -> WindowBackingLocation,
+    setPreferredBackingLocation: proc(self: ^Window, preferredBackingLocation: WindowBackingLocation),
+    backingLocation: proc(self: ^Window) -> WindowBackingLocation,
+    showsResizeIndicator: proc(self: ^Window) -> bool,
+    setShowsResizeIndicator: proc(self: ^Window, showsResizeIndicator: bool),
+    updateConstraintsIfNeeded: proc(self: ^Window),
+    layoutIfNeeded: proc(self: ^Window),
+    anchorAttributeForOrientation: proc(self: ^Window, orientation: LayoutConstraintOrientation) -> LayoutAttribute,
+    setAnchorAttribute: proc(self: ^Window, attr: LayoutAttribute, orientation: LayoutConstraintOrientation),
+    visualizeConstraints: proc(self: ^Window, constraints: ^NS.Array),
+    drawers: proc(self: ^Window) -> ^NS.Array,
+    setIsMiniaturized: proc(self: ^Window, flag: bool),
+    setIsVisible: proc(self: ^Window, flag: bool),
+    setIsZoomed: proc(self: ^Window, flag: bool),
+    handleCloseScriptCommand: proc(self: ^Window, command: ^NS.CloseCommand) -> id,
+    handlePrintScriptCommand: proc(self: ^Window, command: ^NS.ScriptCommand) -> id,
+    handleSaveScriptCommand: proc(self: ^Window, command: ^NS.ScriptCommand) -> id,
+    hasCloseBox: proc(self: ^Window) -> bool,
+    hasTitleBar: proc(self: ^Window) -> bool,
+    isFloatingPanel: proc(self: ^Window) -> bool,
+    isMiniaturizable: proc(self: ^Window) -> bool,
+    isModalPanel: proc(self: ^Window) -> bool,
+    isResizable: proc(self: ^Window) -> bool,
+    isZoomable: proc(self: ^Window) -> bool,
+    orderedIndex: proc(self: ^Window) -> NS.Integer,
+    setOrderedIndex: proc(self: ^Window, orderedIndex: NS.Integer),
+    disableSnapshotRestoration: proc(self: ^Window),
+    enableSnapshotRestoration: proc(self: ^Window),
+    isRestorable: proc(self: ^Window) -> bool,
+    setRestorable: proc(self: ^Window, restorable: bool),
+    restorationClass: proc(self: ^Window) -> ^Class,
+    setRestorationClass: proc(self: ^Window, restorationClass: ^Class),
     defaultAnimationForKey: proc(key: ^NS.String) -> id,
+    allowedClassesForRestorableStateKeyPath: proc(keyPath: ^NS.String) -> ^NS.Array,
+    restorableStateKeyPaths: proc() -> ^NS.Array,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Window,
@@ -1879,12 +1957,30 @@ Window_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Responder_odin_extend(cls, &vt.super)
+
     if vt.frameRectForContentRect_styleMask != nil {
         frameRectForContentRect_styleMask :: proc "c" (self: Class, _: SEL, cRect: NS.Rect, style: WindowStyleMask) -> NS.Rect {
 
@@ -4525,6 +4621,766 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("windowTitlebarLayoutDirection"), auto_cast windowTitlebarLayoutDirection, "l@:") do panic("Failed to register objC method.")
     }
+    if vt.trackEventsMatchingMask != nil {
+        trackEventsMatchingMask :: proc "c" (self: ^Window, _: SEL, mask: EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: proc "c" (event: ^Event, stop: ^bool)) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).trackEventsMatchingMask(self, mask, timeout, mode, trackingHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("trackEventsMatchingMask:timeout:mode:handler:"), auto_cast trackEventsMatchingMask, "v@:Qd@?") do panic("Failed to register objC method.")
+    }
+    if vt.nextEventMatchingMask_ != nil {
+        nextEventMatchingMask_ :: proc "c" (self: ^Window, _: SEL, mask: EventMask) -> ^Event {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).nextEventMatchingMask_(self, mask)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("nextEventMatchingMask:"), auto_cast nextEventMatchingMask_, "@@:Q") do panic("Failed to register objC method.")
+    }
+    if vt.nextEventMatchingMask_untilDate_inMode_dequeue != nil {
+        nextEventMatchingMask_untilDate_inMode_dequeue :: proc "c" (self: ^Window, _: SEL, mask: EventMask, expiration: ^NS.Date, mode: ^NS.String, deqFlag: bool) -> ^Event {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).nextEventMatchingMask_untilDate_inMode_dequeue(self, mask, expiration, mode, deqFlag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("nextEventMatchingMask:untilDate:inMode:dequeue:"), auto_cast nextEventMatchingMask_untilDate_inMode_dequeue, "@@:Q@@B") do panic("Failed to register objC method.")
+    }
+    if vt.discardEventsMatchingMask != nil {
+        discardEventsMatchingMask :: proc "c" (self: ^Window, _: SEL, mask: EventMask, lastEvent: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).discardEventsMatchingMask(self, mask, lastEvent)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("discardEventsMatchingMask:beforeEvent:"), auto_cast discardEventsMatchingMask, "v@:Q@") do panic("Failed to register objC method.")
+    }
+    if vt.postEvent != nil {
+        postEvent :: proc "c" (self: ^Window, _: SEL, event: ^Event, flag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).postEvent(self, event, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("postEvent:atStart:"), auto_cast postEvent, "v@:@B") do panic("Failed to register objC method.")
+    }
+    if vt.sendEvent != nil {
+        sendEvent :: proc "c" (self: ^Window, _: SEL, event: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).sendEvent(self, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sendEvent:"), auto_cast sendEvent, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.currentEvent != nil {
+        currentEvent :: proc "c" (self: ^Window, _: SEL) -> ^Event {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).currentEvent(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("currentEvent"), auto_cast currentEvent, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.acceptsMouseMovedEvents != nil {
+        acceptsMouseMovedEvents :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).acceptsMouseMovedEvents(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptsMouseMovedEvents"), auto_cast acceptsMouseMovedEvents, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAcceptsMouseMovedEvents != nil {
+        setAcceptsMouseMovedEvents :: proc "c" (self: ^Window, _: SEL, acceptsMouseMovedEvents: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setAcceptsMouseMovedEvents(self, acceptsMouseMovedEvents)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAcceptsMouseMovedEvents:"), auto_cast setAcceptsMouseMovedEvents, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.ignoresMouseEvents != nil {
+        ignoresMouseEvents :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).ignoresMouseEvents(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("ignoresMouseEvents"), auto_cast ignoresMouseEvents, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIgnoresMouseEvents != nil {
+        setIgnoresMouseEvents :: proc "c" (self: ^Window, _: SEL, ignoresMouseEvents: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setIgnoresMouseEvents(self, ignoresMouseEvents)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIgnoresMouseEvents:"), auto_cast setIgnoresMouseEvents, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.mouseLocationOutsideOfEventStream != nil {
+        mouseLocationOutsideOfEventStream :: proc "c" (self: ^Window, _: SEL) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).mouseLocationOutsideOfEventStream(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mouseLocationOutsideOfEventStream"), auto_cast mouseLocationOutsideOfEventStream, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
+    }
+    if vt.disableCursorRects != nil {
+        disableCursorRects :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).disableCursorRects(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("disableCursorRects"), auto_cast disableCursorRects, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.enableCursorRects != nil {
+        enableCursorRects :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).enableCursorRects(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enableCursorRects"), auto_cast enableCursorRects, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.discardCursorRects != nil {
+        discardCursorRects :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).discardCursorRects(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("discardCursorRects"), auto_cast discardCursorRects, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.invalidateCursorRectsForView != nil {
+        invalidateCursorRectsForView :: proc "c" (self: ^Window, _: SEL, view: ^View) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).invalidateCursorRectsForView(self, view)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateCursorRectsForView:"), auto_cast invalidateCursorRectsForView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.resetCursorRects != nil {
+        resetCursorRects :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).resetCursorRects(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resetCursorRects"), auto_cast resetCursorRects, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.areCursorRectsEnabled != nil {
+        areCursorRectsEnabled :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).areCursorRectsEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("areCursorRectsEnabled"), auto_cast areCursorRectsEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.dragImage != nil {
+        dragImage :: proc "c" (self: ^Window, _: SEL, image: ^NS.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).dragImage(self, image, baseLocation, initialOffset, event, pboard, sourceObj, slideFlag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragImage:at:offset:event:pasteboard:source:slideBack:"), auto_cast dragImage, "v@:@{CGPoint=dd}{CGSize=dd}@@@B") do panic("Failed to register objC method.")
+    }
+    if vt.registerForDraggedTypes != nil {
+        registerForDraggedTypes :: proc "c" (self: ^Window, _: SEL, newTypes: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).registerForDraggedTypes(self, newTypes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registerForDraggedTypes:"), auto_cast registerForDraggedTypes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.unregisterDraggedTypes != nil {
+        unregisterDraggedTypes :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).unregisterDraggedTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("unregisterDraggedTypes"), auto_cast unregisterDraggedTypes, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.initWithWindowRef != nil {
+        initWithWindowRef :: proc "c" (self: ^Window, _: SEL, windowRef: rawptr) -> ^Window {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).initWithWindowRef(self, windowRef)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindowRef:"), auto_cast initWithWindowRef, "@@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.windowRef != nil {
+        windowRef :: proc "c" (self: ^Window, _: SEL) -> rawptr {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).windowRef(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("windowRef"), auto_cast windowRef, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.displayLinkWithTarget != nil {
+        displayLinkWithTarget :: proc "c" (self: ^Window, _: SEL, target: id, selector: SEL) -> ^CA.DisplayLink {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).displayLinkWithTarget(self, target, selector)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("displayLinkWithTarget:selector:"), auto_cast displayLinkWithTarget, "@@:@:") do panic("Failed to register objC method.")
+    }
+    if vt.cacheImageInRect != nil {
+        cacheImageInRect :: proc "c" (self: ^Window, _: SEL, rect: NS.Rect) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).cacheImageInRect(self, rect)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cacheImageInRect:"), auto_cast cacheImageInRect, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+    }
+    if vt.restoreCachedImage != nil {
+        restoreCachedImage :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).restoreCachedImage(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("restoreCachedImage"), auto_cast restoreCachedImage, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.discardCachedImage != nil {
+        discardCachedImage :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).discardCachedImage(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("discardCachedImage"), auto_cast discardCachedImage, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.menuChanged != nil {
+        menuChanged :: proc "c" (self: Class, _: SEL, menu: ^Menu) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).menuChanged( menu)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("menuChanged:"), auto_cast menuChanged, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.gState != nil {
+        gState :: proc "c" (self: ^Window, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).gState(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("gState"), auto_cast gState, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.convertBaseToScreen != nil {
+        convertBaseToScreen :: proc "c" (self: ^Window, _: SEL, point: CG.Point) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).convertBaseToScreen(self, point)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("convertBaseToScreen:"), auto_cast convertBaseToScreen, "{CGPoint=dd}@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.convertScreenToBase != nil {
+        convertScreenToBase :: proc "c" (self: ^Window, _: SEL, point: CG.Point) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).convertScreenToBase(self, point)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("convertScreenToBase:"), auto_cast convertScreenToBase, "{CGPoint=dd}@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.userSpaceScaleFactor != nil {
+        userSpaceScaleFactor :: proc "c" (self: ^Window, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).userSpaceScaleFactor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("userSpaceScaleFactor"), auto_cast userSpaceScaleFactor, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.useOptimizedDrawing != nil {
+        useOptimizedDrawing :: proc "c" (self: ^Window, _: SEL, flag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).useOptimizedDrawing(self, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("useOptimizedDrawing:"), auto_cast useOptimizedDrawing, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.canStoreColor != nil {
+        canStoreColor :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).canStoreColor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("canStoreColor"), auto_cast canStoreColor, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.disableFlushWindow != nil {
+        disableFlushWindow :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).disableFlushWindow(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("disableFlushWindow"), auto_cast disableFlushWindow, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.enableFlushWindow != nil {
+        enableFlushWindow :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).enableFlushWindow(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enableFlushWindow"), auto_cast enableFlushWindow, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.flushWindow != nil {
+        flushWindow :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).flushWindow(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("flushWindow"), auto_cast flushWindow, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.flushWindowIfNeeded != nil {
+        flushWindowIfNeeded :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).flushWindowIfNeeded(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("flushWindowIfNeeded"), auto_cast flushWindowIfNeeded, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.isFlushWindowDisabled != nil {
+        isFlushWindowDisabled :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isFlushWindowDisabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isFlushWindowDisabled"), auto_cast isFlushWindowDisabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isAutodisplay != nil {
+        isAutodisplay :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isAutodisplay(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAutodisplay"), auto_cast isAutodisplay, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutodisplay != nil {
+        setAutodisplay :: proc "c" (self: ^Window, _: SEL, autodisplay: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setAutodisplay(self, autodisplay)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutodisplay:"), auto_cast setAutodisplay, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.graphicsContext != nil {
+        graphicsContext :: proc "c" (self: ^Window, _: SEL) -> ^GraphicsContext {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).graphicsContext(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("graphicsContext"), auto_cast graphicsContext, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.isOneShot != nil {
+        isOneShot :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isOneShot(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isOneShot"), auto_cast isOneShot, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setOneShot != nil {
+        setOneShot :: proc "c" (self: ^Window, _: SEL, oneShot: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setOneShot(self, oneShot)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setOneShot:"), auto_cast setOneShot, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.preferredBackingLocation != nil {
+        preferredBackingLocation :: proc "c" (self: ^Window, _: SEL) -> WindowBackingLocation {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).preferredBackingLocation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredBackingLocation"), auto_cast preferredBackingLocation, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredBackingLocation != nil {
+        setPreferredBackingLocation :: proc "c" (self: ^Window, _: SEL, preferredBackingLocation: WindowBackingLocation) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setPreferredBackingLocation(self, preferredBackingLocation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredBackingLocation:"), auto_cast setPreferredBackingLocation, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.backingLocation != nil {
+        backingLocation :: proc "c" (self: ^Window, _: SEL) -> WindowBackingLocation {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).backingLocation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("backingLocation"), auto_cast backingLocation, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.showsResizeIndicator != nil {
+        showsResizeIndicator :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).showsResizeIndicator(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showsResizeIndicator"), auto_cast showsResizeIndicator, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setShowsResizeIndicator != nil {
+        setShowsResizeIndicator :: proc "c" (self: ^Window, _: SEL, showsResizeIndicator: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setShowsResizeIndicator(self, showsResizeIndicator)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsResizeIndicator:"), auto_cast setShowsResizeIndicator, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.updateConstraintsIfNeeded != nil {
+        updateConstraintsIfNeeded :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).updateConstraintsIfNeeded(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateConstraintsIfNeeded"), auto_cast updateConstraintsIfNeeded, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.layoutIfNeeded != nil {
+        layoutIfNeeded :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).layoutIfNeeded(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutIfNeeded"), auto_cast layoutIfNeeded, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.anchorAttributeForOrientation != nil {
+        anchorAttributeForOrientation :: proc "c" (self: ^Window, _: SEL, orientation: LayoutConstraintOrientation) -> LayoutAttribute {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).anchorAttributeForOrientation(self, orientation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("anchorAttributeForOrientation:"), auto_cast anchorAttributeForOrientation, "l@:l") do panic("Failed to register objC method.")
+    }
+    if vt.setAnchorAttribute != nil {
+        setAnchorAttribute :: proc "c" (self: ^Window, _: SEL, attr: LayoutAttribute, orientation: LayoutConstraintOrientation) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setAnchorAttribute(self, attr, orientation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAnchorAttribute:forOrientation:"), auto_cast setAnchorAttribute, "v@:ll") do panic("Failed to register objC method.")
+    }
+    if vt.visualizeConstraints != nil {
+        visualizeConstraints :: proc "c" (self: ^Window, _: SEL, constraints: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).visualizeConstraints(self, constraints)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("visualizeConstraints:"), auto_cast visualizeConstraints, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.drawers != nil {
+        drawers :: proc "c" (self: ^Window, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).drawers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("drawers"), auto_cast drawers, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIsMiniaturized != nil {
+        setIsMiniaturized :: proc "c" (self: ^Window, _: SEL, flag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setIsMiniaturized(self, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIsMiniaturized:"), auto_cast setIsMiniaturized, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.setIsVisible != nil {
+        setIsVisible :: proc "c" (self: ^Window, _: SEL, flag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setIsVisible(self, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIsVisible:"), auto_cast setIsVisible, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.setIsZoomed != nil {
+        setIsZoomed :: proc "c" (self: ^Window, _: SEL, flag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setIsZoomed(self, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIsZoomed:"), auto_cast setIsZoomed, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.handleCloseScriptCommand != nil {
+        handleCloseScriptCommand :: proc "c" (self: ^Window, _: SEL, command: ^NS.CloseCommand) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).handleCloseScriptCommand(self, command)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("handleCloseScriptCommand:"), auto_cast handleCloseScriptCommand, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.handlePrintScriptCommand != nil {
+        handlePrintScriptCommand :: proc "c" (self: ^Window, _: SEL, command: ^NS.ScriptCommand) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).handlePrintScriptCommand(self, command)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("handlePrintScriptCommand:"), auto_cast handlePrintScriptCommand, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.handleSaveScriptCommand != nil {
+        handleSaveScriptCommand :: proc "c" (self: ^Window, _: SEL, command: ^NS.ScriptCommand) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).handleSaveScriptCommand(self, command)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("handleSaveScriptCommand:"), auto_cast handleSaveScriptCommand, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.hasCloseBox != nil {
+        hasCloseBox :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).hasCloseBox(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hasCloseBox"), auto_cast hasCloseBox, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.hasTitleBar != nil {
+        hasTitleBar :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).hasTitleBar(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hasTitleBar"), auto_cast hasTitleBar, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isFloatingPanel != nil {
+        isFloatingPanel :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isFloatingPanel(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isFloatingPanel"), auto_cast isFloatingPanel, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isMiniaturizable != nil {
+        isMiniaturizable :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isMiniaturizable(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isMiniaturizable"), auto_cast isMiniaturizable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isModalPanel != nil {
+        isModalPanel :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isModalPanel(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isModalPanel"), auto_cast isModalPanel, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isResizable != nil {
+        isResizable :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isResizable(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isResizable"), auto_cast isResizable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isZoomable != nil {
+        isZoomable :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isZoomable(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isZoomable"), auto_cast isZoomable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.orderedIndex != nil {
+        orderedIndex :: proc "c" (self: ^Window, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).orderedIndex(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("orderedIndex"), auto_cast orderedIndex, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setOrderedIndex != nil {
+        setOrderedIndex :: proc "c" (self: ^Window, _: SEL, orderedIndex: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setOrderedIndex(self, orderedIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setOrderedIndex:"), auto_cast setOrderedIndex, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.disableSnapshotRestoration != nil {
+        disableSnapshotRestoration :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).disableSnapshotRestoration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("disableSnapshotRestoration"), auto_cast disableSnapshotRestoration, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.enableSnapshotRestoration != nil {
+        enableSnapshotRestoration :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).enableSnapshotRestoration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enableSnapshotRestoration"), auto_cast enableSnapshotRestoration, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.isRestorable != nil {
+        isRestorable :: proc "c" (self: ^Window, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).isRestorable(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isRestorable"), auto_cast isRestorable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRestorable != nil {
+        setRestorable :: proc "c" (self: ^Window, _: SEL, restorable: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setRestorable(self, restorable)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRestorable:"), auto_cast setRestorable, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.restorationClass != nil {
+        restorationClass :: proc "c" (self: ^Window, _: SEL) -> ^Class {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).restorationClass(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("restorationClass"), auto_cast restorationClass, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRestorationClass != nil {
+        setRestorationClass :: proc "c" (self: ^Window, _: SEL, restorationClass: ^Class) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setRestorationClass(self, restorationClass)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRestorationClass:"), auto_cast setRestorationClass, "v@:^void") do panic("Failed to register objC method.")
+    }
     if vt.defaultAnimationForKey != nil {
         defaultAnimationForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> id {
 
@@ -4534,6 +5390,26 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultAnimationForKey:"), auto_cast defaultAnimationForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.allowedClassesForRestorableStateKeyPath != nil {
+        allowedClassesForRestorableStateKeyPath :: proc "c" (self: Class, _: SEL, keyPath: ^NS.String) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.restorableStateKeyPaths != nil {
+        restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).restorableStateKeyPaths()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -4724,6 +5600,156 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

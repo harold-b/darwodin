@@ -335,6 +335,11 @@ OpenPanel_VTable :: struct {
     setCanDownloadUbiquitousContents: proc(self: ^OpenPanel, canDownloadUbiquitousContents: bool),
     isAccessoryViewDisclosed: proc(self: ^OpenPanel) -> bool,
     setAccessoryViewDisclosed: proc(self: ^OpenPanel, accessoryViewDisclosed: bool),
+    filenames: proc(self: ^OpenPanel) -> ^NS.Array,
+    beginSheetForDirectory: proc(self: ^OpenPanel, path: ^NS.String, name: ^NS.String, fileTypes: ^NS.Array, docWindow: ^Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr),
+    beginForDirectory: proc(self: ^OpenPanel, path: ^NS.String, name: ^NS.String, fileTypes: ^NS.Array, delegate: id, didEndSelector: SEL, contextInfo: rawptr),
+    runModalForDirectory: proc(self: ^OpenPanel, path: ^NS.String, name: ^NS.String, fileTypes: ^NS.Array) -> NS.Integer,
+    runModalForTypes: proc(self: ^OpenPanel, fileTypes: ^NS.Array) -> NS.Integer,
     savePanel: proc() -> ^SavePanel,
     frameRectForContentRect: proc(cRect: NS.Rect, style: WindowStyleMask) -> NS.Rect,
     contentRectForFrameRect: proc(fRect: NS.Rect, style: WindowStyleMask) -> NS.Rect,
@@ -348,7 +353,10 @@ OpenPanel_VTable :: struct {
     allowsAutomaticWindowTabbing: proc() -> bool,
     setAllowsAutomaticWindowTabbing: proc(allowsAutomaticWindowTabbing: bool),
     userTabbingPreference: proc() -> WindowUserTabbingPreference,
+    menuChanged: proc(menu: ^Menu),
     defaultAnimationForKey: proc(key: ^NS.String) -> id,
+    allowedClassesForRestorableStateKeyPath: proc(keyPath: ^NS.String) -> ^NS.Array,
+    restorableStateKeyPaths: proc() -> ^NS.Array,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^OpenPanel,
@@ -368,12 +376,30 @@ OpenPanel_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 OpenPanel_odin_extend :: proc(cls: Class, vt: ^OpenPanel_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    SavePanel_odin_extend(cls, &vt.super)
+
     if vt.openPanel != nil {
         openPanel :: proc "c" (self: Class, _: SEL) -> ^OpenPanel {
 
@@ -534,6 +560,56 @@ OpenPanel_odin_extend :: proc(cls: Class, vt: ^OpenPanel_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessoryViewDisclosed:"), auto_cast setAccessoryViewDisclosed, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.filenames != nil {
+        filenames :: proc "c" (self: ^OpenPanel, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).filenames(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("filenames"), auto_cast filenames, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.beginSheetForDirectory != nil {
+        beginSheetForDirectory :: proc "c" (self: ^OpenPanel, _: SEL, path: ^NS.String, name: ^NS.String, fileTypes: ^NS.Array, docWindow: ^Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).beginSheetForDirectory(self, path, name, fileTypes, docWindow, delegate, didEndSelector, contextInfo)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:"), auto_cast beginSheetForDirectory, "v@:@@@@@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.beginForDirectory != nil {
+        beginForDirectory :: proc "c" (self: ^OpenPanel, _: SEL, path: ^NS.String, name: ^NS.String, fileTypes: ^NS.Array, delegate: id, didEndSelector: SEL, contextInfo: rawptr) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).beginForDirectory(self, path, name, fileTypes, delegate, didEndSelector, contextInfo)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:"), auto_cast beginForDirectory, "v@:@@@@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.runModalForDirectory != nil {
+        runModalForDirectory :: proc "c" (self: ^OpenPanel, _: SEL, path: ^NS.String, name: ^NS.String, fileTypes: ^NS.Array) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).runModalForDirectory(self, path, name, fileTypes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("runModalForDirectory:file:types:"), auto_cast runModalForDirectory, "l@:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.runModalForTypes != nil {
+        runModalForTypes :: proc "c" (self: ^OpenPanel, _: SEL, fileTypes: ^NS.Array) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).runModalForTypes(self, fileTypes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("runModalForTypes:"), auto_cast runModalForTypes, "l@:@") do panic("Failed to register objC method.")
+    }
     if vt.savePanel != nil {
         savePanel :: proc "c" (self: Class, _: SEL) -> ^SavePanel {
 
@@ -664,6 +740,16 @@ OpenPanel_odin_extend :: proc(cls: Class, vt: ^OpenPanel_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("userTabbingPreference"), auto_cast userTabbingPreference, "l#:") do panic("Failed to register objC method.")
     }
+    if vt.menuChanged != nil {
+        menuChanged :: proc "c" (self: Class, _: SEL, menu: ^Menu) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).menuChanged( menu)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("menuChanged:"), auto_cast menuChanged, "v#:@") do panic("Failed to register objC method.")
+    }
     if vt.defaultAnimationForKey != nil {
         defaultAnimationForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> id {
 
@@ -673,6 +759,26 @@ OpenPanel_odin_extend :: proc(cls: Class, vt: ^OpenPanel_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultAnimationForKey:"), auto_cast defaultAnimationForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.allowedClassesForRestorableStateKeyPath != nil {
+        allowedClassesForRestorableStateKeyPath :: proc "c" (self: Class, _: SEL, keyPath: ^NS.String) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.restorableStateKeyPaths != nil {
+        restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).restorableStateKeyPaths()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -863,6 +969,156 @@ OpenPanel_odin_extend :: proc(cls: Class, vt: ^OpenPanel_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

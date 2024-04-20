@@ -363,6 +363,16 @@ CalendarDate_VTable :: struct {
     years: proc(self: ^CalendarDate, yp: ^Integer, mop: ^Integer, dp: ^Integer, hp: ^Integer, mip: ^Integer, sp: ^Integer, date: ^CalendarDate),
     distantFuture: proc() -> ^CalendarDate,
     distantPast: proc() -> ^CalendarDate,
+    timeIntervalSinceReferenceDate: proc() -> TimeInterval,
+    date: proc() -> ^Date,
+    dateWithTimeIntervalSinceNow: proc(secs: TimeInterval) -> ^Date,
+    dateWithTimeIntervalSinceReferenceDate: proc(ti: TimeInterval) -> ^Date,
+    dateWithTimeIntervalSince1970: proc(secs: TimeInterval) -> ^Date,
+    dateWithTimeInterval: proc(secsToBeAdded: TimeInterval, date: ^Date) -> ^Date,
+    now: proc() -> ^Date,
+    dateWithNaturalLanguageString_locale: proc(string: ^String, locale: id) -> id,
+    dateWithNaturalLanguageString_: proc(string: ^String) -> id,
+    dateWithString_: proc(aString: ^String) -> id,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -383,12 +393,27 @@ CalendarDate_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 CalendarDate_odin_extend :: proc(cls: Class, vt: ^CalendarDate_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Date_odin_extend(cls, &vt.super)
+
     if vt.calendarDate != nil {
         calendarDate :: proc "c" (self: Class, _: SEL) -> id {
 
@@ -669,6 +694,106 @@ CalendarDate_odin_extend :: proc(cls: Class, vt: ^CalendarDate_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("distantPast"), auto_cast distantPast, "@#:") do panic("Failed to register objC method.")
     }
+    if vt.timeIntervalSinceReferenceDate != nil {
+        timeIntervalSinceReferenceDate :: proc "c" (self: Class, _: SEL) -> TimeInterval {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).timeIntervalSinceReferenceDate()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("timeIntervalSinceReferenceDate"), auto_cast timeIntervalSinceReferenceDate, "d#:") do panic("Failed to register objC method.")
+    }
+    if vt.date != nil {
+        date :: proc "c" (self: Class, _: SEL) -> ^Date {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).date()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("date"), auto_cast date, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.dateWithTimeIntervalSinceNow != nil {
+        dateWithTimeIntervalSinceNow :: proc "c" (self: Class, _: SEL, secs: TimeInterval) -> ^Date {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).dateWithTimeIntervalSinceNow( secs)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithTimeIntervalSinceNow:"), auto_cast dateWithTimeIntervalSinceNow, "@#:d") do panic("Failed to register objC method.")
+    }
+    if vt.dateWithTimeIntervalSinceReferenceDate != nil {
+        dateWithTimeIntervalSinceReferenceDate :: proc "c" (self: Class, _: SEL, ti: TimeInterval) -> ^Date {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).dateWithTimeIntervalSinceReferenceDate( ti)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithTimeIntervalSinceReferenceDate:"), auto_cast dateWithTimeIntervalSinceReferenceDate, "@#:d") do panic("Failed to register objC method.")
+    }
+    if vt.dateWithTimeIntervalSince1970 != nil {
+        dateWithTimeIntervalSince1970 :: proc "c" (self: Class, _: SEL, secs: TimeInterval) -> ^Date {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).dateWithTimeIntervalSince1970( secs)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithTimeIntervalSince1970:"), auto_cast dateWithTimeIntervalSince1970, "@#:d") do panic("Failed to register objC method.")
+    }
+    if vt.dateWithTimeInterval != nil {
+        dateWithTimeInterval :: proc "c" (self: Class, _: SEL, secsToBeAdded: TimeInterval, date: ^Date) -> ^Date {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).dateWithTimeInterval( secsToBeAdded, date)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithTimeInterval:sinceDate:"), auto_cast dateWithTimeInterval, "@#:d@") do panic("Failed to register objC method.")
+    }
+    if vt.now != nil {
+        now :: proc "c" (self: Class, _: SEL) -> ^Date {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).now()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("now"), auto_cast now, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.dateWithNaturalLanguageString_locale != nil {
+        dateWithNaturalLanguageString_locale :: proc "c" (self: Class, _: SEL, string: ^String, locale: id) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).dateWithNaturalLanguageString_locale( string, locale)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithNaturalLanguageString:locale:"), auto_cast dateWithNaturalLanguageString_locale, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.dateWithNaturalLanguageString_ != nil {
+        dateWithNaturalLanguageString_ :: proc "c" (self: Class, _: SEL, string: ^String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).dateWithNaturalLanguageString_( string)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithNaturalLanguageString:"), auto_cast dateWithNaturalLanguageString_, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.dateWithString_ != nil {
+        dateWithString_ :: proc "c" (self: Class, _: SEL, aString: ^String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).dateWithString_( aString)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithString:"), auto_cast dateWithString_, "@#:@") do panic("Failed to register objC method.")
+    }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
 
@@ -868,6 +993,126 @@ CalendarDate_odin_extend :: proc(cls: Class, vt: ^CalendarDate_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CalendarDate_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CalendarDate_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CalendarDate_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CalendarDate_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CalendarDate_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CalendarDate_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

@@ -428,6 +428,11 @@ TraitCollection_VTable :: struct {
     changedTraitsFromTraitCollection: proc(self: ^TraitCollection, traitCollection: ^TraitCollection) -> ^NS.Set,
     systemTraitsAffectingColorAppearance: proc() -> ^NS.Array,
     systemTraitsAffectingImageLookup: proc() -> ^NS.Array,
+    performAsCurrentTraitCollection: proc(self: ^TraitCollection, actions: proc "c" ()),
+    currentTraitCollection: proc() -> ^TraitCollection,
+    setCurrentTraitCollection: proc(currentTraitCollection: ^TraitCollection),
+    hasDifferentColorAppearanceComparedToTraitCollection: proc(self: ^TraitCollection, traitCollection: ^TraitCollection) -> bool,
+    imageConfiguration: proc(self: ^TraitCollection) -> ^ImageConfiguration,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -448,12 +453,25 @@ TraitCollection_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 TraitCollection_odin_extend :: proc(cls: Class, vt: ^TraitCollection_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.init != nil {
         init :: proc "c" (self: ^TraitCollection, _: SEL) -> ^TraitCollection {
 
@@ -974,6 +992,56 @@ TraitCollection_odin_extend :: proc(cls: Class, vt: ^TraitCollection_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemTraitsAffectingImageLookup"), auto_cast systemTraitsAffectingImageLookup, "@#:") do panic("Failed to register objC method.")
     }
+    if vt.performAsCurrentTraitCollection != nil {
+        performAsCurrentTraitCollection :: proc "c" (self: ^TraitCollection, _: SEL, actions: proc "c" ()) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TraitCollection_VTable)vt_ctx.super_vt).performAsCurrentTraitCollection(self, actions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performAsCurrentTraitCollection:"), auto_cast performAsCurrentTraitCollection, "v@:?") do panic("Failed to register objC method.")
+    }
+    if vt.currentTraitCollection != nil {
+        currentTraitCollection :: proc "c" (self: Class, _: SEL) -> ^TraitCollection {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).currentTraitCollection()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("currentTraitCollection"), auto_cast currentTraitCollection, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.setCurrentTraitCollection != nil {
+        setCurrentTraitCollection :: proc "c" (self: Class, _: SEL, currentTraitCollection: ^TraitCollection) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TraitCollection_VTable)vt_ctx.super_vt).setCurrentTraitCollection( currentTraitCollection)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setCurrentTraitCollection:"), auto_cast setCurrentTraitCollection, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.hasDifferentColorAppearanceComparedToTraitCollection != nil {
+        hasDifferentColorAppearanceComparedToTraitCollection :: proc "c" (self: ^TraitCollection, _: SEL, traitCollection: ^TraitCollection) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).hasDifferentColorAppearanceComparedToTraitCollection(self, traitCollection)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hasDifferentColorAppearanceComparedToTraitCollection:"), auto_cast hasDifferentColorAppearanceComparedToTraitCollection, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.imageConfiguration != nil {
+        imageConfiguration :: proc "c" (self: ^TraitCollection, _: SEL) -> ^ImageConfiguration {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).imageConfiguration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("imageConfiguration"), auto_cast imageConfiguration, "@@:") do panic("Failed to register objC method.")
+    }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
 
@@ -1173,6 +1241,106 @@ TraitCollection_odin_extend :: proc(cls: Class, vt: ^TraitCollection_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TraitCollection_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TraitCollection_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TraitCollection_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

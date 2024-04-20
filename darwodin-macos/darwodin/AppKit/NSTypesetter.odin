@@ -458,6 +458,26 @@ Typesetter_VTable :: struct {
     currentParagraphStyle: proc(self: ^Typesetter) -> ^ParagraphStyle,
     sharedSystemTypesetter: proc() -> ^Typesetter,
     defaultTypesetterBehavior: proc() -> TypesetterBehavior,
+    willSetLineFragmentRect: proc(self: ^Typesetter, lineRect: ^NS.Rect, glyphRange: NS._NSRange, usedRect: ^NS.Rect, baselineOffset: ^CG.Float),
+    shouldBreakLineByWordBeforeCharacterAtIndex: proc(self: ^Typesetter, charIndex: NS.UInteger) -> bool,
+    shouldBreakLineByHyphenatingBeforeCharacterAtIndex: proc(self: ^Typesetter, charIndex: NS.UInteger) -> bool,
+    hyphenationFactorForGlyphAtIndex: proc(self: ^Typesetter, glyphIndex: NS.UInteger) -> cffi.float,
+    hyphenCharacterForGlyphAtIndex: proc(self: ^Typesetter, glyphIndex: NS.UInteger) -> CF.UTF32Char,
+    boundingBoxForControlGlyphAtIndex: proc(self: ^Typesetter, glyphIndex: NS.UInteger, textContainer: ^TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect,
+    characterRangeForGlyphRange: proc(self: ^Typesetter, glyphRange: NS._NSRange, actualGlyphRange: ^NS._NSRange) -> NS._NSRange,
+    glyphRangeForCharacterRange: proc(self: ^Typesetter, charRange: NS._NSRange, actualCharRange: ^NS._NSRange) -> NS._NSRange,
+    getLineFragmentRect_usedRect_remainingRect_forStartingGlyphAtIndex_proposedRect_lineSpacing_paragraphSpacingBefore_paragraphSpacingAfter: proc(self: ^Typesetter, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, remainingRect: ^NS.Rect, startingGlyphIndex: NS.UInteger, proposedRect: NS.Rect, lineSpacing: CG.Float, paragraphSpacingBefore: CG.Float, paragraphSpacingAfter: CG.Float),
+    setLineFragmentRect: proc(self: ^Typesetter, fragmentRect: NS.Rect, glyphRange: NS._NSRange, usedRect: NS.Rect, baselineOffset: CG.Float),
+    setNotShownAttribute: proc(self: ^Typesetter, flag: bool, glyphRange: NS._NSRange),
+    setDrawsOutsideLineFragment: proc(self: ^Typesetter, flag: bool, glyphRange: NS._NSRange),
+    setLocation: proc(self: ^Typesetter, location: CG.Point, advancements: ^CG.Float, glyphRange: NS._NSRange),
+    setAttachmentSize: proc(self: ^Typesetter, attachmentSize: NS.Size, glyphRange: NS._NSRange),
+    setBidiLevels: proc(self: ^Typesetter, levels: ^cffi.uint8_t, glyphRange: NS._NSRange),
+    actionForControlCharacterAtIndex: proc(self: ^Typesetter, charIndex: NS.UInteger) -> TypesetterControlCharacterAction,
+    getGlyphsInRange: proc(self: ^Typesetter, glyphsRange: NS._NSRange, glyphBuffer: ^Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^GlyphInscription, elasticBuffer: ^bool, bidiLevelBuffer: ^cffi.uchar) -> NS.UInteger,
+    substituteGlyphsInRange: proc(self: ^Typesetter, glyphRange: NS._NSRange, glyphs: ^Glyph),
+    insertGlyph: proc(self: ^Typesetter, glyph: Glyph, glyphIndex: NS.UInteger, characterIndex: NS.UInteger),
+    deleteGlyphsInRange: proc(self: ^Typesetter, glyphRange: NS._NSRange),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Typesetter,
@@ -477,12 +497,30 @@ Typesetter_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 Typesetter_odin_extend :: proc(cls: Class, vt: ^Typesetter_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.substituteFontForFont != nil {
         substituteFontForFont :: proc "c" (self: ^Typesetter, _: SEL, originalFont: ^Font) -> ^Font {
 
@@ -893,6 +931,206 @@ Typesetter_odin_extend :: proc(cls: Class, vt: ^Typesetter_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultTypesetterBehavior"), auto_cast defaultTypesetterBehavior, "l#:") do panic("Failed to register objC method.")
     }
+    if vt.willSetLineFragmentRect != nil {
+        willSetLineFragmentRect :: proc "c" (self: ^Typesetter, _: SEL, lineRect: ^NS.Rect, glyphRange: NS._NSRange, usedRect: ^NS.Rect, baselineOffset: ^CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).willSetLineFragmentRect(self, lineRect, glyphRange, usedRect, baselineOffset)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:"), auto_cast willSetLineFragmentRect, "v@:^void{_NSRange=LL}^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.shouldBreakLineByWordBeforeCharacterAtIndex != nil {
+        shouldBreakLineByWordBeforeCharacterAtIndex :: proc "c" (self: ^Typesetter, _: SEL, charIndex: NS.UInteger) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).shouldBreakLineByWordBeforeCharacterAtIndex(self, charIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldBreakLineByWordBeforeCharacterAtIndex:"), auto_cast shouldBreakLineByWordBeforeCharacterAtIndex, "B@:L") do panic("Failed to register objC method.")
+    }
+    if vt.shouldBreakLineByHyphenatingBeforeCharacterAtIndex != nil {
+        shouldBreakLineByHyphenatingBeforeCharacterAtIndex :: proc "c" (self: ^Typesetter, _: SEL, charIndex: NS.UInteger) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).shouldBreakLineByHyphenatingBeforeCharacterAtIndex(self, charIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldBreakLineByHyphenatingBeforeCharacterAtIndex:"), auto_cast shouldBreakLineByHyphenatingBeforeCharacterAtIndex, "B@:L") do panic("Failed to register objC method.")
+    }
+    if vt.hyphenationFactorForGlyphAtIndex != nil {
+        hyphenationFactorForGlyphAtIndex :: proc "c" (self: ^Typesetter, _: SEL, glyphIndex: NS.UInteger) -> cffi.float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).hyphenationFactorForGlyphAtIndex(self, glyphIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hyphenationFactorForGlyphAtIndex:"), auto_cast hyphenationFactorForGlyphAtIndex, "f@:L") do panic("Failed to register objC method.")
+    }
+    if vt.hyphenCharacterForGlyphAtIndex != nil {
+        hyphenCharacterForGlyphAtIndex :: proc "c" (self: ^Typesetter, _: SEL, glyphIndex: NS.UInteger) -> CF.UTF32Char {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).hyphenCharacterForGlyphAtIndex(self, glyphIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hyphenCharacterForGlyphAtIndex:"), auto_cast hyphenCharacterForGlyphAtIndex, "I@:L") do panic("Failed to register objC method.")
+    }
+    if vt.boundingBoxForControlGlyphAtIndex != nil {
+        boundingBoxForControlGlyphAtIndex :: proc "c" (self: ^Typesetter, _: SEL, glyphIndex: NS.UInteger, textContainer: ^TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).boundingBoxForControlGlyphAtIndex(self, glyphIndex, textContainer, proposedRect, glyphPosition, charIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:"), auto_cast boundingBoxForControlGlyphAtIndex, "{CGRect={CGPoint=dd}{CGSize=dd}}@:L@{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}L") do panic("Failed to register objC method.")
+    }
+    if vt.characterRangeForGlyphRange != nil {
+        characterRangeForGlyphRange :: proc "c" (self: ^Typesetter, _: SEL, glyphRange: NS._NSRange, actualGlyphRange: ^NS._NSRange) -> NS._NSRange {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).characterRangeForGlyphRange(self, glyphRange, actualGlyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("characterRangeForGlyphRange:actualGlyphRange:"), auto_cast characterRangeForGlyphRange, "{_NSRange=LL}@:{_NSRange=LL}^void") do panic("Failed to register objC method.")
+    }
+    if vt.glyphRangeForCharacterRange != nil {
+        glyphRangeForCharacterRange :: proc "c" (self: ^Typesetter, _: SEL, charRange: NS._NSRange, actualCharRange: ^NS._NSRange) -> NS._NSRange {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).glyphRangeForCharacterRange(self, charRange, actualCharRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("glyphRangeForCharacterRange:actualCharacterRange:"), auto_cast glyphRangeForCharacterRange, "{_NSRange=LL}@:{_NSRange=LL}^void") do panic("Failed to register objC method.")
+    }
+    if vt.getLineFragmentRect_usedRect_remainingRect_forStartingGlyphAtIndex_proposedRect_lineSpacing_paragraphSpacingBefore_paragraphSpacingAfter != nil {
+        getLineFragmentRect_usedRect_remainingRect_forStartingGlyphAtIndex_proposedRect_lineSpacing_paragraphSpacingBefore_paragraphSpacingAfter :: proc "c" (self: ^Typesetter, _: SEL, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, remainingRect: ^NS.Rect, startingGlyphIndex: NS.UInteger, proposedRect: NS.Rect, lineSpacing: CG.Float, paragraphSpacingBefore: CG.Float, paragraphSpacingAfter: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).getLineFragmentRect_usedRect_remainingRect_forStartingGlyphAtIndex_proposedRect_lineSpacing_paragraphSpacingBefore_paragraphSpacingAfter(self, lineFragmentRect, lineFragmentUsedRect, remainingRect, startingGlyphIndex, proposedRect, lineSpacing, paragraphSpacingBefore, paragraphSpacingAfter)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("getLineFragmentRect:usedRect:remainingRect:forStartingGlyphAtIndex:proposedRect:lineSpacing:paragraphSpacingBefore:paragraphSpacingAfter:"), auto_cast getLineFragmentRect_usedRect_remainingRect_forStartingGlyphAtIndex_proposedRect_lineSpacing_paragraphSpacingBefore_paragraphSpacingAfter, "v@:^void^void^voidL{CGRect={CGPoint=dd}{CGSize=dd}}ddd") do panic("Failed to register objC method.")
+    }
+    if vt.setLineFragmentRect != nil {
+        setLineFragmentRect :: proc "c" (self: ^Typesetter, _: SEL, fragmentRect: NS.Rect, glyphRange: NS._NSRange, usedRect: NS.Rect, baselineOffset: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setLineFragmentRect(self, fragmentRect, glyphRange, usedRect, baselineOffset)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLineFragmentRect:forGlyphRange:usedRect:baselineOffset:"), auto_cast setLineFragmentRect, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}{_NSRange=LL}{CGRect={CGPoint=dd}{CGSize=dd}}d") do panic("Failed to register objC method.")
+    }
+    if vt.setNotShownAttribute != nil {
+        setNotShownAttribute :: proc "c" (self: ^Typesetter, _: SEL, flag: bool, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setNotShownAttribute(self, flag, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNotShownAttribute:forGlyphRange:"), auto_cast setNotShownAttribute, "v@:B{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.setDrawsOutsideLineFragment != nil {
+        setDrawsOutsideLineFragment :: proc "c" (self: ^Typesetter, _: SEL, flag: bool, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setDrawsOutsideLineFragment(self, flag, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDrawsOutsideLineFragment:forGlyphRange:"), auto_cast setDrawsOutsideLineFragment, "v@:B{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.setLocation != nil {
+        setLocation :: proc "c" (self: ^Typesetter, _: SEL, location: CG.Point, advancements: ^CG.Float, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setLocation(self, location, advancements, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLocation:withAdvancements:forStartOfGlyphRange:"), auto_cast setLocation, "v@:{CGPoint=dd}^void{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.setAttachmentSize != nil {
+        setAttachmentSize :: proc "c" (self: ^Typesetter, _: SEL, attachmentSize: NS.Size, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setAttachmentSize(self, attachmentSize, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttachmentSize:forGlyphRange:"), auto_cast setAttachmentSize, "v@:{CGSize=dd}{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.setBidiLevels != nil {
+        setBidiLevels :: proc "c" (self: ^Typesetter, _: SEL, levels: ^cffi.uint8_t, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setBidiLevels(self, levels, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBidiLevels:forGlyphRange:"), auto_cast setBidiLevels, "v@:^void{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.actionForControlCharacterAtIndex != nil {
+        actionForControlCharacterAtIndex :: proc "c" (self: ^Typesetter, _: SEL, charIndex: NS.UInteger) -> TypesetterControlCharacterAction {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).actionForControlCharacterAtIndex(self, charIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("actionForControlCharacterAtIndex:"), auto_cast actionForControlCharacterAtIndex, "L@:L") do panic("Failed to register objC method.")
+    }
+    if vt.getGlyphsInRange != nil {
+        getGlyphsInRange :: proc "c" (self: ^Typesetter, _: SEL, glyphsRange: NS._NSRange, glyphBuffer: ^Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^GlyphInscription, elasticBuffer: ^bool, bidiLevelBuffer: ^cffi.uchar) -> NS.UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).getGlyphsInRange(self, glyphsRange, glyphBuffer, charIndexBuffer, inscribeBuffer, elasticBuffer, bidiLevelBuffer)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:bidiLevels:"), auto_cast getGlyphsInRange, "L@:{_NSRange=LL}^void^void^void^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.substituteGlyphsInRange != nil {
+        substituteGlyphsInRange :: proc "c" (self: ^Typesetter, _: SEL, glyphRange: NS._NSRange, glyphs: ^Glyph) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).substituteGlyphsInRange(self, glyphRange, glyphs)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("substituteGlyphsInRange:withGlyphs:"), auto_cast substituteGlyphsInRange, "v@:{_NSRange=LL}^void") do panic("Failed to register objC method.")
+    }
+    if vt.insertGlyph != nil {
+        insertGlyph :: proc "c" (self: ^Typesetter, _: SEL, glyph: Glyph, glyphIndex: NS.UInteger, characterIndex: NS.UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).insertGlyph(self, glyph, glyphIndex, characterIndex)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertGlyph:atGlyphIndex:characterIndex:"), auto_cast insertGlyph, "v@:ILL") do panic("Failed to register objC method.")
+    }
+    if vt.deleteGlyphsInRange != nil {
+        deleteGlyphsInRange :: proc "c" (self: ^Typesetter, _: SEL, glyphRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).deleteGlyphsInRange(self, glyphRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("deleteGlyphsInRange:"), auto_cast deleteGlyphsInRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -1082,6 +1320,156 @@ Typesetter_odin_extend :: proc(cls: Class, vt: ^Typesetter_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Typesetter_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Typesetter_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

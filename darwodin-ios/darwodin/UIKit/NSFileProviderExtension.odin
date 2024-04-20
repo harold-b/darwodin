@@ -198,6 +198,10 @@ NSFileProviderExtension_VTable :: struct {
     startProvidingItemAtURL: proc(self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)),
     stopProvidingItemAtURL: proc(self: ^NSFileProviderExtension, url: ^NS.URL),
     itemChangedAtURL: proc(self: ^NSFileProviderExtension, url: ^NS.URL),
+    writePlaceholderAtURL: proc(placeholderURL: ^NS.URL, metadata: ^NS.Dictionary, error: ^^NS.Error) -> bool,
+    placeholderURLForURL: proc(url: ^NS.URL) -> ^NS.URL,
+    providerIdentifier: proc(self: ^NSFileProviderExtension) -> ^NS.String,
+    documentStorageURL: proc(self: ^NSFileProviderExtension) -> ^NS.URL,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^NSFileProviderExtension,
@@ -217,12 +221,25 @@ NSFileProviderExtension_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 NSFileProviderExtension_odin_extend :: proc(cls: Class, vt: ^NSFileProviderExtension_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.itemForIdentifier != nil {
         itemForIdentifier :: proc "c" (self: ^NSFileProviderExtension, _: SEL, identifier: ^NS.String, error: ^^NS.Error) -> ^NSFileProviderItem {
 
@@ -292,6 +309,46 @@ NSFileProviderExtension_odin_extend :: proc(cls: Class, vt: ^NSFileProviderExten
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemChangedAtURL:"), auto_cast itemChangedAtURL, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.writePlaceholderAtURL != nil {
+        writePlaceholderAtURL :: proc "c" (self: Class, _: SEL, placeholderURL: ^NS.URL, metadata: ^NS.Dictionary, error: ^^NS.Error) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).writePlaceholderAtURL( placeholderURL, metadata, error)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("writePlaceholderAtURL:withMetadata:error:"), auto_cast writePlaceholderAtURL, "B#:@@^void") do panic("Failed to register objC method.")
+    }
+    if vt.placeholderURLForURL != nil {
+        placeholderURLForURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> ^NS.URL {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).placeholderURLForURL( url)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("placeholderURLForURL:"), auto_cast placeholderURLForURL, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.providerIdentifier != nil {
+        providerIdentifier :: proc "c" (self: ^NSFileProviderExtension, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).providerIdentifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("providerIdentifier"), auto_cast providerIdentifier, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.documentStorageURL != nil {
+        documentStorageURL :: proc "c" (self: ^NSFileProviderExtension, _: SEL) -> ^NS.URL {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).documentStorageURL(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("documentStorageURL"), auto_cast documentStorageURL, "@@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -482,6 +539,106 @@ NSFileProviderExtension_odin_extend :: proc(cls: Class, vt: ^NSFileProviderExten
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSFileProviderExtension_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

@@ -565,6 +565,52 @@ Workspace_VTable :: struct {
     fileLabelColors: proc(self: ^Workspace) -> ^NS.Array,
     frontmostApplication: proc(self: ^Workspace) -> ^RunningApplication,
     menuBarOwningApplication: proc(self: ^Workspace) -> ^RunningApplication,
+    setDesktopImageURL: proc(self: ^Workspace, url: ^NS.URL, screen: ^Screen, options: ^NS.Dictionary, error: ^^NS.Error) -> bool,
+    desktopImageURLForScreen: proc(self: ^Workspace, screen: ^Screen) -> ^NS.URL,
+    desktopImageOptionsForScreen: proc(self: ^Workspace, screen: ^Screen) -> ^NS.Dictionary,
+    requestAuthorizationOfType: proc(self: ^Workspace, type: WorkspaceAuthorizationType, completionHandler: proc "c" (authorization: ^WorkspaceAuthorization, error: ^NS.Error)),
+    openFile_: proc(self: ^Workspace, fullPath: ^NS.String) -> bool,
+    openFile_withApplication: proc(self: ^Workspace, fullPath: ^NS.String, appName: ^NS.String) -> bool,
+    openFile_withApplication_andDeactivate: proc(self: ^Workspace, fullPath: ^NS.String, appName: ^NS.String, flag: bool) -> bool,
+    launchApplication_: proc(self: ^Workspace, appName: ^NS.String) -> bool,
+    launchApplicationAtURL: proc(self: ^Workspace, url: ^NS.URL, options: WorkspaceLaunchOptions, configuration: ^NS.Dictionary, error: ^^NS.Error) -> ^RunningApplication,
+    openURL_options_configuration_error: proc(self: ^Workspace, url: ^NS.URL, options: WorkspaceLaunchOptions, configuration: ^NS.Dictionary, error: ^^NS.Error) -> ^RunningApplication,
+    openURLs_withApplicationAtURL_options_configuration_error: proc(self: ^Workspace, urls: ^NS.Array, applicationURL: ^NS.URL, options: WorkspaceLaunchOptions, configuration: ^NS.Dictionary, error: ^^NS.Error) -> ^RunningApplication,
+    launchApplication_showIcon_autolaunch: proc(self: ^Workspace, appName: ^NS.String, showIcon: bool, autolaunch: bool) -> bool,
+    fullPathForApplication: proc(self: ^Workspace, appName: ^NS.String) -> ^NS.String,
+    absolutePathForAppBundleWithIdentifier: proc(self: ^Workspace, bundleIdentifier: ^NS.String) -> ^NS.String,
+    launchAppWithBundleIdentifier: proc(self: ^Workspace, bundleIdentifier: ^NS.String, options: WorkspaceLaunchOptions, descriptor: ^NS.AppleEventDescriptor, identifier: ^^NS.Number) -> bool,
+    openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers: proc(self: ^Workspace, urls: ^NS.Array, bundleIdentifier: ^NS.String, options: WorkspaceLaunchOptions, descriptor: ^NS.AppleEventDescriptor, identifiers: ^^NS.Array) -> bool,
+    openTempFile: proc(self: ^Workspace, fullPath: ^NS.String) -> bool,
+    findApplications: proc(self: ^Workspace),
+    noteUserDefaultsChanged: proc(self: ^Workspace),
+    slideImage: proc(self: ^Workspace, image: ^NS.Image, fromPoint: CG.Point, toPoint: CG.Point),
+    checkForRemovableMedia: proc(self: ^Workspace),
+    noteFileSystemChanged_: proc(self: ^Workspace),
+    fileSystemChanged: proc(self: ^Workspace) -> bool,
+    userDefaultsChanged: proc(self: ^Workspace) -> bool,
+    mountNewRemovableMedia: proc(self: ^Workspace) -> ^NS.Array,
+    activeApplication: proc(self: ^Workspace) -> ^NS.Dictionary,
+    mountedLocalVolumePaths: proc(self: ^Workspace) -> ^NS.Array,
+    mountedRemovableMedia: proc(self: ^Workspace) -> ^NS.Array,
+    launchedApplications: proc(self: ^Workspace) -> ^NS.Array,
+    openFile_fromImage_at_inView: proc(self: ^Workspace, fullPath: ^NS.String, image: ^NS.Image, point: CG.Point, view: ^View) -> bool,
+    performFileOperation: proc(self: ^Workspace, operation: ^NS.String, source: ^NS.String, destination: ^NS.String, files: ^NS.Array, tag: ^NS.Integer) -> bool,
+    getInfoForFile: proc(self: ^Workspace, fullPath: ^NS.String, appName: ^^NS.String, type: ^^NS.String) -> bool,
+    iconForFileType: proc(self: ^Workspace, fileType: ^NS.String) -> ^NS.Image,
+    typeOfFile: proc(self: ^Workspace, absoluteFilePath: ^NS.String, outError: ^^NS.Error) -> ^NS.String,
+    localizedDescriptionForType: proc(self: ^Workspace, typeName: ^NS.String) -> ^NS.String,
+    preferredFilenameExtensionForType: proc(self: ^Workspace, typeName: ^NS.String) -> ^NS.String,
+    filenameExtension: proc(self: ^Workspace, filenameExtension: ^NS.String, typeName: ^NS.String) -> bool,
+    type: proc(self: ^Workspace, firstTypeName: ^NS.String, secondTypeName: ^NS.String) -> bool,
+    accessibilityDisplayShouldIncreaseContrast: proc(self: ^Workspace) -> bool,
+    accessibilityDisplayShouldDifferentiateWithoutColor: proc(self: ^Workspace) -> bool,
+    accessibilityDisplayShouldReduceTransparency: proc(self: ^Workspace) -> bool,
+    accessibilityDisplayShouldReduceMotion: proc(self: ^Workspace) -> bool,
+    accessibilityDisplayShouldInvertColors: proc(self: ^Workspace) -> bool,
+    isVoiceOverEnabled: proc(self: ^Workspace) -> bool,
+    isSwitchControlEnabled: proc(self: ^Workspace) -> bool,
+    runningApplications: proc(self: ^Workspace) -> ^NS.Array,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Workspace,
@@ -584,12 +630,30 @@ Workspace_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 Workspace_odin_extend :: proc(cls: Class, vt: ^Workspace_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.openURL_ != nil {
         openURL_ :: proc "c" (self: ^Workspace, _: SEL, url: ^NS.URL) -> bool {
 
@@ -950,6 +1014,466 @@ Workspace_odin_extend :: proc(cls: Class, vt: ^Workspace_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuBarOwningApplication"), auto_cast menuBarOwningApplication, "@@:") do panic("Failed to register objC method.")
     }
+    if vt.setDesktopImageURL != nil {
+        setDesktopImageURL :: proc "c" (self: ^Workspace, _: SEL, url: ^NS.URL, screen: ^Screen, options: ^NS.Dictionary, error: ^^NS.Error) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).setDesktopImageURL(self, url, screen, options, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDesktopImageURL:forScreen:options:error:"), auto_cast setDesktopImageURL, "B@:@@@^void") do panic("Failed to register objC method.")
+    }
+    if vt.desktopImageURLForScreen != nil {
+        desktopImageURLForScreen :: proc "c" (self: ^Workspace, _: SEL, screen: ^Screen) -> ^NS.URL {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).desktopImageURLForScreen(self, screen)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("desktopImageURLForScreen:"), auto_cast desktopImageURLForScreen, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.desktopImageOptionsForScreen != nil {
+        desktopImageOptionsForScreen :: proc "c" (self: ^Workspace, _: SEL, screen: ^Screen) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).desktopImageOptionsForScreen(self, screen)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("desktopImageOptionsForScreen:"), auto_cast desktopImageOptionsForScreen, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.requestAuthorizationOfType != nil {
+        requestAuthorizationOfType :: proc "c" (self: ^Workspace, _: SEL, type: WorkspaceAuthorizationType, completionHandler: proc "c" (authorization: ^WorkspaceAuthorization, error: ^NS.Error)) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).requestAuthorizationOfType(self, type, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("requestAuthorizationOfType:completionHandler:"), auto_cast requestAuthorizationOfType, "v@:l?") do panic("Failed to register objC method.")
+    }
+    if vt.openFile_ != nil {
+        openFile_ :: proc "c" (self: ^Workspace, _: SEL, fullPath: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).openFile_(self, fullPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openFile:"), auto_cast openFile_, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.openFile_withApplication != nil {
+        openFile_withApplication :: proc "c" (self: ^Workspace, _: SEL, fullPath: ^NS.String, appName: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).openFile_withApplication(self, fullPath, appName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openFile:withApplication:"), auto_cast openFile_withApplication, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.openFile_withApplication_andDeactivate != nil {
+        openFile_withApplication_andDeactivate :: proc "c" (self: ^Workspace, _: SEL, fullPath: ^NS.String, appName: ^NS.String, flag: bool) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).openFile_withApplication_andDeactivate(self, fullPath, appName, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openFile:withApplication:andDeactivate:"), auto_cast openFile_withApplication_andDeactivate, "B@:@@B") do panic("Failed to register objC method.")
+    }
+    if vt.launchApplication_ != nil {
+        launchApplication_ :: proc "c" (self: ^Workspace, _: SEL, appName: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).launchApplication_(self, appName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchApplication:"), auto_cast launchApplication_, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.launchApplicationAtURL != nil {
+        launchApplicationAtURL :: proc "c" (self: ^Workspace, _: SEL, url: ^NS.URL, options: WorkspaceLaunchOptions, configuration: ^NS.Dictionary, error: ^^NS.Error) -> ^RunningApplication {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).launchApplicationAtURL(self, url, options, configuration, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchApplicationAtURL:options:configuration:error:"), auto_cast launchApplicationAtURL, "@@:@L@^void") do panic("Failed to register objC method.")
+    }
+    if vt.openURL_options_configuration_error != nil {
+        openURL_options_configuration_error :: proc "c" (self: ^Workspace, _: SEL, url: ^NS.URL, options: WorkspaceLaunchOptions, configuration: ^NS.Dictionary, error: ^^NS.Error) -> ^RunningApplication {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).openURL_options_configuration_error(self, url, options, configuration, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openURL:options:configuration:error:"), auto_cast openURL_options_configuration_error, "@@:@L@^void") do panic("Failed to register objC method.")
+    }
+    if vt.openURLs_withApplicationAtURL_options_configuration_error != nil {
+        openURLs_withApplicationAtURL_options_configuration_error :: proc "c" (self: ^Workspace, _: SEL, urls: ^NS.Array, applicationURL: ^NS.URL, options: WorkspaceLaunchOptions, configuration: ^NS.Dictionary, error: ^^NS.Error) -> ^RunningApplication {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).openURLs_withApplicationAtURL_options_configuration_error(self, urls, applicationURL, options, configuration, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withApplicationAtURL:options:configuration:error:"), auto_cast openURLs_withApplicationAtURL_options_configuration_error, "@@:@@L@^void") do panic("Failed to register objC method.")
+    }
+    if vt.launchApplication_showIcon_autolaunch != nil {
+        launchApplication_showIcon_autolaunch :: proc "c" (self: ^Workspace, _: SEL, appName: ^NS.String, showIcon: bool, autolaunch: bool) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).launchApplication_showIcon_autolaunch(self, appName, showIcon, autolaunch)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchApplication:showIcon:autolaunch:"), auto_cast launchApplication_showIcon_autolaunch, "B@:@BB") do panic("Failed to register objC method.")
+    }
+    if vt.fullPathForApplication != nil {
+        fullPathForApplication :: proc "c" (self: ^Workspace, _: SEL, appName: ^NS.String) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).fullPathForApplication(self, appName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fullPathForApplication:"), auto_cast fullPathForApplication, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.absolutePathForAppBundleWithIdentifier != nil {
+        absolutePathForAppBundleWithIdentifier :: proc "c" (self: ^Workspace, _: SEL, bundleIdentifier: ^NS.String) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).absolutePathForAppBundleWithIdentifier(self, bundleIdentifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("absolutePathForAppBundleWithIdentifier:"), auto_cast absolutePathForAppBundleWithIdentifier, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.launchAppWithBundleIdentifier != nil {
+        launchAppWithBundleIdentifier :: proc "c" (self: ^Workspace, _: SEL, bundleIdentifier: ^NS.String, options: WorkspaceLaunchOptions, descriptor: ^NS.AppleEventDescriptor, identifier: ^^NS.Number) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).launchAppWithBundleIdentifier(self, bundleIdentifier, options, descriptor, identifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchAppWithBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifier:"), auto_cast launchAppWithBundleIdentifier, "B@:@L@^void") do panic("Failed to register objC method.")
+    }
+    if vt.openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers != nil {
+        openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers :: proc "c" (self: ^Workspace, _: SEL, urls: ^NS.Array, bundleIdentifier: ^NS.String, options: WorkspaceLaunchOptions, descriptor: ^NS.AppleEventDescriptor, identifiers: ^^NS.Array) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers(self, urls, bundleIdentifier, options, descriptor, identifiers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withAppBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifiers:"), auto_cast openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers, "B@:@@L@^void") do panic("Failed to register objC method.")
+    }
+    if vt.openTempFile != nil {
+        openTempFile :: proc "c" (self: ^Workspace, _: SEL, fullPath: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).openTempFile(self, fullPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openTempFile:"), auto_cast openTempFile, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.findApplications != nil {
+        findApplications :: proc "c" (self: ^Workspace, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).findApplications(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("findApplications"), auto_cast findApplications, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.noteUserDefaultsChanged != nil {
+        noteUserDefaultsChanged :: proc "c" (self: ^Workspace, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).noteUserDefaultsChanged(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("noteUserDefaultsChanged"), auto_cast noteUserDefaultsChanged, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.slideImage != nil {
+        slideImage :: proc "c" (self: ^Workspace, _: SEL, image: ^NS.Image, fromPoint: CG.Point, toPoint: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).slideImage(self, image, fromPoint, toPoint)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("slideImage:from:to:"), auto_cast slideImage, "v@:@{CGPoint=dd}{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.checkForRemovableMedia != nil {
+        checkForRemovableMedia :: proc "c" (self: ^Workspace, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).checkForRemovableMedia(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("checkForRemovableMedia"), auto_cast checkForRemovableMedia, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.noteFileSystemChanged_ != nil {
+        noteFileSystemChanged_ :: proc "c" (self: ^Workspace, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).noteFileSystemChanged_(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("noteFileSystemChanged"), auto_cast noteFileSystemChanged_, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.fileSystemChanged != nil {
+        fileSystemChanged :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).fileSystemChanged(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileSystemChanged"), auto_cast fileSystemChanged, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.userDefaultsChanged != nil {
+        userDefaultsChanged :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).userDefaultsChanged(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("userDefaultsChanged"), auto_cast userDefaultsChanged, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.mountNewRemovableMedia != nil {
+        mountNewRemovableMedia :: proc "c" (self: ^Workspace, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).mountNewRemovableMedia(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mountNewRemovableMedia"), auto_cast mountNewRemovableMedia, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.activeApplication != nil {
+        activeApplication :: proc "c" (self: ^Workspace, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).activeApplication(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("activeApplication"), auto_cast activeApplication, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.mountedLocalVolumePaths != nil {
+        mountedLocalVolumePaths :: proc "c" (self: ^Workspace, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).mountedLocalVolumePaths(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mountedLocalVolumePaths"), auto_cast mountedLocalVolumePaths, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.mountedRemovableMedia != nil {
+        mountedRemovableMedia :: proc "c" (self: ^Workspace, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).mountedRemovableMedia(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mountedRemovableMedia"), auto_cast mountedRemovableMedia, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.launchedApplications != nil {
+        launchedApplications :: proc "c" (self: ^Workspace, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).launchedApplications(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchedApplications"), auto_cast launchedApplications, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.openFile_fromImage_at_inView != nil {
+        openFile_fromImage_at_inView :: proc "c" (self: ^Workspace, _: SEL, fullPath: ^NS.String, image: ^NS.Image, point: CG.Point, view: ^View) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).openFile_fromImage_at_inView(self, fullPath, image, point, view)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openFile:fromImage:at:inView:"), auto_cast openFile_fromImage_at_inView, "B@:@@{CGPoint=dd}@") do panic("Failed to register objC method.")
+    }
+    if vt.performFileOperation != nil {
+        performFileOperation :: proc "c" (self: ^Workspace, _: SEL, operation: ^NS.String, source: ^NS.String, destination: ^NS.String, files: ^NS.Array, tag: ^NS.Integer) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).performFileOperation(self, operation, source, destination, files, tag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performFileOperation:source:destination:files:tag:"), auto_cast performFileOperation, "B@:@@@@^void") do panic("Failed to register objC method.")
+    }
+    if vt.getInfoForFile != nil {
+        getInfoForFile :: proc "c" (self: ^Workspace, _: SEL, fullPath: ^NS.String, appName: ^^NS.String, type: ^^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).getInfoForFile(self, fullPath, appName, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("getInfoForFile:application:type:"), auto_cast getInfoForFile, "B@:@^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.iconForFileType != nil {
+        iconForFileType :: proc "c" (self: ^Workspace, _: SEL, fileType: ^NS.String) -> ^NS.Image {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).iconForFileType(self, fileType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("iconForFileType:"), auto_cast iconForFileType, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.typeOfFile != nil {
+        typeOfFile :: proc "c" (self: ^Workspace, _: SEL, absoluteFilePath: ^NS.String, outError: ^^NS.Error) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).typeOfFile(self, absoluteFilePath, outError)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("typeOfFile:error:"), auto_cast typeOfFile, "@@:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.localizedDescriptionForType != nil {
+        localizedDescriptionForType :: proc "c" (self: ^Workspace, _: SEL, typeName: ^NS.String) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).localizedDescriptionForType(self, typeName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedDescriptionForType:"), auto_cast localizedDescriptionForType, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.preferredFilenameExtensionForType != nil {
+        preferredFilenameExtensionForType :: proc "c" (self: ^Workspace, _: SEL, typeName: ^NS.String) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).preferredFilenameExtensionForType(self, typeName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredFilenameExtensionForType:"), auto_cast preferredFilenameExtensionForType, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.filenameExtension != nil {
+        filenameExtension :: proc "c" (self: ^Workspace, _: SEL, filenameExtension: ^NS.String, typeName: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).filenameExtension(self, filenameExtension, typeName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("filenameExtension:isValidForType:"), auto_cast filenameExtension, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.type != nil {
+        type :: proc "c" (self: ^Workspace, _: SEL, firstTypeName: ^NS.String, secondTypeName: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).type(self, firstTypeName, secondTypeName)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("type:conformsToType:"), auto_cast type, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.accessibilityDisplayShouldIncreaseContrast != nil {
+        accessibilityDisplayShouldIncreaseContrast :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).accessibilityDisplayShouldIncreaseContrast(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityDisplayShouldIncreaseContrast"), auto_cast accessibilityDisplayShouldIncreaseContrast, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.accessibilityDisplayShouldDifferentiateWithoutColor != nil {
+        accessibilityDisplayShouldDifferentiateWithoutColor :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).accessibilityDisplayShouldDifferentiateWithoutColor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityDisplayShouldDifferentiateWithoutColor"), auto_cast accessibilityDisplayShouldDifferentiateWithoutColor, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.accessibilityDisplayShouldReduceTransparency != nil {
+        accessibilityDisplayShouldReduceTransparency :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).accessibilityDisplayShouldReduceTransparency(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityDisplayShouldReduceTransparency"), auto_cast accessibilityDisplayShouldReduceTransparency, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.accessibilityDisplayShouldReduceMotion != nil {
+        accessibilityDisplayShouldReduceMotion :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).accessibilityDisplayShouldReduceMotion(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityDisplayShouldReduceMotion"), auto_cast accessibilityDisplayShouldReduceMotion, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.accessibilityDisplayShouldInvertColors != nil {
+        accessibilityDisplayShouldInvertColors :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).accessibilityDisplayShouldInvertColors(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityDisplayShouldInvertColors"), auto_cast accessibilityDisplayShouldInvertColors, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isVoiceOverEnabled != nil {
+        isVoiceOverEnabled :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).isVoiceOverEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isVoiceOverEnabled"), auto_cast isVoiceOverEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isSwitchControlEnabled != nil {
+        isSwitchControlEnabled :: proc "c" (self: ^Workspace, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).isSwitchControlEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isSwitchControlEnabled"), auto_cast isSwitchControlEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.runningApplications != nil {
+        runningApplications :: proc "c" (self: ^Workspace, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).runningApplications(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("runningApplications"), auto_cast runningApplications, "@@:") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -1139,6 +1663,156 @@ Workspace_odin_extend :: proc(cls: Class, vt: ^Workspace_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Workspace_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Workspace_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

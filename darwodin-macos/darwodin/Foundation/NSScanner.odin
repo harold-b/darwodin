@@ -277,6 +277,24 @@ Scanner_VTable :: struct {
     setCaseSensitive: proc(self: ^Scanner, caseSensitive: bool),
     locale: proc(self: ^Scanner) -> id,
     setLocale: proc(self: ^Scanner, locale: id),
+    scanInt: proc(self: ^Scanner, result: ^cffi.int) -> bool,
+    scanInteger: proc(self: ^Scanner, result: ^Integer) -> bool,
+    scanLongLong: proc(self: ^Scanner, result: ^cffi.longlong) -> bool,
+    scanUnsignedLongLong: proc(self: ^Scanner, result: ^cffi.ulonglong) -> bool,
+    scanFloat: proc(self: ^Scanner, result: ^cffi.float) -> bool,
+    scanDouble: proc(self: ^Scanner, result: ^cffi.double) -> bool,
+    scanHexInt: proc(self: ^Scanner, result: ^cffi.uint) -> bool,
+    scanHexLongLong: proc(self: ^Scanner, result: ^cffi.ulonglong) -> bool,
+    scanHexFloat: proc(self: ^Scanner, result: ^cffi.float) -> bool,
+    scanHexDouble: proc(self: ^Scanner, result: ^cffi.double) -> bool,
+    scanString: proc(self: ^Scanner, string: ^String, result: ^^String) -> bool,
+    scanCharactersFromSet: proc(self: ^Scanner, set: ^CharacterSet, result: ^^String) -> bool,
+    scanUpToString: proc(self: ^Scanner, string: ^String, result: ^^String) -> bool,
+    scanUpToCharactersFromSet: proc(self: ^Scanner, set: ^CharacterSet, result: ^^String) -> bool,
+    scannerWithString: proc(string: ^String) -> ^Scanner,
+    localizedScannerWithString: proc(string: ^String) -> id,
+    isAtEnd: proc(self: ^Scanner) -> bool,
+    scanDecimal: proc(self: ^Scanner, dcm: ^Decimal) -> bool,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Scanner,
@@ -296,12 +314,27 @@ Scanner_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 Scanner_odin_extend :: proc(cls: Class, vt: ^Scanner_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.initWithString != nil {
         initWithString :: proc "c" (self: ^Scanner, _: SEL, string: ^String) -> ^Scanner {
 
@@ -401,6 +434,186 @@ Scanner_odin_extend :: proc(cls: Class, vt: ^Scanner_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLocale:"), auto_cast setLocale, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.scanInt != nil {
+        scanInt :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.int) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanInt(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanInt:"), auto_cast scanInt, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanInteger != nil {
+        scanInteger :: proc "c" (self: ^Scanner, _: SEL, result: ^Integer) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanInteger(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanInteger:"), auto_cast scanInteger, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanLongLong != nil {
+        scanLongLong :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.longlong) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanLongLong(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanLongLong:"), auto_cast scanLongLong, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanUnsignedLongLong != nil {
+        scanUnsignedLongLong :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.ulonglong) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanUnsignedLongLong(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanUnsignedLongLong:"), auto_cast scanUnsignedLongLong, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanFloat != nil {
+        scanFloat :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.float) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanFloat(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanFloat:"), auto_cast scanFloat, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanDouble != nil {
+        scanDouble :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.double) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanDouble(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanDouble:"), auto_cast scanDouble, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanHexInt != nil {
+        scanHexInt :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.uint) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanHexInt(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanHexInt:"), auto_cast scanHexInt, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanHexLongLong != nil {
+        scanHexLongLong :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.ulonglong) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanHexLongLong(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanHexLongLong:"), auto_cast scanHexLongLong, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanHexFloat != nil {
+        scanHexFloat :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.float) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanHexFloat(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanHexFloat:"), auto_cast scanHexFloat, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanHexDouble != nil {
+        scanHexDouble :: proc "c" (self: ^Scanner, _: SEL, result: ^cffi.double) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanHexDouble(self, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanHexDouble:"), auto_cast scanHexDouble, "B@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanString != nil {
+        scanString :: proc "c" (self: ^Scanner, _: SEL, string: ^String, result: ^^String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanString(self, string, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanString:intoString:"), auto_cast scanString, "B@:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanCharactersFromSet != nil {
+        scanCharactersFromSet :: proc "c" (self: ^Scanner, _: SEL, set: ^CharacterSet, result: ^^String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanCharactersFromSet(self, set, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanCharactersFromSet:intoString:"), auto_cast scanCharactersFromSet, "B@:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanUpToString != nil {
+        scanUpToString :: proc "c" (self: ^Scanner, _: SEL, string: ^String, result: ^^String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanUpToString(self, string, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanUpToString:intoString:"), auto_cast scanUpToString, "B@:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.scanUpToCharactersFromSet != nil {
+        scanUpToCharactersFromSet :: proc "c" (self: ^Scanner, _: SEL, set: ^CharacterSet, result: ^^String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanUpToCharactersFromSet(self, set, result)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanUpToCharactersFromSet:intoString:"), auto_cast scanUpToCharactersFromSet, "B@:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.scannerWithString != nil {
+        scannerWithString :: proc "c" (self: Class, _: SEL, string: ^String) -> ^Scanner {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scannerWithString( string)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("scannerWithString:"), auto_cast scannerWithString, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.localizedScannerWithString != nil {
+        localizedScannerWithString :: proc "c" (self: Class, _: SEL, string: ^String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).localizedScannerWithString( string)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedScannerWithString:"), auto_cast localizedScannerWithString, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.isAtEnd != nil {
+        isAtEnd :: proc "c" (self: ^Scanner, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).isAtEnd(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAtEnd"), auto_cast isAtEnd, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.scanDecimal != nil {
+        scanDecimal :: proc "c" (self: ^Scanner, _: SEL, dcm: ^Decimal) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).scanDecimal(self, dcm)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scanDecimal:"), auto_cast scanDecimal, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -591,6 +804,126 @@ Scanner_odin_extend :: proc(cls: Class, vt: ^Scanner_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Scanner_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Scanner_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Scanner_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Scanner_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Scanner_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scanner_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

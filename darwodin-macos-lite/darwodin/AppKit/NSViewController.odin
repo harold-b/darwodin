@@ -429,6 +429,35 @@ ViewController_VTable :: struct {
     isViewLoaded: proc(self: ^ViewController) -> bool,
     preferredContentSize: proc(self: ^ViewController) -> NS.Size,
     setPreferredContentSize: proc(self: ^ViewController, preferredContentSize: NS.Size),
+    presentViewController_animator: proc(self: ^ViewController, viewController: ^ViewController, animator: ^ViewControllerPresentationAnimator),
+    dismissViewController: proc(self: ^ViewController, viewController: ^ViewController),
+    dismissController: proc(self: ^ViewController, sender: id),
+    presentedViewControllers: proc(self: ^ViewController) -> ^NS.Array,
+    presentingViewController: proc(self: ^ViewController) -> ^ViewController,
+    presentViewControllerAsSheet: proc(self: ^ViewController, viewController: ^ViewController),
+    presentViewControllerAsModalWindow: proc(self: ^ViewController, viewController: ^ViewController),
+    presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior: proc(self: ^ViewController, viewController: ^ViewController, positioningRect: NS.Rect, positioningView: ^View, preferredEdge: NS.RectEdge, behavior: PopoverBehavior),
+    presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent: proc(self: ^ViewController, viewController: ^ViewController, positioningRect: NS.Rect, positioningView: ^View, preferredEdge: NS.RectEdge, behavior: PopoverBehavior, hasFullSizeContent: bool),
+    transitionFromViewController: proc(self: ^ViewController, fromViewController: ^ViewController, toViewController: ^ViewController, options: ViewControllerTransitionOptions, completion: proc "c" ()),
+    addChildViewController: proc(self: ^ViewController, childViewController: ^ViewController),
+    removeFromParentViewController: proc(self: ^ViewController),
+    insertChildViewController: proc(self: ^ViewController, childViewController: ^ViewController, index: NS.Integer),
+    removeChildViewControllerAtIndex: proc(self: ^ViewController, index: NS.Integer),
+    preferredContentSizeDidChangeForViewController: proc(self: ^ViewController, viewController: ^ViewController),
+    viewWillTransitionToSize: proc(self: ^ViewController, newSize: NS.Size),
+    parentViewController: proc(self: ^ViewController) -> ^ViewController,
+    childViewControllers: proc(self: ^ViewController) -> ^NS.Array,
+    setChildViewControllers: proc(self: ^ViewController, childViewControllers: ^NS.Array),
+    storyboard: proc(self: ^ViewController) -> ^Storyboard,
+    extensionContext: proc(self: ^ViewController) -> ^NS.ExtensionContext,
+    sourceItemView: proc(self: ^ViewController) -> ^View,
+    setSourceItemView: proc(self: ^ViewController, sourceItemView: ^View),
+    preferredScreenOrigin: proc(self: ^ViewController) -> CG.Point,
+    setPreferredScreenOrigin: proc(self: ^ViewController, preferredScreenOrigin: CG.Point),
+    preferredMinimumSize: proc(self: ^ViewController) -> NS.Size,
+    preferredMaximumSize: proc(self: ^ViewController) -> NS.Size,
+    allowedClassesForRestorableStateKeyPath: proc(keyPath: ^NS.String) -> ^NS.Array,
+    restorableStateKeyPaths: proc() -> ^NS.Array,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^ViewController,
@@ -448,12 +477,30 @@ ViewController_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 ViewController_odin_extend :: proc(cls: Class, vt: ^ViewController_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Responder_odin_extend(cls, &vt.super)
+
     if vt.initWithNibName != nil {
         initWithNibName :: proc "c" (self: ^ViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^ViewController {
 
@@ -724,6 +771,296 @@ ViewController_odin_extend :: proc(cls: Class, vt: ^ViewController_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredContentSize:"), auto_cast setPreferredContentSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
+    if vt.presentViewController_animator != nil {
+        presentViewController_animator :: proc "c" (self: ^ViewController, _: SEL, viewController: ^ViewController, animator: ^ViewControllerPresentationAnimator) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).presentViewController_animator(self, viewController, animator)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentViewController:animator:"), auto_cast presentViewController_animator, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.dismissViewController != nil {
+        dismissViewController :: proc "c" (self: ^ViewController, _: SEL, viewController: ^ViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).dismissViewController(self, viewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dismissViewController:"), auto_cast dismissViewController, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.dismissController != nil {
+        dismissController :: proc "c" (self: ^ViewController, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).dismissController(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dismissController:"), auto_cast dismissController, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.presentedViewControllers != nil {
+        presentedViewControllers :: proc "c" (self: ^ViewController, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).presentedViewControllers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentedViewControllers"), auto_cast presentedViewControllers, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.presentingViewController != nil {
+        presentingViewController :: proc "c" (self: ^ViewController, _: SEL) -> ^ViewController {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).presentingViewController(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentingViewController"), auto_cast presentingViewController, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.presentViewControllerAsSheet != nil {
+        presentViewControllerAsSheet :: proc "c" (self: ^ViewController, _: SEL, viewController: ^ViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).presentViewControllerAsSheet(self, viewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentViewControllerAsSheet:"), auto_cast presentViewControllerAsSheet, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.presentViewControllerAsModalWindow != nil {
+        presentViewControllerAsModalWindow :: proc "c" (self: ^ViewController, _: SEL, viewController: ^ViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).presentViewControllerAsModalWindow(self, viewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentViewControllerAsModalWindow:"), auto_cast presentViewControllerAsModalWindow, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior != nil {
+        presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior :: proc "c" (self: ^ViewController, _: SEL, viewController: ^ViewController, positioningRect: NS.Rect, positioningView: ^View, preferredEdge: NS.RectEdge, behavior: PopoverBehavior) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior(self, viewController, positioningRect, positioningView, preferredEdge, behavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"), auto_cast presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior, "v@:@{CGRect={CGPoint=dd}{CGSize=dd}}@Ll") do panic("Failed to register objC method.")
+    }
+    if vt.presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent != nil {
+        presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent :: proc "c" (self: ^ViewController, _: SEL, viewController: ^ViewController, positioningRect: NS.Rect, positioningView: ^View, preferredEdge: NS.RectEdge, behavior: PopoverBehavior, hasFullSizeContent: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent(self, viewController, positioningRect, positioningView, preferredEdge, behavior, hasFullSizeContent)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"), auto_cast presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent, "v@:@{CGRect={CGPoint=dd}{CGSize=dd}}@LlB") do panic("Failed to register objC method.")
+    }
+    if vt.transitionFromViewController != nil {
+        transitionFromViewController :: proc "c" (self: ^ViewController, _: SEL, fromViewController: ^ViewController, toViewController: ^ViewController, options: ViewControllerTransitionOptions, completion: proc "c" ()) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).transitionFromViewController(self, fromViewController, toViewController, options, completion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("transitionFromViewController:toViewController:options:completionHandler:"), auto_cast transitionFromViewController, "v@:@@L?") do panic("Failed to register objC method.")
+    }
+    if vt.addChildViewController != nil {
+        addChildViewController :: proc "c" (self: ^ViewController, _: SEL, childViewController: ^ViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).addChildViewController(self, childViewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addChildViewController:"), auto_cast addChildViewController, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.removeFromParentViewController != nil {
+        removeFromParentViewController :: proc "c" (self: ^ViewController, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).removeFromParentViewController(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeFromParentViewController"), auto_cast removeFromParentViewController, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.insertChildViewController != nil {
+        insertChildViewController :: proc "c" (self: ^ViewController, _: SEL, childViewController: ^ViewController, index: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).insertChildViewController(self, childViewController, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertChildViewController:atIndex:"), auto_cast insertChildViewController, "v@:@l") do panic("Failed to register objC method.")
+    }
+    if vt.removeChildViewControllerAtIndex != nil {
+        removeChildViewControllerAtIndex :: proc "c" (self: ^ViewController, _: SEL, index: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).removeChildViewControllerAtIndex(self, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeChildViewControllerAtIndex:"), auto_cast removeChildViewControllerAtIndex, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.preferredContentSizeDidChangeForViewController != nil {
+        preferredContentSizeDidChangeForViewController :: proc "c" (self: ^ViewController, _: SEL, viewController: ^ViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).preferredContentSizeDidChangeForViewController(self, viewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredContentSizeDidChangeForViewController:"), auto_cast preferredContentSizeDidChangeForViewController, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.viewWillTransitionToSize != nil {
+        viewWillTransitionToSize :: proc "c" (self: ^ViewController, _: SEL, newSize: NS.Size) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).viewWillTransitionToSize(self, newSize)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("viewWillTransitionToSize:"), auto_cast viewWillTransitionToSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.parentViewController != nil {
+        parentViewController :: proc "c" (self: ^ViewController, _: SEL) -> ^ViewController {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).parentViewController(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("parentViewController"), auto_cast parentViewController, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.childViewControllers != nil {
+        childViewControllers :: proc "c" (self: ^ViewController, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).childViewControllers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("childViewControllers"), auto_cast childViewControllers, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setChildViewControllers != nil {
+        setChildViewControllers :: proc "c" (self: ^ViewController, _: SEL, childViewControllers: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).setChildViewControllers(self, childViewControllers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setChildViewControllers:"), auto_cast setChildViewControllers, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.storyboard != nil {
+        storyboard :: proc "c" (self: ^ViewController, _: SEL) -> ^Storyboard {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).storyboard(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("storyboard"), auto_cast storyboard, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.extensionContext != nil {
+        extensionContext :: proc "c" (self: ^ViewController, _: SEL) -> ^NS.ExtensionContext {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).extensionContext(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("extensionContext"), auto_cast extensionContext, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.sourceItemView != nil {
+        sourceItemView :: proc "c" (self: ^ViewController, _: SEL) -> ^View {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).sourceItemView(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sourceItemView"), auto_cast sourceItemView, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSourceItemView != nil {
+        setSourceItemView :: proc "c" (self: ^ViewController, _: SEL, sourceItemView: ^View) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).setSourceItemView(self, sourceItemView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSourceItemView:"), auto_cast setSourceItemView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.preferredScreenOrigin != nil {
+        preferredScreenOrigin :: proc "c" (self: ^ViewController, _: SEL) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).preferredScreenOrigin(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredScreenOrigin"), auto_cast preferredScreenOrigin, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredScreenOrigin != nil {
+        setPreferredScreenOrigin :: proc "c" (self: ^ViewController, _: SEL, preferredScreenOrigin: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).setPreferredScreenOrigin(self, preferredScreenOrigin)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredScreenOrigin:"), auto_cast setPreferredScreenOrigin, "v@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.preferredMinimumSize != nil {
+        preferredMinimumSize :: proc "c" (self: ^ViewController, _: SEL) -> NS.Size {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).preferredMinimumSize(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredMinimumSize"), auto_cast preferredMinimumSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
+    }
+    if vt.preferredMaximumSize != nil {
+        preferredMaximumSize :: proc "c" (self: ^ViewController, _: SEL) -> NS.Size {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).preferredMaximumSize(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredMaximumSize"), auto_cast preferredMaximumSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
+    }
+    if vt.allowedClassesForRestorableStateKeyPath != nil {
+        allowedClassesForRestorableStateKeyPath :: proc "c" (self: Class, _: SEL, keyPath: ^NS.String) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.restorableStateKeyPaths != nil {
+        restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).restorableStateKeyPaths()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -913,6 +1250,156 @@ ViewController_odin_extend :: proc(cls: Class, vt: ^ViewController_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

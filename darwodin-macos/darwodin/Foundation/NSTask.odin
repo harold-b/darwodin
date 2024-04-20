@@ -319,6 +319,14 @@ Task_VTable :: struct {
     setTerminationHandler: proc(self: ^Task, terminationHandler: proc "c" ()),
     qualityOfService: proc(self: ^Task) -> QualityOfService,
     setQualityOfService: proc(self: ^Task, qualityOfService: QualityOfService),
+    launchedTaskWithExecutableURL: proc(url: ^URL, arguments: ^Array, error: ^^Error, terminationHandler: proc "c" (_arg_0: ^Task)) -> ^Task,
+    waitUntilExit: proc(self: ^Task),
+    launch: proc(self: ^Task),
+    launchedTaskWithLaunchPath: proc(path: ^String, arguments: ^Array) -> ^Task,
+    launchPath: proc(self: ^Task) -> ^String,
+    setLaunchPath: proc(self: ^Task, launchPath: ^String),
+    currentDirectoryPath: proc(self: ^Task) -> ^String,
+    setCurrentDirectoryPath: proc(self: ^Task, currentDirectoryPath: ^String),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Task,
@@ -338,12 +346,27 @@ Task_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 Task_odin_extend :: proc(cls: Class, vt: ^Task_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.init != nil {
         init :: proc "c" (self: ^Task, _: SEL) -> ^Task {
 
@@ -624,6 +647,86 @@ Task_odin_extend :: proc(cls: Class, vt: ^Task_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setQualityOfService:"), auto_cast setQualityOfService, "v@:l") do panic("Failed to register objC method.")
     }
+    if vt.launchedTaskWithExecutableURL != nil {
+        launchedTaskWithExecutableURL :: proc "c" (self: Class, _: SEL, url: ^URL, arguments: ^Array, error: ^^Error, terminationHandler: proc "c" (_arg_0: ^Task)) -> ^Task {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).launchedTaskWithExecutableURL( url, arguments, error, terminationHandler)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("launchedTaskWithExecutableURL:arguments:error:terminationHandler:"), auto_cast launchedTaskWithExecutableURL, "@#:@@^void?") do panic("Failed to register objC method.")
+    }
+    if vt.waitUntilExit != nil {
+        waitUntilExit :: proc "c" (self: ^Task, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).waitUntilExit(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("waitUntilExit"), auto_cast waitUntilExit, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.launch != nil {
+        launch :: proc "c" (self: ^Task, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).launch(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launch"), auto_cast launch, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.launchedTaskWithLaunchPath != nil {
+        launchedTaskWithLaunchPath :: proc "c" (self: Class, _: SEL, path: ^String, arguments: ^Array) -> ^Task {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).launchedTaskWithLaunchPath( path, arguments)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("launchedTaskWithLaunchPath:arguments:"), auto_cast launchedTaskWithLaunchPath, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.launchPath != nil {
+        launchPath :: proc "c" (self: ^Task, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).launchPath(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchPath"), auto_cast launchPath, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLaunchPath != nil {
+        setLaunchPath :: proc "c" (self: ^Task, _: SEL, launchPath: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).setLaunchPath(self, launchPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLaunchPath:"), auto_cast setLaunchPath, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.currentDirectoryPath != nil {
+        currentDirectoryPath :: proc "c" (self: ^Task, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).currentDirectoryPath(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("currentDirectoryPath"), auto_cast currentDirectoryPath, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCurrentDirectoryPath != nil {
+        setCurrentDirectoryPath :: proc "c" (self: ^Task, _: SEL, currentDirectoryPath: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).setCurrentDirectoryPath(self, currentDirectoryPath)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCurrentDirectoryPath:"), auto_cast setCurrentDirectoryPath, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -813,6 +916,126 @@ Task_odin_extend :: proc(cls: Class, vt: ^Task_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

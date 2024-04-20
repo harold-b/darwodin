@@ -60,33 +60,27 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(require_results)
     @(link_name="MTLCreateSystemDefaultDevice")
     CreateSystemDefaultDevice :: proc() -> ^Device ---
 
-    @(require_results)
     @(link_name="MTLCopyAllDevices")
     CopyAllDevices :: proc() -> ^NS.Array ---
 
-    @(require_results)
     @(link_name="MTLCopyAllDevicesWithObserver")
     CopyAllDevicesWithObserver :: proc(observer: ^^NS.ObjectProtocol, handler: DeviceNotificationHandler) -> ^NS.Array ---
 
     @(link_name="MTLRemoveDeviceObserver")
     RemoveDeviceObserver :: proc(observer: ^NS.ObjectProtocol) ---
 
-    @(require_results)
     @(link_name="MTLIOCompressionContextDefaultChunkSize")
     IOCompressionContextDefaultChunkSize :: proc() -> cffi.uint ---
 
-    @(require_results)
     @(link_name="MTLIOCreateCompressionContext")
     IOCreateCompressionContext :: proc(path: cstring, type: IOCompressionMethod, chunkSize: cffi.uint) -> IOCompressionContext ---
 
     @(link_name="MTLIOCompressionContextAppendData")
     IOCompressionContextAppendData :: proc(_context: IOCompressionContext, data: rawptr, size: cffi.uint) ---
 
-    @(require_results)
     @(link_name="MTLIOFlushAndDestroyCompressionContext")
     IOFlushAndDestroyCompressionContext :: proc(_context: IOCompressionContext) -> IOCompressionStatus ---
 
@@ -544,7 +538,7 @@ BindingAccess :: enum cffi.ulong {
 FunctionOptions :: enum cffi.ulong {
     OptionNone = 0,
     OptionCompileToBinary = 1,
-    OptionStoreFunctionInMetalScript = 2,
+    toreFunctionInMetalScript = 2,
 }
 
 /// MTLPatchType

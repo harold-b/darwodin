@@ -381,6 +381,14 @@ URLSession_VTable :: struct {
     configuration: proc(self: ^URLSession) -> ^URLSessionConfiguration,
     sessionDescription: proc(self: ^URLSession) -> ^String,
     setSessionDescription: proc(self: ^URLSession, sessionDescription: ^String),
+    dataTaskWithRequest_completionHandler: proc(self: ^URLSession, request: ^URLRequest, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionDataTask,
+    dataTaskWithURL_completionHandler: proc(self: ^URLSession, url: ^URL, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionDataTask,
+    uploadTaskWithRequest_fromFile_completionHandler: proc(self: ^URLSession, request: ^URLRequest, fileURL: ^URL, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask,
+    uploadTaskWithRequest_fromData_completionHandler: proc(self: ^URLSession, request: ^URLRequest, bodyData: ^Data, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask,
+    uploadTaskWithResumeData_completionHandler: proc(self: ^URLSession, resumeData: ^Data, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask,
+    downloadTaskWithRequest_completionHandler: proc(self: ^URLSession, request: ^URLRequest, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask,
+    downloadTaskWithURL_completionHandler: proc(self: ^URLSession, url: ^URL, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask,
+    downloadTaskWithResumeData_completionHandler: proc(self: ^URLSession, resumeData: ^Data, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask,
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^_NSZone) -> ^URLSession,
@@ -399,12 +407,27 @@ URLSession_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 URLSession_odin_extend :: proc(cls: Class, vt: ^URLSession_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.sessionWithConfiguration_ != nil {
         sessionWithConfiguration_ :: proc "c" (self: Class, _: SEL, configuration: ^URLSessionConfiguration) -> ^URLSession {
 
@@ -705,6 +728,86 @@ URLSession_odin_extend :: proc(cls: Class, vt: ^URLSession_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSessionDescription:"), auto_cast setSessionDescription, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.dataTaskWithRequest_completionHandler != nil {
+        dataTaskWithRequest_completionHandler :: proc "c" (self: ^URLSession, _: SEL, request: ^URLRequest, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionDataTask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).dataTaskWithRequest_completionHandler(self, request, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dataTaskWithRequest:completionHandler:"), auto_cast dataTaskWithRequest_completionHandler, "@@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.dataTaskWithURL_completionHandler != nil {
+        dataTaskWithURL_completionHandler :: proc "c" (self: ^URLSession, _: SEL, url: ^URL, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionDataTask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).dataTaskWithURL_completionHandler(self, url, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dataTaskWithURL:completionHandler:"), auto_cast dataTaskWithURL_completionHandler, "@@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.uploadTaskWithRequest_fromFile_completionHandler != nil {
+        uploadTaskWithRequest_fromFile_completionHandler :: proc "c" (self: ^URLSession, _: SEL, request: ^URLRequest, fileURL: ^URL, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).uploadTaskWithRequest_fromFile_completionHandler(self, request, fileURL, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("uploadTaskWithRequest:fromFile:completionHandler:"), auto_cast uploadTaskWithRequest_fromFile_completionHandler, "@@:@@?") do panic("Failed to register objC method.")
+    }
+    if vt.uploadTaskWithRequest_fromData_completionHandler != nil {
+        uploadTaskWithRequest_fromData_completionHandler :: proc "c" (self: ^URLSession, _: SEL, request: ^URLRequest, bodyData: ^Data, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).uploadTaskWithRequest_fromData_completionHandler(self, request, bodyData, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("uploadTaskWithRequest:fromData:completionHandler:"), auto_cast uploadTaskWithRequest_fromData_completionHandler, "@@:@@?") do panic("Failed to register objC method.")
+    }
+    if vt.uploadTaskWithResumeData_completionHandler != nil {
+        uploadTaskWithResumeData_completionHandler :: proc "c" (self: ^URLSession, _: SEL, resumeData: ^Data, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).uploadTaskWithResumeData_completionHandler(self, resumeData, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("uploadTaskWithResumeData:completionHandler:"), auto_cast uploadTaskWithResumeData_completionHandler, "@@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.downloadTaskWithRequest_completionHandler != nil {
+        downloadTaskWithRequest_completionHandler :: proc "c" (self: ^URLSession, _: SEL, request: ^URLRequest, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).downloadTaskWithRequest_completionHandler(self, request, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("downloadTaskWithRequest:completionHandler:"), auto_cast downloadTaskWithRequest_completionHandler, "@@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.downloadTaskWithURL_completionHandler != nil {
+        downloadTaskWithURL_completionHandler :: proc "c" (self: ^URLSession, _: SEL, url: ^URL, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).downloadTaskWithURL_completionHandler(self, url, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("downloadTaskWithURL:completionHandler:"), auto_cast downloadTaskWithURL_completionHandler, "@@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.downloadTaskWithResumeData_completionHandler != nil {
+        downloadTaskWithResumeData_completionHandler :: proc "c" (self: ^URLSession, _: SEL, resumeData: ^Data, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).downloadTaskWithResumeData_completionHandler(self, resumeData, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("downloadTaskWithResumeData:completionHandler:"), auto_cast downloadTaskWithResumeData_completionHandler, "@@:@?") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -884,6 +987,126 @@ URLSession_odin_extend :: proc(cls: Class, vt: ^URLSession_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLSession_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLSession_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLSession_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLSession_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLSession_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLSession_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

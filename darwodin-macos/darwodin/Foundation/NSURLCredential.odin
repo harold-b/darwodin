@@ -209,6 +209,17 @@ URLCredential_cancelPreviousPerformRequestsWithTarget :: proc {
 URLCredential_VTable :: struct {
     super: Object_VTable,
     persistence: proc(self: ^URLCredential) -> URLCredentialPersistence,
+    initWithUser: proc(self: ^URLCredential, user: ^String, password: ^String, persistence: URLCredentialPersistence) -> ^URLCredential,
+    credentialWithUser: proc(user: ^String, password: ^String, persistence: URLCredentialPersistence) -> ^URLCredential,
+    user: proc(self: ^URLCredential) -> ^String,
+    password: proc(self: ^URLCredential) -> ^String,
+    hasPassword: proc(self: ^URLCredential) -> bool,
+    initWithIdentity: proc(self: ^URLCredential, identity: SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential,
+    credentialWithIdentity: proc(identity: SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential,
+    identity: proc(self: ^URLCredential) -> SecIdentityRef,
+    certificates: proc(self: ^URLCredential) -> ^Array,
+    initWithTrust: proc(self: ^URLCredential, trust: SecTrustRef) -> ^URLCredential,
+    credentialForTrust: proc(trust: SecTrustRef) -> ^URLCredential,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -229,12 +240,27 @@ URLCredential_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 URLCredential_odin_extend :: proc(cls: Class, vt: ^URLCredential_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.persistence != nil {
         persistence :: proc "c" (self: ^URLCredential, _: SEL) -> URLCredentialPersistence {
 
@@ -244,6 +270,116 @@ URLCredential_odin_extend :: proc(cls: Class, vt: ^URLCredential_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("persistence"), auto_cast persistence, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.initWithUser != nil {
+        initWithUser :: proc "c" (self: ^URLCredential, _: SEL, user: ^String, password: ^String, persistence: URLCredentialPersistence) -> ^URLCredential {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).initWithUser(self, user, password, persistence)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithUser:password:persistence:"), auto_cast initWithUser, "@@:@@L") do panic("Failed to register objC method.")
+    }
+    if vt.credentialWithUser != nil {
+        credentialWithUser :: proc "c" (self: Class, _: SEL, user: ^String, password: ^String, persistence: URLCredentialPersistence) -> ^URLCredential {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).credentialWithUser( user, password, persistence)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("credentialWithUser:password:persistence:"), auto_cast credentialWithUser, "@#:@@L") do panic("Failed to register objC method.")
+    }
+    if vt.user != nil {
+        user :: proc "c" (self: ^URLCredential, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).user(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("user"), auto_cast user, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.password != nil {
+        password :: proc "c" (self: ^URLCredential, _: SEL) -> ^String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).password(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("password"), auto_cast password, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.hasPassword != nil {
+        hasPassword :: proc "c" (self: ^URLCredential, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).hasPassword(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hasPassword"), auto_cast hasPassword, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.initWithIdentity != nil {
+        initWithIdentity :: proc "c" (self: ^URLCredential, _: SEL, identity: SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).initWithIdentity(self, identity, certArray, persistence)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdentity:certificates:persistence:"), auto_cast initWithIdentity, "@@:^void@L") do panic("Failed to register objC method.")
+    }
+    if vt.credentialWithIdentity != nil {
+        credentialWithIdentity :: proc "c" (self: Class, _: SEL, identity: SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).credentialWithIdentity( identity, certArray, persistence)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("credentialWithIdentity:certificates:persistence:"), auto_cast credentialWithIdentity, "@#:^void@L") do panic("Failed to register objC method.")
+    }
+    if vt.identity != nil {
+        identity :: proc "c" (self: ^URLCredential, _: SEL) -> SecIdentityRef {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).identity(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("identity"), auto_cast identity, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.certificates != nil {
+        certificates :: proc "c" (self: ^URLCredential, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).certificates(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("certificates"), auto_cast certificates, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.initWithTrust != nil {
+        initWithTrust :: proc "c" (self: ^URLCredential, _: SEL, trust: SecTrustRef) -> ^URLCredential {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).initWithTrust(self, trust)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTrust:"), auto_cast initWithTrust, "@@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.credentialForTrust != nil {
+        credentialForTrust :: proc "c" (self: Class, _: SEL, trust: SecTrustRef) -> ^URLCredential {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).credentialForTrust( trust)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("credentialForTrust:"), auto_cast credentialForTrust, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -444,6 +580,126 @@ URLCredential_odin_extend :: proc(cls: Class, vt: ^URLCredential_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLCredential_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLCredential_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLCredential_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLCredential_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^URLCredential_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLCredential_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

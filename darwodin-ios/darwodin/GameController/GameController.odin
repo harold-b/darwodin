@@ -376,27 +376,21 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(require_results)
     @(link_name="GCInputArcadeButtonName")
     InputArcadeButtonName :: proc(row: NS.Integer, column: NS.Integer) -> ^NS.String ---
 
-    @(require_results)
     @(link_name="GCGamepadSnapShotDataV100FromNSData")
     GamepadSnapShotDataV100FromNSData :: proc(snapshotData: ^GamepadSnapShotDataV100, data: ^NS.Data) -> bool ---
 
-    @(require_results)
     @(link_name="GCExtendedGamepadSnapshotDataFromNSData")
     ExtendedGamepadSnapshotDataFromNSData :: proc(snapshotData: ^ExtendedGamepadSnapshotData, data: ^NS.Data) -> bool ---
 
-    @(require_results)
     @(link_name="GCExtendedGamepadSnapShotDataV100FromNSData")
     ExtendedGamepadSnapShotDataV100FromNSData :: proc(snapshotData: ^ExtendedGamepadSnapShotDataV100, data: ^NS.Data) -> bool ---
 
-    @(require_results)
     @(link_name="GCMicroGamepadSnapshotDataFromNSData")
     MicroGamepadSnapshotDataFromNSData :: proc(snapshotData: ^MicroGamepadSnapshotData, data: ^NS.Data) -> bool ---
 
-    @(require_results)
     @(link_name="GCMicroGamepadSnapShotDataV100FromNSData")
     MicroGamepadSnapShotDataV100FromNSData :: proc(snapshotData: ^MicroGamepadSnapShotDataV100, data: ^NS.Data) -> bool ---
 

@@ -60,27 +60,21 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(require_results)
     @(link_name="MDLabelGetTypeID")
     LabelGetTypeID :: proc() -> cffi.ulong ---
 
-    @(require_results)
     @(link_name="MDLabelCreate")
     LabelCreate :: proc(allocator: CF.AllocatorRef, displayName: CF.StringRef, kind: CF.StringRef, domain: LabelDomain) -> ^__MDLabel ---
 
-    @(require_results)
     @(link_name="MDLabelCopyAttribute")
     LabelCopyAttribute :: proc(label: LabelRef, name: CF.StringRef) -> rawptr ---
 
-    @(require_results)
     @(link_name="MDLabelCopyAttributeName")
     LabelCopyAttributeName :: proc(label: LabelRef) -> ^CF.__CFString ---
 
-    @(require_results)
     @(link_name="MDLabelDelete")
     LabelDelete :: proc(label: LabelRef) -> cffi.uchar ---
 
-    @(require_results)
     @(link_name="MDLabelSetAttributes")
     LabelSetAttributes :: proc(label: LabelRef, attrs: CF.DictionaryRef) -> cffi.uchar ---
 

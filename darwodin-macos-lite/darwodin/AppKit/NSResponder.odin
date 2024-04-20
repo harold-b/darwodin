@@ -528,6 +528,28 @@ Responder_VTable :: struct {
     acceptsFirstResponder: proc(self: ^Responder) -> bool,
     menu: proc(self: ^Responder) -> ^Menu,
     setMenu: proc(self: ^Responder, menu: ^Menu),
+    undoManager: proc(self: ^Responder) -> ^NS.UndoManager,
+    validateProposedFirstResponder: proc(self: ^Responder, responder: ^Responder, event: ^Event) -> bool,
+    presentError_modalForWindow_delegate_didPresentSelector_contextInfo: proc(self: ^Responder, error: ^NS.Error, window: ^Window, delegate: id, didPresentSelector: SEL, contextInfo: rawptr),
+    presentError_: proc(self: ^Responder, error: ^NS.Error) -> bool,
+    willPresentError: proc(self: ^Responder, error: ^NS.Error) -> ^NS.Error,
+    performTextFinderAction: proc(self: ^Responder, sender: id),
+    newWindowForTab: proc(self: ^Responder, sender: id),
+    performMnemonic: proc(self: ^Responder, string: ^NS.String) -> bool,
+    updateUserActivityState: proc(self: ^Responder, userActivity: ^NS.UserActivity),
+    userActivity: proc(self: ^Responder) -> ^NS.UserActivity,
+    setUserActivity: proc(self: ^Responder, userActivity: ^NS.UserActivity),
+    makeTouchBar: proc(self: ^Responder) -> ^TouchBar,
+    touchBar: proc(self: ^Responder) -> ^TouchBar,
+    setTouchBar: proc(self: ^Responder, touchBar: ^TouchBar),
+    interfaceStyle: proc(self: ^Responder) -> InterfaceStyle,
+    setInterfaceStyle: proc(self: ^Responder, interfaceStyle: InterfaceStyle),
+    encodeRestorableStateWithCoder_: proc(self: ^Responder, coder: ^NS.Coder),
+    encodeRestorableStateWithCoder_backgroundQueue: proc(self: ^Responder, coder: ^NS.Coder, queue: ^NS.OperationQueue),
+    restoreStateWithCoder: proc(self: ^Responder, coder: ^NS.Coder),
+    invalidateRestorableState: proc(self: ^Responder),
+    allowedClassesForRestorableStateKeyPath: proc(keyPath: ^NS.String) -> ^NS.Array,
+    restorableStateKeyPaths: proc() -> ^NS.Array,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Responder,
@@ -547,6 +569,21 @@ Responder_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 Responder_odin_extend :: proc(cls: Class, vt: ^Responder_VTable) {
@@ -1083,6 +1120,226 @@ Responder_odin_extend :: proc(cls: Class, vt: ^Responder_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenu:"), auto_cast setMenu, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.undoManager != nil {
+        undoManager :: proc "c" (self: ^Responder, _: SEL) -> ^NS.UndoManager {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).undoManager(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("undoManager"), auto_cast undoManager, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.validateProposedFirstResponder != nil {
+        validateProposedFirstResponder :: proc "c" (self: ^Responder, _: SEL, responder: ^Responder, event: ^Event) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).validateProposedFirstResponder(self, responder, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("validateProposedFirstResponder:forEvent:"), auto_cast validateProposedFirstResponder, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.presentError_modalForWindow_delegate_didPresentSelector_contextInfo != nil {
+        presentError_modalForWindow_delegate_didPresentSelector_contextInfo :: proc "c" (self: ^Responder, _: SEL, error: ^NS.Error, window: ^Window, delegate: id, didPresentSelector: SEL, contextInfo: rawptr) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).presentError_modalForWindow_delegate_didPresentSelector_contextInfo(self, error, window, delegate, didPresentSelector, contextInfo)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), auto_cast presentError_modalForWindow_delegate_didPresentSelector_contextInfo, "v@:@@@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.presentError_ != nil {
+        presentError_ :: proc "c" (self: ^Responder, _: SEL, error: ^NS.Error) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).presentError_(self, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentError:"), auto_cast presentError_, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.willPresentError != nil {
+        willPresentError :: proc "c" (self: ^Responder, _: SEL, error: ^NS.Error) -> ^NS.Error {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).willPresentError(self, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("willPresentError:"), auto_cast willPresentError, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.performTextFinderAction != nil {
+        performTextFinderAction :: proc "c" (self: ^Responder, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).performTextFinderAction(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performTextFinderAction:"), auto_cast performTextFinderAction, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.newWindowForTab != nil {
+        newWindowForTab :: proc "c" (self: ^Responder, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).newWindowForTab(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("newWindowForTab:"), auto_cast newWindowForTab, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.performMnemonic != nil {
+        performMnemonic :: proc "c" (self: ^Responder, _: SEL, string: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).performMnemonic(self, string)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performMnemonic:"), auto_cast performMnemonic, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.updateUserActivityState != nil {
+        updateUserActivityState :: proc "c" (self: ^Responder, _: SEL, userActivity: ^NS.UserActivity) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).updateUserActivityState(self, userActivity)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateUserActivityState:"), auto_cast updateUserActivityState, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.userActivity != nil {
+        userActivity :: proc "c" (self: ^Responder, _: SEL) -> ^NS.UserActivity {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).userActivity(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("userActivity"), auto_cast userActivity, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUserActivity != nil {
+        setUserActivity :: proc "c" (self: ^Responder, _: SEL, userActivity: ^NS.UserActivity) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).setUserActivity(self, userActivity)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUserActivity:"), auto_cast setUserActivity, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.makeTouchBar != nil {
+        makeTouchBar :: proc "c" (self: ^Responder, _: SEL) -> ^TouchBar {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).makeTouchBar(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("makeTouchBar"), auto_cast makeTouchBar, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.touchBar != nil {
+        touchBar :: proc "c" (self: ^Responder, _: SEL) -> ^TouchBar {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).touchBar(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchBar"), auto_cast touchBar, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTouchBar != nil {
+        setTouchBar :: proc "c" (self: ^Responder, _: SEL, touchBar: ^TouchBar) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).setTouchBar(self, touchBar)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTouchBar:"), auto_cast setTouchBar, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.interfaceStyle != nil {
+        interfaceStyle :: proc "c" (self: ^Responder, _: SEL) -> InterfaceStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).interfaceStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("interfaceStyle"), auto_cast interfaceStyle, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setInterfaceStyle != nil {
+        setInterfaceStyle :: proc "c" (self: ^Responder, _: SEL, interfaceStyle: InterfaceStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).setInterfaceStyle(self, interfaceStyle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setInterfaceStyle:"), auto_cast setInterfaceStyle, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.encodeRestorableStateWithCoder_ != nil {
+        encodeRestorableStateWithCoder_ :: proc "c" (self: ^Responder, _: SEL, coder: ^NS.Coder) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).encodeRestorableStateWithCoder_(self, coder)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("encodeRestorableStateWithCoder:"), auto_cast encodeRestorableStateWithCoder_, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.encodeRestorableStateWithCoder_backgroundQueue != nil {
+        encodeRestorableStateWithCoder_backgroundQueue :: proc "c" (self: ^Responder, _: SEL, coder: ^NS.Coder, queue: ^NS.OperationQueue) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).encodeRestorableStateWithCoder_backgroundQueue(self, coder, queue)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("encodeRestorableStateWithCoder:backgroundQueue:"), auto_cast encodeRestorableStateWithCoder_backgroundQueue, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.restoreStateWithCoder != nil {
+        restoreStateWithCoder :: proc "c" (self: ^Responder, _: SEL, coder: ^NS.Coder) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).restoreStateWithCoder(self, coder)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("restoreStateWithCoder:"), auto_cast restoreStateWithCoder, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.invalidateRestorableState != nil {
+        invalidateRestorableState :: proc "c" (self: ^Responder, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).invalidateRestorableState(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateRestorableState"), auto_cast invalidateRestorableState, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.allowedClassesForRestorableStateKeyPath != nil {
+        allowedClassesForRestorableStateKeyPath :: proc "c" (self: Class, _: SEL, keyPath: ^NS.String) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.restorableStateKeyPaths != nil {
+        restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).restorableStateKeyPaths()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -1272,6 +1529,156 @@ Responder_odin_extend :: proc(cls: Class, vt: ^Responder_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Responder_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

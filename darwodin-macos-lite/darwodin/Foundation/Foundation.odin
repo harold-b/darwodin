@@ -1138,31 +1138,24 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(require_results)
     @(link_name="NSStringFromSelector")
     StringFromSelector :: proc(aSelector: SEL) -> ^String ---
 
-    @(require_results)
     @(link_name="NSSelectorFromString")
     SelectorFromString :: proc(aSelectorName: ^String) -> SEL ---
 
-    @(require_results)
     @(link_name="NSStringFromClass")
     StringFromClass :: proc(aClass: Class) -> ^String ---
 
-    @(require_results)
     @(link_name="NSClassFromString")
     ClassFromString :: proc(aClassName: ^String) -> Class ---
 
-    @(require_results)
     @(link_name="NSStringFromProtocol")
     StringFromProtocol :: proc(proto: ^Protocol) -> ^String ---
 
-    @(require_results)
     @(link_name="NSProtocolFromString")
     ProtocolFromString :: proc(namestr: ^String) -> ^Protocol ---
 
-    @(require_results)
     @(link_name="NSGetSizeAndAlignment")
     GetSizeAndAlignment :: proc(typePtr: cstring, sizep: ^UInteger, alignp: ^UInteger) -> cstring ---
 
@@ -1172,11 +1165,9 @@ foreign lib {
     @(link_name="NSLogv")
     Logv :: proc(_0: id, _1: va_list) ---
 
-    @(require_results)
     @(link_name="NSDefaultMallocZone")
     DefaultMallocZone :: proc() -> ^Zone ---
 
-    @(require_results)
     @(link_name="NSCreateZone")
     CreateZone :: proc(startSize: UInteger, granularity: UInteger, canFree: bool) -> ^Zone ---
 
@@ -1186,54 +1177,42 @@ foreign lib {
     @(link_name="NSSetZoneName")
     SetZoneName :: proc(zone: ^Zone, name: ^String) ---
 
-    @(require_results)
     @(link_name="NSZoneName")
     ZoneName :: proc(zone: ^Zone) -> ^String ---
 
-    @(require_results)
     @(link_name="NSZoneFromPointer")
     ZoneFromPointer :: proc(ptr: rawptr) -> ^Zone ---
 
-    @(require_results)
     @(link_name="NSZoneMalloc")
     ZoneMalloc :: proc(zone: ^Zone, size: UInteger) -> rawptr ---
 
-    @(require_results)
     @(link_name="NSZoneCalloc")
     ZoneCalloc :: proc(zone: ^Zone, numElems: UInteger, byteSize: UInteger) -> rawptr ---
 
-    @(require_results)
     @(link_name="NSZoneRealloc")
     ZoneRealloc :: proc(zone: ^Zone, ptr: rawptr, size: UInteger) -> rawptr ---
 
     @(link_name="NSZoneFree")
     ZoneFree :: proc(zone: ^Zone, ptr: rawptr) ---
 
-    @(require_results)
     @(link_name="NSAllocateCollectable")
     AllocateCollectable :: proc(size: UInteger, options: UInteger) -> rawptr ---
 
-    @(require_results)
     @(link_name="NSReallocateCollectable")
     ReallocateCollectable :: proc(ptr: rawptr, size: UInteger, options: UInteger) -> rawptr ---
 
-    @(require_results)
     @(link_name="NSPageSize")
     PageSize :: proc() -> UInteger ---
 
-    @(require_results)
     @(link_name="NSLogPageSize")
     LogPageSize :: proc() -> UInteger ---
 
-    @(require_results)
     @(link_name="NSRoundUpToMultipleOfPageSize")
     RoundUpToMultipleOfPageSize :: proc(bytes: UInteger) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSRoundDownToMultipleOfPageSize")
     RoundDownToMultipleOfPageSize :: proc(bytes: UInteger) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSAllocateMemoryPages")
     AllocateMemoryPages :: proc(bytes: UInteger) -> rawptr ---
 
@@ -1243,49 +1222,39 @@ foreign lib {
     @(link_name="NSCopyMemoryPages")
     CopyMemoryPages :: proc(source: rawptr, dest: rawptr, bytes: UInteger) ---
 
-    @(require_results)
     @(link_name="NSRealMemoryAvailable")
     RealMemoryAvailable :: proc() -> UInteger ---
 
-    @(require_results)
     @(link_name="NSAllocateObject")
     AllocateObject :: proc(aClass: Class, extraBytes: UInteger, zone: ^Zone) -> id ---
 
     @(link_name="NSDeallocateObject")
     DeallocateObject :: proc(object: id) ---
 
-    @(require_results)
     @(link_name="NSCopyObject")
     CopyObject :: proc(object: id, extraBytes: UInteger, zone: ^Zone) -> id ---
 
-    @(require_results)
     @(link_name="NSShouldRetainWithZone")
     ShouldRetainWithZone :: proc(anObject: id, requestedZone: ^Zone) -> bool ---
 
     @(link_name="NSIncrementExtraRefCount")
     IncrementExtraRefCount :: proc(object: id) ---
 
-    @(require_results)
     @(link_name="NSDecrementExtraRefCountWasZero")
     DecrementExtraRefCountWasZero :: proc(object: id) -> bool ---
 
-    @(require_results)
     @(link_name="NSExtraRefCount")
     ExtraRefCount :: proc(object: id) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSUnionRange")
     UnionRange :: proc(range1: _NSRange, range2: _NSRange) -> _NSRange ---
 
-    @(require_results)
     @(link_name="NSIntersectionRange")
     IntersectionRange :: proc(range1: _NSRange, range2: _NSRange) -> _NSRange ---
 
-    @(require_results)
     @(link_name="NSStringFromRange")
     StringFromRange :: proc(range: _NSRange) -> ^String ---
 
-    @(require_results)
     @(link_name="NSRangeFromString")
     RangeFromString :: proc(aString: ^String) -> _NSRange ---
 
@@ -1295,77 +1264,60 @@ foreign lib {
     @(link_name="NSDecimalCompact")
     DecimalCompact :: proc(number: ^Decimal) ---
 
-    @(require_results)
     @(link_name="NSDecimalCompare")
     DecimalCompare :: proc(leftOperand: ^Decimal, rightOperand: ^Decimal) -> ComparisonResult ---
 
     @(link_name="NSDecimalRound")
     DecimalRound :: proc(result: ^Decimal, number: ^Decimal, scale: Integer, roundingMode: RoundingMode) ---
 
-    @(require_results)
     @(link_name="NSDecimalNormalize")
     DecimalNormalize :: proc(number1: ^Decimal, number2: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalAdd")
     DecimalAdd :: proc(result: ^Decimal, leftOperand: ^Decimal, rightOperand: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalSubtract")
     DecimalSubtract :: proc(result: ^Decimal, leftOperand: ^Decimal, rightOperand: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalMultiply")
     DecimalMultiply :: proc(result: ^Decimal, leftOperand: ^Decimal, rightOperand: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalDivide")
     DecimalDivide :: proc(result: ^Decimal, leftOperand: ^Decimal, rightOperand: ^Decimal, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalPower")
     DecimalPower :: proc(result: ^Decimal, number: ^Decimal, power: UInteger, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalMultiplyByPowerOf10")
     DecimalMultiplyByPowerOf10 :: proc(result: ^Decimal, number: ^Decimal, power: cffi.short, roundingMode: RoundingMode) -> CalculationError ---
 
-    @(require_results)
     @(link_name="NSDecimalString")
     DecimalString :: proc(dcm: ^Decimal, locale: id) -> ^String ---
 
-    @(require_results)
     @(link_name="NSGetUncaughtExceptionHandler")
     GetUncaughtExceptionHandler :: proc() -> UncaughtExceptionHandler ---
 
     @(link_name="NSSetUncaughtExceptionHandler")
     SetUncaughtExceptionHandler :: proc(_0: UncaughtExceptionHandler) ---
 
-    @(require_results)
     @(link_name="NSUserName")
     UserName :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSFullUserName")
     FullUserName :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSHomeDirectory")
     HomeDirectory :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSHomeDirectoryForUser")
     HomeDirectoryForUser :: proc(userName: ^String) -> ^String ---
 
-    @(require_results)
     @(link_name="NSTemporaryDirectory")
     TemporaryDirectory :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSOpenStepRootDirectory")
     OpenStepRootDirectory :: proc() -> ^String ---
 
-    @(require_results)
     @(link_name="NSSearchPathForDirectoriesInDomains")
     SearchPathForDirectoriesInDomains :: proc(directory: SearchPathDirectory, domainMask: SearchPathDomainMask, expandTilde: bool) -> ^Array ---
 
@@ -1375,15 +1327,12 @@ foreign lib {
     @(link_name="NSResetHashTable")
     ResetHashTable :: proc(table: ^HashTable) ---
 
-    @(require_results)
     @(link_name="NSCompareHashTables")
     CompareHashTables :: proc(table1: ^HashTable, table2: ^HashTable) -> bool ---
 
-    @(require_results)
     @(link_name="NSCopyHashTableWithZone")
     CopyHashTableWithZone :: proc(table: ^HashTable, zone: ^Zone) -> ^HashTable ---
 
-    @(require_results)
     @(link_name="NSHashGet")
     HashGet :: proc(table: ^HashTable, pointer: rawptr) -> rawptr ---
 
@@ -1393,128 +1342,99 @@ foreign lib {
     @(link_name="NSHashInsertKnownAbsent")
     HashInsertKnownAbsent :: proc(table: ^HashTable, pointer: rawptr) ---
 
-    @(require_results)
     @(link_name="NSHashInsertIfAbsent")
     HashInsertIfAbsent :: proc(table: ^HashTable, pointer: rawptr) -> rawptr ---
 
     @(link_name="NSHashRemove")
     HashRemove :: proc(table: ^HashTable, pointer: rawptr) ---
 
-    @(require_results)
     @(link_name="NSEnumerateHashTable")
     EnumerateHashTable :: proc(table: ^HashTable) -> HashEnumerator ---
 
-    @(require_results)
     @(link_name="NSNextHashEnumeratorItem")
     NextHashEnumeratorItem :: proc(enumerator: ^HashEnumerator) -> rawptr ---
 
     @(link_name="NSEndHashTableEnumeration")
     EndHashTableEnumeration :: proc(enumerator: ^HashEnumerator) ---
 
-    @(require_results)
     @(link_name="NSCountHashTable")
     CountHashTable :: proc(table: ^HashTable) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSStringFromHashTable")
     StringFromHashTable :: proc(table: ^HashTable) -> ^String ---
 
-    @(require_results)
     @(link_name="NSAllHashTableObjects")
     AllHashTableObjects :: proc(table: ^HashTable) -> ^Array ---
 
-    @(require_results)
     @(link_name="NSCreateHashTableWithZone")
     CreateHashTableWithZone :: proc(callBacks: HashTableCallBacks, capacity: UInteger, zone: ^Zone) -> ^HashTable ---
 
-    @(require_results)
     @(link_name="NSCreateHashTable")
     CreateHashTable :: proc(callBacks: HashTableCallBacks, capacity: UInteger) -> ^HashTable ---
 
-    @(require_results)
     @(link_name="NSEqualPoints")
     EqualPoints :: proc(aPoint: CG.Point, bPoint: CG.Point) -> bool ---
 
-    @(require_results)
     @(link_name="NSEqualSizes")
     EqualSizes :: proc(aSize: Size, bSize: Size) -> bool ---
 
-    @(require_results)
     @(link_name="NSEqualRects")
     EqualRects :: proc(aRect: Rect, bRect: Rect) -> bool ---
 
-    @(require_results)
     @(link_name="NSIsEmptyRect")
     IsEmptyRect :: proc(aRect: Rect) -> bool ---
 
-    @(require_results)
     @(link_name="NSEdgeInsetsEqual")
     EdgeInsetsEqual :: proc(aInsets: EdgeInsets, bInsets: EdgeInsets) -> bool ---
 
-    @(require_results)
     @(link_name="NSInsetRect")
     InsetRect :: proc(aRect: Rect, dX: CG.Float, dY: CG.Float) -> Rect ---
 
-    @(require_results)
     @(link_name="NSIntegralRect")
     IntegralRect :: proc(aRect: Rect) -> Rect ---
 
-    @(require_results)
     @(link_name="NSIntegralRectWithOptions")
     IntegralRectWithOptions :: proc(aRect: Rect, opts: AlignmentOptions) -> Rect ---
 
-    @(require_results)
     @(link_name="NSUnionRect")
     UnionRect :: proc(aRect: Rect, bRect: Rect) -> Rect ---
 
-    @(require_results)
     @(link_name="NSIntersectionRect")
     IntersectionRect :: proc(aRect: Rect, bRect: Rect) -> Rect ---
 
-    @(require_results)
     @(link_name="NSOffsetRect")
     OffsetRect :: proc(aRect: Rect, dX: CG.Float, dY: CG.Float) -> Rect ---
 
     @(link_name="NSDivideRect")
     DivideRect :: proc(inRect: Rect, slice: ^Rect, rem: ^Rect, amount: CG.Float, edge: RectEdge) ---
 
-    @(require_results)
     @(link_name="NSPointInRect")
     PointInRect :: proc(aPoint: CG.Point, aRect: Rect) -> bool ---
 
-    @(require_results)
     @(link_name="NSMouseInRect")
     MouseInRect :: proc(aPoint: CG.Point, aRect: Rect, flipped: bool) -> bool ---
 
-    @(require_results)
     @(link_name="NSContainsRect")
     ContainsRect :: proc(aRect: Rect, bRect: Rect) -> bool ---
 
-    @(require_results)
     @(link_name="NSIntersectsRect")
     IntersectsRect :: proc(aRect: Rect, bRect: Rect) -> bool ---
 
-    @(require_results)
     @(link_name="NSStringFromPoint")
     StringFromPoint :: proc(aPoint: CG.Point) -> ^String ---
 
-    @(require_results)
     @(link_name="NSStringFromSize")
     StringFromSize :: proc(aSize: Size) -> ^String ---
 
-    @(require_results)
     @(link_name="NSStringFromRect")
     StringFromRect :: proc(aRect: Rect) -> ^String ---
 
-    @(require_results)
     @(link_name="NSPointFromString")
     PointFromString :: proc(aString: ^String) -> CG.Point ---
 
-    @(require_results)
     @(link_name="NSSizeFromString")
     SizeFromString :: proc(aString: ^String) -> Size ---
 
-    @(require_results)
     @(link_name="NSRectFromString")
     RectFromString :: proc(aString: ^String) -> Rect ---
 
@@ -1524,19 +1444,15 @@ foreign lib {
     @(link_name="NSResetMapTable")
     ResetMapTable :: proc(table: ^MapTable) ---
 
-    @(require_results)
     @(link_name="NSCompareMapTables")
     CompareMapTables :: proc(table1: ^MapTable, table2: ^MapTable) -> bool ---
 
-    @(require_results)
     @(link_name="NSCopyMapTableWithZone")
     CopyMapTableWithZone :: proc(table: ^MapTable, zone: ^Zone) -> ^MapTable ---
 
-    @(require_results)
     @(link_name="NSMapMember")
     MapMember :: proc(table: ^MapTable, key: rawptr, originalKey: ^rawptr, value: ^rawptr) -> bool ---
 
-    @(require_results)
     @(link_name="NSMapGet")
     MapGet :: proc(table: ^MapTable, key: rawptr) -> rawptr ---
 
@@ -1546,57 +1462,45 @@ foreign lib {
     @(link_name="NSMapInsertKnownAbsent")
     MapInsertKnownAbsent :: proc(table: ^MapTable, key: rawptr, value: rawptr) ---
 
-    @(require_results)
     @(link_name="NSMapInsertIfAbsent")
     MapInsertIfAbsent :: proc(table: ^MapTable, key: rawptr, value: rawptr) -> rawptr ---
 
     @(link_name="NSMapRemove")
     MapRemove :: proc(table: ^MapTable, key: rawptr) ---
 
-    @(require_results)
     @(link_name="NSEnumerateMapTable")
     EnumerateMapTable :: proc(table: ^MapTable) -> MapEnumerator ---
 
-    @(require_results)
     @(link_name="NSNextMapEnumeratorPair")
     NextMapEnumeratorPair :: proc(enumerator: ^MapEnumerator, key: ^rawptr, value: ^rawptr) -> bool ---
 
     @(link_name="NSEndMapTableEnumeration")
     EndMapTableEnumeration :: proc(enumerator: ^MapEnumerator) ---
 
-    @(require_results)
     @(link_name="NSCountMapTable")
     CountMapTable :: proc(table: ^MapTable) -> UInteger ---
 
-    @(require_results)
     @(link_name="NSStringFromMapTable")
     StringFromMapTable :: proc(table: ^MapTable) -> ^String ---
 
-    @(require_results)
     @(link_name="NSAllMapTableKeys")
     AllMapTableKeys :: proc(table: ^MapTable) -> ^Array ---
 
-    @(require_results)
     @(link_name="NSAllMapTableValues")
     AllMapTableValues :: proc(table: ^MapTable) -> ^Array ---
 
-    @(require_results)
     @(link_name="NSCreateMapTableWithZone")
     CreateMapTableWithZone :: proc(keyCallBacks: MapTableKeyCallBacks, valueCallBacks: MapTableValueCallBacks, capacity: UInteger, zone: ^Zone) -> ^MapTable ---
 
-    @(require_results)
     @(link_name="NSCreateMapTable")
     CreateMapTable :: proc(keyCallBacks: MapTableKeyCallBacks, valueCallBacks: MapTableValueCallBacks, capacity: UInteger) -> ^MapTable ---
 
-    @(require_results)
     @(link_name="NSFileTypeForHFSTypeCode")
     FileTypeForHFSTypeCode :: proc(hfsFileTypeCode: CF.OSType) -> ^String ---
 
-    @(require_results)
     @(link_name="NSHFSTypeCodeFromFileType")
     HFSTypeCodeFromFileType :: proc(fileTypeString: ^String) -> CF.OSType ---
 
-    @(require_results)
     @(link_name="NSHFSTypeOfFile")
     HFSTypeOfFile :: proc(fullFilePath: ^String) -> ^String ---
 
@@ -4622,10 +4526,10 @@ SSLCiphersuiteGroup :: enum cffi.int {
 
 /// tls_protocol_version_t
 tls_protocol_version_t :: enum cffi.ushort {
-    TLSv10 = 769,
-    TLSv11 = 770,
-    TLSv12 = 771,
-    TLSv13 = 772,
+    LSv10 = 769,
+    LSv11 = 770,
+    LSv12 = 771,
+    LSv13 = 772,
     DTLSv10 = 65279,
     DTLSv12 = 65277,
 }
@@ -5623,7 +5527,7 @@ SecKeychainAttributeInfo :: struct #align (8) {
 /// cssm_data
 cssm_data :: struct #align (8) {
     Length : cffi.uint,
-    Data : ^cffi.uint8_t,
+    _Data : ^cffi.uint8_t,
 }
 
 /// SecAsn1AlgId
@@ -6197,7 +6101,7 @@ cssm_cert_bundle_header :: struct #align (4) {
 /// cssm_cert_bundle
 cssm_cert_bundle :: struct #align (8) {
     BundleHeader : cssm_cert_bundle_header,
-    Bundle : cssm_data,
+    _Bundle : cssm_data,
 }
 
 /// cssm_db_attribute_info
@@ -6211,7 +6115,7 @@ cssm_db_attribute_info :: struct #align (8) {
 cssm_db_attribute_data :: struct #align (8) {
     Info : cssm_db_attribute_info,
     NumberOfValues : cffi.uint,
-    Value : CSSM_DATA_PTR,
+    _Value : CSSM_DATA_PTR,
 }
 
 /// cssm_db_record_attribute_info
@@ -6296,7 +6200,7 @@ cssm_dl_pkcs11_attributes :: struct #align (4) {
 /// cssm_name_list
 cssm_name_list :: struct #align (8) {
     NumStrings : cffi.uint,
-    String : ^cstring,
+    _String : ^cstring,
 }
 
 /// cssm_db_schema_attribute_info
@@ -6816,16 +6720,16 @@ cssm_spi_cl_funcs :: struct #align (8) {
     CertSign : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplate: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCert: CSSM_DATA_PTR) -> CSSM_RETURN,
     CertVerify : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint) -> CSSM_RETURN,
     CertVerifyWithKey : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data) -> CSSM_RETURN,
-    CertGetFirstFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetNextFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGetFirstFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGetNextFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
     CertAbortQuery : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
     CertGetKeyInfo : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Key: ^CSSM_KEY_PTR) -> CSSM_RETURN,
     CertGetAllFields : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
     FreeFields : proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, FieldArray: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    FreeFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CertOrCrlOid: ^cssm_data, Value: CSSM_DATA_PTR) -> CSSM_RETURN,
+    FreeFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CertOrCrlOid: ^cssm_data, _Value: CSSM_DATA_PTR) -> CSSM_RETURN,
     CertCache : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    CertGetFirstCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetNextCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGetFirstCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGetNextCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
     CertAbortCache : proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE) -> CSSM_RETURN,
     CertGroupToSignedBundle : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertGroupToBundle: ^cssm_certgroup, BundleInfo: ^cssm_cert_bundle_header, SignedBundle: CSSM_DATA_PTR) -> CSSM_RETURN,
     CertGroupFromVerifiedBundle : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertBundle: ^cssm_cert_bundle, SignerCert: ^cssm_data, CertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
@@ -6838,14 +6742,14 @@ cssm_spi_cl_funcs :: struct #align (8) {
     CrlVerify : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint) -> CSSM_RETURN,
     CrlVerifyWithKey : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data) -> CSSM_RETURN,
     IsCertInCrl : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Crl: ^cssm_data, CertFound: ^CSSM_BOOL) -> CSSM_RETURN,
-    CrlGetFirstFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetNextFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlGetFirstFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlGetNextFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
     CrlAbortQuery : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
     CrlGetAllFields : proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, NumberOfCrlFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
     CrlCache : proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
     IsCertInCachedCrl : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CrlHandle: CSSM_HANDLE, CertFound: ^CSSM_BOOL, CrlRecordIndex: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetFirstCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetNextCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlGetFirstCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlGetNextCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
     CrlGetAllCachedRecordFields : proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, NumberOfFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
     CrlAbortCache : proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE) -> CSSM_RETURN,
     CrlDescribeFormat : proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR) -> CSSM_RETURN,
@@ -6946,13 +6850,13 @@ cssm_spi_dl_funcs :: struct #align (8) {
     GetDbNames : proc "c" (DLHandle: CSSM_DL_HANDLE, NameList: ^CSSM_NAME_LIST_PTR) -> CSSM_RETURN,
     GetDbNameFromHandle : proc "c" (DLDBHandle: cssm_dl_db_handle, DbName: ^cstring) -> CSSM_RETURN,
     FreeNameList : proc "c" (DLHandle: CSSM_DL_HANDLE, NameList: CSSM_NAME_LIST_PTR) -> CSSM_RETURN,
-    DataInsert : proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, Attributes: ^cssm_db_record_attribute_data, Data: ^cssm_data, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
+    DataInsert : proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, Attributes: ^cssm_db_record_attribute_data, _Data: ^cssm_data, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
     DataDelete : proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecordIdentifier: ^cssm_db_unique_record) -> CSSM_RETURN,
     DataModify : proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, UniqueRecordIdentifier: CSSM_DB_UNIQUE_RECORD_PTR, AttributesToBeModified: ^cssm_db_record_attribute_data, DataToBeModified: ^cssm_data, ModifyMode: CSSM_DB_MODIFY_MODE) -> CSSM_RETURN,
-    DataGetFirst : proc "c" (DLDBHandle: cssm_dl_db_handle, Query: ^cssm_query, ResultsHandle: CSSM_HANDLE_PTR, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    DataGetNext : proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
+    DataGetFirst : proc "c" (DLDBHandle: cssm_dl_db_handle, Query: ^cssm_query, ResultsHandle: CSSM_HANDLE_PTR, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
+    DataGetNext : proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
     DataAbortQuery : proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    DataGetFromUniqueRecordId : proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: ^cssm_db_unique_record, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR) -> CSSM_RETURN,
+    DataGetFromUniqueRecordId : proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: ^cssm_db_unique_record, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR) -> CSSM_RETURN,
     FreeUniqueRecord : proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
     PassThrough : proc "c" (DLDBHandle: cssm_dl_db_handle, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
 }
@@ -7129,14 +7033,14 @@ __NSAppleEventManagerSuspension :: struct {}
 
 /// cssm_context_attribute::cssm_context_attribute_value
 cssm_context_attribute_value :: struct  {
-    String : cstring,
+    _String : cstring,
     Uint32 : cffi.uint,
     AccessCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
     Key : CSSM_KEY_PTR,
-    Data : CSSM_DATA_PTR,
+    _Data : CSSM_DATA_PTR,
     Padding : CSSM_PADDING,
-    Date : CSSM_DATE_PTR,
-    Range : CSSM_RANGE_PTR,
+    _Date : CSSM_DATE_PTR,
+    _Range : CSSM_RANGE_PTR,
     CryptoData : CSSM_CRYPTO_DATA_PTR,
     Version : CSSM_VERSION_PTR,
     DLDBHandle : CSSM_DL_DB_HANDLE_PTR,

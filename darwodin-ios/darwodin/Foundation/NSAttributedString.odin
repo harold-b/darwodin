@@ -289,6 +289,29 @@ AttributedString_VTable :: struct {
     super: Object_VTable,
     attributesAtIndex_effectiveRange: proc(self: ^AttributedString, location: UInteger, range: ^_NSRange) -> ^Dictionary,
     string: proc(self: ^AttributedString) -> ^String,
+    attribute_atIndex_effectiveRange: proc(self: ^AttributedString, attrName: ^String, location: UInteger, range: ^_NSRange) -> id,
+    attributedSubstringFromRange: proc(self: ^AttributedString, range: _NSRange) -> ^AttributedString,
+    attributesAtIndex_longestEffectiveRange_inRange: proc(self: ^AttributedString, location: UInteger, range: ^_NSRange, rangeLimit: _NSRange) -> ^Dictionary,
+    attribute_atIndex_longestEffectiveRange_inRange: proc(self: ^AttributedString, attrName: ^String, location: UInteger, range: ^_NSRange, rangeLimit: _NSRange) -> id,
+    isEqualToAttributedString: proc(self: ^AttributedString, other: ^AttributedString) -> bool,
+    initWithString_: proc(self: ^AttributedString, str: ^String) -> ^AttributedString,
+    initWithString_attributes: proc(self: ^AttributedString, str: ^String, attrs: ^Dictionary) -> ^AttributedString,
+    initWithAttributedString: proc(self: ^AttributedString, attrStr: ^AttributedString) -> ^AttributedString,
+    enumerateAttributesInRange: proc(self: ^AttributedString, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: proc "c" (attrs: ^Dictionary, range: _NSRange, stop: ^bool)),
+    enumerateAttribute: proc(self: ^AttributedString, attrName: ^String, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: proc "c" (value: id, range: _NSRange, stop: ^bool)),
+    length: proc(self: ^AttributedString) -> UInteger,
+    initWithContentsOfMarkdownFileAtURL: proc(self: ^AttributedString, markdownFile: ^URL, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString,
+    initWithMarkdown: proc(self: ^AttributedString, markdown: ^Data, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString,
+    initWithMarkdownString: proc(self: ^AttributedString, markdownString: ^String, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString,
+    initWithFormat_options_locale: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale) -> ^AttributedString,
+    initWithFormat_options_locale_arguments: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: va_list) -> ^AttributedString,
+    localizedAttributedStringWithFormat_: proc(format: ^AttributedString) -> ^AttributedString,
+    localizedAttributedStringWithFormat_options: proc(format: ^AttributedString, options: AttributedStringFormattingOptions) -> ^AttributedString,
+    initWithFormat_options_locale_context: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary) -> ^AttributedString,
+    initWithFormat_options_locale_context_arguments: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: va_list) -> ^AttributedString,
+    localizedAttributedStringWithFormat_context: proc(format: ^AttributedString, _context: ^Dictionary) -> ^AttributedString,
+    localizedAttributedStringWithFormat_options_context: proc(format: ^AttributedString, options: AttributedStringFormattingOptions, _context: ^Dictionary) -> ^AttributedString,
+    attributedStringByInflectingString: proc(self: ^AttributedString) -> ^AttributedString,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -309,12 +332,25 @@ AttributedString_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 AttributedString_odin_extend :: proc(cls: Class, vt: ^AttributedString_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Object_odin_extend(cls, &vt.super)
+
     if vt.attributesAtIndex_effectiveRange != nil {
         attributesAtIndex_effectiveRange :: proc "c" (self: ^AttributedString, _: SEL, location: UInteger, range: ^_NSRange) -> ^Dictionary {
 
@@ -334,6 +370,236 @@ AttributedString_odin_extend :: proc(cls: Class, vt: ^AttributedString_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("string"), auto_cast string, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.attribute_atIndex_effectiveRange != nil {
+        attribute_atIndex_effectiveRange :: proc "c" (self: ^AttributedString, _: SEL, attrName: ^String, location: UInteger, range: ^_NSRange) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).attribute_atIndex_effectiveRange(self, attrName, location, range)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attribute:atIndex:effectiveRange:"), auto_cast attribute_atIndex_effectiveRange, "@@:@L^void") do panic("Failed to register objC method.")
+    }
+    if vt.attributedSubstringFromRange != nil {
+        attributedSubstringFromRange :: proc "c" (self: ^AttributedString, _: SEL, range: _NSRange) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).attributedSubstringFromRange(self, range)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributedSubstringFromRange:"), auto_cast attributedSubstringFromRange, "@@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.attributesAtIndex_longestEffectiveRange_inRange != nil {
+        attributesAtIndex_longestEffectiveRange_inRange :: proc "c" (self: ^AttributedString, _: SEL, location: UInteger, range: ^_NSRange, rangeLimit: _NSRange) -> ^Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).attributesAtIndex_longestEffectiveRange_inRange(self, location, range, rangeLimit)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesAtIndex:longestEffectiveRange:inRange:"), auto_cast attributesAtIndex_longestEffectiveRange_inRange, "@@:L^void{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.attribute_atIndex_longestEffectiveRange_inRange != nil {
+        attribute_atIndex_longestEffectiveRange_inRange :: proc "c" (self: ^AttributedString, _: SEL, attrName: ^String, location: UInteger, range: ^_NSRange, rangeLimit: _NSRange) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).attribute_atIndex_longestEffectiveRange_inRange(self, attrName, location, range, rangeLimit)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attribute:atIndex:longestEffectiveRange:inRange:"), auto_cast attribute_atIndex_longestEffectiveRange_inRange, "@@:@L^void{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.isEqualToAttributedString != nil {
+        isEqualToAttributedString :: proc "c" (self: ^AttributedString, _: SEL, other: ^AttributedString) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).isEqualToAttributedString(self, other)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isEqualToAttributedString:"), auto_cast isEqualToAttributedString, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithString_ != nil {
+        initWithString_ :: proc "c" (self: ^AttributedString, _: SEL, str: ^String) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithString_(self, str)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:"), auto_cast initWithString_, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithString_attributes != nil {
+        initWithString_attributes :: proc "c" (self: ^AttributedString, _: SEL, str: ^String, attrs: ^Dictionary) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithString_attributes(self, str, attrs)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:attributes:"), auto_cast initWithString_attributes, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithAttributedString != nil {
+        initWithAttributedString :: proc "c" (self: ^AttributedString, _: SEL, attrStr: ^AttributedString) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithAttributedString(self, attrStr)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedString:"), auto_cast initWithAttributedString, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.enumerateAttributesInRange != nil {
+        enumerateAttributesInRange :: proc "c" (self: ^AttributedString, _: SEL, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: proc "c" (attrs: ^Dictionary, range: _NSRange, stop: ^bool)) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^AttributedString_VTable)vt_ctx.super_vt).enumerateAttributesInRange(self, enumerationRange, opts, block)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateAttributesInRange:options:usingBlock:"), auto_cast enumerateAttributesInRange, "v@:{_NSRange=LL}L?") do panic("Failed to register objC method.")
+    }
+    if vt.enumerateAttribute != nil {
+        enumerateAttribute :: proc "c" (self: ^AttributedString, _: SEL, attrName: ^String, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: proc "c" (value: id, range: _NSRange, stop: ^bool)) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^AttributedString_VTable)vt_ctx.super_vt).enumerateAttribute(self, attrName, enumerationRange, opts, block)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateAttribute:inRange:options:usingBlock:"), auto_cast enumerateAttribute, "v@:@{_NSRange=LL}L?") do panic("Failed to register objC method.")
+    }
+    if vt.length != nil {
+        length :: proc "c" (self: ^AttributedString, _: SEL) -> UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).length(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("length"), auto_cast length, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.initWithContentsOfMarkdownFileAtURL != nil {
+        initWithContentsOfMarkdownFileAtURL :: proc "c" (self: ^AttributedString, _: SEL, markdownFile: ^URL, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithContentsOfMarkdownFileAtURL(self, markdownFile, options, baseURL, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfMarkdownFileAtURL:options:baseURL:error:"), auto_cast initWithContentsOfMarkdownFileAtURL, "@@:@@@^void") do panic("Failed to register objC method.")
+    }
+    if vt.initWithMarkdown != nil {
+        initWithMarkdown :: proc "c" (self: ^AttributedString, _: SEL, markdown: ^Data, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithMarkdown(self, markdown, options, baseURL, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMarkdown:options:baseURL:error:"), auto_cast initWithMarkdown, "@@:@@@^void") do panic("Failed to register objC method.")
+    }
+    if vt.initWithMarkdownString != nil {
+        initWithMarkdownString :: proc "c" (self: ^AttributedString, _: SEL, markdownString: ^String, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithMarkdownString(self, markdownString, options, baseURL, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMarkdownString:options:baseURL:error:"), auto_cast initWithMarkdownString, "@@:@@@^void") do panic("Failed to register objC method.")
+    }
+    if vt.initWithFormat_options_locale != nil {
+        initWithFormat_options_locale :: proc "c" (self: ^AttributedString, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithFormat_options_locale(self, format, options, locale)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:"), auto_cast initWithFormat_options_locale, "@@:@L@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithFormat_options_locale_arguments != nil {
+        initWithFormat_options_locale_arguments :: proc "c" (self: ^AttributedString, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: va_list) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithFormat_options_locale_arguments(self, format, options, locale, arguments)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:arguments:"), auto_cast initWithFormat_options_locale_arguments, "@@:@L@*") do panic("Failed to register objC method.")
+    }
+    if vt.localizedAttributedStringWithFormat_ != nil {
+        localizedAttributedStringWithFormat_ :: proc "c" (self: Class, _: SEL, format: ^AttributedString) -> ^AttributedString {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).localizedAttributedStringWithFormat_( format)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:"), auto_cast localizedAttributedStringWithFormat_, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.localizedAttributedStringWithFormat_options != nil {
+        localizedAttributedStringWithFormat_options :: proc "c" (self: Class, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions) -> ^AttributedString {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).localizedAttributedStringWithFormat_options( format, options)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:options:"), auto_cast localizedAttributedStringWithFormat_options, "@#:@L") do panic("Failed to register objC method.")
+    }
+    if vt.initWithFormat_options_locale_context != nil {
+        initWithFormat_options_locale_context :: proc "c" (self: ^AttributedString, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithFormat_options_locale_context(self, format, options, locale, _context)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:context:"), auto_cast initWithFormat_options_locale_context, "@@:@L@@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithFormat_options_locale_context_arguments != nil {
+        initWithFormat_options_locale_context_arguments :: proc "c" (self: ^AttributedString, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: va_list) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).initWithFormat_options_locale_context_arguments(self, format, options, locale, _context, arguments)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:context:arguments:"), auto_cast initWithFormat_options_locale_context_arguments, "@@:@L@@*") do panic("Failed to register objC method.")
+    }
+    if vt.localizedAttributedStringWithFormat_context != nil {
+        localizedAttributedStringWithFormat_context :: proc "c" (self: Class, _: SEL, format: ^AttributedString, _context: ^Dictionary) -> ^AttributedString {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).localizedAttributedStringWithFormat_context( format, _context)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:context:"), auto_cast localizedAttributedStringWithFormat_context, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.localizedAttributedStringWithFormat_options_context != nil {
+        localizedAttributedStringWithFormat_options_context :: proc "c" (self: Class, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, _context: ^Dictionary) -> ^AttributedString {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).localizedAttributedStringWithFormat_options_context( format, options, _context)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:options:context:"), auto_cast localizedAttributedStringWithFormat_options_context, "@#:@L@") do panic("Failed to register objC method.")
+    }
+    if vt.attributedStringByInflectingString != nil {
+        attributedStringByInflectingString :: proc "c" (self: ^AttributedString, _: SEL) -> ^AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).attributedStringByInflectingString(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributedStringByInflectingString"), auto_cast attributedStringByInflectingString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -534,6 +800,106 @@ AttributedString_odin_extend :: proc(cls: Class, vt: ^AttributedString_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^AttributedString_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^AttributedString_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^AttributedString_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AttributedString_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

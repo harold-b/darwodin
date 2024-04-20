@@ -238,6 +238,20 @@ MutableSet_VTable :: struct {
     initWithCoder: proc(self: ^MutableSet, coder: ^Coder) -> ^MutableSet,
     init: proc(self: ^MutableSet) -> ^MutableSet,
     initWithCapacity: proc(self: ^MutableSet, numItems: UInteger) -> ^MutableSet,
+    addObjectsFromArray: proc(self: ^MutableSet, array: ^Array),
+    intersectSet: proc(self: ^MutableSet, otherSet: ^Set),
+    minusSet: proc(self: ^MutableSet, otherSet: ^Set),
+    removeAllObjects: proc(self: ^MutableSet),
+    unionSet: proc(self: ^MutableSet, otherSet: ^Set),
+    setSet: proc(self: ^MutableSet, otherSet: ^Set),
+    setWithCapacity: proc(numItems: UInteger) -> ^MutableSet,
+    filterUsingPredicate: proc(self: ^MutableSet, predicate: ^Predicate),
+    set: proc() -> ^Set,
+    setWithObject: proc(object: ^id) -> ^Set,
+    setWithObjects_count: proc(objects: ^^id, cnt: UInteger) -> ^Set,
+    setWithObjects_: proc(firstObj: ^id) -> ^Set,
+    setWithSet: proc(set: ^Set) -> ^Set,
+    setWithArray: proc(array: ^Array) -> ^Set,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -258,12 +272,27 @@ MutableSet_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 MutableSet_odin_extend :: proc(cls: Class, vt: ^MutableSet_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Set_odin_extend(cls, &vt.super)
+
     if vt.addObject != nil {
         addObject :: proc "c" (self: ^MutableSet, _: SEL, object: ^id) {
 
@@ -313,6 +342,146 @@ MutableSet_odin_extend :: proc(cls: Class, vt: ^MutableSet_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCapacity:"), auto_cast initWithCapacity, "@@:L") do panic("Failed to register objC method.")
+    }
+    if vt.addObjectsFromArray != nil {
+        addObjectsFromArray :: proc "c" (self: ^MutableSet, _: SEL, array: ^Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).addObjectsFromArray(self, array)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addObjectsFromArray:"), auto_cast addObjectsFromArray, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.intersectSet != nil {
+        intersectSet :: proc "c" (self: ^MutableSet, _: SEL, otherSet: ^Set) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).intersectSet(self, otherSet)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("intersectSet:"), auto_cast intersectSet, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.minusSet != nil {
+        minusSet :: proc "c" (self: ^MutableSet, _: SEL, otherSet: ^Set) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).minusSet(self, otherSet)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("minusSet:"), auto_cast minusSet, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.removeAllObjects != nil {
+        removeAllObjects :: proc "c" (self: ^MutableSet, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).removeAllObjects(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllObjects"), auto_cast removeAllObjects, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.unionSet != nil {
+        unionSet :: proc "c" (self: ^MutableSet, _: SEL, otherSet: ^Set) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).unionSet(self, otherSet)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("unionSet:"), auto_cast unionSet, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.setSet != nil {
+        setSet :: proc "c" (self: ^MutableSet, _: SEL, otherSet: ^Set) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).setSet(self, otherSet)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSet:"), auto_cast setSet, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.setWithCapacity != nil {
+        setWithCapacity :: proc "c" (self: Class, _: SEL, numItems: UInteger) -> ^MutableSet {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).setWithCapacity( numItems)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithCapacity:"), auto_cast setWithCapacity, "@#:L") do panic("Failed to register objC method.")
+    }
+    if vt.filterUsingPredicate != nil {
+        filterUsingPredicate :: proc "c" (self: ^MutableSet, _: SEL, predicate: ^Predicate) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).filterUsingPredicate(self, predicate)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("filterUsingPredicate:"), auto_cast filterUsingPredicate, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.set != nil {
+        set :: proc "c" (self: Class, _: SEL) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).set()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("set"), auto_cast set, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.setWithObject != nil {
+        setWithObject :: proc "c" (self: Class, _: SEL, object: ^id) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).setWithObject( object)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObject:"), auto_cast setWithObject, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.setWithObjects_count != nil {
+        setWithObjects_count :: proc "c" (self: Class, _: SEL, objects: ^^id, cnt: UInteger) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).setWithObjects_count( objects, cnt)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObjects:count:"), auto_cast setWithObjects_count, "@#:^voidL") do panic("Failed to register objC method.")
+    }
+    if vt.setWithObjects_ != nil {
+        setWithObjects_ :: proc "c" (self: Class, _: SEL, firstObj: ^id) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).setWithObjects_( firstObj)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObjects:"), auto_cast setWithObjects_, "@#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.setWithSet != nil {
+        setWithSet :: proc "c" (self: Class, _: SEL, set: ^Set) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).setWithSet( set)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithSet:"), auto_cast setWithSet, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setWithArray != nil {
+        setWithArray :: proc "c" (self: Class, _: SEL, array: ^Array) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).setWithArray( array)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithArray:"), auto_cast setWithArray, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -513,6 +682,126 @@ MutableSet_odin_extend :: proc(cls: Class, vt: ^MutableSet_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableSet_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableSet_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

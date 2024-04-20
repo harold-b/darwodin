@@ -345,6 +345,7 @@ GestureRecognizer_VTable :: struct {
     requireGestureRecognizerToFail: proc(self: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer),
     locationInView: proc(self: ^GestureRecognizer, view: ^View) -> CG.Point,
     locationOfTouch: proc(self: ^GestureRecognizer, touchIndex: NS.UInteger, view: ^View) -> CG.Point,
+    state: proc(self: ^GestureRecognizer) -> GestureRecognizerState,
     delegate: proc(self: ^GestureRecognizer) -> ^GestureRecognizerDelegate,
     setDelegate: proc(self: ^GestureRecognizer, delegate: ^GestureRecognizerDelegate),
     isEnabled: proc(self: ^GestureRecognizer) -> bool,
@@ -367,6 +368,24 @@ GestureRecognizer_VTable :: struct {
     setName: proc(self: ^GestureRecognizer, name: ^NS.String),
     modifierFlags: proc(self: ^GestureRecognizer) -> KeyModifierFlags,
     buttonMask: proc(self: ^GestureRecognizer) -> EventButtonMask,
+    ignoreTouch: proc(self: ^GestureRecognizer, touch: ^Touch, event: ^Event),
+    ignorePress: proc(self: ^GestureRecognizer, button: ^Press, event: ^PressesEvent),
+    reset: proc(self: ^GestureRecognizer),
+    canPreventGestureRecognizer: proc(self: ^GestureRecognizer, preventedGestureRecognizer: ^GestureRecognizer) -> bool,
+    canBePreventedByGestureRecognizer: proc(self: ^GestureRecognizer, preventingGestureRecognizer: ^GestureRecognizer) -> bool,
+    shouldRequireFailureOfGestureRecognizer: proc(self: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer) -> bool,
+    shouldBeRequiredToFailByGestureRecognizer: proc(self: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer) -> bool,
+    shouldReceiveEvent: proc(self: ^GestureRecognizer, event: ^Event) -> bool,
+    touchesBegan: proc(self: ^GestureRecognizer, touches: ^NS.Set, event: ^Event),
+    touchesMoved: proc(self: ^GestureRecognizer, touches: ^NS.Set, event: ^Event),
+    touchesEnded: proc(self: ^GestureRecognizer, touches: ^NS.Set, event: ^Event),
+    touchesCancelled: proc(self: ^GestureRecognizer, touches: ^NS.Set, event: ^Event),
+    touchesEstimatedPropertiesUpdated: proc(self: ^GestureRecognizer, touches: ^NS.Set),
+    pressesBegan: proc(self: ^GestureRecognizer, presses: ^NS.Set, event: ^PressesEvent),
+    pressesChanged: proc(self: ^GestureRecognizer, presses: ^NS.Set, event: ^PressesEvent),
+    pressesEnded: proc(self: ^GestureRecognizer, presses: ^NS.Set, event: ^PressesEvent),
+    pressesCancelled: proc(self: ^GestureRecognizer, presses: ^NS.Set, event: ^PressesEvent),
+    setState: proc(self: ^GestureRecognizer, state: GestureRecognizerState),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^GestureRecognizer,
@@ -386,12 +405,25 @@ GestureRecognizer_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 GestureRecognizer_odin_extend :: proc(cls: Class, vt: ^GestureRecognizer_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.initWithTarget != nil {
         initWithTarget :: proc "c" (self: ^GestureRecognizer, _: SEL, target: id, action: SEL) -> ^GestureRecognizer {
 
@@ -471,6 +503,16 @@ GestureRecognizer_odin_extend :: proc(cls: Class, vt: ^GestureRecognizer_VTable)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("locationOfTouch:inView:"), auto_cast locationOfTouch, "{CGPoint=dd}@:L@") do panic("Failed to register objC method.")
+    }
+    if vt.state != nil {
+        state :: proc "c" (self: ^GestureRecognizer, _: SEL) -> GestureRecognizerState {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).state(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("state"), auto_cast state, "l@:") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
         delegate :: proc "c" (self: ^GestureRecognizer, _: SEL) -> ^GestureRecognizerDelegate {
@@ -692,6 +734,186 @@ GestureRecognizer_odin_extend :: proc(cls: Class, vt: ^GestureRecognizer_VTable)
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonMask"), auto_cast buttonMask, "l@:") do panic("Failed to register objC method.")
     }
+    if vt.ignoreTouch != nil {
+        ignoreTouch :: proc "c" (self: ^GestureRecognizer, _: SEL, touch: ^Touch, event: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).ignoreTouch(self, touch, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("ignoreTouch:forEvent:"), auto_cast ignoreTouch, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.ignorePress != nil {
+        ignorePress :: proc "c" (self: ^GestureRecognizer, _: SEL, button: ^Press, event: ^PressesEvent) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).ignorePress(self, button, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("ignorePress:forEvent:"), auto_cast ignorePress, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.reset != nil {
+        reset :: proc "c" (self: ^GestureRecognizer, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).reset(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("reset"), auto_cast reset, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.canPreventGestureRecognizer != nil {
+        canPreventGestureRecognizer :: proc "c" (self: ^GestureRecognizer, _: SEL, preventedGestureRecognizer: ^GestureRecognizer) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).canPreventGestureRecognizer(self, preventedGestureRecognizer)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("canPreventGestureRecognizer:"), auto_cast canPreventGestureRecognizer, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.canBePreventedByGestureRecognizer != nil {
+        canBePreventedByGestureRecognizer :: proc "c" (self: ^GestureRecognizer, _: SEL, preventingGestureRecognizer: ^GestureRecognizer) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).canBePreventedByGestureRecognizer(self, preventingGestureRecognizer)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("canBePreventedByGestureRecognizer:"), auto_cast canBePreventedByGestureRecognizer, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.shouldRequireFailureOfGestureRecognizer != nil {
+        shouldRequireFailureOfGestureRecognizer :: proc "c" (self: ^GestureRecognizer, _: SEL, otherGestureRecognizer: ^GestureRecognizer) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).shouldRequireFailureOfGestureRecognizer(self, otherGestureRecognizer)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldRequireFailureOfGestureRecognizer:"), auto_cast shouldRequireFailureOfGestureRecognizer, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.shouldBeRequiredToFailByGestureRecognizer != nil {
+        shouldBeRequiredToFailByGestureRecognizer :: proc "c" (self: ^GestureRecognizer, _: SEL, otherGestureRecognizer: ^GestureRecognizer) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).shouldBeRequiredToFailByGestureRecognizer(self, otherGestureRecognizer)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldBeRequiredToFailByGestureRecognizer:"), auto_cast shouldBeRequiredToFailByGestureRecognizer, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.shouldReceiveEvent != nil {
+        shouldReceiveEvent :: proc "c" (self: ^GestureRecognizer, _: SEL, event: ^Event) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).shouldReceiveEvent(self, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldReceiveEvent:"), auto_cast shouldReceiveEvent, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.touchesBegan != nil {
+        touchesBegan :: proc "c" (self: ^GestureRecognizer, _: SEL, touches: ^NS.Set, event: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).touchesBegan(self, touches, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesBegan:withEvent:"), auto_cast touchesBegan, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.touchesMoved != nil {
+        touchesMoved :: proc "c" (self: ^GestureRecognizer, _: SEL, touches: ^NS.Set, event: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).touchesMoved(self, touches, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesMoved:withEvent:"), auto_cast touchesMoved, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.touchesEnded != nil {
+        touchesEnded :: proc "c" (self: ^GestureRecognizer, _: SEL, touches: ^NS.Set, event: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).touchesEnded(self, touches, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesEnded:withEvent:"), auto_cast touchesEnded, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.touchesCancelled != nil {
+        touchesCancelled :: proc "c" (self: ^GestureRecognizer, _: SEL, touches: ^NS.Set, event: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).touchesCancelled(self, touches, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesCancelled:withEvent:"), auto_cast touchesCancelled, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.touchesEstimatedPropertiesUpdated != nil {
+        touchesEstimatedPropertiesUpdated :: proc "c" (self: ^GestureRecognizer, _: SEL, touches: ^NS.Set) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).touchesEstimatedPropertiesUpdated(self, touches)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesEstimatedPropertiesUpdated:"), auto_cast touchesEstimatedPropertiesUpdated, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.pressesBegan != nil {
+        pressesBegan :: proc "c" (self: ^GestureRecognizer, _: SEL, presses: ^NS.Set, event: ^PressesEvent) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).pressesBegan(self, presses, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pressesBegan:withEvent:"), auto_cast pressesBegan, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.pressesChanged != nil {
+        pressesChanged :: proc "c" (self: ^GestureRecognizer, _: SEL, presses: ^NS.Set, event: ^PressesEvent) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).pressesChanged(self, presses, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pressesChanged:withEvent:"), auto_cast pressesChanged, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.pressesEnded != nil {
+        pressesEnded :: proc "c" (self: ^GestureRecognizer, _: SEL, presses: ^NS.Set, event: ^PressesEvent) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).pressesEnded(self, presses, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pressesEnded:withEvent:"), auto_cast pressesEnded, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.pressesCancelled != nil {
+        pressesCancelled :: proc "c" (self: ^GestureRecognizer, _: SEL, presses: ^NS.Set, event: ^PressesEvent) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).pressesCancelled(self, presses, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pressesCancelled:withEvent:"), auto_cast pressesCancelled, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.setState != nil {
+        setState :: proc "c" (self: ^GestureRecognizer, _: SEL, state: GestureRecognizerState) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).setState(self, state)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setState:"), auto_cast setState, "v@:l") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -881,6 +1103,106 @@ GestureRecognizer_odin_extend :: proc(cls: Class, vt: ^GestureRecognizer_VTable)
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GestureRecognizer_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

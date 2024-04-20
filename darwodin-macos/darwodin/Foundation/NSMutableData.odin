@@ -288,6 +288,29 @@ MutableData_VTable :: struct {
     mutableBytes: proc(self: ^MutableData) -> rawptr,
     length: proc(self: ^MutableData) -> UInteger,
     setLength: proc(self: ^MutableData, length: UInteger),
+    appendBytes: proc(self: ^MutableData, bytes: rawptr, length: UInteger),
+    appendData: proc(self: ^MutableData, other: ^Data),
+    increaseLengthBy: proc(self: ^MutableData, extraLength: UInteger),
+    replaceBytesInRange_withBytes: proc(self: ^MutableData, range: _NSRange, bytes: rawptr),
+    resetBytesInRange: proc(self: ^MutableData, range: _NSRange),
+    setData: proc(self: ^MutableData, data: ^Data),
+    replaceBytesInRange_withBytes_length: proc(self: ^MutableData, range: _NSRange, replacementBytes: rawptr, replacementLength: UInteger),
+    dataWithCapacity: proc(aNumItems: UInteger) -> ^MutableData,
+    dataWithLength: proc(length: UInteger) -> ^MutableData,
+    initWithCapacity: proc(self: ^MutableData, capacity: UInteger) -> ^MutableData,
+    initWithLength: proc(self: ^MutableData, length: UInteger) -> ^MutableData,
+    decompressUsingAlgorithm: proc(self: ^MutableData, algorithm: DataCompressionAlgorithm, error: ^^Error) -> bool,
+    compressUsingAlgorithm: proc(self: ^MutableData, algorithm: DataCompressionAlgorithm, error: ^^Error) -> bool,
+    data: proc() -> ^Data,
+    dataWithBytes: proc(bytes: rawptr, length: UInteger) -> ^Data,
+    dataWithBytesNoCopy_length: proc(bytes: rawptr, length: UInteger) -> ^Data,
+    dataWithBytesNoCopy_length_freeWhenDone: proc(bytes: rawptr, length: UInteger, b: bool) -> ^Data,
+    dataWithContentsOfFile_options_error: proc(path: ^String, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> ^Data,
+    dataWithContentsOfURL_options_error: proc(url: ^URL, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> ^Data,
+    dataWithContentsOfFile_: proc(path: ^String) -> ^Data,
+    dataWithContentsOfURL_: proc(url: ^URL) -> ^Data,
+    dataWithData: proc(data: ^Data) -> ^Data,
+    dataWithContentsOfMappedFile: proc(path: ^String) -> id,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -308,12 +331,27 @@ MutableData_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^String,
     debugDescription: proc() -> ^String,
+    version: proc() -> Integer,
+    setVersion: proc(aVersion: Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^String) -> ^Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
+    setKeys: proc(keys: ^Array, dependentKey: ^String),
+    classFallbacksForKeyedArchiver: proc() -> ^Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 MutableData_odin_extend :: proc(cls: Class, vt: ^MutableData_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Data_odin_extend(cls, &vt.super)
+
     if vt.mutableBytes != nil {
         mutableBytes :: proc "c" (self: ^MutableData, _: SEL) -> rawptr {
 
@@ -343,6 +381,236 @@ MutableData_odin_extend :: proc(cls: Class, vt: ^MutableData_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLength:"), auto_cast setLength, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.appendBytes != nil {
+        appendBytes :: proc "c" (self: ^MutableData, _: SEL, bytes: rawptr, length: UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).appendBytes(self, bytes, length)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("appendBytes:length:"), auto_cast appendBytes, "v@:^voidL") do panic("Failed to register objC method.")
+    }
+    if vt.appendData != nil {
+        appendData :: proc "c" (self: ^MutableData, _: SEL, other: ^Data) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).appendData(self, other)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("appendData:"), auto_cast appendData, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.increaseLengthBy != nil {
+        increaseLengthBy :: proc "c" (self: ^MutableData, _: SEL, extraLength: UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).increaseLengthBy(self, extraLength)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("increaseLengthBy:"), auto_cast increaseLengthBy, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.replaceBytesInRange_withBytes != nil {
+        replaceBytesInRange_withBytes :: proc "c" (self: ^MutableData, _: SEL, range: _NSRange, bytes: rawptr) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).replaceBytesInRange_withBytes(self, range, bytes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceBytesInRange:withBytes:"), auto_cast replaceBytesInRange_withBytes, "v@:{_NSRange=LL}^void") do panic("Failed to register objC method.")
+    }
+    if vt.resetBytesInRange != nil {
+        resetBytesInRange :: proc "c" (self: ^MutableData, _: SEL, range: _NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).resetBytesInRange(self, range)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resetBytesInRange:"), auto_cast resetBytesInRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.setData != nil {
+        setData :: proc "c" (self: ^MutableData, _: SEL, data: ^Data) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).setData(self, data)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setData:"), auto_cast setData, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.replaceBytesInRange_withBytes_length != nil {
+        replaceBytesInRange_withBytes_length :: proc "c" (self: ^MutableData, _: SEL, range: _NSRange, replacementBytes: rawptr, replacementLength: UInteger) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).replaceBytesInRange_withBytes_length(self, range, replacementBytes, replacementLength)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceBytesInRange:withBytes:length:"), auto_cast replaceBytesInRange_withBytes_length, "v@:{_NSRange=LL}^voidL") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithCapacity != nil {
+        dataWithCapacity :: proc "c" (self: Class, _: SEL, aNumItems: UInteger) -> ^MutableData {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithCapacity( aNumItems)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithCapacity:"), auto_cast dataWithCapacity, "@#:L") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithLength != nil {
+        dataWithLength :: proc "c" (self: Class, _: SEL, length: UInteger) -> ^MutableData {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithLength( length)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithLength:"), auto_cast dataWithLength, "@#:L") do panic("Failed to register objC method.")
+    }
+    if vt.initWithCapacity != nil {
+        initWithCapacity :: proc "c" (self: ^MutableData, _: SEL, capacity: UInteger) -> ^MutableData {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).initWithCapacity(self, capacity)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCapacity:"), auto_cast initWithCapacity, "@@:L") do panic("Failed to register objC method.")
+    }
+    if vt.initWithLength != nil {
+        initWithLength :: proc "c" (self: ^MutableData, _: SEL, length: UInteger) -> ^MutableData {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).initWithLength(self, length)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLength:"), auto_cast initWithLength, "@@:L") do panic("Failed to register objC method.")
+    }
+    if vt.decompressUsingAlgorithm != nil {
+        decompressUsingAlgorithm :: proc "c" (self: ^MutableData, _: SEL, algorithm: DataCompressionAlgorithm, error: ^^Error) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).decompressUsingAlgorithm(self, algorithm, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decompressUsingAlgorithm:error:"), auto_cast decompressUsingAlgorithm, "B@:l^void") do panic("Failed to register objC method.")
+    }
+    if vt.compressUsingAlgorithm != nil {
+        compressUsingAlgorithm :: proc "c" (self: ^MutableData, _: SEL, algorithm: DataCompressionAlgorithm, error: ^^Error) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).compressUsingAlgorithm(self, algorithm, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("compressUsingAlgorithm:error:"), auto_cast compressUsingAlgorithm, "B@:l^void") do panic("Failed to register objC method.")
+    }
+    if vt.data != nil {
+        data :: proc "c" (self: Class, _: SEL) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).data()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("data"), auto_cast data, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithBytes != nil {
+        dataWithBytes :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: UInteger) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithBytes( bytes, length)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithBytes:length:"), auto_cast dataWithBytes, "@#:^voidL") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithBytesNoCopy_length != nil {
+        dataWithBytesNoCopy_length :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: UInteger) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithBytesNoCopy_length( bytes, length)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithBytesNoCopy:length:"), auto_cast dataWithBytesNoCopy_length, "@#:^voidL") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithBytesNoCopy_length_freeWhenDone != nil {
+        dataWithBytesNoCopy_length_freeWhenDone :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: UInteger, b: bool) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithBytesNoCopy_length_freeWhenDone( bytes, length, b)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithBytesNoCopy:length:freeWhenDone:"), auto_cast dataWithBytesNoCopy_length_freeWhenDone, "@#:^voidLB") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithContentsOfFile_options_error != nil {
+        dataWithContentsOfFile_options_error :: proc "c" (self: Class, _: SEL, path: ^String, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithContentsOfFile_options_error( path, readOptionsMask, errorPtr)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfFile:options:error:"), auto_cast dataWithContentsOfFile_options_error, "@#:@L^void") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithContentsOfURL_options_error != nil {
+        dataWithContentsOfURL_options_error :: proc "c" (self: Class, _: SEL, url: ^URL, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithContentsOfURL_options_error( url, readOptionsMask, errorPtr)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfURL:options:error:"), auto_cast dataWithContentsOfURL_options_error, "@#:@L^void") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithContentsOfFile_ != nil {
+        dataWithContentsOfFile_ :: proc "c" (self: Class, _: SEL, path: ^String) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithContentsOfFile_( path)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfFile:"), auto_cast dataWithContentsOfFile_, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithContentsOfURL_ != nil {
+        dataWithContentsOfURL_ :: proc "c" (self: Class, _: SEL, url: ^URL) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithContentsOfURL_( url)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfURL:"), auto_cast dataWithContentsOfURL_, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithData != nil {
+        dataWithData :: proc "c" (self: Class, _: SEL, data: ^Data) -> ^Data {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithData( data)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithData:"), auto_cast dataWithData, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.dataWithContentsOfMappedFile != nil {
+        dataWithContentsOfMappedFile :: proc "c" (self: Class, _: SEL, path: ^String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).dataWithContentsOfMappedFile( path)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfMappedFile:"), auto_cast dataWithContentsOfMappedFile, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -543,6 +811,126 @@ MutableData_odin_extend :: proc(cls: Class, vt: ^MutableData_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> ^Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^Array, dependentKey: ^String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableData_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableData_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

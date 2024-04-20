@@ -650,10 +650,28 @@ ScrollView_VTable :: struct {
     setContentInsets: proc(self: ^ScrollView, contentInsets: NS.EdgeInsets),
     scrollerInsets: proc(self: ^ScrollView) -> NS.EdgeInsets,
     setScrollerInsets: proc(self: ^ScrollView, scrollerInsets: NS.EdgeInsets),
+    rulerViewClass: proc() -> Class,
+    setRulerViewClass: proc(rulerViewClass: Class),
+    rulersVisible: proc(self: ^ScrollView) -> bool,
+    setRulersVisible: proc(self: ^ScrollView, rulersVisible: bool),
+    hasHorizontalRuler: proc(self: ^ScrollView) -> bool,
+    setHasHorizontalRuler: proc(self: ^ScrollView, hasHorizontalRuler: bool),
+    hasVerticalRuler: proc(self: ^ScrollView) -> bool,
+    setHasVerticalRuler: proc(self: ^ScrollView, hasVerticalRuler: bool),
+    horizontalRulerView: proc(self: ^ScrollView) -> ^RulerView,
+    setHorizontalRulerView: proc(self: ^ScrollView, horizontalRulerView: ^RulerView),
+    verticalRulerView: proc(self: ^ScrollView) -> ^RulerView,
+    setVerticalRulerView: proc(self: ^ScrollView, verticalRulerView: ^RulerView),
+    findBarPosition: proc(self: ^ScrollView) -> ScrollViewFindBarPosition,
+    setFindBarPosition: proc(self: ^ScrollView, findBarPosition: ScrollViewFindBarPosition),
     focusView: proc() -> ^View,
     defaultMenu: proc() -> ^Menu,
     isCompatibleWithResponsiveScrolling: proc() -> bool,
+    defaultFocusRingType: proc() -> FocusRingType,
+    requiresConstraintBasedLayout: proc() -> bool,
     defaultAnimationForKey: proc(key: ^NS.String) -> id,
+    allowedClassesForRestorableStateKeyPath: proc(keyPath: ^NS.String) -> ^NS.Array,
+    restorableStateKeyPaths: proc() -> ^NS.Array,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^ScrollView,
@@ -673,12 +691,30 @@ ScrollView_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    View_odin_extend(cls, &vt.super)
+
     if vt.initWithFrame != nil {
         initWithFrame :: proc "c" (self: ^ScrollView, _: SEL, frameRect: NS.Rect) -> ^ScrollView {
 
@@ -1429,6 +1465,146 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrollerInsets:"), auto_cast setScrollerInsets, "v@:{NSEdgeInsets=dddd}") do panic("Failed to register objC method.")
     }
+    if vt.rulerViewClass != nil {
+        rulerViewClass :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).rulerViewClass()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("rulerViewClass"), auto_cast rulerViewClass, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.setRulerViewClass != nil {
+        setRulerViewClass :: proc "c" (self: Class, _: SEL, rulerViewClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setRulerViewClass( rulerViewClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setRulerViewClass:"), auto_cast setRulerViewClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.rulersVisible != nil {
+        rulersVisible :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).rulersVisible(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rulersVisible"), auto_cast rulersVisible, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRulersVisible != nil {
+        setRulersVisible :: proc "c" (self: ^ScrollView, _: SEL, rulersVisible: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setRulersVisible(self, rulersVisible)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRulersVisible:"), auto_cast setRulersVisible, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.hasHorizontalRuler != nil {
+        hasHorizontalRuler :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).hasHorizontalRuler(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hasHorizontalRuler"), auto_cast hasHorizontalRuler, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHasHorizontalRuler != nil {
+        setHasHorizontalRuler :: proc "c" (self: ^ScrollView, _: SEL, hasHorizontalRuler: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setHasHorizontalRuler(self, hasHorizontalRuler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHasHorizontalRuler:"), auto_cast setHasHorizontalRuler, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.hasVerticalRuler != nil {
+        hasVerticalRuler :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).hasVerticalRuler(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hasVerticalRuler"), auto_cast hasVerticalRuler, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHasVerticalRuler != nil {
+        setHasVerticalRuler :: proc "c" (self: ^ScrollView, _: SEL, hasVerticalRuler: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setHasVerticalRuler(self, hasVerticalRuler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHasVerticalRuler:"), auto_cast setHasVerticalRuler, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.horizontalRulerView != nil {
+        horizontalRulerView :: proc "c" (self: ^ScrollView, _: SEL) -> ^RulerView {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).horizontalRulerView(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("horizontalRulerView"), auto_cast horizontalRulerView, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHorizontalRulerView != nil {
+        setHorizontalRulerView :: proc "c" (self: ^ScrollView, _: SEL, horizontalRulerView: ^RulerView) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setHorizontalRulerView(self, horizontalRulerView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHorizontalRulerView:"), auto_cast setHorizontalRulerView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.verticalRulerView != nil {
+        verticalRulerView :: proc "c" (self: ^ScrollView, _: SEL) -> ^RulerView {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).verticalRulerView(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("verticalRulerView"), auto_cast verticalRulerView, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setVerticalRulerView != nil {
+        setVerticalRulerView :: proc "c" (self: ^ScrollView, _: SEL, verticalRulerView: ^RulerView) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setVerticalRulerView(self, verticalRulerView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalRulerView:"), auto_cast setVerticalRulerView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.findBarPosition != nil {
+        findBarPosition :: proc "c" (self: ^ScrollView, _: SEL) -> ScrollViewFindBarPosition {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).findBarPosition(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("findBarPosition"), auto_cast findBarPosition, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setFindBarPosition != nil {
+        setFindBarPosition :: proc "c" (self: ^ScrollView, _: SEL, findBarPosition: ScrollViewFindBarPosition) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setFindBarPosition(self, findBarPosition)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setFindBarPosition:"), auto_cast setFindBarPosition, "v@:l") do panic("Failed to register objC method.")
+    }
     if vt.focusView != nil {
         focusView :: proc "c" (self: Class, _: SEL) -> ^View {
 
@@ -1459,6 +1635,26 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("isCompatibleWithResponsiveScrolling"), auto_cast isCompatibleWithResponsiveScrolling, "B#:") do panic("Failed to register objC method.")
     }
+    if vt.defaultFocusRingType != nil {
+        defaultFocusRingType :: proc "c" (self: Class, _: SEL) -> FocusRingType {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).defaultFocusRingType()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultFocusRingType"), auto_cast defaultFocusRingType, "L#:") do panic("Failed to register objC method.")
+    }
+    if vt.requiresConstraintBasedLayout != nil {
+        requiresConstraintBasedLayout :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).requiresConstraintBasedLayout()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("requiresConstraintBasedLayout"), auto_cast requiresConstraintBasedLayout, "B#:") do panic("Failed to register objC method.")
+    }
     if vt.defaultAnimationForKey != nil {
         defaultAnimationForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> id {
 
@@ -1468,6 +1664,26 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultAnimationForKey:"), auto_cast defaultAnimationForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.allowedClassesForRestorableStateKeyPath != nil {
+        allowedClassesForRestorableStateKeyPath :: proc "c" (self: Class, _: SEL, keyPath: ^NS.String) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.restorableStateKeyPaths != nil {
+        restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).restorableStateKeyPaths()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -1658,6 +1874,156 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

@@ -560,6 +560,32 @@ Menu_VTable :: struct {
     setShowsStateColumn: proc(self: ^Menu, showsStateColumn: bool),
     userInterfaceLayoutDirection: proc(self: ^Menu) -> UserInterfaceLayoutDirection,
     setUserInterfaceLayoutDirection: proc(self: ^Menu, userInterfaceLayoutDirection: UserInterfaceLayoutDirection),
+    paletteMenuWithColors_titles_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: proc "c" (_arg_0: ^Menu)) -> ^Menu,
+    paletteMenuWithColors_titles_templateImage_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: proc "c" (_arg_0: ^Menu)) -> ^Menu,
+    presentationStyle: proc(self: ^Menu) -> MenuPresentationStyle,
+    setPresentationStyle: proc(self: ^Menu, presentationStyle: MenuPresentationStyle),
+    selectionMode: proc(self: ^Menu) -> MenuSelectionMode,
+    setSelectionMode: proc(self: ^Menu, selectionMode: MenuSelectionMode),
+    selectedItems: proc(self: ^Menu) -> ^NS.Array,
+    setSelectedItems: proc(self: ^Menu, selectedItems: ^NS.Array),
+    submenuAction: proc(self: ^Menu, sender: id),
+    propertiesToUpdate: proc(self: ^Menu) -> MenuProperties,
+    setMenuRepresentation: proc(self: ^Menu, menuRep: id),
+    menuRepresentation: proc(self: ^Menu) -> id,
+    setContextMenuRepresentation: proc(self: ^Menu, menuRep: id),
+    contextMenuRepresentation: proc(self: ^Menu) -> id,
+    setTearOffMenuRepresentation: proc(self: ^Menu, menuRep: id),
+    tearOffMenuRepresentation: proc(self: ^Menu) -> id,
+    menuZone: proc() -> ^NS.Zone,
+    setMenuZone: proc(zone: ^NS.Zone),
+    attachedMenu: proc(self: ^Menu) -> ^Menu,
+    isAttached: proc(self: ^Menu) -> bool,
+    sizeToFit: proc(self: ^Menu),
+    locationForSubmenu: proc(self: ^Menu, submenu: ^Menu) -> CG.Point,
+    helpRequested: proc(self: ^Menu, eventPtr: ^Event),
+    menuChangedMessagesEnabled: proc(self: ^Menu) -> bool,
+    setMenuChangedMessagesEnabled: proc(self: ^Menu, menuChangedMessagesEnabled: bool),
+    isTornOff: proc(self: ^Menu) -> bool,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Menu,
@@ -579,12 +605,30 @@ Menu_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 Menu_odin_extend :: proc(cls: Class, vt: ^Menu_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.initWithTitle != nil {
         initWithTitle :: proc "c" (self: ^Menu, _: SEL, title: ^NS.String) -> ^Menu {
 
@@ -1125,6 +1169,266 @@ Menu_odin_extend :: proc(cls: Class, vt: ^Menu_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUserInterfaceLayoutDirection:"), auto_cast setUserInterfaceLayoutDirection, "v@:l") do panic("Failed to register objC method.")
     }
+    if vt.paletteMenuWithColors_titles_selectionHandler != nil {
+        paletteMenuWithColors_titles_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: proc "c" (_arg_0: ^Menu)) -> ^Menu {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).paletteMenuWithColors_titles_selectionHandler( colors, itemTitles, onSelectionChange)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:selectionHandler:"), auto_cast paletteMenuWithColors_titles_selectionHandler, "@#:@@?") do panic("Failed to register objC method.")
+    }
+    if vt.paletteMenuWithColors_titles_templateImage_selectionHandler != nil {
+        paletteMenuWithColors_titles_templateImage_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: proc "c" (_arg_0: ^Menu)) -> ^Menu {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).paletteMenuWithColors_titles_templateImage_selectionHandler( colors, itemTitles, image, onSelectionChange)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:templateImage:selectionHandler:"), auto_cast paletteMenuWithColors_titles_templateImage_selectionHandler, "@#:@@@?") do panic("Failed to register objC method.")
+    }
+    if vt.presentationStyle != nil {
+        presentationStyle :: proc "c" (self: ^Menu, _: SEL) -> MenuPresentationStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).presentationStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentationStyle"), auto_cast presentationStyle, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPresentationStyle != nil {
+        setPresentationStyle :: proc "c" (self: ^Menu, _: SEL, presentationStyle: MenuPresentationStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setPresentationStyle(self, presentationStyle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPresentationStyle:"), auto_cast setPresentationStyle, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.selectionMode != nil {
+        selectionMode :: proc "c" (self: ^Menu, _: SEL) -> MenuSelectionMode {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).selectionMode(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectionMode"), auto_cast selectionMode, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectionMode != nil {
+        setSelectionMode :: proc "c" (self: ^Menu, _: SEL, selectionMode: MenuSelectionMode) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setSelectionMode(self, selectionMode)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionMode:"), auto_cast setSelectionMode, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.selectedItems != nil {
+        selectedItems :: proc "c" (self: ^Menu, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).selectedItems(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedItems"), auto_cast selectedItems, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedItems != nil {
+        setSelectedItems :: proc "c" (self: ^Menu, _: SEL, selectedItems: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setSelectedItems(self, selectedItems)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedItems:"), auto_cast setSelectedItems, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.submenuAction != nil {
+        submenuAction :: proc "c" (self: ^Menu, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).submenuAction(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("submenuAction:"), auto_cast submenuAction, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.propertiesToUpdate != nil {
+        propertiesToUpdate :: proc "c" (self: ^Menu, _: SEL) -> MenuProperties {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).propertiesToUpdate(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("propertiesToUpdate"), auto_cast propertiesToUpdate, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMenuRepresentation != nil {
+        setMenuRepresentation :: proc "c" (self: ^Menu, _: SEL, menuRep: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setMenuRepresentation(self, menuRep)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMenuRepresentation:"), auto_cast setMenuRepresentation, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.menuRepresentation != nil {
+        menuRepresentation :: proc "c" (self: ^Menu, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).menuRepresentation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("menuRepresentation"), auto_cast menuRepresentation, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setContextMenuRepresentation != nil {
+        setContextMenuRepresentation :: proc "c" (self: ^Menu, _: SEL, menuRep: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setContextMenuRepresentation(self, menuRep)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setContextMenuRepresentation:"), auto_cast setContextMenuRepresentation, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.contextMenuRepresentation != nil {
+        contextMenuRepresentation :: proc "c" (self: ^Menu, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).contextMenuRepresentation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contextMenuRepresentation"), auto_cast contextMenuRepresentation, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTearOffMenuRepresentation != nil {
+        setTearOffMenuRepresentation :: proc "c" (self: ^Menu, _: SEL, menuRep: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setTearOffMenuRepresentation(self, menuRep)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTearOffMenuRepresentation:"), auto_cast setTearOffMenuRepresentation, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.tearOffMenuRepresentation != nil {
+        tearOffMenuRepresentation :: proc "c" (self: ^Menu, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).tearOffMenuRepresentation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tearOffMenuRepresentation"), auto_cast tearOffMenuRepresentation, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.menuZone != nil {
+        menuZone :: proc "c" (self: Class, _: SEL) -> ^NS.Zone {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).menuZone()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("menuZone"), auto_cast menuZone, "^void#:") do panic("Failed to register objC method.")
+    }
+    if vt.setMenuZone != nil {
+        setMenuZone :: proc "c" (self: Class, _: SEL, zone: ^NS.Zone) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setMenuZone( zone)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setMenuZone:"), auto_cast setMenuZone, "v#:^void") do panic("Failed to register objC method.")
+    }
+    if vt.attachedMenu != nil {
+        attachedMenu :: proc "c" (self: ^Menu, _: SEL) -> ^Menu {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).attachedMenu(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attachedMenu"), auto_cast attachedMenu, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.isAttached != nil {
+        isAttached :: proc "c" (self: ^Menu, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).isAttached(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAttached"), auto_cast isAttached, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.sizeToFit != nil {
+        sizeToFit :: proc "c" (self: ^Menu, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).sizeToFit(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sizeToFit"), auto_cast sizeToFit, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.locationForSubmenu != nil {
+        locationForSubmenu :: proc "c" (self: ^Menu, _: SEL, submenu: ^Menu) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).locationForSubmenu(self, submenu)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("locationForSubmenu:"), auto_cast locationForSubmenu, "{CGPoint=dd}@:@") do panic("Failed to register objC method.")
+    }
+    if vt.helpRequested != nil {
+        helpRequested :: proc "c" (self: ^Menu, _: SEL, eventPtr: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).helpRequested(self, eventPtr)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("helpRequested:"), auto_cast helpRequested, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.menuChangedMessagesEnabled != nil {
+        menuChangedMessagesEnabled :: proc "c" (self: ^Menu, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).menuChangedMessagesEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("menuChangedMessagesEnabled"), auto_cast menuChangedMessagesEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMenuChangedMessagesEnabled != nil {
+        setMenuChangedMessagesEnabled :: proc "c" (self: ^Menu, _: SEL, menuChangedMessagesEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setMenuChangedMessagesEnabled(self, menuChangedMessagesEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMenuChangedMessagesEnabled:"), auto_cast setMenuChangedMessagesEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isTornOff != nil {
+        isTornOff :: proc "c" (self: ^Menu, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).isTornOff(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isTornOff"), auto_cast isTornOff, "B@:") do panic("Failed to register objC method.")
+    }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
 
@@ -1314,6 +1618,156 @@ Menu_odin_extend :: proc(cls: Class, vt: ^Menu_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

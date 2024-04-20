@@ -522,6 +522,9 @@ Application_VTable :: struct {
     windows: proc(self: ^Application) -> ^NS.Array,
     isNetworkActivityIndicatorVisible: proc(self: ^Application) -> bool,
     setNetworkActivityIndicatorVisible: proc(self: ^Application, networkActivityIndicatorVisible: bool),
+    statusBarStyle: proc(self: ^Application) -> StatusBarStyle,
+    isStatusBarHidden: proc(self: ^Application) -> bool,
+    statusBarOrientation: proc(self: ^Application) -> InterfaceOrientation,
     statusBarOrientationAnimationDuration: proc(self: ^Application) -> NS.TimeInterval,
     statusBarFrame: proc(self: ^Application) -> CG.Rect,
     applicationIconBadgeNumber: proc(self: ^Application) -> NS.Integer,
@@ -537,6 +540,43 @@ Application_VTable :: struct {
     connectedScenes: proc(self: ^Application) -> ^NS.Set,
     openSessions: proc(self: ^Application) -> ^NS.Set,
     supportsMultipleScenes: proc(self: ^Application) -> bool,
+    registerForRemoteNotifications: proc(self: ^Application),
+    unregisterForRemoteNotifications: proc(self: ^Application),
+    registerForRemoteNotificationTypes: proc(self: ^Application, types: RemoteNotificationType),
+    enabledRemoteNotificationTypes: proc(self: ^Application) -> RemoteNotificationType,
+    isRegisteredForRemoteNotifications: proc(self: ^Application) -> bool,
+    presentLocalNotificationNow: proc(self: ^Application, notification: ^LocalNotification),
+    scheduleLocalNotification: proc(self: ^Application, notification: ^LocalNotification),
+    cancelLocalNotification: proc(self: ^Application, notification: ^LocalNotification),
+    cancelAllLocalNotifications: proc(self: ^Application),
+    scheduledLocalNotifications: proc(self: ^Application) -> ^NS.Array,
+    setScheduledLocalNotifications: proc(self: ^Application, scheduledLocalNotifications: ^NS.Array),
+    registerUserNotificationSettings: proc(self: ^Application, notificationSettings: ^UserNotificationSettings),
+    currentUserNotificationSettings: proc(self: ^Application) -> ^UserNotificationSettings,
+    beginReceivingRemoteControlEvents: proc(self: ^Application),
+    endReceivingRemoteControlEvents: proc(self: ^Application),
+    setNewsstandIconImage: proc(self: ^Application, image: ^Image),
+    shortcutItems: proc(self: ^Application) -> ^NS.Array,
+    setShortcutItems: proc(self: ^Application, shortcutItems: ^NS.Array),
+    setAlternateIconName: proc(self: ^Application, alternateIconName: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)),
+    supportsAlternateIcons: proc(self: ^Application) -> bool,
+    alternateIconName: proc(self: ^Application) -> ^NS.String,
+    extendStateRestoration: proc(self: ^Application),
+    completeStateRestoration: proc(self: ^Application),
+    ignoreSnapshotOnNextApplicationLaunch: proc(self: ^Application),
+    registerObjectForStateRestoration: proc(object: ^StateRestoring, restorationIdentifier: ^NS.String),
+    setStatusBarHidden_animated: proc(self: ^Application, hidden: bool, animated: bool),
+    setStatusBarOrientation_animated: proc(self: ^Application, interfaceOrientation: InterfaceOrientation, animated: bool),
+    setStatusBarStyle_animated: proc(self: ^Application, statusBarStyle: StatusBarStyle, animated: bool),
+    setStatusBarHidden_withAnimation: proc(self: ^Application, hidden: bool, animation: StatusBarAnimation),
+    setKeepAliveTimeout: proc(self: ^Application, timeout: NS.TimeInterval, keepAliveHandler: proc "c" ()) -> bool,
+    clearKeepAliveTimeout: proc(self: ^Application),
+    isProximitySensingEnabled: proc(self: ^Application) -> bool,
+    setProximitySensingEnabled: proc(self: ^Application, proximitySensingEnabled: bool),
+    setStatusBarOrientation_: proc(self: ^Application, statusBarOrientation: InterfaceOrientation),
+    setStatusBarStyle_: proc(self: ^Application, statusBarStyle: StatusBarStyle),
+    setStatusBarHidden_: proc(self: ^Application, statusBarHidden: bool),
+    clearTextInputContextIdentifier: proc(identifier: ^NS.String),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Application,
@@ -556,12 +596,25 @@ Application_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
 }
 
 Application_odin_extend :: proc(cls: Class, vt: ^Application_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Responder_odin_extend(cls, &vt.super)
+
     if vt.beginIgnoringInteractionEvents != nil {
         beginIgnoringInteractionEvents :: proc "c" (self: ^Application, _: SEL) {
 
@@ -822,6 +875,36 @@ Application_odin_extend :: proc(cls: Class, vt: ^Application_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNetworkActivityIndicatorVisible:"), auto_cast setNetworkActivityIndicatorVisible, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.statusBarStyle != nil {
+        statusBarStyle :: proc "c" (self: ^Application, _: SEL) -> StatusBarStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).statusBarStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("statusBarStyle"), auto_cast statusBarStyle, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.isStatusBarHidden != nil {
+        isStatusBarHidden :: proc "c" (self: ^Application, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).isStatusBarHidden(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isStatusBarHidden"), auto_cast isStatusBarHidden, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.statusBarOrientation != nil {
+        statusBarOrientation :: proc "c" (self: ^Application, _: SEL) -> InterfaceOrientation {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).statusBarOrientation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("statusBarOrientation"), auto_cast statusBarOrientation, "l@:") do panic("Failed to register objC method.")
+    }
     if vt.statusBarOrientationAnimationDuration != nil {
         statusBarOrientationAnimationDuration :: proc "c" (self: ^Application, _: SEL) -> NS.TimeInterval {
 
@@ -971,6 +1054,376 @@ Application_odin_extend :: proc(cls: Class, vt: ^Application_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("supportsMultipleScenes"), auto_cast supportsMultipleScenes, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.registerForRemoteNotifications != nil {
+        registerForRemoteNotifications :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).registerForRemoteNotifications(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registerForRemoteNotifications"), auto_cast registerForRemoteNotifications, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.unregisterForRemoteNotifications != nil {
+        unregisterForRemoteNotifications :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).unregisterForRemoteNotifications(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("unregisterForRemoteNotifications"), auto_cast unregisterForRemoteNotifications, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.registerForRemoteNotificationTypes != nil {
+        registerForRemoteNotificationTypes :: proc "c" (self: ^Application, _: SEL, types: RemoteNotificationType) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).registerForRemoteNotificationTypes(self, types)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registerForRemoteNotificationTypes:"), auto_cast registerForRemoteNotificationTypes, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.enabledRemoteNotificationTypes != nil {
+        enabledRemoteNotificationTypes :: proc "c" (self: ^Application, _: SEL) -> RemoteNotificationType {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).enabledRemoteNotificationTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enabledRemoteNotificationTypes"), auto_cast enabledRemoteNotificationTypes, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.isRegisteredForRemoteNotifications != nil {
+        isRegisteredForRemoteNotifications :: proc "c" (self: ^Application, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).isRegisteredForRemoteNotifications(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isRegisteredForRemoteNotifications"), auto_cast isRegisteredForRemoteNotifications, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.presentLocalNotificationNow != nil {
+        presentLocalNotificationNow :: proc "c" (self: ^Application, _: SEL, notification: ^LocalNotification) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).presentLocalNotificationNow(self, notification)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentLocalNotificationNow:"), auto_cast presentLocalNotificationNow, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.scheduleLocalNotification != nil {
+        scheduleLocalNotification :: proc "c" (self: ^Application, _: SEL, notification: ^LocalNotification) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).scheduleLocalNotification(self, notification)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scheduleLocalNotification:"), auto_cast scheduleLocalNotification, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelLocalNotification != nil {
+        cancelLocalNotification :: proc "c" (self: ^Application, _: SEL, notification: ^LocalNotification) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).cancelLocalNotification(self, notification)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cancelLocalNotification:"), auto_cast cancelLocalNotification, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelAllLocalNotifications != nil {
+        cancelAllLocalNotifications :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).cancelAllLocalNotifications(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cancelAllLocalNotifications"), auto_cast cancelAllLocalNotifications, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.scheduledLocalNotifications != nil {
+        scheduledLocalNotifications :: proc "c" (self: ^Application, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).scheduledLocalNotifications(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scheduledLocalNotifications"), auto_cast scheduledLocalNotifications, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setScheduledLocalNotifications != nil {
+        setScheduledLocalNotifications :: proc "c" (self: ^Application, _: SEL, scheduledLocalNotifications: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setScheduledLocalNotifications(self, scheduledLocalNotifications)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setScheduledLocalNotifications:"), auto_cast setScheduledLocalNotifications, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.registerUserNotificationSettings != nil {
+        registerUserNotificationSettings :: proc "c" (self: ^Application, _: SEL, notificationSettings: ^UserNotificationSettings) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).registerUserNotificationSettings(self, notificationSettings)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registerUserNotificationSettings:"), auto_cast registerUserNotificationSettings, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.currentUserNotificationSettings != nil {
+        currentUserNotificationSettings :: proc "c" (self: ^Application, _: SEL) -> ^UserNotificationSettings {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).currentUserNotificationSettings(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("currentUserNotificationSettings"), auto_cast currentUserNotificationSettings, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.beginReceivingRemoteControlEvents != nil {
+        beginReceivingRemoteControlEvents :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).beginReceivingRemoteControlEvents(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("beginReceivingRemoteControlEvents"), auto_cast beginReceivingRemoteControlEvents, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.endReceivingRemoteControlEvents != nil {
+        endReceivingRemoteControlEvents :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).endReceivingRemoteControlEvents(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("endReceivingRemoteControlEvents"), auto_cast endReceivingRemoteControlEvents, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.setNewsstandIconImage != nil {
+        setNewsstandIconImage :: proc "c" (self: ^Application, _: SEL, image: ^Image) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setNewsstandIconImage(self, image)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNewsstandIconImage:"), auto_cast setNewsstandIconImage, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.shortcutItems != nil {
+        shortcutItems :: proc "c" (self: ^Application, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).shortcutItems(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortcutItems"), auto_cast shortcutItems, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setShortcutItems != nil {
+        setShortcutItems :: proc "c" (self: ^Application, _: SEL, shortcutItems: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setShortcutItems(self, shortcutItems)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShortcutItems:"), auto_cast setShortcutItems, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.setAlternateIconName != nil {
+        setAlternateIconName :: proc "c" (self: ^Application, _: SEL, alternateIconName: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setAlternateIconName(self, alternateIconName, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAlternateIconName:completionHandler:"), auto_cast setAlternateIconName, "v@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.supportsAlternateIcons != nil {
+        supportsAlternateIcons :: proc "c" (self: ^Application, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).supportsAlternateIcons(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("supportsAlternateIcons"), auto_cast supportsAlternateIcons, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.alternateIconName != nil {
+        alternateIconName :: proc "c" (self: ^Application, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).alternateIconName(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alternateIconName"), auto_cast alternateIconName, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.extendStateRestoration != nil {
+        extendStateRestoration :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).extendStateRestoration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("extendStateRestoration"), auto_cast extendStateRestoration, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.completeStateRestoration != nil {
+        completeStateRestoration :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).completeStateRestoration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("completeStateRestoration"), auto_cast completeStateRestoration, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.ignoreSnapshotOnNextApplicationLaunch != nil {
+        ignoreSnapshotOnNextApplicationLaunch :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).ignoreSnapshotOnNextApplicationLaunch(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("ignoreSnapshotOnNextApplicationLaunch"), auto_cast ignoreSnapshotOnNextApplicationLaunch, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.registerObjectForStateRestoration != nil {
+        registerObjectForStateRestoration :: proc "c" (self: Class, _: SEL, object: ^StateRestoring, restorationIdentifier: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).registerObjectForStateRestoration( object, restorationIdentifier)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("registerObjectForStateRestoration:restorationIdentifier:"), auto_cast registerObjectForStateRestoration, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.setStatusBarHidden_animated != nil {
+        setStatusBarHidden_animated :: proc "c" (self: ^Application, _: SEL, hidden: bool, animated: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setStatusBarHidden_animated(self, hidden, animated)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStatusBarHidden:animated:"), auto_cast setStatusBarHidden_animated, "v@:BB") do panic("Failed to register objC method.")
+    }
+    if vt.setStatusBarOrientation_animated != nil {
+        setStatusBarOrientation_animated :: proc "c" (self: ^Application, _: SEL, interfaceOrientation: InterfaceOrientation, animated: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setStatusBarOrientation_animated(self, interfaceOrientation, animated)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStatusBarOrientation:animated:"), auto_cast setStatusBarOrientation_animated, "v@:lB") do panic("Failed to register objC method.")
+    }
+    if vt.setStatusBarStyle_animated != nil {
+        setStatusBarStyle_animated :: proc "c" (self: ^Application, _: SEL, statusBarStyle: StatusBarStyle, animated: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setStatusBarStyle_animated(self, statusBarStyle, animated)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStatusBarStyle:animated:"), auto_cast setStatusBarStyle_animated, "v@:lB") do panic("Failed to register objC method.")
+    }
+    if vt.setStatusBarHidden_withAnimation != nil {
+        setStatusBarHidden_withAnimation :: proc "c" (self: ^Application, _: SEL, hidden: bool, animation: StatusBarAnimation) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setStatusBarHidden_withAnimation(self, hidden, animation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStatusBarHidden:withAnimation:"), auto_cast setStatusBarHidden_withAnimation, "v@:Bl") do panic("Failed to register objC method.")
+    }
+    if vt.setKeepAliveTimeout != nil {
+        setKeepAliveTimeout :: proc "c" (self: ^Application, _: SEL, timeout: NS.TimeInterval, keepAliveHandler: proc "c" ()) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).setKeepAliveTimeout(self, timeout, keepAliveHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setKeepAliveTimeout:handler:"), auto_cast setKeepAliveTimeout, "B@:d?") do panic("Failed to register objC method.")
+    }
+    if vt.clearKeepAliveTimeout != nil {
+        clearKeepAliveTimeout :: proc "c" (self: ^Application, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).clearKeepAliveTimeout(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("clearKeepAliveTimeout"), auto_cast clearKeepAliveTimeout, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.isProximitySensingEnabled != nil {
+        isProximitySensingEnabled :: proc "c" (self: ^Application, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).isProximitySensingEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isProximitySensingEnabled"), auto_cast isProximitySensingEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setProximitySensingEnabled != nil {
+        setProximitySensingEnabled :: proc "c" (self: ^Application, _: SEL, proximitySensingEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setProximitySensingEnabled(self, proximitySensingEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setProximitySensingEnabled:"), auto_cast setProximitySensingEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.setStatusBarOrientation_ != nil {
+        setStatusBarOrientation_ :: proc "c" (self: ^Application, _: SEL, statusBarOrientation: InterfaceOrientation) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setStatusBarOrientation_(self, statusBarOrientation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStatusBarOrientation:"), auto_cast setStatusBarOrientation_, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.setStatusBarStyle_ != nil {
+        setStatusBarStyle_ :: proc "c" (self: ^Application, _: SEL, statusBarStyle: StatusBarStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setStatusBarStyle_(self, statusBarStyle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStatusBarStyle:"), auto_cast setStatusBarStyle_, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.setStatusBarHidden_ != nil {
+        setStatusBarHidden_ :: proc "c" (self: ^Application, _: SEL, statusBarHidden: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setStatusBarHidden_(self, statusBarHidden)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStatusBarHidden:"), auto_cast setStatusBarHidden_, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.clearTextInputContextIdentifier != nil {
+        clearTextInputContextIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).clearTextInputContextIdentifier( identifier)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("clearTextInputContextIdentifier:"), auto_cast clearTextInputContextIdentifier, "v#:@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -1161,6 +1614,106 @@ Application_odin_extend :: proc(cls: Class, vt: ^Application_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Application_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Application_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

@@ -86,6 +86,9 @@ DistantObject_odin_extend :: proc(cls: Class, vt: ^DistantObject_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Proxy_odin_extend(cls, &vt.super)
+
     if vt.proxyWithTarget != nil {
         proxyWithTarget :: proc "c" (self: Class, _: SEL, target: id, connection: ^Connection) -> id {
 

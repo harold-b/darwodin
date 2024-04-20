@@ -311,6 +311,22 @@ GraphicsContext_VTable :: struct {
     isDrawingToScreen: proc(self: ^GraphicsContext) -> bool,
     _CGContext: proc(self: ^GraphicsContext) -> CG.ContextRef,
     isFlipped: proc(self: ^GraphicsContext) -> bool,
+    shouldAntialias: proc(self: ^GraphicsContext) -> bool,
+    setShouldAntialias: proc(self: ^GraphicsContext, shouldAntialias: bool),
+    imageInterpolation: proc(self: ^GraphicsContext) -> ImageInterpolation,
+    setImageInterpolation: proc(self: ^GraphicsContext, imageInterpolation: ImageInterpolation),
+    patternPhase: proc(self: ^GraphicsContext) -> CG.Point,
+    setPatternPhase: proc(self: ^GraphicsContext, patternPhase: CG.Point),
+    compositingOperation: proc(self: ^GraphicsContext) -> CompositingOperation,
+    setCompositingOperation: proc(self: ^GraphicsContext, compositingOperation: CompositingOperation),
+    colorRenderingIntent: proc(self: ^GraphicsContext) -> ColorRenderingIntent,
+    setColorRenderingIntent: proc(self: ^GraphicsContext, colorRenderingIntent: ColorRenderingIntent),
+    _CIContext: proc(self: ^GraphicsContext) -> ^CIContext,
+    setGraphicsState: proc(gState: NS.Integer),
+    focusStack: proc(self: ^GraphicsContext) -> id,
+    setFocusStack: proc(self: ^GraphicsContext, stack: id),
+    graphicsContextWithGraphicsPort: proc(graphicsPort: rawptr, initialFlippedState: bool) -> ^GraphicsContext,
+    graphicsPort: proc(self: ^GraphicsContext) -> rawptr,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^GraphicsContext,
@@ -330,12 +346,30 @@ GraphicsContext_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 GraphicsContext_odin_extend :: proc(cls: Class, vt: ^GraphicsContext_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NS.Object_odin_extend(cls, &vt.super)
+
     if vt.graphicsContextWithAttributes != nil {
         graphicsContextWithAttributes :: proc "c" (self: Class, _: SEL, attributes: ^NS.Dictionary) -> ^GraphicsContext {
 
@@ -495,6 +529,166 @@ GraphicsContext_odin_extend :: proc(cls: Class, vt: ^GraphicsContext_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFlipped"), auto_cast isFlipped, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.shouldAntialias != nil {
+        shouldAntialias :: proc "c" (self: ^GraphicsContext, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).shouldAntialias(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldAntialias"), auto_cast shouldAntialias, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setShouldAntialias != nil {
+        setShouldAntialias :: proc "c" (self: ^GraphicsContext, _: SEL, shouldAntialias: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setShouldAntialias(self, shouldAntialias)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShouldAntialias:"), auto_cast setShouldAntialias, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.imageInterpolation != nil {
+        imageInterpolation :: proc "c" (self: ^GraphicsContext, _: SEL) -> ImageInterpolation {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).imageInterpolation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("imageInterpolation"), auto_cast imageInterpolation, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setImageInterpolation != nil {
+        setImageInterpolation :: proc "c" (self: ^GraphicsContext, _: SEL, imageInterpolation: ImageInterpolation) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setImageInterpolation(self, imageInterpolation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setImageInterpolation:"), auto_cast setImageInterpolation, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.patternPhase != nil {
+        patternPhase :: proc "c" (self: ^GraphicsContext, _: SEL) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).patternPhase(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("patternPhase"), auto_cast patternPhase, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPatternPhase != nil {
+        setPatternPhase :: proc "c" (self: ^GraphicsContext, _: SEL, patternPhase: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setPatternPhase(self, patternPhase)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPatternPhase:"), auto_cast setPatternPhase, "v@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.compositingOperation != nil {
+        compositingOperation :: proc "c" (self: ^GraphicsContext, _: SEL) -> CompositingOperation {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).compositingOperation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("compositingOperation"), auto_cast compositingOperation, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCompositingOperation != nil {
+        setCompositingOperation :: proc "c" (self: ^GraphicsContext, _: SEL, compositingOperation: CompositingOperation) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setCompositingOperation(self, compositingOperation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCompositingOperation:"), auto_cast setCompositingOperation, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.colorRenderingIntent != nil {
+        colorRenderingIntent :: proc "c" (self: ^GraphicsContext, _: SEL) -> ColorRenderingIntent {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).colorRenderingIntent(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("colorRenderingIntent"), auto_cast colorRenderingIntent, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setColorRenderingIntent != nil {
+        setColorRenderingIntent :: proc "c" (self: ^GraphicsContext, _: SEL, colorRenderingIntent: ColorRenderingIntent) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setColorRenderingIntent(self, colorRenderingIntent)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setColorRenderingIntent:"), auto_cast setColorRenderingIntent, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt._CIContext != nil {
+        _CIContext :: proc "c" (self: ^GraphicsContext, _: SEL) -> ^CIContext {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt)._CIContext(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("CIContext"), auto_cast _CIContext, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setGraphicsState != nil {
+        setGraphicsState :: proc "c" (self: Class, _: SEL, gState: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setGraphicsState( gState)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setGraphicsState:"), auto_cast setGraphicsState, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.focusStack != nil {
+        focusStack :: proc "c" (self: ^GraphicsContext, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).focusStack(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("focusStack"), auto_cast focusStack, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setFocusStack != nil {
+        setFocusStack :: proc "c" (self: ^GraphicsContext, _: SEL, stack: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setFocusStack(self, stack)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setFocusStack:"), auto_cast setFocusStack, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.graphicsContextWithGraphicsPort != nil {
+        graphicsContextWithGraphicsPort :: proc "c" (self: Class, _: SEL, graphicsPort: rawptr, initialFlippedState: bool) -> ^GraphicsContext {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).graphicsContextWithGraphicsPort( graphicsPort, initialFlippedState)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("graphicsContextWithGraphicsPort:flipped:"), auto_cast graphicsContextWithGraphicsPort, "@#:^voidB") do panic("Failed to register objC method.")
+    }
+    if vt.graphicsPort != nil {
+        graphicsPort :: proc "c" (self: ^GraphicsContext, _: SEL) -> rawptr {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).graphicsPort(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("graphicsPort"), auto_cast graphicsPort, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -685,6 +879,156 @@ GraphicsContext_odin_extend :: proc(cls: Class, vt: ^GraphicsContext_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^GraphicsContext_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 

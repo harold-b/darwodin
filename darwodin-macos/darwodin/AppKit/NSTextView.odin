@@ -1203,10 +1203,171 @@ TextView_VTable :: struct {
     stronglyReferencesTextStorage: proc() -> bool,
     usesAdaptiveColorMappingForDarkAppearance: proc(self: ^TextView) -> bool,
     setUsesAdaptiveColorMappingForDarkAppearance: proc(self: ^TextView, usesAdaptiveColorMappingForDarkAppearance: bool),
+    complete: proc(self: ^TextView, sender: id),
+    completionsForPartialWordRange: proc(self: ^TextView, charRange: NS._NSRange, index: ^NS.Integer) -> ^NS.Array,
+    insertCompletion: proc(self: ^TextView, word: ^NS.String, charRange: NS._NSRange, movement: NS.Integer, flag: bool),
+    rangeForUserCompletion: proc(self: ^TextView) -> NS._NSRange,
+    writeSelectionToPasteboard_type: proc(self: ^TextView, pboard: ^Pasteboard, type: ^NS.String) -> bool,
+    writeSelectionToPasteboard_types: proc(self: ^TextView, pboard: ^Pasteboard, types: ^NS.Array) -> bool,
+    preferredPasteboardTypeFromArray: proc(self: ^TextView, availableTypes: ^NS.Array, allowedTypes: ^NS.Array) -> ^NS.String,
+    readSelectionFromPasteboard_type: proc(self: ^TextView, pboard: ^Pasteboard, type: ^NS.String) -> bool,
+    readSelectionFromPasteboard_: proc(self: ^TextView, pboard: ^Pasteboard) -> bool,
+    registerForServices: proc(),
+    validRequestorForSendType: proc(self: ^TextView, sendType: ^NS.String, returnType: ^NS.String) -> id,
+    pasteAsPlainText: proc(self: ^TextView, sender: id),
+    pasteAsRichText: proc(self: ^TextView, sender: id),
+    writablePasteboardTypes: proc(self: ^TextView) -> ^NS.Array,
+    readablePasteboardTypes: proc(self: ^TextView) -> ^NS.Array,
+    dragSelectionWithEvent: proc(self: ^TextView, event: ^Event, mouseOffset: NS.Size, slideBack: bool) -> bool,
+    dragImageForSelectionWithEvent: proc(self: ^TextView, event: ^Event, origin: ^CG.Point) -> ^NS.Image,
+    dragOperationForDraggingInfo: proc(self: ^TextView, dragInfo: ^DraggingInfo, type: ^NS.String) -> DragOperation,
+    cleanUpAfterDragOperation: proc(self: ^TextView),
+    acceptableDragTypes: proc(self: ^TextView) -> ^NS.Array,
+    setSelectedRanges_affinity_stillSelecting: proc(self: ^TextView, ranges: ^NS.Array, affinity: SelectionAffinity, stillSelectingFlag: bool),
+    setSelectedRange_affinity_stillSelecting: proc(self: ^TextView, charRange: NS._NSRange, affinity: SelectionAffinity, stillSelectingFlag: bool),
+    updateInsertionPointStateAndRestartTimer: proc(self: ^TextView, restartFlag: bool),
+    toggleContinuousSpellChecking: proc(self: ^TextView, sender: id),
+    toggleGrammarChecking: proc(self: ^TextView, sender: id),
+    setSpellingState: proc(self: ^TextView, value: NS.Integer, charRange: NS._NSRange),
+    shouldChangeTextInRanges: proc(self: ^TextView, affectedRanges: ^NS.Array, replacementStrings: ^NS.Array) -> bool,
+    shouldChangeTextInRange: proc(self: ^TextView, affectedCharRange: NS._NSRange, replacementString: ^NS.String) -> bool,
+    didChangeText: proc(self: ^TextView),
+    breakUndoCoalescing: proc(self: ^TextView),
+    showFindIndicatorForRange: proc(self: ^TextView, charRange: NS._NSRange),
+    setSelectedRange_: proc(self: ^TextView, charRange: NS._NSRange),
+    selectedRanges: proc(self: ^TextView) -> ^NS.Array,
+    setSelectedRanges_: proc(self: ^TextView, selectedRanges: ^NS.Array),
+    selectionAffinity: proc(self: ^TextView) -> SelectionAffinity,
+    selectionGranularity: proc(self: ^TextView) -> SelectionGranularity,
+    setSelectionGranularity: proc(self: ^TextView, selectionGranularity: SelectionGranularity),
+    selectedTextAttributes: proc(self: ^TextView) -> ^NS.Dictionary,
+    setSelectedTextAttributes: proc(self: ^TextView, selectedTextAttributes: ^NS.Dictionary),
+    insertionPointColor: proc(self: ^TextView) -> ^Color,
+    setInsertionPointColor: proc(self: ^TextView, insertionPointColor: ^Color),
+    markedTextAttributes: proc(self: ^TextView) -> ^NS.Dictionary,
+    setMarkedTextAttributes: proc(self: ^TextView, markedTextAttributes: ^NS.Dictionary),
+    linkTextAttributes: proc(self: ^TextView) -> ^NS.Dictionary,
+    setLinkTextAttributes: proc(self: ^TextView, linkTextAttributes: ^NS.Dictionary),
+    displaysLinkToolTips: proc(self: ^TextView) -> bool,
+    setDisplaysLinkToolTips: proc(self: ^TextView, displaysLinkToolTips: bool),
+    acceptsGlyphInfo: proc(self: ^TextView) -> bool,
+    setAcceptsGlyphInfo: proc(self: ^TextView, acceptsGlyphInfo: bool),
+    usesRuler: proc(self: ^TextView) -> bool,
+    setUsesRuler: proc(self: ^TextView, usesRuler: bool),
+    usesInspectorBar: proc(self: ^TextView) -> bool,
+    setUsesInspectorBar: proc(self: ^TextView, usesInspectorBar: bool),
+    isContinuousSpellCheckingEnabled: proc(self: ^TextView) -> bool,
+    setContinuousSpellCheckingEnabled: proc(self: ^TextView, continuousSpellCheckingEnabled: bool),
+    spellCheckerDocumentTag: proc(self: ^TextView) -> NS.Integer,
+    isGrammarCheckingEnabled: proc(self: ^TextView) -> bool,
+    setGrammarCheckingEnabled: proc(self: ^TextView, grammarCheckingEnabled: bool),
+    typingAttributes: proc(self: ^TextView) -> ^NS.Dictionary,
+    setTypingAttributes: proc(self: ^TextView, typingAttributes: ^NS.Dictionary),
+    rangesForUserTextChange: proc(self: ^TextView) -> ^NS.Array,
+    rangesForUserCharacterAttributeChange: proc(self: ^TextView) -> ^NS.Array,
+    rangesForUserParagraphAttributeChange: proc(self: ^TextView) -> ^NS.Array,
+    rangeForUserTextChange: proc(self: ^TextView) -> NS._NSRange,
+    rangeForUserCharacterAttributeChange: proc(self: ^TextView) -> NS._NSRange,
+    rangeForUserParagraphAttributeChange: proc(self: ^TextView) -> NS._NSRange,
+    allowsDocumentBackgroundColorChange: proc(self: ^TextView) -> bool,
+    setAllowsDocumentBackgroundColorChange: proc(self: ^TextView, allowsDocumentBackgroundColorChange: bool),
+    defaultParagraphStyle: proc(self: ^TextView) -> ^ParagraphStyle,
+    setDefaultParagraphStyle: proc(self: ^TextView, defaultParagraphStyle: ^ParagraphStyle),
+    allowsUndo: proc(self: ^TextView) -> bool,
+    setAllowsUndo: proc(self: ^TextView, allowsUndo: bool),
+    isCoalescingUndo: proc(self: ^TextView) -> bool,
+    allowsImageEditing: proc(self: ^TextView) -> bool,
+    setAllowsImageEditing: proc(self: ^TextView, allowsImageEditing: bool),
+    usesRolloverButtonForSelection: proc(self: ^TextView) -> bool,
+    setUsesRolloverButtonForSelection: proc(self: ^TextView, usesRolloverButtonForSelection: bool),
+    delegate: proc(self: ^TextView) -> ^TextViewDelegate,
+    setDelegate: proc(self: ^TextView, delegate: ^TextViewDelegate),
+    isEditable: proc(self: ^TextView) -> bool,
+    setEditable: proc(self: ^TextView, editable: bool),
+    isSelectable: proc(self: ^TextView) -> bool,
+    setSelectable: proc(self: ^TextView, selectable: bool),
+    isRichText: proc(self: ^TextView) -> bool,
+    setRichText: proc(self: ^TextView, richText: bool),
+    importsGraphics: proc(self: ^TextView) -> bool,
+    setImportsGraphics: proc(self: ^TextView, importsGraphics: bool),
+    drawsBackground: proc(self: ^TextView) -> bool,
+    setDrawsBackground: proc(self: ^TextView, drawsBackground: bool),
+    backgroundColor: proc(self: ^TextView) -> ^Color,
+    setBackgroundColor: proc(self: ^TextView, backgroundColor: ^Color),
+    isFieldEditor: proc(self: ^TextView) -> bool,
+    setFieldEditor: proc(self: ^TextView, fieldEditor: bool),
+    usesFontPanel: proc(self: ^TextView) -> bool,
+    setUsesFontPanel: proc(self: ^TextView, usesFontPanel: bool),
+    isRulerVisible: proc(self: ^TextView) -> bool,
+    setRulerVisible: proc(self: ^TextView, rulerVisible: bool),
+    allowedInputSourceLocales: proc(self: ^TextView) -> ^NS.Array,
+    setAllowedInputSourceLocales: proc(self: ^TextView, allowedInputSourceLocales: ^NS.Array),
+    smartDeleteRangeForProposedRange: proc(self: ^TextView, proposedCharRange: NS._NSRange) -> NS._NSRange,
+    toggleSmartInsertDelete: proc(self: ^TextView, sender: id),
+    smartInsertForString: proc(self: ^TextView, pasteString: ^NS.String, charRangeToReplace: NS._NSRange, beforeString: ^^NS.String, afterString: ^^NS.String),
+    smartInsertBeforeStringForString: proc(self: ^TextView, pasteString: ^NS.String, charRangeToReplace: NS._NSRange) -> ^NS.String,
+    smartInsertAfterStringForString: proc(self: ^TextView, pasteString: ^NS.String, charRangeToReplace: NS._NSRange) -> ^NS.String,
+    toggleAutomaticQuoteSubstitution: proc(self: ^TextView, sender: id),
+    toggleAutomaticLinkDetection: proc(self: ^TextView, sender: id),
+    toggleAutomaticDataDetection: proc(self: ^TextView, sender: id),
+    toggleAutomaticDashSubstitution: proc(self: ^TextView, sender: id),
+    toggleAutomaticTextReplacement: proc(self: ^TextView, sender: id),
+    toggleAutomaticSpellingCorrection: proc(self: ^TextView, sender: id),
+    checkTextInRange: proc(self: ^TextView, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary),
+    handleTextCheckingResults: proc(self: ^TextView, results: ^NS.Array, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, orthography: ^NS.Orthography, wordCount: NS.Integer),
+    orderFrontSubstitutionsPanel: proc(self: ^TextView, sender: id),
+    checkTextInSelection: proc(self: ^TextView, sender: id),
+    checkTextInDocument: proc(self: ^TextView, sender: id),
+    smartInsertDeleteEnabled: proc(self: ^TextView) -> bool,
+    setSmartInsertDeleteEnabled: proc(self: ^TextView, smartInsertDeleteEnabled: bool),
+    isAutomaticQuoteSubstitutionEnabled: proc(self: ^TextView) -> bool,
+    setAutomaticQuoteSubstitutionEnabled: proc(self: ^TextView, automaticQuoteSubstitutionEnabled: bool),
+    isAutomaticLinkDetectionEnabled: proc(self: ^TextView) -> bool,
+    setAutomaticLinkDetectionEnabled: proc(self: ^TextView, automaticLinkDetectionEnabled: bool),
+    isAutomaticDataDetectionEnabled: proc(self: ^TextView) -> bool,
+    setAutomaticDataDetectionEnabled: proc(self: ^TextView, automaticDataDetectionEnabled: bool),
+    isAutomaticDashSubstitutionEnabled: proc(self: ^TextView) -> bool,
+    setAutomaticDashSubstitutionEnabled: proc(self: ^TextView, automaticDashSubstitutionEnabled: bool),
+    isAutomaticTextReplacementEnabled: proc(self: ^TextView) -> bool,
+    setAutomaticTextReplacementEnabled: proc(self: ^TextView, automaticTextReplacementEnabled: bool),
+    isAutomaticSpellingCorrectionEnabled: proc(self: ^TextView) -> bool,
+    setAutomaticSpellingCorrectionEnabled: proc(self: ^TextView, automaticSpellingCorrectionEnabled: bool),
+    enabledTextCheckingTypes: proc(self: ^TextView) -> NS.TextCheckingTypes,
+    setEnabledTextCheckingTypes: proc(self: ^TextView, enabledTextCheckingTypes: NS.TextCheckingTypes),
+    usesFindPanel: proc(self: ^TextView) -> bool,
+    setUsesFindPanel: proc(self: ^TextView, usesFindPanel: bool),
+    usesFindBar: proc(self: ^TextView) -> bool,
+    setUsesFindBar: proc(self: ^TextView, usesFindBar: bool),
+    isIncrementalSearchingEnabled: proc(self: ^TextView) -> bool,
+    setIncrementalSearchingEnabled: proc(self: ^TextView, incrementalSearchingEnabled: bool),
+    inlinePredictionType: proc(self: ^TextView) -> TextInputTraitType,
+    setInlinePredictionType: proc(self: ^TextView, inlinePredictionType: TextInputTraitType),
+    toggleQuickLookPreviewPanel: proc(self: ^TextView, sender: id),
+    quickLookPreviewableItemsInRanges: proc(self: ^TextView, ranges: ^NS.Array) -> ^NS.Array,
+    updateQuickLookPreviewPanel: proc(self: ^TextView),
+    orderFrontSharingServicePicker: proc(self: ^TextView, sender: id),
+    toggleAutomaticTextCompletion: proc(self: ^TextView, sender: id),
+    updateTouchBarItemIdentifiers: proc(self: ^TextView),
+    updateTextTouchBarItems: proc(self: ^TextView),
+    updateCandidates: proc(self: ^TextView),
+    isAutomaticTextCompletionEnabled: proc(self: ^TextView) -> bool,
+    setAutomaticTextCompletionEnabled: proc(self: ^TextView, automaticTextCompletionEnabled: bool),
+    allowsCharacterPickerTouchBarItem: proc(self: ^TextView) -> bool,
+    setAllowsCharacterPickerTouchBarItem: proc(self: ^TextView, allowsCharacterPickerTouchBarItem: bool),
+    candidateListTouchBarItem: proc(self: ^TextView) -> ^CandidateListTouchBarItem,
+    scrollableTextView: proc() -> ^ScrollView,
+    fieldEditor: proc() -> ^TextView,
+    scrollableDocumentContentTextView: proc() -> ^ScrollView,
+    scrollablePlainDocumentContentTextView: proc() -> ^ScrollView,
+    toggleBaseWritingDirection: proc(self: ^TextView, sender: id),
     focusView: proc() -> ^View,
     defaultMenu: proc() -> ^Menu,
     isCompatibleWithResponsiveScrolling: proc() -> bool,
+    defaultFocusRingType: proc() -> FocusRingType,
+    requiresConstraintBasedLayout: proc() -> bool,
     defaultAnimationForKey: proc(key: ^NS.String) -> id,
+    allowedClassesForRestorableStateKeyPath: proc(keyPath: ^NS.String) -> ^NS.Array,
+    restorableStateKeyPaths: proc() -> ^NS.Array,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^TextView,
@@ -1226,12 +1387,30 @@ TextView_VTable :: struct {
     class: proc() -> Class,
     description: proc() -> ^NS.String,
     debugDescription: proc() -> ^NS.String,
+    version: proc() -> NS.Integer,
+    setVersion: proc(aVersion: NS.Integer),
+    poseAsClass: proc(aClass: Class),
+    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
+    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
+    accessInstanceVariablesDirectly: proc() -> bool,
+    useStoredAccessor: proc() -> bool,
+    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
+    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
+    setKeys: proc(keys: ^NS.Array, dependentKey: ^NS.String),
+    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
+    classForKeyedUnarchiver: proc() -> Class,
+    exposeBinding: proc(binding: ^NS.String),
+    setDefaultPlaceholder: proc(placeholder: id, marker: id, binding: ^NS.String),
+    defaultPlaceholderForMarker: proc(marker: id, binding: ^NS.String) -> id,
 }
 
 TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Text_odin_extend(cls, &vt.super)
+
     if vt.initWithFrame_textContainer != nil {
         initWithFrame_textContainer :: proc "c" (self: ^TextView, _: SEL, frameRect: NS.Rect, container: ^TextContainer) -> ^TextView {
 
@@ -1902,6 +2081,1576 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesAdaptiveColorMappingForDarkAppearance:"), auto_cast setUsesAdaptiveColorMappingForDarkAppearance, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.complete != nil {
+        complete :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).complete(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("complete:"), auto_cast complete, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.completionsForPartialWordRange != nil {
+        completionsForPartialWordRange :: proc "c" (self: ^TextView, _: SEL, charRange: NS._NSRange, index: ^NS.Integer) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).completionsForPartialWordRange(self, charRange, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("completionsForPartialWordRange:indexOfSelectedItem:"), auto_cast completionsForPartialWordRange, "@@:{_NSRange=LL}^void") do panic("Failed to register objC method.")
+    }
+    if vt.insertCompletion != nil {
+        insertCompletion :: proc "c" (self: ^TextView, _: SEL, word: ^NS.String, charRange: NS._NSRange, movement: NS.Integer, flag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).insertCompletion(self, word, charRange, movement, flag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertCompletion:forPartialWordRange:movement:isFinal:"), auto_cast insertCompletion, "v@:@{_NSRange=LL}lB") do panic("Failed to register objC method.")
+    }
+    if vt.rangeForUserCompletion != nil {
+        rangeForUserCompletion :: proc "c" (self: ^TextView, _: SEL) -> NS._NSRange {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).rangeForUserCompletion(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangeForUserCompletion"), auto_cast rangeForUserCompletion, "{_NSRange=LL}@:") do panic("Failed to register objC method.")
+    }
+    if vt.writeSelectionToPasteboard_type != nil {
+        writeSelectionToPasteboard_type :: proc "c" (self: ^TextView, _: SEL, pboard: ^Pasteboard, type: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).writeSelectionToPasteboard_type(self, pboard, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writeSelectionToPasteboard:type:"), auto_cast writeSelectionToPasteboard_type, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.writeSelectionToPasteboard_types != nil {
+        writeSelectionToPasteboard_types :: proc "c" (self: ^TextView, _: SEL, pboard: ^Pasteboard, types: ^NS.Array) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).writeSelectionToPasteboard_types(self, pboard, types)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writeSelectionToPasteboard:types:"), auto_cast writeSelectionToPasteboard_types, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.preferredPasteboardTypeFromArray != nil {
+        preferredPasteboardTypeFromArray :: proc "c" (self: ^TextView, _: SEL, availableTypes: ^NS.Array, allowedTypes: ^NS.Array) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).preferredPasteboardTypeFromArray(self, availableTypes, allowedTypes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredPasteboardTypeFromArray:restrictedToTypesFromArray:"), auto_cast preferredPasteboardTypeFromArray, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.readSelectionFromPasteboard_type != nil {
+        readSelectionFromPasteboard_type :: proc "c" (self: ^TextView, _: SEL, pboard: ^Pasteboard, type: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).readSelectionFromPasteboard_type(self, pboard, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readSelectionFromPasteboard:type:"), auto_cast readSelectionFromPasteboard_type, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.readSelectionFromPasteboard_ != nil {
+        readSelectionFromPasteboard_ :: proc "c" (self: ^TextView, _: SEL, pboard: ^Pasteboard) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).readSelectionFromPasteboard_(self, pboard)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readSelectionFromPasteboard:"), auto_cast readSelectionFromPasteboard_, "B@:@") do panic("Failed to register objC method.")
+    }
+    if vt.registerForServices != nil {
+        registerForServices :: proc "c" (self: Class, _: SEL) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).registerForServices()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("registerForServices"), auto_cast registerForServices, "v#:") do panic("Failed to register objC method.")
+    }
+    if vt.validRequestorForSendType != nil {
+        validRequestorForSendType :: proc "c" (self: ^TextView, _: SEL, sendType: ^NS.String, returnType: ^NS.String) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).validRequestorForSendType(self, sendType, returnType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("validRequestorForSendType:returnType:"), auto_cast validRequestorForSendType, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.pasteAsPlainText != nil {
+        pasteAsPlainText :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).pasteAsPlainText(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteAsPlainText:"), auto_cast pasteAsPlainText, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.pasteAsRichText != nil {
+        pasteAsRichText :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).pasteAsRichText(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteAsRichText:"), auto_cast pasteAsRichText, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.writablePasteboardTypes != nil {
+        writablePasteboardTypes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).writablePasteboardTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writablePasteboardTypes"), auto_cast writablePasteboardTypes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.readablePasteboardTypes != nil {
+        readablePasteboardTypes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).readablePasteboardTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readablePasteboardTypes"), auto_cast readablePasteboardTypes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.dragSelectionWithEvent != nil {
+        dragSelectionWithEvent :: proc "c" (self: ^TextView, _: SEL, event: ^Event, mouseOffset: NS.Size, slideBack: bool) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).dragSelectionWithEvent(self, event, mouseOffset, slideBack)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragSelectionWithEvent:offset:slideBack:"), auto_cast dragSelectionWithEvent, "B@:@{CGSize=dd}B") do panic("Failed to register objC method.")
+    }
+    if vt.dragImageForSelectionWithEvent != nil {
+        dragImageForSelectionWithEvent :: proc "c" (self: ^TextView, _: SEL, event: ^Event, origin: ^CG.Point) -> ^NS.Image {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).dragImageForSelectionWithEvent(self, event, origin)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragImageForSelectionWithEvent:origin:"), auto_cast dragImageForSelectionWithEvent, "@@:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.dragOperationForDraggingInfo != nil {
+        dragOperationForDraggingInfo :: proc "c" (self: ^TextView, _: SEL, dragInfo: ^DraggingInfo, type: ^NS.String) -> DragOperation {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).dragOperationForDraggingInfo(self, dragInfo, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragOperationForDraggingInfo:type:"), auto_cast dragOperationForDraggingInfo, "L@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.cleanUpAfterDragOperation != nil {
+        cleanUpAfterDragOperation :: proc "c" (self: ^TextView, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).cleanUpAfterDragOperation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cleanUpAfterDragOperation"), auto_cast cleanUpAfterDragOperation, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.acceptableDragTypes != nil {
+        acceptableDragTypes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).acceptableDragTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptableDragTypes"), auto_cast acceptableDragTypes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedRanges_affinity_stillSelecting != nil {
+        setSelectedRanges_affinity_stillSelecting :: proc "c" (self: ^TextView, _: SEL, ranges: ^NS.Array, affinity: SelectionAffinity, stillSelectingFlag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSelectedRanges_affinity_stillSelecting(self, ranges, affinity, stillSelectingFlag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:affinity:stillSelecting:"), auto_cast setSelectedRanges_affinity_stillSelecting, "v@:@LB") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedRange_affinity_stillSelecting != nil {
+        setSelectedRange_affinity_stillSelecting :: proc "c" (self: ^TextView, _: SEL, charRange: NS._NSRange, affinity: SelectionAffinity, stillSelectingFlag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSelectedRange_affinity_stillSelecting(self, charRange, affinity, stillSelectingFlag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRange:affinity:stillSelecting:"), auto_cast setSelectedRange_affinity_stillSelecting, "v@:{_NSRange=LL}LB") do panic("Failed to register objC method.")
+    }
+    if vt.updateInsertionPointStateAndRestartTimer != nil {
+        updateInsertionPointStateAndRestartTimer :: proc "c" (self: ^TextView, _: SEL, restartFlag: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).updateInsertionPointStateAndRestartTimer(self, restartFlag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateInsertionPointStateAndRestartTimer:"), auto_cast updateInsertionPointStateAndRestartTimer, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.toggleContinuousSpellChecking != nil {
+        toggleContinuousSpellChecking :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleContinuousSpellChecking(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleContinuousSpellChecking:"), auto_cast toggleContinuousSpellChecking, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleGrammarChecking != nil {
+        toggleGrammarChecking :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleGrammarChecking(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleGrammarChecking:"), auto_cast toggleGrammarChecking, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.setSpellingState != nil {
+        setSpellingState :: proc "c" (self: ^TextView, _: SEL, value: NS.Integer, charRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSpellingState(self, value, charRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSpellingState:range:"), auto_cast setSpellingState, "v@:l{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.shouldChangeTextInRanges != nil {
+        shouldChangeTextInRanges :: proc "c" (self: ^TextView, _: SEL, affectedRanges: ^NS.Array, replacementStrings: ^NS.Array) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).shouldChangeTextInRanges(self, affectedRanges, replacementStrings)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldChangeTextInRanges:replacementStrings:"), auto_cast shouldChangeTextInRanges, "B@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.shouldChangeTextInRange != nil {
+        shouldChangeTextInRange :: proc "c" (self: ^TextView, _: SEL, affectedCharRange: NS._NSRange, replacementString: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).shouldChangeTextInRange(self, affectedCharRange, replacementString)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldChangeTextInRange:replacementString:"), auto_cast shouldChangeTextInRange, "B@:{_NSRange=LL}@") do panic("Failed to register objC method.")
+    }
+    if vt.didChangeText != nil {
+        didChangeText :: proc "c" (self: ^TextView, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).didChangeText(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("didChangeText"), auto_cast didChangeText, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.breakUndoCoalescing != nil {
+        breakUndoCoalescing :: proc "c" (self: ^TextView, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).breakUndoCoalescing(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("breakUndoCoalescing"), auto_cast breakUndoCoalescing, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.showFindIndicatorForRange != nil {
+        showFindIndicatorForRange :: proc "c" (self: ^TextView, _: SEL, charRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).showFindIndicatorForRange(self, charRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showFindIndicatorForRange:"), auto_cast showFindIndicatorForRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedRange_ != nil {
+        setSelectedRange_ :: proc "c" (self: ^TextView, _: SEL, charRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSelectedRange_(self, charRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRange:"), auto_cast setSelectedRange_, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.selectedRanges != nil {
+        selectedRanges :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).selectedRanges(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRanges"), auto_cast selectedRanges, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedRanges_ != nil {
+        setSelectedRanges_ :: proc "c" (self: ^TextView, _: SEL, selectedRanges: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSelectedRanges_(self, selectedRanges)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:"), auto_cast setSelectedRanges_, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.selectionAffinity != nil {
+        selectionAffinity :: proc "c" (self: ^TextView, _: SEL) -> SelectionAffinity {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).selectionAffinity(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectionAffinity"), auto_cast selectionAffinity, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.selectionGranularity != nil {
+        selectionGranularity :: proc "c" (self: ^TextView, _: SEL) -> SelectionGranularity {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).selectionGranularity(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectionGranularity"), auto_cast selectionGranularity, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectionGranularity != nil {
+        setSelectionGranularity :: proc "c" (self: ^TextView, _: SEL, selectionGranularity: SelectionGranularity) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSelectionGranularity(self, selectionGranularity)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionGranularity:"), auto_cast setSelectionGranularity, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.selectedTextAttributes != nil {
+        selectedTextAttributes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).selectedTextAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedTextAttributes"), auto_cast selectedTextAttributes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedTextAttributes != nil {
+        setSelectedTextAttributes :: proc "c" (self: ^TextView, _: SEL, selectedTextAttributes: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSelectedTextAttributes(self, selectedTextAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedTextAttributes:"), auto_cast setSelectedTextAttributes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.insertionPointColor != nil {
+        insertionPointColor :: proc "c" (self: ^TextView, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).insertionPointColor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertionPointColor"), auto_cast insertionPointColor, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setInsertionPointColor != nil {
+        setInsertionPointColor :: proc "c" (self: ^TextView, _: SEL, insertionPointColor: ^Color) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setInsertionPointColor(self, insertionPointColor)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setInsertionPointColor:"), auto_cast setInsertionPointColor, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.markedTextAttributes != nil {
+        markedTextAttributes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).markedTextAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextAttributes"), auto_cast markedTextAttributes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMarkedTextAttributes != nil {
+        setMarkedTextAttributes :: proc "c" (self: ^TextView, _: SEL, markedTextAttributes: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setMarkedTextAttributes(self, markedTextAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMarkedTextAttributes:"), auto_cast setMarkedTextAttributes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.linkTextAttributes != nil {
+        linkTextAttributes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).linkTextAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("linkTextAttributes"), auto_cast linkTextAttributes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLinkTextAttributes != nil {
+        setLinkTextAttributes :: proc "c" (self: ^TextView, _: SEL, linkTextAttributes: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setLinkTextAttributes(self, linkTextAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLinkTextAttributes:"), auto_cast setLinkTextAttributes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.displaysLinkToolTips != nil {
+        displaysLinkToolTips :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).displaysLinkToolTips(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("displaysLinkToolTips"), auto_cast displaysLinkToolTips, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDisplaysLinkToolTips != nil {
+        setDisplaysLinkToolTips :: proc "c" (self: ^TextView, _: SEL, displaysLinkToolTips: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setDisplaysLinkToolTips(self, displaysLinkToolTips)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDisplaysLinkToolTips:"), auto_cast setDisplaysLinkToolTips, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.acceptsGlyphInfo != nil {
+        acceptsGlyphInfo :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).acceptsGlyphInfo(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptsGlyphInfo"), auto_cast acceptsGlyphInfo, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAcceptsGlyphInfo != nil {
+        setAcceptsGlyphInfo :: proc "c" (self: ^TextView, _: SEL, acceptsGlyphInfo: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAcceptsGlyphInfo(self, acceptsGlyphInfo)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAcceptsGlyphInfo:"), auto_cast setAcceptsGlyphInfo, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.usesRuler != nil {
+        usesRuler :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).usesRuler(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesRuler"), auto_cast usesRuler, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesRuler != nil {
+        setUsesRuler :: proc "c" (self: ^TextView, _: SEL, usesRuler: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setUsesRuler(self, usesRuler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesRuler:"), auto_cast setUsesRuler, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.usesInspectorBar != nil {
+        usesInspectorBar :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).usesInspectorBar(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesInspectorBar"), auto_cast usesInspectorBar, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesInspectorBar != nil {
+        setUsesInspectorBar :: proc "c" (self: ^TextView, _: SEL, usesInspectorBar: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setUsesInspectorBar(self, usesInspectorBar)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesInspectorBar:"), auto_cast setUsesInspectorBar, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isContinuousSpellCheckingEnabled != nil {
+        isContinuousSpellCheckingEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isContinuousSpellCheckingEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isContinuousSpellCheckingEnabled"), auto_cast isContinuousSpellCheckingEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setContinuousSpellCheckingEnabled != nil {
+        setContinuousSpellCheckingEnabled :: proc "c" (self: ^TextView, _: SEL, continuousSpellCheckingEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setContinuousSpellCheckingEnabled(self, continuousSpellCheckingEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setContinuousSpellCheckingEnabled:"), auto_cast setContinuousSpellCheckingEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.spellCheckerDocumentTag != nil {
+        spellCheckerDocumentTag :: proc "c" (self: ^TextView, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).spellCheckerDocumentTag(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("spellCheckerDocumentTag"), auto_cast spellCheckerDocumentTag, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.isGrammarCheckingEnabled != nil {
+        isGrammarCheckingEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isGrammarCheckingEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isGrammarCheckingEnabled"), auto_cast isGrammarCheckingEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setGrammarCheckingEnabled != nil {
+        setGrammarCheckingEnabled :: proc "c" (self: ^TextView, _: SEL, grammarCheckingEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setGrammarCheckingEnabled(self, grammarCheckingEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setGrammarCheckingEnabled:"), auto_cast setGrammarCheckingEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.typingAttributes != nil {
+        typingAttributes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).typingAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("typingAttributes"), auto_cast typingAttributes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTypingAttributes != nil {
+        setTypingAttributes :: proc "c" (self: ^TextView, _: SEL, typingAttributes: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setTypingAttributes(self, typingAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTypingAttributes:"), auto_cast setTypingAttributes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.rangesForUserTextChange != nil {
+        rangesForUserTextChange :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).rangesForUserTextChange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserTextChange"), auto_cast rangesForUserTextChange, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.rangesForUserCharacterAttributeChange != nil {
+        rangesForUserCharacterAttributeChange :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).rangesForUserCharacterAttributeChange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserCharacterAttributeChange"), auto_cast rangesForUserCharacterAttributeChange, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.rangesForUserParagraphAttributeChange != nil {
+        rangesForUserParagraphAttributeChange :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).rangesForUserParagraphAttributeChange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserParagraphAttributeChange"), auto_cast rangesForUserParagraphAttributeChange, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.rangeForUserTextChange != nil {
+        rangeForUserTextChange :: proc "c" (self: ^TextView, _: SEL) -> NS._NSRange {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).rangeForUserTextChange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangeForUserTextChange"), auto_cast rangeForUserTextChange, "{_NSRange=LL}@:") do panic("Failed to register objC method.")
+    }
+    if vt.rangeForUserCharacterAttributeChange != nil {
+        rangeForUserCharacterAttributeChange :: proc "c" (self: ^TextView, _: SEL) -> NS._NSRange {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).rangeForUserCharacterAttributeChange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangeForUserCharacterAttributeChange"), auto_cast rangeForUserCharacterAttributeChange, "{_NSRange=LL}@:") do panic("Failed to register objC method.")
+    }
+    if vt.rangeForUserParagraphAttributeChange != nil {
+        rangeForUserParagraphAttributeChange :: proc "c" (self: ^TextView, _: SEL) -> NS._NSRange {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).rangeForUserParagraphAttributeChange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangeForUserParagraphAttributeChange"), auto_cast rangeForUserParagraphAttributeChange, "{_NSRange=LL}@:") do panic("Failed to register objC method.")
+    }
+    if vt.allowsDocumentBackgroundColorChange != nil {
+        allowsDocumentBackgroundColorChange :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).allowsDocumentBackgroundColorChange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsDocumentBackgroundColorChange"), auto_cast allowsDocumentBackgroundColorChange, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsDocumentBackgroundColorChange != nil {
+        setAllowsDocumentBackgroundColorChange :: proc "c" (self: ^TextView, _: SEL, allowsDocumentBackgroundColorChange: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAllowsDocumentBackgroundColorChange(self, allowsDocumentBackgroundColorChange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsDocumentBackgroundColorChange:"), auto_cast setAllowsDocumentBackgroundColorChange, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.defaultParagraphStyle != nil {
+        defaultParagraphStyle :: proc "c" (self: ^TextView, _: SEL) -> ^ParagraphStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).defaultParagraphStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("defaultParagraphStyle"), auto_cast defaultParagraphStyle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultParagraphStyle != nil {
+        setDefaultParagraphStyle :: proc "c" (self: ^TextView, _: SEL, defaultParagraphStyle: ^ParagraphStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setDefaultParagraphStyle(self, defaultParagraphStyle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDefaultParagraphStyle:"), auto_cast setDefaultParagraphStyle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.allowsUndo != nil {
+        allowsUndo :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).allowsUndo(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsUndo"), auto_cast allowsUndo, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsUndo != nil {
+        setAllowsUndo :: proc "c" (self: ^TextView, _: SEL, allowsUndo: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAllowsUndo(self, allowsUndo)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsUndo:"), auto_cast setAllowsUndo, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isCoalescingUndo != nil {
+        isCoalescingUndo :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isCoalescingUndo(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isCoalescingUndo"), auto_cast isCoalescingUndo, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.allowsImageEditing != nil {
+        allowsImageEditing :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).allowsImageEditing(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsImageEditing"), auto_cast allowsImageEditing, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsImageEditing != nil {
+        setAllowsImageEditing :: proc "c" (self: ^TextView, _: SEL, allowsImageEditing: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAllowsImageEditing(self, allowsImageEditing)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsImageEditing:"), auto_cast setAllowsImageEditing, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.usesRolloverButtonForSelection != nil {
+        usesRolloverButtonForSelection :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).usesRolloverButtonForSelection(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesRolloverButtonForSelection"), auto_cast usesRolloverButtonForSelection, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesRolloverButtonForSelection != nil {
+        setUsesRolloverButtonForSelection :: proc "c" (self: ^TextView, _: SEL, usesRolloverButtonForSelection: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setUsesRolloverButtonForSelection(self, usesRolloverButtonForSelection)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesRolloverButtonForSelection:"), auto_cast setUsesRolloverButtonForSelection, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.delegate != nil {
+        delegate :: proc "c" (self: ^TextView, _: SEL) -> ^TextViewDelegate {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).delegate(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDelegate != nil {
+        setDelegate :: proc "c" (self: ^TextView, _: SEL, delegate: ^TextViewDelegate) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setDelegate(self, delegate)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.isEditable != nil {
+        isEditable :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isEditable(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isEditable"), auto_cast isEditable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setEditable != nil {
+        setEditable :: proc "c" (self: ^TextView, _: SEL, editable: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setEditable(self, editable)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setEditable:"), auto_cast setEditable, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isSelectable != nil {
+        isSelectable :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isSelectable(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isSelectable"), auto_cast isSelectable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectable != nil {
+        setSelectable :: proc "c" (self: ^TextView, _: SEL, selectable: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSelectable(self, selectable)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectable:"), auto_cast setSelectable, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isRichText != nil {
+        isRichText :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isRichText(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isRichText"), auto_cast isRichText, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRichText != nil {
+        setRichText :: proc "c" (self: ^TextView, _: SEL, richText: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setRichText(self, richText)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRichText:"), auto_cast setRichText, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.importsGraphics != nil {
+        importsGraphics :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).importsGraphics(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("importsGraphics"), auto_cast importsGraphics, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setImportsGraphics != nil {
+        setImportsGraphics :: proc "c" (self: ^TextView, _: SEL, importsGraphics: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setImportsGraphics(self, importsGraphics)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setImportsGraphics:"), auto_cast setImportsGraphics, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.drawsBackground != nil {
+        drawsBackground :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).drawsBackground(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("drawsBackground"), auto_cast drawsBackground, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDrawsBackground != nil {
+        setDrawsBackground :: proc "c" (self: ^TextView, _: SEL, drawsBackground: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setDrawsBackground(self, drawsBackground)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDrawsBackground:"), auto_cast setDrawsBackground, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.backgroundColor != nil {
+        backgroundColor :: proc "c" (self: ^TextView, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).backgroundColor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColor"), auto_cast backgroundColor, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBackgroundColor != nil {
+        setBackgroundColor :: proc "c" (self: ^TextView, _: SEL, backgroundColor: ^Color) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setBackgroundColor(self, backgroundColor)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.isFieldEditor != nil {
+        isFieldEditor :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isFieldEditor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isFieldEditor"), auto_cast isFieldEditor, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setFieldEditor != nil {
+        setFieldEditor :: proc "c" (self: ^TextView, _: SEL, fieldEditor: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setFieldEditor(self, fieldEditor)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setFieldEditor:"), auto_cast setFieldEditor, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.usesFontPanel != nil {
+        usesFontPanel :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).usesFontPanel(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesFontPanel"), auto_cast usesFontPanel, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesFontPanel != nil {
+        setUsesFontPanel :: proc "c" (self: ^TextView, _: SEL, usesFontPanel: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setUsesFontPanel(self, usesFontPanel)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesFontPanel:"), auto_cast setUsesFontPanel, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isRulerVisible != nil {
+        isRulerVisible :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isRulerVisible(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isRulerVisible"), auto_cast isRulerVisible, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRulerVisible != nil {
+        setRulerVisible :: proc "c" (self: ^TextView, _: SEL, rulerVisible: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setRulerVisible(self, rulerVisible)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRulerVisible:"), auto_cast setRulerVisible, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.allowedInputSourceLocales != nil {
+        allowedInputSourceLocales :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).allowedInputSourceLocales(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedInputSourceLocales"), auto_cast allowedInputSourceLocales, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowedInputSourceLocales != nil {
+        setAllowedInputSourceLocales :: proc "c" (self: ^TextView, _: SEL, allowedInputSourceLocales: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAllowedInputSourceLocales(self, allowedInputSourceLocales)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedInputSourceLocales:"), auto_cast setAllowedInputSourceLocales, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.smartDeleteRangeForProposedRange != nil {
+        smartDeleteRangeForProposedRange :: proc "c" (self: ^TextView, _: SEL, proposedCharRange: NS._NSRange) -> NS._NSRange {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).smartDeleteRangeForProposedRange(self, proposedCharRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("smartDeleteRangeForProposedRange:"), auto_cast smartDeleteRangeForProposedRange, "{_NSRange=LL}@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.toggleSmartInsertDelete != nil {
+        toggleSmartInsertDelete :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleSmartInsertDelete(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleSmartInsertDelete:"), auto_cast toggleSmartInsertDelete, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.smartInsertForString != nil {
+        smartInsertForString :: proc "c" (self: ^TextView, _: SEL, pasteString: ^NS.String, charRangeToReplace: NS._NSRange, beforeString: ^^NS.String, afterString: ^^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).smartInsertForString(self, pasteString, charRangeToReplace, beforeString, afterString)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("smartInsertForString:replacingRange:beforeString:afterString:"), auto_cast smartInsertForString, "v@:@{_NSRange=LL}^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.smartInsertBeforeStringForString != nil {
+        smartInsertBeforeStringForString :: proc "c" (self: ^TextView, _: SEL, pasteString: ^NS.String, charRangeToReplace: NS._NSRange) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).smartInsertBeforeStringForString(self, pasteString, charRangeToReplace)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("smartInsertBeforeStringForString:replacingRange:"), auto_cast smartInsertBeforeStringForString, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.smartInsertAfterStringForString != nil {
+        smartInsertAfterStringForString :: proc "c" (self: ^TextView, _: SEL, pasteString: ^NS.String, charRangeToReplace: NS._NSRange) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).smartInsertAfterStringForString(self, pasteString, charRangeToReplace)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("smartInsertAfterStringForString:replacingRange:"), auto_cast smartInsertAfterStringForString, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.toggleAutomaticQuoteSubstitution != nil {
+        toggleAutomaticQuoteSubstitution :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleAutomaticQuoteSubstitution(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleAutomaticQuoteSubstitution:"), auto_cast toggleAutomaticQuoteSubstitution, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleAutomaticLinkDetection != nil {
+        toggleAutomaticLinkDetection :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleAutomaticLinkDetection(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleAutomaticLinkDetection:"), auto_cast toggleAutomaticLinkDetection, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleAutomaticDataDetection != nil {
+        toggleAutomaticDataDetection :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleAutomaticDataDetection(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleAutomaticDataDetection:"), auto_cast toggleAutomaticDataDetection, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleAutomaticDashSubstitution != nil {
+        toggleAutomaticDashSubstitution :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleAutomaticDashSubstitution(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleAutomaticDashSubstitution:"), auto_cast toggleAutomaticDashSubstitution, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleAutomaticTextReplacement != nil {
+        toggleAutomaticTextReplacement :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleAutomaticTextReplacement(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleAutomaticTextReplacement:"), auto_cast toggleAutomaticTextReplacement, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleAutomaticSpellingCorrection != nil {
+        toggleAutomaticSpellingCorrection :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleAutomaticSpellingCorrection(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleAutomaticSpellingCorrection:"), auto_cast toggleAutomaticSpellingCorrection, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.checkTextInRange != nil {
+        checkTextInRange :: proc "c" (self: ^TextView, _: SEL, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).checkTextInRange(self, range, checkingTypes, options)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInRange:types:options:"), auto_cast checkTextInRange, "v@:{_NSRange=LL}Q@") do panic("Failed to register objC method.")
+    }
+    if vt.handleTextCheckingResults != nil {
+        handleTextCheckingResults :: proc "c" (self: ^TextView, _: SEL, results: ^NS.Array, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, orthography: ^NS.Orthography, wordCount: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).handleTextCheckingResults(self, results, range, checkingTypes, options, orthography, wordCount)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("handleTextCheckingResults:forRange:types:options:orthography:wordCount:"), auto_cast handleTextCheckingResults, "v@:@{_NSRange=LL}Q@@l") do panic("Failed to register objC method.")
+    }
+    if vt.orderFrontSubstitutionsPanel != nil {
+        orderFrontSubstitutionsPanel :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).orderFrontSubstitutionsPanel(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("orderFrontSubstitutionsPanel:"), auto_cast orderFrontSubstitutionsPanel, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.checkTextInSelection != nil {
+        checkTextInSelection :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).checkTextInSelection(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInSelection:"), auto_cast checkTextInSelection, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.checkTextInDocument != nil {
+        checkTextInDocument :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).checkTextInDocument(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInDocument:"), auto_cast checkTextInDocument, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.smartInsertDeleteEnabled != nil {
+        smartInsertDeleteEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).smartInsertDeleteEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("smartInsertDeleteEnabled"), auto_cast smartInsertDeleteEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSmartInsertDeleteEnabled != nil {
+        setSmartInsertDeleteEnabled :: proc "c" (self: ^TextView, _: SEL, smartInsertDeleteEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setSmartInsertDeleteEnabled(self, smartInsertDeleteEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSmartInsertDeleteEnabled:"), auto_cast setSmartInsertDeleteEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isAutomaticQuoteSubstitutionEnabled != nil {
+        isAutomaticQuoteSubstitutionEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isAutomaticQuoteSubstitutionEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAutomaticQuoteSubstitutionEnabled"), auto_cast isAutomaticQuoteSubstitutionEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticQuoteSubstitutionEnabled != nil {
+        setAutomaticQuoteSubstitutionEnabled :: proc "c" (self: ^TextView, _: SEL, automaticQuoteSubstitutionEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAutomaticQuoteSubstitutionEnabled(self, automaticQuoteSubstitutionEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticQuoteSubstitutionEnabled:"), auto_cast setAutomaticQuoteSubstitutionEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isAutomaticLinkDetectionEnabled != nil {
+        isAutomaticLinkDetectionEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isAutomaticLinkDetectionEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAutomaticLinkDetectionEnabled"), auto_cast isAutomaticLinkDetectionEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticLinkDetectionEnabled != nil {
+        setAutomaticLinkDetectionEnabled :: proc "c" (self: ^TextView, _: SEL, automaticLinkDetectionEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAutomaticLinkDetectionEnabled(self, automaticLinkDetectionEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticLinkDetectionEnabled:"), auto_cast setAutomaticLinkDetectionEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isAutomaticDataDetectionEnabled != nil {
+        isAutomaticDataDetectionEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isAutomaticDataDetectionEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAutomaticDataDetectionEnabled"), auto_cast isAutomaticDataDetectionEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticDataDetectionEnabled != nil {
+        setAutomaticDataDetectionEnabled :: proc "c" (self: ^TextView, _: SEL, automaticDataDetectionEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAutomaticDataDetectionEnabled(self, automaticDataDetectionEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticDataDetectionEnabled:"), auto_cast setAutomaticDataDetectionEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isAutomaticDashSubstitutionEnabled != nil {
+        isAutomaticDashSubstitutionEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isAutomaticDashSubstitutionEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAutomaticDashSubstitutionEnabled"), auto_cast isAutomaticDashSubstitutionEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticDashSubstitutionEnabled != nil {
+        setAutomaticDashSubstitutionEnabled :: proc "c" (self: ^TextView, _: SEL, automaticDashSubstitutionEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAutomaticDashSubstitutionEnabled(self, automaticDashSubstitutionEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticDashSubstitutionEnabled:"), auto_cast setAutomaticDashSubstitutionEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isAutomaticTextReplacementEnabled != nil {
+        isAutomaticTextReplacementEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isAutomaticTextReplacementEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAutomaticTextReplacementEnabled"), auto_cast isAutomaticTextReplacementEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticTextReplacementEnabled != nil {
+        setAutomaticTextReplacementEnabled :: proc "c" (self: ^TextView, _: SEL, automaticTextReplacementEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAutomaticTextReplacementEnabled(self, automaticTextReplacementEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticTextReplacementEnabled:"), auto_cast setAutomaticTextReplacementEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isAutomaticSpellingCorrectionEnabled != nil {
+        isAutomaticSpellingCorrectionEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isAutomaticSpellingCorrectionEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAutomaticSpellingCorrectionEnabled"), auto_cast isAutomaticSpellingCorrectionEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticSpellingCorrectionEnabled != nil {
+        setAutomaticSpellingCorrectionEnabled :: proc "c" (self: ^TextView, _: SEL, automaticSpellingCorrectionEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAutomaticSpellingCorrectionEnabled(self, automaticSpellingCorrectionEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticSpellingCorrectionEnabled:"), auto_cast setAutomaticSpellingCorrectionEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.enabledTextCheckingTypes != nil {
+        enabledTextCheckingTypes :: proc "c" (self: ^TextView, _: SEL) -> NS.TextCheckingTypes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).enabledTextCheckingTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enabledTextCheckingTypes"), auto_cast enabledTextCheckingTypes, "Q@:") do panic("Failed to register objC method.")
+    }
+    if vt.setEnabledTextCheckingTypes != nil {
+        setEnabledTextCheckingTypes :: proc "c" (self: ^TextView, _: SEL, enabledTextCheckingTypes: NS.TextCheckingTypes) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setEnabledTextCheckingTypes(self, enabledTextCheckingTypes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setEnabledTextCheckingTypes:"), auto_cast setEnabledTextCheckingTypes, "v@:Q") do panic("Failed to register objC method.")
+    }
+    if vt.usesFindPanel != nil {
+        usesFindPanel :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).usesFindPanel(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesFindPanel"), auto_cast usesFindPanel, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesFindPanel != nil {
+        setUsesFindPanel :: proc "c" (self: ^TextView, _: SEL, usesFindPanel: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setUsesFindPanel(self, usesFindPanel)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesFindPanel:"), auto_cast setUsesFindPanel, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.usesFindBar != nil {
+        usesFindBar :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).usesFindBar(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesFindBar"), auto_cast usesFindBar, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesFindBar != nil {
+        setUsesFindBar :: proc "c" (self: ^TextView, _: SEL, usesFindBar: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setUsesFindBar(self, usesFindBar)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesFindBar:"), auto_cast setUsesFindBar, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isIncrementalSearchingEnabled != nil {
+        isIncrementalSearchingEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isIncrementalSearchingEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isIncrementalSearchingEnabled"), auto_cast isIncrementalSearchingEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIncrementalSearchingEnabled != nil {
+        setIncrementalSearchingEnabled :: proc "c" (self: ^TextView, _: SEL, incrementalSearchingEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setIncrementalSearchingEnabled(self, incrementalSearchingEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIncrementalSearchingEnabled:"), auto_cast setIncrementalSearchingEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.inlinePredictionType != nil {
+        inlinePredictionType :: proc "c" (self: ^TextView, _: SEL) -> TextInputTraitType {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).inlinePredictionType(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("inlinePredictionType"), auto_cast inlinePredictionType, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setInlinePredictionType != nil {
+        setInlinePredictionType :: proc "c" (self: ^TextView, _: SEL, inlinePredictionType: TextInputTraitType) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setInlinePredictionType(self, inlinePredictionType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setInlinePredictionType:"), auto_cast setInlinePredictionType, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.toggleQuickLookPreviewPanel != nil {
+        toggleQuickLookPreviewPanel :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleQuickLookPreviewPanel(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleQuickLookPreviewPanel:"), auto_cast toggleQuickLookPreviewPanel, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.quickLookPreviewableItemsInRanges != nil {
+        quickLookPreviewableItemsInRanges :: proc "c" (self: ^TextView, _: SEL, ranges: ^NS.Array) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).quickLookPreviewableItemsInRanges(self, ranges)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("quickLookPreviewableItemsInRanges:"), auto_cast quickLookPreviewableItemsInRanges, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.updateQuickLookPreviewPanel != nil {
+        updateQuickLookPreviewPanel :: proc "c" (self: ^TextView, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).updateQuickLookPreviewPanel(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateQuickLookPreviewPanel"), auto_cast updateQuickLookPreviewPanel, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.orderFrontSharingServicePicker != nil {
+        orderFrontSharingServicePicker :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).orderFrontSharingServicePicker(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("orderFrontSharingServicePicker:"), auto_cast orderFrontSharingServicePicker, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleAutomaticTextCompletion != nil {
+        toggleAutomaticTextCompletion :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleAutomaticTextCompletion(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleAutomaticTextCompletion:"), auto_cast toggleAutomaticTextCompletion, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.updateTouchBarItemIdentifiers != nil {
+        updateTouchBarItemIdentifiers :: proc "c" (self: ^TextView, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).updateTouchBarItemIdentifiers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateTouchBarItemIdentifiers"), auto_cast updateTouchBarItemIdentifiers, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.updateTextTouchBarItems != nil {
+        updateTextTouchBarItems :: proc "c" (self: ^TextView, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).updateTextTouchBarItems(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateTextTouchBarItems"), auto_cast updateTextTouchBarItems, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.updateCandidates != nil {
+        updateCandidates :: proc "c" (self: ^TextView, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).updateCandidates(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateCandidates"), auto_cast updateCandidates, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.isAutomaticTextCompletionEnabled != nil {
+        isAutomaticTextCompletionEnabled :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isAutomaticTextCompletionEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAutomaticTextCompletionEnabled"), auto_cast isAutomaticTextCompletionEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticTextCompletionEnabled != nil {
+        setAutomaticTextCompletionEnabled :: proc "c" (self: ^TextView, _: SEL, automaticTextCompletionEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAutomaticTextCompletionEnabled(self, automaticTextCompletionEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticTextCompletionEnabled:"), auto_cast setAutomaticTextCompletionEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.allowsCharacterPickerTouchBarItem != nil {
+        allowsCharacterPickerTouchBarItem :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).allowsCharacterPickerTouchBarItem(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsCharacterPickerTouchBarItem"), auto_cast allowsCharacterPickerTouchBarItem, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsCharacterPickerTouchBarItem != nil {
+        setAllowsCharacterPickerTouchBarItem :: proc "c" (self: ^TextView, _: SEL, allowsCharacterPickerTouchBarItem: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAllowsCharacterPickerTouchBarItem(self, allowsCharacterPickerTouchBarItem)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsCharacterPickerTouchBarItem:"), auto_cast setAllowsCharacterPickerTouchBarItem, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.candidateListTouchBarItem != nil {
+        candidateListTouchBarItem :: proc "c" (self: ^TextView, _: SEL) -> ^CandidateListTouchBarItem {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).candidateListTouchBarItem(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("candidateListTouchBarItem"), auto_cast candidateListTouchBarItem, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.scrollableTextView != nil {
+        scrollableTextView :: proc "c" (self: Class, _: SEL) -> ^ScrollView {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).scrollableTextView()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("scrollableTextView"), auto_cast scrollableTextView, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.fieldEditor != nil {
+        fieldEditor :: proc "c" (self: Class, _: SEL) -> ^TextView {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).fieldEditor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fieldEditor"), auto_cast fieldEditor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.scrollableDocumentContentTextView != nil {
+        scrollableDocumentContentTextView :: proc "c" (self: Class, _: SEL) -> ^ScrollView {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).scrollableDocumentContentTextView()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("scrollableDocumentContentTextView"), auto_cast scrollableDocumentContentTextView, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.scrollablePlainDocumentContentTextView != nil {
+        scrollablePlainDocumentContentTextView :: proc "c" (self: Class, _: SEL) -> ^ScrollView {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).scrollablePlainDocumentContentTextView()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("scrollablePlainDocumentContentTextView"), auto_cast scrollablePlainDocumentContentTextView, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.toggleBaseWritingDirection != nil {
+        toggleBaseWritingDirection :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).toggleBaseWritingDirection(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleBaseWritingDirection:"), auto_cast toggleBaseWritingDirection, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.focusView != nil {
         focusView :: proc "c" (self: Class, _: SEL) -> ^View {
 
@@ -1932,6 +3681,26 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("isCompatibleWithResponsiveScrolling"), auto_cast isCompatibleWithResponsiveScrolling, "B#:") do panic("Failed to register objC method.")
     }
+    if vt.defaultFocusRingType != nil {
+        defaultFocusRingType :: proc "c" (self: Class, _: SEL) -> FocusRingType {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).defaultFocusRingType()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultFocusRingType"), auto_cast defaultFocusRingType, "L#:") do panic("Failed to register objC method.")
+    }
+    if vt.requiresConstraintBasedLayout != nil {
+        requiresConstraintBasedLayout :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).requiresConstraintBasedLayout()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("requiresConstraintBasedLayout"), auto_cast requiresConstraintBasedLayout, "B#:") do panic("Failed to register objC method.")
+    }
     if vt.defaultAnimationForKey != nil {
         defaultAnimationForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> id {
 
@@ -1941,6 +3710,26 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultAnimationForKey:"), auto_cast defaultAnimationForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.allowedClassesForRestorableStateKeyPath != nil {
+        allowedClassesForRestorableStateKeyPath :: proc "c" (self: Class, _: SEL, keyPath: ^NS.String) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.restorableStateKeyPaths != nil {
+        restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).restorableStateKeyPaths()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -2131,6 +3920,156 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.version != nil {
+        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).version()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
+    }
+    if vt.setVersion != nil {
+        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setVersion( aVersion)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
+    }
+    if vt.poseAsClass != nil {
+        poseAsClass :: proc "c" (self: Class, _: SEL, aClass: Class) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).poseAsClass( aClass)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("poseAsClass:"), auto_cast poseAsClass, "v#:#") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
+        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
+    }
+    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
+        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.accessInstanceVariablesDirectly != nil {
+        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.useStoredAccessor != nil {
+        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).useStoredAccessor()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.keyPathsForValuesAffectingValueForKey != nil {
+        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyNotifiesObserversForKey != nil {
+        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setKeys != nil {
+        setKeys :: proc "c" (self: Class, _: SEL, keys: ^NS.Array, dependentKey: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setKeys( keys, dependentKey)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setKeys:triggerChangeNotificationsForDependentKey:"), auto_cast setKeys, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.classFallbacksForKeyedArchiver != nil {
+        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.classForKeyedUnarchiver != nil {
+        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
+    }
+    if vt.exposeBinding != nil {
+        exposeBinding :: proc "c" (self: Class, _: SEL, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).exposeBinding( binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("exposeBinding:"), auto_cast exposeBinding, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.setDefaultPlaceholder != nil {
+        setDefaultPlaceholder :: proc "c" (self: Class, _: SEL, placeholder: id, marker: id, binding: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setDefaultPlaceholder( placeholder, marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPlaceholder:forMarker:withBinding:"), auto_cast setDefaultPlaceholder, "v#:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultPlaceholderForMarker != nil {
+        defaultPlaceholderForMarker :: proc "c" (self: Class, _: SEL, marker: id, binding: ^NS.String) -> id {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).defaultPlaceholderForMarker( marker, binding)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPlaceholderForMarker:withBinding:"), auto_cast defaultPlaceholderForMarker, "@#:@@") do panic("Failed to register objC method.")
     }
 }
 
