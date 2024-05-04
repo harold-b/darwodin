@@ -131,8 +131,6 @@ Typedefs:
     TextRangeHandle: FS.TextRangeHandle
     TextRangeArrayPtr: FS.TextRangeArrayPtr
     TextRangeArrayHandle: FS.TextRangeArrayHandle
-    FSEventStreamCreateFlags: FS.EventStreamCreateFlags
-    FSEventStreamEventFlags: FS.EventStreamEventFlags
     FSEventStreamEventId: FS.EventStreamEventId
     FSEventStreamRef: FS.EventStreamRef
     ConstFSEventStreamRef: FS.ConstFSEventStreamRef

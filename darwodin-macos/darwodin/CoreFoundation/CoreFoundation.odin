@@ -27,6 +27,7 @@ OS_object :: NSObject
 OS_os_workgroup :: NSObject
 NSUInteger :: cffi.ulong
 _NSZone  :: struct {}
+Boolean :: distinct b8
 
 KERN_SUCCESS            :: 0
 DISPATCH_TIME_NOW       :: 0
@@ -3472,9 +3473,6 @@ OSTypePtr :: distinct ^OSType
 
 /// ResTypePtr
 ResTypePtr :: distinct ^ResType
-
-/// Boolean
-Boolean :: distinct cffi.uchar
 
 /// SRefCon
 SRefCon :: distinct rawptr

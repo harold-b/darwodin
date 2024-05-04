@@ -27,6 +27,7 @@ OS_object :: NSObject
 OS_os_workgroup :: NSObject
 NSUInteger :: cffi.ulong
 _NSZone  :: struct {}
+Boolean :: distinct b8
 
 KERN_SUCCESS            :: 0
 DISPATCH_TIME_NOW       :: 0
@@ -3351,6 +3352,9 @@ __darwin_pthread_rwlockattr_t :: distinct _opaque_pthread_rwlockattr_t
 /// __darwin_pthread_t
 __darwin_pthread_t :: distinct ^_opaque_pthread_t
 
+/// dev_t
+dev_t :: distinct __darwin_dev_t
+
 /// gid_t
 gid_t :: distinct __darwin_gid_t
 
@@ -3470,9 +3474,6 @@ OSTypePtr :: distinct ^OSType
 /// ResTypePtr
 ResTypePtr :: distinct ^ResType
 
-/// Boolean
-Boolean :: distinct cffi.uchar
-
 /// SRefCon
 SRefCon :: distinct rawptr
 
@@ -3550,6 +3551,9 @@ ConstStr15Param :: distinct ^cffi.uchar
 
 /// ConstStrFileNameParam
 ConstStrFileNameParam :: distinct ConstStr63Param
+
+/// SignedByte
+SignedByte :: distinct SInt8
 
 /// UnsignedWidePtr
 UnsignedWidePtr :: distinct ^UnsignedWide

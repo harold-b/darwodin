@@ -218,7 +218,6 @@ Typedefs:
     ResType: CF.ResType
     OSTypePtr: CF.OSTypePtr
     ResTypePtr: CF.ResTypePtr
-    Boolean: CF.Boolean
     SRefCon: CF.SRefCon
     UTF32Char: CF.UTF32Char
     UniChar: CF.UniChar

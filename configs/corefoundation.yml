@@ -51,7 +51,7 @@ Cpp:
     - ^SInt32
     - ^UInt64
     - ^SInt64
-    - ^Boolean
+    # - ^Boolean
     - ^UnicodeScalarValue;
     - ^UTF32Char
     - ^UniChar
@@ -168,6 +168,7 @@ Odin:
           OS_os_workgroup :: NSObject
           NSUInteger :: cffi.ulong
           _NSZone  :: struct {}
+          Boolean :: distinct b8
 
           KERN_SUCCESS            :: 0
           DISPATCH_TIME_NOW       :: 0
@@ -183,6 +184,7 @@ Odin:
         _NSZone: _NSZone
         OS_object: OS_object
         OS_os_workgroup: OS_os_workgroup
+        Boolean: Boolean
 
       # ExternalTypes:
 
