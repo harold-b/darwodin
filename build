@@ -30,6 +30,7 @@ while true; do
         "-o:none"
         "-debug"
         #"-show-debug-messages"
+        "-show-system-calls"
         -show-more-timings
         -keep-temp-files
         # -use-separate-modules
@@ -69,7 +70,7 @@ if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
   if [[ "${ios}" -eq 1 ]]; then
     extra_args+=(-subtarget:ios)
   else
-    extra_args+=(-subtarget:iphonesim)
+    extra_args+=(-subtarget:ios-simulator)
   fi
 
   if [[ ${lite} -eq 1 ]]; then
@@ -86,6 +87,7 @@ odin build samples/metal_app \
     "-collection:samples=./samples" \
     "-collection:root=${root}" \
     "-out:${out_dir}/main" \
+    "-minimum-os-version:17.04" \
     ${debug_args[@]} \
     -thread-count:${thread_count} \
     -target:darwin_arm64 \

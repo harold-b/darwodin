@@ -32,7 +32,10 @@ frameworks=(
 
 ios_arg=
 if [[ ${use_ios} -ne 1 ]]; then
-    frameworks+=(AppKit)
+    frameworks+=(
+      AppKit
+      FSEvents
+    )
 else
     frameworks+=(UIKit)
     ios_arg=-ios

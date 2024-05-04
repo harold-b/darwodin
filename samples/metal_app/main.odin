@@ -13,6 +13,7 @@ import NSF "root:darwodin/Foundation"
 import CA  "root:darwodin/QuartzCore"
 import MTL "root:darwodin/Metal"
 import GC  "root:darwodin/GameController"
+import FS  "root:darwodin/FSEvents"
 // import MDL "root:darwodin/ModelIO"
 
 import UI  "root:darwodin/UIKit"

@@ -51,7 +51,11 @@
             "label": "build-ios",
             "type": "shell",
             "command": "${workspaceFolder}/build",
-            "args": [ "-debug", "-ios", "-l" ],
+            "args": [ "-debug", 
+                "-ios",
+                // "-iphonesim",
+                "-l" 
+            ],
             "problemMatcher": {
                 "owner": "odin",
                 "fileLocation": ["absolute"],

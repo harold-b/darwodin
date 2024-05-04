@@ -1,0 +1,94 @@
+---
+
+Defs: ../definitions/macos/coreservices.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^(_*FS|_*ConstFS|HFS|OpaqueFS).*
+    - ^(Text|OpaqueText|UTC|_*DADisk|AliasRecord|AliasHandle|CatPositionRec|Findr|Fndr|GetVol|QElem).*
+
+  ExportMethods:
+    - ^::FS.+
+
+  ExportVars:
+    - ^::k?FS.+
+    - ^::k?Text.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+
+  BitSetMap:
+    - (Flags|Mask)$
+
+  # ResolvedTypedefs:
+  #   - off_t
+  #   - boolean_t
+  #   - '[su]?int.*'
+
+  Packages:
+    - Name  : FSEvents
+      Export: FS
+      DarwinLinkLibs: [system:CoreServices.framework]
+      RequiredLink: true
+      Filter: .*
+
+      # Imports:
+      #   - |
+      #     NSObject  :: intrinsics.objc_object
+      #     MTLDevice :: intrinsics.objc_object
+      #     cl_device_id :: struct {}
+
+      # TypeMap:
+      #   NSObject: NSObject
+
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: ^(FS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: kFS
+
+  - Type: .*
+    Transforms:
+    - Kind  : RemoveTypeWordsFromElements
+    - Kind  : RemovePartialTypeNamePrefix
+    - Kind  : RemoveUnderscorePrefix
+    - Kind  : UnderscoreNumbers
+
+  TypeTransforms:
+  - Type: ^(FS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+ 
+  ProcTransforms:
+  - Type: ^(_*FS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+
+  VarTransforms:
+    - Type: ^(_*k?FS).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

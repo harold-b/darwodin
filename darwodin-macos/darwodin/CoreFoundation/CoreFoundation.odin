@@ -3351,6 +3351,9 @@ __darwin_pthread_rwlockattr_t :: distinct _opaque_pthread_rwlockattr_t
 /// __darwin_pthread_t
 __darwin_pthread_t :: distinct ^_opaque_pthread_t
 
+/// dev_t
+dev_t :: distinct __darwin_dev_t
+
 /// gid_t
 gid_t :: distinct __darwin_gid_t
 
@@ -3550,6 +3553,9 @@ ConstStr15Param :: distinct ^cffi.uchar
 
 /// ConstStrFileNameParam
 ConstStrFileNameParam :: distinct ConstStr63Param
+
+/// SignedByte
+SignedByte :: distinct SInt8
 
 /// UnsignedWidePtr
 UnsignedWidePtr :: distinct ^UnsignedWide

@@ -9,6 +9,7 @@ frameworks=(
     QuartzCore
     Metal
     GameController
+    FSEvents
     # CoreData
     # ModelIO
 )
@@ -16,6 +17,7 @@ frameworks=(
 macos_frameworks=(
     ${frameworks[@]}
     AppKit
+    FSEvents
 )
 
 ios_frameworks=(
@@ -33,12 +35,14 @@ for f in ${macos_frameworks[@]}; do
     ./gen-def ${flist[@]}
 done
 
-# echo ""
-# echo "Generating iOS definitions..."
-# for f in ${ios_frameworks[@]}; do
-# flist=($(echo "$f" | tr ',' ' '))
-#     for ((i=0; i < ${#flist[@]}; i++ )); do
-#         flist[$i]="-f ${flist[$i]}"
-#     done
-#     ./bind -ios ${flist[@]}
-# done
+# iOS
+echo ""
+echo "Generating iOS definitions..."
+for f in ${ios_frameworks[@]}; do
+flist=($(echo "$f" | tr ',' ' '))
+    for ((i=0; i < ${#flist[@]}; i++ )); do
+        flist[$i]="-f ${flist[$i]}"
+    done
+    ./bind -ios ${flist[@]}
+done
+
