@@ -41,7 +41,7 @@ fi
 if [[ ${use_ios} -eq 1 ]]; then
   out_folder=darwodin-ios
   appkit=UIKit
-  
+
   if [[ ${lite} -eq 1 ]]; then
     out_folder=darwodin-ios-lite
   fi

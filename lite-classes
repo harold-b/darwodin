@@ -21,7 +21,7 @@ Foundation:
   - NSString
   - NSTimer
   - NSURL
-    - NSValue
+  - NSValue
 
 AppKit:
   - NSApplication
