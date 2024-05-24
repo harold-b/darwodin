@@ -1081,7 +1081,7 @@ BlendOperation :: enum cffi.ulong {
 }
 
 /// MTLColorWriteMask
-ColorWriteMask :: enum cffi.ulong {
+ColorWriteMasks :: enum cffi.ulong {
     None = 0,
     Red = 3,
     Green = 2,
@@ -1089,7 +1089,7 @@ ColorWriteMask :: enum cffi.ulong {
     Alpha = 0,
     All = 3,
 }
-ColorWriteMaskSet :: bit_set[ColorWriteMask; cffi.ulong]
+ColorWriteMask :: bit_set[ColorWriteMasks; cffi.ulong]
 
 /// MTLPrimitiveTopologyClass
 PrimitiveTopologyClass :: enum cffi.ulong {

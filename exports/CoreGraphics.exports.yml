@@ -186,18 +186,18 @@ Enums:
     CGWindowLevelKey: CG.WindowLevelKey
     CGCaptureOptions: CG.CaptureOptions
     CGConfigureOption: CG.ConfigureOption
-    CGDisplayChangeSummaryFlags: CG.DisplayChangeSummaryFlags
+    CGDisplayChangeSummaryFlags: CG.DisplayChangeSummaryFlagsSet
     CGDisplayStreamUpdateRectType: CG.DisplayStreamUpdateRectType
     CGDisplayStreamFrameStatus: CG.DisplayStreamFrameStatus
     CGScreenUpdateOperation: CG.ScreenUpdateOperation
-    CGEventFilterMask: CG.EventFilterMask
+    CGEventFilterMask: CG.EventFilterMaskSet
     CGEventSuppressionState: CG.EventSuppressionState
     CGMouseButton: CG.MouseButton
     CGScrollEventUnit: CG.ScrollEventUnit
     CGMomentumScrollPhase: CG.MomentumScrollPhase
     CGScrollPhase: CG.ScrollPhase
     CGGesturePhase: CG.GesturePhase
-    CGEventFlags: CG.EventFlags
+    CGEventFlags: CG.EventFlagsSet
     CGEventType: CG.EventType
     CGEventField: CG.EventField
     CGEventMouseSubtype: CG.EventMouseSubtype

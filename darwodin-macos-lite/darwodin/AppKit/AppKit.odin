@@ -3063,7 +3063,7 @@ EventMask :: bit_set[EventMasks; cffi.ulonglong]
 /// NSEventModifierFlags
 EventModifierFlag :: enum cffi.ulong {
     CapsLock = 16,
-    hift = 17,
+    Shift = 17,
     Control = 18,
     Option = 19,
     Command = 20,

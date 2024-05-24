@@ -80,9 +80,9 @@ Enums:
     CGLGlobalOption: CA.CGLGlobalOption
     CGLOpenGLProfile: CA.CGLOpenGLProfile
     CGLError: CA.CGLError
-    CAAutoresizingMask: CA.AutoresizingMask
-    CAEdgeAntialiasingMask: CA.EdgeAntialiasingMask
-    CACornerMask: CA.CornerMask
+    CAAutoresizingMask: CA.AutoresizingMaskSet
+    CAEdgeAntialiasingMask: CA.EdgeAntialiasingMaskSet
+    CACornerMask: CA.CornerMaskSet
     CAConstraintAttribute: CA.ConstraintAttribute
 
 ObjCClasses:

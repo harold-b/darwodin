@@ -879,7 +879,7 @@ Enums:
     NSRoundingMode: NS.RoundingMode
     NSCalculationError: NS.CalculationError
     NSSearchPathDirectory: NS.SearchPathDirectory
-    NSSearchPathDomainMask: NS.SearchPathDomainMasks
+    NSSearchPathDomainMask: NS.SearchPathDomainMask
     NSURLHandleStatus: NS.URLHandleStatus
     NSURLBookmarkCreationOptions: NS.URLBookmarkCreationOptions
     NSURLBookmarkResolutionOptions: NS.URLBookmarkResolutionOptions
@@ -916,13 +916,13 @@ Enums:
     NSTextCheckingType: NS.TextCheckingType
     NSRegularExpressionOptions: NS.RegularExpressionOptions
     NSMatchingOptions: NS.MatchingOptions
-    NSMatchingFlags: NS.MatchingFlag
+    NSMatchingFlags: NS.MatchingFlags
     NSStreamStatus: NS.StreamStatus
     NSStreamEvent: NS.StreamEvent
     NSTimeZoneNameStyle: NS.TimeZoneNameStyle
     NSURLCacheStoragePolicy: NS.URLCacheStoragePolicy
     SecKeyUsage: NS.SecKeyUsage
-    SecAccessControlCreateFlags: NS.SecAccessControlCreateFlag
+    SecAccessControlCreateFlags: NS.SecAccessControlCreateFlags
     SecCredentialType: NS.SecCredentialType
     SecPadding: NS.SecPadding
     SecKeySizes: NS.SecKeySizes
@@ -931,14 +931,14 @@ Enums:
     SecAuthenticationType: NS.SecAuthenticationType
     SecProtocolType: NS.SecProtocolType
     SecKeychainEvent: NS.SecKeychainEvent
-    SecKeychainEventMask: NS.SecKeychainEventMasks
+    SecKeychainEventMask: NS.SecKeychainEventMask
     SecPreferencesDomain: NS.SecPreferencesDomain
     SecExternalFormat: NS.SecExternalFormat
     SecExternalItemType: NS.SecExternalItemType
-    SecItemImportExportFlags: NS.SecItemImportExportFlag
-    SecKeyImportExportFlags: NS.SecKeyImportExportFlag
+    SecItemImportExportFlags: NS.SecItemImportExportFlags
+    SecKeyImportExportFlags: NS.SecKeyImportExportFlags
     SecTrustResultType: NS.SecTrustResultType
-    SecTrustOptionFlags: NS.SecTrustOptionFlag
+    SecTrustOptionFlags: NS.SecTrustOptionFlags
     SSLCiphersuiteGroup: NS.SSLCiphersuiteGroup
     tls_protocol_version_t: NS.tls_protocol_version_t
     tls_ciphersuite_t: NS.tls_ciphersuite_t
@@ -950,8 +950,8 @@ Enums:
     SecTrustSettingsKeyUsage: NS.SecTrustSettingsKeyUsage
     SecTrustSettingsResult: NS.SecTrustSettingsResult
     SecTrustSettingsDomain: NS.SecTrustSettingsDomain
-    SecCSFlags: NS.SecCSFlag
-    SecCodeSignatureFlags: NS.SecCodeSignatureFlag
+    SecCSFlags: NS.SecCSFlags
+    SecCodeSignatureFlags: NS.SecCodeSignatureFlags
     SecCodeStatus: NS.SecCodeStatus
     SecRequirementType: NS.SecRequirementType
     SecCSDigestAlgorithm: NS.SecCSDigestAlgorithm

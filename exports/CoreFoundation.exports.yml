@@ -446,11 +446,11 @@ Enums:
     __CFByteOrder: CF.__CFByteOrder
     CFNotificationSuspensionBehavior: CF.NotificationSuspensionBehavior
     CFLocaleLanguageDirection: CF.LocaleLanguageDirection
-    CFGregorianUnitFlags: CF.GregorianUnitFlags
-    CFDataSearchFlags: CF.DataSearchFlags
+    CFGregorianUnitFlags: CF.GregorianUnitFlagsSet
+    CFDataSearchFlags: CF.DataSearchFlagsSet
     CFCharacterSetPredefinedSet: CF.CharacterSetPredefinedSet
     CFStringBuiltInEncodings: CF.StringBuiltInEncodings
-    CFStringCompareFlags: CF.StringCompareFlags
+    CFStringCompareFlags: CF.StringCompareFlagsSet
     CFStringNormalizationForm: CF.StringNormalizationForm
     CFTimeZoneNameStyle: CF.TimeZoneNameStyle
     CFCalendarUnit: CF.CalendarUnit
@@ -458,7 +458,7 @@ Enums:
     CFISO8601DateFormatOptions: CF.ISO8601DateFormatOptions
     CFNumberType: CF.NumberType
     CFNumberFormatterStyle: CF.NumberFormatterStyle
-    CFNumberFormatterOptionFlags: CF.NumberFormatterOptionFlags
+    CFNumberFormatterOptionFlags: CF.NumberFormatterOptionFlagsSet
     CFNumberFormatterRoundingMode: CF.NumberFormatterRoundingMode
     CFNumberFormatterPadPosition: CF.NumberFormatterPadPosition
     CFURLPathStyle: CF.URLPathStyle
