@@ -37,7 +37,7 @@ AppleEventDescriptor_descriptorWithDescriptorType_data :: #force_inline proc "c"
     return msgSend(^AppleEventDescriptor, AppleEventDescriptor, "descriptorWithDescriptorType:data:", descriptorType, data)
 }
 @(objc_type=AppleEventDescriptor, objc_name="descriptorWithBoolean", objc_is_class_method=true)
-AppleEventDescriptor_descriptorWithBoolean :: #force_inline proc "c" (boolean: CF.Boolean) -> ^AppleEventDescriptor {
+AppleEventDescriptor_descriptorWithBoolean :: #force_inline proc "c" (boolean: Boolean) -> ^AppleEventDescriptor {
     return msgSend(^AppleEventDescriptor, AppleEventDescriptor, "descriptorWithBoolean:", boolean)
 }
 @(objc_type=AppleEventDescriptor, objc_name="descriptorWithEnumCode", objc_is_class_method=true)
@@ -189,8 +189,8 @@ AppleEventDescriptor_data :: #force_inline proc "c" (self: ^AppleEventDescriptor
     return msgSend(^Data, self, "data")
 }
 @(objc_type=AppleEventDescriptor, objc_name="booleanValue")
-AppleEventDescriptor_booleanValue :: #force_inline proc "c" (self: ^AppleEventDescriptor) -> CF.Boolean {
-    return msgSend(CF.Boolean, self, "booleanValue")
+AppleEventDescriptor_booleanValue :: #force_inline proc "c" (self: ^AppleEventDescriptor) -> Boolean {
+    return msgSend(Boolean, self, "booleanValue")
 }
 @(objc_type=AppleEventDescriptor, objc_name="enumCodeValue")
 AppleEventDescriptor_enumCodeValue :: #force_inline proc "c" (self: ^AppleEventDescriptor) -> CF.OSType {
@@ -395,7 +395,7 @@ AppleEventDescriptor_VTable :: struct {
     nullDescriptor: proc() -> ^AppleEventDescriptor,
     descriptorWithDescriptorType_bytes_length: proc(descriptorType: DescType, bytes: rawptr, byteCount: UInteger) -> ^AppleEventDescriptor,
     descriptorWithDescriptorType_data: proc(descriptorType: DescType, data: ^Data) -> ^AppleEventDescriptor,
-    descriptorWithBoolean: proc(boolean: CF.Boolean) -> ^AppleEventDescriptor,
+    descriptorWithBoolean: proc(boolean: Boolean) -> ^AppleEventDescriptor,
     descriptorWithEnumCode: proc(enumerator: CF.OSType) -> ^AppleEventDescriptor,
     descriptorWithInt32: proc(signedInt: CF.SInt32) -> ^AppleEventDescriptor,
     descriptorWithDouble: proc(doubleValue: cffi.double) -> ^AppleEventDescriptor,
@@ -433,7 +433,7 @@ AppleEventDescriptor_VTable :: struct {
     aeDesc: proc(self: ^AppleEventDescriptor) -> ^AEDesc,
     descriptorType: proc(self: ^AppleEventDescriptor) -> DescType,
     data: proc(self: ^AppleEventDescriptor) -> ^Data,
-    booleanValue: proc(self: ^AppleEventDescriptor) -> CF.Boolean,
+    booleanValue: proc(self: ^AppleEventDescriptor) -> Boolean,
     enumCodeValue: proc(self: ^AppleEventDescriptor) -> CF.OSType,
     int32Value: proc(self: ^AppleEventDescriptor) -> CF.SInt32,
     doubleValue: proc(self: ^AppleEventDescriptor) -> cffi.double,
@@ -519,7 +519,7 @@ AppleEventDescriptor_odin_extend :: proc(cls: Class, vt: ^AppleEventDescriptor_V
         if !class_addMethod(meta, intrinsics.objc_find_selector("descriptorWithDescriptorType:data:"), auto_cast descriptorWithDescriptorType_data, "@#:I@") do panic("Failed to register objC method.")
     }
     if vt.descriptorWithBoolean != nil {
-        descriptorWithBoolean :: proc "c" (self: Class, _: SEL, boolean: CF.Boolean) -> ^AppleEventDescriptor {
+        descriptorWithBoolean :: proc "c" (self: Class, _: SEL, boolean: Boolean) -> ^AppleEventDescriptor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -899,7 +899,7 @@ AppleEventDescriptor_odin_extend :: proc(cls: Class, vt: ^AppleEventDescriptor_V
         if !class_addMethod(cls, intrinsics.objc_find_selector("data"), auto_cast data, "@@:") do panic("Failed to register objC method.")
     }
     if vt.booleanValue != nil {
-        booleanValue :: proc "c" (self: ^AppleEventDescriptor, _: SEL) -> CF.Boolean {
+        booleanValue :: proc "c" (self: ^AppleEventDescriptor, _: SEL) -> Boolean {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

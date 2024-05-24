@@ -38,8 +38,11 @@ Odin:
     - ../exports/Foundation.exports.yml
     - ../exports/QuartzCore.exports.yml
 
+  BitsetSuffix: ""
+  BitsetEnumSuffix: "${group}s"
   BitSetMap:
-    - (Flags|Mask)$
+    - (Flag)s$
+    - Mask$
 
   ResolvedTypedefs:
     - '[su]?int.*'

@@ -2,13 +2,16 @@ PackageName: "ModelIO"
 ImportName: "MDL"
 
 Structs:
+    __MDLabel: MDL.__MDLabel
     MDLAxisAlignedBoundingBox: MDL.AxisAlignedBoundingBox
     MDLVoxelIndexExtent: MDL.VoxelIndexExtent
 
 Typedefs:
+    MDLabelRef: MDL.LabelRef
     MDLVoxelIndex: MDL.VoxelIndex
 
 Enums:
+    MDLabelDomain: MDL.LabelDomain
     MDLIndexBitDepth: MDL.IndexBitDepth
     MDLGeometryType: MDL.GeometryType
     MDLProbePlacement: MDL.ProbePlacement
@@ -110,8 +113,29 @@ ObjCProtocols:
 
 
 Functions:
+    ::MDLabelGetTypeID: MDL.LabelGetTypeID
+    ::MDLabelCreate: MDL.LabelCreate
+    ::MDLabelCopyAttribute: MDL.LabelCopyAttribute
+    ::MDLabelCopyAttributeName: MDL.LabelCopyAttributeName
+    ::MDLabelDelete: MDL.LabelDelete
+    ::MDLabelSetAttributes: MDL.LabelSetAttributes
 
 ExternVars:
+    ::kMDLabelBundleURL: MDL.LabelBundleURL
+    ::kMDLabelContentChangeDate: MDL.LabelContentChangeDate
+    ::kMDLabelDisplayName: MDL.LabelDisplayName
+    ::kMDLabelIconData: MDL.LabelIconData
+    ::kMDLabelIconUUID: MDL.LabelIconUUID
+    ::kMDLabelIsMutuallyExclusiveSetMember: MDL.LabelIsMutuallyExclusiveSetMember
+    ::kMDLabelKind: MDL.LabelKind
+    ::kMDLabelSetsFinderColor: MDL.LabelSetsFinderColor
+    ::kMDLabelUUID: MDL.LabelUUID
+    ::kMDLabelVisibility: MDL.LabelVisibility
+    ::kMDLabelKindIsMutuallyExclusiveSetKey: MDL.LabelKindIsMutuallyExclusiveSetKey
+    ::kMDLabelKindVisibilityKey: MDL.LabelKindVisibilityKey
+    ::kMDLabelAddedNotification: MDL.LabelAddedNotification
+    ::kMDLabelChangedNotification: MDL.LabelChangedNotification
+    ::kMDLabelRemovedNotification: MDL.LabelRemovedNotification
     ::MDLVertexAttributeAnisotropy: MDL.VertexAttributeAnisotropy
     ::MDLVertexAttributeBinormal: MDL.VertexAttributeBinormal
     ::MDLVertexAttributeBitangent: MDL.VertexAttributeBitangent

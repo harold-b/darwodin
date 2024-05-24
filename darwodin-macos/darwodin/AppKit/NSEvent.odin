@@ -35,7 +35,7 @@ Event_eventWithEventRef :: #force_inline proc "c" (eventRef: rawptr) -> ^Event {
     return msgSend(^Event, Event, "eventWithEventRef:", eventRef)
 }
 @(objc_type=Event, objc_name="eventWithCGEvent", objc_is_class_method=true)
-Event_eventWithCGEvent :: #force_inline proc "c" (cgEvent: CG.EventRef) -> ^Event {
+Event_eventWithCGEvent :: #force_inline proc "c" (cgEvent: CGEventRef) -> ^Event {
     return msgSend(^Event, Event, "eventWithCGEvent:", cgEvent)
 }
 @(objc_type=Event, objc_name="touchesMatchingPhase")
@@ -215,8 +215,8 @@ Event_eventRef :: #force_inline proc "c" (self: ^Event) -> rawptr {
     return msgSend(rawptr, self, "eventRef")
 }
 @(objc_type=Event, objc_name="CGEvent")
-Event_CGEvent :: #force_inline proc "c" (self: ^Event) -> CG.EventRef {
-    return msgSend(CG.EventRef, self, "CGEvent")
+Event_CGEvent :: #force_inline proc "c" (self: ^Event) -> CGEventRef {
+    return msgSend(CGEventRef, self, "CGEvent")
 }
 @(objc_type=Event, objc_name="isMouseCoalescingEnabled", objc_is_class_method=true)
 Event_isMouseCoalescingEnabled :: #force_inline proc "c" () -> bool {
@@ -500,7 +500,7 @@ Event_VTable :: struct {
     super: NS.Object_VTable,
     charactersByApplyingModifiers: proc(self: ^Event, modifiers: EventModifierFlags) -> ^NS.String,
     eventWithEventRef: proc(eventRef: rawptr) -> ^Event,
-    eventWithCGEvent: proc(cgEvent: CG.EventRef) -> ^Event,
+    eventWithCGEvent: proc(cgEvent: CGEventRef) -> ^Event,
     touchesMatchingPhase: proc(self: ^Event, phase: TouchPhase, view: ^View) -> ^NS.Set,
     allTouches: proc(self: ^Event) -> ^NS.Set,
     touchesForView: proc(self: ^Event, view: ^View) -> ^NS.Set,
@@ -545,7 +545,7 @@ Event_VTable :: struct {
     data1: proc(self: ^Event) -> NS.Integer,
     data2: proc(self: ^Event) -> NS.Integer,
     eventRef: proc(self: ^Event) -> rawptr,
-    _CGEvent: proc(self: ^Event) -> CG.EventRef,
+    _CGEvent: proc(self: ^Event) -> CGEventRef,
     isMouseCoalescingEnabled: proc() -> bool,
     setMouseCoalescingEnabled: proc(mouseCoalescingEnabled: bool),
     magnification: proc(self: ^Event) -> CG.Float,
@@ -644,7 +644,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("eventWithEventRef:"), auto_cast eventWithEventRef, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.eventWithCGEvent != nil {
-        eventWithCGEvent :: proc "c" (self: Class, _: SEL, cgEvent: CG.EventRef) -> ^Event {
+        eventWithCGEvent :: proc "c" (self: Class, _: SEL, cgEvent: CGEventRef) -> ^Event {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1094,7 +1094,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("eventRef"), auto_cast eventRef, "^void@:") do panic("Failed to register objC method.")
     }
     if vt._CGEvent != nil {
-        _CGEvent :: proc "c" (self: ^Event, _: SEL) -> CG.EventRef {
+        _CGEvent :: proc "c" (self: ^Event, _: SEL) -> CGEventRef {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

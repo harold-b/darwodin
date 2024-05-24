@@ -24,36 +24,36 @@ OpenGLPixelBuffer_init :: proc "c" (self: ^OpenGLPixelBuffer) -> ^OpenGLPixelBuf
 
 
 @(objc_type=OpenGLPixelBuffer, objc_name="initWithTextureTarget")
-OpenGLPixelBuffer_initWithTextureTarget :: #force_inline proc "c" (self: ^OpenGLPixelBuffer, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> ^OpenGLPixelBuffer {
+OpenGLPixelBuffer_initWithTextureTarget :: #force_inline proc "c" (self: ^OpenGLPixelBuffer, target: GLenum, format: GLenum, maxLevel: cffi.int, pixelsWide: GLsizei, pixelsHigh: GLsizei) -> ^OpenGLPixelBuffer {
     return msgSend(^OpenGLPixelBuffer, self, "initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:", target, format, maxLevel, pixelsWide, pixelsHigh)
 }
 @(objc_type=OpenGLPixelBuffer, objc_name="initWithCGLPBufferObj")
-OpenGLPixelBuffer_initWithCGLPBufferObj :: #force_inline proc "c" (self: ^OpenGLPixelBuffer, pbuffer: CA.CGLPBufferObj) -> ^OpenGLPixelBuffer {
+OpenGLPixelBuffer_initWithCGLPBufferObj :: #force_inline proc "c" (self: ^OpenGLPixelBuffer, pbuffer: CGLPBufferObj) -> ^OpenGLPixelBuffer {
     return msgSend(^OpenGLPixelBuffer, self, "initWithCGLPBufferObj:", pbuffer)
 }
 @(objc_type=OpenGLPixelBuffer, objc_name="CGLPBufferObj")
-OpenGLPixelBuffer_CGLPBufferObj :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> CA.CGLPBufferObj {
-    return msgSend(CA.CGLPBufferObj, self, "CGLPBufferObj")
+OpenGLPixelBuffer_CGLPBufferObj :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> CGLPBufferObj {
+    return msgSend(CGLPBufferObj, self, "CGLPBufferObj")
 }
 @(objc_type=OpenGLPixelBuffer, objc_name="pixelsWide")
-OpenGLPixelBuffer_pixelsWide :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> CA.GLsizei {
-    return msgSend(CA.GLsizei, self, "pixelsWide")
+OpenGLPixelBuffer_pixelsWide :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> GLsizei {
+    return msgSend(GLsizei, self, "pixelsWide")
 }
 @(objc_type=OpenGLPixelBuffer, objc_name="pixelsHigh")
-OpenGLPixelBuffer_pixelsHigh :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> CA.GLsizei {
-    return msgSend(CA.GLsizei, self, "pixelsHigh")
+OpenGLPixelBuffer_pixelsHigh :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> GLsizei {
+    return msgSend(GLsizei, self, "pixelsHigh")
 }
 @(objc_type=OpenGLPixelBuffer, objc_name="textureTarget")
-OpenGLPixelBuffer_textureTarget :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> CA.GLenum {
-    return msgSend(CA.GLenum, self, "textureTarget")
+OpenGLPixelBuffer_textureTarget :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> GLenum {
+    return msgSend(GLenum, self, "textureTarget")
 }
 @(objc_type=OpenGLPixelBuffer, objc_name="textureInternalFormat")
-OpenGLPixelBuffer_textureInternalFormat :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> CA.GLenum {
-    return msgSend(CA.GLenum, self, "textureInternalFormat")
+OpenGLPixelBuffer_textureInternalFormat :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> GLenum {
+    return msgSend(GLenum, self, "textureInternalFormat")
 }
 @(objc_type=OpenGLPixelBuffer, objc_name="textureMaxMipMapLevel")
-OpenGLPixelBuffer_textureMaxMipMapLevel :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> CA.GLint {
-    return msgSend(CA.GLint, self, "textureMaxMipMapLevel")
+OpenGLPixelBuffer_textureMaxMipMapLevel :: #force_inline proc "c" (self: ^OpenGLPixelBuffer) -> cffi.int {
+    return msgSend(cffi.int, self, "textureMaxMipMapLevel")
 }
 @(objc_type=OpenGLPixelBuffer, objc_name="load", objc_is_class_method=true)
 OpenGLPixelBuffer_load :: #force_inline proc "c" () {
@@ -199,14 +199,14 @@ OpenGLPixelBuffer_cancelPreviousPerformRequestsWithTarget :: proc {
 
 OpenGLPixelBuffer_VTable :: struct {
     super: NS.Object_VTable,
-    initWithTextureTarget: proc(self: ^OpenGLPixelBuffer, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> ^OpenGLPixelBuffer,
-    initWithCGLPBufferObj: proc(self: ^OpenGLPixelBuffer, pbuffer: CA.CGLPBufferObj) -> ^OpenGLPixelBuffer,
-    _CGLPBufferObj: proc(self: ^OpenGLPixelBuffer) -> CA.CGLPBufferObj,
-    pixelsWide: proc(self: ^OpenGLPixelBuffer) -> CA.GLsizei,
-    pixelsHigh: proc(self: ^OpenGLPixelBuffer) -> CA.GLsizei,
-    textureTarget: proc(self: ^OpenGLPixelBuffer) -> CA.GLenum,
-    textureInternalFormat: proc(self: ^OpenGLPixelBuffer) -> CA.GLenum,
-    textureMaxMipMapLevel: proc(self: ^OpenGLPixelBuffer) -> CA.GLint,
+    initWithTextureTarget: proc(self: ^OpenGLPixelBuffer, target: GLenum, format: GLenum, maxLevel: cffi.int, pixelsWide: GLsizei, pixelsHigh: GLsizei) -> ^OpenGLPixelBuffer,
+    initWithCGLPBufferObj: proc(self: ^OpenGLPixelBuffer, pbuffer: CGLPBufferObj) -> ^OpenGLPixelBuffer,
+    _CGLPBufferObj: proc(self: ^OpenGLPixelBuffer) -> CGLPBufferObj,
+    pixelsWide: proc(self: ^OpenGLPixelBuffer) -> GLsizei,
+    pixelsHigh: proc(self: ^OpenGLPixelBuffer) -> GLsizei,
+    textureTarget: proc(self: ^OpenGLPixelBuffer) -> GLenum,
+    textureInternalFormat: proc(self: ^OpenGLPixelBuffer) -> GLenum,
+    textureMaxMipMapLevel: proc(self: ^OpenGLPixelBuffer) -> cffi.int,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^OpenGLPixelBuffer,
@@ -251,7 +251,7 @@ OpenGLPixelBuffer_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelBuffer_VTable)
     NS.Object_odin_extend(cls, &vt.super)
 
     if vt.initWithTextureTarget != nil {
-        initWithTextureTarget :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> ^OpenGLPixelBuffer {
+        initWithTextureTarget :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL, target: GLenum, format: GLenum, maxLevel: cffi.int, pixelsWide: GLsizei, pixelsHigh: GLsizei) -> ^OpenGLPixelBuffer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -261,7 +261,7 @@ OpenGLPixelBuffer_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelBuffer_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:"), auto_cast initWithTextureTarget, "@@:IIiii") do panic("Failed to register objC method.")
     }
     if vt.initWithCGLPBufferObj != nil {
-        initWithCGLPBufferObj :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL, pbuffer: CA.CGLPBufferObj) -> ^OpenGLPixelBuffer {
+        initWithCGLPBufferObj :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL, pbuffer: CGLPBufferObj) -> ^OpenGLPixelBuffer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -271,7 +271,7 @@ OpenGLPixelBuffer_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelBuffer_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCGLPBufferObj:"), auto_cast initWithCGLPBufferObj, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt._CGLPBufferObj != nil {
-        _CGLPBufferObj :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> CA.CGLPBufferObj {
+        _CGLPBufferObj :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> CGLPBufferObj {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -281,7 +281,7 @@ OpenGLPixelBuffer_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelBuffer_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("CGLPBufferObj"), auto_cast _CGLPBufferObj, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.pixelsWide != nil {
-        pixelsWide :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> CA.GLsizei {
+        pixelsWide :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> GLsizei {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -291,7 +291,7 @@ OpenGLPixelBuffer_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelBuffer_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("pixelsWide"), auto_cast pixelsWide, "i@:") do panic("Failed to register objC method.")
     }
     if vt.pixelsHigh != nil {
-        pixelsHigh :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> CA.GLsizei {
+        pixelsHigh :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> GLsizei {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -301,7 +301,7 @@ OpenGLPixelBuffer_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelBuffer_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("pixelsHigh"), auto_cast pixelsHigh, "i@:") do panic("Failed to register objC method.")
     }
     if vt.textureTarget != nil {
-        textureTarget :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> CA.GLenum {
+        textureTarget :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> GLenum {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -311,7 +311,7 @@ OpenGLPixelBuffer_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelBuffer_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("textureTarget"), auto_cast textureTarget, "I@:") do panic("Failed to register objC method.")
     }
     if vt.textureInternalFormat != nil {
-        textureInternalFormat :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> CA.GLenum {
+        textureInternalFormat :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> GLenum {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -321,7 +321,7 @@ OpenGLPixelBuffer_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelBuffer_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("textureInternalFormat"), auto_cast textureInternalFormat, "I@:") do panic("Failed to register objC method.")
     }
     if vt.textureMaxMipMapLevel != nil {
-        textureMaxMipMapLevel :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> CA.GLint {
+        textureMaxMipMapLevel :: proc "c" (self: ^OpenGLPixelBuffer, _: SEL) -> cffi.int {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

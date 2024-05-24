@@ -33,7 +33,7 @@ Expression_expressionWithFormat_ :: #force_inline proc "c" (expressionFormat: ^S
     return msgSend(^Expression, Expression, "expressionWithFormat:", expressionFormat)
 }
 @(objc_type=Expression, objc_name="expressionWithFormat_arguments", objc_is_class_method=true)
-Expression_expressionWithFormat_arguments :: #force_inline proc "c" (expressionFormat: ^String, argList: va_list) -> ^Expression {
+Expression_expressionWithFormat_arguments :: #force_inline proc "c" (expressionFormat: ^String, argList: cffi.va_list) -> ^Expression {
     return msgSend(^Expression, Expression, "expressionWithFormat:arguments:", expressionFormat, argList)
 }
 @(objc_type=Expression, objc_name="expressionForConstantValue", objc_is_class_method=true)
@@ -315,7 +315,7 @@ Expression_VTable :: struct {
     super: Object_VTable,
     expressionWithFormat_argumentArray: proc(expressionFormat: ^String, arguments: ^Array) -> ^Expression,
     expressionWithFormat_: proc(expressionFormat: ^String) -> ^Expression,
-    expressionWithFormat_arguments: proc(expressionFormat: ^String, argList: va_list) -> ^Expression,
+    expressionWithFormat_arguments: proc(expressionFormat: ^String, argList: cffi.va_list) -> ^Expression,
     expressionForConstantValue: proc(obj: id) -> ^Expression,
     expressionForEvaluatedObject: proc() -> ^Expression,
     expressionForVariable: proc(string: ^String) -> ^Expression,
@@ -410,7 +410,7 @@ Expression_odin_extend :: proc(cls: Class, vt: ^Expression_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("expressionWithFormat:"), auto_cast expressionWithFormat_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.expressionWithFormat_arguments != nil {
-        expressionWithFormat_arguments :: proc "c" (self: Class, _: SEL, expressionFormat: ^String, argList: va_list) -> ^Expression {
+        expressionWithFormat_arguments :: proc "c" (self: Class, _: SEL, expressionFormat: ^String, argList: cffi.va_list) -> ^Expression {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -1769,7 +1769,7 @@ EventStreamContext :: struct #align (2) {
 }
 
 /// HFSPlusAttrRecord
-HFSPlusAttrRecord :: struct  {
+HFSPlusAttrRecord :: struct #raw_union  {
     recordType : cffi.uint,
     inlineData : HFSPlusAttrInlineData,
     attrData : HFSPlusAttrData,

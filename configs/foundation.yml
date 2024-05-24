@@ -53,8 +53,11 @@ Odin:
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
 
+  BitsetSuffix: ""
+  BitsetEnumSuffix: "${group}s"
   BitSetMap:
-    - (Flags|Mask)$
+    - (Flag)s$
+    - Mask$
 
   ResolvedTypedefs:
     - '[su]?int.*'
@@ -72,7 +75,8 @@ Odin:
           OpaqueSecIdentitySearchRef :: struct {}
           OpaquePolicySearchRef :: struct {}
 
-      TypeMap: {}
+      TypeMap:
+        Boolean: CF.Boolean
 
 
   # Symbol Transformers

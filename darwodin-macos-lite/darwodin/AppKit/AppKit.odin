@@ -2257,40 +2257,40 @@ foreign lib {
     ConvertGlyphsToPackedGlyphs :: proc(glBuf: ^Glyph, count: NS.Integer, packing: MultibyteGlyphPacking, packedGlyphs: cstring) -> NS.Integer ---
 
     @(link_name="NSRunAlertPanelRelativeToWindow")
-    RunAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window) -> NS.Integer ---
+    RunAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, #c_vararg args: ..any) -> NS.Integer ---
 
     @(link_name="NSRunInformationalAlertPanelRelativeToWindow")
-    RunInformationalAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window) -> NS.Integer ---
+    RunInformationalAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, #c_vararg args: ..any) -> NS.Integer ---
 
     @(link_name="NSRunCriticalAlertPanelRelativeToWindow")
-    RunCriticalAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window) -> NS.Integer ---
+    RunCriticalAlertPanelRelativeToWindow :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, #c_vararg args: ..any) -> NS.Integer ---
 
     @(link_name="NSRunAlertPanel")
-    RunAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> NS.Integer ---
+    RunAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, #c_vararg args: ..any) -> NS.Integer ---
 
     @(link_name="NSRunInformationalAlertPanel")
-    RunInformationalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> NS.Integer ---
+    RunInformationalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, #c_vararg args: ..any) -> NS.Integer ---
 
     @(link_name="NSRunCriticalAlertPanel")
-    RunCriticalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> NS.Integer ---
+    RunCriticalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, #c_vararg args: ..any) -> NS.Integer ---
 
     @(link_name="NSBeginAlertSheet")
-    BeginAlertSheet :: proc(title: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, modalDelegate: id, didEndSelector: SEL, didDismissSelector: SEL, contextInfo: rawptr, msgFormat: ^NS.String) ---
+    BeginAlertSheet :: proc(title: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, modalDelegate: id, didEndSelector: SEL, didDismissSelector: SEL, contextInfo: rawptr, msgFormat: ^NS.String, #c_vararg args: ..any) ---
 
     @(link_name="NSBeginInformationalAlertSheet")
-    BeginInformationalAlertSheet :: proc(title: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, modalDelegate: id, didEndSelector: SEL, didDismissSelector: SEL, contextInfo: rawptr, msgFormat: ^NS.String) ---
+    BeginInformationalAlertSheet :: proc(title: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, modalDelegate: id, didEndSelector: SEL, didDismissSelector: SEL, contextInfo: rawptr, msgFormat: ^NS.String, #c_vararg args: ..any) ---
 
     @(link_name="NSBeginCriticalAlertSheet")
-    BeginCriticalAlertSheet :: proc(title: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, modalDelegate: id, didEndSelector: SEL, didDismissSelector: SEL, contextInfo: rawptr, msgFormat: ^NS.String) ---
+    BeginCriticalAlertSheet :: proc(title: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, docWindow: ^Window, modalDelegate: id, didEndSelector: SEL, didDismissSelector: SEL, contextInfo: rawptr, msgFormat: ^NS.String, #c_vararg args: ..any) ---
 
     @(link_name="NSGetAlertPanel")
-    GetAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> id ---
+    GetAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, #c_vararg args: ..any) -> id ---
 
     @(link_name="NSGetInformationalAlertPanel")
-    GetInformationalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> id ---
+    GetInformationalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, #c_vararg args: ..any) -> id ---
 
     @(link_name="NSGetCriticalAlertPanel")
-    GetCriticalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String) -> id ---
+    GetCriticalAlertPanel :: proc(title: ^NS.String, msgFormat: ^NS.String, defaultButton: ^NS.String, alternateButton: ^NS.String, otherButton: ^NS.String, #c_vararg args: ..any) -> id ---
 
     @(link_name="NSReleaseAlertPanel")
     ReleaseAlertPanel :: proc(panel: id) ---
@@ -2977,11 +2977,11 @@ TouchType :: enum cffi.long {
 }
 
 /// NSTouchTypeMask
-TouchTypeMask :: enum cffi.ulong {
+TouchTypeMasks :: enum cffi.ulong {
     Direct = 0,
     Indirect = 1,
 }
-TouchTypeMaskSet :: bit_set[TouchTypeMask; cffi.ulong]
+TouchTypeMask :: bit_set[TouchTypeMasks; cffi.ulong]
 
 /// NSEventType
 EventType :: enum cffi.ulong {
@@ -3022,7 +3022,7 @@ EventType :: enum cffi.ulong {
 }
 
 /// NSEventMask
-EventMask :: enum cffi.ulonglong {
+EventMasks :: enum cffi.ulonglong {
     LeftMouseDown = 1,
     LeftMouseUp = 2,
     RightMouseDown = 3,
@@ -3058,10 +3058,10 @@ EventMask :: enum cffi.ulonglong {
     ChangeMode = 38,
     Any = 63,
 }
-EventMaskSet :: bit_set[EventMask; cffi.ulonglong]
+EventMask :: bit_set[EventMasks; cffi.ulonglong]
 
 /// NSEventModifierFlags
-EventModifierFlags :: enum cffi.ulong {
+EventModifierFlag :: enum cffi.ulong {
     CapsLock = 16,
     hift = 17,
     Control = 18,
@@ -3072,7 +3072,7 @@ EventModifierFlags :: enum cffi.ulong {
     Function = 23,
     DeviceIndependentFlagsMask = 31,
 }
-EventModifierFlagsSet :: bit_set[EventModifierFlags; cffi.ulong]
+EventModifierFlags :: bit_set[EventModifierFlag; cffi.ulong]
 
 /// NSPointingDeviceType
 PointingDeviceType :: enum cffi.ulong {
@@ -3083,12 +3083,12 @@ PointingDeviceType :: enum cffi.ulong {
 }
 
 /// NSEventButtonMask
-EventButtonMask :: enum cffi.ulong {
+EventButtonMasks :: enum cffi.ulong {
     PenTip = 0,
     PenLowerSide = 1,
     PenUpperSide = 2,
 }
-EventButtonMaskSet :: bit_set[EventButtonMask; cffi.ulong]
+EventButtonMask :: bit_set[EventButtonMasks; cffi.ulong]
 
 /// NSEventPhase
 EventPhase :: enum cffi.ulong {
@@ -3399,14 +3399,14 @@ ImageScaling :: enum cffi.ulong {
 }
 
 /// NSCellStyleMask
-CellStyleMask :: enum cffi.ulong {
+CellStyleMasks :: enum cffi.ulong {
     NoCellMask = 0,
     ContentsCellMask = 0,
     PushInCellMask = 1,
     ChangeGrayCellMask = 2,
     ChangeBackgroundCellMask = 3,
 }
-CellStyleMaskSet :: bit_set[CellStyleMask; cffi.ulong]
+CellStyleMask :: bit_set[CellStyleMasks; cffi.ulong]
 
 /// NSControlTint
 ControlTint :: enum cffi.ulong {
@@ -3834,7 +3834,7 @@ FontCollectionVisibility :: enum cffi.ulong {
 }
 
 /// NSFontTraitMask
-FontTraitMask :: enum cffi.ulong {
+FontTraitMasks :: enum cffi.ulong {
     ItalicFontMask = 0,
     BoldFontMask = 1,
     UnboldFontMask = 2,
@@ -3848,7 +3848,7 @@ FontTraitMask :: enum cffi.ulong {
     FixedPitchFontMask = 10,
     UnitalicFontMask = 24,
 }
-FontTraitMaskSet :: bit_set[FontTraitMask; cffi.ulong]
+FontTraitMask :: bit_set[FontTraitMasks; cffi.ulong]
 
 /// NSFontCollectionOptions
 FontCollectionOptions :: enum cffi.ulong {
@@ -3868,7 +3868,7 @@ FontAction :: enum cffi.ulong {
 }
 
 /// NSWindowStyleMask
-WindowStyleMask :: enum cffi.ulong {
+WindowStyleMasks :: enum cffi.ulong {
     Borderless = 0,
     Titled = 0,
     Closable = 1,
@@ -3883,7 +3883,7 @@ WindowStyleMask :: enum cffi.ulong {
     NonactivatingPanel = 7,
     HUDWindow = 13,
 }
-WindowStyleMaskSet :: bit_set[WindowStyleMask; cffi.ulong]
+WindowStyleMask :: bit_set[WindowStyleMasks; cffi.ulong]
 
 /// NSWindowSharingType
 WindowSharingType :: enum cffi.ulong {
@@ -3994,7 +3994,7 @@ WindowBackingLocation :: enum cffi.ulong {
 }
 
 /// NSFontPanelModeMask
-FontPanelModeMask :: enum cffi.ulong {
+FontPanelModeMasks :: enum cffi.ulong {
     Face = 0,
     Size = 1,
     Collection = 2,
@@ -4007,7 +4007,7 @@ FontPanelModeMask :: enum cffi.ulong {
     sMaskStandardModes = 15,
     sMaskAllModes = 31,
 }
-FontPanelModeMaskSet :: bit_set[FontPanelModeMask; cffi.ulong]
+FontPanelModeMask :: bit_set[FontPanelModeMasks; cffi.ulong]
 
 /// NSMatrixMode
 MatrixMode :: enum cffi.ulong {
@@ -5099,7 +5099,7 @@ DatePickerMode :: enum cffi.ulong {
 }
 
 /// NSDatePickerElementFlags
-DatePickerElementFlags :: enum cffi.ulong {
+DatePickerElementFlag :: enum cffi.ulong {
     HourMinute = 3,
     HourMinuteSecond = 3,
     TimeZone = 4,
@@ -5107,7 +5107,7 @@ DatePickerElementFlags :: enum cffi.ulong {
     YearMonthDay = 7,
     Era = 8,
 }
-DatePickerElementFlagsSet :: bit_set[DatePickerElementFlags; cffi.ulong]
+DatePickerElementFlags :: bit_set[DatePickerElementFlag; cffi.ulong]
 
 /// NSLevelIndicatorStyle
 LevelIndicatorStyle :: enum cffi.ulong {

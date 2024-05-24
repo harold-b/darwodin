@@ -1093,16 +1093,16 @@ foreign lib {
     StringCreateCopy :: proc(alloc: AllocatorRef, theString: StringRef) -> StringRef ---
 
     @(link_name="CFStringCreateWithFormat")
-    StringCreateWithFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef) -> StringRef ---
+    StringCreateWithFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, #c_vararg args: ..any) -> StringRef ---
 
     @(link_name="CFStringCreateWithFormatAndArguments")
-    StringCreateWithFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, arguments: va_list) -> StringRef ---
+    StringCreateWithFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, arguments: cffi.va_list) -> StringRef ---
 
     @(link_name="CFStringCreateStringWithValidatedFormat")
-    StringCreateStringWithValidatedFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, errorPtr: ^ErrorRef) -> StringRef ---
+    StringCreateStringWithValidatedFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, errorPtr: ^ErrorRef, #c_vararg args: ..any) -> StringRef ---
 
     @(link_name="CFStringCreateStringWithValidatedFormatAndArguments")
-    StringCreateStringWithValidatedFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, arguments: va_list, errorPtr: ^ErrorRef) -> StringRef ---
+    StringCreateStringWithValidatedFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, arguments: cffi.va_list, errorPtr: ^ErrorRef) -> StringRef ---
 
     @(link_name="CFStringCreateMutable")
     StringCreateMutable :: proc(alloc: AllocatorRef, maxLength: Index) -> MutableStringRef ---
@@ -1234,10 +1234,10 @@ foreign lib {
     StringAppendCString :: proc(theString: MutableStringRef, cStr: cstring, encoding: StringEncoding) ---
 
     @(link_name="CFStringAppendFormat")
-    StringAppendFormat :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef) ---
+    StringAppendFormat :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, #c_vararg args: ..any) ---
 
     @(link_name="CFStringAppendFormatAndArguments")
-    StringAppendFormatAndArguments :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, arguments: va_list) ---
+    StringAppendFormatAndArguments :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, arguments: cffi.va_list) ---
 
     @(link_name="CFStringInsert")
     StringInsert :: proc(str: MutableStringRef, idx: Index, insertedStr: StringRef) ---
@@ -1429,16 +1429,16 @@ foreign lib {
     CalendarGetTimeRangeOfUnit :: proc(calendar: CalendarRef, unit: CalendarUnit, at: CFAbsoluteTime, startp: ^CFAbsoluteTime, tip: ^TimeInterval) -> Boolean ---
 
     @(link_name="CFCalendarComposeAbsoluteTime")
-    CalendarComposeAbsoluteTime :: proc(calendar: CalendarRef, at: ^CFAbsoluteTime, componentDesc: cstring) -> Boolean ---
+    CalendarComposeAbsoluteTime :: proc(calendar: CalendarRef, at: ^CFAbsoluteTime, componentDesc: cstring, #c_vararg args: ..any) -> Boolean ---
 
     @(link_name="CFCalendarDecomposeAbsoluteTime")
-    CalendarDecomposeAbsoluteTime :: proc(calendar: CalendarRef, at: CFAbsoluteTime, componentDesc: cstring) -> Boolean ---
+    CalendarDecomposeAbsoluteTime :: proc(calendar: CalendarRef, at: CFAbsoluteTime, componentDesc: cstring, #c_vararg args: ..any) -> Boolean ---
 
     @(link_name="CFCalendarAddComponents")
-    CalendarAddComponents :: proc(calendar: CalendarRef, at: ^CFAbsoluteTime, options: OptionFlags, componentDesc: cstring) -> Boolean ---
+    CalendarAddComponents :: proc(calendar: CalendarRef, at: ^CFAbsoluteTime, options: OptionFlags, componentDesc: cstring, #c_vararg args: ..any) -> Boolean ---
 
     @(link_name="CFCalendarGetComponentDifference")
-    CalendarGetComponentDifference :: proc(calendar: CalendarRef, startingAT: CFAbsoluteTime, resultAT: CFAbsoluteTime, options: OptionFlags, componentDesc: cstring) -> Boolean ---
+    CalendarGetComponentDifference :: proc(calendar: CalendarRef, startingAT: CFAbsoluteTime, resultAT: CFAbsoluteTime, options: OptionFlags, componentDesc: cstring, #c_vararg args: ..any) -> Boolean ---
 
     @(link_name="CFDateFormatterCreateDateFormatFromTemplate")
     DateFormatterCreateDateFormatFromTemplate :: proc(allocator: AllocatorRef, tmplate: StringRef, options: OptionFlags, locale: LocaleRef) -> StringRef ---
@@ -2056,10 +2056,10 @@ foreign lib {
     dispatch_testcancel :: proc(object: rawptr) -> cffi.intptr_t ---
 
     @(link_name="dispatch_debug")
-    dispatch_debug :: proc(object: dispatch_object_t, message: cstring) ---
+    dispatch_debug :: proc(object: dispatch_object_t, message: cstring, #c_vararg args: ..any) ---
 
     @(link_name="dispatch_debugv")
-    dispatch_debugv :: proc(object: dispatch_object_t, message: cstring, ap: va_list) ---
+    dispatch_debugv :: proc(object: dispatch_object_t, message: cstring, ap: cffi.va_list) ---
 
     @(link_name="dispatch_async")
     dispatch_async :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
@@ -3239,7 +3239,7 @@ __darwin_ptrdiff_t :: distinct cffi.long
 __darwin_size_t :: distinct cffi.ulong
 
 /// __darwin_va_list
-__darwin_va_list :: distinct va_list
+__darwin_va_list :: distinct cffi.va_list
 
 /// __darwin_wchar_t
 __darwin_wchar_t :: distinct cffi.int
@@ -5508,13 +5508,13 @@ XMLParserContext :: struct #align (8) {
 }
 
 /// __mbstate_t
-__mbstate_t :: struct  {
+__mbstate_t :: struct #raw_union  {
     __mbstate8 : [128]cffi.char,
     _mbstateL : cffi.longlong,
 }
 
 /// dispatch_object_t
-dispatch_object_t :: struct  {
+dispatch_object_t :: struct #raw_union  {
     _os_obj : ^_os_object_s,
     _do : ^dispatch_object_s,
     _dq : ^dispatch_queue_s,

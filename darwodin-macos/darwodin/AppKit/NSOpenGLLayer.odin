@@ -15,7 +15,7 @@ import CA "../QuartzCore"
 /// NSOpenGLLayer
 ///
 @(objc_class="NSOpenGLLayer")
-OpenGLLayer :: struct { using _: CA.OpenGLLayer, }
+OpenGLLayer :: struct { using _: CAOpenGLLayer, }
 
 @(objc_type=OpenGLLayer, objc_name="init")
 OpenGLLayer_init :: proc "c" (self: ^OpenGLLayer) -> ^OpenGLLayer {

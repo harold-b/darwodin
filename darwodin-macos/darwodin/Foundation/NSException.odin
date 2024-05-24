@@ -61,7 +61,7 @@ Exception_raise_format :: #force_inline proc "c" (name: ^String, format: ^String
     msgSend(nil, Exception, "raise:format:", name, format)
 }
 @(objc_type=Exception, objc_name="raise_format_arguments", objc_is_class_method=true)
-Exception_raise_format_arguments :: #force_inline proc "c" (name: ^String, format: ^String, argList: va_list) {
+Exception_raise_format_arguments :: #force_inline proc "c" (name: ^String, format: ^String, argList: cffi.va_list) {
     msgSend(nil, Exception, "raise:format:arguments:", name, format, argList)
 }
 @(objc_type=Exception, objc_name="supportsSecureCoding", objc_is_class_method=true)
@@ -216,7 +216,7 @@ Exception_VTable :: struct {
     callStackReturnAddresses: proc(self: ^Exception) -> ^Array,
     callStackSymbols: proc(self: ^Exception) -> ^Array,
     raise_format: proc(name: ^String, format: ^String),
-    raise_format_arguments: proc(name: ^String, format: ^String, argList: va_list),
+    raise_format_arguments: proc(name: ^String, format: ^String, argList: cffi.va_list),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -349,7 +349,7 @@ Exception_odin_extend :: proc(cls: Class, vt: ^Exception_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("raise:format:"), auto_cast raise_format, "v#:@@") do panic("Failed to register objC method.")
     }
     if vt.raise_format_arguments != nil {
-        raise_format_arguments :: proc "c" (self: Class, _: SEL, name: ^String, format: ^String, argList: va_list) {
+        raise_format_arguments :: proc "c" (self: Class, _: SEL, name: ^String, format: ^String, argList: cffi.va_list) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

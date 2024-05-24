@@ -300,7 +300,7 @@ String_initWithFormat_ :: #force_inline proc "c" (self: ^String, format: ^String
     return msgSend(^String, self, "initWithFormat:", format)
 }
 @(objc_type=String, objc_name="initWithFormat_arguments")
-String_initWithFormat_arguments :: #force_inline proc "c" (self: ^String, format: ^String, argList: va_list) -> ^String {
+String_initWithFormat_arguments :: #force_inline proc "c" (self: ^String, format: ^String, argList: cffi.va_list) -> ^String {
     return msgSend(^String, self, "initWithFormat:arguments:", format, argList)
 }
 @(objc_type=String, objc_name="initWithFormat_locale")
@@ -308,7 +308,7 @@ String_initWithFormat_locale :: #force_inline proc "c" (self: ^String, format: ^
     return msgSend(^String, self, "initWithFormat:locale:", format, locale)
 }
 @(objc_type=String, objc_name="initWithFormat_locale_arguments")
-String_initWithFormat_locale_arguments :: #force_inline proc "c" (self: ^String, format: ^String, locale: id, argList: va_list) -> ^String {
+String_initWithFormat_locale_arguments :: #force_inline proc "c" (self: ^String, format: ^String, locale: id, argList: cffi.va_list) -> ^String {
     return msgSend(^String, self, "initWithFormat:locale:arguments:", format, locale, argList)
 }
 @(objc_type=String, objc_name="initWithValidatedFormat_validFormatSpecifiers_error")
@@ -320,11 +320,11 @@ String_initWithValidatedFormat_validFormatSpecifiers_locale_error :: #force_inli
     return msgSend(^String, self, "initWithValidatedFormat:validFormatSpecifiers:locale:error:", format, validFormatSpecifiers, locale, error)
 }
 @(objc_type=String, objc_name="initWithValidatedFormat_validFormatSpecifiers_arguments_error")
-String_initWithValidatedFormat_validFormatSpecifiers_arguments_error :: #force_inline proc "c" (self: ^String, format: ^String, validFormatSpecifiers: ^String, argList: va_list, error: ^^Error) -> ^String {
+String_initWithValidatedFormat_validFormatSpecifiers_arguments_error :: #force_inline proc "c" (self: ^String, format: ^String, validFormatSpecifiers: ^String, argList: cffi.va_list, error: ^^Error) -> ^String {
     return msgSend(^String, self, "initWithValidatedFormat:validFormatSpecifiers:arguments:error:", format, validFormatSpecifiers, argList, error)
 }
 @(objc_type=String, objc_name="initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error")
-String_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: #force_inline proc "c" (self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: va_list, error: ^^Error) -> ^String {
+String_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: #force_inline proc "c" (self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: cffi.va_list, error: ^^Error) -> ^String {
     return msgSend(^String, self, "initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:", format, validFormatSpecifiers, locale, argList, error)
 }
 @(objc_type=String, objc_name="initWithData")
@@ -1024,13 +1024,13 @@ String_VTable :: struct {
     initWithUTF8String: proc(self: ^String, nullTerminatedCString: cstring) -> ^String,
     initWithString: proc(self: ^String, aString: ^String) -> ^String,
     initWithFormat_: proc(self: ^String, format: ^String) -> ^String,
-    initWithFormat_arguments: proc(self: ^String, format: ^String, argList: va_list) -> ^String,
+    initWithFormat_arguments: proc(self: ^String, format: ^String, argList: cffi.va_list) -> ^String,
     initWithFormat_locale: proc(self: ^String, format: ^String, locale: id) -> ^String,
-    initWithFormat_locale_arguments: proc(self: ^String, format: ^String, locale: id, argList: va_list) -> ^String,
+    initWithFormat_locale_arguments: proc(self: ^String, format: ^String, locale: id, argList: cffi.va_list) -> ^String,
     initWithValidatedFormat_validFormatSpecifiers_error: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, error: ^^Error) -> ^String,
     initWithValidatedFormat_validFormatSpecifiers_locale_error: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, error: ^^Error) -> ^String,
-    initWithValidatedFormat_validFormatSpecifiers_arguments_error: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, argList: va_list, error: ^^Error) -> ^String,
-    initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: va_list, error: ^^Error) -> ^String,
+    initWithValidatedFormat_validFormatSpecifiers_arguments_error: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, argList: cffi.va_list, error: ^^Error) -> ^String,
+    initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: cffi.va_list, error: ^^Error) -> ^String,
     initWithData: proc(self: ^String, data: ^Data, encoding: StringEncoding) -> ^String,
     initWithBytes: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding) -> ^String,
     initWithBytesNoCopy_length_encoding_freeWhenDone: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, freeBuffer: bool) -> ^String,
@@ -1863,7 +1863,7 @@ String_odin_extend :: proc(cls: Class, vt: ^String_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:"), auto_cast initWithFormat_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_arguments != nil {
-        initWithFormat_arguments :: proc "c" (self: ^String, _: SEL, format: ^String, argList: va_list) -> ^String {
+        initWithFormat_arguments :: proc "c" (self: ^String, _: SEL, format: ^String, argList: cffi.va_list) -> ^String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1883,7 +1883,7 @@ String_odin_extend :: proc(cls: Class, vt: ^String_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:locale:"), auto_cast initWithFormat_locale, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_locale_arguments != nil {
-        initWithFormat_locale_arguments :: proc "c" (self: ^String, _: SEL, format: ^String, locale: id, argList: va_list) -> ^String {
+        initWithFormat_locale_arguments :: proc "c" (self: ^String, _: SEL, format: ^String, locale: id, argList: cffi.va_list) -> ^String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1913,7 +1913,7 @@ String_odin_extend :: proc(cls: Class, vt: ^String_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), auto_cast initWithValidatedFormat_validFormatSpecifiers_locale_error, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithValidatedFormat_validFormatSpecifiers_arguments_error != nil {
-        initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc "c" (self: ^String, _: SEL, format: ^String, validFormatSpecifiers: ^String, argList: va_list, error: ^^Error) -> ^String {
+        initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc "c" (self: ^String, _: SEL, format: ^String, validFormatSpecifiers: ^String, argList: cffi.va_list, error: ^^Error) -> ^String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1923,7 +1923,7 @@ String_odin_extend :: proc(cls: Class, vt: ^String_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), auto_cast initWithValidatedFormat_validFormatSpecifiers_arguments_error, "@@:@@*^void") do panic("Failed to register objC method.")
     }
     if vt.initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error != nil {
-        initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc "c" (self: ^String, _: SEL, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: va_list, error: ^^Error) -> ^String {
+        initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc "c" (self: ^String, _: SEL, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: cffi.va_list, error: ^^Error) -> ^String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
