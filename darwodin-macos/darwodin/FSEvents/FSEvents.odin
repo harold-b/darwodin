@@ -21,53 +21,49 @@ Protocol :: distinct id
 @require foreign import lib "system:CoreServices.framework"
 
 // FSEventStreamCreateFlags
-EventStreamCreateFlag :: enum CF.UInt32 {
+EventStreamCreateFlags :: enum CF.UInt32 {
 
   None = 0x00000000,
-  UseCFTypes      , //= 0x00000001,
-  NoDefer         , //= 0x00000002,
-  WatchRoot       , //= 0x00000004,
-  IgnoreSelf      , //= 0x00000008, // __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_6_0)
-  FileEvents      , //= 0x00000010, // __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)
-  MarkSelf        , //= 0x00000020, // __OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)
-  UseExtendedData , //= 0x00000040, // __OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)
-  FullHistory     , //= 0x00000080, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
-  CreateWithDocID , //= 0x00000100, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
+  UseCFTypes      = 0x00000001,
+  NoDefer         = 0x00000002,
+  WatchRoot       = 0x00000004,
+  IgnoreSelf      = 0x00000008, // __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_6_0)
+  FileEvents      = 0x00000010, // __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)
+  MarkSelf        = 0x00000020, // __OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)
+  UseExtendedData = 0x00000040, // __OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)
+  FullHistory     = 0x00000080, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
+  CreateWithDocID = 0x00000100, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
 }
-
-EventStreamCreateFlags :: bit_set[EventStreamCreateFlag; CF.UInt32]
 
 // FSEventStreamEventFlags
-EventStreamEventFlag :: enum CF.UInt32 {
+EventStreamEventFlags :: enum CF.UInt32 {
 
   None            = 0x00000000,
-  MustScanSubDirs ,//= 0x00000001,
-  UserDropped     ,//= 0x00000002,
-  KernelDropped   ,//= 0x00000004,
-  EventIdsWrapped ,//= 0x00000008,
-  HistoryDone     ,//= 0x00000010,
-  RootChanged     ,//= 0x00000020,
-  Mount           ,//= 0x00000040,
-  Unmount         ,//= 0x00000080,
+  MustScanSubDirs = 0x00000001,
+  UserDropped     = 0x00000002,
+  KernelDropped   = 0x00000004,
+  EventIdsWrapped = 0x00000008,
+  HistoryDone     = 0x00000010,
+  RootChanged     = 0x00000020,
+  Mount           = 0x00000040,
+  Unmount         = 0x00000080,
 
-  ItemCreated        ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00000100,
-  ItemRemoved        ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00000200,
-  ItemInodeMetaMod   ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00000400,
-  ItemRenamed        ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00000800,
-  ItemModified       ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00001000,
-  ItemFinderInfoMod  ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00002000,
-  ItemChangeOwner    ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00004000,
-  ItemXattrMod       ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00008000,
-  ItemIsFile         ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00010000,
-  ItemIsDir          ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00020000,
-  ItemIsSymlink      ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   = 0x00040000,
-  OwnEvent           ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)*/   = 0x00080000,
-  ItemIsHardlink     ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  = 0x00100000,
-  ItemIsLastHardlink ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  = 0x00200000,
-  ItemCloned         ,// /*__OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)*/ = 0x00400000,
+  ItemCreated        = 0x00000100, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemRemoved        = 0x00000200, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemInodeMetaMod   = 0x00000400, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemRenamed        = 0x00000800, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemModified       = 0x00001000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemFinderInfoMod  = 0x00002000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemChangeOwner    = 0x00004000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemXattrMod       = 0x00008000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemIsFile         = 0x00010000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemIsDir          = 0x00020000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  ItemIsSymlink      = 0x00040000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+  OwnEvent           = 0x00080000, /*__OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)*/   
+  ItemIsHardlink     = 0x00100000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
+  ItemIsLastHardlink = 0x00200000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
+  ItemCloned         = 0x00400000, /*__OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)*/ 
 }
-
-EventStreamEventFlags :: bit_set[EventStreamEventFlag; CF.UInt32]
 
 
 kTextUnsupportedEncodingErr :: -8738
