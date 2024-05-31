@@ -1284,8 +1284,8 @@ foreign lib {
     @(link_name="CFStringTransform")
     StringTransform :: proc(string: MutableStringRef, range: ^Range, transform: StringRef, reverse: Boolean) -> Boolean ---
 
-    @(link_name="CFStringIsEncodingAvailable")
-    StringIsEncodingAvailable :: proc(encoding: StringEncoding) -> Boolean ---
+    // @(link_name="CFStringIsEncodingAvailable")
+    // StringIsEncodingAvailable :: proc(encoding: StringEncoding) -> Boolean ---
 
     @(link_name="CFStringGetListOfAvailableEncodings")
     StringGetListOfAvailableEncodings :: proc() -> ^StringEncoding ---
@@ -2080,10 +2080,10 @@ foreign lib {
     dispatch_async_and_wait_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
     @(link_name="dispatch_apply")
-    dispatch_apply :: proc(iterations: cffi.uint, queue: dispatch_queue_t, block: proc "c" (iteration: cffi.uint)) ---
+    dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: proc "c" (iteration: cffi.size_t)) ---
 
     @(link_name="dispatch_apply_f")
-    dispatch_apply_f :: proc(iterations: cffi.uint, queue: dispatch_queue_t, _context: rawptr, work: proc "c" (_context: rawptr, iteration: cffi.uint)) ---
+    dispatch_apply_f :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, _context: rawptr, work: proc "c" (_context: rawptr, iteration: cffi.size_t)) ---
 
     @(link_name="dispatch_get_current_queue")
     dispatch_get_current_queue :: proc() -> dispatch_queue_t ---
@@ -2263,28 +2263,28 @@ foreign lib {
     dispatch_once_f :: proc(predicate: ^dispatch_once_t, _context: rawptr, function: dispatch_function_t) ---
 
     @(link_name="dispatch_data_create")
-    dispatch_data_create :: proc(buffer: rawptr, size: cffi.uint, queue: dispatch_queue_t, destructor: dispatch_block_t) -> dispatch_data_t ---
+    dispatch_data_create :: proc(buffer: rawptr, size: cffi.size_t, queue: dispatch_queue_t, destructor: dispatch_block_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_data_get_size")
-    dispatch_data_get_size :: proc(data: dispatch_data_t) -> cffi.uint ---
+    dispatch_data_get_size :: proc(data: dispatch_data_t) -> cffi.size_t ---
 
     @(link_name="dispatch_data_create_map")
-    dispatch_data_create_map :: proc(data: dispatch_data_t, buffer_ptr: ^rawptr, size_ptr: ^cffi.uint) -> dispatch_data_t ---
+    dispatch_data_create_map :: proc(data: dispatch_data_t, buffer_ptr: ^rawptr, size_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_data_create_concat")
     dispatch_data_create_concat :: proc(data1: dispatch_data_t, data2: dispatch_data_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_data_create_subrange")
-    dispatch_data_create_subrange :: proc(data: dispatch_data_t, offset: cffi.uint, length: cffi.uint) -> dispatch_data_t ---
+    dispatch_data_create_subrange :: proc(data: dispatch_data_t, offset: cffi.size_t, length: cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_data_apply")
     dispatch_data_apply :: proc(data: dispatch_data_t, applier: dispatch_data_applier_t) -> cffi.bool ---
 
     @(link_name="dispatch_data_copy_region")
-    dispatch_data_copy_region :: proc(data: dispatch_data_t, location: cffi.uint, offset_ptr: ^cffi.uint) -> dispatch_data_t ---
+    dispatch_data_copy_region :: proc(data: dispatch_data_t, location: cffi.size_t, offset_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_read")
-    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.uint, queue: dispatch_queue_t, handler: proc "c" (data: dispatch_data_t, error: cffi.int)) ---
+    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: proc "c" (data: dispatch_data_t, error: cffi.int)) ---
 
     @(link_name="dispatch_write")
     dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: proc "c" (data: dispatch_data_t, error: cffi.int)) ---
@@ -2299,7 +2299,7 @@ foreign lib {
     dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: proc "c" (error: cffi.int)) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_read")
-    dispatch_io_read :: proc(channel: dispatch_io_t, offset: cffi.longlong, length: cffi.uint, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
+    dispatch_io_read :: proc(channel: dispatch_io_t, offset: cffi.longlong, length: cffi.size_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
 
     @(link_name="dispatch_io_write")
     dispatch_io_write :: proc(channel: dispatch_io_t, offset: cffi.longlong, data: dispatch_data_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
@@ -2314,10 +2314,10 @@ foreign lib {
     dispatch_io_get_descriptor :: proc(channel: dispatch_io_t) -> dispatch_fd_t ---
 
     @(link_name="dispatch_io_set_high_water")
-    dispatch_io_set_high_water :: proc(channel: dispatch_io_t, high_water: cffi.uint) ---
+    dispatch_io_set_high_water :: proc(channel: dispatch_io_t, high_water: cffi.size_t) ---
 
     @(link_name="dispatch_io_set_low_water")
-    dispatch_io_set_low_water :: proc(channel: dispatch_io_t, low_water: cffi.uint) ---
+    dispatch_io_set_low_water :: proc(channel: dispatch_io_t, low_water: cffi.size_t) ---
 
     @(link_name="dispatch_io_set_interval")
     dispatch_io_set_interval :: proc(channel: dispatch_io_t, interval: cffi.uint64_t, flags: cffi.ulong) ---
@@ -3939,7 +3939,7 @@ dispatch_once_t :: distinct cffi.intptr_t
 dispatch_data_t :: distinct ^dispatch_data_s
 
 /// dispatch_data_applier_t
-dispatch_data_applier_t :: distinct proc "c" (region: dispatch_data_t, offset: cffi.uint, buffer: rawptr, size: cffi.uint) -> cffi.bool
+dispatch_data_applier_t :: distinct proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool
 
 /// dispatch_fd_t
 dispatch_fd_t :: distinct cffi.int

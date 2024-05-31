@@ -73,13 +73,13 @@ foreign lib {
     RemoveDeviceObserver :: proc(observer: ^NS.ObjectProtocol) ---
 
     @(link_name="MTLIOCompressionContextDefaultChunkSize")
-    IOCompressionContextDefaultChunkSize :: proc() -> cffi.uint ---
+    IOCompressionContextDefaultChunkSize :: proc() -> cffi.size_t ---
 
     @(link_name="MTLIOCreateCompressionContext")
-    IOCreateCompressionContext :: proc(path: cstring, type: IOCompressionMethod, chunkSize: cffi.uint) -> IOCompressionContext ---
+    IOCreateCompressionContext :: proc(path: cstring, type: IOCompressionMethod, chunkSize: cffi.size_t) -> IOCompressionContext ---
 
     @(link_name="MTLIOCompressionContextAppendData")
-    IOCompressionContextAppendData :: proc(_context: IOCompressionContext, data: rawptr, size: cffi.uint) ---
+    IOCompressionContextAppendData :: proc(_context: IOCompressionContext, data: rawptr, size: cffi.size_t) ---
 
     @(link_name="MTLIOFlushAndDestroyCompressionContext")
     IOFlushAndDestroyCompressionContext :: proc(_context: IOCompressionContext) -> IOCompressionStatus ---
@@ -156,21 +156,21 @@ IOCommandBufferHandler :: distinct proc "c" (_arg_0: ^IOCommandBuffer)
 IOCompressionContext :: distinct rawptr
 
 /// MTLResourceUsage
-ResourceUsage :: enum cffi.ulong {
+MTLResourceUsage :: enum cffi.ulong {
     Read = 1,
     Write = 2,
     Sample = 4,
 }
 
 /// MTLBarrierScope
-BarrierScope :: enum cffi.ulong {
+MTLBarrierScope :: enum cffi.ulong {
     Buffers = 1,
     Textures = 2,
     RenderTargets = 4,
 }
 
 /// MTLPurgeableState
-PurgeableState :: enum cffi.ulong {
+MTLPurgeableState :: enum cffi.ulong {
     KeepCurrent = 1,
     NonVolatile = 2,
     Volatile = 3,
@@ -178,13 +178,13 @@ PurgeableState :: enum cffi.ulong {
 }
 
 /// MTLCPUCacheMode
-CPUCacheMode :: enum cffi.ulong {
+MTLCPUCacheMode :: enum cffi.ulong {
     DefaultCache = 0,
     WriteCombined = 1,
 }
 
 /// MTLStorageMode
-StorageMode :: enum cffi.ulong {
+MTLStorageMode :: enum cffi.ulong {
     Shared = 0,
     Managed = 1,
     Private = 2,
@@ -192,29 +192,30 @@ StorageMode :: enum cffi.ulong {
 }
 
 /// MTLHazardTrackingMode
-HazardTrackingMode :: enum cffi.ulong {
+MTLHazardTrackingMode :: enum cffi.ulong {
     Default = 0,
     Untracked = 1,
     Tracked = 2,
 }
 
 /// MTLResourceOptions
-ResourceOptions :: enum cffi.ulong {
+MTLResourceOption :: enum cffi.ulong {
     CPUCacheModeDefaultCache = 0,
-    CPUCacheModeWriteCombined = 1,
+    CPUCacheModeWriteCombined = 0,
     StorageModeShared = 0,
-    StorageModeManaged = 16,
-    StorageModePrivate = 32,
-    StorageModeMemoryless = 48,
+    StorageModeManaged = 4,
+    StorageModePrivate = 5,
+    StorageModeMemoryless = 5,
     HazardTrackingModeDefault = 0,
-    HazardTrackingModeUntracked = 256,
-    HazardTrackingModeTracked = 512,
+    HazardTrackingModeUntracked = 8,
+    HazardTrackingModeTracked = 9,
     OptionCPUCacheModeDefault = 0,
-    OptionCPUCacheModeWriteCombined = 1,
+    OptionCPUCacheModeWriteCombined = 0,
 }
+MTLResourceOptions :: bit_set[MTLResourceOption; cffi.ulong]
 
 /// MTLPixelFormat
-PixelFormat :: enum cffi.ulong {
+MTLPixelFormat :: enum cffi.ulong {
     Invalid = 0,
     A8Unorm = 1,
     R8Unorm = 10,
@@ -357,7 +358,7 @@ PixelFormat :: enum cffi.ulong {
 }
 
 /// MTLTextureType
-TextureType :: enum cffi.ulong {
+MTLTextureType :: enum cffi.ulong {
     _1D = 0,
     _1DArray = 1,
     _2D = 2,
@@ -371,7 +372,7 @@ TextureType :: enum cffi.ulong {
 }
 
 /// MTLTextureSwizzle
-TextureSwizzle :: enum cffi.uchar {
+MTLTextureSwizzle :: enum cffi.uchar {
     Zero = 0,
     One = 1,
     Red = 2,
@@ -381,7 +382,7 @@ TextureSwizzle :: enum cffi.uchar {
 }
 
 /// MTLTextureUsage
-TextureUsage :: enum cffi.ulong {
+MTLTextureUsage :: enum cffi.ulong {
     Unknown = 0,
     ShaderRead = 1,
     ShaderWrite = 2,
@@ -391,13 +392,13 @@ TextureUsage :: enum cffi.ulong {
 }
 
 /// MTLTextureCompressionType
-TextureCompressionType :: enum cffi.long {
+MTLTextureCompressionType :: enum cffi.long {
     Lossless = 0,
     Lossy = 1,
 }
 
 /// MTLDataType
-DataType :: enum cffi.ulong {
+MTLDataType :: enum cffi.ulong {
     None = 0,
     Struct = 1,
     Array = 2,
@@ -496,7 +497,7 @@ DataType :: enum cffi.ulong {
 }
 
 /// MTLBindingType
-BindingType :: enum cffi.long {
+MTLBindingType :: enum cffi.long {
     Buffer = 0,
     ThreadgroupMemory = 1,
     Texture = 2,
@@ -511,7 +512,7 @@ BindingType :: enum cffi.long {
 }
 
 /// MTLArgumentType
-ArgumentType :: enum cffi.ulong {
+MTLArgumentType :: enum cffi.ulong {
     Buffer = 0,
     ThreadgroupMemory = 1,
     Texture = 2,
@@ -525,7 +526,7 @@ ArgumentType :: enum cffi.ulong {
 }
 
 /// MTLBindingAccess
-BindingAccess :: enum cffi.ulong {
+MTLBindingAccess :: enum cffi.ulong {
     ReadOnly = 0,
     ReadWrite = 1,
     WriteOnly = 2,
@@ -535,21 +536,21 @@ BindingAccess :: enum cffi.ulong {
 }
 
 /// MTLFunctionOptions
-FunctionOptions :: enum cffi.ulong {
+MTLFunctionOptions :: enum cffi.ulong {
     OptionNone = 0,
     OptionCompileToBinary = 1,
     toreFunctionInMetalScript = 2,
 }
 
 /// MTLPatchType
-PatchType :: enum cffi.ulong {
+MTLPatchType :: enum cffi.ulong {
     None = 0,
     Triangle = 1,
     Quad = 2,
 }
 
 /// MTLFunctionType
-FunctionType :: enum cffi.ulong {
+MTLFunctionType :: enum cffi.ulong {
     Vertex = 1,
     Fragment = 2,
     Kernel = 3,
@@ -560,7 +561,7 @@ FunctionType :: enum cffi.ulong {
 }
 
 /// MTLLanguageVersion
-LanguageVersion :: enum cffi.ulong {
+MTLLanguageVersion :: enum cffi.ulong {
     _1_0 = 65536,
     _1_1 = 65537,
     _1_2 = 65538,
@@ -574,25 +575,25 @@ LanguageVersion :: enum cffi.ulong {
 }
 
 /// MTLLibraryType
-LibraryType :: enum cffi.long {
+MTLLibraryType :: enum cffi.long {
     Executable = 0,
     Dynamic = 1,
 }
 
 /// MTLLibraryOptimizationLevel
-LibraryOptimizationLevel :: enum cffi.long {
+MTLLibraryOptimizationLevel :: enum cffi.long {
     Default = 0,
     Size = 1,
 }
 
 /// MTLCompileSymbolVisibility
-CompileSymbolVisibility :: enum cffi.long {
+MTLCompileSymbolVisibility :: enum cffi.long {
     Default = 0,
     Hidden = 1,
 }
 
 /// MTLLibraryError
-LibraryError :: enum cffi.ulong {
+MTLLibraryError :: enum cffi.ulong {
     Unsupported = 1,
     Internal = 2,
     CompileFailure = 3,
@@ -602,14 +603,14 @@ LibraryError :: enum cffi.ulong {
 }
 
 /// MTLCounterSampleBufferError
-CounterSampleBufferError :: enum cffi.long {
+MTLCounterSampleBufferError :: enum cffi.long {
     OutOfMemory = 0,
     Invalid = 1,
     Internal = 2,
 }
 
 /// MTLIOCompressionMethod
-IOCompressionMethod :: enum cffi.long {
+MTLIOCompressionMethod :: enum cffi.long {
     Zlib = 0,
     LZFSE = 1,
     LZ4 = 2,
@@ -618,7 +619,7 @@ IOCompressionMethod :: enum cffi.long {
 }
 
 /// MTLFeatureSet
-FeatureSet :: enum cffi.ulong {
+MTLFeatureSet :: enum cffi.ulong {
     iOS_GPUFamily1_v1 = 0,
     iOS_GPUFamily2_v1 = 1,
     iOS_GPUFamily1_v2 = 2,
@@ -655,7 +656,7 @@ FeatureSet :: enum cffi.ulong {
 }
 
 /// MTLGPUFamily
-GPUFamily :: enum cffi.long {
+MTLGPUFamily :: enum cffi.long {
     Apple1 = 1001,
     Apple2 = 1002,
     Apple3 = 1003,
@@ -676,7 +677,7 @@ GPUFamily :: enum cffi.long {
 }
 
 /// MTLDeviceLocation
-DeviceLocation :: enum cffi.ulong {
+MTLDeviceLocation :: enum cffi.ulong {
     BuiltIn = 0,
     Slot = 1,
     External = 2,
@@ -684,7 +685,7 @@ DeviceLocation :: enum cffi.ulong {
 }
 
 /// MTLPipelineOption
-PipelineOption :: enum cffi.ulong {
+MTLPipelineOption :: enum cffi.ulong {
     None = 0,
     ArgumentInfo = 1,
     BufferTypeInfo = 2,
@@ -692,33 +693,33 @@ PipelineOption :: enum cffi.ulong {
 }
 
 /// MTLReadWriteTextureTier
-ReadWriteTextureTier :: enum cffi.ulong {
+MTLReadWriteTextureTier :: enum cffi.ulong {
     None = 0,
     _1 = 1,
     _2 = 2,
 }
 
 /// MTLArgumentBuffersTier
-ArgumentBuffersTier :: enum cffi.ulong {
+MTLArgumentBuffersTier :: enum cffi.ulong {
     _1 = 0,
     _2 = 1,
 }
 
 /// MTLSparseTextureRegionAlignmentMode
-SparseTextureRegionAlignmentMode :: enum cffi.ulong {
+MTLSparseTextureRegionAlignmentMode :: enum cffi.ulong {
     Outward = 0,
     Inward = 1,
 }
 
 /// MTLSparsePageSize
-SparsePageSize :: enum cffi.long {
+MTLSparsePageSize :: enum cffi.long {
     _16 = 101,
     _64 = 102,
     _256 = 103,
 }
 
 /// MTLCounterSamplingPoint
-CounterSamplingPoint :: enum cffi.ulong {
+MTLCounterSamplingPoint :: enum cffi.ulong {
     AtStageBoundary = 0,
     AtDrawBoundary = 1,
     AtDispatchBoundary = 2,
@@ -727,20 +728,20 @@ CounterSamplingPoint :: enum cffi.ulong {
 }
 
 /// MTLSparseTextureMappingMode
-SparseTextureMappingMode :: enum cffi.ulong {
+MTLSparseTextureMappingMode :: enum cffi.ulong {
     Map = 0,
     Unmap = 1,
 }
 
 /// MTLLoadAction
-LoadAction :: enum cffi.ulong {
+MTLLoadAction :: enum cffi.ulong {
     DontCare = 0,
     Load = 1,
     Clear = 2,
 }
 
 /// MTLStoreAction
-StoreAction :: enum cffi.ulong {
+MTLStoreAction :: enum cffi.ulong {
     DontCare = 0,
     Store = 1,
     MultisampleResolve = 2,
@@ -750,26 +751,26 @@ StoreAction :: enum cffi.ulong {
 }
 
 /// MTLStoreActionOptions
-StoreActionOptions :: enum cffi.ulong {
+MTLStoreActionOptions :: enum cffi.ulong {
     OptionNone = 0,
     OptionCustomSamplePositions = 1,
 }
 
 /// MTLMultisampleDepthResolveFilter
-MultisampleDepthResolveFilter :: enum cffi.ulong {
+MTLMultisampleDepthResolveFilter :: enum cffi.ulong {
     Sample0 = 0,
     Min = 1,
     Max = 2,
 }
 
 /// MTLMultisampleStencilResolveFilter
-MultisampleStencilResolveFilter :: enum cffi.ulong {
+MTLMultisampleStencilResolveFilter :: enum cffi.ulong {
     Sample0 = 0,
     DepthResolvedSample = 1,
 }
 
 /// MTLBlitOption
-BlitOption :: enum cffi.ulong {
+MTLBlitOption :: enum cffi.ulong {
     None = 0,
     DepthFromDepthStencil = 1,
     StencilFromDepthStencil = 2,
@@ -777,7 +778,7 @@ BlitOption :: enum cffi.ulong {
 }
 
 /// MTLCommandBufferStatus
-CommandBufferStatus :: enum cffi.ulong {
+MTLCommandBufferStatus :: enum cffi.ulong {
     NotEnqueued = 0,
     Enqueued = 1,
     Committed = 2,
@@ -787,7 +788,7 @@ CommandBufferStatus :: enum cffi.ulong {
 }
 
 /// MTLCommandBufferError
-CommandBufferError :: enum cffi.ulong {
+MTLCommandBufferError :: enum cffi.ulong {
     None = 0,
     Internal = 1,
     Timeout = 2,
@@ -803,13 +804,13 @@ CommandBufferError :: enum cffi.ulong {
 }
 
 /// MTLCommandBufferErrorOption
-CommandBufferErrorOption :: enum cffi.ulong {
+MTLCommandBufferErrorOption :: enum cffi.ulong {
     None = 0,
     EncoderExecutionStatus = 1,
 }
 
 /// MTLCommandEncoderErrorState
-CommandEncoderErrorState :: enum cffi.long {
+MTLCommandEncoderErrorState :: enum cffi.long {
     Unknown = 0,
     Completed = 1,
     Affected = 2,
@@ -818,13 +819,13 @@ CommandEncoderErrorState :: enum cffi.long {
 }
 
 /// MTLDispatchType
-DispatchType :: enum cffi.ulong {
+MTLDispatchType :: enum cffi.ulong {
     Serial = 0,
     Concurrent = 1,
 }
 
 /// MTLCompareFunction
-CompareFunction :: enum cffi.ulong {
+MTLCompareFunction :: enum cffi.ulong {
     Never = 0,
     Less = 1,
     Equal = 2,
@@ -836,7 +837,7 @@ CompareFunction :: enum cffi.ulong {
 }
 
 /// MTLStencilOperation
-StencilOperation :: enum cffi.ulong {
+MTLStencilOperation :: enum cffi.ulong {
     Keep = 0,
     Zero = 1,
     Replace = 2,
@@ -848,7 +849,7 @@ StencilOperation :: enum cffi.ulong {
 }
 
 /// MTLVertexFormat
-VertexFormat :: enum cffi.ulong {
+MTLVertexFormat :: enum cffi.ulong {
     Invalid = 0,
     UChar2 = 1,
     UChar3 = 2,
@@ -906,7 +907,7 @@ VertexFormat :: enum cffi.ulong {
 }
 
 /// MTLVertexStepFunction
-VertexStepFunction :: enum cffi.ulong {
+MTLVertexStepFunction :: enum cffi.ulong {
     Constant = 0,
     PerVertex = 1,
     PerInstance = 2,
@@ -915,7 +916,7 @@ VertexStepFunction :: enum cffi.ulong {
 }
 
 /// MTLAttributeFormat
-AttributeFormat :: enum cffi.ulong {
+MTLAttributeFormat :: enum cffi.ulong {
     Invalid = 0,
     UChar2 = 1,
     UChar3 = 2,
@@ -973,13 +974,13 @@ AttributeFormat :: enum cffi.ulong {
 }
 
 /// MTLIndexType
-IndexType :: enum cffi.ulong {
+MTLIndexType :: enum cffi.ulong {
     UInt16 = 0,
     UInt32 = 1,
 }
 
 /// MTLStepFunction
-StepFunction :: enum cffi.ulong {
+MTLStepFunction :: enum cffi.ulong {
     Constant = 0,
     PerVertex = 1,
     PerInstance = 2,
@@ -992,14 +993,14 @@ StepFunction :: enum cffi.ulong {
 }
 
 /// MTLMutability
-Mutability :: enum cffi.ulong {
+MTLMutability :: enum cffi.ulong {
     Default = 0,
     Mutable = 1,
     Immutable = 2,
 }
 
 /// MTLPrimitiveType
-PrimitiveType :: enum cffi.ulong {
+MTLPrimitiveType :: enum cffi.ulong {
     Point = 0,
     Line = 1,
     LineStrip = 2,
@@ -1008,39 +1009,39 @@ PrimitiveType :: enum cffi.ulong {
 }
 
 /// MTLVisibilityResultMode
-VisibilityResultMode :: enum cffi.ulong {
+MTLVisibilityResultMode :: enum cffi.ulong {
     Disabled = 0,
     Boolean = 1,
     Counting = 2,
 }
 
 /// MTLCullMode
-CullMode :: enum cffi.ulong {
+MTLCullMode :: enum cffi.ulong {
     None = 0,
     Front = 1,
     Back = 2,
 }
 
 /// MTLWinding
-Winding :: enum cffi.ulong {
+MTLWinding :: enum cffi.ulong {
     Clockwise = 0,
     CounterClockwise = 1,
 }
 
 /// MTLDepthClipMode
-DepthClipMode :: enum cffi.ulong {
+MTLDepthClipMode :: enum cffi.ulong {
     Clip = 0,
     Clamp = 1,
 }
 
 /// MTLTriangleFillMode
-TriangleFillMode :: enum cffi.ulong {
+MTLTriangleFillMode :: enum cffi.ulong {
     Fill = 0,
     Lines = 1,
 }
 
 /// MTLRenderStages
-RenderStages :: enum cffi.ulong {
+MTLRenderStages :: enum cffi.ulong {
     StageVertex = 1,
     StageFragment = 2,
     StageTile = 4,
@@ -1049,7 +1050,7 @@ RenderStages :: enum cffi.ulong {
 }
 
 /// MTLBlendFactor
-BlendFactor :: enum cffi.ulong {
+MTLBlendFactor :: enum cffi.ulong {
     Zero = 0,
     One = 1,
     SourceColor = 2,
@@ -1072,7 +1073,7 @@ BlendFactor :: enum cffi.ulong {
 }
 
 /// MTLBlendOperation
-BlendOperation :: enum cffi.ulong {
+MTLBlendOperation :: enum cffi.ulong {
     Add = 0,
     Subtract = 1,
     ReverseSubtract = 2,
@@ -1081,7 +1082,7 @@ BlendOperation :: enum cffi.ulong {
 }
 
 /// MTLColorWriteMask
-ColorWriteMasks :: enum cffi.ulong {
+MTLColorWriteMasks :: enum cffi.ulong {
     None = 0,
     Red = 3,
     Green = 2,
@@ -1089,10 +1090,10 @@ ColorWriteMasks :: enum cffi.ulong {
     Alpha = 0,
     All = 3,
 }
-ColorWriteMask :: bit_set[ColorWriteMasks; cffi.ulong]
+MTLColorWriteMask :: bit_set[MTLColorWriteMasks; cffi.ulong]
 
 /// MTLPrimitiveTopologyClass
-PrimitiveTopologyClass :: enum cffi.ulong {
+MTLPrimitiveTopologyClass :: enum cffi.ulong {
     Unspecified = 0,
     Point = 1,
     Line = 2,
@@ -1100,7 +1101,7 @@ PrimitiveTopologyClass :: enum cffi.ulong {
 }
 
 /// MTLTessellationPartitionMode
-TessellationPartitionMode :: enum cffi.ulong {
+MTLTessellationPartitionMode :: enum cffi.ulong {
     Pow2 = 0,
     Integer = 1,
     FractionalOdd = 2,
@@ -1108,7 +1109,7 @@ TessellationPartitionMode :: enum cffi.ulong {
 }
 
 /// MTLTessellationFactorStepFunction
-TessellationFactorStepFunction :: enum cffi.ulong {
+MTLTessellationFactorStepFunction :: enum cffi.ulong {
     Constant = 0,
     PerPatch = 1,
     PerInstance = 2,
@@ -1116,32 +1117,32 @@ TessellationFactorStepFunction :: enum cffi.ulong {
 }
 
 /// MTLTessellationFactorFormat
-TessellationFactorFormat :: enum cffi.ulong {
+MTLTessellationFactorFormat :: enum cffi.ulong {
     Half = 0,
 }
 
 /// MTLTessellationControlPointIndexType
-TessellationControlPointIndexType :: enum cffi.ulong {
+MTLTessellationControlPointIndexType :: enum cffi.ulong {
     None = 0,
     UInt16 = 1,
     UInt32 = 2,
 }
 
 /// MTLSamplerMinMagFilter
-SamplerMinMagFilter :: enum cffi.ulong {
+MTLSamplerMinMagFilter :: enum cffi.ulong {
     Nearest = 0,
     Linear = 1,
 }
 
 /// MTLSamplerMipFilter
-SamplerMipFilter :: enum cffi.ulong {
+MTLSamplerMipFilter :: enum cffi.ulong {
     NotMipmapped = 0,
     Nearest = 1,
     Linear = 2,
 }
 
 /// MTLSamplerAddressMode
-SamplerAddressMode :: enum cffi.ulong {
+MTLSamplerAddressMode :: enum cffi.ulong {
     ClampToEdge = 0,
     MirrorClampToEdge = 1,
     Repeat = 2,
@@ -1151,14 +1152,14 @@ SamplerAddressMode :: enum cffi.ulong {
 }
 
 /// MTLSamplerBorderColor
-SamplerBorderColor :: enum cffi.ulong {
+MTLSamplerBorderColor :: enum cffi.ulong {
     TransparentBlack = 0,
     OpaqueBlack = 1,
     OpaqueWhite = 2,
 }
 
 /// MTLAccelerationStructureUsage
-AccelerationStructureUsage :: enum cffi.ulong {
+MTLAccelerationStructureUsage :: enum cffi.ulong {
     None = 0,
     Refit = 1,
     PreferFastBuild = 2,
@@ -1166,7 +1167,7 @@ AccelerationStructureUsage :: enum cffi.ulong {
 }
 
 /// MTLAccelerationStructureInstanceOptions
-AccelerationStructureInstanceOptions :: enum cffi.uint {
+MTLAccelerationStructureInstanceOptions :: enum cffi.uint {
     OptionNone = 0,
     OptionDisableTriangleCulling = 1,
     OptionTriangleFrontFacingWindingCounterClockwise = 2,
@@ -1175,19 +1176,19 @@ AccelerationStructureInstanceOptions :: enum cffi.uint {
 }
 
 /// MTLMotionBorderMode
-MotionBorderMode :: enum cffi.uint {
+MTLMotionBorderMode :: enum cffi.uint {
     Clamp = 0,
     Vanish = 1,
 }
 
 /// MTLCurveType
-CurveType :: enum cffi.long {
+MTLCurveType :: enum cffi.long {
     Round = 0,
     Flat = 1,
 }
 
 /// MTLCurveBasis
-CurveBasis :: enum cffi.long {
+MTLCurveBasis :: enum cffi.long {
     BSpline = 0,
     CatmullRom = 1,
     Linear = 2,
@@ -1195,14 +1196,14 @@ CurveBasis :: enum cffi.long {
 }
 
 /// MTLCurveEndCaps
-CurveEndCaps :: enum cffi.long {
+MTLCurveEndCaps :: enum cffi.long {
     None = 0,
     Disk = 1,
     Sphere = 2,
 }
 
 /// MTLAccelerationStructureInstanceDescriptorType
-AccelerationStructureInstanceDescriptorType :: enum cffi.ulong {
+MTLAccelerationStructureInstanceDescriptorType :: enum cffi.ulong {
     Default = 0,
     UserID = 1,
     Motion = 2,
@@ -1211,27 +1212,27 @@ AccelerationStructureInstanceDescriptorType :: enum cffi.ulong {
 }
 
 /// MTLHeapType
-HeapType :: enum cffi.long {
+MTLHeapType :: enum cffi.long {
     Automatic = 0,
     Placement = 1,
     Sparse = 2,
 }
 
 /// MTLCaptureError
-CaptureError :: enum cffi.long {
+MTLCaptureError :: enum cffi.long {
     NotSupported = 1,
     AlreadyCapturing = 2,
     InvalidDescriptor = 3,
 }
 
 /// MTLCaptureDestination
-CaptureDestination :: enum cffi.long {
+MTLCaptureDestination :: enum cffi.long {
     DeveloperTools = 1,
     GPUTraceDocument = 2,
 }
 
 /// MTLIndirectCommandType
-IndirectCommandType :: enum cffi.ulong {
+MTLIndirectCommandType :: enum cffi.ulong {
     Draw = 1,
     DrawIndexed = 2,
     DrawPatches = 4,
@@ -1241,18 +1242,18 @@ IndirectCommandType :: enum cffi.ulong {
 }
 
 /// MTLFunctionLogType
-FunctionLogType :: enum cffi.ulong {
+MTLFunctionLogType :: enum cffi.ulong {
     Validation = 0,
 }
 
 /// MTLAccelerationStructureRefitOptions
-AccelerationStructureRefitOptions :: enum cffi.ulong {
+MTLAccelerationStructureRefitOptions :: enum cffi.ulong {
     OptionVertexData = 1,
     OptionPerPrimitiveData = 2,
 }
 
 /// MTLDynamicLibraryError
-DynamicLibraryError :: enum cffi.ulong {
+MTLDynamicLibraryError :: enum cffi.ulong {
     None = 0,
     InvalidFile = 1,
     CompilationFailure = 2,
@@ -1262,7 +1263,7 @@ DynamicLibraryError :: enum cffi.ulong {
 }
 
 /// MTLBinaryArchiveError
-BinaryArchiveError :: enum cffi.ulong {
+MTLBinaryArchiveError :: enum cffi.ulong {
     None = 0,
     InvalidFile = 1,
     UnexpectedElement = 2,
@@ -1271,7 +1272,7 @@ BinaryArchiveError :: enum cffi.ulong {
 }
 
 /// MTLIntersectionFunctionSignature
-IntersectionFunctionSignature :: enum cffi.ulong {
+MTLIntersectionFunctionSignature :: enum cffi.ulong {
     None = 0,
     Instancing = 1,
     TriangleData = 2,
@@ -1284,26 +1285,26 @@ IntersectionFunctionSignature :: enum cffi.ulong {
 }
 
 /// MTLIOPriority
-IOPriority :: enum cffi.long {
+MTLIOPriority :: enum cffi.long {
     High = 0,
     Normal = 1,
     Low = 2,
 }
 
 /// MTLIOCommandQueueType
-IOCommandQueueType :: enum cffi.long {
+MTLIOCommandQueueType :: enum cffi.long {
     Concurrent = 0,
     Serial = 1,
 }
 
 /// MTLIOError
-IOError :: enum cffi.long {
+MTLIOError :: enum cffi.long {
     URLInvalid = 1,
     Internal = 2,
 }
 
 /// MTLIOStatus
-IOStatus :: enum cffi.long {
+MTLIOStatus :: enum cffi.long {
     Pending = 0,
     Cancelled = 1,
     Error = 2,
@@ -1311,7 +1312,7 @@ IOStatus :: enum cffi.long {
 }
 
 /// MTLIOCompressionStatus
-IOCompressionStatus :: enum cffi.long {
+MTLIOCompressionStatus :: enum cffi.long {
     Complete = 0,
     Error = 1,
 }

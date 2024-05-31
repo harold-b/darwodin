@@ -25,9 +25,9 @@ Structs:
     MTLDrawPatchIndirectArguments: MTL.DrawPatchIndirectArguments
     MTLQuadTessellationFactorsHalf: MTL.QuadTessellationFactorsHalf
     MTLTriangleTessellationFactorsHalf: MTL.TriangleTessellationFactorsHalf
-    _MTLPackedFloat3: MTL._MTLPackedFloat3
-    _MTLPackedFloat4x3: MTL._MTLPackedFloat4x3
-    _MTLAxisAlignedBoundingBox: MTL._MTLAxisAlignedBoundingBox
+    _MTLPackedFloat3: MTL.PackedFloat3
+    _MTLPackedFloat4x3: MTL.PackedFloat4x3
+    _MTLAxisAlignedBoundingBox: MTL.AxisAlignedBoundingBox
     MTLAccelerationStructureInstanceDescriptor: MTL.AccelerationStructureInstanceDescriptor
     MTLAccelerationStructureUserIDInstanceDescriptor: MTL.AccelerationStructureUserIDInstanceDescriptor
     MTLAccelerationStructureMotionInstanceDescriptor: MTL.AccelerationStructureMotionInstanceDescriptor
@@ -90,7 +90,7 @@ Enums:
     MTLFeatureSet: MTL.FeatureSet
     MTLGPUFamily: MTL.GPUFamily
     MTLDeviceLocation: MTL.DeviceLocation
-    MTLPipelineOption: MTL.PipelineOption
+    MTLPipelineOption: MTL.PipelineOptions
     MTLReadWriteTextureTier: MTL.ReadWriteTextureTier
     MTLArgumentBuffersTier: MTL.ArgumentBuffersTier
     MTLSparseTextureRegionAlignmentMode: MTL.SparseTextureRegionAlignmentMode
@@ -102,10 +102,10 @@ Enums:
     MTLStoreActionOptions: MTL.StoreActionOptions
     MTLMultisampleDepthResolveFilter: MTL.MultisampleDepthResolveFilter
     MTLMultisampleStencilResolveFilter: MTL.MultisampleStencilResolveFilter
-    MTLBlitOption: MTL.BlitOption
+    MTLBlitOption: MTL.BlitOptions
     MTLCommandBufferStatus: MTL.CommandBufferStatus
     MTLCommandBufferError: MTL.CommandBufferError
-    MTLCommandBufferErrorOption: MTL.CommandBufferErrorOption
+    MTLCommandBufferErrorOption: MTL.CommandBufferErrorOptions
     MTLCommandEncoderErrorState: MTL.CommandEncoderErrorState
     MTLDispatchType: MTL.DispatchType
     MTLCompareFunction: MTL.CompareFunction
@@ -125,7 +125,7 @@ Enums:
     MTLRenderStages: MTL.RenderStages
     MTLBlendFactor: MTL.BlendFactor
     MTLBlendOperation: MTL.BlendOperation
-    MTLColorWriteMask: MTL.ColorWriteMask
+    MTLColorWriteMask: MTL.ColorWriteMasks
     MTLPrimitiveTopologyClass: MTL.PrimitiveTopologyClass
     MTLTessellationPartitionMode: MTL.TessellationPartitionMode
     MTLTessellationFactorStepFunction: MTL.TessellationFactorStepFunction
@@ -170,7 +170,7 @@ ObjCClasses:
     MTLFunctionConstantValues: MTL.FunctionConstantValues
     MTLFunctionDescriptor: MTL.FunctionDescriptor
     MTLIntersectionFunctionDescriptor: MTL.IntersectionFunctionDescriptor
-    MTLCompileOptions: MTL.CompileOptions
+    MTLCompileOptions: MTL.CompileOption
     MTLVertexAttribute: MTL.VertexAttribute
     MTLAttribute: MTL.Attribute
     MTLFunctionConstant: MTL.FunctionConstant
