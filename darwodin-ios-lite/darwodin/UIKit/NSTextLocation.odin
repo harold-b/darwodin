@@ -19,3 +19,6 @@ NSTextLocation :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+NSTextLocation_VTable :: struct {
+}
+

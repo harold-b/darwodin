@@ -28,7 +28,7 @@ VertexAttribute_init :: proc "c" (self: ^VertexAttribute) -> ^VertexAttribute {
 
 
 @(objc_type=VertexAttribute, objc_name="initWithName")
-VertexAttribute_initWithName :: #force_inline proc "c" (self: ^VertexAttribute, name: ^NS.String, format: VertexFormat, offset: cffi.ulong, bufferIndex: cffi.ulong) -> ^VertexAttribute {
+VertexAttribute_initWithName :: #force_inline proc "c" (self: ^VertexAttribute, name: ^NS.String, format: VertexFormat, offset: NS.UInteger, bufferIndex: NS.UInteger) -> ^VertexAttribute {
     return msgSend(^VertexAttribute, self, "initWithName:format:offset:bufferIndex:", name, format, offset, bufferIndex)
 }
 @(objc_type=VertexAttribute, objc_name="name")
@@ -48,35 +48,35 @@ VertexAttribute_setFormat :: #force_inline proc "c" (self: ^VertexAttribute, for
     msgSend(nil, self, "setFormat:", format)
 }
 @(objc_type=VertexAttribute, objc_name="offset")
-VertexAttribute_offset :: #force_inline proc "c" (self: ^VertexAttribute) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "offset")
+VertexAttribute_offset :: #force_inline proc "c" (self: ^VertexAttribute) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "offset")
 }
 @(objc_type=VertexAttribute, objc_name="setOffset")
-VertexAttribute_setOffset :: #force_inline proc "c" (self: ^VertexAttribute, offset: cffi.ulong) {
+VertexAttribute_setOffset :: #force_inline proc "c" (self: ^VertexAttribute, offset: NS.UInteger) {
     msgSend(nil, self, "setOffset:", offset)
 }
 @(objc_type=VertexAttribute, objc_name="bufferIndex")
-VertexAttribute_bufferIndex :: #force_inline proc "c" (self: ^VertexAttribute) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "bufferIndex")
+VertexAttribute_bufferIndex :: #force_inline proc "c" (self: ^VertexAttribute) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "bufferIndex")
 }
 @(objc_type=VertexAttribute, objc_name="setBufferIndex")
-VertexAttribute_setBufferIndex :: #force_inline proc "c" (self: ^VertexAttribute, bufferIndex: cffi.ulong) {
+VertexAttribute_setBufferIndex :: #force_inline proc "c" (self: ^VertexAttribute, bufferIndex: NS.UInteger) {
     msgSend(nil, self, "setBufferIndex:", bufferIndex)
 }
 @(objc_type=VertexAttribute, objc_name="time")
-VertexAttribute_time :: #force_inline proc "c" (self: ^VertexAttribute) -> cffi.double {
-    return msgSend(cffi.double, self, "time")
+VertexAttribute_time :: #force_inline proc "c" (self: ^VertexAttribute) -> NS.TimeInterval {
+    return msgSend(NS.TimeInterval, self, "time")
 }
 @(objc_type=VertexAttribute, objc_name="setTime")
-VertexAttribute_setTime :: #force_inline proc "c" (self: ^VertexAttribute, time: cffi.double) {
+VertexAttribute_setTime :: #force_inline proc "c" (self: ^VertexAttribute, time: NS.TimeInterval) {
     msgSend(nil, self, "setTime:", time)
 }
 @(objc_type=VertexAttribute, objc_name="initializationValue")
-VertexAttribute_initializationValue :: #force_inline proc "c" (self: ^VertexAttribute) -> [4]cffi.float {
-    return msgSend([4]cffi.float, self, "initializationValue")
+VertexAttribute_initializationValue :: #force_inline proc "c" (self: ^VertexAttribute) -> vector_float4 {
+    return msgSend(vector_float4, self, "initializationValue")
 }
 @(objc_type=VertexAttribute, objc_name="setInitializationValue")
-VertexAttribute_setInitializationValue :: #force_inline proc "c" (self: ^VertexAttribute, initializationValue: [4]cffi.float) {
+VertexAttribute_setInitializationValue :: #force_inline proc "c" (self: ^VertexAttribute, initializationValue: vector_float4) {
     msgSend(nil, self, "setInitializationValue:", initializationValue)
 }
 @(objc_type=VertexAttribute, objc_name="load", objc_is_class_method=true)
@@ -108,36 +108,36 @@ VertexAttribute_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone
     return msgSend(id, VertexAttribute, "mutableCopyWithZone:", zone)
 }
 @(objc_type=VertexAttribute, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-VertexAttribute_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VertexAttribute, "instancesRespondToSelector:", aSelector)
+VertexAttribute_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, VertexAttribute, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=VertexAttribute, objc_name="conformsToProtocol", objc_is_class_method=true)
-VertexAttribute_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, VertexAttribute, "conformsToProtocol:", protocol)
+VertexAttribute_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, VertexAttribute, "conformsToProtocol:", protocol)
 }
 @(objc_type=VertexAttribute, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-VertexAttribute_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), VertexAttribute, "instanceMethodForSelector:", aSelector)
+VertexAttribute_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, VertexAttribute, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=VertexAttribute, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 VertexAttribute_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, VertexAttribute, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=VertexAttribute, objc_name="isSubclassOfClass", objc_is_class_method=true)
-VertexAttribute_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, VertexAttribute, "isSubclassOfClass:", aClass)
+VertexAttribute_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, VertexAttribute, "isSubclassOfClass:", aClass)
 }
 @(objc_type=VertexAttribute, objc_name="resolveClassMethod", objc_is_class_method=true)
-VertexAttribute_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VertexAttribute, "resolveClassMethod:", sel)
+VertexAttribute_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, VertexAttribute, "resolveClassMethod:", sel)
 }
 @(objc_type=VertexAttribute, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-VertexAttribute_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VertexAttribute, "resolveInstanceMethod:", sel)
+VertexAttribute_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, VertexAttribute, "resolveInstanceMethod:", sel)
 }
 @(objc_type=VertexAttribute, objc_name="hash", objc_is_class_method=true)
-VertexAttribute_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, VertexAttribute, "hash")
+VertexAttribute_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, VertexAttribute, "hash")
 }
 @(objc_type=VertexAttribute, objc_name="superclass", objc_is_class_method=true)
 VertexAttribute_superclass :: #force_inline proc "c" () -> Class {
@@ -156,11 +156,11 @@ VertexAttribute_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, VertexAttribute, "debugDescription")
 }
 @(objc_type=VertexAttribute, objc_name="version", objc_is_class_method=true)
-VertexAttribute_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, VertexAttribute, "version")
+VertexAttribute_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, VertexAttribute, "version")
 }
 @(objc_type=VertexAttribute, objc_name="setVersion", objc_is_class_method=true)
-VertexAttribute_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+VertexAttribute_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, VertexAttribute, "setVersion:", aVersion)
 }
 @(objc_type=VertexAttribute, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -172,20 +172,20 @@ VertexAttribute_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "
     msgSend(nil, VertexAttribute, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=VertexAttribute, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-VertexAttribute_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, VertexAttribute, "accessInstanceVariablesDirectly")
+VertexAttribute_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, VertexAttribute, "accessInstanceVariablesDirectly")
 }
 @(objc_type=VertexAttribute, objc_name="useStoredAccessor", objc_is_class_method=true)
-VertexAttribute_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, VertexAttribute, "useStoredAccessor")
+VertexAttribute_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, VertexAttribute, "useStoredAccessor")
 }
 @(objc_type=VertexAttribute, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 VertexAttribute_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, VertexAttribute, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=VertexAttribute, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-VertexAttribute_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, VertexAttribute, "automaticallyNotifiesObserversForKey:", key)
+VertexAttribute_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, VertexAttribute, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=VertexAttribute, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 VertexAttribute_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

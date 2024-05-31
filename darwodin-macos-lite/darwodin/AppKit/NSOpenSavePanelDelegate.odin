@@ -19,3 +19,6 @@ OpenSavePanelDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+OpenSavePanelDelegate_VTable :: struct {
+}
+

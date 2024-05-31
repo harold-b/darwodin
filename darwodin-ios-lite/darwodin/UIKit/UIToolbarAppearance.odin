@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIToolbarAppearance")
 ToolbarAppearance :: struct { using _: BarAppearance, }
 
+ToolbarAppearance_VTable :: struct {
+    super: BarAppearance_VTable,
+}
+

@@ -56,36 +56,36 @@ ObjectContainer_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone
     return msgSend(id, ObjectContainer, "mutableCopyWithZone:", zone)
 }
 @(objc_type=ObjectContainer, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-ObjectContainer_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, ObjectContainer, "instancesRespondToSelector:", aSelector)
+ObjectContainer_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, ObjectContainer, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=ObjectContainer, objc_name="conformsToProtocol", objc_is_class_method=true)
-ObjectContainer_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, ObjectContainer, "conformsToProtocol:", protocol)
+ObjectContainer_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, ObjectContainer, "conformsToProtocol:", protocol)
 }
 @(objc_type=ObjectContainer, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-ObjectContainer_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), ObjectContainer, "instanceMethodForSelector:", aSelector)
+ObjectContainer_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, ObjectContainer, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=ObjectContainer, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 ObjectContainer_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, ObjectContainer, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=ObjectContainer, objc_name="isSubclassOfClass", objc_is_class_method=true)
-ObjectContainer_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, ObjectContainer, "isSubclassOfClass:", aClass)
+ObjectContainer_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, ObjectContainer, "isSubclassOfClass:", aClass)
 }
 @(objc_type=ObjectContainer, objc_name="resolveClassMethod", objc_is_class_method=true)
-ObjectContainer_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, ObjectContainer, "resolveClassMethod:", sel)
+ObjectContainer_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, ObjectContainer, "resolveClassMethod:", sel)
 }
 @(objc_type=ObjectContainer, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-ObjectContainer_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, ObjectContainer, "resolveInstanceMethod:", sel)
+ObjectContainer_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, ObjectContainer, "resolveInstanceMethod:", sel)
 }
 @(objc_type=ObjectContainer, objc_name="hash", objc_is_class_method=true)
-ObjectContainer_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, ObjectContainer, "hash")
+ObjectContainer_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, ObjectContainer, "hash")
 }
 @(objc_type=ObjectContainer, objc_name="superclass", objc_is_class_method=true)
 ObjectContainer_superclass :: #force_inline proc "c" () -> Class {
@@ -104,11 +104,11 @@ ObjectContainer_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, ObjectContainer, "debugDescription")
 }
 @(objc_type=ObjectContainer, objc_name="version", objc_is_class_method=true)
-ObjectContainer_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, ObjectContainer, "version")
+ObjectContainer_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, ObjectContainer, "version")
 }
 @(objc_type=ObjectContainer, objc_name="setVersion", objc_is_class_method=true)
-ObjectContainer_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+ObjectContainer_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, ObjectContainer, "setVersion:", aVersion)
 }
 @(objc_type=ObjectContainer, objc_name="poseAsClass", objc_is_class_method=true)
@@ -124,20 +124,20 @@ ObjectContainer_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "
     msgSend(nil, ObjectContainer, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=ObjectContainer, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-ObjectContainer_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, ObjectContainer, "accessInstanceVariablesDirectly")
+ObjectContainer_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, ObjectContainer, "accessInstanceVariablesDirectly")
 }
 @(objc_type=ObjectContainer, objc_name="useStoredAccessor", objc_is_class_method=true)
-ObjectContainer_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, ObjectContainer, "useStoredAccessor")
+ObjectContainer_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, ObjectContainer, "useStoredAccessor")
 }
 @(objc_type=ObjectContainer, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 ObjectContainer_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, ObjectContainer, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=ObjectContainer, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-ObjectContainer_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, ObjectContainer, "automaticallyNotifiesObserversForKey:", key)
+ObjectContainer_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, ObjectContainer, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=ObjectContainer, objc_name="setKeys", objc_is_class_method=true)
 ObjectContainer_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

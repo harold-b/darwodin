@@ -19,3 +19,7 @@ InputViewController :: struct { using _: ViewController,
     using _: TextInputDelegate,
 }
 
+InputViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

@@ -17,3 +17,7 @@ BundleResourceRequest :: struct { using _: Object,
     using _: ProgressReporting,
 }
 
+BundleResourceRequest_VTable :: struct {
+    super: Object_VTable,
+}
+

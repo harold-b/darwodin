@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CASpringAnimation")
 SpringAnimation :: struct { using _: BasicAnimation, }
 
+SpringAnimation_VTable :: struct {
+    super: BasicAnimation_VTable,
+}
+

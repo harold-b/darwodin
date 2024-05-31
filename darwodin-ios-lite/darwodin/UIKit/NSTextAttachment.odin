@@ -21,3 +21,7 @@ NSTextAttachment :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+NSTextAttachment_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

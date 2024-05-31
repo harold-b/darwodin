@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPencilInteractionSqueeze")
 PencilInteractionSqueeze :: struct { using _: NS.Object, }
 
+PencilInteractionSqueeze_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

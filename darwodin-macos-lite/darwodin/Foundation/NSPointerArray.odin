@@ -19,3 +19,7 @@ PointerArray :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+PointerArray_VTable :: struct {
+    super: Object_VTable,
+}
+

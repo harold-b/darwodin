@@ -19,3 +19,6 @@ LetterformAwareAdjusting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+LetterformAwareAdjusting_VTable :: struct {
+}
+

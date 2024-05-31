@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSCountedSet")
 CountedSet :: struct { using _: MutableSet, }
 
+CountedSet_VTable :: struct {
+    super: MutableSet_VTable,
+}
+

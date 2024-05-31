@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIViewControllerRestoration")
 ViewControllerRestoration :: struct { using _: intrinsics.objc_object, }
 
+ViewControllerRestoration_VTable :: struct {
+}
+

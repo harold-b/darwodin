@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSEnergyFormatter")
 EnergyFormatter :: struct { using _: Formatter, }
 
+EnergyFormatter_VTable :: struct {
+    super: Formatter_VTable,
+}
+

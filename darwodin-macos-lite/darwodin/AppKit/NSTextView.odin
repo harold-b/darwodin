@@ -28,3 +28,7 @@ TextView :: struct { using _: Text,
     using _: TextContent,
 }
 
+TextView_VTable :: struct {
+    super: Text_VTable,
+}
+

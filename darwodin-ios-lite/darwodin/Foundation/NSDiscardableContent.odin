@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSDiscardableContent")
 DiscardableContent :: struct { using _: intrinsics.objc_object, }
 
+DiscardableContent_VTable :: struct {
+}
+

@@ -19,3 +19,6 @@ DragAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+DragAnimating_VTable :: struct {
+}
+

@@ -20,3 +20,7 @@ ContentUnavailableTextProperties :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+ContentUnavailableTextProperties_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

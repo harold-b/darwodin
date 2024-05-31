@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITextInputContext")
 TextInputContext :: struct { using _: NS.Object, }
 
+TextInputContext_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

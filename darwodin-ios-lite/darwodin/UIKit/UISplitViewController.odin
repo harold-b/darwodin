@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UISplitViewController")
 SplitViewController :: struct { using _: ViewController, }
 
+SplitViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

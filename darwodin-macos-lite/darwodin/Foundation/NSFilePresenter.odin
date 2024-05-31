@@ -17,3 +17,6 @@ FilePresenter :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
+FilePresenter_VTable :: struct {
+}
+

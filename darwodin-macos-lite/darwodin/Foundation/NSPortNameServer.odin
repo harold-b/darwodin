@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSPortNameServer")
 PortNameServer :: struct { using _: Object, }
 
+PortNameServer_VTable :: struct {
+    super: Object_VTable,
+}
+

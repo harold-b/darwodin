@@ -19,3 +19,6 @@ AccessibilityOutline :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityTable,
 }
 
+AccessibilityOutline_VTable :: struct {
+}
+

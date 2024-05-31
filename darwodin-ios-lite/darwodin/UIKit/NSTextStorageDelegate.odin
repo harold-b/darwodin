@@ -19,3 +19,6 @@ NSTextStorageDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+NSTextStorageDelegate_VTable :: struct {
+}
+

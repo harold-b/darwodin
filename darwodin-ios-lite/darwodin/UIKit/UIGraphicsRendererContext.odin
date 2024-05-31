@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIGraphicsRendererContext")
 GraphicsRendererContext :: struct { using _: NS.Object, }
 
+GraphicsRendererContext_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -19,3 +19,7 @@ ProgressIndicator :: struct { using _: View,
     using _: AccessibilityProgressIndicator,
 }
 
+ProgressIndicator_VTable :: struct {
+    super: View_VTable,
+}
+

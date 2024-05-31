@@ -19,3 +19,6 @@ PageViewControllerDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PageViewControllerDataSource_VTable :: struct {
+}
+

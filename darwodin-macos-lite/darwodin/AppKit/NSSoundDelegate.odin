@@ -19,3 +19,6 @@ SoundDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+SoundDelegate_VTable :: struct {
+}
+

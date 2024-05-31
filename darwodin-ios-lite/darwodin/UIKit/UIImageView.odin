@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIImageView")
 ImageView :: struct { using _: View, }
 
+ImageView_VTable :: struct {
+    super: View_VTable,
+}
+

@@ -19,3 +19,7 @@ BarButtonItemGroup :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
+BarButtonItemGroup_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

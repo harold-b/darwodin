@@ -19,3 +19,6 @@ AccessibilityRow :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 
+AccessibilityRow_VTable :: struct {
+}
+

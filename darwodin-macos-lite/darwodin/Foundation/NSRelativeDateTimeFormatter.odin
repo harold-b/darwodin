@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSRelativeDateTimeFormatter")
 RelativeDateTimeFormatter :: struct { using _: Formatter, }
 
+RelativeDateTimeFormatter_VTable :: struct {
+    super: Formatter_VTable,
+}
+

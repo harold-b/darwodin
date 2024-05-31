@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSPressureConfiguration")
 PressureConfiguration :: struct { using _: NS.Object, }
 
+PressureConfiguration_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

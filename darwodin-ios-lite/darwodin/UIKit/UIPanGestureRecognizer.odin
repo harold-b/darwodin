@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPanGestureRecognizer")
 PanGestureRecognizer :: struct { using _: GestureRecognizer, }
 
+PanGestureRecognizer_VTable :: struct {
+    super: GestureRecognizer_VTable,
+}
+

@@ -18,3 +18,7 @@ ConstraintLayoutManager :: struct { using _: NS.Object,
     using _: LayoutManager,
 }
 
+ConstraintLayoutManager_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

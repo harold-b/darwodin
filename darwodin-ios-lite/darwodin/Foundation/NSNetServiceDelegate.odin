@@ -17,3 +17,6 @@ NetServiceDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
+NetServiceDelegate_VTable :: struct {
+}
+

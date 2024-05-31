@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIDocumentPickerExtensionViewController")
 DocumentPickerExtensionViewController :: struct { using _: ViewController, }
 
+DocumentPickerExtensionViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

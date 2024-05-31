@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSLayoutConstraint")
 NSLayoutConstraint :: struct { using _: NS.Object, }
 
+NSLayoutConstraint_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

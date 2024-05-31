@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSWorkspace")
 Workspace :: struct { using _: NS.Object, }
 
+Workspace_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

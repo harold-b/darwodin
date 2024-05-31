@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UICalendarSelectionMultiDate")
 CalendarSelectionMultiDate :: struct { using _: CalendarSelection, }
 
+CalendarSelectionMultiDate_VTable :: struct {
+    super: CalendarSelection_VTable,
+}
+

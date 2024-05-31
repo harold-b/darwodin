@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSDistributedNotificationCenter")
 DistributedNotificationCenter :: struct { using _: NotificationCenter, }
 
+DistributedNotificationCenter_VTable :: struct {
+    super: NotificationCenter_VTable,
+}
+

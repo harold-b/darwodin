@@ -18,3 +18,7 @@ FileSecurity :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+FileSecurity_VTable :: struct {
+    super: Object_VTable,
+}
+

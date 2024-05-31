@@ -72,36 +72,36 @@ Skeleton_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id
     return msgSend(id, Skeleton, "mutableCopyWithZone:", zone)
 }
 @(objc_type=Skeleton, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Skeleton_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Skeleton, "instancesRespondToSelector:", aSelector)
+Skeleton_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, Skeleton, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=Skeleton, objc_name="conformsToProtocol", objc_is_class_method=true)
-Skeleton_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, Skeleton, "conformsToProtocol:", protocol)
+Skeleton_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, Skeleton, "conformsToProtocol:", protocol)
 }
 @(objc_type=Skeleton, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Skeleton_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), Skeleton, "instanceMethodForSelector:", aSelector)
+Skeleton_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, Skeleton, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=Skeleton, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 Skeleton_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, Skeleton, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=Skeleton, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Skeleton_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, Skeleton, "isSubclassOfClass:", aClass)
+Skeleton_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, Skeleton, "isSubclassOfClass:", aClass)
 }
 @(objc_type=Skeleton, objc_name="resolveClassMethod", objc_is_class_method=true)
-Skeleton_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Skeleton, "resolveClassMethod:", sel)
+Skeleton_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Skeleton, "resolveClassMethod:", sel)
 }
 @(objc_type=Skeleton, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Skeleton_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Skeleton, "resolveInstanceMethod:", sel)
+Skeleton_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Skeleton, "resolveInstanceMethod:", sel)
 }
 @(objc_type=Skeleton, objc_name="hash", objc_is_class_method=true)
-Skeleton_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, Skeleton, "hash")
+Skeleton_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, Skeleton, "hash")
 }
 @(objc_type=Skeleton, objc_name="superclass", objc_is_class_method=true)
 Skeleton_superclass :: #force_inline proc "c" () -> Class {
@@ -120,11 +120,11 @@ Skeleton_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, Skeleton, "debugDescription")
 }
 @(objc_type=Skeleton, objc_name="version", objc_is_class_method=true)
-Skeleton_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, Skeleton, "version")
+Skeleton_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, Skeleton, "version")
 }
 @(objc_type=Skeleton, objc_name="setVersion", objc_is_class_method=true)
-Skeleton_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+Skeleton_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, Skeleton, "setVersion:", aVersion)
 }
 @(objc_type=Skeleton, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -136,20 +136,20 @@ Skeleton_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTa
     msgSend(nil, Skeleton, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=Skeleton, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Skeleton_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Skeleton, "accessInstanceVariablesDirectly")
+Skeleton_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Skeleton, "accessInstanceVariablesDirectly")
 }
 @(objc_type=Skeleton, objc_name="useStoredAccessor", objc_is_class_method=true)
-Skeleton_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Skeleton, "useStoredAccessor")
+Skeleton_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Skeleton, "useStoredAccessor")
 }
 @(objc_type=Skeleton, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 Skeleton_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, Skeleton, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=Skeleton, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Skeleton_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, Skeleton, "automaticallyNotifiesObserversForKey:", key)
+Skeleton_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, Skeleton, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=Skeleton, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 Skeleton_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITabBarAppearance")
 TabBarAppearance :: struct { using _: BarAppearance, }
 
+TabBarAppearance_VTable :: struct {
+    super: BarAppearance_VTable,
+}
+

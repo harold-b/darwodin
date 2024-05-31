@@ -19,3 +19,6 @@ NSTextViewportLayoutControllerDelegate :: struct { using _: intrinsics.objc_obje
     using _: NS.ObjectProtocol,
 }
 
+NSTextViewportLayoutControllerDelegate_VTable :: struct {
+}
+

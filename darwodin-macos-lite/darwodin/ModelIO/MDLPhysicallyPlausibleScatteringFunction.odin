@@ -26,8 +26,8 @@ PhysicallyPlausibleScatteringFunction_init :: proc "c" (self: ^PhysicallyPlausib
 
 
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="version")
-PhysicallyPlausibleScatteringFunction_version :: #force_inline proc "c" (self: ^PhysicallyPlausibleScatteringFunction) -> cffi.long {
-    return msgSend(cffi.long, self, "version")
+PhysicallyPlausibleScatteringFunction_version :: #force_inline proc "c" (self: ^PhysicallyPlausibleScatteringFunction) -> NS.Integer {
+    return msgSend(NS.Integer, self, "version")
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="subsurface")
 PhysicallyPlausibleScatteringFunction_subsurface :: #force_inline proc "c" (self: ^PhysicallyPlausibleScatteringFunction) -> ^MaterialProperty {
@@ -102,36 +102,36 @@ PhysicallyPlausibleScatteringFunction_mutableCopyWithZone :: #force_inline proc 
     return msgSend(id, PhysicallyPlausibleScatteringFunction, "mutableCopyWithZone:", zone)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleScatteringFunction, "instancesRespondToSelector:", aSelector)
+PhysicallyPlausibleScatteringFunction_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, PhysicallyPlausibleScatteringFunction, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="conformsToProtocol", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleScatteringFunction, "conformsToProtocol:", protocol)
+PhysicallyPlausibleScatteringFunction_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, PhysicallyPlausibleScatteringFunction, "conformsToProtocol:", protocol)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), PhysicallyPlausibleScatteringFunction, "instanceMethodForSelector:", aSelector)
+PhysicallyPlausibleScatteringFunction_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, PhysicallyPlausibleScatteringFunction, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 PhysicallyPlausibleScatteringFunction_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, PhysicallyPlausibleScatteringFunction, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="isSubclassOfClass", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleScatteringFunction, "isSubclassOfClass:", aClass)
+PhysicallyPlausibleScatteringFunction_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, PhysicallyPlausibleScatteringFunction, "isSubclassOfClass:", aClass)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="resolveClassMethod", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleScatteringFunction, "resolveClassMethod:", sel)
+PhysicallyPlausibleScatteringFunction_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PhysicallyPlausibleScatteringFunction, "resolveClassMethod:", sel)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleScatteringFunction, "resolveInstanceMethod:", sel)
+PhysicallyPlausibleScatteringFunction_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PhysicallyPlausibleScatteringFunction, "resolveInstanceMethod:", sel)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="hash", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, PhysicallyPlausibleScatteringFunction, "hash")
+PhysicallyPlausibleScatteringFunction_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, PhysicallyPlausibleScatteringFunction, "hash")
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="superclass", objc_is_class_method=true)
 PhysicallyPlausibleScatteringFunction_superclass :: #force_inline proc "c" () -> Class {
@@ -150,11 +150,11 @@ PhysicallyPlausibleScatteringFunction_debugDescription :: #force_inline proc "c"
     return msgSend(^NS.String, PhysicallyPlausibleScatteringFunction, "debugDescription")
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="versionStatic", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_versionStatic :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, PhysicallyPlausibleScatteringFunction, "version")
+PhysicallyPlausibleScatteringFunction_versionStatic :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, PhysicallyPlausibleScatteringFunction, "version")
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="setVersion", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+PhysicallyPlausibleScatteringFunction_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, PhysicallyPlausibleScatteringFunction, "setVersion:", aVersion)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="poseAsClass", objc_is_class_method=true)
@@ -170,20 +170,20 @@ PhysicallyPlausibleScatteringFunction_cancelPreviousPerformRequestsWithTarget_ :
     msgSend(nil, PhysicallyPlausibleScatteringFunction, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleScatteringFunction, "accessInstanceVariablesDirectly")
+PhysicallyPlausibleScatteringFunction_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PhysicallyPlausibleScatteringFunction, "accessInstanceVariablesDirectly")
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="useStoredAccessor", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleScatteringFunction, "useStoredAccessor")
+PhysicallyPlausibleScatteringFunction_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PhysicallyPlausibleScatteringFunction, "useStoredAccessor")
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 PhysicallyPlausibleScatteringFunction_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, PhysicallyPlausibleScatteringFunction, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-PhysicallyPlausibleScatteringFunction_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleScatteringFunction, "automaticallyNotifiesObserversForKey:", key)
+PhysicallyPlausibleScatteringFunction_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, PhysicallyPlausibleScatteringFunction, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=PhysicallyPlausibleScatteringFunction, objc_name="setKeys", objc_is_class_method=true)
 PhysicallyPlausibleScatteringFunction_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

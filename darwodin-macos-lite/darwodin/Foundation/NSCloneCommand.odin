@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSCloneCommand")
 CloneCommand :: struct { using _: ScriptCommand, }
 
+CloneCommand_VTable :: struct {
+    super: ScriptCommand_VTable,
+}
+

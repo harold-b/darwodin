@@ -86,36 +86,36 @@ NormalMapTexture_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZon
     return msgSend(id, NormalMapTexture, "mutableCopyWithZone:", zone)
 }
 @(objc_type=NormalMapTexture, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-NormalMapTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, NormalMapTexture, "instancesRespondToSelector:", aSelector)
+NormalMapTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, NormalMapTexture, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=NormalMapTexture, objc_name="conformsToProtocol", objc_is_class_method=true)
-NormalMapTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, NormalMapTexture, "conformsToProtocol:", protocol)
+NormalMapTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, NormalMapTexture, "conformsToProtocol:", protocol)
 }
 @(objc_type=NormalMapTexture, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-NormalMapTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), NormalMapTexture, "instanceMethodForSelector:", aSelector)
+NormalMapTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, NormalMapTexture, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=NormalMapTexture, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 NormalMapTexture_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, NormalMapTexture, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=NormalMapTexture, objc_name="isSubclassOfClass", objc_is_class_method=true)
-NormalMapTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, NormalMapTexture, "isSubclassOfClass:", aClass)
+NormalMapTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, NormalMapTexture, "isSubclassOfClass:", aClass)
 }
 @(objc_type=NormalMapTexture, objc_name="resolveClassMethod", objc_is_class_method=true)
-NormalMapTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, NormalMapTexture, "resolveClassMethod:", sel)
+NormalMapTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, NormalMapTexture, "resolveClassMethod:", sel)
 }
 @(objc_type=NormalMapTexture, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-NormalMapTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, NormalMapTexture, "resolveInstanceMethod:", sel)
+NormalMapTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, NormalMapTexture, "resolveInstanceMethod:", sel)
 }
 @(objc_type=NormalMapTexture, objc_name="hash", objc_is_class_method=true)
-NormalMapTexture_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, NormalMapTexture, "hash")
+NormalMapTexture_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, NormalMapTexture, "hash")
 }
 @(objc_type=NormalMapTexture, objc_name="superclass", objc_is_class_method=true)
 NormalMapTexture_superclass :: #force_inline proc "c" () -> Class {
@@ -134,11 +134,11 @@ NormalMapTexture_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, NormalMapTexture, "debugDescription")
 }
 @(objc_type=NormalMapTexture, objc_name="version", objc_is_class_method=true)
-NormalMapTexture_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, NormalMapTexture, "version")
+NormalMapTexture_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, NormalMapTexture, "version")
 }
 @(objc_type=NormalMapTexture, objc_name="setVersion", objc_is_class_method=true)
-NormalMapTexture_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+NormalMapTexture_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, NormalMapTexture, "setVersion:", aVersion)
 }
 @(objc_type=NormalMapTexture, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -150,20 +150,20 @@ NormalMapTexture_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc 
     msgSend(nil, NormalMapTexture, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=NormalMapTexture, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-NormalMapTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, NormalMapTexture, "accessInstanceVariablesDirectly")
+NormalMapTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, NormalMapTexture, "accessInstanceVariablesDirectly")
 }
 @(objc_type=NormalMapTexture, objc_name="useStoredAccessor", objc_is_class_method=true)
-NormalMapTexture_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, NormalMapTexture, "useStoredAccessor")
+NormalMapTexture_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, NormalMapTexture, "useStoredAccessor")
 }
 @(objc_type=NormalMapTexture, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 NormalMapTexture_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, NormalMapTexture, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=NormalMapTexture, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-NormalMapTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, NormalMapTexture, "automaticallyNotifiesObserversForKey:", key)
+NormalMapTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, NormalMapTexture, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=NormalMapTexture, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 NormalMapTexture_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

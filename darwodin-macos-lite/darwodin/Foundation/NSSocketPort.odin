@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSSocketPort")
 SocketPort :: struct { using _: Port, }
 
+SocketPort_VTable :: struct {
+    super: Port_VTable,
+}
+

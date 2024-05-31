@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLSessionWebSocketTask")
 URLSessionWebSocketTask :: struct { using _: URLSessionTask, }
 
+URLSessionWebSocketTask_VTable :: struct {
+    super: URLSessionTask_VTable,
+}
+

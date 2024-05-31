@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSUndoManager")
 UndoManager :: struct { using _: Object, }
 
+UndoManager_VTable :: struct {
+    super: Object_VTable,
+}
+

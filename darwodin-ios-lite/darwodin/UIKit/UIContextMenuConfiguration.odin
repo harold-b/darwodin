@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIContextMenuConfiguration")
 ContextMenuConfiguration :: struct { using _: NS.Object, }
 
+ContextMenuConfiguration_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -19,3 +19,7 @@ Action :: struct { using _: MenuElement,
     using _: MenuLeaf,
 }
 
+Action_VTable :: struct {
+    super: MenuElement_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSWorkspaceAuthorization")
 WorkspaceAuthorization :: struct { using _: NS.Object, }
 
+WorkspaceAuthorization_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

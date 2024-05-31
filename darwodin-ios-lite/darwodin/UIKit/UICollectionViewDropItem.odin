@@ -19,3 +19,6 @@ CollectionViewDropItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+CollectionViewDropItem_VTable :: struct {
+}
+

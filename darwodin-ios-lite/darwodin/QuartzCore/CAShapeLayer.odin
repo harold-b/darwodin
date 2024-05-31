@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CAShapeLayer")
 ShapeLayer :: struct { using _: Layer, }
 
+ShapeLayer_VTable :: struct {
+    super: Layer_VTable,
+}
+

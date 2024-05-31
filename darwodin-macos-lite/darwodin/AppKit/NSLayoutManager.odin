@@ -19,3 +19,7 @@ LayoutManager :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+LayoutManager_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

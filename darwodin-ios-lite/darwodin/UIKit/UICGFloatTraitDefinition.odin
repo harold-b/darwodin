@@ -19,3 +19,6 @@ CGFloatTraitDefinition :: struct { using _: intrinsics.objc_object,
     using _: TraitDefinition,
 }
 
+CGFloatTraitDefinition_VTable :: struct {
+}
+

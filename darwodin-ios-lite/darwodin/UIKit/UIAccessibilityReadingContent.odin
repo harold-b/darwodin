@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIAccessibilityReadingContent")
 AccessibilityReadingContent :: struct { using _: intrinsics.objc_object, }
 
+AccessibilityReadingContent_VTable :: struct {
+}
+

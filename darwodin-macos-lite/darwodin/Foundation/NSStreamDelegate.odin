@@ -17,3 +17,6 @@ StreamDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
+StreamDelegate_VTable :: struct {
+}
+

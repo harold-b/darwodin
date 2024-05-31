@@ -24,3 +24,7 @@ Menu :: struct { using _: NS.Object,
     using _: Accessibility,
 }
 
+Menu_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -20,3 +20,7 @@ TableView :: struct { using _: ScrollView,
     using _: DataSourceTranslating,
 }
 
+TableView_VTable :: struct {
+    super: ScrollView_VTable,
+}
+

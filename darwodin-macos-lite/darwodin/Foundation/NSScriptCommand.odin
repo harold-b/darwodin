@@ -17,3 +17,7 @@ ScriptCommand :: struct { using _: Object,
     using _: Coding,
 }
 
+ScriptCommand_VTable :: struct {
+    super: Object_VTable,
+}
+

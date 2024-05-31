@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CATiledLayer")
 TiledLayer :: struct { using _: Layer, }
 
+TiledLayer_VTable :: struct {
+    super: Layer_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UICollectionViewFocusUpdateContext")
 CollectionViewFocusUpdateContext :: struct { using _: FocusUpdateContext, }
 
+CollectionViewFocusUpdateContext_VTable :: struct {
+    super: FocusUpdateContext_VTable,
+}
+

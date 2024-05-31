@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIDocumentProperties")
 DocumentProperties :: struct { using _: NS.Object, }
 
+DocumentProperties_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

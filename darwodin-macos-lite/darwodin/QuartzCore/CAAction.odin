@@ -16,3 +16,6 @@ import NS "../Foundation"
 @(objc_class="CAAction")
 Action :: struct { using _: intrinsics.objc_object, }
 
+Action_VTable :: struct {
+}
+

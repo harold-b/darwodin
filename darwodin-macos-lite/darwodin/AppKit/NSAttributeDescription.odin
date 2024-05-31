@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSAttributeDescription")
 AttributeDescription :: struct { using _: PropertyDescription, }
 
+AttributeDescription_VTable :: struct {
+    super: PropertyDescription_VTable,
+}
+

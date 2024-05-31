@@ -19,3 +19,7 @@ DatePicker :: struct { using _: Control,
     using _: NS.Coding,
 }
 
+DatePicker_VTable :: struct {
+    super: Control_VTable,
+}
+

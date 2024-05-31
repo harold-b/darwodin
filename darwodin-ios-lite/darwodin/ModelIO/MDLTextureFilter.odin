@@ -102,36 +102,36 @@ TextureFilter_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) 
     return msgSend(id, TextureFilter, "mutableCopyWithZone:", zone)
 }
 @(objc_type=TextureFilter, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-TextureFilter_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TextureFilter, "instancesRespondToSelector:", aSelector)
+TextureFilter_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, TextureFilter, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=TextureFilter, objc_name="conformsToProtocol", objc_is_class_method=true)
-TextureFilter_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, TextureFilter, "conformsToProtocol:", protocol)
+TextureFilter_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, TextureFilter, "conformsToProtocol:", protocol)
 }
 @(objc_type=TextureFilter, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-TextureFilter_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), TextureFilter, "instanceMethodForSelector:", aSelector)
+TextureFilter_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, TextureFilter, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=TextureFilter, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 TextureFilter_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, TextureFilter, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=TextureFilter, objc_name="isSubclassOfClass", objc_is_class_method=true)
-TextureFilter_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, TextureFilter, "isSubclassOfClass:", aClass)
+TextureFilter_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, TextureFilter, "isSubclassOfClass:", aClass)
 }
 @(objc_type=TextureFilter, objc_name="resolveClassMethod", objc_is_class_method=true)
-TextureFilter_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TextureFilter, "resolveClassMethod:", sel)
+TextureFilter_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TextureFilter, "resolveClassMethod:", sel)
 }
 @(objc_type=TextureFilter, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-TextureFilter_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TextureFilter, "resolveInstanceMethod:", sel)
+TextureFilter_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TextureFilter, "resolveInstanceMethod:", sel)
 }
 @(objc_type=TextureFilter, objc_name="hash", objc_is_class_method=true)
-TextureFilter_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, TextureFilter, "hash")
+TextureFilter_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, TextureFilter, "hash")
 }
 @(objc_type=TextureFilter, objc_name="superclass", objc_is_class_method=true)
 TextureFilter_superclass :: #force_inline proc "c" () -> Class {
@@ -150,11 +150,11 @@ TextureFilter_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, TextureFilter, "debugDescription")
 }
 @(objc_type=TextureFilter, objc_name="version", objc_is_class_method=true)
-TextureFilter_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, TextureFilter, "version")
+TextureFilter_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, TextureFilter, "version")
 }
 @(objc_type=TextureFilter, objc_name="setVersion", objc_is_class_method=true)
-TextureFilter_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+TextureFilter_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, TextureFilter, "setVersion:", aVersion)
 }
 @(objc_type=TextureFilter, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -166,20 +166,20 @@ TextureFilter_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c"
     msgSend(nil, TextureFilter, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=TextureFilter, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-TextureFilter_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TextureFilter, "accessInstanceVariablesDirectly")
+TextureFilter_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TextureFilter, "accessInstanceVariablesDirectly")
 }
 @(objc_type=TextureFilter, objc_name="useStoredAccessor", objc_is_class_method=true)
-TextureFilter_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TextureFilter, "useStoredAccessor")
+TextureFilter_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TextureFilter, "useStoredAccessor")
 }
 @(objc_type=TextureFilter, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 TextureFilter_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, TextureFilter, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=TextureFilter, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-TextureFilter_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, TextureFilter, "automaticallyNotifiesObserversForKey:", key)
+TextureFilter_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, TextureFilter, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=TextureFilter, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 TextureFilter_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

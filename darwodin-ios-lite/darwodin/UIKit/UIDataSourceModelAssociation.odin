@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIDataSourceModelAssociation")
 DataSourceModelAssociation :: struct { using _: intrinsics.objc_object, }
 
+DataSourceModelAssociation_VTable :: struct {
+}
+

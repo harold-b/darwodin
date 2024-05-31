@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSDecimalNumberBehaviors")
 DecimalNumberBehaviors :: struct { using _: intrinsics.objc_object, }
 
+DecimalNumberBehaviors_VTable :: struct {
+}
+

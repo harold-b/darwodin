@@ -19,3 +19,6 @@ NavigationBarDelegate :: struct { using _: intrinsics.objc_object,
     using _: BarPositioningDelegate,
 }
 
+NavigationBarDelegate_VTable :: struct {
+}
+

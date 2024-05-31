@@ -19,3 +19,6 @@ OutlineViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 
+OutlineViewDelegate_VTable :: struct {
+}
+

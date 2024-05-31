@@ -30,11 +30,11 @@ PhysicallyPlausibleLight_setColorByTemperature :: #force_inline proc "c" (self: 
     msgSend(nil, self, "setColorByTemperature:", temperature)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="color")
-PhysicallyPlausibleLight_color :: #force_inline proc "c" (self: ^PhysicallyPlausibleLight) -> ^CG.Color {
-    return msgSend(^CG.Color, self, "color")
+PhysicallyPlausibleLight_color :: #force_inline proc "c" (self: ^PhysicallyPlausibleLight) -> CG.ColorRef {
+    return msgSend(CG.ColorRef, self, "color")
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="setColor")
-PhysicallyPlausibleLight_setColor :: #force_inline proc "c" (self: ^PhysicallyPlausibleLight, color: ^CG.Color) {
+PhysicallyPlausibleLight_setColor :: #force_inline proc "c" (self: ^PhysicallyPlausibleLight, color: CG.ColorRef) {
     msgSend(nil, self, "setColor:", color)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="lumens")
@@ -106,36 +106,36 @@ PhysicallyPlausibleLight_mutableCopyWithZone :: #force_inline proc "c" (zone: ^N
     return msgSend(id, PhysicallyPlausibleLight, "mutableCopyWithZone:", zone)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-PhysicallyPlausibleLight_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleLight, "instancesRespondToSelector:", aSelector)
+PhysicallyPlausibleLight_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, PhysicallyPlausibleLight, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="conformsToProtocol", objc_is_class_method=true)
-PhysicallyPlausibleLight_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleLight, "conformsToProtocol:", protocol)
+PhysicallyPlausibleLight_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, PhysicallyPlausibleLight, "conformsToProtocol:", protocol)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-PhysicallyPlausibleLight_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), PhysicallyPlausibleLight, "instanceMethodForSelector:", aSelector)
+PhysicallyPlausibleLight_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, PhysicallyPlausibleLight, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 PhysicallyPlausibleLight_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, PhysicallyPlausibleLight, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="isSubclassOfClass", objc_is_class_method=true)
-PhysicallyPlausibleLight_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleLight, "isSubclassOfClass:", aClass)
+PhysicallyPlausibleLight_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, PhysicallyPlausibleLight, "isSubclassOfClass:", aClass)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="resolveClassMethod", objc_is_class_method=true)
-PhysicallyPlausibleLight_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleLight, "resolveClassMethod:", sel)
+PhysicallyPlausibleLight_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PhysicallyPlausibleLight, "resolveClassMethod:", sel)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-PhysicallyPlausibleLight_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleLight, "resolveInstanceMethod:", sel)
+PhysicallyPlausibleLight_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PhysicallyPlausibleLight, "resolveInstanceMethod:", sel)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="hash", objc_is_class_method=true)
-PhysicallyPlausibleLight_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, PhysicallyPlausibleLight, "hash")
+PhysicallyPlausibleLight_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, PhysicallyPlausibleLight, "hash")
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="superclass", objc_is_class_method=true)
 PhysicallyPlausibleLight_superclass :: #force_inline proc "c" () -> Class {
@@ -154,11 +154,11 @@ PhysicallyPlausibleLight_debugDescription :: #force_inline proc "c" () -> ^NS.St
     return msgSend(^NS.String, PhysicallyPlausibleLight, "debugDescription")
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="version", objc_is_class_method=true)
-PhysicallyPlausibleLight_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, PhysicallyPlausibleLight, "version")
+PhysicallyPlausibleLight_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, PhysicallyPlausibleLight, "version")
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="setVersion", objc_is_class_method=true)
-PhysicallyPlausibleLight_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+PhysicallyPlausibleLight_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, PhysicallyPlausibleLight, "setVersion:", aVersion)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="poseAsClass", objc_is_class_method=true)
@@ -174,20 +174,20 @@ PhysicallyPlausibleLight_cancelPreviousPerformRequestsWithTarget_ :: #force_inli
     msgSend(nil, PhysicallyPlausibleLight, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-PhysicallyPlausibleLight_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleLight, "accessInstanceVariablesDirectly")
+PhysicallyPlausibleLight_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PhysicallyPlausibleLight, "accessInstanceVariablesDirectly")
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="useStoredAccessor", objc_is_class_method=true)
-PhysicallyPlausibleLight_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleLight, "useStoredAccessor")
+PhysicallyPlausibleLight_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PhysicallyPlausibleLight, "useStoredAccessor")
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 PhysicallyPlausibleLight_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, PhysicallyPlausibleLight, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-PhysicallyPlausibleLight_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, PhysicallyPlausibleLight, "automaticallyNotifiesObserversForKey:", key)
+PhysicallyPlausibleLight_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, PhysicallyPlausibleLight, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=PhysicallyPlausibleLight, objc_name="setKeys", objc_is_class_method=true)
 PhysicallyPlausibleLight_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

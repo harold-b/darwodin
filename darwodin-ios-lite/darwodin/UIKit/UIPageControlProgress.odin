@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPageControlProgress")
 PageControlProgress :: struct { using _: NS.Object, }
 
+PageControlProgress_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -19,3 +19,6 @@ DocumentInteractionControllerDelegate :: struct { using _: intrinsics.objc_objec
     using _: NS.ObjectProtocol,
 }
 
+DocumentInteractionControllerDelegate_VTable :: struct {
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITargetedDragPreview")
 TargetedDragPreview :: struct { using _: TargetedPreview, }
 
+TargetedDragPreview_VTable :: struct {
+    super: TargetedPreview_VTable,
+}
+

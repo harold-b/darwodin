@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSViewAnimation")
 ViewAnimation :: struct { using _: Animation, }
 
+ViewAnimation_VTable :: struct {
+    super: Animation_VTable,
+}
+

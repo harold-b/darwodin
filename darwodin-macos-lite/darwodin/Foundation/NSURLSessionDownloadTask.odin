@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLSessionDownloadTask")
 URLSessionDownloadTask :: struct { using _: URLSessionTask, }
 
+URLSessionDownloadTask_VTable :: struct {
+    super: URLSessionTask_VTable,
+}
+

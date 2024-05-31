@@ -19,3 +19,7 @@ TableViewDiffableDataSource :: struct { using _: NS.Object,
     using _: TableViewDataSource,
 }
 
+TableViewDiffableDataSource_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

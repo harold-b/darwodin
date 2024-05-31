@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="NSManagedObjectID")
 ManagedObjectID :: struct { using _: intrinsics.objc_object, }
 
+ManagedObjectID_VTable :: struct {
+}
+

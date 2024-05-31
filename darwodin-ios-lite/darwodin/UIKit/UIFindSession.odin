@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIFindSession")
 FindSession :: struct { using _: NS.Object, }
 
+FindSession_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

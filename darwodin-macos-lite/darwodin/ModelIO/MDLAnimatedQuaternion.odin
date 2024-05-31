@@ -26,36 +26,36 @@ AnimatedQuaternion_init :: proc "c" (self: ^AnimatedQuaternion) -> ^AnimatedQuat
 
 
 @(objc_type=AnimatedQuaternion, objc_name="setFloatQuaternion")
-AnimatedQuaternion_setFloatQuaternion :: #force_inline proc "c" (self: ^AnimatedQuaternion, value: quaternion128, time: cffi.double) {
+AnimatedQuaternion_setFloatQuaternion :: #force_inline proc "c" (self: ^AnimatedQuaternion, value: quaternion128, time: NS.TimeInterval) {
     msgSend(nil, self, "setFloatQuaternion:atTime:", value, time)
 }
 @(objc_type=AnimatedQuaternion, objc_name="setDoubleQuaternion")
-AnimatedQuaternion_setDoubleQuaternion :: #force_inline proc "c" (self: ^AnimatedQuaternion, value: quaternion256, time: cffi.double) {
+AnimatedQuaternion_setDoubleQuaternion :: #force_inline proc "c" (self: ^AnimatedQuaternion, value: quaternion256, time: NS.TimeInterval) {
     msgSend(nil, self, "setDoubleQuaternion:atTime:", value, time)
 }
 @(objc_type=AnimatedQuaternion, objc_name="floatQuaternionAtTime")
-AnimatedQuaternion_floatQuaternionAtTime :: #force_inline proc "c" (self: ^AnimatedQuaternion, time: cffi.double) -> quaternion128 {
+AnimatedQuaternion_floatQuaternionAtTime :: #force_inline proc "c" (self: ^AnimatedQuaternion, time: NS.TimeInterval) -> quaternion128 {
     return msgSend(quaternion128, self, "floatQuaternionAtTime:", time)
 }
 @(objc_type=AnimatedQuaternion, objc_name="doubleQuaternionAtTime")
-AnimatedQuaternion_doubleQuaternionAtTime :: #force_inline proc "c" (self: ^AnimatedQuaternion, time: cffi.double) -> quaternion256 {
+AnimatedQuaternion_doubleQuaternionAtTime :: #force_inline proc "c" (self: ^AnimatedQuaternion, time: NS.TimeInterval) -> quaternion256 {
     return msgSend(quaternion256, self, "doubleQuaternionAtTime:", time)
 }
 @(objc_type=AnimatedQuaternion, objc_name="resetWithFloatQuaternionArray")
-AnimatedQuaternion_resetWithFloatQuaternionArray :: #force_inline proc "c" (self: ^AnimatedQuaternion, valuesArray: ^quaternion128, timesArray: ^cffi.double, count: cffi.ulong) {
+AnimatedQuaternion_resetWithFloatQuaternionArray :: #force_inline proc "c" (self: ^AnimatedQuaternion, valuesArray: ^quaternion128, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
     msgSend(nil, self, "resetWithFloatQuaternionArray:atTimes:count:", valuesArray, timesArray, count)
 }
 @(objc_type=AnimatedQuaternion, objc_name="resetWithDoubleQuaternionArray")
-AnimatedQuaternion_resetWithDoubleQuaternionArray :: #force_inline proc "c" (self: ^AnimatedQuaternion, valuesArray: ^quaternion256, timesArray: ^cffi.double, count: cffi.ulong) {
+AnimatedQuaternion_resetWithDoubleQuaternionArray :: #force_inline proc "c" (self: ^AnimatedQuaternion, valuesArray: ^quaternion256, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
     msgSend(nil, self, "resetWithDoubleQuaternionArray:atTimes:count:", valuesArray, timesArray, count)
 }
 @(objc_type=AnimatedQuaternion, objc_name="getFloatQuaternionArray")
-AnimatedQuaternion_getFloatQuaternionArray :: #force_inline proc "c" (self: ^AnimatedQuaternion, valuesArray: ^quaternion128, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getFloatQuaternionArray:maxCount:", valuesArray, maxCount)
+AnimatedQuaternion_getFloatQuaternionArray :: #force_inline proc "c" (self: ^AnimatedQuaternion, valuesArray: ^quaternion128, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getFloatQuaternionArray:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=AnimatedQuaternion, objc_name="getDoubleQuaternionArray")
-AnimatedQuaternion_getDoubleQuaternionArray :: #force_inline proc "c" (self: ^AnimatedQuaternion, valuesArray: ^quaternion256, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getDoubleQuaternionArray:maxCount:", valuesArray, maxCount)
+AnimatedQuaternion_getDoubleQuaternionArray :: #force_inline proc "c" (self: ^AnimatedQuaternion, valuesArray: ^quaternion256, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getDoubleQuaternionArray:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=AnimatedQuaternion, objc_name="load", objc_is_class_method=true)
 AnimatedQuaternion_load :: #force_inline proc "c" () {
@@ -86,36 +86,36 @@ AnimatedQuaternion_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZ
     return msgSend(id, AnimatedQuaternion, "mutableCopyWithZone:", zone)
 }
 @(objc_type=AnimatedQuaternion, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-AnimatedQuaternion_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedQuaternion, "instancesRespondToSelector:", aSelector)
+AnimatedQuaternion_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, AnimatedQuaternion, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=AnimatedQuaternion, objc_name="conformsToProtocol", objc_is_class_method=true)
-AnimatedQuaternion_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedQuaternion, "conformsToProtocol:", protocol)
+AnimatedQuaternion_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, AnimatedQuaternion, "conformsToProtocol:", protocol)
 }
 @(objc_type=AnimatedQuaternion, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-AnimatedQuaternion_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), AnimatedQuaternion, "instanceMethodForSelector:", aSelector)
+AnimatedQuaternion_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, AnimatedQuaternion, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=AnimatedQuaternion, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 AnimatedQuaternion_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, AnimatedQuaternion, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=AnimatedQuaternion, objc_name="isSubclassOfClass", objc_is_class_method=true)
-AnimatedQuaternion_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedQuaternion, "isSubclassOfClass:", aClass)
+AnimatedQuaternion_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, AnimatedQuaternion, "isSubclassOfClass:", aClass)
 }
 @(objc_type=AnimatedQuaternion, objc_name="resolveClassMethod", objc_is_class_method=true)
-AnimatedQuaternion_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedQuaternion, "resolveClassMethod:", sel)
+AnimatedQuaternion_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimatedQuaternion, "resolveClassMethod:", sel)
 }
 @(objc_type=AnimatedQuaternion, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-AnimatedQuaternion_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedQuaternion, "resolveInstanceMethod:", sel)
+AnimatedQuaternion_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimatedQuaternion, "resolveInstanceMethod:", sel)
 }
 @(objc_type=AnimatedQuaternion, objc_name="hash", objc_is_class_method=true)
-AnimatedQuaternion_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, AnimatedQuaternion, "hash")
+AnimatedQuaternion_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, AnimatedQuaternion, "hash")
 }
 @(objc_type=AnimatedQuaternion, objc_name="superclass", objc_is_class_method=true)
 AnimatedQuaternion_superclass :: #force_inline proc "c" () -> Class {
@@ -134,11 +134,11 @@ AnimatedQuaternion_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, AnimatedQuaternion, "debugDescription")
 }
 @(objc_type=AnimatedQuaternion, objc_name="version", objc_is_class_method=true)
-AnimatedQuaternion_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, AnimatedQuaternion, "version")
+AnimatedQuaternion_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, AnimatedQuaternion, "version")
 }
 @(objc_type=AnimatedQuaternion, objc_name="setVersion", objc_is_class_method=true)
-AnimatedQuaternion_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+AnimatedQuaternion_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, AnimatedQuaternion, "setVersion:", aVersion)
 }
 @(objc_type=AnimatedQuaternion, objc_name="poseAsClass", objc_is_class_method=true)
@@ -154,20 +154,20 @@ AnimatedQuaternion_cancelPreviousPerformRequestsWithTarget_ :: #force_inline pro
     msgSend(nil, AnimatedQuaternion, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=AnimatedQuaternion, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-AnimatedQuaternion_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedQuaternion, "accessInstanceVariablesDirectly")
+AnimatedQuaternion_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimatedQuaternion, "accessInstanceVariablesDirectly")
 }
 @(objc_type=AnimatedQuaternion, objc_name="useStoredAccessor", objc_is_class_method=true)
-AnimatedQuaternion_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedQuaternion, "useStoredAccessor")
+AnimatedQuaternion_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimatedQuaternion, "useStoredAccessor")
 }
 @(objc_type=AnimatedQuaternion, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 AnimatedQuaternion_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, AnimatedQuaternion, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=AnimatedQuaternion, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-AnimatedQuaternion_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedQuaternion, "automaticallyNotifiesObserversForKey:", key)
+AnimatedQuaternion_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, AnimatedQuaternion, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=AnimatedQuaternion, objc_name="setKeys", objc_is_class_method=true)
 AnimatedQuaternion_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

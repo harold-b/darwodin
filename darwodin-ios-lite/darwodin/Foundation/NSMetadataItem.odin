@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMetadataItem")
 MetadataItem :: struct { using _: Object, }
 
+MetadataItem_VTable :: struct {
+    super: Object_VTable,
+}
+

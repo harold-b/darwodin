@@ -200,14 +200,18 @@ HazardTrackingMode :: enum cffi.ulong {
 
 /// MTLResourceOptions
 ResourceOption :: enum cffi.ulong {
-    CPUCacheModeWriteCombined = 0,
-    StorageModeManaged = 4,
-    StorageModePrivate = 5,
-    HazardTrackingModeUntracked = 8,
-    HazardTrackingModeTracked = 9,
-    OptionCPUCacheModeWriteCombined = 0,
+    CPUCacheModeDefaultCache = 0,
+    CPUCacheModeWriteCombined = 1,
+    StorageModeShared = 0,
+    StorageModeManaged = 16,
+    StorageModePrivate = 32,
+    StorageModeMemoryless = 48,
+    HazardTrackingModeDefault = 0,
+    HazardTrackingModeUntracked = 256,
+    HazardTrackingModeTracked = 512,
+    OptionCPUCacheModeDefault = 0,
+    OptionCPUCacheModeWriteCombined = 1,
 }
-ResourceOptions :: bit_set[ResourceOption; cffi.ulong]
 
 /// MTLPixelFormat
 PixelFormat :: enum cffi.ulong {
@@ -1084,6 +1088,8 @@ ColorWriteMask :: enum cffi.ulong {
     Alpha = 0,
 }
 ColorWriteMasks :: bit_set[ColorWriteMask; cffi.ulong]
+
+ColorWriteMask_All :: ColorWriteMasks{ .Red, .Green, .Blue, .Alpha,  }
 
 /// MTLPrimitiveTopologyClass
 PrimitiveTopologyClass :: enum cffi.ulong {

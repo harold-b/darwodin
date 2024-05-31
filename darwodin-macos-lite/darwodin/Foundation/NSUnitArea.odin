@@ -17,3 +17,7 @@ UnitArea :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitArea_VTable :: struct {
+    super: Dimension_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSPDFImageRep")
 PDFImageRep :: struct { using _: ImageRep, }
 
+PDFImageRep_VTable :: struct {
+    super: ImageRep_VTable,
+}
+

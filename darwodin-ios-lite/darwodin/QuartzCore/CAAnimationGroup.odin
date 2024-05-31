@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CAAnimationGroup")
 AnimationGroup :: struct { using _: Animation, }
 
+AnimationGroup_VTable :: struct {
+    super: Animation_VTable,
+}
+

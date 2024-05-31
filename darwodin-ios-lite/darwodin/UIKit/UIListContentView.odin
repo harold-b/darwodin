@@ -19,3 +19,7 @@ ListContentView :: struct { using _: View,
     using _: ContentView,
 }
 
+ListContentView_VTable :: struct {
+    super: View_VTable,
+}
+

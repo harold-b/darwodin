@@ -20,3 +20,6 @@ DropSession :: struct { using _: intrinsics.objc_object,
     using _: NS.ProgressReporting,
 }
 
+DropSession_VTable :: struct {
+}
+

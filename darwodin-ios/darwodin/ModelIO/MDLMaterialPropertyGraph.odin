@@ -68,36 +68,36 @@ MaterialPropertyGraph_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._
     return msgSend(id, MaterialPropertyGraph, "mutableCopyWithZone:", zone)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-MaterialPropertyGraph_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyGraph, "instancesRespondToSelector:", aSelector)
+MaterialPropertyGraph_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, MaterialPropertyGraph, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="conformsToProtocol", objc_is_class_method=true)
-MaterialPropertyGraph_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyGraph, "conformsToProtocol:", protocol)
+MaterialPropertyGraph_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, MaterialPropertyGraph, "conformsToProtocol:", protocol)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-MaterialPropertyGraph_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), MaterialPropertyGraph, "instanceMethodForSelector:", aSelector)
+MaterialPropertyGraph_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, MaterialPropertyGraph, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 MaterialPropertyGraph_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, MaterialPropertyGraph, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="isSubclassOfClass", objc_is_class_method=true)
-MaterialPropertyGraph_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyGraph, "isSubclassOfClass:", aClass)
+MaterialPropertyGraph_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, MaterialPropertyGraph, "isSubclassOfClass:", aClass)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="resolveClassMethod", objc_is_class_method=true)
-MaterialPropertyGraph_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyGraph, "resolveClassMethod:", sel)
+MaterialPropertyGraph_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, MaterialPropertyGraph, "resolveClassMethod:", sel)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-MaterialPropertyGraph_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyGraph, "resolveInstanceMethod:", sel)
+MaterialPropertyGraph_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, MaterialPropertyGraph, "resolveInstanceMethod:", sel)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="hash", objc_is_class_method=true)
-MaterialPropertyGraph_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, MaterialPropertyGraph, "hash")
+MaterialPropertyGraph_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, MaterialPropertyGraph, "hash")
 }
 @(objc_type=MaterialPropertyGraph, objc_name="superclass", objc_is_class_method=true)
 MaterialPropertyGraph_superclass :: #force_inline proc "c" () -> Class {
@@ -116,11 +116,11 @@ MaterialPropertyGraph_debugDescription :: #force_inline proc "c" () -> ^NS.Strin
     return msgSend(^NS.String, MaterialPropertyGraph, "debugDescription")
 }
 @(objc_type=MaterialPropertyGraph, objc_name="version", objc_is_class_method=true)
-MaterialPropertyGraph_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, MaterialPropertyGraph, "version")
+MaterialPropertyGraph_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, MaterialPropertyGraph, "version")
 }
 @(objc_type=MaterialPropertyGraph, objc_name="setVersion", objc_is_class_method=true)
-MaterialPropertyGraph_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+MaterialPropertyGraph_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, MaterialPropertyGraph, "setVersion:", aVersion)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -132,20 +132,20 @@ MaterialPropertyGraph_cancelPreviousPerformRequestsWithTarget_ :: #force_inline 
     msgSend(nil, MaterialPropertyGraph, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-MaterialPropertyGraph_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyGraph, "accessInstanceVariablesDirectly")
+MaterialPropertyGraph_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, MaterialPropertyGraph, "accessInstanceVariablesDirectly")
 }
 @(objc_type=MaterialPropertyGraph, objc_name="useStoredAccessor", objc_is_class_method=true)
-MaterialPropertyGraph_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyGraph, "useStoredAccessor")
+MaterialPropertyGraph_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, MaterialPropertyGraph, "useStoredAccessor")
 }
 @(objc_type=MaterialPropertyGraph, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 MaterialPropertyGraph_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, MaterialPropertyGraph, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-MaterialPropertyGraph_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyGraph, "automaticallyNotifiesObserversForKey:", key)
+MaterialPropertyGraph_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, MaterialPropertyGraph, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=MaterialPropertyGraph, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 MaterialPropertyGraph_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

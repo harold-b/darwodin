@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSGlyphGenerator")
 GlyphGenerator :: struct { using _: NS.Object, }
 
+GlyphGenerator_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

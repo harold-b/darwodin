@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSColorWell")
 ColorWell :: struct { using _: Control, }
 
+ColorWell_VTable :: struct {
+    super: Control_VTable,
+}
+

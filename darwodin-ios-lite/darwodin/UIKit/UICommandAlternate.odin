@@ -20,3 +20,7 @@ CommandAlternate :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+CommandAlternate_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

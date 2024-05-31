@@ -19,3 +19,6 @@ SharingServicePickerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+SharingServicePickerDelegate_VTable :: struct {
+}
+

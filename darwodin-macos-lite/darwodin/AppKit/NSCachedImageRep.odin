@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSCachedImageRep")
 CachedImageRep :: struct { using _: ImageRep, }
 
+CachedImageRep_VTable :: struct {
+    super: ImageRep_VTable,
+}
+

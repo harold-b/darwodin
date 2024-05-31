@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPreviewInteraction")
 PreviewInteraction :: struct { using _: NS.Object, }
 
+PreviewInteraction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

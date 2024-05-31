@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSUserDefaults")
 UserDefaults :: struct { using _: Object, }
 
+UserDefaults_VTable :: struct {
+    super: Object_VTable,
+}
+

@@ -19,3 +19,7 @@ WindowSceneActivationInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
+WindowSceneActivationInteraction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

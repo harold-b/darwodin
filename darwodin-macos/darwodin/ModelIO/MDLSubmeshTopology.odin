@@ -38,11 +38,11 @@ SubmeshTopology_setFaceTopology :: #force_inline proc "c" (self: ^SubmeshTopolog
     msgSend(nil, self, "setFaceTopology:", faceTopology)
 }
 @(objc_type=SubmeshTopology, objc_name="faceCount")
-SubmeshTopology_faceCount :: #force_inline proc "c" (self: ^SubmeshTopology) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "faceCount")
+SubmeshTopology_faceCount :: #force_inline proc "c" (self: ^SubmeshTopology) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "faceCount")
 }
 @(objc_type=SubmeshTopology, objc_name="setFaceCount")
-SubmeshTopology_setFaceCount :: #force_inline proc "c" (self: ^SubmeshTopology, faceCount: cffi.ulong) {
+SubmeshTopology_setFaceCount :: #force_inline proc "c" (self: ^SubmeshTopology, faceCount: NS.UInteger) {
     msgSend(nil, self, "setFaceCount:", faceCount)
 }
 @(objc_type=SubmeshTopology, objc_name="vertexCreaseIndices")
@@ -62,11 +62,11 @@ SubmeshTopology_setVertexCreases :: #force_inline proc "c" (self: ^SubmeshTopolo
     msgSend(nil, self, "setVertexCreases:", vertexCreases)
 }
 @(objc_type=SubmeshTopology, objc_name="vertexCreaseCount")
-SubmeshTopology_vertexCreaseCount :: #force_inline proc "c" (self: ^SubmeshTopology) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "vertexCreaseCount")
+SubmeshTopology_vertexCreaseCount :: #force_inline proc "c" (self: ^SubmeshTopology) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "vertexCreaseCount")
 }
 @(objc_type=SubmeshTopology, objc_name="setVertexCreaseCount")
-SubmeshTopology_setVertexCreaseCount :: #force_inline proc "c" (self: ^SubmeshTopology, vertexCreaseCount: cffi.ulong) {
+SubmeshTopology_setVertexCreaseCount :: #force_inline proc "c" (self: ^SubmeshTopology, vertexCreaseCount: NS.UInteger) {
     msgSend(nil, self, "setVertexCreaseCount:", vertexCreaseCount)
 }
 @(objc_type=SubmeshTopology, objc_name="edgeCreaseIndices")
@@ -86,11 +86,11 @@ SubmeshTopology_setEdgeCreases :: #force_inline proc "c" (self: ^SubmeshTopology
     msgSend(nil, self, "setEdgeCreases:", edgeCreases)
 }
 @(objc_type=SubmeshTopology, objc_name="edgeCreaseCount")
-SubmeshTopology_edgeCreaseCount :: #force_inline proc "c" (self: ^SubmeshTopology) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "edgeCreaseCount")
+SubmeshTopology_edgeCreaseCount :: #force_inline proc "c" (self: ^SubmeshTopology) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "edgeCreaseCount")
 }
 @(objc_type=SubmeshTopology, objc_name="setEdgeCreaseCount")
-SubmeshTopology_setEdgeCreaseCount :: #force_inline proc "c" (self: ^SubmeshTopology, edgeCreaseCount: cffi.ulong) {
+SubmeshTopology_setEdgeCreaseCount :: #force_inline proc "c" (self: ^SubmeshTopology, edgeCreaseCount: NS.UInteger) {
     msgSend(nil, self, "setEdgeCreaseCount:", edgeCreaseCount)
 }
 @(objc_type=SubmeshTopology, objc_name="holes")
@@ -102,11 +102,11 @@ SubmeshTopology_setHoles :: #force_inline proc "c" (self: ^SubmeshTopology, hole
     msgSend(nil, self, "setHoles:", holes)
 }
 @(objc_type=SubmeshTopology, objc_name="holeCount")
-SubmeshTopology_holeCount :: #force_inline proc "c" (self: ^SubmeshTopology) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "holeCount")
+SubmeshTopology_holeCount :: #force_inline proc "c" (self: ^SubmeshTopology) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "holeCount")
 }
 @(objc_type=SubmeshTopology, objc_name="setHoleCount")
-SubmeshTopology_setHoleCount :: #force_inline proc "c" (self: ^SubmeshTopology, holeCount: cffi.ulong) {
+SubmeshTopology_setHoleCount :: #force_inline proc "c" (self: ^SubmeshTopology, holeCount: NS.UInteger) {
     msgSend(nil, self, "setHoleCount:", holeCount)
 }
 @(objc_type=SubmeshTopology, objc_name="load", objc_is_class_method=true)
@@ -138,36 +138,36 @@ SubmeshTopology_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone
     return msgSend(id, SubmeshTopology, "mutableCopyWithZone:", zone)
 }
 @(objc_type=SubmeshTopology, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-SubmeshTopology_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, SubmeshTopology, "instancesRespondToSelector:", aSelector)
+SubmeshTopology_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, SubmeshTopology, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=SubmeshTopology, objc_name="conformsToProtocol", objc_is_class_method=true)
-SubmeshTopology_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, SubmeshTopology, "conformsToProtocol:", protocol)
+SubmeshTopology_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, SubmeshTopology, "conformsToProtocol:", protocol)
 }
 @(objc_type=SubmeshTopology, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-SubmeshTopology_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), SubmeshTopology, "instanceMethodForSelector:", aSelector)
+SubmeshTopology_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, SubmeshTopology, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=SubmeshTopology, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 SubmeshTopology_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, SubmeshTopology, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=SubmeshTopology, objc_name="isSubclassOfClass", objc_is_class_method=true)
-SubmeshTopology_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, SubmeshTopology, "isSubclassOfClass:", aClass)
+SubmeshTopology_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, SubmeshTopology, "isSubclassOfClass:", aClass)
 }
 @(objc_type=SubmeshTopology, objc_name="resolveClassMethod", objc_is_class_method=true)
-SubmeshTopology_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, SubmeshTopology, "resolveClassMethod:", sel)
+SubmeshTopology_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, SubmeshTopology, "resolveClassMethod:", sel)
 }
 @(objc_type=SubmeshTopology, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-SubmeshTopology_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, SubmeshTopology, "resolveInstanceMethod:", sel)
+SubmeshTopology_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, SubmeshTopology, "resolveInstanceMethod:", sel)
 }
 @(objc_type=SubmeshTopology, objc_name="hash", objc_is_class_method=true)
-SubmeshTopology_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, SubmeshTopology, "hash")
+SubmeshTopology_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, SubmeshTopology, "hash")
 }
 @(objc_type=SubmeshTopology, objc_name="superclass", objc_is_class_method=true)
 SubmeshTopology_superclass :: #force_inline proc "c" () -> Class {
@@ -186,11 +186,11 @@ SubmeshTopology_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, SubmeshTopology, "debugDescription")
 }
 @(objc_type=SubmeshTopology, objc_name="version", objc_is_class_method=true)
-SubmeshTopology_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, SubmeshTopology, "version")
+SubmeshTopology_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, SubmeshTopology, "version")
 }
 @(objc_type=SubmeshTopology, objc_name="setVersion", objc_is_class_method=true)
-SubmeshTopology_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+SubmeshTopology_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, SubmeshTopology, "setVersion:", aVersion)
 }
 @(objc_type=SubmeshTopology, objc_name="poseAsClass", objc_is_class_method=true)
@@ -206,20 +206,20 @@ SubmeshTopology_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "
     msgSend(nil, SubmeshTopology, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=SubmeshTopology, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-SubmeshTopology_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, SubmeshTopology, "accessInstanceVariablesDirectly")
+SubmeshTopology_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, SubmeshTopology, "accessInstanceVariablesDirectly")
 }
 @(objc_type=SubmeshTopology, objc_name="useStoredAccessor", objc_is_class_method=true)
-SubmeshTopology_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, SubmeshTopology, "useStoredAccessor")
+SubmeshTopology_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, SubmeshTopology, "useStoredAccessor")
 }
 @(objc_type=SubmeshTopology, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 SubmeshTopology_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, SubmeshTopology, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=SubmeshTopology, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-SubmeshTopology_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, SubmeshTopology, "automaticallyNotifiesObserversForKey:", key)
+SubmeshTopology_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, SubmeshTopology, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=SubmeshTopology, objc_name="setKeys", objc_is_class_method=true)
 SubmeshTopology_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

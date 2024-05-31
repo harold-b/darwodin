@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSScrubberFlowLayout")
 ScrubberFlowLayout :: struct { using _: ScrubberLayout, }
 
+ScrubberFlowLayout_VTable :: struct {
+    super: ScrubberLayout_VTable,
+}
+

@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSExtensionContext")
 ExtensionContext :: struct { using _: Object, }
 
+ExtensionContext_VTable :: struct {
+    super: Object_VTable,
+}
+

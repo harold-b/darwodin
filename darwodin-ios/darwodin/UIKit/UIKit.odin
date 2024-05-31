@@ -1688,6 +1688,10 @@ InterfaceOrientationMask :: enum cffi.ulong {
 }
 InterfaceOrientationMasks :: bit_set[InterfaceOrientationMask; cffi.ulong]
 
+InterfaceOrientationMask_Landscape :: InterfaceOrientationMasks{ .Landscape, .All,  }
+InterfaceOrientationMask_All :: InterfaceOrientationMasks{ .LandscapeRight, .PortraitUpsideDown, .Landscape, .All,  }
+InterfaceOrientationMask_AllButUpsideDown :: InterfaceOrientationMasks{ .LandscapeRight, .Landscape, .All,  }
+
 /// UIDeviceBatteryState
 DeviceBatteryState :: enum cffi.long {
     Unknown = 0,
@@ -3252,6 +3256,8 @@ ScrollTypeMask :: enum cffi.long {
     Continuous = 1,
 }
 ScrollTypeMasks :: bit_set[ScrollTypeMask; cffi.long]
+
+ScrollTypeMask_All :: ScrollTypeMasks{ .Continuous, .All,  }
 
 /// UINavigationControllerOperation
 NavigationControllerOperation :: enum cffi.long {

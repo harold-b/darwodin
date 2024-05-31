@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSActionCell")
 ActionCell :: struct { using _: Cell, }
 
+ActionCell_VTable :: struct {
+    super: Cell_VTable,
+}
+

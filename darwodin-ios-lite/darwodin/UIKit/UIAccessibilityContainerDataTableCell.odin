@@ -19,3 +19,6 @@ AccessibilityContainerDataTableCell :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+AccessibilityContainerDataTableCell_VTable :: struct {
+}
+

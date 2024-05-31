@@ -19,3 +19,6 @@ PopoverPresentationControllerSourceItem :: struct { using _: intrinsics.objc_obj
     using _: NS.ObjectProtocol,
 }
 
+PopoverPresentationControllerSourceItem_VTable :: struct {
+}
+

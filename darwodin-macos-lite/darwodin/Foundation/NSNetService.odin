@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSNetService")
 NetService :: struct { using _: Object, }
 
+NetService_VTable :: struct {
+    super: Object_VTable,
+}
+

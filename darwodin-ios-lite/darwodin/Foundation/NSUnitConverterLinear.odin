@@ -17,3 +17,7 @@ UnitConverterLinear :: struct { using _: UnitConverter,
     using _: SecureCoding,
 }
 
+UnitConverterLinear_VTable :: struct {
+    super: UnitConverter_VTable,
+}
+

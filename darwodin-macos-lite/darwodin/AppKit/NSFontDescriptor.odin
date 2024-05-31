@@ -20,3 +20,7 @@ FontDescriptor :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+FontDescriptor_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

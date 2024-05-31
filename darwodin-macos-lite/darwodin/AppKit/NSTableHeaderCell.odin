@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSTableHeaderCell")
 TableHeaderCell :: struct { using _: TextFieldCell, }
 
+TableHeaderCell_VTable :: struct {
+    super: TextFieldCell_VTable,
+}
+

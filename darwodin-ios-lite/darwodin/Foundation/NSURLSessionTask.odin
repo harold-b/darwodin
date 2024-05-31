@@ -18,3 +18,7 @@ URLSessionTask :: struct { using _: Object,
     using _: ProgressReporting,
 }
 
+URLSessionTask_VTable :: struct {
+    super: Object_VTable,
+}
+

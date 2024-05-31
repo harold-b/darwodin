@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMetadataQueryResultGroup")
 MetadataQueryResultGroup :: struct { using _: Object, }
 
+MetadataQueryResultGroup_VTable :: struct {
+    super: Object_VTable,
+}
+

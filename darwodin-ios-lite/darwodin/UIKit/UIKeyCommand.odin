@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIKeyCommand")
 KeyCommand :: struct { using _: Command, }
 
+KeyCommand_VTable :: struct {
+    super: Command_VTable,
+}
+

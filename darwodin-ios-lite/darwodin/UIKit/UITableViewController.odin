@@ -20,3 +20,7 @@ TableViewController :: struct { using _: ViewController,
     using _: TableViewDataSource,
 }
 
+TableViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

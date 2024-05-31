@@ -17,3 +17,7 @@ UnitIlluminance :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitIlluminance_VTable :: struct {
+    super: Dimension_VTable,
+}
+

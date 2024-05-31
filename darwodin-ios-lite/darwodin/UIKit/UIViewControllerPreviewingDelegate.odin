@@ -19,3 +19,6 @@ ViewControllerPreviewingDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+ViewControllerPreviewingDelegate_VTable :: struct {
+}
+

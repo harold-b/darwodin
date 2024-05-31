@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSHTTPCookieStorage")
 HTTPCookieStorage :: struct { using _: Object, }
 
+HTTPCookieStorage_VTable :: struct {
+    super: Object_VTable,
+}
+

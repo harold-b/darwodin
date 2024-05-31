@@ -22,7 +22,7 @@ MeshBufferAllocator :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=MeshBufferAllocator, objc_name="newZone")
-MeshBufferAllocator_newZone :: #force_inline proc "c" (self: ^MeshBufferAllocator, capacity: cffi.ulong) -> ^MeshBufferZone {
+MeshBufferAllocator_newZone :: #force_inline proc "c" (self: ^MeshBufferAllocator, capacity: NS.UInteger) -> ^MeshBufferZone {
     return msgSend(^MeshBufferZone, self, "newZone:", capacity)
 }
 @(objc_type=MeshBufferAllocator, objc_name="newZoneForBuffersWithSize")
@@ -30,7 +30,7 @@ MeshBufferAllocator_newZoneForBuffersWithSize :: #force_inline proc "c" (self: ^
     return msgSend(^MeshBufferZone, self, "newZoneForBuffersWithSize:andType:", sizes, types)
 }
 @(objc_type=MeshBufferAllocator, objc_name="newBuffer")
-MeshBufferAllocator_newBuffer :: #force_inline proc "c" (self: ^MeshBufferAllocator, length: cffi.ulong, type: MeshBufferType) -> ^MeshBuffer {
+MeshBufferAllocator_newBuffer :: #force_inline proc "c" (self: ^MeshBufferAllocator, length: NS.UInteger, type: MeshBufferType) -> ^MeshBuffer {
     return msgSend(^MeshBuffer, self, "newBuffer:type:", length, type)
 }
 @(objc_type=MeshBufferAllocator, objc_name="newBufferWithData")
@@ -38,7 +38,7 @@ MeshBufferAllocator_newBufferWithData :: #force_inline proc "c" (self: ^MeshBuff
     return msgSend(^MeshBuffer, self, "newBufferWithData:type:", data, type)
 }
 @(objc_type=MeshBufferAllocator, objc_name="newBufferFromZone_length_type")
-MeshBufferAllocator_newBufferFromZone_length_type :: #force_inline proc "c" (self: ^MeshBufferAllocator, zone: ^MeshBufferZone, length: cffi.ulong, type: MeshBufferType) -> ^MeshBuffer {
+MeshBufferAllocator_newBufferFromZone_length_type :: #force_inline proc "c" (self: ^MeshBufferAllocator, zone: ^MeshBufferZone, length: NS.UInteger, type: MeshBufferType) -> ^MeshBuffer {
     return msgSend(^MeshBuffer, self, "newBufferFromZone:length:type:", zone, length, type)
 }
 @(objc_type=MeshBufferAllocator, objc_name="newBufferFromZone_data_type")

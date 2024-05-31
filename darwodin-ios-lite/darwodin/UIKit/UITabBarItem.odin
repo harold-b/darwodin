@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITabBarItem")
 TabBarItem :: struct { using _: BarItem, }
 
+TabBarItem_VTable :: struct {
+    super: BarItem_VTable,
+}
+

@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSSpellServer")
 SpellServer :: struct { using _: Object, }
 
+SpellServer_VTable :: struct {
+    super: Object_VTable,
+}
+

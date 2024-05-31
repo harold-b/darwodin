@@ -26,12 +26,12 @@ Light_init :: proc "c" (self: ^Light) -> ^Light {
 
 
 @(objc_type=Light, objc_name="irradianceAtPoint_")
-Light_irradianceAtPoint_ :: #force_inline proc "c" (self: ^Light, point: [3]cffi.float) -> ^CG.Color {
-    return msgSend(^CG.Color, self, "irradianceAtPoint:", point)
+Light_irradianceAtPoint_ :: #force_inline proc "c" (self: ^Light, point: vector_float3) -> CG.ColorRef {
+    return msgSend(CG.ColorRef, self, "irradianceAtPoint:", point)
 }
 @(objc_type=Light, objc_name="irradianceAtPoint_colorSpace")
-Light_irradianceAtPoint_colorSpace :: #force_inline proc "c" (self: ^Light, point: [3]cffi.float, colorSpace: ^CG.ColorSpace) -> ^CG.Color {
-    return msgSend(^CG.Color, self, "irradianceAtPoint:colorSpace:", point, colorSpace)
+Light_irradianceAtPoint_colorSpace :: #force_inline proc "c" (self: ^Light, point: vector_float3, colorSpace: CG.ColorSpaceRef) -> CG.ColorRef {
+    return msgSend(CG.ColorRef, self, "irradianceAtPoint:colorSpace:", point, colorSpace)
 }
 @(objc_type=Light, objc_name="lightType")
 Light_lightType :: #force_inline proc "c" (self: ^Light) -> LightType {
@@ -78,36 +78,36 @@ Light_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
     return msgSend(id, Light, "mutableCopyWithZone:", zone)
 }
 @(objc_type=Light, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Light_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Light, "instancesRespondToSelector:", aSelector)
+Light_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, Light, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=Light, objc_name="conformsToProtocol", objc_is_class_method=true)
-Light_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, Light, "conformsToProtocol:", protocol)
+Light_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, Light, "conformsToProtocol:", protocol)
 }
 @(objc_type=Light, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Light_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), Light, "instanceMethodForSelector:", aSelector)
+Light_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, Light, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=Light, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 Light_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, Light, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=Light, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Light_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, Light, "isSubclassOfClass:", aClass)
+Light_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, Light, "isSubclassOfClass:", aClass)
 }
 @(objc_type=Light, objc_name="resolveClassMethod", objc_is_class_method=true)
-Light_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Light, "resolveClassMethod:", sel)
+Light_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Light, "resolveClassMethod:", sel)
 }
 @(objc_type=Light, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Light_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Light, "resolveInstanceMethod:", sel)
+Light_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Light, "resolveInstanceMethod:", sel)
 }
 @(objc_type=Light, objc_name="hash", objc_is_class_method=true)
-Light_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, Light, "hash")
+Light_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, Light, "hash")
 }
 @(objc_type=Light, objc_name="superclass", objc_is_class_method=true)
 Light_superclass :: #force_inline proc "c" () -> Class {
@@ -126,11 +126,11 @@ Light_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, Light, "debugDescription")
 }
 @(objc_type=Light, objc_name="version", objc_is_class_method=true)
-Light_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, Light, "version")
+Light_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, Light, "version")
 }
 @(objc_type=Light, objc_name="setVersion", objc_is_class_method=true)
-Light_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+Light_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, Light, "setVersion:", aVersion)
 }
 @(objc_type=Light, objc_name="poseAsClass", objc_is_class_method=true)
@@ -146,20 +146,20 @@ Light_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarge
     msgSend(nil, Light, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=Light, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Light_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Light, "accessInstanceVariablesDirectly")
+Light_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Light, "accessInstanceVariablesDirectly")
 }
 @(objc_type=Light, objc_name="useStoredAccessor", objc_is_class_method=true)
-Light_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Light, "useStoredAccessor")
+Light_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Light, "useStoredAccessor")
 }
 @(objc_type=Light, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 Light_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, Light, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=Light, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Light_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, Light, "automaticallyNotifiesObserversForKey:", key)
+Light_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, Light, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=Light, objc_name="setKeys", objc_is_class_method=true)
 Light_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

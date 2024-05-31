@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UISwipeGestureRecognizer")
 SwipeGestureRecognizer :: struct { using _: GestureRecognizer, }
 
+SwipeGestureRecognizer_VTable :: struct {
+    super: GestureRecognizer_VTable,
+}
+

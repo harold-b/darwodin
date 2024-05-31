@@ -23,3 +23,7 @@ Cell :: struct { using _: NS.Object,
     using _: Accessibility,
 }
 
+Cell_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

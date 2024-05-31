@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIObjectRestoration")
 ObjectRestoration :: struct { using _: intrinsics.objc_object, }
 
+ObjectRestoration_VTable :: struct {
+}
+

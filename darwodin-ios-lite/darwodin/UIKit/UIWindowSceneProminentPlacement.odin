@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIWindowSceneProminentPlacement")
 WindowSceneProminentPlacement :: struct { using _: WindowScenePlacement, }
 
+WindowSceneProminentPlacement_VTable :: struct {
+    super: WindowScenePlacement_VTable,
+}
+

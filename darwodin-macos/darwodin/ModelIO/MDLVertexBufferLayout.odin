@@ -28,15 +28,15 @@ VertexBufferLayout_init :: proc "c" (self: ^VertexBufferLayout) -> ^VertexBuffer
 
 
 @(objc_type=VertexBufferLayout, objc_name="initWithStride")
-VertexBufferLayout_initWithStride :: #force_inline proc "c" (self: ^VertexBufferLayout, stride: cffi.ulong) -> ^VertexBufferLayout {
+VertexBufferLayout_initWithStride :: #force_inline proc "c" (self: ^VertexBufferLayout, stride: NS.UInteger) -> ^VertexBufferLayout {
     return msgSend(^VertexBufferLayout, self, "initWithStride:", stride)
 }
 @(objc_type=VertexBufferLayout, objc_name="stride")
-VertexBufferLayout_stride :: #force_inline proc "c" (self: ^VertexBufferLayout) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "stride")
+VertexBufferLayout_stride :: #force_inline proc "c" (self: ^VertexBufferLayout) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "stride")
 }
 @(objc_type=VertexBufferLayout, objc_name="setStride")
-VertexBufferLayout_setStride :: #force_inline proc "c" (self: ^VertexBufferLayout, stride: cffi.ulong) {
+VertexBufferLayout_setStride :: #force_inline proc "c" (self: ^VertexBufferLayout, stride: NS.UInteger) {
     msgSend(nil, self, "setStride:", stride)
 }
 @(objc_type=VertexBufferLayout, objc_name="load", objc_is_class_method=true)
@@ -68,36 +68,36 @@ VertexBufferLayout_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZ
     return msgSend(id, VertexBufferLayout, "mutableCopyWithZone:", zone)
 }
 @(objc_type=VertexBufferLayout, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-VertexBufferLayout_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VertexBufferLayout, "instancesRespondToSelector:", aSelector)
+VertexBufferLayout_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, VertexBufferLayout, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=VertexBufferLayout, objc_name="conformsToProtocol", objc_is_class_method=true)
-VertexBufferLayout_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, VertexBufferLayout, "conformsToProtocol:", protocol)
+VertexBufferLayout_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, VertexBufferLayout, "conformsToProtocol:", protocol)
 }
 @(objc_type=VertexBufferLayout, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-VertexBufferLayout_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), VertexBufferLayout, "instanceMethodForSelector:", aSelector)
+VertexBufferLayout_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, VertexBufferLayout, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=VertexBufferLayout, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 VertexBufferLayout_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, VertexBufferLayout, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=VertexBufferLayout, objc_name="isSubclassOfClass", objc_is_class_method=true)
-VertexBufferLayout_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, VertexBufferLayout, "isSubclassOfClass:", aClass)
+VertexBufferLayout_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, VertexBufferLayout, "isSubclassOfClass:", aClass)
 }
 @(objc_type=VertexBufferLayout, objc_name="resolveClassMethod", objc_is_class_method=true)
-VertexBufferLayout_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VertexBufferLayout, "resolveClassMethod:", sel)
+VertexBufferLayout_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, VertexBufferLayout, "resolveClassMethod:", sel)
 }
 @(objc_type=VertexBufferLayout, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-VertexBufferLayout_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VertexBufferLayout, "resolveInstanceMethod:", sel)
+VertexBufferLayout_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, VertexBufferLayout, "resolveInstanceMethod:", sel)
 }
 @(objc_type=VertexBufferLayout, objc_name="hash", objc_is_class_method=true)
-VertexBufferLayout_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, VertexBufferLayout, "hash")
+VertexBufferLayout_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, VertexBufferLayout, "hash")
 }
 @(objc_type=VertexBufferLayout, objc_name="superclass", objc_is_class_method=true)
 VertexBufferLayout_superclass :: #force_inline proc "c" () -> Class {
@@ -116,11 +116,11 @@ VertexBufferLayout_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, VertexBufferLayout, "debugDescription")
 }
 @(objc_type=VertexBufferLayout, objc_name="version", objc_is_class_method=true)
-VertexBufferLayout_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, VertexBufferLayout, "version")
+VertexBufferLayout_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, VertexBufferLayout, "version")
 }
 @(objc_type=VertexBufferLayout, objc_name="setVersion", objc_is_class_method=true)
-VertexBufferLayout_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+VertexBufferLayout_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, VertexBufferLayout, "setVersion:", aVersion)
 }
 @(objc_type=VertexBufferLayout, objc_name="poseAsClass", objc_is_class_method=true)
@@ -136,20 +136,20 @@ VertexBufferLayout_cancelPreviousPerformRequestsWithTarget_ :: #force_inline pro
     msgSend(nil, VertexBufferLayout, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=VertexBufferLayout, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-VertexBufferLayout_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, VertexBufferLayout, "accessInstanceVariablesDirectly")
+VertexBufferLayout_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, VertexBufferLayout, "accessInstanceVariablesDirectly")
 }
 @(objc_type=VertexBufferLayout, objc_name="useStoredAccessor", objc_is_class_method=true)
-VertexBufferLayout_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, VertexBufferLayout, "useStoredAccessor")
+VertexBufferLayout_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, VertexBufferLayout, "useStoredAccessor")
 }
 @(objc_type=VertexBufferLayout, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 VertexBufferLayout_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, VertexBufferLayout, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=VertexBufferLayout, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-VertexBufferLayout_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, VertexBufferLayout, "automaticallyNotifiesObserversForKey:", key)
+VertexBufferLayout_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, VertexBufferLayout, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=VertexBufferLayout, objc_name="setKeys", objc_is_class_method=true)
 VertexBufferLayout_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableURLRequest")
 MutableURLRequest :: struct { using _: URLRequest, }
 
+MutableURLRequest_VTable :: struct {
+    super: URLRequest_VTable,
+}
+

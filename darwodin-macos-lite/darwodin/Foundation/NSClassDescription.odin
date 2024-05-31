@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSClassDescription")
 ClassDescription :: struct { using _: Object, }
 
+ClassDescription_VTable :: struct {
+    super: Object_VTable,
+}
+

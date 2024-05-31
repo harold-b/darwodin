@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMachBootstrapServer")
 MachBootstrapServer :: struct { using _: PortNameServer, }
 
+MachBootstrapServer_VTable :: struct {
+    super: PortNameServer_VTable,
+}
+

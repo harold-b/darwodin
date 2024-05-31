@@ -19,3 +19,6 @@ SheetPresentationControllerDetentResolutionContext :: struct { using _: intrinsi
     using _: NS.ObjectProtocol,
 }
 
+SheetPresentationControllerDetentResolutionContext_VTable :: struct {
+}
+

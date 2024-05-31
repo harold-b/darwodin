@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UICellAccessoryInsert")
 CellAccessoryInsert :: struct { using _: CellAccessory, }
 
+CellAccessoryInsert_VTable :: struct {
+    super: CellAccessory_VTable,
+}
+

@@ -19,3 +19,7 @@ ImageReaderConfiguration :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+ImageReaderConfiguration_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

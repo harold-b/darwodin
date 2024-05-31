@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSOpenGLPixelBuffer")
 OpenGLPixelBuffer :: struct { using _: NS.Object, }
 
+OpenGLPixelBuffer_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

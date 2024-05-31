@@ -19,3 +19,6 @@ UserInterfaceItemSearching :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+UserInterfaceItemSearching_VTable :: struct {
+}
+

@@ -19,3 +19,7 @@ Switch :: struct { using _: Control,
     using _: AccessibilitySwitch,
 }
 
+Switch_VTable :: struct {
+    super: Control_VTable,
+}
+

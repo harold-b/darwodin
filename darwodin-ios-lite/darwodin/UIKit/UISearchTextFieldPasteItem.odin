@@ -19,3 +19,6 @@ SearchTextFieldPasteItem :: struct { using _: intrinsics.objc_object,
     using _: TextPasteItem,
 }
 
+SearchTextFieldPasteItem_VTable :: struct {
+}
+

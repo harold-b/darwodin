@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSColorPickerTouchBarItem")
 ColorPickerTouchBarItem :: struct { using _: TouchBarItem, }
 
+ColorPickerTouchBarItem_VTable :: struct {
+    super: TouchBarItem_VTable,
+}
+

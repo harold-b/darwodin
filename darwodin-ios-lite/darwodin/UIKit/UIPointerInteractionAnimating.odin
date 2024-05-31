@@ -19,3 +19,6 @@ PointerInteractionAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PointerInteractionAnimating_VTable :: struct {
+}
+

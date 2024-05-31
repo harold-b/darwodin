@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSTreeNode")
 TreeNode :: struct { using _: NS.Object, }
 
+TreeNode_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

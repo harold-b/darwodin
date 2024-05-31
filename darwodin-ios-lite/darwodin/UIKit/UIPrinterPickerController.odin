@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPrinterPickerController")
 PrinterPickerController :: struct { using _: NS.Object, }
 
+PrinterPickerController_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -19,3 +19,6 @@ LargeContentViewerItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+LargeContentViewerItem_VTable :: struct {
+}
+

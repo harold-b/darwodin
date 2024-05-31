@@ -22,3 +22,7 @@ PresentationController :: struct { using _: NS.Object,
     using _: FocusEnvironment,
 }
 
+PresentationController_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -21,3 +21,7 @@ Label :: struct { using _: View,
     using _: LetterformAwareAdjusting,
 }
 
+Label_VTable :: struct {
+    super: View_VTable,
+}
+

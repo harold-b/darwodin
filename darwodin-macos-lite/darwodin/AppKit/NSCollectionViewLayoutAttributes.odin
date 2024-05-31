@@ -19,3 +19,7 @@ CollectionViewLayoutAttributes :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+CollectionViewLayoutAttributes_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

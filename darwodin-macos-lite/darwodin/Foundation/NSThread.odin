@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSThread")
 Thread :: struct { using _: Object, }
 
+Thread_VTable :: struct {
+    super: Object_VTable,
+}
+

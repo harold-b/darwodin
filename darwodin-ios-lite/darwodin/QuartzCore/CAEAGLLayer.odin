@@ -18,3 +18,7 @@ EAGLLayer :: struct { using _: Layer,
     using _: EAGLDrawable,
 }
 
+EAGLLayer_VTable :: struct {
+    super: Layer_VTable,
+}
+

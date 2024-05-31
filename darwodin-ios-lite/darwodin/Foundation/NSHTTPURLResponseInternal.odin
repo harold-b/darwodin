@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSHTTPURLResponseInternal")
 HTTPURLResponseInternal :: struct { using _: intrinsics.objc_object, }
 
+HTTPURLResponseInternal_VTable :: struct {
+}
+

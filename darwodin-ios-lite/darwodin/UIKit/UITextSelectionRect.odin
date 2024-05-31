@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITextSelectionRect")
 TextSelectionRect :: struct { using _: NS.Object, }
 
+TextSelectionRect_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

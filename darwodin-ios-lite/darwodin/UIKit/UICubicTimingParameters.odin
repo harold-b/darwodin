@@ -19,3 +19,7 @@ CubicTimingParameters :: struct { using _: NS.Object,
     using _: TimingCurveProvider,
 }
 
+CubicTimingParameters_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSUbiquitousKeyValueStore")
 UbiquitousKeyValueStore :: struct { using _: Object, }
 
+UbiquitousKeyValueStore_VTable :: struct {
+    super: Object_VTable,
+}
+

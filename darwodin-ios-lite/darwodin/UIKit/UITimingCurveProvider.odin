@@ -20,3 +20,6 @@ TimingCurveProvider :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
+TimingCurveProvider_VTable :: struct {
+}
+

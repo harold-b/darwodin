@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSCompoundPredicate")
 CompoundPredicate :: struct { using _: Predicate, }
 
+CompoundPredicate_VTable :: struct {
+    super: Predicate_VTable,
+}
+

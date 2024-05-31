@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSConnection")
 Connection :: struct { using _: Object, }
 
+Connection_VTable :: struct {
+    super: Object_VTable,
+}
+

@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSPropertyListSerialization")
 PropertyListSerialization :: struct { using _: Object, }
 
+PropertyListSerialization_VTable :: struct {
+    super: Object_VTable,
+}
+

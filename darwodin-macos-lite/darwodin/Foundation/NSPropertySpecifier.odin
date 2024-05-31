@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSPropertySpecifier")
 PropertySpecifier :: struct { using _: ScriptObjectSpecifier, }
 
+PropertySpecifier_VTable :: struct {
+    super: ScriptObjectSpecifier_VTable,
+}
+

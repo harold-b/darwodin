@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPointerLiftEffect")
 PointerLiftEffect :: struct { using _: PointerEffect, }
 
+PointerLiftEffect_VTable :: struct {
+    super: PointerEffect_VTable,
+}
+

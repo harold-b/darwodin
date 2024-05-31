@@ -19,3 +19,6 @@ ContextMenuInteractionCommitAnimating :: struct { using _: intrinsics.objc_objec
     using _: ContextMenuInteractionAnimating,
 }
 
+ContextMenuInteractionCommitAnimating_VTable :: struct {
+}
+

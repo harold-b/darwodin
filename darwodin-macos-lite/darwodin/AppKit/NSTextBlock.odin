@@ -20,3 +20,7 @@ TextBlock :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+TextBlock_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

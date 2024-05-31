@@ -19,3 +19,6 @@ TextInputTokenizer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+TextInputTokenizer_VTable :: struct {
+}
+

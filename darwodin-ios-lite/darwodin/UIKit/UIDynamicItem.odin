@@ -19,3 +19,6 @@ DynamicItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+DynamicItem_VTable :: struct {
+}
+

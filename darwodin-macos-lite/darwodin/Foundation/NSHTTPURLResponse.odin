@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSHTTPURLResponse")
 HTTPURLResponse :: struct { using _: URLResponse, }
 
+HTTPURLResponse_VTable :: struct {
+    super: URLResponse_VTable,
+}
+

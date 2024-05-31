@@ -19,3 +19,6 @@ LargeContentViewerInteractionDelegate :: struct { using _: intrinsics.objc_objec
     using _: NS.ObjectProtocol,
 }
 
+LargeContentViewerInteractionDelegate_VTable :: struct {
+}
+

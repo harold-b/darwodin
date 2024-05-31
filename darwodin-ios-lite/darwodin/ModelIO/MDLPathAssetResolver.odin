@@ -68,36 +68,36 @@ PathAssetResolver_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZo
     return msgSend(id, PathAssetResolver, "mutableCopyWithZone:", zone)
 }
 @(objc_type=PathAssetResolver, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-PathAssetResolver_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PathAssetResolver, "instancesRespondToSelector:", aSelector)
+PathAssetResolver_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, PathAssetResolver, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=PathAssetResolver, objc_name="conformsToProtocol", objc_is_class_method=true)
-PathAssetResolver_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, PathAssetResolver, "conformsToProtocol:", protocol)
+PathAssetResolver_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, PathAssetResolver, "conformsToProtocol:", protocol)
 }
 @(objc_type=PathAssetResolver, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-PathAssetResolver_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), PathAssetResolver, "instanceMethodForSelector:", aSelector)
+PathAssetResolver_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, PathAssetResolver, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=PathAssetResolver, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 PathAssetResolver_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, PathAssetResolver, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=PathAssetResolver, objc_name="isSubclassOfClass", objc_is_class_method=true)
-PathAssetResolver_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, PathAssetResolver, "isSubclassOfClass:", aClass)
+PathAssetResolver_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, PathAssetResolver, "isSubclassOfClass:", aClass)
 }
 @(objc_type=PathAssetResolver, objc_name="resolveClassMethod", objc_is_class_method=true)
-PathAssetResolver_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PathAssetResolver, "resolveClassMethod:", sel)
+PathAssetResolver_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PathAssetResolver, "resolveClassMethod:", sel)
 }
 @(objc_type=PathAssetResolver, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-PathAssetResolver_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PathAssetResolver, "resolveInstanceMethod:", sel)
+PathAssetResolver_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PathAssetResolver, "resolveInstanceMethod:", sel)
 }
 @(objc_type=PathAssetResolver, objc_name="hash", objc_is_class_method=true)
-PathAssetResolver_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, PathAssetResolver, "hash")
+PathAssetResolver_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, PathAssetResolver, "hash")
 }
 @(objc_type=PathAssetResolver, objc_name="superclass", objc_is_class_method=true)
 PathAssetResolver_superclass :: #force_inline proc "c" () -> Class {
@@ -116,11 +116,11 @@ PathAssetResolver_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, PathAssetResolver, "debugDescription")
 }
 @(objc_type=PathAssetResolver, objc_name="version", objc_is_class_method=true)
-PathAssetResolver_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, PathAssetResolver, "version")
+PathAssetResolver_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, PathAssetResolver, "version")
 }
 @(objc_type=PathAssetResolver, objc_name="setVersion", objc_is_class_method=true)
-PathAssetResolver_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+PathAssetResolver_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, PathAssetResolver, "setVersion:", aVersion)
 }
 @(objc_type=PathAssetResolver, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -132,20 +132,20 @@ PathAssetResolver_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc
     msgSend(nil, PathAssetResolver, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=PathAssetResolver, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-PathAssetResolver_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PathAssetResolver, "accessInstanceVariablesDirectly")
+PathAssetResolver_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PathAssetResolver, "accessInstanceVariablesDirectly")
 }
 @(objc_type=PathAssetResolver, objc_name="useStoredAccessor", objc_is_class_method=true)
-PathAssetResolver_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PathAssetResolver, "useStoredAccessor")
+PathAssetResolver_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PathAssetResolver, "useStoredAccessor")
 }
 @(objc_type=PathAssetResolver, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 PathAssetResolver_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, PathAssetResolver, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=PathAssetResolver, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-PathAssetResolver_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, PathAssetResolver, "automaticallyNotifiesObserversForKey:", key)
+PathAssetResolver_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, PathAssetResolver, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=PathAssetResolver, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 PathAssetResolver_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

@@ -19,3 +19,6 @@ RuleEditorDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+RuleEditorDelegate_VTable :: struct {
+}
+

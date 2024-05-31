@@ -86,11 +86,11 @@ SkyCubeTexture_setHorizonElevation :: #force_inline proc "c" (self: ^SkyCubeText
     msgSend(nil, self, "setHorizonElevation:", horizonElevation)
 }
 @(objc_type=SkyCubeTexture, objc_name="groundColor")
-SkyCubeTexture_groundColor :: #force_inline proc "c" (self: ^SkyCubeTexture) -> ^CG.Color {
-    return msgSend(^CG.Color, self, "groundColor")
+SkyCubeTexture_groundColor :: #force_inline proc "c" (self: ^SkyCubeTexture) -> CG.ColorRef {
+    return msgSend(CG.ColorRef, self, "groundColor")
 }
 @(objc_type=SkyCubeTexture, objc_name="setGroundColor")
-SkyCubeTexture_setGroundColor :: #force_inline proc "c" (self: ^SkyCubeTexture, groundColor: ^CG.Color) {
+SkyCubeTexture_setGroundColor :: #force_inline proc "c" (self: ^SkyCubeTexture, groundColor: CG.ColorRef) {
     msgSend(nil, self, "setGroundColor:", groundColor)
 }
 @(objc_type=SkyCubeTexture, objc_name="gamma")
@@ -134,11 +134,11 @@ SkyCubeTexture_setSaturation :: #force_inline proc "c" (self: ^SkyCubeTexture, s
     msgSend(nil, self, "setSaturation:", saturation)
 }
 @(objc_type=SkyCubeTexture, objc_name="highDynamicRangeCompression")
-SkyCubeTexture_highDynamicRangeCompression :: #force_inline proc "c" (self: ^SkyCubeTexture) -> [2]cffi.float {
-    return msgSend([2]cffi.float, self, "highDynamicRangeCompression")
+SkyCubeTexture_highDynamicRangeCompression :: #force_inline proc "c" (self: ^SkyCubeTexture) -> vector_float2 {
+    return msgSend(vector_float2, self, "highDynamicRangeCompression")
 }
 @(objc_type=SkyCubeTexture, objc_name="setHighDynamicRangeCompression")
-SkyCubeTexture_setHighDynamicRangeCompression :: #force_inline proc "c" (self: ^SkyCubeTexture, highDynamicRangeCompression: [2]cffi.float) {
+SkyCubeTexture_setHighDynamicRangeCompression :: #force_inline proc "c" (self: ^SkyCubeTexture, highDynamicRangeCompression: vector_float2) {
     msgSend(nil, self, "setHighDynamicRangeCompression:", highDynamicRangeCompression)
 }
 @(objc_type=SkyCubeTexture, objc_name="textureNamed_", objc_is_class_method=true)
@@ -198,36 +198,36 @@ SkyCubeTexture_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone)
     return msgSend(id, SkyCubeTexture, "mutableCopyWithZone:", zone)
 }
 @(objc_type=SkyCubeTexture, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-SkyCubeTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, SkyCubeTexture, "instancesRespondToSelector:", aSelector)
+SkyCubeTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, SkyCubeTexture, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=SkyCubeTexture, objc_name="conformsToProtocol", objc_is_class_method=true)
-SkyCubeTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, SkyCubeTexture, "conformsToProtocol:", protocol)
+SkyCubeTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, SkyCubeTexture, "conformsToProtocol:", protocol)
 }
 @(objc_type=SkyCubeTexture, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-SkyCubeTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), SkyCubeTexture, "instanceMethodForSelector:", aSelector)
+SkyCubeTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, SkyCubeTexture, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=SkyCubeTexture, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 SkyCubeTexture_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, SkyCubeTexture, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=SkyCubeTexture, objc_name="isSubclassOfClass", objc_is_class_method=true)
-SkyCubeTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, SkyCubeTexture, "isSubclassOfClass:", aClass)
+SkyCubeTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, SkyCubeTexture, "isSubclassOfClass:", aClass)
 }
 @(objc_type=SkyCubeTexture, objc_name="resolveClassMethod", objc_is_class_method=true)
-SkyCubeTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, SkyCubeTexture, "resolveClassMethod:", sel)
+SkyCubeTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, SkyCubeTexture, "resolveClassMethod:", sel)
 }
 @(objc_type=SkyCubeTexture, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-SkyCubeTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, SkyCubeTexture, "resolveInstanceMethod:", sel)
+SkyCubeTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, SkyCubeTexture, "resolveInstanceMethod:", sel)
 }
 @(objc_type=SkyCubeTexture, objc_name="hash", objc_is_class_method=true)
-SkyCubeTexture_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, SkyCubeTexture, "hash")
+SkyCubeTexture_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, SkyCubeTexture, "hash")
 }
 @(objc_type=SkyCubeTexture, objc_name="superclass", objc_is_class_method=true)
 SkyCubeTexture_superclass :: #force_inline proc "c" () -> Class {
@@ -246,11 +246,11 @@ SkyCubeTexture_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, SkyCubeTexture, "debugDescription")
 }
 @(objc_type=SkyCubeTexture, objc_name="version", objc_is_class_method=true)
-SkyCubeTexture_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, SkyCubeTexture, "version")
+SkyCubeTexture_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, SkyCubeTexture, "version")
 }
 @(objc_type=SkyCubeTexture, objc_name="setVersion", objc_is_class_method=true)
-SkyCubeTexture_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+SkyCubeTexture_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, SkyCubeTexture, "setVersion:", aVersion)
 }
 @(objc_type=SkyCubeTexture, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -262,20 +262,20 @@ SkyCubeTexture_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c
     msgSend(nil, SkyCubeTexture, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=SkyCubeTexture, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-SkyCubeTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, SkyCubeTexture, "accessInstanceVariablesDirectly")
+SkyCubeTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, SkyCubeTexture, "accessInstanceVariablesDirectly")
 }
 @(objc_type=SkyCubeTexture, objc_name="useStoredAccessor", objc_is_class_method=true)
-SkyCubeTexture_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, SkyCubeTexture, "useStoredAccessor")
+SkyCubeTexture_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, SkyCubeTexture, "useStoredAccessor")
 }
 @(objc_type=SkyCubeTexture, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 SkyCubeTexture_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, SkyCubeTexture, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=SkyCubeTexture, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-SkyCubeTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, SkyCubeTexture, "automaticallyNotifiesObserversForKey:", key)
+SkyCubeTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, SkyCubeTexture, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=SkyCubeTexture, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 SkyCubeTexture_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

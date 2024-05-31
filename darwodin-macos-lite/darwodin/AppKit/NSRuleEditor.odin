@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSRuleEditor")
 RuleEditor :: struct { using _: Control, }
 
+RuleEditor_VTable :: struct {
+    super: Control_VTable,
+}
+

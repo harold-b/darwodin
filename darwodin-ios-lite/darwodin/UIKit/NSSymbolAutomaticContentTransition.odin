@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolAutomaticContentTransition")
 NSSymbolAutomaticContentTransition :: struct { using _: NSSymbolContentTransition, }
 
+NSSymbolAutomaticContentTransition_VTable :: struct {
+    super: NSSymbolContentTransition_VTable,
+}
+

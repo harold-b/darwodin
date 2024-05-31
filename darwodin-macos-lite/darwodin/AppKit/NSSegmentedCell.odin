@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSSegmentedCell")
 SegmentedCell :: struct { using _: ActionCell, }
 
+SegmentedCell_VTable :: struct {
+    super: ActionCell_VTable,
+}
+

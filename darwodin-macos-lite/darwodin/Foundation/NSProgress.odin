@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSProgress")
 Progress :: struct { using _: Object, }
 
+Progress_VTable :: struct {
+    super: Object_VTable,
+}
+

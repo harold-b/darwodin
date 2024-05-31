@@ -19,3 +19,6 @@ CollisionBehaviorDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+CollisionBehaviorDelegate_VTable :: struct {
+}
+

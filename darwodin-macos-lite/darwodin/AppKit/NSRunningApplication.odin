@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSRunningApplication")
 RunningApplication :: struct { using _: NS.Object, }
 
+RunningApplication_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

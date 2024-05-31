@@ -19,3 +19,6 @@ PageControlProgressDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PageControlProgressDelegate_VTable :: struct {
+}
+

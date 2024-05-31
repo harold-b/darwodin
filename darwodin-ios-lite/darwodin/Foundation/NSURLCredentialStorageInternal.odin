@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLCredentialStorageInternal")
 URLCredentialStorageInternal :: struct { using _: intrinsics.objc_object, }
 
+URLCredentialStorageInternal_VTable :: struct {
+}
+

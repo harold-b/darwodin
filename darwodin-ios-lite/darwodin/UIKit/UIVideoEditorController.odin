@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIVideoEditorController")
 VideoEditorController :: struct { using _: NavigationController, }
 
+VideoEditorController_VTable :: struct {
+    super: NavigationController_VTable,
+}
+

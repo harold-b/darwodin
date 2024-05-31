@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIDynamicBehavior")
 DynamicBehavior :: struct { using _: NS.Object, }
 
+DynamicBehavior_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

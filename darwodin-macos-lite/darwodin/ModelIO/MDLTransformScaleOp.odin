@@ -64,36 +64,36 @@ TransformScaleOp_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZon
     return msgSend(id, TransformScaleOp, "mutableCopyWithZone:", zone)
 }
 @(objc_type=TransformScaleOp, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-TransformScaleOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformScaleOp, "instancesRespondToSelector:", aSelector)
+TransformScaleOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, TransformScaleOp, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=TransformScaleOp, objc_name="conformsToProtocol", objc_is_class_method=true)
-TransformScaleOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, TransformScaleOp, "conformsToProtocol:", protocol)
+TransformScaleOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, TransformScaleOp, "conformsToProtocol:", protocol)
 }
 @(objc_type=TransformScaleOp, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-TransformScaleOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), TransformScaleOp, "instanceMethodForSelector:", aSelector)
+TransformScaleOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, TransformScaleOp, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=TransformScaleOp, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 TransformScaleOp_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, TransformScaleOp, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=TransformScaleOp, objc_name="isSubclassOfClass", objc_is_class_method=true)
-TransformScaleOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, TransformScaleOp, "isSubclassOfClass:", aClass)
+TransformScaleOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, TransformScaleOp, "isSubclassOfClass:", aClass)
 }
 @(objc_type=TransformScaleOp, objc_name="resolveClassMethod", objc_is_class_method=true)
-TransformScaleOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformScaleOp, "resolveClassMethod:", sel)
+TransformScaleOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformScaleOp, "resolveClassMethod:", sel)
 }
 @(objc_type=TransformScaleOp, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-TransformScaleOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformScaleOp, "resolveInstanceMethod:", sel)
+TransformScaleOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformScaleOp, "resolveInstanceMethod:", sel)
 }
 @(objc_type=TransformScaleOp, objc_name="hash", objc_is_class_method=true)
-TransformScaleOp_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, TransformScaleOp, "hash")
+TransformScaleOp_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, TransformScaleOp, "hash")
 }
 @(objc_type=TransformScaleOp, objc_name="superclass", objc_is_class_method=true)
 TransformScaleOp_superclass :: #force_inline proc "c" () -> Class {
@@ -112,11 +112,11 @@ TransformScaleOp_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, TransformScaleOp, "debugDescription")
 }
 @(objc_type=TransformScaleOp, objc_name="version", objc_is_class_method=true)
-TransformScaleOp_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, TransformScaleOp, "version")
+TransformScaleOp_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, TransformScaleOp, "version")
 }
 @(objc_type=TransformScaleOp, objc_name="setVersion", objc_is_class_method=true)
-TransformScaleOp_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+TransformScaleOp_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, TransformScaleOp, "setVersion:", aVersion)
 }
 @(objc_type=TransformScaleOp, objc_name="poseAsClass", objc_is_class_method=true)
@@ -132,20 +132,20 @@ TransformScaleOp_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc 
     msgSend(nil, TransformScaleOp, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=TransformScaleOp, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-TransformScaleOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformScaleOp, "accessInstanceVariablesDirectly")
+TransformScaleOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformScaleOp, "accessInstanceVariablesDirectly")
 }
 @(objc_type=TransformScaleOp, objc_name="useStoredAccessor", objc_is_class_method=true)
-TransformScaleOp_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformScaleOp, "useStoredAccessor")
+TransformScaleOp_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformScaleOp, "useStoredAccessor")
 }
 @(objc_type=TransformScaleOp, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 TransformScaleOp_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, TransformScaleOp, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=TransformScaleOp, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-TransformScaleOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, TransformScaleOp, "automaticallyNotifiesObserversForKey:", key)
+TransformScaleOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, TransformScaleOp, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=TransformScaleOp, objc_name="setKeys", objc_is_class_method=true)
 TransformScaleOp_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

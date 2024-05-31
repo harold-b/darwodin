@@ -19,3 +19,7 @@ DragPreview :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+DragPreview_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

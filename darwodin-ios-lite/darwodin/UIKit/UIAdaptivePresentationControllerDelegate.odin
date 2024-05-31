@@ -19,3 +19,6 @@ AdaptivePresentationControllerDelegate :: struct { using _: intrinsics.objc_obje
     using _: NS.ObjectProtocol,
 }
 
+AdaptivePresentationControllerDelegate_VTable :: struct {
+}
+

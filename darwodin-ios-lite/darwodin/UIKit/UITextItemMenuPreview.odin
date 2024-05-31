@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITextItemMenuPreview")
 TextItemMenuPreview :: struct { using _: NS.Object, }
 
+TextItemMenuPreview_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

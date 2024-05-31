@@ -22,8 +22,8 @@ MeshBufferZone :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=MeshBufferZone, objc_name="capacity")
-MeshBufferZone_capacity :: #force_inline proc "c" (self: ^MeshBufferZone) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "capacity")
+MeshBufferZone_capacity :: #force_inline proc "c" (self: ^MeshBufferZone) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "capacity")
 }
 @(objc_type=MeshBufferZone, objc_name="allocator")
 MeshBufferZone_allocator :: #force_inline proc "c" (self: ^MeshBufferZone) -> ^MeshBufferAllocator {

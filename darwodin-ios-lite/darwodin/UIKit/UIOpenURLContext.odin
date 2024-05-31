@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIOpenURLContext")
 OpenURLContext :: struct { using _: NS.Object, }
 
+OpenURLContext_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

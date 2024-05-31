@@ -64,36 +64,36 @@ TransformMatrixOp_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZo
     return msgSend(id, TransformMatrixOp, "mutableCopyWithZone:", zone)
 }
 @(objc_type=TransformMatrixOp, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-TransformMatrixOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformMatrixOp, "instancesRespondToSelector:", aSelector)
+TransformMatrixOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, TransformMatrixOp, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=TransformMatrixOp, objc_name="conformsToProtocol", objc_is_class_method=true)
-TransformMatrixOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, TransformMatrixOp, "conformsToProtocol:", protocol)
+TransformMatrixOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, TransformMatrixOp, "conformsToProtocol:", protocol)
 }
 @(objc_type=TransformMatrixOp, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-TransformMatrixOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), TransformMatrixOp, "instanceMethodForSelector:", aSelector)
+TransformMatrixOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, TransformMatrixOp, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=TransformMatrixOp, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 TransformMatrixOp_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, TransformMatrixOp, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=TransformMatrixOp, objc_name="isSubclassOfClass", objc_is_class_method=true)
-TransformMatrixOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, TransformMatrixOp, "isSubclassOfClass:", aClass)
+TransformMatrixOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, TransformMatrixOp, "isSubclassOfClass:", aClass)
 }
 @(objc_type=TransformMatrixOp, objc_name="resolveClassMethod", objc_is_class_method=true)
-TransformMatrixOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformMatrixOp, "resolveClassMethod:", sel)
+TransformMatrixOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformMatrixOp, "resolveClassMethod:", sel)
 }
 @(objc_type=TransformMatrixOp, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-TransformMatrixOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformMatrixOp, "resolveInstanceMethod:", sel)
+TransformMatrixOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformMatrixOp, "resolveInstanceMethod:", sel)
 }
 @(objc_type=TransformMatrixOp, objc_name="hash", objc_is_class_method=true)
-TransformMatrixOp_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, TransformMatrixOp, "hash")
+TransformMatrixOp_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, TransformMatrixOp, "hash")
 }
 @(objc_type=TransformMatrixOp, objc_name="superclass", objc_is_class_method=true)
 TransformMatrixOp_superclass :: #force_inline proc "c" () -> Class {
@@ -112,11 +112,11 @@ TransformMatrixOp_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, TransformMatrixOp, "debugDescription")
 }
 @(objc_type=TransformMatrixOp, objc_name="version", objc_is_class_method=true)
-TransformMatrixOp_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, TransformMatrixOp, "version")
+TransformMatrixOp_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, TransformMatrixOp, "version")
 }
 @(objc_type=TransformMatrixOp, objc_name="setVersion", objc_is_class_method=true)
-TransformMatrixOp_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+TransformMatrixOp_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, TransformMatrixOp, "setVersion:", aVersion)
 }
 @(objc_type=TransformMatrixOp, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -128,20 +128,20 @@ TransformMatrixOp_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc
     msgSend(nil, TransformMatrixOp, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=TransformMatrixOp, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-TransformMatrixOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformMatrixOp, "accessInstanceVariablesDirectly")
+TransformMatrixOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformMatrixOp, "accessInstanceVariablesDirectly")
 }
 @(objc_type=TransformMatrixOp, objc_name="useStoredAccessor", objc_is_class_method=true)
-TransformMatrixOp_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformMatrixOp, "useStoredAccessor")
+TransformMatrixOp_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformMatrixOp, "useStoredAccessor")
 }
 @(objc_type=TransformMatrixOp, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 TransformMatrixOp_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, TransformMatrixOp, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=TransformMatrixOp, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-TransformMatrixOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, TransformMatrixOp, "automaticallyNotifiesObserversForKey:", key)
+TransformMatrixOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, TransformMatrixOp, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=TransformMatrixOp, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 TransformMatrixOp_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

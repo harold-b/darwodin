@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIImageReader")
 ImageReader :: struct { using _: NS.Object, }
 
+ImageReader_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

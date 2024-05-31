@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSTokenFieldCell")
 TokenFieldCell :: struct { using _: TextFieldCell, }
 
+TokenFieldCell_VTable :: struct {
+    super: TextFieldCell_VTable,
+}
+

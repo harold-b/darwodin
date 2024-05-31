@@ -19,3 +19,7 @@ OutlineView :: struct { using _: TableView,
     using _: AccessibilityOutline,
 }
 
+OutlineView_VTable :: struct {
+    super: TableView_VTable,
+}
+

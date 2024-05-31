@@ -18,3 +18,7 @@ Null :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+Null_VTable :: struct {
+    super: Object_VTable,
+}
+

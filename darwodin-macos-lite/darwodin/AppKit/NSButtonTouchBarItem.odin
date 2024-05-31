@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSButtonTouchBarItem")
 ButtonTouchBarItem :: struct { using _: TouchBarItem, }
 
+ButtonTouchBarItem_VTable :: struct {
+    super: TouchBarItem_VTable,
+}
+

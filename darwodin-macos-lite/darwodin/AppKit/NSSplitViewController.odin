@@ -20,3 +20,7 @@ SplitViewController :: struct { using _: ViewController,
     using _: UserInterfaceValidations,
 }
 
+SplitViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

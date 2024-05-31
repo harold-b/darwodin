@@ -17,3 +17,7 @@ UnitSpeed :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitSpeed_VTable :: struct {
+    super: Dimension_VTable,
+}
+

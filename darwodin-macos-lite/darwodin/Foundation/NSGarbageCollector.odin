@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSGarbageCollector")
 GarbageCollector :: struct { using _: Object, }
 
+GarbageCollector_VTable :: struct {
+    super: Object_VTable,
+}
+

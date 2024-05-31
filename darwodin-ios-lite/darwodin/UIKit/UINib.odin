@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UINib")
 Nib :: struct { using _: NS.Object, }
 
+Nib_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

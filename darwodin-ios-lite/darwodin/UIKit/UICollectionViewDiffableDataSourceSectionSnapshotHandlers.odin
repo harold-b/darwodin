@@ -19,3 +19,7 @@ CollectionViewDiffableDataSourceSectionSnapshotHandlers :: struct { using _: NS.
     using _: NS.Copying,
 }
 
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

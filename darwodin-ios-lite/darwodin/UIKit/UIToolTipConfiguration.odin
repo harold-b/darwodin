@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIToolTipConfiguration")
 ToolTipConfiguration :: struct { using _: NS.Object, }
 
+ToolTipConfiguration_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

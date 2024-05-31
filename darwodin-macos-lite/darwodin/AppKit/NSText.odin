@@ -20,3 +20,7 @@ Text :: struct { using _: View,
     using _: IgnoreMisspelledWords,
 }
 
+Text_VTable :: struct {
+    super: View_VTable,
+}
+

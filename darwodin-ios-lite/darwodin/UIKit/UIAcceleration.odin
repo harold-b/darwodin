@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIAcceleration")
 Acceleration :: struct { using _: NS.Object, }
 
+Acceleration_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

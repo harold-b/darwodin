@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSTextElement")
 TextElement :: struct { using _: NS.Object, }
 
+TextElement_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

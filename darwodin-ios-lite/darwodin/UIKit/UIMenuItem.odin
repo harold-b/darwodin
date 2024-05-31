@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIMenuItem")
 MenuItem :: struct { using _: NS.Object, }
 
+MenuItem_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

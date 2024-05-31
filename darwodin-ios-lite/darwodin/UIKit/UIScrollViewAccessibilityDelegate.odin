@@ -19,3 +19,6 @@ ScrollViewAccessibilityDelegate :: struct { using _: intrinsics.objc_object,
     using _: ScrollViewDelegate,
 }
 
+ScrollViewAccessibilityDelegate_VTable :: struct {
+}
+

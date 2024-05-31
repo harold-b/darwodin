@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSSliderCell")
 SliderCell :: struct { using _: ActionCell, }
 
+SliderCell_VTable :: struct {
+    super: ActionCell_VTable,
+}
+

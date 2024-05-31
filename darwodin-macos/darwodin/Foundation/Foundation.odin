@@ -3937,6 +3937,7 @@ SearchPathDomainMask :: enum cffi.ulong {
 }
 SearchPathDomainMasks :: bit_set[SearchPathDomainMask; cffi.ulong]
 
+
 /// NSURLHandleStatus
 URLHandleStatus :: enum cffi.ulong {
     NotLoaded = 0,
@@ -4505,6 +4506,7 @@ SecKeychainEventMask :: enum cffi.uint {
     kSecTrustSettingsChangedEventMask = 12,
 }
 SecKeychainEventMasks :: bit_set[SecKeychainEventMask; cffi.uint]
+
 
 /// SecPreferencesDomain
 SecPreferencesDomain :: enum cffi.int {

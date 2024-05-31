@@ -18,3 +18,7 @@ MorphologyCustomPronoun :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+MorphologyCustomPronoun_VTable :: struct {
+    super: Object_VTable,
+}
+

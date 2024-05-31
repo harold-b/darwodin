@@ -20,3 +20,7 @@ TableColumn :: struct { using _: NS.Object,
     using _: UserInterfaceItemIdentification,
 }
 
+TableColumn_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

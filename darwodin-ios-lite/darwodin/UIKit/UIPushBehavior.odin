@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPushBehavior")
 PushBehavior :: struct { using _: DynamicBehavior, }
 
+PushBehavior_VTable :: struct {
+    super: DynamicBehavior_VTable,
+}
+

@@ -81,7 +81,11 @@ Odin:
       Source: s
 
   BitSetMap:
-    - Type: (Flags|Mask|Options?)$
+    - Type: (Flags|Mask|Option)$
+      Transforms:
+        - Kind  : AppendSuffix
+          Source: s
+    - Type: (?<!MTLResource)Options$
       Transforms:
         - Kind  : AppendSuffix
           Source: s

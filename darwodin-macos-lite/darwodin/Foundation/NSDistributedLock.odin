@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSDistributedLock")
 DistributedLock :: struct { using _: Object, }
 
+DistributedLock_VTable :: struct {
+    super: Object_VTable,
+}
+

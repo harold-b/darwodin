@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSXPCListener")
 XPCListener :: struct { using _: Object, }
 
+XPCListener_VTable :: struct {
+    super: Object_VTable,
+}
+

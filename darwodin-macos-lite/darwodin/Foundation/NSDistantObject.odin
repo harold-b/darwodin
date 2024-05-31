@@ -17,3 +17,7 @@ DistantObject :: struct { using _: Proxy,
     using _: Coding,
 }
 
+DistantObject_VTable :: struct {
+    super: Proxy_VTable,
+}
+

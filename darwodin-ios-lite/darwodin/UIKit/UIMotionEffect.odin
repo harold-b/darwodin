@@ -20,3 +20,7 @@ MotionEffect :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
+MotionEffect_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -22,8 +22,8 @@ AssetResolver :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=AssetResolver, objc_name="canResolveAssetNamed")
-AssetResolver_canResolveAssetNamed :: #force_inline proc "c" (self: ^AssetResolver, name: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, self, "canResolveAssetNamed:", name)
+AssetResolver_canResolveAssetNamed :: #force_inline proc "c" (self: ^AssetResolver, name: ^NS.String) -> bool {
+    return msgSend(bool, self, "canResolveAssetNamed:", name)
 }
 @(objc_type=AssetResolver, objc_name="resolveAssetNamed")
 AssetResolver_resolveAssetNamed :: #force_inline proc "c" (self: ^AssetResolver, name: ^NS.String) -> ^NS.URL {

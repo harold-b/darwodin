@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIWindowSceneDelegate")
 WindowSceneDelegate :: struct { using _: intrinsics.objc_object, }
 
+WindowSceneDelegate_VTable :: struct {
+}
+

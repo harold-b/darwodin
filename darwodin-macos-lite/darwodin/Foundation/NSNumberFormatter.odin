@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSNumberFormatter")
 NumberFormatter :: struct { using _: Formatter, }
 
+NumberFormatter_VTable :: struct {
+    super: Formatter_VTable,
+}
+

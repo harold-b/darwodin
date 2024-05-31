@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIGravityBehavior")
 GravityBehavior :: struct { using _: DynamicBehavior, }
 
+GravityBehavior_VTable :: struct {
+    super: DynamicBehavior_VTable,
+}
+

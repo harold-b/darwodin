@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CATextLayer")
 TextLayer :: struct { using _: Layer, }
 
+TextLayer_VTable :: struct {
+    super: Layer_VTable,
+}
+

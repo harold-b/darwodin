@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSGridView")
 GridView :: struct { using _: View, }
 
+GridView_VTable :: struct {
+    super: View_VTable,
+}
+

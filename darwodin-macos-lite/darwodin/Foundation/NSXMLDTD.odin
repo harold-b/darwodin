@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSXMLDTD")
 XMLDTD :: struct { using _: XMLNode, }
 
+XMLDTD_VTable :: struct {
+    super: XMLNode_VTable,
+}
+

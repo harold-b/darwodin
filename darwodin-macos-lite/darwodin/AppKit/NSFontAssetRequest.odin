@@ -19,3 +19,7 @@ FontAssetRequest :: struct { using _: NS.Object,
     using _: NS.ProgressReporting,
 }
 
+FontAssetRequest_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

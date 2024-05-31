@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSComboButton")
 ComboButton :: struct { using _: Control, }
 
+ComboButton_VTable :: struct {
+    super: Control_VTable,
+}
+

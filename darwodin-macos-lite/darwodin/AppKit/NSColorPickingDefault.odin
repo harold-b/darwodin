@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="NSColorPickingDefault")
 ColorPickingDefault :: struct { using _: intrinsics.objc_object, }
 
+ColorPickingDefault_VTable :: struct {
+}
+

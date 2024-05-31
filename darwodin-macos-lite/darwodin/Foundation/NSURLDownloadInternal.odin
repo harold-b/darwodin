@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLDownloadInternal")
 URLDownloadInternal :: struct { using _: intrinsics.objc_object, }
 
+URLDownloadInternal_VTable :: struct {
+}
+

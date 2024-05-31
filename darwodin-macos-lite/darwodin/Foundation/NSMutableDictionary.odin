@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableDictionary")
 MutableDictionary :: struct { using _: Dictionary, }
 
+MutableDictionary_VTable :: struct {
+    super: Dictionary_VTable,
+}
+

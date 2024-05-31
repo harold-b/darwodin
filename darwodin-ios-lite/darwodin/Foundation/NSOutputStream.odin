@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSOutputStream")
 OutputStream :: struct { using _: Stream, }
 
+OutputStream_VTable :: struct {
+    super: Stream_VTable,
+}
+

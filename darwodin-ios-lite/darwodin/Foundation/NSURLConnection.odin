@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLConnection")
 URLConnection :: struct { using _: Object, }
 
+URLConnection_VTable :: struct {
+    super: Object_VTable,
+}
+

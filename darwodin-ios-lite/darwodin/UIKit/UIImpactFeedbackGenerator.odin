@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIImpactFeedbackGenerator")
 ImpactFeedbackGenerator :: struct { using _: FeedbackGenerator, }
 
+ImpactFeedbackGenerator_VTable :: struct {
+    super: FeedbackGenerator_VTable,
+}
+

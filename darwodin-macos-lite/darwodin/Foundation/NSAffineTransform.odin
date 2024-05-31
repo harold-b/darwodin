@@ -18,3 +18,7 @@ AffineTransform :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+AffineTransform_VTable :: struct {
+    super: Object_VTable,
+}
+

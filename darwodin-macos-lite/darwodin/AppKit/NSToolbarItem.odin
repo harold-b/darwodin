@@ -19,3 +19,7 @@ ToolbarItem :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+ToolbarItem_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

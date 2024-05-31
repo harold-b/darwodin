@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIMotionEffectGroup")
 MotionEffectGroup :: struct { using _: MotionEffect, }
 
+MotionEffectGroup_VTable :: struct {
+    super: MotionEffect_VTable,
+}
+

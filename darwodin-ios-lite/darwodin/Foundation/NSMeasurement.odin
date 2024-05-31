@@ -18,3 +18,7 @@ Measurement :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+Measurement_VTable :: struct {
+    super: Object_VTable,
+}
+

@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIPopoverBackgroundViewMethods")
 PopoverBackgroundViewMethods :: struct { using _: intrinsics.objc_object, }
 
+PopoverBackgroundViewMethods_VTable :: struct {
+}
+

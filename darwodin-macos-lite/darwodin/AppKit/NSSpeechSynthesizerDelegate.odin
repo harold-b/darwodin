@@ -19,3 +19,6 @@ SpeechSynthesizerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+SpeechSynthesizerDelegate_VTable :: struct {
+}
+

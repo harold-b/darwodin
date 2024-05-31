@@ -19,3 +19,6 @@ SearchFieldDelegate :: struct { using _: intrinsics.objc_object,
     using _: TextFieldDelegate,
 }
 
+SearchFieldDelegate_VTable :: struct {
+}
+

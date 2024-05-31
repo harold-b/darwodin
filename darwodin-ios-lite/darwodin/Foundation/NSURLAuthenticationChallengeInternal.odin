@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLAuthenticationChallengeInternal")
 URLAuthenticationChallengeInternal :: struct { using _: intrinsics.objc_object, }
 
+URLAuthenticationChallengeInternal_VTable :: struct {
+}
+

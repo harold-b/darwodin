@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSSpecifierTest")
 SpecifierTest :: struct { using _: ScriptWhoseTest, }
 
+SpecifierTest_VTable :: struct {
+    super: ScriptWhoseTest_VTable,
+}
+

@@ -17,3 +17,7 @@ UnitAcceleration :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitAcceleration_VTable :: struct {
+    super: Dimension_VTable,
+}
+

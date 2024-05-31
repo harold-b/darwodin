@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIAccessibilityLocationDescriptor")
 AccessibilityLocationDescriptor :: struct { using _: NS.Object, }
 
+AccessibilityLocationDescriptor_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

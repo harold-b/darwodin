@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLCache")
 URLCache :: struct { using _: Object, }
 
+URLCache_VTable :: struct {
+    super: Object_VTable,
+}
+

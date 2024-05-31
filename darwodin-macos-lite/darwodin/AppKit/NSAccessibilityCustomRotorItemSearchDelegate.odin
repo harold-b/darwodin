@@ -19,3 +19,6 @@ AccessibilityCustomRotorItemSearchDelegate :: struct { using _: intrinsics.objc_
     using _: NS.ObjectProtocol,
 }
 
+AccessibilityCustomRotorItemSearchDelegate_VTable :: struct {
+}
+

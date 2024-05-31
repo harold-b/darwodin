@@ -19,3 +19,6 @@ CloudSharingServiceDelegate :: struct { using _: intrinsics.objc_object,
     using _: SharingServiceDelegate,
 }
 
+CloudSharingServiceDelegate_VTable :: struct {
+}
+

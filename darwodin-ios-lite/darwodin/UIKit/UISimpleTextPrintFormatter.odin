@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UISimpleTextPrintFormatter")
 SimpleTextPrintFormatter :: struct { using _: PrintFormatter, }
 
+SimpleTextPrintFormatter_VTable :: struct {
+    super: PrintFormatter_VTable,
+}
+

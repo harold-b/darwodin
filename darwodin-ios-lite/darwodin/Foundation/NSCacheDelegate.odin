@@ -17,3 +17,6 @@ CacheDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
+CacheDelegate_VTable :: struct {
+}
+

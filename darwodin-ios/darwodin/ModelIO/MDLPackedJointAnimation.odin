@@ -77,36 +77,36 @@ PackedJointAnimation_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._N
     return msgSend(id, PackedJointAnimation, "mutableCopyWithZone:", zone)
 }
 @(objc_type=PackedJointAnimation, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-PackedJointAnimation_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PackedJointAnimation, "instancesRespondToSelector:", aSelector)
+PackedJointAnimation_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, PackedJointAnimation, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=PackedJointAnimation, objc_name="conformsToProtocol", objc_is_class_method=true)
-PackedJointAnimation_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, PackedJointAnimation, "conformsToProtocol:", protocol)
+PackedJointAnimation_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, PackedJointAnimation, "conformsToProtocol:", protocol)
 }
 @(objc_type=PackedJointAnimation, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-PackedJointAnimation_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), PackedJointAnimation, "instanceMethodForSelector:", aSelector)
+PackedJointAnimation_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, PackedJointAnimation, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=PackedJointAnimation, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 PackedJointAnimation_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, PackedJointAnimation, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=PackedJointAnimation, objc_name="isSubclassOfClass", objc_is_class_method=true)
-PackedJointAnimation_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, PackedJointAnimation, "isSubclassOfClass:", aClass)
+PackedJointAnimation_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, PackedJointAnimation, "isSubclassOfClass:", aClass)
 }
 @(objc_type=PackedJointAnimation, objc_name="resolveClassMethod", objc_is_class_method=true)
-PackedJointAnimation_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PackedJointAnimation, "resolveClassMethod:", sel)
+PackedJointAnimation_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PackedJointAnimation, "resolveClassMethod:", sel)
 }
 @(objc_type=PackedJointAnimation, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-PackedJointAnimation_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PackedJointAnimation, "resolveInstanceMethod:", sel)
+PackedJointAnimation_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PackedJointAnimation, "resolveInstanceMethod:", sel)
 }
 @(objc_type=PackedJointAnimation, objc_name="hash", objc_is_class_method=true)
-PackedJointAnimation_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, PackedJointAnimation, "hash")
+PackedJointAnimation_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, PackedJointAnimation, "hash")
 }
 @(objc_type=PackedJointAnimation, objc_name="superclass", objc_is_class_method=true)
 PackedJointAnimation_superclass :: #force_inline proc "c" () -> Class {
@@ -125,11 +125,11 @@ PackedJointAnimation_debugDescription :: #force_inline proc "c" () -> ^NS.String
     return msgSend(^NS.String, PackedJointAnimation, "debugDescription")
 }
 @(objc_type=PackedJointAnimation, objc_name="version", objc_is_class_method=true)
-PackedJointAnimation_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, PackedJointAnimation, "version")
+PackedJointAnimation_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, PackedJointAnimation, "version")
 }
 @(objc_type=PackedJointAnimation, objc_name="setVersion", objc_is_class_method=true)
-PackedJointAnimation_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+PackedJointAnimation_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, PackedJointAnimation, "setVersion:", aVersion)
 }
 @(objc_type=PackedJointAnimation, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -141,20 +141,20 @@ PackedJointAnimation_cancelPreviousPerformRequestsWithTarget_ :: #force_inline p
     msgSend(nil, PackedJointAnimation, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=PackedJointAnimation, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-PackedJointAnimation_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PackedJointAnimation, "accessInstanceVariablesDirectly")
+PackedJointAnimation_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PackedJointAnimation, "accessInstanceVariablesDirectly")
 }
 @(objc_type=PackedJointAnimation, objc_name="useStoredAccessor", objc_is_class_method=true)
-PackedJointAnimation_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PackedJointAnimation, "useStoredAccessor")
+PackedJointAnimation_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PackedJointAnimation, "useStoredAccessor")
 }
 @(objc_type=PackedJointAnimation, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 PackedJointAnimation_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, PackedJointAnimation, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=PackedJointAnimation, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-PackedJointAnimation_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, PackedJointAnimation, "automaticallyNotifiesObserversForKey:", key)
+PackedJointAnimation_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, PackedJointAnimation, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=PackedJointAnimation, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 PackedJointAnimation_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

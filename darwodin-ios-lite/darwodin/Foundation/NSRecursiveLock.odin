@@ -17,3 +17,7 @@ RecursiveLock :: struct { using _: Object,
     using _: Locking,
 }
 
+RecursiveLock_VTable :: struct {
+    super: Object_VTable,
+}
+

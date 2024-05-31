@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSIndexSpecifier")
 IndexSpecifier :: struct { using _: ScriptObjectSpecifier, }
 
+IndexSpecifier_VTable :: struct {
+    super: ScriptObjectSpecifier_VTable,
+}
+

@@ -22,3 +22,7 @@ Document :: struct { using _: NS.Object,
     using _: UserInterfaceValidations,
 }
 
+Document_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

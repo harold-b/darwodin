@@ -22,3 +22,7 @@ TableView :: struct { using _: Control,
     using _: AccessibilityTable,
 }
 
+TableView_VTable :: struct {
+    super: Control_VTable,
+}
+

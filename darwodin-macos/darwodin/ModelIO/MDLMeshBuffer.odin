@@ -23,7 +23,7 @@ MeshBuffer :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=MeshBuffer, objc_name="fillData")
-MeshBuffer_fillData :: #force_inline proc "c" (self: ^MeshBuffer, data: ^NS.Data, offset: cffi.ulong) {
+MeshBuffer_fillData :: #force_inline proc "c" (self: ^MeshBuffer, data: ^NS.Data, offset: NS.UInteger) {
     msgSend(nil, self, "fillData:offset:", data, offset)
 }
 @(objc_type=MeshBuffer, objc_name="map")
@@ -31,8 +31,8 @@ MeshBuffer_map :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MeshBufferMap {
     return msgSend(^MeshBufferMap, self, "map")
 }
 @(objc_type=MeshBuffer, objc_name="length")
-MeshBuffer_length :: #force_inline proc "c" (self: ^MeshBuffer) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "length")
+MeshBuffer_length :: #force_inline proc "c" (self: ^MeshBuffer) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "length")
 }
 @(objc_type=MeshBuffer, objc_name="allocator")
 MeshBuffer_allocator :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MeshBufferAllocator {

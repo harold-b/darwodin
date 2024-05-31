@@ -17,3 +17,6 @@ URLSessionDataDelegate :: struct { using _: intrinsics.objc_object,
     using _: URLSessionTaskDelegate,
 }
 
+URLSessionDataDelegate_VTable :: struct {
+}
+

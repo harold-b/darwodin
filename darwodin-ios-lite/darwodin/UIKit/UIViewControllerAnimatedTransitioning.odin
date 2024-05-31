@@ -19,3 +19,6 @@ ViewControllerAnimatedTransitioning :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+ViewControllerAnimatedTransitioning_VTable :: struct {
+}
+

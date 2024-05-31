@@ -19,3 +19,6 @@ ViewLayerContentScaleDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+ViewLayerContentScaleDelegate_VTable :: struct {
+}
+

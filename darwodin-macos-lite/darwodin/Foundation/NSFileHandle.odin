@@ -17,3 +17,7 @@ FileHandle :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+FileHandle_VTable :: struct {
+    super: Object_VTable,
+}
+

@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CATransaction")
 Transaction :: struct { using _: NS.Object, }
 
+Transaction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

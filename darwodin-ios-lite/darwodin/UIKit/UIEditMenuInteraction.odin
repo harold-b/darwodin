@@ -19,3 +19,7 @@ EditMenuInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
+EditMenuInteraction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -20,3 +20,7 @@ NSTextContainer :: struct { using _: NS.Object,
     using _: NSTextLayoutOrientationProvider,
 }
 
+NSTextContainer_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

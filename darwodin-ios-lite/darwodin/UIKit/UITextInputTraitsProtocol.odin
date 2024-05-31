@@ -19,3 +19,6 @@ TextInputTraitsProtocol :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+TextInputTraitsProtocol_VTable :: struct {
+}
+

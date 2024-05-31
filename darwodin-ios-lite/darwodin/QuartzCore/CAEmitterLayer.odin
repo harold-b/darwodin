@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CAEmitterLayer")
 EmitterLayer :: struct { using _: Layer, }
 
+EmitterLayer_VTable :: struct {
+    super: Layer_VTable,
+}
+

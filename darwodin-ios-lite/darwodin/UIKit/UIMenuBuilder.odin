@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIMenuBuilder")
 MenuBuilder :: struct { using _: intrinsics.objc_object, }
 
+MenuBuilder_VTable :: struct {
+}
+

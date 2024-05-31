@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSOpenGLView")
 OpenGLView :: struct { using _: View, }
 
+OpenGLView_VTable :: struct {
+    super: View_VTable,
+}
+

@@ -19,3 +19,7 @@ TraitVerticalSizeClass :: struct { using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 
+TraitVerticalSizeClass_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

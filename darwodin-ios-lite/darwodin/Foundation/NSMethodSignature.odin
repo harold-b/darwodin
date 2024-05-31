@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMethodSignature")
 MethodSignature :: struct { using _: Object, }
 
+MethodSignature_VTable :: struct {
+    super: Object_VTable,
+}
+

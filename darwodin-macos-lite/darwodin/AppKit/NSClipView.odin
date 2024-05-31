@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSClipView")
 ClipView :: struct { using _: View, }
 
+ClipView_VTable :: struct {
+    super: View_VTable,
+}
+

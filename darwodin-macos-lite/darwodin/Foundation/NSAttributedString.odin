@@ -19,3 +19,7 @@ AttributedString :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+AttributedString_VTable :: struct {
+    super: Object_VTable,
+}
+

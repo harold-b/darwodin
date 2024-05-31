@@ -19,3 +19,6 @@ PreviewActionItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PreviewActionItem_VTable :: struct {
+}
+

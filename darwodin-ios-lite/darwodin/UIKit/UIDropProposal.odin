@@ -19,3 +19,7 @@ DropProposal :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+DropProposal_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

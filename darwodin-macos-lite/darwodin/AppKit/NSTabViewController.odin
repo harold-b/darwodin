@@ -20,3 +20,7 @@ TabViewController :: struct { using _: ViewController,
     using _: ToolbarDelegate,
 }
 
+TabViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

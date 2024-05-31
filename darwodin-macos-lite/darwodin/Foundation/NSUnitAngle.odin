@@ -17,3 +17,7 @@ UnitAngle :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitAngle_VTable :: struct {
+    super: Dimension_VTable,
+}
+

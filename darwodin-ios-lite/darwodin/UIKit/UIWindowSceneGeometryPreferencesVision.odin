@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIWindowSceneGeometryPreferencesVision")
 WindowSceneGeometryPreferencesVision :: struct { using _: WindowSceneGeometryPreferences, }
 
+WindowSceneGeometryPreferencesVision_VTable :: struct {
+    super: WindowSceneGeometryPreferences_VTable,
+}
+

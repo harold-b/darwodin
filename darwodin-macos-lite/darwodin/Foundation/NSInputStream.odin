@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSInputStream")
 InputStream :: struct { using _: Stream, }
 
+InputStream_VTable :: struct {
+    super: Stream_VTable,
+}
+

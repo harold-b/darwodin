@@ -19,3 +19,6 @@ SceneDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+SceneDelegate_VTable :: struct {
+}
+

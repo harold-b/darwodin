@@ -19,3 +19,7 @@ MenuItemBadge :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+MenuItemBadge_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

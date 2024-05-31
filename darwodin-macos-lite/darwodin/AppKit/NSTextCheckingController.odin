@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSTextCheckingController")
 TextCheckingController :: struct { using _: NS.Object, }
 
+TextCheckingController_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

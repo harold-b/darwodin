@@ -18,3 +18,7 @@ Date :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+Date_VTable :: struct {
+    super: Object_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSBrowser")
 Browser :: struct { using _: Control, }
 
+Browser_VTable :: struct {
+    super: Control_VTable,
+}
+

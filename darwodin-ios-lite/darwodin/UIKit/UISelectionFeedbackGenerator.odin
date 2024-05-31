@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UISelectionFeedbackGenerator")
 SelectionFeedbackGenerator :: struct { using _: FeedbackGenerator, }
 
+SelectionFeedbackGenerator_VTable :: struct {
+    super: FeedbackGenerator_VTable,
+}
+

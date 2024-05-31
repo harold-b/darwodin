@@ -32,28 +32,28 @@ Matrix4x4Array_clear :: #force_inline proc "c" (self: ^Matrix4x4Array) {
     msgSend(nil, self, "clear")
 }
 @(objc_type=Matrix4x4Array, objc_name="initWithElementCount")
-Matrix4x4Array_initWithElementCount :: #force_inline proc "c" (self: ^Matrix4x4Array, arrayElementCount: cffi.ulong) -> ^Matrix4x4Array {
+Matrix4x4Array_initWithElementCount :: #force_inline proc "c" (self: ^Matrix4x4Array, arrayElementCount: NS.UInteger) -> ^Matrix4x4Array {
     return msgSend(^Matrix4x4Array, self, "initWithElementCount:", arrayElementCount)
 }
 @(objc_type=Matrix4x4Array, objc_name="setFloat4x4Array")
-Matrix4x4Array_setFloat4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f32, count: cffi.ulong) {
+Matrix4x4Array_setFloat4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix_float4x4, count: NS.UInteger) {
     msgSend(nil, self, "setFloat4x4Array:count:", valuesArray, count)
 }
 @(objc_type=Matrix4x4Array, objc_name="setDouble4x4Array")
-Matrix4x4Array_setDouble4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f64, count: cffi.ulong) {
+Matrix4x4Array_setDouble4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix_double4x4, count: NS.UInteger) {
     msgSend(nil, self, "setDouble4x4Array:count:", valuesArray, count)
 }
 @(objc_type=Matrix4x4Array, objc_name="getFloat4x4Array")
-Matrix4x4Array_getFloat4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f32, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getFloat4x4Array:maxCount:", valuesArray, maxCount)
+Matrix4x4Array_getFloat4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix_float4x4, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getFloat4x4Array:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=Matrix4x4Array, objc_name="getDouble4x4Array")
-Matrix4x4Array_getDouble4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f64, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getDouble4x4Array:maxCount:", valuesArray, maxCount)
+Matrix4x4Array_getDouble4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix_double4x4, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getDouble4x4Array:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=Matrix4x4Array, objc_name="elementCount")
-Matrix4x4Array_elementCount :: #force_inline proc "c" (self: ^Matrix4x4Array) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "elementCount")
+Matrix4x4Array_elementCount :: #force_inline proc "c" (self: ^Matrix4x4Array) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "elementCount")
 }
 @(objc_type=Matrix4x4Array, objc_name="precision")
 Matrix4x4Array_precision :: #force_inline proc "c" (self: ^Matrix4x4Array) -> DataPrecision {
@@ -88,36 +88,36 @@ Matrix4x4Array_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone)
     return msgSend(id, Matrix4x4Array, "mutableCopyWithZone:", zone)
 }
 @(objc_type=Matrix4x4Array, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Matrix4x4Array_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Matrix4x4Array, "instancesRespondToSelector:", aSelector)
+Matrix4x4Array_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, Matrix4x4Array, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=Matrix4x4Array, objc_name="conformsToProtocol", objc_is_class_method=true)
-Matrix4x4Array_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, Matrix4x4Array, "conformsToProtocol:", protocol)
+Matrix4x4Array_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, Matrix4x4Array, "conformsToProtocol:", protocol)
 }
 @(objc_type=Matrix4x4Array, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Matrix4x4Array_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), Matrix4x4Array, "instanceMethodForSelector:", aSelector)
+Matrix4x4Array_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, Matrix4x4Array, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=Matrix4x4Array, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 Matrix4x4Array_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, Matrix4x4Array, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=Matrix4x4Array, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Matrix4x4Array_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, Matrix4x4Array, "isSubclassOfClass:", aClass)
+Matrix4x4Array_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, Matrix4x4Array, "isSubclassOfClass:", aClass)
 }
 @(objc_type=Matrix4x4Array, objc_name="resolveClassMethod", objc_is_class_method=true)
-Matrix4x4Array_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Matrix4x4Array, "resolveClassMethod:", sel)
+Matrix4x4Array_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Matrix4x4Array, "resolveClassMethod:", sel)
 }
 @(objc_type=Matrix4x4Array, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Matrix4x4Array_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Matrix4x4Array, "resolveInstanceMethod:", sel)
+Matrix4x4Array_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Matrix4x4Array, "resolveInstanceMethod:", sel)
 }
 @(objc_type=Matrix4x4Array, objc_name="hash", objc_is_class_method=true)
-Matrix4x4Array_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, Matrix4x4Array, "hash")
+Matrix4x4Array_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, Matrix4x4Array, "hash")
 }
 @(objc_type=Matrix4x4Array, objc_name="superclass", objc_is_class_method=true)
 Matrix4x4Array_superclass :: #force_inline proc "c" () -> Class {
@@ -136,11 +136,11 @@ Matrix4x4Array_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, Matrix4x4Array, "debugDescription")
 }
 @(objc_type=Matrix4x4Array, objc_name="version", objc_is_class_method=true)
-Matrix4x4Array_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, Matrix4x4Array, "version")
+Matrix4x4Array_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, Matrix4x4Array, "version")
 }
 @(objc_type=Matrix4x4Array, objc_name="setVersion", objc_is_class_method=true)
-Matrix4x4Array_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+Matrix4x4Array_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, Matrix4x4Array, "setVersion:", aVersion)
 }
 @(objc_type=Matrix4x4Array, objc_name="poseAsClass", objc_is_class_method=true)
@@ -156,20 +156,20 @@ Matrix4x4Array_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c
     msgSend(nil, Matrix4x4Array, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=Matrix4x4Array, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Matrix4x4Array_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Matrix4x4Array, "accessInstanceVariablesDirectly")
+Matrix4x4Array_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Matrix4x4Array, "accessInstanceVariablesDirectly")
 }
 @(objc_type=Matrix4x4Array, objc_name="useStoredAccessor", objc_is_class_method=true)
-Matrix4x4Array_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Matrix4x4Array, "useStoredAccessor")
+Matrix4x4Array_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Matrix4x4Array, "useStoredAccessor")
 }
 @(objc_type=Matrix4x4Array, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 Matrix4x4Array_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, Matrix4x4Array, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=Matrix4x4Array, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Matrix4x4Array_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, Matrix4x4Array, "automaticallyNotifiesObserversForKey:", key)
+Matrix4x4Array_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, Matrix4x4Array, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=Matrix4x4Array, objc_name="setKeys", objc_is_class_method=true)
 Matrix4x4Array_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

@@ -22,3 +22,7 @@ TextField :: struct { using _: Control,
     using _: LetterformAwareAdjusting,
 }
 
+TextField_VTable :: struct {
+    super: Control_VTable,
+}
+

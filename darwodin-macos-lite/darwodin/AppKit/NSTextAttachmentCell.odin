@@ -19,3 +19,7 @@ TextAttachmentCell :: struct { using _: Cell,
     using _: TextAttachmentCellProtocol,
 }
 
+TextAttachmentCell_VTable :: struct {
+    super: Cell_VTable,
+}
+

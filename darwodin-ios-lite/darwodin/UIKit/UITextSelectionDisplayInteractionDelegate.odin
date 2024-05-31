@@ -19,3 +19,6 @@ TextSelectionDisplayInteractionDelegate :: struct { using _: intrinsics.objc_obj
     using _: NS.ObjectProtocol,
 }
 
+TextSelectionDisplayInteractionDelegate_VTable :: struct {
+}
+

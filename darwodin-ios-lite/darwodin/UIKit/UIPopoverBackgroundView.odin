@@ -19,3 +19,7 @@ PopoverBackgroundView :: struct { using _: View,
     using _: PopoverBackgroundViewMethods,
 }
 
+PopoverBackgroundView_VTable :: struct {
+    super: View_VTable,
+}
+

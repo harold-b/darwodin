@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="NSUserInterfaceItemIdentification")
 UserInterfaceItemIdentification :: struct { using _: intrinsics.objc_object, }
 
+UserInterfaceItemIdentification_VTable :: struct {
+}
+

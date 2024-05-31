@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIUserNotificationSettings")
 UserNotificationSettings :: struct { using _: NS.Object, }
 
+UserNotificationSettings_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

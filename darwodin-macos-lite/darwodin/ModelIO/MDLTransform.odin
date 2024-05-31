@@ -35,15 +35,15 @@ Transform_initWithTransformComponent_ :: #force_inline proc "c" (self: ^Transfor
     return msgSend(^Transform, self, "initWithTransformComponent:", component)
 }
 @(objc_type=Transform, objc_name="initWithTransformComponent_resetsTransform")
-Transform_initWithTransformComponent_resetsTransform :: #force_inline proc "c" (self: ^Transform, component: ^TransformComponent, resetsTransform: cffi.bool) -> ^Transform {
+Transform_initWithTransformComponent_resetsTransform :: #force_inline proc "c" (self: ^Transform, component: ^TransformComponent, resetsTransform: bool) -> ^Transform {
     return msgSend(^Transform, self, "initWithTransformComponent:resetsTransform:", component, resetsTransform)
 }
 @(objc_type=Transform, objc_name="initWithMatrix_")
-Transform_initWithMatrix_ :: #force_inline proc "c" (self: ^Transform, _matrix: matrix[4,4]f32) -> ^Transform {
+Transform_initWithMatrix_ :: #force_inline proc "c" (self: ^Transform, _matrix: matrix_float4x4) -> ^Transform {
     return msgSend(^Transform, self, "initWithMatrix:", _matrix)
 }
 @(objc_type=Transform, objc_name="initWithMatrix_resetsTransform")
-Transform_initWithMatrix_resetsTransform :: #force_inline proc "c" (self: ^Transform, _matrix: matrix[4,4]f32, resetsTransform: cffi.bool) -> ^Transform {
+Transform_initWithMatrix_resetsTransform :: #force_inline proc "c" (self: ^Transform, _matrix: matrix_float4x4, resetsTransform: bool) -> ^Transform {
     return msgSend(^Transform, self, "initWithMatrix:resetsTransform:", _matrix, resetsTransform)
 }
 @(objc_type=Transform, objc_name="setIdentity")
@@ -51,80 +51,80 @@ Transform_setIdentity :: #force_inline proc "c" (self: ^Transform) {
     msgSend(nil, self, "setIdentity")
 }
 @(objc_type=Transform, objc_name="translationAtTime")
-Transform_translationAtTime :: #force_inline proc "c" (self: ^Transform, time: cffi.double) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "translationAtTime:", time)
+Transform_translationAtTime :: #force_inline proc "c" (self: ^Transform, time: NS.TimeInterval) -> vector_float3 {
+    return msgSend(vector_float3, self, "translationAtTime:", time)
 }
 @(objc_type=Transform, objc_name="rotationAtTime")
-Transform_rotationAtTime :: #force_inline proc "c" (self: ^Transform, time: cffi.double) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "rotationAtTime:", time)
+Transform_rotationAtTime :: #force_inline proc "c" (self: ^Transform, time: NS.TimeInterval) -> vector_float3 {
+    return msgSend(vector_float3, self, "rotationAtTime:", time)
 }
 @(objc_type=Transform, objc_name="shearAtTime")
-Transform_shearAtTime :: #force_inline proc "c" (self: ^Transform, time: cffi.double) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "shearAtTime:", time)
+Transform_shearAtTime :: #force_inline proc "c" (self: ^Transform, time: NS.TimeInterval) -> vector_float3 {
+    return msgSend(vector_float3, self, "shearAtTime:", time)
 }
 @(objc_type=Transform, objc_name="scaleAtTime")
-Transform_scaleAtTime :: #force_inline proc "c" (self: ^Transform, time: cffi.double) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "scaleAtTime:", time)
+Transform_scaleAtTime :: #force_inline proc "c" (self: ^Transform, time: NS.TimeInterval) -> vector_float3 {
+    return msgSend(vector_float3, self, "scaleAtTime:", time)
 }
 @(objc_type=Transform, objc_name="setMatrix")
-Transform_setMatrix :: #force_inline proc "c" (self: ^Transform, _matrix: matrix[4,4]f32, time: cffi.double) {
+Transform_setMatrix :: #force_inline proc "c" (self: ^Transform, _matrix: matrix_float4x4, time: NS.TimeInterval) {
     msgSend(nil, self, "setMatrix:forTime:", _matrix, time)
 }
 @(objc_type=Transform, objc_name="setTranslation_forTime")
-Transform_setTranslation_forTime :: #force_inline proc "c" (self: ^Transform, translation: [3]cffi.float, time: cffi.double) {
+Transform_setTranslation_forTime :: #force_inline proc "c" (self: ^Transform, translation: vector_float3, time: NS.TimeInterval) {
     msgSend(nil, self, "setTranslation:forTime:", translation, time)
 }
 @(objc_type=Transform, objc_name="setRotation_forTime")
-Transform_setRotation_forTime :: #force_inline proc "c" (self: ^Transform, rotation: [3]cffi.float, time: cffi.double) {
+Transform_setRotation_forTime :: #force_inline proc "c" (self: ^Transform, rotation: vector_float3, time: NS.TimeInterval) {
     msgSend(nil, self, "setRotation:forTime:", rotation, time)
 }
 @(objc_type=Transform, objc_name="setShear_forTime")
-Transform_setShear_forTime :: #force_inline proc "c" (self: ^Transform, shear: [3]cffi.float, time: cffi.double) {
+Transform_setShear_forTime :: #force_inline proc "c" (self: ^Transform, shear: vector_float3, time: NS.TimeInterval) {
     msgSend(nil, self, "setShear:forTime:", shear, time)
 }
 @(objc_type=Transform, objc_name="setScale_forTime")
-Transform_setScale_forTime :: #force_inline proc "c" (self: ^Transform, scale: [3]cffi.float, time: cffi.double) {
+Transform_setScale_forTime :: #force_inline proc "c" (self: ^Transform, scale: vector_float3, time: NS.TimeInterval) {
     msgSend(nil, self, "setScale:forTime:", scale, time)
 }
 @(objc_type=Transform, objc_name="rotationMatrixAtTime")
-Transform_rotationMatrixAtTime :: #force_inline proc "c" (self: ^Transform, time: cffi.double) -> matrix[4,4]f32 {
-    return msgSend(matrix[4,4]f32, self, "rotationMatrixAtTime:", time)
+Transform_rotationMatrixAtTime :: #force_inline proc "c" (self: ^Transform, time: NS.TimeInterval) -> matrix_float4x4 {
+    return msgSend(matrix_float4x4, self, "rotationMatrixAtTime:", time)
 }
 @(objc_type=Transform, objc_name="translation")
-Transform_translation :: #force_inline proc "c" (self: ^Transform) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "translation")
+Transform_translation :: #force_inline proc "c" (self: ^Transform) -> vector_float3 {
+    return msgSend(vector_float3, self, "translation")
 }
 @(objc_type=Transform, objc_name="setTranslation_")
-Transform_setTranslation_ :: #force_inline proc "c" (self: ^Transform, translation: [3]cffi.float) {
+Transform_setTranslation_ :: #force_inline proc "c" (self: ^Transform, translation: vector_float3) {
     msgSend(nil, self, "setTranslation:", translation)
 }
 @(objc_type=Transform, objc_name="rotation")
-Transform_rotation :: #force_inline proc "c" (self: ^Transform) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "rotation")
+Transform_rotation :: #force_inline proc "c" (self: ^Transform) -> vector_float3 {
+    return msgSend(vector_float3, self, "rotation")
 }
 @(objc_type=Transform, objc_name="setRotation_")
-Transform_setRotation_ :: #force_inline proc "c" (self: ^Transform, rotation: [3]cffi.float) {
+Transform_setRotation_ :: #force_inline proc "c" (self: ^Transform, rotation: vector_float3) {
     msgSend(nil, self, "setRotation:", rotation)
 }
 @(objc_type=Transform, objc_name="shear")
-Transform_shear :: #force_inline proc "c" (self: ^Transform) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "shear")
+Transform_shear :: #force_inline proc "c" (self: ^Transform) -> vector_float3 {
+    return msgSend(vector_float3, self, "shear")
 }
 @(objc_type=Transform, objc_name="setShear_")
-Transform_setShear_ :: #force_inline proc "c" (self: ^Transform, shear: [3]cffi.float) {
+Transform_setShear_ :: #force_inline proc "c" (self: ^Transform, shear: vector_float3) {
     msgSend(nil, self, "setShear:", shear)
 }
 @(objc_type=Transform, objc_name="scale")
-Transform_scale :: #force_inline proc "c" (self: ^Transform) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "scale")
+Transform_scale :: #force_inline proc "c" (self: ^Transform) -> vector_float3 {
+    return msgSend(vector_float3, self, "scale")
 }
 @(objc_type=Transform, objc_name="setScale_")
-Transform_setScale_ :: #force_inline proc "c" (self: ^Transform, scale: [3]cffi.float) {
+Transform_setScale_ :: #force_inline proc "c" (self: ^Transform, scale: vector_float3) {
     msgSend(nil, self, "setScale:", scale)
 }
 @(objc_type=Transform, objc_name="globalTransformWithObject", objc_is_class_method=true)
-Transform_globalTransformWithObject :: #force_inline proc "c" (object: ^Object, time: cffi.double) -> matrix[4,4]f32 {
-    return msgSend(matrix[4,4]f32, Transform, "globalTransformWithObject:atTime:", object, time)
+Transform_globalTransformWithObject :: #force_inline proc "c" (object: ^Object, time: NS.TimeInterval) -> matrix_float4x4 {
+    return msgSend(matrix_float4x4, Transform, "globalTransformWithObject:atTime:", object, time)
 }
 @(objc_type=Transform, objc_name="load", objc_is_class_method=true)
 Transform_load :: #force_inline proc "c" () {
@@ -155,36 +155,36 @@ Transform_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> i
     return msgSend(id, Transform, "mutableCopyWithZone:", zone)
 }
 @(objc_type=Transform, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Transform_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Transform, "instancesRespondToSelector:", aSelector)
+Transform_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, Transform, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=Transform, objc_name="conformsToProtocol", objc_is_class_method=true)
-Transform_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, Transform, "conformsToProtocol:", protocol)
+Transform_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, Transform, "conformsToProtocol:", protocol)
 }
 @(objc_type=Transform, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Transform_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), Transform, "instanceMethodForSelector:", aSelector)
+Transform_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, Transform, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=Transform, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 Transform_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, Transform, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=Transform, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Transform_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, Transform, "isSubclassOfClass:", aClass)
+Transform_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, Transform, "isSubclassOfClass:", aClass)
 }
 @(objc_type=Transform, objc_name="resolveClassMethod", objc_is_class_method=true)
-Transform_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Transform, "resolveClassMethod:", sel)
+Transform_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Transform, "resolveClassMethod:", sel)
 }
 @(objc_type=Transform, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Transform_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Transform, "resolveInstanceMethod:", sel)
+Transform_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Transform, "resolveInstanceMethod:", sel)
 }
 @(objc_type=Transform, objc_name="hash", objc_is_class_method=true)
-Transform_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, Transform, "hash")
+Transform_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, Transform, "hash")
 }
 @(objc_type=Transform, objc_name="superclass", objc_is_class_method=true)
 Transform_superclass :: #force_inline proc "c" () -> Class {
@@ -203,11 +203,11 @@ Transform_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, Transform, "debugDescription")
 }
 @(objc_type=Transform, objc_name="version", objc_is_class_method=true)
-Transform_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, Transform, "version")
+Transform_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, Transform, "version")
 }
 @(objc_type=Transform, objc_name="setVersion", objc_is_class_method=true)
-Transform_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+Transform_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, Transform, "setVersion:", aVersion)
 }
 @(objc_type=Transform, objc_name="poseAsClass", objc_is_class_method=true)
@@ -223,20 +223,20 @@ Transform_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aT
     msgSend(nil, Transform, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=Transform, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Transform_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Transform, "accessInstanceVariablesDirectly")
+Transform_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Transform, "accessInstanceVariablesDirectly")
 }
 @(objc_type=Transform, objc_name="useStoredAccessor", objc_is_class_method=true)
-Transform_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Transform, "useStoredAccessor")
+Transform_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Transform, "useStoredAccessor")
 }
 @(objc_type=Transform, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 Transform_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, Transform, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=Transform, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Transform_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, Transform, "automaticallyNotifiesObserversForKey:", key)
+Transform_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, Transform, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=Transform, objc_name="setKeys", objc_is_class_method=true)
 Transform_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

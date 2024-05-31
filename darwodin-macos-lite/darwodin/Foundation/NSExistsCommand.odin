@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSExistsCommand")
 ExistsCommand :: struct { using _: ScriptCommand, }
 
+ExistsCommand_VTable :: struct {
+    super: ScriptCommand_VTable,
+}
+

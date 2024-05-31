@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLSessionWebSocketMessage")
 URLSessionWebSocketMessage :: struct { using _: Object, }
 
+URLSessionWebSocketMessage_VTable :: struct {
+    super: Object_VTable,
+}
+

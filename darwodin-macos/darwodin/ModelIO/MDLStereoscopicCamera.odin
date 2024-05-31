@@ -58,20 +58,20 @@ StereoscopicCamera_setOverlap :: #force_inline proc "c" (self: ^StereoscopicCame
     msgSend(nil, self, "setOverlap:", overlap)
 }
 @(objc_type=StereoscopicCamera, objc_name="leftViewMatrix")
-StereoscopicCamera_leftViewMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix[4,4]f32 {
-    return msgSend(matrix[4,4]f32, self, "leftViewMatrix")
+StereoscopicCamera_leftViewMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix_float4x4 {
+    return msgSend(matrix_float4x4, self, "leftViewMatrix")
 }
 @(objc_type=StereoscopicCamera, objc_name="rightViewMatrix")
-StereoscopicCamera_rightViewMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix[4,4]f32 {
-    return msgSend(matrix[4,4]f32, self, "rightViewMatrix")
+StereoscopicCamera_rightViewMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix_float4x4 {
+    return msgSend(matrix_float4x4, self, "rightViewMatrix")
 }
 @(objc_type=StereoscopicCamera, objc_name="leftProjectionMatrix")
-StereoscopicCamera_leftProjectionMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix[4,4]f32 {
-    return msgSend(matrix[4,4]f32, self, "leftProjectionMatrix")
+StereoscopicCamera_leftProjectionMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix_float4x4 {
+    return msgSend(matrix_float4x4, self, "leftProjectionMatrix")
 }
 @(objc_type=StereoscopicCamera, objc_name="rightProjectionMatrix")
-StereoscopicCamera_rightProjectionMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix[4,4]f32 {
-    return msgSend(matrix[4,4]f32, self, "rightProjectionMatrix")
+StereoscopicCamera_rightProjectionMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix_float4x4 {
+    return msgSend(matrix_float4x4, self, "rightProjectionMatrix")
 }
 @(objc_type=StereoscopicCamera, objc_name="load", objc_is_class_method=true)
 StereoscopicCamera_load :: #force_inline proc "c" () {
@@ -102,36 +102,36 @@ StereoscopicCamera_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZ
     return msgSend(id, StereoscopicCamera, "mutableCopyWithZone:", zone)
 }
 @(objc_type=StereoscopicCamera, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-StereoscopicCamera_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, StereoscopicCamera, "instancesRespondToSelector:", aSelector)
+StereoscopicCamera_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, StereoscopicCamera, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=StereoscopicCamera, objc_name="conformsToProtocol", objc_is_class_method=true)
-StereoscopicCamera_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, StereoscopicCamera, "conformsToProtocol:", protocol)
+StereoscopicCamera_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, StereoscopicCamera, "conformsToProtocol:", protocol)
 }
 @(objc_type=StereoscopicCamera, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-StereoscopicCamera_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), StereoscopicCamera, "instanceMethodForSelector:", aSelector)
+StereoscopicCamera_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, StereoscopicCamera, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=StereoscopicCamera, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 StereoscopicCamera_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, StereoscopicCamera, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=StereoscopicCamera, objc_name="isSubclassOfClass", objc_is_class_method=true)
-StereoscopicCamera_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, StereoscopicCamera, "isSubclassOfClass:", aClass)
+StereoscopicCamera_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, StereoscopicCamera, "isSubclassOfClass:", aClass)
 }
 @(objc_type=StereoscopicCamera, objc_name="resolveClassMethod", objc_is_class_method=true)
-StereoscopicCamera_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, StereoscopicCamera, "resolveClassMethod:", sel)
+StereoscopicCamera_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, StereoscopicCamera, "resolveClassMethod:", sel)
 }
 @(objc_type=StereoscopicCamera, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-StereoscopicCamera_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, StereoscopicCamera, "resolveInstanceMethod:", sel)
+StereoscopicCamera_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, StereoscopicCamera, "resolveInstanceMethod:", sel)
 }
 @(objc_type=StereoscopicCamera, objc_name="hash", objc_is_class_method=true)
-StereoscopicCamera_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, StereoscopicCamera, "hash")
+StereoscopicCamera_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, StereoscopicCamera, "hash")
 }
 @(objc_type=StereoscopicCamera, objc_name="superclass", objc_is_class_method=true)
 StereoscopicCamera_superclass :: #force_inline proc "c" () -> Class {
@@ -150,11 +150,11 @@ StereoscopicCamera_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, StereoscopicCamera, "debugDescription")
 }
 @(objc_type=StereoscopicCamera, objc_name="version", objc_is_class_method=true)
-StereoscopicCamera_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, StereoscopicCamera, "version")
+StereoscopicCamera_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, StereoscopicCamera, "version")
 }
 @(objc_type=StereoscopicCamera, objc_name="setVersion", objc_is_class_method=true)
-StereoscopicCamera_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+StereoscopicCamera_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, StereoscopicCamera, "setVersion:", aVersion)
 }
 @(objc_type=StereoscopicCamera, objc_name="poseAsClass", objc_is_class_method=true)
@@ -170,20 +170,20 @@ StereoscopicCamera_cancelPreviousPerformRequestsWithTarget_ :: #force_inline pro
     msgSend(nil, StereoscopicCamera, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=StereoscopicCamera, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-StereoscopicCamera_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, StereoscopicCamera, "accessInstanceVariablesDirectly")
+StereoscopicCamera_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, StereoscopicCamera, "accessInstanceVariablesDirectly")
 }
 @(objc_type=StereoscopicCamera, objc_name="useStoredAccessor", objc_is_class_method=true)
-StereoscopicCamera_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, StereoscopicCamera, "useStoredAccessor")
+StereoscopicCamera_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, StereoscopicCamera, "useStoredAccessor")
 }
 @(objc_type=StereoscopicCamera, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 StereoscopicCamera_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, StereoscopicCamera, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=StereoscopicCamera, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-StereoscopicCamera_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, StereoscopicCamera, "automaticallyNotifiesObserversForKey:", key)
+StereoscopicCamera_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, StereoscopicCamera, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=StereoscopicCamera, objc_name="setKeys", objc_is_class_method=true)
 StereoscopicCamera_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

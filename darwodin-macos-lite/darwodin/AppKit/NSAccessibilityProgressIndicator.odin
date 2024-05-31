@@ -19,3 +19,6 @@ AccessibilityProgressIndicator :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 
+AccessibilityProgressIndicator_VTable :: struct {
+}
+

@@ -21,3 +21,7 @@ TextView :: struct { using _: ScrollView,
     using _: LetterformAwareAdjusting,
 }
 
+TextView_VTable :: struct {
+    super: ScrollView_VTable,
+}
+

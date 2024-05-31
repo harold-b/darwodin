@@ -9,7 +9,7 @@
             "command": "${workspaceFolder}/build",
             "args": [
                 "-debug"
-                , "-l" 
+                // , "-l" 
             ],
             "problemMatcher": {
                 "owner": "odin",

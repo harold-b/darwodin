@@ -19,3 +19,6 @@ CollectionViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: ScrollViewDelegate,
 }
 
+CollectionViewDelegate_VTable :: struct {
+}
+

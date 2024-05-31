@@ -19,3 +19,6 @@ CollectionLayoutVisibleItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+CollectionLayoutVisibleItem_VTable :: struct {
+}
+

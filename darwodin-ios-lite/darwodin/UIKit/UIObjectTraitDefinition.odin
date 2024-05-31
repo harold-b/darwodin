@@ -19,3 +19,6 @@ ObjectTraitDefinition :: struct { using _: intrinsics.objc_object,
     using _: TraitDefinition,
 }
 
+ObjectTraitDefinition_VTable :: struct {
+}
+

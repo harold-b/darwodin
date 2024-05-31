@@ -2100,6 +2100,7 @@ SearchPathDomainMask :: enum cffi.ulong {
 }
 SearchPathDomainMasks :: bit_set[SearchPathDomainMask; cffi.ulong]
 
+
 /// NSURLBookmarkCreationOptions
 URLBookmarkCreationOptions :: enum cffi.ulong {
     PreferFileIDResolution = 256,

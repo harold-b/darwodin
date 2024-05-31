@@ -19,3 +19,7 @@ CollectionView :: struct { using _: ScrollView,
     using _: DataSourceTranslating,
 }
 
+CollectionView_VTable :: struct {
+    super: ScrollView_VTable,
+}
+

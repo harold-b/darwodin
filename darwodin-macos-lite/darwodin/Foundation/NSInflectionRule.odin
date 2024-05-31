@@ -18,3 +18,7 @@ InflectionRule :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+InflectionRule_VTable :: struct {
+    super: Object_VTable,
+}
+

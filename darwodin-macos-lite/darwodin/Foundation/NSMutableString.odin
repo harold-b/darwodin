@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableString")
 MutableString :: struct { using _: String, }
 
+MutableString_VTable :: struct {
+    super: String_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIDragPreviewParameters")
 DragPreviewParameters :: struct { using _: PreviewParameters, }
 
+DragPreviewParameters_VTable :: struct {
+    super: PreviewParameters_VTable,
+}
+

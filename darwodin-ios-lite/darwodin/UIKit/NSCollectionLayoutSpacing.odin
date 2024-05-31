@@ -19,3 +19,7 @@ NSCollectionLayoutSpacing :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+NSCollectionLayoutSpacing_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

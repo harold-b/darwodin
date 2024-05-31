@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITrackingLayoutGuide")
 TrackingLayoutGuide :: struct { using _: LayoutGuide, }
 
+TrackingLayoutGuide_VTable :: struct {
+    super: LayoutGuide_VTable,
+}
+

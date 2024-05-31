@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIEventAttributionView")
 EventAttributionView :: struct { using _: View, }
 
+EventAttributionView_VTable :: struct {
+    super: View_VTable,
+}
+

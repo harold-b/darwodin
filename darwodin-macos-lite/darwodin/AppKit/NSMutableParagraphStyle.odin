@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSMutableParagraphStyle")
 MutableParagraphStyle :: struct { using _: ParagraphStyle, }
 
+MutableParagraphStyle_VTable :: struct {
+    super: ParagraphStyle_VTable,
+}
+

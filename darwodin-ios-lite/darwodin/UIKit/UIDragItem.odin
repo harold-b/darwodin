@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIDragItem")
 DragItem :: struct { using _: NS.Object, }
 
+DragItem_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

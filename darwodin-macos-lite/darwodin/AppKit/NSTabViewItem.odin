@@ -19,3 +19,7 @@ TabViewItem :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
+TabViewItem_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

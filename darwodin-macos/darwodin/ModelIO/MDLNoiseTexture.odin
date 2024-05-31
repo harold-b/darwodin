@@ -30,7 +30,7 @@ NoiseTexture_initVectorNoiseWithSmoothness :: #force_inline proc "c" (self: ^Noi
     return msgSend(^NoiseTexture, self, "initVectorNoiseWithSmoothness:name:textureDimensions:channelEncoding:", smoothness, name, textureDimensions, channelEncoding)
 }
 @(objc_type=NoiseTexture, objc_name="initScalarNoiseWithSmoothness")
-NoiseTexture_initScalarNoiseWithSmoothness :: #force_inline proc "c" (self: ^NoiseTexture, smoothness: cffi.float, name: ^NS.String, textureDimensions: [2]cffi.int, channelCount: cffi.int, channelEncoding: TextureChannelEncoding, grayscale: cffi.bool) -> ^NoiseTexture {
+NoiseTexture_initScalarNoiseWithSmoothness :: #force_inline proc "c" (self: ^NoiseTexture, smoothness: cffi.float, name: ^NS.String, textureDimensions: [2]cffi.int, channelCount: cffi.int, channelEncoding: TextureChannelEncoding, grayscale: bool) -> ^NoiseTexture {
     return msgSend(^NoiseTexture, self, "initScalarNoiseWithSmoothness:name:textureDimensions:channelCount:channelEncoding:grayscale:", smoothness, name, textureDimensions, channelCount, channelEncoding, grayscale)
 }
 @(objc_type=NoiseTexture, objc_name="initCellularNoiseWithFrequency")
@@ -94,36 +94,36 @@ NoiseTexture_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -
     return msgSend(id, NoiseTexture, "mutableCopyWithZone:", zone)
 }
 @(objc_type=NoiseTexture, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-NoiseTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, NoiseTexture, "instancesRespondToSelector:", aSelector)
+NoiseTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, NoiseTexture, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=NoiseTexture, objc_name="conformsToProtocol", objc_is_class_method=true)
-NoiseTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, NoiseTexture, "conformsToProtocol:", protocol)
+NoiseTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, NoiseTexture, "conformsToProtocol:", protocol)
 }
 @(objc_type=NoiseTexture, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-NoiseTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), NoiseTexture, "instanceMethodForSelector:", aSelector)
+NoiseTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, NoiseTexture, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=NoiseTexture, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 NoiseTexture_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, NoiseTexture, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=NoiseTexture, objc_name="isSubclassOfClass", objc_is_class_method=true)
-NoiseTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, NoiseTexture, "isSubclassOfClass:", aClass)
+NoiseTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, NoiseTexture, "isSubclassOfClass:", aClass)
 }
 @(objc_type=NoiseTexture, objc_name="resolveClassMethod", objc_is_class_method=true)
-NoiseTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, NoiseTexture, "resolveClassMethod:", sel)
+NoiseTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, NoiseTexture, "resolveClassMethod:", sel)
 }
 @(objc_type=NoiseTexture, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-NoiseTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, NoiseTexture, "resolveInstanceMethod:", sel)
+NoiseTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, NoiseTexture, "resolveInstanceMethod:", sel)
 }
 @(objc_type=NoiseTexture, objc_name="hash", objc_is_class_method=true)
-NoiseTexture_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, NoiseTexture, "hash")
+NoiseTexture_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, NoiseTexture, "hash")
 }
 @(objc_type=NoiseTexture, objc_name="superclass", objc_is_class_method=true)
 NoiseTexture_superclass :: #force_inline proc "c" () -> Class {
@@ -142,11 +142,11 @@ NoiseTexture_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, NoiseTexture, "debugDescription")
 }
 @(objc_type=NoiseTexture, objc_name="version", objc_is_class_method=true)
-NoiseTexture_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, NoiseTexture, "version")
+NoiseTexture_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, NoiseTexture, "version")
 }
 @(objc_type=NoiseTexture, objc_name="setVersion", objc_is_class_method=true)
-NoiseTexture_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+NoiseTexture_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, NoiseTexture, "setVersion:", aVersion)
 }
 @(objc_type=NoiseTexture, objc_name="poseAsClass", objc_is_class_method=true)
@@ -162,20 +162,20 @@ NoiseTexture_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" 
     msgSend(nil, NoiseTexture, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=NoiseTexture, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-NoiseTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, NoiseTexture, "accessInstanceVariablesDirectly")
+NoiseTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, NoiseTexture, "accessInstanceVariablesDirectly")
 }
 @(objc_type=NoiseTexture, objc_name="useStoredAccessor", objc_is_class_method=true)
-NoiseTexture_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, NoiseTexture, "useStoredAccessor")
+NoiseTexture_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, NoiseTexture, "useStoredAccessor")
 }
 @(objc_type=NoiseTexture, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 NoiseTexture_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, NoiseTexture, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=NoiseTexture, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-NoiseTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, NoiseTexture, "automaticallyNotifiesObserversForKey:", key)
+NoiseTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, NoiseTexture, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=NoiseTexture, objc_name="setKeys", objc_is_class_method=true)
 NoiseTexture_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

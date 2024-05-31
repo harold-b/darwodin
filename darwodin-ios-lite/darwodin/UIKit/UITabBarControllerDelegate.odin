@@ -19,3 +19,6 @@ TabBarControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+TabBarControllerDelegate_VTable :: struct {
+}
+

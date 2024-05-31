@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSSecureTextFieldCell")
 SecureTextFieldCell :: struct { using _: TextFieldCell, }
 
+SecureTextFieldCell_VTable :: struct {
+    super: TextFieldCell_VTable,
+}
+

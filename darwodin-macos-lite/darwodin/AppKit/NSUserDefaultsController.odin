@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSUserDefaultsController")
 UserDefaultsController :: struct { using _: Controller, }
 
+UserDefaultsController_VTable :: struct {
+    super: Controller_VTable,
+}
+

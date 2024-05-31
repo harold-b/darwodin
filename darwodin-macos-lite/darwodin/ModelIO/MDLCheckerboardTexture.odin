@@ -26,7 +26,7 @@ CheckerboardTexture_init :: proc "c" (self: ^CheckerboardTexture) -> ^Checkerboa
 
 
 @(objc_type=CheckerboardTexture, objc_name="initWithDivisions")
-CheckerboardTexture_initWithDivisions :: #force_inline proc "c" (self: ^CheckerboardTexture, divisions: cffi.float, name: ^NS.String, dimensions: [2]cffi.int, channelCount: cffi.int, channelEncoding: TextureChannelEncoding, color1: ^CG.Color, color2: ^CG.Color) -> ^CheckerboardTexture {
+CheckerboardTexture_initWithDivisions :: #force_inline proc "c" (self: ^CheckerboardTexture, divisions: cffi.float, name: ^NS.String, dimensions: [2]cffi.int, channelCount: cffi.int, channelEncoding: TextureChannelEncoding, color1: CG.ColorRef, color2: CG.ColorRef) -> ^CheckerboardTexture {
     return msgSend(^CheckerboardTexture, self, "initWithDivisions:name:dimensions:channelCount:channelEncoding:color1:color2:", divisions, name, dimensions, channelCount, channelEncoding, color1, color2)
 }
 @(objc_type=CheckerboardTexture, objc_name="divisions")
@@ -38,19 +38,19 @@ CheckerboardTexture_setDivisions :: #force_inline proc "c" (self: ^CheckerboardT
     msgSend(nil, self, "setDivisions:", divisions)
 }
 @(objc_type=CheckerboardTexture, objc_name="color1")
-CheckerboardTexture_color1 :: #force_inline proc "c" (self: ^CheckerboardTexture) -> ^CG.Color {
-    return msgSend(^CG.Color, self, "color1")
+CheckerboardTexture_color1 :: #force_inline proc "c" (self: ^CheckerboardTexture) -> CG.ColorRef {
+    return msgSend(CG.ColorRef, self, "color1")
 }
 @(objc_type=CheckerboardTexture, objc_name="setColor1")
-CheckerboardTexture_setColor1 :: #force_inline proc "c" (self: ^CheckerboardTexture, color1: ^CG.Color) {
+CheckerboardTexture_setColor1 :: #force_inline proc "c" (self: ^CheckerboardTexture, color1: CG.ColorRef) {
     msgSend(nil, self, "setColor1:", color1)
 }
 @(objc_type=CheckerboardTexture, objc_name="color2")
-CheckerboardTexture_color2 :: #force_inline proc "c" (self: ^CheckerboardTexture) -> ^CG.Color {
-    return msgSend(^CG.Color, self, "color2")
+CheckerboardTexture_color2 :: #force_inline proc "c" (self: ^CheckerboardTexture) -> CG.ColorRef {
+    return msgSend(CG.ColorRef, self, "color2")
 }
 @(objc_type=CheckerboardTexture, objc_name="setColor2")
-CheckerboardTexture_setColor2 :: #force_inline proc "c" (self: ^CheckerboardTexture, color2: ^CG.Color) {
+CheckerboardTexture_setColor2 :: #force_inline proc "c" (self: ^CheckerboardTexture, color2: CG.ColorRef) {
     msgSend(nil, self, "setColor2:", color2)
 }
 @(objc_type=CheckerboardTexture, objc_name="textureNamed_", objc_is_class_method=true)
@@ -110,36 +110,36 @@ CheckerboardTexture_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NS
     return msgSend(id, CheckerboardTexture, "mutableCopyWithZone:", zone)
 }
 @(objc_type=CheckerboardTexture, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-CheckerboardTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, CheckerboardTexture, "instancesRespondToSelector:", aSelector)
+CheckerboardTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, CheckerboardTexture, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=CheckerboardTexture, objc_name="conformsToProtocol", objc_is_class_method=true)
-CheckerboardTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, CheckerboardTexture, "conformsToProtocol:", protocol)
+CheckerboardTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, CheckerboardTexture, "conformsToProtocol:", protocol)
 }
 @(objc_type=CheckerboardTexture, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-CheckerboardTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), CheckerboardTexture, "instanceMethodForSelector:", aSelector)
+CheckerboardTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, CheckerboardTexture, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=CheckerboardTexture, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 CheckerboardTexture_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, CheckerboardTexture, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=CheckerboardTexture, objc_name="isSubclassOfClass", objc_is_class_method=true)
-CheckerboardTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, CheckerboardTexture, "isSubclassOfClass:", aClass)
+CheckerboardTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, CheckerboardTexture, "isSubclassOfClass:", aClass)
 }
 @(objc_type=CheckerboardTexture, objc_name="resolveClassMethod", objc_is_class_method=true)
-CheckerboardTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, CheckerboardTexture, "resolveClassMethod:", sel)
+CheckerboardTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, CheckerboardTexture, "resolveClassMethod:", sel)
 }
 @(objc_type=CheckerboardTexture, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-CheckerboardTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, CheckerboardTexture, "resolveInstanceMethod:", sel)
+CheckerboardTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, CheckerboardTexture, "resolveInstanceMethod:", sel)
 }
 @(objc_type=CheckerboardTexture, objc_name="hash", objc_is_class_method=true)
-CheckerboardTexture_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, CheckerboardTexture, "hash")
+CheckerboardTexture_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, CheckerboardTexture, "hash")
 }
 @(objc_type=CheckerboardTexture, objc_name="superclass", objc_is_class_method=true)
 CheckerboardTexture_superclass :: #force_inline proc "c" () -> Class {
@@ -158,11 +158,11 @@ CheckerboardTexture_debugDescription :: #force_inline proc "c" () -> ^NS.String 
     return msgSend(^NS.String, CheckerboardTexture, "debugDescription")
 }
 @(objc_type=CheckerboardTexture, objc_name="version", objc_is_class_method=true)
-CheckerboardTexture_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, CheckerboardTexture, "version")
+CheckerboardTexture_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, CheckerboardTexture, "version")
 }
 @(objc_type=CheckerboardTexture, objc_name="setVersion", objc_is_class_method=true)
-CheckerboardTexture_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+CheckerboardTexture_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, CheckerboardTexture, "setVersion:", aVersion)
 }
 @(objc_type=CheckerboardTexture, objc_name="poseAsClass", objc_is_class_method=true)
@@ -178,20 +178,20 @@ CheckerboardTexture_cancelPreviousPerformRequestsWithTarget_ :: #force_inline pr
     msgSend(nil, CheckerboardTexture, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=CheckerboardTexture, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-CheckerboardTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, CheckerboardTexture, "accessInstanceVariablesDirectly")
+CheckerboardTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, CheckerboardTexture, "accessInstanceVariablesDirectly")
 }
 @(objc_type=CheckerboardTexture, objc_name="useStoredAccessor", objc_is_class_method=true)
-CheckerboardTexture_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, CheckerboardTexture, "useStoredAccessor")
+CheckerboardTexture_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, CheckerboardTexture, "useStoredAccessor")
 }
 @(objc_type=CheckerboardTexture, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 CheckerboardTexture_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, CheckerboardTexture, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=CheckerboardTexture, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-CheckerboardTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, CheckerboardTexture, "automaticallyNotifiesObserversForKey:", key)
+CheckerboardTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, CheckerboardTexture, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=CheckerboardTexture, objc_name="setKeys", objc_is_class_method=true)
 CheckerboardTexture_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

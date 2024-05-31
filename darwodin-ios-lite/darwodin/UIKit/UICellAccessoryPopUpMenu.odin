@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UICellAccessoryPopUpMenu")
 CellAccessoryPopUpMenu :: struct { using _: CellAccessory, }
 
+CellAccessoryPopUpMenu_VTable :: struct {
+    super: CellAccessory_VTable,
+}
+

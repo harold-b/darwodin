@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSBackgroundActivityScheduler")
 BackgroundActivityScheduler :: struct { using _: Object, }
 
+BackgroundActivityScheduler_VTable :: struct {
+    super: Object_VTable,
+}
+

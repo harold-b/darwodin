@@ -19,3 +19,6 @@ PopoverDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PopoverDelegate_VTable :: struct {
+}
+

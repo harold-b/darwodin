@@ -18,3 +18,7 @@ DateComponents :: struct { using _: Object,
     using _: SecureCoding,
 }
 
+DateComponents_VTable :: struct {
+    super: Object_VTable,
+}
+

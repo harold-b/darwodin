@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSCandidateListTouchBarItem")
 CandidateListTouchBarItem :: struct { using _: TouchBarItem, }
 
+CandidateListTouchBarItem_VTable :: struct {
+    super: TouchBarItem_VTable,
+}
+

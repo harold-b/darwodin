@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UICollisionBehavior")
 CollisionBehavior :: struct { using _: DynamicBehavior, }
 
+CollisionBehavior_VTable :: struct {
+    super: DynamicBehavior_VTable,
+}
+

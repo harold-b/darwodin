@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIActionSheet")
 ActionSheet :: struct { using _: View, }
 
+ActionSheet_VTable :: struct {
+    super: View_VTable,
+}
+

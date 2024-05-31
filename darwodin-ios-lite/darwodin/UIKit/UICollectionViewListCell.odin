@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UICollectionViewListCell")
 CollectionViewListCell :: struct { using _: CollectionViewCell, }
 
+CollectionViewListCell_VTable :: struct {
+    super: CollectionViewCell_VTable,
+}
+

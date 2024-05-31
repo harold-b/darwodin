@@ -64,36 +64,36 @@ TransformRotateZOp_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZ
     return msgSend(id, TransformRotateZOp, "mutableCopyWithZone:", zone)
 }
 @(objc_type=TransformRotateZOp, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-TransformRotateZOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformRotateZOp, "instancesRespondToSelector:", aSelector)
+TransformRotateZOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, TransformRotateZOp, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=TransformRotateZOp, objc_name="conformsToProtocol", objc_is_class_method=true)
-TransformRotateZOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, TransformRotateZOp, "conformsToProtocol:", protocol)
+TransformRotateZOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, TransformRotateZOp, "conformsToProtocol:", protocol)
 }
 @(objc_type=TransformRotateZOp, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-TransformRotateZOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), TransformRotateZOp, "instanceMethodForSelector:", aSelector)
+TransformRotateZOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, TransformRotateZOp, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=TransformRotateZOp, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 TransformRotateZOp_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, TransformRotateZOp, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=TransformRotateZOp, objc_name="isSubclassOfClass", objc_is_class_method=true)
-TransformRotateZOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, TransformRotateZOp, "isSubclassOfClass:", aClass)
+TransformRotateZOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, TransformRotateZOp, "isSubclassOfClass:", aClass)
 }
 @(objc_type=TransformRotateZOp, objc_name="resolveClassMethod", objc_is_class_method=true)
-TransformRotateZOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformRotateZOp, "resolveClassMethod:", sel)
+TransformRotateZOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformRotateZOp, "resolveClassMethod:", sel)
 }
 @(objc_type=TransformRotateZOp, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-TransformRotateZOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformRotateZOp, "resolveInstanceMethod:", sel)
+TransformRotateZOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformRotateZOp, "resolveInstanceMethod:", sel)
 }
 @(objc_type=TransformRotateZOp, objc_name="hash", objc_is_class_method=true)
-TransformRotateZOp_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, TransformRotateZOp, "hash")
+TransformRotateZOp_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, TransformRotateZOp, "hash")
 }
 @(objc_type=TransformRotateZOp, objc_name="superclass", objc_is_class_method=true)
 TransformRotateZOp_superclass :: #force_inline proc "c" () -> Class {
@@ -112,11 +112,11 @@ TransformRotateZOp_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, TransformRotateZOp, "debugDescription")
 }
 @(objc_type=TransformRotateZOp, objc_name="version", objc_is_class_method=true)
-TransformRotateZOp_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, TransformRotateZOp, "version")
+TransformRotateZOp_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, TransformRotateZOp, "version")
 }
 @(objc_type=TransformRotateZOp, objc_name="setVersion", objc_is_class_method=true)
-TransformRotateZOp_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+TransformRotateZOp_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, TransformRotateZOp, "setVersion:", aVersion)
 }
 @(objc_type=TransformRotateZOp, objc_name="poseAsClass", objc_is_class_method=true)
@@ -132,20 +132,20 @@ TransformRotateZOp_cancelPreviousPerformRequestsWithTarget_ :: #force_inline pro
     msgSend(nil, TransformRotateZOp, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=TransformRotateZOp, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-TransformRotateZOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformRotateZOp, "accessInstanceVariablesDirectly")
+TransformRotateZOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformRotateZOp, "accessInstanceVariablesDirectly")
 }
 @(objc_type=TransformRotateZOp, objc_name="useStoredAccessor", objc_is_class_method=true)
-TransformRotateZOp_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformRotateZOp, "useStoredAccessor")
+TransformRotateZOp_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformRotateZOp, "useStoredAccessor")
 }
 @(objc_type=TransformRotateZOp, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 TransformRotateZOp_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, TransformRotateZOp, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=TransformRotateZOp, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-TransformRotateZOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, TransformRotateZOp, "automaticallyNotifiesObserversForKey:", key)
+TransformRotateZOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, TransformRotateZOp, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=TransformRotateZOp, objc_name="setKeys", objc_is_class_method=true)
 TransformRotateZOp_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

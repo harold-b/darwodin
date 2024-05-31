@@ -65,7 +65,7 @@ Enums:
     MTLCPUCacheMode: MTL.CPUCacheMode
     MTLStorageMode: MTL.StorageMode
     MTLHazardTrackingMode: MTL.HazardTrackingMode
-    MTLResourceOptions: MTL.ResourceOptions
+    MTLResourceOptions: MTL.ResourceOption
     MTLPixelFormat: MTL.PixelFormat
     MTLTextureType: MTL.TextureType
     MTLTextureSwizzle: MTL.TextureSwizzle

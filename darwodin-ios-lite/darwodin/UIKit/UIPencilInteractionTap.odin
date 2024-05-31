@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPencilInteractionTap")
 PencilInteractionTap :: struct { using _: NS.Object, }
 
+PencilInteractionTap_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

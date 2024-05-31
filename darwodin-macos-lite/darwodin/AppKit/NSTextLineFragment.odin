@@ -19,3 +19,7 @@ TextLineFragment :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+TextLineFragment_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

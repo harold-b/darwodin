@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIStoryboard")
 Storyboard :: struct { using _: NS.Object, }
 
+Storyboard_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

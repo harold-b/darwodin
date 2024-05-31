@@ -19,3 +19,7 @@ NavigationItem :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
+NavigationItem_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

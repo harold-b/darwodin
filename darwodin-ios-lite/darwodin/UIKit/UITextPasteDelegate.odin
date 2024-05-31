@@ -19,3 +19,6 @@ TextPasteDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+TextPasteDelegate_VTable :: struct {
+}
+

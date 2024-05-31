@@ -19,3 +19,6 @@ ItemProviderReadingAugmentationDesignating :: struct { using _: intrinsics.objc_
     using _: NS.ItemProviderReading,
 }
 
+ItemProviderReadingAugmentationDesignating_VTable :: struct {
+}
+

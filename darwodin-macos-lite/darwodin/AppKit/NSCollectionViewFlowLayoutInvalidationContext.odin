@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSCollectionViewFlowLayoutInvalidationContext")
 CollectionViewFlowLayoutInvalidationContext :: struct { using _: CollectionViewLayoutInvalidationContext, }
 
+CollectionViewFlowLayoutInvalidationContext_VTable :: struct {
+    super: CollectionViewLayoutInvalidationContext_VTable,
+}
+

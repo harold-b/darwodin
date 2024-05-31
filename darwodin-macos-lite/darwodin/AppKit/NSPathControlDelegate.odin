@@ -19,3 +19,6 @@ PathControlDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PathControlDelegate_VTable :: struct {
+}
+

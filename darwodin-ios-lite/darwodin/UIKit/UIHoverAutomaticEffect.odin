@@ -19,3 +19,7 @@ HoverAutomaticEffect :: struct { using _: NS.Object,
     using _: HoverEffect,
 }
 
+HoverAutomaticEffect_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

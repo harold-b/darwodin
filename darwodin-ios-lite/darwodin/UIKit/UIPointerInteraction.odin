@@ -19,3 +19,7 @@ PointerInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
+PointerInteraction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

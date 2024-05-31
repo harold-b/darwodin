@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSPositionalSpecifier")
 PositionalSpecifier :: struct { using _: Object, }
 
+PositionalSpecifier_VTable :: struct {
+    super: Object_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSDictionaryController")
 DictionaryController :: struct { using _: ArrayController, }
 
+DictionaryController_VTable :: struct {
+    super: ArrayController_VTable,
+}
+

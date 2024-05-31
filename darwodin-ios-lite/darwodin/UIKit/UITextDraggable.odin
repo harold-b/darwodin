@@ -19,3 +19,6 @@ TextDraggable :: struct { using _: intrinsics.objc_object,
     using _: TextInput,
 }
 
+TextDraggable_VTable :: struct {
+}
+

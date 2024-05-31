@@ -20,3 +20,6 @@ ContentConfiguration :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
+ContentConfiguration_VTable :: struct {
+}
+

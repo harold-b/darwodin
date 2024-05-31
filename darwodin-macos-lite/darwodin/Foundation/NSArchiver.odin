@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSArchiver")
 Archiver :: struct { using _: Coder, }
 
+Archiver_VTable :: struct {
+    super: Coder_VTable,
+}
+

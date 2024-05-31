@@ -20,3 +20,7 @@ TitlebarAccessoryViewController :: struct { using _: ViewController,
     using _: AnimatablePropertyContainer,
 }
 
+TitlebarAccessoryViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

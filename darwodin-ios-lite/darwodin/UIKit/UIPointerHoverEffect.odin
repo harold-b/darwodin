@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPointerHoverEffect")
 PointerHoverEffect :: struct { using _: PointerEffect, }
 
+PointerHoverEffect_VTable :: struct {
+    super: PointerEffect_VTable,
+}
+

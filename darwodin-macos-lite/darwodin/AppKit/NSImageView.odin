@@ -20,3 +20,7 @@ ImageView :: struct { using _: Control,
     using _: MenuItemValidation,
 }
 
+ImageView_VTable :: struct {
+    super: Control_VTable,
+}
+

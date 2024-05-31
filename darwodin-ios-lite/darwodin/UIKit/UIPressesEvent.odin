@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPressesEvent")
 PressesEvent :: struct { using _: Event, }
 
+PressesEvent_VTable :: struct {
+    super: Event_VTable,
+}
+

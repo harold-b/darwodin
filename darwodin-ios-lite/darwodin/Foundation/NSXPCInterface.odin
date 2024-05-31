@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSXPCInterface")
 XPCInterface :: struct { using _: Object, }
 
+XPCInterface_VTable :: struct {
+    super: Object_VTable,
+}
+

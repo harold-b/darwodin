@@ -65,7 +65,7 @@ Material_loadTexturesUsingResolver :: #force_inline proc "c" (self: ^Material, r
     msgSend(nil, self, "loadTexturesUsingResolver:", resolver)
 }
 @(objc_type=Material, objc_name="objectAtIndexedSubscript")
-Material_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^Material, idx: cffi.ulong) -> ^MaterialProperty {
+Material_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^Material, idx: NS.UInteger) -> ^MaterialProperty {
     return msgSend(^MaterialProperty, self, "objectAtIndexedSubscript:", idx)
 }
 @(objc_type=Material, objc_name="objectForKeyedSubscript")
@@ -93,8 +93,8 @@ Material_setBaseMaterial :: #force_inline proc "c" (self: ^Material, baseMateria
     msgSend(nil, self, "setBaseMaterial:", baseMaterial)
 }
 @(objc_type=Material, objc_name="count")
-Material_count :: #force_inline proc "c" (self: ^Material) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "count")
+Material_count :: #force_inline proc "c" (self: ^Material) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "count")
 }
 @(objc_type=Material, objc_name="materialFace")
 Material_materialFace :: #force_inline proc "c" (self: ^Material) -> MaterialFace {
@@ -133,36 +133,36 @@ Material_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id
     return msgSend(id, Material, "mutableCopyWithZone:", zone)
 }
 @(objc_type=Material, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Material_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Material, "instancesRespondToSelector:", aSelector)
+Material_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, Material, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=Material, objc_name="conformsToProtocol", objc_is_class_method=true)
-Material_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, Material, "conformsToProtocol:", protocol)
+Material_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, Material, "conformsToProtocol:", protocol)
 }
 @(objc_type=Material, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Material_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), Material, "instanceMethodForSelector:", aSelector)
+Material_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, Material, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=Material, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 Material_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, Material, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=Material, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Material_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, Material, "isSubclassOfClass:", aClass)
+Material_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, Material, "isSubclassOfClass:", aClass)
 }
 @(objc_type=Material, objc_name="resolveClassMethod", objc_is_class_method=true)
-Material_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Material, "resolveClassMethod:", sel)
+Material_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Material, "resolveClassMethod:", sel)
 }
 @(objc_type=Material, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Material_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Material, "resolveInstanceMethod:", sel)
+Material_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Material, "resolveInstanceMethod:", sel)
 }
 @(objc_type=Material, objc_name="hash", objc_is_class_method=true)
-Material_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, Material, "hash")
+Material_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, Material, "hash")
 }
 @(objc_type=Material, objc_name="superclass", objc_is_class_method=true)
 Material_superclass :: #force_inline proc "c" () -> Class {
@@ -181,11 +181,11 @@ Material_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, Material, "debugDescription")
 }
 @(objc_type=Material, objc_name="version", objc_is_class_method=true)
-Material_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, Material, "version")
+Material_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, Material, "version")
 }
 @(objc_type=Material, objc_name="setVersion", objc_is_class_method=true)
-Material_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+Material_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, Material, "setVersion:", aVersion)
 }
 @(objc_type=Material, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -197,20 +197,20 @@ Material_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTa
     msgSend(nil, Material, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=Material, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Material_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Material, "accessInstanceVariablesDirectly")
+Material_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Material, "accessInstanceVariablesDirectly")
 }
 @(objc_type=Material, objc_name="useStoredAccessor", objc_is_class_method=true)
-Material_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Material, "useStoredAccessor")
+Material_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Material, "useStoredAccessor")
 }
 @(objc_type=Material, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 Material_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, Material, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=Material, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Material_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, Material, "automaticallyNotifiesObserversForKey:", key)
+Material_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, Material, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=Material, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 Material_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSRotationGestureRecognizer")
 RotationGestureRecognizer :: struct { using _: GestureRecognizer, }
 
+RotationGestureRecognizer_VTable :: struct {
+    super: GestureRecognizer_VTable,
+}
+

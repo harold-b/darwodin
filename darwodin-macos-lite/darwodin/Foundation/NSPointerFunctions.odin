@@ -17,3 +17,7 @@ PointerFunctions :: struct { using _: Object,
     using _: Copying,
 }
 
+PointerFunctions_VTable :: struct {
+    super: Object_VTable,
+}
+

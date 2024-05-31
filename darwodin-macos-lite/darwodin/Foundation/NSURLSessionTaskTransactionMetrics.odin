@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLSessionTaskTransactionMetrics")
 URLSessionTaskTransactionMetrics :: struct { using _: Object, }
 
+URLSessionTaskTransactionMetrics_VTable :: struct {
+    super: Object_VTable,
+}
+

@@ -19,3 +19,7 @@ TraitUserInterfaceLevel :: struct { using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 
+TraitUserInterfaceLevel_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

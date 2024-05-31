@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIDictationPhrase")
 DictationPhrase :: struct { using _: NS.Object, }
 
+DictationPhrase_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

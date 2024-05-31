@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSTextRange")
 NSTextRange :: struct { using _: NS.Object, }
 
+NSTextRange_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -21,3 +21,7 @@ TextTab :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+TextTab_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

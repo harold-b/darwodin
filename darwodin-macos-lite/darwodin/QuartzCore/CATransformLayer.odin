@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CATransformLayer")
 TransformLayer :: struct { using _: Layer, }
 
+TransformLayer_VTable :: struct {
+    super: Layer_VTable,
+}
+

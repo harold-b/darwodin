@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSNetServiceBrowser")
 NetServiceBrowser :: struct { using _: Object, }
 
+NetServiceBrowser_VTable :: struct {
+    super: Object_VTable,
+}
+

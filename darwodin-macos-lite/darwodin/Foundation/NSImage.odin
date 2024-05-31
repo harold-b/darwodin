@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSImage")
 Image :: struct { using _: intrinsics.objc_object, }
 
+Image_VTable :: struct {
+}
+

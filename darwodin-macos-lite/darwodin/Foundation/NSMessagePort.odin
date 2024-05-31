@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMessagePort")
 MessagePort :: struct { using _: Port, }
 
+MessagePort_VTable :: struct {
+    super: Port_VTable,
+}
+

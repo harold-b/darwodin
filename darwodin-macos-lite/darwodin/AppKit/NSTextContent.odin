@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="NSTextContent")
 TextContent :: struct { using _: intrinsics.objc_object, }
 
+TextContent_VTable :: struct {
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIImageSymbolConfiguration")
 ImageSymbolConfiguration :: struct { using _: ImageConfiguration, }
 
+ImageSymbolConfiguration_VTable :: struct {
+    super: ImageConfiguration_VTable,
+}
+

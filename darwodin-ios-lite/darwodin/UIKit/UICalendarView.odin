@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UICalendarView")
 CalendarView :: struct { using _: View, }
 
+CalendarView_VTable :: struct {
+    super: View_VTable,
+}
+

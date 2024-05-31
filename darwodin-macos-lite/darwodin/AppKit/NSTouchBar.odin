@@ -19,3 +19,7 @@ TouchBar :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
+TouchBar_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

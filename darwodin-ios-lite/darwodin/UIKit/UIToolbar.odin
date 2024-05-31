@@ -19,3 +19,7 @@ Toolbar :: struct { using _: View,
     using _: BarPositioning,
 }
 
+Toolbar_VTable :: struct {
+    super: View_VTable,
+}
+

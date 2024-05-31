@@ -19,3 +19,6 @@ NSTextContentStorageDelegate :: struct { using _: intrinsics.objc_object,
     using _: NSTextContentManagerDelegate,
 }
 
+NSTextContentStorageDelegate_VTable :: struct {
+}
+

@@ -19,3 +19,7 @@ TextFormattingCoordinator :: struct { using _: NS.Object,
     using _: FontPickerViewControllerDelegate,
 }
 
+TextFormattingCoordinator_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

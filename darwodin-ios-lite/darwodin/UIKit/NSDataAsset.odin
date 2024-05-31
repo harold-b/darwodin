@@ -19,3 +19,7 @@ NSDataAsset :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+NSDataAsset_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

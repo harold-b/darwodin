@@ -17,3 +17,6 @@ URLProtocolClient :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
+URLProtocolClient_VTable :: struct {
+}
+

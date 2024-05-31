@@ -19,3 +19,6 @@ ViewControllerTransitioningDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+ViewControllerTransitioningDelegate_VTable :: struct {
+}
+

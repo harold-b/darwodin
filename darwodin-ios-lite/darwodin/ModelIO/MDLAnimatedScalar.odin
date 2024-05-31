@@ -26,36 +26,36 @@ AnimatedScalar_init :: proc "c" (self: ^AnimatedScalar) -> ^AnimatedScalar {
 
 
 @(objc_type=AnimatedScalar, objc_name="setFloat")
-AnimatedScalar_setFloat :: #force_inline proc "c" (self: ^AnimatedScalar, value: cffi.float, time: cffi.double) {
+AnimatedScalar_setFloat :: #force_inline proc "c" (self: ^AnimatedScalar, value: cffi.float, time: NS.TimeInterval) {
     msgSend(nil, self, "setFloat:atTime:", value, time)
 }
 @(objc_type=AnimatedScalar, objc_name="setDouble")
-AnimatedScalar_setDouble :: #force_inline proc "c" (self: ^AnimatedScalar, value: cffi.double, time: cffi.double) {
+AnimatedScalar_setDouble :: #force_inline proc "c" (self: ^AnimatedScalar, value: cffi.double, time: NS.TimeInterval) {
     msgSend(nil, self, "setDouble:atTime:", value, time)
 }
 @(objc_type=AnimatedScalar, objc_name="floatAtTime")
-AnimatedScalar_floatAtTime :: #force_inline proc "c" (self: ^AnimatedScalar, time: cffi.double) -> cffi.float {
+AnimatedScalar_floatAtTime :: #force_inline proc "c" (self: ^AnimatedScalar, time: NS.TimeInterval) -> cffi.float {
     return msgSend(cffi.float, self, "floatAtTime:", time)
 }
 @(objc_type=AnimatedScalar, objc_name="doubleAtTime")
-AnimatedScalar_doubleAtTime :: #force_inline proc "c" (self: ^AnimatedScalar, time: cffi.double) -> cffi.double {
+AnimatedScalar_doubleAtTime :: #force_inline proc "c" (self: ^AnimatedScalar, time: NS.TimeInterval) -> cffi.double {
     return msgSend(cffi.double, self, "doubleAtTime:", time)
 }
 @(objc_type=AnimatedScalar, objc_name="resetWithFloatArray")
-AnimatedScalar_resetWithFloatArray :: #force_inline proc "c" (self: ^AnimatedScalar, valuesArray: ^cffi.float, timesArray: ^cffi.double, count: cffi.ulong) {
+AnimatedScalar_resetWithFloatArray :: #force_inline proc "c" (self: ^AnimatedScalar, valuesArray: ^cffi.float, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
     msgSend(nil, self, "resetWithFloatArray:atTimes:count:", valuesArray, timesArray, count)
 }
 @(objc_type=AnimatedScalar, objc_name="resetWithDoubleArray")
-AnimatedScalar_resetWithDoubleArray :: #force_inline proc "c" (self: ^AnimatedScalar, valuesArray: ^cffi.double, timesArray: ^cffi.double, count: cffi.ulong) {
+AnimatedScalar_resetWithDoubleArray :: #force_inline proc "c" (self: ^AnimatedScalar, valuesArray: ^cffi.double, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
     msgSend(nil, self, "resetWithDoubleArray:atTimes:count:", valuesArray, timesArray, count)
 }
 @(objc_type=AnimatedScalar, objc_name="getFloatArray")
-AnimatedScalar_getFloatArray :: #force_inline proc "c" (self: ^AnimatedScalar, valuesArray: ^cffi.float, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getFloatArray:maxCount:", valuesArray, maxCount)
+AnimatedScalar_getFloatArray :: #force_inline proc "c" (self: ^AnimatedScalar, valuesArray: ^cffi.float, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getFloatArray:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=AnimatedScalar, objc_name="getDoubleArray")
-AnimatedScalar_getDoubleArray :: #force_inline proc "c" (self: ^AnimatedScalar, valuesArray: ^cffi.double, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getDoubleArray:maxCount:", valuesArray, maxCount)
+AnimatedScalar_getDoubleArray :: #force_inline proc "c" (self: ^AnimatedScalar, valuesArray: ^cffi.double, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getDoubleArray:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=AnimatedScalar, objc_name="load", objc_is_class_method=true)
 AnimatedScalar_load :: #force_inline proc "c" () {
@@ -86,36 +86,36 @@ AnimatedScalar_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone)
     return msgSend(id, AnimatedScalar, "mutableCopyWithZone:", zone)
 }
 @(objc_type=AnimatedScalar, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-AnimatedScalar_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedScalar, "instancesRespondToSelector:", aSelector)
+AnimatedScalar_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, AnimatedScalar, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=AnimatedScalar, objc_name="conformsToProtocol", objc_is_class_method=true)
-AnimatedScalar_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedScalar, "conformsToProtocol:", protocol)
+AnimatedScalar_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, AnimatedScalar, "conformsToProtocol:", protocol)
 }
 @(objc_type=AnimatedScalar, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-AnimatedScalar_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), AnimatedScalar, "instanceMethodForSelector:", aSelector)
+AnimatedScalar_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, AnimatedScalar, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=AnimatedScalar, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 AnimatedScalar_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, AnimatedScalar, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=AnimatedScalar, objc_name="isSubclassOfClass", objc_is_class_method=true)
-AnimatedScalar_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedScalar, "isSubclassOfClass:", aClass)
+AnimatedScalar_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, AnimatedScalar, "isSubclassOfClass:", aClass)
 }
 @(objc_type=AnimatedScalar, objc_name="resolveClassMethod", objc_is_class_method=true)
-AnimatedScalar_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedScalar, "resolveClassMethod:", sel)
+AnimatedScalar_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimatedScalar, "resolveClassMethod:", sel)
 }
 @(objc_type=AnimatedScalar, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-AnimatedScalar_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedScalar, "resolveInstanceMethod:", sel)
+AnimatedScalar_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimatedScalar, "resolveInstanceMethod:", sel)
 }
 @(objc_type=AnimatedScalar, objc_name="hash", objc_is_class_method=true)
-AnimatedScalar_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, AnimatedScalar, "hash")
+AnimatedScalar_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, AnimatedScalar, "hash")
 }
 @(objc_type=AnimatedScalar, objc_name="superclass", objc_is_class_method=true)
 AnimatedScalar_superclass :: #force_inline proc "c" () -> Class {
@@ -134,11 +134,11 @@ AnimatedScalar_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, AnimatedScalar, "debugDescription")
 }
 @(objc_type=AnimatedScalar, objc_name="version", objc_is_class_method=true)
-AnimatedScalar_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, AnimatedScalar, "version")
+AnimatedScalar_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, AnimatedScalar, "version")
 }
 @(objc_type=AnimatedScalar, objc_name="setVersion", objc_is_class_method=true)
-AnimatedScalar_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+AnimatedScalar_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, AnimatedScalar, "setVersion:", aVersion)
 }
 @(objc_type=AnimatedScalar, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -150,20 +150,20 @@ AnimatedScalar_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c
     msgSend(nil, AnimatedScalar, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=AnimatedScalar, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-AnimatedScalar_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedScalar, "accessInstanceVariablesDirectly")
+AnimatedScalar_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimatedScalar, "accessInstanceVariablesDirectly")
 }
 @(objc_type=AnimatedScalar, objc_name="useStoredAccessor", objc_is_class_method=true)
-AnimatedScalar_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedScalar, "useStoredAccessor")
+AnimatedScalar_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimatedScalar, "useStoredAccessor")
 }
 @(objc_type=AnimatedScalar, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 AnimatedScalar_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, AnimatedScalar, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=AnimatedScalar, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-AnimatedScalar_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedScalar, "automaticallyNotifiesObserversForKey:", key)
+AnimatedScalar_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, AnimatedScalar, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=AnimatedScalar, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 AnimatedScalar_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

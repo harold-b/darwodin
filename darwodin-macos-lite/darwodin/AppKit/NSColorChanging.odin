@@ -19,3 +19,6 @@ ColorChanging :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+ColorChanging_VTable :: struct {
+}
+

@@ -35,19 +35,19 @@ MaterialProperty_initWithName_semantic_float :: #force_inline proc "c" (self: ^M
     return msgSend(^MaterialProperty, self, "initWithName:semantic:float:", name, semantic, value)
 }
 @(objc_type=MaterialProperty, objc_name="initWithName_semantic_float2")
-MaterialProperty_initWithName_semantic_float2 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: [2]cffi.float) -> ^MaterialProperty {
+MaterialProperty_initWithName_semantic_float2 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: vector_float2) -> ^MaterialProperty {
     return msgSend(^MaterialProperty, self, "initWithName:semantic:float2:", name, semantic, value)
 }
 @(objc_type=MaterialProperty, objc_name="initWithName_semantic_float3")
-MaterialProperty_initWithName_semantic_float3 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: [3]cffi.float) -> ^MaterialProperty {
+MaterialProperty_initWithName_semantic_float3 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: vector_float3) -> ^MaterialProperty {
     return msgSend(^MaterialProperty, self, "initWithName:semantic:float3:", name, semantic, value)
 }
 @(objc_type=MaterialProperty, objc_name="initWithName_semantic_float4")
-MaterialProperty_initWithName_semantic_float4 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: [4]cffi.float) -> ^MaterialProperty {
+MaterialProperty_initWithName_semantic_float4 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: vector_float4) -> ^MaterialProperty {
     return msgSend(^MaterialProperty, self, "initWithName:semantic:float4:", name, semantic, value)
 }
 @(objc_type=MaterialProperty, objc_name="initWithName_semantic_matrix4x4")
-MaterialProperty_initWithName_semantic_matrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: matrix[4,4]f32) -> ^MaterialProperty {
+MaterialProperty_initWithName_semantic_matrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: matrix_float4x4) -> ^MaterialProperty {
     return msgSend(^MaterialProperty, self, "initWithName:semantic:matrix4x4:", name, semantic, value)
 }
 @(objc_type=MaterialProperty, objc_name="initWithName_semantic_URL")
@@ -63,7 +63,7 @@ MaterialProperty_initWithName_semantic_textureSampler :: #force_inline proc "c" 
     return msgSend(^MaterialProperty, self, "initWithName:semantic:textureSampler:", name, semantic, textureSampler)
 }
 @(objc_type=MaterialProperty, objc_name="initWithName_semantic_color")
-MaterialProperty_initWithName_semantic_color :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, color: ^CG.Color) -> ^MaterialProperty {
+MaterialProperty_initWithName_semantic_color :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, color: CG.ColorRef) -> ^MaterialProperty {
     return msgSend(^MaterialProperty, self, "initWithName:semantic:color:", name, semantic, color)
 }
 @(objc_type=MaterialProperty, objc_name="setProperties")
@@ -119,11 +119,11 @@ MaterialProperty_setTextureSamplerValue :: #force_inline proc "c" (self: ^Materi
     msgSend(nil, self, "setTextureSamplerValue:", textureSamplerValue)
 }
 @(objc_type=MaterialProperty, objc_name="color")
-MaterialProperty_color :: #force_inline proc "c" (self: ^MaterialProperty) -> ^CG.Color {
-    return msgSend(^CG.Color, self, "color")
+MaterialProperty_color :: #force_inline proc "c" (self: ^MaterialProperty) -> CG.ColorRef {
+    return msgSend(CG.ColorRef, self, "color")
 }
 @(objc_type=MaterialProperty, objc_name="setColor")
-MaterialProperty_setColor :: #force_inline proc "c" (self: ^MaterialProperty, color: ^CG.Color) {
+MaterialProperty_setColor :: #force_inline proc "c" (self: ^MaterialProperty, color: CG.ColorRef) {
     msgSend(nil, self, "setColor:", color)
 }
 @(objc_type=MaterialProperty, objc_name="floatValue")
@@ -135,35 +135,35 @@ MaterialProperty_setFloatValue :: #force_inline proc "c" (self: ^MaterialPropert
     msgSend(nil, self, "setFloatValue:", floatValue)
 }
 @(objc_type=MaterialProperty, objc_name="float2Value")
-MaterialProperty_float2Value :: #force_inline proc "c" (self: ^MaterialProperty) -> [2]cffi.float {
-    return msgSend([2]cffi.float, self, "float2Value")
+MaterialProperty_float2Value :: #force_inline proc "c" (self: ^MaterialProperty) -> vector_float2 {
+    return msgSend(vector_float2, self, "float2Value")
 }
 @(objc_type=MaterialProperty, objc_name="setFloat2Value")
-MaterialProperty_setFloat2Value :: #force_inline proc "c" (self: ^MaterialProperty, float2Value: [2]cffi.float) {
+MaterialProperty_setFloat2Value :: #force_inline proc "c" (self: ^MaterialProperty, float2Value: vector_float2) {
     msgSend(nil, self, "setFloat2Value:", float2Value)
 }
 @(objc_type=MaterialProperty, objc_name="float3Value")
-MaterialProperty_float3Value :: #force_inline proc "c" (self: ^MaterialProperty) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "float3Value")
+MaterialProperty_float3Value :: #force_inline proc "c" (self: ^MaterialProperty) -> vector_float3 {
+    return msgSend(vector_float3, self, "float3Value")
 }
 @(objc_type=MaterialProperty, objc_name="setFloat3Value")
-MaterialProperty_setFloat3Value :: #force_inline proc "c" (self: ^MaterialProperty, float3Value: [3]cffi.float) {
+MaterialProperty_setFloat3Value :: #force_inline proc "c" (self: ^MaterialProperty, float3Value: vector_float3) {
     msgSend(nil, self, "setFloat3Value:", float3Value)
 }
 @(objc_type=MaterialProperty, objc_name="float4Value")
-MaterialProperty_float4Value :: #force_inline proc "c" (self: ^MaterialProperty) -> [4]cffi.float {
-    return msgSend([4]cffi.float, self, "float4Value")
+MaterialProperty_float4Value :: #force_inline proc "c" (self: ^MaterialProperty) -> vector_float4 {
+    return msgSend(vector_float4, self, "float4Value")
 }
 @(objc_type=MaterialProperty, objc_name="setFloat4Value")
-MaterialProperty_setFloat4Value :: #force_inline proc "c" (self: ^MaterialProperty, float4Value: [4]cffi.float) {
+MaterialProperty_setFloat4Value :: #force_inline proc "c" (self: ^MaterialProperty, float4Value: vector_float4) {
     msgSend(nil, self, "setFloat4Value:", float4Value)
 }
 @(objc_type=MaterialProperty, objc_name="matrix4x4")
-MaterialProperty_matrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty) -> matrix[4,4]f32 {
-    return msgSend(matrix[4,4]f32, self, "matrix4x4")
+MaterialProperty_matrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty) -> matrix_float4x4 {
+    return msgSend(matrix_float4x4, self, "matrix4x4")
 }
 @(objc_type=MaterialProperty, objc_name="setMatrix4x4")
-MaterialProperty_setMatrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty, matrix4x4: matrix[4,4]f32) {
+MaterialProperty_setMatrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty, matrix4x4: matrix_float4x4) {
     msgSend(nil, self, "setMatrix4x4:", matrix4x4)
 }
 @(objc_type=MaterialProperty, objc_name="luminance")
@@ -203,36 +203,36 @@ MaterialProperty_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZon
     return msgSend(id, MaterialProperty, "mutableCopyWithZone:", zone)
 }
 @(objc_type=MaterialProperty, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-MaterialProperty_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialProperty, "instancesRespondToSelector:", aSelector)
+MaterialProperty_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, MaterialProperty, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=MaterialProperty, objc_name="conformsToProtocol", objc_is_class_method=true)
-MaterialProperty_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialProperty, "conformsToProtocol:", protocol)
+MaterialProperty_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, MaterialProperty, "conformsToProtocol:", protocol)
 }
 @(objc_type=MaterialProperty, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-MaterialProperty_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), MaterialProperty, "instanceMethodForSelector:", aSelector)
+MaterialProperty_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, MaterialProperty, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=MaterialProperty, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 MaterialProperty_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, MaterialProperty, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=MaterialProperty, objc_name="isSubclassOfClass", objc_is_class_method=true)
-MaterialProperty_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialProperty, "isSubclassOfClass:", aClass)
+MaterialProperty_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, MaterialProperty, "isSubclassOfClass:", aClass)
 }
 @(objc_type=MaterialProperty, objc_name="resolveClassMethod", objc_is_class_method=true)
-MaterialProperty_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialProperty, "resolveClassMethod:", sel)
+MaterialProperty_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, MaterialProperty, "resolveClassMethod:", sel)
 }
 @(objc_type=MaterialProperty, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-MaterialProperty_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialProperty, "resolveInstanceMethod:", sel)
+MaterialProperty_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, MaterialProperty, "resolveInstanceMethod:", sel)
 }
 @(objc_type=MaterialProperty, objc_name="hash", objc_is_class_method=true)
-MaterialProperty_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, MaterialProperty, "hash")
+MaterialProperty_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, MaterialProperty, "hash")
 }
 @(objc_type=MaterialProperty, objc_name="superclass", objc_is_class_method=true)
 MaterialProperty_superclass :: #force_inline proc "c" () -> Class {
@@ -251,11 +251,11 @@ MaterialProperty_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, MaterialProperty, "debugDescription")
 }
 @(objc_type=MaterialProperty, objc_name="version", objc_is_class_method=true)
-MaterialProperty_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, MaterialProperty, "version")
+MaterialProperty_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, MaterialProperty, "version")
 }
 @(objc_type=MaterialProperty, objc_name="setVersion", objc_is_class_method=true)
-MaterialProperty_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+MaterialProperty_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, MaterialProperty, "setVersion:", aVersion)
 }
 @(objc_type=MaterialProperty, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -267,20 +267,20 @@ MaterialProperty_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc 
     msgSend(nil, MaterialProperty, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=MaterialProperty, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-MaterialProperty_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, MaterialProperty, "accessInstanceVariablesDirectly")
+MaterialProperty_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, MaterialProperty, "accessInstanceVariablesDirectly")
 }
 @(objc_type=MaterialProperty, objc_name="useStoredAccessor", objc_is_class_method=true)
-MaterialProperty_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, MaterialProperty, "useStoredAccessor")
+MaterialProperty_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, MaterialProperty, "useStoredAccessor")
 }
 @(objc_type=MaterialProperty, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 MaterialProperty_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, MaterialProperty, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=MaterialProperty, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-MaterialProperty_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialProperty, "automaticallyNotifiesObserversForKey:", key)
+MaterialProperty_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, MaterialProperty, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=MaterialProperty, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 MaterialProperty_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

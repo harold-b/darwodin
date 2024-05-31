@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIManagedDocument")
 ManagedDocument :: struct { using _: Document, }
 
+ManagedDocument_VTable :: struct {
+    super: Document_VTable,
+}
+

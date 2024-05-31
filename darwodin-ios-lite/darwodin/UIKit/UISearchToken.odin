@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UISearchToken")
 SearchToken :: struct { using _: NS.Object, }
 
+SearchToken_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

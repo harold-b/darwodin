@@ -53,11 +53,11 @@ AnimationBindComponent_setJointPaths :: #force_inline proc "c" (self: ^Animation
     msgSend(nil, self, "setJointPaths:", jointPaths)
 }
 @(objc_type=AnimationBindComponent, objc_name="geometryBindTransform")
-AnimationBindComponent_geometryBindTransform :: #force_inline proc "c" (self: ^AnimationBindComponent) -> matrix[4,4]f64 {
-    return msgSend(matrix[4,4]f64, self, "geometryBindTransform")
+AnimationBindComponent_geometryBindTransform :: #force_inline proc "c" (self: ^AnimationBindComponent) -> matrix_double4x4 {
+    return msgSend(matrix_double4x4, self, "geometryBindTransform")
 }
 @(objc_type=AnimationBindComponent, objc_name="setGeometryBindTransform")
-AnimationBindComponent_setGeometryBindTransform :: #force_inline proc "c" (self: ^AnimationBindComponent, geometryBindTransform: matrix[4,4]f64) {
+AnimationBindComponent_setGeometryBindTransform :: #force_inline proc "c" (self: ^AnimationBindComponent, geometryBindTransform: matrix_double4x4) {
     msgSend(nil, self, "setGeometryBindTransform:", geometryBindTransform)
 }
 @(objc_type=AnimationBindComponent, objc_name="load", objc_is_class_method=true)
@@ -89,36 +89,36 @@ AnimationBindComponent_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS.
     return msgSend(id, AnimationBindComponent, "mutableCopyWithZone:", zone)
 }
 @(objc_type=AnimationBindComponent, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-AnimationBindComponent_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimationBindComponent, "instancesRespondToSelector:", aSelector)
+AnimationBindComponent_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, AnimationBindComponent, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=AnimationBindComponent, objc_name="conformsToProtocol", objc_is_class_method=true)
-AnimationBindComponent_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, AnimationBindComponent, "conformsToProtocol:", protocol)
+AnimationBindComponent_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, AnimationBindComponent, "conformsToProtocol:", protocol)
 }
 @(objc_type=AnimationBindComponent, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-AnimationBindComponent_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), AnimationBindComponent, "instanceMethodForSelector:", aSelector)
+AnimationBindComponent_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, AnimationBindComponent, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=AnimationBindComponent, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 AnimationBindComponent_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, AnimationBindComponent, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=AnimationBindComponent, objc_name="isSubclassOfClass", objc_is_class_method=true)
-AnimationBindComponent_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, AnimationBindComponent, "isSubclassOfClass:", aClass)
+AnimationBindComponent_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, AnimationBindComponent, "isSubclassOfClass:", aClass)
 }
 @(objc_type=AnimationBindComponent, objc_name="resolveClassMethod", objc_is_class_method=true)
-AnimationBindComponent_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimationBindComponent, "resolveClassMethod:", sel)
+AnimationBindComponent_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimationBindComponent, "resolveClassMethod:", sel)
 }
 @(objc_type=AnimationBindComponent, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-AnimationBindComponent_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimationBindComponent, "resolveInstanceMethod:", sel)
+AnimationBindComponent_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimationBindComponent, "resolveInstanceMethod:", sel)
 }
 @(objc_type=AnimationBindComponent, objc_name="hash", objc_is_class_method=true)
-AnimationBindComponent_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, AnimationBindComponent, "hash")
+AnimationBindComponent_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, AnimationBindComponent, "hash")
 }
 @(objc_type=AnimationBindComponent, objc_name="superclass", objc_is_class_method=true)
 AnimationBindComponent_superclass :: #force_inline proc "c" () -> Class {
@@ -137,11 +137,11 @@ AnimationBindComponent_debugDescription :: #force_inline proc "c" () -> ^NS.Stri
     return msgSend(^NS.String, AnimationBindComponent, "debugDescription")
 }
 @(objc_type=AnimationBindComponent, objc_name="version", objc_is_class_method=true)
-AnimationBindComponent_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, AnimationBindComponent, "version")
+AnimationBindComponent_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, AnimationBindComponent, "version")
 }
 @(objc_type=AnimationBindComponent, objc_name="setVersion", objc_is_class_method=true)
-AnimationBindComponent_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+AnimationBindComponent_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, AnimationBindComponent, "setVersion:", aVersion)
 }
 @(objc_type=AnimationBindComponent, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -153,20 +153,20 @@ AnimationBindComponent_cancelPreviousPerformRequestsWithTarget_ :: #force_inline
     msgSend(nil, AnimationBindComponent, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=AnimationBindComponent, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-AnimationBindComponent_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimationBindComponent, "accessInstanceVariablesDirectly")
+AnimationBindComponent_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimationBindComponent, "accessInstanceVariablesDirectly")
 }
 @(objc_type=AnimationBindComponent, objc_name="useStoredAccessor", objc_is_class_method=true)
-AnimationBindComponent_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimationBindComponent, "useStoredAccessor")
+AnimationBindComponent_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimationBindComponent, "useStoredAccessor")
 }
 @(objc_type=AnimationBindComponent, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 AnimationBindComponent_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, AnimationBindComponent, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=AnimationBindComponent, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-AnimationBindComponent_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, AnimationBindComponent, "automaticallyNotifiesObserversForKey:", key)
+AnimationBindComponent_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, AnimationBindComponent, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=AnimationBindComponent, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 AnimationBindComponent_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

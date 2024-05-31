@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSBlockOperation")
 BlockOperation :: struct { using _: Operation, }
 
+BlockOperation_VTable :: struct {
+    super: Operation_VTable,
+}
+

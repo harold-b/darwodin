@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPrintInteractionController")
 PrintInteractionController :: struct { using _: NS.Object, }
 
+PrintInteractionController_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

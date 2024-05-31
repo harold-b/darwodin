@@ -17,3 +17,6 @@ URLAuthenticationChallengeSender :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
+URLAuthenticationChallengeSender_VTable :: struct {
+}
+

@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CAGradientLayer")
 GradientLayer :: struct { using _: Layer, }
 
+GradientLayer_VTable :: struct {
+    super: Layer_VTable,
+}
+

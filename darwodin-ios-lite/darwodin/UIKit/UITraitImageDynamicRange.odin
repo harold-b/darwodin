@@ -19,3 +19,7 @@ TraitImageDynamicRange :: struct { using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 
+TraitImageDynamicRange_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

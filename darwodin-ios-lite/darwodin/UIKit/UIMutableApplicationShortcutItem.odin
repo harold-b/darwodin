@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIMutableApplicationShortcutItem")
 MutableApplicationShortcutItem :: struct { using _: ApplicationShortcutItem, }
 
+MutableApplicationShortcutItem_VTable :: struct {
+    super: ApplicationShortcutItem_VTable,
+}
+

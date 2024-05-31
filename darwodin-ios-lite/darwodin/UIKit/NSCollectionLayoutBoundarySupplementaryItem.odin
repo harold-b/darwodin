@@ -19,3 +19,7 @@ NSCollectionLayoutBoundarySupplementaryItem :: struct { using _: NSCollectionLay
     using _: NS.Copying,
 }
 
+NSCollectionLayoutBoundarySupplementaryItem_VTable :: struct {
+    super: NSCollectionLayoutSupplementaryItem_VTable,
+}
+

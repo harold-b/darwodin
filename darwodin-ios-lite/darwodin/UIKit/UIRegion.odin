@@ -20,3 +20,7 @@ Region :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
+Region_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

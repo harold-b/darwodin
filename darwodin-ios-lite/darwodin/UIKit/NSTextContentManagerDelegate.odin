@@ -19,3 +19,6 @@ NSTextContentManagerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+NSTextContentManagerDelegate_VTable :: struct {
+}
+

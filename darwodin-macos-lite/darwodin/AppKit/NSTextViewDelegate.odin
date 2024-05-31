@@ -19,3 +19,6 @@ TextViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: TextDelegate,
 }
 
+TextViewDelegate_VTable :: struct {
+}
+

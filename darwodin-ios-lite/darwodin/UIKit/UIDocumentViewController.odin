@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIDocumentViewController")
 DocumentViewController :: struct { using _: ViewController, }
 
+DocumentViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

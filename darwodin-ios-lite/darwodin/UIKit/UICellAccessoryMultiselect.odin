@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UICellAccessoryMultiselect")
 CellAccessoryMultiselect :: struct { using _: CellAccessory, }
 
+CellAccessoryMultiselect_VTable :: struct {
+    super: CellAccessory_VTable,
+}
+

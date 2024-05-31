@@ -19,3 +19,7 @@ NSDiffableDataSourceSnapshot :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+NSDiffableDataSourceSnapshot_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

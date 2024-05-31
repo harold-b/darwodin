@@ -68,36 +68,36 @@ RelativeAssetResolver_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._
     return msgSend(id, RelativeAssetResolver, "mutableCopyWithZone:", zone)
 }
 @(objc_type=RelativeAssetResolver, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-RelativeAssetResolver_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, RelativeAssetResolver, "instancesRespondToSelector:", aSelector)
+RelativeAssetResolver_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, RelativeAssetResolver, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=RelativeAssetResolver, objc_name="conformsToProtocol", objc_is_class_method=true)
-RelativeAssetResolver_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, RelativeAssetResolver, "conformsToProtocol:", protocol)
+RelativeAssetResolver_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, RelativeAssetResolver, "conformsToProtocol:", protocol)
 }
 @(objc_type=RelativeAssetResolver, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-RelativeAssetResolver_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), RelativeAssetResolver, "instanceMethodForSelector:", aSelector)
+RelativeAssetResolver_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, RelativeAssetResolver, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=RelativeAssetResolver, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 RelativeAssetResolver_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, RelativeAssetResolver, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=RelativeAssetResolver, objc_name="isSubclassOfClass", objc_is_class_method=true)
-RelativeAssetResolver_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, RelativeAssetResolver, "isSubclassOfClass:", aClass)
+RelativeAssetResolver_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, RelativeAssetResolver, "isSubclassOfClass:", aClass)
 }
 @(objc_type=RelativeAssetResolver, objc_name="resolveClassMethod", objc_is_class_method=true)
-RelativeAssetResolver_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, RelativeAssetResolver, "resolveClassMethod:", sel)
+RelativeAssetResolver_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, RelativeAssetResolver, "resolveClassMethod:", sel)
 }
 @(objc_type=RelativeAssetResolver, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-RelativeAssetResolver_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, RelativeAssetResolver, "resolveInstanceMethod:", sel)
+RelativeAssetResolver_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, RelativeAssetResolver, "resolveInstanceMethod:", sel)
 }
 @(objc_type=RelativeAssetResolver, objc_name="hash", objc_is_class_method=true)
-RelativeAssetResolver_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, RelativeAssetResolver, "hash")
+RelativeAssetResolver_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, RelativeAssetResolver, "hash")
 }
 @(objc_type=RelativeAssetResolver, objc_name="superclass", objc_is_class_method=true)
 RelativeAssetResolver_superclass :: #force_inline proc "c" () -> Class {
@@ -116,11 +116,11 @@ RelativeAssetResolver_debugDescription :: #force_inline proc "c" () -> ^NS.Strin
     return msgSend(^NS.String, RelativeAssetResolver, "debugDescription")
 }
 @(objc_type=RelativeAssetResolver, objc_name="version", objc_is_class_method=true)
-RelativeAssetResolver_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, RelativeAssetResolver, "version")
+RelativeAssetResolver_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, RelativeAssetResolver, "version")
 }
 @(objc_type=RelativeAssetResolver, objc_name="setVersion", objc_is_class_method=true)
-RelativeAssetResolver_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+RelativeAssetResolver_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, RelativeAssetResolver, "setVersion:", aVersion)
 }
 @(objc_type=RelativeAssetResolver, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -132,20 +132,20 @@ RelativeAssetResolver_cancelPreviousPerformRequestsWithTarget_ :: #force_inline 
     msgSend(nil, RelativeAssetResolver, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=RelativeAssetResolver, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-RelativeAssetResolver_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, RelativeAssetResolver, "accessInstanceVariablesDirectly")
+RelativeAssetResolver_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, RelativeAssetResolver, "accessInstanceVariablesDirectly")
 }
 @(objc_type=RelativeAssetResolver, objc_name="useStoredAccessor", objc_is_class_method=true)
-RelativeAssetResolver_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, RelativeAssetResolver, "useStoredAccessor")
+RelativeAssetResolver_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, RelativeAssetResolver, "useStoredAccessor")
 }
 @(objc_type=RelativeAssetResolver, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 RelativeAssetResolver_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, RelativeAssetResolver, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=RelativeAssetResolver, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-RelativeAssetResolver_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, RelativeAssetResolver, "automaticallyNotifiesObserversForKey:", key)
+RelativeAssetResolver_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, RelativeAssetResolver, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=RelativeAssetResolver, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 RelativeAssetResolver_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

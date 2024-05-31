@@ -19,3 +19,6 @@ PreviewRepresentableActivityItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PreviewRepresentableActivityItem_VTable :: struct {
+}
+

@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSFastEnumeration")
 FastEnumeration :: struct { using _: intrinsics.objc_object, }
 
+FastEnumeration_VTable :: struct {
+}
+

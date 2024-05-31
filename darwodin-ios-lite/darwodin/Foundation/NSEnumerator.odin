@@ -17,3 +17,7 @@ Enumerator :: struct { using _: Object,
     using _: FastEnumeration,
 }
 
+Enumerator_VTable :: struct {
+    super: Object_VTable,
+}
+

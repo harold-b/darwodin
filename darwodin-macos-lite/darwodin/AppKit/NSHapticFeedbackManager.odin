@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSHapticFeedbackManager")
 HapticFeedbackManager :: struct { using _: NS.Object, }
 
+HapticFeedbackManager_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

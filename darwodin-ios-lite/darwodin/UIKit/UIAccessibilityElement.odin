@@ -19,3 +19,7 @@ AccessibilityElement :: struct { using _: Responder,
     using _: AccessibilityIdentification,
 }
 
+AccessibilityElement_VTable :: struct {
+    super: Responder_VTable,
+}
+

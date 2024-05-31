@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIWindowSceneDestructionRequestOptions")
 WindowSceneDestructionRequestOptions :: struct { using _: SceneDestructionRequestOptions, }
 
+WindowSceneDestructionRequestOptions_VTable :: struct {
+    super: SceneDestructionRequestOptions_VTable,
+}
+

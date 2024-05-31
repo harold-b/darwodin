@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIItemProviderReadingAugmentationProviding")
 ItemProviderReadingAugmentationProviding :: struct { using _: intrinsics.objc_object, }
 
+ItemProviderReadingAugmentationProviding_VTable :: struct {
+}
+

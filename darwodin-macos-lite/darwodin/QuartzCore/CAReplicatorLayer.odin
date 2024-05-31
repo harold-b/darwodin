@@ -16,3 +16,7 @@ import NS "../Foundation"
 @(objc_class="CAReplicatorLayer")
 ReplicatorLayer :: struct { using _: Layer, }
 
+ReplicatorLayer_VTable :: struct {
+    super: Layer_VTable,
+}
+

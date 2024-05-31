@@ -28,32 +28,32 @@ AnimatedValue_init :: proc "c" (self: ^AnimatedValue) -> ^AnimatedValue {
 
 
 @(objc_type=AnimatedValue, objc_name="isAnimated")
-AnimatedValue_isAnimated :: #force_inline proc "c" (self: ^AnimatedValue) -> cffi.bool {
-    return msgSend(cffi.bool, self, "isAnimated")
+AnimatedValue_isAnimated :: #force_inline proc "c" (self: ^AnimatedValue) -> bool {
+    return msgSend(bool, self, "isAnimated")
 }
 @(objc_type=AnimatedValue, objc_name="clear")
 AnimatedValue_clear :: #force_inline proc "c" (self: ^AnimatedValue) {
     msgSend(nil, self, "clear")
 }
 @(objc_type=AnimatedValue, objc_name="getTimes")
-AnimatedValue_getTimes :: #force_inline proc "c" (self: ^AnimatedValue, timesArray: ^cffi.double, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getTimes:maxCount:", timesArray, maxCount)
+AnimatedValue_getTimes :: #force_inline proc "c" (self: ^AnimatedValue, timesArray: ^NS.TimeInterval, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getTimes:maxCount:", timesArray, maxCount)
 }
 @(objc_type=AnimatedValue, objc_name="precision")
 AnimatedValue_precision :: #force_inline proc "c" (self: ^AnimatedValue) -> DataPrecision {
     return msgSend(DataPrecision, self, "precision")
 }
 @(objc_type=AnimatedValue, objc_name="timeSampleCount")
-AnimatedValue_timeSampleCount :: #force_inline proc "c" (self: ^AnimatedValue) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "timeSampleCount")
+AnimatedValue_timeSampleCount :: #force_inline proc "c" (self: ^AnimatedValue) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "timeSampleCount")
 }
 @(objc_type=AnimatedValue, objc_name="minimumTime")
-AnimatedValue_minimumTime :: #force_inline proc "c" (self: ^AnimatedValue) -> cffi.double {
-    return msgSend(cffi.double, self, "minimumTime")
+AnimatedValue_minimumTime :: #force_inline proc "c" (self: ^AnimatedValue) -> NS.TimeInterval {
+    return msgSend(NS.TimeInterval, self, "minimumTime")
 }
 @(objc_type=AnimatedValue, objc_name="maximumTime")
-AnimatedValue_maximumTime :: #force_inline proc "c" (self: ^AnimatedValue) -> cffi.double {
-    return msgSend(cffi.double, self, "maximumTime")
+AnimatedValue_maximumTime :: #force_inline proc "c" (self: ^AnimatedValue) -> NS.TimeInterval {
+    return msgSend(NS.TimeInterval, self, "maximumTime")
 }
 @(objc_type=AnimatedValue, objc_name="interpolation")
 AnimatedValue_interpolation :: #force_inline proc "c" (self: ^AnimatedValue) -> AnimatedValueInterpolation {
@@ -96,36 +96,36 @@ AnimatedValue_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) 
     return msgSend(id, AnimatedValue, "mutableCopyWithZone:", zone)
 }
 @(objc_type=AnimatedValue, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-AnimatedValue_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedValue, "instancesRespondToSelector:", aSelector)
+AnimatedValue_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, AnimatedValue, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=AnimatedValue, objc_name="conformsToProtocol", objc_is_class_method=true)
-AnimatedValue_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedValue, "conformsToProtocol:", protocol)
+AnimatedValue_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, AnimatedValue, "conformsToProtocol:", protocol)
 }
 @(objc_type=AnimatedValue, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-AnimatedValue_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), AnimatedValue, "instanceMethodForSelector:", aSelector)
+AnimatedValue_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, AnimatedValue, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=AnimatedValue, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 AnimatedValue_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, AnimatedValue, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=AnimatedValue, objc_name="isSubclassOfClass", objc_is_class_method=true)
-AnimatedValue_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedValue, "isSubclassOfClass:", aClass)
+AnimatedValue_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, AnimatedValue, "isSubclassOfClass:", aClass)
 }
 @(objc_type=AnimatedValue, objc_name="resolveClassMethod", objc_is_class_method=true)
-AnimatedValue_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedValue, "resolveClassMethod:", sel)
+AnimatedValue_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimatedValue, "resolveClassMethod:", sel)
 }
 @(objc_type=AnimatedValue, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-AnimatedValue_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedValue, "resolveInstanceMethod:", sel)
+AnimatedValue_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimatedValue, "resolveInstanceMethod:", sel)
 }
 @(objc_type=AnimatedValue, objc_name="hash", objc_is_class_method=true)
-AnimatedValue_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, AnimatedValue, "hash")
+AnimatedValue_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, AnimatedValue, "hash")
 }
 @(objc_type=AnimatedValue, objc_name="superclass", objc_is_class_method=true)
 AnimatedValue_superclass :: #force_inline proc "c" () -> Class {
@@ -144,11 +144,11 @@ AnimatedValue_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, AnimatedValue, "debugDescription")
 }
 @(objc_type=AnimatedValue, objc_name="version", objc_is_class_method=true)
-AnimatedValue_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, AnimatedValue, "version")
+AnimatedValue_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, AnimatedValue, "version")
 }
 @(objc_type=AnimatedValue, objc_name="setVersion", objc_is_class_method=true)
-AnimatedValue_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+AnimatedValue_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, AnimatedValue, "setVersion:", aVersion)
 }
 @(objc_type=AnimatedValue, objc_name="poseAsClass", objc_is_class_method=true)
@@ -164,20 +164,20 @@ AnimatedValue_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c"
     msgSend(nil, AnimatedValue, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=AnimatedValue, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-AnimatedValue_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedValue, "accessInstanceVariablesDirectly")
+AnimatedValue_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimatedValue, "accessInstanceVariablesDirectly")
 }
 @(objc_type=AnimatedValue, objc_name="useStoredAccessor", objc_is_class_method=true)
-AnimatedValue_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedValue, "useStoredAccessor")
+AnimatedValue_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimatedValue, "useStoredAccessor")
 }
 @(objc_type=AnimatedValue, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 AnimatedValue_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, AnimatedValue, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=AnimatedValue, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-AnimatedValue_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedValue, "automaticallyNotifiesObserversForKey:", key)
+AnimatedValue_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, AnimatedValue, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=AnimatedValue, objc_name="setKeys", objc_is_class_method=true)
 AnimatedValue_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

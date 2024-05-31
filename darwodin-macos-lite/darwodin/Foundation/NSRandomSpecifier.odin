@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSRandomSpecifier")
 RandomSpecifier :: struct { using _: ScriptObjectSpecifier, }
 
+RandomSpecifier_VTable :: struct {
+    super: ScriptObjectSpecifier_VTable,
+}
+

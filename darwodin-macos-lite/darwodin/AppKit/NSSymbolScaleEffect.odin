@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolScaleEffect")
 SymbolScaleEffect :: struct { using _: SymbolEffect, }
 
+SymbolScaleEffect_VTable :: struct {
+    super: SymbolEffect_VTable,
+}
+

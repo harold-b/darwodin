@@ -19,3 +19,7 @@ TraitDisplayGamut :: struct { using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 
+TraitDisplayGamut_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

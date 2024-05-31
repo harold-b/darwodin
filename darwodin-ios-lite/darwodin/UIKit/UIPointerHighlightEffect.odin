@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPointerHighlightEffect")
 PointerHighlightEffect :: struct { using _: PointerEffect, }
 
+PointerHighlightEffect_VTable :: struct {
+    super: PointerEffect_VTable,
+}
+

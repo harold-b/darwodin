@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSCountCommand")
 CountCommand :: struct { using _: ScriptCommand, }
 
+CountCommand_VTable :: struct {
+    super: ScriptCommand_VTable,
+}
+

@@ -19,3 +19,6 @@ SharingServicePickerToolbarItemDelegate :: struct { using _: intrinsics.objc_obj
     using _: SharingServicePickerDelegate,
 }
 
+SharingServicePickerToolbarItemDelegate_VTable :: struct {
+}
+

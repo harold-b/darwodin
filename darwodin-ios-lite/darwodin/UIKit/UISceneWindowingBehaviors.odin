@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UISceneWindowingBehaviors")
 SceneWindowingBehaviors :: struct { using _: NS.Object, }
 
+SceneWindowingBehaviors_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

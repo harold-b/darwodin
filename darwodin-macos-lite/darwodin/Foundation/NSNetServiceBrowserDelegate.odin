@@ -17,3 +17,6 @@ NetServiceBrowserDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
+NetServiceBrowserDelegate_VTable :: struct {
+}
+

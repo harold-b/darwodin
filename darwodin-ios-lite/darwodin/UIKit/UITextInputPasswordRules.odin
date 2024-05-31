@@ -20,3 +20,7 @@ TextInputPasswordRules :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+TextInputPasswordRules_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

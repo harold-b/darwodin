@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSLocking")
 Locking :: struct { using _: intrinsics.objc_object, }
 
+Locking_VTable :: struct {
+}
+

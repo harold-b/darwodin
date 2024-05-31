@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPageViewController")
 PageViewController :: struct { using _: ViewController, }
 
+PageViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

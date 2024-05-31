@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSFileAccessIntent")
 FileAccessIntent :: struct { using _: Object, }
 
+FileAccessIntent_VTable :: struct {
+    super: Object_VTable,
+}
+

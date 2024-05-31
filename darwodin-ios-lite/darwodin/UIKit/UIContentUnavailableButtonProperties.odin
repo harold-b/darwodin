@@ -20,3 +20,7 @@ ContentUnavailableButtonProperties :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+ContentUnavailableButtonProperties_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

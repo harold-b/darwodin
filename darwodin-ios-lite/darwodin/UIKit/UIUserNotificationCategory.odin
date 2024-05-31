@@ -21,3 +21,7 @@ UserNotificationCategory :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+UserNotificationCategory_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

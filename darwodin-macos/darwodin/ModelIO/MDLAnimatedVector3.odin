@@ -26,36 +26,36 @@ AnimatedVector3_init :: proc "c" (self: ^AnimatedVector3) -> ^AnimatedVector3 {
 
 
 @(objc_type=AnimatedVector3, objc_name="setFloat3")
-AnimatedVector3_setFloat3 :: #force_inline proc "c" (self: ^AnimatedVector3, value: [3]cffi.float, time: cffi.double) {
+AnimatedVector3_setFloat3 :: #force_inline proc "c" (self: ^AnimatedVector3, value: vector_float3, time: NS.TimeInterval) {
     msgSend(nil, self, "setFloat3:atTime:", value, time)
 }
 @(objc_type=AnimatedVector3, objc_name="setDouble3")
-AnimatedVector3_setDouble3 :: #force_inline proc "c" (self: ^AnimatedVector3, value: [3]cffi.double, time: cffi.double) {
+AnimatedVector3_setDouble3 :: #force_inline proc "c" (self: ^AnimatedVector3, value: vector_double3, time: NS.TimeInterval) {
     msgSend(nil, self, "setDouble3:atTime:", value, time)
 }
 @(objc_type=AnimatedVector3, objc_name="float3AtTime")
-AnimatedVector3_float3AtTime :: #force_inline proc "c" (self: ^AnimatedVector3, time: cffi.double) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "float3AtTime:", time)
+AnimatedVector3_float3AtTime :: #force_inline proc "c" (self: ^AnimatedVector3, time: NS.TimeInterval) -> vector_float3 {
+    return msgSend(vector_float3, self, "float3AtTime:", time)
 }
 @(objc_type=AnimatedVector3, objc_name="double3AtTime")
-AnimatedVector3_double3AtTime :: #force_inline proc "c" (self: ^AnimatedVector3, time: cffi.double) -> [3]cffi.double {
-    return msgSend([3]cffi.double, self, "double3AtTime:", time)
+AnimatedVector3_double3AtTime :: #force_inline proc "c" (self: ^AnimatedVector3, time: NS.TimeInterval) -> vector_double3 {
+    return msgSend(vector_double3, self, "double3AtTime:", time)
 }
 @(objc_type=AnimatedVector3, objc_name="resetWithFloat3Array")
-AnimatedVector3_resetWithFloat3Array :: #force_inline proc "c" (self: ^AnimatedVector3, valuesArray: ^[3]cffi.float, timesArray: ^cffi.double, count: cffi.ulong) {
+AnimatedVector3_resetWithFloat3Array :: #force_inline proc "c" (self: ^AnimatedVector3, valuesArray: ^vector_float3, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
     msgSend(nil, self, "resetWithFloat3Array:atTimes:count:", valuesArray, timesArray, count)
 }
 @(objc_type=AnimatedVector3, objc_name="resetWithDouble3Array")
-AnimatedVector3_resetWithDouble3Array :: #force_inline proc "c" (self: ^AnimatedVector3, valuesArray: ^[3]cffi.double, timesArray: ^cffi.double, count: cffi.ulong) {
+AnimatedVector3_resetWithDouble3Array :: #force_inline proc "c" (self: ^AnimatedVector3, valuesArray: ^vector_double3, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
     msgSend(nil, self, "resetWithDouble3Array:atTimes:count:", valuesArray, timesArray, count)
 }
 @(objc_type=AnimatedVector3, objc_name="getFloat3Array")
-AnimatedVector3_getFloat3Array :: #force_inline proc "c" (self: ^AnimatedVector3, valuesArray: ^[3]cffi.float, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getFloat3Array:maxCount:", valuesArray, maxCount)
+AnimatedVector3_getFloat3Array :: #force_inline proc "c" (self: ^AnimatedVector3, valuesArray: ^vector_float3, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getFloat3Array:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=AnimatedVector3, objc_name="getDouble3Array")
-AnimatedVector3_getDouble3Array :: #force_inline proc "c" (self: ^AnimatedVector3, valuesArray: ^[3]cffi.double, maxCount: cffi.ulong) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "getDouble3Array:maxCount:", valuesArray, maxCount)
+AnimatedVector3_getDouble3Array :: #force_inline proc "c" (self: ^AnimatedVector3, valuesArray: ^vector_double3, maxCount: NS.UInteger) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "getDouble3Array:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=AnimatedVector3, objc_name="load", objc_is_class_method=true)
 AnimatedVector3_load :: #force_inline proc "c" () {
@@ -86,36 +86,36 @@ AnimatedVector3_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone
     return msgSend(id, AnimatedVector3, "mutableCopyWithZone:", zone)
 }
 @(objc_type=AnimatedVector3, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-AnimatedVector3_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedVector3, "instancesRespondToSelector:", aSelector)
+AnimatedVector3_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, AnimatedVector3, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=AnimatedVector3, objc_name="conformsToProtocol", objc_is_class_method=true)
-AnimatedVector3_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedVector3, "conformsToProtocol:", protocol)
+AnimatedVector3_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, AnimatedVector3, "conformsToProtocol:", protocol)
 }
 @(objc_type=AnimatedVector3, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-AnimatedVector3_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), AnimatedVector3, "instanceMethodForSelector:", aSelector)
+AnimatedVector3_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, AnimatedVector3, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=AnimatedVector3, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 AnimatedVector3_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, AnimatedVector3, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=AnimatedVector3, objc_name="isSubclassOfClass", objc_is_class_method=true)
-AnimatedVector3_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedVector3, "isSubclassOfClass:", aClass)
+AnimatedVector3_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, AnimatedVector3, "isSubclassOfClass:", aClass)
 }
 @(objc_type=AnimatedVector3, objc_name="resolveClassMethod", objc_is_class_method=true)
-AnimatedVector3_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedVector3, "resolveClassMethod:", sel)
+AnimatedVector3_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimatedVector3, "resolveClassMethod:", sel)
 }
 @(objc_type=AnimatedVector3, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-AnimatedVector3_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedVector3, "resolveInstanceMethod:", sel)
+AnimatedVector3_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, AnimatedVector3, "resolveInstanceMethod:", sel)
 }
 @(objc_type=AnimatedVector3, objc_name="hash", objc_is_class_method=true)
-AnimatedVector3_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, AnimatedVector3, "hash")
+AnimatedVector3_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, AnimatedVector3, "hash")
 }
 @(objc_type=AnimatedVector3, objc_name="superclass", objc_is_class_method=true)
 AnimatedVector3_superclass :: #force_inline proc "c" () -> Class {
@@ -134,11 +134,11 @@ AnimatedVector3_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, AnimatedVector3, "debugDescription")
 }
 @(objc_type=AnimatedVector3, objc_name="version", objc_is_class_method=true)
-AnimatedVector3_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, AnimatedVector3, "version")
+AnimatedVector3_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, AnimatedVector3, "version")
 }
 @(objc_type=AnimatedVector3, objc_name="setVersion", objc_is_class_method=true)
-AnimatedVector3_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+AnimatedVector3_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, AnimatedVector3, "setVersion:", aVersion)
 }
 @(objc_type=AnimatedVector3, objc_name="poseAsClass", objc_is_class_method=true)
@@ -154,20 +154,20 @@ AnimatedVector3_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "
     msgSend(nil, AnimatedVector3, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=AnimatedVector3, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-AnimatedVector3_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedVector3, "accessInstanceVariablesDirectly")
+AnimatedVector3_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimatedVector3, "accessInstanceVariablesDirectly")
 }
 @(objc_type=AnimatedVector3, objc_name="useStoredAccessor", objc_is_class_method=true)
-AnimatedVector3_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedVector3, "useStoredAccessor")
+AnimatedVector3_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, AnimatedVector3, "useStoredAccessor")
 }
 @(objc_type=AnimatedVector3, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 AnimatedVector3_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, AnimatedVector3, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=AnimatedVector3, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-AnimatedVector3_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, AnimatedVector3, "automaticallyNotifiesObserversForKey:", key)
+AnimatedVector3_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, AnimatedVector3, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=AnimatedVector3, objc_name="setKeys", objc_is_class_method=true)
 AnimatedVector3_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

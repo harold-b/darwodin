@@ -17,3 +17,7 @@ XPCConnection :: struct { using _: Object,
     using _: XPCProxyCreating,
 }
 
+XPCConnection_VTable :: struct {
+    super: Object_VTable,
+}
+

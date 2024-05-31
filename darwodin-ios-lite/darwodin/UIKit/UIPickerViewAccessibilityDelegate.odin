@@ -19,3 +19,6 @@ PickerViewAccessibilityDelegate :: struct { using _: intrinsics.objc_object,
     using _: PickerViewDelegate,
 }
 
+PickerViewAccessibilityDelegate_VTable :: struct {
+}
+

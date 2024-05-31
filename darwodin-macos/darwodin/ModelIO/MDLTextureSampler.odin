@@ -78,36 +78,36 @@ TextureSampler_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone)
     return msgSend(id, TextureSampler, "mutableCopyWithZone:", zone)
 }
 @(objc_type=TextureSampler, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-TextureSampler_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TextureSampler, "instancesRespondToSelector:", aSelector)
+TextureSampler_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, TextureSampler, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=TextureSampler, objc_name="conformsToProtocol", objc_is_class_method=true)
-TextureSampler_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, TextureSampler, "conformsToProtocol:", protocol)
+TextureSampler_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, TextureSampler, "conformsToProtocol:", protocol)
 }
 @(objc_type=TextureSampler, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-TextureSampler_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), TextureSampler, "instanceMethodForSelector:", aSelector)
+TextureSampler_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, TextureSampler, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=TextureSampler, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 TextureSampler_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, TextureSampler, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=TextureSampler, objc_name="isSubclassOfClass", objc_is_class_method=true)
-TextureSampler_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, TextureSampler, "isSubclassOfClass:", aClass)
+TextureSampler_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, TextureSampler, "isSubclassOfClass:", aClass)
 }
 @(objc_type=TextureSampler, objc_name="resolveClassMethod", objc_is_class_method=true)
-TextureSampler_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TextureSampler, "resolveClassMethod:", sel)
+TextureSampler_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TextureSampler, "resolveClassMethod:", sel)
 }
 @(objc_type=TextureSampler, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-TextureSampler_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TextureSampler, "resolveInstanceMethod:", sel)
+TextureSampler_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TextureSampler, "resolveInstanceMethod:", sel)
 }
 @(objc_type=TextureSampler, objc_name="hash", objc_is_class_method=true)
-TextureSampler_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, TextureSampler, "hash")
+TextureSampler_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, TextureSampler, "hash")
 }
 @(objc_type=TextureSampler, objc_name="superclass", objc_is_class_method=true)
 TextureSampler_superclass :: #force_inline proc "c" () -> Class {
@@ -126,11 +126,11 @@ TextureSampler_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, TextureSampler, "debugDescription")
 }
 @(objc_type=TextureSampler, objc_name="version", objc_is_class_method=true)
-TextureSampler_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, TextureSampler, "version")
+TextureSampler_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, TextureSampler, "version")
 }
 @(objc_type=TextureSampler, objc_name="setVersion", objc_is_class_method=true)
-TextureSampler_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+TextureSampler_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, TextureSampler, "setVersion:", aVersion)
 }
 @(objc_type=TextureSampler, objc_name="poseAsClass", objc_is_class_method=true)
@@ -146,20 +146,20 @@ TextureSampler_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c
     msgSend(nil, TextureSampler, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=TextureSampler, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-TextureSampler_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TextureSampler, "accessInstanceVariablesDirectly")
+TextureSampler_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TextureSampler, "accessInstanceVariablesDirectly")
 }
 @(objc_type=TextureSampler, objc_name="useStoredAccessor", objc_is_class_method=true)
-TextureSampler_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TextureSampler, "useStoredAccessor")
+TextureSampler_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TextureSampler, "useStoredAccessor")
 }
 @(objc_type=TextureSampler, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 TextureSampler_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, TextureSampler, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=TextureSampler, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-TextureSampler_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, TextureSampler, "automaticallyNotifiesObserversForKey:", key)
+TextureSampler_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, TextureSampler, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=TextureSampler, objc_name="setKeys", objc_is_class_method=true)
 TextureSampler_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

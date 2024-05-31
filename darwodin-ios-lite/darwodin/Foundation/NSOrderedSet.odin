@@ -20,3 +20,7 @@ OrderedSet :: struct { using _: Object,
     using _: FastEnumeration,
 }
 
+OrderedSet_VTable :: struct {
+    super: Object_VTable,
+}
+

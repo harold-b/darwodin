@@ -20,3 +20,7 @@ SceneConfiguration :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+SceneConfiguration_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

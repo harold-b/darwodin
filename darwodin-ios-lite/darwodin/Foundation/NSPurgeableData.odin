@@ -17,3 +17,7 @@ PurgeableData :: struct { using _: MutableData,
     using _: DiscardableContent,
 }
 
+PurgeableData_VTable :: struct {
+    super: MutableData_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSDockTile")
 DockTile :: struct { using _: NS.Object, }
 
+DockTile_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

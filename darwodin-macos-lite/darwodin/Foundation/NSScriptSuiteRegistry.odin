@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSScriptSuiteRegistry")
 ScriptSuiteRegistry :: struct { using _: Object, }
 
+ScriptSuiteRegistry_VTable :: struct {
+    super: Object_VTable,
+}
+

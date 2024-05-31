@@ -19,3 +19,6 @@ PageControlTimerProgressDelegate :: struct { using _: intrinsics.objc_object,
     using _: PageControlProgressDelegate,
 }
 
+PageControlTimerProgressDelegate_VTable :: struct {
+}
+

@@ -19,3 +19,6 @@ VideoEditorControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+VideoEditorControllerDelegate_VTable :: struct {
+}
+

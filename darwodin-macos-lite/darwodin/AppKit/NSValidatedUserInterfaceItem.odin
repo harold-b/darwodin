@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="NSValidatedUserInterfaceItem")
 ValidatedUserInterfaceItem :: struct { using _: intrinsics.objc_object, }
 
+ValidatedUserInterfaceItem_VTable :: struct {
+}
+

@@ -20,3 +20,7 @@ ManagedObjectContext :: struct { using _: NS.Object,
     using _: NS.Locking,
 }
 
+ManagedObjectContext_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

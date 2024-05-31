@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIMarkupTextPrintFormatter")
 MarkupTextPrintFormatter :: struct { using _: PrintFormatter, }
 
+MarkupTextPrintFormatter_VTable :: struct {
+    super: PrintFormatter_VTable,
+}
+

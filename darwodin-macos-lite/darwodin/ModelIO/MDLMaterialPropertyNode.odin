@@ -74,36 +74,36 @@ MaterialPropertyNode_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._N
     return msgSend(id, MaterialPropertyNode, "mutableCopyWithZone:", zone)
 }
 @(objc_type=MaterialPropertyNode, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-MaterialPropertyNode_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyNode, "instancesRespondToSelector:", aSelector)
+MaterialPropertyNode_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, MaterialPropertyNode, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=MaterialPropertyNode, objc_name="conformsToProtocol", objc_is_class_method=true)
-MaterialPropertyNode_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyNode, "conformsToProtocol:", protocol)
+MaterialPropertyNode_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, MaterialPropertyNode, "conformsToProtocol:", protocol)
 }
 @(objc_type=MaterialPropertyNode, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-MaterialPropertyNode_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), MaterialPropertyNode, "instanceMethodForSelector:", aSelector)
+MaterialPropertyNode_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, MaterialPropertyNode, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=MaterialPropertyNode, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 MaterialPropertyNode_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, MaterialPropertyNode, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=MaterialPropertyNode, objc_name="isSubclassOfClass", objc_is_class_method=true)
-MaterialPropertyNode_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyNode, "isSubclassOfClass:", aClass)
+MaterialPropertyNode_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, MaterialPropertyNode, "isSubclassOfClass:", aClass)
 }
 @(objc_type=MaterialPropertyNode, objc_name="resolveClassMethod", objc_is_class_method=true)
-MaterialPropertyNode_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyNode, "resolveClassMethod:", sel)
+MaterialPropertyNode_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, MaterialPropertyNode, "resolveClassMethod:", sel)
 }
 @(objc_type=MaterialPropertyNode, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-MaterialPropertyNode_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyNode, "resolveInstanceMethod:", sel)
+MaterialPropertyNode_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, MaterialPropertyNode, "resolveInstanceMethod:", sel)
 }
 @(objc_type=MaterialPropertyNode, objc_name="hash", objc_is_class_method=true)
-MaterialPropertyNode_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, MaterialPropertyNode, "hash")
+MaterialPropertyNode_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, MaterialPropertyNode, "hash")
 }
 @(objc_type=MaterialPropertyNode, objc_name="superclass", objc_is_class_method=true)
 MaterialPropertyNode_superclass :: #force_inline proc "c" () -> Class {
@@ -122,11 +122,11 @@ MaterialPropertyNode_debugDescription :: #force_inline proc "c" () -> ^NS.String
     return msgSend(^NS.String, MaterialPropertyNode, "debugDescription")
 }
 @(objc_type=MaterialPropertyNode, objc_name="version", objc_is_class_method=true)
-MaterialPropertyNode_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, MaterialPropertyNode, "version")
+MaterialPropertyNode_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, MaterialPropertyNode, "version")
 }
 @(objc_type=MaterialPropertyNode, objc_name="setVersion", objc_is_class_method=true)
-MaterialPropertyNode_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+MaterialPropertyNode_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, MaterialPropertyNode, "setVersion:", aVersion)
 }
 @(objc_type=MaterialPropertyNode, objc_name="poseAsClass", objc_is_class_method=true)
@@ -142,20 +142,20 @@ MaterialPropertyNode_cancelPreviousPerformRequestsWithTarget_ :: #force_inline p
     msgSend(nil, MaterialPropertyNode, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=MaterialPropertyNode, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-MaterialPropertyNode_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyNode, "accessInstanceVariablesDirectly")
+MaterialPropertyNode_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, MaterialPropertyNode, "accessInstanceVariablesDirectly")
 }
 @(objc_type=MaterialPropertyNode, objc_name="useStoredAccessor", objc_is_class_method=true)
-MaterialPropertyNode_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyNode, "useStoredAccessor")
+MaterialPropertyNode_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, MaterialPropertyNode, "useStoredAccessor")
 }
 @(objc_type=MaterialPropertyNode, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 MaterialPropertyNode_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, MaterialPropertyNode, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=MaterialPropertyNode, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-MaterialPropertyNode_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, MaterialPropertyNode, "automaticallyNotifiesObserversForKey:", key)
+MaterialPropertyNode_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, MaterialPropertyNode, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=MaterialPropertyNode, objc_name="setKeys", objc_is_class_method=true)
 MaterialPropertyNode_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

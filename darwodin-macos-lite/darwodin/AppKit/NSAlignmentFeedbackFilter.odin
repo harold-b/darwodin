@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSAlignmentFeedbackFilter")
 AlignmentFeedbackFilter :: struct { using _: NS.Object, }
 
+AlignmentFeedbackFilter_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

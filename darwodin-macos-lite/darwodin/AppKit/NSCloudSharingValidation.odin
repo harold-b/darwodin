@@ -19,3 +19,6 @@ CloudSharingValidation :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+CloudSharingValidation_VTable :: struct {
+}
+

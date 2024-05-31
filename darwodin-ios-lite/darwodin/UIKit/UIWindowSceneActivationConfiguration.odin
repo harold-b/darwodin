@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIWindowSceneActivationConfiguration")
 WindowSceneActivationConfiguration :: struct { using _: NS.Object, }
 
+WindowSceneActivationConfiguration_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

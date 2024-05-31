@@ -19,3 +19,7 @@ OpenGLContext :: struct { using _: NS.Object,
     using _: NS.Locking,
 }
 
+OpenGLContext_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

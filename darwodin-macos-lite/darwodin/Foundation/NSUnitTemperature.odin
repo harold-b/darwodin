@@ -17,3 +17,7 @@ UnitTemperature :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitTemperature_VTable :: struct {
+    super: Dimension_VTable,
+}
+

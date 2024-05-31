@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableOrderedSet")
 MutableOrderedSet :: struct { using _: OrderedSet, }
 
+MutableOrderedSet_VTable :: struct {
+    super: OrderedSet_VTable,
+}
+

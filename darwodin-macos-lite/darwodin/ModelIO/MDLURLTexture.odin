@@ -94,36 +94,36 @@ URLTexture_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> 
     return msgSend(id, URLTexture, "mutableCopyWithZone:", zone)
 }
 @(objc_type=URLTexture, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-URLTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, URLTexture, "instancesRespondToSelector:", aSelector)
+URLTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, URLTexture, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=URLTexture, objc_name="conformsToProtocol", objc_is_class_method=true)
-URLTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, URLTexture, "conformsToProtocol:", protocol)
+URLTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, URLTexture, "conformsToProtocol:", protocol)
 }
 @(objc_type=URLTexture, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-URLTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), URLTexture, "instanceMethodForSelector:", aSelector)
+URLTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, URLTexture, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=URLTexture, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 URLTexture_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, URLTexture, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=URLTexture, objc_name="isSubclassOfClass", objc_is_class_method=true)
-URLTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, URLTexture, "isSubclassOfClass:", aClass)
+URLTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, URLTexture, "isSubclassOfClass:", aClass)
 }
 @(objc_type=URLTexture, objc_name="resolveClassMethod", objc_is_class_method=true)
-URLTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, URLTexture, "resolveClassMethod:", sel)
+URLTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, URLTexture, "resolveClassMethod:", sel)
 }
 @(objc_type=URLTexture, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-URLTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, URLTexture, "resolveInstanceMethod:", sel)
+URLTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, URLTexture, "resolveInstanceMethod:", sel)
 }
 @(objc_type=URLTexture, objc_name="hash", objc_is_class_method=true)
-URLTexture_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, URLTexture, "hash")
+URLTexture_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, URLTexture, "hash")
 }
 @(objc_type=URLTexture, objc_name="superclass", objc_is_class_method=true)
 URLTexture_superclass :: #force_inline proc "c" () -> Class {
@@ -142,11 +142,11 @@ URLTexture_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, URLTexture, "debugDescription")
 }
 @(objc_type=URLTexture, objc_name="version", objc_is_class_method=true)
-URLTexture_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, URLTexture, "version")
+URLTexture_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, URLTexture, "version")
 }
 @(objc_type=URLTexture, objc_name="setVersion", objc_is_class_method=true)
-URLTexture_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+URLTexture_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, URLTexture, "setVersion:", aVersion)
 }
 @(objc_type=URLTexture, objc_name="poseAsClass", objc_is_class_method=true)
@@ -162,20 +162,20 @@ URLTexture_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (a
     msgSend(nil, URLTexture, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=URLTexture, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-URLTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, URLTexture, "accessInstanceVariablesDirectly")
+URLTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, URLTexture, "accessInstanceVariablesDirectly")
 }
 @(objc_type=URLTexture, objc_name="useStoredAccessor", objc_is_class_method=true)
-URLTexture_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, URLTexture, "useStoredAccessor")
+URLTexture_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, URLTexture, "useStoredAccessor")
 }
 @(objc_type=URLTexture, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 URLTexture_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, URLTexture, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=URLTexture, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-URLTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, URLTexture, "automaticallyNotifiesObserversForKey:", key)
+URLTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, URLTexture, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=URLTexture, objc_name="setKeys", objc_is_class_method=true)
 URLTexture_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

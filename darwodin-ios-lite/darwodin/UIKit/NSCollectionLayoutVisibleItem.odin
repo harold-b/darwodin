@@ -20,3 +20,6 @@ NSCollectionLayoutVisibleItem :: struct { using _: intrinsics.objc_object,
     using _: DynamicItem,
 }
 
+NSCollectionLayoutVisibleItem_VTable :: struct {
+}
+

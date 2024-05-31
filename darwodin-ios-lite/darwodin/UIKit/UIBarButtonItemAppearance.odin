@@ -20,3 +20,7 @@ BarButtonItemAppearance :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+BarButtonItemAppearance_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

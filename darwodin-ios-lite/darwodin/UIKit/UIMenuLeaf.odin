@@ -19,3 +19,6 @@ MenuLeaf :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+MenuLeaf_VTable :: struct {
+}
+

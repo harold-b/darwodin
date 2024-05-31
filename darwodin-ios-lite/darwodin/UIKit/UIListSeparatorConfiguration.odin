@@ -20,3 +20,7 @@ ListSeparatorConfiguration :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+ListSeparatorConfiguration_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

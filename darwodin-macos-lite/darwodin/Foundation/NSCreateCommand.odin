@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSCreateCommand")
 CreateCommand :: struct { using _: ScriptCommand, }
 
+CreateCommand_VTable :: struct {
+    super: ScriptCommand_VTable,
+}
+

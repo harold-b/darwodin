@@ -27,21 +27,21 @@ foreign import lib "system:ModelIO.framework"
 
 
 foreign lib {
-    @(link_name="kMDLabelBundleURL") LabelBundleURL: ^CF.__CFString
-    @(link_name="kMDLabelContentChangeDate") LabelContentChangeDate: ^CF.__CFString
-    @(link_name="kMDLabelDisplayName") LabelDisplayName: ^CF.__CFString
-    @(link_name="kMDLabelIconData") LabelIconData: ^CF.__CFString
-    @(link_name="kMDLabelIconUUID") LabelIconUUID: ^CF.__CFString
-    @(link_name="kMDLabelIsMutuallyExclusiveSetMember") LabelIsMutuallyExclusiveSetMember: ^CF.__CFString
-    @(link_name="kMDLabelKind") LabelKind: ^CF.__CFString
-    @(link_name="kMDLabelSetsFinderColor") LabelSetsFinderColor: ^CF.__CFString
-    @(link_name="kMDLabelUUID") LabelUUID: ^CF.__CFString
-    @(link_name="kMDLabelVisibility") LabelVisibility: ^CF.__CFString
-    @(link_name="kMDLabelKindIsMutuallyExclusiveSetKey") LabelKindIsMutuallyExclusiveSetKey: ^CF.__CFString
-    @(link_name="kMDLabelKindVisibilityKey") LabelKindVisibilityKey: ^CF.__CFString
-    @(link_name="kMDLabelAddedNotification") LabelAddedNotification: ^CF.__CFString
-    @(link_name="kMDLabelChangedNotification") LabelChangedNotification: ^CF.__CFString
-    @(link_name="kMDLabelRemovedNotification") LabelRemovedNotification: ^CF.__CFString
+    @(link_name="kMDLabelBundleURL") LabelBundleURL: CF.StringRef
+    @(link_name="kMDLabelContentChangeDate") LabelContentChangeDate: CF.StringRef
+    @(link_name="kMDLabelDisplayName") LabelDisplayName: CF.StringRef
+    @(link_name="kMDLabelIconData") LabelIconData: CF.StringRef
+    @(link_name="kMDLabelIconUUID") LabelIconUUID: CF.StringRef
+    @(link_name="kMDLabelIsMutuallyExclusiveSetMember") LabelIsMutuallyExclusiveSetMember: CF.StringRef
+    @(link_name="kMDLabelKind") LabelKind: CF.StringRef
+    @(link_name="kMDLabelSetsFinderColor") LabelSetsFinderColor: CF.StringRef
+    @(link_name="kMDLabelUUID") LabelUUID: CF.StringRef
+    @(link_name="kMDLabelVisibility") LabelVisibility: CF.StringRef
+    @(link_name="kMDLabelKindIsMutuallyExclusiveSetKey") LabelKindIsMutuallyExclusiveSetKey: CF.StringRef
+    @(link_name="kMDLabelKindVisibilityKey") LabelKindVisibilityKey: CF.StringRef
+    @(link_name="kMDLabelAddedNotification") LabelAddedNotification: CF.StringRef
+    @(link_name="kMDLabelChangedNotification") LabelChangedNotification: CF.StringRef
+    @(link_name="kMDLabelRemovedNotification") LabelRemovedNotification: CF.StringRef
     @(link_name="MDLVertexAttributeAnisotropy") VertexAttributeAnisotropy: ^NS.String
     @(link_name="MDLVertexAttributeBinormal") VertexAttributeBinormal: ^NS.String
     @(link_name="MDLVertexAttributeBitangent") VertexAttributeBitangent: ^NS.String
@@ -61,22 +61,22 @@ foreign lib {
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="MDLabelGetTypeID")
-    LabelGetTypeID :: proc() -> cffi.ulong ---
+    LabelGetTypeID :: proc() -> CF.TypeID ---
 
     @(link_name="MDLabelCreate")
-    LabelCreate :: proc(allocator: CF.AllocatorRef, displayName: CF.StringRef, kind: CF.StringRef, domain: LabelDomain) -> ^__MDLabel ---
+    LabelCreate :: proc(allocator: CF.AllocatorRef, displayName: CF.StringRef, kind: CF.StringRef, domain: LabelDomain) -> LabelRef ---
 
     @(link_name="MDLabelCopyAttribute")
-    LabelCopyAttribute :: proc(label: LabelRef, name: CF.StringRef) -> rawptr ---
+    LabelCopyAttribute :: proc(label: LabelRef, name: CF.StringRef) -> CF.TypeRef ---
 
     @(link_name="MDLabelCopyAttributeName")
-    LabelCopyAttributeName :: proc(label: LabelRef) -> ^CF.__CFString ---
+    LabelCopyAttributeName :: proc(label: LabelRef) -> CF.StringRef ---
 
     @(link_name="MDLabelDelete")
-    LabelDelete :: proc(label: LabelRef) -> cffi.uchar ---
+    LabelDelete :: proc(label: LabelRef) -> Boolean ---
 
     @(link_name="MDLabelSetAttributes")
-    LabelSetAttributes :: proc(label: LabelRef, attrs: CF.DictionaryRef) -> cffi.uchar ---
+    LabelSetAttributes :: proc(label: LabelRef, attrs: CF.DictionaryRef) -> Boolean ---
 
 }
 
@@ -330,13 +330,13 @@ __MDLabel :: struct {}
 
 /// MDLAxisAlignedBoundingBox
 AxisAlignedBoundingBox :: struct #align (16) {
-    maxBounds : [3]cffi.float,
-    minBounds : [3]cffi.float,
+    maxBounds : vector_float3,
+    minBounds : vector_float3,
 }
 
 /// MDLVoxelIndexExtent
 VoxelIndexExtent :: struct #align (16) {
-    minimumExtent : [4]cffi.int,
-    maximumExtent : [4]cffi.int,
+    minimumExtent : VoxelIndex,
+    maximumExtent : VoxelIndex,
 }
 

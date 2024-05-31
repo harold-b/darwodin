@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSCollectionViewTransitionLayout")
 CollectionViewTransitionLayout :: struct { using _: CollectionViewLayout, }
 
+CollectionViewTransitionLayout_VTable :: struct {
+    super: CollectionViewLayout_VTable,
+}
+

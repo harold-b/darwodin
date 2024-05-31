@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSArrayController")
 ArrayController :: struct { using _: ObjectController, }
 
+ArrayController_VTable :: struct {
+    super: ObjectController_VTable,
+}
+

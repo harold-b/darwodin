@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIRefreshControl")
 RefreshControl :: struct { using _: Control, }
 
+RefreshControl_VTable :: struct {
+    super: Control_VTable,
+}
+

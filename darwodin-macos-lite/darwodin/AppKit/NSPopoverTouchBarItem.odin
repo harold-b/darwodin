@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSPopoverTouchBarItem")
 PopoverTouchBarItem :: struct { using _: TouchBarItem, }
 
+PopoverTouchBarItem_VTable :: struct {
+    super: TouchBarItem_VTable,
+}
+

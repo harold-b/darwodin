@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIPrintPaper")
 PrintPaper :: struct { using _: NS.Object, }
 
+PrintPaper_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

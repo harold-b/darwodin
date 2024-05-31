@@ -281,13 +281,13 @@ TransformOpRotationOrder :: enum cffi.ulong {
 
 /// MDLAxisAlignedBoundingBox
 AxisAlignedBoundingBox :: struct #align (16) {
-    maxBounds : [3]cffi.float,
-    minBounds : [3]cffi.float,
+    maxBounds : vector_float3,
+    minBounds : vector_float3,
 }
 
 /// MDLVoxelIndexExtent
 VoxelIndexExtent :: struct #align (16) {
-    minimumExtent : [4]cffi.int,
-    maximumExtent : [4]cffi.int,
+    minimumExtent : VoxelIndex,
+    maximumExtent : VoxelIndex,
 }
 

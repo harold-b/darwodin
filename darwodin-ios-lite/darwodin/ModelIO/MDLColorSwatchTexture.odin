@@ -30,7 +30,7 @@ ColorSwatchTexture_initWithColorTemperatureGradientFrom :: #force_inline proc "c
     return msgSend(^ColorSwatchTexture, self, "initWithColorTemperatureGradientFrom:toColorTemperature:name:textureDimensions:", colorTemperature1, colorTemperature2, name, textureDimensions)
 }
 @(objc_type=ColorSwatchTexture, objc_name="initWithColorGradientFrom")
-ColorSwatchTexture_initWithColorGradientFrom :: #force_inline proc "c" (self: ^ColorSwatchTexture, color1: ^CG.Color, color2: ^CG.Color, name: ^NS.String, textureDimensions: [2]cffi.int) -> ^ColorSwatchTexture {
+ColorSwatchTexture_initWithColorGradientFrom :: #force_inline proc "c" (self: ^ColorSwatchTexture, color1: CG.ColorRef, color2: CG.ColorRef, name: ^NS.String, textureDimensions: [2]cffi.int) -> ^ColorSwatchTexture {
     return msgSend(^ColorSwatchTexture, self, "initWithColorGradientFrom:toColor:name:textureDimensions:", color1, color2, name, textureDimensions)
 }
 @(objc_type=ColorSwatchTexture, objc_name="textureNamed_", objc_is_class_method=true)
@@ -90,36 +90,36 @@ ColorSwatchTexture_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZ
     return msgSend(id, ColorSwatchTexture, "mutableCopyWithZone:", zone)
 }
 @(objc_type=ColorSwatchTexture, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-ColorSwatchTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, ColorSwatchTexture, "instancesRespondToSelector:", aSelector)
+ColorSwatchTexture_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, ColorSwatchTexture, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=ColorSwatchTexture, objc_name="conformsToProtocol", objc_is_class_method=true)
-ColorSwatchTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, ColorSwatchTexture, "conformsToProtocol:", protocol)
+ColorSwatchTexture_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, ColorSwatchTexture, "conformsToProtocol:", protocol)
 }
 @(objc_type=ColorSwatchTexture, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-ColorSwatchTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), ColorSwatchTexture, "instanceMethodForSelector:", aSelector)
+ColorSwatchTexture_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, ColorSwatchTexture, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=ColorSwatchTexture, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 ColorSwatchTexture_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, ColorSwatchTexture, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=ColorSwatchTexture, objc_name="isSubclassOfClass", objc_is_class_method=true)
-ColorSwatchTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, ColorSwatchTexture, "isSubclassOfClass:", aClass)
+ColorSwatchTexture_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, ColorSwatchTexture, "isSubclassOfClass:", aClass)
 }
 @(objc_type=ColorSwatchTexture, objc_name="resolveClassMethod", objc_is_class_method=true)
-ColorSwatchTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, ColorSwatchTexture, "resolveClassMethod:", sel)
+ColorSwatchTexture_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, ColorSwatchTexture, "resolveClassMethod:", sel)
 }
 @(objc_type=ColorSwatchTexture, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-ColorSwatchTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, ColorSwatchTexture, "resolveInstanceMethod:", sel)
+ColorSwatchTexture_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, ColorSwatchTexture, "resolveInstanceMethod:", sel)
 }
 @(objc_type=ColorSwatchTexture, objc_name="hash", objc_is_class_method=true)
-ColorSwatchTexture_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, ColorSwatchTexture, "hash")
+ColorSwatchTexture_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, ColorSwatchTexture, "hash")
 }
 @(objc_type=ColorSwatchTexture, objc_name="superclass", objc_is_class_method=true)
 ColorSwatchTexture_superclass :: #force_inline proc "c" () -> Class {
@@ -138,11 +138,11 @@ ColorSwatchTexture_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, ColorSwatchTexture, "debugDescription")
 }
 @(objc_type=ColorSwatchTexture, objc_name="version", objc_is_class_method=true)
-ColorSwatchTexture_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, ColorSwatchTexture, "version")
+ColorSwatchTexture_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, ColorSwatchTexture, "version")
 }
 @(objc_type=ColorSwatchTexture, objc_name="setVersion", objc_is_class_method=true)
-ColorSwatchTexture_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+ColorSwatchTexture_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, ColorSwatchTexture, "setVersion:", aVersion)
 }
 @(objc_type=ColorSwatchTexture, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -154,20 +154,20 @@ ColorSwatchTexture_cancelPreviousPerformRequestsWithTarget_ :: #force_inline pro
     msgSend(nil, ColorSwatchTexture, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=ColorSwatchTexture, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-ColorSwatchTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, ColorSwatchTexture, "accessInstanceVariablesDirectly")
+ColorSwatchTexture_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, ColorSwatchTexture, "accessInstanceVariablesDirectly")
 }
 @(objc_type=ColorSwatchTexture, objc_name="useStoredAccessor", objc_is_class_method=true)
-ColorSwatchTexture_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, ColorSwatchTexture, "useStoredAccessor")
+ColorSwatchTexture_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, ColorSwatchTexture, "useStoredAccessor")
 }
 @(objc_type=ColorSwatchTexture, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 ColorSwatchTexture_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, ColorSwatchTexture, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=ColorSwatchTexture, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-ColorSwatchTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, ColorSwatchTexture, "automaticallyNotifiesObserversForKey:", key)
+ColorSwatchTexture_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, ColorSwatchTexture, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=ColorSwatchTexture, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 ColorSwatchTexture_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

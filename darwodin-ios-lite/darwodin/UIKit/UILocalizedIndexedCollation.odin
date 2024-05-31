@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UILocalizedIndexedCollation")
 LocalizedIndexedCollation :: struct { using _: NS.Object, }
 
+LocalizedIndexedCollation_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -19,3 +19,6 @@ PickerViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PickerViewDelegate_VTable :: struct {
+}
+

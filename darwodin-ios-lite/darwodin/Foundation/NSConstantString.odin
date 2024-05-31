@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSConstantString")
 ConstantString :: struct { using _: SimpleCString, }
 
+ConstantString_VTable :: struct {
+    super: SimpleCString_VTable,
+}
+

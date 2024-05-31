@@ -19,3 +19,6 @@ AccessibilityElementLoading :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+AccessibilityElementLoading_VTable :: struct {
+}
+

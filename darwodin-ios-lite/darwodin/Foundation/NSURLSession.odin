@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLSession")
 URLSession :: struct { using _: Object, }
 
+URLSession_VTable :: struct {
+    super: Object_VTable,
+}
+

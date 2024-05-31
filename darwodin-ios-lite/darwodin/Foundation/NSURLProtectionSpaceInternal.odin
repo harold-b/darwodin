@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLProtectionSpaceInternal")
 URLProtectionSpaceInternal :: struct { using _: intrinsics.objc_object, }
 
+URLProtectionSpaceInternal_VTable :: struct {
+}
+

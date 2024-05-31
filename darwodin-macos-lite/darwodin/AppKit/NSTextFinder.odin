@@ -19,3 +19,7 @@ TextFinder :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
+TextFinder_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

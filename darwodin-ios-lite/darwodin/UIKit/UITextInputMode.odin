@@ -19,3 +19,7 @@ TextInputMode :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+TextInputMode_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

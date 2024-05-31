@@ -17,3 +17,7 @@ UnitInformationStorage :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitInformationStorage_VTable :: struct {
+    super: Dimension_VTable,
+}
+

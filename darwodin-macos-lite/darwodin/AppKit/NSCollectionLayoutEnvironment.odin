@@ -19,3 +19,6 @@ CollectionLayoutEnvironment :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+CollectionLayoutEnvironment_VTable :: struct {
+}
+

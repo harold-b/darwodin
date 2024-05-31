@@ -19,3 +19,7 @@ Movie :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
+Movie_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

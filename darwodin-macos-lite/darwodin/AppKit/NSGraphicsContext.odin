@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSGraphicsContext")
 GraphicsContext :: struct { using _: NS.Object, }
 
+GraphicsContext_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSLayoutXAxisAnchor")
 LayoutXAxisAnchor :: struct { using _: LayoutAnchor, }
 
+LayoutXAxisAnchor_VTable :: struct {
+    super: LayoutAnchor_VTable,
+}
+

@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSJSONSerialization")
 JSONSerialization :: struct { using _: Object, }
 
+JSONSerialization_VTable :: struct {
+    super: Object_VTable,
+}
+

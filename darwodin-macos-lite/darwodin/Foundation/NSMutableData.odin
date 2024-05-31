@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableData")
 MutableData :: struct { using _: Data, }
 
+MutableData_VTable :: struct {
+    super: Data_VTable,
+}
+

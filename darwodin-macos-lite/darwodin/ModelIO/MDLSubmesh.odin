@@ -28,15 +28,15 @@ Submesh_init :: proc "c" (self: ^Submesh) -> ^Submesh {
 
 
 @(objc_type=Submesh, objc_name="initWithName_indexBuffer_indexCount_indexType_geometryType_material")
-Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material :: #force_inline proc "c" (self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: cffi.ulong, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> ^Submesh {
+Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material :: #force_inline proc "c" (self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> ^Submesh {
     return msgSend(^Submesh, self, "initWithName:indexBuffer:indexCount:indexType:geometryType:material:", name, indexBuffer, indexCount, indexType, geometryType, material)
 }
 @(objc_type=Submesh, objc_name="initWithIndexBuffer")
-Submesh_initWithIndexBuffer :: #force_inline proc "c" (self: ^Submesh, indexBuffer: ^MeshBuffer, indexCount: cffi.ulong, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> ^Submesh {
+Submesh_initWithIndexBuffer :: #force_inline proc "c" (self: ^Submesh, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> ^Submesh {
     return msgSend(^Submesh, self, "initWithIndexBuffer:indexCount:indexType:geometryType:material:", indexBuffer, indexCount, indexType, geometryType, material)
 }
 @(objc_type=Submesh, objc_name="initWithName_indexBuffer_indexCount_indexType_geometryType_material_topology")
-Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material_topology :: #force_inline proc "c" (self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: cffi.ulong, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material, topology: ^SubmeshTopology) -> ^Submesh {
+Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material_topology :: #force_inline proc "c" (self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material, topology: ^SubmeshTopology) -> ^Submesh {
     return msgSend(^Submesh, self, "initWithName:indexBuffer:indexCount:indexType:geometryType:material:topology:", name, indexBuffer, indexCount, indexType, geometryType, material, topology)
 }
 @(objc_type=Submesh, objc_name="initWithMDLSubmesh")
@@ -52,8 +52,8 @@ Submesh_indexBuffer :: #force_inline proc "c" (self: ^Submesh) -> ^MeshBuffer {
     return msgSend(^MeshBuffer, self, "indexBuffer")
 }
 @(objc_type=Submesh, objc_name="indexCount")
-Submesh_indexCount :: #force_inline proc "c" (self: ^Submesh) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "indexCount")
+Submesh_indexCount :: #force_inline proc "c" (self: ^Submesh) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "indexCount")
 }
 @(objc_type=Submesh, objc_name="indexType")
 Submesh_indexType :: #force_inline proc "c" (self: ^Submesh) -> IndexBitDepth {
@@ -116,36 +116,36 @@ Submesh_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id 
     return msgSend(id, Submesh, "mutableCopyWithZone:", zone)
 }
 @(objc_type=Submesh, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Submesh_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Submesh, "instancesRespondToSelector:", aSelector)
+Submesh_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, Submesh, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=Submesh, objc_name="conformsToProtocol", objc_is_class_method=true)
-Submesh_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, Submesh, "conformsToProtocol:", protocol)
+Submesh_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, Submesh, "conformsToProtocol:", protocol)
 }
 @(objc_type=Submesh, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Submesh_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), Submesh, "instanceMethodForSelector:", aSelector)
+Submesh_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, Submesh, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=Submesh, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 Submesh_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, Submesh, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=Submesh, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Submesh_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, Submesh, "isSubclassOfClass:", aClass)
+Submesh_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, Submesh, "isSubclassOfClass:", aClass)
 }
 @(objc_type=Submesh, objc_name="resolveClassMethod", objc_is_class_method=true)
-Submesh_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Submesh, "resolveClassMethod:", sel)
+Submesh_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Submesh, "resolveClassMethod:", sel)
 }
 @(objc_type=Submesh, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Submesh_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Submesh, "resolveInstanceMethod:", sel)
+Submesh_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Submesh, "resolveInstanceMethod:", sel)
 }
 @(objc_type=Submesh, objc_name="hash", objc_is_class_method=true)
-Submesh_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, Submesh, "hash")
+Submesh_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, Submesh, "hash")
 }
 @(objc_type=Submesh, objc_name="superclass", objc_is_class_method=true)
 Submesh_superclass :: #force_inline proc "c" () -> Class {
@@ -164,11 +164,11 @@ Submesh_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, Submesh, "debugDescription")
 }
 @(objc_type=Submesh, objc_name="version", objc_is_class_method=true)
-Submesh_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, Submesh, "version")
+Submesh_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, Submesh, "version")
 }
 @(objc_type=Submesh, objc_name="setVersion", objc_is_class_method=true)
-Submesh_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+Submesh_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, Submesh, "setVersion:", aVersion)
 }
 @(objc_type=Submesh, objc_name="poseAsClass", objc_is_class_method=true)
@@ -184,20 +184,20 @@ Submesh_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTar
     msgSend(nil, Submesh, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=Submesh, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Submesh_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Submesh, "accessInstanceVariablesDirectly")
+Submesh_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Submesh, "accessInstanceVariablesDirectly")
 }
 @(objc_type=Submesh, objc_name="useStoredAccessor", objc_is_class_method=true)
-Submesh_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Submesh, "useStoredAccessor")
+Submesh_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Submesh, "useStoredAccessor")
 }
 @(objc_type=Submesh, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 Submesh_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, Submesh, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=Submesh, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Submesh_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, Submesh, "automaticallyNotifiesObserversForKey:", key)
+Submesh_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, Submesh, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=Submesh, objc_name="setKeys", objc_is_class_method=true)
 Submesh_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

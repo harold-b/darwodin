@@ -3066,6 +3066,7 @@ EventMask :: enum cffi.ulonglong {
 }
 EventMasks :: bit_set[EventMask; cffi.ulonglong]
 
+
 /// NSEventModifierFlags
 EventModifierFlag :: enum cffi.ulong {
     CapsLock = 16,
@@ -3078,6 +3079,7 @@ EventModifierFlag :: enum cffi.ulong {
     Function = 23,
 }
 EventModifierFlags :: bit_set[EventModifierFlag; cffi.ulong]
+
 
 /// NSPointingDeviceType
 PointingDeviceType :: enum cffi.ulong {
@@ -4008,6 +4010,7 @@ FontPanelModeMask :: enum cffi.ulong {
     ShadowEffect = 12,
 }
 FontPanelModeMasks :: bit_set[FontPanelModeMask; cffi.ulong]
+
 
 /// NSMatrixMode
 MatrixMode :: enum cffi.ulong {
@@ -5104,6 +5107,7 @@ DatePickerElementFlag :: enum cffi.ulong {
     Era = 8,
 }
 DatePickerElementFlags :: bit_set[DatePickerElementFlag; cffi.ulong]
+
 
 /// NSLevelIndicatorStyle
 LevelIndicatorStyle :: enum cffi.ulong {

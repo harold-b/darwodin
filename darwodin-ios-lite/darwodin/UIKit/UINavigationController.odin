@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UINavigationController")
 NavigationController :: struct { using _: ViewController, }
 
+NavigationController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

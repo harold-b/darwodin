@@ -19,3 +19,6 @@ KeyInput :: struct { using _: intrinsics.objc_object,
     using _: TextInputTraitsProtocol,
 }
 
+KeyInput_VTable :: struct {
+}
+

@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSXMLParser")
 XMLParser :: struct { using _: Object, }
 
+XMLParser_VTable :: struct {
+    super: Object_VTable,
+}
+

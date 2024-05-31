@@ -19,3 +19,6 @@ PencilInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+PencilInteractionDelegate_VTable :: struct {
+}
+

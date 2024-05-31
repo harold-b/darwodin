@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSSplitView")
 SplitView :: struct { using _: View, }
 
+SplitView_VTable :: struct {
+    super: View_VTable,
+}
+

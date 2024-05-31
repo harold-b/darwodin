@@ -68,36 +68,36 @@ BundleAssetResolver_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NS
     return msgSend(id, BundleAssetResolver, "mutableCopyWithZone:", zone)
 }
 @(objc_type=BundleAssetResolver, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-BundleAssetResolver_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, BundleAssetResolver, "instancesRespondToSelector:", aSelector)
+BundleAssetResolver_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, BundleAssetResolver, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=BundleAssetResolver, objc_name="conformsToProtocol", objc_is_class_method=true)
-BundleAssetResolver_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, BundleAssetResolver, "conformsToProtocol:", protocol)
+BundleAssetResolver_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, BundleAssetResolver, "conformsToProtocol:", protocol)
 }
 @(objc_type=BundleAssetResolver, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-BundleAssetResolver_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), BundleAssetResolver, "instanceMethodForSelector:", aSelector)
+BundleAssetResolver_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, BundleAssetResolver, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=BundleAssetResolver, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 BundleAssetResolver_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, BundleAssetResolver, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=BundleAssetResolver, objc_name="isSubclassOfClass", objc_is_class_method=true)
-BundleAssetResolver_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, BundleAssetResolver, "isSubclassOfClass:", aClass)
+BundleAssetResolver_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, BundleAssetResolver, "isSubclassOfClass:", aClass)
 }
 @(objc_type=BundleAssetResolver, objc_name="resolveClassMethod", objc_is_class_method=true)
-BundleAssetResolver_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, BundleAssetResolver, "resolveClassMethod:", sel)
+BundleAssetResolver_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, BundleAssetResolver, "resolveClassMethod:", sel)
 }
 @(objc_type=BundleAssetResolver, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-BundleAssetResolver_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, BundleAssetResolver, "resolveInstanceMethod:", sel)
+BundleAssetResolver_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, BundleAssetResolver, "resolveInstanceMethod:", sel)
 }
 @(objc_type=BundleAssetResolver, objc_name="hash", objc_is_class_method=true)
-BundleAssetResolver_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, BundleAssetResolver, "hash")
+BundleAssetResolver_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, BundleAssetResolver, "hash")
 }
 @(objc_type=BundleAssetResolver, objc_name="superclass", objc_is_class_method=true)
 BundleAssetResolver_superclass :: #force_inline proc "c" () -> Class {
@@ -116,11 +116,11 @@ BundleAssetResolver_debugDescription :: #force_inline proc "c" () -> ^NS.String 
     return msgSend(^NS.String, BundleAssetResolver, "debugDescription")
 }
 @(objc_type=BundleAssetResolver, objc_name="version", objc_is_class_method=true)
-BundleAssetResolver_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, BundleAssetResolver, "version")
+BundleAssetResolver_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, BundleAssetResolver, "version")
 }
 @(objc_type=BundleAssetResolver, objc_name="setVersion", objc_is_class_method=true)
-BundleAssetResolver_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+BundleAssetResolver_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, BundleAssetResolver, "setVersion:", aVersion)
 }
 @(objc_type=BundleAssetResolver, objc_name="poseAsClass", objc_is_class_method=true)
@@ -136,20 +136,20 @@ BundleAssetResolver_cancelPreviousPerformRequestsWithTarget_ :: #force_inline pr
     msgSend(nil, BundleAssetResolver, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=BundleAssetResolver, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-BundleAssetResolver_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, BundleAssetResolver, "accessInstanceVariablesDirectly")
+BundleAssetResolver_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, BundleAssetResolver, "accessInstanceVariablesDirectly")
 }
 @(objc_type=BundleAssetResolver, objc_name="useStoredAccessor", objc_is_class_method=true)
-BundleAssetResolver_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, BundleAssetResolver, "useStoredAccessor")
+BundleAssetResolver_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, BundleAssetResolver, "useStoredAccessor")
 }
 @(objc_type=BundleAssetResolver, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 BundleAssetResolver_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, BundleAssetResolver, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=BundleAssetResolver, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-BundleAssetResolver_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, BundleAssetResolver, "automaticallyNotifiesObserversForKey:", key)
+BundleAssetResolver_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, BundleAssetResolver, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=BundleAssetResolver, objc_name="setKeys", objc_is_class_method=true)
 BundleAssetResolver_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

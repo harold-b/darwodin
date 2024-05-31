@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSProtocolChecker")
 ProtocolChecker :: struct { using _: Proxy, }
 
+ProtocolChecker_VTable :: struct {
+    super: Proxy_VTable,
+}
+

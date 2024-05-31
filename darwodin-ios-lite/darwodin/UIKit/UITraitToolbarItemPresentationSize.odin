@@ -19,3 +19,7 @@ TraitToolbarItemPresentationSize :: struct { using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 
+TraitToolbarItemPresentationSize_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

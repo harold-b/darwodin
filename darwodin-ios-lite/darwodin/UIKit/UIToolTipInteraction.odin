@@ -19,3 +19,7 @@ ToolTipInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
+ToolTipInteraction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

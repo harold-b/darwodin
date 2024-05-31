@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSKeyedUnarchiver")
 KeyedUnarchiver :: struct { using _: Coder, }
 
+KeyedUnarchiver_VTable :: struct {
+    super: Coder_VTable,
+}
+

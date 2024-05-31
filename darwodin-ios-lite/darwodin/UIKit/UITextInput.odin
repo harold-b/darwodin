@@ -19,3 +19,6 @@ TextInput :: struct { using _: intrinsics.objc_object,
     using _: KeyInput,
 }
 
+TextInput_VTable :: struct {
+}
+

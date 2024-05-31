@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLCacheInternal")
 URLCacheInternal :: struct { using _: intrinsics.objc_object, }
 
+URLCacheInternal_VTable :: struct {
+}
+

@@ -19,3 +19,6 @@ AccessibilityContentSizeCategoryImageAdjusting :: struct { using _: intrinsics.o
     using _: NS.ObjectProtocol,
 }
 
+AccessibilityContentSizeCategoryImageAdjusting_VTable :: struct {
+}
+

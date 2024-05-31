@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIFontPickerViewController")
 FontPickerViewController :: struct { using _: ViewController, }
 
+FontPickerViewController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

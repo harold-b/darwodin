@@ -16,3 +16,6 @@ import NS "../Foundation"
 @(objc_class="EAGLDrawable")
 EAGLDrawable :: struct { using _: intrinsics.objc_object, }
 
+EAGLDrawable_VTable :: struct {
+}
+

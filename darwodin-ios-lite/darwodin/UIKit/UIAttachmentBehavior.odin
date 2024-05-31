@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIAttachmentBehavior")
 AttachmentBehavior :: struct { using _: DynamicBehavior, }
 
+AttachmentBehavior_VTable :: struct {
+    super: DynamicBehavior_VTable,
+}
+

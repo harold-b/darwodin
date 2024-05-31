@@ -19,3 +19,7 @@ ProgressView :: struct { using _: View,
     using _: NS.Coding,
 }
 
+ProgressView_VTable :: struct {
+    super: View_VTable,
+}
+

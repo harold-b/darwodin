@@ -19,3 +19,7 @@ Cursor :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+Cursor_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

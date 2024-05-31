@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIMutableUserNotificationCategory")
 MutableUserNotificationCategory :: struct { using _: UserNotificationCategory, }
 
+MutableUserNotificationCategory_VTable :: struct {
+    super: UserNotificationCategory_VTable,
+}
+

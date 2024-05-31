@@ -17,3 +17,6 @@ UserActivityDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
+UserActivityDelegate_VTable :: struct {
+}
+

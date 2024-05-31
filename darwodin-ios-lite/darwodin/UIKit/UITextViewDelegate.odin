@@ -20,3 +20,6 @@ TextViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: ScrollViewDelegate,
 }
 
+TextViewDelegate_VTable :: struct {
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSDiffableDataSourceTransaction")
 NSDiffableDataSourceTransaction :: struct { using _: NS.Object, }
 
+NSDiffableDataSourceTransaction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

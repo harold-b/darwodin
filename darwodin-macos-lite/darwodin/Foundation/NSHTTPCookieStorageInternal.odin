@@ -15,3 +15,6 @@ import CG "../CoreGraphics"
 @(objc_class="NSHTTPCookieStorageInternal")
 HTTPCookieStorageInternal :: struct { using _: intrinsics.objc_object, }
 
+HTTPCookieStorageInternal_VTable :: struct {
+}
+

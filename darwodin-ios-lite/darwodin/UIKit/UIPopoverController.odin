@@ -19,3 +19,7 @@ PopoverController :: struct { using _: NS.Object,
     using _: AppearanceContainer,
 }
 
+PopoverController_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

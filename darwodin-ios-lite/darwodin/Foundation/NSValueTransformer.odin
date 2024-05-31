@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSValueTransformer")
 ValueTransformer :: struct { using _: Object, }
 
+ValueTransformer_VTable :: struct {
+    super: Object_VTable,
+}
+

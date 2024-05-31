@@ -30,15 +30,15 @@ PhotometricLight_initWithIESProfile :: #force_inline proc "c" (self: ^Photometri
     return msgSend(^PhotometricLight, self, "initWithIESProfile:", _URL)
 }
 @(objc_type=PhotometricLight, objc_name="generateSphericalHarmonicsFromLight")
-PhotometricLight_generateSphericalHarmonicsFromLight :: #force_inline proc "c" (self: ^PhotometricLight, sphericalHarmonicsLevel: cffi.ulong) {
+PhotometricLight_generateSphericalHarmonicsFromLight :: #force_inline proc "c" (self: ^PhotometricLight, sphericalHarmonicsLevel: NS.UInteger) {
     msgSend(nil, self, "generateSphericalHarmonicsFromLight:", sphericalHarmonicsLevel)
 }
 @(objc_type=PhotometricLight, objc_name="generateCubemapFromLight")
-PhotometricLight_generateCubemapFromLight :: #force_inline proc "c" (self: ^PhotometricLight, textureSize: cffi.ulong) {
+PhotometricLight_generateCubemapFromLight :: #force_inline proc "c" (self: ^PhotometricLight, textureSize: NS.UInteger) {
     msgSend(nil, self, "generateCubemapFromLight:", textureSize)
 }
 @(objc_type=PhotometricLight, objc_name="generateTexture")
-PhotometricLight_generateTexture :: #force_inline proc "c" (self: ^PhotometricLight, textureSize: cffi.ulong) -> ^Texture {
+PhotometricLight_generateTexture :: #force_inline proc "c" (self: ^PhotometricLight, textureSize: NS.UInteger) -> ^Texture {
     return msgSend(^Texture, self, "generateTexture:", textureSize)
 }
 @(objc_type=PhotometricLight, objc_name="lightCubeMap")
@@ -46,8 +46,8 @@ PhotometricLight_lightCubeMap :: #force_inline proc "c" (self: ^PhotometricLight
     return msgSend(^Texture, self, "lightCubeMap")
 }
 @(objc_type=PhotometricLight, objc_name="sphericalHarmonicsLevel")
-PhotometricLight_sphericalHarmonicsLevel :: #force_inline proc "c" (self: ^PhotometricLight) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "sphericalHarmonicsLevel")
+PhotometricLight_sphericalHarmonicsLevel :: #force_inline proc "c" (self: ^PhotometricLight) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "sphericalHarmonicsLevel")
 }
 @(objc_type=PhotometricLight, objc_name="sphericalHarmonicsCoefficients")
 PhotometricLight_sphericalHarmonicsCoefficients :: #force_inline proc "c" (self: ^PhotometricLight) -> ^NS.Data {
@@ -82,36 +82,36 @@ PhotometricLight_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZon
     return msgSend(id, PhotometricLight, "mutableCopyWithZone:", zone)
 }
 @(objc_type=PhotometricLight, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-PhotometricLight_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhotometricLight, "instancesRespondToSelector:", aSelector)
+PhotometricLight_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, PhotometricLight, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=PhotometricLight, objc_name="conformsToProtocol", objc_is_class_method=true)
-PhotometricLight_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, PhotometricLight, "conformsToProtocol:", protocol)
+PhotometricLight_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, PhotometricLight, "conformsToProtocol:", protocol)
 }
 @(objc_type=PhotometricLight, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-PhotometricLight_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), PhotometricLight, "instanceMethodForSelector:", aSelector)
+PhotometricLight_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, PhotometricLight, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=PhotometricLight, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 PhotometricLight_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, PhotometricLight, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=PhotometricLight, objc_name="isSubclassOfClass", objc_is_class_method=true)
-PhotometricLight_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, PhotometricLight, "isSubclassOfClass:", aClass)
+PhotometricLight_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, PhotometricLight, "isSubclassOfClass:", aClass)
 }
 @(objc_type=PhotometricLight, objc_name="resolveClassMethod", objc_is_class_method=true)
-PhotometricLight_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhotometricLight, "resolveClassMethod:", sel)
+PhotometricLight_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PhotometricLight, "resolveClassMethod:", sel)
 }
 @(objc_type=PhotometricLight, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-PhotometricLight_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, PhotometricLight, "resolveInstanceMethod:", sel)
+PhotometricLight_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, PhotometricLight, "resolveInstanceMethod:", sel)
 }
 @(objc_type=PhotometricLight, objc_name="hash", objc_is_class_method=true)
-PhotometricLight_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, PhotometricLight, "hash")
+PhotometricLight_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, PhotometricLight, "hash")
 }
 @(objc_type=PhotometricLight, objc_name="superclass", objc_is_class_method=true)
 PhotometricLight_superclass :: #force_inline proc "c" () -> Class {
@@ -130,11 +130,11 @@ PhotometricLight_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, PhotometricLight, "debugDescription")
 }
 @(objc_type=PhotometricLight, objc_name="version", objc_is_class_method=true)
-PhotometricLight_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, PhotometricLight, "version")
+PhotometricLight_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, PhotometricLight, "version")
 }
 @(objc_type=PhotometricLight, objc_name="setVersion", objc_is_class_method=true)
-PhotometricLight_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+PhotometricLight_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, PhotometricLight, "setVersion:", aVersion)
 }
 @(objc_type=PhotometricLight, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -146,20 +146,20 @@ PhotometricLight_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc 
     msgSend(nil, PhotometricLight, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=PhotometricLight, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-PhotometricLight_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PhotometricLight, "accessInstanceVariablesDirectly")
+PhotometricLight_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PhotometricLight, "accessInstanceVariablesDirectly")
 }
 @(objc_type=PhotometricLight, objc_name="useStoredAccessor", objc_is_class_method=true)
-PhotometricLight_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, PhotometricLight, "useStoredAccessor")
+PhotometricLight_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PhotometricLight, "useStoredAccessor")
 }
 @(objc_type=PhotometricLight, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 PhotometricLight_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, PhotometricLight, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=PhotometricLight, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-PhotometricLight_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, PhotometricLight, "automaticallyNotifiesObserversForKey:", key)
+PhotometricLight_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, PhotometricLight, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=PhotometricLight, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 PhotometricLight_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

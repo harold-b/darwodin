@@ -19,3 +19,6 @@ NSCollectionLayoutContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+NSCollectionLayoutContainer_VTable :: struct {
+}
+

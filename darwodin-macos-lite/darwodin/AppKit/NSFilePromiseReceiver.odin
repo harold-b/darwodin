@@ -19,3 +19,7 @@ FilePromiseReceiver :: struct { using _: NS.Object,
     using _: PasteboardReading,
 }
 
+FilePromiseReceiver_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

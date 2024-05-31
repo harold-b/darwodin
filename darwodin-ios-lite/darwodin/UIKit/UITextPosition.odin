@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITextPosition")
 TextPosition :: struct { using _: NS.Object, }
 
+TextPosition_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

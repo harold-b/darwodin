@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UIWebViewInternal")
 WebViewInternal :: struct { using _: intrinsics.objc_object, }
 
+WebViewInternal_VTable :: struct {
+}
+

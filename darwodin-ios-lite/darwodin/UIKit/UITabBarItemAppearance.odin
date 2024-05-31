@@ -20,3 +20,7 @@ TabBarItemAppearance :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+TabBarItemAppearance_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

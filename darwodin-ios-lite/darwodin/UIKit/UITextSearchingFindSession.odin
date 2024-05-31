@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UITextSearchingFindSession")
 TextSearchingFindSession :: struct { using _: FindSession, }
 
+TextSearchingFindSession_VTable :: struct {
+    super: FindSession_VTable,
+}
+

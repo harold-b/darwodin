@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSPDFPanel")
 PDFPanel :: struct { using _: NS.Object, }
 
+PDFPanel_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

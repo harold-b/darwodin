@@ -19,3 +19,7 @@ Image :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+Image_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

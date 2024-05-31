@@ -19,3 +19,7 @@ TableHeaderView :: struct { using _: View,
     using _: ViewToolTipOwner,
 }
 
+TableHeaderView_VTable :: struct {
+    super: View_VTable,
+}
+

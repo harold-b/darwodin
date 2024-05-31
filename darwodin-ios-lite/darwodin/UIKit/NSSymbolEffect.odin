@@ -20,3 +20,7 @@ NSSymbolEffect :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+NSSymbolEffect_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

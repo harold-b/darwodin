@@ -20,3 +20,7 @@ Font :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+Font_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -42,8 +42,8 @@ VoxelArray_initWithAsset_divisions_interiorNBWidth_exteriorNBWidth_patchRadius :
     return msgSend(^VoxelArray, self, "initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:", asset, divisions, interiorNBWidth, exteriorNBWidth, patchRadius)
 }
 @(objc_type=VoxelArray, objc_name="voxelExistsAtIndex")
-VoxelArray_voxelExistsAtIndex :: #force_inline proc "c" (self: ^VoxelArray, index: [4]cffi.int, allowAnyX: cffi.bool, allowAnyY: cffi.bool, allowAnyZ: cffi.bool, allowAnyShell: cffi.bool) -> cffi.bool {
-    return msgSend(cffi.bool, self, "voxelExistsAtIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:", index, allowAnyX, allowAnyY, allowAnyZ, allowAnyShell)
+VoxelArray_voxelExistsAtIndex :: #force_inline proc "c" (self: ^VoxelArray, index: VoxelIndex, allowAnyX: bool, allowAnyY: bool, allowAnyZ: bool, allowAnyShell: bool) -> bool {
+    return msgSend(bool, self, "voxelExistsAtIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:", index, allowAnyX, allowAnyY, allowAnyZ, allowAnyShell)
 }
 @(objc_type=VoxelArray, objc_name="voxelsWithinExtent")
 VoxelArray_voxelsWithinExtent :: #force_inline proc "c" (self: ^VoxelArray, extent: VoxelIndexExtent) -> ^NS.Data {
@@ -54,7 +54,7 @@ VoxelArray_voxelIndices :: #force_inline proc "c" (self: ^VoxelArray) -> ^NS.Dat
     return msgSend(^NS.Data, self, "voxelIndices")
 }
 @(objc_type=VoxelArray, objc_name="setVoxelAtIndex")
-VoxelArray_setVoxelAtIndex :: #force_inline proc "c" (self: ^VoxelArray, index: [4]cffi.int) {
+VoxelArray_setVoxelAtIndex :: #force_inline proc "c" (self: ^VoxelArray, index: VoxelIndex) {
     msgSend(nil, self, "setVoxelAtIndex:", index)
 }
 @(objc_type=VoxelArray, objc_name="setVoxelsForMesh_divisions_patchRadius")
@@ -82,15 +82,15 @@ VoxelArray_differenceWithVoxels :: #force_inline proc "c" (self: ^VoxelArray, vo
     msgSend(nil, self, "differenceWithVoxels:", voxels)
 }
 @(objc_type=VoxelArray, objc_name="indexOfSpatialLocation")
-VoxelArray_indexOfSpatialLocation :: #force_inline proc "c" (self: ^VoxelArray, location: [3]cffi.float) -> [4]cffi.int {
-    return msgSend([4]cffi.int, self, "indexOfSpatialLocation:", location)
+VoxelArray_indexOfSpatialLocation :: #force_inline proc "c" (self: ^VoxelArray, location: vector_float3) -> VoxelIndex {
+    return msgSend(VoxelIndex, self, "indexOfSpatialLocation:", location)
 }
 @(objc_type=VoxelArray, objc_name="spatialLocationOfIndex")
-VoxelArray_spatialLocationOfIndex :: #force_inline proc "c" (self: ^VoxelArray, index: [4]cffi.int) -> [3]cffi.float {
-    return msgSend([3]cffi.float, self, "spatialLocationOfIndex:", index)
+VoxelArray_spatialLocationOfIndex :: #force_inline proc "c" (self: ^VoxelArray, index: VoxelIndex) -> vector_float3 {
+    return msgSend(vector_float3, self, "spatialLocationOfIndex:", index)
 }
 @(objc_type=VoxelArray, objc_name="voxelBoundingBoxAtIndex")
-VoxelArray_voxelBoundingBoxAtIndex :: #force_inline proc "c" (self: ^VoxelArray, index: [4]cffi.int) -> AxisAlignedBoundingBox {
+VoxelArray_voxelBoundingBoxAtIndex :: #force_inline proc "c" (self: ^VoxelArray, index: VoxelIndex) -> AxisAlignedBoundingBox {
     return msgSend(AxisAlignedBoundingBox, self, "voxelBoundingBoxAtIndex:", index)
 }
 @(objc_type=VoxelArray, objc_name="convertToSignedShellField")
@@ -110,8 +110,8 @@ VoxelArray_meshUsingAllocator :: #force_inline proc "c" (self: ^VoxelArray, allo
     return msgSend(^Mesh, self, "meshUsingAllocator:", allocator)
 }
 @(objc_type=VoxelArray, objc_name="count")
-VoxelArray_count :: #force_inline proc "c" (self: ^VoxelArray) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "count")
+VoxelArray_count :: #force_inline proc "c" (self: ^VoxelArray) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "count")
 }
 @(objc_type=VoxelArray, objc_name="voxelIndexExtent")
 VoxelArray_voxelIndexExtent :: #force_inline proc "c" (self: ^VoxelArray) -> VoxelIndexExtent {
@@ -122,8 +122,8 @@ VoxelArray_boundingBox :: #force_inline proc "c" (self: ^VoxelArray) -> AxisAlig
     return msgSend(AxisAlignedBoundingBox, self, "boundingBox")
 }
 @(objc_type=VoxelArray, objc_name="isValidSignedShellField")
-VoxelArray_isValidSignedShellField :: #force_inline proc "c" (self: ^VoxelArray) -> cffi.bool {
-    return msgSend(cffi.bool, self, "isValidSignedShellField")
+VoxelArray_isValidSignedShellField :: #force_inline proc "c" (self: ^VoxelArray) -> bool {
+    return msgSend(bool, self, "isValidSignedShellField")
 }
 @(objc_type=VoxelArray, objc_name="shellFieldInteriorThickness")
 VoxelArray_shellFieldInteriorThickness :: #force_inline proc "c" (self: ^VoxelArray) -> cffi.float {
@@ -170,36 +170,36 @@ VoxelArray_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> 
     return msgSend(id, VoxelArray, "mutableCopyWithZone:", zone)
 }
 @(objc_type=VoxelArray, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-VoxelArray_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VoxelArray, "instancesRespondToSelector:", aSelector)
+VoxelArray_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, VoxelArray, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=VoxelArray, objc_name="conformsToProtocol", objc_is_class_method=true)
-VoxelArray_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, VoxelArray, "conformsToProtocol:", protocol)
+VoxelArray_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, VoxelArray, "conformsToProtocol:", protocol)
 }
 @(objc_type=VoxelArray, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-VoxelArray_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), VoxelArray, "instanceMethodForSelector:", aSelector)
+VoxelArray_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, VoxelArray, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=VoxelArray, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 VoxelArray_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, VoxelArray, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=VoxelArray, objc_name="isSubclassOfClass", objc_is_class_method=true)
-VoxelArray_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, VoxelArray, "isSubclassOfClass:", aClass)
+VoxelArray_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, VoxelArray, "isSubclassOfClass:", aClass)
 }
 @(objc_type=VoxelArray, objc_name="resolveClassMethod", objc_is_class_method=true)
-VoxelArray_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VoxelArray, "resolveClassMethod:", sel)
+VoxelArray_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, VoxelArray, "resolveClassMethod:", sel)
 }
 @(objc_type=VoxelArray, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-VoxelArray_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, VoxelArray, "resolveInstanceMethod:", sel)
+VoxelArray_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, VoxelArray, "resolveInstanceMethod:", sel)
 }
 @(objc_type=VoxelArray, objc_name="hash", objc_is_class_method=true)
-VoxelArray_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, VoxelArray, "hash")
+VoxelArray_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, VoxelArray, "hash")
 }
 @(objc_type=VoxelArray, objc_name="superclass", objc_is_class_method=true)
 VoxelArray_superclass :: #force_inline proc "c" () -> Class {
@@ -218,11 +218,11 @@ VoxelArray_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, VoxelArray, "debugDescription")
 }
 @(objc_type=VoxelArray, objc_name="version", objc_is_class_method=true)
-VoxelArray_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, VoxelArray, "version")
+VoxelArray_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, VoxelArray, "version")
 }
 @(objc_type=VoxelArray, objc_name="setVersion", objc_is_class_method=true)
-VoxelArray_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+VoxelArray_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, VoxelArray, "setVersion:", aVersion)
 }
 @(objc_type=VoxelArray, objc_name="poseAsClass", objc_is_class_method=true)
@@ -238,20 +238,20 @@ VoxelArray_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (a
     msgSend(nil, VoxelArray, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=VoxelArray, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-VoxelArray_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, VoxelArray, "accessInstanceVariablesDirectly")
+VoxelArray_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, VoxelArray, "accessInstanceVariablesDirectly")
 }
 @(objc_type=VoxelArray, objc_name="useStoredAccessor", objc_is_class_method=true)
-VoxelArray_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, VoxelArray, "useStoredAccessor")
+VoxelArray_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, VoxelArray, "useStoredAccessor")
 }
 @(objc_type=VoxelArray, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 VoxelArray_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, VoxelArray, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=VoxelArray, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-VoxelArray_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, VoxelArray, "automaticallyNotifiesObserversForKey:", key)
+VoxelArray_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, VoxelArray, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=VoxelArray, objc_name="setKeys", objc_is_class_method=true)
 VoxelArray_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

@@ -19,3 +19,7 @@ SpringLoadedInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
+SpringLoadedInteraction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

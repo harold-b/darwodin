@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSCollectionViewLayoutInvalidationContext")
 CollectionViewLayoutInvalidationContext :: struct { using _: NS.Object, }
 
+CollectionViewLayoutInvalidationContext_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

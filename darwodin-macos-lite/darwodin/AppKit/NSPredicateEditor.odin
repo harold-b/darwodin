@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSPredicateEditor")
 PredicateEditor :: struct { using _: RuleEditor, }
 
+PredicateEditor_VTable :: struct {
+    super: RuleEditor_VTable,
+}
+

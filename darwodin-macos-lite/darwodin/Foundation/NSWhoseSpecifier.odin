@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSWhoseSpecifier")
 WhoseSpecifier :: struct { using _: ScriptObjectSpecifier, }
 
+WhoseSpecifier_VTable :: struct {
+    super: ScriptObjectSpecifier_VTable,
+}
+

@@ -17,3 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="UITraitChangeObservable")
 TraitChangeObservable :: struct { using _: intrinsics.objc_object, }
 
+TraitChangeObservable_VTable :: struct {
+}
+

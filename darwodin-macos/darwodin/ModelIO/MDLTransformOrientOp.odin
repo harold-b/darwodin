@@ -64,36 +64,36 @@ TransformOrientOp_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZo
     return msgSend(id, TransformOrientOp, "mutableCopyWithZone:", zone)
 }
 @(objc_type=TransformOrientOp, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-TransformOrientOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformOrientOp, "instancesRespondToSelector:", aSelector)
+TransformOrientOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, TransformOrientOp, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=TransformOrientOp, objc_name="conformsToProtocol", objc_is_class_method=true)
-TransformOrientOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, TransformOrientOp, "conformsToProtocol:", protocol)
+TransformOrientOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, TransformOrientOp, "conformsToProtocol:", protocol)
 }
 @(objc_type=TransformOrientOp, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-TransformOrientOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), TransformOrientOp, "instanceMethodForSelector:", aSelector)
+TransformOrientOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, TransformOrientOp, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=TransformOrientOp, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 TransformOrientOp_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, TransformOrientOp, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=TransformOrientOp, objc_name="isSubclassOfClass", objc_is_class_method=true)
-TransformOrientOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, TransformOrientOp, "isSubclassOfClass:", aClass)
+TransformOrientOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, TransformOrientOp, "isSubclassOfClass:", aClass)
 }
 @(objc_type=TransformOrientOp, objc_name="resolveClassMethod", objc_is_class_method=true)
-TransformOrientOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformOrientOp, "resolveClassMethod:", sel)
+TransformOrientOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformOrientOp, "resolveClassMethod:", sel)
 }
 @(objc_type=TransformOrientOp, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-TransformOrientOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformOrientOp, "resolveInstanceMethod:", sel)
+TransformOrientOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformOrientOp, "resolveInstanceMethod:", sel)
 }
 @(objc_type=TransformOrientOp, objc_name="hash", objc_is_class_method=true)
-TransformOrientOp_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, TransformOrientOp, "hash")
+TransformOrientOp_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, TransformOrientOp, "hash")
 }
 @(objc_type=TransformOrientOp, objc_name="superclass", objc_is_class_method=true)
 TransformOrientOp_superclass :: #force_inline proc "c" () -> Class {
@@ -112,11 +112,11 @@ TransformOrientOp_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, TransformOrientOp, "debugDescription")
 }
 @(objc_type=TransformOrientOp, objc_name="version", objc_is_class_method=true)
-TransformOrientOp_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, TransformOrientOp, "version")
+TransformOrientOp_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, TransformOrientOp, "version")
 }
 @(objc_type=TransformOrientOp, objc_name="setVersion", objc_is_class_method=true)
-TransformOrientOp_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+TransformOrientOp_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, TransformOrientOp, "setVersion:", aVersion)
 }
 @(objc_type=TransformOrientOp, objc_name="poseAsClass", objc_is_class_method=true)
@@ -132,20 +132,20 @@ TransformOrientOp_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc
     msgSend(nil, TransformOrientOp, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=TransformOrientOp, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-TransformOrientOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformOrientOp, "accessInstanceVariablesDirectly")
+TransformOrientOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformOrientOp, "accessInstanceVariablesDirectly")
 }
 @(objc_type=TransformOrientOp, objc_name="useStoredAccessor", objc_is_class_method=true)
-TransformOrientOp_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformOrientOp, "useStoredAccessor")
+TransformOrientOp_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformOrientOp, "useStoredAccessor")
 }
 @(objc_type=TransformOrientOp, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 TransformOrientOp_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, TransformOrientOp, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=TransformOrientOp, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-TransformOrientOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, TransformOrientOp, "automaticallyNotifiesObserversForKey:", key)
+TransformOrientOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, TransformOrientOp, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=TransformOrientOp, objc_name="setKeys", objc_is_class_method=true)
 TransformOrientOp_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

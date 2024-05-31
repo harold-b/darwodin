@@ -17,3 +17,7 @@ UnitFuelEfficiency :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitFuelEfficiency_VTable :: struct {
+    super: Dimension_VTable,
+}
+

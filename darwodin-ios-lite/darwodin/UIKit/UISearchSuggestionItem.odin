@@ -19,3 +19,7 @@ SearchSuggestionItem :: struct { using _: NS.Object,
     using _: SearchSuggestion,
 }
 
+SearchSuggestionItem_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -28,8 +28,8 @@ MeshBufferZoneDefault_init :: proc "c" (self: ^MeshBufferZoneDefault) -> ^MeshBu
 
 
 @(objc_type=MeshBufferZoneDefault, objc_name="capacity")
-MeshBufferZoneDefault_capacity :: #force_inline proc "c" (self: ^MeshBufferZoneDefault) -> cffi.ulong {
-    return msgSend(cffi.ulong, self, "capacity")
+MeshBufferZoneDefault_capacity :: #force_inline proc "c" (self: ^MeshBufferZoneDefault) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "capacity")
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="allocator")
 MeshBufferZoneDefault_allocator :: #force_inline proc "c" (self: ^MeshBufferZoneDefault) -> ^MeshBufferAllocator {
@@ -64,36 +64,36 @@ MeshBufferZoneDefault_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._
     return msgSend(id, MeshBufferZoneDefault, "mutableCopyWithZone:", zone)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-MeshBufferZoneDefault_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MeshBufferZoneDefault, "instancesRespondToSelector:", aSelector)
+MeshBufferZoneDefault_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, MeshBufferZoneDefault, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="conformsToProtocol", objc_is_class_method=true)
-MeshBufferZoneDefault_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, MeshBufferZoneDefault, "conformsToProtocol:", protocol)
+MeshBufferZoneDefault_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, MeshBufferZoneDefault, "conformsToProtocol:", protocol)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-MeshBufferZoneDefault_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), MeshBufferZoneDefault, "instanceMethodForSelector:", aSelector)
+MeshBufferZoneDefault_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, MeshBufferZoneDefault, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 MeshBufferZoneDefault_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, MeshBufferZoneDefault, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="isSubclassOfClass", objc_is_class_method=true)
-MeshBufferZoneDefault_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, MeshBufferZoneDefault, "isSubclassOfClass:", aClass)
+MeshBufferZoneDefault_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, MeshBufferZoneDefault, "isSubclassOfClass:", aClass)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="resolveClassMethod", objc_is_class_method=true)
-MeshBufferZoneDefault_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MeshBufferZoneDefault, "resolveClassMethod:", sel)
+MeshBufferZoneDefault_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, MeshBufferZoneDefault, "resolveClassMethod:", sel)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-MeshBufferZoneDefault_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, MeshBufferZoneDefault, "resolveInstanceMethod:", sel)
+MeshBufferZoneDefault_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, MeshBufferZoneDefault, "resolveInstanceMethod:", sel)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="hash", objc_is_class_method=true)
-MeshBufferZoneDefault_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, MeshBufferZoneDefault, "hash")
+MeshBufferZoneDefault_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, MeshBufferZoneDefault, "hash")
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="superclass", objc_is_class_method=true)
 MeshBufferZoneDefault_superclass :: #force_inline proc "c" () -> Class {
@@ -112,11 +112,11 @@ MeshBufferZoneDefault_debugDescription :: #force_inline proc "c" () -> ^NS.Strin
     return msgSend(^NS.String, MeshBufferZoneDefault, "debugDescription")
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="version", objc_is_class_method=true)
-MeshBufferZoneDefault_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, MeshBufferZoneDefault, "version")
+MeshBufferZoneDefault_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, MeshBufferZoneDefault, "version")
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="setVersion", objc_is_class_method=true)
-MeshBufferZoneDefault_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+MeshBufferZoneDefault_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, MeshBufferZoneDefault, "setVersion:", aVersion)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="poseAsClass", objc_is_class_method=true)
@@ -132,20 +132,20 @@ MeshBufferZoneDefault_cancelPreviousPerformRequestsWithTarget_ :: #force_inline 
     msgSend(nil, MeshBufferZoneDefault, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-MeshBufferZoneDefault_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, MeshBufferZoneDefault, "accessInstanceVariablesDirectly")
+MeshBufferZoneDefault_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, MeshBufferZoneDefault, "accessInstanceVariablesDirectly")
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="useStoredAccessor", objc_is_class_method=true)
-MeshBufferZoneDefault_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, MeshBufferZoneDefault, "useStoredAccessor")
+MeshBufferZoneDefault_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, MeshBufferZoneDefault, "useStoredAccessor")
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 MeshBufferZoneDefault_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, MeshBufferZoneDefault, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-MeshBufferZoneDefault_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, MeshBufferZoneDefault, "automaticallyNotifiesObserversForKey:", key)
+MeshBufferZoneDefault_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, MeshBufferZoneDefault, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=MeshBufferZoneDefault, objc_name="setKeys", objc_is_class_method=true)
 MeshBufferZoneDefault_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

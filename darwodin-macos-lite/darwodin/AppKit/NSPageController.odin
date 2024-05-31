@@ -20,3 +20,7 @@ PageController :: struct { using _: ViewController,
     using _: NS.Coding,
 }
 
+PageController_VTable :: struct {
+    super: ViewController_VTable,
+}
+

@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSAppleEventManager")
 AppleEventManager :: struct { using _: Object, }
 
+AppleEventManager_VTable :: struct {
+    super: Object_VTable,
+}
+

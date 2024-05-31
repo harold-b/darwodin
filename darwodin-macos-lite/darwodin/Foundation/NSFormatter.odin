@@ -18,3 +18,7 @@ Formatter :: struct { using _: Object,
     using _: Coding,
 }
 
+Formatter_VTable :: struct {
+    super: Object_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSCollectionViewFlowLayout")
 CollectionViewFlowLayout :: struct { using _: CollectionViewLayout, }
 
+CollectionViewFlowLayout_VTable :: struct {
+    super: CollectionViewLayout_VTable,
+}
+

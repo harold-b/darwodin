@@ -21,3 +21,7 @@ Popover :: struct { using _: Responder,
     using _: Accessibility,
 }
 
+Popover_VTable :: struct {
+    super: Responder_VTable,
+}
+

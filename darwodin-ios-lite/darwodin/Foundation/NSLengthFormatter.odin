@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSLengthFormatter")
 LengthFormatter :: struct { using _: Formatter, }
 
+LengthFormatter_VTable :: struct {
+    super: Formatter_VTable,
+}
+

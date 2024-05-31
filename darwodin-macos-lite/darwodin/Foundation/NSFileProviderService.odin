@@ -15,3 +15,7 @@ import CG "../CoreGraphics"
 @(objc_class="NSFileProviderService")
 FileProviderService :: struct { using _: Object, }
 
+FileProviderService_VTable :: struct {
+    super: Object_VTable,
+}
+

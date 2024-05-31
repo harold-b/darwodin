@@ -64,36 +64,36 @@ TransformTranslateOp_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._N
     return msgSend(id, TransformTranslateOp, "mutableCopyWithZone:", zone)
 }
 @(objc_type=TransformTranslateOp, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-TransformTranslateOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformTranslateOp, "instancesRespondToSelector:", aSelector)
+TransformTranslateOp_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, TransformTranslateOp, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=TransformTranslateOp, objc_name="conformsToProtocol", objc_is_class_method=true)
-TransformTranslateOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, TransformTranslateOp, "conformsToProtocol:", protocol)
+TransformTranslateOp_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, TransformTranslateOp, "conformsToProtocol:", protocol)
 }
 @(objc_type=TransformTranslateOp, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-TransformTranslateOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), TransformTranslateOp, "instanceMethodForSelector:", aSelector)
+TransformTranslateOp_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, TransformTranslateOp, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=TransformTranslateOp, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 TransformTranslateOp_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, TransformTranslateOp, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=TransformTranslateOp, objc_name="isSubclassOfClass", objc_is_class_method=true)
-TransformTranslateOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, TransformTranslateOp, "isSubclassOfClass:", aClass)
+TransformTranslateOp_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, TransformTranslateOp, "isSubclassOfClass:", aClass)
 }
 @(objc_type=TransformTranslateOp, objc_name="resolveClassMethod", objc_is_class_method=true)
-TransformTranslateOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformTranslateOp, "resolveClassMethod:", sel)
+TransformTranslateOp_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformTranslateOp, "resolveClassMethod:", sel)
 }
 @(objc_type=TransformTranslateOp, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-TransformTranslateOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, TransformTranslateOp, "resolveInstanceMethod:", sel)
+TransformTranslateOp_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, TransformTranslateOp, "resolveInstanceMethod:", sel)
 }
 @(objc_type=TransformTranslateOp, objc_name="hash", objc_is_class_method=true)
-TransformTranslateOp_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, TransformTranslateOp, "hash")
+TransformTranslateOp_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, TransformTranslateOp, "hash")
 }
 @(objc_type=TransformTranslateOp, objc_name="superclass", objc_is_class_method=true)
 TransformTranslateOp_superclass :: #force_inline proc "c" () -> Class {
@@ -112,11 +112,11 @@ TransformTranslateOp_debugDescription :: #force_inline proc "c" () -> ^NS.String
     return msgSend(^NS.String, TransformTranslateOp, "debugDescription")
 }
 @(objc_type=TransformTranslateOp, objc_name="version", objc_is_class_method=true)
-TransformTranslateOp_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, TransformTranslateOp, "version")
+TransformTranslateOp_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, TransformTranslateOp, "version")
 }
 @(objc_type=TransformTranslateOp, objc_name="setVersion", objc_is_class_method=true)
-TransformTranslateOp_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+TransformTranslateOp_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, TransformTranslateOp, "setVersion:", aVersion)
 }
 @(objc_type=TransformTranslateOp, objc_name="poseAsClass", objc_is_class_method=true)
@@ -132,20 +132,20 @@ TransformTranslateOp_cancelPreviousPerformRequestsWithTarget_ :: #force_inline p
     msgSend(nil, TransformTranslateOp, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=TransformTranslateOp, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-TransformTranslateOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformTranslateOp, "accessInstanceVariablesDirectly")
+TransformTranslateOp_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformTranslateOp, "accessInstanceVariablesDirectly")
 }
 @(objc_type=TransformTranslateOp, objc_name="useStoredAccessor", objc_is_class_method=true)
-TransformTranslateOp_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, TransformTranslateOp, "useStoredAccessor")
+TransformTranslateOp_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, TransformTranslateOp, "useStoredAccessor")
 }
 @(objc_type=TransformTranslateOp, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 TransformTranslateOp_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, TransformTranslateOp, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=TransformTranslateOp, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-TransformTranslateOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, TransformTranslateOp, "automaticallyNotifiesObserversForKey:", key)
+TransformTranslateOp_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, TransformTranslateOp, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=TransformTranslateOp, objc_name="setKeys", objc_is_class_method=true)
 TransformTranslateOp_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {

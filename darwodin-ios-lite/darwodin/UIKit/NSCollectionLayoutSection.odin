@@ -19,3 +19,7 @@ NSCollectionLayoutSection :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+NSCollectionLayoutSection_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -48,7 +48,7 @@ Object_objectAtPath :: #force_inline proc "c" (self: ^Object, path: ^NS.String) 
     return msgSend(^Object, self, "objectAtPath:", path)
 }
 @(objc_type=Object, objc_name="enumerateChildObjectsOfClass")
-Object_enumerateChildObjectsOfClass :: #force_inline proc "c" (self: ^Object, objectClass: Class, root: ^Object, block: proc "c" (object: ^Object, stop: ^cffi.bool), stopPointer: ^cffi.bool) {
+Object_enumerateChildObjectsOfClass :: #force_inline proc "c" (self: ^Object, objectClass: Class, root: ^Object, block: proc "c" (object: ^Object, stop: ^bool), stopPointer: ^bool) {
     msgSend(nil, self, "enumerateChildObjectsOfClass:root:usingBlock:stopPointer:", objectClass, root, block, stopPointer)
 }
 @(objc_type=Object, objc_name="addChild")
@@ -56,7 +56,7 @@ Object_addChild :: #force_inline proc "c" (self: ^Object, child: ^Object) {
     msgSend(nil, self, "addChild:", child)
 }
 @(objc_type=Object, objc_name="boundingBoxAtTime")
-Object_boundingBoxAtTime :: #force_inline proc "c" (self: ^Object, time: cffi.double) -> AxisAlignedBoundingBox {
+Object_boundingBoxAtTime :: #force_inline proc "c" (self: ^Object, time: NS.TimeInterval) -> AxisAlignedBoundingBox {
     return msgSend(AxisAlignedBoundingBox, self, "boundingBoxAtTime:", time)
 }
 @(objc_type=Object, objc_name="components")
@@ -100,11 +100,11 @@ Object_setChildren :: #force_inline proc "c" (self: ^Object, children: ^ObjectCo
     msgSend(nil, self, "setChildren:", children)
 }
 @(objc_type=Object, objc_name="hidden")
-Object_hidden :: #force_inline proc "c" (self: ^Object) -> cffi.bool {
-    return msgSend(cffi.bool, self, "hidden")
+Object_hidden :: #force_inline proc "c" (self: ^Object) -> bool {
+    return msgSend(bool, self, "hidden")
 }
 @(objc_type=Object, objc_name="setHidden")
-Object_setHidden :: #force_inline proc "c" (self: ^Object, hidden: cffi.bool) {
+Object_setHidden :: #force_inline proc "c" (self: ^Object, hidden: bool) {
     msgSend(nil, self, "setHidden:", hidden)
 }
 @(objc_type=Object, objc_name="load", objc_is_class_method=true)
@@ -136,36 +136,36 @@ Object_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
     return msgSend(id, Object, "mutableCopyWithZone:", zone)
 }
 @(objc_type=Object, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Object_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Object, "instancesRespondToSelector:", aSelector)
+Object_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, Object, "instancesRespondToSelector:", aSelector)
 }
 @(objc_type=Object, objc_name="conformsToProtocol", objc_is_class_method=true)
-Object_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> cffi.bool {
-    return msgSend(cffi.bool, Object, "conformsToProtocol:", protocol)
+Object_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, Object, "conformsToProtocol:", protocol)
 }
 @(objc_type=Object, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Object_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> proc "c" (aSelector: SEL) {
-    return msgSend(proc "c" (aSelector: SEL), Object, "instanceMethodForSelector:", aSelector)
+Object_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, Object, "instanceMethodForSelector:", aSelector)
 }
 @(objc_type=Object, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
 Object_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
     return msgSend(^NS.MethodSignature, Object, "instanceMethodSignatureForSelector:", aSelector)
 }
 @(objc_type=Object, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Object_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> cffi.bool {
-    return msgSend(cffi.bool, Object, "isSubclassOfClass:", aClass)
+Object_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, Object, "isSubclassOfClass:", aClass)
 }
 @(objc_type=Object, objc_name="resolveClassMethod", objc_is_class_method=true)
-Object_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Object, "resolveClassMethod:", sel)
+Object_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Object, "resolveClassMethod:", sel)
 }
 @(objc_type=Object, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Object_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> cffi.bool {
-    return msgSend(cffi.bool, Object, "resolveInstanceMethod:", sel)
+Object_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, Object, "resolveInstanceMethod:", sel)
 }
 @(objc_type=Object, objc_name="hash", objc_is_class_method=true)
-Object_hash :: #force_inline proc "c" () -> cffi.ulong {
-    return msgSend(cffi.ulong, Object, "hash")
+Object_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, Object, "hash")
 }
 @(objc_type=Object, objc_name="superclass", objc_is_class_method=true)
 Object_superclass :: #force_inline proc "c" () -> Class {
@@ -184,11 +184,11 @@ Object_debugDescription :: #force_inline proc "c" () -> ^NS.String {
     return msgSend(^NS.String, Object, "debugDescription")
 }
 @(objc_type=Object, objc_name="version", objc_is_class_method=true)
-Object_version :: #force_inline proc "c" () -> cffi.long {
-    return msgSend(cffi.long, Object, "version")
+Object_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, Object, "version")
 }
 @(objc_type=Object, objc_name="setVersion", objc_is_class_method=true)
-Object_setVersion :: #force_inline proc "c" (aVersion: cffi.long) {
+Object_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
     msgSend(nil, Object, "setVersion:", aVersion)
 }
 @(objc_type=Object, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
@@ -200,20 +200,20 @@ Object_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarg
     msgSend(nil, Object, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
 @(objc_type=Object, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Object_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Object, "accessInstanceVariablesDirectly")
+Object_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Object, "accessInstanceVariablesDirectly")
 }
 @(objc_type=Object, objc_name="useStoredAccessor", objc_is_class_method=true)
-Object_useStoredAccessor :: #force_inline proc "c" () -> cffi.bool {
-    return msgSend(cffi.bool, Object, "useStoredAccessor")
+Object_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, Object, "useStoredAccessor")
 }
 @(objc_type=Object, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
 Object_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
     return msgSend(^NS.Set, Object, "keyPathsForValuesAffectingValueForKey:", key)
 }
 @(objc_type=Object, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Object_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> cffi.bool {
-    return msgSend(cffi.bool, Object, "automaticallyNotifiesObserversForKey:", key)
+Object_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, Object, "automaticallyNotifiesObserversForKey:", key)
 }
 @(objc_type=Object, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
 Object_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {

@@ -19,3 +19,7 @@ Stepper :: struct { using _: Control,
     using _: AccessibilityStepper,
 }
 
+Stepper_VTable :: struct {
+    super: Control_VTable,
+}
+

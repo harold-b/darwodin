@@ -19,3 +19,6 @@ AccessibilityStepper :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
+AccessibilityStepper_VTable :: struct {
+}
+

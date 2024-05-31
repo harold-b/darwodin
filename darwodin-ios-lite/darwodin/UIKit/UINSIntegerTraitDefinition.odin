@@ -19,3 +19,6 @@ NSIntegerTraitDefinition :: struct { using _: intrinsics.objc_object,
     using _: TraitDefinition,
 }
 
+NSIntegerTraitDefinition_VTable :: struct {
+}
+

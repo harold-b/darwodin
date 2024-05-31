@@ -19,3 +19,7 @@ TextInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
+TextInteraction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

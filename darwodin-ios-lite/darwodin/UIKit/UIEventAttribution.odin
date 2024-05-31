@@ -19,3 +19,7 @@ EventAttribution :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
+EventAttribution_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSSliderTouchBarItem")
 SliderTouchBarItem :: struct { using _: TouchBarItem, }
 
+SliderTouchBarItem_VTable :: struct {
+    super: TouchBarItem_VTable,
+}
+

@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="NSComboBoxCell")
 ComboBoxCell :: struct { using _: TextFieldCell, }
 
+ComboBoxCell_VTable :: struct {
+    super: TextFieldCell_VTable,
+}
+

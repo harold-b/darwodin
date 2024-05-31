@@ -17,3 +17,7 @@ UnitElectricResistance :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
+UnitElectricResistance_VTable :: struct {
+    super: Dimension_VTable,
+}
+

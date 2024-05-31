@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIDocumentBrowserAction")
 DocumentBrowserAction :: struct { using _: NS.Object, }
 
+DocumentBrowserAction_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

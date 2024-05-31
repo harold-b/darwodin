@@ -17,3 +17,7 @@ import CA "../QuartzCore"
 @(objc_class="UIStoryboardUnwindSegueSource")
 StoryboardUnwindSegueSource :: struct { using _: NS.Object, }
 
+StoryboardUnwindSegueSource_VTable :: struct {
+    super: NS.Object_VTable,
+}
+

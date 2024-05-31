@@ -19,3 +19,7 @@ StandardTextCursorView :: struct { using _: View,
     using _: TextCursorView,
 }
 
+StandardTextCursorView_VTable :: struct {
+    super: View_VTable,
+}
+
