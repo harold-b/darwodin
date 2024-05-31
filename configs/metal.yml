@@ -71,23 +71,19 @@ Odin:
     - Kind: UnderscoreNumbers
 
   TypeTransforms:
-  - Type: ^(MTL).+
-    Transforms:
-    - Kind  : RemovePrefix
-      Source: $group0
-  - Type: (Flags|Mask|Options?)$
-    Transforms:
-    - Kind  : RemoveSuffix
-      Source: s
+    - Type: ^(MTL).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: (Flag|Option|Mask)$  # Transforms for bit_set types
+      Transforms:
+      - Kind  : AppendSuffix
+        Source: s
 
   BitSetMap:
-    - Type: (Flags|Mask|Option)$
+    - Type: (Mask|Flags?|(?<!MTLResource)Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
       Transforms:
-        - Kind  : AppendSuffix
-          Source: s
-    - Type: (?<!MTLResource)Options$
-      Transforms:
-        - Kind  : AppendSuffix
+        - Kind  : RemoveSuffix
           Source: s
  
   ProcTransforms:

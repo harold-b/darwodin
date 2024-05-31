@@ -35,8 +35,8 @@ Key_charactersIgnoringModifiers :: #force_inline proc "c" (self: ^Key) -> ^NS.St
     return msgSend(^NS.String, self, "charactersIgnoringModifiers")
 }
 @(objc_type=Key, objc_name="modifierFlags")
-Key_modifierFlags :: #force_inline proc "c" (self: ^Key) -> KeyModifierFlag {
-    return msgSend(KeyModifierFlag, self, "modifierFlags")
+Key_modifierFlags :: #force_inline proc "c" (self: ^Key) -> KeyModifierFlags {
+    return msgSend(KeyModifierFlags, self, "modifierFlags")
 }
 @(objc_type=Key, objc_name="keyCode")
 Key_keyCode :: #force_inline proc "c" (self: ^Key) -> KeyboardHIDUsage {
@@ -168,7 +168,7 @@ Key_VTable :: struct {
     super: NS.Object_VTable,
     characters: proc(self: ^Key) -> ^NS.String,
     charactersIgnoringModifiers: proc(self: ^Key) -> ^NS.String,
-    modifierFlags: proc(self: ^Key) -> KeyModifierFlag,
+    modifierFlags: proc(self: ^Key) -> KeyModifierFlags,
     keyCode: proc(self: ^Key) -> KeyboardHIDUsage,
     load: proc(),
     initialize: proc(),
@@ -229,7 +229,7 @@ Key_odin_extend :: proc(cls: Class, vt: ^Key_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("charactersIgnoringModifiers"), auto_cast charactersIgnoringModifiers, "@@:") do panic("Failed to register objC method.")
     }
     if vt.modifierFlags != nil {
-        modifierFlags :: proc "c" (self: ^Key, _: SEL) -> KeyModifierFlag {
+        modifierFlags :: proc "c" (self: ^Key, _: SEL) -> KeyModifierFlags {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -160,11 +160,11 @@ ButtonCell_setKeyEquivalent :: #force_inline proc "c" (self: ^ButtonCell, keyEqu
     msgSend(nil, self, "setKeyEquivalent:", keyEquivalent)
 }
 @(objc_type=ButtonCell, objc_name="keyEquivalentModifierMask")
-ButtonCell_keyEquivalentModifierMask :: #force_inline proc "c" (self: ^ButtonCell) -> EventModifierFlag {
-    return msgSend(EventModifierFlag, self, "keyEquivalentModifierMask")
+ButtonCell_keyEquivalentModifierMask :: #force_inline proc "c" (self: ^ButtonCell) -> EventModifierFlags {
+    return msgSend(EventModifierFlags, self, "keyEquivalentModifierMask")
 }
 @(objc_type=ButtonCell, objc_name="setKeyEquivalentModifierMask")
-ButtonCell_setKeyEquivalentModifierMask :: #force_inline proc "c" (self: ^ButtonCell, keyEquivalentModifierMask: EventModifierFlag) {
+ButtonCell_setKeyEquivalentModifierMask :: #force_inline proc "c" (self: ^ButtonCell, keyEquivalentModifierMask: EventModifierFlags) {
     msgSend(nil, self, "setKeyEquivalentModifierMask:", keyEquivalentModifierMask)
 }
 @(objc_type=ButtonCell, objc_name="isTransparent")
@@ -447,8 +447,8 @@ ButtonCell_VTable :: struct {
     setImageScaling: proc(self: ^ButtonCell, imageScaling: ImageScaling),
     keyEquivalent: proc(self: ^ButtonCell) -> ^NS.String,
     setKeyEquivalent: proc(self: ^ButtonCell, keyEquivalent: ^NS.String),
-    keyEquivalentModifierMask: proc(self: ^ButtonCell) -> EventModifierFlag,
-    setKeyEquivalentModifierMask: proc(self: ^ButtonCell, keyEquivalentModifierMask: EventModifierFlag),
+    keyEquivalentModifierMask: proc(self: ^ButtonCell) -> EventModifierFlags,
+    setKeyEquivalentModifierMask: proc(self: ^ButtonCell, keyEquivalentModifierMask: EventModifierFlags),
     isTransparent: proc(self: ^ButtonCell) -> bool,
     setTransparent: proc(self: ^ButtonCell, transparent: bool),
     isOpaque: proc(self: ^ButtonCell) -> bool,
@@ -857,7 +857,7 @@ ButtonCell_odin_extend :: proc(cls: Class, vt: ^ButtonCell_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setKeyEquivalent:"), auto_cast setKeyEquivalent, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.keyEquivalentModifierMask != nil {
-        keyEquivalentModifierMask :: proc "c" (self: ^ButtonCell, _: SEL) -> EventModifierFlag {
+        keyEquivalentModifierMask :: proc "c" (self: ^ButtonCell, _: SEL) -> EventModifierFlags {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -867,7 +867,7 @@ ButtonCell_odin_extend :: proc(cls: Class, vt: ^ButtonCell_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("keyEquivalentModifierMask"), auto_cast keyEquivalentModifierMask, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setKeyEquivalentModifierMask != nil {
-        setKeyEquivalentModifierMask :: proc "c" (self: ^ButtonCell, _: SEL, keyEquivalentModifierMask: EventModifierFlag) {
+        setKeyEquivalentModifierMask :: proc "c" (self: ^ButtonCell, _: SEL, keyEquivalentModifierMask: EventModifierFlags) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

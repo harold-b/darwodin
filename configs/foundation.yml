@@ -105,20 +105,27 @@ Odin:
 
 
   TypeTransforms:
-  - Type: ^(NS).+
-    Transforms:
-    - Kind  : RemovePrefix
-      Source: $group0
-  - Type: (Flags|Mask)$
-    Transforms:
-    - Kind  : RemoveSuffix
-      Source: s
+    - Type: ^(NS).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: Flag$ # Transforms for bit_set types
+      Transforms:
+      - Kind  : AppendSuffix
+        Source: s
+    - Type: Mask$
+      Transforms:
+      - Kind  : None
 
   BitSetMap:
-    - Type: (Flags|Mask)$
+    - Type: Flags?$
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: s
+    - Type: Mask$
       Transforms:
         - Kind  : AppendSuffix
-          Source: s
+          Source: Flag
 
   ProcTransforms:
   - Type: ^(_*NS).+

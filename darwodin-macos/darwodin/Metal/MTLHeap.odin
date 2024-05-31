@@ -25,7 +25,7 @@ Heap_maxAvailableSizeWithAlignment :: #force_inline proc "c" (self: ^Heap, align
     return msgSend(NS.UInteger, self, "maxAvailableSizeWithAlignment:", alignment)
 }
 @(objc_type=Heap, objc_name="newBufferWithLength_options")
-Heap_newBufferWithLength_options :: #force_inline proc "c" (self: ^Heap, length: NS.UInteger, options: ResourceOption) -> ^Buffer {
+Heap_newBufferWithLength_options :: #force_inline proc "c" (self: ^Heap, length: NS.UInteger, options: ResourceOptions) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithLength:options:", length, options)
 }
 @(objc_type=Heap, objc_name="newTextureWithDescriptor_")
@@ -37,7 +37,7 @@ Heap_setPurgeableState :: #force_inline proc "c" (self: ^Heap, state: PurgeableS
     return msgSend(PurgeableState, self, "setPurgeableState:", state)
 }
 @(objc_type=Heap, objc_name="newBufferWithLength_options_offset")
-Heap_newBufferWithLength_options_offset :: #force_inline proc "c" (self: ^Heap, length: NS.UInteger, options: ResourceOption, offset: NS.UInteger) -> ^Buffer {
+Heap_newBufferWithLength_options_offset :: #force_inline proc "c" (self: ^Heap, length: NS.UInteger, options: ResourceOptions, offset: NS.UInteger) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithLength:options:offset:", length, options, offset)
 }
 @(objc_type=Heap, objc_name="newTextureWithDescriptor_offset")
@@ -85,8 +85,8 @@ Heap_hazardTrackingMode :: #force_inline proc "c" (self: ^Heap) -> HazardTrackin
     return msgSend(HazardTrackingMode, self, "hazardTrackingMode")
 }
 @(objc_type=Heap, objc_name="resourceOptions")
-Heap_resourceOptions :: #force_inline proc "c" (self: ^Heap) -> ResourceOption {
-    return msgSend(ResourceOption, self, "resourceOptions")
+Heap_resourceOptions :: #force_inline proc "c" (self: ^Heap) -> ResourceOptions {
+    return msgSend(ResourceOptions, self, "resourceOptions")
 }
 @(objc_type=Heap, objc_name="size")
 Heap_size :: #force_inline proc "c" (self: ^Heap) -> NS.UInteger {

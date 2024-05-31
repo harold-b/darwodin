@@ -27,7 +27,7 @@ Event_init :: proc "c" (self: ^Event) -> ^Event {
 
 
 @(objc_type=Event, objc_name="charactersByApplyingModifiers")
-Event_charactersByApplyingModifiers :: #force_inline proc "c" (self: ^Event, modifiers: EventModifierFlag) -> ^NS.String {
+Event_charactersByApplyingModifiers :: #force_inline proc "c" (self: ^Event, modifiers: EventModifierFlags) -> ^NS.String {
     return msgSend(^NS.String, self, "charactersByApplyingModifiers:", modifiers)
 }
 @(objc_type=Event, objc_name="eventWithEventRef", objc_is_class_method=true)
@@ -67,19 +67,19 @@ Event_stopPeriodicEvents :: #force_inline proc "c" () {
     msgSend(nil, Event, "stopPeriodicEvents")
 }
 @(objc_type=Event, objc_name="mouseEventWithType", objc_is_class_method=true)
-Event_mouseEventWithType :: #force_inline proc "c" (type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, cNum: NS.Integer, pressure: cffi.float) -> ^Event {
+Event_mouseEventWithType :: #force_inline proc "c" (type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, cNum: NS.Integer, pressure: cffi.float) -> ^Event {
     return msgSend(^Event, Event, "mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:", type, location, flags, time, wNum, unusedPassNil, eNum, cNum, pressure)
 }
 @(objc_type=Event, objc_name="keyEventWithType", objc_is_class_method=true)
-Event_keyEventWithType :: #force_inline proc "c" (type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, keys: ^NS.String, ukeys: ^NS.String, flag: bool, code: cffi.ushort) -> ^Event {
+Event_keyEventWithType :: #force_inline proc "c" (type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, keys: ^NS.String, ukeys: ^NS.String, flag: bool, code: cffi.ushort) -> ^Event {
     return msgSend(^Event, Event, "keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:", type, location, flags, time, wNum, unusedPassNil, keys, ukeys, flag, code)
 }
 @(objc_type=Event, objc_name="enterExitEventWithType", objc_is_class_method=true)
-Event_enterExitEventWithType :: #force_inline proc "c" (type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, tNum: NS.Integer, data: rawptr) -> ^Event {
+Event_enterExitEventWithType :: #force_inline proc "c" (type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, tNum: NS.Integer, data: rawptr) -> ^Event {
     return msgSend(^Event, Event, "enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:", type, location, flags, time, wNum, unusedPassNil, eNum, tNum, data)
 }
 @(objc_type=Event, objc_name="otherEventWithType", objc_is_class_method=true)
-Event_otherEventWithType :: #force_inline proc "c" (type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, subtype: cffi.short, d1: NS.Integer, d2: NS.Integer) -> ^Event {
+Event_otherEventWithType :: #force_inline proc "c" (type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, subtype: cffi.short, d1: NS.Integer, d2: NS.Integer) -> ^Event {
     return msgSend(^Event, Event, "otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:", type, location, flags, time, wNum, unusedPassNil, subtype, d1, d2)
 }
 @(objc_type=Event, objc_name="addGlobalMonitorForEventsMatchingMask", objc_is_class_method=true)
@@ -99,8 +99,8 @@ Event_type :: #force_inline proc "c" (self: ^Event) -> EventType {
     return msgSend(EventType, self, "type")
 }
 @(objc_type=Event, objc_name="modifierFlags")
-Event_modifierFlags :: #force_inline proc "c" (self: ^Event) -> EventModifierFlag {
-    return msgSend(EventModifierFlag, self, "modifierFlags")
+Event_modifierFlags :: #force_inline proc "c" (self: ^Event) -> EventModifierFlags {
+    return msgSend(EventModifierFlags, self, "modifierFlags")
 }
 @(objc_type=Event, objc_name="timestamp")
 Event_timestamp :: #force_inline proc "c" (self: ^Event) -> NS.TimeInterval {
@@ -335,8 +335,8 @@ Event_mouseLocation :: #force_inline proc "c" () -> CG.Point {
     return msgSend(CG.Point, Event, "mouseLocation")
 }
 @(objc_type=Event, objc_name="modifierFlagsStatic", objc_is_class_method=true)
-Event_modifierFlagsStatic :: #force_inline proc "c" () -> EventModifierFlag {
-    return msgSend(EventModifierFlag, Event, "modifierFlags")
+Event_modifierFlagsStatic :: #force_inline proc "c" () -> EventModifierFlags {
+    return msgSend(EventModifierFlags, Event, "modifierFlags")
 }
 @(objc_type=Event, objc_name="pressedMouseButtons", objc_is_class_method=true)
 Event_pressedMouseButtons :: #force_inline proc "c" () -> NS.UInteger {
@@ -498,7 +498,7 @@ Event_cancelPreviousPerformRequestsWithTarget :: proc {
 
 Event_VTable :: struct {
     super: NS.Object_VTable,
-    charactersByApplyingModifiers: proc(self: ^Event, modifiers: EventModifierFlag) -> ^NS.String,
+    charactersByApplyingModifiers: proc(self: ^Event, modifiers: EventModifierFlags) -> ^NS.String,
     eventWithEventRef: proc(eventRef: rawptr) -> ^Event,
     eventWithCGEvent: proc(cgEvent: CG.EventRef) -> ^Event,
     touchesMatchingPhase: proc(self: ^Event, phase: TouchPhase, view: ^View) -> ^NS.Set,
@@ -508,15 +508,15 @@ Event_VTable :: struct {
     trackSwipeEventWithOptions: proc(self: ^Event, options: EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: proc "c" (gestureAmount: CG.Float, phase: EventPhase, isComplete: bool, stop: ^bool)),
     startPeriodicEventsAfterDelay: proc(delay: NS.TimeInterval, period: NS.TimeInterval),
     stopPeriodicEvents: proc(),
-    mouseEventWithType: proc(type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, cNum: NS.Integer, pressure: cffi.float) -> ^Event,
-    keyEventWithType: proc(type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, keys: ^NS.String, ukeys: ^NS.String, flag: bool, code: cffi.ushort) -> ^Event,
-    enterExitEventWithType: proc(type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, tNum: NS.Integer, data: rawptr) -> ^Event,
-    otherEventWithType: proc(type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, subtype: cffi.short, d1: NS.Integer, d2: NS.Integer) -> ^Event,
+    mouseEventWithType: proc(type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, cNum: NS.Integer, pressure: cffi.float) -> ^Event,
+    keyEventWithType: proc(type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, keys: ^NS.String, ukeys: ^NS.String, flag: bool, code: cffi.ushort) -> ^Event,
+    enterExitEventWithType: proc(type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, tNum: NS.Integer, data: rawptr) -> ^Event,
+    otherEventWithType: proc(type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, subtype: cffi.short, d1: NS.Integer, d2: NS.Integer) -> ^Event,
     addGlobalMonitorForEventsMatchingMask: proc(mask: EventMask, block: proc "c" (event: ^Event)) -> id,
     addLocalMonitorForEventsMatchingMask: proc(mask: EventMask, block: proc "c" (event: ^Event) -> ^Event) -> id,
     removeMonitor: proc(eventMonitor: id),
     type: proc(self: ^Event) -> EventType,
-    modifierFlags: proc(self: ^Event) -> EventModifierFlag,
+    modifierFlags: proc(self: ^Event) -> EventModifierFlags,
     timestamp: proc(self: ^Event) -> NS.TimeInterval,
     window: proc(self: ^Event) -> ^Window,
     windowNumber: proc(self: ^Event) -> NS.Integer,
@@ -575,7 +575,7 @@ Event_VTable :: struct {
     pressureBehavior: proc(self: ^Event) -> PressureBehavior,
     isSwipeTrackingFromScrollEventsEnabled: proc() -> bool,
     mouseLocation: proc() -> CG.Point,
-    modifierFlagsStatic: proc() -> EventModifierFlag,
+    modifierFlagsStatic: proc() -> EventModifierFlags,
     pressedMouseButtons: proc() -> NS.UInteger,
     doubleClickInterval: proc() -> NS.TimeInterval,
     keyRepeatDelay: proc() -> NS.TimeInterval,
@@ -621,7 +621,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.charactersByApplyingModifiers != nil {
-        charactersByApplyingModifiers :: proc "c" (self: ^Event, _: SEL, modifiers: EventModifierFlag) -> ^NS.String {
+        charactersByApplyingModifiers :: proc "c" (self: ^Event, _: SEL, modifiers: EventModifierFlags) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -721,7 +721,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stopPeriodicEvents"), auto_cast stopPeriodicEvents, "v#:") do panic("Failed to register objC method.")
     }
     if vt.mouseEventWithType != nil {
-        mouseEventWithType :: proc "c" (self: Class, _: SEL, type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, cNum: NS.Integer, pressure: cffi.float) -> ^Event {
+        mouseEventWithType :: proc "c" (self: Class, _: SEL, type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, cNum: NS.Integer, pressure: cffi.float) -> ^Event {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -731,7 +731,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:"), auto_cast mouseEventWithType, "@#:L{CGPoint=dd}Ldl@llf") do panic("Failed to register objC method.")
     }
     if vt.keyEventWithType != nil {
-        keyEventWithType :: proc "c" (self: Class, _: SEL, type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, keys: ^NS.String, ukeys: ^NS.String, flag: bool, code: cffi.ushort) -> ^Event {
+        keyEventWithType :: proc "c" (self: Class, _: SEL, type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, keys: ^NS.String, ukeys: ^NS.String, flag: bool, code: cffi.ushort) -> ^Event {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -741,7 +741,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:"), auto_cast keyEventWithType, "@#:L{CGPoint=dd}Ldl@@@BS") do panic("Failed to register objC method.")
     }
     if vt.enterExitEventWithType != nil {
-        enterExitEventWithType :: proc "c" (self: Class, _: SEL, type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, tNum: NS.Integer, data: rawptr) -> ^Event {
+        enterExitEventWithType :: proc "c" (self: Class, _: SEL, type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, eNum: NS.Integer, tNum: NS.Integer, data: rawptr) -> ^Event {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -751,7 +751,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:"), auto_cast enterExitEventWithType, "@#:L{CGPoint=dd}Ldl@ll^void") do panic("Failed to register objC method.")
     }
     if vt.otherEventWithType != nil {
-        otherEventWithType :: proc "c" (self: Class, _: SEL, type: EventType, location: CG.Point, flags: EventModifierFlag, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, subtype: cffi.short, d1: NS.Integer, d2: NS.Integer) -> ^Event {
+        otherEventWithType :: proc "c" (self: Class, _: SEL, type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, subtype: cffi.short, d1: NS.Integer, d2: NS.Integer) -> ^Event {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -801,7 +801,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("type"), auto_cast type, "L@:") do panic("Failed to register objC method.")
     }
     if vt.modifierFlags != nil {
-        modifierFlags :: proc "c" (self: ^Event, _: SEL) -> EventModifierFlag {
+        modifierFlags :: proc "c" (self: ^Event, _: SEL) -> EventModifierFlags {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1391,7 +1391,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("mouseLocation"), auto_cast mouseLocation, "{CGPoint=dd}#:") do panic("Failed to register objC method.")
     }
     if vt.modifierFlagsStatic != nil {
-        modifierFlagsStatic :: proc "c" (self: Class, _: SEL) -> EventModifierFlag {
+        modifierFlagsStatic :: proc "c" (self: Class, _: SEL) -> EventModifierFlags {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

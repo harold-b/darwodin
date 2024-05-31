@@ -61,8 +61,8 @@ Resource_hazardTrackingMode :: #force_inline proc "c" (self: ^Resource) -> Hazar
     return msgSend(HazardTrackingMode, self, "hazardTrackingMode")
 }
 @(objc_type=Resource, objc_name="resourceOptions")
-Resource_resourceOptions :: #force_inline proc "c" (self: ^Resource) -> ResourceOption {
-    return msgSend(ResourceOption, self, "resourceOptions")
+Resource_resourceOptions :: #force_inline proc "c" (self: ^Resource) -> ResourceOptions {
+    return msgSend(ResourceOptions, self, "resourceOptions")
 }
 @(objc_type=Resource, objc_name="heap")
 Resource_heap :: #force_inline proc "c" (self: ^Resource) -> ^Heap {

@@ -275,22 +275,22 @@ TextLayerAlignmentMode :: distinct ^NS.String
 ValueFunctionName :: distinct ^NS.String
 
 /// CAEdgeAntialiasingMask
-EdgeAntialiasingMask :: enum cffi.uint {
+EdgeAntialiasingMaskFlag :: enum cffi.uint {
     kCALayerLeftEdge = 0,
     kCALayerRightEdge = 1,
     kCALayerBottomEdge = 2,
     kCALayerTopEdge = 3,
 }
-EdgeAntialiasingMasks :: bit_set[EdgeAntialiasingMask; cffi.uint]
+EdgeAntialiasingMask :: bit_set[EdgeAntialiasingMaskFlag; cffi.uint]
 
 /// CACornerMask
-CornerMask :: enum cffi.ulong {
+CornerMaskFlag :: enum cffi.ulong {
     kCALayerMinXMinYCorner = 0,
     kCALayerMaxXMinYCorner = 1,
     kCALayerMinXMaxYCorner = 2,
     kCALayerMaxXMaxYCorner = 3,
 }
-CornerMasks :: bit_set[CornerMask; cffi.ulong]
+CornerMask :: bit_set[CornerMaskFlag; cffi.ulong]
 
 /// EAGLRenderingAPI
 EAGLRenderingAPI :: enum cffi.ulong {

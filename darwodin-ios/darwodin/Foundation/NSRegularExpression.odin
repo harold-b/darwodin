@@ -49,7 +49,7 @@ RegularExpression_numberOfCaptureGroups :: #force_inline proc "c" (self: ^Regula
     return msgSend(UInteger, self, "numberOfCaptureGroups")
 }
 @(objc_type=RegularExpression, objc_name="enumerateMatchesInString")
-RegularExpression_enumerateMatchesInString :: #force_inline proc "c" (self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: proc "c" (result: ^TextCheckingResult, flags: MatchingFlag, stop: ^bool)) {
+RegularExpression_enumerateMatchesInString :: #force_inline proc "c" (self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: proc "c" (result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool)) {
     msgSend(nil, self, "enumerateMatchesInString:options:range:usingBlock:", string, options, range, block)
 }
 @(objc_type=RegularExpression, objc_name="matchesInString")
@@ -218,7 +218,7 @@ RegularExpression_VTable :: struct {
     pattern: proc(self: ^RegularExpression) -> ^String,
     options: proc(self: ^RegularExpression) -> RegularExpressionOptions,
     numberOfCaptureGroups: proc(self: ^RegularExpression) -> UInteger,
-    enumerateMatchesInString: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: proc "c" (result: ^TextCheckingResult, flags: MatchingFlag, stop: ^bool)),
+    enumerateMatchesInString: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: proc "c" (result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool)),
     matchesInString: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange) -> ^Array,
     numberOfMatchesInString: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange) -> UInteger,
     firstMatchInString: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange) -> ^TextCheckingResult,
@@ -327,7 +327,7 @@ RegularExpression_odin_extend :: proc(cls: Class, vt: ^RegularExpression_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfCaptureGroups"), auto_cast numberOfCaptureGroups, "L@:") do panic("Failed to register objC method.")
     }
     if vt.enumerateMatchesInString != nil {
-        enumerateMatchesInString :: proc "c" (self: ^RegularExpression, _: SEL, string: ^String, options: MatchingOptions, range: _NSRange, block: proc "c" (result: ^TextCheckingResult, flags: MatchingFlag, stop: ^bool)) {
+        enumerateMatchesInString :: proc "c" (self: ^RegularExpression, _: SEL, string: ^String, options: MatchingOptions, range: _NSRange, block: proc "c" (result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

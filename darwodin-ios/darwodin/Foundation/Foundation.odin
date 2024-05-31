@@ -2092,13 +2092,13 @@ SearchPathDirectory :: enum cffi.ulong {
 }
 
 /// NSSearchPathDomainMask
-SearchPathDomainMask :: enum cffi.ulong {
+SearchPathDomainMaskFlag :: enum cffi.ulong {
     UserDomainMask = 0,
     LocalDomainMask = 1,
     NetworkDomainMask = 2,
     SystemDomainMask = 3,
 }
-SearchPathDomainMasks :: bit_set[SearchPathDomainMask; cffi.ulong]
+SearchPathDomainMask :: bit_set[SearchPathDomainMaskFlag; cffi.ulong]
 
 
 /// NSURLBookmarkCreationOptions

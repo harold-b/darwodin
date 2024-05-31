@@ -184,7 +184,7 @@ HazardTrackingMode :: enum cffi.ulong {
 }
 
 /// MTLResourceOptions
-ResourceOption :: enum cffi.ulong {
+ResourceOptions :: enum cffi.ulong {
     CPUCacheModeDefaultCache = 0,
     CPUCacheModeWriteCombined = 1,
     StorageModeShared = 0,
@@ -1489,7 +1489,7 @@ _MTLAxisAlignedBoundingBox :: struct #align (4) {
 /// MTLAccelerationStructureInstanceDescriptor
 AccelerationStructureInstanceDescriptor :: struct #align (4) {
     transformationMatrix : _MTLPackedFloat4x3,
-    options : AccelerationStructureInstanceOption,
+    options : AccelerationStructureInstanceOptions,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     accelerationStructureIndex : cffi.uint32_t,
@@ -1498,7 +1498,7 @@ AccelerationStructureInstanceDescriptor :: struct #align (4) {
 /// MTLAccelerationStructureUserIDInstanceDescriptor
 AccelerationStructureUserIDInstanceDescriptor :: struct #align (4) {
     transformationMatrix : _MTLPackedFloat4x3,
-    options : AccelerationStructureInstanceOption,
+    options : AccelerationStructureInstanceOptions,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     accelerationStructureIndex : cffi.uint32_t,
@@ -1507,7 +1507,7 @@ AccelerationStructureUserIDInstanceDescriptor :: struct #align (4) {
 
 /// MTLAccelerationStructureMotionInstanceDescriptor
 AccelerationStructureMotionInstanceDescriptor :: struct #align (4) {
-    options : AccelerationStructureInstanceOption,
+    options : AccelerationStructureInstanceOptions,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     accelerationStructureIndex : cffi.uint32_t,
@@ -1523,7 +1523,7 @@ AccelerationStructureMotionInstanceDescriptor :: struct #align (4) {
 /// MTLIndirectAccelerationStructureInstanceDescriptor
 IndirectAccelerationStructureInstanceDescriptor :: struct #align (8) {
     transformationMatrix : _MTLPackedFloat4x3,
-    options : AccelerationStructureInstanceOption,
+    options : AccelerationStructureInstanceOptions,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     userID : cffi.uint32_t,
@@ -1532,7 +1532,7 @@ IndirectAccelerationStructureInstanceDescriptor :: struct #align (8) {
 
 /// MTLIndirectAccelerationStructureMotionInstanceDescriptor
 IndirectAccelerationStructureMotionInstanceDescriptor :: struct #align (8) {
-    options : AccelerationStructureInstanceOption,
+    options : AccelerationStructureInstanceOptions,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     userID : cffi.uint32_t,

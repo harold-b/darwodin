@@ -2868,7 +2868,7 @@ CE_CertPolicies :: distinct __CE_CertPolicies
 CE_NetscapeCertType :: distinct cffi.ushort
 
 /// CE_CrlDistReasonFlags
-CE_CrlDistReasonFlag :: distinct cffi.uchar
+CE_CrlDistReasonFlags :: distinct cffi.uchar
 
 /// CE_DistributionPointName
 
@@ -3929,13 +3929,13 @@ SearchPathDirectory :: enum cffi.ulong {
 }
 
 /// NSSearchPathDomainMask
-SearchPathDomainMask :: enum cffi.ulong {
+SearchPathDomainMaskFlag :: enum cffi.ulong {
     UserDomainMask = 0,
     LocalDomainMask = 1,
     NetworkDomainMask = 2,
     SystemDomainMask = 3,
 }
-SearchPathDomainMasks :: bit_set[SearchPathDomainMask; cffi.ulong]
+SearchPathDomainMask :: bit_set[SearchPathDomainMaskFlag; cffi.ulong]
 
 
 /// NSURLHandleStatus
@@ -4493,7 +4493,7 @@ SecKeychainEvent :: enum cffi.uint {
 }
 
 /// SecKeychainEventMask
-SecKeychainEventMask :: enum cffi.uint {
+SecKeychainEventMaskFlag :: enum cffi.uint {
     kSecLockEventMask = 1,
     kSecUnlockEventMask = 2,
     kSecAddEventMask = 3,
@@ -4505,7 +4505,7 @@ SecKeychainEventMask :: enum cffi.uint {
     kSecKeychainListChangedMask = 11,
     kSecTrustSettingsChangedEventMask = 12,
 }
-SecKeychainEventMasks :: bit_set[SecKeychainEventMask; cffi.uint]
+SecKeychainEventMask :: bit_set[SecKeychainEventMaskFlag; cffi.uint]
 
 
 /// SecPreferencesDomain
@@ -6508,7 +6508,7 @@ __CE_DistributionPointName :: struct #align (8) {
 __CE_CRLDistributionPoint :: struct #align (8) {
     distPointName : ^__CE_DistributionPointName,
     reasonsPresent : CSSM_BOOL,
-    reasons : CE_CrlDistReasonFlag,
+    reasons : CE_CrlDistReasonFlags,
     crlIssuer : ^__CE_GeneralNames,
 }
 
@@ -6557,7 +6557,7 @@ __CE_IssuingDistributionPoint :: struct #align (8) {
     onlyCACertsPresent : CSSM_BOOL,
     onlyCACerts : CSSM_BOOL,
     onlySomeReasonsPresent : CSSM_BOOL,
-    onlySomeReasons : CE_CrlDistReasonFlag,
+    onlySomeReasons : CE_CrlDistReasonFlags,
     indirectCrlPresent : CSSM_BOOL,
     indirectCrl : CSSM_BOOL,
 }
@@ -6749,7 +6749,7 @@ SecKeychainCallbackInfo :: struct #align (8) {
 /// SecKeyImportExportParameters
 SecKeyImportExportParameters :: struct #align (8) {
     version : cffi.uint32_t,
-    flags : SecKeyImportExportFlag,
+    flags : SecKeyImportExportFlags,
     passphrase : CF.TypeRef,
     alertTitle : CF.StringRef,
     alertPrompt : CF.StringRef,
@@ -6761,7 +6761,7 @@ SecKeyImportExportParameters :: struct #align (8) {
 /// SecItemImportExportKeyParameters
 SecItemImportExportKeyParameters :: struct #align (8) {
     version : cffi.uint32_t,
-    flags : SecKeyImportExportFlag,
+    flags : SecKeyImportExportFlags,
     passphrase : CF.TypeRef,
     alertTitle : CF.StringRef,
     alertPrompt : CF.StringRef,

@@ -29,7 +29,7 @@ AccelerationStructureCommandEncoder_refitAccelerationStructure_descriptor_destin
     msgSend(nil, self, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:", sourceAccelerationStructure, descriptor, destinationAccelerationStructure, scratchBuffer, scratchBufferOffset)
 }
 @(objc_type=AccelerationStructureCommandEncoder, objc_name="refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options")
-AccelerationStructureCommandEncoder_refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options :: #force_inline proc "c" (self: ^AccelerationStructureCommandEncoder, sourceAccelerationStructure: ^AccelerationStructure, descriptor: ^AccelerationStructureDescriptor, destinationAccelerationStructure: ^AccelerationStructure, scratchBuffer: ^Buffer, scratchBufferOffset: NS.UInteger, options: AccelerationStructureRefitOption) {
+AccelerationStructureCommandEncoder_refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options :: #force_inline proc "c" (self: ^AccelerationStructureCommandEncoder, sourceAccelerationStructure: ^AccelerationStructure, descriptor: ^AccelerationStructureDescriptor, destinationAccelerationStructure: ^AccelerationStructure, scratchBuffer: ^Buffer, scratchBufferOffset: NS.UInteger, options: AccelerationStructureRefitOptions) {
     msgSend(nil, self, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:", sourceAccelerationStructure, descriptor, destinationAccelerationStructure, scratchBuffer, scratchBufferOffset, options)
 }
 @(objc_type=AccelerationStructureCommandEncoder, objc_name="copyAccelerationStructure")

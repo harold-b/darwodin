@@ -48,8 +48,8 @@ BandSelectionInteraction_selectionRect :: #force_inline proc "c" (self: ^BandSel
     return msgSend(CG.Rect, self, "selectionRect")
 }
 @(objc_type=BandSelectionInteraction, objc_name="initialModifierFlags")
-BandSelectionInteraction_initialModifierFlags :: #force_inline proc "c" (self: ^BandSelectionInteraction) -> KeyModifierFlag {
-    return msgSend(KeyModifierFlag, self, "initialModifierFlags")
+BandSelectionInteraction_initialModifierFlags :: #force_inline proc "c" (self: ^BandSelectionInteraction) -> KeyModifierFlags {
+    return msgSend(KeyModifierFlags, self, "initialModifierFlags")
 }
 @(objc_type=BandSelectionInteraction, objc_name="shouldBeginHandler")
 BandSelectionInteraction_shouldBeginHandler :: #force_inline proc "c" (self: ^BandSelectionInteraction) -> proc "c" () -> bool {
@@ -186,7 +186,7 @@ BandSelectionInteraction_VTable :: struct {
     setEnabled: proc(self: ^BandSelectionInteraction, enabled: bool),
     state: proc(self: ^BandSelectionInteraction) -> BandSelectionInteractionState,
     selectionRect: proc(self: ^BandSelectionInteraction) -> CG.Rect,
-    initialModifierFlags: proc(self: ^BandSelectionInteraction) -> KeyModifierFlag,
+    initialModifierFlags: proc(self: ^BandSelectionInteraction) -> KeyModifierFlags,
     shouldBeginHandler: proc(self: ^BandSelectionInteraction) -> proc "c" () -> bool,
     setShouldBeginHandler: proc(self: ^BandSelectionInteraction, shouldBeginHandler: proc "c" () -> bool),
     load: proc(),
@@ -297,7 +297,7 @@ BandSelectionInteraction_odin_extend :: proc(cls: Class, vt: ^BandSelectionInter
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionRect"), auto_cast selectionRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.initialModifierFlags != nil {
-        initialModifierFlags :: proc "c" (self: ^BandSelectionInteraction, _: SEL) -> KeyModifierFlag {
+        initialModifierFlags :: proc "c" (self: ^BandSelectionInteraction, _: SEL) -> KeyModifierFlags {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

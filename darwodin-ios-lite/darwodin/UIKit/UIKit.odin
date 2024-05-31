@@ -1498,11 +1498,11 @@ EventSubtype :: enum cffi.long {
 }
 
 /// UIEventButtonMask
-EventButtonMask :: enum cffi.long {
+EventButtonMaskFlag :: enum cffi.long {
     Primary = 0,
     Secondary = 1,
 }
-EventButtonMasks :: bit_set[EventButtonMask; cffi.long]
+EventButtonMask :: bit_set[EventButtonMaskFlag; cffi.long]
 
 /// UIEditingInteractionConfiguration
 EditingInteractionConfiguration :: enum cffi.long {
@@ -1680,17 +1680,17 @@ InterfaceOrientation :: enum cffi.long {
 }
 
 /// UIInterfaceOrientationMask
-InterfaceOrientationMask :: enum cffi.ulong {
+InterfaceOrientationMaskFlag :: enum cffi.ulong {
     Portrait = 1,
     LandscapeLeft = 4,
     LandscapeRight = 3,
     PortraitUpsideDown = 2,
 }
-InterfaceOrientationMasks :: bit_set[InterfaceOrientationMask; cffi.ulong]
+InterfaceOrientationMask :: bit_set[InterfaceOrientationMaskFlag; cffi.ulong]
 
-InterfaceOrientationMask_Landscape :: InterfaceOrientationMasks{ .Landscape, .All,  }
-InterfaceOrientationMask_All :: InterfaceOrientationMasks{ .LandscapeRight, .PortraitUpsideDown, .Landscape, .All,  }
-InterfaceOrientationMask_AllButUpsideDown :: InterfaceOrientationMasks{ .LandscapeRight, .Landscape, .All,  }
+InterfaceOrientationMaskFlag_Landscape :: InterfaceOrientationMask{ .Landscape, .All,  }
+InterfaceOrientationMaskFlag_All :: InterfaceOrientationMask{ .LandscapeRight, .PortraitUpsideDown, .Landscape, .All,  }
+InterfaceOrientationMaskFlag_AllButUpsideDown :: InterfaceOrientationMask{ .LandscapeRight, .Landscape, .All,  }
 
 /// UIDeviceBatteryState
 DeviceBatteryState :: enum cffi.long {
@@ -2733,11 +2733,11 @@ TableViewCellAccessoryType :: enum cffi.long {
 }
 
 /// UITableViewCellStateMask
-TableViewCellStateMask :: enum cffi.ulong {
+TableViewCellStateMaskFlag :: enum cffi.ulong {
     ShowingEditControlMask = 0,
     ShowingDeleteConfirmationMask = 1,
 }
-TableViewCellStateMasks :: bit_set[TableViewCellStateMask; cffi.ulong]
+TableViewCellStateMask :: bit_set[TableViewCellStateMaskFlag; cffi.ulong]
 
 /// UITableViewCellDragState
 TableViewCellDragState :: enum cffi.long {
@@ -3251,13 +3251,13 @@ ScrollType :: enum cffi.ulong {
 }
 
 /// UIScrollTypeMask
-ScrollTypeMask :: enum cffi.long {
+ScrollTypeMaskFlag :: enum cffi.long {
     Discrete = 0,
     Continuous = 1,
 }
-ScrollTypeMasks :: bit_set[ScrollTypeMask; cffi.long]
+ScrollTypeMask :: bit_set[ScrollTypeMaskFlag; cffi.long]
 
-ScrollTypeMask_All :: ScrollTypeMasks{ .Continuous, .All,  }
+ScrollTypeMaskFlag_All :: ScrollTypeMask{ .Continuous, .All,  }
 
 /// UINavigationControllerOperation
 NavigationControllerOperation :: enum cffi.long {

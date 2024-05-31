@@ -35,11 +35,11 @@ CommandBufferDescriptor_setRetainedReferences :: #force_inline proc "c" (self: ^
     msgSend(nil, self, "setRetainedReferences:", retainedReferences)
 }
 @(objc_type=CommandBufferDescriptor, objc_name="errorOptions")
-CommandBufferDescriptor_errorOptions :: #force_inline proc "c" (self: ^CommandBufferDescriptor) -> CommandBufferErrorOption {
-    return msgSend(CommandBufferErrorOption, self, "errorOptions")
+CommandBufferDescriptor_errorOptions :: #force_inline proc "c" (self: ^CommandBufferDescriptor) -> CommandBufferErrorOptions {
+    return msgSend(CommandBufferErrorOptions, self, "errorOptions")
 }
 @(objc_type=CommandBufferDescriptor, objc_name="setErrorOptions")
-CommandBufferDescriptor_setErrorOptions :: #force_inline proc "c" (self: ^CommandBufferDescriptor, errorOptions: CommandBufferErrorOption) {
+CommandBufferDescriptor_setErrorOptions :: #force_inline proc "c" (self: ^CommandBufferDescriptor, errorOptions: CommandBufferErrorOptions) {
     msgSend(nil, self, "setErrorOptions:", errorOptions)
 }
 @(objc_type=CommandBufferDescriptor, objc_name="load", objc_is_class_method=true)

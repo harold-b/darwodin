@@ -91,11 +91,11 @@ RenderPipelineColorAttachmentDescriptor_setAlphaBlendOperation :: #force_inline 
     msgSend(nil, self, "setAlphaBlendOperation:", alphaBlendOperation)
 }
 @(objc_type=RenderPipelineColorAttachmentDescriptor, objc_name="writeMask")
-RenderPipelineColorAttachmentDescriptor_writeMask :: #force_inline proc "c" (self: ^RenderPipelineColorAttachmentDescriptor) -> ColorWriteMask {
-    return msgSend(ColorWriteMask, self, "writeMask")
+RenderPipelineColorAttachmentDescriptor_writeMask :: #force_inline proc "c" (self: ^RenderPipelineColorAttachmentDescriptor) -> ColorWriteMasks {
+    return msgSend(ColorWriteMasks, self, "writeMask")
 }
 @(objc_type=RenderPipelineColorAttachmentDescriptor, objc_name="setWriteMask")
-RenderPipelineColorAttachmentDescriptor_setWriteMask :: #force_inline proc "c" (self: ^RenderPipelineColorAttachmentDescriptor, writeMask: ColorWriteMask) {
+RenderPipelineColorAttachmentDescriptor_setWriteMask :: #force_inline proc "c" (self: ^RenderPipelineColorAttachmentDescriptor, writeMask: ColorWriteMasks) {
     msgSend(nil, self, "setWriteMask:", writeMask)
 }
 @(objc_type=RenderPipelineColorAttachmentDescriptor, objc_name="load", objc_is_class_method=true)

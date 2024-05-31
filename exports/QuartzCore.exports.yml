@@ -29,8 +29,8 @@ Typedefs:
     CAValueFunctionName: CA.ValueFunctionName
 
 Enums:
-    CAEdgeAntialiasingMask: CA.EdgeAntialiasingMasks
-    CACornerMask: CA.CornerMasks
+    CAEdgeAntialiasingMask: CA.EdgeAntialiasingMask
+    CACornerMask: CA.CornerMask
     EAGLRenderingAPI: CA.EAGLRenderingAPI
 
 ObjCClasses:

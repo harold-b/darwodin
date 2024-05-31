@@ -65,7 +65,7 @@ Enums:
     MTLCPUCacheMode: MTL.CPUCacheMode
     MTLStorageMode: MTL.StorageMode
     MTLHazardTrackingMode: MTL.HazardTrackingMode
-    MTLResourceOptions: MTL.ResourceOption
+    MTLResourceOptions: MTL.ResourceOptions
     MTLPixelFormat: MTL.PixelFormat
     MTLTextureType: MTL.TextureType
     MTLTextureSwizzle: MTL.TextureSwizzle
@@ -167,7 +167,7 @@ ObjCClasses:
     MTLFunctionConstantValues: MTL.FunctionConstantValues
     MTLFunctionDescriptor: MTL.FunctionDescriptor
     MTLIntersectionFunctionDescriptor: MTL.IntersectionFunctionDescriptor
-    MTLCompileOptions: MTL.CompileOption
+    MTLCompileOptions: MTL.CompileOptions
     MTLVertexAttribute: MTL.VertexAttribute
     MTLAttribute: MTL.Attribute
     MTLFunctionConstant: MTL.FunctionConstant

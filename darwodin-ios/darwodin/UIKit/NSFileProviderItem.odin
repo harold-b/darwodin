@@ -48,8 +48,8 @@ NSFileProviderItem_capabilities :: #force_inline proc "c" (self: ^NSFileProvider
     return msgSend(NSFileProviderItemCapabilities, self, "capabilities")
 }
 @(objc_type=NSFileProviderItem, objc_name="fileSystemFlags")
-NSFileProviderItem_fileSystemFlags :: #force_inline proc "c" (self: ^NSFileProviderItem) -> NSFileProviderFileSystemFlag {
-    return msgSend(NSFileProviderFileSystemFlag, self, "fileSystemFlags")
+NSFileProviderItem_fileSystemFlags :: #force_inline proc "c" (self: ^NSFileProviderItem) -> NSFileProviderFileSystemFlags {
+    return msgSend(NSFileProviderFileSystemFlags, self, "fileSystemFlags")
 }
 @(objc_type=NSFileProviderItem, objc_name="documentSize")
 NSFileProviderItem_documentSize :: #force_inline proc "c" (self: ^NSFileProviderItem) -> ^NS.Number {
@@ -159,7 +159,7 @@ NSFileProviderItem_VTable :: struct {
     typeIdentifier: proc(self: ^NSFileProviderItem) -> ^NS.String,
     typeAndCreator: proc(self: ^NSFileProviderItem) -> NSFileProviderTypeAndCreator,
     capabilities: proc(self: ^NSFileProviderItem) -> NSFileProviderItemCapabilities,
-    fileSystemFlags: proc(self: ^NSFileProviderItem) -> NSFileProviderFileSystemFlag,
+    fileSystemFlags: proc(self: ^NSFileProviderItem) -> NSFileProviderFileSystemFlags,
     documentSize: proc(self: ^NSFileProviderItem) -> ^NS.Number,
     childItemCount: proc(self: ^NSFileProviderItem) -> ^NS.Number,
     creationDate: proc(self: ^NSFileProviderItem) -> ^NS.Date,
@@ -262,7 +262,7 @@ NSFileProviderItem_odin_extend :: proc(cls: Class, vt: ^NSFileProviderItem_VTabl
         if !class_addMethod(cls, intrinsics.objc_find_selector("capabilities"), auto_cast capabilities, "L@:") do panic("Failed to register objC method.")
     }
     if vt.fileSystemFlags != nil {
-        fileSystemFlags :: proc "c" (self: ^NSFileProviderItem, _: SEL) -> NSFileProviderFileSystemFlag {
+        fileSystemFlags :: proc "c" (self: ^NSFileProviderItem, _: SEL) -> NSFileProviderFileSystemFlags {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

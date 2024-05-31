@@ -232,7 +232,7 @@ Typedefs:
     SignedByte: CF.SignedByte
     UnsignedWidePtr: CF.UnsignedWidePtr
     CFTypeID: CF.TypeID
-    CFOptionFlags: CF.OptionFlag
+    CFOptionFlags: CF.OptionFlags
     CFHashCode: CF.HashCode
     CFIndex: CF.Index
     CFTypeRef: CF.TypeRef

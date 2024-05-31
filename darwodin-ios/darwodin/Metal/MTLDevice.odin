@@ -33,7 +33,7 @@ Device_heapTextureSizeAndAlignWithDescriptor :: #force_inline proc "c" (self: ^D
     return msgSend(SizeAndAlign, self, "heapTextureSizeAndAlignWithDescriptor:", desc)
 }
 @(objc_type=Device, objc_name="heapBufferSizeAndAlignWithLength")
-Device_heapBufferSizeAndAlignWithLength :: #force_inline proc "c" (self: ^Device, length: NS.UInteger, options: ResourceOption) -> SizeAndAlign {
+Device_heapBufferSizeAndAlignWithLength :: #force_inline proc "c" (self: ^Device, length: NS.UInteger, options: ResourceOptions) -> SizeAndAlign {
     return msgSend(SizeAndAlign, self, "heapBufferSizeAndAlignWithLength:options:", length, options)
 }
 @(objc_type=Device, objc_name="newHeapWithDescriptor")
@@ -41,15 +41,15 @@ Device_newHeapWithDescriptor :: #force_inline proc "c" (self: ^Device, descripto
     return msgSend(^Heap, self, "newHeapWithDescriptor:", descriptor)
 }
 @(objc_type=Device, objc_name="newBufferWithLength")
-Device_newBufferWithLength :: #force_inline proc "c" (self: ^Device, length: NS.UInteger, options: ResourceOption) -> ^Buffer {
+Device_newBufferWithLength :: #force_inline proc "c" (self: ^Device, length: NS.UInteger, options: ResourceOptions) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithLength:options:", length, options)
 }
 @(objc_type=Device, objc_name="newBufferWithBytes")
-Device_newBufferWithBytes :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOption) -> ^Buffer {
+Device_newBufferWithBytes :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithBytes:length:options:", pointer, length, options)
 }
 @(objc_type=Device, objc_name="newBufferWithBytesNoCopy")
-Device_newBufferWithBytesNoCopy :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOption, deallocator: proc "c" (pointer: rawptr, length: NS.UInteger)) -> ^Buffer {
+Device_newBufferWithBytesNoCopy :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions, deallocator: proc "c" (pointer: rawptr, length: NS.UInteger)) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithBytesNoCopy:length:options:deallocator:", pointer, length, options, deallocator)
 }
 @(objc_type=Device, objc_name="newDepthStencilStateWithDescriptor")
@@ -97,11 +97,11 @@ Device_newLibraryWithData :: #force_inline proc "c" (self: ^Device, data: CF.dis
     return msgSend(^Library, self, "newLibraryWithData:error:", data, error)
 }
 @(objc_type=Device, objc_name="newLibraryWithSource_options_error")
-Device_newLibraryWithSource_options_error :: #force_inline proc "c" (self: ^Device, source: ^NS.String, options: ^CompileOption, error: ^^NS.Error) -> ^Library {
+Device_newLibraryWithSource_options_error :: #force_inline proc "c" (self: ^Device, source: ^NS.String, options: ^CompileOptions, error: ^^NS.Error) -> ^Library {
     return msgSend(^Library, self, "newLibraryWithSource:options:error:", source, options, error)
 }
 @(objc_type=Device, objc_name="newLibraryWithSource_options_completionHandler")
-Device_newLibraryWithSource_options_completionHandler :: #force_inline proc "c" (self: ^Device, source: ^NS.String, options: ^CompileOption, completionHandler: NewLibraryCompletionHandler) {
+Device_newLibraryWithSource_options_completionHandler :: #force_inline proc "c" (self: ^Device, source: ^NS.String, options: ^CompileOptions, completionHandler: NewLibraryCompletionHandler) {
     msgSend(nil, self, "newLibraryWithSource:options:completionHandler:", source, options, completionHandler)
 }
 @(objc_type=Device, objc_name="newLibraryWithStitchedDescriptor_error")
@@ -117,7 +117,7 @@ Device_newRenderPipelineStateWithDescriptor_error :: #force_inline proc "c" (sel
     return msgSend(^RenderPipelineState, self, "newRenderPipelineStateWithDescriptor:error:", descriptor, error)
 }
 @(objc_type=Device, objc_name="newRenderPipelineStateWithDescriptor_options_reflection_error")
-Device_newRenderPipelineStateWithDescriptor_options_reflection_error :: #force_inline proc "c" (self: ^Device, descriptor: ^RenderPipelineDescriptor, options: PipelineOption, reflection: ^^RenderPipelineReflection, error: ^^NS.Error) -> ^RenderPipelineState {
+Device_newRenderPipelineStateWithDescriptor_options_reflection_error :: #force_inline proc "c" (self: ^Device, descriptor: ^RenderPipelineDescriptor, options: PipelineOptions, reflection: ^^RenderPipelineReflection, error: ^^NS.Error) -> ^RenderPipelineState {
     return msgSend(^RenderPipelineState, self, "newRenderPipelineStateWithDescriptor:options:reflection:error:", descriptor, options, reflection, error)
 }
 @(objc_type=Device, objc_name="newRenderPipelineStateWithDescriptor_completionHandler")
@@ -125,7 +125,7 @@ Device_newRenderPipelineStateWithDescriptor_completionHandler :: #force_inline p
     msgSend(nil, self, "newRenderPipelineStateWithDescriptor:completionHandler:", descriptor, completionHandler)
 }
 @(objc_type=Device, objc_name="newRenderPipelineStateWithDescriptor_options_completionHandler")
-Device_newRenderPipelineStateWithDescriptor_options_completionHandler :: #force_inline proc "c" (self: ^Device, descriptor: ^RenderPipelineDescriptor, options: PipelineOption, completionHandler: NewRenderPipelineStateWithReflectionCompletionHandler) {
+Device_newRenderPipelineStateWithDescriptor_options_completionHandler :: #force_inline proc "c" (self: ^Device, descriptor: ^RenderPipelineDescriptor, options: PipelineOptions, completionHandler: NewRenderPipelineStateWithReflectionCompletionHandler) {
     msgSend(nil, self, "newRenderPipelineStateWithDescriptor:options:completionHandler:", descriptor, options, completionHandler)
 }
 @(objc_type=Device, objc_name="newComputePipelineStateWithFunction_error")
@@ -133,7 +133,7 @@ Device_newComputePipelineStateWithFunction_error :: #force_inline proc "c" (self
     return msgSend(^ComputePipelineState, self, "newComputePipelineStateWithFunction:error:", computeFunction, error)
 }
 @(objc_type=Device, objc_name="newComputePipelineStateWithFunction_options_reflection_error")
-Device_newComputePipelineStateWithFunction_options_reflection_error :: #force_inline proc "c" (self: ^Device, computeFunction: ^Function, options: PipelineOption, reflection: ^^ComputePipelineReflection, error: ^^NS.Error) -> ^ComputePipelineState {
+Device_newComputePipelineStateWithFunction_options_reflection_error :: #force_inline proc "c" (self: ^Device, computeFunction: ^Function, options: PipelineOptions, reflection: ^^ComputePipelineReflection, error: ^^NS.Error) -> ^ComputePipelineState {
     return msgSend(^ComputePipelineState, self, "newComputePipelineStateWithFunction:options:reflection:error:", computeFunction, options, reflection, error)
 }
 @(objc_type=Device, objc_name="newComputePipelineStateWithFunction_completionHandler")
@@ -141,15 +141,15 @@ Device_newComputePipelineStateWithFunction_completionHandler :: #force_inline pr
     msgSend(nil, self, "newComputePipelineStateWithFunction:completionHandler:", computeFunction, completionHandler)
 }
 @(objc_type=Device, objc_name="newComputePipelineStateWithFunction_options_completionHandler")
-Device_newComputePipelineStateWithFunction_options_completionHandler :: #force_inline proc "c" (self: ^Device, computeFunction: ^Function, options: PipelineOption, completionHandler: NewComputePipelineStateWithReflectionCompletionHandler) {
+Device_newComputePipelineStateWithFunction_options_completionHandler :: #force_inline proc "c" (self: ^Device, computeFunction: ^Function, options: PipelineOptions, completionHandler: NewComputePipelineStateWithReflectionCompletionHandler) {
     msgSend(nil, self, "newComputePipelineStateWithFunction:options:completionHandler:", computeFunction, options, completionHandler)
 }
 @(objc_type=Device, objc_name="newComputePipelineStateWithDescriptor_options_reflection_error")
-Device_newComputePipelineStateWithDescriptor_options_reflection_error :: #force_inline proc "c" (self: ^Device, descriptor: ^ComputePipelineDescriptor, options: PipelineOption, reflection: ^^ComputePipelineReflection, error: ^^NS.Error) -> ^ComputePipelineState {
+Device_newComputePipelineStateWithDescriptor_options_reflection_error :: #force_inline proc "c" (self: ^Device, descriptor: ^ComputePipelineDescriptor, options: PipelineOptions, reflection: ^^ComputePipelineReflection, error: ^^NS.Error) -> ^ComputePipelineState {
     return msgSend(^ComputePipelineState, self, "newComputePipelineStateWithDescriptor:options:reflection:error:", descriptor, options, reflection, error)
 }
 @(objc_type=Device, objc_name="newComputePipelineStateWithDescriptor_options_completionHandler")
-Device_newComputePipelineStateWithDescriptor_options_completionHandler :: #force_inline proc "c" (self: ^Device, descriptor: ^ComputePipelineDescriptor, options: PipelineOption, completionHandler: NewComputePipelineStateWithReflectionCompletionHandler) {
+Device_newComputePipelineStateWithDescriptor_options_completionHandler :: #force_inline proc "c" (self: ^Device, descriptor: ^ComputePipelineDescriptor, options: PipelineOptions, completionHandler: NewComputePipelineStateWithReflectionCompletionHandler) {
     msgSend(nil, self, "newComputePipelineStateWithDescriptor:options:completionHandler:", descriptor, options, completionHandler)
 }
 @(objc_type=Device, objc_name="newFence")
@@ -177,19 +177,19 @@ Device_minimumTextureBufferAlignmentForPixelFormat :: #force_inline proc "c" (se
     return msgSend(NS.UInteger, self, "minimumTextureBufferAlignmentForPixelFormat:", format)
 }
 @(objc_type=Device, objc_name="newRenderPipelineStateWithTileDescriptor_options_reflection_error")
-Device_newRenderPipelineStateWithTileDescriptor_options_reflection_error :: #force_inline proc "c" (self: ^Device, descriptor: ^TileRenderPipelineDescriptor, options: PipelineOption, reflection: ^^RenderPipelineReflection, error: ^^NS.Error) -> ^RenderPipelineState {
+Device_newRenderPipelineStateWithTileDescriptor_options_reflection_error :: #force_inline proc "c" (self: ^Device, descriptor: ^TileRenderPipelineDescriptor, options: PipelineOptions, reflection: ^^RenderPipelineReflection, error: ^^NS.Error) -> ^RenderPipelineState {
     return msgSend(^RenderPipelineState, self, "newRenderPipelineStateWithTileDescriptor:options:reflection:error:", descriptor, options, reflection, error)
 }
 @(objc_type=Device, objc_name="newRenderPipelineStateWithTileDescriptor_options_completionHandler")
-Device_newRenderPipelineStateWithTileDescriptor_options_completionHandler :: #force_inline proc "c" (self: ^Device, descriptor: ^TileRenderPipelineDescriptor, options: PipelineOption, completionHandler: NewRenderPipelineStateWithReflectionCompletionHandler) {
+Device_newRenderPipelineStateWithTileDescriptor_options_completionHandler :: #force_inline proc "c" (self: ^Device, descriptor: ^TileRenderPipelineDescriptor, options: PipelineOptions, completionHandler: NewRenderPipelineStateWithReflectionCompletionHandler) {
     msgSend(nil, self, "newRenderPipelineStateWithTileDescriptor:options:completionHandler:", descriptor, options, completionHandler)
 }
 @(objc_type=Device, objc_name="newRenderPipelineStateWithMeshDescriptor_options_reflection_error")
-Device_newRenderPipelineStateWithMeshDescriptor_options_reflection_error :: #force_inline proc "c" (self: ^Device, descriptor: ^MeshRenderPipelineDescriptor, options: PipelineOption, reflection: ^^RenderPipelineReflection, error: ^^NS.Error) -> ^RenderPipelineState {
+Device_newRenderPipelineStateWithMeshDescriptor_options_reflection_error :: #force_inline proc "c" (self: ^Device, descriptor: ^MeshRenderPipelineDescriptor, options: PipelineOptions, reflection: ^^RenderPipelineReflection, error: ^^NS.Error) -> ^RenderPipelineState {
     return msgSend(^RenderPipelineState, self, "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:", descriptor, options, reflection, error)
 }
 @(objc_type=Device, objc_name="newRenderPipelineStateWithMeshDescriptor_options_completionHandler")
-Device_newRenderPipelineStateWithMeshDescriptor_options_completionHandler :: #force_inline proc "c" (self: ^Device, descriptor: ^MeshRenderPipelineDescriptor, options: PipelineOption, completionHandler: NewRenderPipelineStateWithReflectionCompletionHandler) {
+Device_newRenderPipelineStateWithMeshDescriptor_options_completionHandler :: #force_inline proc "c" (self: ^Device, descriptor: ^MeshRenderPipelineDescriptor, options: PipelineOptions, completionHandler: NewRenderPipelineStateWithReflectionCompletionHandler) {
     msgSend(nil, self, "newRenderPipelineStateWithMeshDescriptor:options:completionHandler:", descriptor, options, completionHandler)
 }
 @(objc_type=Device, objc_name="getDefaultSamplePositions")
@@ -209,7 +209,7 @@ Device_newRasterizationRateMapWithDescriptor :: #force_inline proc "c" (self: ^D
     return msgSend(^RasterizationRateMap, self, "newRasterizationRateMapWithDescriptor:", descriptor)
 }
 @(objc_type=Device, objc_name="newIndirectCommandBufferWithDescriptor")
-Device_newIndirectCommandBufferWithDescriptor :: #force_inline proc "c" (self: ^Device, descriptor: ^IndirectCommandBufferDescriptor, maxCount: NS.UInteger, options: ResourceOption) -> ^IndirectCommandBuffer {
+Device_newIndirectCommandBufferWithDescriptor :: #force_inline proc "c" (self: ^Device, descriptor: ^IndirectCommandBufferDescriptor, maxCount: NS.UInteger, options: ResourceOptions) -> ^IndirectCommandBuffer {
     return msgSend(^IndirectCommandBuffer, self, "newIndirectCommandBufferWithDescriptor:maxCommandCount:options:", descriptor, maxCount, options)
 }
 @(objc_type=Device, objc_name="newEvent")

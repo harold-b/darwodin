@@ -140,7 +140,7 @@ Enums:
     UIKeyModifierFlags: UI.KeyModifierFlags
     UIEventType: UI.EventType
     UIEventSubtype: UI.EventSubtype
-    UIEventButtonMask: UI.EventButtonMasks
+    UIEventButtonMask: UI.EventButtonMask
     UIEditingInteractionConfiguration: UI.EditingInteractionConfiguration
     UIBarStyle: UI.BarStyle
     UIUserInterfaceSizeClass: UI.UserInterfaceSizeClass
@@ -160,7 +160,7 @@ Enums:
     NSLayoutFormatOptions: UI.NSLayoutFormatOptions
     UIDeviceOrientation: UI.DeviceOrientation
     UIInterfaceOrientation: UI.InterfaceOrientation
-    UIInterfaceOrientationMask: UI.InterfaceOrientationMasks
+    UIInterfaceOrientationMask: UI.InterfaceOrientationMask
     UIDeviceBatteryState: UI.DeviceBatteryState
     UIUserInterfaceIdiom: UI.UserInterfaceIdiom
     UITouchPhase: UI.TouchPhase
@@ -280,7 +280,7 @@ Enums:
     UITableViewCellFocusStyle: UI.TableViewCellFocusStyle
     UITableViewCellEditingStyle: UI.TableViewCellEditingStyle
     UITableViewCellAccessoryType: UI.TableViewCellAccessoryType
-    UITableViewCellStateMask: UI.TableViewCellStateMasks
+    UITableViewCellStateMask: UI.TableViewCellStateMask
     UITableViewCellDragState: UI.TableViewCellDragState
     UITableViewStyle: UI.TableViewStyle
     UITableViewScrollPosition: UI.TableViewScrollPosition
@@ -319,7 +319,7 @@ Enums:
     UIVibrancyEffectStyle: UI.VibrancyEffectStyle
     UIGraphicsImageRendererFormatRange: UI.GraphicsImageRendererFormatRange
     UIScrollType: UI.ScrollType
-    UIScrollTypeMask: UI.ScrollTypeMasks
+    UIScrollTypeMask: UI.ScrollTypeMask
     UINavigationControllerOperation: UI.NavigationControllerOperation
     UIImagePickerControllerSourceType: UI.ImagePickerControllerSourceType
     UIImagePickerControllerQualityType: UI.ImagePickerControllerQualityType

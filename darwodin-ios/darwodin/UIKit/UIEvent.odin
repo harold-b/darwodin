@@ -56,8 +56,8 @@ Event_timestamp :: #force_inline proc "c" (self: ^Event) -> NS.TimeInterval {
     return msgSend(NS.TimeInterval, self, "timestamp")
 }
 @(objc_type=Event, objc_name="modifierFlags")
-Event_modifierFlags :: #force_inline proc "c" (self: ^Event) -> KeyModifierFlag {
-    return msgSend(KeyModifierFlag, self, "modifierFlags")
+Event_modifierFlags :: #force_inline proc "c" (self: ^Event) -> KeyModifierFlags {
+    return msgSend(KeyModifierFlags, self, "modifierFlags")
 }
 @(objc_type=Event, objc_name="buttonMask")
 Event_buttonMask :: #force_inline proc "c" (self: ^Event) -> EventButtonMask {
@@ -199,7 +199,7 @@ Event_VTable :: struct {
     type: proc(self: ^Event) -> EventType,
     subtype: proc(self: ^Event) -> EventSubtype,
     timestamp: proc(self: ^Event) -> NS.TimeInterval,
-    modifierFlags: proc(self: ^Event) -> KeyModifierFlag,
+    modifierFlags: proc(self: ^Event) -> KeyModifierFlags,
     buttonMask: proc(self: ^Event) -> EventButtonMask,
     allTouches: proc(self: ^Event) -> ^NS.Set,
     load: proc(),
@@ -321,7 +321,7 @@ Event_odin_extend :: proc(cls: Class, vt: ^Event_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("timestamp"), auto_cast timestamp, "d@:") do panic("Failed to register objC method.")
     }
     if vt.modifierFlags != nil {
-        modifierFlags :: proc "c" (self: ^Event, _: SEL) -> KeyModifierFlag {
+        modifierFlags :: proc "c" (self: ^Event, _: SEL) -> KeyModifierFlags {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

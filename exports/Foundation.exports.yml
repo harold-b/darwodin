@@ -202,7 +202,7 @@ Enums:
     NSRoundingMode: NS.RoundingMode
     NSCalculationError: NS.CalculationError
     NSSearchPathDirectory: NS.SearchPathDirectory
-    NSSearchPathDomainMask: NS.SearchPathDomainMasks
+    NSSearchPathDomainMask: NS.SearchPathDomainMask
     NSURLBookmarkCreationOptions: NS.URLBookmarkCreationOptions
     NSURLBookmarkResolutionOptions: NS.URLBookmarkResolutionOptions
     NSVolumeEnumerationOptions: NS.VolumeEnumerationOptions

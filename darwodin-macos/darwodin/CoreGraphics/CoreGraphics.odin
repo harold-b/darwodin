@@ -342,7 +342,7 @@ DisplayErr :: distinct Error
 DisplayConfigRef :: distinct ^_CGDisplayConfigRef
 
 /// CGDisplayReconfigurationCallBack
-DisplayReconfigurationCallBack :: distinct proc "c" (display: DirectDisplayID, flags: DisplayChangeSummaryFlag, userInfo: rawptr)
+DisplayReconfigurationCallBack :: distinct proc "c" (display: DirectDisplayID, flags: DisplayChangeSummaryFlags, userInfo: rawptr)
 
 /// CGDisplayFadeReservationToken
 DisplayFadeReservationToken :: distinct cffi.uint32_t
@@ -858,12 +858,12 @@ ScreenUpdateOperation :: enum cffi.uint {
 }
 
 /// CGEventFilterMask
-EventFilterMask :: enum cffi.uint {
+EventFilterMaskFlag :: enum cffi.uint {
     PermitLocalMouseEvents = 0,
     PermitLocalKeyboardEvents = 1,
     PermitSystemDefinedEvents = 2,
 }
-EventFilterMasks :: bit_set[EventFilterMask; cffi.uint]
+EventFilterMask :: bit_set[EventFilterMaskFlag; cffi.uint]
 
 /// CGEventSuppressionState
 EventSuppressionState :: enum cffi.uint {

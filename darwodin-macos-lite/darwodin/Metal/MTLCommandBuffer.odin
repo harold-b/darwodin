@@ -129,8 +129,8 @@ CommandBuffer_retainedReferences :: #force_inline proc "c" (self: ^CommandBuffer
     return msgSend(bool, self, "retainedReferences")
 }
 @(objc_type=CommandBuffer, objc_name="errorOptions")
-CommandBuffer_errorOptions :: #force_inline proc "c" (self: ^CommandBuffer) -> CommandBufferErrorOption {
-    return msgSend(CommandBufferErrorOption, self, "errorOptions")
+CommandBuffer_errorOptions :: #force_inline proc "c" (self: ^CommandBuffer) -> CommandBufferErrorOptions {
+    return msgSend(CommandBufferErrorOptions, self, "errorOptions")
 }
 @(objc_type=CommandBuffer, objc_name="label")
 CommandBuffer_label :: #force_inline proc "c" (self: ^CommandBuffer) -> ^NS.String {

@@ -2984,11 +2984,11 @@ TouchType :: enum cffi.long {
 }
 
 /// NSTouchTypeMask
-TouchTypeMask :: enum cffi.ulong {
+TouchTypeMaskFlag :: enum cffi.ulong {
     Direct = 0,
     Indirect = 1,
 }
-TouchTypeMasks :: bit_set[TouchTypeMask; cffi.ulong]
+TouchTypeMask :: bit_set[TouchTypeMaskFlag; cffi.ulong]
 
 /// NSEventType
 EventType :: enum cffi.ulong {
@@ -3029,7 +3029,7 @@ EventType :: enum cffi.ulong {
 }
 
 /// NSEventMask
-EventMask :: enum cffi.ulonglong {
+EventMaskFlag :: enum cffi.ulonglong {
     LeftMouseDown = 1,
     LeftMouseUp = 2,
     RightMouseDown = 3,
@@ -3064,13 +3064,13 @@ EventMask :: enum cffi.ulonglong {
     DirectTouch = 37,
     ChangeMode = 38,
 }
-EventMasks :: bit_set[EventMask; cffi.ulonglong]
+EventMask :: bit_set[EventMaskFlag; cffi.ulonglong]
 
 
 /// NSEventModifierFlags
 EventModifierFlag :: enum cffi.ulong {
     CapsLock = 16,
-    hift = 17,
+    Shift = 17,
     Control = 18,
     Option = 19,
     Command = 20,
@@ -3090,12 +3090,12 @@ PointingDeviceType :: enum cffi.ulong {
 }
 
 /// NSEventButtonMask
-EventButtonMask :: enum cffi.ulong {
+EventButtonMaskFlag :: enum cffi.ulong {
     PenTip = 0,
     PenLowerSide = 1,
     PenUpperSide = 2,
 }
-EventButtonMasks :: bit_set[EventButtonMask; cffi.ulong]
+EventButtonMask :: bit_set[EventButtonMaskFlag; cffi.ulong]
 
 /// NSEventPhase
 EventPhase :: enum cffi.ulong {
@@ -3406,13 +3406,13 @@ ImageScaling :: enum cffi.ulong {
 }
 
 /// NSCellStyleMask
-CellStyleMask :: enum cffi.ulong {
+CellStyleMaskFlag :: enum cffi.ulong {
     ContentsCellMask = 0,
     PushInCellMask = 1,
     ChangeGrayCellMask = 2,
     ChangeBackgroundCellMask = 3,
 }
-CellStyleMasks :: bit_set[CellStyleMask; cffi.ulong]
+CellStyleMask :: bit_set[CellStyleMaskFlag; cffi.ulong]
 
 /// NSControlTint
 ControlTint :: enum cffi.ulong {
@@ -3840,7 +3840,7 @@ FontCollectionVisibility :: enum cffi.ulong {
 }
 
 /// NSFontTraitMask
-FontTraitMask :: enum cffi.ulong {
+FontTraitMaskFlag :: enum cffi.ulong {
     ItalicFontMask = 0,
     BoldFontMask = 1,
     UnboldFontMask = 2,
@@ -3854,7 +3854,7 @@ FontTraitMask :: enum cffi.ulong {
     FixedPitchFontMask = 10,
     UnitalicFontMask = 24,
 }
-FontTraitMasks :: bit_set[FontTraitMask; cffi.ulong]
+FontTraitMask :: bit_set[FontTraitMaskFlag; cffi.ulong]
 
 /// NSFontCollectionOptions
 FontCollectionOptions :: enum cffi.ulong {
@@ -3874,7 +3874,7 @@ FontAction :: enum cffi.ulong {
 }
 
 /// NSWindowStyleMask
-WindowStyleMask :: enum cffi.ulong {
+WindowStyleMaskFlag :: enum cffi.ulong {
     Titled = 0,
     Closable = 1,
     Miniaturizable = 2,
@@ -3888,7 +3888,7 @@ WindowStyleMask :: enum cffi.ulong {
     NonactivatingPanel = 7,
     HUDWindow = 13,
 }
-WindowStyleMasks :: bit_set[WindowStyleMask; cffi.ulong]
+WindowStyleMask :: bit_set[WindowStyleMaskFlag; cffi.ulong]
 
 /// NSWindowSharingType
 WindowSharingType :: enum cffi.ulong {
@@ -3999,7 +3999,7 @@ WindowBackingLocation :: enum cffi.ulong {
 }
 
 /// NSFontPanelModeMask
-FontPanelModeMask :: enum cffi.ulong {
+FontPanelModeMaskFlag :: enum cffi.ulong {
     Face = 0,
     Size = 1,
     Collection = 2,
@@ -4009,7 +4009,7 @@ FontPanelModeMask :: enum cffi.ulong {
     DocumentColorEffect = 11,
     ShadowEffect = 12,
 }
-FontPanelModeMasks :: bit_set[FontPanelModeMask; cffi.ulong]
+FontPanelModeMask :: bit_set[FontPanelModeMaskFlag; cffi.ulong]
 
 
 /// NSMatrixMode

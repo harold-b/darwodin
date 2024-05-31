@@ -134,8 +134,8 @@ GestureRecognizer_setName :: #force_inline proc "c" (self: ^GestureRecognizer, n
     msgSend(nil, self, "setName:", name)
 }
 @(objc_type=GestureRecognizer, objc_name="modifierFlags")
-GestureRecognizer_modifierFlags :: #force_inline proc "c" (self: ^GestureRecognizer) -> KeyModifierFlag {
-    return msgSend(KeyModifierFlag, self, "modifierFlags")
+GestureRecognizer_modifierFlags :: #force_inline proc "c" (self: ^GestureRecognizer) -> KeyModifierFlags {
+    return msgSend(KeyModifierFlags, self, "modifierFlags")
 }
 @(objc_type=GestureRecognizer, objc_name="buttonMask")
 GestureRecognizer_buttonMask :: #force_inline proc "c" (self: ^GestureRecognizer) -> EventButtonMask {
@@ -366,7 +366,7 @@ GestureRecognizer_VTable :: struct {
     numberOfTouches: proc(self: ^GestureRecognizer) -> NS.UInteger,
     name: proc(self: ^GestureRecognizer) -> ^NS.String,
     setName: proc(self: ^GestureRecognizer, name: ^NS.String),
-    modifierFlags: proc(self: ^GestureRecognizer) -> KeyModifierFlag,
+    modifierFlags: proc(self: ^GestureRecognizer) -> KeyModifierFlags,
     buttonMask: proc(self: ^GestureRecognizer) -> EventButtonMask,
     ignoreTouch: proc(self: ^GestureRecognizer, touch: ^Touch, event: ^Event),
     ignorePress: proc(self: ^GestureRecognizer, button: ^Press, event: ^PressesEvent),
@@ -715,7 +715,7 @@ GestureRecognizer_odin_extend :: proc(cls: Class, vt: ^GestureRecognizer_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("setName:"), auto_cast setName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.modifierFlags != nil {
-        modifierFlags :: proc "c" (self: ^GestureRecognizer, _: SEL) -> KeyModifierFlag {
+        modifierFlags :: proc "c" (self: ^GestureRecognizer, _: SEL) -> KeyModifierFlags {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

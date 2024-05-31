@@ -69,8 +69,8 @@ Function_functionConstantsDictionary :: #force_inline proc "c" (self: ^Function)
     return msgSend(^NS.Dictionary, self, "functionConstantsDictionary")
 }
 @(objc_type=Function, objc_name="options")
-Function_options :: #force_inline proc "c" (self: ^Function) -> FunctionOption {
-    return msgSend(FunctionOption, self, "options")
+Function_options :: #force_inline proc "c" (self: ^Function) -> FunctionOptions {
+    return msgSend(FunctionOptions, self, "options")
 }
 @(objc_type=Function, objc_name="newArgumentEncoderWithBufferIndex")
 Function_newArgumentEncoderWithBufferIndex :: proc {
