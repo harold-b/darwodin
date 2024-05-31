@@ -17,7 +17,3 @@ ScriptObjectSpecifier :: struct { using _: Object,
     using _: Coding,
 }
 
-ScriptObjectSpecifier_VTable :: struct {
-    super: Object_VTable,
-}
-

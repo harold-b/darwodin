@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIGraphicsImageRendererFormat")
 GraphicsImageRendererFormat :: struct { using _: GraphicsRendererFormat, }
 
-GraphicsImageRendererFormat_VTable :: struct {
-    super: GraphicsRendererFormat_VTable,
-}
-

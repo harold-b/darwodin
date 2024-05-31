@@ -19,7 +19,3 @@ CollectionLayoutDecorationItem :: struct { using _: CollectionLayoutItem,
     using _: NS.Copying,
 }
 
-CollectionLayoutDecorationItem_VTable :: struct {
-    super: CollectionLayoutItem_VTable,
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIFontMetrics")
 FontMetrics :: struct { using _: NS.Object, }
 
-FontMetrics_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

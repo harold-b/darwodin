@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPasteboard")
 Pasteboard :: struct { using _: NS.Object, }
 
-Pasteboard_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

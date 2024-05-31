@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSSetCommand")
 SetCommand :: struct { using _: ScriptCommand, }
 
-SetCommand_VTable :: struct {
-    super: ScriptCommand_VTable,
-}
-

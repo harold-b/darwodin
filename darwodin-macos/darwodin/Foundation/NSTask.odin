@@ -71,6 +71,14 @@ Task_currentDirectoryURL :: #force_inline proc "c" (self: ^Task) -> ^URL {
 Task_setCurrentDirectoryURL :: #force_inline proc "c" (self: ^Task, currentDirectoryURL: ^URL) {
     msgSend(nil, self, "setCurrentDirectoryURL:", currentDirectoryURL)
 }
+@(objc_type=Task, objc_name="launchRequirementData")
+Task_launchRequirementData :: #force_inline proc "c" (self: ^Task) -> ^Data {
+    return msgSend(^Data, self, "launchRequirementData")
+}
+@(objc_type=Task, objc_name="setLaunchRequirementData")
+Task_setLaunchRequirementData :: #force_inline proc "c" (self: ^Task, launchRequirementData: ^Data) {
+    msgSend(nil, self, "setLaunchRequirementData:", launchRequirementData)
+}
 @(objc_type=Task, objc_name="standardInput")
 Task_standardInput :: #force_inline proc "c" (self: ^Task) -> id {
     return msgSend(id, self, "standardInput")
@@ -305,6 +313,8 @@ Task_VTable :: struct {
     setEnvironment: proc(self: ^Task, environment: ^Dictionary),
     currentDirectoryURL: proc(self: ^Task) -> ^URL,
     setCurrentDirectoryURL: proc(self: ^Task, currentDirectoryURL: ^URL),
+    launchRequirementData: proc(self: ^Task) -> ^Data,
+    setLaunchRequirementData: proc(self: ^Task, launchRequirementData: ^Data),
     standardInput: proc(self: ^Task) -> id,
     setStandardInput: proc(self: ^Task, standardInput: id),
     standardOutput: proc(self: ^Task) -> id,
@@ -506,6 +516,26 @@ Task_odin_extend :: proc(cls: Class, vt: ^Task_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCurrentDirectoryURL:"), auto_cast setCurrentDirectoryURL, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.launchRequirementData != nil {
+        launchRequirementData :: proc "c" (self: ^Task, _: SEL) -> ^Data {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Task_VTable)vt_ctx.super_vt).launchRequirementData(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchRequirementData"), auto_cast launchRequirementData, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLaunchRequirementData != nil {
+        setLaunchRequirementData :: proc "c" (self: ^Task, _: SEL, launchRequirementData: ^Data) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Task_VTable)vt_ctx.super_vt).setLaunchRequirementData(self, launchRequirementData)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLaunchRequirementData:"), auto_cast setLaunchRequirementData, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.standardInput != nil {
         standardInput :: proc "c" (self: ^Task, _: SEL) -> id {

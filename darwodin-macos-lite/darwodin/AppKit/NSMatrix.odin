@@ -20,7 +20,3 @@ Matrix :: struct { using _: Control,
     using _: ViewToolTipOwner,
 }
 
-Matrix_VTable :: struct {
-    super: Control_VTable,
-}
-

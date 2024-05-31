@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSpellChecker")
 SpellChecker :: struct { using _: NS.Object, }
 
-SpellChecker_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

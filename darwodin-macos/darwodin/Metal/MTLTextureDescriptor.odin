@@ -35,7 +35,7 @@ TextureDescriptor_textureCubeDescriptorWithPixelFormat :: #force_inline proc "c"
     return msgSend(^TextureDescriptor, TextureDescriptor, "textureCubeDescriptorWithPixelFormat:size:mipmapped:", pixelFormat, size, mipmapped)
 }
 @(objc_type=TextureDescriptor, objc_name="textureBufferDescriptorWithPixelFormat", objc_is_class_method=true)
-TextureDescriptor_textureBufferDescriptorWithPixelFormat :: #force_inline proc "c" (pixelFormat: PixelFormat, width: NS.UInteger, resourceOptions: ResourceOptions, usage: TextureUsage) -> ^TextureDescriptor {
+TextureDescriptor_textureBufferDescriptorWithPixelFormat :: #force_inline proc "c" (pixelFormat: PixelFormat, width: NS.UInteger, resourceOptions: ResourceOption, usage: TextureUsage) -> ^TextureDescriptor {
     return msgSend(^TextureDescriptor, TextureDescriptor, "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:", pixelFormat, width, resourceOptions, usage)
 }
 @(objc_type=TextureDescriptor, objc_name="textureType")
@@ -103,11 +103,11 @@ TextureDescriptor_setArrayLength :: #force_inline proc "c" (self: ^TextureDescri
     msgSend(nil, self, "setArrayLength:", arrayLength)
 }
 @(objc_type=TextureDescriptor, objc_name="resourceOptions")
-TextureDescriptor_resourceOptions :: #force_inline proc "c" (self: ^TextureDescriptor) -> ResourceOptions {
-    return msgSend(ResourceOptions, self, "resourceOptions")
+TextureDescriptor_resourceOptions :: #force_inline proc "c" (self: ^TextureDescriptor) -> ResourceOption {
+    return msgSend(ResourceOption, self, "resourceOptions")
 }
 @(objc_type=TextureDescriptor, objc_name="setResourceOptions")
-TextureDescriptor_setResourceOptions :: #force_inline proc "c" (self: ^TextureDescriptor, resourceOptions: ResourceOptions) {
+TextureDescriptor_setResourceOptions :: #force_inline proc "c" (self: ^TextureDescriptor, resourceOptions: ResourceOption) {
     msgSend(nil, self, "setResourceOptions:", resourceOptions)
 }
 @(objc_type=TextureDescriptor, objc_name="cpuCacheMode")

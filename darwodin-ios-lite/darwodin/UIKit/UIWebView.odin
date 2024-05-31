@@ -20,7 +20,3 @@ WebView :: struct { using _: View,
     using _: ScrollViewDelegate,
 }
 
-WebView_VTable :: struct {
-    super: View_VTable,
-}
-

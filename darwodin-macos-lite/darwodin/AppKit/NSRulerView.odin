@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSRulerView")
 RulerView :: struct { using _: View, }
 
-RulerView_VTable :: struct {
-    super: View_VTable,
-}
-

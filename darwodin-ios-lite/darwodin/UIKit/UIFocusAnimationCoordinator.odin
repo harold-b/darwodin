@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIFocusAnimationCoordinator")
 FocusAnimationCoordinator :: struct { using _: NS.Object, }
 
-FocusAnimationCoordinator_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -19,6 +19,3 @@ ColorPickingCustom :: struct { using _: intrinsics.objc_object,
     using _: ColorPickingDefault,
 }
 
-ColorPickingCustom_VTable :: struct {
-}
-

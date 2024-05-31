@@ -29,6 +29,7 @@ IOHIDDeviceRef :: struct {}
 
 DualSenseAdaptiveTriggerDiscretePositionCount :: 10
 foreign lib {
+    @(link_name="GCPoint2Zero") Point2Zero: Point2
     @(link_name="GCProductCategoryDualSense") ProductCategoryDualSense: ^NS.String
     @(link_name="GCProductCategoryDualShock4") ProductCategoryDualShock4: ^NS.String
     @(link_name="GCProductCategoryMFi") ProductCategoryMFi: ^NS.String
@@ -49,12 +50,14 @@ foreign lib {
     @(link_name="GCInputDirectionPad") InputDirectionPad: ^NS.String
     @(link_name="GCInputLeftThumbstick") InputLeftThumbstick: ^NS.String
     @(link_name="GCInputRightThumbstick") InputRightThumbstick: ^NS.String
-    @(link_name="GCInputLeftShoulder") InputLeftShoulder: ^NS.String
-    @(link_name="GCInputRightShoulder") InputRightShoulder: ^NS.String
-    @(link_name="GCInputLeftTrigger") InputLeftTrigger: ^NS.String
-    @(link_name="GCInputRightTrigger") InputRightTrigger: ^NS.String
     @(link_name="GCInputLeftThumbstickButton") InputLeftThumbstickButton: ^NS.String
     @(link_name="GCInputRightThumbstickButton") InputRightThumbstickButton: ^NS.String
+    @(link_name="GCInputLeftShoulder") InputLeftShoulder: ^NS.String
+    @(link_name="GCInputRightShoulder") InputRightShoulder: ^NS.String
+    @(link_name="GCInputLeftBumper") InputLeftBumper: ^NS.String
+    @(link_name="GCInputRightBumper") InputRightBumper: ^NS.String
+    @(link_name="GCInputLeftTrigger") InputLeftTrigger: ^NS.String
+    @(link_name="GCInputRightTrigger") InputRightTrigger: ^NS.String
     @(link_name="GCInputButtonHome") InputButtonHome: ^NS.String
     @(link_name="GCInputButtonMenu") InputButtonMenu: ^NS.String
     @(link_name="GCInputButtonOptions") InputButtonOptions: ^NS.String
@@ -376,6 +379,12 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
+    @(link_name="GCInputBackLeftButton")
+    InputBackLeftButton :: proc(position: NS.Integer) -> ^NS.String ---
+
+    @(link_name="GCInputBackRightButton")
+    InputBackRightButton :: proc(position: NS.Integer) -> ^NS.String ---
+
     @(link_name="GCInputArcadeButtonName")
     InputArcadeButtonName :: proc(row: NS.Integer, column: NS.Integer) -> ^NS.String ---
 
@@ -530,6 +539,12 @@ ControllerPlayerIndex :: enum cffi.long {
     _2 = 1,
     _3 = 2,
     _4 = 3,
+}
+
+/// GCPoint2
+Point2 :: struct #align (4) {
+    x : cffi.float,
+    y : cffi.float,
 }
 
 /// GCDualSenseAdaptiveTriggerPositionalAmplitudes

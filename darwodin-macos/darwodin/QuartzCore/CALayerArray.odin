@@ -27,3 +27,12 @@ LayerArray_init :: proc "c" (self: ^LayerArray) -> ^LayerArray {
 }
 
 
+LayerArray_VTable :: struct {
+}
+
+LayerArray_odin_extend :: proc(cls: Class, vt: ^LayerArray_VTable) {
+    assert(vt != nil);
+    meta := ObjC.object_getClass(auto_cast cls)
+    _=meta
+}
+

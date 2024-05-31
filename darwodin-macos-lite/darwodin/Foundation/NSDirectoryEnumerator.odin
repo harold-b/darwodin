@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSDirectoryEnumerator")
 DirectoryEnumerator :: struct { using _: Enumerator, }
 
-DirectoryEnumerator_VTable :: struct {
-    super: Enumerator_VTable,
-}
-

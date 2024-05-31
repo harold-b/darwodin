@@ -19,6 +19,3 @@ ActivityItemSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ActivityItemSource_VTable :: struct {
-}
-

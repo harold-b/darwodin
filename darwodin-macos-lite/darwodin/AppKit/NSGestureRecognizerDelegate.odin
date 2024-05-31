@@ -19,6 +19,3 @@ GestureRecognizerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-GestureRecognizerDelegate_VTable :: struct {
-}
-

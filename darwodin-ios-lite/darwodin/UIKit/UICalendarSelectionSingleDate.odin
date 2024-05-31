@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICalendarSelectionSingleDate")
 CalendarSelectionSingleDate :: struct { using _: CalendarSelection, }
 
-CalendarSelectionSingleDate_VTable :: struct {
-    super: CalendarSelection_VTable,
-}
-

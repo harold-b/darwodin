@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSFileVersion")
 FileVersion :: struct { using _: Object, }
 
-FileVersion_VTable :: struct {
-    super: Object_VTable,
-}
-

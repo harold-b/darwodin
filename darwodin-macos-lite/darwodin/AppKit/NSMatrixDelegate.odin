@@ -19,6 +19,3 @@ MatrixDelegate :: struct { using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 
-MatrixDelegate_VTable :: struct {
-}
-

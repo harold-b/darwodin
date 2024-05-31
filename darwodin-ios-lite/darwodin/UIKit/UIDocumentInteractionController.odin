@@ -19,7 +19,3 @@ DocumentInteractionController :: struct { using _: NS.Object,
     using _: ActionSheetDelegate,
 }
 
-DocumentInteractionController_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

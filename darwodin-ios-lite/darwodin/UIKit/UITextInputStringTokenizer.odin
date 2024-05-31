@@ -19,7 +19,3 @@ TextInputStringTokenizer :: struct { using _: NS.Object,
     using _: TextInputTokenizer,
 }
 
-TextInputStringTokenizer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

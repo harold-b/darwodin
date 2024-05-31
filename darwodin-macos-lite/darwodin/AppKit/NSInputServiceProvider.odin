@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSInputServiceProvider")
 InputServiceProvider :: struct { using _: intrinsics.objc_object, }
 
-InputServiceProvider_VTable :: struct {
-}
-

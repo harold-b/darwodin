@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPopUpButton")
 PopUpButton :: struct { using _: Button, }
 
-PopUpButton_VTable :: struct {
-    super: Button_VTable,
-}
-

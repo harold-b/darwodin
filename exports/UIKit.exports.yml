@@ -140,7 +140,7 @@ Enums:
     UIKeyModifierFlags: UI.KeyModifierFlags
     UIEventType: UI.EventType
     UIEventSubtype: UI.EventSubtype
-    UIEventButtonMask: UI.EventButtonMask
+    UIEventButtonMask: UI.EventButtonMasks
     UIEditingInteractionConfiguration: UI.EditingInteractionConfiguration
     UIBarStyle: UI.BarStyle
     UIUserInterfaceSizeClass: UI.UserInterfaceSizeClass
@@ -160,7 +160,7 @@ Enums:
     NSLayoutFormatOptions: UI.NSLayoutFormatOptions
     UIDeviceOrientation: UI.DeviceOrientation
     UIInterfaceOrientation: UI.InterfaceOrientation
-    UIInterfaceOrientationMask: UI.InterfaceOrientationMask
+    UIInterfaceOrientationMask: UI.InterfaceOrientationMasks
     UIDeviceBatteryState: UI.DeviceBatteryState
     UIUserInterfaceIdiom: UI.UserInterfaceIdiom
     UITouchPhase: UI.TouchPhase
@@ -280,7 +280,7 @@ Enums:
     UITableViewCellFocusStyle: UI.TableViewCellFocusStyle
     UITableViewCellEditingStyle: UI.TableViewCellEditingStyle
     UITableViewCellAccessoryType: UI.TableViewCellAccessoryType
-    UITableViewCellStateMask: UI.TableViewCellStateMask
+    UITableViewCellStateMask: UI.TableViewCellStateMasks
     UITableViewCellDragState: UI.TableViewCellDragState
     UITableViewStyle: UI.TableViewStyle
     UITableViewScrollPosition: UI.TableViewScrollPosition
@@ -319,7 +319,7 @@ Enums:
     UIVibrancyEffectStyle: UI.VibrancyEffectStyle
     UIGraphicsImageRendererFormatRange: UI.GraphicsImageRendererFormatRange
     UIScrollType: UI.ScrollType
-    UIScrollTypeMask: UI.ScrollTypeMask
+    UIScrollTypeMask: UI.ScrollTypeMasks
     UINavigationControllerOperation: UI.NavigationControllerOperation
     UIImagePickerControllerSourceType: UI.ImagePickerControllerSourceType
     UIImagePickerControllerQualityType: UI.ImagePickerControllerQualityType
@@ -396,6 +396,7 @@ Enums:
     UITextInteractionMode: UI.TextInteractionMode
     UITextItemContentType: UI.TextItemContentType
     UIPencilPreferredAction: UI.PencilPreferredAction
+    UIPencilInteractionPhase: UI.PencilInteractionPhase
     UIWindowSceneResizingRestrictions: UI.WindowSceneResizingRestrictions
     UIPointerEffectTintMode: UI.PointerEffectTintMode
     UIBandSelectionInteractionState: UI.BandSelectionInteractionState
@@ -462,6 +463,7 @@ ObjCClasses:
     UIAcceleration: UI.Acceleration
     UIAccelerometer: UI.Accelerometer
     UIMenuElement: UI.MenuElement
+    UIMenuDisplayPreferences: UI.MenuDisplayPreferences
     UIMenu: UI.Menu
     UICommand: UI.Command
     UICommandAlternate: UI.CommandAlternate
@@ -741,6 +743,7 @@ ObjCClasses:
     UIHoverAutomaticEffect: UI.HoverAutomaticEffect
     UIShape: UI.Shape
     UIHoverStyle: UI.HoverStyle
+    UIHoverEffectLayer: UI.HoverEffectLayer
     UIShapeResolutionContext: UI.ShapeResolutionContext
     UIResolvedShape: UI.ResolvedShape
     UIHoverGestureRecognizer: UI.HoverGestureRecognizer
@@ -776,6 +779,7 @@ ObjCClasses:
     UISearchToken: UI.SearchToken
     UISegmentedControl: UI.SegmentedControl
     UISplitViewController: UI.SplitViewController
+    UIStandardTextCursorView: UI.StandardTextCursorView
     UIStepper: UI.Stepper
     UIStoryboardPopoverSegue: UI.StoryboardPopoverSegue
     UISwitch: UI.Switch
@@ -783,6 +787,7 @@ ObjCClasses:
     UITabBarController: UI.TabBarController
     UITableViewController: UI.TableViewController
     UITextChecker: UI.TextChecker
+    UITextCursorDropPositionAnimator: UI.TextCursorDropPositionAnimator
     UITextInputContext: UI.TextInputContext
     UITextSelectionDisplayInteraction: UI.TextSelectionDisplayInteraction
     UITextSearchOptions: UI.TextSearchOptions
@@ -829,10 +834,14 @@ ObjCClasses:
     UISelectionFeedbackGenerator: UI.SelectionFeedbackGenerator
     UIImpactFeedbackGenerator: UI.ImpactFeedbackGenerator
     UINotificationFeedbackGenerator: UI.NotificationFeedbackGenerator
+    UICanvasFeedbackGenerator: UI.CanvasFeedbackGenerator
     UITextInteraction: UI.TextInteraction
     UITextItemMenuPreview: UI.TextItemMenuPreview
     UITextLoupeSession: UI.TextLoupeSession
     UIActivityViewController: UI.ActivityViewController
+    UIPencilHoverPose: UI.PencilHoverPose
+    UIPencilInteractionTap: UI.PencilInteractionTap
+    UIPencilInteractionSqueeze: UI.PencilInteractionSqueeze
     UIPencilInteraction: UI.PencilInteraction
     UIWindowSceneGeometryPreferencesMac: UI.WindowSceneGeometryPreferencesMac
     UIWindowSceneGeometryPreferencesIOS: UI.WindowSceneGeometryPreferencesIOS
@@ -903,6 +912,8 @@ ObjCClasses:
 
 ObjCProtocols:
     UIItemProviderPresentationSizeProviding: UI.ItemProviderPresentationSizeProviding
+    UIItemProviderReadingAugmentationProviding: UI.ItemProviderReadingAugmentationProviding
+    UIItemProviderReadingAugmentationDesignating: UI.ItemProviderReadingAugmentationDesignating
     NSTextLocation: UI.NSTextLocation
     NSTextAttachmentContainer: UI.NSTextAttachmentContainer
     NSTextAttachmentLayout: UI.NSTextAttachmentLayout
@@ -1057,9 +1068,9 @@ ObjCProtocols:
     UISearchTextFieldDelegate: UI.SearchTextFieldDelegate
     UISearchTextFieldPasteItem: UI.SearchTextFieldPasteItem
     UISplitViewControllerDelegate: UI.SplitViewControllerDelegate
+    UITextCursorView: UI.TextCursorView
     UITabBarDelegate: UI.TabBarDelegate
     UITabBarControllerDelegate: UI.TabBarControllerDelegate
-    UITextCursorView: UI.TextCursorView
     UITextSelectionHandleView: UI.TextSelectionHandleView
     UITextSelectionHighlightView: UI.TextSelectionHighlightView
     UITextSelectionDisplayInteractionDelegate: UI.TextSelectionDisplayInteractionDelegate
@@ -1500,6 +1511,8 @@ ExternVars:
     ::UITextContentTypeCreditCardExpirationMonth: UI.TextContentTypeCreditCardExpirationMonth
     ::UITextContentTypeCreditCardExpirationYear: UI.TextContentTypeCreditCardExpirationYear
     ::UITextContentTypeCreditCardType: UI.TextContentTypeCreditCardType
+    ::UITextContentTypeCellularEID: UI.TextContentTypeCellularEID
+    ::UITextContentTypeCellularIMEI: UI.TextContentTypeCellularIMEI
     ::UITextInputTextBackgroundColorKey: UI.TextInputTextBackgroundColorKey
     ::UITextInputTextColorKey: UI.TextInputTextColorKey
     ::UITextInputTextFontKey: UI.TextInputTextFontKey

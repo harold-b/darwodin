@@ -39,9 +39,6 @@ Odin:
     - ../exports/Metal.exports.yml
     # - ../exports/AppKit.exports.yml
 
-  BitSetMap:
-    - (Flags|Mask)$
-
   ResolvedTypedefs:
     - '[su]?int.*'
 
@@ -79,7 +76,17 @@ Odin:
       Transforms:
       - Kind  : RemovePrefix
         Source: $group0
- 
+    - Type: (Flags|Mask)$
+      Transforms:
+    - Kind  : RemoveSuffix
+      Source: s
+
+  BitSetMap:
+    - Type: (Flags|Mask)$
+      Transforms:
+        - Kind  : AppendSuffix
+          Source: s
+
   ProcTransforms:
     - Type: ^(MD)Label.+
       Transforms:

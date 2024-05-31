@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPrintPageRenderer")
 PrintPageRenderer :: struct { using _: NS.Object, }
 
-PrintPageRenderer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

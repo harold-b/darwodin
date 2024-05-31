@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextViewportLayoutController")
 TextViewportLayoutController :: struct { using _: NS.Object, }
 
-TextViewportLayoutController_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -17,6 +17,3 @@ PortDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-PortDelegate_VTable :: struct {
-}
-

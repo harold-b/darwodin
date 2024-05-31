@@ -17,7 +17,3 @@ UnitElectricCurrent :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitElectricCurrent_VTable :: struct {
-    super: Dimension_VTable,
-}
-

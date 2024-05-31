@@ -91,12 +91,12 @@ Typedefs:
     FSRefParamPtr: FS.RefParamPtr
     FSRefForkIOParamPtr: FS.RefForkIOParamPtr
     FSIterator: FS.Iterator
-    FSIteratorFlags: FS.IteratorFlags
+    FSIteratorFlags: FS.IteratorFlag
     FSSearchParamsPtr: FS.SearchParamsPtr
     FSCatalogBulkParamPtr: FS.CatalogBulkParamPtr
-    FSAllocationFlags: FS.AllocationFlags
+    FSAllocationFlags: FS.AllocationFlag
     FSForkIOParamPtr: FS.ForkIOParamPtr
-    FSForkInfoFlags: FS.ForkInfoFlags
+    FSForkInfoFlags: FS.ForkInfoFlag
     FSForkInfoPtr: FS.ForkInfoPtr
     FSForkCBInfoParamPtr: FS.ForkCBInfoParamPtr
     FSRangeLockParamPtr: FS.RangeLockParamPtr

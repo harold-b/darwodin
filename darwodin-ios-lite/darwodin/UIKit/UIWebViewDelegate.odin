@@ -19,6 +19,3 @@ WebViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-WebViewDelegate_VTable :: struct {
-}
-

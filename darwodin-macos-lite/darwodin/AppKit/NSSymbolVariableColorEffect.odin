@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolVariableColorEffect")
 SymbolVariableColorEffect :: struct { using _: SymbolEffect, }
 
-SymbolVariableColorEffect_VTable :: struct {
-    super: SymbolEffect_VTable,
-}
-

@@ -19,7 +19,3 @@ DocumentBrowserViewController :: struct { using _: ViewController,
     using _: NS.Coding,
 }
 
-DocumentBrowserViewController_VTable :: struct {
-    super: ViewController_VTable,
-}
-

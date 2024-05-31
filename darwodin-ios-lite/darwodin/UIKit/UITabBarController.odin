@@ -20,7 +20,3 @@ TabBarController :: struct { using _: ViewController,
     using _: NS.Coding,
 }
 
-TabBarController_VTable :: struct {
-    super: ViewController_VTable,
-}
-

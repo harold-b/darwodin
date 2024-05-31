@@ -28,6 +28,10 @@ SharedEvent_notifyListener :: #force_inline proc "c" (self: ^SharedEvent, listen
 SharedEvent_newSharedEventHandle :: #force_inline proc "c" (self: ^SharedEvent) -> ^SharedEventHandle {
     return msgSend(^SharedEventHandle, self, "newSharedEventHandle")
 }
+@(objc_type=SharedEvent, objc_name="waitUntilSignaledValue")
+SharedEvent_waitUntilSignaledValue :: #force_inline proc "c" (self: ^SharedEvent, value: cffi.uint64_t, milliseconds: cffi.uint64_t) -> bool {
+    return msgSend(bool, self, "waitUntilSignaledValue:timeoutMS:", value, milliseconds)
+}
 @(objc_type=SharedEvent, objc_name="signaledValue")
 SharedEvent_signaledValue :: #force_inline proc "c" (self: ^SharedEvent) -> cffi.uint64_t {
     return msgSend(cffi.uint64_t, self, "signaledValue")

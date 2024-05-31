@@ -94,7 +94,7 @@ AttributedString_initWithFormat_options_locale :: #force_inline proc "c" (self: 
     return msgSend(^AttributedString, self, "initWithFormat:options:locale:", format, options, locale)
 }
 @(objc_type=AttributedString, objc_name="initWithFormat_options_locale_arguments")
-AttributedString_initWithFormat_options_locale_arguments :: #force_inline proc "c" (self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: va_list) -> ^AttributedString {
+AttributedString_initWithFormat_options_locale_arguments :: #force_inline proc "c" (self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: cffi.va_list) -> ^AttributedString {
     return msgSend(^AttributedString, self, "initWithFormat:options:locale:arguments:", format, options, locale, arguments)
 }
 @(objc_type=AttributedString, objc_name="localizedAttributedStringWithFormat_", objc_is_class_method=true)
@@ -110,7 +110,7 @@ AttributedString_initWithFormat_options_locale_context :: #force_inline proc "c"
     return msgSend(^AttributedString, self, "initWithFormat:options:locale:context:", format, options, locale, _context)
 }
 @(objc_type=AttributedString, objc_name="initWithFormat_options_locale_context_arguments")
-AttributedString_initWithFormat_options_locale_context_arguments :: #force_inline proc "c" (self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: va_list) -> ^AttributedString {
+AttributedString_initWithFormat_options_locale_context_arguments :: #force_inline proc "c" (self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: cffi.va_list) -> ^AttributedString {
     return msgSend(^AttributedString, self, "initWithFormat:options:locale:context:arguments:", format, options, locale, _context, arguments)
 }
 @(objc_type=AttributedString, objc_name="localizedAttributedStringWithFormat_context", objc_is_class_method=true)
@@ -304,11 +304,11 @@ AttributedString_VTable :: struct {
     initWithMarkdown: proc(self: ^AttributedString, markdown: ^Data, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString,
     initWithMarkdownString: proc(self: ^AttributedString, markdownString: ^String, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString,
     initWithFormat_options_locale: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale) -> ^AttributedString,
-    initWithFormat_options_locale_arguments: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: va_list) -> ^AttributedString,
+    initWithFormat_options_locale_arguments: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: cffi.va_list) -> ^AttributedString,
     localizedAttributedStringWithFormat_: proc(format: ^AttributedString) -> ^AttributedString,
     localizedAttributedStringWithFormat_options: proc(format: ^AttributedString, options: AttributedStringFormattingOptions) -> ^AttributedString,
     initWithFormat_options_locale_context: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary) -> ^AttributedString,
-    initWithFormat_options_locale_context_arguments: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: va_list) -> ^AttributedString,
+    initWithFormat_options_locale_context_arguments: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: cffi.va_list) -> ^AttributedString,
     localizedAttributedStringWithFormat_context: proc(format: ^AttributedString, _context: ^Dictionary) -> ^AttributedString,
     localizedAttributedStringWithFormat_options_context: proc(format: ^AttributedString, options: AttributedStringFormattingOptions, _context: ^Dictionary) -> ^AttributedString,
     attributedStringByInflectingString: proc(self: ^AttributedString) -> ^AttributedString,
@@ -522,7 +522,7 @@ AttributedString_odin_extend :: proc(cls: Class, vt: ^AttributedString_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:"), auto_cast initWithFormat_options_locale, "@@:@L@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_options_locale_arguments != nil {
-        initWithFormat_options_locale_arguments :: proc "c" (self: ^AttributedString, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: va_list) -> ^AttributedString {
+        initWithFormat_options_locale_arguments :: proc "c" (self: ^AttributedString, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: cffi.va_list) -> ^AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -562,7 +562,7 @@ AttributedString_odin_extend :: proc(cls: Class, vt: ^AttributedString_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:context:"), auto_cast initWithFormat_options_locale_context, "@@:@L@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_options_locale_context_arguments != nil {
-        initWithFormat_options_locale_context_arguments :: proc "c" (self: ^AttributedString, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: va_list) -> ^AttributedString {
+        initWithFormat_options_locale_context_arguments :: proc "c" (self: ^AttributedString, _: SEL, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: cffi.va_list) -> ^AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

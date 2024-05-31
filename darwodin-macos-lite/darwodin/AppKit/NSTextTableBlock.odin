@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextTableBlock")
 TextTableBlock :: struct { using _: TextBlock, }
 
-TextTableBlock_VTable :: struct {
-    super: TextBlock_VTable,
-}
-

@@ -76,11 +76,11 @@ DatePickerCell_setDatePickerMode :: #force_inline proc "c" (self: ^DatePickerCel
     msgSend(nil, self, "setDatePickerMode:", datePickerMode)
 }
 @(objc_type=DatePickerCell, objc_name="datePickerElements")
-DatePickerCell_datePickerElements :: #force_inline proc "c" (self: ^DatePickerCell) -> DatePickerElementFlags {
-    return msgSend(DatePickerElementFlags, self, "datePickerElements")
+DatePickerCell_datePickerElements :: #force_inline proc "c" (self: ^DatePickerCell) -> DatePickerElementFlag {
+    return msgSend(DatePickerElementFlag, self, "datePickerElements")
 }
 @(objc_type=DatePickerCell, objc_name="setDatePickerElements")
-DatePickerCell_setDatePickerElements :: #force_inline proc "c" (self: ^DatePickerCell, datePickerElements: DatePickerElementFlags) {
+DatePickerCell_setDatePickerElements :: #force_inline proc "c" (self: ^DatePickerCell, datePickerElements: DatePickerElementFlag) {
     msgSend(nil, self, "setDatePickerElements:", datePickerElements)
 }
 @(objc_type=DatePickerCell, objc_name="calendar")
@@ -316,8 +316,8 @@ DatePickerCell_VTable :: struct {
     setTextColor: proc(self: ^DatePickerCell, textColor: ^Color),
     datePickerMode: proc(self: ^DatePickerCell) -> DatePickerMode,
     setDatePickerMode: proc(self: ^DatePickerCell, datePickerMode: DatePickerMode),
-    datePickerElements: proc(self: ^DatePickerCell) -> DatePickerElementFlags,
-    setDatePickerElements: proc(self: ^DatePickerCell, datePickerElements: DatePickerElementFlags),
+    datePickerElements: proc(self: ^DatePickerCell) -> DatePickerElementFlag,
+    setDatePickerElements: proc(self: ^DatePickerCell, datePickerElements: DatePickerElementFlag),
     calendar: proc(self: ^DatePickerCell) -> ^NS.Calendar,
     setCalendar: proc(self: ^DatePickerCell, calendar: ^NS.Calendar),
     locale: proc(self: ^DatePickerCell) -> ^NS.Locale,
@@ -511,7 +511,7 @@ DatePickerCell_odin_extend :: proc(cls: Class, vt: ^DatePickerCell_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDatePickerMode:"), auto_cast setDatePickerMode, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.datePickerElements != nil {
-        datePickerElements :: proc "c" (self: ^DatePickerCell, _: SEL) -> DatePickerElementFlags {
+        datePickerElements :: proc "c" (self: ^DatePickerCell, _: SEL) -> DatePickerElementFlag {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -521,7 +521,7 @@ DatePickerCell_odin_extend :: proc(cls: Class, vt: ^DatePickerCell_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("datePickerElements"), auto_cast datePickerElements, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setDatePickerElements != nil {
-        setDatePickerElements :: proc "c" (self: ^DatePickerCell, _: SEL, datePickerElements: DatePickerElementFlags) {
+        setDatePickerElements :: proc "c" (self: ^DatePickerCell, _: SEL, datePickerElements: DatePickerElementFlag) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

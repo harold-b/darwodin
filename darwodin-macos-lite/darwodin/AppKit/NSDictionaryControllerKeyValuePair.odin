@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSDictionaryControllerKeyValuePair")
 DictionaryControllerKeyValuePair :: struct { using _: NS.Object, }
 
-DictionaryControllerKeyValuePair_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

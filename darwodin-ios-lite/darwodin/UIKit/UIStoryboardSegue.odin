@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIStoryboardSegue")
 StoryboardSegue :: struct { using _: NS.Object, }
 
-StoryboardSegue_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

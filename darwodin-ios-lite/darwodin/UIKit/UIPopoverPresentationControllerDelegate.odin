@@ -19,6 +19,3 @@ PopoverPresentationControllerDelegate :: struct { using _: intrinsics.objc_objec
     using _: AdaptivePresentationControllerDelegate,
 }
 
-PopoverPresentationControllerDelegate_VTable :: struct {
-}
-

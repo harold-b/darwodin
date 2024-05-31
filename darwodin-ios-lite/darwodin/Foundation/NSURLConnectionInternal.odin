@@ -15,6 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLConnectionInternal")
 URLConnectionInternal :: struct { using _: intrinsics.objc_object, }
 
-URLConnectionInternal_VTable :: struct {
-}
-

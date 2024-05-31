@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UILongPressGestureRecognizer")
 LongPressGestureRecognizer :: struct { using _: GestureRecognizer, }
 
-LongPressGestureRecognizer_VTable :: struct {
-    super: GestureRecognizer_VTable,
-}
-

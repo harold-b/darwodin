@@ -19,7 +19,3 @@ BitmapImageRep :: struct { using _: ImageRep,
     using _: NS.SecureCoding,
 }
 
-BitmapImageRep_VTable :: struct {
-    super: ImageRep_VTable,
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSAccessibilityCustomRotor")
 AccessibilityCustomRotor :: struct { using _: NS.Object, }
 
-AccessibilityCustomRotor_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

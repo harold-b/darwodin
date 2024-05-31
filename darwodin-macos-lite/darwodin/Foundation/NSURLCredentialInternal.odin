@@ -15,6 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLCredentialInternal")
 URLCredentialInternal :: struct { using _: intrinsics.objc_object, }
 
-URLCredentialInternal_VTable :: struct {
-}
-

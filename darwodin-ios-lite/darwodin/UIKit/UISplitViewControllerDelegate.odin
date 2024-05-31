@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISplitViewControllerDelegate")
 SplitViewControllerDelegate :: struct { using _: intrinsics.objc_object, }
 
-SplitViewControllerDelegate_VTable :: struct {
-}
-

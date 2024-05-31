@@ -1,0 +1,22 @@
+{
+    "$schema": "https://raw.githubusercontent.com/DanielGavin/ols/master/misc/ols.schema.json",
+    "collections": [
+        {
+            "name": "core",
+            "path": "/Users/harito/projects/oss/Odin/core"
+        },
+        {
+            "name": "samples",
+            "path": "samples"
+        },
+        {
+            "name": "root",
+            "path": "darwodin-macos"
+        }
+    ],
+    "enable_document_symbols": true,
+    "enable_semantic_tokens": false,
+    "enable_hover": true,
+    "enable_snippets": true,
+    "enable_fake_methods": true
+}

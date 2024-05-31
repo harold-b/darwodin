@@ -1010,10 +1010,10 @@ foreign lib {
     GetSizeAndAlignment :: proc(typePtr: cstring, sizep: ^UInteger, alignp: ^UInteger) -> cstring ---
 
     @(link_name="NSLog")
-    Log :: proc(_0: id) ---
+    Log :: proc(_0: id, #c_vararg args: ..any) ---
 
     @(link_name="NSLogv")
-    Logv :: proc(_0: id, _1: va_list) ---
+    Logv :: proc(_0: id, _1: cffi.va_list) ---
 
     @(link_name="NSDefaultMallocZone")
     DefaultMallocZone :: proc() -> ^Zone ---
@@ -1514,6 +1514,62 @@ ValueTransformerName :: distinct ^String
 /// au_asid_t
 au_asid_t :: distinct CF.pid_t
 
+/// xpc_type_t
+xpc_type_t :: distinct ^_xpc_type_s
+
+/// xpc_object_t
+xpc_object_t :: distinct rawptr
+
+/// xpc_handler_t
+xpc_handler_t :: distinct proc "c" (object: xpc_object_t)
+
+/// xpc_connection_t
+xpc_connection_t :: distinct ^_xpc_connection_s
+
+/// xpc_connection_handler_t
+xpc_connection_handler_t :: distinct proc "c" (connection: xpc_connection_t)
+
+/// xpc_endpoint_t
+
+/// xpc_rich_error_t
+xpc_rich_error_t :: distinct ^_xpc_rich_error_s
+
+/// xpc_activity_t
+xpc_activity_t :: distinct ^_xpc_activity_s
+
+/// xpc_activity_handler_t
+xpc_activity_handler_t :: distinct proc "c" (activity: xpc_activity_t)
+
+/// xpc_activity_state_t
+xpc_activity_state_t :: distinct cffi.long
+
+/// xpc_finalizer_t
+xpc_finalizer_t :: distinct proc "c" (value: rawptr)
+
+/// xpc_session_t
+xpc_session_t :: distinct ^xpc_session_s
+
+/// xpc_session_cancel_handler_t
+xpc_session_cancel_handler_t :: distinct proc "c" (error: xpc_rich_error_t)
+
+/// xpc_session_incoming_message_handler_t
+xpc_session_incoming_message_handler_t :: distinct proc "c" (message: xpc_object_t)
+
+/// xpc_session_reply_handler_t
+xpc_session_reply_handler_t :: distinct proc "c" (reply: xpc_object_t, error: xpc_rich_error_t)
+
+/// xpc_listener_t
+xpc_listener_t :: distinct ^xpc_listener_s
+
+/// xpc_listener_incoming_session_handler_t
+xpc_listener_incoming_session_handler_t :: distinct proc "c" (peer: xpc_session_t)
+
+/// xpc_array_applier_t
+xpc_array_applier_t :: distinct proc "c" (index: cffi.size_t, value: xpc_object_t) -> cffi.bool
+
+/// xpc_dictionary_applier_t
+xpc_dictionary_applier_t :: distinct proc "c" (key: cstring, value: xpc_object_t) -> cffi.bool
+
 /// NSLinguisticTagScheme
 LinguisticTagScheme :: distinct ^String
 
@@ -1527,13 +1583,28 @@ SSLContextRef :: distinct ^SSLContext
 SSLConnectionRef :: distinct rawptr
 
 /// SSLReadFunc
-SSLReadFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.uint) -> CF.OSStatus
+SSLReadFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
 
 /// SSLWriteFunc
-SSLWriteFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.uint) -> CF.OSStatus
+SSLWriteFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
 
 /// NSUserActivityPersistentIdentifier
 UserActivityPersistentIdentifier :: distinct ^String
+
+/// xpc_session_create_flags_t
+xpc_session_create_flags_t :: enum cffi.ulonglong {
+    NONE = 0,
+    INACTIVE = 1,
+    MACH_PRIVILEGED = 2,
+}
+
+/// xpc_listener_create_flags_t
+xpc_listener_create_flags_t :: enum cffi.ulonglong {
+    NONE = 0,
+    INACTIVE = 1,
+    FORCE_MACH = 2,
+    FORCE_XPCSERVICE = 4,
+}
 
 /// NSComparisonResult
 ComparisonResult :: enum cffi.long {
@@ -2026,9 +2097,8 @@ SearchPathDomainMask :: enum cffi.ulong {
     LocalDomainMask = 1,
     NetworkDomainMask = 2,
     SystemDomainMask = 3,
-    AllDomainsMask = 15,
 }
-SearchPathDomainMaskSet :: bit_set[SearchPathDomainMask; cffi.ulong]
+SearchPathDomainMasks :: bit_set[SearchPathDomainMask; cffi.ulong]
 
 /// NSURLBookmarkCreationOptions
 URLBookmarkCreationOptions :: enum cffi.ulong {
@@ -2340,14 +2410,14 @@ MatchingOptions :: enum cffi.ulong {
 }
 
 /// NSMatchingFlags
-MatchingFlags :: enum cffi.ulong {
+MatchingFlag :: enum cffi.ulong {
     Progress = 0,
     Completed = 1,
     HitEnd = 2,
     RequiredEnd = 3,
     InternalError = 4,
 }
-MatchingFlagsSet :: bit_set[MatchingFlags; cffi.ulong]
+MatchingFlags :: bit_set[MatchingFlag; cffi.ulong]
 
 /// NSStreamStatus
 StreamStatus :: enum cffi.ulong {
@@ -2389,7 +2459,7 @@ URLCacheStoragePolicy :: enum cffi.ulong {
 }
 
 /// SecAccessControlCreateFlags
-SecAccessControlCreateFlags :: enum cffi.ulong {
+SecAccessControlCreateFlag :: enum cffi.ulong {
     kSecAccessControlUserPresence = 0,
     kSecAccessControlBiometryAny = 1,
     kSecAccessControlTouchIDAny = 1,
@@ -2402,7 +2472,7 @@ SecAccessControlCreateFlags :: enum cffi.ulong {
     kSecAccessControlPrivateKeyUsage = 30,
     kSecAccessControlApplicationPassword = 31,
 }
-SecAccessControlCreateFlagsSet :: bit_set[SecAccessControlCreateFlags; cffi.ulong]
+SecAccessControlCreateFlags :: bit_set[SecAccessControlCreateFlag; cffi.ulong]
 
 /// SecPadding
 SecPadding :: enum cffi.uint {
@@ -3119,6 +3189,33 @@ __SecRandom :: struct {}
 
 /// __SecTrust
 __SecTrust :: struct {}
+
+/// _xpc_type_s
+_xpc_type_s :: struct {}
+
+/// _xpc_connection_s
+_xpc_connection_s :: struct {}
+
+/// _xpc_endpoint_s
+_xpc_endpoint_s :: struct {}
+
+/// _xpc_bool_s
+_xpc_bool_s :: struct {}
+
+/// _xpc_rich_error_s
+_xpc_rich_error_s :: struct {}
+
+/// _xpc_activity_s
+_xpc_activity_s :: struct {}
+
+/// _xpc_dictionary_s
+_xpc_dictionary_s :: struct {}
+
+/// xpc_session_s
+xpc_session_s :: struct {}
+
+/// xpc_listener_s
+xpc_listener_s :: struct {}
 
 /// SSLContext
 SSLContext :: struct {}

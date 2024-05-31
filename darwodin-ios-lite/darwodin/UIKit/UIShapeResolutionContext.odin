@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIShapeResolutionContext")
 ShapeResolutionContext :: struct { using _: NS.Object, }
 
-ShapeResolutionContext_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

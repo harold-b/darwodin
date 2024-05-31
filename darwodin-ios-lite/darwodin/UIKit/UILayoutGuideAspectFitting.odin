@@ -19,6 +19,3 @@ LayoutGuideAspectFitting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-LayoutGuideAspectFitting_VTable :: struct {
-}
-

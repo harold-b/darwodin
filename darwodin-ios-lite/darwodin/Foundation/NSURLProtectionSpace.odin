@@ -18,7 +18,3 @@ URLProtectionSpace :: struct { using _: Object,
     using _: Copying,
 }
 
-URLProtectionSpace_VTable :: struct {
-    super: Object_VTable,
-}
-

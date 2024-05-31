@@ -19,6 +19,3 @@ ScribbleInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ScribbleInteractionDelegate_VTable :: struct {
-}
-

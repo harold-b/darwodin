@@ -19,6 +19,3 @@ ScrollViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ScrollViewDelegate_VTable :: struct {
-}
-

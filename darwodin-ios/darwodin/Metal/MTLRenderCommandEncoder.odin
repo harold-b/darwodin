@@ -233,15 +233,15 @@ RenderCommandEncoder_setStencilStoreAction :: #force_inline proc "c" (self: ^Ren
     msgSend(nil, self, "setStencilStoreAction:", storeAction)
 }
 @(objc_type=RenderCommandEncoder, objc_name="setColorStoreActionOptions")
-RenderCommandEncoder_setColorStoreActionOptions :: #force_inline proc "c" (self: ^RenderCommandEncoder, storeActionOptions: StoreActionOptions, colorAttachmentIndex: NS.UInteger) {
+RenderCommandEncoder_setColorStoreActionOptions :: #force_inline proc "c" (self: ^RenderCommandEncoder, storeActionOptions: StoreActionOption, colorAttachmentIndex: NS.UInteger) {
     msgSend(nil, self, "setColorStoreActionOptions:atIndex:", storeActionOptions, colorAttachmentIndex)
 }
 @(objc_type=RenderCommandEncoder, objc_name="setDepthStoreActionOptions")
-RenderCommandEncoder_setDepthStoreActionOptions :: #force_inline proc "c" (self: ^RenderCommandEncoder, storeActionOptions: StoreActionOptions) {
+RenderCommandEncoder_setDepthStoreActionOptions :: #force_inline proc "c" (self: ^RenderCommandEncoder, storeActionOptions: StoreActionOption) {
     msgSend(nil, self, "setDepthStoreActionOptions:", storeActionOptions)
 }
 @(objc_type=RenderCommandEncoder, objc_name="setStencilStoreActionOptions")
-RenderCommandEncoder_setStencilStoreActionOptions :: #force_inline proc "c" (self: ^RenderCommandEncoder, storeActionOptions: StoreActionOptions) {
+RenderCommandEncoder_setStencilStoreActionOptions :: #force_inline proc "c" (self: ^RenderCommandEncoder, storeActionOptions: StoreActionOption) {
     msgSend(nil, self, "setStencilStoreActionOptions:", storeActionOptions)
 }
 @(objc_type=RenderCommandEncoder, objc_name="setObjectBytes")

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTreeController")
 TreeController :: struct { using _: ObjectController, }
 
-TreeController_VTable :: struct {
-    super: ObjectController_VTable,
-}
-

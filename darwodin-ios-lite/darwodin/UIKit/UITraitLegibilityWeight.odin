@@ -19,7 +19,3 @@ TraitLegibilityWeight :: struct { using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 
-TraitLegibilityWeight_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

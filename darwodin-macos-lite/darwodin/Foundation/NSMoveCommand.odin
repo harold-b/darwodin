@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSMoveCommand")
 MoveCommand :: struct { using _: ScriptCommand, }
 
-MoveCommand_VTable :: struct {
-    super: ScriptCommand_VTable,
-}
-

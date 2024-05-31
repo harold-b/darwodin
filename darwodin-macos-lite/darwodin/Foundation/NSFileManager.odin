@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSFileManager")
 FileManager :: struct { using _: Object, }
 
-FileManager_VTable :: struct {
-    super: Object_VTable,
-}
-

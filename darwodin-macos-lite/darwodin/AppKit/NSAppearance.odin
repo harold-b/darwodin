@@ -19,7 +19,3 @@ Appearance :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-Appearance_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -376,6 +376,8 @@ foreign lib {
     @(link_name="UITextContentTypeCreditCardExpirationMonth") TextContentTypeCreditCardExpirationMonth: ^NS.String
     @(link_name="UITextContentTypeCreditCardExpirationYear") TextContentTypeCreditCardExpirationYear: ^NS.String
     @(link_name="UITextContentTypeCreditCardType") TextContentTypeCreditCardType: ^NS.String
+    @(link_name="UITextContentTypeCellularEID") TextContentTypeCellularEID: ^NS.String
+    @(link_name="UITextContentTypeCellularIMEI") TextContentTypeCellularIMEI: ^NS.String
     @(link_name="UITextInputTextBackgroundColorKey") TextInputTextBackgroundColorKey: ^NS.String
     @(link_name="UITextInputTextColorKey") TextInputTextColorKey: ^NS.String
     @(link_name="UITextInputTextFontKey") TextInputTextFontKey: ^NS.String
@@ -1458,7 +1460,7 @@ MenuElementSize :: enum cffi.long {
 }
 
 /// UIKeyModifierFlags
-KeyModifierFlags :: enum cffi.long {
+KeyModifierFlag :: enum cffi.long {
     AlphaShift = 16,
     Shift = 17,
     Control = 18,
@@ -1466,7 +1468,7 @@ KeyModifierFlags :: enum cffi.long {
     Command = 20,
     NumericPad = 21,
 }
-KeyModifierFlagsSet :: bit_set[KeyModifierFlags; cffi.long]
+KeyModifierFlags :: bit_set[KeyModifierFlag; cffi.long]
 
 /// UIEventType
 EventType :: enum cffi.long {
@@ -1500,7 +1502,7 @@ EventButtonMask :: enum cffi.long {
     Primary = 0,
     Secondary = 1,
 }
-EventButtonMaskSet :: bit_set[EventButtonMask; cffi.long]
+EventButtonMasks :: bit_set[EventButtonMask; cffi.long]
 
 /// UIEditingInteractionConfiguration
 EditingInteractionConfiguration :: enum cffi.long {
@@ -1683,11 +1685,8 @@ InterfaceOrientationMask :: enum cffi.ulong {
     LandscapeLeft = 4,
     LandscapeRight = 3,
     PortraitUpsideDown = 2,
-    Landscape = 4,
-    All = 4,
-    AllButUpsideDown = 4,
 }
-InterfaceOrientationMaskSet :: bit_set[InterfaceOrientationMask; cffi.ulong]
+InterfaceOrientationMasks :: bit_set[InterfaceOrientationMask; cffi.ulong]
 
 /// UIDeviceBatteryState
 DeviceBatteryState :: enum cffi.long {
@@ -1742,6 +1741,7 @@ TouchProperties :: enum cffi.long {
     PropertyAzimuth = 2,
     PropertyAltitude = 4,
     PropertyLocation = 8,
+    PropertyRoll = 16,
 }
 
 /// UISceneActivationState
@@ -2730,11 +2730,10 @@ TableViewCellAccessoryType :: enum cffi.long {
 
 /// UITableViewCellStateMask
 TableViewCellStateMask :: enum cffi.ulong {
-    DefaultMask = 0,
     ShowingEditControlMask = 0,
     ShowingDeleteConfirmationMask = 1,
 }
-TableViewCellStateMaskSet :: bit_set[TableViewCellStateMask; cffi.ulong]
+TableViewCellStateMasks :: bit_set[TableViewCellStateMask; cffi.ulong]
 
 /// UITableViewCellDragState
 TableViewCellDragState :: enum cffi.long {
@@ -3061,6 +3060,7 @@ DatePickerMode :: enum cffi.long {
     Date = 1,
     DateAndTime = 2,
     CountDownTimer = 3,
+    YearAndMonth = 4,
 }
 
 /// UIDatePickerStyle
@@ -3178,14 +3178,14 @@ NSFileProviderItemFields :: enum cffi.ulong {
 }
 
 /// NSFileProviderFileSystemFlags
-NSFileProviderFileSystemFlags :: enum cffi.ulong {
+NSFileProviderFileSystemFlag :: enum cffi.ulong {
     UserExecutable = 0,
     UserReadable = 1,
     UserWritable = 2,
     Hidden = 3,
     PathExtensionHidden = 4,
 }
-NSFileProviderFileSystemFlagsSet :: bit_set[NSFileProviderFileSystemFlags; cffi.ulong]
+NSFileProviderFileSystemFlags :: bit_set[NSFileProviderFileSystemFlag; cffi.ulong]
 
 /// NSFileProviderContentPolicy
 NSFileProviderContentPolicy :: enum cffi.long {
@@ -3250,9 +3250,8 @@ ScrollType :: enum cffi.ulong {
 ScrollTypeMask :: enum cffi.long {
     Discrete = 0,
     Continuous = 1,
-    All = 1,
 }
-ScrollTypeMaskSet :: bit_set[ScrollTypeMask; cffi.long]
+ScrollTypeMasks :: bit_set[ScrollTypeMask; cffi.long]
 
 /// UINavigationControllerOperation
 NavigationControllerOperation :: enum cffi.long {
@@ -3856,6 +3855,16 @@ PencilPreferredAction :: enum cffi.long {
     SwitchPrevious = 2,
     ShowColorPalette = 3,
     ShowInkAttributes = 4,
+    ShowContextualPalette = 5,
+    RunSystemShortcut = 6,
+}
+
+/// UIPencilInteractionPhase
+PencilInteractionPhase :: enum cffi.ulong {
+    Began = 0,
+    Changed = 1,
+    Ended = 2,
+    Cancelled = 3,
 }
 
 /// UIWindowSceneResizingRestrictions

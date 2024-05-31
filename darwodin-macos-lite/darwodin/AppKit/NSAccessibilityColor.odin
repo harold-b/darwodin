@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSAccessibilityColor")
 AccessibilityColor :: struct { using _: intrinsics.objc_object, }
 
-AccessibilityColor_VTable :: struct {
-}
-

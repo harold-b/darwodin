@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIReferenceLibraryViewController")
 ReferenceLibraryViewController :: struct { using _: ViewController, }
 
-ReferenceLibraryViewController_VTable :: struct {
-    super: ViewController_VTable,
-}
-

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSCalendarDate")
 CalendarDate :: struct { using _: Date, }
 
-CalendarDate_VTable :: struct {
-    super: Date_VTable,
-}
-

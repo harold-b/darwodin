@@ -30,21 +30,17 @@ if [[ 0 -eq ${#frameworks[@]} ]]; then
   exit 1
 fi
 
-out_folder=darwodin-macos
+source ./config
+
+out_folder=$(darwodin_get_output_folder "${use_ios}" "${lite}")
 appkit=AppKit
 
 if [[ ${lite} -eq 1 ]]; then
-  out_folder=darwodin-macos-lite
   cgen_args+=(--odin-elaborated-objc-classes ../lite-classes)
 fi
 
 if [[ ${use_ios} -eq 1 ]]; then
-  out_folder=darwodin-ios
   appkit=UIKit
-
-  if [[ ${lite} -eq 1 ]]; then
-    out_folder=darwodin-ios-lite
-  fi
 fi
 
 cgen_args+=()
@@ -70,14 +66,14 @@ for f in ${frameworks[@]}; do
 
         args+=(--odin-external-type ../exports/${appkit}.exports.yml)
     fi
-
+    # echo "${out_path}"
     csgen ${cgen_args[@]} ${args[@]} --odin-out "${out_path}" "$framework_cfg"
 done
 
-# Copy Objective-C sources
-# if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
-  if [[ ! -h "${out_folder}/darwodin/ObjectiveC" ]]; then
-    # ln -s "$(pwd)/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
-    cp -r "ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
-  fi
-# fi
+# # Copy Objective-C sources
+# # if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
+#   if [[ ! -h "${out_folder}/darwodin/ObjectiveC" ]]; then
+#     # ln -s "$(pwd)/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
+#     cp -r "ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
+#   fi
+# # fi

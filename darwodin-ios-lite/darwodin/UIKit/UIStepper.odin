@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIStepper")
 Stepper :: struct { using _: Control, }
 
-Stepper_VTable :: struct {
-    super: Control_VTable,
-}
-

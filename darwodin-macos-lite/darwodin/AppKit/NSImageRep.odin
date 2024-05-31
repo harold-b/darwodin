@@ -20,7 +20,3 @@ ImageRep :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-ImageRep_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

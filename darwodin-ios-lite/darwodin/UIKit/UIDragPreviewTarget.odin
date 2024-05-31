@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIDragPreviewTarget")
 DragPreviewTarget :: struct { using _: PreviewTarget, }
 
-DragPreviewTarget_VTable :: struct {
-    super: PreviewTarget_VTable,
-}
-

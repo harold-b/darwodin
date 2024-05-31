@@ -17,7 +17,3 @@ URLSessionConfiguration :: struct { using _: Object,
     using _: Copying,
 }
 
-URLSessionConfiguration_VTable :: struct {
-    super: Object_VTable,
-}
-

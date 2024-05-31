@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIFocusSystem")
 FocusSystem :: struct { using _: NS.Object, }
 
-FocusSystem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

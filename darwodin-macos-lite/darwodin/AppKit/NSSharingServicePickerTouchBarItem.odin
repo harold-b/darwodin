@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSharingServicePickerTouchBarItem")
 SharingServicePickerTouchBarItem :: struct { using _: TouchBarItem, }
 
-SharingServicePickerTouchBarItem_VTable :: struct {
-    super: TouchBarItem_VTable,
-}
-

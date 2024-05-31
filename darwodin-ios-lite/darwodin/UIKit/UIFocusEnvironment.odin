@@ -19,6 +19,3 @@ FocusEnvironment :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-FocusEnvironment_VTable :: struct {
-}
-

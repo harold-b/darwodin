@@ -19,6 +19,3 @@ TableViewDataSourcePrefetching :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TableViewDataSourcePrefetching_VTable :: struct {
-}
-

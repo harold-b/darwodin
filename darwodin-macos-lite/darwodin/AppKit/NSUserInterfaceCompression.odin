@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSUserInterfaceCompression")
 UserInterfaceCompression :: struct { using _: intrinsics.objc_object, }
 
-UserInterfaceCompression_VTable :: struct {
-}
-

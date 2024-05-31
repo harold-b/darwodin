@@ -21,7 +21,7 @@ CommandAlternate :: struct { using _: NS.Object,
 }
 
 @(objc_type=CommandAlternate, objc_name="alternateWithTitle", objc_is_class_method=true)
-CommandAlternate_alternateWithTitle :: #force_inline proc "c" (title: ^NS.String, action: SEL, modifierFlags: KeyModifierFlags) -> ^CommandAlternate {
+CommandAlternate_alternateWithTitle :: #force_inline proc "c" (title: ^NS.String, action: SEL, modifierFlags: KeyModifierFlag) -> ^CommandAlternate {
     return msgSend(^CommandAlternate, CommandAlternate, "alternateWithTitle:action:modifierFlags:", title, action, modifierFlags)
 }
 @(objc_type=CommandAlternate, objc_name="new", objc_is_class_method=true)
@@ -45,8 +45,8 @@ CommandAlternate_action :: #force_inline proc "c" (self: ^CommandAlternate) -> S
     return msgSend(SEL, self, "action")
 }
 @(objc_type=CommandAlternate, objc_name="modifierFlags")
-CommandAlternate_modifierFlags :: #force_inline proc "c" (self: ^CommandAlternate) -> KeyModifierFlags {
-    return msgSend(KeyModifierFlags, self, "modifierFlags")
+CommandAlternate_modifierFlags :: #force_inline proc "c" (self: ^CommandAlternate) -> KeyModifierFlag {
+    return msgSend(KeyModifierFlag, self, "modifierFlags")
 }
 @(objc_type=CommandAlternate, objc_name="supportsSecureCoding", objc_is_class_method=true)
 CommandAlternate_supportsSecureCoding :: #force_inline proc "c" () -> bool {
@@ -172,13 +172,13 @@ CommandAlternate_cancelPreviousPerformRequestsWithTarget :: proc {
 
 CommandAlternate_VTable :: struct {
     super: NS.Object_VTable,
-    alternateWithTitle: proc(title: ^NS.String, action: SEL, modifierFlags: KeyModifierFlags) -> ^CommandAlternate,
+    alternateWithTitle: proc(title: ^NS.String, action: SEL, modifierFlags: KeyModifierFlag) -> ^CommandAlternate,
     new: proc() -> ^CommandAlternate,
     init: proc(self: ^CommandAlternate) -> ^CommandAlternate,
     initWithCoder: proc(self: ^CommandAlternate, coder: ^NS.Coder) -> ^CommandAlternate,
     title: proc(self: ^CommandAlternate) -> ^NS.String,
     action: proc(self: ^CommandAlternate) -> SEL,
-    modifierFlags: proc(self: ^CommandAlternate) -> KeyModifierFlags,
+    modifierFlags: proc(self: ^CommandAlternate) -> KeyModifierFlag,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -218,7 +218,7 @@ CommandAlternate_odin_extend :: proc(cls: Class, vt: ^CommandAlternate_VTable) {
     NS.Object_odin_extend(cls, &vt.super)
 
     if vt.alternateWithTitle != nil {
-        alternateWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, action: SEL, modifierFlags: KeyModifierFlags) -> ^CommandAlternate {
+        alternateWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, action: SEL, modifierFlags: KeyModifierFlag) -> ^CommandAlternate {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -278,7 +278,7 @@ CommandAlternate_odin_extend :: proc(cls: Class, vt: ^CommandAlternate_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, ":@:") do panic("Failed to register objC method.")
     }
     if vt.modifierFlags != nil {
-        modifierFlags :: proc "c" (self: ^CommandAlternate, _: SEL) -> KeyModifierFlags {
+        modifierFlags :: proc "c" (self: ^CommandAlternate, _: SEL) -> KeyModifierFlag {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

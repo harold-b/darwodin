@@ -15,6 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSXPCProxyCreating")
 XPCProxyCreating :: struct { using _: intrinsics.objc_object, }
 
-XPCProxyCreating_VTable :: struct {
-}
-

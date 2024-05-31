@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIScreenshotService")
 ScreenshotService :: struct { using _: NS.Object, }
 
-ScreenshotService_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

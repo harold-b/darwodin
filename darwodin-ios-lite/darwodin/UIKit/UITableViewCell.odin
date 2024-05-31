@@ -20,7 +20,3 @@ TableViewCell :: struct { using _: View,
     using _: GestureRecognizerDelegate,
 }
 
-TableViewCell_VTable :: struct {
-    super: View_VTable,
-}
-

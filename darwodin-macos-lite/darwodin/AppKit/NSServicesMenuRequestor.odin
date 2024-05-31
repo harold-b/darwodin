@@ -19,6 +19,3 @@ ServicesMenuRequestor :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ServicesMenuRequestor_VTable :: struct {
-}
-

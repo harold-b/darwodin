@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSStatusBarButton")
 StatusBarButton :: struct { using _: Button, }
 
-StatusBarButton_VTable :: struct {
-    super: Button_VTable,
-}
-

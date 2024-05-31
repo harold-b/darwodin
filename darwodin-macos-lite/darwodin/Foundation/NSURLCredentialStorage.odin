@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLCredentialStorage")
 URLCredentialStorage :: struct { using _: Object, }
 
-URLCredentialStorage_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -27,6 +27,14 @@ SelectionFeedbackGenerator_init :: proc "c" (self: ^SelectionFeedbackGenerator) 
 SelectionFeedbackGenerator_selectionChanged :: #force_inline proc "c" (self: ^SelectionFeedbackGenerator) {
     msgSend(nil, self, "selectionChanged")
 }
+@(objc_type=SelectionFeedbackGenerator, objc_name="selectionChangedAtLocation")
+SelectionFeedbackGenerator_selectionChangedAtLocation :: #force_inline proc "c" (self: ^SelectionFeedbackGenerator, location: CG.Point) {
+    msgSend(nil, self, "selectionChangedAtLocation:", location)
+}
+@(objc_type=SelectionFeedbackGenerator, objc_name="feedbackGeneratorForView", objc_is_class_method=true)
+SelectionFeedbackGenerator_feedbackGeneratorForView :: #force_inline proc "c" (view: ^View) -> ^FeedbackGenerator {
+    return msgSend(^FeedbackGenerator, SelectionFeedbackGenerator, "feedbackGeneratorForView:", view)
+}
 @(objc_type=SelectionFeedbackGenerator, objc_name="load", objc_is_class_method=true)
 SelectionFeedbackGenerator_load :: #force_inline proc "c" () {
     msgSend(nil, SelectionFeedbackGenerator, "load")
@@ -152,6 +160,8 @@ SelectionFeedbackGenerator_cancelPreviousPerformRequestsWithTarget :: proc {
 SelectionFeedbackGenerator_VTable :: struct {
     super: FeedbackGenerator_VTable,
     selectionChanged: proc(self: ^SelectionFeedbackGenerator),
+    selectionChangedAtLocation: proc(self: ^SelectionFeedbackGenerator, location: CG.Point),
+    feedbackGeneratorForView: proc(view: ^View) -> ^FeedbackGenerator,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^SelectionFeedbackGenerator,
@@ -199,6 +209,26 @@ SelectionFeedbackGenerator_odin_extend :: proc(cls: Class, vt: ^SelectionFeedbac
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionChanged"), auto_cast selectionChanged, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.selectionChangedAtLocation != nil {
+        selectionChangedAtLocation :: proc "c" (self: ^SelectionFeedbackGenerator, _: SEL, location: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^SelectionFeedbackGenerator_VTable)vt_ctx.super_vt).selectionChangedAtLocation(self, location)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectionChangedAtLocation:"), auto_cast selectionChangedAtLocation, "v@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.feedbackGeneratorForView != nil {
+        feedbackGeneratorForView :: proc "c" (self: Class, _: SEL, view: ^View) -> ^FeedbackGenerator {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SelectionFeedbackGenerator_VTable)vt_ctx.super_vt).feedbackGeneratorForView( view)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("feedbackGeneratorForView:"), auto_cast feedbackGeneratorForView, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

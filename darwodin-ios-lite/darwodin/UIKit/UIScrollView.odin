@@ -20,7 +20,3 @@ ScrollView :: struct { using _: View,
     using _: FocusItemScrollableContainer,
 }
 
-ScrollView_VTable :: struct {
-    super: View_VTable,
-}
-

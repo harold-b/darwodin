@@ -19,6 +19,3 @@ SeguePerforming :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-SeguePerforming_VTable :: struct {
-}
-

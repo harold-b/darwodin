@@ -159,6 +159,10 @@ TextInput_updateFloatingCursorAtPoint :: #force_inline proc "c" (self: ^TextInpu
 TextInput_endFloatingCursor :: #force_inline proc "c" (self: ^TextInput) {
     msgSend(nil, self, "endFloatingCursor")
 }
+@(objc_type=TextInput, objc_name="caretTransformForPosition")
+TextInput_caretTransformForPosition :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition) -> CG.AffineTransform {
+    return msgSend(CG.AffineTransform, self, "caretTransformForPosition:", position)
+}
 @(objc_type=TextInput, objc_name="editMenuForTextRange")
 TextInput_editMenuForTextRange :: #force_inline proc "c" (self: ^TextInput, textRange: ^TextRange, suggestedActions: ^NS.Array) -> ^Menu {
     return msgSend(^Menu, self, "editMenuForTextRange:suggestedActions:", textRange, suggestedActions)
@@ -281,6 +285,7 @@ TextInput_VTable :: struct {
     beginFloatingCursorAtPoint: proc(self: ^TextInput, point: CG.Point),
     updateFloatingCursorAtPoint: proc(self: ^TextInput, point: CG.Point),
     endFloatingCursor: proc(self: ^TextInput),
+    caretTransformForPosition: proc(self: ^TextInput, position: ^TextPosition) -> CG.AffineTransform,
     editMenuForTextRange: proc(self: ^TextInput, textRange: ^TextRange, suggestedActions: ^NS.Array) -> ^Menu,
     willPresentEditMenuWithAnimator: proc(self: ^TextInput, animator: ^EditMenuInteractionAnimating),
     willDismissEditMenuWithAnimator: proc(self: ^TextInput, animator: ^EditMenuInteractionAnimating),
@@ -653,6 +658,16 @@ TextInput_odin_extend :: proc(cls: Class, vt: ^TextInput_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("endFloatingCursor"), auto_cast endFloatingCursor, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.caretTransformForPosition != nil {
+        caretTransformForPosition :: proc "c" (self: ^TextInput, _: SEL, position: ^TextPosition) -> CG.AffineTransform {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInput_VTable)vt_ctx.protocol_vt).caretTransformForPosition(self, position)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("caretTransformForPosition:"), auto_cast caretTransformForPosition, "{CGAffineTransform=dddddd}@:@") do panic("Failed to register objC method.")
     }
     if vt.editMenuForTextRange != nil {
         editMenuForTextRange :: proc "c" (self: ^TextInput, _: SEL, textRange: ^TextRange, suggestedActions: ^NS.Array) -> ^Menu {

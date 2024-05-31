@@ -19,6 +19,3 @@ Interaction :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-Interaction_VTable :: struct {
-}
-

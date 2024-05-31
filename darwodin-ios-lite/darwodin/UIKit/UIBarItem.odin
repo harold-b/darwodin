@@ -20,7 +20,3 @@ BarItem :: struct { using _: NS.Object,
     using _: Appearance,
 }
 
-BarItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

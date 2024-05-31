@@ -17,6 +17,3 @@ ConnectionDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-ConnectionDelegate_VTable :: struct {
-}
-

@@ -19,7 +19,3 @@ GridRow :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-GridRow_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -20,7 +20,3 @@ ListContentImageProperties :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-ListContentImageProperties_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

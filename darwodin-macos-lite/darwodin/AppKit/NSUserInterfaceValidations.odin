@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSUserInterfaceValidations")
 UserInterfaceValidations :: struct { using _: intrinsics.objc_object, }
 
-UserInterfaceValidations_VTable :: struct {
-}
-

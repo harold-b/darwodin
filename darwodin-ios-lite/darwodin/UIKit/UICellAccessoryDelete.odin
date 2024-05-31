@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICellAccessoryDelete")
 CellAccessoryDelete :: struct { using _: CellAccessory, }
 
-CellAccessoryDelete_VTable :: struct {
-    super: CellAccessory_VTable,
-}
-

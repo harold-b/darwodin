@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSLayoutDimension")
 NSLayoutDimension :: struct { using _: NSLayoutAnchor, }
 
-NSLayoutDimension_VTable :: struct {
-    super: NSLayoutAnchor_VTable,
-}
-

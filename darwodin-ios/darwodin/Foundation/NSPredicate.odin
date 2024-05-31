@@ -33,7 +33,7 @@ Predicate_predicateWithFormat_ :: #force_inline proc "c" (predicateFormat: ^Stri
     return msgSend(^Predicate, Predicate, "predicateWithFormat:", predicateFormat)
 }
 @(objc_type=Predicate, objc_name="predicateWithFormat_arguments", objc_is_class_method=true)
-Predicate_predicateWithFormat_arguments :: #force_inline proc "c" (predicateFormat: ^String, argList: va_list) -> ^Predicate {
+Predicate_predicateWithFormat_arguments :: #force_inline proc "c" (predicateFormat: ^String, argList: cffi.va_list) -> ^Predicate {
     return msgSend(^Predicate, Predicate, "predicateWithFormat:arguments:", predicateFormat, argList)
 }
 @(objc_type=Predicate, objc_name="predicateFromMetadataQueryString", objc_is_class_method=true)
@@ -211,7 +211,7 @@ Predicate_VTable :: struct {
     super: Object_VTable,
     predicateWithFormat_argumentArray: proc(predicateFormat: ^String, arguments: ^Array) -> ^Predicate,
     predicateWithFormat_: proc(predicateFormat: ^String) -> ^Predicate,
-    predicateWithFormat_arguments: proc(predicateFormat: ^String, argList: va_list) -> ^Predicate,
+    predicateWithFormat_arguments: proc(predicateFormat: ^String, argList: cffi.va_list) -> ^Predicate,
     predicateFromMetadataQueryString: proc(queryString: ^String) -> ^Predicate,
     predicateWithValue: proc(value: bool) -> ^Predicate,
     predicateWithBlock: proc(block: proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool) -> ^Predicate,
@@ -280,7 +280,7 @@ Predicate_odin_extend :: proc(cls: Class, vt: ^Predicate_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("predicateWithFormat:"), auto_cast predicateWithFormat_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.predicateWithFormat_arguments != nil {
-        predicateWithFormat_arguments :: proc "c" (self: Class, _: SEL, predicateFormat: ^String, argList: va_list) -> ^Predicate {
+        predicateWithFormat_arguments :: proc "c" (self: Class, _: SEL, predicateFormat: ^String, argList: cffi.va_list) -> ^Predicate {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

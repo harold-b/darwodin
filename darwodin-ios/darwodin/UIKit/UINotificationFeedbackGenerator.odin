@@ -23,9 +23,17 @@ NotificationFeedbackGenerator_init :: proc "c" (self: ^NotificationFeedbackGener
 }
 
 
-@(objc_type=NotificationFeedbackGenerator, objc_name="notificationOccurred")
-NotificationFeedbackGenerator_notificationOccurred :: #force_inline proc "c" (self: ^NotificationFeedbackGenerator, notificationType: NotificationFeedbackType) {
+@(objc_type=NotificationFeedbackGenerator, objc_name="notificationOccurred_")
+NotificationFeedbackGenerator_notificationOccurred_ :: #force_inline proc "c" (self: ^NotificationFeedbackGenerator, notificationType: NotificationFeedbackType) {
     msgSend(nil, self, "notificationOccurred:", notificationType)
+}
+@(objc_type=NotificationFeedbackGenerator, objc_name="notificationOccurred_atLocation")
+NotificationFeedbackGenerator_notificationOccurred_atLocation :: #force_inline proc "c" (self: ^NotificationFeedbackGenerator, notificationType: NotificationFeedbackType, location: CG.Point) {
+    msgSend(nil, self, "notificationOccurred:atLocation:", notificationType, location)
+}
+@(objc_type=NotificationFeedbackGenerator, objc_name="feedbackGeneratorForView", objc_is_class_method=true)
+NotificationFeedbackGenerator_feedbackGeneratorForView :: #force_inline proc "c" (view: ^View) -> ^FeedbackGenerator {
+    return msgSend(^FeedbackGenerator, NotificationFeedbackGenerator, "feedbackGeneratorForView:", view)
 }
 @(objc_type=NotificationFeedbackGenerator, objc_name="load", objc_is_class_method=true)
 NotificationFeedbackGenerator_load :: #force_inline proc "c" () {
@@ -143,6 +151,12 @@ NotificationFeedbackGenerator_classFallbacksForKeyedArchiver :: #force_inline pr
 NotificationFeedbackGenerator_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
     return msgSend(Class, NotificationFeedbackGenerator, "classForKeyedUnarchiver")
 }
+@(objc_type=NotificationFeedbackGenerator, objc_name="notificationOccurred")
+NotificationFeedbackGenerator_notificationOccurred :: proc {
+    NotificationFeedbackGenerator_notificationOccurred_,
+    NotificationFeedbackGenerator_notificationOccurred_atLocation,
+}
+
 @(objc_type=NotificationFeedbackGenerator, objc_name="cancelPreviousPerformRequestsWithTarget")
 NotificationFeedbackGenerator_cancelPreviousPerformRequestsWithTarget :: proc {
     NotificationFeedbackGenerator_cancelPreviousPerformRequestsWithTarget_selector_object,
@@ -151,7 +165,9 @@ NotificationFeedbackGenerator_cancelPreviousPerformRequestsWithTarget :: proc {
 
 NotificationFeedbackGenerator_VTable :: struct {
     super: FeedbackGenerator_VTable,
-    notificationOccurred: proc(self: ^NotificationFeedbackGenerator, notificationType: NotificationFeedbackType),
+    notificationOccurred_: proc(self: ^NotificationFeedbackGenerator, notificationType: NotificationFeedbackType),
+    notificationOccurred_atLocation: proc(self: ^NotificationFeedbackGenerator, notificationType: NotificationFeedbackType, location: CG.Point),
+    feedbackGeneratorForView: proc(view: ^View) -> ^FeedbackGenerator,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^NotificationFeedbackGenerator,
@@ -190,15 +206,35 @@ NotificationFeedbackGenerator_odin_extend :: proc(cls: Class, vt: ^NotificationF
     
     FeedbackGenerator_odin_extend(cls, &vt.super)
 
-    if vt.notificationOccurred != nil {
-        notificationOccurred :: proc "c" (self: ^NotificationFeedbackGenerator, _: SEL, notificationType: NotificationFeedbackType) {
+    if vt.notificationOccurred_ != nil {
+        notificationOccurred_ :: proc "c" (self: ^NotificationFeedbackGenerator, _: SEL, notificationType: NotificationFeedbackType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^NotificationFeedbackGenerator_VTable)vt_ctx.super_vt).notificationOccurred(self, notificationType)
+            (cast(^NotificationFeedbackGenerator_VTable)vt_ctx.super_vt).notificationOccurred_(self, notificationType)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("notificationOccurred:"), auto_cast notificationOccurred, "v@:l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("notificationOccurred:"), auto_cast notificationOccurred_, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.notificationOccurred_atLocation != nil {
+        notificationOccurred_atLocation :: proc "c" (self: ^NotificationFeedbackGenerator, _: SEL, notificationType: NotificationFeedbackType, location: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^NotificationFeedbackGenerator_VTable)vt_ctx.super_vt).notificationOccurred_atLocation(self, notificationType, location)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("notificationOccurred:atLocation:"), auto_cast notificationOccurred_atLocation, "v@:l{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.feedbackGeneratorForView != nil {
+        feedbackGeneratorForView :: proc "c" (self: Class, _: SEL, view: ^View) -> ^FeedbackGenerator {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NotificationFeedbackGenerator_VTable)vt_ctx.super_vt).feedbackGeneratorForView( view)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("feedbackGeneratorForView:"), auto_cast feedbackGeneratorForView, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

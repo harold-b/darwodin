@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSManagedObjectModel")
 ManagedObjectModel :: struct { using _: intrinsics.objc_object, }
 
-ManagedObjectModel_VTable :: struct {
-}
-

@@ -19,7 +19,3 @@ NSCollectionLayoutEdgeSpacing :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-NSCollectionLayoutEdgeSpacing_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

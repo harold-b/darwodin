@@ -28,8 +28,8 @@ PointerRegionRequest_location :: #force_inline proc "c" (self: ^PointerRegionReq
     return msgSend(CG.Point, self, "location")
 }
 @(objc_type=PointerRegionRequest, objc_name="modifiers")
-PointerRegionRequest_modifiers :: #force_inline proc "c" (self: ^PointerRegionRequest) -> KeyModifierFlags {
-    return msgSend(KeyModifierFlags, self, "modifiers")
+PointerRegionRequest_modifiers :: #force_inline proc "c" (self: ^PointerRegionRequest) -> KeyModifierFlag {
+    return msgSend(KeyModifierFlag, self, "modifiers")
 }
 @(objc_type=PointerRegionRequest, objc_name="load", objc_is_class_method=true)
 PointerRegionRequest_load :: #force_inline proc "c" () {
@@ -156,7 +156,7 @@ PointerRegionRequest_cancelPreviousPerformRequestsWithTarget :: proc {
 PointerRegionRequest_VTable :: struct {
     super: NS.Object_VTable,
     location: proc(self: ^PointerRegionRequest) -> CG.Point,
-    modifiers: proc(self: ^PointerRegionRequest) -> KeyModifierFlags,
+    modifiers: proc(self: ^PointerRegionRequest) -> KeyModifierFlag,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^PointerRegionRequest,
@@ -206,7 +206,7 @@ PointerRegionRequest_odin_extend :: proc(cls: Class, vt: ^PointerRegionRequest_V
         if !class_addMethod(cls, intrinsics.objc_find_selector("location"), auto_cast location, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.modifiers != nil {
-        modifiers :: proc "c" (self: ^PointerRegionRequest, _: SEL) -> KeyModifierFlags {
+        modifiers :: proc "c" (self: ^PointerRegionRequest, _: SEL) -> KeyModifierFlag {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

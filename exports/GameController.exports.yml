@@ -2,6 +2,7 @@ PackageName: "GameController"
 ImportName: "GC"
 
 Structs:
+    GCPoint2: GC.Point2
     GCDualSenseAdaptiveTriggerPositionalAmplitudes: GC.DualSenseAdaptiveTriggerPositionalAmplitudes
     GCDualSenseAdaptiveTriggerPositionalResistiveStrengths: GC.DualSenseAdaptiveTriggerPositionalResistiveStrengths
     GCAcceleration: GC.Acceleration
@@ -84,6 +85,9 @@ ObjCClasses:
     GCSteeringWheelElement: GC.SteeringWheelElement
     GCGearShifterElement: GC.GearShifterElement
     GCRacingWheelInputState: GC.RacingWheelInputState
+    GCVirtualControllerConfiguration: GC.VirtualControllerConfiguration
+    GCVirtualControllerElementConfiguration: GC.VirtualControllerElementConfiguration
+    GCVirtualController: GC.VirtualController
 
 ObjCProtocols:
     GCDevice: GC.Device
@@ -103,6 +107,7 @@ ObjCProtocols:
     GCAxisElement: GC.AxisElement
     GCSwitchPositionInput: GC.SwitchPositionInput
     GCSwitchElement: GC.SwitchElement
+    GCAxis2DInput: GC.Axis2DInput
     GCDirectionPadElement: GC.DirectionPadElement
     GCDevicePhysicalInputState: GC.DevicePhysicalInputState
     GCDevicePhysicalInputStateDiff: GC.DevicePhysicalInputStateDiff
@@ -112,6 +117,8 @@ ObjCProtocols:
 
 
 Functions:
+    ::GCInputBackLeftButton: GC.InputBackLeftButton
+    ::GCInputBackRightButton: GC.InputBackRightButton
     ::GCInputArcadeButtonName: GC.InputArcadeButtonName
     ::GCGamepadSnapShotDataV100FromNSData: GC.GamepadSnapShotDataV100FromNSData
     ::GCExtendedGamepadSnapshotDataFromNSData: GC.ExtendedGamepadSnapshotDataFromNSData
@@ -120,6 +127,7 @@ Functions:
     ::GCMicroGamepadSnapShotDataV100FromNSData: GC.MicroGamepadSnapShotDataV100FromNSData
 
 ExternVars:
+    ::GCPoint2Zero: GC.Point2Zero
     ::GCProductCategoryDualSense: GC.ProductCategoryDualSense
     ::GCProductCategoryDualShock4: GC.ProductCategoryDualShock4
     ::GCProductCategoryMFi: GC.ProductCategoryMFi
@@ -140,12 +148,14 @@ ExternVars:
     ::GCInputDirectionPad: GC.InputDirectionPad
     ::GCInputLeftThumbstick: GC.InputLeftThumbstick
     ::GCInputRightThumbstick: GC.InputRightThumbstick
-    ::GCInputLeftShoulder: GC.InputLeftShoulder
-    ::GCInputRightShoulder: GC.InputRightShoulder
-    ::GCInputLeftTrigger: GC.InputLeftTrigger
-    ::GCInputRightTrigger: GC.InputRightTrigger
     ::GCInputLeftThumbstickButton: GC.InputLeftThumbstickButton
     ::GCInputRightThumbstickButton: GC.InputRightThumbstickButton
+    ::GCInputLeftShoulder: GC.InputLeftShoulder
+    ::GCInputRightShoulder: GC.InputRightShoulder
+    ::GCInputLeftBumper: GC.InputLeftBumper
+    ::GCInputRightBumper: GC.InputRightBumper
+    ::GCInputLeftTrigger: GC.InputLeftTrigger
+    ::GCInputRightTrigger: GC.InputRightTrigger
     ::GCInputButtonHome: GC.InputButtonHome
     ::GCInputButtonMenu: GC.InputButtonMenu
     ::GCInputButtonOptions: GC.InputButtonOptions

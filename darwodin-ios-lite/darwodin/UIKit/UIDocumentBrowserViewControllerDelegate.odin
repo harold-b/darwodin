@@ -19,6 +19,3 @@ DocumentBrowserViewControllerDelegate :: struct { using _: intrinsics.objc_objec
     using _: NS.ObjectProtocol,
 }
 
-DocumentBrowserViewControllerDelegate_VTable :: struct {
-}
-

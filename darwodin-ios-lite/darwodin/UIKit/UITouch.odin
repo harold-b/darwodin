@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITouch")
 Touch :: struct { using _: NS.Object, }
 
-Touch_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -20,7 +20,3 @@ CollectionView :: struct { using _: View,
     using _: DraggingDestination,
 }
 
-CollectionView_VTable :: struct {
-    super: View_VTable,
-}
-

@@ -19,6 +19,3 @@ ComboBoxDelegate :: struct { using _: intrinsics.objc_object,
     using _: TextFieldDelegate,
 }
 
-ComboBoxDelegate_VTable :: struct {
-}
-

@@ -169,12 +169,12 @@ Enums:
     NSWorkspaceLaunchOptions: AK.WorkspaceLaunchOptions
     NSTouchPhase: AK.TouchPhase
     NSTouchType: AK.TouchType
-    NSTouchTypeMask: AK.TouchTypeMask
+    NSTouchTypeMask: AK.TouchTypeMasks
     NSEventType: AK.EventType
-    NSEventMask: AK.EventMask
+    NSEventMask: AK.EventMasks
     NSEventModifierFlags: AK.EventModifierFlags
     NSPointingDeviceType: AK.PointingDeviceType
-    NSEventButtonMask: AK.EventButtonMask
+    NSEventButtonMask: AK.EventButtonMasks
     NSEventPhase: AK.EventPhase
     NSEventGestureAxis: AK.EventGestureAxis
     NSEventSwipeTrackingOptions: AK.EventSwipeTrackingOptions
@@ -209,7 +209,7 @@ Enums:
     NSCellAttribute: AK.CellAttribute
     NSCellImagePosition: AK.CellImagePosition
     NSImageScaling: AK.ImageScaling
-    NSCellStyleMask: AK.CellStyleMask
+    NSCellStyleMask: AK.CellStyleMasks
     NSControlTint: AK.ControlTint
     NSControlSize: AK.ControlSize
     NSCellHitResult: AK.CellHitResult
@@ -257,10 +257,10 @@ Enums:
     NSMultibyteGlyphPacking: AK.MultibyteGlyphPacking
     NSFontAssetRequestOptions: AK.FontAssetRequestOptions
     NSFontCollectionVisibility: AK.FontCollectionVisibility
-    NSFontTraitMask: AK.FontTraitMask
+    NSFontTraitMask: AK.FontTraitMasks
     NSFontCollectionOptions: AK.FontCollectionOptions
     NSFontAction: AK.FontAction
-    NSWindowStyleMask: AK.WindowStyleMask
+    NSWindowStyleMask: AK.WindowStyleMasks
     NSWindowSharingType: AK.WindowSharingType
     NSWindowCollectionBehavior: AK.WindowCollectionBehavior
     NSWindowAnimationBehavior: AK.WindowAnimationBehavior
@@ -274,7 +274,7 @@ Enums:
     NSWindowTabbingMode: AK.WindowTabbingMode
     NSTitlebarSeparatorStyle: AK.TitlebarSeparatorStyle
     NSWindowBackingLocation: AK.WindowBackingLocation
-    NSFontPanelModeMask: AK.FontPanelModeMask
+    NSFontPanelModeMask: AK.FontPanelModeMasks
     NSMatrixMode: AK.MatrixMode
     NSMenuItemBadgeType: AK.MenuItemBadgeType
     NSColorSpaceModel: AK.ColorSpaceModel
@@ -2799,6 +2799,13 @@ ConstVars:
     ::NSAppKitVersionNumber12_5: AK.AppKitVersionNumber12_5
     ::NSAppKitVersionNumber13_0: AK.AppKitVersionNumber13_0
     ::NSAppKitVersionNumber13_1: AK.AppKitVersionNumber13_1
+    ::NSAppKitVersionNumber13_2: AK.AppKitVersionNumber13_2
+    ::NSAppKitVersionNumber13_3: AK.AppKitVersionNumber13_3
+    ::NSAppKitVersionNumber13_4: AK.AppKitVersionNumber13_4
+    ::NSAppKitVersionNumber13_5: AK.AppKitVersionNumber13_5
+    ::NSAppKitVersionNumber13_6: AK.AppKitVersionNumber13_6
+    ::NSAppKitVersionNumber14_0: AK.AppKitVersionNumber14_0
+    ::NSAppKitVersionNumber14_1: AK.AppKitVersionNumber14_1
     ::NSModalResponseStop: AK.ModalResponseStop
     ::NSModalResponseAbort: AK.ModalResponseAbort
     ::NSModalResponseContinue: AK.ModalResponseContinue

@@ -19,7 +19,3 @@ CollectionViewDiffableDataSource :: struct { using _: NS.Object,
     using _: CollectionViewDataSource,
 }
 
-CollectionViewDiffableDataSource_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

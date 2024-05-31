@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSGlyphStorage")
 GlyphStorage :: struct { using _: intrinsics.objc_object, }
 
-GlyphStorage_VTable :: struct {
-}
-

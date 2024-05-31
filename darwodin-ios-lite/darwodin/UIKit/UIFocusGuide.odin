@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIFocusGuide")
 FocusGuide :: struct { using _: LayoutGuide, }
 
-FocusGuide_VTable :: struct {
-    super: LayoutGuide_VTable,
-}
-

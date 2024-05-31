@@ -17,6 +17,3 @@ ProgressReporting :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-ProgressReporting_VTable :: struct {
-}
-

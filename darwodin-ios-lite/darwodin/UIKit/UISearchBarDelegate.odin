@@ -19,6 +19,3 @@ SearchBarDelegate :: struct { using _: intrinsics.objc_object,
     using _: BarPositioningDelegate,
 }
 
-SearchBarDelegate_VTable :: struct {
-}
-

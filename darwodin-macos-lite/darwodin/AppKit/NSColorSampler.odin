@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSColorSampler")
 ColorSampler :: struct { using _: NS.Object, }
 
-ColorSampler_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

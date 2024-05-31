@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIImageConfiguration")
 ImageConfigurationProtocol :: struct { using _: intrinsics.objc_object, }
 
-ImageConfigurationProtocol_VTable :: struct {
-}
-

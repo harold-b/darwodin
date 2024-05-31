@@ -19,6 +19,3 @@ AlertViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AlertViewDelegate_VTable :: struct {
-}
-

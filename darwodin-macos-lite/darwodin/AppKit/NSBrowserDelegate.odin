@@ -19,6 +19,3 @@ BrowserDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-BrowserDelegate_VTable :: struct {
-}
-

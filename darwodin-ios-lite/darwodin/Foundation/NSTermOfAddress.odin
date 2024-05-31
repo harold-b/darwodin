@@ -18,7 +18,3 @@ TermOfAddress :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-TermOfAddress_VTable :: struct {
-    super: Object_VTable,
-}
-

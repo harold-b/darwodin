@@ -26,7 +26,7 @@ OpenGLPixelFormat_init :: proc "c" (self: ^OpenGLPixelFormat) -> ^OpenGLPixelFor
 
 
 @(objc_type=OpenGLPixelFormat, objc_name="initWithCGLPixelFormatObj")
-OpenGLPixelFormat_initWithCGLPixelFormatObj :: #force_inline proc "c" (self: ^OpenGLPixelFormat, format: CGLPixelFormatObj) -> ^OpenGLPixelFormat {
+OpenGLPixelFormat_initWithCGLPixelFormatObj :: #force_inline proc "c" (self: ^OpenGLPixelFormat, format: CA.CGLPixelFormatObj) -> ^OpenGLPixelFormat {
     return msgSend(^OpenGLPixelFormat, self, "initWithCGLPixelFormatObj:", format)
 }
 @(objc_type=OpenGLPixelFormat, objc_name="initWithAttributes")
@@ -46,16 +46,16 @@ OpenGLPixelFormat_setAttributes :: #force_inline proc "c" (self: ^OpenGLPixelFor
     msgSend(nil, self, "setAttributes:", attribs)
 }
 @(objc_type=OpenGLPixelFormat, objc_name="getValues")
-OpenGLPixelFormat_getValues :: #force_inline proc "c" (self: ^OpenGLPixelFormat, vals: ^cffi.int, attrib: OpenGLPixelFormatAttribute, screen: cffi.int) {
+OpenGLPixelFormat_getValues :: #force_inline proc "c" (self: ^OpenGLPixelFormat, vals: ^CA.GLint, attrib: OpenGLPixelFormatAttribute, screen: CA.GLint) {
     msgSend(nil, self, "getValues:forAttribute:forVirtualScreen:", vals, attrib, screen)
 }
 @(objc_type=OpenGLPixelFormat, objc_name="numberOfVirtualScreens")
-OpenGLPixelFormat_numberOfVirtualScreens :: #force_inline proc "c" (self: ^OpenGLPixelFormat) -> cffi.int {
-    return msgSend(cffi.int, self, "numberOfVirtualScreens")
+OpenGLPixelFormat_numberOfVirtualScreens :: #force_inline proc "c" (self: ^OpenGLPixelFormat) -> CA.GLint {
+    return msgSend(CA.GLint, self, "numberOfVirtualScreens")
 }
 @(objc_type=OpenGLPixelFormat, objc_name="CGLPixelFormatObj")
-OpenGLPixelFormat_CGLPixelFormatObj :: #force_inline proc "c" (self: ^OpenGLPixelFormat) -> CGLPixelFormatObj {
-    return msgSend(CGLPixelFormatObj, self, "CGLPixelFormatObj")
+OpenGLPixelFormat_CGLPixelFormatObj :: #force_inline proc "c" (self: ^OpenGLPixelFormat) -> CA.CGLPixelFormatObj {
+    return msgSend(CA.CGLPixelFormatObj, self, "CGLPixelFormatObj")
 }
 @(objc_type=OpenGLPixelFormat, objc_name="load", objc_is_class_method=true)
 OpenGLPixelFormat_load :: #force_inline proc "c" () {
@@ -201,14 +201,14 @@ OpenGLPixelFormat_cancelPreviousPerformRequestsWithTarget :: proc {
 
 OpenGLPixelFormat_VTable :: struct {
     super: NS.Object_VTable,
-    initWithCGLPixelFormatObj: proc(self: ^OpenGLPixelFormat, format: CGLPixelFormatObj) -> ^OpenGLPixelFormat,
+    initWithCGLPixelFormatObj: proc(self: ^OpenGLPixelFormat, format: CA.CGLPixelFormatObj) -> ^OpenGLPixelFormat,
     initWithAttributes: proc(self: ^OpenGLPixelFormat, attribs: ^OpenGLPixelFormatAttribute) -> ^OpenGLPixelFormat,
     initWithData: proc(self: ^OpenGLPixelFormat, attribs: ^NS.Data) -> id,
     attributes: proc(self: ^OpenGLPixelFormat) -> ^NS.Data,
     setAttributes: proc(self: ^OpenGLPixelFormat, attribs: ^NS.Data),
-    getValues: proc(self: ^OpenGLPixelFormat, vals: ^cffi.int, attrib: OpenGLPixelFormatAttribute, screen: cffi.int),
-    numberOfVirtualScreens: proc(self: ^OpenGLPixelFormat) -> cffi.int,
-    _CGLPixelFormatObj: proc(self: ^OpenGLPixelFormat) -> CGLPixelFormatObj,
+    getValues: proc(self: ^OpenGLPixelFormat, vals: ^CA.GLint, attrib: OpenGLPixelFormatAttribute, screen: CA.GLint),
+    numberOfVirtualScreens: proc(self: ^OpenGLPixelFormat) -> CA.GLint,
+    _CGLPixelFormatObj: proc(self: ^OpenGLPixelFormat) -> CA.CGLPixelFormatObj,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^OpenGLPixelFormat,
@@ -253,7 +253,7 @@ OpenGLPixelFormat_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelFormat_VTable)
     NS.Object_odin_extend(cls, &vt.super)
 
     if vt.initWithCGLPixelFormatObj != nil {
-        initWithCGLPixelFormatObj :: proc "c" (self: ^OpenGLPixelFormat, _: SEL, format: CGLPixelFormatObj) -> ^OpenGLPixelFormat {
+        initWithCGLPixelFormatObj :: proc "c" (self: ^OpenGLPixelFormat, _: SEL, format: CA.CGLPixelFormatObj) -> ^OpenGLPixelFormat {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ OpenGLPixelFormat_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelFormat_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributes:"), auto_cast setAttributes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.getValues != nil {
-        getValues :: proc "c" (self: ^OpenGLPixelFormat, _: SEL, vals: ^cffi.int, attrib: OpenGLPixelFormatAttribute, screen: cffi.int) {
+        getValues :: proc "c" (self: ^OpenGLPixelFormat, _: SEL, vals: ^CA.GLint, attrib: OpenGLPixelFormatAttribute, screen: CA.GLint) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -313,7 +313,7 @@ OpenGLPixelFormat_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelFormat_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("getValues:forAttribute:forVirtualScreen:"), auto_cast getValues, "v@:^voidIi") do panic("Failed to register objC method.")
     }
     if vt.numberOfVirtualScreens != nil {
-        numberOfVirtualScreens :: proc "c" (self: ^OpenGLPixelFormat, _: SEL) -> cffi.int {
+        numberOfVirtualScreens :: proc "c" (self: ^OpenGLPixelFormat, _: SEL) -> CA.GLint {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -323,7 +323,7 @@ OpenGLPixelFormat_odin_extend :: proc(cls: Class, vt: ^OpenGLPixelFormat_VTable)
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfVirtualScreens"), auto_cast numberOfVirtualScreens, "i@:") do panic("Failed to register objC method.")
     }
     if vt._CGLPixelFormatObj != nil {
-        _CGLPixelFormatObj :: proc "c" (self: ^OpenGLPixelFormat, _: SEL) -> CGLPixelFormatObj {
+        _CGLPixelFormatObj :: proc "c" (self: ^OpenGLPixelFormat, _: SEL) -> CA.CGLPixelFormatObj {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

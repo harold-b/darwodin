@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISceneSizeRestrictions")
 SceneSizeRestrictions :: struct { using _: NS.Object, }
 
-SceneSizeRestrictions_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

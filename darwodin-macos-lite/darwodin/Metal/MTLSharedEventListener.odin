@@ -23,12 +23,12 @@ SharedEventListener_init :: #force_inline proc "c" (self: ^SharedEventListener) 
     return msgSend(^SharedEventListener, self, "init")
 }
 @(objc_type=SharedEventListener, objc_name="initWithDispatchQueue")
-SharedEventListener_initWithDispatchQueue :: #force_inline proc "c" (self: ^SharedEventListener, dispatchQueue: ^NS.Object) -> ^SharedEventListener {
+SharedEventListener_initWithDispatchQueue :: #force_inline proc "c" (self: ^SharedEventListener, dispatchQueue: CF.dispatch_queue_t) -> ^SharedEventListener {
     return msgSend(^SharedEventListener, self, "initWithDispatchQueue:", dispatchQueue)
 }
 @(objc_type=SharedEventListener, objc_name="dispatchQueue")
-SharedEventListener_dispatchQueue :: #force_inline proc "c" (self: ^SharedEventListener) -> ^NS.Object {
-    return msgSend(^NS.Object, self, "dispatchQueue")
+SharedEventListener_dispatchQueue :: #force_inline proc "c" (self: ^SharedEventListener) -> CF.dispatch_queue_t {
+    return msgSend(CF.dispatch_queue_t, self, "dispatchQueue")
 }
 @(objc_type=SharedEventListener, objc_name="load", objc_is_class_method=true)
 SharedEventListener_load :: #force_inline proc "c" () {

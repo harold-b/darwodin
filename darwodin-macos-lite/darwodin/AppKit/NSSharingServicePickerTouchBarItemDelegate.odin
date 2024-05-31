@@ -19,6 +19,3 @@ SharingServicePickerTouchBarItemDelegate :: struct { using _: intrinsics.objc_ob
     using _: SharingServicePickerDelegate,
 }
 
-SharingServicePickerTouchBarItemDelegate_VTable :: struct {
-}
-

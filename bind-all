@@ -20,29 +20,44 @@ while true; do
   shift || break
 done
 
+source ./config
+
 frameworks=(
-    CoreFoundation
-    CoreGraphics
-    Foundation
-    QuartzCore
-    Metal
-    GameController
-    ModelIO
+    ${darwodin_base_frameworks[@]}
 )
+
 
 ios_arg=
 if [[ ${use_ios} -ne 1 ]]; then
-    frameworks+=(
-      AppKit
-      FSEvents
-    )
+    frameworks+=(${darwodin_macos_frameworks[@]})
 else
-    frameworks+=(UIKit)
+    frameworks+=(${darwodin_ios_frameworks[@]})
     ios_arg=-ios
 fi
 
 if [[ ${lite} -eq 1 ]]; then
-    lite="-l"
+    lite_arg="-l"
 fi
 
-./bind ${frameworks[@]} ${lite} ${ios_arg}
+./bind ${frameworks[@]} ${lite_arg} ${ios_arg}
+
+
+# Copy Objective-C package
+out_dir=$(darwodin_get_output_folder "${use_ios}" "${lite}")
+
+cp -r ./ObjectiveC "$out_dir/darwodin/ObjectiveC"
+
+
+# Create dummy packaged for frameworks not in the target sdk
+excluded_frameworks=
+
+if [[ ${use_ios} -ne 1 ]]; then
+    excluded_frameworks=(${darwodin_ios_frameworks[@]})
+else
+    excluded_frameworks=(${darwodin_macos_frameworks[@]})
+fi
+
+for f in ${excluded_frameworks[@]}; do
+    mkdir -p "${out_dir}/darwodin/$f/"
+    echo "package $f" > "${out_dir}/darwodin/$f/${f}.odin"
+done

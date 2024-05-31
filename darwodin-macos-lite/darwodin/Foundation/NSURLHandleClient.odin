@@ -15,6 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLHandleClient")
 URLHandleClient :: struct { using _: intrinsics.objc_object, }
 
-URLHandleClient_VTable :: struct {
-}
-

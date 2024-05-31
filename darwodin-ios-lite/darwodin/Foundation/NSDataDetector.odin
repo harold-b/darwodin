@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSDataDetector")
 DataDetector :: struct { using _: RegularExpression, }
 
-DataDetector_VTable :: struct {
-    super: RegularExpression_VTable,
-}
-

@@ -19,7 +19,3 @@ MutableCharacterSet :: struct { using _: CharacterSet,
     using _: SecureCoding,
 }
 
-MutableCharacterSet_VTable :: struct {
-    super: CharacterSet_VTable,
-}
-

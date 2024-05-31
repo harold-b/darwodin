@@ -20,7 +20,3 @@ CollectionViewItem :: struct { using _: ViewController,
     using _: CollectionViewElement,
 }
 
-CollectionViewItem_VTable :: struct {
-    super: ViewController_VTable,
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIControl")
 Control :: struct { using _: View, }
 
-Control_VTable :: struct {
-    super: View_VTable,
-}
-

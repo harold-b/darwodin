@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPageControl")
 PageControl :: struct { using _: Control, }
 
-PageControl_VTable :: struct {
-    super: Control_VTable,
-}
-

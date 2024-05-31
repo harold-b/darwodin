@@ -19,6 +19,3 @@ ScrubberDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ScrubberDelegate_VTable :: struct {
-}
-

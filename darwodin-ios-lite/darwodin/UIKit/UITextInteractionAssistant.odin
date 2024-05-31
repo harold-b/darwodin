@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITextInteractionAssistant")
 TextInteractionAssistant :: struct { using _: intrinsics.objc_object, }
 
-TextInteractionAssistant_VTable :: struct {
-}
-

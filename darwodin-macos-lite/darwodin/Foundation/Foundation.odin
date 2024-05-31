@@ -1744,7 +1744,7 @@ SecPasswordRef :: distinct ^__SecPassword
 CSSM_INTPTR :: distinct cffi.intptr_t
 
 /// CSSM_SIZE
-CSSM_SIZE :: distinct cffi.uint
+CSSM_SIZE :: distinct cffi.size_t
 
 /// SecAsn1Item
 SecAsn1Item :: distinct cssm_data
@@ -1756,7 +1756,7 @@ SecAsn1Oid :: distinct cssm_data
 SecAsn1Template :: distinct SecAsn1Template_struct
 
 /// SecAsn1TemplateChooser
-SecAsn1TemplateChooser :: distinct proc "c" (arg: rawptr, enc: CF.Boolean, buf: cstring, len: cffi.uint, dest: rawptr) -> ^SecAsn1Template_struct
+SecAsn1TemplateChooser :: distinct proc "c" (arg: rawptr, enc: CF.Boolean, buf: cstring, len: cffi.size_t, dest: rawptr) -> ^SecAsn1Template_struct
 
 /// SecAsn1TemplateChooserPtr
 SecAsn1TemplateChooserPtr :: distinct SecAsn1TemplateChooser
@@ -2868,7 +2868,7 @@ CE_CertPolicies :: distinct __CE_CertPolicies
 CE_NetscapeCertType :: distinct cffi.ushort
 
 /// CE_CrlDistReasonFlags
-CE_CrlDistReasonFlags :: distinct cffi.uchar
+CE_CrlDistReasonFlag :: distinct cffi.uchar
 
 /// CE_DistributionPointName
 
@@ -3021,16 +3021,16 @@ CSSM_MODULE_FUNCS :: distinct cssm_module_funcs
 CSSM_MODULE_FUNCS_PTR :: distinct ^cssm_module_funcs
 
 /// CSSM_UPCALLS_MALLOC
-CSSM_UPCALLS_MALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, size: cffi.uint) -> rawptr
+CSSM_UPCALLS_MALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, size: cffi.size_t) -> rawptr
 
 /// CSSM_UPCALLS_FREE
 CSSM_UPCALLS_FREE :: distinct proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr)
 
 /// CSSM_UPCALLS_REALLOC
-CSSM_UPCALLS_REALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr, size: cffi.uint) -> rawptr
+CSSM_UPCALLS_REALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr, size: cffi.size_t) -> rawptr
 
 /// CSSM_UPCALLS_CALLOC
-CSSM_UPCALLS_CALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, num: cffi.uint, size: cffi.uint) -> rawptr
+CSSM_UPCALLS_CALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, num: cffi.size_t, size: cffi.size_t) -> rawptr
 
 /// CSSM_UPCALLS
 CSSM_UPCALLS :: distinct cssm_upcalls
@@ -3146,6 +3146,59 @@ au_asid_t :: distinct CF.pid_t
 /// xpc_type_t
 xpc_type_t :: distinct ^_xpc_type_s
 
+/// xpc_object_t
+xpc_object_t :: distinct rawptr
+
+/// xpc_handler_t
+xpc_handler_t :: distinct proc "c" (object: xpc_object_t)
+
+/// xpc_connection_t
+xpc_connection_t :: distinct ^_xpc_connection_s
+
+/// xpc_connection_handler_t
+xpc_connection_handler_t :: distinct proc "c" (connection: xpc_connection_t)
+
+/// xpc_endpoint_t
+
+/// xpc_rich_error_t
+xpc_rich_error_t :: distinct ^_xpc_rich_error_s
+
+/// xpc_activity_t
+xpc_activity_t :: distinct ^_xpc_activity_s
+
+/// xpc_activity_handler_t
+xpc_activity_handler_t :: distinct proc "c" (activity: xpc_activity_t)
+
+/// xpc_activity_state_t
+xpc_activity_state_t :: distinct cffi.long
+
+/// xpc_finalizer_t
+xpc_finalizer_t :: distinct proc "c" (value: rawptr)
+
+/// xpc_session_t
+xpc_session_t :: distinct ^xpc_session_s
+
+/// xpc_session_cancel_handler_t
+xpc_session_cancel_handler_t :: distinct proc "c" (error: xpc_rich_error_t)
+
+/// xpc_session_incoming_message_handler_t
+xpc_session_incoming_message_handler_t :: distinct proc "c" (message: xpc_object_t)
+
+/// xpc_session_reply_handler_t
+xpc_session_reply_handler_t :: distinct proc "c" (reply: xpc_object_t, error: xpc_rich_error_t)
+
+/// xpc_listener_t
+xpc_listener_t :: distinct ^xpc_listener_s
+
+/// xpc_listener_incoming_session_handler_t
+xpc_listener_incoming_session_handler_t :: distinct proc "c" (peer: xpc_session_t)
+
+/// xpc_array_applier_t
+xpc_array_applier_t :: distinct proc "c" (index: cffi.size_t, value: xpc_object_t) -> cffi.bool
+
+/// xpc_dictionary_applier_t
+xpc_dictionary_applier_t :: distinct proc "c" (key: cstring, value: xpc_object_t) -> cffi.bool
+
 /// SecTaskRef
 SecTaskRef :: distinct ^__SecTask
 
@@ -3156,10 +3209,10 @@ SSLContextRef :: distinct ^SSLContext
 SSLConnectionRef :: distinct rawptr
 
 /// SSLReadFunc
-SSLReadFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.uint) -> CF.OSStatus
+SSLReadFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
 
 /// SSLWriteFunc
-SSLWriteFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.uint) -> CF.OSStatus
+SSLWriteFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
 
 /// SecTransformRef
 SecTransformRef :: distinct CF.TypeRef
@@ -3371,6 +3424,21 @@ CE_DataType :: enum cffi.uint {
     PolicyMappings = 18,
     PolicyConstraints = 19,
     InhibitAnyPolicy = 20,
+}
+
+/// xpc_session_create_flags_t
+xpc_session_create_flags_t :: enum cffi.ulonglong {
+    NONE = 0,
+    INACTIVE = 1,
+    MACH_PRIVILEGED = 2,
+}
+
+/// xpc_listener_create_flags_t
+xpc_listener_create_flags_t :: enum cffi.ulonglong {
+    NONE = 0,
+    INACTIVE = 1,
+    FORCE_MACH = 2,
+    FORCE_XPCSERVICE = 4,
 }
 
 /// NSComparisonResult
@@ -3861,14 +3929,13 @@ SearchPathDirectory :: enum cffi.ulong {
 }
 
 /// NSSearchPathDomainMask
-SearchPathDomainMasks :: enum cffi.ulong {
+SearchPathDomainMask :: enum cffi.ulong {
     UserDomainMask = 0,
     LocalDomainMask = 1,
     NetworkDomainMask = 2,
     SystemDomainMask = 3,
-    AllDomainsMask = 15,
 }
-SearchPathDomainMask :: bit_set[SearchPathDomainMasks; cffi.ulong]
+SearchPathDomainMasks :: bit_set[SearchPathDomainMask; cffi.ulong]
 
 /// NSURLHandleStatus
 URLHandleStatus :: enum cffi.ulong {
@@ -4425,7 +4492,7 @@ SecKeychainEvent :: enum cffi.uint {
 }
 
 /// SecKeychainEventMask
-SecKeychainEventMasks :: enum cffi.uint {
+SecKeychainEventMask :: enum cffi.uint {
     kSecLockEventMask = 1,
     kSecUnlockEventMask = 2,
     kSecAddEventMask = 3,
@@ -4436,9 +4503,8 @@ SecKeychainEventMasks :: enum cffi.uint {
     kSecDataAccessEventMask = 10,
     kSecKeychainListChangedMask = 11,
     kSecTrustSettingsChangedEventMask = 12,
-    kSecEveryEventMask = 31,
 }
-SecKeychainEventMask :: bit_set[SecKeychainEventMasks; cffi.uint]
+SecKeychainEventMasks :: bit_set[SecKeychainEventMask; cffi.uint]
 
 /// SecPreferencesDomain
 SecPreferencesDomain :: enum cffi.int {
@@ -4671,7 +4737,6 @@ SecTrustSettingsDomain :: enum cffi.uint {
 
 /// SecCSFlags
 SecCSFlag :: enum cffi.uint {
-    kSecCSDefaultFlags = 0,
     kSecCSConsiderExpiration = 31,
     kSecCSEnforceRevocationChecks = 30,
     kSecCSNoNetworkAccess = 29,
@@ -5526,7 +5591,7 @@ SecKeychainAttributeInfo :: struct #align (8) {
 
 /// cssm_data
 cssm_data :: struct #align (8) {
-    Length : cffi.uint,
+    Length : cffi.size_t,
     Data : ^cffi.uint8_t,
 }
 
@@ -5590,8 +5655,10 @@ cssm_list_element :: struct #align (8) {
     NextElement : ^cssm_list_element,
     WordID : CSSM_WORDID_TYPE,
     ElementType : CSSM_LIST_ELEMENT_TYPE,
-    Element_Sublist : cssm_list,
-    Element_Word : cssm_data,
+    using _ : struct #raw_union  {
+        Element_Sublist : cssm_list,
+        Element_Word : cssm_data,
+    },
 }
 
 /// cssm_list
@@ -5662,10 +5729,12 @@ cssm_certgroup :: struct #align (8) {
     CertType : CSSM_CERT_TYPE,
     CertEncoding : CSSM_CERT_ENCODING,
     NumCerts : cffi.uint,
-    GroupList_CertList : CSSM_DATA_PTR,
-    GroupList_EncodedCertList : CSSM_ENCODED_CERT_PTR,
-    GroupList_ParsedCertList : CSSM_PARSED_CERT_PTR,
-    GroupList_PairCertList : CSSM_CERT_PAIR_PTR,
+    using _ : struct #raw_union  {
+        GroupList_CertList : CSSM_DATA_PTR,
+        GroupList_EncodedCertList : CSSM_ENCODED_CERT_PTR,
+        GroupList_ParsedCertList : CSSM_PARSED_CERT_PTR,
+        GroupList_PairCertList : CSSM_CERT_PAIR_PTR,
+    },
     CertGroupType : CSSM_CERTGROUP_TYPE,
     Reserved : rawptr,
 }
@@ -5940,10 +6009,12 @@ cssm_crlgroup :: struct #align (8) {
     CrlType : CSSM_CRL_TYPE,
     CrlEncoding : CSSM_CRL_ENCODING,
     NumberOfCrls : cffi.uint,
-    GroupCrlList_CrlList : CSSM_DATA_PTR,
-    GroupCrlList_EncodedCrlList : CSSM_ENCODED_CRL_PTR,
-    GroupCrlList_ParsedCrlList : CSSM_PARSED_CRL_PTR,
-    GroupCrlList_PairCrlList : CSSM_CRL_PAIR_PTR,
+    using _ : struct #raw_union  {
+        GroupCrlList_CrlList : CSSM_DATA_PTR,
+        GroupCrlList_EncodedCrlList : CSSM_ENCODED_CRL_PTR,
+        GroupCrlList_ParsedCrlList : CSSM_PARSED_CRL_PTR,
+        GroupCrlList_PairCrlList : CSSM_CRL_PAIR_PTR,
+    },
     CrlGroupType : CSSM_CRLGROUP_TYPE,
 }
 
@@ -6425,15 +6496,17 @@ __CE_CertPolicies :: struct #align (8) {
 /// __CE_DistributionPointName
 __CE_DistributionPointName :: struct #align (8) {
     nameType : CE_CrlDistributionPointNameType,
-    dpn_fullName : ^__CE_GeneralNames,
-    dpn_rdn : CSSM_X509_RDN_PTR,
+    using _ : struct #raw_union  {
+        dpn_fullName : ^__CE_GeneralNames,
+        dpn_rdn : CSSM_X509_RDN_PTR,
+    },
 }
 
 /// __CE_CRLDistributionPoint
 __CE_CRLDistributionPoint :: struct #align (8) {
     distPointName : ^__CE_DistributionPointName,
     reasonsPresent : CSSM_BOOL,
-    reasons : CE_CrlDistReasonFlags,
+    reasons : CE_CrlDistReasonFlag,
     crlIssuer : ^__CE_GeneralNames,
 }
 
@@ -6482,7 +6555,7 @@ __CE_IssuingDistributionPoint :: struct #align (8) {
     onlyCACertsPresent : CSSM_BOOL,
     onlyCACerts : CSSM_BOOL,
     onlySomeReasonsPresent : CSSM_BOOL,
-    onlySomeReasons : CE_CrlDistReasonFlags,
+    onlySomeReasons : CE_CrlDistReasonFlag,
     indirectCrlPresent : CSSM_BOOL,
     indirectCrl : CSSM_BOOL,
 }
@@ -6674,7 +6747,7 @@ SecKeychainCallbackInfo :: struct #align (8) {
 /// SecKeyImportExportParameters
 SecKeyImportExportParameters :: struct #align (8) {
     version : cffi.uint32_t,
-    flags : SecKeyImportExportFlags,
+    flags : SecKeyImportExportFlag,
     passphrase : CF.TypeRef,
     alertTitle : CF.StringRef,
     alertPrompt : CF.StringRef,
@@ -6686,7 +6759,7 @@ SecKeyImportExportParameters :: struct #align (8) {
 /// SecItemImportExportKeyParameters
 SecItemImportExportKeyParameters :: struct #align (8) {
     version : cffi.uint32_t,
-    flags : SecKeyImportExportFlags,
+    flags : SecKeyImportExportFlag,
     passphrase : CF.TypeRef,
     alertTitle : CF.StringRef,
     alertPrompt : CF.StringRef,
@@ -6976,6 +7049,30 @@ __SecRequirement :: struct {}
 /// _xpc_type_s
 _xpc_type_s :: struct {}
 
+/// _xpc_connection_s
+_xpc_connection_s :: struct {}
+
+/// _xpc_endpoint_s
+_xpc_endpoint_s :: struct {}
+
+/// _xpc_bool_s
+_xpc_bool_s :: struct {}
+
+/// _xpc_rich_error_s
+_xpc_rich_error_s :: struct {}
+
+/// _xpc_activity_s
+_xpc_activity_s :: struct {}
+
+/// _xpc_dictionary_s
+_xpc_dictionary_s :: struct {}
+
+/// xpc_session_s
+xpc_session_s :: struct {}
+
+/// xpc_listener_s
+xpc_listener_s :: struct {}
+
 /// __SecTask
 __SecTask :: struct {}
 
@@ -7032,7 +7129,7 @@ AffineTransformStruct :: struct #align (8) {
 __NSAppleEventManagerSuspension :: struct {}
 
 /// cssm_context_attribute::cssm_context_attribute_value
-cssm_context_attribute_value :: struct #raw_union  {
+cssm_context_attribute_value :: struct #raw_union #align (8) {
     String : cstring,
     Uint32 : cffi.uint,
     AccessCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
@@ -7048,21 +7145,21 @@ cssm_context_attribute_value :: struct #raw_union  {
 }
 
 /// cssm_db_attribute_info::cssm_db_attribute_label
-cssm_db_attribute_label :: struct #raw_union  {
+cssm_db_attribute_label :: struct #raw_union #align (8) {
     AttributeName : cstring,
     AttributeOID : cssm_data,
     AttributeID : cffi.uint,
 }
 
 /// cssm_x509_extension::cssm_x509ext_value
-cssm_x509ext_value :: struct #raw_union  {
+cssm_x509ext_value :: struct #raw_union #align (8) {
     tagAndValue : ^cssm_x509_extensionTagAndValue,
     parsedValue : rawptr,
     valuePair : ^cssm_x509ext_pair,
 }
 
 /// CE_Data
-CE_Data :: struct #raw_union  {
+CE_Data :: struct #raw_union #align (8) {
     authorityKeyID : __CE_AuthorityKeyID,
     subjectKeyID : CE_SubjectKeyID,
     keyUsage : CE_KeyUsage,
@@ -7087,7 +7184,7 @@ CE_Data :: struct #raw_union  {
 }
 
 /// AEArrayData
-AEArrayData :: struct #raw_union  {
+AEArrayData :: struct #raw_union #align (2) {
     kAEDataArray : [1]CF.SInt16,
     kAEPackedArray : [1]cffi.char,
     kAEHandleArray : [1]CF.Handle,

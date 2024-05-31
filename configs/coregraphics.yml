@@ -38,9 +38,6 @@ Odin:
   ExternalTypes:
     - ../exports/CoreFoundation.exports.yml
 
-  BitSetMap:
-    - (Flags|Mask)$
-
   ResolvedTypedefs:
     - off_t
     - boolean_t
@@ -87,6 +84,16 @@ Odin:
     Transforms:
     - Kind  : RemovePrefix
       Source: $group0
+  - Type: (Flags|Mask)$
+    Transforms:
+    - Kind  : RemoveSuffix
+      Source: s
+
+  BitSetMap:
+    - Type: (Flags|Mask)$
+      Transforms:
+        - Kind  : AppendSuffix
+          Source: s
  
   ProcTransforms:
   - Type: ^(_*CG).+

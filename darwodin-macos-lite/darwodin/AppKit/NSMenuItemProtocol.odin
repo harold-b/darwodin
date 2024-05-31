@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSMenuItem")
 MenuItemProtocol :: struct { using _: intrinsics.objc_object, }
 
-MenuItemProtocol_VTable :: struct {
-}
-

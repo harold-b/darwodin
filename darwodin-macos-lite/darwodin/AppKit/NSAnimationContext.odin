@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSAnimationContext")
 AnimationContext :: struct { using _: NS.Object, }
 
-AnimationContext_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

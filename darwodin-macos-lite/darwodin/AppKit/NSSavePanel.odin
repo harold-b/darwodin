@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSavePanel")
 SavePanel :: struct { using _: Panel, }
 
-SavePanel_VTable :: struct {
-    super: Panel_VTable,
-}
-

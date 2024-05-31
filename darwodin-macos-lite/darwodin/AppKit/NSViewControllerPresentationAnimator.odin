@@ -19,6 +19,3 @@ ViewControllerPresentationAnimator :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ViewControllerPresentationAnimator_VTable :: struct {
-}
-

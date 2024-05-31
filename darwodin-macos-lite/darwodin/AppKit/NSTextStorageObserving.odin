@@ -19,6 +19,3 @@ TextStorageObserving :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextStorageObserving_VTable :: struct {
-}
-

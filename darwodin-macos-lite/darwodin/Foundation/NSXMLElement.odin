@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSXMLElement")
 XMLElement :: struct { using _: XMLNode, }
 
-XMLElement_VTable :: struct {
-    super: XMLNode_VTable,
-}
-

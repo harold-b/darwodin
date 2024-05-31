@@ -37,14 +37,14 @@ ParallelRenderCommandEncoder_setStencilStoreAction :: #force_inline proc "c" (se
     msgSend(nil, self, "setStencilStoreAction:", storeAction)
 }
 @(objc_type=ParallelRenderCommandEncoder, objc_name="setColorStoreActionOptions")
-ParallelRenderCommandEncoder_setColorStoreActionOptions :: #force_inline proc "c" (self: ^ParallelRenderCommandEncoder, storeActionOptions: StoreActionOptions, colorAttachmentIndex: NS.UInteger) {
+ParallelRenderCommandEncoder_setColorStoreActionOptions :: #force_inline proc "c" (self: ^ParallelRenderCommandEncoder, storeActionOptions: StoreActionOption, colorAttachmentIndex: NS.UInteger) {
     msgSend(nil, self, "setColorStoreActionOptions:atIndex:", storeActionOptions, colorAttachmentIndex)
 }
 @(objc_type=ParallelRenderCommandEncoder, objc_name="setDepthStoreActionOptions")
-ParallelRenderCommandEncoder_setDepthStoreActionOptions :: #force_inline proc "c" (self: ^ParallelRenderCommandEncoder, storeActionOptions: StoreActionOptions) {
+ParallelRenderCommandEncoder_setDepthStoreActionOptions :: #force_inline proc "c" (self: ^ParallelRenderCommandEncoder, storeActionOptions: StoreActionOption) {
     msgSend(nil, self, "setDepthStoreActionOptions:", storeActionOptions)
 }
 @(objc_type=ParallelRenderCommandEncoder, objc_name="setStencilStoreActionOptions")
-ParallelRenderCommandEncoder_setStencilStoreActionOptions :: #force_inline proc "c" (self: ^ParallelRenderCommandEncoder, storeActionOptions: StoreActionOptions) {
+ParallelRenderCommandEncoder_setStencilStoreActionOptions :: #force_inline proc "c" (self: ^ParallelRenderCommandEncoder, storeActionOptions: StoreActionOption) {
     msgSend(nil, self, "setStencilStoreActionOptions:", storeActionOptions)
 }

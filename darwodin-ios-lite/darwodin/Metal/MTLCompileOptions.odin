@@ -16,223 +16,223 @@ import UI "../UIKit"
 /// MTLCompileOptions
 ///
 @(objc_class="MTLCompileOptions")
-CompileOptions :: struct { using _: NS.Object, 
+CompileOption :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(objc_type=CompileOptions, objc_name="init")
-CompileOptions_init :: proc "c" (self: ^CompileOptions) -> ^CompileOptions {
-    return msgSend(^CompileOptions, self, "init")
+@(objc_type=CompileOption, objc_name="init")
+CompileOption_init :: proc "c" (self: ^CompileOption) -> ^CompileOption {
+    return msgSend(^CompileOption, self, "init")
 }
 
 
-@(objc_type=CompileOptions, objc_name="preprocessorMacros")
-CompileOptions_preprocessorMacros :: #force_inline proc "c" (self: ^CompileOptions) -> ^NS.Dictionary {
+@(objc_type=CompileOption, objc_name="preprocessorMacros")
+CompileOption_preprocessorMacros :: #force_inline proc "c" (self: ^CompileOption) -> ^NS.Dictionary {
     return msgSend(^NS.Dictionary, self, "preprocessorMacros")
 }
-@(objc_type=CompileOptions, objc_name="setPreprocessorMacros")
-CompileOptions_setPreprocessorMacros :: #force_inline proc "c" (self: ^CompileOptions, preprocessorMacros: ^NS.Dictionary) {
+@(objc_type=CompileOption, objc_name="setPreprocessorMacros")
+CompileOption_setPreprocessorMacros :: #force_inline proc "c" (self: ^CompileOption, preprocessorMacros: ^NS.Dictionary) {
     msgSend(nil, self, "setPreprocessorMacros:", preprocessorMacros)
 }
-@(objc_type=CompileOptions, objc_name="fastMathEnabled")
-CompileOptions_fastMathEnabled :: #force_inline proc "c" (self: ^CompileOptions) -> bool {
+@(objc_type=CompileOption, objc_name="fastMathEnabled")
+CompileOption_fastMathEnabled :: #force_inline proc "c" (self: ^CompileOption) -> bool {
     return msgSend(bool, self, "fastMathEnabled")
 }
-@(objc_type=CompileOptions, objc_name="setFastMathEnabled")
-CompileOptions_setFastMathEnabled :: #force_inline proc "c" (self: ^CompileOptions, fastMathEnabled: bool) {
+@(objc_type=CompileOption, objc_name="setFastMathEnabled")
+CompileOption_setFastMathEnabled :: #force_inline proc "c" (self: ^CompileOption, fastMathEnabled: bool) {
     msgSend(nil, self, "setFastMathEnabled:", fastMathEnabled)
 }
-@(objc_type=CompileOptions, objc_name="languageVersion")
-CompileOptions_languageVersion :: #force_inline proc "c" (self: ^CompileOptions) -> LanguageVersion {
+@(objc_type=CompileOption, objc_name="languageVersion")
+CompileOption_languageVersion :: #force_inline proc "c" (self: ^CompileOption) -> LanguageVersion {
     return msgSend(LanguageVersion, self, "languageVersion")
 }
-@(objc_type=CompileOptions, objc_name="setLanguageVersion")
-CompileOptions_setLanguageVersion :: #force_inline proc "c" (self: ^CompileOptions, languageVersion: LanguageVersion) {
+@(objc_type=CompileOption, objc_name="setLanguageVersion")
+CompileOption_setLanguageVersion :: #force_inline proc "c" (self: ^CompileOption, languageVersion: LanguageVersion) {
     msgSend(nil, self, "setLanguageVersion:", languageVersion)
 }
-@(objc_type=CompileOptions, objc_name="libraryType")
-CompileOptions_libraryType :: #force_inline proc "c" (self: ^CompileOptions) -> LibraryType {
+@(objc_type=CompileOption, objc_name="libraryType")
+CompileOption_libraryType :: #force_inline proc "c" (self: ^CompileOption) -> LibraryType {
     return msgSend(LibraryType, self, "libraryType")
 }
-@(objc_type=CompileOptions, objc_name="setLibraryType")
-CompileOptions_setLibraryType :: #force_inline proc "c" (self: ^CompileOptions, libraryType: LibraryType) {
+@(objc_type=CompileOption, objc_name="setLibraryType")
+CompileOption_setLibraryType :: #force_inline proc "c" (self: ^CompileOption, libraryType: LibraryType) {
     msgSend(nil, self, "setLibraryType:", libraryType)
 }
-@(objc_type=CompileOptions, objc_name="installName")
-CompileOptions_installName :: #force_inline proc "c" (self: ^CompileOptions) -> ^NS.String {
+@(objc_type=CompileOption, objc_name="installName")
+CompileOption_installName :: #force_inline proc "c" (self: ^CompileOption) -> ^NS.String {
     return msgSend(^NS.String, self, "installName")
 }
-@(objc_type=CompileOptions, objc_name="setInstallName")
-CompileOptions_setInstallName :: #force_inline proc "c" (self: ^CompileOptions, installName: ^NS.String) {
+@(objc_type=CompileOption, objc_name="setInstallName")
+CompileOption_setInstallName :: #force_inline proc "c" (self: ^CompileOption, installName: ^NS.String) {
     msgSend(nil, self, "setInstallName:", installName)
 }
-@(objc_type=CompileOptions, objc_name="libraries")
-CompileOptions_libraries :: #force_inline proc "c" (self: ^CompileOptions) -> ^NS.Array {
+@(objc_type=CompileOption, objc_name="libraries")
+CompileOption_libraries :: #force_inline proc "c" (self: ^CompileOption) -> ^NS.Array {
     return msgSend(^NS.Array, self, "libraries")
 }
-@(objc_type=CompileOptions, objc_name="setLibraries")
-CompileOptions_setLibraries :: #force_inline proc "c" (self: ^CompileOptions, libraries: ^NS.Array) {
+@(objc_type=CompileOption, objc_name="setLibraries")
+CompileOption_setLibraries :: #force_inline proc "c" (self: ^CompileOption, libraries: ^NS.Array) {
     msgSend(nil, self, "setLibraries:", libraries)
 }
-@(objc_type=CompileOptions, objc_name="preserveInvariance")
-CompileOptions_preserveInvariance :: #force_inline proc "c" (self: ^CompileOptions) -> bool {
+@(objc_type=CompileOption, objc_name="preserveInvariance")
+CompileOption_preserveInvariance :: #force_inline proc "c" (self: ^CompileOption) -> bool {
     return msgSend(bool, self, "preserveInvariance")
 }
-@(objc_type=CompileOptions, objc_name="setPreserveInvariance")
-CompileOptions_setPreserveInvariance :: #force_inline proc "c" (self: ^CompileOptions, preserveInvariance: bool) {
+@(objc_type=CompileOption, objc_name="setPreserveInvariance")
+CompileOption_setPreserveInvariance :: #force_inline proc "c" (self: ^CompileOption, preserveInvariance: bool) {
     msgSend(nil, self, "setPreserveInvariance:", preserveInvariance)
 }
-@(objc_type=CompileOptions, objc_name="optimizationLevel")
-CompileOptions_optimizationLevel :: #force_inline proc "c" (self: ^CompileOptions) -> LibraryOptimizationLevel {
+@(objc_type=CompileOption, objc_name="optimizationLevel")
+CompileOption_optimizationLevel :: #force_inline proc "c" (self: ^CompileOption) -> LibraryOptimizationLevel {
     return msgSend(LibraryOptimizationLevel, self, "optimizationLevel")
 }
-@(objc_type=CompileOptions, objc_name="setOptimizationLevel")
-CompileOptions_setOptimizationLevel :: #force_inline proc "c" (self: ^CompileOptions, optimizationLevel: LibraryOptimizationLevel) {
+@(objc_type=CompileOption, objc_name="setOptimizationLevel")
+CompileOption_setOptimizationLevel :: #force_inline proc "c" (self: ^CompileOption, optimizationLevel: LibraryOptimizationLevel) {
     msgSend(nil, self, "setOptimizationLevel:", optimizationLevel)
 }
-@(objc_type=CompileOptions, objc_name="compileSymbolVisibility")
-CompileOptions_compileSymbolVisibility :: #force_inline proc "c" (self: ^CompileOptions) -> CompileSymbolVisibility {
+@(objc_type=CompileOption, objc_name="compileSymbolVisibility")
+CompileOption_compileSymbolVisibility :: #force_inline proc "c" (self: ^CompileOption) -> CompileSymbolVisibility {
     return msgSend(CompileSymbolVisibility, self, "compileSymbolVisibility")
 }
-@(objc_type=CompileOptions, objc_name="setCompileSymbolVisibility")
-CompileOptions_setCompileSymbolVisibility :: #force_inline proc "c" (self: ^CompileOptions, compileSymbolVisibility: CompileSymbolVisibility) {
+@(objc_type=CompileOption, objc_name="setCompileSymbolVisibility")
+CompileOption_setCompileSymbolVisibility :: #force_inline proc "c" (self: ^CompileOption, compileSymbolVisibility: CompileSymbolVisibility) {
     msgSend(nil, self, "setCompileSymbolVisibility:", compileSymbolVisibility)
 }
-@(objc_type=CompileOptions, objc_name="allowReferencingUndefinedSymbols")
-CompileOptions_allowReferencingUndefinedSymbols :: #force_inline proc "c" (self: ^CompileOptions) -> bool {
+@(objc_type=CompileOption, objc_name="allowReferencingUndefinedSymbols")
+CompileOption_allowReferencingUndefinedSymbols :: #force_inline proc "c" (self: ^CompileOption) -> bool {
     return msgSend(bool, self, "allowReferencingUndefinedSymbols")
 }
-@(objc_type=CompileOptions, objc_name="setAllowReferencingUndefinedSymbols")
-CompileOptions_setAllowReferencingUndefinedSymbols :: #force_inline proc "c" (self: ^CompileOptions, allowReferencingUndefinedSymbols: bool) {
+@(objc_type=CompileOption, objc_name="setAllowReferencingUndefinedSymbols")
+CompileOption_setAllowReferencingUndefinedSymbols :: #force_inline proc "c" (self: ^CompileOption, allowReferencingUndefinedSymbols: bool) {
     msgSend(nil, self, "setAllowReferencingUndefinedSymbols:", allowReferencingUndefinedSymbols)
 }
-@(objc_type=CompileOptions, objc_name="maxTotalThreadsPerThreadgroup")
-CompileOptions_maxTotalThreadsPerThreadgroup :: #force_inline proc "c" (self: ^CompileOptions) -> NS.UInteger {
+@(objc_type=CompileOption, objc_name="maxTotalThreadsPerThreadgroup")
+CompileOption_maxTotalThreadsPerThreadgroup :: #force_inline proc "c" (self: ^CompileOption) -> NS.UInteger {
     return msgSend(NS.UInteger, self, "maxTotalThreadsPerThreadgroup")
 }
-@(objc_type=CompileOptions, objc_name="setMaxTotalThreadsPerThreadgroup")
-CompileOptions_setMaxTotalThreadsPerThreadgroup :: #force_inline proc "c" (self: ^CompileOptions, maxTotalThreadsPerThreadgroup: NS.UInteger) {
+@(objc_type=CompileOption, objc_name="setMaxTotalThreadsPerThreadgroup")
+CompileOption_setMaxTotalThreadsPerThreadgroup :: #force_inline proc "c" (self: ^CompileOption, maxTotalThreadsPerThreadgroup: NS.UInteger) {
     msgSend(nil, self, "setMaxTotalThreadsPerThreadgroup:", maxTotalThreadsPerThreadgroup)
 }
-@(objc_type=CompileOptions, objc_name="load", objc_is_class_method=true)
-CompileOptions_load :: #force_inline proc "c" () {
-    msgSend(nil, CompileOptions, "load")
+@(objc_type=CompileOption, objc_name="load", objc_is_class_method=true)
+CompileOption_load :: #force_inline proc "c" () {
+    msgSend(nil, CompileOption, "load")
 }
-@(objc_type=CompileOptions, objc_name="initialize", objc_is_class_method=true)
-CompileOptions_initialize :: #force_inline proc "c" () {
-    msgSend(nil, CompileOptions, "initialize")
+@(objc_type=CompileOption, objc_name="initialize", objc_is_class_method=true)
+CompileOption_initialize :: #force_inline proc "c" () {
+    msgSend(nil, CompileOption, "initialize")
 }
-@(objc_type=CompileOptions, objc_name="new", objc_is_class_method=true)
-CompileOptions_new :: #force_inline proc "c" () -> ^CompileOptions {
-    return msgSend(^CompileOptions, CompileOptions, "new")
+@(objc_type=CompileOption, objc_name="new", objc_is_class_method=true)
+CompileOption_new :: #force_inline proc "c" () -> ^CompileOption {
+    return msgSend(^CompileOption, CompileOption, "new")
 }
-@(objc_type=CompileOptions, objc_name="allocWithZone", objc_is_class_method=true)
-CompileOptions_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^CompileOptions {
-    return msgSend(^CompileOptions, CompileOptions, "allocWithZone:", zone)
+@(objc_type=CompileOption, objc_name="allocWithZone", objc_is_class_method=true)
+CompileOption_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^CompileOption {
+    return msgSend(^CompileOption, CompileOption, "allocWithZone:", zone)
 }
-@(objc_type=CompileOptions, objc_name="alloc", objc_is_class_method=true)
-CompileOptions_alloc :: #force_inline proc "c" () -> ^CompileOptions {
-    return msgSend(^CompileOptions, CompileOptions, "alloc")
+@(objc_type=CompileOption, objc_name="alloc", objc_is_class_method=true)
+CompileOption_alloc :: #force_inline proc "c" () -> ^CompileOption {
+    return msgSend(^CompileOption, CompileOption, "alloc")
 }
-@(objc_type=CompileOptions, objc_name="copyWithZone", objc_is_class_method=true)
-CompileOptions_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, CompileOptions, "copyWithZone:", zone)
+@(objc_type=CompileOption, objc_name="copyWithZone", objc_is_class_method=true)
+CompileOption_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
+    return msgSend(id, CompileOption, "copyWithZone:", zone)
 }
-@(objc_type=CompileOptions, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-CompileOptions_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, CompileOptions, "mutableCopyWithZone:", zone)
+@(objc_type=CompileOption, objc_name="mutableCopyWithZone", objc_is_class_method=true)
+CompileOption_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
+    return msgSend(id, CompileOption, "mutableCopyWithZone:", zone)
 }
-@(objc_type=CompileOptions, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-CompileOptions_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, CompileOptions, "instancesRespondToSelector:", aSelector)
+@(objc_type=CompileOption, objc_name="instancesRespondToSelector", objc_is_class_method=true)
+CompileOption_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
+    return msgSend(bool, CompileOption, "instancesRespondToSelector:", aSelector)
 }
-@(objc_type=CompileOptions, objc_name="conformsToProtocol", objc_is_class_method=true)
-CompileOptions_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, CompileOptions, "conformsToProtocol:", protocol)
+@(objc_type=CompileOption, objc_name="conformsToProtocol", objc_is_class_method=true)
+CompileOption_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
+    return msgSend(bool, CompileOption, "conformsToProtocol:", protocol)
 }
-@(objc_type=CompileOptions, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-CompileOptions_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, CompileOptions, "instanceMethodForSelector:", aSelector)
+@(objc_type=CompileOption, objc_name="instanceMethodForSelector", objc_is_class_method=true)
+CompileOption_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
+    return msgSend(IMP, CompileOption, "instanceMethodForSelector:", aSelector)
 }
-@(objc_type=CompileOptions, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-CompileOptions_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, CompileOptions, "instanceMethodSignatureForSelector:", aSelector)
+@(objc_type=CompileOption, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
+CompileOption_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
+    return msgSend(^NS.MethodSignature, CompileOption, "instanceMethodSignatureForSelector:", aSelector)
 }
-@(objc_type=CompileOptions, objc_name="isSubclassOfClass", objc_is_class_method=true)
-CompileOptions_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, CompileOptions, "isSubclassOfClass:", aClass)
+@(objc_type=CompileOption, objc_name="isSubclassOfClass", objc_is_class_method=true)
+CompileOption_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
+    return msgSend(bool, CompileOption, "isSubclassOfClass:", aClass)
 }
-@(objc_type=CompileOptions, objc_name="resolveClassMethod", objc_is_class_method=true)
-CompileOptions_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, CompileOptions, "resolveClassMethod:", sel)
+@(objc_type=CompileOption, objc_name="resolveClassMethod", objc_is_class_method=true)
+CompileOption_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, CompileOption, "resolveClassMethod:", sel)
 }
-@(objc_type=CompileOptions, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-CompileOptions_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, CompileOptions, "resolveInstanceMethod:", sel)
+@(objc_type=CompileOption, objc_name="resolveInstanceMethod", objc_is_class_method=true)
+CompileOption_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
+    return msgSend(bool, CompileOption, "resolveInstanceMethod:", sel)
 }
-@(objc_type=CompileOptions, objc_name="hash", objc_is_class_method=true)
-CompileOptions_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, CompileOptions, "hash")
+@(objc_type=CompileOption, objc_name="hash", objc_is_class_method=true)
+CompileOption_hash :: #force_inline proc "c" () -> NS.UInteger {
+    return msgSend(NS.UInteger, CompileOption, "hash")
 }
-@(objc_type=CompileOptions, objc_name="superclass", objc_is_class_method=true)
-CompileOptions_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CompileOptions, "superclass")
+@(objc_type=CompileOption, objc_name="superclass", objc_is_class_method=true)
+CompileOption_superclass :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, CompileOption, "superclass")
 }
-@(objc_type=CompileOptions, objc_name="class", objc_is_class_method=true)
-CompileOptions_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CompileOptions, "class")
+@(objc_type=CompileOption, objc_name="class", objc_is_class_method=true)
+CompileOption_class :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, CompileOption, "class")
 }
-@(objc_type=CompileOptions, objc_name="description", objc_is_class_method=true)
-CompileOptions_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, CompileOptions, "description")
+@(objc_type=CompileOption, objc_name="description", objc_is_class_method=true)
+CompileOption_description :: #force_inline proc "c" () -> ^NS.String {
+    return msgSend(^NS.String, CompileOption, "description")
 }
-@(objc_type=CompileOptions, objc_name="debugDescription", objc_is_class_method=true)
-CompileOptions_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, CompileOptions, "debugDescription")
+@(objc_type=CompileOption, objc_name="debugDescription", objc_is_class_method=true)
+CompileOption_debugDescription :: #force_inline proc "c" () -> ^NS.String {
+    return msgSend(^NS.String, CompileOption, "debugDescription")
 }
-@(objc_type=CompileOptions, objc_name="version", objc_is_class_method=true)
-CompileOptions_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, CompileOptions, "version")
+@(objc_type=CompileOption, objc_name="version", objc_is_class_method=true)
+CompileOption_version :: #force_inline proc "c" () -> NS.Integer {
+    return msgSend(NS.Integer, CompileOption, "version")
 }
-@(objc_type=CompileOptions, objc_name="setVersion", objc_is_class_method=true)
-CompileOptions_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, CompileOptions, "setVersion:", aVersion)
+@(objc_type=CompileOption, objc_name="setVersion", objc_is_class_method=true)
+CompileOption_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
+    msgSend(nil, CompileOption, "setVersion:", aVersion)
 }
-@(objc_type=CompileOptions, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-CompileOptions_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, CompileOptions, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
+@(objc_type=CompileOption, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
+CompileOption_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
+    msgSend(nil, CompileOption, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
 }
-@(objc_type=CompileOptions, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-CompileOptions_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, CompileOptions, "cancelPreviousPerformRequestsWithTarget:", aTarget)
+@(objc_type=CompileOption, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
+CompileOption_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
+    msgSend(nil, CompileOption, "cancelPreviousPerformRequestsWithTarget:", aTarget)
 }
-@(objc_type=CompileOptions, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-CompileOptions_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, CompileOptions, "accessInstanceVariablesDirectly")
+@(objc_type=CompileOption, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
+CompileOption_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, CompileOption, "accessInstanceVariablesDirectly")
 }
-@(objc_type=CompileOptions, objc_name="useStoredAccessor", objc_is_class_method=true)
-CompileOptions_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, CompileOptions, "useStoredAccessor")
+@(objc_type=CompileOption, objc_name="useStoredAccessor", objc_is_class_method=true)
+CompileOption_useStoredAccessor :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, CompileOption, "useStoredAccessor")
 }
-@(objc_type=CompileOptions, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-CompileOptions_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, CompileOptions, "keyPathsForValuesAffectingValueForKey:", key)
+@(objc_type=CompileOption, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
+CompileOption_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
+    return msgSend(^NS.Set, CompileOption, "keyPathsForValuesAffectingValueForKey:", key)
 }
-@(objc_type=CompileOptions, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-CompileOptions_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, CompileOptions, "automaticallyNotifiesObserversForKey:", key)
+@(objc_type=CompileOption, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
+CompileOption_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
+    return msgSend(bool, CompileOption, "automaticallyNotifiesObserversForKey:", key)
 }
-@(objc_type=CompileOptions, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-CompileOptions_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, CompileOptions, "classFallbacksForKeyedArchiver")
+@(objc_type=CompileOption, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
+CompileOption_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
+    return msgSend(^NS.Array, CompileOption, "classFallbacksForKeyedArchiver")
 }
-@(objc_type=CompileOptions, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-CompileOptions_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CompileOptions, "classForKeyedUnarchiver")
+@(objc_type=CompileOption, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
+CompileOption_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
+    return msgSend(Class, CompileOption, "classForKeyedUnarchiver")
 }
-@(objc_type=CompileOptions, objc_name="cancelPreviousPerformRequestsWithTarget")
-CompileOptions_cancelPreviousPerformRequestsWithTarget :: proc {
-    CompileOptions_cancelPreviousPerformRequestsWithTarget_selector_object,
-    CompileOptions_cancelPreviousPerformRequestsWithTarget_,
+@(objc_type=CompileOption, objc_name="cancelPreviousPerformRequestsWithTarget")
+CompileOption_cancelPreviousPerformRequestsWithTarget :: proc {
+    CompileOption_cancelPreviousPerformRequestsWithTarget_selector_object,
+    CompileOption_cancelPreviousPerformRequestsWithTarget_,
 }
 

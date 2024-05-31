@@ -19,7 +19,3 @@ AccessibilityElement :: struct { using _: NS.Object,
     using _: Accessibility,
 }
 
-AccessibilityElement_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

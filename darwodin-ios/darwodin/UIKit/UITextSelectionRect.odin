@@ -43,6 +43,10 @@ TextSelectionRect_containsEnd :: #force_inline proc "c" (self: ^TextSelectionRec
 TextSelectionRect_isVertical :: #force_inline proc "c" (self: ^TextSelectionRect) -> bool {
     return msgSend(bool, self, "isVertical")
 }
+@(objc_type=TextSelectionRect, objc_name="transform")
+TextSelectionRect_transform :: #force_inline proc "c" (self: ^TextSelectionRect) -> CG.AffineTransform {
+    return msgSend(CG.AffineTransform, self, "transform")
+}
 @(objc_type=TextSelectionRect, objc_name="load", objc_is_class_method=true)
 TextSelectionRect_load :: #force_inline proc "c" () {
     msgSend(nil, TextSelectionRect, "load")
@@ -172,6 +176,7 @@ TextSelectionRect_VTable :: struct {
     containsStart: proc(self: ^TextSelectionRect) -> bool,
     containsEnd: proc(self: ^TextSelectionRect) -> bool,
     isVertical: proc(self: ^TextSelectionRect) -> bool,
+    transform: proc(self: ^TextSelectionRect) -> CG.AffineTransform,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^TextSelectionRect,
@@ -259,6 +264,16 @@ TextSelectionRect_odin_extend :: proc(cls: Class, vt: ^TextSelectionRect_VTable)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isVertical"), auto_cast isVertical, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.transform != nil {
+        transform :: proc "c" (self: ^TextSelectionRect, _: SEL) -> CG.AffineTransform {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextSelectionRect_VTable)vt_ctx.super_vt).transform(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("transform"), auto_cast transform, "{CGAffineTransform=dddddd}@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

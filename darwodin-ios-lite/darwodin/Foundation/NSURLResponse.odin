@@ -18,7 +18,3 @@ URLResponse :: struct { using _: Object,
     using _: Copying,
 }
 
-URLResponse_VTable :: struct {
-    super: Object_VTable,
-}
-

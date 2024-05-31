@@ -19,6 +19,3 @@ AccessibilityList :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityTable,
 }
 
-AccessibilityList_VTable :: struct {
-}
-

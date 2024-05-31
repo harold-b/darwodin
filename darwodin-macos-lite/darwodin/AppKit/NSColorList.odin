@@ -19,7 +19,3 @@ ColorList :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-ColorList_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

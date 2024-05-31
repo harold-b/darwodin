@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSScroller")
 Scroller :: struct { using _: Control, }
 
-Scroller_VTable :: struct {
-    super: Control_VTable,
-}
-

@@ -19,7 +19,3 @@ PointerStyle :: struct { using _: HoverStyle,
     using _: NS.Copying,
 }
 
-PointerStyle_VTable :: struct {
-    super: HoverStyle_VTable,
-}
-

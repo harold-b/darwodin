@@ -475,7 +475,7 @@ foreign lib {
     SetCatalogInfo :: proc(ref: ^Ref, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo) -> cffi.short ---
 
     @(link_name="FSOpenIterator")
-    OpenIterator :: proc(container: ^Ref, iteratorFlags: IteratorFlags, iterator: ^^OpaqueFSIterator) -> cffi.short ---
+    OpenIterator :: proc(container: ^Ref, iteratorFlags: IteratorFlag, iterator: ^^OpaqueFSIterator) -> cffi.short ---
 
     @(link_name="FSCloseIterator")
     CloseIterator :: proc(iterator: Iterator) -> cffi.short ---
@@ -520,7 +520,7 @@ foreign lib {
     SetForkSize :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64) -> cffi.short ---
 
     @(link_name="FSAllocateFork")
-    AllocateFork :: proc(forkRefNum: IORefNum, flags: AllocationFlags, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.UInt64, actualCount: ^cffi.ulonglong) -> cffi.short ---
+    AllocateFork :: proc(forkRefNum: IORefNum, flags: AllocationFlag, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.UInt64, actualCount: ^cffi.ulonglong) -> cffi.short ---
 
     @(link_name="FSFlushFork")
     FlushFork :: proc(forkRefNum: IORefNum) -> cffi.short ---
@@ -957,7 +957,7 @@ RefForkIOParamPtr :: distinct ^RefForkIOParam
 Iterator :: distinct ^OpaqueFSIterator
 
 /// FSIteratorFlags
-IteratorFlags :: distinct cffi.uint
+IteratorFlag :: distinct cffi.uint
 
 /// FSSearchParamsPtr
 SearchParamsPtr :: distinct ^SearchParams
@@ -966,13 +966,13 @@ SearchParamsPtr :: distinct ^SearchParams
 CatalogBulkParamPtr :: distinct ^CatalogBulkParam
 
 /// FSAllocationFlags
-AllocationFlags :: distinct cffi.ushort
+AllocationFlag :: distinct cffi.ushort
 
 /// FSForkIOParamPtr
 ForkIOParamPtr :: distinct ^ForkIOParam
 
 /// FSForkInfoFlags
-ForkInfoFlags :: distinct cffi.uchar
+ForkInfoFlag :: distinct cffi.uchar
 
 /// FSForkInfoPtr
 ForkInfoPtr :: distinct ^ForkInfo
@@ -1769,7 +1769,7 @@ EventStreamContext :: struct #align (2) {
 }
 
 /// HFSPlusAttrRecord
-HFSPlusAttrRecord :: struct  {
+HFSPlusAttrRecord :: struct #raw_union  {
     recordType : cffi.uint,
     inlineData : HFSPlusAttrInlineData,
     attrData : HFSPlusAttrData,

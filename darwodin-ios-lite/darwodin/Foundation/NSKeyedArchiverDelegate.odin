@@ -17,6 +17,3 @@ KeyedArchiverDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-KeyedArchiverDelegate_VTable :: struct {
-}
-

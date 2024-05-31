@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIFieldBehavior")
 FieldBehavior :: struct { using _: DynamicBehavior, }
 
-FieldBehavior_VTable :: struct {
-    super: DynamicBehavior_VTable,
-}
-

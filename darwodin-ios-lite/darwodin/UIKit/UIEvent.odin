@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIEvent")
 Event :: struct { using _: NS.Object, }
 
-Event_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

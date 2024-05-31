@@ -23,17 +23,33 @@ ImpactFeedbackGenerator_init :: proc "c" (self: ^ImpactFeedbackGenerator) -> ^Im
 }
 
 
-@(objc_type=ImpactFeedbackGenerator, objc_name="initWithStyle")
-ImpactFeedbackGenerator_initWithStyle :: #force_inline proc "c" (self: ^ImpactFeedbackGenerator, style: ImpactFeedbackStyle) -> ^ImpactFeedbackGenerator {
-    return msgSend(^ImpactFeedbackGenerator, self, "initWithStyle:", style)
+@(objc_type=ImpactFeedbackGenerator, objc_name="feedbackGeneratorWithStyle", objc_is_class_method=true)
+ImpactFeedbackGenerator_feedbackGeneratorWithStyle :: #force_inline proc "c" (style: ImpactFeedbackStyle, view: ^View) -> ^ImpactFeedbackGenerator {
+    return msgSend(^ImpactFeedbackGenerator, ImpactFeedbackGenerator, "feedbackGeneratorWithStyle:forView:", style, view)
 }
 @(objc_type=ImpactFeedbackGenerator, objc_name="impactOccurred")
 ImpactFeedbackGenerator_impactOccurred :: #force_inline proc "c" (self: ^ImpactFeedbackGenerator) {
     msgSend(nil, self, "impactOccurred")
 }
-@(objc_type=ImpactFeedbackGenerator, objc_name="impactOccurredWithIntensity")
-ImpactFeedbackGenerator_impactOccurredWithIntensity :: #force_inline proc "c" (self: ^ImpactFeedbackGenerator, intensity: CG.Float) {
+@(objc_type=ImpactFeedbackGenerator, objc_name="impactOccurredAtLocation")
+ImpactFeedbackGenerator_impactOccurredAtLocation :: #force_inline proc "c" (self: ^ImpactFeedbackGenerator, location: CG.Point) {
+    msgSend(nil, self, "impactOccurredAtLocation:", location)
+}
+@(objc_type=ImpactFeedbackGenerator, objc_name="impactOccurredWithIntensity_")
+ImpactFeedbackGenerator_impactOccurredWithIntensity_ :: #force_inline proc "c" (self: ^ImpactFeedbackGenerator, intensity: CG.Float) {
     msgSend(nil, self, "impactOccurredWithIntensity:", intensity)
+}
+@(objc_type=ImpactFeedbackGenerator, objc_name="impactOccurredWithIntensity_atLocation")
+ImpactFeedbackGenerator_impactOccurredWithIntensity_atLocation :: #force_inline proc "c" (self: ^ImpactFeedbackGenerator, intensity: CG.Float, location: CG.Point) {
+    msgSend(nil, self, "impactOccurredWithIntensity:atLocation:", intensity, location)
+}
+@(objc_type=ImpactFeedbackGenerator, objc_name="initWithStyle")
+ImpactFeedbackGenerator_initWithStyle :: #force_inline proc "c" (self: ^ImpactFeedbackGenerator, style: ImpactFeedbackStyle) -> ^ImpactFeedbackGenerator {
+    return msgSend(^ImpactFeedbackGenerator, self, "initWithStyle:", style)
+}
+@(objc_type=ImpactFeedbackGenerator, objc_name="feedbackGeneratorForView", objc_is_class_method=true)
+ImpactFeedbackGenerator_feedbackGeneratorForView :: #force_inline proc "c" (view: ^View) -> ^FeedbackGenerator {
+    return msgSend(^FeedbackGenerator, ImpactFeedbackGenerator, "feedbackGeneratorForView:", view)
 }
 @(objc_type=ImpactFeedbackGenerator, objc_name="load", objc_is_class_method=true)
 ImpactFeedbackGenerator_load :: #force_inline proc "c" () {
@@ -151,6 +167,12 @@ ImpactFeedbackGenerator_classFallbacksForKeyedArchiver :: #force_inline proc "c"
 ImpactFeedbackGenerator_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
     return msgSend(Class, ImpactFeedbackGenerator, "classForKeyedUnarchiver")
 }
+@(objc_type=ImpactFeedbackGenerator, objc_name="impactOccurredWithIntensity")
+ImpactFeedbackGenerator_impactOccurredWithIntensity :: proc {
+    ImpactFeedbackGenerator_impactOccurredWithIntensity_,
+    ImpactFeedbackGenerator_impactOccurredWithIntensity_atLocation,
+}
+
 @(objc_type=ImpactFeedbackGenerator, objc_name="cancelPreviousPerformRequestsWithTarget")
 ImpactFeedbackGenerator_cancelPreviousPerformRequestsWithTarget :: proc {
     ImpactFeedbackGenerator_cancelPreviousPerformRequestsWithTarget_selector_object,
@@ -159,9 +181,13 @@ ImpactFeedbackGenerator_cancelPreviousPerformRequestsWithTarget :: proc {
 
 ImpactFeedbackGenerator_VTable :: struct {
     super: FeedbackGenerator_VTable,
-    initWithStyle: proc(self: ^ImpactFeedbackGenerator, style: ImpactFeedbackStyle) -> ^ImpactFeedbackGenerator,
+    feedbackGeneratorWithStyle: proc(style: ImpactFeedbackStyle, view: ^View) -> ^ImpactFeedbackGenerator,
     impactOccurred: proc(self: ^ImpactFeedbackGenerator),
-    impactOccurredWithIntensity: proc(self: ^ImpactFeedbackGenerator, intensity: CG.Float),
+    impactOccurredAtLocation: proc(self: ^ImpactFeedbackGenerator, location: CG.Point),
+    impactOccurredWithIntensity_: proc(self: ^ImpactFeedbackGenerator, intensity: CG.Float),
+    impactOccurredWithIntensity_atLocation: proc(self: ^ImpactFeedbackGenerator, intensity: CG.Float, location: CG.Point),
+    initWithStyle: proc(self: ^ImpactFeedbackGenerator, style: ImpactFeedbackStyle) -> ^ImpactFeedbackGenerator,
+    feedbackGeneratorForView: proc(view: ^View) -> ^FeedbackGenerator,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^ImpactFeedbackGenerator,
@@ -200,15 +226,15 @@ ImpactFeedbackGenerator_odin_extend :: proc(cls: Class, vt: ^ImpactFeedbackGener
     
     FeedbackGenerator_odin_extend(cls, &vt.super)
 
-    if vt.initWithStyle != nil {
-        initWithStyle :: proc "c" (self: ^ImpactFeedbackGenerator, _: SEL, style: ImpactFeedbackStyle) -> ^ImpactFeedbackGenerator {
+    if vt.feedbackGeneratorWithStyle != nil {
+        feedbackGeneratorWithStyle :: proc "c" (self: Class, _: SEL, style: ImpactFeedbackStyle, view: ^View) -> ^ImpactFeedbackGenerator {
 
-            vt_ctx := ObjC.object_get_vtable_info(self)
+            vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^ImpactFeedbackGenerator_VTable)vt_ctx.super_vt).initWithStyle(self, style)
+            return (cast(^ImpactFeedbackGenerator_VTable)vt_ctx.super_vt).feedbackGeneratorWithStyle( style, view)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithStyle:"), auto_cast initWithStyle, "@@:l") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("feedbackGeneratorWithStyle:forView:"), auto_cast feedbackGeneratorWithStyle, "@#:l@") do panic("Failed to register objC method.")
     }
     if vt.impactOccurred != nil {
         impactOccurred :: proc "c" (self: ^ImpactFeedbackGenerator, _: SEL) {
@@ -220,15 +246,55 @@ ImpactFeedbackGenerator_odin_extend :: proc(cls: Class, vt: ^ImpactFeedbackGener
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("impactOccurred"), auto_cast impactOccurred, "v@:") do panic("Failed to register objC method.")
     }
-    if vt.impactOccurredWithIntensity != nil {
-        impactOccurredWithIntensity :: proc "c" (self: ^ImpactFeedbackGenerator, _: SEL, intensity: CG.Float) {
+    if vt.impactOccurredAtLocation != nil {
+        impactOccurredAtLocation :: proc "c" (self: ^ImpactFeedbackGenerator, _: SEL, location: CG.Point) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^ImpactFeedbackGenerator_VTable)vt_ctx.super_vt).impactOccurredWithIntensity(self, intensity)
+            (cast(^ImpactFeedbackGenerator_VTable)vt_ctx.super_vt).impactOccurredAtLocation(self, location)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("impactOccurredWithIntensity:"), auto_cast impactOccurredWithIntensity, "v@:d") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("impactOccurredAtLocation:"), auto_cast impactOccurredAtLocation, "v@:{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.impactOccurredWithIntensity_ != nil {
+        impactOccurredWithIntensity_ :: proc "c" (self: ^ImpactFeedbackGenerator, _: SEL, intensity: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ImpactFeedbackGenerator_VTable)vt_ctx.super_vt).impactOccurredWithIntensity_(self, intensity)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("impactOccurredWithIntensity:"), auto_cast impactOccurredWithIntensity_, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.impactOccurredWithIntensity_atLocation != nil {
+        impactOccurredWithIntensity_atLocation :: proc "c" (self: ^ImpactFeedbackGenerator, _: SEL, intensity: CG.Float, location: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ImpactFeedbackGenerator_VTable)vt_ctx.super_vt).impactOccurredWithIntensity_atLocation(self, intensity, location)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("impactOccurredWithIntensity:atLocation:"), auto_cast impactOccurredWithIntensity_atLocation, "v@:d{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.initWithStyle != nil {
+        initWithStyle :: proc "c" (self: ^ImpactFeedbackGenerator, _: SEL, style: ImpactFeedbackStyle) -> ^ImpactFeedbackGenerator {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ImpactFeedbackGenerator_VTable)vt_ctx.super_vt).initWithStyle(self, style)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithStyle:"), auto_cast initWithStyle, "@@:l") do panic("Failed to register objC method.")
+    }
+    if vt.feedbackGeneratorForView != nil {
+        feedbackGeneratorForView :: proc "c" (self: Class, _: SEL, view: ^View) -> ^FeedbackGenerator {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ImpactFeedbackGenerator_VTable)vt_ctx.super_vt).feedbackGeneratorForView( view)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("feedbackGeneratorForView:"), auto_cast feedbackGeneratorForView, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

@@ -19,7 +19,3 @@ CollectionLayoutDimension :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-CollectionLayoutDimension_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

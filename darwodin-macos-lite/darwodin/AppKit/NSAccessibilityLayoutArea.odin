@@ -19,6 +19,3 @@ AccessibilityLayoutArea :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 
-AccessibilityLayoutArea_VTable :: struct {
-}
-

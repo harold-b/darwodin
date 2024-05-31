@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSByteCountFormatter")
 ByteCountFormatter :: struct { using _: Formatter, }
 
-ByteCountFormatter_VTable :: struct {
-    super: Formatter_VTable,
-}
-

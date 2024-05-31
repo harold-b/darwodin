@@ -19,6 +19,3 @@ TextAttachmentLayout :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextAttachmentLayout_VTable :: struct {
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSEPSImageRep")
 EPSImageRep :: struct { using _: ImageRep, }
 
-EPSImageRep_VTable :: struct {
-    super: ImageRep_VTable,
-}
-

@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSFetchRequest")
 FetchRequest :: struct { using _: intrinsics.objc_object, }
 
-FetchRequest_VTable :: struct {
-}
-

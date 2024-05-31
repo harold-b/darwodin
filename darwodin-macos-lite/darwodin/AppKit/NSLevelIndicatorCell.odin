@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSLevelIndicatorCell")
 LevelIndicatorCell :: struct { using _: ActionCell, }
 
-LevelIndicatorCell_VTable :: struct {
-    super: ActionCell_VTable,
-}
-

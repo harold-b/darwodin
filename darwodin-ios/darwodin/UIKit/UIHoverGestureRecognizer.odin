@@ -39,6 +39,10 @@ HoverGestureRecognizer_zOffset :: #force_inline proc "c" (self: ^HoverGestureRec
 HoverGestureRecognizer_altitudeAngle :: #force_inline proc "c" (self: ^HoverGestureRecognizer) -> CG.Float {
     return msgSend(CG.Float, self, "altitudeAngle")
 }
+@(objc_type=HoverGestureRecognizer, objc_name="rollAngle")
+HoverGestureRecognizer_rollAngle :: #force_inline proc "c" (self: ^HoverGestureRecognizer) -> CG.Float {
+    return msgSend(CG.Float, self, "rollAngle")
+}
 @(objc_type=HoverGestureRecognizer, objc_name="load", objc_is_class_method=true)
 HoverGestureRecognizer_load :: #force_inline proc "c" () {
     msgSend(nil, HoverGestureRecognizer, "load")
@@ -167,6 +171,7 @@ HoverGestureRecognizer_VTable :: struct {
     azimuthUnitVectorInView: proc(self: ^HoverGestureRecognizer, view: ^View) -> CG.Vector,
     zOffset: proc(self: ^HoverGestureRecognizer) -> CG.Float,
     altitudeAngle: proc(self: ^HoverGestureRecognizer) -> CG.Float,
+    rollAngle: proc(self: ^HoverGestureRecognizer) -> CG.Float,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^HoverGestureRecognizer,
@@ -244,6 +249,16 @@ HoverGestureRecognizer_odin_extend :: proc(cls: Class, vt: ^HoverGestureRecogniz
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("altitudeAngle"), auto_cast altitudeAngle, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.rollAngle != nil {
+        rollAngle :: proc "c" (self: ^HoverGestureRecognizer, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^HoverGestureRecognizer_VTable)vt_ctx.super_vt).rollAngle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rollAngle"), auto_cast rollAngle, "d@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

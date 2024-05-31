@@ -19,7 +19,3 @@ OpenGLPixelFormat :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-OpenGLPixelFormat_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

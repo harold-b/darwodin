@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITableViewDropProposal")
 TableViewDropProposal :: struct { using _: DropProposal, }
 
-TableViewDropProposal_VTable :: struct {
-    super: DropProposal_VTable,
-}
-

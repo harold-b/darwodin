@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSIgnoreMisspelledWords")
 IgnoreMisspelledWords :: struct { using _: intrinsics.objc_object, }
 
-IgnoreMisspelledWords_VTable :: struct {
-}
-

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSLogicalTest")
 LogicalTest :: struct { using _: ScriptWhoseTest, }
 
-LogicalTest_VTable :: struct {
-    super: ScriptWhoseTest_VTable,
-}
-

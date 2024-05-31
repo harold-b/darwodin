@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIWindowSceneStandardPlacement")
 WindowSceneStandardPlacement :: struct { using _: WindowScenePlacement, }
 
-WindowSceneStandardPlacement_VTable :: struct {
-    super: WindowScenePlacement_VTable,
-}
-

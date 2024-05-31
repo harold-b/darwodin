@@ -17,12 +17,14 @@ import CA "../QuartzCore"
 @(objc_class="UIFeedbackGenerator")
 FeedbackGenerator :: struct { using _: NS.Object, }
 
+@(objc_type=FeedbackGenerator, objc_name="feedbackGeneratorForView", objc_is_class_method=true)
+FeedbackGenerator_feedbackGeneratorForView :: #force_inline proc "c" (view: ^View) -> ^FeedbackGenerator {
+    return msgSend(^FeedbackGenerator, FeedbackGenerator, "feedbackGeneratorForView:", view)
+}
 @(objc_type=FeedbackGenerator, objc_name="init")
-FeedbackGenerator_init :: proc "c" (self: ^FeedbackGenerator) -> ^FeedbackGenerator {
+FeedbackGenerator_init :: #force_inline proc "c" (self: ^FeedbackGenerator) -> ^FeedbackGenerator {
     return msgSend(^FeedbackGenerator, self, "init")
 }
-
-
 @(objc_type=FeedbackGenerator, objc_name="prepare")
 FeedbackGenerator_prepare :: #force_inline proc "c" (self: ^FeedbackGenerator) {
     msgSend(nil, self, "prepare")
@@ -151,6 +153,8 @@ FeedbackGenerator_cancelPreviousPerformRequestsWithTarget :: proc {
 
 FeedbackGenerator_VTable :: struct {
     super: NS.Object_VTable,
+    feedbackGeneratorForView: proc(view: ^View) -> ^FeedbackGenerator,
+    init: proc(self: ^FeedbackGenerator) -> ^FeedbackGenerator,
     prepare: proc(self: ^FeedbackGenerator),
     load: proc(),
     initialize: proc(),
@@ -190,6 +194,26 @@ FeedbackGenerator_odin_extend :: proc(cls: Class, vt: ^FeedbackGenerator_VTable)
     
     NS.Object_odin_extend(cls, &vt.super)
 
+    if vt.feedbackGeneratorForView != nil {
+        feedbackGeneratorForView :: proc "c" (self: Class, _: SEL, view: ^View) -> ^FeedbackGenerator {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FeedbackGenerator_VTable)vt_ctx.super_vt).feedbackGeneratorForView( view)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("feedbackGeneratorForView:"), auto_cast feedbackGeneratorForView, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.init != nil {
+        init :: proc "c" (self: ^FeedbackGenerator, _: SEL) -> ^FeedbackGenerator {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FeedbackGenerator_VTable)vt_ctx.super_vt).init(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
+    }
     if vt.prepare != nil {
         prepare :: proc "c" (self: ^FeedbackGenerator, _: SEL) {
 

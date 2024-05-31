@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSFileProviderDomain")
 NSFileProviderDomain :: struct { using _: intrinsics.objc_object, }
 
-NSFileProviderDomain_VTable :: struct {
-}
-

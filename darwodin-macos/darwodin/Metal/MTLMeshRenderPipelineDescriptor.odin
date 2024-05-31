@@ -182,6 +182,14 @@ MeshRenderPipelineDescriptor_stencilAttachmentPixelFormat :: #force_inline proc 
 MeshRenderPipelineDescriptor_setStencilAttachmentPixelFormat :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor, stencilAttachmentPixelFormat: PixelFormat) {
     msgSend(nil, self, "setStencilAttachmentPixelFormat:", stencilAttachmentPixelFormat)
 }
+@(objc_type=MeshRenderPipelineDescriptor, objc_name="supportIndirectCommandBuffers")
+MeshRenderPipelineDescriptor_supportIndirectCommandBuffers :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor) -> bool {
+    return msgSend(bool, self, "supportIndirectCommandBuffers")
+}
+@(objc_type=MeshRenderPipelineDescriptor, objc_name="setSupportIndirectCommandBuffers")
+MeshRenderPipelineDescriptor_setSupportIndirectCommandBuffers :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor, supportIndirectCommandBuffers: bool) {
+    msgSend(nil, self, "setSupportIndirectCommandBuffers:", supportIndirectCommandBuffers)
+}
 @(objc_type=MeshRenderPipelineDescriptor, objc_name="objectLinkedFunctions")
 MeshRenderPipelineDescriptor_objectLinkedFunctions :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor) -> ^LinkedFunctions {
     return msgSend(^LinkedFunctions, self, "objectLinkedFunctions")

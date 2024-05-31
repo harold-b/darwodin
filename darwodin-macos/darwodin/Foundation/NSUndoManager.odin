@@ -58,8 +58,8 @@ UndoManager_removeAllActionsWithTarget :: #force_inline proc "c" (self: ^UndoMan
     msgSend(nil, self, "removeAllActionsWithTarget:", target)
 }
 @(objc_type=UndoManager, objc_name="registerUndoWithTarget_selector_object")
-UndoManager_registerUndoWithTarget_selector_object :: #force_inline proc "c" (self: ^UndoManager, target: id, selector: SEL, anObject: id) {
-    msgSend(nil, self, "registerUndoWithTarget:selector:object:", target, selector, anObject)
+UndoManager_registerUndoWithTarget_selector_object :: #force_inline proc "c" (self: ^UndoManager, target: id, selector: SEL, object: id) {
+    msgSend(nil, self, "registerUndoWithTarget:selector:object:", target, selector, object)
 }
 @(objc_type=UndoManager, objc_name="prepareWithInvocationTarget")
 UndoManager_prepareWithInvocationTarget :: #force_inline proc "c" (self: ^UndoManager, target: id) -> id {
@@ -124,6 +124,14 @@ UndoManager_canUndo :: #force_inline proc "c" (self: ^UndoManager) -> bool {
 @(objc_type=UndoManager, objc_name="canRedo")
 UndoManager_canRedo :: #force_inline proc "c" (self: ^UndoManager) -> bool {
     return msgSend(bool, self, "canRedo")
+}
+@(objc_type=UndoManager, objc_name="undoCount")
+UndoManager_undoCount :: #force_inline proc "c" (self: ^UndoManager) -> UInteger {
+    return msgSend(UInteger, self, "undoCount")
+}
+@(objc_type=UndoManager, objc_name="redoCount")
+UndoManager_redoCount :: #force_inline proc "c" (self: ^UndoManager) -> UInteger {
+    return msgSend(UInteger, self, "redoCount")
 }
 @(objc_type=UndoManager, objc_name="isUndoing")
 UndoManager_isUndoing :: #force_inline proc "c" (self: ^UndoManager) -> bool {
@@ -304,7 +312,7 @@ UndoManager_VTable :: struct {
     undoNestedGroup: proc(self: ^UndoManager),
     removeAllActions: proc(self: ^UndoManager),
     removeAllActionsWithTarget: proc(self: ^UndoManager, target: id),
-    registerUndoWithTarget_selector_object: proc(self: ^UndoManager, target: id, selector: SEL, anObject: id),
+    registerUndoWithTarget_selector_object: proc(self: ^UndoManager, target: id, selector: SEL, object: id),
     prepareWithInvocationTarget: proc(self: ^UndoManager, target: id) -> id,
     registerUndoWithTarget_handler: proc(self: ^UndoManager, target: id, undoHandler: proc "c" (target: id)),
     setActionIsDiscardable: proc(self: ^UndoManager, discardable: bool),
@@ -321,6 +329,8 @@ UndoManager_VTable :: struct {
     setRunLoopModes: proc(self: ^UndoManager, runLoopModes: ^Array),
     canUndo: proc(self: ^UndoManager) -> bool,
     canRedo: proc(self: ^UndoManager) -> bool,
+    undoCount: proc(self: ^UndoManager) -> UInteger,
+    redoCount: proc(self: ^UndoManager) -> UInteger,
     isUndoing: proc(self: ^UndoManager) -> bool,
     isRedoing: proc(self: ^UndoManager) -> bool,
     undoActionIsDiscardable: proc(self: ^UndoManager) -> bool,
@@ -460,11 +470,11 @@ UndoManager_odin_extend :: proc(cls: Class, vt: ^UndoManager_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllActionsWithTarget:"), auto_cast removeAllActionsWithTarget, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.registerUndoWithTarget_selector_object != nil {
-        registerUndoWithTarget_selector_object :: proc "c" (self: ^UndoManager, _: SEL, target: id, selector: SEL, anObject: id) {
+        registerUndoWithTarget_selector_object :: proc "c" (self: ^UndoManager, _: SEL, target: id, selector: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^UndoManager_VTable)vt_ctx.super_vt).registerUndoWithTarget_selector_object(self, target, selector, anObject)
+            (cast(^UndoManager_VTable)vt_ctx.super_vt).registerUndoWithTarget_selector_object(self, target, selector, object)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("registerUndoWithTarget:selector:object:"), auto_cast registerUndoWithTarget_selector_object, "v@:@:@") do panic("Failed to register objC method.")
@@ -628,6 +638,26 @@ UndoManager_odin_extend :: proc(cls: Class, vt: ^UndoManager_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("canRedo"), auto_cast canRedo, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.undoCount != nil {
+        undoCount :: proc "c" (self: ^UndoManager, _: SEL) -> UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^UndoManager_VTable)vt_ctx.super_vt).undoCount(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("undoCount"), auto_cast undoCount, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.redoCount != nil {
+        redoCount :: proc "c" (self: ^UndoManager, _: SEL) -> UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^UndoManager_VTable)vt_ctx.super_vt).redoCount(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("redoCount"), auto_cast redoCount, "L@:") do panic("Failed to register objC method.")
     }
     if vt.isUndoing != nil {
         isUndoing :: proc "c" (self: ^UndoManager, _: SEL) -> bool {

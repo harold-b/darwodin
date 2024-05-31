@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSMassFormatter")
 MassFormatter :: struct { using _: Formatter, }
 
-MassFormatter_VTable :: struct {
-    super: Formatter_VTable,
-}
-

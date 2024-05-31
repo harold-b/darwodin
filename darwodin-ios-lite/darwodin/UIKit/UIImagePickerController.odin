@@ -19,7 +19,3 @@ ImagePickerController :: struct { using _: NavigationController,
     using _: NS.Coding,
 }
 
-ImagePickerController_VTable :: struct {
-    super: NavigationController_VTable,
-}
-

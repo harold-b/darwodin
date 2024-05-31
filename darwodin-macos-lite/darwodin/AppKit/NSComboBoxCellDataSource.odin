@@ -19,6 +19,3 @@ ComboBoxCellDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ComboBoxCellDataSource_VTable :: struct {
-}
-

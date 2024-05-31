@@ -19,6 +19,3 @@ TableViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object,
     using _: DragAnimating,
 }
 
-TableViewDropPlaceholderContext_VTable :: struct {
-}
-

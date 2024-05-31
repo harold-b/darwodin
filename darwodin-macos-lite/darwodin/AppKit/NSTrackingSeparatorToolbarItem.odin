@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTrackingSeparatorToolbarItem")
 TrackingSeparatorToolbarItem :: struct { using _: ToolbarItem, }
 
-TrackingSeparatorToolbarItem_VTable :: struct {
-    super: ToolbarItem_VTable,
-}
-

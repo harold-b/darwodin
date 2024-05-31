@@ -20,7 +20,3 @@ SplitViewItem :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-SplitViewItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

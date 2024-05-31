@@ -17,7 +17,3 @@ UnitPower :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitPower_VTable :: struct {
-    super: Dimension_VTable,
-}
-

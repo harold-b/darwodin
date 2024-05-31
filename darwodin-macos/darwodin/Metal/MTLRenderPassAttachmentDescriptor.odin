@@ -107,11 +107,11 @@ RenderPassAttachmentDescriptor_setStoreAction :: #force_inline proc "c" (self: ^
     msgSend(nil, self, "setStoreAction:", storeAction)
 }
 @(objc_type=RenderPassAttachmentDescriptor, objc_name="storeActionOptions")
-RenderPassAttachmentDescriptor_storeActionOptions :: #force_inline proc "c" (self: ^RenderPassAttachmentDescriptor) -> StoreActionOptions {
-    return msgSend(StoreActionOptions, self, "storeActionOptions")
+RenderPassAttachmentDescriptor_storeActionOptions :: #force_inline proc "c" (self: ^RenderPassAttachmentDescriptor) -> StoreActionOption {
+    return msgSend(StoreActionOption, self, "storeActionOptions")
 }
 @(objc_type=RenderPassAttachmentDescriptor, objc_name="setStoreActionOptions")
-RenderPassAttachmentDescriptor_setStoreActionOptions :: #force_inline proc "c" (self: ^RenderPassAttachmentDescriptor, storeActionOptions: StoreActionOptions) {
+RenderPassAttachmentDescriptor_setStoreActionOptions :: #force_inline proc "c" (self: ^RenderPassAttachmentDescriptor, storeActionOptions: StoreActionOption) {
     msgSend(nil, self, "setStoreActionOptions:", storeActionOptions)
 }
 @(objc_type=RenderPassAttachmentDescriptor, objc_name="load", objc_is_class_method=true)

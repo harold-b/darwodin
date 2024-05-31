@@ -19,7 +19,3 @@ NSCollectionLayoutSupplementaryItem :: struct { using _: NSCollectionLayoutItem,
     using _: NS.Copying,
 }
 
-NSCollectionLayoutSupplementaryItem_VTable :: struct {
-    super: NSCollectionLayoutItem_VTable,
-}
-

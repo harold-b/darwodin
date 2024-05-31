@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSMutableFontCollection")
 MutableFontCollection :: struct { using _: FontCollection, }
 
-MutableFontCollection_VTable :: struct {
-    super: FontCollection_VTable,
-}
-

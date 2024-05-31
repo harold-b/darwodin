@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSScrubber")
 Scrubber :: struct { using _: View, }
 
-Scrubber_VTable :: struct {
-    super: View_VTable,
-}
-

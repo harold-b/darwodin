@@ -20,6 +20,3 @@ TextDroppable :: struct { using _: intrinsics.objc_object,
     using _: TextPasteConfigurationSupporting,
 }
 
-TextDroppable_VTable :: struct {
-}
-

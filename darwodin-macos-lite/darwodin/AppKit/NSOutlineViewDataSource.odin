@@ -19,6 +19,3 @@ OutlineViewDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-OutlineViewDataSource_VTable :: struct {
-}
-

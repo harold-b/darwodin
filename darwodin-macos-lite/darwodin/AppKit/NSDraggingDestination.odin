@@ -19,6 +19,3 @@ DraggingDestination :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-DraggingDestination_VTable :: struct {
-}
-

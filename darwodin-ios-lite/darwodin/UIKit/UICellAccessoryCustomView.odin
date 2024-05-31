@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICellAccessoryCustomView")
 CellAccessoryCustomView :: struct { using _: CellAccessory, }
 
-CellAccessoryCustomView_VTable :: struct {
-    super: CellAccessory_VTable,
-}
-

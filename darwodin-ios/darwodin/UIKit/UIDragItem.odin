@@ -29,6 +29,10 @@ DragItem_init :: #force_inline proc "c" (self: ^DragItem) -> ^DragItem {
 DragItem_new :: #force_inline proc "c" () -> ^DragItem {
     return msgSend(^DragItem, DragItem, "new")
 }
+@(objc_type=DragItem, objc_name="setNeedsDropPreviewUpdate")
+DragItem_setNeedsDropPreviewUpdate :: #force_inline proc "c" (self: ^DragItem) {
+    msgSend(nil, self, "setNeedsDropPreviewUpdate")
+}
 @(objc_type=DragItem, objc_name="itemProvider")
 DragItem_itemProvider :: #force_inline proc "c" (self: ^DragItem) -> ^NS.ItemProvider {
     return msgSend(^NS.ItemProvider, self, "itemProvider")
@@ -172,6 +176,7 @@ DragItem_VTable :: struct {
     initWithItemProvider: proc(self: ^DragItem, itemProvider: ^NS.ItemProvider) -> ^DragItem,
     init: proc(self: ^DragItem) -> ^DragItem,
     new: proc() -> ^DragItem,
+    setNeedsDropPreviewUpdate: proc(self: ^DragItem),
     itemProvider: proc(self: ^DragItem) -> ^NS.ItemProvider,
     localObject: proc(self: ^DragItem) -> id,
     setLocalObject: proc(self: ^DragItem, localObject: id),
@@ -243,6 +248,16 @@ DragItem_odin_extend :: proc(cls: Class, vt: ^DragItem_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.setNeedsDropPreviewUpdate != nil {
+        setNeedsDropPreviewUpdate :: proc "c" (self: ^DragItem, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DragItem_VTable)vt_ctx.super_vt).setNeedsDropPreviewUpdate(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNeedsDropPreviewUpdate"), auto_cast setNeedsDropPreviewUpdate, "v@:") do panic("Failed to register objC method.")
     }
     if vt.itemProvider != nil {
         itemProvider :: proc "c" (self: ^DragItem, _: SEL) -> ^NS.ItemProvider {

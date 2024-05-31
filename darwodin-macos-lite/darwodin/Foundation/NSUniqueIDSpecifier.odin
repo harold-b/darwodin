@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSUniqueIDSpecifier")
 UniqueIDSpecifier :: struct { using _: ScriptObjectSpecifier, }
 
-UniqueIDSpecifier_VTable :: struct {
-    super: ScriptObjectSpecifier_VTable,
-}
-

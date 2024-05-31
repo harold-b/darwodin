@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICollectionViewCompositionalLayout")
 CollectionViewCompositionalLayout :: struct { using _: CollectionViewLayout, }
 
-CollectionViewCompositionalLayout_VTable :: struct {
-    super: CollectionViewLayout_VTable,
-}
-

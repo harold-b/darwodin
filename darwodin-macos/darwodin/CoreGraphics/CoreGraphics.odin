@@ -164,7 +164,7 @@ ColorSpaceRef :: distinct ^ColorSpace
 DataProviderRef :: distinct ^DataProvider
 
 /// CGDataProviderGetBytesCallback
-DataProviderGetBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.uint) -> cffi.uint
+DataProviderGetBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderSkipForwardCallback
 DataProviderSkipForwardCallback :: distinct proc "c" (info: rawptr, count: cffi.longlong) -> cffi.longlong
@@ -180,10 +180,10 @@ DataProviderReleaseInfoCallback :: distinct proc "c" (info: rawptr)
 /// CGDataProviderReleaseBytePointerCallback
 
 /// CGDataProviderGetBytesAtPositionCallback
-DataProviderGetBytesAtPositionCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, pos: cffi.longlong, cnt: cffi.uint) -> cffi.uint
+DataProviderGetBytesAtPositionCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, pos: cffi.longlong, cnt: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderReleaseDataCallback
-DataProviderReleaseDataCallback :: distinct proc "c" (info: rawptr, data: rawptr, size: cffi.uint)
+DataProviderReleaseDataCallback :: distinct proc "c" (info: rawptr, data: rawptr, size: cffi.size_t)
 
 /// ColorSyncProfileRef
 ColorSyncProfileRef :: distinct ^ColorSyncProfile
@@ -255,7 +255,7 @@ PDFStreamRef :: distinct ^PDFStream
 PDFStringRef :: distinct ^PDFString
 
 /// CGPDFArrayApplierBlock
-PDFArrayApplierBlock :: distinct proc "c" (index: cffi.uint, value: PDFObjectRef, info: rawptr) -> cffi.bool
+PDFArrayApplierBlock :: distinct proc "c" (index: cffi.size_t, value: PDFObjectRef, info: rawptr) -> cffi.bool
 
 /// CGPDFDictionaryApplierFunction
 PDFDictionaryApplierFunction :: distinct proc "c" (key: cstring, value: PDFObjectRef, info: rawptr)
@@ -285,7 +285,7 @@ ColorConversionInfoRef :: distinct ^ColorConversionInfo
 DataConsumerRef :: distinct ^DataConsumer
 
 /// CGDataConsumerPutBytesCallback
-DataConsumerPutBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.uint) -> cffi.uint
+DataConsumerPutBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
 
 /// CGDataConsumerReleaseInfoCallback
 DataConsumerReleaseInfoCallback :: distinct proc "c" (info: rawptr)
@@ -342,7 +342,7 @@ DisplayErr :: distinct Error
 DisplayConfigRef :: distinct ^_CGDisplayConfigRef
 
 /// CGDisplayReconfigurationCallBack
-DisplayReconfigurationCallBack :: distinct proc "c" (display: DirectDisplayID, flags: DisplayChangeSummaryFlags, userInfo: rawptr)
+DisplayReconfigurationCallBack :: distinct proc "c" (display: DirectDisplayID, flags: DisplayChangeSummaryFlag, userInfo: rawptr)
 
 /// CGDisplayFadeReservationToken
 DisplayFadeReservationToken :: distinct cffi.uint32_t
@@ -384,7 +384,7 @@ KeyCode :: distinct cffi.uint16_t
 ScreenRefreshCallback :: distinct proc "c" (count: cffi.uint32_t, rects: ^Rect, userInfo: rawptr)
 
 /// CGScreenUpdateMoveCallback
-ScreenUpdateMoveCallback :: distinct proc "c" (delta: ScreenUpdateMoveDelta, count: cffi.uint, rects: ^Rect, userInfo: rawptr)
+ScreenUpdateMoveCallback :: distinct proc "c" (delta: ScreenUpdateMoveDelta, count: cffi.size_t, rects: ^Rect, userInfo: rawptr)
 
 /// CGRectCount
 RectCount :: distinct cffi.uint32_t
@@ -423,10 +423,10 @@ PSConverterBeginDocumentCallback :: distinct proc "c" (info: rawptr)
 PSConverterEndDocumentCallback :: distinct proc "c" (info: rawptr, success: cffi.bool)
 
 /// CGPSConverterBeginPageCallback
-PSConverterBeginPageCallback :: distinct proc "c" (info: rawptr, pageNumber: cffi.uint, pageInfo: CF.DictionaryRef)
+PSConverterBeginPageCallback :: distinct proc "c" (info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef)
 
 /// CGPSConverterEndPageCallback
-PSConverterEndPageCallback :: distinct proc "c" (info: rawptr, pageNumber: cffi.uint, pageInfo: CF.DictionaryRef)
+PSConverterEndPageCallback :: distinct proc "c" (info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef)
 
 /// CGPSConverterProgressCallback
 PSConverterProgressCallback :: distinct proc "c" (info: rawptr)
@@ -819,7 +819,7 @@ ConfigureOption :: enum cffi.uint {
 }
 
 /// CGDisplayChangeSummaryFlags
-DisplayChangeSummaryFlags :: enum cffi.uint {
+DisplayChangeSummaryFlag :: enum cffi.uint {
     BeginConfigurationFlag = 0,
     MovedFlag = 1,
     SetMainFlag = 2,
@@ -832,7 +832,7 @@ DisplayChangeSummaryFlags :: enum cffi.uint {
     UnMirrorFlag = 11,
     DesktopShapeChangedFlag = 12,
 }
-DisplayChangeSummaryFlagsSet :: bit_set[DisplayChangeSummaryFlags; cffi.uint]
+DisplayChangeSummaryFlags :: bit_set[DisplayChangeSummaryFlag; cffi.uint]
 
 /// CGDisplayStreamUpdateRectType
 DisplayStreamUpdateRectType :: enum cffi.int {
@@ -863,7 +863,7 @@ EventFilterMask :: enum cffi.uint {
     PermitLocalKeyboardEvents = 1,
     PermitSystemDefinedEvents = 2,
 }
-EventFilterMaskSet :: bit_set[EventFilterMask; cffi.uint]
+EventFilterMasks :: bit_set[EventFilterMask; cffi.uint]
 
 /// CGEventSuppressionState
 EventSuppressionState :: enum cffi.uint {
@@ -913,7 +913,7 @@ GesturePhase :: enum cffi.uint {
 }
 
 /// CGEventFlags
-EventFlags :: enum cffi.ulonglong {
+EventFlag :: enum cffi.ulonglong {
     FlagMaskAlphaShift = 16,
     FlagMaskShift = 17,
     FlagMaskControl = 18,
@@ -924,7 +924,7 @@ EventFlags :: enum cffi.ulonglong {
     FlagMaskNumericPad = 21,
     FlagMaskNonCoalesced = 8,
 }
-EventFlagsSet :: bit_set[EventFlags; cffi.ulonglong]
+EventFlags :: bit_set[EventFlag; cffi.ulonglong]
 
 /// CGEventType
 EventType :: enum cffi.uint {
@@ -1194,8 +1194,8 @@ ColorDataFormat :: struct #align (8) {
     version : cffi.uint32_t,
     colorspace_info : CF.TypeRef,
     bitmap_info : BitmapInfo,
-    bits_per_component : cffi.uint,
-    bytes_per_row : cffi.uint,
+    bits_per_component : cffi.size_t,
+    bytes_per_row : cffi.size_t,
     intent : ColorRenderingIntent,
     decode : ^Float,
 }

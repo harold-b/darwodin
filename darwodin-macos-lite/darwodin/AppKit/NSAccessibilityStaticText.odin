@@ -19,6 +19,3 @@ AccessibilityStaticText :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
-AccessibilityStaticText_VTable :: struct {
-}
-

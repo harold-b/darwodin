@@ -281,7 +281,7 @@ EdgeAntialiasingMask :: enum cffi.uint {
     kCALayerBottomEdge = 2,
     kCALayerTopEdge = 3,
 }
-EdgeAntialiasingMaskSet :: bit_set[EdgeAntialiasingMask; cffi.uint]
+EdgeAntialiasingMasks :: bit_set[EdgeAntialiasingMask; cffi.uint]
 
 /// CACornerMask
 CornerMask :: enum cffi.ulong {
@@ -290,7 +290,7 @@ CornerMask :: enum cffi.ulong {
     kCALayerMinXMaxYCorner = 2,
     kCALayerMaxXMaxYCorner = 3,
 }
-CornerMaskSet :: bit_set[CornerMask; cffi.ulong]
+CornerMasks :: bit_set[CornerMask; cffi.ulong]
 
 /// EAGLRenderingAPI
 EAGLRenderingAPI :: enum cffi.ulong {

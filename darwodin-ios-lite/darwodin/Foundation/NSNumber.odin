@@ -465,6 +465,9 @@ Number_odin_extend :: proc(cls: Class, vt: ^Number_VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    Value_odin_extend(cls, &vt.super)
+
     if vt.initWithCoder != nil {
         initWithCoder :: proc "c" (self: ^Number, _: SEL, coder: ^Coder) -> ^Number {
 

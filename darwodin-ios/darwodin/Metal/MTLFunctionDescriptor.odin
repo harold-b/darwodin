@@ -55,11 +55,11 @@ FunctionDescriptor_setConstantValues :: #force_inline proc "c" (self: ^FunctionD
     msgSend(nil, self, "setConstantValues:", constantValues)
 }
 @(objc_type=FunctionDescriptor, objc_name="options")
-FunctionDescriptor_options :: #force_inline proc "c" (self: ^FunctionDescriptor) -> FunctionOptions {
-    return msgSend(FunctionOptions, self, "options")
+FunctionDescriptor_options :: #force_inline proc "c" (self: ^FunctionDescriptor) -> FunctionOption {
+    return msgSend(FunctionOption, self, "options")
 }
 @(objc_type=FunctionDescriptor, objc_name="setOptions")
-FunctionDescriptor_setOptions :: #force_inline proc "c" (self: ^FunctionDescriptor, options: FunctionOptions) {
+FunctionDescriptor_setOptions :: #force_inline proc "c" (self: ^FunctionDescriptor, options: FunctionOption) {
     msgSend(nil, self, "setOptions:", options)
 }
 @(objc_type=FunctionDescriptor, objc_name="binaryArchives")

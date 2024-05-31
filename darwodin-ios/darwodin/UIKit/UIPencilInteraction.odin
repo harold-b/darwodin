@@ -25,13 +25,25 @@ PencilInteraction_init :: proc "c" (self: ^PencilInteraction) -> ^PencilInteract
 }
 
 
+@(objc_type=PencilInteraction, objc_name="initWithDelegate")
+PencilInteraction_initWithDelegate :: #force_inline proc "c" (self: ^PencilInteraction, delegate: ^PencilInteractionDelegate) -> ^PencilInteraction {
+    return msgSend(^PencilInteraction, self, "initWithDelegate:", delegate)
+}
 @(objc_type=PencilInteraction, objc_name="preferredTapAction", objc_is_class_method=true)
 PencilInteraction_preferredTapAction :: #force_inline proc "c" () -> PencilPreferredAction {
     return msgSend(PencilPreferredAction, PencilInteraction, "preferredTapAction")
 }
+@(objc_type=PencilInteraction, objc_name="preferredSqueezeAction", objc_is_class_method=true)
+PencilInteraction_preferredSqueezeAction :: #force_inline proc "c" () -> PencilPreferredAction {
+    return msgSend(PencilPreferredAction, PencilInteraction, "preferredSqueezeAction")
+}
 @(objc_type=PencilInteraction, objc_name="prefersPencilOnlyDrawing", objc_is_class_method=true)
 PencilInteraction_prefersPencilOnlyDrawing :: #force_inline proc "c" () -> bool {
     return msgSend(bool, PencilInteraction, "prefersPencilOnlyDrawing")
+}
+@(objc_type=PencilInteraction, objc_name="prefersHoverToolPreview", objc_is_class_method=true)
+PencilInteraction_prefersHoverToolPreview :: #force_inline proc "c" () -> bool {
+    return msgSend(bool, PencilInteraction, "prefersHoverToolPreview")
 }
 @(objc_type=PencilInteraction, objc_name="delegate")
 PencilInteraction_delegate :: #force_inline proc "c" (self: ^PencilInteraction) -> ^PencilInteractionDelegate {
@@ -173,8 +185,11 @@ PencilInteraction_cancelPreviousPerformRequestsWithTarget :: proc {
 
 PencilInteraction_VTable :: struct {
     super: NS.Object_VTable,
+    initWithDelegate: proc(self: ^PencilInteraction, delegate: ^PencilInteractionDelegate) -> ^PencilInteraction,
     preferredTapAction: proc() -> PencilPreferredAction,
+    preferredSqueezeAction: proc() -> PencilPreferredAction,
     prefersPencilOnlyDrawing: proc() -> bool,
+    prefersHoverToolPreview: proc() -> bool,
     delegate: proc(self: ^PencilInteraction) -> ^PencilInteractionDelegate,
     setDelegate: proc(self: ^PencilInteraction, delegate: ^PencilInteractionDelegate),
     isEnabled: proc(self: ^PencilInteraction) -> bool,
@@ -217,6 +232,16 @@ PencilInteraction_odin_extend :: proc(cls: Class, vt: ^PencilInteraction_VTable)
     
     NS.Object_odin_extend(cls, &vt.super)
 
+    if vt.initWithDelegate != nil {
+        initWithDelegate :: proc "c" (self: ^PencilInteraction, _: SEL, delegate: ^PencilInteractionDelegate) -> ^PencilInteraction {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PencilInteraction_VTable)vt_ctx.super_vt).initWithDelegate(self, delegate)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDelegate:"), auto_cast initWithDelegate, "@@:@") do panic("Failed to register objC method.")
+    }
     if vt.preferredTapAction != nil {
         preferredTapAction :: proc "c" (self: Class, _: SEL) -> PencilPreferredAction {
 
@@ -227,6 +252,16 @@ PencilInteraction_odin_extend :: proc(cls: Class, vt: ^PencilInteraction_VTable)
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("preferredTapAction"), auto_cast preferredTapAction, "l#:") do panic("Failed to register objC method.")
     }
+    if vt.preferredSqueezeAction != nil {
+        preferredSqueezeAction :: proc "c" (self: Class, _: SEL) -> PencilPreferredAction {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PencilInteraction_VTable)vt_ctx.super_vt).preferredSqueezeAction()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("preferredSqueezeAction"), auto_cast preferredSqueezeAction, "l#:") do panic("Failed to register objC method.")
+    }
     if vt.prefersPencilOnlyDrawing != nil {
         prefersPencilOnlyDrawing :: proc "c" (self: Class, _: SEL) -> bool {
 
@@ -236,6 +271,16 @@ PencilInteraction_odin_extend :: proc(cls: Class, vt: ^PencilInteraction_VTable)
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("prefersPencilOnlyDrawing"), auto_cast prefersPencilOnlyDrawing, "B#:") do panic("Failed to register objC method.")
+    }
+    if vt.prefersHoverToolPreview != nil {
+        prefersHoverToolPreview :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PencilInteraction_VTable)vt_ctx.super_vt).prefersHoverToolPreview()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("prefersHoverToolPreview"), auto_cast prefersHoverToolPreview, "B#:") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
         delegate :: proc "c" (self: ^PencilInteraction, _: SEL) -> ^PencilInteractionDelegate {

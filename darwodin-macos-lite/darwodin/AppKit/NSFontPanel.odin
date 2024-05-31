@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSFontPanel")
 FontPanel :: struct { using _: Panel, }
 
-FontPanel_VTable :: struct {
-    super: Panel_VTable,
-}
-

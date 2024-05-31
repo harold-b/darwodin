@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSStatusItem")
 StatusItem :: struct { using _: NS.Object, }
 
-StatusItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

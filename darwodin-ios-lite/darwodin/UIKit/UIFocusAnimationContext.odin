@@ -19,6 +19,3 @@ FocusAnimationContext :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-FocusAnimationContext_VTable :: struct {
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextSelectionNavigation")
 TextSelectionNavigation :: struct { using _: NS.Object, }
 
-TextSelectionNavigation_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

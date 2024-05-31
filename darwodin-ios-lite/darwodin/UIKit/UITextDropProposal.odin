@@ -19,7 +19,3 @@ TextDropProposal :: struct { using _: DropProposal,
     using _: NS.Copying,
 }
 
-TextDropProposal_VTable :: struct {
-    super: DropProposal_VTable,
-}
-

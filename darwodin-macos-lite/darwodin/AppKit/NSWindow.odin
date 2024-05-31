@@ -620,8 +620,8 @@ Window_firstResponder :: #force_inline proc "c" (self: ^Window) -> ^Responder {
     return msgSend(^Responder, self, "firstResponder")
 }
 @(objc_type=Window, objc_name="resizeFlags")
-Window_resizeFlags :: #force_inline proc "c" (self: ^Window) -> EventModifierFlags {
-    return msgSend(EventModifierFlags, self, "resizeFlags")
+Window_resizeFlags :: #force_inline proc "c" (self: ^Window) -> EventModifierFlag {
+    return msgSend(EventModifierFlag, self, "resizeFlags")
 }
 @(objc_type=Window, objc_name="isReleasedWhenClosed")
 Window_isReleasedWhenClosed :: #force_inline proc "c" (self: ^Window) -> bool {
@@ -1742,7 +1742,7 @@ Window_VTable :: struct {
     preservesContentDuringLiveResize: proc(self: ^Window) -> bool,
     setPreservesContentDuringLiveResize: proc(self: ^Window, preservesContentDuringLiveResize: bool),
     firstResponder: proc(self: ^Window) -> ^Responder,
-    resizeFlags: proc(self: ^Window) -> EventModifierFlags,
+    resizeFlags: proc(self: ^Window) -> EventModifierFlag,
     isReleasedWhenClosed: proc(self: ^Window) -> bool,
     setReleasedWhenClosed: proc(self: ^Window, releasedWhenClosed: bool),
     isZoomed: proc(self: ^Window) -> bool,
@@ -3452,7 +3452,7 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("firstResponder"), auto_cast firstResponder, "@@:") do panic("Failed to register objC method.")
     }
     if vt.resizeFlags != nil {
-        resizeFlags :: proc "c" (self: ^Window, _: SEL) -> EventModifierFlags {
+        resizeFlags :: proc "c" (self: ^Window, _: SEL) -> EventModifierFlag {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

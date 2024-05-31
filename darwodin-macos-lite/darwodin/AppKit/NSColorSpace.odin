@@ -19,7 +19,3 @@ ColorSpace :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-ColorSpace_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

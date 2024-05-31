@@ -21,6 +21,3 @@ ConfigurationState :: struct { using _: intrinsics.objc_object,
     using _: NS.SecureCoding,
 }
 
-ConfigurationState_VTable :: struct {
-}
-

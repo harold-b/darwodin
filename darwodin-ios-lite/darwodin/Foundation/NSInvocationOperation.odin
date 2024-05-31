@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSInvocationOperation")
 InvocationOperation :: struct { using _: Operation, }
 
-InvocationOperation_VTable :: struct {
-    super: Operation_VTable,
-}
-

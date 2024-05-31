@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSHelpManager")
 HelpManager :: struct { using _: NS.Object, }
 
-HelpManager_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

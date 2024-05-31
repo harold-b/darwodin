@@ -50,7 +50,8 @@ Odin:
       # Imports:
       #   - 
 
-      TypeMap: {}
+      TypeMap:
+        task_id_token_t: CF.task_id_token_t
 
 
   # Symbol Transformers
@@ -70,7 +71,7 @@ Odin:
     - Kind: UnderscoreNumbers
 
   TypeTransforms:
-  - Type: ^(_?MTL).+
+  - Type: ^(MTL).+
     Transforms:
     - Kind  : RemovePrefix
       Source: $group0
@@ -79,25 +80,11 @@ Odin:
     - Kind  : RemoveSuffix
       Source: s
 
-  # BitsetSuffix: ""
-  # BitsetEnumSuffix: "${group}s"
   BitSetMap:
     - Type: (Flags|Mask|Options?)$
       Transforms:
         - Kind  : AppendSuffix
           Source: s
-    # - Type: (Option|Mask)$
-    #   Transforms:
-    #   - Kind  : RemoveSuffix
-    #     Source: s
-      # EnumTransforms:
-      #  - Kind  : RemoveSuffix
-      #    Target: s
-
-    # - Mask$
-    # - MTL(ResourceOption)s$
-
-
  
   ProcTransforms:
   - Type: ^(_*MTL).+

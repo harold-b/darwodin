@@ -20,7 +20,3 @@ NavigationBar :: struct { using _: View,
     using _: BarPositioning,
 }
 
-NavigationBar_VTable :: struct {
-    super: View_VTable,
-}
-

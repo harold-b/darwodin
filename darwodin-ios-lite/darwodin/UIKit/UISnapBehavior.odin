@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISnapBehavior")
 SnapBehavior :: struct { using _: DynamicBehavior, }
 
-SnapBehavior_VTable :: struct {
-    super: DynamicBehavior_VTable,
-}
-

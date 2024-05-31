@@ -19,7 +19,3 @@ PencilInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
-PencilInteraction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

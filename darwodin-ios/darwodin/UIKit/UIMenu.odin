@@ -69,6 +69,14 @@ Menu_children :: #force_inline proc "c" (self: ^Menu) -> ^NS.Array {
 Menu_selectedElements :: #force_inline proc "c" (self: ^Menu) -> ^NS.Array {
     return msgSend(^NS.Array, self, "selectedElements")
 }
+@(objc_type=Menu, objc_name="displayPreferences")
+Menu_displayPreferences :: #force_inline proc "c" (self: ^Menu) -> ^MenuDisplayPreferences {
+    return msgSend(^MenuDisplayPreferences, self, "displayPreferences")
+}
+@(objc_type=Menu, objc_name="setDisplayPreferences")
+Menu_setDisplayPreferences :: #force_inline proc "c" (self: ^Menu, displayPreferences: ^MenuDisplayPreferences) {
+    msgSend(nil, self, "setDisplayPreferences:", displayPreferences)
+}
 @(objc_type=Menu, objc_name="supportsSecureCoding", objc_is_class_method=true)
 Menu_supportsSecureCoding :: #force_inline proc "c" () -> bool {
     return msgSend(bool, Menu, "supportsSecureCoding")
@@ -212,6 +220,8 @@ Menu_VTable :: struct {
     setPreferredElementSize: proc(self: ^Menu, preferredElementSize: MenuElementSize),
     children: proc(self: ^Menu) -> ^NS.Array,
     selectedElements: proc(self: ^Menu) -> ^NS.Array,
+    displayPreferences: proc(self: ^Menu) -> ^MenuDisplayPreferences,
+    setDisplayPreferences: proc(self: ^Menu, displayPreferences: ^MenuDisplayPreferences),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -379,6 +389,26 @@ Menu_odin_extend :: proc(cls: Class, vt: ^Menu_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedElements"), auto_cast selectedElements, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.displayPreferences != nil {
+        displayPreferences :: proc "c" (self: ^Menu, _: SEL) -> ^MenuDisplayPreferences {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Menu_VTable)vt_ctx.super_vt).displayPreferences(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("displayPreferences"), auto_cast displayPreferences, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDisplayPreferences != nil {
+        setDisplayPreferences :: proc "c" (self: ^Menu, _: SEL, displayPreferences: ^MenuDisplayPreferences) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Menu_VTable)vt_ctx.super_vt).setDisplayPreferences(self, displayPreferences)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDisplayPreferences:"), auto_cast setDisplayPreferences, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {

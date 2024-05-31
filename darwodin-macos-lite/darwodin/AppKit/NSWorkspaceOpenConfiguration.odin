@@ -19,7 +19,3 @@ WorkspaceOpenConfiguration :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-WorkspaceOpenConfiguration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

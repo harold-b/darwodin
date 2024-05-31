@@ -2,35 +2,27 @@
 set -eo pipefail
 cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-frameworks=(
-    CoreFoundation
-    CoreGraphics
-    Foundation
-    QuartzCore
-    Metal
-    GameController
-    FSEvents
-    # CoreData
-    # ModelIO
-)
+source ./config
 
 macos_frameworks=(
-    ${frameworks[@]}
-    AppKit
-    FSEvents
+    ${darwodin_base_frameworks[@]}
+    ${darwodin_macos_frameworks[@]}
 )
 
 ios_frameworks=(
-    ${frameworks[@]}
-    UIKit
+    ${darwodin_base_frameworks[@]}
+    ${darwodin_ios_frameworks[@]}
 )
 
 # MacOS
 echo "Generating macOS definitions..."
 for f in ${macos_frameworks[@]}; do
+
+    include=$(darwodin_get_header_for_framework $f)
+        
     flist=($(echo "$f" | tr ',' ' '))
     for ((i=0; i < ${#flist[@]}; i++ )); do
-        flist[$i]="-f ${flist[$i]}"
+        flist[$i]="-f ${flist[$i]} -i $include"
     done
     ./gen-def ${flist[@]}
 done
@@ -39,10 +31,14 @@ done
 echo ""
 echo "Generating iOS definitions..."
 for f in ${ios_frameworks[@]}; do
-flist=($(echo "$f" | tr ',' ' '))
+
+    include=$(darwodin_get_header_for_framework $f)
+
+    flist=($(echo "$f" | tr ',' ' '))
     for ((i=0; i < ${#flist[@]}; i++ )); do
-        flist[$i]="-f ${flist[$i]}"
+        flist[$i]="-f ${flist[$i]} -i $include"
     done
-    ./bind -ios ${flist[@]}
+
+    ./gen-def -ios ${flist[@]}
 done
 

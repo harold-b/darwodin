@@ -17,6 +17,3 @@ KeyedUnarchiverDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-KeyedUnarchiverDelegate_VTable :: struct {
-}
-

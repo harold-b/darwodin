@@ -17,7 +17,3 @@ UserNotification :: struct { using _: Object,
     using _: Copying,
 }
 
-UserNotification_VTable :: struct {
-    super: Object_VTable,
-}
-

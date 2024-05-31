@@ -20,7 +20,3 @@ PathCell :: struct { using _: ActionCell,
     using _: OpenSavePanelDelegate,
 }
 
-PathCell_VTable :: struct {
-    super: ActionCell_VTable,
-}
-

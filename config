@@ -1,0 +1,54 @@
+darwodin_out_dir_macos=darwodin-macos
+darwodin_out_dir_ios=darwodin-ios
+darwodin_lite_suffix=-lite
+
+darwodin_base_frameworks=(
+  CoreFoundation
+  CoreGraphics
+  Foundation
+  QuartzCore
+  Metal
+  GameController
+  ModelIO
+)
+
+darwodin_macos_frameworks=(
+  AppKit
+  FSEvents
+)
+
+darwodin_ios_frameworks=(
+  UIKit
+)
+
+function darwodin_get_header_for_framework()
+{
+  framework=$1
+
+  case $f in
+    FSEvents)
+    framework=CoreServices
+    ;;
+  esac
+
+  echo $framework
+}
+
+
+function darwodin_get_output_folder()
+{
+  is_ios=$1
+  is_lite=$2
+
+  suffix=""
+
+  if [[ $is_lite -eq 1 ]]; then
+    suffix=$darwodin_lite_suffix
+  fi
+  
+  if [[ $is_ios -eq 1 ]]; then
+    echo "${darwodin_out_dir_ios}${suffix}"
+  else
+    echo "${darwodin_out_dir_macos}${suffix}"
+  fi
+}

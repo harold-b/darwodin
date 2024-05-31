@@ -19,6 +19,10 @@ DirectionPadElement :: struct { using _: intrinsics.objc_object,
     using _: PhysicalInputElement,
 }
 
+@(objc_type=DirectionPadElement, objc_name="xyAxes")
+DirectionPadElement_xyAxes :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^Axis2DInput {
+    return msgSend(^Axis2DInput, self, "xyAxes")
+}
 @(objc_type=DirectionPadElement, objc_name="xAxis")
 DirectionPadElement_xAxis :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^AxisInput {
     return msgSend(^AxisInput, self, "xAxis")

@@ -19,7 +19,3 @@ ViewConfigurationState :: struct { using _: NS.Object,
     using _: ConfigurationState,
 }
 
-ViewConfigurationState_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

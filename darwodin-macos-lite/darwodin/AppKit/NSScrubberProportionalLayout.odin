@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSScrubberProportionalLayout")
 ScrubberProportionalLayout :: struct { using _: ScrubberLayout, }
 
-ScrubberProportionalLayout_VTable :: struct {
-    super: ScrubberLayout_VTable,
-}
-

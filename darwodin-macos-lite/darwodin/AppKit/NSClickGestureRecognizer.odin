@@ -19,7 +19,3 @@ ClickGestureRecognizer :: struct { using _: GestureRecognizer,
     using _: NS.Coding,
 }
 
-ClickGestureRecognizer_VTable :: struct {
-    super: GestureRecognizer_VTable,
-}
-

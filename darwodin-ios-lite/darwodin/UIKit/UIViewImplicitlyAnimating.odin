@@ -19,6 +19,3 @@ ViewImplicitlyAnimating :: struct { using _: intrinsics.objc_object,
     using _: ViewAnimating,
 }
 
-ViewImplicitlyAnimating_VTable :: struct {
-}
-

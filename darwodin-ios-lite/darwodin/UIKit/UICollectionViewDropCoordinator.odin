@@ -19,6 +19,3 @@ CollectionViewDropCoordinator :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-CollectionViewDropCoordinator_VTable :: struct {
-}
-

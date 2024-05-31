@@ -17,7 +17,3 @@ ISO8601DateFormatter :: struct { using _: Formatter,
     using _: SecureCoding,
 }
 
-ISO8601DateFormatter_VTable :: struct {
-    super: Formatter_VTable,
-}
-

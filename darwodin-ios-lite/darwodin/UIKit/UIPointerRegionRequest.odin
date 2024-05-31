@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPointerRegionRequest")
 PointerRegionRequest :: struct { using _: NS.Object, }
 
-PointerRegionRequest_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

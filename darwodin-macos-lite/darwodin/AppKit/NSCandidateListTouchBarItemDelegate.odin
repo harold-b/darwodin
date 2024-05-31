@@ -19,6 +19,3 @@ CandidateListTouchBarItemDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-CandidateListTouchBarItemDelegate_VTable :: struct {
-}
-

@@ -19,7 +19,3 @@ GestureRecognizer :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-GestureRecognizer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

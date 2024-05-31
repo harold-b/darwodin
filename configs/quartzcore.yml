@@ -39,6 +39,7 @@ Odin:
   ExportPath     : ..
   BasePackageName: darwodin
   SingleFile     : false
+  EmitObjCExtenders: true
   TargetPlatform : Darwin
   ExportTypeMapDir: ../exports
   ExternalTypes:
@@ -46,8 +47,6 @@ Odin:
     - ../exports/CoreGraphics.exports.yml
     - ../exports/Foundation.exports.yml
 
-  BitSetMap:
-    - (Flags|Mask)$
 
   Packages:
     - Name  : QuartzCore
@@ -84,7 +83,17 @@ Odin:
       Transforms:
       - Kind  : RemovePrefix
         Source: $group0
- 
+    - Type: (Flags|Mask)$
+      Transforms:
+      - Kind  : RemoveSuffix
+        Source: s
+
+  BitSetMap:
+    - Type: (Flags|Mask)$
+      Transforms:
+        - Kind  : AppendSuffix
+          Source: s
+
   ProcTransforms:
     - Type: ^(_*CA).+
       Transforms:

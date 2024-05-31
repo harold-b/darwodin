@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIFocusDebugger")
 FocusDebugger :: struct { using _: NS.Object, }
 
-FocusDebugger_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

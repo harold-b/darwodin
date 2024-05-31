@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSSecureUnarchiveFromDataTransformer")
 SecureUnarchiveFromDataTransformer :: struct { using _: ValueTransformer, }
 
-SecureUnarchiveFromDataTransformer_VTable :: struct {
-    super: ValueTransformer_VTable,
-}
-

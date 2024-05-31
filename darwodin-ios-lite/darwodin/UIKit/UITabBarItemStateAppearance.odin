@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITabBarItemStateAppearance")
 TabBarItemStateAppearance :: struct { using _: NS.Object, }
 
-TabBarItemStateAppearance_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

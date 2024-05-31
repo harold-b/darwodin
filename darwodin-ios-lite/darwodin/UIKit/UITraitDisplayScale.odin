@@ -19,7 +19,3 @@ TraitDisplayScale :: struct { using _: NS.Object,
     using _: CGFloatTraitDefinition,
 }
 
-TraitDisplayScale_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

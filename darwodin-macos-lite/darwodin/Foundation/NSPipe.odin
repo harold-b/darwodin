@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSPipe")
 Pipe :: struct { using _: Object, }
 
-Pipe_VTable :: struct {
-    super: Object_VTable,
-}
-

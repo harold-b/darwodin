@@ -18,7 +18,3 @@ URLCredential :: struct { using _: Object,
     using _: Copying,
 }
 
-URLCredential_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSStepperCell")
 StepperCell :: struct { using _: ActionCell, }
 
-StepperCell_VTable :: struct {
-    super: ActionCell_VTable,
-}
-

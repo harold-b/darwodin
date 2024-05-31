@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPointerLockState")
 PointerLockState :: struct { using _: NS.Object, }
 
-PointerLockState_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -46,6 +46,10 @@ ScrollView_scrollRectToVisible :: #force_inline proc "c" (self: ^ScrollView, rec
 ScrollView_flashScrollIndicators :: #force_inline proc "c" (self: ^ScrollView) {
     msgSend(nil, self, "flashScrollIndicators")
 }
+@(objc_type=ScrollView, objc_name="withScrollIndicatorsShownForContentOffsetChanges")
+ScrollView_withScrollIndicatorsShownForContentOffsetChanges :: #force_inline proc "c" (self: ^ScrollView, changes: proc "c" ()) {
+    msgSend(nil, self, "withScrollIndicatorsShownForContentOffsetChanges:", changes)
+}
 @(objc_type=ScrollView, objc_name="touchesShouldBegin")
 ScrollView_touchesShouldBegin :: #force_inline proc "c" (self: ^ScrollView, touches: ^NS.Set, event: ^Event, view: ^View) -> bool {
     return msgSend(bool, self, "touchesShouldBegin:withEvent:inContentView:", touches, event, view)
@@ -61,6 +65,10 @@ ScrollView_setZoomScale_animated :: #force_inline proc "c" (self: ^ScrollView, s
 @(objc_type=ScrollView, objc_name="zoomToRect")
 ScrollView_zoomToRect :: #force_inline proc "c" (self: ^ScrollView, rect: CG.Rect, animated: bool) {
     msgSend(nil, self, "zoomToRect:animated:", rect, animated)
+}
+@(objc_type=ScrollView, objc_name="stopScrollingAndZooming")
+ScrollView_stopScrollingAndZooming :: #force_inline proc "c" (self: ^ScrollView) {
+    msgSend(nil, self, "stopScrollingAndZooming")
 }
 @(objc_type=ScrollView, objc_name="contentOffset")
 ScrollView_contentOffset :: #force_inline proc "c" (self: ^ScrollView) -> CG.Point {
@@ -85,6 +93,14 @@ ScrollView_contentInset :: #force_inline proc "c" (self: ^ScrollView) -> EdgeIns
 @(objc_type=ScrollView, objc_name="setContentInset")
 ScrollView_setContentInset :: #force_inline proc "c" (self: ^ScrollView, contentInset: EdgeInsets) {
     msgSend(nil, self, "setContentInset:", contentInset)
+}
+@(objc_type=ScrollView, objc_name="contentAlignmentPoint")
+ScrollView_contentAlignmentPoint :: #force_inline proc "c" (self: ^ScrollView) -> CG.Point {
+    return msgSend(CG.Point, self, "contentAlignmentPoint")
+}
+@(objc_type=ScrollView, objc_name="setContentAlignmentPoint")
+ScrollView_setContentAlignmentPoint :: #force_inline proc "c" (self: ^ScrollView, contentAlignmentPoint: CG.Point) {
+    msgSend(nil, self, "setContentAlignmentPoint:", contentAlignmentPoint)
 }
 @(objc_type=ScrollView, objc_name="adjustedContentInset")
 ScrollView_adjustedContentInset :: #force_inline proc "c" (self: ^ScrollView) -> EdgeInsets {
@@ -138,6 +154,22 @@ ScrollView_bounces :: #force_inline proc "c" (self: ^ScrollView) -> bool {
 ScrollView_setBounces :: #force_inline proc "c" (self: ^ScrollView, bounces: bool) {
     msgSend(nil, self, "setBounces:", bounces)
 }
+@(objc_type=ScrollView, objc_name="bouncesHorizontally")
+ScrollView_bouncesHorizontally :: #force_inline proc "c" (self: ^ScrollView) -> bool {
+    return msgSend(bool, self, "bouncesHorizontally")
+}
+@(objc_type=ScrollView, objc_name="setBouncesHorizontally")
+ScrollView_setBouncesHorizontally :: #force_inline proc "c" (self: ^ScrollView, bouncesHorizontally: bool) {
+    msgSend(nil, self, "setBouncesHorizontally:", bouncesHorizontally)
+}
+@(objc_type=ScrollView, objc_name="bouncesVertically")
+ScrollView_bouncesVertically :: #force_inline proc "c" (self: ^ScrollView) -> bool {
+    return msgSend(bool, self, "bouncesVertically")
+}
+@(objc_type=ScrollView, objc_name="setBouncesVertically")
+ScrollView_setBouncesVertically :: #force_inline proc "c" (self: ^ScrollView, bouncesVertically: bool) {
+    msgSend(nil, self, "setBouncesVertically:", bouncesVertically)
+}
 @(objc_type=ScrollView, objc_name="alwaysBounceVertical")
 ScrollView_alwaysBounceVertical :: #force_inline proc "c" (self: ^ScrollView) -> bool {
     return msgSend(bool, self, "alwaysBounceVertical")
@@ -169,6 +201,22 @@ ScrollView_isScrollEnabled :: #force_inline proc "c" (self: ^ScrollView) -> bool
 @(objc_type=ScrollView, objc_name="setScrollEnabled")
 ScrollView_setScrollEnabled :: #force_inline proc "c" (self: ^ScrollView, scrollEnabled: bool) {
     msgSend(nil, self, "setScrollEnabled:", scrollEnabled)
+}
+@(objc_type=ScrollView, objc_name="transfersHorizontalScrollingToParent")
+ScrollView_transfersHorizontalScrollingToParent :: #force_inline proc "c" (self: ^ScrollView) -> bool {
+    return msgSend(bool, self, "transfersHorizontalScrollingToParent")
+}
+@(objc_type=ScrollView, objc_name="setTransfersHorizontalScrollingToParent")
+ScrollView_setTransfersHorizontalScrollingToParent :: #force_inline proc "c" (self: ^ScrollView, transfersHorizontalScrollingToParent: bool) {
+    msgSend(nil, self, "setTransfersHorizontalScrollingToParent:", transfersHorizontalScrollingToParent)
+}
+@(objc_type=ScrollView, objc_name="transfersVerticalScrollingToParent")
+ScrollView_transfersVerticalScrollingToParent :: #force_inline proc "c" (self: ^ScrollView) -> bool {
+    return msgSend(bool, self, "transfersVerticalScrollingToParent")
+}
+@(objc_type=ScrollView, objc_name="setTransfersVerticalScrollingToParent")
+ScrollView_setTransfersVerticalScrollingToParent :: #force_inline proc "c" (self: ^ScrollView, transfersVerticalScrollingToParent: bool) {
+    msgSend(nil, self, "setTransfersVerticalScrollingToParent:", transfersVerticalScrollingToParent)
 }
 @(objc_type=ScrollView, objc_name="showsVerticalScrollIndicator")
 ScrollView_showsVerticalScrollIndicator :: #force_inline proc "c" (self: ^ScrollView) -> bool {
@@ -242,6 +290,10 @@ ScrollView_isDragging :: #force_inline proc "c" (self: ^ScrollView) -> bool {
 ScrollView_isDecelerating :: #force_inline proc "c" (self: ^ScrollView) -> bool {
     return msgSend(bool, self, "isDecelerating")
 }
+@(objc_type=ScrollView, objc_name="isScrollAnimating")
+ScrollView_isScrollAnimating :: #force_inline proc "c" (self: ^ScrollView) -> bool {
+    return msgSend(bool, self, "isScrollAnimating")
+}
 @(objc_type=ScrollView, objc_name="delaysContentTouches")
 ScrollView_delaysContentTouches :: #force_inline proc "c" (self: ^ScrollView) -> bool {
     return msgSend(bool, self, "delaysContentTouches")
@@ -297,6 +349,10 @@ ScrollView_isZooming :: #force_inline proc "c" (self: ^ScrollView) -> bool {
 @(objc_type=ScrollView, objc_name="isZoomBouncing")
 ScrollView_isZoomBouncing :: #force_inline proc "c" (self: ^ScrollView) -> bool {
     return msgSend(bool, self, "isZoomBouncing")
+}
+@(objc_type=ScrollView, objc_name="isZoomAnimating")
+ScrollView_isZoomAnimating :: #force_inline proc "c" (self: ^ScrollView) -> bool {
+    return msgSend(bool, self, "isZoomAnimating")
 }
 @(objc_type=ScrollView, objc_name="scrollsToTop")
 ScrollView_scrollsToTop :: #force_inline proc "c" (self: ^ScrollView) -> bool {
@@ -660,16 +716,20 @@ ScrollView_VTable :: struct {
     setContentOffset_animated: proc(self: ^ScrollView, contentOffset: CG.Point, animated: bool),
     scrollRectToVisible: proc(self: ^ScrollView, rect: CG.Rect, animated: bool),
     flashScrollIndicators: proc(self: ^ScrollView),
+    withScrollIndicatorsShownForContentOffsetChanges: proc(self: ^ScrollView, changes: proc "c" ()),
     touchesShouldBegin: proc(self: ^ScrollView, touches: ^NS.Set, event: ^Event, view: ^View) -> bool,
     touchesShouldCancelInContentView: proc(self: ^ScrollView, view: ^View) -> bool,
     setZoomScale_animated: proc(self: ^ScrollView, scale: CG.Float, animated: bool),
     zoomToRect: proc(self: ^ScrollView, rect: CG.Rect, animated: bool),
+    stopScrollingAndZooming: proc(self: ^ScrollView),
     contentOffset: proc(self: ^ScrollView) -> CG.Point,
     setContentOffset_: proc(self: ^ScrollView, contentOffset: CG.Point),
     contentSize: proc(self: ^ScrollView) -> CG.Size,
     setContentSize: proc(self: ^ScrollView, contentSize: CG.Size),
     contentInset: proc(self: ^ScrollView) -> EdgeInsets,
     setContentInset: proc(self: ^ScrollView, contentInset: EdgeInsets),
+    contentAlignmentPoint: proc(self: ^ScrollView) -> CG.Point,
+    setContentAlignmentPoint: proc(self: ^ScrollView, contentAlignmentPoint: CG.Point),
     adjustedContentInset: proc(self: ^ScrollView) -> EdgeInsets,
     contentInsetAdjustmentBehavior: proc(self: ^ScrollView) -> ScrollViewContentInsetAdjustmentBehavior,
     setContentInsetAdjustmentBehavior: proc(self: ^ScrollView, contentInsetAdjustmentBehavior: ScrollViewContentInsetAdjustmentBehavior),
@@ -683,6 +743,10 @@ ScrollView_VTable :: struct {
     setDirectionalLockEnabled: proc(self: ^ScrollView, directionalLockEnabled: bool),
     bounces: proc(self: ^ScrollView) -> bool,
     setBounces: proc(self: ^ScrollView, bounces: bool),
+    bouncesHorizontally: proc(self: ^ScrollView) -> bool,
+    setBouncesHorizontally: proc(self: ^ScrollView, bouncesHorizontally: bool),
+    bouncesVertically: proc(self: ^ScrollView) -> bool,
+    setBouncesVertically: proc(self: ^ScrollView, bouncesVertically: bool),
     alwaysBounceVertical: proc(self: ^ScrollView) -> bool,
     setAlwaysBounceVertical: proc(self: ^ScrollView, alwaysBounceVertical: bool),
     alwaysBounceHorizontal: proc(self: ^ScrollView) -> bool,
@@ -691,6 +755,10 @@ ScrollView_VTable :: struct {
     setPagingEnabled: proc(self: ^ScrollView, pagingEnabled: bool),
     isScrollEnabled: proc(self: ^ScrollView) -> bool,
     setScrollEnabled: proc(self: ^ScrollView, scrollEnabled: bool),
+    transfersHorizontalScrollingToParent: proc(self: ^ScrollView) -> bool,
+    setTransfersHorizontalScrollingToParent: proc(self: ^ScrollView, transfersHorizontalScrollingToParent: bool),
+    transfersVerticalScrollingToParent: proc(self: ^ScrollView) -> bool,
+    setTransfersVerticalScrollingToParent: proc(self: ^ScrollView, transfersVerticalScrollingToParent: bool),
     showsVerticalScrollIndicator: proc(self: ^ScrollView) -> bool,
     setShowsVerticalScrollIndicator: proc(self: ^ScrollView, showsVerticalScrollIndicator: bool),
     showsHorizontalScrollIndicator: proc(self: ^ScrollView) -> bool,
@@ -709,6 +777,7 @@ ScrollView_VTable :: struct {
     isTracking: proc(self: ^ScrollView) -> bool,
     isDragging: proc(self: ^ScrollView) -> bool,
     isDecelerating: proc(self: ^ScrollView) -> bool,
+    isScrollAnimating: proc(self: ^ScrollView) -> bool,
     delaysContentTouches: proc(self: ^ScrollView) -> bool,
     setDelaysContentTouches: proc(self: ^ScrollView, delaysContentTouches: bool),
     canCancelContentTouches: proc(self: ^ScrollView) -> bool,
@@ -723,6 +792,7 @@ ScrollView_VTable :: struct {
     setBouncesZoom: proc(self: ^ScrollView, bouncesZoom: bool),
     isZooming: proc(self: ^ScrollView) -> bool,
     isZoomBouncing: proc(self: ^ScrollView) -> bool,
+    isZoomAnimating: proc(self: ^ScrollView) -> bool,
     scrollsToTop: proc(self: ^ScrollView) -> bool,
     setScrollsToTop: proc(self: ^ScrollView, scrollsToTop: bool),
     panGestureRecognizer: proc(self: ^ScrollView) -> ^PanGestureRecognizer,
@@ -861,6 +931,16 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("flashScrollIndicators"), auto_cast flashScrollIndicators, "v@:") do panic("Failed to register objC method.")
     }
+    if vt.withScrollIndicatorsShownForContentOffsetChanges != nil {
+        withScrollIndicatorsShownForContentOffsetChanges :: proc "c" (self: ^ScrollView, _: SEL, changes: proc "c" ()) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).withScrollIndicatorsShownForContentOffsetChanges(self, changes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("withScrollIndicatorsShownForContentOffsetChanges:"), auto_cast withScrollIndicatorsShownForContentOffsetChanges, "v@:?") do panic("Failed to register objC method.")
+    }
     if vt.touchesShouldBegin != nil {
         touchesShouldBegin :: proc "c" (self: ^ScrollView, _: SEL, touches: ^NS.Set, event: ^Event, view: ^View) -> bool {
 
@@ -900,6 +980,16 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("zoomToRect:animated:"), auto_cast zoomToRect, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}B") do panic("Failed to register objC method.")
+    }
+    if vt.stopScrollingAndZooming != nil {
+        stopScrollingAndZooming :: proc "c" (self: ^ScrollView, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).stopScrollingAndZooming(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("stopScrollingAndZooming"), auto_cast stopScrollingAndZooming, "v@:") do panic("Failed to register objC method.")
     }
     if vt.contentOffset != nil {
         contentOffset :: proc "c" (self: ^ScrollView, _: SEL) -> CG.Point {
@@ -960,6 +1050,26 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentInset:"), auto_cast setContentInset, "v@:{UIEdgeInsets=dddd}") do panic("Failed to register objC method.")
+    }
+    if vt.contentAlignmentPoint != nil {
+        contentAlignmentPoint :: proc "c" (self: ^ScrollView, _: SEL) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).contentAlignmentPoint(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentAlignmentPoint"), auto_cast contentAlignmentPoint, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
+    }
+    if vt.setContentAlignmentPoint != nil {
+        setContentAlignmentPoint :: proc "c" (self: ^ScrollView, _: SEL, contentAlignmentPoint: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setContentAlignmentPoint(self, contentAlignmentPoint)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setContentAlignmentPoint:"), auto_cast setContentAlignmentPoint, "v@:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.adjustedContentInset != nil {
         adjustedContentInset :: proc "c" (self: ^ScrollView, _: SEL) -> EdgeInsets {
@@ -1091,6 +1201,46 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBounces:"), auto_cast setBounces, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.bouncesHorizontally != nil {
+        bouncesHorizontally :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).bouncesHorizontally(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("bouncesHorizontally"), auto_cast bouncesHorizontally, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBouncesHorizontally != nil {
+        setBouncesHorizontally :: proc "c" (self: ^ScrollView, _: SEL, bouncesHorizontally: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setBouncesHorizontally(self, bouncesHorizontally)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBouncesHorizontally:"), auto_cast setBouncesHorizontally, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.bouncesVertically != nil {
+        bouncesVertically :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).bouncesVertically(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("bouncesVertically"), auto_cast bouncesVertically, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBouncesVertically != nil {
+        setBouncesVertically :: proc "c" (self: ^ScrollView, _: SEL, bouncesVertically: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setBouncesVertically(self, bouncesVertically)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBouncesVertically:"), auto_cast setBouncesVertically, "v@:B") do panic("Failed to register objC method.")
+    }
     if vt.alwaysBounceVertical != nil {
         alwaysBounceVertical :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
 
@@ -1170,6 +1320,46 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrollEnabled:"), auto_cast setScrollEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.transfersHorizontalScrollingToParent != nil {
+        transfersHorizontalScrollingToParent :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).transfersHorizontalScrollingToParent(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("transfersHorizontalScrollingToParent"), auto_cast transfersHorizontalScrollingToParent, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTransfersHorizontalScrollingToParent != nil {
+        setTransfersHorizontalScrollingToParent :: proc "c" (self: ^ScrollView, _: SEL, transfersHorizontalScrollingToParent: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setTransfersHorizontalScrollingToParent(self, transfersHorizontalScrollingToParent)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTransfersHorizontalScrollingToParent:"), auto_cast setTransfersHorizontalScrollingToParent, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.transfersVerticalScrollingToParent != nil {
+        transfersVerticalScrollingToParent :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).transfersVerticalScrollingToParent(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("transfersVerticalScrollingToParent"), auto_cast transfersVerticalScrollingToParent, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTransfersVerticalScrollingToParent != nil {
+        setTransfersVerticalScrollingToParent :: proc "c" (self: ^ScrollView, _: SEL, transfersVerticalScrollingToParent: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ScrollView_VTable)vt_ctx.super_vt).setTransfersVerticalScrollingToParent(self, transfersVerticalScrollingToParent)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTransfersVerticalScrollingToParent:"), auto_cast setTransfersVerticalScrollingToParent, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.showsVerticalScrollIndicator != nil {
         showsVerticalScrollIndicator :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
@@ -1351,6 +1541,16 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isDecelerating"), auto_cast isDecelerating, "B@:") do panic("Failed to register objC method.")
     }
+    if vt.isScrollAnimating != nil {
+        isScrollAnimating :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).isScrollAnimating(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isScrollAnimating"), auto_cast isScrollAnimating, "B@:") do panic("Failed to register objC method.")
+    }
     if vt.delaysContentTouches != nil {
         delaysContentTouches :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
 
@@ -1490,6 +1690,16 @@ ScrollView_odin_extend :: proc(cls: Class, vt: ^ScrollView_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isZoomBouncing"), auto_cast isZoomBouncing, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isZoomAnimating != nil {
+        isZoomAnimating :: proc "c" (self: ^ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ScrollView_VTable)vt_ctx.super_vt).isZoomAnimating(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isZoomAnimating"), auto_cast isZoomAnimating, "B@:") do panic("Failed to register objC method.")
     }
     if vt.scrollsToTop != nil {
         scrollsToTop :: proc "c" (self: ^ScrollView, _: SEL) -> bool {

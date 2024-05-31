@@ -32,6 +32,10 @@ Resource_makeAliasable :: #force_inline proc "c" (self: ^Resource) {
 Resource_isAliasable :: #force_inline proc "c" (self: ^Resource) -> bool {
     return msgSend(bool, self, "isAliasable")
 }
+@(objc_type=Resource, objc_name="setOwnerWithIdentity")
+Resource_setOwnerWithIdentity :: #force_inline proc "c" (self: ^Resource, task_id_token: CF.task_id_token_t) -> CF.kern_return_t {
+    return msgSend(CF.kern_return_t, self, "setOwnerWithIdentity:", task_id_token)
+}
 @(objc_type=Resource, objc_name="label")
 Resource_label :: #force_inline proc "c" (self: ^Resource) -> ^NS.String {
     return msgSend(^NS.String, self, "label")
@@ -57,8 +61,8 @@ Resource_hazardTrackingMode :: #force_inline proc "c" (self: ^Resource) -> Hazar
     return msgSend(HazardTrackingMode, self, "hazardTrackingMode")
 }
 @(objc_type=Resource, objc_name="resourceOptions")
-Resource_resourceOptions :: #force_inline proc "c" (self: ^Resource) -> ResourceOptions {
-    return msgSend(ResourceOptions, self, "resourceOptions")
+Resource_resourceOptions :: #force_inline proc "c" (self: ^Resource) -> ResourceOption {
+    return msgSend(ResourceOption, self, "resourceOptions")
 }
 @(objc_type=Resource, objc_name="heap")
 Resource_heap :: #force_inline proc "c" (self: ^Resource) -> ^Heap {

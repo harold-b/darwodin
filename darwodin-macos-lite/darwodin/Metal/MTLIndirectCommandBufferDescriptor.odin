@@ -82,6 +82,30 @@ IndirectCommandBufferDescriptor_maxKernelThreadgroupMemoryBindCount :: #force_in
 IndirectCommandBufferDescriptor_setMaxKernelThreadgroupMemoryBindCount :: #force_inline proc "c" (self: ^IndirectCommandBufferDescriptor, maxKernelThreadgroupMemoryBindCount: NS.UInteger) {
     msgSend(nil, self, "setMaxKernelThreadgroupMemoryBindCount:", maxKernelThreadgroupMemoryBindCount)
 }
+@(objc_type=IndirectCommandBufferDescriptor, objc_name="maxObjectBufferBindCount")
+IndirectCommandBufferDescriptor_maxObjectBufferBindCount :: #force_inline proc "c" (self: ^IndirectCommandBufferDescriptor) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "maxObjectBufferBindCount")
+}
+@(objc_type=IndirectCommandBufferDescriptor, objc_name="setMaxObjectBufferBindCount")
+IndirectCommandBufferDescriptor_setMaxObjectBufferBindCount :: #force_inline proc "c" (self: ^IndirectCommandBufferDescriptor, maxObjectBufferBindCount: NS.UInteger) {
+    msgSend(nil, self, "setMaxObjectBufferBindCount:", maxObjectBufferBindCount)
+}
+@(objc_type=IndirectCommandBufferDescriptor, objc_name="maxMeshBufferBindCount")
+IndirectCommandBufferDescriptor_maxMeshBufferBindCount :: #force_inline proc "c" (self: ^IndirectCommandBufferDescriptor) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "maxMeshBufferBindCount")
+}
+@(objc_type=IndirectCommandBufferDescriptor, objc_name="setMaxMeshBufferBindCount")
+IndirectCommandBufferDescriptor_setMaxMeshBufferBindCount :: #force_inline proc "c" (self: ^IndirectCommandBufferDescriptor, maxMeshBufferBindCount: NS.UInteger) {
+    msgSend(nil, self, "setMaxMeshBufferBindCount:", maxMeshBufferBindCount)
+}
+@(objc_type=IndirectCommandBufferDescriptor, objc_name="maxObjectThreadgroupMemoryBindCount")
+IndirectCommandBufferDescriptor_maxObjectThreadgroupMemoryBindCount :: #force_inline proc "c" (self: ^IndirectCommandBufferDescriptor) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "maxObjectThreadgroupMemoryBindCount")
+}
+@(objc_type=IndirectCommandBufferDescriptor, objc_name="setMaxObjectThreadgroupMemoryBindCount")
+IndirectCommandBufferDescriptor_setMaxObjectThreadgroupMemoryBindCount :: #force_inline proc "c" (self: ^IndirectCommandBufferDescriptor, maxObjectThreadgroupMemoryBindCount: NS.UInteger) {
+    msgSend(nil, self, "setMaxObjectThreadgroupMemoryBindCount:", maxObjectThreadgroupMemoryBindCount)
+}
 @(objc_type=IndirectCommandBufferDescriptor, objc_name="supportRayTracing")
 IndirectCommandBufferDescriptor_supportRayTracing :: #force_inline proc "c" (self: ^IndirectCommandBufferDescriptor) -> bool {
     return msgSend(bool, self, "supportRayTracing")

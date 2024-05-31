@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIScene")
 Scene :: struct { using _: Responder, }
 
-Scene_VTable :: struct {
-    super: Responder_VTable,
-}
-

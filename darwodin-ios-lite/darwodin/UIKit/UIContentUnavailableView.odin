@@ -19,7 +19,3 @@ ContentUnavailableView :: struct { using _: View,
     using _: ContentView,
 }
 
-ContentUnavailableView_VTable :: struct {
-    super: View_VTable,
-}
-

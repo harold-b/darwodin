@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPathControl")
 PathControl :: struct { using _: Control, }
 
-PathControl_VTable :: struct {
-    super: Control_VTable,
-}
-

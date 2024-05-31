@@ -19,6 +19,3 @@ SpringLoadedInteractionEffect :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-SpringLoadedInteractionEffect_VTable :: struct {
-}
-

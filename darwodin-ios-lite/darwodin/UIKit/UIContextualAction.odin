@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIContextualAction")
 ContextualAction :: struct { using _: NS.Object, }
 
-ContextualAction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

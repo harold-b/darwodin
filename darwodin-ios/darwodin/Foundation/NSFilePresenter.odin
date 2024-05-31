@@ -33,6 +33,10 @@ FilePresenter_savePresentedItemChangesWithCompletionHandler :: #force_inline pro
 FilePresenter_accommodatePresentedItemDeletionWithCompletionHandler :: #force_inline proc "c" (self: ^FilePresenter, completionHandler: proc "c" (errorOrNil: ^Error)) {
     msgSend(nil, self, "accommodatePresentedItemDeletionWithCompletionHandler:", completionHandler)
 }
+@(objc_type=FilePresenter, objc_name="accommodatePresentedItemEvictionWithCompletionHandler")
+FilePresenter_accommodatePresentedItemEvictionWithCompletionHandler :: #force_inline proc "c" (self: ^FilePresenter, completionHandler: proc "c" (errorOrNil: ^Error)) {
+    msgSend(nil, self, "accommodatePresentedItemEvictionWithCompletionHandler:", completionHandler)
+}
 @(objc_type=FilePresenter, objc_name="presentedItemDidMoveToURL")
 FilePresenter_presentedItemDidMoveToURL :: #force_inline proc "c" (self: ^FilePresenter, newURL: ^URL) {
     msgSend(nil, self, "presentedItemDidMoveToURL:", newURL)
@@ -106,6 +110,7 @@ FilePresenter_VTable :: struct {
     relinquishPresentedItemToWriter: proc(self: ^FilePresenter, writer: proc "c" (reacquirer: proc "c" ())),
     savePresentedItemChangesWithCompletionHandler: proc(self: ^FilePresenter, completionHandler: proc "c" (errorOrNil: ^Error)),
     accommodatePresentedItemDeletionWithCompletionHandler: proc(self: ^FilePresenter, completionHandler: proc "c" (errorOrNil: ^Error)),
+    accommodatePresentedItemEvictionWithCompletionHandler: proc(self: ^FilePresenter, completionHandler: proc "c" (errorOrNil: ^Error)),
     presentedItemDidMoveToURL: proc(self: ^FilePresenter, newURL: ^URL),
     presentedItemDidChange: proc(self: ^FilePresenter),
     presentedItemDidChangeUbiquityAttributes: proc(self: ^FilePresenter, attributes: ^Set),
@@ -168,6 +173,16 @@ FilePresenter_odin_extend :: proc(cls: Class, vt: ^FilePresenter_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("accommodatePresentedItemDeletionWithCompletionHandler:"), auto_cast accommodatePresentedItemDeletionWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
+    }
+    if vt.accommodatePresentedItemEvictionWithCompletionHandler != nil {
+        accommodatePresentedItemEvictionWithCompletionHandler :: proc "c" (self: ^FilePresenter, _: SEL, completionHandler: proc "c" (errorOrNil: ^Error)) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FilePresenter_VTable)vt_ctx.protocol_vt).accommodatePresentedItemEvictionWithCompletionHandler(self, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accommodatePresentedItemEvictionWithCompletionHandler:"), auto_cast accommodatePresentedItemEvictionWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.presentedItemDidMoveToURL != nil {
         presentedItemDidMoveToURL :: proc "c" (self: ^FilePresenter, _: SEL, newURL: ^URL) {

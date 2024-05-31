@@ -110,6 +110,7 @@ Cpp:
     - ^[Oo][Ss]_
     - ^_opaque_
     - ^__mbstate_t
+    - ^kern_return_t
 
 
   ExportMethods:
@@ -142,8 +143,6 @@ Odin:
   ExportTypeMapDir: ../exports
 
   # LinkLibraryNameDarwin: system:Cocoa.framework
-  BitSetMap:
-    - (Flags|Mask)$
 
   ResolvedTypedefs:
     - off_t
@@ -169,7 +168,8 @@ Odin:
           OS_os_workgroup :: NSObject
           NSUInteger :: cffi.ulong
           _NSZone  :: struct {}
-          Boolean :: distinct b8
+          Boolean :: b8
+          task_id_token_t :: mach_port_t
 
           KERN_SUCCESS            :: 0
           DISPATCH_TIME_NOW       :: 0
@@ -178,7 +178,6 @@ Odin:
 
       TypeMap:
         NSObject: NSObject
-        CFAbsoluteTime: CFAbsoluteTime
         NSMethodSignature: NSMethodSignature
         NSString: NSString
         NSUInteger: NSUInteger
@@ -186,6 +185,7 @@ Odin:
         OS_object: OS_object
         OS_os_workgroup: OS_os_workgroup
         Boolean: Boolean
+        CFAbsoluteTime: CFAbsoluteTime
 
       # ExternalTypes:
 
@@ -240,6 +240,16 @@ Odin:
     Transforms:
       - Kind  : RemovePrefix
         Source: $group0
+  - Type: (Flags|Mask)$
+    Transforms:
+    - Kind  : RemoveSuffix
+      Source: s
+
+  BitSetMap:
+    - Type: (Flags|Mask)$
+      Transforms:
+        - Kind  : AppendSuffix
+          Source: s
  
   ProcTransforms:
   - Type: ^(_*CF).+

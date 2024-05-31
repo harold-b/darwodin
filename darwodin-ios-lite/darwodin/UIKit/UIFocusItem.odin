@@ -19,6 +19,3 @@ FocusItem :: struct { using _: intrinsics.objc_object,
     using _: FocusEnvironment,
 }
 
-FocusItem_VTable :: struct {
-}
-

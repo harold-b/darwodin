@@ -30,7 +30,7 @@ OpenGLContext_initWithFormat :: #force_inline proc "c" (self: ^OpenGLContext, fo
     return msgSend(^OpenGLContext, self, "initWithFormat:shareContext:", format, share)
 }
 @(objc_type=OpenGLContext, objc_name="initWithCGLContextObj")
-OpenGLContext_initWithCGLContextObj :: #force_inline proc "c" (self: ^OpenGLContext, _context: CGLContextObj) -> ^OpenGLContext {
+OpenGLContext_initWithCGLContextObj :: #force_inline proc "c" (self: ^OpenGLContext, _context: CA.CGLContextObj) -> ^OpenGLContext {
     return msgSend(^OpenGLContext, self, "initWithCGLContextObj:", _context)
 }
 @(objc_type=OpenGLContext, objc_name="setView")
@@ -42,7 +42,7 @@ OpenGLContext_setFullScreen :: #force_inline proc "c" (self: ^OpenGLContext) {
     msgSend(nil, self, "setFullScreen")
 }
 @(objc_type=OpenGLContext, objc_name="setOffScreen")
-OpenGLContext_setOffScreen :: #force_inline proc "c" (self: ^OpenGLContext, baseaddr: rawptr, width: GLsizei, height: GLsizei, rowbytes: cffi.int) {
+OpenGLContext_setOffScreen :: #force_inline proc "c" (self: ^OpenGLContext, baseaddr: rawptr, width: CA.GLsizei, height: CA.GLsizei, rowbytes: CA.GLint) {
     msgSend(nil, self, "setOffScreen:width:height:rowbytes:", baseaddr, width, height, rowbytes)
 }
 @(objc_type=OpenGLContext, objc_name="clearDrawable")
@@ -66,19 +66,19 @@ OpenGLContext_clearCurrentContext :: #force_inline proc "c" () {
     msgSend(nil, OpenGLContext, "clearCurrentContext")
 }
 @(objc_type=OpenGLContext, objc_name="copyAttributesFromContext")
-OpenGLContext_copyAttributesFromContext :: #force_inline proc "c" (self: ^OpenGLContext, _context: ^OpenGLContext, mask: GLbitfield) {
+OpenGLContext_copyAttributesFromContext :: #force_inline proc "c" (self: ^OpenGLContext, _context: ^OpenGLContext, mask: CA.GLbitfield) {
     msgSend(nil, self, "copyAttributesFromContext:withMask:", _context, mask)
 }
 @(objc_type=OpenGLContext, objc_name="setValues")
-OpenGLContext_setValues :: #force_inline proc "c" (self: ^OpenGLContext, vals: ^cffi.int, param: OpenGLContextParameter) {
+OpenGLContext_setValues :: #force_inline proc "c" (self: ^OpenGLContext, vals: ^CA.GLint, param: OpenGLContextParameter) {
     msgSend(nil, self, "setValues:forParameter:", vals, param)
 }
 @(objc_type=OpenGLContext, objc_name="getValues")
-OpenGLContext_getValues :: #force_inline proc "c" (self: ^OpenGLContext, vals: ^cffi.int, param: OpenGLContextParameter) {
+OpenGLContext_getValues :: #force_inline proc "c" (self: ^OpenGLContext, vals: ^CA.GLint, param: OpenGLContextParameter) {
     msgSend(nil, self, "getValues:forParameter:", vals, param)
 }
 @(objc_type=OpenGLContext, objc_name="createTexture")
-OpenGLContext_createTexture :: #force_inline proc "c" (self: ^OpenGLContext, target: GLenum, view: ^View, format: GLenum) {
+OpenGLContext_createTexture :: #force_inline proc "c" (self: ^OpenGLContext, target: CA.GLenum, view: ^View, format: CA.GLenum) {
     msgSend(nil, self, "createTexture:fromView:internalFormat:", target, view, format)
 }
 @(objc_type=OpenGLContext, objc_name="pixelFormat")
@@ -94,19 +94,19 @@ OpenGLContext_currentContext :: #force_inline proc "c" () -> ^OpenGLContext {
     return msgSend(^OpenGLContext, OpenGLContext, "currentContext")
 }
 @(objc_type=OpenGLContext, objc_name="currentVirtualScreen")
-OpenGLContext_currentVirtualScreen :: #force_inline proc "c" (self: ^OpenGLContext) -> cffi.int {
-    return msgSend(cffi.int, self, "currentVirtualScreen")
+OpenGLContext_currentVirtualScreen :: #force_inline proc "c" (self: ^OpenGLContext) -> CA.GLint {
+    return msgSend(CA.GLint, self, "currentVirtualScreen")
 }
 @(objc_type=OpenGLContext, objc_name="setCurrentVirtualScreen")
-OpenGLContext_setCurrentVirtualScreen :: #force_inline proc "c" (self: ^OpenGLContext, currentVirtualScreen: cffi.int) {
+OpenGLContext_setCurrentVirtualScreen :: #force_inline proc "c" (self: ^OpenGLContext, currentVirtualScreen: CA.GLint) {
     msgSend(nil, self, "setCurrentVirtualScreen:", currentVirtualScreen)
 }
 @(objc_type=OpenGLContext, objc_name="CGLContextObj")
-OpenGLContext_CGLContextObj :: #force_inline proc "c" (self: ^OpenGLContext) -> CGLContextObj {
-    return msgSend(CGLContextObj, self, "CGLContextObj")
+OpenGLContext_CGLContextObj :: #force_inline proc "c" (self: ^OpenGLContext) -> CA.CGLContextObj {
+    return msgSend(CA.CGLContextObj, self, "CGLContextObj")
 }
 @(objc_type=OpenGLContext, objc_name="setPixelBuffer")
-OpenGLContext_setPixelBuffer :: #force_inline proc "c" (self: ^OpenGLContext, pixelBuffer: ^OpenGLPixelBuffer, face: GLenum, level: cffi.int, screen: cffi.int) {
+OpenGLContext_setPixelBuffer :: #force_inline proc "c" (self: ^OpenGLContext, pixelBuffer: ^OpenGLPixelBuffer, face: CA.GLenum, level: CA.GLint, screen: CA.GLint) {
     msgSend(nil, self, "setPixelBuffer:cubeMapFace:mipMapLevel:currentVirtualScreen:", pixelBuffer, face, level, screen)
 }
 @(objc_type=OpenGLContext, objc_name="pixelBuffer")
@@ -114,15 +114,15 @@ OpenGLContext_pixelBuffer :: #force_inline proc "c" (self: ^OpenGLContext) -> ^O
     return msgSend(^OpenGLPixelBuffer, self, "pixelBuffer")
 }
 @(objc_type=OpenGLContext, objc_name="pixelBufferCubeMapFace")
-OpenGLContext_pixelBufferCubeMapFace :: #force_inline proc "c" (self: ^OpenGLContext) -> GLenum {
-    return msgSend(GLenum, self, "pixelBufferCubeMapFace")
+OpenGLContext_pixelBufferCubeMapFace :: #force_inline proc "c" (self: ^OpenGLContext) -> CA.GLenum {
+    return msgSend(CA.GLenum, self, "pixelBufferCubeMapFace")
 }
 @(objc_type=OpenGLContext, objc_name="pixelBufferMipMapLevel")
-OpenGLContext_pixelBufferMipMapLevel :: #force_inline proc "c" (self: ^OpenGLContext) -> cffi.int {
-    return msgSend(cffi.int, self, "pixelBufferMipMapLevel")
+OpenGLContext_pixelBufferMipMapLevel :: #force_inline proc "c" (self: ^OpenGLContext) -> CA.GLint {
+    return msgSend(CA.GLint, self, "pixelBufferMipMapLevel")
 }
 @(objc_type=OpenGLContext, objc_name="setTextureImageToPixelBuffer")
-OpenGLContext_setTextureImageToPixelBuffer :: #force_inline proc "c" (self: ^OpenGLContext, pixelBuffer: ^OpenGLPixelBuffer, source: GLenum) {
+OpenGLContext_setTextureImageToPixelBuffer :: #force_inline proc "c" (self: ^OpenGLContext, pixelBuffer: ^OpenGLPixelBuffer, source: CA.GLenum) {
     msgSend(nil, self, "setTextureImageToPixelBuffer:colorBuffer:", pixelBuffer, source)
 }
 @(objc_type=OpenGLContext, objc_name="load", objc_is_class_method=true)
@@ -270,30 +270,30 @@ OpenGLContext_cancelPreviousPerformRequestsWithTarget :: proc {
 OpenGLContext_VTable :: struct {
     super: NS.Object_VTable,
     initWithFormat: proc(self: ^OpenGLContext, format: ^OpenGLPixelFormat, share: ^OpenGLContext) -> ^OpenGLContext,
-    initWithCGLContextObj: proc(self: ^OpenGLContext, _context: CGLContextObj) -> ^OpenGLContext,
+    initWithCGLContextObj: proc(self: ^OpenGLContext, _context: CA.CGLContextObj) -> ^OpenGLContext,
     setView: proc(self: ^OpenGLContext, view: ^View),
     setFullScreen: proc(self: ^OpenGLContext),
-    setOffScreen: proc(self: ^OpenGLContext, baseaddr: rawptr, width: GLsizei, height: GLsizei, rowbytes: cffi.int),
+    setOffScreen: proc(self: ^OpenGLContext, baseaddr: rawptr, width: CA.GLsizei, height: CA.GLsizei, rowbytes: CA.GLint),
     clearDrawable: proc(self: ^OpenGLContext),
     update: proc(self: ^OpenGLContext),
     flushBuffer: proc(self: ^OpenGLContext),
     makeCurrentContext: proc(self: ^OpenGLContext),
     clearCurrentContext: proc(),
-    copyAttributesFromContext: proc(self: ^OpenGLContext, _context: ^OpenGLContext, mask: GLbitfield),
-    setValues: proc(self: ^OpenGLContext, vals: ^cffi.int, param: OpenGLContextParameter),
-    getValues: proc(self: ^OpenGLContext, vals: ^cffi.int, param: OpenGLContextParameter),
-    createTexture: proc(self: ^OpenGLContext, target: GLenum, view: ^View, format: GLenum),
+    copyAttributesFromContext: proc(self: ^OpenGLContext, _context: ^OpenGLContext, mask: CA.GLbitfield),
+    setValues: proc(self: ^OpenGLContext, vals: ^CA.GLint, param: OpenGLContextParameter),
+    getValues: proc(self: ^OpenGLContext, vals: ^CA.GLint, param: OpenGLContextParameter),
+    createTexture: proc(self: ^OpenGLContext, target: CA.GLenum, view: ^View, format: CA.GLenum),
     pixelFormat: proc(self: ^OpenGLContext) -> ^OpenGLPixelFormat,
     view: proc(self: ^OpenGLContext) -> ^View,
     currentContext: proc() -> ^OpenGLContext,
-    currentVirtualScreen: proc(self: ^OpenGLContext) -> cffi.int,
-    setCurrentVirtualScreen: proc(self: ^OpenGLContext, currentVirtualScreen: cffi.int),
-    _CGLContextObj: proc(self: ^OpenGLContext) -> CGLContextObj,
-    setPixelBuffer: proc(self: ^OpenGLContext, pixelBuffer: ^OpenGLPixelBuffer, face: GLenum, level: cffi.int, screen: cffi.int),
+    currentVirtualScreen: proc(self: ^OpenGLContext) -> CA.GLint,
+    setCurrentVirtualScreen: proc(self: ^OpenGLContext, currentVirtualScreen: CA.GLint),
+    _CGLContextObj: proc(self: ^OpenGLContext) -> CA.CGLContextObj,
+    setPixelBuffer: proc(self: ^OpenGLContext, pixelBuffer: ^OpenGLPixelBuffer, face: CA.GLenum, level: CA.GLint, screen: CA.GLint),
     pixelBuffer: proc(self: ^OpenGLContext) -> ^OpenGLPixelBuffer,
-    pixelBufferCubeMapFace: proc(self: ^OpenGLContext) -> GLenum,
-    pixelBufferMipMapLevel: proc(self: ^OpenGLContext) -> cffi.int,
-    setTextureImageToPixelBuffer: proc(self: ^OpenGLContext, pixelBuffer: ^OpenGLPixelBuffer, source: GLenum),
+    pixelBufferCubeMapFace: proc(self: ^OpenGLContext) -> CA.GLenum,
+    pixelBufferMipMapLevel: proc(self: ^OpenGLContext) -> CA.GLint,
+    setTextureImageToPixelBuffer: proc(self: ^OpenGLContext, pixelBuffer: ^OpenGLPixelBuffer, source: CA.GLenum),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^OpenGLContext,
@@ -348,7 +348,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:shareContext:"), auto_cast initWithFormat, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCGLContextObj != nil {
-        initWithCGLContextObj :: proc "c" (self: ^OpenGLContext, _: SEL, _context: CGLContextObj) -> ^OpenGLContext {
+        initWithCGLContextObj :: proc "c" (self: ^OpenGLContext, _: SEL, _context: CA.CGLContextObj) -> ^OpenGLContext {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -378,7 +378,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFullScreen"), auto_cast setFullScreen, "v@:") do panic("Failed to register objC method.")
     }
     if vt.setOffScreen != nil {
-        setOffScreen :: proc "c" (self: ^OpenGLContext, _: SEL, baseaddr: rawptr, width: GLsizei, height: GLsizei, rowbytes: cffi.int) {
+        setOffScreen :: proc "c" (self: ^OpenGLContext, _: SEL, baseaddr: rawptr, width: CA.GLsizei, height: CA.GLsizei, rowbytes: CA.GLint) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -438,7 +438,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("clearCurrentContext"), auto_cast clearCurrentContext, "v#:") do panic("Failed to register objC method.")
     }
     if vt.copyAttributesFromContext != nil {
-        copyAttributesFromContext :: proc "c" (self: ^OpenGLContext, _: SEL, _context: ^OpenGLContext, mask: GLbitfield) {
+        copyAttributesFromContext :: proc "c" (self: ^OpenGLContext, _: SEL, _context: ^OpenGLContext, mask: CA.GLbitfield) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -448,7 +448,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("copyAttributesFromContext:withMask:"), auto_cast copyAttributesFromContext, "v@:@I") do panic("Failed to register objC method.")
     }
     if vt.setValues != nil {
-        setValues :: proc "c" (self: ^OpenGLContext, _: SEL, vals: ^cffi.int, param: OpenGLContextParameter) {
+        setValues :: proc "c" (self: ^OpenGLContext, _: SEL, vals: ^CA.GLint, param: OpenGLContextParameter) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -458,7 +458,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setValues:forParameter:"), auto_cast setValues, "v@:^voidl") do panic("Failed to register objC method.")
     }
     if vt.getValues != nil {
-        getValues :: proc "c" (self: ^OpenGLContext, _: SEL, vals: ^cffi.int, param: OpenGLContextParameter) {
+        getValues :: proc "c" (self: ^OpenGLContext, _: SEL, vals: ^CA.GLint, param: OpenGLContextParameter) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -468,7 +468,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getValues:forParameter:"), auto_cast getValues, "v@:^voidl") do panic("Failed to register objC method.")
     }
     if vt.createTexture != nil {
-        createTexture :: proc "c" (self: ^OpenGLContext, _: SEL, target: GLenum, view: ^View, format: GLenum) {
+        createTexture :: proc "c" (self: ^OpenGLContext, _: SEL, target: CA.GLenum, view: ^View, format: CA.GLenum) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -508,7 +508,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("currentContext"), auto_cast currentContext, "@#:") do panic("Failed to register objC method.")
     }
     if vt.currentVirtualScreen != nil {
-        currentVirtualScreen :: proc "c" (self: ^OpenGLContext, _: SEL) -> cffi.int {
+        currentVirtualScreen :: proc "c" (self: ^OpenGLContext, _: SEL) -> CA.GLint {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -518,7 +518,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentVirtualScreen"), auto_cast currentVirtualScreen, "i@:") do panic("Failed to register objC method.")
     }
     if vt.setCurrentVirtualScreen != nil {
-        setCurrentVirtualScreen :: proc "c" (self: ^OpenGLContext, _: SEL, currentVirtualScreen: cffi.int) {
+        setCurrentVirtualScreen :: proc "c" (self: ^OpenGLContext, _: SEL, currentVirtualScreen: CA.GLint) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -528,7 +528,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCurrentVirtualScreen:"), auto_cast setCurrentVirtualScreen, "v@:i") do panic("Failed to register objC method.")
     }
     if vt._CGLContextObj != nil {
-        _CGLContextObj :: proc "c" (self: ^OpenGLContext, _: SEL) -> CGLContextObj {
+        _CGLContextObj :: proc "c" (self: ^OpenGLContext, _: SEL) -> CA.CGLContextObj {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -538,7 +538,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("CGLContextObj"), auto_cast _CGLContextObj, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setPixelBuffer != nil {
-        setPixelBuffer :: proc "c" (self: ^OpenGLContext, _: SEL, pixelBuffer: ^OpenGLPixelBuffer, face: GLenum, level: cffi.int, screen: cffi.int) {
+        setPixelBuffer :: proc "c" (self: ^OpenGLContext, _: SEL, pixelBuffer: ^OpenGLPixelBuffer, face: CA.GLenum, level: CA.GLint, screen: CA.GLint) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -558,7 +558,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pixelBuffer"), auto_cast pixelBuffer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.pixelBufferCubeMapFace != nil {
-        pixelBufferCubeMapFace :: proc "c" (self: ^OpenGLContext, _: SEL) -> GLenum {
+        pixelBufferCubeMapFace :: proc "c" (self: ^OpenGLContext, _: SEL) -> CA.GLenum {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -568,7 +568,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pixelBufferCubeMapFace"), auto_cast pixelBufferCubeMapFace, "I@:") do panic("Failed to register objC method.")
     }
     if vt.pixelBufferMipMapLevel != nil {
-        pixelBufferMipMapLevel :: proc "c" (self: ^OpenGLContext, _: SEL) -> cffi.int {
+        pixelBufferMipMapLevel :: proc "c" (self: ^OpenGLContext, _: SEL) -> CA.GLint {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -578,7 +578,7 @@ OpenGLContext_odin_extend :: proc(cls: Class, vt: ^OpenGLContext_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pixelBufferMipMapLevel"), auto_cast pixelBufferMipMapLevel, "i@:") do panic("Failed to register objC method.")
     }
     if vt.setTextureImageToPixelBuffer != nil {
-        setTextureImageToPixelBuffer :: proc "c" (self: ^OpenGLContext, _: SEL, pixelBuffer: ^OpenGLPixelBuffer, source: GLenum) {
+        setTextureImageToPixelBuffer :: proc "c" (self: ^OpenGLContext, _: SEL, pixelBuffer: ^OpenGLPixelBuffer, source: CA.GLenum) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

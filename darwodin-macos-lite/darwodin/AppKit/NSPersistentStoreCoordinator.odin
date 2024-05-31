@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPersistentStoreCoordinator")
 PersistentStoreCoordinator :: struct { using _: intrinsics.objc_object, }
 
-PersistentStoreCoordinator_VTable :: struct {
-}
-

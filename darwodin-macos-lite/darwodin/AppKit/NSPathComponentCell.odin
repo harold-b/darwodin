@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPathComponentCell")
 PathComponentCell :: struct { using _: TextFieldCell, }
 
-PathComponentCell_VTable :: struct {
-    super: TextFieldCell_VTable,
-}
-

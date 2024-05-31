@@ -52,6 +52,34 @@ IndirectRenderCommand_drawPrimitives :: #force_inline proc "c" (self: ^IndirectR
 IndirectRenderCommand_drawIndexedPrimitives :: #force_inline proc "c" (self: ^IndirectRenderCommand, primitiveType: PrimitiveType, indexCount: NS.UInteger, indexType: IndexType, indexBuffer: ^Buffer, indexBufferOffset: NS.UInteger, instanceCount: NS.UInteger, baseVertex: NS.Integer, baseInstance: NS.UInteger) {
     msgSend(nil, self, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", primitiveType, indexCount, indexType, indexBuffer, indexBufferOffset, instanceCount, baseVertex, baseInstance)
 }
+@(objc_type=IndirectRenderCommand, objc_name="setObjectThreadgroupMemoryLength")
+IndirectRenderCommand_setObjectThreadgroupMemoryLength :: #force_inline proc "c" (self: ^IndirectRenderCommand, length: NS.UInteger, index: NS.UInteger) {
+    msgSend(nil, self, "setObjectThreadgroupMemoryLength:atIndex:", length, index)
+}
+@(objc_type=IndirectRenderCommand, objc_name="setObjectBuffer")
+IndirectRenderCommand_setObjectBuffer :: #force_inline proc "c" (self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) {
+    msgSend(nil, self, "setObjectBuffer:offset:atIndex:", buffer, offset, index)
+}
+@(objc_type=IndirectRenderCommand, objc_name="setMeshBuffer")
+IndirectRenderCommand_setMeshBuffer :: #force_inline proc "c" (self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) {
+    msgSend(nil, self, "setMeshBuffer:offset:atIndex:", buffer, offset, index)
+}
+@(objc_type=IndirectRenderCommand, objc_name="drawMeshThreadgroups")
+IndirectRenderCommand_drawMeshThreadgroups :: #force_inline proc "c" (self: ^IndirectRenderCommand, threadgroupsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) {
+    msgSend(nil, self, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", threadgroupsPerGrid, threadsPerObjectThreadgroup, threadsPerMeshThreadgroup)
+}
+@(objc_type=IndirectRenderCommand, objc_name="drawMeshThreads")
+IndirectRenderCommand_drawMeshThreads :: #force_inline proc "c" (self: ^IndirectRenderCommand, threadsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) {
+    msgSend(nil, self, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", threadsPerGrid, threadsPerObjectThreadgroup, threadsPerMeshThreadgroup)
+}
+@(objc_type=IndirectRenderCommand, objc_name="setBarrier")
+IndirectRenderCommand_setBarrier :: #force_inline proc "c" (self: ^IndirectRenderCommand) {
+    msgSend(nil, self, "setBarrier")
+}
+@(objc_type=IndirectRenderCommand, objc_name="clearBarrier")
+IndirectRenderCommand_clearBarrier :: #force_inline proc "c" (self: ^IndirectRenderCommand) {
+    msgSend(nil, self, "clearBarrier")
+}
 @(objc_type=IndirectRenderCommand, objc_name="reset")
 IndirectRenderCommand_reset :: #force_inline proc "c" (self: ^IndirectRenderCommand) {
     msgSend(nil, self, "reset")

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITextPlaceholder")
 TextPlaceholder :: struct { using _: NS.Object, }
 
-TextPlaceholder_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

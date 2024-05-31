@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSQueryGenerationToken")
 QueryGenerationToken :: struct { using _: intrinsics.objc_object, }
 
-QueryGenerationToken_VTable :: struct {
-}
-

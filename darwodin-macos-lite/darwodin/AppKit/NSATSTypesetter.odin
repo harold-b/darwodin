@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSATSTypesetter")
 ATSTypesetter :: struct { using _: Typesetter, }
 
-ATSTypesetter_VTable :: struct {
-    super: Typesetter_VTable,
-}
-

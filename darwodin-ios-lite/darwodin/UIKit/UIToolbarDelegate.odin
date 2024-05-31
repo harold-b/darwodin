@@ -19,6 +19,3 @@ ToolbarDelegate :: struct { using _: intrinsics.objc_object,
     using _: BarPositioningDelegate,
 }
 
-ToolbarDelegate_VTable :: struct {
-}
-

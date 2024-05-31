@@ -22,13 +22,13 @@ Cpp:
     - ^x509.+
     - ^.*GrafP
     - x509_validity
-    - _xpc_type_s
-    - xpc_type_t
+    - ^_?xpc_.+
     - ^unichar
     - ^(Opaque)?AE.+
     - ^AppleEvent
     - ^DescType
     - ^au_asid_t
+    - ^AE.+
 
 
   ExportMethods:
@@ -50,14 +50,10 @@ Odin:
   TargetPlatform   : Darwin
   ExportTypeMapDir : ../exports
   ExternalTypes:
+    - ../exports/global.exports.yml
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
 
-  BitsetSuffix: ""
-  BitsetEnumSuffix: "${group}s"
-  BitSetMap:
-    - (Flag)s$
-    - Mask$
 
   ResolvedTypedefs:
     - '[su]?int.*'
@@ -75,8 +71,7 @@ Odin:
           OpaqueSecIdentitySearchRef :: struct {}
           OpaquePolicySearchRef :: struct {}
 
-      TypeMap:
-        Boolean: CF.Boolean
+      # TypeMap:
 
 
   # Symbol Transformers
@@ -114,7 +109,17 @@ Odin:
     Transforms:
     - Kind  : RemovePrefix
       Source: $group0
- 
+  - Type: (Flags|Mask)$
+    Transforms:
+    - Kind  : RemoveSuffix
+      Source: s
+
+  BitSetMap:
+    - Type: (Flags|Mask)$
+      Transforms:
+        - Kind  : AppendSuffix
+          Source: s
+
   ProcTransforms:
   - Type: ^(_*NS).+
     Transforms:

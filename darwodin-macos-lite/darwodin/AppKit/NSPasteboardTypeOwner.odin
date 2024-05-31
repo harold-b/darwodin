@@ -19,6 +19,3 @@ PasteboardTypeOwner :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-PasteboardTypeOwner_VTable :: struct {
-}
-

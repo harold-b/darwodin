@@ -27,7 +27,8 @@ OS_object :: NSObject
 OS_os_workgroup :: NSObject
 NSUInteger :: cffi.ulong
 _NSZone  :: struct {}
-Boolean :: distinct b8
+Boolean :: b8
+task_id_token_t :: mach_port_t
 
 KERN_SUCCESS            :: 0
 DISPATCH_TIME_NOW       :: 0
@@ -466,16 +467,16 @@ foreign lib {
     AllocatorCreate :: proc(allocator: AllocatorRef, _context: ^AllocatorContext) -> AllocatorRef ---
 
     @(link_name="CFAllocatorAllocate")
-    AllocatorAllocate :: proc(allocator: AllocatorRef, size: Index, hint: OptionFlags) -> rawptr ---
+    AllocatorAllocate :: proc(allocator: AllocatorRef, size: Index, hint: OptionFlag) -> rawptr ---
 
     @(link_name="CFAllocatorReallocate")
-    AllocatorReallocate :: proc(allocator: AllocatorRef, ptr: rawptr, newsize: Index, hint: OptionFlags) -> rawptr ---
+    AllocatorReallocate :: proc(allocator: AllocatorRef, ptr: rawptr, newsize: Index, hint: OptionFlag) -> rawptr ---
 
     @(link_name="CFAllocatorDeallocate")
     AllocatorDeallocate :: proc(allocator: AllocatorRef, ptr: rawptr) ---
 
     @(link_name="CFAllocatorGetPreferredSizeForSize")
-    AllocatorGetPreferredSizeForSize :: proc(allocator: AllocatorRef, size: Index, hint: OptionFlags) -> Index ---
+    AllocatorGetPreferredSizeForSize :: proc(allocator: AllocatorRef, size: Index, hint: OptionFlag) -> Index ---
 
     @(link_name="CFAllocatorGetContext")
     AllocatorGetContext :: proc(allocator: AllocatorRef, _context: ^AllocatorContext) ---
@@ -808,7 +809,7 @@ foreign lib {
     NotificationCenterPostNotification :: proc(center: NotificationCenterRef, name: NotificationName, object: rawptr, userInfo: DictionaryRef, deliverImmediately: Boolean) ---
 
     @(link_name="CFNotificationCenterPostNotificationWithOptions")
-    NotificationCenterPostNotificationWithOptions :: proc(center: NotificationCenterRef, name: NotificationName, object: rawptr, userInfo: DictionaryRef, options: OptionFlags) ---
+    NotificationCenterPostNotificationWithOptions :: proc(center: NotificationCenterRef, name: NotificationName, object: rawptr, userInfo: DictionaryRef, options: OptionFlag) ---
 
     @(link_name="CFLocaleGetTypeID")
     LocaleGetTypeID :: proc() -> TypeID ---
@@ -898,7 +899,7 @@ foreign lib {
     DateCompare :: proc(theDate: DateRef, otherDate: DateRef, _context: rawptr) -> ComparisonResult ---
 
     @(link_name="CFGregorianDateIsValid")
-    GregorianDateIsValid :: proc(gdate: GregorianDate, unitFlags: OptionFlags) -> Boolean ---
+    GregorianDateIsValid :: proc(gdate: GregorianDate, unitFlags: OptionFlag) -> Boolean ---
 
     @(link_name="CFGregorianDateGetAbsoluteTime")
     GregorianDateGetAbsoluteTime :: proc(gdate: GregorianDate, tz: TimeZoneRef) -> CFAbsoluteTime ---
@@ -910,7 +911,7 @@ foreign lib {
     AbsoluteTimeAddGregorianUnits :: proc(at: CFAbsoluteTime, tz: TimeZoneRef, units: GregorianUnits) -> CFAbsoluteTime ---
 
     @(link_name="CFAbsoluteTimeGetDifferenceAsGregorianUnits")
-    AbsoluteTimeGetDifferenceAsGregorianUnits :: proc(at1: CFAbsoluteTime, at2: CFAbsoluteTime, tz: TimeZoneRef, unitFlags: OptionFlags) -> GregorianUnits ---
+    AbsoluteTimeGetDifferenceAsGregorianUnits :: proc(at1: CFAbsoluteTime, at2: CFAbsoluteTime, tz: TimeZoneRef, unitFlags: OptionFlag) -> GregorianUnits ---
 
     @(link_name="CFAbsoluteTimeGetDayOfWeek")
     AbsoluteTimeGetDayOfWeek :: proc(at: CFAbsoluteTime, tz: TimeZoneRef) -> SInt32 ---
@@ -967,7 +968,7 @@ foreign lib {
     DataDeleteBytes :: proc(theData: MutableDataRef, range: Range) ---
 
     @(link_name="CFDataFind")
-    DataFind :: proc(theData: DataRef, dataToFind: DataRef, searchRange: Range, compareOptions: DataSearchFlags) -> Range ---
+    DataFind :: proc(theData: DataRef, dataToFind: DataRef, searchRange: Range, compareOptions: DataSearchFlag) -> Range ---
 
     @(link_name="CFCharacterSetGetTypeID")
     CharacterSetGetTypeID :: proc() -> TypeID ---
@@ -1093,16 +1094,16 @@ foreign lib {
     StringCreateCopy :: proc(alloc: AllocatorRef, theString: StringRef) -> StringRef ---
 
     @(link_name="CFStringCreateWithFormat")
-    StringCreateWithFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef) -> StringRef ---
+    StringCreateWithFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, #c_vararg args: ..any) -> StringRef ---
 
     @(link_name="CFStringCreateWithFormatAndArguments")
-    StringCreateWithFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, arguments: va_list) -> StringRef ---
+    StringCreateWithFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, arguments: cffi.va_list) -> StringRef ---
 
     @(link_name="CFStringCreateStringWithValidatedFormat")
-    StringCreateStringWithValidatedFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, errorPtr: ^ErrorRef) -> StringRef ---
+    StringCreateStringWithValidatedFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, errorPtr: ^ErrorRef, #c_vararg args: ..any) -> StringRef ---
 
     @(link_name="CFStringCreateStringWithValidatedFormatAndArguments")
-    StringCreateStringWithValidatedFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, arguments: va_list, errorPtr: ^ErrorRef) -> StringRef ---
+    StringCreateStringWithValidatedFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, arguments: cffi.va_list, errorPtr: ^ErrorRef) -> StringRef ---
 
     @(link_name="CFStringCreateMutable")
     StringCreateMutable :: proc(alloc: AllocatorRef, maxLength: Index) -> MutableStringRef ---
@@ -1165,25 +1166,25 @@ foreign lib {
     StringCreateWithFileSystemRepresentation :: proc(alloc: AllocatorRef, buffer: cstring) -> StringRef ---
 
     @(link_name="CFStringCompareWithOptionsAndLocale")
-    StringCompareWithOptionsAndLocale :: proc(theString1: StringRef, theString2: StringRef, rangeToCompare: Range, compareOptions: StringCompareFlags, locale: LocaleRef) -> ComparisonResult ---
+    StringCompareWithOptionsAndLocale :: proc(theString1: StringRef, theString2: StringRef, rangeToCompare: Range, compareOptions: StringCompareFlag, locale: LocaleRef) -> ComparisonResult ---
 
     @(link_name="CFStringCompareWithOptions")
-    StringCompareWithOptions :: proc(theString1: StringRef, theString2: StringRef, rangeToCompare: Range, compareOptions: StringCompareFlags) -> ComparisonResult ---
+    StringCompareWithOptions :: proc(theString1: StringRef, theString2: StringRef, rangeToCompare: Range, compareOptions: StringCompareFlag) -> ComparisonResult ---
 
     @(link_name="CFStringCompare")
-    StringCompare :: proc(theString1: StringRef, theString2: StringRef, compareOptions: StringCompareFlags) -> ComparisonResult ---
+    StringCompare :: proc(theString1: StringRef, theString2: StringRef, compareOptions: StringCompareFlag) -> ComparisonResult ---
 
     @(link_name="CFStringFindWithOptionsAndLocale")
-    StringFindWithOptionsAndLocale :: proc(theString: StringRef, stringToFind: StringRef, rangeToSearch: Range, searchOptions: StringCompareFlags, locale: LocaleRef, result: ^Range) -> Boolean ---
+    StringFindWithOptionsAndLocale :: proc(theString: StringRef, stringToFind: StringRef, rangeToSearch: Range, searchOptions: StringCompareFlag, locale: LocaleRef, result: ^Range) -> Boolean ---
 
     @(link_name="CFStringFindWithOptions")
-    StringFindWithOptions :: proc(theString: StringRef, stringToFind: StringRef, rangeToSearch: Range, searchOptions: StringCompareFlags, result: ^Range) -> Boolean ---
+    StringFindWithOptions :: proc(theString: StringRef, stringToFind: StringRef, rangeToSearch: Range, searchOptions: StringCompareFlag, result: ^Range) -> Boolean ---
 
     @(link_name="CFStringCreateArrayWithFindResults")
-    StringCreateArrayWithFindResults :: proc(alloc: AllocatorRef, theString: StringRef, stringToFind: StringRef, rangeToSearch: Range, compareOptions: StringCompareFlags) -> ArrayRef ---
+    StringCreateArrayWithFindResults :: proc(alloc: AllocatorRef, theString: StringRef, stringToFind: StringRef, rangeToSearch: Range, compareOptions: StringCompareFlag) -> ArrayRef ---
 
     @(link_name="CFStringFind")
-    StringFind :: proc(theString: StringRef, stringToFind: StringRef, compareOptions: StringCompareFlags) -> Range ---
+    StringFind :: proc(theString: StringRef, stringToFind: StringRef, compareOptions: StringCompareFlag) -> Range ---
 
     @(link_name="CFStringHasPrefix")
     StringHasPrefix :: proc(theString: StringRef, prefix: StringRef) -> Boolean ---
@@ -1195,7 +1196,7 @@ foreign lib {
     StringGetRangeOfComposedCharactersAtIndex :: proc(theString: StringRef, theIndex: Index) -> Range ---
 
     @(link_name="CFStringFindCharacterFromSet")
-    StringFindCharacterFromSet :: proc(theString: StringRef, theSet: CharacterSetRef, rangeToSearch: Range, searchOptions: StringCompareFlags, result: ^Range) -> Boolean ---
+    StringFindCharacterFromSet :: proc(theString: StringRef, theSet: CharacterSetRef, rangeToSearch: Range, searchOptions: StringCompareFlag, result: ^Range) -> Boolean ---
 
     @(link_name="CFStringGetLineBounds")
     StringGetLineBounds :: proc(theString: StringRef, range: Range, lineBeginIndex: ^Index, lineEndIndex: ^Index, contentsEndIndex: ^Index) ---
@@ -1204,7 +1205,7 @@ foreign lib {
     StringGetParagraphBounds :: proc(string: StringRef, range: Range, parBeginIndex: ^Index, parEndIndex: ^Index, contentsEndIndex: ^Index) ---
 
     @(link_name="CFStringGetHyphenationLocationBeforeIndex")
-    StringGetHyphenationLocationBeforeIndex :: proc(string: StringRef, location: Index, limitRange: Range, options: OptionFlags, locale: LocaleRef, character: ^UTF32Char) -> Index ---
+    StringGetHyphenationLocationBeforeIndex :: proc(string: StringRef, location: Index, limitRange: Range, options: OptionFlag, locale: LocaleRef, character: ^UTF32Char) -> Index ---
 
     @(link_name="CFStringIsHyphenationAvailableForLocale")
     StringIsHyphenationAvailableForLocale :: proc(locale: LocaleRef) -> Boolean ---
@@ -1234,10 +1235,10 @@ foreign lib {
     StringAppendCString :: proc(theString: MutableStringRef, cStr: cstring, encoding: StringEncoding) ---
 
     @(link_name="CFStringAppendFormat")
-    StringAppendFormat :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef) ---
+    StringAppendFormat :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, #c_vararg args: ..any) ---
 
     @(link_name="CFStringAppendFormatAndArguments")
-    StringAppendFormatAndArguments :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, arguments: va_list) ---
+    StringAppendFormatAndArguments :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, arguments: cffi.va_list) ---
 
     @(link_name="CFStringInsert")
     StringInsert :: proc(str: MutableStringRef, idx: Index, insertedStr: StringRef) ---
@@ -1252,7 +1253,7 @@ foreign lib {
     StringReplaceAll :: proc(theString: MutableStringRef, replacement: StringRef) ---
 
     @(link_name="CFStringFindAndReplace")
-    StringFindAndReplace :: proc(theString: MutableStringRef, stringToFind: StringRef, replacementString: StringRef, rangeToSearch: Range, compareOptions: StringCompareFlags) -> Index ---
+    StringFindAndReplace :: proc(theString: MutableStringRef, stringToFind: StringRef, replacementString: StringRef, rangeToSearch: Range, compareOptions: StringCompareFlag) -> Index ---
 
     @(link_name="CFStringSetExternalCharactersNoCopy")
     StringSetExternalCharactersNoCopy :: proc(theString: MutableStringRef, chars: ^UniChar, length: Index, capacity: Index) ---
@@ -1279,7 +1280,7 @@ foreign lib {
     StringNormalize :: proc(theString: MutableStringRef, theForm: StringNormalizationForm) ---
 
     @(link_name="CFStringFold")
-    StringFold :: proc(theString: MutableStringRef, theFlags: StringCompareFlags, theLocale: LocaleRef) ---
+    StringFold :: proc(theString: MutableStringRef, theFlags: StringCompareFlag, theLocale: LocaleRef) ---
 
     @(link_name="CFStringTransform")
     StringTransform :: proc(string: MutableStringRef, range: ^Range, transform: StringRef, reverse: Boolean) -> Boolean ---
@@ -1429,19 +1430,19 @@ foreign lib {
     CalendarGetTimeRangeOfUnit :: proc(calendar: CalendarRef, unit: CalendarUnit, at: CFAbsoluteTime, startp: ^CFAbsoluteTime, tip: ^TimeInterval) -> Boolean ---
 
     @(link_name="CFCalendarComposeAbsoluteTime")
-    CalendarComposeAbsoluteTime :: proc(calendar: CalendarRef, at: ^CFAbsoluteTime, componentDesc: cstring) -> Boolean ---
+    CalendarComposeAbsoluteTime :: proc(calendar: CalendarRef, at: ^CFAbsoluteTime, componentDesc: cstring, #c_vararg args: ..any) -> Boolean ---
 
     @(link_name="CFCalendarDecomposeAbsoluteTime")
-    CalendarDecomposeAbsoluteTime :: proc(calendar: CalendarRef, at: CFAbsoluteTime, componentDesc: cstring) -> Boolean ---
+    CalendarDecomposeAbsoluteTime :: proc(calendar: CalendarRef, at: CFAbsoluteTime, componentDesc: cstring, #c_vararg args: ..any) -> Boolean ---
 
     @(link_name="CFCalendarAddComponents")
-    CalendarAddComponents :: proc(calendar: CalendarRef, at: ^CFAbsoluteTime, options: OptionFlags, componentDesc: cstring) -> Boolean ---
+    CalendarAddComponents :: proc(calendar: CalendarRef, at: ^CFAbsoluteTime, options: OptionFlag, componentDesc: cstring, #c_vararg args: ..any) -> Boolean ---
 
     @(link_name="CFCalendarGetComponentDifference")
-    CalendarGetComponentDifference :: proc(calendar: CalendarRef, startingAT: CFAbsoluteTime, resultAT: CFAbsoluteTime, options: OptionFlags, componentDesc: cstring) -> Boolean ---
+    CalendarGetComponentDifference :: proc(calendar: CalendarRef, startingAT: CFAbsoluteTime, resultAT: CFAbsoluteTime, options: OptionFlag, componentDesc: cstring, #c_vararg args: ..any) -> Boolean ---
 
     @(link_name="CFDateFormatterCreateDateFormatFromTemplate")
-    DateFormatterCreateDateFormatFromTemplate :: proc(allocator: AllocatorRef, tmplate: StringRef, options: OptionFlags, locale: LocaleRef) -> StringRef ---
+    DateFormatterCreateDateFormatFromTemplate :: proc(allocator: AllocatorRef, tmplate: StringRef, options: OptionFlag, locale: LocaleRef) -> StringRef ---
 
     @(link_name="CFDateFormatterGetTypeID")
     DateFormatterGetTypeID :: proc() -> TypeID ---
@@ -1537,7 +1538,7 @@ foreign lib {
     NumberFormatterCreateStringWithValue :: proc(allocator: AllocatorRef, formatter: NumberFormatterRef, numberType: NumberType, valuePtr: rawptr) -> StringRef ---
 
     @(link_name="CFNumberFormatterCreateNumberFromString")
-    NumberFormatterCreateNumberFromString :: proc(allocator: AllocatorRef, formatter: NumberFormatterRef, string: StringRef, rangep: ^Range, options: OptionFlags) -> NumberRef ---
+    NumberFormatterCreateNumberFromString :: proc(allocator: AllocatorRef, formatter: NumberFormatterRef, string: StringRef, rangep: ^Range, options: OptionFlag) -> NumberRef ---
 
     @(link_name="CFNumberFormatterGetValueFromString")
     NumberFormatterGetValueFromString :: proc(formatter: NumberFormatterRef, string: StringRef, rangep: ^Range, numberType: NumberType, valuePtr: rawptr) -> Boolean ---
@@ -1870,13 +1871,13 @@ foreign lib {
     RunLoopObserverGetTypeID :: proc() -> TypeID ---
 
     @(link_name="CFRunLoopObserverCreate")
-    RunLoopObserverCreate :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, callout: RunLoopObserverCallBack, _context: ^RunLoopObserverContext) -> RunLoopObserverRef ---
+    RunLoopObserverCreate :: proc(allocator: AllocatorRef, activities: OptionFlag, repeats: Boolean, order: Index, callout: RunLoopObserverCallBack, _context: ^RunLoopObserverContext) -> RunLoopObserverRef ---
 
     @(link_name="CFRunLoopObserverCreateWithHandler")
-    RunLoopObserverCreateWithHandler :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, block: proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity)) -> RunLoopObserverRef ---
+    RunLoopObserverCreateWithHandler :: proc(allocator: AllocatorRef, activities: OptionFlag, repeats: Boolean, order: Index, block: proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity)) -> RunLoopObserverRef ---
 
     @(link_name="CFRunLoopObserverGetActivities")
-    RunLoopObserverGetActivities :: proc(observer: RunLoopObserverRef) -> OptionFlags ---
+    RunLoopObserverGetActivities :: proc(observer: RunLoopObserverRef) -> OptionFlag ---
 
     @(link_name="CFRunLoopObserverDoesRepeat")
     RunLoopObserverDoesRepeat :: proc(observer: RunLoopObserverRef) -> Boolean ---
@@ -1897,10 +1898,10 @@ foreign lib {
     RunLoopTimerGetTypeID :: proc() -> TypeID ---
 
     @(link_name="CFRunLoopTimerCreate")
-    RunLoopTimerCreate :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, callout: RunLoopTimerCallBack, _context: ^RunLoopTimerContext) -> RunLoopTimerRef ---
+    RunLoopTimerCreate :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlag, order: Index, callout: RunLoopTimerCallBack, _context: ^RunLoopTimerContext) -> RunLoopTimerRef ---
 
     @(link_name="CFRunLoopTimerCreateWithHandler")
-    RunLoopTimerCreateWithHandler :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, block: proc "c" (timer: RunLoopTimerRef)) -> RunLoopTimerRef ---
+    RunLoopTimerCreateWithHandler :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlag, order: Index, block: proc "c" (timer: RunLoopTimerRef)) -> RunLoopTimerRef ---
 
     @(link_name="CFRunLoopTimerGetNextFireDate")
     RunLoopTimerGetNextFireDate :: proc(timer: RunLoopTimerRef) -> CFAbsoluteTime ---
@@ -1936,16 +1937,16 @@ foreign lib {
     SocketGetTypeID :: proc() -> TypeID ---
 
     @(link_name="CFSocketCreate")
-    SocketCreate :: proc(allocator: AllocatorRef, protocolFamily: SInt32, socketType: SInt32, protocol: SInt32, callBackTypes: OptionFlags, callout: SocketCallBack, _context: ^SocketContext) -> SocketRef ---
+    SocketCreate :: proc(allocator: AllocatorRef, protocolFamily: SInt32, socketType: SInt32, protocol: SInt32, callBackTypes: OptionFlag, callout: SocketCallBack, _context: ^SocketContext) -> SocketRef ---
 
     @(link_name="CFSocketCreateWithNative")
-    SocketCreateWithNative :: proc(allocator: AllocatorRef, sock: SocketNativeHandle, callBackTypes: OptionFlags, callout: SocketCallBack, _context: ^SocketContext) -> SocketRef ---
+    SocketCreateWithNative :: proc(allocator: AllocatorRef, sock: SocketNativeHandle, callBackTypes: OptionFlag, callout: SocketCallBack, _context: ^SocketContext) -> SocketRef ---
 
     @(link_name="CFSocketCreateWithSocketSignature")
-    SocketCreateWithSocketSignature :: proc(allocator: AllocatorRef, signature: ^SocketSignature, callBackTypes: OptionFlags, callout: SocketCallBack, _context: ^SocketContext) -> SocketRef ---
+    SocketCreateWithSocketSignature :: proc(allocator: AllocatorRef, signature: ^SocketSignature, callBackTypes: OptionFlag, callout: SocketCallBack, _context: ^SocketContext) -> SocketRef ---
 
     @(link_name="CFSocketCreateConnectedToSocketSignature")
-    SocketCreateConnectedToSocketSignature :: proc(allocator: AllocatorRef, signature: ^SocketSignature, callBackTypes: OptionFlags, callout: SocketCallBack, _context: ^SocketContext, timeout: TimeInterval) -> SocketRef ---
+    SocketCreateConnectedToSocketSignature :: proc(allocator: AllocatorRef, signature: ^SocketSignature, callBackTypes: OptionFlag, callout: SocketCallBack, _context: ^SocketContext, timeout: TimeInterval) -> SocketRef ---
 
     @(link_name="CFSocketSetAddress")
     SocketSetAddress :: proc(s: SocketRef, address: DataRef) -> SocketError ---
@@ -1975,16 +1976,16 @@ foreign lib {
     SocketCreateRunLoopSource :: proc(allocator: AllocatorRef, s: SocketRef, order: Index) -> RunLoopSourceRef ---
 
     @(link_name="CFSocketGetSocketFlags")
-    SocketGetSocketFlags :: proc(s: SocketRef) -> OptionFlags ---
+    SocketGetSocketFlags :: proc(s: SocketRef) -> OptionFlag ---
 
     @(link_name="CFSocketSetSocketFlags")
-    SocketSetSocketFlags :: proc(s: SocketRef, flags: OptionFlags) ---
+    SocketSetSocketFlags :: proc(s: SocketRef, flags: OptionFlag) ---
 
     @(link_name="CFSocketDisableCallBacks")
-    SocketDisableCallBacks :: proc(s: SocketRef, callBackTypes: OptionFlags) ---
+    SocketDisableCallBacks :: proc(s: SocketRef, callBackTypes: OptionFlag) ---
 
     @(link_name="CFSocketEnableCallBacks")
-    SocketEnableCallBacks :: proc(s: SocketRef, callBackTypes: OptionFlags) ---
+    SocketEnableCallBacks :: proc(s: SocketRef, callBackTypes: OptionFlag) ---
 
     @(link_name="CFSocketSendData")
     SocketSendData :: proc(s: SocketRef, address: DataRef, data: DataRef, timeout: TimeInterval) -> SocketError ---
@@ -2056,10 +2057,10 @@ foreign lib {
     dispatch_testcancel :: proc(object: rawptr) -> cffi.intptr_t ---
 
     @(link_name="dispatch_debug")
-    dispatch_debug :: proc(object: dispatch_object_t, message: cstring) ---
+    dispatch_debug :: proc(object: dispatch_object_t, message: cstring, #c_vararg args: ..any) ---
 
     @(link_name="dispatch_debugv")
-    dispatch_debugv :: proc(object: dispatch_object_t, message: cstring, ap: va_list) ---
+    dispatch_debugv :: proc(object: dispatch_object_t, message: cstring, ap: cffi.va_list) ---
 
     @(link_name="dispatch_async")
     dispatch_async :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
@@ -2080,10 +2081,10 @@ foreign lib {
     dispatch_async_and_wait_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
     @(link_name="dispatch_apply")
-    dispatch_apply :: proc(iterations: cffi.uint, queue: dispatch_queue_t, block: proc "c" (iteration: cffi.uint)) ---
+    dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: proc "c" (iteration: cffi.size_t)) ---
 
     @(link_name="dispatch_apply_f")
-    dispatch_apply_f :: proc(iterations: cffi.uint, queue: dispatch_queue_t, _context: rawptr, work: proc "c" (_context: rawptr, iteration: cffi.uint)) ---
+    dispatch_apply_f :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, _context: rawptr, work: proc "c" (_context: rawptr, iteration: cffi.size_t)) ---
 
     @(link_name="dispatch_get_current_queue")
     dispatch_get_current_queue :: proc() -> dispatch_queue_t ---
@@ -2159,6 +2160,9 @@ foreign lib {
 
     @(link_name="dispatch_assert_queue_not")
     dispatch_assert_queue_not :: proc(queue: dispatch_queue_t) ---
+
+    @(link_name="dispatch_allow_send_signals")
+    dispatch_allow_send_signals :: proc(preserve_signum: cffi.int) -> cffi.int ---
 
     @(link_name="dispatch_block_create")
     dispatch_block_create :: proc(flags: dispatch_block_flags_t, block: dispatch_block_t) -> dispatch_block_t ---
@@ -2263,28 +2267,28 @@ foreign lib {
     dispatch_once_f :: proc(predicate: ^dispatch_once_t, _context: rawptr, function: dispatch_function_t) ---
 
     @(link_name="dispatch_data_create")
-    dispatch_data_create :: proc(buffer: rawptr, size: cffi.uint, queue: dispatch_queue_t, destructor: dispatch_block_t) -> dispatch_data_t ---
+    dispatch_data_create :: proc(buffer: rawptr, size: cffi.size_t, queue: dispatch_queue_t, destructor: dispatch_block_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_data_get_size")
-    dispatch_data_get_size :: proc(data: dispatch_data_t) -> cffi.uint ---
+    dispatch_data_get_size :: proc(data: dispatch_data_t) -> cffi.size_t ---
 
     @(link_name="dispatch_data_create_map")
-    dispatch_data_create_map :: proc(data: dispatch_data_t, buffer_ptr: ^rawptr, size_ptr: ^cffi.uint) -> dispatch_data_t ---
+    dispatch_data_create_map :: proc(data: dispatch_data_t, buffer_ptr: ^rawptr, size_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_data_create_concat")
     dispatch_data_create_concat :: proc(data1: dispatch_data_t, data2: dispatch_data_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_data_create_subrange")
-    dispatch_data_create_subrange :: proc(data: dispatch_data_t, offset: cffi.uint, length: cffi.uint) -> dispatch_data_t ---
+    dispatch_data_create_subrange :: proc(data: dispatch_data_t, offset: cffi.size_t, length: cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_data_apply")
     dispatch_data_apply :: proc(data: dispatch_data_t, applier: dispatch_data_applier_t) -> cffi.bool ---
 
     @(link_name="dispatch_data_copy_region")
-    dispatch_data_copy_region :: proc(data: dispatch_data_t, location: cffi.uint, offset_ptr: ^cffi.uint) -> dispatch_data_t ---
+    dispatch_data_copy_region :: proc(data: dispatch_data_t, location: cffi.size_t, offset_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_read")
-    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.uint, queue: dispatch_queue_t, handler: proc "c" (data: dispatch_data_t, error: cffi.int)) ---
+    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: proc "c" (data: dispatch_data_t, error: cffi.int)) ---
 
     @(link_name="dispatch_write")
     dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: proc "c" (data: dispatch_data_t, error: cffi.int)) ---
@@ -2299,7 +2303,7 @@ foreign lib {
     dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: proc "c" (error: cffi.int)) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_read")
-    dispatch_io_read :: proc(channel: dispatch_io_t, offset: cffi.longlong, length: cffi.uint, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
+    dispatch_io_read :: proc(channel: dispatch_io_t, offset: cffi.longlong, length: cffi.size_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
 
     @(link_name="dispatch_io_write")
     dispatch_io_write :: proc(channel: dispatch_io_t, offset: cffi.longlong, data: dispatch_data_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
@@ -2314,10 +2318,10 @@ foreign lib {
     dispatch_io_get_descriptor :: proc(channel: dispatch_io_t) -> dispatch_fd_t ---
 
     @(link_name="dispatch_io_set_high_water")
-    dispatch_io_set_high_water :: proc(channel: dispatch_io_t, high_water: cffi.uint) ---
+    dispatch_io_set_high_water :: proc(channel: dispatch_io_t, high_water: cffi.size_t) ---
 
     @(link_name="dispatch_io_set_low_water")
-    dispatch_io_set_low_water :: proc(channel: dispatch_io_t, low_water: cffi.uint) ---
+    dispatch_io_set_low_water :: proc(channel: dispatch_io_t, low_water: cffi.size_t) ---
 
     @(link_name="dispatch_io_set_interval")
     dispatch_io_set_interval :: proc(channel: dispatch_io_t, interval: cffi.uint64_t, flags: cffi.ulong) ---
@@ -2419,10 +2423,10 @@ foreign lib {
     WriteStreamSetProperty :: proc(stream: WriteStreamRef, propertyName: StreamPropertyKey, propertyValue: TypeRef) -> Boolean ---
 
     @(link_name="CFReadStreamSetClient")
-    ReadStreamSetClient :: proc(stream: ReadStreamRef, streamEvents: OptionFlags, clientCB: ReadStreamClientCallBack, clientContext: ^StreamClientContext) -> Boolean ---
+    ReadStreamSetClient :: proc(stream: ReadStreamRef, streamEvents: OptionFlag, clientCB: ReadStreamClientCallBack, clientContext: ^StreamClientContext) -> Boolean ---
 
     @(link_name="CFWriteStreamSetClient")
-    WriteStreamSetClient :: proc(stream: WriteStreamRef, streamEvents: OptionFlags, clientCB: WriteStreamClientCallBack, clientContext: ^StreamClientContext) -> Boolean ---
+    WriteStreamSetClient :: proc(stream: WriteStreamRef, streamEvents: OptionFlag, clientCB: WriteStreamClientCallBack, clientContext: ^StreamClientContext) -> Boolean ---
 
     @(link_name="CFReadStreamScheduleWithRunLoop")
     ReadStreamScheduleWithRunLoop :: proc(stream: ReadStreamRef, runLoop: RunLoopRef, runLoopMode: RunLoopMode) ---
@@ -2455,13 +2459,13 @@ foreign lib {
     WriteStreamGetError :: proc(stream: WriteStreamRef) -> StreamError ---
 
     @(link_name="CFPropertyListCreateFromXMLData")
-    PropertyListCreateFromXMLData :: proc(allocator: AllocatorRef, xmlData: DataRef, mutabilityOption: OptionFlags, errorString: ^StringRef) -> PropertyListRef ---
+    PropertyListCreateFromXMLData :: proc(allocator: AllocatorRef, xmlData: DataRef, mutabilityOption: OptionFlag, errorString: ^StringRef) -> PropertyListRef ---
 
     @(link_name="CFPropertyListCreateXMLData")
     PropertyListCreateXMLData :: proc(allocator: AllocatorRef, propertyList: PropertyListRef) -> DataRef ---
 
     @(link_name="CFPropertyListCreateDeepCopy")
-    PropertyListCreateDeepCopy :: proc(allocator: AllocatorRef, propertyList: PropertyListRef, mutabilityOption: OptionFlags) -> PropertyListRef ---
+    PropertyListCreateDeepCopy :: proc(allocator: AllocatorRef, propertyList: PropertyListRef, mutabilityOption: OptionFlag) -> PropertyListRef ---
 
     @(link_name="CFPropertyListIsValid")
     PropertyListIsValid :: proc(plist: PropertyListRef, format: PropertyListFormat) -> Boolean ---
@@ -2470,19 +2474,19 @@ foreign lib {
     PropertyListWriteToStream :: proc(propertyList: PropertyListRef, stream: WriteStreamRef, format: PropertyListFormat, errorString: ^StringRef) -> Index ---
 
     @(link_name="CFPropertyListCreateFromStream")
-    PropertyListCreateFromStream :: proc(allocator: AllocatorRef, stream: ReadStreamRef, streamLength: Index, mutabilityOption: OptionFlags, format: ^PropertyListFormat, errorString: ^StringRef) -> PropertyListRef ---
+    PropertyListCreateFromStream :: proc(allocator: AllocatorRef, stream: ReadStreamRef, streamLength: Index, mutabilityOption: OptionFlag, format: ^PropertyListFormat, errorString: ^StringRef) -> PropertyListRef ---
 
     @(link_name="CFPropertyListCreateWithData")
-    PropertyListCreateWithData :: proc(allocator: AllocatorRef, data: DataRef, options: OptionFlags, format: ^PropertyListFormat, error: ^ErrorRef) -> PropertyListRef ---
+    PropertyListCreateWithData :: proc(allocator: AllocatorRef, data: DataRef, options: OptionFlag, format: ^PropertyListFormat, error: ^ErrorRef) -> PropertyListRef ---
 
     @(link_name="CFPropertyListCreateWithStream")
-    PropertyListCreateWithStream :: proc(allocator: AllocatorRef, stream: ReadStreamRef, streamLength: Index, options: OptionFlags, format: ^PropertyListFormat, error: ^ErrorRef) -> PropertyListRef ---
+    PropertyListCreateWithStream :: proc(allocator: AllocatorRef, stream: ReadStreamRef, streamLength: Index, options: OptionFlag, format: ^PropertyListFormat, error: ^ErrorRef) -> PropertyListRef ---
 
     @(link_name="CFPropertyListWrite")
-    PropertyListWrite :: proc(propertyList: PropertyListRef, stream: WriteStreamRef, format: PropertyListFormat, options: OptionFlags, error: ^ErrorRef) -> Index ---
+    PropertyListWrite :: proc(propertyList: PropertyListRef, stream: WriteStreamRef, format: PropertyListFormat, options: OptionFlag, error: ^ErrorRef) -> Index ---
 
     @(link_name="CFPropertyListCreateData")
-    PropertyListCreateData :: proc(allocator: AllocatorRef, propertyList: PropertyListRef, format: PropertyListFormat, options: OptionFlags, error: ^ErrorRef) -> DataRef ---
+    PropertyListCreateData :: proc(allocator: AllocatorRef, propertyList: PropertyListRef, format: PropertyListFormat, options: OptionFlag, error: ^ErrorRef) -> DataRef ---
 
     @(link_name="CFSetGetTypeID")
     SetGetTypeID :: proc() -> TypeID ---
@@ -3058,7 +3062,7 @@ foreign lib {
     StringTokenizerGetTypeID :: proc() -> TypeID ---
 
     @(link_name="CFStringTokenizerCreate")
-    StringTokenizerCreate :: proc(alloc: AllocatorRef, string: StringRef, range: Range, options: OptionFlags, locale: LocaleRef) -> StringTokenizerRef ---
+    StringTokenizerCreate :: proc(alloc: AllocatorRef, string: StringRef, range: Range, options: OptionFlag, locale: LocaleRef) -> StringTokenizerRef ---
 
     @(link_name="CFStringTokenizerSetString")
     StringTokenizerSetString :: proc(tokenizer: StringTokenizerRef, string: StringRef, range: Range) ---
@@ -3073,7 +3077,7 @@ foreign lib {
     StringTokenizerGetCurrentTokenRange :: proc(tokenizer: StringTokenizerRef) -> Range ---
 
     @(link_name="CFStringTokenizerCopyCurrentTokenAttribute")
-    StringTokenizerCopyCurrentTokenAttribute :: proc(tokenizer: StringTokenizerRef, attribute: OptionFlags) -> TypeRef ---
+    StringTokenizerCopyCurrentTokenAttribute :: proc(tokenizer: StringTokenizerRef, attribute: OptionFlag) -> TypeRef ---
 
     @(link_name="CFStringTokenizerGetCurrentSubTokens")
     StringTokenizerGetCurrentSubTokens :: proc(tokenizer: StringTokenizerRef, ranges: ^Range, maxRangeLength: Index, derivedSubTokens: MutableArrayRef) -> Index ---
@@ -3091,10 +3095,10 @@ foreign lib {
     FileDescriptorGetContext :: proc(f: FileDescriptorRef, _context: ^FileDescriptorContext) ---
 
     @(link_name="CFFileDescriptorEnableCallBacks")
-    FileDescriptorEnableCallBacks :: proc(f: FileDescriptorRef, callBackTypes: OptionFlags) ---
+    FileDescriptorEnableCallBacks :: proc(f: FileDescriptorRef, callBackTypes: OptionFlag) ---
 
     @(link_name="CFFileDescriptorDisableCallBacks")
-    FileDescriptorDisableCallBacks :: proc(f: FileDescriptorRef, callBackTypes: OptionFlags) ---
+    FileDescriptorDisableCallBacks :: proc(f: FileDescriptorRef, callBackTypes: OptionFlag) ---
 
     @(link_name="CFFileDescriptorInvalidate")
     FileDescriptorInvalidate :: proc(f: FileDescriptorRef) ---
@@ -3109,10 +3113,10 @@ foreign lib {
     UserNotificationGetTypeID :: proc() -> TypeID ---
 
     @(link_name="CFUserNotificationCreate")
-    UserNotificationCreate :: proc(allocator: AllocatorRef, timeout: TimeInterval, flags: OptionFlags, error: ^SInt32, dictionary: DictionaryRef) -> UserNotificationRef ---
+    UserNotificationCreate :: proc(allocator: AllocatorRef, timeout: TimeInterval, flags: OptionFlag, error: ^SInt32, dictionary: DictionaryRef) -> UserNotificationRef ---
 
     @(link_name="CFUserNotificationReceiveResponse")
-    UserNotificationReceiveResponse :: proc(userNotification: UserNotificationRef, timeout: TimeInterval, responseFlags: ^OptionFlags) -> SInt32 ---
+    UserNotificationReceiveResponse :: proc(userNotification: UserNotificationRef, timeout: TimeInterval, responseFlags: ^OptionFlag) -> SInt32 ---
 
     @(link_name="CFUserNotificationGetResponseValue")
     UserNotificationGetResponseValue :: proc(userNotification: UserNotificationRef, key: StringRef, idx: Index) -> StringRef ---
@@ -3121,7 +3125,7 @@ foreign lib {
     UserNotificationGetResponseDictionary :: proc(userNotification: UserNotificationRef) -> DictionaryRef ---
 
     @(link_name="CFUserNotificationUpdate")
-    UserNotificationUpdate :: proc(userNotification: UserNotificationRef, timeout: TimeInterval, flags: OptionFlags, dictionary: DictionaryRef) -> SInt32 ---
+    UserNotificationUpdate :: proc(userNotification: UserNotificationRef, timeout: TimeInterval, flags: OptionFlag, dictionary: DictionaryRef) -> SInt32 ---
 
     @(link_name="CFUserNotificationCancel")
     UserNotificationCancel :: proc(userNotification: UserNotificationRef) -> SInt32 ---
@@ -3130,10 +3134,10 @@ foreign lib {
     UserNotificationCreateRunLoopSource :: proc(allocator: AllocatorRef, userNotification: UserNotificationRef, callout: UserNotificationCallBack, order: Index) -> RunLoopSourceRef ---
 
     @(link_name="CFUserNotificationDisplayNotice")
-    UserNotificationDisplayNotice :: proc(timeout: TimeInterval, flags: OptionFlags, iconURL: URLRef, soundURL: URLRef, localizationURL: URLRef, alertHeader: StringRef, alertMessage: StringRef, defaultButtonTitle: StringRef) -> SInt32 ---
+    UserNotificationDisplayNotice :: proc(timeout: TimeInterval, flags: OptionFlag, iconURL: URLRef, soundURL: URLRef, localizationURL: URLRef, alertHeader: StringRef, alertMessage: StringRef, defaultButtonTitle: StringRef) -> SInt32 ---
 
     @(link_name="CFUserNotificationDisplayAlert")
-    UserNotificationDisplayAlert :: proc(timeout: TimeInterval, flags: OptionFlags, iconURL: URLRef, soundURL: URLRef, localizationURL: URLRef, alertHeader: StringRef, alertMessage: StringRef, defaultButtonTitle: StringRef, alternateButtonTitle: StringRef, otherButtonTitle: StringRef, responseFlags: ^OptionFlags) -> SInt32 ---
+    UserNotificationDisplayAlert :: proc(timeout: TimeInterval, flags: OptionFlag, iconURL: URLRef, soundURL: URLRef, localizationURL: URLRef, alertHeader: StringRef, alertMessage: StringRef, defaultButtonTitle: StringRef, alternateButtonTitle: StringRef, otherButtonTitle: StringRef, responseFlags: ^OptionFlag) -> SInt32 ---
 
     @(link_name="CFXMLNodeGetTypeID")
     XMLNodeGetTypeID :: proc() -> TypeID ---
@@ -3166,10 +3170,10 @@ foreign lib {
     XMLParserGetTypeID :: proc() -> TypeID ---
 
     @(link_name="CFXMLParserCreate")
-    XMLParserCreate :: proc(allocator: AllocatorRef, xmlData: DataRef, dataSource: URLRef, parseOptions: OptionFlags, versionOfNodes: Index, callBacks: ^XMLParserCallBacks, _context: ^XMLParserContext) -> XMLParserRef ---
+    XMLParserCreate :: proc(allocator: AllocatorRef, xmlData: DataRef, dataSource: URLRef, parseOptions: OptionFlag, versionOfNodes: Index, callBacks: ^XMLParserCallBacks, _context: ^XMLParserContext) -> XMLParserRef ---
 
     @(link_name="CFXMLParserCreateWithDataFromURL")
-    XMLParserCreateWithDataFromURL :: proc(allocator: AllocatorRef, dataSource: URLRef, parseOptions: OptionFlags, versionOfNodes: Index, callBacks: ^XMLParserCallBacks, _context: ^XMLParserContext) -> XMLParserRef ---
+    XMLParserCreateWithDataFromURL :: proc(allocator: AllocatorRef, dataSource: URLRef, parseOptions: OptionFlag, versionOfNodes: Index, callBacks: ^XMLParserCallBacks, _context: ^XMLParserContext) -> XMLParserRef ---
 
     @(link_name="CFXMLParserGetContext")
     XMLParserGetContext :: proc(parser: XMLParserRef, _context: ^XMLParserContext) ---
@@ -3202,13 +3206,13 @@ foreign lib {
     XMLParserParse :: proc(parser: XMLParserRef) -> Boolean ---
 
     @(link_name="CFXMLTreeCreateFromData")
-    XMLTreeCreateFromData :: proc(allocator: AllocatorRef, xmlData: DataRef, dataSource: URLRef, parseOptions: OptionFlags, versionOfNodes: Index) -> XMLTreeRef ---
+    XMLTreeCreateFromData :: proc(allocator: AllocatorRef, xmlData: DataRef, dataSource: URLRef, parseOptions: OptionFlag, versionOfNodes: Index) -> XMLTreeRef ---
 
     @(link_name="CFXMLTreeCreateFromDataWithError")
-    XMLTreeCreateFromDataWithError :: proc(allocator: AllocatorRef, xmlData: DataRef, dataSource: URLRef, parseOptions: OptionFlags, versionOfNodes: Index, errorDict: ^DictionaryRef) -> XMLTreeRef ---
+    XMLTreeCreateFromDataWithError :: proc(allocator: AllocatorRef, xmlData: DataRef, dataSource: URLRef, parseOptions: OptionFlag, versionOfNodes: Index, errorDict: ^DictionaryRef) -> XMLTreeRef ---
 
     @(link_name="CFXMLTreeCreateWithDataFromURL")
-    XMLTreeCreateWithDataFromURL :: proc(allocator: AllocatorRef, dataSource: URLRef, parseOptions: OptionFlags, versionOfNodes: Index) -> XMLTreeRef ---
+    XMLTreeCreateWithDataFromURL :: proc(allocator: AllocatorRef, dataSource: URLRef, parseOptions: OptionFlag, versionOfNodes: Index) -> XMLTreeRef ---
 
     @(link_name="CFXMLTreeCreateXMLData")
     XMLTreeCreateXMLData :: proc(allocator: AllocatorRef, xmlTree: XMLTreeRef) -> DataRef ---
@@ -3239,7 +3243,7 @@ __darwin_ptrdiff_t :: distinct cffi.long
 __darwin_size_t :: distinct cffi.ulong
 
 /// __darwin_va_list
-__darwin_va_list :: distinct va_list
+__darwin_va_list :: distinct cffi.va_list
 
 /// __darwin_wchar_t
 __darwin_wchar_t :: distinct cffi.int
@@ -3562,7 +3566,7 @@ UnsignedWidePtr :: distinct ^UnsignedWide
 TypeID :: distinct cffi.ulong
 
 /// CFOptionFlags
-OptionFlags :: distinct cffi.ulong
+OptionFlag :: distinct cffi.ulong
 
 /// CFHashCode
 HashCode :: distinct cffi.ulong
@@ -3601,16 +3605,16 @@ AllocatorReleaseCallBack :: distinct proc "c" (info: rawptr)
 AllocatorCopyDescriptionCallBack :: distinct proc "c" (info: rawptr) -> StringRef
 
 /// CFAllocatorAllocateCallBack
-AllocatorAllocateCallBack :: distinct proc "c" (allocSize: Index, hint: OptionFlags, info: rawptr) -> rawptr
+AllocatorAllocateCallBack :: distinct proc "c" (allocSize: Index, hint: OptionFlag, info: rawptr) -> rawptr
 
 /// CFAllocatorReallocateCallBack
-AllocatorReallocateCallBack :: distinct proc "c" (ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr) -> rawptr
+AllocatorReallocateCallBack :: distinct proc "c" (ptr: rawptr, newsize: Index, hint: OptionFlag, info: rawptr) -> rawptr
 
 /// CFAllocatorDeallocateCallBack
 AllocatorDeallocateCallBack :: distinct proc "c" (ptr: rawptr, info: rawptr)
 
 /// CFAllocatorPreferredSizeCallBack
-AllocatorPreferredSizeCallBack :: distinct proc "c" (size: Index, hint: OptionFlags, info: rawptr) -> Index
+AllocatorPreferredSizeCallBack :: distinct proc "c" (size: Index, hint: OptionFlag, info: rawptr) -> Index
 
 /// CFArrayRetainCallBack
 ArrayRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
@@ -3778,7 +3782,7 @@ NumberFormatterRef :: distinct ^__CFNumberFormatter
 URLRef :: distinct ^__CFURL
 
 /// CFURLBookmarkFileCreationOptions
-URLBookmarkFileCreationOptions :: distinct OptionFlags
+URLBookmarkFileCreationOptions :: distinct OptionFlag
 
 /// natural_t
 natural_t :: distinct __darwin_natural_t
@@ -3902,6 +3906,9 @@ dispatch_queue_priority_t :: distinct cffi.long
 /// dispatch_queue_attr_t
 dispatch_queue_attr_t :: distinct ^dispatch_queue_attr_s
 
+/// kern_return_t
+kern_return_t :: distinct cffi.int
+
 /// dispatch_source_t
 dispatch_source_t :: distinct ^dispatch_source_s
 
@@ -3939,7 +3946,7 @@ dispatch_once_t :: distinct cffi.intptr_t
 dispatch_data_t :: distinct ^dispatch_data_s
 
 /// dispatch_data_applier_t
-dispatch_data_applier_t :: distinct proc "c" (region: dispatch_data_t, offset: cffi.uint, buffer: rawptr, size: cffi.uint) -> cffi.bool
+dispatch_data_applier_t :: distinct proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool
 
 /// dispatch_fd_t
 dispatch_fd_t :: distinct cffi.int
@@ -4091,13 +4098,13 @@ FileDescriptorNativeDescriptor :: distinct cffi.int
 FileDescriptorRef :: distinct ^__CFFileDescriptor
 
 /// CFFileDescriptorCallBack
-FileDescriptorCallBack :: distinct proc "c" (f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr)
+FileDescriptorCallBack :: distinct proc "c" (f: FileDescriptorRef, callBackTypes: OptionFlag, info: rawptr)
 
 /// CFUserNotificationRef
 UserNotificationRef :: distinct ^__CFUserNotification
 
 /// CFUserNotificationCallBack
-UserNotificationCallBack :: distinct proc "c" (userNotification: UserNotificationRef, responseFlags: OptionFlags)
+UserNotificationCallBack :: distinct proc "c" (userNotification: UserNotificationRef, responseFlags: OptionFlag)
 
 /// CFXMLNodeRef
 XMLNodeRef :: distinct ^__CFXMLNode
@@ -4214,23 +4221,22 @@ LocaleLanguageDirection :: enum cffi.long {
 }
 
 /// CFGregorianUnitFlags
-GregorianUnitFlags :: enum cffi.ulong {
+GregorianUnitFlag :: enum cffi.ulong {
     sYears = 0,
     sMonths = 1,
     sDays = 2,
     sHours = 3,
     sMinutes = 4,
     sSeconds = 5,
-    AllUnits = 23,
 }
-GregorianUnitFlagsSet :: bit_set[GregorianUnitFlags; cffi.ulong]
+GregorianUnitFlags :: bit_set[GregorianUnitFlag; cffi.ulong]
 
 /// CFDataSearchFlags
-DataSearchFlags :: enum cffi.ulong {
+DataSearchFlag :: enum cffi.ulong {
     Backwards = 0,
     Anchored = 1,
 }
-DataSearchFlagsSet :: bit_set[DataSearchFlags; cffi.ulong]
+DataSearchFlags :: bit_set[DataSearchFlag; cffi.ulong]
 
 /// CFCharacterSetPredefinedSet
 CharacterSetPredefinedSet :: enum cffi.long {
@@ -4270,7 +4276,7 @@ StringBuiltInEncodings :: enum cffi.uint {
 }
 
 /// CFStringCompareFlags
-StringCompareFlags :: enum cffi.ulong {
+StringCompareFlag :: enum cffi.ulong {
     CaseInsensitive = 0,
     Backwards = 2,
     Anchored = 3,
@@ -4281,7 +4287,7 @@ StringCompareFlags :: enum cffi.ulong {
     WidthInsensitive = 8,
     ForcedOrdering = 9,
 }
-StringCompareFlagsSet :: bit_set[StringCompareFlags; cffi.ulong]
+StringCompareFlags :: bit_set[StringCompareFlag; cffi.ulong]
 
 /// CFStringNormalizationForm
 StringNormalizationForm :: enum cffi.long {
@@ -4382,10 +4388,10 @@ NumberFormatterStyle :: enum cffi.long {
 }
 
 /// CFNumberFormatterOptionFlags
-NumberFormatterOptionFlags :: enum cffi.ulong {
+NumberFormatterOptionFlag :: enum cffi.ulong {
     ParseIntegersOnly = 0,
 }
-NumberFormatterOptionFlagsSet :: bit_set[NumberFormatterOptionFlags; cffi.ulong]
+NumberFormatterOptionFlags :: bit_set[NumberFormatterOptionFlag; cffi.ulong]
 
 /// CFNumberFormatterRoundingMode
 NumberFormatterRoundingMode :: enum cffi.long {
@@ -5508,13 +5514,13 @@ XMLParserContext :: struct #align (8) {
 }
 
 /// __mbstate_t
-__mbstate_t :: struct  {
+__mbstate_t :: struct #raw_union #align (8) {
     __mbstate8 : [128]cffi.char,
     _mbstateL : cffi.longlong,
 }
 
 /// dispatch_object_t
-dispatch_object_t :: struct  {
+dispatch_object_t :: struct #raw_union #align (8) {
     _os_obj : ^_os_object_s,
     _do : ^dispatch_object_s,
     _dq : ^dispatch_queue_s,

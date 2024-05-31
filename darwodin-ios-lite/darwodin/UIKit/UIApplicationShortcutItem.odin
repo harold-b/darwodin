@@ -20,7 +20,3 @@ ApplicationShortcutItem :: struct { using _: NS.Object,
     using _: NS.MutableCopying,
 }
 
-ApplicationShortcutItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

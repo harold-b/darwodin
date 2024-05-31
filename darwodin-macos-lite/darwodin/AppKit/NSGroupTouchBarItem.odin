@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSGroupTouchBarItem")
 GroupTouchBarItem :: struct { using _: TouchBarItem, }
 
-GroupTouchBarItem_VTable :: struct {
-    super: TouchBarItem_VTable,
-}
-

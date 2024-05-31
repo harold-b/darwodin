@@ -19,6 +19,3 @@ AnimationDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AnimationDelegate_VTable :: struct {
-}
-

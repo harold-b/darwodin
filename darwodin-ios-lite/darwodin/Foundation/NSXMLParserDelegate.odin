@@ -17,6 +17,3 @@ XMLParserDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-XMLParserDelegate_VTable :: struct {
-}
-

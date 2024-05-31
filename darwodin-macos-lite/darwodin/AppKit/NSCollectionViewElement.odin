@@ -20,6 +20,3 @@ CollectionViewElement :: struct { using _: intrinsics.objc_object,
     using _: UserInterfaceItemIdentification,
 }
 
-CollectionViewElement_VTable :: struct {
-}
-

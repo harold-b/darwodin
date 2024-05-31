@@ -41,6 +41,14 @@ XPCInterface_setInterface :: #force_inline proc "c" (self: ^XPCInterface, ifc: ^
 XPCInterface_interfaceForSelector :: #force_inline proc "c" (self: ^XPCInterface, sel: SEL, arg: UInteger, ofReply: bool) -> ^XPCInterface {
     return msgSend(^XPCInterface, self, "interfaceForSelector:argumentIndex:ofReply:", sel, arg, ofReply)
 }
+@(objc_type=XPCInterface, objc_name="setXPCType")
+XPCInterface_setXPCType :: #force_inline proc "c" (self: ^XPCInterface, type: xpc_type_t, sel: SEL, arg: UInteger, ofReply: bool) {
+    msgSend(nil, self, "setXPCType:forSelector:argumentIndex:ofReply:", type, sel, arg, ofReply)
+}
+@(objc_type=XPCInterface, objc_name="XPCTypeForSelector")
+XPCInterface_XPCTypeForSelector :: #force_inline proc "c" (self: ^XPCInterface, sel: SEL, arg: UInteger, ofReply: bool) -> xpc_type_t {
+    return msgSend(xpc_type_t, self, "XPCTypeForSelector:argumentIndex:ofReply:", sel, arg, ofReply)
+}
 @(objc_type=XPCInterface, objc_name="protocol")
 XPCInterface_protocol :: #force_inline proc "c" (self: ^XPCInterface) -> ^Protocol {
     return msgSend(^Protocol, self, "protocol")
@@ -178,6 +186,8 @@ XPCInterface_VTable :: struct {
     classesForSelector: proc(self: ^XPCInterface, sel: SEL, arg: UInteger, ofReply: bool) -> ^Set,
     setInterface: proc(self: ^XPCInterface, ifc: ^XPCInterface, sel: SEL, arg: UInteger, ofReply: bool),
     interfaceForSelector: proc(self: ^XPCInterface, sel: SEL, arg: UInteger, ofReply: bool) -> ^XPCInterface,
+    setXPCType: proc(self: ^XPCInterface, type: xpc_type_t, sel: SEL, arg: UInteger, ofReply: bool),
+    _XPCTypeForSelector: proc(self: ^XPCInterface, sel: SEL, arg: UInteger, ofReply: bool) -> xpc_type_t,
     protocol: proc(self: ^XPCInterface) -> ^Protocol,
     setProtocol: proc(self: ^XPCInterface, protocol: ^Protocol),
     load: proc(),
@@ -267,6 +277,26 @@ XPCInterface_odin_extend :: proc(cls: Class, vt: ^XPCInterface_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("interfaceForSelector:argumentIndex:ofReply:"), auto_cast interfaceForSelector, "@@::LB") do panic("Failed to register objC method.")
+    }
+    if vt.setXPCType != nil {
+        setXPCType :: proc "c" (self: ^XPCInterface, _: SEL, type: xpc_type_t, sel: SEL, arg: UInteger, ofReply: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^XPCInterface_VTable)vt_ctx.super_vt).setXPCType(self, type, sel, arg, ofReply)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setXPCType:forSelector:argumentIndex:ofReply:"), auto_cast setXPCType, "v@:^void:LB") do panic("Failed to register objC method.")
+    }
+    if vt._XPCTypeForSelector != nil {
+        _XPCTypeForSelector :: proc "c" (self: ^XPCInterface, _: SEL, sel: SEL, arg: UInteger, ofReply: bool) -> xpc_type_t {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^XPCInterface_VTable)vt_ctx.super_vt)._XPCTypeForSelector(self, sel, arg, ofReply)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("XPCTypeForSelector:argumentIndex:ofReply:"), auto_cast _XPCTypeForSelector, "^void@::LB") do panic("Failed to register objC method.")
     }
     if vt.protocol != nil {
         protocol :: proc "c" (self: ^XPCInterface, _: SEL) -> ^Protocol {

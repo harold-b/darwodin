@@ -20,6 +20,3 @@ TextCheckingClient :: struct { using _: intrinsics.objc_object,
     using _: TextInputTraits,
 }
 
-TextCheckingClient_VTable :: struct {
-}
-

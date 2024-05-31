@@ -33,7 +33,7 @@ Device_heapTextureSizeAndAlignWithDescriptor :: #force_inline proc "c" (self: ^D
     return msgSend(SizeAndAlign, self, "heapTextureSizeAndAlignWithDescriptor:", desc)
 }
 @(objc_type=Device, objc_name="heapBufferSizeAndAlignWithLength")
-Device_heapBufferSizeAndAlignWithLength :: #force_inline proc "c" (self: ^Device, length: NS.UInteger, options: ResourceOptions) -> SizeAndAlign {
+Device_heapBufferSizeAndAlignWithLength :: #force_inline proc "c" (self: ^Device, length: NS.UInteger, options: ResourceOption) -> SizeAndAlign {
     return msgSend(SizeAndAlign, self, "heapBufferSizeAndAlignWithLength:options:", length, options)
 }
 @(objc_type=Device, objc_name="newHeapWithDescriptor")
@@ -41,15 +41,15 @@ Device_newHeapWithDescriptor :: #force_inline proc "c" (self: ^Device, descripto
     return msgSend(^Heap, self, "newHeapWithDescriptor:", descriptor)
 }
 @(objc_type=Device, objc_name="newBufferWithLength")
-Device_newBufferWithLength :: #force_inline proc "c" (self: ^Device, length: NS.UInteger, options: ResourceOptions) -> ^Buffer {
+Device_newBufferWithLength :: #force_inline proc "c" (self: ^Device, length: NS.UInteger, options: ResourceOption) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithLength:options:", length, options)
 }
 @(objc_type=Device, objc_name="newBufferWithBytes")
-Device_newBufferWithBytes :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions) -> ^Buffer {
+Device_newBufferWithBytes :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOption) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithBytes:length:options:", pointer, length, options)
 }
 @(objc_type=Device, objc_name="newBufferWithBytesNoCopy")
-Device_newBufferWithBytesNoCopy :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions, deallocator: proc "c" (pointer: rawptr, length: NS.UInteger)) -> ^Buffer {
+Device_newBufferWithBytesNoCopy :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOption, deallocator: proc "c" (pointer: rawptr, length: NS.UInteger)) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithBytesNoCopy:length:options:deallocator:", pointer, length, options, deallocator)
 }
 @(objc_type=Device, objc_name="newDepthStencilStateWithDescriptor")
@@ -93,15 +93,15 @@ Device_newLibraryWithURL :: #force_inline proc "c" (self: ^Device, url: ^NS.URL,
     return msgSend(^Library, self, "newLibraryWithURL:error:", url, error)
 }
 @(objc_type=Device, objc_name="newLibraryWithData")
-Device_newLibraryWithData :: #force_inline proc "c" (self: ^Device, data: ^NS.Object, error: ^^NS.Error) -> ^Library {
+Device_newLibraryWithData :: #force_inline proc "c" (self: ^Device, data: CF.dispatch_data_t, error: ^^NS.Error) -> ^Library {
     return msgSend(^Library, self, "newLibraryWithData:error:", data, error)
 }
 @(objc_type=Device, objc_name="newLibraryWithSource_options_error")
-Device_newLibraryWithSource_options_error :: #force_inline proc "c" (self: ^Device, source: ^NS.String, options: ^CompileOptions, error: ^^NS.Error) -> ^Library {
+Device_newLibraryWithSource_options_error :: #force_inline proc "c" (self: ^Device, source: ^NS.String, options: ^CompileOption, error: ^^NS.Error) -> ^Library {
     return msgSend(^Library, self, "newLibraryWithSource:options:error:", source, options, error)
 }
 @(objc_type=Device, objc_name="newLibraryWithSource_options_completionHandler")
-Device_newLibraryWithSource_options_completionHandler :: #force_inline proc "c" (self: ^Device, source: ^NS.String, options: ^CompileOptions, completionHandler: NewLibraryCompletionHandler) {
+Device_newLibraryWithSource_options_completionHandler :: #force_inline proc "c" (self: ^Device, source: ^NS.String, options: ^CompileOption, completionHandler: NewLibraryCompletionHandler) {
     msgSend(nil, self, "newLibraryWithSource:options:completionHandler:", source, options, completionHandler)
 }
 @(objc_type=Device, objc_name="newLibraryWithStitchedDescriptor_error")
@@ -209,7 +209,7 @@ Device_newRasterizationRateMapWithDescriptor :: #force_inline proc "c" (self: ^D
     return msgSend(^RasterizationRateMap, self, "newRasterizationRateMapWithDescriptor:", descriptor)
 }
 @(objc_type=Device, objc_name="newIndirectCommandBufferWithDescriptor")
-Device_newIndirectCommandBufferWithDescriptor :: #force_inline proc "c" (self: ^Device, descriptor: ^IndirectCommandBufferDescriptor, maxCount: NS.UInteger, options: ResourceOptions) -> ^IndirectCommandBuffer {
+Device_newIndirectCommandBufferWithDescriptor :: #force_inline proc "c" (self: ^Device, descriptor: ^IndirectCommandBufferDescriptor, maxCount: NS.UInteger, options: ResourceOption) -> ^IndirectCommandBuffer {
     return msgSend(^IndirectCommandBuffer, self, "newIndirectCommandBufferWithDescriptor:maxCommandCount:options:", descriptor, maxCount, options)
 }
 @(objc_type=Device, objc_name="newEvent")

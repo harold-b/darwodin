@@ -20,7 +20,3 @@ SearchController :: struct { using _: ViewController,
     using _: ViewControllerAnimatedTransitioning,
 }
 
-SearchController_VTable :: struct {
-    super: ViewController_VTable,
-}
-

@@ -19,7 +19,3 @@ CharacterSet :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-CharacterSet_VTable :: struct {
-    super: Object_VTable,
-}
-

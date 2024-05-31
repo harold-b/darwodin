@@ -20,7 +20,3 @@ NSShadow :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-NSShadow_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

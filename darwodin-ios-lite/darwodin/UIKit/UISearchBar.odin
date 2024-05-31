@@ -21,7 +21,3 @@ SearchBar :: struct { using _: View,
     using _: LookToDictateCapable,
 }
 
-SearchBar_VTable :: struct {
-    super: View_VTable,
-}
-

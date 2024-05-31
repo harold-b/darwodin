@@ -19,7 +19,3 @@ Slider :: struct { using _: Control,
     using _: AccessibilitySlider,
 }
 
-Slider_VTable :: struct {
-    super: Control_VTable,
-}
-

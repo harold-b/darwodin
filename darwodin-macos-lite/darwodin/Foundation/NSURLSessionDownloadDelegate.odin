@@ -17,6 +17,3 @@ URLSessionDownloadDelegate :: struct { using _: intrinsics.objc_object,
     using _: URLSessionTaskDelegate,
 }
 
-URLSessionDownloadDelegate_VTable :: struct {
-}
-

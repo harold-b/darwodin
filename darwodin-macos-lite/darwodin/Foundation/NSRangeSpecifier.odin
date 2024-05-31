@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSRangeSpecifier")
 RangeSpecifier :: struct { using _: ScriptObjectSpecifier, }
 
-RangeSpecifier_VTable :: struct {
-    super: ScriptObjectSpecifier_VTable,
-}
-

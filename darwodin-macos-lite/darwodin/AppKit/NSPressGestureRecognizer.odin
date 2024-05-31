@@ -19,7 +19,3 @@ PressGestureRecognizer :: struct { using _: GestureRecognizer,
     using _: NS.Coding,
 }
 
-PressGestureRecognizer_VTable :: struct {
-    super: GestureRecognizer_VTable,
-}
-

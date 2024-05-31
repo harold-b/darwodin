@@ -10,7 +10,6 @@ Structs:
     NSDecimal: NS.Decimal
     NSHashEnumerator: NS.HashEnumerator
     NSHashTableCallBacks: NS.HashTableCallBacks
-    NSEdgeInsets: NS.EdgeInsets
     NSMapEnumerator: NS.MapEnumerator
     NSMapTableKeyCallBacks: NS.MapTableKeyCallBacks
     NSMapTableValueCallBacks: NS.MapTableValueCallBacks
@@ -30,200 +29,18 @@ Structs:
     __SecACL: NS.__SecACL
     __SecPassword: NS.__SecPassword
     SecKeychainAttributeInfo: NS.SecKeychainAttributeInfo
-    cssm_data: NS.cssm_data
-    SecAsn1AlgId: NS.SecAsn1AlgId
-    SecAsn1PubKeyInfo: NS.SecAsn1PubKeyInfo
-    SecAsn1Template_struct: NS.SecAsn1Template_struct
-    cssm_guid: NS.cssm_guid
-    cssm_version: NS.cssm_version
-    cssm_subservice_uid: NS.cssm_subservice_uid
-    cssm_net_address: NS.cssm_net_address
-    cssm_crypto_data: NS.cssm_crypto_data
-    cssm_list_element: NS.cssm_list_element
-    cssm_list: NS.cssm_list
-    CSSM_TUPLE: NS.CSSM_TUPLE
-    cssm_tuplegroup: NS.cssm_tuplegroup
-    cssm_sample: NS.cssm_sample
-    cssm_samplegroup: NS.cssm_samplegroup
-    cssm_memory_funcs: NS.cssm_memory_funcs
-    cssm_encoded_cert: NS.cssm_encoded_cert
-    cssm_parsed_cert: NS.cssm_parsed_cert
-    cssm_cert_pair: NS.cssm_cert_pair
-    cssm_certgroup: NS.cssm_certgroup
-    cssm_base_certs: NS.cssm_base_certs
-    cssm_access_credentials: NS.cssm_access_credentials
-    cssm_authorizationgroup: NS.cssm_authorizationgroup
-    cssm_acl_validity_period: NS.cssm_acl_validity_period
-    cssm_acl_entry_prototype: NS.cssm_acl_entry_prototype
-    cssm_acl_owner_prototype: NS.cssm_acl_owner_prototype
-    cssm_acl_entry_input: NS.cssm_acl_entry_input
-    cssm_resource_control_context: NS.cssm_resource_control_context
-    cssm_acl_entry_info: NS.cssm_acl_entry_info
-    cssm_acl_edit: NS.cssm_acl_edit
-    cssm_func_name_addr: NS.cssm_func_name_addr
-    cssm_date: NS.cssm_date
-    cssm_range: NS.cssm_range
-    cssm_query_size_data: NS.cssm_query_size_data
-    cssm_key_size: NS.cssm_key_size
-    cssm_keyheader: NS.cssm_keyheader
-    cssm_key: NS.cssm_key
-    cssm_dl_db_handle: NS.cssm_dl_db_handle
-    cssm_context_attribute: NS.cssm_context_attribute
-    cssm_context_attribute::cssm_context_attribute_value::cssm_kr_profile: NS.cssm_kr_profile
-    cssm_context: NS.cssm_context
-    cssm_pkcs1_oaep_params: NS.cssm_pkcs1_oaep_params
-    cssm_csp_operational_statistics: NS.cssm_csp_operational_statistics
-    cssm_pkcs5_pbkdf1_params: NS.cssm_pkcs5_pbkdf1_params
-    cssm_pkcs5_pbkdf2_params: NS.cssm_pkcs5_pbkdf2_params
-    cssm_kea_derive_params: NS.cssm_kea_derive_params
-    cssm_tp_authority_id: NS.cssm_tp_authority_id
-    cssm_field: NS.cssm_field
-    cssm_tp_policyinfo: NS.cssm_tp_policyinfo
-    cssm_dl_db_list: NS.cssm_dl_db_list
-    cssm_tp_callerauth_context: NS.cssm_tp_callerauth_context
-    cssm_encoded_crl: NS.cssm_encoded_crl
-    cssm_parsed_crl: NS.cssm_parsed_crl
-    cssm_crl_pair: NS.cssm_crl_pair
-    cssm_crlgroup: NS.cssm_crlgroup
-    cssm_fieldgroup: NS.cssm_fieldgroup
-    cssm_evidence: NS.cssm_evidence
-    cssm_tp_verify_context: NS.cssm_tp_verify_context
-    cssm_tp_verify_context_result: NS.cssm_tp_verify_context_result
-    cssm_tp_request_set: NS.cssm_tp_request_set
-    cssm_tp_result_set: NS.cssm_tp_result_set
-    cssm_tp_confirm_response: NS.cssm_tp_confirm_response
-    cssm_tp_certissue_input: NS.cssm_tp_certissue_input
-    cssm_tp_certissue_output: NS.cssm_tp_certissue_output
-    cssm_tp_certchange_input: NS.cssm_tp_certchange_input
-    cssm_tp_certchange_output: NS.cssm_tp_certchange_output
-    cssm_tp_certverify_input: NS.cssm_tp_certverify_input
-    cssm_tp_certverify_output: NS.cssm_tp_certverify_output
-    cssm_tp_certnotarize_input: NS.cssm_tp_certnotarize_input
-    cssm_tp_certnotarize_output: NS.cssm_tp_certnotarize_output
-    cssm_tp_certreclaim_input: NS.cssm_tp_certreclaim_input
-    cssm_tp_certreclaim_output: NS.cssm_tp_certreclaim_output
-    cssm_tp_crlissue_input: NS.cssm_tp_crlissue_input
-    cssm_tp_crlissue_output: NS.cssm_tp_crlissue_output
-    cssm_cert_bundle_header: NS.cssm_cert_bundle_header
-    cssm_cert_bundle: NS.cssm_cert_bundle
-    cssm_db_attribute_info: NS.cssm_db_attribute_info
-    cssm_db_attribute_data: NS.cssm_db_attribute_data
-    cssm_db_record_attribute_info: NS.cssm_db_record_attribute_info
-    cssm_db_record_attribute_data: NS.cssm_db_record_attribute_data
-    cssm_db_parsing_module_info: NS.cssm_db_parsing_module_info
-    cssm_db_index_info: NS.cssm_db_index_info
-    cssm_db_unique_record: NS.cssm_db_unique_record
-    cssm_db_record_index_info: NS.cssm_db_record_index_info
-    cssm_dbinfo: NS.cssm_dbinfo
-    cssm_selection_predicate: NS.cssm_selection_predicate
-    cssm_query_limits: NS.cssm_query_limits
-    cssm_query: NS.cssm_query
-    cssm_dl_pkcs11_attributes: NS.cssm_dl_pkcs11_attributes
-    cssm_name_list: NS.cssm_name_list
-    cssm_db_schema_attribute_info: NS.cssm_db_schema_attribute_info
-    cssm_db_schema_index_info: NS.cssm_db_schema_index_info
-    cssm_x509_type_value_pair: NS.cssm_x509_type_value_pair
-    cssm_x509_rdn: NS.cssm_x509_rdn
-    cssm_x509_name: NS.cssm_x509_name
-    cssm_x509_time: NS.cssm_x509_time
-    x509_validity: NS.x509_validity
-    cssm_x509ext_basicConstraints: NS.cssm_x509ext_basicConstraints
-    cssm_x509_extensionTagAndValue: NS.cssm_x509_extensionTagAndValue
-    cssm_x509ext_pair: NS.cssm_x509ext_pair
-    cssm_x509_extension: NS.cssm_x509_extension
-    cssm_x509_extensions: NS.cssm_x509_extensions
-    cssm_x509_tbs_certificate: NS.cssm_x509_tbs_certificate
-    cssm_x509_signature: NS.cssm_x509_signature
-    cssm_x509_signed_certificate: NS.cssm_x509_signed_certificate
-    cssm_x509ext_policyQualifierInfo: NS.cssm_x509ext_policyQualifierInfo
-    cssm_x509ext_policyQualifiers: NS.cssm_x509ext_policyQualifiers
-    cssm_x509ext_policyInfo: NS.cssm_x509ext_policyInfo
-    cssm_x509_revoked_cert_entry: NS.cssm_x509_revoked_cert_entry
-    cssm_x509_revoked_cert_list: NS.cssm_x509_revoked_cert_list
-    cssm_x509_tbs_certlist: NS.cssm_x509_tbs_certlist
-    cssm_x509_signed_crl: NS.cssm_x509_signed_crl
     __SecRandom: NS.__SecRandom
-    __CE_OtherName: NS.__CE_OtherName
-    __CE_GeneralName: NS.__CE_GeneralName
-    __CE_GeneralNames: NS.__CE_GeneralNames
-    __CE_AuthorityKeyID: NS.__CE_AuthorityKeyID
-    __CE_ExtendedKeyUsage: NS.__CE_ExtendedKeyUsage
-    __CE_BasicConstraints: NS.__CE_BasicConstraints
-    __CE_PolicyQualifierInfo: NS.__CE_PolicyQualifierInfo
-    __CE_PolicyInformation: NS.__CE_PolicyInformation
-    __CE_CertPolicies: NS.__CE_CertPolicies
-    __CE_DistributionPointName: NS.__CE_DistributionPointName
-    __CE_CRLDistributionPoint: NS.__CE_CRLDistributionPoint
-    __CE_CRLDistPointsSyntax: NS.__CE_CRLDistPointsSyntax
-    __CE_AccessDescription: NS.__CE_AccessDescription
-    __CE_AuthorityInfoAccess: NS.__CE_AuthorityInfoAccess
-    __CE_SemanticsInformation: NS.__CE_SemanticsInformation
-    __CE_QC_Statement: NS.__CE_QC_Statement
-    __CE_QC_Statements: NS.__CE_QC_Statements
-    __CE_IssuingDistributionPoint: NS.__CE_IssuingDistributionPoint
-    __CE_GeneralSubtree: NS.__CE_GeneralSubtree
-    __CE_GeneralSubtrees: NS.__CE_GeneralSubtrees
-    __CE_NameConstraints: NS.__CE_NameConstraints
-    __CE_PolicyMapping: NS.__CE_PolicyMapping
-    __CE_PolicyMappings: NS.__CE_PolicyMappings
-    __CE_PolicyConstraints: NS.__CE_PolicyConstraints
-    __CE_DataAndType: NS.__CE_DataAndType
-    cssm_acl_process_subject_selector: NS.cssm_acl_process_subject_selector
-    cssm_acl_keychain_prompt_selector: NS.cssm_acl_keychain_prompt_selector
-    cssm_appledl_open_parameters: NS.cssm_appledl_open_parameters
-    cssm_applecspdl_db_settings_parameters: NS.cssm_applecspdl_db_settings_parameters
-    cssm_applecspdl_db_is_locked_parameters: NS.cssm_applecspdl_db_is_locked_parameters
-    cssm_applecspdl_db_change_password_parameters: NS.cssm_applecspdl_db_change_password_parameters
-    CSSM_APPLE_TP_NAME_OID: NS.CSSM_APPLE_TP_NAME_OID
-    CSSM_APPLE_TP_CERT_REQUEST: NS.CSSM_APPLE_TP_CERT_REQUEST
-    CSSM_APPLE_TP_SSL_OPTIONS: NS.CSSM_APPLE_TP_SSL_OPTIONS
-    CSSM_APPLE_TP_CRL_OPTIONS: NS.CSSM_APPLE_TP_CRL_OPTIONS
-    CSSM_APPLE_TP_SMIME_OPTIONS: NS.CSSM_APPLE_TP_SMIME_OPTIONS
-    CSSM_APPLE_TP_ACTION_DATA: NS.CSSM_APPLE_TP_ACTION_DATA
-    CSSM_TP_APPLE_EVIDENCE_INFO: NS.CSSM_TP_APPLE_EVIDENCE_INFO
-    CSSM_TP_APPLE_EVIDENCE_HEADER: NS.CSSM_TP_APPLE_EVIDENCE_HEADER
-    CSSM_APPLE_CL_CSR_REQUEST: NS.CSSM_APPLE_CL_CSR_REQUEST
-    SecKeychainSettings: NS.SecKeychainSettings
-    SecKeychainCallbackInfo: NS.SecKeychainCallbackInfo
-    SecKeyImportExportParameters: NS.SecKeyImportExportParameters
-    SecItemImportExportKeyParameters: NS.SecItemImportExportKeyParameters
     __SecTrust: NS.__SecTrust
-    cssm_manager_event_notification: NS.cssm_manager_event_notification
-    cssm_spi_ac_funcs: NS.cssm_spi_ac_funcs
-    cssm_spi_cl_funcs: NS.cssm_spi_cl_funcs
-    cssm_module_funcs: NS.cssm_module_funcs
-    cssm_upcalls: NS.cssm_upcalls
-    cssm_spi_csp_funcs: NS.cssm_spi_csp_funcs
-    cssm_spi_dl_funcs: NS.cssm_spi_dl_funcs
-    cssm_kr_name: NS.cssm_kr_name
-    cssm_kr_wrappedproductinfo: NS.cssm_kr_wrappedproductinfo
-    cssm_krsubservice: NS.cssm_krsubservice
-    cssm_kr_policy_list_item: NS.cssm_kr_policy_list_item
-    cssm_kr_policy_list_item::kr_policy_list_item: NS.kr_policy_list_item
-    cssm_kr_policy_info: NS.cssm_kr_policy_info
-    cssm_spi_kr_funcs: NS.cssm_spi_kr_funcs
-    cssm_spi_tp_funcs: NS.cssm_spi_tp_funcs
-    cssm_state_funcs: NS.cssm_state_funcs
-    cssm_manager_registration_info: NS.cssm_manager_registration_info
-    __SecCode: NS.__SecCode
-    __SecRequirement: NS.__SecRequirement
     _xpc_type_s: NS._xpc_type_s
-    __SecTask: NS.__SecTask
+    _xpc_connection_s: NS._xpc_connection_s
+    _xpc_endpoint_s: NS._xpc_endpoint_s
+    _xpc_bool_s: NS._xpc_bool_s
+    _xpc_rich_error_s: NS._xpc_rich_error_s
+    _xpc_activity_s: NS._xpc_activity_s
+    _xpc_dictionary_s: NS._xpc_dictionary_s
+    xpc_session_s: NS.xpc_session_s
+    xpc_listener_s: NS.xpc_listener_s
     SSLContext: NS.SSLContext
-    OpaqueAEDataStorageType: NS.OpaqueAEDataStorageType
-    AEDesc: NS.AEDesc
-    AEKeyDesc: NS.AEKeyDesc
-    AERemoteProcessResolverContext: NS.AERemoteProcessResolverContext
-    AERemoteProcessResolver: NS.AERemoteProcessResolver
-    AEBuildError: NS.AEBuildError
-    OpaqueAEStreamRef: NS.OpaqueAEStreamRef
-    NSAffineTransformStruct: NS.AffineTransformStruct
-    __NSAppleEventManagerSuspension: NS.__NSAppleEventManagerSuspension
-    cssm_context_attribute::cssm_context_attribute_value: NS.cssm_context_attribute_value
-    cssm_db_attribute_info::cssm_db_attribute_label: NS.cssm_db_attribute_label
-    cssm_x509_extension::cssm_x509ext_value: NS.cssm_x509ext_value
-    CE_Data: NS.CE_Data
-    AEArrayData: NS.AEArrayData
 
 Typedefs:
     NSInteger: NS.Integer
@@ -272,10 +89,6 @@ Typedefs:
     NSKeyValueChangeKey: NS.KeyValueChangeKey
     NSPropertyListReadOptions: NS.PropertyListReadOptions
     NSPropertyListWriteOptions: NS.PropertyListWriteOptions
-    NSSize: NS.Size
-    NSSizeArray: NS.SizeArray
-    NSRect: NS.Rect
-    NSRectArray: NS.RectArray
     NSMapTableOptions: NS.MapTableOptions
     NSSocketNativeHandle: NS.SocketNativeHandle
     NSTextCheckingTypes: NS.TextCheckingTypes
@@ -300,534 +113,44 @@ Typedefs:
     SecAccessRef: NS.SecAccessRef
     SecACLRef: NS.SecACLRef
     SecPasswordRef: NS.SecPasswordRef
-    CSSM_INTPTR: NS.CSSM_INTPTR
-    CSSM_SIZE: NS.CSSM_SIZE
-    SecAsn1Item: NS.SecAsn1Item
-    SecAsn1Oid: NS.SecAsn1Oid
-    SecAsn1Template: NS.SecAsn1Template
-    SecAsn1TemplateChooser: NS.SecAsn1TemplateChooser
-    SecAsn1TemplateChooserPtr: NS.SecAsn1TemplateChooserPtr
-    CSSM_HANDLE: NS.CSSM_HANDLE
-    CSSM_HANDLE_PTR: NS.CSSM_HANDLE_PTR
-    CSSM_LONG_HANDLE: NS.CSSM_LONG_HANDLE
-    CSSM_LONG_HANDLE_PTR: NS.CSSM_LONG_HANDLE_PTR
-    CSSM_MODULE_HANDLE: NS.CSSM_MODULE_HANDLE
-    CSSM_MODULE_HANDLE_PTR: NS.CSSM_MODULE_HANDLE_PTR
-    CSSM_CC_HANDLE: NS.CSSM_CC_HANDLE
-    CSSM_CSP_HANDLE: NS.CSSM_CSP_HANDLE
-    CSSM_TP_HANDLE: NS.CSSM_TP_HANDLE
-    CSSM_AC_HANDLE: NS.CSSM_AC_HANDLE
-    CSSM_CL_HANDLE: NS.CSSM_CL_HANDLE
-    CSSM_DL_HANDLE: NS.CSSM_DL_HANDLE
-    CSSM_DB_HANDLE: NS.CSSM_DB_HANDLE
-    CSSM_BOOL: NS.CSSM_BOOL
-    CSSM_RETURN: NS.CSSM_RETURN
-    CSSM_STRING: NS.CSSM_STRING
-    CSSM_DATA_PTR: NS.CSSM_DATA_PTR
-    CSSM_GUID: NS.CSSM_GUID
-    CSSM_GUID_PTR: NS.CSSM_GUID_PTR
-    CSSM_BITMASK: NS.CSSM_BITMASK
-    CSSM_KEY_HIERARCHY: NS.CSSM_KEY_HIERARCHY
-    CSSM_PVC_MODE: NS.CSSM_PVC_MODE
-    CSSM_PRIVILEGE_SCOPE: NS.CSSM_PRIVILEGE_SCOPE
-    CSSM_VERSION: NS.CSSM_VERSION
-    CSSM_VERSION_PTR: NS.CSSM_VERSION_PTR
-    CSSM_SERVICE_MASK: NS.CSSM_SERVICE_MASK
-    CSSM_SERVICE_TYPE: NS.CSSM_SERVICE_TYPE
-    CSSM_SUBSERVICE_UID: NS.CSSM_SUBSERVICE_UID
-    CSSM_SUBSERVICE_UID_PTR: NS.CSSM_SUBSERVICE_UID_PTR
-    CSSM_MODULE_EVENT: NS.CSSM_MODULE_EVENT
-    CSSM_MODULE_EVENT_PTR: NS.CSSM_MODULE_EVENT_PTR
-    CSSM_API_ModuleEventHandler: NS.CSSM_API_ModuleEventHandler
-    CSSM_ATTACH_FLAGS: NS.CSSM_ATTACH_FLAGS
-    CSSM_PRIVILEGE: NS.CSSM_PRIVILEGE
-    CSSM_USEE_TAG: NS.CSSM_USEE_TAG
-    CSSM_NET_ADDRESS_TYPE: NS.CSSM_NET_ADDRESS_TYPE
-    CSSM_NET_ADDRESS: NS.CSSM_NET_ADDRESS
-    CSSM_NET_ADDRESS_PTR: NS.CSSM_NET_ADDRESS_PTR
-    CSSM_NET_PROTOCOL: NS.CSSM_NET_PROTOCOL
-    CSSM_CALLBACK: NS.CSSM_CALLBACK
-    CSSM_CRYPTO_DATA: NS.CSSM_CRYPTO_DATA
-    CSSM_CRYPTO_DATA_PTR: NS.CSSM_CRYPTO_DATA_PTR
-    CSSM_WORDID_TYPE: NS.CSSM_WORDID_TYPE
-    CSSM_LIST_ELEMENT_TYPE: NS.CSSM_LIST_ELEMENT_TYPE
-    CSSM_LIST_ELEMENT_TYPE_PTR: NS.CSSM_LIST_ELEMENT_TYPE_PTR
-    CSSM_LIST_TYPE: NS.CSSM_LIST_TYPE
-    CSSM_LIST_TYPE_PTR: NS.CSSM_LIST_TYPE_PTR
-    CSSM_LIST_ELEMENT_PTR: NS.CSSM_LIST_ELEMENT_PTR
-    CSSM_LIST: NS.CSSM_LIST
-    CSSM_LIST_PTR: NS.CSSM_LIST_PTR
-    CSSM_LIST_ELEMENT: NS.CSSM_LIST_ELEMENT
-    CSSM_TUPLE_PTR: NS.CSSM_TUPLE_PTR
-    CSSM_TUPLEGROUP: NS.CSSM_TUPLEGROUP
-    CSSM_TUPLEGROUP_PTR: NS.CSSM_TUPLEGROUP_PTR
-    CSSM_SAMPLE_TYPE: NS.CSSM_SAMPLE_TYPE
-    CSSM_SAMPLE: NS.CSSM_SAMPLE
-    CSSM_SAMPLE_PTR: NS.CSSM_SAMPLE_PTR
-    CSSM_SAMPLEGROUP: NS.CSSM_SAMPLEGROUP
-    CSSM_SAMPLEGROUP_PTR: NS.CSSM_SAMPLEGROUP_PTR
-    CSSM_MALLOC: NS.CSSM_MALLOC
-    CSSM_FREE: NS.CSSM_FREE
-    CSSM_REALLOC: NS.CSSM_REALLOC
-    CSSM_CALLOC: NS.CSSM_CALLOC
-    CSSM_MEMORY_FUNCS: NS.CSSM_MEMORY_FUNCS
-    CSSM_MEMORY_FUNCS_PTR: NS.CSSM_MEMORY_FUNCS_PTR
-    CSSM_API_MEMORY_FUNCS: NS.CSSM_API_MEMORY_FUNCS
-    CSSM_API_MEMORY_FUNCS_PTR: NS.CSSM_API_MEMORY_FUNCS_PTR
-    CSSM_CHALLENGE_CALLBACK: NS.CSSM_CHALLENGE_CALLBACK
-    CSSM_CERT_TYPE: NS.CSSM_CERT_TYPE
-    CSSM_CERT_TYPE_PTR: NS.CSSM_CERT_TYPE_PTR
-    CSSM_CERT_ENCODING: NS.CSSM_CERT_ENCODING
-    CSSM_CERT_ENCODING_PTR: NS.CSSM_CERT_ENCODING_PTR
-    CSSM_ENCODED_CERT: NS.CSSM_ENCODED_CERT
-    CSSM_ENCODED_CERT_PTR: NS.CSSM_ENCODED_CERT_PTR
-    CSSM_CERT_PARSE_FORMAT: NS.CSSM_CERT_PARSE_FORMAT
-    CSSM_CERT_PARSE_FORMAT_PTR: NS.CSSM_CERT_PARSE_FORMAT_PTR
-    CSSM_PARSED_CERT: NS.CSSM_PARSED_CERT
-    CSSM_PARSED_CERT_PTR: NS.CSSM_PARSED_CERT_PTR
-    CSSM_CERT_PAIR: NS.CSSM_CERT_PAIR
-    CSSM_CERT_PAIR_PTR: NS.CSSM_CERT_PAIR_PTR
-    CSSM_CERTGROUP_TYPE: NS.CSSM_CERTGROUP_TYPE
-    CSSM_CERTGROUP_TYPE_PTR: NS.CSSM_CERTGROUP_TYPE_PTR
-    CSSM_CERTGROUP: NS.CSSM_CERTGROUP
-    CSSM_CERTGROUP_PTR: NS.CSSM_CERTGROUP_PTR
-    CSSM_BASE_CERTS: NS.CSSM_BASE_CERTS
-    CSSM_BASE_CERTS_PTR: NS.CSSM_BASE_CERTS_PTR
-    CSSM_ACCESS_CREDENTIALS: NS.CSSM_ACCESS_CREDENTIALS
-    CSSM_ACCESS_CREDENTIALS_PTR: NS.CSSM_ACCESS_CREDENTIALS_PTR
-    CSSM_ACL_SUBJECT_TYPE: NS.CSSM_ACL_SUBJECT_TYPE
-    CSSM_ACL_AUTHORIZATION_TAG: NS.CSSM_ACL_AUTHORIZATION_TAG
-    CSSM_AUTHORIZATIONGROUP: NS.CSSM_AUTHORIZATIONGROUP
-    CSSM_AUTHORIZATIONGROUP_PTR: NS.CSSM_AUTHORIZATIONGROUP_PTR
-    CSSM_ACL_VALIDITY_PERIOD: NS.CSSM_ACL_VALIDITY_PERIOD
-    CSSM_ACL_VALIDITY_PERIOD_PTR: NS.CSSM_ACL_VALIDITY_PERIOD_PTR
-    CSSM_ACL_ENTRY_PROTOTYPE: NS.CSSM_ACL_ENTRY_PROTOTYPE
-    CSSM_ACL_ENTRY_PROTOTYPE_PTR: NS.CSSM_ACL_ENTRY_PROTOTYPE_PTR
-    CSSM_ACL_OWNER_PROTOTYPE: NS.CSSM_ACL_OWNER_PROTOTYPE
-    CSSM_ACL_OWNER_PROTOTYPE_PTR: NS.CSSM_ACL_OWNER_PROTOTYPE_PTR
-    CSSM_ACL_SUBJECT_CALLBACK: NS.CSSM_ACL_SUBJECT_CALLBACK
-    CSSM_ACL_ENTRY_INPUT: NS.CSSM_ACL_ENTRY_INPUT
-    CSSM_ACL_ENTRY_INPUT_PTR: NS.CSSM_ACL_ENTRY_INPUT_PTR
-    CSSM_RESOURCE_CONTROL_CONTEXT: NS.CSSM_RESOURCE_CONTROL_CONTEXT
-    CSSM_RESOURCE_CONTROL_CONTEXT_PTR: NS.CSSM_RESOURCE_CONTROL_CONTEXT_PTR
-    CSSM_ACL_HANDLE: NS.CSSM_ACL_HANDLE
-    CSSM_ACL_ENTRY_INFO: NS.CSSM_ACL_ENTRY_INFO
-    CSSM_ACL_ENTRY_INFO_PTR: NS.CSSM_ACL_ENTRY_INFO_PTR
-    CSSM_ACL_EDIT_MODE: NS.CSSM_ACL_EDIT_MODE
-    CSSM_ACL_EDIT: NS.CSSM_ACL_EDIT
-    CSSM_ACL_EDIT_PTR: NS.CSSM_ACL_EDIT_PTR
-    CSSM_PROC_ADDR: NS.CSSM_PROC_ADDR
-    CSSM_PROC_ADDR_PTR: NS.CSSM_PROC_ADDR_PTR
-    CSSM_FUNC_NAME_ADDR: NS.CSSM_FUNC_NAME_ADDR
-    CSSM_FUNC_NAME_ADDR_PTR: NS.CSSM_FUNC_NAME_ADDR_PTR
-    CSSM_DATE: NS.CSSM_DATE
-    CSSM_DATE_PTR: NS.CSSM_DATE_PTR
-    CSSM_RANGE: NS.CSSM_RANGE
-    CSSM_RANGE_PTR: NS.CSSM_RANGE_PTR
-    CSSM_QUERY_SIZE_DATA: NS.CSSM_QUERY_SIZE_DATA
-    CSSM_QUERY_SIZE_DATA_PTR: NS.CSSM_QUERY_SIZE_DATA_PTR
-    CSSM_HEADERVERSION: NS.CSSM_HEADERVERSION
-    CSSM_KEY_SIZE: NS.CSSM_KEY_SIZE
-    CSSM_KEY_SIZE_PTR: NS.CSSM_KEY_SIZE_PTR
-    CSSM_KEYBLOB_TYPE: NS.CSSM_KEYBLOB_TYPE
-    CSSM_KEYBLOB_FORMAT: NS.CSSM_KEYBLOB_FORMAT
-    CSSM_KEYCLASS: NS.CSSM_KEYCLASS
-    CSSM_KEYATTR_FLAGS: NS.CSSM_KEYATTR_FLAGS
-    CSSM_KEYUSE: NS.CSSM_KEYUSE
-    CSSM_ALGORITHMS: NS.CSSM_ALGORITHMS
-    CSSM_ENCRYPT_MODE: NS.CSSM_ENCRYPT_MODE
-    CSSM_KEYHEADER: NS.CSSM_KEYHEADER
-    CSSM_KEYHEADER_PTR: NS.CSSM_KEYHEADER_PTR
-    CSSM_KEY: NS.CSSM_KEY
-    CSSM_KEY_PTR: NS.CSSM_KEY_PTR
-    CSSM_WRAP_KEY: NS.CSSM_WRAP_KEY
-    CSSM_WRAP_KEY_PTR: NS.CSSM_WRAP_KEY_PTR
-    CSSM_CSPTYPE: NS.CSSM_CSPTYPE
-    CSSM_DL_DB_HANDLE: NS.CSSM_DL_DB_HANDLE
-    CSSM_DL_DB_HANDLE_PTR: NS.CSSM_DL_DB_HANDLE_PTR
-    CSSM_CONTEXT_TYPE: NS.CSSM_CONTEXT_TYPE
-    CSSM_ATTRIBUTE_TYPE: NS.CSSM_ATTRIBUTE_TYPE
-    CSSM_PADDING: NS.CSSM_PADDING
-    CSSM_KEY_TYPE: NS.CSSM_KEY_TYPE
-    CSSM_CONTEXT_ATTRIBUTE: NS.CSSM_CONTEXT_ATTRIBUTE
-    CSSM_CONTEXT_ATTRIBUTE_PTR: NS.CSSM_CONTEXT_ATTRIBUTE_PTR
-    CSSM_CONTEXT: NS.CSSM_CONTEXT
-    CSSM_CONTEXT_PTR: NS.CSSM_CONTEXT_PTR
-    CSSM_SC_FLAGS: NS.CSSM_SC_FLAGS
-    CSSM_CSP_READER_FLAGS: NS.CSSM_CSP_READER_FLAGS
-    CSSM_CSP_FLAGS: NS.CSSM_CSP_FLAGS
-    CSSM_PKCS_OAEP_MGF: NS.CSSM_PKCS_OAEP_MGF
-    CSSM_PKCS_OAEP_PSOURCE: NS.CSSM_PKCS_OAEP_PSOURCE
-    CSSM_PKCS1_OAEP_PARAMS: NS.CSSM_PKCS1_OAEP_PARAMS
-    CSSM_PKCS1_OAEP_PARAMS_PTR: NS.CSSM_PKCS1_OAEP_PARAMS_PTR
-    CSSM_CSP_OPERATIONAL_STATISTICS: NS.CSSM_CSP_OPERATIONAL_STATISTICS
-    CSSM_CSP_OPERATIONAL_STATISTICS_PTR: NS.CSSM_CSP_OPERATIONAL_STATISTICS_PTR
-    CSSM_PKCS5_PBKDF1_PARAMS: NS.CSSM_PKCS5_PBKDF1_PARAMS
-    CSSM_PKCS5_PBKDF1_PARAMS_PTR: NS.CSSM_PKCS5_PBKDF1_PARAMS_PTR
-    CSSM_PKCS5_PBKDF2_PRF: NS.CSSM_PKCS5_PBKDF2_PRF
-    CSSM_PKCS5_PBKDF2_PARAMS: NS.CSSM_PKCS5_PBKDF2_PARAMS
-    CSSM_PKCS5_PBKDF2_PARAMS_PTR: NS.CSSM_PKCS5_PBKDF2_PARAMS_PTR
-    CSSM_KEA_DERIVE_PARAMS: NS.CSSM_KEA_DERIVE_PARAMS
-    CSSM_KEA_DERIVE_PARAMS_PTR: NS.CSSM_KEA_DERIVE_PARAMS_PTR
-    CSSM_TP_AUTHORITY_ID: NS.CSSM_TP_AUTHORITY_ID
-    CSSM_TP_AUTHORITY_ID_PTR: NS.CSSM_TP_AUTHORITY_ID_PTR
-    CSSM_TP_AUTHORITY_REQUEST_TYPE: NS.CSSM_TP_AUTHORITY_REQUEST_TYPE
-    CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR: NS.CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR
-    CSSM_TP_VERIFICATION_RESULTS_CALLBACK: NS.CSSM_TP_VERIFICATION_RESULTS_CALLBACK
-    CSSM_OID_PTR: NS.CSSM_OID_PTR
-    CSSM_FIELD: NS.CSSM_FIELD
-    CSSM_FIELD_PTR: NS.CSSM_FIELD_PTR
-    CSSM_TP_POLICYINFO: NS.CSSM_TP_POLICYINFO
-    CSSM_TP_POLICYINFO_PTR: NS.CSSM_TP_POLICYINFO_PTR
-    CSSM_TP_SERVICES: NS.CSSM_TP_SERVICES
-    CSSM_TP_ACTION: NS.CSSM_TP_ACTION
-    CSSM_TP_STOP_ON: NS.CSSM_TP_STOP_ON
-    CSSM_TIMESTRING: NS.CSSM_TIMESTRING
-    CSSM_DL_DB_LIST: NS.CSSM_DL_DB_LIST
-    CSSM_DL_DB_LIST_PTR: NS.CSSM_DL_DB_LIST_PTR
-    CSSM_TP_CALLERAUTH_CONTEXT: NS.CSSM_TP_CALLERAUTH_CONTEXT
-    CSSM_TP_CALLERAUTH_CONTEXT_PTR: NS.CSSM_TP_CALLERAUTH_CONTEXT_PTR
-    CSSM_CRL_PARSE_FORMAT: NS.CSSM_CRL_PARSE_FORMAT
-    CSSM_CRL_PARSE_FORMAT_PTR: NS.CSSM_CRL_PARSE_FORMAT_PTR
-    CSSM_CRL_TYPE: NS.CSSM_CRL_TYPE
-    CSSM_CRL_TYPE_PTR: NS.CSSM_CRL_TYPE_PTR
-    CSSM_CRL_ENCODING: NS.CSSM_CRL_ENCODING
-    CSSM_CRL_ENCODING_PTR: NS.CSSM_CRL_ENCODING_PTR
-    CSSM_ENCODED_CRL: NS.CSSM_ENCODED_CRL
-    CSSM_ENCODED_CRL_PTR: NS.CSSM_ENCODED_CRL_PTR
-    CSSM_PARSED_CRL: NS.CSSM_PARSED_CRL
-    CSSM_PARSED_CRL_PTR: NS.CSSM_PARSED_CRL_PTR
-    CSSM_CRL_PAIR: NS.CSSM_CRL_PAIR
-    CSSM_CRL_PAIR_PTR: NS.CSSM_CRL_PAIR_PTR
-    CSSM_CRLGROUP_TYPE: NS.CSSM_CRLGROUP_TYPE
-    CSSM_CRLGROUP_TYPE_PTR: NS.CSSM_CRLGROUP_TYPE_PTR
-    CSSM_CRLGROUP: NS.CSSM_CRLGROUP
-    CSSM_CRLGROUP_PTR: NS.CSSM_CRLGROUP_PTR
-    CSSM_FIELDGROUP: NS.CSSM_FIELDGROUP
-    CSSM_FIELDGROUP_PTR: NS.CSSM_FIELDGROUP_PTR
-    CSSM_EVIDENCE_FORM: NS.CSSM_EVIDENCE_FORM
-    CSSM_EVIDENCE: NS.CSSM_EVIDENCE
-    CSSM_EVIDENCE_PTR: NS.CSSM_EVIDENCE_PTR
-    CSSM_TP_VERIFY_CONTEXT: NS.CSSM_TP_VERIFY_CONTEXT
-    CSSM_TP_VERIFY_CONTEXT_PTR: NS.CSSM_TP_VERIFY_CONTEXT_PTR
-    CSSM_TP_VERIFY_CONTEXT_RESULT: NS.CSSM_TP_VERIFY_CONTEXT_RESULT
-    CSSM_TP_VERIFY_CONTEXT_RESULT_PTR: NS.CSSM_TP_VERIFY_CONTEXT_RESULT_PTR
-    CSSM_TP_REQUEST_SET: NS.CSSM_TP_REQUEST_SET
-    CSSM_TP_REQUEST_SET_PTR: NS.CSSM_TP_REQUEST_SET_PTR
-    CSSM_TP_RESULT_SET: NS.CSSM_TP_RESULT_SET
-    CSSM_TP_RESULT_SET_PTR: NS.CSSM_TP_RESULT_SET_PTR
-    CSSM_TP_CONFIRM_STATUS: NS.CSSM_TP_CONFIRM_STATUS
-    CSSM_TP_CONFIRM_STATUS_PTR: NS.CSSM_TP_CONFIRM_STATUS_PTR
-    CSSM_TP_CONFIRM_RESPONSE: NS.CSSM_TP_CONFIRM_RESPONSE
-    CSSM_TP_CONFIRM_RESPONSE_PTR: NS.CSSM_TP_CONFIRM_RESPONSE_PTR
-    CSSM_TP_CERTISSUE_INPUT: NS.CSSM_TP_CERTISSUE_INPUT
-    CSSM_TP_CERTISSUE_INPUT_PTR: NS.CSSM_TP_CERTISSUE_INPUT_PTR
-    CSSM_TP_CERTISSUE_STATUS: NS.CSSM_TP_CERTISSUE_STATUS
-    CSSM_TP_CERTISSUE_OUTPUT: NS.CSSM_TP_CERTISSUE_OUTPUT
-    CSSM_TP_CERTISSUE_OUTPUT_PTR: NS.CSSM_TP_CERTISSUE_OUTPUT_PTR
-    CSSM_TP_CERTCHANGE_ACTION: NS.CSSM_TP_CERTCHANGE_ACTION
-    CSSM_TP_CERTCHANGE_REASON: NS.CSSM_TP_CERTCHANGE_REASON
-    CSSM_TP_CERTCHANGE_INPUT: NS.CSSM_TP_CERTCHANGE_INPUT
-    CSSM_TP_CERTCHANGE_INPUT_PTR: NS.CSSM_TP_CERTCHANGE_INPUT_PTR
-    CSSM_TP_CERTCHANGE_STATUS: NS.CSSM_TP_CERTCHANGE_STATUS
-    CSSM_TP_CERTCHANGE_OUTPUT: NS.CSSM_TP_CERTCHANGE_OUTPUT
-    CSSM_TP_CERTCHANGE_OUTPUT_PTR: NS.CSSM_TP_CERTCHANGE_OUTPUT_PTR
-    CSSM_TP_CERTVERIFY_INPUT: NS.CSSM_TP_CERTVERIFY_INPUT
-    CSSM_TP_CERTVERIFY_INPUT_PTR: NS.CSSM_TP_CERTVERIFY_INPUT_PTR
-    CSSM_TP_CERTVERIFY_STATUS: NS.CSSM_TP_CERTVERIFY_STATUS
-    CSSM_TP_CERTVERIFY_OUTPUT: NS.CSSM_TP_CERTVERIFY_OUTPUT
-    CSSM_TP_CERTVERIFY_OUTPUT_PTR: NS.CSSM_TP_CERTVERIFY_OUTPUT_PTR
-    CSSM_TP_CERTNOTARIZE_INPUT: NS.CSSM_TP_CERTNOTARIZE_INPUT
-    CSSM_TP_CERTNOTARIZE_INPUT_PTR: NS.CSSM_TP_CERTNOTARIZE_INPUT_PTR
-    CSSM_TP_CERTNOTARIZE_STATUS: NS.CSSM_TP_CERTNOTARIZE_STATUS
-    CSSM_TP_CERTNOTARIZE_OUTPUT: NS.CSSM_TP_CERTNOTARIZE_OUTPUT
-    CSSM_TP_CERTNOTARIZE_OUTPUT_PTR: NS.CSSM_TP_CERTNOTARIZE_OUTPUT_PTR
-    CSSM_TP_CERTRECLAIM_INPUT: NS.CSSM_TP_CERTRECLAIM_INPUT
-    CSSM_TP_CERTRECLAIM_INPUT_PTR: NS.CSSM_TP_CERTRECLAIM_INPUT_PTR
-    CSSM_TP_CERTRECLAIM_STATUS: NS.CSSM_TP_CERTRECLAIM_STATUS
-    CSSM_TP_CERTRECLAIM_OUTPUT: NS.CSSM_TP_CERTRECLAIM_OUTPUT
-    CSSM_TP_CERTRECLAIM_OUTPUT_PTR: NS.CSSM_TP_CERTRECLAIM_OUTPUT_PTR
-    CSSM_TP_CRLISSUE_INPUT: NS.CSSM_TP_CRLISSUE_INPUT
-    CSSM_TP_CRLISSUE_INPUT_PTR: NS.CSSM_TP_CRLISSUE_INPUT_PTR
-    CSSM_TP_CRLISSUE_STATUS: NS.CSSM_TP_CRLISSUE_STATUS
-    CSSM_TP_CRLISSUE_OUTPUT: NS.CSSM_TP_CRLISSUE_OUTPUT
-    CSSM_TP_CRLISSUE_OUTPUT_PTR: NS.CSSM_TP_CRLISSUE_OUTPUT_PTR
-    CSSM_TP_FORM_TYPE: NS.CSSM_TP_FORM_TYPE
-    CSSM_CL_TEMPLATE_TYPE: NS.CSSM_CL_TEMPLATE_TYPE
-    CSSM_CERT_BUNDLE_TYPE: NS.CSSM_CERT_BUNDLE_TYPE
-    CSSM_CERT_BUNDLE_ENCODING: NS.CSSM_CERT_BUNDLE_ENCODING
-    CSSM_CERT_BUNDLE_HEADER: NS.CSSM_CERT_BUNDLE_HEADER
-    CSSM_CERT_BUNDLE_HEADER_PTR: NS.CSSM_CERT_BUNDLE_HEADER_PTR
-    CSSM_CERT_BUNDLE: NS.CSSM_CERT_BUNDLE
-    CSSM_CERT_BUNDLE_PTR: NS.CSSM_CERT_BUNDLE_PTR
-    CSSM_DB_ATTRIBUTE_NAME_FORMAT: NS.CSSM_DB_ATTRIBUTE_NAME_FORMAT
-    CSSM_DB_ATTRIBUTE_NAME_FORMAT_PTR: NS.CSSM_DB_ATTRIBUTE_NAME_FORMAT_PTR
-    CSSM_DB_ATTRIBUTE_FORMAT: NS.CSSM_DB_ATTRIBUTE_FORMAT
-    CSSM_DB_ATTRIBUTE_FORMAT_PTR: NS.CSSM_DB_ATTRIBUTE_FORMAT_PTR
-    CSSM_DB_ATTRIBUTE_INFO: NS.CSSM_DB_ATTRIBUTE_INFO
-    CSSM_DB_ATTRIBUTE_INFO_PTR: NS.CSSM_DB_ATTRIBUTE_INFO_PTR
-    CSSM_DB_ATTRIBUTE_DATA: NS.CSSM_DB_ATTRIBUTE_DATA
-    CSSM_DB_ATTRIBUTE_DATA_PTR: NS.CSSM_DB_ATTRIBUTE_DATA_PTR
-    CSSM_DB_RECORDTYPE: NS.CSSM_DB_RECORDTYPE
-    CSSM_DB_RECORD_ATTRIBUTE_INFO: NS.CSSM_DB_RECORD_ATTRIBUTE_INFO
-    CSSM_DB_RECORD_ATTRIBUTE_INFO_PTR: NS.CSSM_DB_RECORD_ATTRIBUTE_INFO_PTR
-    CSSM_DB_RECORD_ATTRIBUTE_DATA: NS.CSSM_DB_RECORD_ATTRIBUTE_DATA
-    CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR: NS.CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR
-    CSSM_DB_PARSING_MODULE_INFO: NS.CSSM_DB_PARSING_MODULE_INFO
-    CSSM_DB_PARSING_MODULE_INFO_PTR: NS.CSSM_DB_PARSING_MODULE_INFO_PTR
-    CSSM_DB_INDEX_TYPE: NS.CSSM_DB_INDEX_TYPE
-    CSSM_DB_INDEXED_DATA_LOCATION: NS.CSSM_DB_INDEXED_DATA_LOCATION
-    CSSM_DB_INDEX_INFO: NS.CSSM_DB_INDEX_INFO
-    CSSM_DB_INDEX_INFO_PTR: NS.CSSM_DB_INDEX_INFO_PTR
-    CSSM_DB_UNIQUE_RECORD: NS.CSSM_DB_UNIQUE_RECORD
-    CSSM_DB_UNIQUE_RECORD_PTR: NS.CSSM_DB_UNIQUE_RECORD_PTR
-    CSSM_DB_RECORD_INDEX_INFO: NS.CSSM_DB_RECORD_INDEX_INFO
-    CSSM_DB_RECORD_INDEX_INFO_PTR: NS.CSSM_DB_RECORD_INDEX_INFO_PTR
-    CSSM_DB_ACCESS_TYPE: NS.CSSM_DB_ACCESS_TYPE
-    CSSM_DB_ACCESS_TYPE_PTR: NS.CSSM_DB_ACCESS_TYPE_PTR
-    CSSM_DB_MODIFY_MODE: NS.CSSM_DB_MODIFY_MODE
-    CSSM_DBINFO: NS.CSSM_DBINFO
-    CSSM_DBINFO_PTR: NS.CSSM_DBINFO_PTR
-    CSSM_DB_OPERATOR: NS.CSSM_DB_OPERATOR
-    CSSM_DB_OPERATOR_PTR: NS.CSSM_DB_OPERATOR_PTR
-    CSSM_DB_CONJUNCTIVE: NS.CSSM_DB_CONJUNCTIVE
-    CSSM_DB_CONJUNCTIVE_PTR: NS.CSSM_DB_CONJUNCTIVE_PTR
-    CSSM_SELECTION_PREDICATE: NS.CSSM_SELECTION_PREDICATE
-    CSSM_SELECTION_PREDICATE_PTR: NS.CSSM_SELECTION_PREDICATE_PTR
-    CSSM_QUERY_LIMITS: NS.CSSM_QUERY_LIMITS
-    CSSM_QUERY_LIMITS_PTR: NS.CSSM_QUERY_LIMITS_PTR
-    CSSM_QUERY_FLAGS: NS.CSSM_QUERY_FLAGS
-    CSSM_QUERY: NS.CSSM_QUERY
-    CSSM_QUERY_PTR: NS.CSSM_QUERY_PTR
-    CSSM_DLTYPE: NS.CSSM_DLTYPE
-    CSSM_DLTYPE_PTR: NS.CSSM_DLTYPE_PTR
-    CSSM_DL_CUSTOM_ATTRIBUTES: NS.CSSM_DL_CUSTOM_ATTRIBUTES
-    CSSM_DL_LDAP_ATTRIBUTES: NS.CSSM_DL_LDAP_ATTRIBUTES
-    CSSM_DL_ODBC_ATTRIBUTES: NS.CSSM_DL_ODBC_ATTRIBUTES
-    CSSM_DL_FFS_ATTRIBUTES: NS.CSSM_DL_FFS_ATTRIBUTES
-    CSSM_DL_PKCS11_ATTRIBUTE: NS.CSSM_DL_PKCS11_ATTRIBUTE
-    CSSM_DL_PKCS11_ATTRIBUTE_PTR: NS.CSSM_DL_PKCS11_ATTRIBUTE_PTR
-    CSSM_NAME_LIST: NS.CSSM_NAME_LIST
-    CSSM_NAME_LIST_PTR: NS.CSSM_NAME_LIST_PTR
-    CSSM_DB_RETRIEVAL_MODES: NS.CSSM_DB_RETRIEVAL_MODES
-    CSSM_DB_SCHEMA_ATTRIBUTE_INFO: NS.CSSM_DB_SCHEMA_ATTRIBUTE_INFO
-    CSSM_DB_SCHEMA_ATTRIBUTE_INFO_PTR: NS.CSSM_DB_SCHEMA_ATTRIBUTE_INFO_PTR
-    CSSM_DB_SCHEMA_INDEX_INFO: NS.CSSM_DB_SCHEMA_INDEX_INFO
-    CSSM_DB_SCHEMA_INDEX_INFO_PTR: NS.CSSM_DB_SCHEMA_INDEX_INFO_PTR
-    CSSM_BER_TAG: NS.CSSM_BER_TAG
-    CSSM_X509_ALGORITHM_IDENTIFIER_PTR: NS.CSSM_X509_ALGORITHM_IDENTIFIER_PTR
-    CSSM_X509_TYPE_VALUE_PAIR: NS.CSSM_X509_TYPE_VALUE_PAIR
-    CSSM_X509_TYPE_VALUE_PAIR_PTR: NS.CSSM_X509_TYPE_VALUE_PAIR_PTR
-    CSSM_X509_RDN: NS.CSSM_X509_RDN
-    CSSM_X509_RDN_PTR: NS.CSSM_X509_RDN_PTR
-    CSSM_X509_NAME: NS.CSSM_X509_NAME
-    CSSM_X509_NAME_PTR: NS.CSSM_X509_NAME_PTR
-    CSSM_X509_SUBJECT_PUBLIC_KEY_INFO_PTR: NS.CSSM_X509_SUBJECT_PUBLIC_KEY_INFO_PTR
-    CSSM_X509_TIME: NS.CSSM_X509_TIME
-    CSSM_X509_TIME_PTR: NS.CSSM_X509_TIME_PTR
-    CSSM_X509_VALIDITY: NS.CSSM_X509_VALIDITY
-    CSSM_X509_VALIDITY_PTR: NS.CSSM_X509_VALIDITY_PTR
-    CSSM_X509_OPTION: NS.CSSM_X509_OPTION
-    CSSM_X509EXT_BASICCONSTRAINTS: NS.CSSM_X509EXT_BASICCONSTRAINTS
-    CSSM_X509EXT_BASICCONSTRAINTS_PTR: NS.CSSM_X509EXT_BASICCONSTRAINTS_PTR
-    CSSM_X509EXT_TAGandVALUE: NS.CSSM_X509EXT_TAGandVALUE
-    CSSM_X509EXT_TAGandVALUE_PTR: NS.CSSM_X509EXT_TAGandVALUE_PTR
-    CSSM_X509EXT_PAIR: NS.CSSM_X509EXT_PAIR
-    CSSM_X509EXT_PAIR_PTR: NS.CSSM_X509EXT_PAIR_PTR
-    CSSM_X509_EXTENSION: NS.CSSM_X509_EXTENSION
-    CSSM_X509_EXTENSION_PTR: NS.CSSM_X509_EXTENSION_PTR
-    CSSM_X509_EXTENSIONS: NS.CSSM_X509_EXTENSIONS
-    CSSM_X509_EXTENSIONS_PTR: NS.CSSM_X509_EXTENSIONS_PTR
-    CSSM_X509_TBS_CERTIFICATE: NS.CSSM_X509_TBS_CERTIFICATE
-    CSSM_X509_TBS_CERTIFICATE_PTR: NS.CSSM_X509_TBS_CERTIFICATE_PTR
-    CSSM_X509_SIGNATURE: NS.CSSM_X509_SIGNATURE
-    CSSM_X509_SIGNATURE_PTR: NS.CSSM_X509_SIGNATURE_PTR
-    CSSM_X509_SIGNED_CERTIFICATE: NS.CSSM_X509_SIGNED_CERTIFICATE
-    CSSM_X509_SIGNED_CERTIFICATE_PTR: NS.CSSM_X509_SIGNED_CERTIFICATE_PTR
-    CSSM_X509EXT_POLICYQUALIFIERINFO: NS.CSSM_X509EXT_POLICYQUALIFIERINFO
-    CSSM_X509EXT_POLICYQUALIFIERINFO_PTR: NS.CSSM_X509EXT_POLICYQUALIFIERINFO_PTR
-    CSSM_X509EXT_POLICYQUALIFIERS: NS.CSSM_X509EXT_POLICYQUALIFIERS
-    CSSM_X509EXT_POLICYQUALIFIERS_PTR: NS.CSSM_X509EXT_POLICYQUALIFIERS_PTR
-    CSSM_X509EXT_POLICYINFO: NS.CSSM_X509EXT_POLICYINFO
-    CSSM_X509EXT_POLICYINFO_PTR: NS.CSSM_X509EXT_POLICYINFO_PTR
-    CSSM_X509_REVOKED_CERT_ENTRY: NS.CSSM_X509_REVOKED_CERT_ENTRY
-    CSSM_X509_REVOKED_CERT_ENTRY_PTR: NS.CSSM_X509_REVOKED_CERT_ENTRY_PTR
-    CSSM_X509_REVOKED_CERT_LIST: NS.CSSM_X509_REVOKED_CERT_LIST
-    CSSM_X509_REVOKED_CERT_LIST_PTR: NS.CSSM_X509_REVOKED_CERT_LIST_PTR
-    CSSM_X509_TBS_CERTLIST: NS.CSSM_X509_TBS_CERTLIST
-    CSSM_X509_TBS_CERTLIST_PTR: NS.CSSM_X509_TBS_CERTLIST_PTR
-    CSSM_X509_SIGNED_CRL: NS.CSSM_X509_SIGNED_CRL
-    CSSM_X509_SIGNED_CRL_PTR: NS.CSSM_X509_SIGNED_CRL_PTR
-    SecAccessOwnerType: NS.SecAccessOwnerType
-    SecKeyGeneratePairBlock: NS.SecKeyGeneratePairBlock
     SecKeyAlgorithm: NS.SecKeyAlgorithm
     SecKeyKeyExchangeParameter: NS.SecKeyKeyExchangeParameter
     SecRandomRef: NS.SecRandomRef
-    CE_OtherName: NS.CE_OtherName
-    CE_GeneralName: NS.CE_GeneralName
-    CE_GeneralNames: NS.CE_GeneralNames
-    CE_AuthorityKeyID: NS.CE_AuthorityKeyID
-    CE_SubjectKeyID: NS.CE_SubjectKeyID
-    CE_KeyUsage: NS.CE_KeyUsage
-    CE_CrlReason: NS.CE_CrlReason
-    CE_ExtendedKeyUsage: NS.CE_ExtendedKeyUsage
-    CE_PolicyQualifierInfo: NS.CE_PolicyQualifierInfo
-    CE_PolicyInformation: NS.CE_PolicyInformation
-    CE_CertPolicies: NS.CE_CertPolicies
-    CE_NetscapeCertType: NS.CE_NetscapeCertType
-    CE_CrlDistReasonFlags: NS.CE_CrlDistReasonFlags
-    CE_AccessDescription: NS.CE_AccessDescription
-    CE_AuthorityInfoAccess: NS.CE_AuthorityInfoAccess
-    CE_NameRegistrationAuthorities: NS.CE_NameRegistrationAuthorities
-    CE_SemanticsInformation: NS.CE_SemanticsInformation
-    CE_QC_Statement: NS.CE_QC_Statement
-    CE_QC_Statements: NS.CE_QC_Statements
-    CE_CrlNumber: NS.CE_CrlNumber
-    CE_DeltaCrl: NS.CE_DeltaCrl
-    CE_GeneralSubtree: NS.CE_GeneralSubtree
-    CE_GeneralSubtrees: NS.CE_GeneralSubtrees
-    CE_PolicyMapping: NS.CE_PolicyMapping
-    CE_PolicyMappings: NS.CE_PolicyMappings
-    CE_InhibitAnyPolicy: NS.CE_InhibitAnyPolicy
-    CE_DataAndType: NS.CE_DataAndType
-    CSSM_ACL_PROCESS_SUBJECT_SELECTOR: NS.CSSM_ACL_PROCESS_SUBJECT_SELECTOR
-    CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR: NS.CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR
-    CSSM_ACL_PREAUTH_TRACKING_STATE: NS.CSSM_ACL_PREAUTH_TRACKING_STATE
-    CSSM_APPLEDL_OPEN_PARAMETERS: NS.CSSM_APPLEDL_OPEN_PARAMETERS
-    CSSM_APPLEDL_OPEN_PARAMETERS_PTR: NS.CSSM_APPLEDL_OPEN_PARAMETERS_PTR
-    CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS: NS.CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS
-    CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS_PTR: NS.CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS_PTR
-    CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS: NS.CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS
-    CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS_PTR: NS.CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS_PTR
-    CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS: NS.CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS
-    CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS_PTR: NS.CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS_PTR
-    CSSM_APPLE_TP_CRL_OPT_FLAGS: NS.CSSM_APPLE_TP_CRL_OPT_FLAGS
-    CSSM_APPLE_TP_ACTION_FLAGS: NS.CSSM_APPLE_TP_ACTION_FLAGS
-    CSSM_TP_APPLE_CERT_STATUS: NS.CSSM_TP_APPLE_CERT_STATUS
-    SecKeychainCallback: NS.SecKeychainCallback
     SecTrustRef: NS.SecTrustRef
     SecTrustCallback: NS.SecTrustCallback
     SecTrustWithErrorCallback: NS.SecTrustWithErrorCallback
-    SecTrustUserSetting: NS.SecTrustUserSetting
     SSLCipherSuite: NS.SSLCipherSuite
-    SecuritySessionId: NS.SecuritySessionId
-    CSSM_MANAGER_EVENT_TYPES: NS.CSSM_MANAGER_EVENT_TYPES
-    CSSM_MANAGER_EVENT_NOTIFICATION: NS.CSSM_MANAGER_EVENT_NOTIFICATION
-    CSSM_MANAGER_EVENT_NOTIFICATION_PTR: NS.CSSM_MANAGER_EVENT_NOTIFICATION_PTR
-    CSSM_SPI_AC_FUNCS: NS.CSSM_SPI_AC_FUNCS
-    CSSM_SPI_AC_FUNCS_PTR: NS.CSSM_SPI_AC_FUNCS_PTR
-    CSSM_SPI_CL_FUNCS: NS.CSSM_SPI_CL_FUNCS
-    CSSM_SPI_CL_FUNCS_PTR: NS.CSSM_SPI_CL_FUNCS_PTR
-    CSSM_SPI_ModuleEventHandler: NS.CSSM_SPI_ModuleEventHandler
-    CSSM_CONTEXT_EVENT: NS.CSSM_CONTEXT_EVENT
-    CSSM_MODULE_FUNCS: NS.CSSM_MODULE_FUNCS
-    CSSM_MODULE_FUNCS_PTR: NS.CSSM_MODULE_FUNCS_PTR
-    CSSM_UPCALLS_MALLOC: NS.CSSM_UPCALLS_MALLOC
-    CSSM_UPCALLS_FREE: NS.CSSM_UPCALLS_FREE
-    CSSM_UPCALLS_REALLOC: NS.CSSM_UPCALLS_REALLOC
-    CSSM_UPCALLS_CALLOC: NS.CSSM_UPCALLS_CALLOC
-    CSSM_UPCALLS: NS.CSSM_UPCALLS
-    CSSM_UPCALLS_PTR: NS.CSSM_UPCALLS_PTR
-    CSSM_SPI_CSP_FUNCS: NS.CSSM_SPI_CSP_FUNCS
-    CSSM_SPI_CSP_FUNCS_PTR: NS.CSSM_SPI_CSP_FUNCS_PTR
-    CSSM_SPI_DL_FUNCS: NS.CSSM_SPI_DL_FUNCS
-    CSSM_SPI_DL_FUNCS_PTR: NS.CSSM_SPI_DL_FUNCS_PTR
-    CSSM_KRSP_HANDLE: NS.CSSM_KRSP_HANDLE
-    CSSM_KR_NAME: NS.CSSM_KR_NAME
-    CSSM_KR_PROFILE: NS.CSSM_KR_PROFILE
-    CSSM_KR_PROFILE_PTR: NS.CSSM_KR_PROFILE_PTR
-    CSSM_KR_WRAPPEDPRODUCT_INFO: NS.CSSM_KR_WRAPPEDPRODUCT_INFO
-    CSSM_KR_WRAPPEDPRODUCT_INFO_PTR: NS.CSSM_KR_WRAPPEDPRODUCT_INFO_PTR
-    CSSM_KRSUBSERVICE: NS.CSSM_KRSUBSERVICE
-    CSSM_KRSUBSERVICE_PTR: NS.CSSM_KRSUBSERVICE_PTR
-    CSSM_KR_POLICY_TYPE: NS.CSSM_KR_POLICY_TYPE
-    CSSM_KR_POLICY_FLAGS: NS.CSSM_KR_POLICY_FLAGS
-    CSSM_KR_POLICY_LIST_ITEM: NS.CSSM_KR_POLICY_LIST_ITEM
-    CSSM_KR_POLICY_LIST_ITEM_PTR: NS.CSSM_KR_POLICY_LIST_ITEM_PTR
-    CSSM_KR_POLICY_INFO: NS.CSSM_KR_POLICY_INFO
-    CSSM_KR_POLICY_INFO_PTR: NS.CSSM_KR_POLICY_INFO_PTR
-    CSSM_SPI_KR_FUNCS: NS.CSSM_SPI_KR_FUNCS
-    CSSM_SPI_KR_FUNCS_PTR: NS.CSSM_SPI_KR_FUNCS_PTR
-    CSSM_SPI_TP_FUNCS: NS.CSSM_SPI_TP_FUNCS
-    CSSM_SPI_TP_FUNCS_PTR: NS.CSSM_SPI_TP_FUNCS_PTR
-    CSSM_STATE_FUNCS: NS.CSSM_STATE_FUNCS
-    CSSM_STATE_FUNCS_PTR: NS.CSSM_STATE_FUNCS_PTR
-    CSSM_MANAGER_REGISTRATION_INFO: NS.CSSM_MANAGER_REGISTRATION_INFO
-    CSSM_MANAGER_REGISTRATION_INFO_PTR: NS.CSSM_MANAGER_REGISTRATION_INFO_PTR
-    SecIdentitySearchRef: NS.SecIdentitySearchRef
-    SecAFPServerSignature: NS.SecAFPServerSignature
-    SecPublicKeyHash: NS.SecPublicKeyHash
-    SecPolicySearchRef: NS.SecPolicySearchRef
-    SecCodeRef: NS.SecCodeRef
-    SecStaticCodeRef: NS.SecStaticCodeRef
-    SecRequirementRef: NS.SecRequirementRef
-    SecGuestRef: NS.SecGuestRef
+    NSValueTransformerName: NS.ValueTransformerName
     au_asid_t: NS.au_asid_t
     xpc_type_t: NS.xpc_type_t
-    SecTaskRef: NS.SecTaskRef
+    xpc_object_t: NS.xpc_object_t
+    xpc_handler_t: NS.xpc_handler_t
+    xpc_connection_t: NS.xpc_connection_t
+    xpc_connection_handler_t: NS.xpc_connection_handler_t
+    xpc_rich_error_t: NS.xpc_rich_error_t
+    xpc_activity_t: NS.xpc_activity_t
+    xpc_activity_handler_t: NS.xpc_activity_handler_t
+    xpc_activity_state_t: NS.xpc_activity_state_t
+    xpc_finalizer_t: NS.xpc_finalizer_t
+    xpc_session_t: NS.xpc_session_t
+    xpc_session_cancel_handler_t: NS.xpc_session_cancel_handler_t
+    xpc_session_incoming_message_handler_t: NS.xpc_session_incoming_message_handler_t
+    xpc_session_reply_handler_t: NS.xpc_session_reply_handler_t
+    xpc_listener_t: NS.xpc_listener_t
+    xpc_listener_incoming_session_handler_t: NS.xpc_listener_incoming_session_handler_t
+    xpc_array_applier_t: NS.xpc_array_applier_t
+    xpc_dictionary_applier_t: NS.xpc_dictionary_applier_t
+    NSLinguisticTagScheme: NS.LinguisticTagScheme
+    NSLinguisticTag: NS.LinguisticTag
     SSLContextRef: NS.SSLContextRef
     SSLConnectionRef: NS.SSLConnectionRef
     SSLReadFunc: NS.SSLReadFunc
     SSLWriteFunc: NS.SSLWriteFunc
-    SecTransformRef: NS.SecTransformRef
-    SecGroupTransformRef: NS.SecGroupTransformRef
-    SecMessageBlock: NS.SecMessageBlock
-    SecTransformAttributeRef: NS.SecTransformAttributeRef
-    SecTransformStringOrAttributeRef: NS.SecTransformStringOrAttributeRef
-    SecTransformActionBlock: NS.SecTransformActionBlock
-    SecTransformAttributeActionBlock: NS.SecTransformAttributeActionBlock
-    SecTransformDataBlock: NS.SecTransformDataBlock
-    SecTransformInstanceBlock: NS.SecTransformInstanceBlock
-    SecTransformImplementationRef: NS.SecTransformImplementationRef
-    SecTransformCreateFP: NS.SecTransformCreateFP
-    DescType: NS.DescType
-    AEKeyword: NS.AEKeyword
-    AEDataStorageType: NS.AEDataStorageType
-    AEDataStorage: NS.AEDataStorage
-    AEDescPtr: NS.AEDescPtr
-    AEDescList: NS.AEDescList
-    AERecord: NS.AERecord
-    AEAddressDesc: NS.AEAddressDesc
-    AppleEvent: NS.AppleEvent
-    AppleEventPtr: NS.AppleEventPtr
-    AEReturnID: NS.AEReturnID
-    AETransactionID: NS.AETransactionID
-    AEEventClass: NS.AEEventClass
-    AEEventID: NS.AEEventID
-    AEArrayType: NS.AEArrayType
-    AESendPriority: NS.AESendPriority
-    AESendMode: NS.AESendMode
-    AECoerceDescProcPtr: NS.AECoerceDescProcPtr
-    AECoercePtrProcPtr: NS.AECoercePtrProcPtr
-    AECoerceDescUPP: NS.AECoerceDescUPP
-    AECoercePtrUPP: NS.AECoercePtrUPP
-    AECoercionHandlerUPP: NS.AECoercionHandlerUPP
-    AEDisposeExternalProcPtr: NS.AEDisposeExternalProcPtr
-    AEDisposeExternalUPP: NS.AEDisposeExternalUPP
-    AEEventHandlerProcPtr: NS.AEEventHandlerProcPtr
-    AEEventHandlerUPP: NS.AEEventHandlerUPP
-    AEEventSource: NS.AEEventSource
-    AERemoteProcessResolverRef: NS.AERemoteProcessResolverRef
-    AERemoteProcessResolverCallback: NS.AERemoteProcessResolverCallback
-    AEBuildErrorCode: NS.AEBuildErrorCode
-    AEStreamRef: NS.AEStreamRef
-    NSValueTransformerName: NS.ValueTransformerName
-    NSLinguisticTagScheme: NS.LinguisticTagScheme
-    NSLinguisticTag: NS.LinguisticTag
     NSUserActivityPersistentIdentifier: NS.UserActivityPersistentIdentifier
-    NSBackgroundActivityCompletionHandler: NS.BackgroundActivityCompletionHandler
-    NSDistributedNotificationCenterType: NS.DistributedNotificationCenterType
-    NSAppleEventManagerSuspensionID: NS.AppleEventManagerSuspensionID
-    NSUserScriptTaskCompletionHandler: NS.UserScriptTaskCompletionHandler
-    NSUserUnixTaskCompletionHandler: NS.UserUnixTaskCompletionHandler
-    NSUserAppleScriptTaskCompletionHandler: NS.UserAppleScriptTaskCompletionHandler
-    NSUserAutomatorTaskCompletionHandler: NS.UserAutomatorTaskCompletionHandler
 
 Enums:
-    CSSM_X509EXT_DATA_FORMAT: NS.CSSM_X509EXT_DATA_FORMAT
-    CE_GeneralNameType: NS.CE_GeneralNameType
-    CE_CrlDistributionPointNameType: NS.CE_CrlDistributionPointNameType
-    CE_DataType: NS.CE_DataType
+    xpc_session_create_flags_t: NS.xpc_session_create_flags_t
+    xpc_listener_create_flags_t: NS.xpc_listener_create_flags_t
     NSComparisonResult: NS.ComparisonResult
     NSEnumerationOptions: NS.EnumerationOptions
     NSSortOptions: NS.SortOptions
@@ -879,8 +202,7 @@ Enums:
     NSRoundingMode: NS.RoundingMode
     NSCalculationError: NS.CalculationError
     NSSearchPathDirectory: NS.SearchPathDirectory
-    NSSearchPathDomainMask: NS.SearchPathDomainMask
-    NSURLHandleStatus: NS.URLHandleStatus
+    NSSearchPathDomainMask: NS.SearchPathDomainMasks
     NSURLBookmarkCreationOptions: NS.URLBookmarkCreationOptions
     NSURLBookmarkResolutionOptions: NS.URLBookmarkResolutionOptions
     NSVolumeEnumerationOptions: NS.VolumeEnumerationOptions
@@ -897,8 +219,6 @@ Enums:
     NSKeyValueSetMutationKind: NS.KeyValueSetMutationKind
     NSPropertyListMutabilityOptions: NS.PropertyListMutabilityOptions
     NSPropertyListFormat: NS.PropertyListFormat
-    NSRectEdge: NS.RectEdge
-    NSAlignmentOptions: NS.AlignmentOptions
     NSGrammaticalGender: NS.GrammaticalGender
     NSGrammaticalPartOfSpeech: NS.GrammaticalPartOfSpeech
     NSGrammaticalNumber: NS.GrammaticalNumber
@@ -921,47 +241,15 @@ Enums:
     NSStreamEvent: NS.StreamEvent
     NSTimeZoneNameStyle: NS.TimeZoneNameStyle
     NSURLCacheStoragePolicy: NS.URLCacheStoragePolicy
-    SecKeyUsage: NS.SecKeyUsage
     SecAccessControlCreateFlags: NS.SecAccessControlCreateFlags
-    SecCredentialType: NS.SecCredentialType
     SecPadding: NS.SecPadding
-    SecKeySizes: NS.SecKeySizes
     SecKeyOperationType: NS.SecKeyOperationType
-    cssm_appledl_open_parameters_mask: NS.cssm_appledl_open_parameters_mask
-    SecAuthenticationType: NS.SecAuthenticationType
-    SecProtocolType: NS.SecProtocolType
-    SecKeychainEvent: NS.SecKeychainEvent
-    SecKeychainEventMask: NS.SecKeychainEventMask
-    SecPreferencesDomain: NS.SecPreferencesDomain
-    SecExternalFormat: NS.SecExternalFormat
-    SecExternalItemType: NS.SecExternalItemType
-    SecItemImportExportFlags: NS.SecItemImportExportFlags
-    SecKeyImportExportFlags: NS.SecKeyImportExportFlags
     SecTrustResultType: NS.SecTrustResultType
-    SecTrustOptionFlags: NS.SecTrustOptionFlags
     SSLCiphersuiteGroup: NS.SSLCiphersuiteGroup
     tls_protocol_version_t: NS.tls_protocol_version_t
     tls_ciphersuite_t: NS.tls_ciphersuite_t
     tls_ciphersuite_group_t: NS.tls_ciphersuite_group_t
     SSLProtocol: NS.SSLProtocol
-    SecKeychainPromptSelector: NS.SecKeychainPromptSelector
-    SecItemClass: NS.SecItemClass
-    SecItemAttr: NS.SecItemAttr
-    SecTrustSettingsKeyUsage: NS.SecTrustSettingsKeyUsage
-    SecTrustSettingsResult: NS.SecTrustSettingsResult
-    SecTrustSettingsDomain: NS.SecTrustSettingsDomain
-    SecCSFlags: NS.SecCSFlags
-    SecCodeSignatureFlags: NS.SecCodeSignatureFlags
-    SecCodeStatus: NS.SecCodeStatus
-    SecRequirementType: NS.SecRequirementType
-    SecCSDigestAlgorithm: NS.SecCSDigestAlgorithm
-    SSLSessionOption: NS.SSLSessionOption
-    SSLSessionState: NS.SSLSessionState
-    SSLClientCertificateState: NS.SSLClientCertificateState
-    SSLProtocolSide: NS.SSLProtocolSide
-    SSLConnectionType: NS.SSLConnectionType
-    SSLAuthenticate: NS.SSLAuthenticate
-    SecTransformMetaAttributeType: NS.SecTransformMetaAttributeType
     NSURLCredentialPersistence: NS.URLCredentialPersistence
     NSURLErrorNetworkUnavailableReason: NS.URLErrorNetworkUnavailableReason
     NSURLRequestCachePolicy: NS.URLRequestCachePolicy
@@ -989,6 +277,12 @@ Enums:
     NSLinguisticTaggerOptions: NS.LinguisticTaggerOptions
     NSNetServicesError: NS.NetServicesError
     NSNetServiceOptions: NS.NetServiceOptions
+    SSLSessionOption: NS.SSLSessionOption
+    SSLSessionState: NS.SSLSessionState
+    SSLClientCertificateState: NS.SSLClientCertificateState
+    SSLProtocolSide: NS.SSLProtocolSide
+    SSLConnectionType: NS.SSLConnectionType
+    SSLAuthenticate: NS.SSLAuthenticate
     NSURLSessionTaskState: NS.URLSessionTaskState
     NSURLSessionWebSocketMessageType: NS.URLSessionWebSocketMessageType
     NSURLSessionWebSocketCloseCode: NS.URLSessionWebSocketCloseCode
@@ -998,21 +292,6 @@ Enums:
     NSURLSessionResponseDisposition: NS.URLSessionResponseDisposition
     NSURLSessionTaskMetricsResourceFetchType: NS.URLSessionTaskMetricsResourceFetchType
     NSURLSessionTaskMetricsDomainResolutionProtocol: NS.URLSessionTaskMetricsDomainResolutionProtocol
-    NSBackgroundActivityResult: NS.BackgroundActivityResult
-    NSNotificationSuspensionBehavior: NS.NotificationSuspensionBehavior
-    NSDistributedNotificationOptions: NS.DistributedNotificationOptions
-    NSTaskTerminationReason: NS.TaskTerminationReason
-    NSXMLNodeOptions: NS.XMLNodeOptions
-    NSXMLNodeKind: NS.XMLNodeKind
-    NSXMLDTDNodeKind: NS.XMLDTDNodeKind
-    NSXMLDocumentContentKind: NS.XMLDocumentContentKind
-    NSAppleEventSendOptions: NS.AppleEventSendOptions
-    NSInsertionPosition: NS.InsertionPosition
-    NSRelativePosition: NS.RelativePosition
-    NSWhoseSubelementIdentifier: NS.WhoseSubelementIdentifier
-    NSSaveOptions: NS.SaveOptions
-    NSTestComparisonOperation: NS.TestComparisonOperation
-    NSUserNotificationActivationType: NS.UserNotificationActivationType
 
 ObjCClasses:
     NSArray: NS.Array
@@ -1119,7 +398,6 @@ ObjCClasses:
     NSRunLoop: NS.RunLoop
     NSFileHandle: NS.FileHandle
     NSPipe: NS.Pipe
-    NSURLHandle: NS.URLHandle
     NSURLQueryItem: NS.URLQueryItem
     NSURLComponents: NS.URLComponents
     NSFileSecurity: NS.FileSecurity
@@ -1162,7 +440,6 @@ ObjCClasses:
     NSPortMessage: NS.PortMessage
     NSMachPort: NS.MachPort
     NSMessagePort: NS.MessagePort
-    NSSocketPort: NS.SocketPort
     NSProcessInfo: NS.ProcessInfo
     NSProxy: NS.Proxy
     NSRegularExpression: NS.RegularExpression
@@ -1235,73 +512,6 @@ ObjCClasses:
     NSURLSessionWebSocketMessage: NS.URLSessionWebSocketMessage
     NSURLSessionTaskTransactionMetrics: NS.URLSessionTaskTransactionMetrics
     NSUserActivity: NS.UserActivity
-    NSAffineTransform: NS.AffineTransform
-    NSAppleEventDescriptor: NS.AppleEventDescriptor
-    NSAppleScript: NS.AppleScript
-    NSArchiver: NS.Archiver
-    NSUnarchiver: NS.Unarchiver
-    NSBackgroundActivityScheduler: NS.BackgroundActivityScheduler
-    NSCalendarDate: NS.CalendarDate
-    NSDistantObject: NS.DistantObject
-    NSPortNameServer: NS.PortNameServer
-    NSDistantObjectRequest: NS.DistantObjectRequest
-    NSDistributedNotificationCenter: NS.DistributedNotificationCenter
-    NSPortCoder: NS.PortCoder
-    NSMachBootstrapServer: NS.MachBootstrapServer
-    NSMessagePortNameServer: NS.MessagePortNameServer
-    NSSocketPortNameServer: NS.SocketPortNameServer
-    NSProtocolChecker: NS.ProtocolChecker
-    NSTask: NS.Task
-    NSXMLElement: NS.XMLElement
-    NSXMLDocument: NS.XMLDocument
-    NSXMLNode: NS.XMLNode
-    NSXMLDTDNode: NS.XMLDTDNode
-    NSXMLDTD: NS.XMLDTD
-    NSURLDownloadInternal: NS.URLDownloadInternal
-    NSURLDownload: NS.URLDownload
-    NSAppleEventManager: NS.AppleEventManager
-    NSClassDescription: NS.ClassDescription
-    NSDistributedLock: NS.DistributedLock
-    NSGarbageCollector: NS.GarbageCollector
-    NSScriptObjectSpecifier: NS.ScriptObjectSpecifier
-    NSScriptCommandDescription: NS.ScriptCommandDescription
-    NSScriptClassDescription: NS.ScriptClassDescription
-    NSScriptCoercionHandler: NS.ScriptCoercionHandler
-    NSScriptCommand: NS.ScriptCommand
-    NSScriptExecutionContext: NS.ScriptExecutionContext
-    NSScriptWhoseTest: NS.ScriptWhoseTest
-    NSIndexSpecifier: NS.IndexSpecifier
-    NSMiddleSpecifier: NS.MiddleSpecifier
-    NSNameSpecifier: NS.NameSpecifier
-    NSPositionalSpecifier: NS.PositionalSpecifier
-    NSPropertySpecifier: NS.PropertySpecifier
-    NSRandomSpecifier: NS.RandomSpecifier
-    NSRangeSpecifier: NS.RangeSpecifier
-    NSRelativeSpecifier: NS.RelativeSpecifier
-    NSUniqueIDSpecifier: NS.UniqueIDSpecifier
-    NSWhoseSpecifier: NS.WhoseSpecifier
-    NSCloneCommand: NS.CloneCommand
-    NSCloseCommand: NS.CloseCommand
-    NSCountCommand: NS.CountCommand
-    NSCreateCommand: NS.CreateCommand
-    NSDeleteCommand: NS.DeleteCommand
-    NSExistsCommand: NS.ExistsCommand
-    NSGetCommand: NS.GetCommand
-    NSMoveCommand: NS.MoveCommand
-    NSQuitCommand: NS.QuitCommand
-    NSSetCommand: NS.SetCommand
-    NSScriptSuiteRegistry: NS.ScriptSuiteRegistry
-    NSSpecifierTest: NS.SpecifierTest
-    NSLogicalTest: NS.LogicalTest
-    NSSpellServer: NS.SpellServer
-    NSImage: NS.Image
-    NSUserNotificationAction: NS.UserNotificationAction
-    NSUserNotification: NS.UserNotification
-    NSUserNotificationCenter: NS.UserNotificationCenter
-    NSUserScriptTask: NS.UserScriptTask
-    NSUserUnixTask: NS.UserUnixTask
-    NSUserAppleScriptTask: NS.UserAppleScriptTask
-    NSUserAutomatorTask: NS.UserAutomatorTask
 
 ObjCProtocols:
     NSObject: NS.ObjectProtocol
@@ -1315,7 +525,6 @@ ObjCProtocols:
     NSItemProviderReading: NS.ItemProviderReading
     NSProgressReporting: NS.ProgressReporting
     NSDecimalNumberBehaviors: NS.DecimalNumberBehaviors
-    NSURLHandleClient: NS.URLHandleClient
     NSFileManagerDelegate: NS.FileManagerDelegate
     NSKeyedArchiverDelegate: NS.KeyedArchiverDelegate
     NSKeyedUnarchiverDelegate: NS.KeyedUnarchiverDelegate
@@ -1344,10 +553,6 @@ ObjCProtocols:
     NSURLSessionStreamDelegate: NS.URLSessionStreamDelegate
     NSURLSessionWebSocketDelegate: NS.URLSessionWebSocketDelegate
     NSUserActivityDelegate: NS.UserActivityDelegate
-    NSConnectionDelegate: NS.ConnectionDelegate
-    NSURLDownloadDelegate: NS.URLDownloadDelegate
-    NSSpellServerDelegate: NS.SpellServerDelegate
-    NSUserNotificationCenterDelegate: NS.UserNotificationCenterDelegate
 
 
 Functions:
@@ -1370,8 +575,6 @@ Functions:
     ::NSZoneCalloc: NS.ZoneCalloc
     ::NSZoneRealloc: NS.ZoneRealloc
     ::NSZoneFree: NS.ZoneFree
-    ::NSAllocateCollectable: NS.AllocateCollectable
-    ::NSReallocateCollectable: NS.ReallocateCollectable
     ::NSPageSize: NS.PageSize
     ::NSLogPageSize: NS.LogPageSize
     ::NSRoundUpToMultipleOfPageSize: NS.RoundUpToMultipleOfPageSize
@@ -1429,28 +632,6 @@ Functions:
     ::NSAllHashTableObjects: NS.AllHashTableObjects
     ::NSCreateHashTableWithZone: NS.CreateHashTableWithZone
     ::NSCreateHashTable: NS.CreateHashTable
-    ::NSEqualPoints: NS.EqualPoints
-    ::NSEqualSizes: NS.EqualSizes
-    ::NSEqualRects: NS.EqualRects
-    ::NSIsEmptyRect: NS.IsEmptyRect
-    ::NSEdgeInsetsEqual: NS.EdgeInsetsEqual
-    ::NSInsetRect: NS.InsetRect
-    ::NSIntegralRect: NS.IntegralRect
-    ::NSIntegralRectWithOptions: NS.IntegralRectWithOptions
-    ::NSUnionRect: NS.UnionRect
-    ::NSIntersectionRect: NS.IntersectionRect
-    ::NSOffsetRect: NS.OffsetRect
-    ::NSDivideRect: NS.DivideRect
-    ::NSPointInRect: NS.PointInRect
-    ::NSMouseInRect: NS.MouseInRect
-    ::NSContainsRect: NS.ContainsRect
-    ::NSIntersectsRect: NS.IntersectsRect
-    ::NSStringFromPoint: NS.StringFromPoint
-    ::NSStringFromSize: NS.StringFromSize
-    ::NSStringFromRect: NS.StringFromRect
-    ::NSPointFromString: NS.PointFromString
-    ::NSSizeFromString: NS.SizeFromString
-    ::NSRectFromString: NS.RectFromString
     ::NSFreeMapTable: NS.FreeMapTable
     ::NSResetMapTable: NS.ResetMapTable
     ::NSCompareMapTables: NS.CompareMapTables
@@ -1470,9 +651,6 @@ Functions:
     ::NSAllMapTableValues: NS.AllMapTableValues
     ::NSCreateMapTableWithZone: NS.CreateMapTableWithZone
     ::NSCreateMapTable: NS.CreateMapTable
-    ::NSFileTypeForHFSTypeCode: NS.FileTypeForHFSTypeCode
-    ::NSHFSTypeCodeFromFileType: NS.HFSTypeCodeFromFileType
-    ::NSHFSTypeOfFile: NS.HFSTypeOfFile
 
 ExternVars:
     ::NSFoundationVersionNumber: NS.FoundationVersionNumber
@@ -1643,17 +821,6 @@ ExternVars:
     ::NSFileHandleNotificationDataItem: NS.FileHandleNotificationDataItem
     ::NSFileHandleNotificationFileHandleItem: NS.FileHandleNotificationFileHandleItem
     ::NSFileHandleNotificationMonitorModes: NS.FileHandleNotificationMonitorModes
-    ::NSHTTPPropertyStatusCodeKey: NS.HTTPPropertyStatusCodeKey
-    ::NSHTTPPropertyStatusReasonKey: NS.HTTPPropertyStatusReasonKey
-    ::NSHTTPPropertyServerHTTPVersionKey: NS.HTTPPropertyServerHTTPVersionKey
-    ::NSHTTPPropertyRedirectionHeadersKey: NS.HTTPPropertyRedirectionHeadersKey
-    ::NSHTTPPropertyErrorPageDataKey: NS.HTTPPropertyErrorPageDataKey
-    ::NSHTTPPropertyHTTPProxy: NS.HTTPPropertyHTTPProxy
-    ::NSFTPPropertyUserLoginKey: NS.FTPPropertyUserLoginKey
-    ::NSFTPPropertyUserPasswordKey: NS.FTPPropertyUserPasswordKey
-    ::NSFTPPropertyActiveTransferModeKey: NS.FTPPropertyActiveTransferModeKey
-    ::NSFTPPropertyFileOffsetKey: NS.FTPPropertyFileOffsetKey
-    ::NSFTPPropertyFTPProxy: NS.FTPPropertyFTPProxy
     ::NSURLFileScheme: NS.URLFileScheme
     ::NSURLKeysOfUnsetValuesKey: NS.URLKeysOfUnsetValuesKey
     ::NSURLNameKey: NS.URLNameKey
@@ -1882,10 +1049,6 @@ ExternVars:
     ::NSKeyValueChangeOldKey: NS.KeyValueChangeOldKey
     ::NSKeyValueChangeIndexesKey: NS.KeyValueChangeIndexesKey
     ::NSKeyValueChangeNotificationIsPriorKey: NS.KeyValueChangeNotificationIsPriorKey
-    ::NSZeroPoint: NS.ZeroPoint
-    ::NSZeroSize: NS.ZeroSize
-    ::NSZeroRect: NS.ZeroRect
-    ::NSEdgeInsetsZero: NS.EdgeInsetsZero
     ::NSInvalidArchiveOperationException: NS.InvalidArchiveOperationException
     ::NSInvalidUnarchiveOperationException: NS.InvalidUnarchiveOperationException
     ::NSKeyedArchiveRootObjectKey: NS.KeyedArchiveRootObjectKey
@@ -1978,32 +1141,6 @@ ExternVars:
     ::NSUbiquitousUserDefaultsDidChangeAccountsNotification: NS.UbiquitousUserDefaultsDidChangeAccountsNotification
     ::NSUbiquitousUserDefaultsCompletedInitialSyncNotification: NS.UbiquitousUserDefaultsCompletedInitialSyncNotification
     ::NSUserDefaultsDidChangeNotification: NS.UserDefaultsDidChangeNotification
-    ::NSWeekDayNameArray: NS.WeekDayNameArray
-    ::NSShortWeekDayNameArray: NS.ShortWeekDayNameArray
-    ::NSMonthNameArray: NS.MonthNameArray
-    ::NSShortMonthNameArray: NS.ShortMonthNameArray
-    ::NSTimeFormatString: NS.TimeFormatString
-    ::NSDateFormatString: NS.DateFormatString
-    ::NSTimeDateFormatString: NS.TimeDateFormatString
-    ::NSShortTimeDateFormatString: NS.ShortTimeDateFormatString
-    ::NSCurrencySymbol: NS.CurrencySymbol
-    ::NSDecimalSeparator: NS.DecimalSeparator
-    ::NSThousandsSeparator: NS.ThousandsSeparator
-    ::NSDecimalDigits: NS.DecimalDigits
-    ::NSAMPMDesignation: NS.AMPMDesignation
-    ::NSHourNameDesignations: NS.HourNameDesignations
-    ::NSYearMonthWeekDesignations: NS.YearMonthWeekDesignations
-    ::NSEarlierTimeDesignations: NS.EarlierTimeDesignations
-    ::NSLaterTimeDesignations: NS.LaterTimeDesignations
-    ::NSThisDayDesignations: NS.ThisDayDesignations
-    ::NSNextDayDesignations: NS.NextDayDesignations
-    ::NSNextNextDayDesignations: NS.NextNextDayDesignations
-    ::NSPriorDayDesignations: NS.PriorDayDesignations
-    ::NSDateTimeOrdering: NS.DateTimeOrdering
-    ::NSInternationalCurrencyString: NS.InternationalCurrencyString
-    ::NSShortDateFormatString: NS.ShortDateFormatString
-    ::NSPositiveCurrencyFormatString: NS.PositiveCurrencyFormatString
-    ::NSNegativeCurrencyFormatString: NS.NegativeCurrencyFormatString
     ::NSNegateBooleanTransformerName: NS.NegateBooleanTransformerName
     ::NSIsNilTransformerName: NS.IsNilTransformerName
     ::NSIsNotNilTransformerName: NS.IsNotNilTransformerName
@@ -2275,30 +1412,8 @@ ExternVars:
     ::NSURLSessionDownloadTaskResumeData: NS.URLSessionDownloadTaskResumeData
     ::NSURLSessionUploadTaskResumeData: NS.URLSessionUploadTaskResumeData
     ::NSUserActivityTypeBrowsingWeb: NS.UserActivityTypeBrowsingWeb
-    ::NSAppleScriptErrorMessage: NS.AppleScriptErrorMessage
-    ::NSAppleScriptErrorNumber: NS.AppleScriptErrorNumber
-    ::NSAppleScriptErrorAppName: NS.AppleScriptErrorAppName
-    ::NSAppleScriptErrorBriefMessage: NS.AppleScriptErrorBriefMessage
-    ::NSAppleScriptErrorRange: NS.AppleScriptErrorRange
-    ::NSConnectionReplyMode: NS.ConnectionReplyMode
-    ::NSConnectionDidDieNotification: NS.ConnectionDidDieNotification
-    ::NSFailedAuthenticationException: NS.FailedAuthenticationException
-    ::NSConnectionDidInitializeNotification: NS.ConnectionDidInitializeNotification
-    ::NSLocalNotificationCenterType: NS.LocalNotificationCenterType
-    ::NSTaskDidTerminateNotification: NS.TaskDidTerminateNotification
-    ::NSAppleEventTimeOutDefault: NS.AppleEventTimeOutDefault
-    ::NSAppleEventTimeOutNone: NS.AppleEventTimeOutNone
-    ::NSAppleEventManagerWillProcessFirstEventNotification: NS.AppleEventManagerWillProcessFirstEventNotification
-    ::NSClassDescriptionNeededForClassNotification: NS.ClassDescriptionNeededForClassNotification
-    ::NSOperationNotSupportedForKeyException: NS.OperationNotSupportedForKeyException
-    ::NSGrammarRange: NS.GrammarRange
-    ::NSGrammarUserDescription: NS.GrammarUserDescription
-    ::NSGrammarCorrections: NS.GrammarCorrections
-    ::NSUserNotificationDefaultSoundName: NS.UserNotificationDefaultSoundName
 
 ConstVars:
-    ::NSScannedOption: NS.ScannedOption
-    ::NSCollectorDisabledOption: NS.CollectorDisabledOption
     ::NSASCIIStringEncoding: NS.ASCIIStringEncoding
     ::NSNEXTSTEPStringEncoding: NS.NEXTSTEPStringEncoding
     ::NSJapaneseEUCStringEncoding: NS.JapaneseEUCStringEncoding
@@ -2345,73 +1460,6 @@ ConstVars:
     ::NSTextCheckingAllSystemTypes: NS.TextCheckingAllSystemTypes
     ::NSTextCheckingAllCustomTypes: NS.TextCheckingAllCustomTypes
     ::NSTextCheckingAllTypes: NS.TextCheckingAllTypes
-    ::kNSL68kContextNotSupported: NS.L68kContextNotSupported
-    ::kNSLSchedulerError: NS.LSchedulerError
-    ::kNSLBadURLSyntax: NS.LBadURLSyntax
-    ::kNSLNoCarbonLib: NS.LNoCarbonLib
-    ::kNSLUILibraryNotAvailable: NS.LUILibraryNotAvailable
-    ::kNSLNotImplementedYet: NS.LNotImplementedYet
-    ::kNSLErrNullPtrError: NS.LErrNullPtrError
-    ::kNSLSomePluginsFailedToLoad: NS.LSomePluginsFailedToLoad
-    ::kNSLNullNeighborhoodPtr: NS.LNullNeighborhoodPtr
-    ::kNSLNoPluginsForSearch: NS.LNoPluginsForSearch
-    ::kNSLSearchAlreadyInProgress: NS.LSearchAlreadyInProgress
-    ::kNSLNoPluginsFound: NS.LNoPluginsFound
-    ::kNSLPluginLoadFailed: NS.LPluginLoadFailed
-    ::kNSLBadProtocolTypeErr: NS.LBadProtocolTypeErr
-    ::kNSLNullListPtr: NS.LNullListPtr
-    ::kNSLBadClientInfoPtr: NS.LBadClientInfoPtr
-    ::kNSLCannotContinueLookup: NS.LCannotContinueLookup
-    ::kNSLBufferTooSmallForData: NS.LBufferTooSmallForData
-    ::kNSLNoContextAvailable: NS.LNoContextAvailable
-    ::kNSLRequestBufferAlreadyInList: NS.LRequestBufferAlreadyInList
-    ::kNSLInvalidPluginSpec: NS.LInvalidPluginSpec
-    ::kNSLNoSupportForService: NS.LNoSupportForService
-    ::kNSLBadNetConnection: NS.LBadNetConnection
-    ::kNSLBadDataTypeErr: NS.LBadDataTypeErr
-    ::kNSLBadServiceTypeErr: NS.LBadServiceTypeErr
-    ::kNSLBadReferenceErr: NS.LBadReferenceErr
-    ::kNSLNoElementsInList: NS.LNoElementsInList
-    ::kNSLInsufficientOTVer: NS.LInsufficientOTVer
-    ::kNSLInsufficientSysVer: NS.LInsufficientSysVer
-    ::kNSLNotInitialized: NS.LNotInitialized
-    ::kNSLInitializationFailed: NS.LInitializationFailed
-    ::kNSpInitializationFailedErr: NS.pInitializationFailedErr
-    ::kNSpAlreadyInitializedErr: NS.pAlreadyInitializedErr
-    ::kNSpTopologyNotSupportedErr: NS.pTopologyNotSupportedErr
-    ::kNSpPipeFullErr: NS.pPipeFullErr
-    ::kNSpHostFailedErr: NS.pHostFailedErr
-    ::kNSpProtocolNotAvailableErr: NS.pProtocolNotAvailableErr
-    ::kNSpInvalidGameRefErr: NS.pInvalidGameRefErr
-    ::kNSpInvalidParameterErr: NS.pInvalidParameterErr
-    ::kNSpOTNotPresentErr: NS.pOTNotPresentErr
-    ::kNSpOTVersionTooOldErr: NS.pOTVersionTooOldErr
-    ::kNSpMemAllocationErr: NS.pMemAllocationErr
-    ::kNSpAlreadyAdvertisingErr: NS.pAlreadyAdvertisingErr
-    ::kNSpNotAdvertisingErr: NS.pNotAdvertisingErr
-    ::kNSpInvalidAddressErr: NS.pInvalidAddressErr
-    ::kNSpFreeQExhaustedErr: NS.pFreeQExhaustedErr
-    ::kNSpRemovePlayerFailedErr: NS.pRemovePlayerFailedErr
-    ::kNSpAddressInUseErr: NS.pAddressInUseErr
-    ::kNSpFeatureNotImplementedErr: NS.pFeatureNotImplementedErr
-    ::kNSpNameRequiredErr: NS.pNameRequiredErr
-    ::kNSpInvalidPlayerIDErr: NS.pInvalidPlayerIDErr
-    ::kNSpInvalidGroupIDErr: NS.pInvalidGroupIDErr
-    ::kNSpNoPlayersErr: NS.pNoPlayersErr
-    ::kNSpNoGroupsErr: NS.pNoGroupsErr
-    ::kNSpNoHostVolunteersErr: NS.pNoHostVolunteersErr
-    ::kNSpCreateGroupFailedErr: NS.pCreateGroupFailedErr
-    ::kNSpAddPlayerFailedErr: NS.pAddPlayerFailedErr
-    ::kNSpInvalidDefinitionErr: NS.pInvalidDefinitionErr
-    ::kNSpInvalidProtocolRefErr: NS.pInvalidProtocolRefErr
-    ::kNSpInvalidProtocolListErr: NS.pInvalidProtocolListErr
-    ::kNSpTimeoutErr: NS.pTimeoutErr
-    ::kNSpGameTerminatedErr: NS.pGameTerminatedErr
-    ::kNSpConnectFailedErr: NS.pConnectFailedErr
-    ::kNSpSendFailedErr: NS.pSendFailedErr
-    ::kNSpMessageTooBigErr: NS.pMessageTooBigErr
-    ::kNSpCantBlockErr: NS.pCantBlockErr
-    ::kNSpJoinFailedErr: NS.pJoinFailedErr
     ::NSURLErrorCancelledReasonUserForceQuitApplication: NS.URLErrorCancelledReasonUserForceQuitApplication
     ::NSURLErrorCancelledReasonBackgroundUpdatesDisabled: NS.URLErrorCancelledReasonBackgroundUpdatesDisabled
     ::NSURLErrorCancelledReasonInsufficientSystemResources: NS.URLErrorCancelledReasonInsufficientSystemResources
@@ -2552,24 +1600,6 @@ ConstVars:
     ::NSUbiquitousKeyValueStoreInitialSyncChange: NS.UbiquitousKeyValueStoreInitialSyncChange
     ::NSUbiquitousKeyValueStoreQuotaViolationChange: NS.UbiquitousKeyValueStoreQuotaViolationChange
     ::NSUbiquitousKeyValueStoreAccountChange: NS.UbiquitousKeyValueStoreAccountChange
-    ::NSNoScriptError: NS.NoScriptError
-    ::NSReceiverEvaluationScriptError: NS.ReceiverEvaluationScriptError
-    ::NSKeySpecifierEvaluationScriptError: NS.KeySpecifierEvaluationScriptError
-    ::NSArgumentEvaluationScriptError: NS.ArgumentEvaluationScriptError
-    ::NSReceiversCantHandleCommandScriptError: NS.ReceiversCantHandleCommandScriptError
-    ::NSRequiredArgumentsMissingScriptError: NS.RequiredArgumentsMissingScriptError
-    ::NSArgumentsWrongScriptError: NS.ArgumentsWrongScriptError
-    ::NSUnknownKeyScriptError: NS.UnknownKeyScriptError
-    ::NSInternalScriptError: NS.InternalScriptError
-    ::NSOperationNotSupportedForKeyScriptError: NS.OperationNotSupportedForKeyScriptError
-    ::NSCannotCreateScriptCommandError: NS.CannotCreateScriptCommandError
-    ::NSNoSpecifierError: NS.NoSpecifierError
-    ::NSNoTopLevelContainersSpecifierError: NS.NoTopLevelContainersSpecifierError
-    ::NSContainerSpecifierError: NS.ContainerSpecifierError
-    ::NSUnknownKeySpecifierError: NS.UnknownKeySpecifierError
-    ::NSInvalidIndexSpecifierError: NS.InvalidIndexSpecifierError
-    ::NSInternalSpecifierError: NS.InternalSpecifierError
-    ::NSOperationNotSupportedForKeySpecifierError: NS.OperationNotSupportedForKeySpecifierError
     ::NSNotFound: NS.NotFound
     ::NSHashTableStrongMemory: NS.HashTableStrongMemory
     ::NSHashTableZeroingWeakMemory: NS.HashTableZeroingWeakMemory
@@ -2583,6 +1613,4 @@ ConstVars:
     ::NSMapTableWeakMemory: NS.MapTableWeakMemory
     ::NSOperationQueueDefaultMaxConcurrentOperationCount: NS.OperationQueueDefaultMaxConcurrentOperationCount
     ::NSUndoCloseGroupingRunLoopOrdering: NS.UndoCloseGroupingRunLoopOrdering
-    ::NSNotificationDeliverImmediately: NS.NotificationDeliverImmediately
-    ::NSNotificationPostToAllSessions: NS.NotificationPostToAllSessions
 

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSDecimalNumber")
 DecimalNumber :: struct { using _: Number, }
 
-DecimalNumber_VTable :: struct {
-    super: Number_VTable,
-}
-

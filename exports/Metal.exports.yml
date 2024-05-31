@@ -25,9 +25,9 @@ Structs:
     MTLDrawPatchIndirectArguments: MTL.DrawPatchIndirectArguments
     MTLQuadTessellationFactorsHalf: MTL.QuadTessellationFactorsHalf
     MTLTriangleTessellationFactorsHalf: MTL.TriangleTessellationFactorsHalf
-    _MTLPackedFloat3: MTL.PackedFloat3
-    _MTLPackedFloat4x3: MTL.PackedFloat4x3
-    _MTLAxisAlignedBoundingBox: MTL.AxisAlignedBoundingBox
+    _MTLPackedFloat3: MTL._MTLPackedFloat3
+    _MTLPackedFloat4x3: MTL._MTLPackedFloat4x3
+    _MTLAxisAlignedBoundingBox: MTL._MTLAxisAlignedBoundingBox
     MTLAccelerationStructureInstanceDescriptor: MTL.AccelerationStructureInstanceDescriptor
     MTLAccelerationStructureUserIDInstanceDescriptor: MTL.AccelerationStructureUserIDInstanceDescriptor
     MTLAccelerationStructureMotionInstanceDescriptor: MTL.AccelerationStructureMotionInstanceDescriptor
@@ -41,8 +41,6 @@ Typedefs:
     MTLAutoreleasedArgument: MTL.AutoreleasedArgument
     MTLCommonCounter: MTL.CommonCounter
     MTLCommonCounterSet: MTL.CommonCounterSet
-    MTLDeviceNotificationName: MTL.DeviceNotificationName
-    MTLDeviceNotificationHandler: MTL.DeviceNotificationHandler
     MTLAutoreleasedRenderPipelineReflection: MTL.AutoreleasedRenderPipelineReflection
     MTLAutoreleasedComputePipelineReflection: MTL.AutoreleasedComputePipelineReflection
     MTLNewLibraryCompletionHandler: MTL.NewLibraryCompletionHandler
@@ -89,7 +87,6 @@ Enums:
     MTLIOCompressionMethod: MTL.IOCompressionMethod
     MTLFeatureSet: MTL.FeatureSet
     MTLGPUFamily: MTL.GPUFamily
-    MTLDeviceLocation: MTL.DeviceLocation
     MTLPipelineOption: MTL.PipelineOptions
     MTLReadWriteTextureTier: MTL.ReadWriteTextureTier
     MTLArgumentBuffersTier: MTL.ArgumentBuffersTier
@@ -322,8 +319,6 @@ ObjCProtocols:
 Functions:
     ::MTLCreateSystemDefaultDevice: MTL.CreateSystemDefaultDevice
     ::MTLCopyAllDevices: MTL.CopyAllDevices
-    ::MTLCopyAllDevicesWithObserver: MTL.CopyAllDevicesWithObserver
-    ::MTLRemoveDeviceObserver: MTL.RemoveDeviceObserver
     ::MTLIOCompressionContextDefaultChunkSize: MTL.IOCompressionContextDefaultChunkSize
     ::MTLIOCreateCompressionContext: MTL.IOCreateCompressionContext
     ::MTLIOCompressionContextAppendData: MTL.IOCompressionContextAppendData
@@ -350,9 +345,6 @@ ExternVars:
     ::MTLCommonCounterSetStageUtilization: MTL.CommonCounterSetStageUtilization
     ::MTLCommonCounterSetStatistic: MTL.CommonCounterSetStatistic
     ::MTLCounterErrorDomain: MTL.CounterErrorDomain
-    ::MTLDeviceWasAddedNotification: MTL.DeviceWasAddedNotification
-    ::MTLDeviceRemovalRequestedNotification: MTL.DeviceRemovalRequestedNotification
-    ::MTLDeviceWasRemovedNotification: MTL.DeviceWasRemovedNotification
     ::MTLCommandBufferErrorDomain: MTL.CommandBufferErrorDomain
     ::MTLCommandBufferEncoderInfoErrorKey: MTL.CommandBufferEncoderInfoErrorKey
     ::MTLCaptureErrorDomain: MTL.CaptureErrorDomain

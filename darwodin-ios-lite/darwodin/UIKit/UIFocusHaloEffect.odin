@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIFocusHaloEffect")
 FocusHaloEffect :: struct { using _: FocusEffect, }
 
-FocusHaloEffect_VTable :: struct {
-    super: FocusEffect_VTable,
-}
-

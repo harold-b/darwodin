@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSOpenPanel")
 OpenPanel :: struct { using _: SavePanel, }
 
-OpenPanel_VTable :: struct {
-    super: SavePanel_VTable,
-}
-

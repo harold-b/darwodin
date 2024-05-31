@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTableCellView")
 TableCellView :: struct { using _: View, }
 
-TableCellView_VTable :: struct {
-    super: View_VTable,
-}
-

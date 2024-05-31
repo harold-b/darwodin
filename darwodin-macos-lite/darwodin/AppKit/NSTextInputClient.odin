@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextInputClient")
 TextInputClient :: struct { using _: intrinsics.objc_object, }
 
-TextInputClient_VTable :: struct {
-}
-

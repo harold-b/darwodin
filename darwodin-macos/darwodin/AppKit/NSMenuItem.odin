@@ -111,11 +111,11 @@ MenuItem_setKeyEquivalent :: #force_inline proc "c" (self: ^MenuItem, keyEquival
     msgSend(nil, self, "setKeyEquivalent:", keyEquivalent)
 }
 @(objc_type=MenuItem, objc_name="keyEquivalentModifierMask")
-MenuItem_keyEquivalentModifierMask :: #force_inline proc "c" (self: ^MenuItem) -> EventModifierFlags {
-    return msgSend(EventModifierFlags, self, "keyEquivalentModifierMask")
+MenuItem_keyEquivalentModifierMask :: #force_inline proc "c" (self: ^MenuItem) -> EventModifierFlag {
+    return msgSend(EventModifierFlag, self, "keyEquivalentModifierMask")
 }
 @(objc_type=MenuItem, objc_name="setKeyEquivalentModifierMask")
-MenuItem_setKeyEquivalentModifierMask :: #force_inline proc "c" (self: ^MenuItem, keyEquivalentModifierMask: EventModifierFlags) {
+MenuItem_setKeyEquivalentModifierMask :: #force_inline proc "c" (self: ^MenuItem, keyEquivalentModifierMask: EventModifierFlag) {
     msgSend(nil, self, "setKeyEquivalentModifierMask:", keyEquivalentModifierMask)
 }
 @(objc_type=MenuItem, objc_name="userKeyEquivalent")
@@ -462,8 +462,8 @@ MenuItem_VTable :: struct {
     isSectionHeader: proc(self: ^MenuItem) -> bool,
     keyEquivalent: proc(self: ^MenuItem) -> ^NS.String,
     setKeyEquivalent: proc(self: ^MenuItem, keyEquivalent: ^NS.String),
-    keyEquivalentModifierMask: proc(self: ^MenuItem) -> EventModifierFlags,
-    setKeyEquivalentModifierMask: proc(self: ^MenuItem, keyEquivalentModifierMask: EventModifierFlags),
+    keyEquivalentModifierMask: proc(self: ^MenuItem) -> EventModifierFlag,
+    setKeyEquivalentModifierMask: proc(self: ^MenuItem, keyEquivalentModifierMask: EventModifierFlag),
     userKeyEquivalent: proc(self: ^MenuItem) -> ^NS.String,
     allowsKeyEquivalentWhenHidden: proc(self: ^MenuItem) -> bool,
     setAllowsKeyEquivalentWhenHidden: proc(self: ^MenuItem, allowsKeyEquivalentWhenHidden: bool),
@@ -753,7 +753,7 @@ MenuItem_odin_extend :: proc(cls: Class, vt: ^MenuItem_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setKeyEquivalent:"), auto_cast setKeyEquivalent, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.keyEquivalentModifierMask != nil {
-        keyEquivalentModifierMask :: proc "c" (self: ^MenuItem, _: SEL) -> EventModifierFlags {
+        keyEquivalentModifierMask :: proc "c" (self: ^MenuItem, _: SEL) -> EventModifierFlag {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -763,7 +763,7 @@ MenuItem_odin_extend :: proc(cls: Class, vt: ^MenuItem_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("keyEquivalentModifierMask"), auto_cast keyEquivalentModifierMask, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setKeyEquivalentModifierMask != nil {
-        setKeyEquivalentModifierMask :: proc "c" (self: ^MenuItem, _: SEL, keyEquivalentModifierMask: EventModifierFlags) {
+        setKeyEquivalentModifierMask :: proc "c" (self: ^MenuItem, _: SEL, keyEquivalentModifierMask: EventModifierFlag) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

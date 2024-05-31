@@ -71,6 +71,10 @@ Control_removeAction :: #force_inline proc "c" (self: ^Control, action: ^Action,
 Control_removeActionForIdentifier :: #force_inline proc "c" (self: ^Control, actionIdentifier: ^NS.String, controlEvents: ControlEvents) {
     msgSend(nil, self, "removeActionForIdentifier:forControlEvents:", actionIdentifier, controlEvents)
 }
+@(objc_type=Control, objc_name="performPrimaryAction")
+Control_performPrimaryAction :: #force_inline proc "c" (self: ^Control) {
+    msgSend(nil, self, "performPrimaryAction")
+}
 @(objc_type=Control, objc_name="actionsForTarget")
 Control_actionsForTarget :: #force_inline proc "c" (self: ^Control, target: id, controlEvent: ControlEvents) -> ^NS.Array {
     return msgSend(^NS.Array, self, "actionsForTarget:forControlEvent:", target, controlEvent)
@@ -548,6 +552,7 @@ Control_VTable :: struct {
     addAction: proc(self: ^Control, action: ^Action, controlEvents: ControlEvents),
     removeAction: proc(self: ^Control, action: ^Action, controlEvents: ControlEvents),
     removeActionForIdentifier: proc(self: ^Control, actionIdentifier: ^NS.String, controlEvents: ControlEvents),
+    performPrimaryAction: proc(self: ^Control),
     actionsForTarget: proc(self: ^Control, target: id, controlEvent: ControlEvents) -> ^NS.Array,
     enumerateEventHandlers: proc(self: ^Control, iterator: proc "c" (actionHandler: ^Action, target: id, action: SEL, controlEvents: ControlEvents, stop: ^bool)),
     sendAction_to_forEvent: proc(self: ^Control, action: SEL, target: id, event: ^Event),
@@ -782,6 +787,16 @@ Control_odin_extend :: proc(cls: Class, vt: ^Control_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeActionForIdentifier:forControlEvents:"), auto_cast removeActionForIdentifier, "v@:@L") do panic("Failed to register objC method.")
+    }
+    if vt.performPrimaryAction != nil {
+        performPrimaryAction :: proc "c" (self: ^Control, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Control_VTable)vt_ctx.super_vt).performPrimaryAction(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performPrimaryAction"), auto_cast performPrimaryAction, "v@:") do panic("Failed to register objC method.")
     }
     if vt.actionsForTarget != nil {
         actionsForTarget :: proc "c" (self: ^Control, _: SEL, target: id, controlEvent: ControlEvents) -> ^NS.Array {

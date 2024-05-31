@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISceneOpenExternalURLOptions")
 SceneOpenExternalURLOptions :: struct { using _: NS.Object, }
 
-SceneOpenExternalURLOptions_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

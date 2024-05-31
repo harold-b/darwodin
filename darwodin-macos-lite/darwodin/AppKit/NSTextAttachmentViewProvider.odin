@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextAttachmentViewProvider")
 TextAttachmentViewProvider :: struct { using _: NS.Object, }
 
-TextAttachmentViewProvider_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

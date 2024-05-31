@@ -19,7 +19,3 @@ PopUpButtonCell :: struct { using _: MenuItemCell,
     using _: MenuItemValidation,
 }
 
-PopUpButtonCell_VTable :: struct {
-    super: MenuItemCell_VTable,
-}
-

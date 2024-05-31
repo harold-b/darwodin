@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSDatePicker")
 DatePicker :: struct { using _: Control, }
 
-DatePicker_VTable :: struct {
-    super: Control_VTable,
-}
-

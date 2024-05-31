@@ -19,7 +19,3 @@ DragInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
-DragInteraction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

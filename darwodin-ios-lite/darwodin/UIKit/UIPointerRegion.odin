@@ -19,7 +19,3 @@ PointerRegion :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-PointerRegion_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSScriptExecutionContext")
 ScriptExecutionContext :: struct { using _: Object, }
 
-ScriptExecutionContext_VTable :: struct {
-    super: Object_VTable,
-}
-

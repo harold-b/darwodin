@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSVisualEffectView")
 VisualEffectView :: struct { using _: View, }
 
-VisualEffectView_VTable :: struct {
-    super: View_VTable,
-}
-

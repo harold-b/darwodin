@@ -41,9 +41,6 @@ Odin:
     - ../exports/Foundation.exports.yml
     - ../exports/QuartzCore.exports.yml
 
-  BitSetMap:
-    - (Flags|Mask)$
-
   ResolvedTypedefs:
     - '[su]?int.*'
     - ^NSFileProviderItem$
@@ -94,28 +91,38 @@ Odin:
 
   # Symbol Transformers
   EnumTransforms:
-  - Type: .*
-    Transforms:
-      - Kind  : RemoveTypeWordsFromElements
-      # - Kind  : RemovePartialTypeNamePrefix
-      - Kind  : RemoveUnderscorePrefix
-      - Kind  : UnderscoreNumbers
-  - Type: Flags$
-    Transforms:
-      - Kind  : RemovePrefix
-        Source: Flag
+    - Type: .*
+      Transforms:
+        - Kind  : RemoveTypeWordsFromElements
+        # - Kind  : RemovePartialTypeNamePrefix
+        - Kind  : RemoveUnderscorePrefix
+        - Kind  : UnderscoreNumbers
+    - Type: Flags$
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: Flag
 
   TypeTransforms:
-  - Type: ^(UI).+
-    Transforms:
-    - Kind  : RemovePrefix
-      Source: $group0
- 
+    - Type: ^(UI).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: (Flags|Mask)$
+      Transforms:
+      - Kind  : RemoveSuffix
+        Source: s
+
+  BitSetMap:
+    - Type: (Flags|Mask)$
+      Transforms:
+      - Kind  : AppendSuffix
+        Source: s
+
   ProcTransforms:
-  - Type: ^(_*UI).+
-    Transforms:
-    - Kind  : RemovePrefix
-      Source: $group0
+    - Type: ^(_*UI).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
 
   VarTransforms:
     - Type: ^(_*UI).+

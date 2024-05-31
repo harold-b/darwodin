@@ -732,7 +732,6 @@ CGLError :: enum cffi.uint {
 
 /// CAAutoresizingMask
 AutoresizingMask :: enum cffi.uint {
-    kCALayerNotSizable = 0,
     kCALayerMinXMargin = 0,
     kCALayerWidthSizable = 1,
     kCALayerMaxXMargin = 2,
@@ -740,7 +739,7 @@ AutoresizingMask :: enum cffi.uint {
     kCALayerHeightSizable = 4,
     kCALayerMaxYMargin = 5,
 }
-AutoresizingMaskSet :: bit_set[AutoresizingMask; cffi.uint]
+AutoresizingMasks :: bit_set[AutoresizingMask; cffi.uint]
 
 /// CAEdgeAntialiasingMask
 EdgeAntialiasingMask :: enum cffi.uint {
@@ -749,7 +748,7 @@ EdgeAntialiasingMask :: enum cffi.uint {
     kCALayerBottomEdge = 2,
     kCALayerTopEdge = 3,
 }
-EdgeAntialiasingMaskSet :: bit_set[EdgeAntialiasingMask; cffi.uint]
+EdgeAntialiasingMasks :: bit_set[EdgeAntialiasingMask; cffi.uint]
 
 /// CACornerMask
 CornerMask :: enum cffi.ulong {
@@ -758,7 +757,7 @@ CornerMask :: enum cffi.ulong {
     kCALayerMinXMaxYCorner = 2,
     kCALayerMaxXMaxYCorner = 3,
 }
-CornerMaskSet :: bit_set[CornerMask; cffi.ulong]
+CornerMasks :: bit_set[CornerMask; cffi.ulong]
 
 /// CAConstraintAttribute
 ConstraintAttribute :: enum cffi.int {

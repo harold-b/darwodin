@@ -19,6 +19,3 @@ TextSelectionHighlightView :: struct { using _: intrinsics.objc_object,
     using _: CoordinateSpace,
 }
 
-TextSelectionHighlightView_VTable :: struct {
-}
-

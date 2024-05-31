@@ -17,7 +17,3 @@ UnitPressure :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitPressure_VTable :: struct {
-    super: Dimension_VTable,
-}
-

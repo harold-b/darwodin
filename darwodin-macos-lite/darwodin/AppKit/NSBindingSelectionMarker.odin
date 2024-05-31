@@ -19,7 +19,3 @@ BindingSelectionMarker :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-BindingSelectionMarker_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

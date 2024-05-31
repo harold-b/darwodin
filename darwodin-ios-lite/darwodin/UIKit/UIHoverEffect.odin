@@ -20,6 +20,3 @@ HoverEffect :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
-HoverEffect_VTable :: struct {
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISheetPresentationController")
 SheetPresentationController :: struct { using _: PresentationController, }
 
-SheetPresentationController_VTable :: struct {
-    super: PresentationController_VTable,
-}
-

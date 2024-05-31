@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPrintPanelAccessorizing")
 PrintPanelAccessorizing :: struct { using _: intrinsics.objc_object, }
 
-PrintPanelAccessorizing_VTable :: struct {
-}
-

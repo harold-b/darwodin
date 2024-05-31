@@ -73,13 +73,13 @@ foreign lib {
     RemoveDeviceObserver :: proc(observer: ^NS.ObjectProtocol) ---
 
     @(link_name="MTLIOCompressionContextDefaultChunkSize")
-    IOCompressionContextDefaultChunkSize :: proc() -> cffi.uint ---
+    IOCompressionContextDefaultChunkSize :: proc() -> cffi.size_t ---
 
     @(link_name="MTLIOCreateCompressionContext")
-    IOCreateCompressionContext :: proc(path: cstring, type: IOCompressionMethod, chunkSize: cffi.uint) -> IOCompressionContext ---
+    IOCreateCompressionContext :: proc(path: cstring, type: IOCompressionMethod, chunkSize: cffi.size_t) -> IOCompressionContext ---
 
     @(link_name="MTLIOCompressionContextAppendData")
-    IOCompressionContextAppendData :: proc(_context: IOCompressionContext, data: rawptr, size: cffi.uint) ---
+    IOCompressionContextAppendData :: proc(_context: IOCompressionContext, data: rawptr, size: cffi.size_t) ---
 
     @(link_name="MTLIOFlushAndDestroyCompressionContext")
     IOFlushAndDestroyCompressionContext :: proc(_context: IOCompressionContext) -> IOCompressionStatus ---
@@ -199,19 +199,15 @@ HazardTrackingMode :: enum cffi.ulong {
 }
 
 /// MTLResourceOptions
-ResourceOptions :: enum cffi.ulong {
-    CPUCacheModeDefaultCache = 0,
-    CPUCacheModeWriteCombined = 1,
-    StorageModeShared = 0,
-    StorageModeManaged = 16,
-    StorageModePrivate = 32,
-    StorageModeMemoryless = 48,
-    HazardTrackingModeDefault = 0,
-    HazardTrackingModeUntracked = 256,
-    HazardTrackingModeTracked = 512,
-    OptionCPUCacheModeDefault = 0,
-    OptionCPUCacheModeWriteCombined = 1,
+ResourceOption :: enum cffi.ulong {
+    CPUCacheModeWriteCombined = 0,
+    StorageModeManaged = 4,
+    StorageModePrivate = 5,
+    HazardTrackingModeUntracked = 8,
+    HazardTrackingModeTracked = 9,
+    OptionCPUCacheModeWriteCombined = 0,
 }
+ResourceOptions :: bit_set[ResourceOption; cffi.ulong]
 
 /// MTLPixelFormat
 PixelFormat :: enum cffi.ulong {
@@ -535,11 +531,11 @@ BindingAccess :: enum cffi.ulong {
 }
 
 /// MTLFunctionOptions
-FunctionOptions :: enum cffi.ulong {
-    OptionNone = 0,
-    OptionCompileToBinary = 1,
-    toreFunctionInMetalScript = 2,
+FunctionOption :: enum cffi.ulong {
+    CompileToBinary = 0,
+    StoreFunctionInMetalScript = 1,
 }
+FunctionOptions :: bit_set[FunctionOption; cffi.ulong]
 
 /// MTLPatchType
 PatchType :: enum cffi.ulong {
@@ -685,11 +681,11 @@ DeviceLocation :: enum cffi.ulong {
 
 /// MTLPipelineOption
 PipelineOption :: enum cffi.ulong {
-    None = 0,
-    ArgumentInfo = 1,
-    BufferTypeInfo = 2,
-    FailOnBinaryArchiveMiss = 4,
+    ArgumentInfo = 0,
+    BufferTypeInfo = 1,
+    FailOnBinaryArchiveMiss = 2,
 }
+PipelineOptions :: bit_set[PipelineOption; cffi.ulong]
 
 /// MTLReadWriteTextureTier
 ReadWriteTextureTier :: enum cffi.ulong {
@@ -750,10 +746,10 @@ StoreAction :: enum cffi.ulong {
 }
 
 /// MTLStoreActionOptions
-StoreActionOptions :: enum cffi.ulong {
-    OptionNone = 0,
-    OptionCustomSamplePositions = 1,
+StoreActionOption :: enum cffi.ulong {
+    CustomSamplePositions = 0,
 }
+StoreActionOptions :: bit_set[StoreActionOption; cffi.ulong]
 
 /// MTLMultisampleDepthResolveFilter
 MultisampleDepthResolveFilter :: enum cffi.ulong {
@@ -770,11 +766,11 @@ MultisampleStencilResolveFilter :: enum cffi.ulong {
 
 /// MTLBlitOption
 BlitOption :: enum cffi.ulong {
-    None = 0,
-    DepthFromDepthStencil = 1,
-    StencilFromDepthStencil = 2,
-    RowLinearPVRTC = 4,
+    DepthFromDepthStencil = 0,
+    StencilFromDepthStencil = 1,
+    RowLinearPVRTC = 2,
 }
+BlitOptions :: bit_set[BlitOption; cffi.ulong]
 
 /// MTLCommandBufferStatus
 CommandBufferStatus :: enum cffi.ulong {
@@ -804,9 +800,9 @@ CommandBufferError :: enum cffi.ulong {
 
 /// MTLCommandBufferErrorOption
 CommandBufferErrorOption :: enum cffi.ulong {
-    None = 0,
-    EncoderExecutionStatus = 1,
+    EncoderExecutionStatus = 0,
 }
+CommandBufferErrorOptions :: bit_set[CommandBufferErrorOption; cffi.ulong]
 
 /// MTLCommandEncoderErrorState
 CommandEncoderErrorState :: enum cffi.long {
@@ -1081,15 +1077,13 @@ BlendOperation :: enum cffi.ulong {
 }
 
 /// MTLColorWriteMask
-ColorWriteMasks :: enum cffi.ulong {
-    None = 0,
+ColorWriteMask :: enum cffi.ulong {
     Red = 3,
     Green = 2,
     Blue = 1,
     Alpha = 0,
-    All = 3,
 }
-ColorWriteMask :: bit_set[ColorWriteMasks; cffi.ulong]
+ColorWriteMasks :: bit_set[ColorWriteMask; cffi.ulong]
 
 /// MTLPrimitiveTopologyClass
 PrimitiveTopologyClass :: enum cffi.ulong {
@@ -1166,13 +1160,13 @@ AccelerationStructureUsage :: enum cffi.ulong {
 }
 
 /// MTLAccelerationStructureInstanceOptions
-AccelerationStructureInstanceOptions :: enum cffi.uint {
-    OptionNone = 0,
-    OptionDisableTriangleCulling = 1,
-    OptionTriangleFrontFacingWindingCounterClockwise = 2,
-    OptionOpaque = 4,
-    OptionNonOpaque = 8,
+AccelerationStructureInstanceOption :: enum cffi.uint {
+    DisableTriangleCulling = 0,
+    TriangleFrontFacingWindingCounterClockwise = 1,
+    Opaque = 2,
+    NonOpaque = 3,
 }
+AccelerationStructureInstanceOptions :: bit_set[AccelerationStructureInstanceOption; cffi.uint]
 
 /// MTLMotionBorderMode
 MotionBorderMode :: enum cffi.uint {
@@ -1238,6 +1232,8 @@ IndirectCommandType :: enum cffi.ulong {
     DrawIndexedPatches = 8,
     ConcurrentDispatch = 32,
     ConcurrentDispatchThreads = 64,
+    DrawMeshThreadgroups = 128,
+    DrawMeshThreads = 256,
 }
 
 /// MTLFunctionLogType
@@ -1246,10 +1242,11 @@ FunctionLogType :: enum cffi.ulong {
 }
 
 /// MTLAccelerationStructureRefitOptions
-AccelerationStructureRefitOptions :: enum cffi.ulong {
-    OptionVertexData = 1,
-    OptionPerPrimitiveData = 2,
+AccelerationStructureRefitOption :: enum cffi.ulong {
+    VertexData = 0,
+    PerPrimitiveData = 1,
 }
+AccelerationStructureRefitOptions :: bit_set[AccelerationStructureRefitOption; cffi.ulong]
 
 /// MTLDynamicLibraryError
 DynamicLibraryError :: enum cffi.ulong {
@@ -1489,9 +1486,11 @@ TriangleTessellationFactorsHalf :: struct #align (2) {
 
 /// _MTLPackedFloat3
 _MTLPackedFloat3 :: struct #align (4) {
-    x : cffi.float,
-    y : cffi.float,
-    z : cffi.float,
+    using _ : struct  {
+        x : cffi.float,
+        y : cffi.float,
+        z : cffi.float,
+    },
     elements : [3]cffi.float,
 }
 
@@ -1509,7 +1508,7 @@ _MTLAxisAlignedBoundingBox :: struct #align (4) {
 /// MTLAccelerationStructureInstanceDescriptor
 AccelerationStructureInstanceDescriptor :: struct #align (4) {
     transformationMatrix : _MTLPackedFloat4x3,
-    options : AccelerationStructureInstanceOptions,
+    options : AccelerationStructureInstanceOption,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     accelerationStructureIndex : cffi.uint32_t,
@@ -1518,7 +1517,7 @@ AccelerationStructureInstanceDescriptor :: struct #align (4) {
 /// MTLAccelerationStructureUserIDInstanceDescriptor
 AccelerationStructureUserIDInstanceDescriptor :: struct #align (4) {
     transformationMatrix : _MTLPackedFloat4x3,
-    options : AccelerationStructureInstanceOptions,
+    options : AccelerationStructureInstanceOption,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     accelerationStructureIndex : cffi.uint32_t,
@@ -1527,7 +1526,7 @@ AccelerationStructureUserIDInstanceDescriptor :: struct #align (4) {
 
 /// MTLAccelerationStructureMotionInstanceDescriptor
 AccelerationStructureMotionInstanceDescriptor :: struct #align (4) {
-    options : AccelerationStructureInstanceOptions,
+    options : AccelerationStructureInstanceOption,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     accelerationStructureIndex : cffi.uint32_t,
@@ -1543,7 +1542,7 @@ AccelerationStructureMotionInstanceDescriptor :: struct #align (4) {
 /// MTLIndirectAccelerationStructureInstanceDescriptor
 IndirectAccelerationStructureInstanceDescriptor :: struct #align (8) {
     transformationMatrix : _MTLPackedFloat4x3,
-    options : AccelerationStructureInstanceOptions,
+    options : AccelerationStructureInstanceOption,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     userID : cffi.uint32_t,
@@ -1552,7 +1551,7 @@ IndirectAccelerationStructureInstanceDescriptor :: struct #align (8) {
 
 /// MTLIndirectAccelerationStructureMotionInstanceDescriptor
 IndirectAccelerationStructureMotionInstanceDescriptor :: struct #align (8) {
-    options : AccelerationStructureInstanceOptions,
+    options : AccelerationStructureInstanceOption,
     mask : cffi.uint32_t,
     intersectionFunctionTableOffset : cffi.uint32_t,
     userID : cffi.uint32_t,

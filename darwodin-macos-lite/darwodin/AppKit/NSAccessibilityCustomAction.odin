@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSAccessibilityCustomAction")
 AccessibilityCustomAction :: struct { using _: NS.Object, }
 
-AccessibilityCustomAction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

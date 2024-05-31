@@ -19,6 +19,3 @@ ActivityItemsConfigurationReading :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ActivityItemsConfigurationReading_VTable :: struct {
-}
-

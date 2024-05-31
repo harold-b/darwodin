@@ -67,11 +67,11 @@ HeapDescriptor_setHazardTrackingMode :: #force_inline proc "c" (self: ^HeapDescr
     msgSend(nil, self, "setHazardTrackingMode:", hazardTrackingMode)
 }
 @(objc_type=HeapDescriptor, objc_name="resourceOptions")
-HeapDescriptor_resourceOptions :: #force_inline proc "c" (self: ^HeapDescriptor) -> ResourceOptions {
-    return msgSend(ResourceOptions, self, "resourceOptions")
+HeapDescriptor_resourceOptions :: #force_inline proc "c" (self: ^HeapDescriptor) -> ResourceOption {
+    return msgSend(ResourceOption, self, "resourceOptions")
 }
 @(objc_type=HeapDescriptor, objc_name="setResourceOptions")
-HeapDescriptor_setResourceOptions :: #force_inline proc "c" (self: ^HeapDescriptor, resourceOptions: ResourceOptions) {
+HeapDescriptor_setResourceOptions :: #force_inline proc "c" (self: ^HeapDescriptor, resourceOptions: ResourceOption) {
     msgSend(nil, self, "setResourceOptions:", resourceOptions)
 }
 @(objc_type=HeapDescriptor, objc_name="type")

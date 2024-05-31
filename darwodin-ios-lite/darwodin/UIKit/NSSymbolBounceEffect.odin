@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolBounceEffect")
 NSSymbolBounceEffect :: struct { using _: NSSymbolEffect, }
 
-NSSymbolBounceEffect_VTable :: struct {
-    super: NSSymbolEffect_VTable,
-}
-

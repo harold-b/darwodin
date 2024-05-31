@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPageControlTimerProgress")
 PageControlTimerProgress :: struct { using _: PageControlProgress, }
 
-PageControlTimerProgress_VTable :: struct {
-    super: PageControlProgress_VTable,
-}
-

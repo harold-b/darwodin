@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISheetPresentationControllerDetent")
 SheetPresentationControllerDetent :: struct { using _: NS.Object, }
 
-SheetPresentationControllerDetent_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

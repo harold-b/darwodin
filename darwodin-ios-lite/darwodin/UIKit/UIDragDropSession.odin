@@ -19,6 +19,3 @@ DragDropSession :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-DragDropSession_VTable :: struct {
-}
-

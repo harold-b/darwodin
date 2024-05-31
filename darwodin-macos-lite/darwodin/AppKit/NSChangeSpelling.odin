@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSChangeSpelling")
 ChangeSpelling :: struct { using _: intrinsics.objc_object, }
 
-ChangeSpelling_VTable :: struct {
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSCollectionViewUpdateItem")
 CollectionViewUpdateItem :: struct { using _: NS.Object, }
 
-CollectionViewUpdateItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

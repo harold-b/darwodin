@@ -20,7 +20,3 @@ ListContentTextProperties :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-ListContentTextProperties_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

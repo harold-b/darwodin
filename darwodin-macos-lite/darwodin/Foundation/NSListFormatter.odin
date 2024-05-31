@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSListFormatter")
 ListFormatter :: struct { using _: Formatter, }
 
-ListFormatter_VTable :: struct {
-    super: Formatter_VTable,
-}
-

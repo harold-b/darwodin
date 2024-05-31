@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSAssertionHandler")
 AssertionHandler :: struct { using _: Object, }
 
-AssertionHandler_VTable :: struct {
-    super: Object_VTable,
-}
-

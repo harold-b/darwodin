@@ -19,6 +19,3 @@ TableViewDropDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TableViewDropDelegate_VTable :: struct {
-}
-

@@ -19,7 +19,3 @@ Command :: struct { using _: MenuElement,
     using _: MenuLeaf,
 }
 
-Command_VTable :: struct {
-    super: MenuElement_VTable,
-}
-

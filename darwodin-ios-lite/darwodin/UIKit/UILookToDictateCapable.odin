@@ -19,6 +19,3 @@ LookToDictateCapable :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-LookToDictateCapable_VTable :: struct {
-}
-

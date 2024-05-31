@@ -112,10 +112,6 @@ URL_absoluteURLWithDataRepresentation :: #force_inline proc "c" (data: ^Data, ba
 URL_getFileSystemRepresentation :: #force_inline proc "c" (self: ^URL, buffer: cstring, maxBufferLength: UInteger) -> bool {
     return msgSend(bool, self, "getFileSystemRepresentation:maxLength:", buffer, maxBufferLength)
 }
-@(objc_type=URL, objc_name="checkResourceIsReachableAndReturnError")
-URL_checkResourceIsReachableAndReturnError :: #force_inline proc "c" (self: ^URL, error: ^^Error) -> bool {
-    return msgSend(bool, self, "checkResourceIsReachableAndReturnError:", error)
-}
 @(objc_type=URL, objc_name="isFileReferenceURL")
 URL_isFileReferenceURL :: #force_inline proc "c" (self: ^URL) -> bool {
     return msgSend(bool, self, "isFileReferenceURL")
@@ -299,6 +295,10 @@ URL_URLByAppendingPathComponent_isDirectory :: #force_inline proc "c" (self: ^UR
 @(objc_type=URL, objc_name="URLByAppendingPathExtension")
 URL_URLByAppendingPathExtension :: #force_inline proc "c" (self: ^URL, pathExtension: ^String) -> ^URL {
     return msgSend(^URL, self, "URLByAppendingPathExtension:", pathExtension)
+}
+@(objc_type=URL, objc_name="checkResourceIsReachableAndReturnError")
+URL_checkResourceIsReachableAndReturnError :: #force_inline proc "c" (self: ^URL, error: ^^Error) -> bool {
+    return msgSend(bool, self, "checkResourceIsReachableAndReturnError:", error)
 }
 @(objc_type=URL, objc_name="pathComponents")
 URL_pathComponents :: #force_inline proc "c" (self: ^URL) -> ^Array {
@@ -520,7 +520,6 @@ URL_VTable :: struct {
     initAbsoluteURLWithDataRepresentation: proc(self: ^URL, data: ^Data, baseURL: ^URL) -> ^URL,
     absoluteURLWithDataRepresentation: proc(data: ^Data, baseURL: ^URL) -> ^URL,
     getFileSystemRepresentation: proc(self: ^URL, buffer: cstring, maxBufferLength: UInteger) -> bool,
-    checkResourceIsReachableAndReturnError: proc(self: ^URL, error: ^^Error) -> bool,
     isFileReferenceURL: proc(self: ^URL) -> bool,
     fileReferenceURL: proc(self: ^URL) -> ^URL,
     getResourceValue: proc(self: ^URL, value: ^id, key: ^String, error: ^^Error) -> bool,
@@ -567,6 +566,7 @@ URL_VTable :: struct {
     _URLByAppendingPathComponent_: proc(self: ^URL, pathComponent: ^String) -> ^URL,
     _URLByAppendingPathComponent_isDirectory: proc(self: ^URL, pathComponent: ^String, isDirectory: bool) -> ^URL,
     _URLByAppendingPathExtension: proc(self: ^URL, pathExtension: ^String) -> ^URL,
+    checkResourceIsReachableAndReturnError: proc(self: ^URL, error: ^^Error) -> bool,
     pathComponents: proc(self: ^URL) -> ^Array,
     lastPathComponent: proc(self: ^URL) -> ^String,
     pathExtension: proc(self: ^URL) -> ^String,
@@ -832,16 +832,6 @@ URL_odin_extend :: proc(cls: Class, vt: ^URL_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("getFileSystemRepresentation:maxLength:"), auto_cast getFileSystemRepresentation, "B@:*L") do panic("Failed to register objC method.")
-    }
-    if vt.checkResourceIsReachableAndReturnError != nil {
-        checkResourceIsReachableAndReturnError :: proc "c" (self: ^URL, _: SEL, error: ^^Error) -> bool {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^URL_VTable)vt_ctx.super_vt).checkResourceIsReachableAndReturnError(self, error)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("checkResourceIsReachableAndReturnError:"), auto_cast checkResourceIsReachableAndReturnError, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.isFileReferenceURL != nil {
         isFileReferenceURL :: proc "c" (self: ^URL, _: SEL) -> bool {
@@ -1302,6 +1292,16 @@ URL_odin_extend :: proc(cls: Class, vt: ^URL_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLByAppendingPathExtension:"), auto_cast _URLByAppendingPathExtension, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.checkResourceIsReachableAndReturnError != nil {
+        checkResourceIsReachableAndReturnError :: proc "c" (self: ^URL, _: SEL, error: ^^Error) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URL_VTable)vt_ctx.super_vt).checkResourceIsReachableAndReturnError(self, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("checkResourceIsReachableAndReturnError:"), auto_cast checkResourceIsReachableAndReturnError, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.pathComponents != nil {
         pathComponents :: proc "c" (self: ^URL, _: SEL) -> ^Array {

@@ -17,6 +17,3 @@ Proxy :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-Proxy_VTable :: struct {
-}
-

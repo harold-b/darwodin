@@ -19,6 +19,3 @@ TextSearchAggregator :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextSearchAggregator_VTable :: struct {
-}
-

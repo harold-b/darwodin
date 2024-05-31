@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISceneActivationRequestOptions")
 SceneActivationRequestOptions :: struct { using _: NS.Object, }
 
-SceneActivationRequestOptions_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

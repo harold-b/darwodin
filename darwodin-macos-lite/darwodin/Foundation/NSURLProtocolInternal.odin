@@ -15,6 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLProtocolInternal")
 URLProtocolInternal :: struct { using _: intrinsics.objc_object, }
 
-URLProtocolInternal_VTable :: struct {
-}
-

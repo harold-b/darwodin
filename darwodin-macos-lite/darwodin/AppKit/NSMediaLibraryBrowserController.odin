@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSMediaLibraryBrowserController")
 MediaLibraryBrowserController :: struct { using _: NS.Object, }
 
-MediaLibraryBrowserController_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

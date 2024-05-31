@@ -20,7 +20,3 @@ LocalNotification :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-LocalNotification_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

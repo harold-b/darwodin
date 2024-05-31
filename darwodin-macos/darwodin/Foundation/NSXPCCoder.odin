@@ -22,12 +22,12 @@ XPCCoder_init :: proc "c" (self: ^XPCCoder) -> ^XPCCoder {
 
 
 @(objc_type=XPCCoder, objc_name="encodeXPCObject")
-XPCCoder_encodeXPCObject :: #force_inline proc "c" (self: ^XPCCoder, xpcObject: ^Object, key: ^String) {
+XPCCoder_encodeXPCObject :: #force_inline proc "c" (self: ^XPCCoder, xpcObject: xpc_object_t, key: ^String) {
     msgSend(nil, self, "encodeXPCObject:forKey:", xpcObject, key)
 }
 @(objc_type=XPCCoder, objc_name="decodeXPCObjectOfType")
-XPCCoder_decodeXPCObjectOfType :: #force_inline proc "c" (self: ^XPCCoder, type: xpc_type_t, key: ^String) -> ^Object {
-    return msgSend(^Object, self, "decodeXPCObjectOfType:forKey:", type, key)
+XPCCoder_decodeXPCObjectOfType :: #force_inline proc "c" (self: ^XPCCoder, type: xpc_type_t, key: ^String) -> xpc_object_t {
+    return msgSend(xpc_object_t, self, "decodeXPCObjectOfType:forKey:", type, key)
 }
 @(objc_type=XPCCoder, objc_name="userInfo")
 XPCCoder_userInfo :: #force_inline proc "c" (self: ^XPCCoder) -> ^ObjectProtocol {
@@ -173,8 +173,8 @@ XPCCoder_cancelPreviousPerformRequestsWithTarget :: proc {
 
 XPCCoder_VTable :: struct {
     super: Coder_VTable,
-    encodeXPCObject: proc(self: ^XPCCoder, xpcObject: ^Object, key: ^String),
-    decodeXPCObjectOfType: proc(self: ^XPCCoder, type: xpc_type_t, key: ^String) -> ^Object,
+    encodeXPCObject: proc(self: ^XPCCoder, xpcObject: xpc_object_t, key: ^String),
+    decodeXPCObjectOfType: proc(self: ^XPCCoder, type: xpc_type_t, key: ^String) -> xpc_object_t,
     userInfo: proc(self: ^XPCCoder) -> ^ObjectProtocol,
     setUserInfo: proc(self: ^XPCCoder, userInfo: ^ObjectProtocol),
     connection: proc(self: ^XPCCoder) -> ^XPCConnection,
@@ -219,24 +219,24 @@ XPCCoder_odin_extend :: proc(cls: Class, vt: ^XPCCoder_VTable) {
     Coder_odin_extend(cls, &vt.super)
 
     if vt.encodeXPCObject != nil {
-        encodeXPCObject :: proc "c" (self: ^XPCCoder, _: SEL, xpcObject: ^Object, key: ^String) {
+        encodeXPCObject :: proc "c" (self: ^XPCCoder, _: SEL, xpcObject: xpc_object_t, key: ^String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^XPCCoder_VTable)vt_ctx.super_vt).encodeXPCObject(self, xpcObject, key)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("encodeXPCObject:forKey:"), auto_cast encodeXPCObject, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("encodeXPCObject:forKey:"), auto_cast encodeXPCObject, "v@:^void@") do panic("Failed to register objC method.")
     }
     if vt.decodeXPCObjectOfType != nil {
-        decodeXPCObjectOfType :: proc "c" (self: ^XPCCoder, _: SEL, type: xpc_type_t, key: ^String) -> ^Object {
+        decodeXPCObjectOfType :: proc "c" (self: ^XPCCoder, _: SEL, type: xpc_type_t, key: ^String) -> xpc_object_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^XPCCoder_VTable)vt_ctx.super_vt).decodeXPCObjectOfType(self, type, key)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeXPCObjectOfType:forKey:"), auto_cast decodeXPCObjectOfType, "@@:^void@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeXPCObjectOfType:forKey:"), auto_cast decodeXPCObjectOfType, "^void@:^void@") do panic("Failed to register objC method.")
     }
     if vt.userInfo != nil {
         userInfo :: proc "c" (self: ^XPCCoder, _: SEL) -> ^ObjectProtocol {

@@ -26,19 +26,19 @@ KeyCommand_initWithCoder :: #force_inline proc "c" (self: ^KeyCommand, coder: ^N
     return msgSend(^KeyCommand, self, "initWithCoder:", coder)
 }
 @(objc_type=KeyCommand, objc_name="commandWithTitle_image_action_input_modifierFlags_propertyList", objc_is_class_method=true)
-KeyCommand_commandWithTitle_image_action_input_modifierFlags_propertyList :: #force_inline proc "c" (title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id) -> ^KeyCommand {
+KeyCommand_commandWithTitle_image_action_input_modifierFlags_propertyList :: #force_inline proc "c" (title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlag, propertyList: id) -> ^KeyCommand {
     return msgSend(^KeyCommand, KeyCommand, "commandWithTitle:image:action:input:modifierFlags:propertyList:", title, image, action, input, modifierFlags, propertyList)
 }
 @(objc_type=KeyCommand, objc_name="commandWithTitle_image_action_input_modifierFlags_propertyList_alternates", objc_is_class_method=true)
-KeyCommand_commandWithTitle_image_action_input_modifierFlags_propertyList_alternates :: #force_inline proc "c" (title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand {
+KeyCommand_commandWithTitle_image_action_input_modifierFlags_propertyList_alternates :: #force_inline proc "c" (title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlag, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand {
     return msgSend(^KeyCommand, KeyCommand, "commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:", title, image, action, input, modifierFlags, propertyList, alternates)
 }
 @(objc_type=KeyCommand, objc_name="keyCommandWithInput_modifierFlags_action", objc_is_class_method=true)
-KeyCommand_keyCommandWithInput_modifierFlags_action :: #force_inline proc "c" (input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL) -> ^KeyCommand {
+KeyCommand_keyCommandWithInput_modifierFlags_action :: #force_inline proc "c" (input: ^NS.String, modifierFlags: KeyModifierFlag, action: SEL) -> ^KeyCommand {
     return msgSend(^KeyCommand, KeyCommand, "keyCommandWithInput:modifierFlags:action:", input, modifierFlags, action)
 }
 @(objc_type=KeyCommand, objc_name="keyCommandWithInput_modifierFlags_action_discoverabilityTitle", objc_is_class_method=true)
-KeyCommand_keyCommandWithInput_modifierFlags_action_discoverabilityTitle :: #force_inline proc "c" (input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> ^KeyCommand {
+KeyCommand_keyCommandWithInput_modifierFlags_action_discoverabilityTitle :: #force_inline proc "c" (input: ^NS.String, modifierFlags: KeyModifierFlag, action: SEL, discoverabilityTitle: ^NS.String) -> ^KeyCommand {
     return msgSend(^KeyCommand, KeyCommand, "keyCommandWithInput:modifierFlags:action:discoverabilityTitle:", input, modifierFlags, action, discoverabilityTitle)
 }
 @(objc_type=KeyCommand, objc_name="commandWithTitle_image_action_propertyList", objc_is_class_method=true)
@@ -82,8 +82,8 @@ KeyCommand_input :: #force_inline proc "c" (self: ^KeyCommand) -> ^NS.String {
     return msgSend(^NS.String, self, "input")
 }
 @(objc_type=KeyCommand, objc_name="modifierFlags")
-KeyCommand_modifierFlags :: #force_inline proc "c" (self: ^KeyCommand) -> KeyModifierFlags {
-    return msgSend(KeyModifierFlags, self, "modifierFlags")
+KeyCommand_modifierFlags :: #force_inline proc "c" (self: ^KeyCommand) -> KeyModifierFlag {
+    return msgSend(KeyModifierFlag, self, "modifierFlags")
 }
 @(objc_type=KeyCommand, objc_name="propertyList")
 KeyCommand_propertyList :: #force_inline proc "c" (self: ^KeyCommand) -> id {
@@ -277,10 +277,10 @@ KeyCommand_VTable :: struct {
     super: Command_VTable,
     init: proc(self: ^KeyCommand) -> ^KeyCommand,
     initWithCoder: proc(self: ^KeyCommand, coder: ^NS.Coder) -> ^KeyCommand,
-    commandWithTitle_image_action_input_modifierFlags_propertyList: proc(title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id) -> ^KeyCommand,
-    commandWithTitle_image_action_input_modifierFlags_propertyList_alternates: proc(title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand,
-    keyCommandWithInput_modifierFlags_action: proc(input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL) -> ^KeyCommand,
-    keyCommandWithInput_modifierFlags_action_discoverabilityTitle: proc(input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> ^KeyCommand,
+    commandWithTitle_image_action_input_modifierFlags_propertyList: proc(title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlag, propertyList: id) -> ^KeyCommand,
+    commandWithTitle_image_action_input_modifierFlags_propertyList_alternates: proc(title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlag, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand,
+    keyCommandWithInput_modifierFlags_action: proc(input: ^NS.String, modifierFlags: KeyModifierFlag, action: SEL) -> ^KeyCommand,
+    keyCommandWithInput_modifierFlags_action_discoverabilityTitle: proc(input: ^NS.String, modifierFlags: KeyModifierFlag, action: SEL, discoverabilityTitle: ^NS.String) -> ^KeyCommand,
     commandWithTitle_image_action_propertyList: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id) -> ^KeyCommand,
     commandWithTitle_image_action_propertyList_alternates: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand,
     title: proc(self: ^KeyCommand) -> ^NS.String,
@@ -291,7 +291,7 @@ KeyCommand_VTable :: struct {
     setDiscoverabilityTitle: proc(self: ^KeyCommand, discoverabilityTitle: ^NS.String),
     action: proc(self: ^KeyCommand) -> SEL,
     input: proc(self: ^KeyCommand) -> ^NS.String,
-    modifierFlags: proc(self: ^KeyCommand) -> KeyModifierFlags,
+    modifierFlags: proc(self: ^KeyCommand) -> KeyModifierFlag,
     propertyList: proc(self: ^KeyCommand) -> id,
     attributes: proc(self: ^KeyCommand) -> MenuElementAttributes,
     setAttributes: proc(self: ^KeyCommand, attributes: MenuElementAttributes),
@@ -364,7 +364,7 @@ KeyCommand_odin_extend :: proc(cls: Class, vt: ^KeyCommand_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.commandWithTitle_image_action_input_modifierFlags_propertyList != nil {
-        commandWithTitle_image_action_input_modifierFlags_propertyList :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id) -> ^KeyCommand {
+        commandWithTitle_image_action_input_modifierFlags_propertyList :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlag, propertyList: id) -> ^KeyCommand {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -374,7 +374,7 @@ KeyCommand_odin_extend :: proc(cls: Class, vt: ^KeyCommand_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("commandWithTitle:image:action:input:modifierFlags:propertyList:"), auto_cast commandWithTitle_image_action_input_modifierFlags_propertyList, "@#:@@:@l@") do panic("Failed to register objC method.")
     }
     if vt.commandWithTitle_image_action_input_modifierFlags_propertyList_alternates != nil {
-        commandWithTitle_image_action_input_modifierFlags_propertyList_alternates :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand {
+        commandWithTitle_image_action_input_modifierFlags_propertyList_alternates :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlag, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -384,7 +384,7 @@ KeyCommand_odin_extend :: proc(cls: Class, vt: ^KeyCommand_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:"), auto_cast commandWithTitle_image_action_input_modifierFlags_propertyList_alternates, "@#:@@:@l@@") do panic("Failed to register objC method.")
     }
     if vt.keyCommandWithInput_modifierFlags_action != nil {
-        keyCommandWithInput_modifierFlags_action :: proc "c" (self: Class, _: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL) -> ^KeyCommand {
+        keyCommandWithInput_modifierFlags_action :: proc "c" (self: Class, _: SEL, input: ^NS.String, modifierFlags: KeyModifierFlag, action: SEL) -> ^KeyCommand {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -394,7 +394,7 @@ KeyCommand_odin_extend :: proc(cls: Class, vt: ^KeyCommand_VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("keyCommandWithInput:modifierFlags:action:"), auto_cast keyCommandWithInput_modifierFlags_action, "@#:@l:") do panic("Failed to register objC method.")
     }
     if vt.keyCommandWithInput_modifierFlags_action_discoverabilityTitle != nil {
-        keyCommandWithInput_modifierFlags_action_discoverabilityTitle :: proc "c" (self: Class, _: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> ^KeyCommand {
+        keyCommandWithInput_modifierFlags_action_discoverabilityTitle :: proc "c" (self: Class, _: SEL, input: ^NS.String, modifierFlags: KeyModifierFlag, action: SEL, discoverabilityTitle: ^NS.String) -> ^KeyCommand {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -504,7 +504,7 @@ KeyCommand_odin_extend :: proc(cls: Class, vt: ^KeyCommand_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("input"), auto_cast input, "@@:") do panic("Failed to register objC method.")
     }
     if vt.modifierFlags != nil {
-        modifierFlags :: proc "c" (self: ^KeyCommand, _: SEL) -> KeyModifierFlags {
+        modifierFlags :: proc "c" (self: ^KeyCommand, _: SEL) -> KeyModifierFlag {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

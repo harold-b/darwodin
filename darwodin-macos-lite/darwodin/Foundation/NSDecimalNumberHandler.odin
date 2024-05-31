@@ -18,7 +18,3 @@ DecimalNumberHandler :: struct { using _: Object,
     using _: Coding,
 }
 
-DecimalNumberHandler_VTable :: struct {
-    super: Object_VTable,
-}
-

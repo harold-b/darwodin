@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSMagnificationGestureRecognizer")
 MagnificationGestureRecognizer :: struct { using _: GestureRecognizer, }
 
-MagnificationGestureRecognizer_VTable :: struct {
-    super: GestureRecognizer_VTable,
-}
-

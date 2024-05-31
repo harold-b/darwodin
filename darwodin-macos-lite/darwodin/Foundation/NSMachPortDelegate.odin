@@ -17,6 +17,3 @@ MachPortDelegate :: struct { using _: intrinsics.objc_object,
     using _: PortDelegate,
 }
 
-MachPortDelegate_VTable :: struct {
-}
-

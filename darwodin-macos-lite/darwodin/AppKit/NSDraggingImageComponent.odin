@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSDraggingImageComponent")
 DraggingImageComponent :: struct { using _: NS.Object, }
 
-DraggingImageComponent_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

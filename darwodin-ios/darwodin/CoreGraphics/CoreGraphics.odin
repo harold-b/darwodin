@@ -139,7 +139,7 @@ ColorSpaceRef :: distinct ^ColorSpace
 DataProviderRef :: distinct ^DataProvider
 
 /// CGDataProviderGetBytesCallback
-DataProviderGetBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.uint) -> cffi.uint
+DataProviderGetBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderSkipForwardCallback
 DataProviderSkipForwardCallback :: distinct proc "c" (info: rawptr, count: cffi.longlong) -> cffi.longlong
@@ -155,10 +155,10 @@ DataProviderReleaseInfoCallback :: distinct proc "c" (info: rawptr)
 /// CGDataProviderReleaseBytePointerCallback
 
 /// CGDataProviderGetBytesAtPositionCallback
-DataProviderGetBytesAtPositionCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, pos: cffi.longlong, cnt: cffi.uint) -> cffi.uint
+DataProviderGetBytesAtPositionCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, pos: cffi.longlong, cnt: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderReleaseDataCallback
-DataProviderReleaseDataCallback :: distinct proc "c" (info: rawptr, data: rawptr, size: cffi.uint)
+DataProviderReleaseDataCallback :: distinct proc "c" (info: rawptr, data: rawptr, size: cffi.size_t)
 
 /// ColorSyncProfileRef
 ColorSyncProfileRef :: distinct ^ColorSyncProfile
@@ -230,7 +230,7 @@ PDFStreamRef :: distinct ^PDFStream
 PDFStringRef :: distinct ^PDFString
 
 /// CGPDFArrayApplierBlock
-PDFArrayApplierBlock :: distinct proc "c" (index: cffi.uint, value: PDFObjectRef, info: rawptr) -> cffi.bool
+PDFArrayApplierBlock :: distinct proc "c" (index: cffi.size_t, value: PDFObjectRef, info: rawptr) -> cffi.bool
 
 /// CGPDFDictionaryApplierFunction
 PDFDictionaryApplierFunction :: distinct proc "c" (key: cstring, value: PDFObjectRef, info: rawptr)
@@ -260,7 +260,7 @@ ColorConversionInfoRef :: distinct ^ColorConversionInfo
 DataConsumerRef :: distinct ^DataConsumer
 
 /// CGDataConsumerPutBytesCallback
-DataConsumerPutBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.uint) -> cffi.uint
+DataConsumerPutBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
 
 /// CGDataConsumerReleaseInfoCallback
 DataConsumerReleaseInfoCallback :: distinct proc "c" (info: rawptr)
@@ -742,8 +742,8 @@ ColorDataFormat :: struct #align (8) {
     version : cffi.uint32_t,
     colorspace_info : CF.TypeRef,
     bitmap_info : BitmapInfo,
-    bits_per_component : cffi.uint,
-    bytes_per_row : cffi.uint,
+    bits_per_component : cffi.size_t,
+    bytes_per_row : cffi.size_t,
     intent : ColorRenderingIntent,
     decode : ^Float,
 }

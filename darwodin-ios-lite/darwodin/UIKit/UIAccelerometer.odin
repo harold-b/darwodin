@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIAccelerometer")
 Accelerometer :: struct { using _: NS.Object, }
 
-Accelerometer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

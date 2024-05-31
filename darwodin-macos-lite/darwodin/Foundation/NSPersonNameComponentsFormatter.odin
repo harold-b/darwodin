@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSPersonNameComponentsFormatter")
 PersonNameComponentsFormatter :: struct { using _: Formatter, }
 
-PersonNameComponentsFormatter_VTable :: struct {
-    super: Formatter_VTable,
-}
-

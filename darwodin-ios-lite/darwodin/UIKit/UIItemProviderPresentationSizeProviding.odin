@@ -19,6 +19,3 @@ ItemProviderPresentationSizeProviding :: struct { using _: intrinsics.objc_objec
     using _: NS.ObjectProtocol,
 }
 
-ItemProviderPresentationSizeProviding_VTable :: struct {
-}
-

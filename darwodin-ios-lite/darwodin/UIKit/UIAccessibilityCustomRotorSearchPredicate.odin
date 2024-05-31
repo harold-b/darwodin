@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIAccessibilityCustomRotorSearchPredicate")
 AccessibilityCustomRotorSearchPredicate :: struct { using _: NS.Object, }
 
-AccessibilityCustomRotorSearchPredicate_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

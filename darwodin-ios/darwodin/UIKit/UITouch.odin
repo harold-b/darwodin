@@ -107,6 +107,10 @@ Touch_estimatedProperties :: #force_inline proc "c" (self: ^Touch) -> TouchPrope
 Touch_estimatedPropertiesExpectingUpdates :: #force_inline proc "c" (self: ^Touch) -> TouchProperties {
     return msgSend(TouchProperties, self, "estimatedPropertiesExpectingUpdates")
 }
+@(objc_type=Touch, objc_name="rollAngle")
+Touch_rollAngle :: #force_inline proc "c" (self: ^Touch) -> CG.Float {
+    return msgSend(CG.Float, self, "rollAngle")
+}
 @(objc_type=Touch, objc_name="load", objc_is_class_method=true)
 Touch_load :: #force_inline proc "c" () {
     msgSend(nil, Touch, "load")
@@ -252,6 +256,7 @@ Touch_VTable :: struct {
     estimationUpdateIndex: proc(self: ^Touch) -> ^NS.Number,
     estimatedProperties: proc(self: ^Touch) -> TouchProperties,
     estimatedPropertiesExpectingUpdates: proc(self: ^Touch) -> TouchProperties,
+    rollAngle: proc(self: ^Touch) -> CG.Float,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Touch,
@@ -499,6 +504,16 @@ Touch_odin_extend :: proc(cls: Class, vt: ^Touch_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("estimatedPropertiesExpectingUpdates"), auto_cast estimatedPropertiesExpectingUpdates, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.rollAngle != nil {
+        rollAngle :: proc "c" (self: ^Touch, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Touch_VTable)vt_ctx.super_vt).rollAngle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rollAngle"), auto_cast rollAngle, "d@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

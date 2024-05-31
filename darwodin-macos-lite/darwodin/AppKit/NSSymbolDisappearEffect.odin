@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolDisappearEffect")
 SymbolDisappearEffect :: struct { using _: SymbolEffect, }
 
-SymbolDisappearEffect_VTable :: struct {
-    super: SymbolEffect_VTable,
-}
-

@@ -84,11 +84,11 @@ OperationQueue_setQualityOfService :: #force_inline proc "c" (self: ^OperationQu
     msgSend(nil, self, "setQualityOfService:", qualityOfService)
 }
 @(objc_type=OperationQueue, objc_name="underlyingQueue")
-OperationQueue_underlyingQueue :: #force_inline proc "c" (self: ^OperationQueue) -> ^Object {
-    return msgSend(^Object, self, "underlyingQueue")
+OperationQueue_underlyingQueue :: #force_inline proc "c" (self: ^OperationQueue) -> CF.dispatch_queue_t {
+    return msgSend(CF.dispatch_queue_t, self, "underlyingQueue")
 }
 @(objc_type=OperationQueue, objc_name="setUnderlyingQueue")
-OperationQueue_setUnderlyingQueue :: #force_inline proc "c" (self: ^OperationQueue, underlyingQueue: ^Object) {
+OperationQueue_setUnderlyingQueue :: #force_inline proc "c" (self: ^OperationQueue, underlyingQueue: CF.dispatch_queue_t) {
     msgSend(nil, self, "setUnderlyingQueue:", underlyingQueue)
 }
 @(objc_type=OperationQueue, objc_name="currentQueue", objc_is_class_method=true)
@@ -254,8 +254,8 @@ OperationQueue_VTable :: struct {
     setName: proc(self: ^OperationQueue, name: ^String),
     qualityOfService: proc(self: ^OperationQueue) -> QualityOfService,
     setQualityOfService: proc(self: ^OperationQueue, qualityOfService: QualityOfService),
-    underlyingQueue: proc(self: ^OperationQueue) -> ^Object,
-    setUnderlyingQueue: proc(self: ^OperationQueue, underlyingQueue: ^Object),
+    underlyingQueue: proc(self: ^OperationQueue) -> CF.dispatch_queue_t,
+    setUnderlyingQueue: proc(self: ^OperationQueue, underlyingQueue: CF.dispatch_queue_t),
     currentQueue: proc() -> ^OperationQueue,
     mainQueue: proc() -> ^OperationQueue,
     operations: proc(self: ^OperationQueue) -> ^Array,
@@ -451,24 +451,24 @@ OperationQueue_odin_extend :: proc(cls: Class, vt: ^OperationQueue_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setQualityOfService:"), auto_cast setQualityOfService, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.underlyingQueue != nil {
-        underlyingQueue :: proc "c" (self: ^OperationQueue, _: SEL) -> ^Object {
+        underlyingQueue :: proc "c" (self: ^OperationQueue, _: SEL) -> CF.dispatch_queue_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^OperationQueue_VTable)vt_ctx.super_vt).underlyingQueue(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("underlyingQueue"), auto_cast underlyingQueue, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("underlyingQueue"), auto_cast underlyingQueue, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setUnderlyingQueue != nil {
-        setUnderlyingQueue :: proc "c" (self: ^OperationQueue, _: SEL, underlyingQueue: ^Object) {
+        setUnderlyingQueue :: proc "c" (self: ^OperationQueue, _: SEL, underlyingQueue: CF.dispatch_queue_t) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^OperationQueue_VTable)vt_ctx.super_vt).setUnderlyingQueue(self, underlyingQueue)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setUnderlyingQueue:"), auto_cast setUnderlyingQueue, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUnderlyingQueue:"), auto_cast setUnderlyingQueue, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.currentQueue != nil {
         currentQueue :: proc "c" (self: Class, _: SEL) -> ^OperationQueue {

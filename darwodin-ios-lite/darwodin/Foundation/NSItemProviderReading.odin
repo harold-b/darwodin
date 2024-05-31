@@ -17,6 +17,3 @@ ItemProviderReading :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-ItemProviderReading_VTable :: struct {
-}
-

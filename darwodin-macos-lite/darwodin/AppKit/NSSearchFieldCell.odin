@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSearchFieldCell")
 SearchFieldCell :: struct { using _: TextFieldCell, }
 
-SearchFieldCell_VTable :: struct {
-    super: TextFieldCell_VTable,
-}
-

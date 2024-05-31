@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIAlertController")
 AlertController :: struct { using _: ViewController, }
 
-AlertController_VTable :: struct {
-    super: ViewController_VTable,
-}
-

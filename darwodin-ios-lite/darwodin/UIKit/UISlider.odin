@@ -19,7 +19,3 @@ Slider :: struct { using _: Control,
     using _: NS.Coding,
 }
 
-Slider_VTable :: struct {
-    super: Control_VTable,
-}
-
