@@ -115,6 +115,7 @@ Cpp:
   ExportMethods:
     - ^::CF.+
     - ^::dispatch_.+
+    - ^::Sec.+
 
   ExportVars:
     - ^::k?CF.+
