@@ -1285,8 +1285,8 @@ foreign lib {
     @(link_name="CFStringTransform")
     StringTransform :: proc(string: MutableStringRef, range: ^Range, transform: StringRef, reverse: Boolean) -> Boolean ---
 
-    @(link_name="CFStringIsEncodingAvailable")
-    StringIsEncodingAvailable :: proc(encoding: StringEncoding) -> Boolean ---
+    // @(link_name="CFStringIsEncodingAvailable")
+    // StringIsEncodingAvailable :: proc(encoding: StringEncoding) -> Boolean ---
 
     @(link_name="CFStringGetListOfAvailableEncodings")
     StringGetListOfAvailableEncodings :: proc() -> ^StringEncoding ---
