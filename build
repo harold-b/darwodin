@@ -15,10 +15,13 @@ fi
 debug_args=(
   "-o:speed"
 )
+extra_args=()
 
 lite=
 ios=
 iphonesim=
+
+
 
 while true; do
   case $1 in
@@ -48,6 +51,9 @@ while true; do
     -iphonesim)
       iphonesim=1
     ;;
+    -timings)
+      extra_args+=(-show-more-timings)
+    ;;
     -out)
         shift && out_dir=$1 || exit 1
     ;;
@@ -55,7 +61,6 @@ while true; do
   shift || break
 done
 
-extra_args=()
 
 root='.'
 if [[ ${lite} -eq 1 ]]; then
