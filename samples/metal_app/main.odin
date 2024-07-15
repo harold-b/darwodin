@@ -74,11 +74,12 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 
         app := NS.Application.sharedApplication()
 
-        style: NS.WindowStyleMask = 
-            .Closable       |
-            .Titled         |
-            .Resizable      |
-            .Miniaturizable
+        style: NS.WindowStyleMask = {
+            .Closable,
+            .Titled,
+            .Resizable,
+            .Miniaturizable,
+        }
 
         rect := NSF.Rect {
             size = {
