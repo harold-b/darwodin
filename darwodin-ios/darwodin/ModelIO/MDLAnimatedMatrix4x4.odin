@@ -26,35 +26,35 @@ AnimatedMatrix4x4_init :: proc "c" (self: ^AnimatedMatrix4x4) -> ^AnimatedMatrix
 
 
 @(objc_type=AnimatedMatrix4x4, objc_name="setFloat4x4")
-AnimatedMatrix4x4_setFloat4x4 :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, value: matrix_float4x4, time: NS.TimeInterval) {
+AnimatedMatrix4x4_setFloat4x4 :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, value: matrix[4,4]f32, time: NS.TimeInterval) {
     msgSend(nil, self, "setFloat4x4:atTime:", value, time)
 }
 @(objc_type=AnimatedMatrix4x4, objc_name="setDouble4x4")
-AnimatedMatrix4x4_setDouble4x4 :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, value: matrix_double4x4, time: NS.TimeInterval) {
+AnimatedMatrix4x4_setDouble4x4 :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, value: matrix[4,4]f64, time: NS.TimeInterval) {
     msgSend(nil, self, "setDouble4x4:atTime:", value, time)
 }
 @(objc_type=AnimatedMatrix4x4, objc_name="float4x4AtTime")
-AnimatedMatrix4x4_float4x4AtTime :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, time: NS.TimeInterval) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "float4x4AtTime:", time)
+AnimatedMatrix4x4_float4x4AtTime :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, time: NS.TimeInterval) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "float4x4AtTime:", time)
 }
 @(objc_type=AnimatedMatrix4x4, objc_name="double4x4AtTime")
-AnimatedMatrix4x4_double4x4AtTime :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, time: NS.TimeInterval) -> matrix_double4x4 {
-    return msgSend(matrix_double4x4, self, "double4x4AtTime:", time)
+AnimatedMatrix4x4_double4x4AtTime :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, time: NS.TimeInterval) -> matrix[4,4]f64 {
+    return msgSend(matrix[4,4]f64, self, "double4x4AtTime:", time)
 }
 @(objc_type=AnimatedMatrix4x4, objc_name="resetWithFloat4x4Array")
-AnimatedMatrix4x4_resetWithFloat4x4Array :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, valuesArray: ^matrix_float4x4, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
+AnimatedMatrix4x4_resetWithFloat4x4Array :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, valuesArray: ^matrix[4,4]f32, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
     msgSend(nil, self, "resetWithFloat4x4Array:atTimes:count:", valuesArray, timesArray, count)
 }
 @(objc_type=AnimatedMatrix4x4, objc_name="resetWithDouble4x4Array")
-AnimatedMatrix4x4_resetWithDouble4x4Array :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, valuesArray: ^matrix_double4x4, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
+AnimatedMatrix4x4_resetWithDouble4x4Array :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, valuesArray: ^matrix[4,4]f64, timesArray: ^NS.TimeInterval, count: NS.UInteger) {
     msgSend(nil, self, "resetWithDouble4x4Array:atTimes:count:", valuesArray, timesArray, count)
 }
 @(objc_type=AnimatedMatrix4x4, objc_name="getFloat4x4Array")
-AnimatedMatrix4x4_getFloat4x4Array :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, valuesArray: ^matrix_float4x4, maxCount: NS.UInteger) -> NS.UInteger {
+AnimatedMatrix4x4_getFloat4x4Array :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, valuesArray: ^matrix[4,4]f32, maxCount: NS.UInteger) -> NS.UInteger {
     return msgSend(NS.UInteger, self, "getFloat4x4Array:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=AnimatedMatrix4x4, objc_name="getDouble4x4Array")
-AnimatedMatrix4x4_getDouble4x4Array :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, valuesArray: ^matrix_double4x4, maxCount: NS.UInteger) -> NS.UInteger {
+AnimatedMatrix4x4_getDouble4x4Array :: #force_inline proc "c" (self: ^AnimatedMatrix4x4, valuesArray: ^matrix[4,4]f64, maxCount: NS.UInteger) -> NS.UInteger {
     return msgSend(NS.UInteger, self, "getDouble4x4Array:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=AnimatedMatrix4x4, objc_name="load", objc_is_class_method=true)

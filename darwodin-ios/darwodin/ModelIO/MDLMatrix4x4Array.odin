@@ -36,19 +36,19 @@ Matrix4x4Array_initWithElementCount :: #force_inline proc "c" (self: ^Matrix4x4A
     return msgSend(^Matrix4x4Array, self, "initWithElementCount:", arrayElementCount)
 }
 @(objc_type=Matrix4x4Array, objc_name="setFloat4x4Array")
-Matrix4x4Array_setFloat4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix_float4x4, count: NS.UInteger) {
+Matrix4x4Array_setFloat4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f32, count: NS.UInteger) {
     msgSend(nil, self, "setFloat4x4Array:count:", valuesArray, count)
 }
 @(objc_type=Matrix4x4Array, objc_name="setDouble4x4Array")
-Matrix4x4Array_setDouble4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix_double4x4, count: NS.UInteger) {
+Matrix4x4Array_setDouble4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f64, count: NS.UInteger) {
     msgSend(nil, self, "setDouble4x4Array:count:", valuesArray, count)
 }
 @(objc_type=Matrix4x4Array, objc_name="getFloat4x4Array")
-Matrix4x4Array_getFloat4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix_float4x4, maxCount: NS.UInteger) -> NS.UInteger {
+Matrix4x4Array_getFloat4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f32, maxCount: NS.UInteger) -> NS.UInteger {
     return msgSend(NS.UInteger, self, "getFloat4x4Array:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=Matrix4x4Array, objc_name="getDouble4x4Array")
-Matrix4x4Array_getDouble4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix_double4x4, maxCount: NS.UInteger) -> NS.UInteger {
+Matrix4x4Array_getDouble4x4Array :: #force_inline proc "c" (self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f64, maxCount: NS.UInteger) -> NS.UInteger {
     return msgSend(NS.UInteger, self, "getDouble4x4Array:maxCount:", valuesArray, maxCount)
 }
 @(objc_type=Matrix4x4Array, objc_name="elementCount")

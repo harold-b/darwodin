@@ -46,8 +46,8 @@ Camera_bokehKernelWithSize :: #force_inline proc "c" (self: ^Camera, size: [2]cf
     return msgSend(^Texture, self, "bokehKernelWithSize:", size)
 }
 @(objc_type=Camera, objc_name="projectionMatrix")
-Camera_projectionMatrix :: #force_inline proc "c" (self: ^Camera) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "projectionMatrix")
+Camera_projectionMatrix :: #force_inline proc "c" (self: ^Camera) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "projectionMatrix")
 }
 @(objc_type=Camera, objc_name="projection")
 Camera_projection :: #force_inline proc "c" (self: ^Camera) -> CameraProjection {

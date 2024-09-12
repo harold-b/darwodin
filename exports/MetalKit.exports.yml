@@ -1,0 +1,57 @@
+PackageName: "MetalKit"
+ImportName: "MTK"
+
+Structs:
+
+Typedefs:
+    MTKTextureLoaderError: MTK.TextureLoaderError
+    MTKTextureLoaderOption: MTK.TextureLoaderOptions
+    MTKTextureLoaderCubeLayout: MTK.TextureLoaderCubeLayout
+    MTKTextureLoaderOrigin: MTK.TextureLoaderOrigin
+    MTKTextureLoaderCallback: MTK.TextureLoaderCallback
+    MTKTextureLoaderArrayCallback: MTK.TextureLoaderArrayCallback
+    MTKModelError: MTK.ModelError
+
+Enums:
+
+ObjCClasses:
+    MTKView: MTK.View
+    MTKTextureLoader: MTK.TextureLoader
+    MTKMeshBufferAllocator: MTK.MeshBufferAllocator
+    MTKMeshBuffer: MTK.MeshBuffer
+    MTKMesh: MTK.Mesh
+    MTKSubmesh: MTK.Submesh
+
+ObjCProtocols:
+    MTKViewDelegate: MTK.ViewDelegate
+
+
+Functions:
+    ::MTKModelIOVertexDescriptorFromMetal: MTK.ModelIOVertexDescriptorFromMetal
+    ::MTKModelIOVertexDescriptorFromMetalWithError: MTK.ModelIOVertexDescriptorFromMetalWithError
+    ::MTKMetalVertexDescriptorFromModelIO: MTK.MetalVertexDescriptorFromModelIO
+    ::MTKMetalVertexDescriptorFromModelIOWithError: MTK.MetalVertexDescriptorFromModelIOWithError
+    ::MTKModelIOVertexFormatFromMetal: MTK.ModelIOVertexFormatFromMetal
+    ::MTKMetalVertexFormatFromModelIO: MTK.MetalVertexFormatFromModelIO
+
+ExternVars:
+    ::MTKTextureLoaderErrorDomain: MTK.TextureLoaderErrorDomain
+    ::MTKTextureLoaderErrorKey: MTK.TextureLoaderErrorKey
+    ::MTKTextureLoaderOptionAllocateMipmaps: MTK.TextureLoaderOptionAllocateMipmaps
+    ::MTKTextureLoaderOptionGenerateMipmaps: MTK.TextureLoaderOptionGenerateMipmaps
+    ::MTKTextureLoaderOptionSRGB: MTK.TextureLoaderOptionSRGB
+    ::MTKTextureLoaderOptionTextureUsage: MTK.TextureLoaderOptionTextureUsage
+    ::MTKTextureLoaderOptionTextureCPUCacheMode: MTK.TextureLoaderOptionTextureCPUCacheMode
+    ::MTKTextureLoaderOptionTextureStorageMode: MTK.TextureLoaderOptionTextureStorageMode
+    ::MTKTextureLoaderOptionCubeLayout: MTK.TextureLoaderOptionCubeLayout
+    ::MTKTextureLoaderCubeLayoutVertical: MTK.TextureLoaderCubeLayoutVertical
+    ::MTKTextureLoaderOptionOrigin: MTK.TextureLoaderOptionOrigin
+    ::MTKTextureLoaderOriginTopLeft: MTK.TextureLoaderOriginTopLeft
+    ::MTKTextureLoaderOriginBottomLeft: MTK.TextureLoaderOriginBottomLeft
+    ::MTKTextureLoaderOriginFlippedVertically: MTK.TextureLoaderOriginFlippedVertically
+    ::MTKTextureLoaderOptionLoadAsArray: MTK.TextureLoaderOptionLoadAsArray
+    ::MTKModelErrorDomain: MTK.ModelErrorDomain
+    ::MTKModelErrorKey: MTK.ModelErrorKey
+
+ConstVars:
+

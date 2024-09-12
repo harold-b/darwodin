@@ -20,12 +20,12 @@ import AK "../AppKit"
 TransformOp :: struct { using _: intrinsics.objc_object, }
 
 @(objc_type=TransformOp, objc_name="float4x4AtTime")
-TransformOp_float4x4AtTime :: #force_inline proc "c" (self: ^TransformOp, time: NS.TimeInterval) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "float4x4AtTime:", time)
+TransformOp_float4x4AtTime :: #force_inline proc "c" (self: ^TransformOp, time: NS.TimeInterval) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "float4x4AtTime:", time)
 }
 @(objc_type=TransformOp, objc_name="double4x4AtTime")
-TransformOp_double4x4AtTime :: #force_inline proc "c" (self: ^TransformOp, time: NS.TimeInterval) -> matrix_double4x4 {
-    return msgSend(matrix_double4x4, self, "double4x4AtTime:", time)
+TransformOp_double4x4AtTime :: #force_inline proc "c" (self: ^TransformOp, time: NS.TimeInterval) -> matrix[4,4]f64 {
+    return msgSend(matrix[4,4]f64, self, "double4x4AtTime:", time)
 }
 @(objc_type=TransformOp, objc_name="IsInverseOp")
 TransformOp_IsInverseOp :: #force_inline proc "c" (self: ^TransformOp) -> cffi.bool {

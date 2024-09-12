@@ -47,7 +47,7 @@ MaterialProperty_initWithName_semantic_float4 :: #force_inline proc "c" (self: ^
     return msgSend(^MaterialProperty, self, "initWithName:semantic:float4:", name, semantic, value)
 }
 @(objc_type=MaterialProperty, objc_name="initWithName_semantic_matrix4x4")
-MaterialProperty_initWithName_semantic_matrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: matrix_float4x4) -> ^MaterialProperty {
+MaterialProperty_initWithName_semantic_matrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: matrix[4,4]f32) -> ^MaterialProperty {
     return msgSend(^MaterialProperty, self, "initWithName:semantic:matrix4x4:", name, semantic, value)
 }
 @(objc_type=MaterialProperty, objc_name="initWithName_semantic_URL")
@@ -159,11 +159,11 @@ MaterialProperty_setFloat4Value :: #force_inline proc "c" (self: ^MaterialProper
     msgSend(nil, self, "setFloat4Value:", float4Value)
 }
 @(objc_type=MaterialProperty, objc_name="matrix4x4")
-MaterialProperty_matrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "matrix4x4")
+MaterialProperty_matrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "matrix4x4")
 }
 @(objc_type=MaterialProperty, objc_name="setMatrix4x4")
-MaterialProperty_setMatrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty, matrix4x4: matrix_float4x4) {
+MaterialProperty_setMatrix4x4 :: #force_inline proc "c" (self: ^MaterialProperty, matrix4x4: matrix[4,4]f32) {
     msgSend(nil, self, "setMatrix4x4:", matrix4x4)
 }
 @(objc_type=MaterialProperty, objc_name="luminance")

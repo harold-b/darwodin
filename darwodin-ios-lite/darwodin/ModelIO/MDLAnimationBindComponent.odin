@@ -53,11 +53,11 @@ AnimationBindComponent_setJointPaths :: #force_inline proc "c" (self: ^Animation
     msgSend(nil, self, "setJointPaths:", jointPaths)
 }
 @(objc_type=AnimationBindComponent, objc_name="geometryBindTransform")
-AnimationBindComponent_geometryBindTransform :: #force_inline proc "c" (self: ^AnimationBindComponent) -> matrix_double4x4 {
-    return msgSend(matrix_double4x4, self, "geometryBindTransform")
+AnimationBindComponent_geometryBindTransform :: #force_inline proc "c" (self: ^AnimationBindComponent) -> matrix[4,4]f64 {
+    return msgSend(matrix[4,4]f64, self, "geometryBindTransform")
 }
 @(objc_type=AnimationBindComponent, objc_name="setGeometryBindTransform")
-AnimationBindComponent_setGeometryBindTransform :: #force_inline proc "c" (self: ^AnimationBindComponent, geometryBindTransform: matrix_double4x4) {
+AnimationBindComponent_setGeometryBindTransform :: #force_inline proc "c" (self: ^AnimationBindComponent, geometryBindTransform: matrix[4,4]f64) {
     msgSend(nil, self, "setGeometryBindTransform:", geometryBindTransform)
 }
 @(objc_type=AnimationBindComponent, objc_name="load", objc_is_class_method=true)

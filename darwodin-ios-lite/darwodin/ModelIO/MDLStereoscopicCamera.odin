@@ -58,20 +58,20 @@ StereoscopicCamera_setOverlap :: #force_inline proc "c" (self: ^StereoscopicCame
     msgSend(nil, self, "setOverlap:", overlap)
 }
 @(objc_type=StereoscopicCamera, objc_name="leftViewMatrix")
-StereoscopicCamera_leftViewMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "leftViewMatrix")
+StereoscopicCamera_leftViewMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "leftViewMatrix")
 }
 @(objc_type=StereoscopicCamera, objc_name="rightViewMatrix")
-StereoscopicCamera_rightViewMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "rightViewMatrix")
+StereoscopicCamera_rightViewMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "rightViewMatrix")
 }
 @(objc_type=StereoscopicCamera, objc_name="leftProjectionMatrix")
-StereoscopicCamera_leftProjectionMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "leftProjectionMatrix")
+StereoscopicCamera_leftProjectionMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "leftProjectionMatrix")
 }
 @(objc_type=StereoscopicCamera, objc_name="rightProjectionMatrix")
-StereoscopicCamera_rightProjectionMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "rightProjectionMatrix")
+StereoscopicCamera_rightProjectionMatrix :: #force_inline proc "c" (self: ^StereoscopicCamera) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "rightProjectionMatrix")
 }
 @(objc_type=StereoscopicCamera, objc_name="load", objc_is_class_method=true)
 StereoscopicCamera_load :: #force_inline proc "c" () {

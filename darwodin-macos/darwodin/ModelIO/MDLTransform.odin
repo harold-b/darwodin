@@ -39,11 +39,11 @@ Transform_initWithTransformComponent_resetsTransform :: #force_inline proc "c" (
     return msgSend(^Transform, self, "initWithTransformComponent:resetsTransform:", component, resetsTransform)
 }
 @(objc_type=Transform, objc_name="initWithMatrix_")
-Transform_initWithMatrix_ :: #force_inline proc "c" (self: ^Transform, _matrix: matrix_float4x4) -> ^Transform {
+Transform_initWithMatrix_ :: #force_inline proc "c" (self: ^Transform, _matrix: matrix[4,4]f32) -> ^Transform {
     return msgSend(^Transform, self, "initWithMatrix:", _matrix)
 }
 @(objc_type=Transform, objc_name="initWithMatrix_resetsTransform")
-Transform_initWithMatrix_resetsTransform :: #force_inline proc "c" (self: ^Transform, _matrix: matrix_float4x4, resetsTransform: bool) -> ^Transform {
+Transform_initWithMatrix_resetsTransform :: #force_inline proc "c" (self: ^Transform, _matrix: matrix[4,4]f32, resetsTransform: bool) -> ^Transform {
     return msgSend(^Transform, self, "initWithMatrix:resetsTransform:", _matrix, resetsTransform)
 }
 @(objc_type=Transform, objc_name="setIdentity")
@@ -67,7 +67,7 @@ Transform_scaleAtTime :: #force_inline proc "c" (self: ^Transform, time: NS.Time
     return msgSend(vector_float3, self, "scaleAtTime:", time)
 }
 @(objc_type=Transform, objc_name="setMatrix")
-Transform_setMatrix :: #force_inline proc "c" (self: ^Transform, _matrix: matrix_float4x4, time: NS.TimeInterval) {
+Transform_setMatrix :: #force_inline proc "c" (self: ^Transform, _matrix: matrix[4,4]f32, time: NS.TimeInterval) {
     msgSend(nil, self, "setMatrix:forTime:", _matrix, time)
 }
 @(objc_type=Transform, objc_name="setTranslation_forTime")
@@ -87,8 +87,8 @@ Transform_setScale_forTime :: #force_inline proc "c" (self: ^Transform, scale: v
     msgSend(nil, self, "setScale:forTime:", scale, time)
 }
 @(objc_type=Transform, objc_name="rotationMatrixAtTime")
-Transform_rotationMatrixAtTime :: #force_inline proc "c" (self: ^Transform, time: NS.TimeInterval) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "rotationMatrixAtTime:", time)
+Transform_rotationMatrixAtTime :: #force_inline proc "c" (self: ^Transform, time: NS.TimeInterval) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "rotationMatrixAtTime:", time)
 }
 @(objc_type=Transform, objc_name="translation")
 Transform_translation :: #force_inline proc "c" (self: ^Transform) -> vector_float3 {
@@ -123,8 +123,8 @@ Transform_setScale_ :: #force_inline proc "c" (self: ^Transform, scale: vector_f
     msgSend(nil, self, "setScale:", scale)
 }
 @(objc_type=Transform, objc_name="globalTransformWithObject", objc_is_class_method=true)
-Transform_globalTransformWithObject :: #force_inline proc "c" (object: ^Object, time: NS.TimeInterval) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, Transform, "globalTransformWithObject:atTime:", object, time)
+Transform_globalTransformWithObject :: #force_inline proc "c" (object: ^Object, time: NS.TimeInterval) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, Transform, "globalTransformWithObject:atTime:", object, time)
 }
 @(objc_type=Transform, objc_name="load", objc_is_class_method=true)
 Transform_load :: #force_inline proc "c" () {

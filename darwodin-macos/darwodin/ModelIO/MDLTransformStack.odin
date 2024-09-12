@@ -63,12 +63,12 @@ TransformStack_animatedValueWithName :: #force_inline proc "c" (self: ^Transform
     return msgSend(^AnimatedValue, self, "animatedValueWithName:", name)
 }
 @(objc_type=TransformStack, objc_name="float4x4AtTime")
-TransformStack_float4x4AtTime :: #force_inline proc "c" (self: ^TransformStack, time: NS.TimeInterval) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "float4x4AtTime:", time)
+TransformStack_float4x4AtTime :: #force_inline proc "c" (self: ^TransformStack, time: NS.TimeInterval) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "float4x4AtTime:", time)
 }
 @(objc_type=TransformStack, objc_name="double4x4AtTime")
-TransformStack_double4x4AtTime :: #force_inline proc "c" (self: ^TransformStack, time: NS.TimeInterval) -> matrix_double4x4 {
-    return msgSend(matrix_double4x4, self, "double4x4AtTime:", time)
+TransformStack_double4x4AtTime :: #force_inline proc "c" (self: ^TransformStack, time: NS.TimeInterval) -> matrix[4,4]f64 {
+    return msgSend(matrix[4,4]f64, self, "double4x4AtTime:", time)
 }
 @(objc_type=TransformStack, objc_name="count")
 TransformStack_count :: #force_inline proc "c" (self: ^TransformStack) -> NS.UInteger {
@@ -83,8 +83,8 @@ TransformStack_transformOps :: #force_inline proc "c" (self: ^TransformStack) ->
     return msgSend(^NS.Array, self, "transformOps")
 }
 @(objc_type=TransformStack, objc_name="globalTransformWithObject", objc_is_class_method=true)
-TransformStack_globalTransformWithObject :: #force_inline proc "c" (object: ^Object, time: NS.TimeInterval) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, TransformStack, "globalTransformWithObject:atTime:", object, time)
+TransformStack_globalTransformWithObject :: #force_inline proc "c" (object: ^Object, time: NS.TimeInterval) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, TransformStack, "globalTransformWithObject:atTime:", object, time)
 }
 @(objc_type=TransformStack, objc_name="load", objc_is_class_method=true)
 TransformStack_load :: #force_inline proc "c" () {

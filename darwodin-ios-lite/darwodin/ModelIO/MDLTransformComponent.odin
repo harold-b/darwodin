@@ -22,27 +22,27 @@ TransformComponent :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=TransformComponent, objc_name="setLocalTransform_forTime")
-TransformComponent_setLocalTransform_forTime :: #force_inline proc "c" (self: ^TransformComponent, transform: matrix_float4x4, time: NS.TimeInterval) {
+TransformComponent_setLocalTransform_forTime :: #force_inline proc "c" (self: ^TransformComponent, transform: matrix[4,4]f32, time: NS.TimeInterval) {
     msgSend(nil, self, "setLocalTransform:forTime:", transform, time)
 }
 @(objc_type=TransformComponent, objc_name="setLocalTransform_")
-TransformComponent_setLocalTransform_ :: #force_inline proc "c" (self: ^TransformComponent, transform: matrix_float4x4) {
+TransformComponent_setLocalTransform_ :: #force_inline proc "c" (self: ^TransformComponent, transform: matrix[4,4]f32) {
     msgSend(nil, self, "setLocalTransform:", transform)
 }
 @(objc_type=TransformComponent, objc_name="localTransformAtTime")
-TransformComponent_localTransformAtTime :: #force_inline proc "c" (self: ^TransformComponent, time: NS.TimeInterval) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "localTransformAtTime:", time)
+TransformComponent_localTransformAtTime :: #force_inline proc "c" (self: ^TransformComponent, time: NS.TimeInterval) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "localTransformAtTime:", time)
 }
 @(objc_type=TransformComponent, objc_name="globalTransformWithObject", objc_is_class_method=true)
-TransformComponent_globalTransformWithObject :: #force_inline proc "c" (object: ^Object, time: NS.TimeInterval) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, TransformComponent, "globalTransformWithObject:atTime:", object, time)
+TransformComponent_globalTransformWithObject :: #force_inline proc "c" (object: ^Object, time: NS.TimeInterval) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, TransformComponent, "globalTransformWithObject:atTime:", object, time)
 }
 @(objc_type=TransformComponent, objc_name="matrix")
-TransformComponent_matrix :: #force_inline proc "c" (self: ^TransformComponent) -> matrix_float4x4 {
-    return msgSend(matrix_float4x4, self, "matrix")
+TransformComponent_matrix :: #force_inline proc "c" (self: ^TransformComponent) -> matrix[4,4]f32 {
+    return msgSend(matrix[4,4]f32, self, "matrix")
 }
 @(objc_type=TransformComponent, objc_name="setMatrix")
-TransformComponent_setMatrix :: #force_inline proc "c" (self: ^TransformComponent, _matrix: matrix_float4x4) {
+TransformComponent_setMatrix :: #force_inline proc "c" (self: ^TransformComponent, _matrix: matrix[4,4]f32) {
     msgSend(nil, self, "setMatrix:", _matrix)
 }
 @(objc_type=TransformComponent, objc_name="resetsTransform")
