@@ -75,13 +75,13 @@ Odin:
       Transforms:
       - Kind  : RemovePrefix
         Source: $group0
-    - Type: (Flag|Option|Mask)$  # Transforms for bit_set types
+    - Type: (Flag|Option|Mask|MTLRenderStages)$  # Transforms for bit_set types
       Transforms:
       - Kind  : AppendSuffix
         Source: s
 
   BitSetMap:
-    - Type: (Mask|Flags?|(?<!MTLResource)Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
+    - Type: (Mask|Flags?|(?<!MTLResource)Options?|MTLRenderStages)$ # Transforms the enum that will generate a bit_set to not have a collision type
       Transforms:
         - Kind  : RemoveSuffix
           Source: s
