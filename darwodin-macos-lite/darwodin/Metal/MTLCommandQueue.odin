@@ -36,6 +36,22 @@ CommandQueue_commandBufferWithUnretainedReferences :: #force_inline proc "c" (se
 CommandQueue_insertDebugCaptureBoundary :: #force_inline proc "c" (self: ^CommandQueue) {
     msgSend(nil, self, "insertDebugCaptureBoundary")
 }
+@(objc_type=CommandQueue, objc_name="addResidencySet")
+CommandQueue_addResidencySet :: #force_inline proc "c" (self: ^CommandQueue, residencySet: ^ResidencySet) {
+    msgSend(nil, self, "addResidencySet:", residencySet)
+}
+@(objc_type=CommandQueue, objc_name="addResidencySets")
+CommandQueue_addResidencySets :: #force_inline proc "c" (self: ^CommandQueue, residencySets: ^^ResidencySet, count: NS.UInteger) {
+    msgSend(nil, self, "addResidencySets:count:", residencySets, count)
+}
+@(objc_type=CommandQueue, objc_name="removeResidencySet")
+CommandQueue_removeResidencySet :: #force_inline proc "c" (self: ^CommandQueue, residencySet: ^ResidencySet) {
+    msgSend(nil, self, "removeResidencySet:", residencySet)
+}
+@(objc_type=CommandQueue, objc_name="removeResidencySets")
+CommandQueue_removeResidencySets :: #force_inline proc "c" (self: ^CommandQueue, residencySets: ^^ResidencySet, count: NS.UInteger) {
+    msgSend(nil, self, "removeResidencySets:count:", residencySets, count)
+}
 @(objc_type=CommandQueue, objc_name="label")
 CommandQueue_label :: #force_inline proc "c" (self: ^CommandQueue) -> ^NS.String {
     return msgSend(^NS.String, self, "label")

@@ -88,3 +88,7 @@ RenderPipelineState_maxTotalThreadgroupsPerMeshGrid :: #force_inline proc "c" (s
 RenderPipelineState_gpuResourceID :: #force_inline proc "c" (self: ^RenderPipelineState) -> ResourceID {
     return msgSend(ResourceID, self, "gpuResourceID")
 }
+@(objc_type=RenderPipelineState, objc_name="shaderValidation")
+RenderPipelineState_shaderValidation :: #force_inline proc "c" (self: ^RenderPipelineState) -> ShaderValidation {
+    return msgSend(ShaderValidation, self, "shaderValidation")
+}

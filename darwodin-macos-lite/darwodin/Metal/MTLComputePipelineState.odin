@@ -68,3 +68,7 @@ ComputePipelineState_supportIndirectCommandBuffers :: #force_inline proc "c" (se
 ComputePipelineState_gpuResourceID :: #force_inline proc "c" (self: ^ComputePipelineState) -> ResourceID {
     return msgSend(ResourceID, self, "gpuResourceID")
 }
+@(objc_type=ComputePipelineState, objc_name="shaderValidation")
+ComputePipelineState_shaderValidation :: #force_inline proc "c" (self: ^ComputePipelineState) -> ShaderValidation {
+    return msgSend(ShaderValidation, self, "shaderValidation")
+}

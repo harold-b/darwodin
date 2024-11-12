@@ -13,6 +13,7 @@ Foundation:
   - NSMapTable
   - NSMutableCopying
   - NSNotification
+  - NSNotificationCenter
   - NSNumber
   - NSObject
   - NSRunLoop

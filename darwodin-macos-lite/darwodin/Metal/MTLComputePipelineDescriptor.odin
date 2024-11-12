@@ -130,6 +130,14 @@ ComputePipelineDescriptor_maxCallStackDepth :: #force_inline proc "c" (self: ^Co
 ComputePipelineDescriptor_setMaxCallStackDepth :: #force_inline proc "c" (self: ^ComputePipelineDescriptor, maxCallStackDepth: NS.UInteger) {
     msgSend(nil, self, "setMaxCallStackDepth:", maxCallStackDepth)
 }
+@(objc_type=ComputePipelineDescriptor, objc_name="shaderValidation")
+ComputePipelineDescriptor_shaderValidation :: #force_inline proc "c" (self: ^ComputePipelineDescriptor) -> ShaderValidation {
+    return msgSend(ShaderValidation, self, "shaderValidation")
+}
+@(objc_type=ComputePipelineDescriptor, objc_name="setShaderValidation")
+ComputePipelineDescriptor_setShaderValidation :: #force_inline proc "c" (self: ^ComputePipelineDescriptor, shaderValidation: ShaderValidation) {
+    msgSend(nil, self, "setShaderValidation:", shaderValidation)
+}
 @(objc_type=ComputePipelineDescriptor, objc_name="load", objc_is_class_method=true)
 ComputePipelineDescriptor_load :: #force_inline proc "c" () {
     msgSend(nil, ComputePipelineDescriptor, "load")

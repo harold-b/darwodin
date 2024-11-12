@@ -32,6 +32,14 @@ BinaryArchive_addRenderPipelineFunctionsWithDescriptor :: #force_inline proc "c"
 BinaryArchive_addTileRenderPipelineFunctionsWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^TileRenderPipelineDescriptor, error: ^^NS.Error) -> bool {
     return msgSend(bool, self, "addTileRenderPipelineFunctionsWithDescriptor:error:", descriptor, error)
 }
+@(objc_type=BinaryArchive, objc_name="addMeshRenderPipelineFunctionsWithDescriptor")
+BinaryArchive_addMeshRenderPipelineFunctionsWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^MeshRenderPipelineDescriptor, error: ^^NS.Error) -> bool {
+    return msgSend(bool, self, "addMeshRenderPipelineFunctionsWithDescriptor:error:", descriptor, error)
+}
+@(objc_type=BinaryArchive, objc_name="addLibraryWithDescriptor")
+BinaryArchive_addLibraryWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^StitchedLibraryDescriptor, error: ^^NS.Error) -> bool {
+    return msgSend(bool, self, "addLibraryWithDescriptor:error:", descriptor, error)
+}
 @(objc_type=BinaryArchive, objc_name="serializeToURL")
 BinaryArchive_serializeToURL :: #force_inline proc "c" (self: ^BinaryArchive, url: ^NS.URL, error: ^^NS.Error) -> bool {
     return msgSend(bool, self, "serializeToURL:error:", url, error)

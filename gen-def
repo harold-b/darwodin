@@ -32,16 +32,17 @@ fi
 
 CGEN=${CGEN:-cgen}
 
+XCODE_CLANG_VERSION=16
 sysroot_macos="$(xcrun --sdk macosx --show-sdk-path)"
-xcode_toolchain_include="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include"
+xcode_toolchain_include="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/${XCODE_CLANG_VERSION}/include"
 
 # export sdk_frameworks_macos="${sysroot_macos}/System/Library/Frameworks"
 # export sdk_frameworks_ios="${sysroot_ios}/System/Library/Frameworks"
 
 # frameworks_path=${sdk_frameworks_macos}
 sysroot=${sysroot_macos}
-target=arm64-apple-macos14.5
-target_ios=arm64-apple-ios17.5
+target=arm64-apple-macos15.0
+target_ios=arm64-apple-ios18.0
 out_dir=definitions/macos
 
 if [[ ${use_ios} -eq 1 ]]; then
@@ -73,7 +74,7 @@ fi
   # "-isystem${sysroot}/usr/include/c++/v1" \
   # "-isystem${sysroot}/usr/include" \
   # -DOS_OBJECT_USE_OBJC=0 \
-${CGEN} -ObjC --no-sysroot --sysroot  "${sysroot}" \
+${CGEN} -ObjC --no-sysroot --sysroot "${sysroot}" \
   ${defs[@]} \
   "-isystem${xcode_toolchain_include}" \
   "-F${frameworks_path}/" \

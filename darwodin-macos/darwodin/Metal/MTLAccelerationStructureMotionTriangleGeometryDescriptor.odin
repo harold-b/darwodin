@@ -100,6 +100,14 @@ AccelerationStructureMotionTriangleGeometryDescriptor_transformationMatrixBuffer
 AccelerationStructureMotionTriangleGeometryDescriptor_setTransformationMatrixBufferOffset :: #force_inline proc "c" (self: ^AccelerationStructureMotionTriangleGeometryDescriptor, transformationMatrixBufferOffset: NS.UInteger) {
     msgSend(nil, self, "setTransformationMatrixBufferOffset:", transformationMatrixBufferOffset)
 }
+@(objc_type=AccelerationStructureMotionTriangleGeometryDescriptor, objc_name="transformationMatrixLayout")
+AccelerationStructureMotionTriangleGeometryDescriptor_transformationMatrixLayout :: #force_inline proc "c" (self: ^AccelerationStructureMotionTriangleGeometryDescriptor) -> MatrixLayout {
+    return msgSend(MatrixLayout, self, "transformationMatrixLayout")
+}
+@(objc_type=AccelerationStructureMotionTriangleGeometryDescriptor, objc_name="setTransformationMatrixLayout")
+AccelerationStructureMotionTriangleGeometryDescriptor_setTransformationMatrixLayout :: #force_inline proc "c" (self: ^AccelerationStructureMotionTriangleGeometryDescriptor, transformationMatrixLayout: MatrixLayout) {
+    msgSend(nil, self, "setTransformationMatrixLayout:", transformationMatrixLayout)
+}
 @(objc_type=AccelerationStructureMotionTriangleGeometryDescriptor, objc_name="load", objc_is_class_method=true)
 AccelerationStructureMotionTriangleGeometryDescriptor_load :: #force_inline proc "c" () {
     msgSend(nil, AccelerationStructureMotionTriangleGeometryDescriptor, "load")

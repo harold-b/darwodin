@@ -2,10 +2,24 @@ PackageName: "AppKit"
 ImportName: "AK"
 
 Structs:
+    NSEdgeInsets: AK.EdgeInsets
+    NSAffineTransformStruct: AK.AffineTransformStruct
+    __NSAppleEventManagerSuspension: AK.__NSAppleEventManagerSuspension
     _NSModalSession: AK._NSModalSession
     NSDirectionalEdgeInsets: AK.DirectionalEdgeInsets
 
 Typedefs:
+    NSSize: AK.Size
+    NSSizeArray: AK.SizeArray
+    NSRect: AK.Rect
+    NSRectArray: AK.RectArray
+    NSBackgroundActivityCompletionHandler: AK.BackgroundActivityCompletionHandler
+    NSDistributedNotificationCenterType: AK.DistributedNotificationCenterType
+    NSAppleEventManagerSuspensionID: AK.AppleEventManagerSuspensionID
+    NSUserScriptTaskCompletionHandler: AK.UserScriptTaskCompletionHandler
+    NSUserUnixTaskCompletionHandler: AK.UserUnixTaskCompletionHandler
+    NSUserAppleScriptTaskCompletionHandler: AK.UserAppleScriptTaskCompletionHandler
+    NSUserAutomatorTaskCompletionHandler: AK.UserAutomatorTaskCompletionHandler
     NSColorSpaceName: AK.ColorSpaceName
     NSDeviceDescriptionKey: AK.DeviceDescriptionKey
     NSGraphicsContextAttributeKey: AK.GraphicsContextAttributeKey
@@ -146,6 +160,24 @@ Typedefs:
     NSDataAssetName: AK.DataAssetName
 
 Enums:
+    NSURLHandleStatus: AK.URLHandleStatus
+    NSRectEdge: AK.RectEdge
+    NSAlignmentOptions: AK.AlignmentOptions
+    NSBackgroundActivityResult: AK.BackgroundActivityResult
+    NSNotificationSuspensionBehavior: AK.NotificationSuspensionBehavior
+    NSDistributedNotificationOptions: AK.DistributedNotificationOptions
+    NSTaskTerminationReason: AK.TaskTerminationReason
+    NSXMLNodeOptions: AK.XMLNodeOptions
+    NSXMLNodeKind: AK.XMLNodeKind
+    NSXMLDTDNodeKind: AK.XMLDTDNodeKind
+    NSXMLDocumentContentKind: AK.XMLDocumentContentKind
+    NSAppleEventSendOptions: AK.AppleEventSendOptions
+    NSInsertionPosition: AK.InsertionPosition
+    NSRelativePosition: AK.RelativePosition
+    NSWhoseSubelementIdentifier: AK.WhoseSubelementIdentifier
+    NSSaveOptions: AK.SaveOptions
+    NSTestComparisonOperation: AK.TestComparisonOperation
+    NSUserNotificationActivationType: AK.UserNotificationActivationType
     NSCompositingOperation: AK.CompositingOperation
     NSBackingStoreType: AK.BackingStoreType
     NSWindowOrderingMode: AK.WindowOrderingMode
@@ -433,6 +465,75 @@ Enums:
     NSTextLayoutManagerSegmentOptions: AK.TextLayoutManagerSegmentOptions
 
 ObjCClasses:
+    NSURLHandle: AK.URLHandle
+    NSSocketPort: AK.SocketPort
+    NSAffineTransform: AK.AffineTransform
+    NSAppleEventDescriptor: AK.AppleEventDescriptor
+    NSAppleScript: AK.AppleScript
+    NSArchiver: AK.Archiver
+    NSUnarchiver: AK.Unarchiver
+    NSBackgroundActivityScheduler: AK.BackgroundActivityScheduler
+    NSCalendarDate: AK.CalendarDate
+    NSDistantObject: AK.DistantObject
+    NSPortNameServer: AK.PortNameServer
+    NSDistantObjectRequest: AK.DistantObjectRequest
+    NSDistributedNotificationCenter: AK.DistributedNotificationCenter
+    NSPortCoder: AK.PortCoder
+    NSMachBootstrapServer: AK.MachBootstrapServer
+    NSMessagePortNameServer: AK.MessagePortNameServer
+    NSSocketPortNameServer: AK.SocketPortNameServer
+    NSProtocolChecker: AK.ProtocolChecker
+    NSTask: AK.Task
+    NSXMLElement: AK.XMLElement
+    NSXMLDocument: AK.XMLDocument
+    NSXMLNode: AK.XMLNode
+    NSXMLDTDNode: AK.XMLDTDNode
+    NSXMLDTD: AK.XMLDTD
+    NSURLDownloadInternal: AK.URLDownloadInternal
+    NSURLDownload: AK.URLDownload
+    NSAppleEventManager: AK.AppleEventManager
+    NSClassDescription: AK.ClassDescription
+    NSDistributedLock: AK.DistributedLock
+    NSGarbageCollector: AK.GarbageCollector
+    NSScriptObjectSpecifier: AK.ScriptObjectSpecifier
+    NSScriptCommandDescription: AK.ScriptCommandDescription
+    NSScriptClassDescription: AK.ScriptClassDescription
+    NSScriptCoercionHandler: AK.ScriptCoercionHandler
+    NSScriptCommand: AK.ScriptCommand
+    NSScriptExecutionContext: AK.ScriptExecutionContext
+    NSScriptWhoseTest: AK.ScriptWhoseTest
+    NSIndexSpecifier: AK.IndexSpecifier
+    NSMiddleSpecifier: AK.MiddleSpecifier
+    NSNameSpecifier: AK.NameSpecifier
+    NSPositionalSpecifier: AK.PositionalSpecifier
+    NSPropertySpecifier: AK.PropertySpecifier
+    NSRandomSpecifier: AK.RandomSpecifier
+    NSRangeSpecifier: AK.RangeSpecifier
+    NSRelativeSpecifier: AK.RelativeSpecifier
+    NSUniqueIDSpecifier: AK.UniqueIDSpecifier
+    NSWhoseSpecifier: AK.WhoseSpecifier
+    NSCloneCommand: AK.CloneCommand
+    NSCloseCommand: AK.CloseCommand
+    NSCountCommand: AK.CountCommand
+    NSCreateCommand: AK.CreateCommand
+    NSDeleteCommand: AK.DeleteCommand
+    NSExistsCommand: AK.ExistsCommand
+    NSGetCommand: AK.GetCommand
+    NSMoveCommand: AK.MoveCommand
+    NSQuitCommand: AK.QuitCommand
+    NSSetCommand: AK.SetCommand
+    NSScriptSuiteRegistry: AK.ScriptSuiteRegistry
+    NSSpecifierTest: AK.SpecifierTest
+    NSLogicalTest: AK.LogicalTest
+    NSSpellServer: AK.SpellServer
+    NSImage: AK.Image
+    NSUserNotificationAction: AK.UserNotificationAction
+    NSUserNotification: AK.UserNotification
+    NSUserNotificationCenter: AK.UserNotificationCenter
+    NSUserScriptTask: AK.UserScriptTask
+    NSUserUnixTask: AK.UserUnixTask
+    NSUserAppleScriptTask: AK.UserAppleScriptTask
+    NSUserAutomatorTask: AK.UserAutomatorTask
     NSColor: AK.Color
     NSView: AK.View
     NSWindow: AK.Window
@@ -758,6 +859,11 @@ ObjCClasses:
     NSTextViewportLayoutController: AK.TextViewportLayoutController
 
 ObjCProtocols:
+    NSURLHandleClient: AK.URLHandleClient
+    NSConnectionDelegate: AK.ConnectionDelegate
+    NSURLDownloadDelegate: AK.URLDownloadDelegate
+    NSSpellServerDelegate: AK.SpellServerDelegate
+    NSUserNotificationCenterDelegate: AK.UserNotificationCenterDelegate
     NSAccessibilityElement: AK.AccessibilityElementProtocol
     NSAccessibilityGroup: AK.AccessibilityGroup
     NSAccessibilityButton: AK.AccessibilityButton
@@ -908,6 +1014,33 @@ ObjCProtocols:
 
 
 Functions:
+    ::NSAllocateCollectable: AK.AllocateCollectable
+    ::NSReallocateCollectable: AK.ReallocateCollectable
+    ::NSEqualPoints: AK.EqualPoints
+    ::NSEqualSizes: AK.EqualSizes
+    ::NSEqualRects: AK.EqualRects
+    ::NSIsEmptyRect: AK.IsEmptyRect
+    ::NSEdgeInsetsEqual: AK.EdgeInsetsEqual
+    ::NSInsetRect: AK.InsetRect
+    ::NSIntegralRect: AK.IntegralRect
+    ::NSIntegralRectWithOptions: AK.IntegralRectWithOptions
+    ::NSUnionRect: AK.UnionRect
+    ::NSIntersectionRect: AK.IntersectionRect
+    ::NSOffsetRect: AK.OffsetRect
+    ::NSDivideRect: AK.DivideRect
+    ::NSPointInRect: AK.PointInRect
+    ::NSMouseInRect: AK.MouseInRect
+    ::NSContainsRect: AK.ContainsRect
+    ::NSIntersectsRect: AK.IntersectsRect
+    ::NSStringFromPoint: AK.StringFromPoint
+    ::NSStringFromSize: AK.StringFromSize
+    ::NSStringFromRect: AK.StringFromRect
+    ::NSPointFromString: AK.PointFromString
+    ::NSSizeFromString: AK.SizeFromString
+    ::NSRectFromString: AK.RectFromString
+    ::NSFileTypeForHFSTypeCode: AK.FileTypeForHFSTypeCode
+    ::NSHFSTypeCodeFromFileType: AK.HFSTypeCodeFromFileType
+    ::NSHFSTypeOfFile: AK.HFSTypeOfFile
     ::NSBestDepth: AK.BestDepth
     ::NSPlanarFromDepth: AK.PlanarFromDepth
     ::NSColorSpaceFromDepth: AK.ColorSpaceFromDepth
@@ -1000,6 +1133,67 @@ Functions:
     ::NSOpenGLGetVersion: AK.OpenGLGetVersion
 
 ExternVars:
+    ::NSHTTPPropertyStatusCodeKey: AK.HTTPPropertyStatusCodeKey
+    ::NSHTTPPropertyStatusReasonKey: AK.HTTPPropertyStatusReasonKey
+    ::NSHTTPPropertyServerHTTPVersionKey: AK.HTTPPropertyServerHTTPVersionKey
+    ::NSHTTPPropertyRedirectionHeadersKey: AK.HTTPPropertyRedirectionHeadersKey
+    ::NSHTTPPropertyErrorPageDataKey: AK.HTTPPropertyErrorPageDataKey
+    ::NSHTTPPropertyHTTPProxy: AK.HTTPPropertyHTTPProxy
+    ::NSFTPPropertyUserLoginKey: AK.FTPPropertyUserLoginKey
+    ::NSFTPPropertyUserPasswordKey: AK.FTPPropertyUserPasswordKey
+    ::NSFTPPropertyActiveTransferModeKey: AK.FTPPropertyActiveTransferModeKey
+    ::NSFTPPropertyFileOffsetKey: AK.FTPPropertyFileOffsetKey
+    ::NSFTPPropertyFTPProxy: AK.FTPPropertyFTPProxy
+    ::NSZeroPoint: AK.ZeroPoint
+    ::NSZeroSize: AK.ZeroSize
+    ::NSZeroRect: AK.ZeroRect
+    ::NSEdgeInsetsZero: AK.EdgeInsetsZero
+    ::NSWeekDayNameArray: AK.WeekDayNameArray
+    ::NSShortWeekDayNameArray: AK.ShortWeekDayNameArray
+    ::NSMonthNameArray: AK.MonthNameArray
+    ::NSShortMonthNameArray: AK.ShortMonthNameArray
+    ::NSTimeFormatString: AK.TimeFormatString
+    ::NSDateFormatString: AK.DateFormatString
+    ::NSTimeDateFormatString: AK.TimeDateFormatString
+    ::NSShortTimeDateFormatString: AK.ShortTimeDateFormatString
+    ::NSCurrencySymbol: AK.CurrencySymbol
+    ::NSDecimalSeparator: AK.DecimalSeparator
+    ::NSThousandsSeparator: AK.ThousandsSeparator
+    ::NSDecimalDigits: AK.DecimalDigits
+    ::NSAMPMDesignation: AK.AMPMDesignation
+    ::NSHourNameDesignations: AK.HourNameDesignations
+    ::NSYearMonthWeekDesignations: AK.YearMonthWeekDesignations
+    ::NSEarlierTimeDesignations: AK.EarlierTimeDesignations
+    ::NSLaterTimeDesignations: AK.LaterTimeDesignations
+    ::NSThisDayDesignations: AK.ThisDayDesignations
+    ::NSNextDayDesignations: AK.NextDayDesignations
+    ::NSNextNextDayDesignations: AK.NextNextDayDesignations
+    ::NSPriorDayDesignations: AK.PriorDayDesignations
+    ::NSDateTimeOrdering: AK.DateTimeOrdering
+    ::NSInternationalCurrencyString: AK.InternationalCurrencyString
+    ::NSShortDateFormatString: AK.ShortDateFormatString
+    ::NSPositiveCurrencyFormatString: AK.PositiveCurrencyFormatString
+    ::NSNegativeCurrencyFormatString: AK.NegativeCurrencyFormatString
+    ::NSAppleScriptErrorMessage: AK.AppleScriptErrorMessage
+    ::NSAppleScriptErrorNumber: AK.AppleScriptErrorNumber
+    ::NSAppleScriptErrorAppName: AK.AppleScriptErrorAppName
+    ::NSAppleScriptErrorBriefMessage: AK.AppleScriptErrorBriefMessage
+    ::NSAppleScriptErrorRange: AK.AppleScriptErrorRange
+    ::NSConnectionReplyMode: AK.ConnectionReplyMode
+    ::NSConnectionDidDieNotification: AK.ConnectionDidDieNotification
+    ::NSFailedAuthenticationException: AK.FailedAuthenticationException
+    ::NSConnectionDidInitializeNotification: AK.ConnectionDidInitializeNotification
+    ::NSLocalNotificationCenterType: AK.LocalNotificationCenterType
+    ::NSTaskDidTerminateNotification: AK.TaskDidTerminateNotification
+    ::NSAppleEventTimeOutDefault: AK.AppleEventTimeOutDefault
+    ::NSAppleEventTimeOutNone: AK.AppleEventTimeOutNone
+    ::NSAppleEventManagerWillProcessFirstEventNotification: AK.AppleEventManagerWillProcessFirstEventNotification
+    ::NSClassDescriptionNeededForClassNotification: AK.ClassDescriptionNeededForClassNotification
+    ::NSOperationNotSupportedForKeyException: AK.OperationNotSupportedForKeyException
+    ::NSGrammarRange: AK.GrammarRange
+    ::NSGrammarUserDescription: AK.GrammarUserDescription
+    ::NSGrammarCorrections: AK.GrammarCorrections
+    ::NSUserNotificationDefaultSoundName: AK.UserNotificationDefaultSoundName
     ::NSCalibratedWhiteColorSpace: AK.CalibratedWhiteColorSpace
     ::NSCalibratedRGBColorSpace: AK.CalibratedRGBColorSpace
     ::NSDeviceWhiteColorSpace: AK.DeviceWhiteColorSpace
@@ -2370,6 +2564,93 @@ ExternVars:
     ::NSTextContentStorageUnsupportedAttributeAddedNotification: AK.TextContentStorageUnsupportedAttributeAddedNotification
 
 ConstVars:
+    ::NSScannedOption: AK.ScannedOption
+    ::NSCollectorDisabledOption: AK.CollectorDisabledOption
+    ::kNSL68kContextNotSupported: AK.kNSL68kContextNotSupported
+    ::kNSLSchedulerError: AK.kNSLSchedulerError
+    ::kNSLBadURLSyntax: AK.kNSLBadURLSyntax
+    ::kNSLNoCarbonLib: AK.kNSLNoCarbonLib
+    ::kNSLUILibraryNotAvailable: AK.kNSLUILibraryNotAvailable
+    ::kNSLNotImplementedYet: AK.kNSLNotImplementedYet
+    ::kNSLErrNullPtrError: AK.kNSLErrNullPtrError
+    ::kNSLSomePluginsFailedToLoad: AK.kNSLSomePluginsFailedToLoad
+    ::kNSLNullNeighborhoodPtr: AK.kNSLNullNeighborhoodPtr
+    ::kNSLNoPluginsForSearch: AK.kNSLNoPluginsForSearch
+    ::kNSLSearchAlreadyInProgress: AK.kNSLSearchAlreadyInProgress
+    ::kNSLNoPluginsFound: AK.kNSLNoPluginsFound
+    ::kNSLPluginLoadFailed: AK.kNSLPluginLoadFailed
+    ::kNSLBadProtocolTypeErr: AK.kNSLBadProtocolTypeErr
+    ::kNSLNullListPtr: AK.kNSLNullListPtr
+    ::kNSLBadClientInfoPtr: AK.kNSLBadClientInfoPtr
+    ::kNSLCannotContinueLookup: AK.kNSLCannotContinueLookup
+    ::kNSLBufferTooSmallForData: AK.kNSLBufferTooSmallForData
+    ::kNSLNoContextAvailable: AK.kNSLNoContextAvailable
+    ::kNSLRequestBufferAlreadyInList: AK.kNSLRequestBufferAlreadyInList
+    ::kNSLInvalidPluginSpec: AK.kNSLInvalidPluginSpec
+    ::kNSLNoSupportForService: AK.kNSLNoSupportForService
+    ::kNSLBadNetConnection: AK.kNSLBadNetConnection
+    ::kNSLBadDataTypeErr: AK.kNSLBadDataTypeErr
+    ::kNSLBadServiceTypeErr: AK.kNSLBadServiceTypeErr
+    ::kNSLBadReferenceErr: AK.kNSLBadReferenceErr
+    ::kNSLNoElementsInList: AK.kNSLNoElementsInList
+    ::kNSLInsufficientOTVer: AK.kNSLInsufficientOTVer
+    ::kNSLInsufficientSysVer: AK.kNSLInsufficientSysVer
+    ::kNSLNotInitialized: AK.kNSLNotInitialized
+    ::kNSLInitializationFailed: AK.kNSLInitializationFailed
+    ::kNSpInitializationFailedErr: AK.kNSpInitializationFailedErr
+    ::kNSpAlreadyInitializedErr: AK.kNSpAlreadyInitializedErr
+    ::kNSpTopologyNotSupportedErr: AK.kNSpTopologyNotSupportedErr
+    ::kNSpPipeFullErr: AK.kNSpPipeFullErr
+    ::kNSpHostFailedErr: AK.kNSpHostFailedErr
+    ::kNSpProtocolNotAvailableErr: AK.kNSpProtocolNotAvailableErr
+    ::kNSpInvalidGameRefErr: AK.kNSpInvalidGameRefErr
+    ::kNSpInvalidParameterErr: AK.kNSpInvalidParameterErr
+    ::kNSpOTNotPresentErr: AK.kNSpOTNotPresentErr
+    ::kNSpOTVersionTooOldErr: AK.kNSpOTVersionTooOldErr
+    ::kNSpMemAllocationErr: AK.kNSpMemAllocationErr
+    ::kNSpAlreadyAdvertisingErr: AK.kNSpAlreadyAdvertisingErr
+    ::kNSpNotAdvertisingErr: AK.kNSpNotAdvertisingErr
+    ::kNSpInvalidAddressErr: AK.kNSpInvalidAddressErr
+    ::kNSpFreeQExhaustedErr: AK.kNSpFreeQExhaustedErr
+    ::kNSpRemovePlayerFailedErr: AK.kNSpRemovePlayerFailedErr
+    ::kNSpAddressInUseErr: AK.kNSpAddressInUseErr
+    ::kNSpFeatureNotImplementedErr: AK.kNSpFeatureNotImplementedErr
+    ::kNSpNameRequiredErr: AK.kNSpNameRequiredErr
+    ::kNSpInvalidPlayerIDErr: AK.kNSpInvalidPlayerIDErr
+    ::kNSpInvalidGroupIDErr: AK.kNSpInvalidGroupIDErr
+    ::kNSpNoPlayersErr: AK.kNSpNoPlayersErr
+    ::kNSpNoGroupsErr: AK.kNSpNoGroupsErr
+    ::kNSpNoHostVolunteersErr: AK.kNSpNoHostVolunteersErr
+    ::kNSpCreateGroupFailedErr: AK.kNSpCreateGroupFailedErr
+    ::kNSpAddPlayerFailedErr: AK.kNSpAddPlayerFailedErr
+    ::kNSpInvalidDefinitionErr: AK.kNSpInvalidDefinitionErr
+    ::kNSpInvalidProtocolRefErr: AK.kNSpInvalidProtocolRefErr
+    ::kNSpInvalidProtocolListErr: AK.kNSpInvalidProtocolListErr
+    ::kNSpTimeoutErr: AK.kNSpTimeoutErr
+    ::kNSpGameTerminatedErr: AK.kNSpGameTerminatedErr
+    ::kNSpConnectFailedErr: AK.kNSpConnectFailedErr
+    ::kNSpSendFailedErr: AK.kNSpSendFailedErr
+    ::kNSpMessageTooBigErr: AK.kNSpMessageTooBigErr
+    ::kNSpCantBlockErr: AK.kNSpCantBlockErr
+    ::kNSpJoinFailedErr: AK.kNSpJoinFailedErr
+    ::NSNoScriptError: AK.NoScriptError
+    ::NSReceiverEvaluationScriptError: AK.ReceiverEvaluationScriptError
+    ::NSKeySpecifierEvaluationScriptError: AK.KeySpecifierEvaluationScriptError
+    ::NSArgumentEvaluationScriptError: AK.ArgumentEvaluationScriptError
+    ::NSReceiversCantHandleCommandScriptError: AK.ReceiversCantHandleCommandScriptError
+    ::NSRequiredArgumentsMissingScriptError: AK.RequiredArgumentsMissingScriptError
+    ::NSArgumentsWrongScriptError: AK.ArgumentsWrongScriptError
+    ::NSUnknownKeyScriptError: AK.UnknownKeyScriptError
+    ::NSInternalScriptError: AK.InternalScriptError
+    ::NSOperationNotSupportedForKeyScriptError: AK.OperationNotSupportedForKeyScriptError
+    ::NSCannotCreateScriptCommandError: AK.CannotCreateScriptCommandError
+    ::NSNoSpecifierError: AK.NoSpecifierError
+    ::NSNoTopLevelContainersSpecifierError: AK.NoTopLevelContainersSpecifierError
+    ::NSContainerSpecifierError: AK.ContainerSpecifierError
+    ::NSUnknownKeySpecifierError: AK.UnknownKeySpecifierError
+    ::NSInvalidIndexSpecifierError: AK.InvalidIndexSpecifierError
+    ::NSInternalSpecifierError: AK.InternalSpecifierError
+    ::NSOperationNotSupportedForKeySpecifierError: AK.OperationNotSupportedForKeySpecifierError
     ::NSTextReadInapplicableDocumentTypeError: AK.TextReadInapplicableDocumentTypeError
     ::NSTextWriteInapplicableDocumentTypeError: AK.TextWriteInapplicableDocumentTypeError
     ::NSTextReadWriteErrorMinimum: AK.TextReadWriteErrorMinimum
@@ -2608,6 +2889,8 @@ ConstVars:
     ::NSOpenGLProfileVersionLegacy: AK.OpenGLProfileVersionLegacy
     ::NSOpenGLProfileVersion3_2Core: AK.OpenGLProfileVersion3_2Core
     ::NSOpenGLProfileVersion4_1Core: AK.OpenGLProfileVersion4_1Core
+    ::NSNotificationDeliverImmediately: AK.NotificationDeliverImmediately
+    ::NSNotificationPostToAllSessions: AK.NotificationPostToAllSessions
     ::NSCompositeClear: AK.CompositeClear
     ::NSCompositeCopy: AK.CompositeCopy
     ::NSCompositeSourceOver: AK.CompositeSourceOver

@@ -20,6 +20,10 @@ Device :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+@(objc_type=Device, objc_name="newLogStateWithDescriptor")
+Device_newLogStateWithDescriptor :: #force_inline proc "c" (self: ^Device, descriptor: ^LogStateDescriptor, error: ^^NS.Error) -> ^LogState {
+    return msgSend(^LogState, self, "newLogStateWithDescriptor:error:", descriptor, error)
+}
 @(objc_type=Device, objc_name="newCommandQueue")
 Device_newCommandQueue :: #force_inline proc "c" (self: ^Device) -> ^CommandQueue {
     return msgSend(^CommandQueue, self, "newCommandQueue")
@@ -27,6 +31,10 @@ Device_newCommandQueue :: #force_inline proc "c" (self: ^Device) -> ^CommandQueu
 @(objc_type=Device, objc_name="newCommandQueueWithMaxCommandBufferCount")
 Device_newCommandQueueWithMaxCommandBufferCount :: #force_inline proc "c" (self: ^Device, maxCommandBufferCount: NS.UInteger) -> ^CommandQueue {
     return msgSend(^CommandQueue, self, "newCommandQueueWithMaxCommandBufferCount:", maxCommandBufferCount)
+}
+@(objc_type=Device, objc_name="newCommandQueueWithDescriptor")
+Device_newCommandQueueWithDescriptor :: #force_inline proc "c" (self: ^Device, descriptor: ^CommandQueueDescriptor) -> ^CommandQueue {
+    return msgSend(^CommandQueue, self, "newCommandQueueWithDescriptor:", descriptor)
 }
 @(objc_type=Device, objc_name="heapTextureSizeAndAlignWithDescriptor")
 Device_heapTextureSizeAndAlignWithDescriptor :: #force_inline proc "c" (self: ^Device, desc: ^TextureDescriptor) -> SizeAndAlign {
@@ -315,6 +323,10 @@ Device_heapAccelerationStructureSizeAndAlignWithSize :: #force_inline proc "c" (
 @(objc_type=Device, objc_name="heapAccelerationStructureSizeAndAlignWithDescriptor")
 Device_heapAccelerationStructureSizeAndAlignWithDescriptor :: #force_inline proc "c" (self: ^Device, descriptor: ^AccelerationStructureDescriptor) -> SizeAndAlign {
     return msgSend(SizeAndAlign, self, "heapAccelerationStructureSizeAndAlignWithDescriptor:", descriptor)
+}
+@(objc_type=Device, objc_name="newResidencySetWithDescriptor")
+Device_newResidencySetWithDescriptor :: #force_inline proc "c" (self: ^Device, desc: ^ResidencySetDescriptor, error: ^^NS.Error) -> ^ResidencySet {
+    return msgSend(^ResidencySet, self, "newResidencySetWithDescriptor:error:", desc, error)
 }
 @(objc_type=Device, objc_name="name")
 Device_name :: #force_inline proc "c" (self: ^Device) -> ^NS.String {

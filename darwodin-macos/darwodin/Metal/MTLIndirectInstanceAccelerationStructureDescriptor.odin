@@ -124,6 +124,30 @@ IndirectInstanceAccelerationStructureDescriptor_motionTransformCountBufferOffset
 IndirectInstanceAccelerationStructureDescriptor_setMotionTransformCountBufferOffset :: #force_inline proc "c" (self: ^IndirectInstanceAccelerationStructureDescriptor, motionTransformCountBufferOffset: NS.UInteger) {
     msgSend(nil, self, "setMotionTransformCountBufferOffset:", motionTransformCountBufferOffset)
 }
+@(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_name="instanceTransformationMatrixLayout")
+IndirectInstanceAccelerationStructureDescriptor_instanceTransformationMatrixLayout :: #force_inline proc "c" (self: ^IndirectInstanceAccelerationStructureDescriptor) -> MatrixLayout {
+    return msgSend(MatrixLayout, self, "instanceTransformationMatrixLayout")
+}
+@(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_name="setInstanceTransformationMatrixLayout")
+IndirectInstanceAccelerationStructureDescriptor_setInstanceTransformationMatrixLayout :: #force_inline proc "c" (self: ^IndirectInstanceAccelerationStructureDescriptor, instanceTransformationMatrixLayout: MatrixLayout) {
+    msgSend(nil, self, "setInstanceTransformationMatrixLayout:", instanceTransformationMatrixLayout)
+}
+@(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_name="motionTransformType")
+IndirectInstanceAccelerationStructureDescriptor_motionTransformType :: #force_inline proc "c" (self: ^IndirectInstanceAccelerationStructureDescriptor) -> TransformType {
+    return msgSend(TransformType, self, "motionTransformType")
+}
+@(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_name="setMotionTransformType")
+IndirectInstanceAccelerationStructureDescriptor_setMotionTransformType :: #force_inline proc "c" (self: ^IndirectInstanceAccelerationStructureDescriptor, motionTransformType: TransformType) {
+    msgSend(nil, self, "setMotionTransformType:", motionTransformType)
+}
+@(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_name="motionTransformStride")
+IndirectInstanceAccelerationStructureDescriptor_motionTransformStride :: #force_inline proc "c" (self: ^IndirectInstanceAccelerationStructureDescriptor) -> NS.UInteger {
+    return msgSend(NS.UInteger, self, "motionTransformStride")
+}
+@(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_name="setMotionTransformStride")
+IndirectInstanceAccelerationStructureDescriptor_setMotionTransformStride :: #force_inline proc "c" (self: ^IndirectInstanceAccelerationStructureDescriptor, motionTransformStride: NS.UInteger) {
+    msgSend(nil, self, "setMotionTransformStride:", motionTransformStride)
+}
 @(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_name="load", objc_is_class_method=true)
 IndirectInstanceAccelerationStructureDescriptor_load :: #force_inline proc "c" () {
     msgSend(nil, IndirectInstanceAccelerationStructureDescriptor, "load")

@@ -118,6 +118,14 @@ TileRenderPipelineDescriptor_maxCallStackDepth :: #force_inline proc "c" (self: 
 TileRenderPipelineDescriptor_setMaxCallStackDepth :: #force_inline proc "c" (self: ^TileRenderPipelineDescriptor, maxCallStackDepth: NS.UInteger) {
     msgSend(nil, self, "setMaxCallStackDepth:", maxCallStackDepth)
 }
+@(objc_type=TileRenderPipelineDescriptor, objc_name="shaderValidation")
+TileRenderPipelineDescriptor_shaderValidation :: #force_inline proc "c" (self: ^TileRenderPipelineDescriptor) -> ShaderValidation {
+    return msgSend(ShaderValidation, self, "shaderValidation")
+}
+@(objc_type=TileRenderPipelineDescriptor, objc_name="setShaderValidation")
+TileRenderPipelineDescriptor_setShaderValidation :: #force_inline proc "c" (self: ^TileRenderPipelineDescriptor, shaderValidation: ShaderValidation) {
+    msgSend(nil, self, "setShaderValidation:", shaderValidation)
+}
 @(objc_type=TileRenderPipelineDescriptor, objc_name="load", objc_is_class_method=true)
 TileRenderPipelineDescriptor_load :: #force_inline proc "c" () {
     msgSend(nil, TileRenderPipelineDescriptor, "load")

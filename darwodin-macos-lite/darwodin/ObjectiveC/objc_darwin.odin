@@ -68,7 +68,7 @@ class_get_metaclass :: #force_inline proc "contextless" ( cls: Class ) -> Class 
 //     return transmute(Class)((transmute(^Class)cls)^)
 // }
 
-make_subclasser :: #force_inline proc( $T: typeid, vtable: ^T, impl: proc(cls:Class, vt:^T) ) -> ObjectVTableInfo {
+make_subclasser :: #force_inline proc( vtable: ^$T, impl: proc(cls:Class, vt:^T) ) -> ObjectVTableInfo {
     return ObjectVTableInfo{
         vt   = vtable,
         size = size_of(T),
@@ -127,7 +127,7 @@ register_subclass :: proc(
     superclass: Class, 
     superclass_overrides: Maybe(ObjectVTableInfo) = nil,
     protocol: Maybe(ObjectVTableInfo) = nil,
-    _context: ^runtime.Context = nil
+    _context := context
 ) -> Class {
     assert(superclass != nil)
 
@@ -179,7 +179,7 @@ register_subclass :: proc(
     intrinsics.mem_zero(p_info, size_of(ClassVTInfo))
 
     // Assign the context
-    p_info._context = _context^ if _context != nil else runtime.default_context()
+    p_info._context = _context
 
     if superclass_overrides != nil {
         p_info.super_vt = p_super_vt
