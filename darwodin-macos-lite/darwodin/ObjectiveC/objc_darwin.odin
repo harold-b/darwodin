@@ -34,8 +34,8 @@ foreign ObjC {
 	objc_lookUpClass         :: proc "c" (name: cstring) -> Class ---
     class_getInstanceSize    :: proc "c" (cls: Class) -> c.size_t ---
 
-// foreign ObjC {
-// 	sel_registerName       :: proc "c" (name: cstring) -> SEL ---
+    sel_registerName :: proc "c" (name: cstring) -> SEL ---
+
 
 // 	class_addMethod         :: proc "c" (cls: Class, name: SEL, imp: IMP, types: cstring) -> BOOL ---
 // 	class_getInstanceMethod :: proc "c" (cls: Class, name: SEL) -> Method ---

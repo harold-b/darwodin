@@ -23,6 +23,7 @@ Foundation:
   - NSTimer
   - NSURL
   - NSValue
+  - NSThread
 
 AppKit:
   - NSApplication
