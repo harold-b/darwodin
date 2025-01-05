@@ -19,7 +19,7 @@ Cpp:
 
 
   ExportMethods:
-    - ^::GC.+
+    - ^::CG.+
 
   ExportVars:
     - ^::k?CG.+
@@ -60,6 +60,7 @@ Odin:
         NSObject: NSObject
         MTLDevice: MTLDevice
         _cl_device_id: cl_device_id
+        io_service_t: CF.mach_port_t
 
 
   # Symbol Transformers
