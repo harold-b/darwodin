@@ -10,6 +10,7 @@ darwodin_base_frameworks=(
   QuartzCore
   Metal
   MetalKit
+  MetalFX
   GameController
   ModelIO
 )
