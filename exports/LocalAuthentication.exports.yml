@@ -1,0 +1,50 @@
+PackageName: "LocalAuthentication"
+ImportName: "LA"
+
+Structs:
+
+Typedefs:
+
+Enums:
+    LABiometryType: LA.BiometryType
+    LACompanionType: LA.CompanionType
+    LAPolicy: LA.Policy
+    LACredentialType: LA.CredentialType
+    LAAccessControlOperation: LA.AccessControlOperation
+    LAError: LA.Error
+    LARightState: LA.RightState
+
+ObjCClasses:
+    LADomainStateBiometry: LA.DomainStateBiometry
+    LADomainStateCompanion: LA.DomainStateCompanion
+    LADomainState: LA.DomainState
+    LAContext: LA.Context
+    LAEnvironmentMechanism: LA.EnvironmentMechanism
+    LAEnvironmentMechanismBiometry: LA.EnvironmentMechanismBiometry
+    LAEnvironmentMechanismCompanion: LA.EnvironmentMechanismCompanion
+    LAEnvironmentMechanismUserPassword: LA.EnvironmentMechanismUserPassword
+    LAEnvironmentState: LA.EnvironmentState
+    LAEnvironment: LA.Environment
+    LAAuthenticationRequirement: LA.AuthenticationRequirement
+    LARight: LA.Right
+    LASecret: LA.Secret
+    LAPrivateKey: LA.PrivateKey
+    LAPersistedRight: LA.PersistedRight
+    LAPublicKey: LA.PublicKey
+    LABiometryFallbackRequirement: LA.BiometryFallbackRequirement
+    LAExtendedRequirement: LA.ExtendedRequirement
+    LARightStore: LA.RightStore
+
+ObjCProtocols:
+    LAEnvironmentObserver: LA.EnvironmentObserver
+    LARightDelegate: LA.RightDelegate
+
+
+Functions:
+
+ExternVars:
+    ::LATouchIDAuthenticationMaximumAllowableReuseDuration: LA.TouchIDAuthenticationMaximumAllowableReuseDuration
+    ::LAErrorDomain: LA.ErrorDomain
+
+ConstVars:
+

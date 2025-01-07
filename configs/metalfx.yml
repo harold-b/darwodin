@@ -56,19 +56,12 @@ Odin:
 
   # Symbol Transformers
   EnumTransforms:
-  # - Type: Options$
-  #   Transforms:
-  #     # - Kind: RemoveTypeWordsFromElements
-  #     - Kind: RemovePartialTypeNamePrefix
-  #     - Kind: RemoveUnderscorePrefix
-  #     - Kind: UnderscoreNumbers
-
-  - Type: .*
-    Transforms:
-    - Kind: RemoveTypeWordsFromElements
-    - Kind: RemovePartialTypeNamePrefix
-    - Kind: RemoveUnderscorePrefix
-    - Kind: UnderscoreNumbers
+    - Type: .*
+      Transforms:
+      - Kind: RemoveTypeWordsFromElements
+      - Kind: RemovePartialTypeNamePrefix
+      - Kind: RemoveUnderscorePrefix
+      - Kind: UnderscoreNumbers
 
   TypeTransforms:
     - Type: ^(MTLFX).+

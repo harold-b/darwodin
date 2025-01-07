@@ -1,0 +1,88 @@
+---
+
+Defs: ../definitions/macos/localauthentication.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*LA.+
+
+  ExportMethods:
+    - ^::LA.+
+
+  ExportVars:
+    - ^::k?LA.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/Foundation.exports.yml
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : LocalAuthentication
+      Export: LA
+      DarwinLinkLibs: [system:LocalAuthentication.framework]
+      Filter: .*
+
+      # Imports:
+      #   - 
+
+      # TypeMap:
+
+
+  # Symbol Transformers
+  EnumTransforms:
+    - Type: .*
+      Transforms:
+      - Kind: RemoveTypeWordsFromElements
+      - Kind: RemovePartialTypeNamePrefix
+      - Kind: RemoveUnderscorePrefix
+      - Kind: UnderscoreNumbers
+
+  TypeTransforms:
+    - Type: ^(LA).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: (Flag|Option|Mask)$  # Transforms for bit_set types
+      Transforms:
+      - Kind  : AppendSuffix
+        Source: s
+
+  BitSetMap:
+    - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: s
+ 
+  ProcTransforms:
+  - Type: ^(_*LA).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+
+  VarTransforms:
+    - Type: ^(_*LA).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

@@ -69,13 +69,19 @@ header="$(mktemp).h"
 echo "#import <${include}/${include}.h>" > $header
 
 defs=()
-if [[ "$framework_lower" != "gamecontroller" ]]; then
+# Avoid error "error: property with 'retain (or strong)' attribute must be of object type"
+# with dispatch_queue_t
+if [[ "$framework_lower" == "gamekit" ]]; then
+  defs+=(-DOS_OBJECT_USE_OBJC=1)
+elif [[ "$framework_lower" != "gamecontroller" ]]; then
   defs+=(-DOS_OBJECT_USE_OBJC=0)
 fi
 
+
   # "-isystem${sysroot}/usr/include/c++/v1" \
   # "-isystem${sysroot}/usr/include" \
-  # -DOS_OBJECT_USE_OBJC=0 \
+  # -DOS_OBJECT_USE_OBJC=1 \
+
 echo " > ${out_dir}/${out_file}"
 ${CGEN} -ObjC --no-sysroot --sysroot "${sysroot}" \
   ${defs[@]} \

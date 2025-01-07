@@ -1,0 +1,88 @@
+PackageName: "CoreHaptics"
+ImportName: "CH"
+
+Structs:
+
+Typedefs:
+    CHHapticEventParameterID: CH.HapticEventParameterID
+    CHHapticDynamicParameterID: CH.HapticDynamicParameterID
+    CHHapticEventType: CH.HapticEventType
+    CHHapticAudioResourceID: CH.HapticAudioResourceID
+    CHHapticAdvancedPatternPlayerCompletionHandler: CH.HapticAdvancedPatternPlayerCompletionHandler
+    CHHapticCompletionHandler: CH.HapticCompletionHandler
+    CHHapticEngineFinishedHandler: CH.HapticEngineFinishedHandler
+    CHHapticEngineStoppedHandler: CH.HapticEngineStoppedHandler
+    CHHapticEngineResetHandler: CH.HapticEngineResetHandler
+    CHHapticAudioResourceKey: CH.HapticAudioResourceKey
+    CHHapticPatternKey: CH.HapticPatternKey
+
+Enums:
+    CHHapticErrorCode: CH.HapticErrorCode
+    CHHapticEngineFinishedAction: CH.HapticEngineFinishedAction
+    CHHapticEngineStoppedReason: CH.HapticEngineStoppedReason
+
+ObjCClasses:
+    CHHapticEventParameter: CH.HapticEventParameter
+    CHHapticDynamicParameter: CH.HapticDynamicParameter
+    CHHapticParameterCurveControlPoint: CH.HapticParameterCurveControlPoint
+    CHHapticParameterCurve: CH.HapticParameterCurve
+    CHHapticEvent: CH.HapticEvent
+    CHHapticPattern: CH.HapticPattern
+    CHHapticEngine: CH.HapticEngine
+
+ObjCProtocols:
+    CHHapticParameterAttributes: CH.HapticParameterAttributes
+    CHHapticDeviceCapability: CH.HapticDeviceCapability
+    CHHapticPatternPlayer: CH.HapticPatternPlayer
+    CHHapticAdvancedPatternPlayer: CH.HapticAdvancedPatternPlayer
+
+
+Functions:
+
+ExternVars:
+    ::CHHapticEventParameterIDHapticIntensity: CH.HapticEventParameterIDHapticIntensity
+    ::CHHapticEventParameterIDHapticSharpness: CH.HapticEventParameterIDHapticSharpness
+    ::CHHapticEventParameterIDAttackTime: CH.HapticEventParameterIDAttackTime
+    ::CHHapticEventParameterIDDecayTime: CH.HapticEventParameterIDDecayTime
+    ::CHHapticEventParameterIDReleaseTime: CH.HapticEventParameterIDReleaseTime
+    ::CHHapticEventParameterIDSustained: CH.HapticEventParameterIDSustained
+    ::CHHapticEventParameterIDAudioVolume: CH.HapticEventParameterIDAudioVolume
+    ::CHHapticEventParameterIDAudioPitch: CH.HapticEventParameterIDAudioPitch
+    ::CHHapticEventParameterIDAudioPan: CH.HapticEventParameterIDAudioPan
+    ::CHHapticEventParameterIDAudioBrightness: CH.HapticEventParameterIDAudioBrightness
+    ::CHHapticDynamicParameterIDHapticIntensityControl: CH.HapticDynamicParameterIDHapticIntensityControl
+    ::CHHapticDynamicParameterIDHapticSharpnessControl: CH.HapticDynamicParameterIDHapticSharpnessControl
+    ::CHHapticDynamicParameterIDHapticAttackTimeControl: CH.HapticDynamicParameterIDHapticAttackTimeControl
+    ::CHHapticDynamicParameterIDHapticDecayTimeControl: CH.HapticDynamicParameterIDHapticDecayTimeControl
+    ::CHHapticDynamicParameterIDHapticReleaseTimeControl: CH.HapticDynamicParameterIDHapticReleaseTimeControl
+    ::CHHapticDynamicParameterIDAudioVolumeControl: CH.HapticDynamicParameterIDAudioVolumeControl
+    ::CHHapticDynamicParameterIDAudioPanControl: CH.HapticDynamicParameterIDAudioPanControl
+    ::CHHapticDynamicParameterIDAudioBrightnessControl: CH.HapticDynamicParameterIDAudioBrightnessControl
+    ::CHHapticDynamicParameterIDAudioPitchControl: CH.HapticDynamicParameterIDAudioPitchControl
+    ::CHHapticDynamicParameterIDAudioAttackTimeControl: CH.HapticDynamicParameterIDAudioAttackTimeControl
+    ::CHHapticDynamicParameterIDAudioDecayTimeControl: CH.HapticDynamicParameterIDAudioDecayTimeControl
+    ::CHHapticDynamicParameterIDAudioReleaseTimeControl: CH.HapticDynamicParameterIDAudioReleaseTimeControl
+    ::CHHapticEventTypeHapticTransient: CH.HapticEventTypeHapticTransient
+    ::CHHapticEventTypeHapticContinuous: CH.HapticEventTypeHapticContinuous
+    ::CHHapticEventTypeAudioContinuous: CH.HapticEventTypeAudioContinuous
+    ::CHHapticEventTypeAudioCustom: CH.HapticEventTypeAudioCustom
+    ::CHHapticAudioResourceKeyUseVolumeEnvelope: CH.HapticAudioResourceKeyUseVolumeEnvelope
+    ::CHHapticAudioResourceKeyLoopEnabled: CH.HapticAudioResourceKeyLoopEnabled
+    ::CHHapticPatternKeyVersion: CH.HapticPatternKeyVersion
+    ::CHHapticPatternKeyPattern: CH.HapticPatternKeyPattern
+    ::CHHapticPatternKeyEvent: CH.HapticPatternKeyEvent
+    ::CHHapticPatternKeyEventType: CH.HapticPatternKeyEventType
+    ::CHHapticPatternKeyTime: CH.HapticPatternKeyTime
+    ::CHHapticPatternKeyEventDuration: CH.HapticPatternKeyEventDuration
+    ::CHHapticPatternKeyEventWaveformPath: CH.HapticPatternKeyEventWaveformPath
+    ::CHHapticPatternKeyEventParameters: CH.HapticPatternKeyEventParameters
+    ::CHHapticPatternKeyEventWaveformUseVolumeEnvelope: CH.HapticPatternKeyEventWaveformUseVolumeEnvelope
+    ::CHHapticPatternKeyEventWaveformLoopEnabled: CH.HapticPatternKeyEventWaveformLoopEnabled
+    ::CHHapticPatternKeyParameter: CH.HapticPatternKeyParameter
+    ::CHHapticPatternKeyParameterID: CH.HapticPatternKeyParameterID
+    ::CHHapticPatternKeyParameterValue: CH.HapticPatternKeyParameterValue
+    ::CHHapticPatternKeyParameterCurve: CH.HapticPatternKeyParameterCurve
+    ::CHHapticPatternKeyParameterCurveControlPoints: CH.HapticPatternKeyParameterCurveControlPoints
+
+ConstVars:
+

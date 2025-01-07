@@ -13,6 +13,10 @@ darwodin_base_frameworks=(
   MetalFX
   GameController
   ModelIO
+  LocalAuthentication
+  CloudKit
+  GameKit
+  CoreHaptics
 )
 
 darwodin_macos_frameworks=(
