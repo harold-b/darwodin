@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -450,9 +451,9 @@ Document_keepBackupFile :: #force_inline proc "c" (self: ^Document) -> bool {
 Document_backupFileURL :: #force_inline proc "c" (self: ^Document) -> ^NS.URL {
     return msgSend(^NS.URL, self, "backupFileURL")
 }
-@(objc_type=Document, objc_name="shouldRunSavePanelWithAccessoryView")
-Document_shouldRunSavePanelWithAccessoryView :: #force_inline proc "c" (self: ^Document) -> bool {
-    return msgSend(bool, self, "shouldRunSavePanelWithAccessoryView")
+@(objc_type=Document, objc_name="savePanelShowsFileFormatsControl")
+Document_savePanelShowsFileFormatsControl :: #force_inline proc "c" (self: ^Document) -> bool {
+    return msgSend(bool, self, "savePanelShowsFileFormatsControl")
 }
 @(objc_type=Document, objc_name="fileNameExtensionWasHiddenInLastRunSavePanel")
 Document_fileNameExtensionWasHiddenInLastRunSavePanel :: #force_inline proc "c" (self: ^Document) -> bool {
@@ -665,6 +666,10 @@ Document_writeToURL_ofType :: #force_inline proc "c" (self: ^Document, url: ^NS.
 @(objc_type=Document, objc_name="writeWithBackupToFile")
 Document_writeWithBackupToFile :: #force_inline proc "c" (self: ^Document, fullDocumentPath: ^NS.String, documentTypeName: ^NS.String, saveOperationType: SaveOperationType) -> bool {
     return msgSend(bool, self, "writeWithBackupToFile:ofType:saveOperation:", fullDocumentPath, documentTypeName, saveOperationType)
+}
+@(objc_type=Document, objc_name="shouldRunSavePanelWithAccessoryView")
+Document_shouldRunSavePanelWithAccessoryView :: #force_inline proc "c" (self: ^Document) -> bool {
+    return msgSend(bool, self, "shouldRunSavePanelWithAccessoryView")
 }
 @(objc_type=Document, objc_name="updateUserActivityState")
 Document_updateUserActivityState :: #force_inline proc "c" (self: ^Document, activity: ^NS.UserActivity) {
@@ -1031,7 +1036,7 @@ Document_VTable :: struct {
     autosavingIsImplicitlyCancellable: proc(self: ^Document) -> bool,
     keepBackupFile: proc(self: ^Document) -> bool,
     backupFileURL: proc(self: ^Document) -> ^NS.URL,
-    shouldRunSavePanelWithAccessoryView: proc(self: ^Document) -> bool,
+    savePanelShowsFileFormatsControl: proc(self: ^Document) -> bool,
     fileNameExtensionWasHiddenInLastRunSavePanel: proc(self: ^Document) -> bool,
     fileTypeFromLastRunSavePanel: proc(self: ^Document) -> ^NS.String,
     hasUnautosavedChanges: proc(self: ^Document) -> bool,
@@ -1085,6 +1090,7 @@ Document_VTable :: struct {
     writeToFile_ofType_originalFile_saveOperation: proc(self: ^Document, fullDocumentPath: ^NS.String, documentTypeName: ^NS.String, fullOriginalDocumentPath: ^NS.String, saveOperationType: SaveOperationType) -> bool,
     writeToURL_ofType: proc(self: ^Document, url: ^NS.URL, type: ^NS.String) -> bool,
     writeWithBackupToFile: proc(self: ^Document, fullDocumentPath: ^NS.String, documentTypeName: ^NS.String, saveOperationType: SaveOperationType) -> bool,
+    shouldRunSavePanelWithAccessoryView: proc(self: ^Document) -> bool,
     updateUserActivityState: proc(self: ^Document, activity: ^NS.UserActivity),
     userActivity: proc(self: ^Document) -> ^NS.UserActivity,
     setUserActivity: proc(self: ^Document, userActivity: ^NS.UserActivity),
@@ -2214,15 +2220,15 @@ Document_odin_extend :: proc(cls: Class, vt: ^Document_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("backupFileURL"), auto_cast backupFileURL, "@@:") do panic("Failed to register objC method.")
     }
-    if vt.shouldRunSavePanelWithAccessoryView != nil {
-        shouldRunSavePanelWithAccessoryView :: proc "c" (self: ^Document, _: SEL) -> bool {
+    if vt.savePanelShowsFileFormatsControl != nil {
+        savePanelShowsFileFormatsControl :: proc "c" (self: ^Document, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^Document_VTable)vt_ctx.super_vt).shouldRunSavePanelWithAccessoryView(self)
+            return (cast(^Document_VTable)vt_ctx.super_vt).savePanelShowsFileFormatsControl(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldRunSavePanelWithAccessoryView"), auto_cast shouldRunSavePanelWithAccessoryView, "B@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("savePanelShowsFileFormatsControl"), auto_cast savePanelShowsFileFormatsControl, "B@:") do panic("Failed to register objC method.")
     }
     if vt.fileNameExtensionWasHiddenInLastRunSavePanel != nil {
         fileNameExtensionWasHiddenInLastRunSavePanel :: proc "c" (self: ^Document, _: SEL) -> bool {
@@ -2753,6 +2759,16 @@ Document_odin_extend :: proc(cls: Class, vt: ^Document_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("writeWithBackupToFile:ofType:saveOperation:"), auto_cast writeWithBackupToFile, "B@:@@L") do panic("Failed to register objC method.")
+    }
+    if vt.shouldRunSavePanelWithAccessoryView != nil {
+        shouldRunSavePanelWithAccessoryView :: proc "c" (self: ^Document, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Document_VTable)vt_ctx.super_vt).shouldRunSavePanelWithAccessoryView(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldRunSavePanelWithAccessoryView"), auto_cast shouldRunSavePanelWithAccessoryView, "B@:") do panic("Failed to register objC method.")
     }
     if vt.updateUserActivityState != nil {
         updateUserActivityState :: proc "c" (self: ^Document, _: SEL, activity: ^NS.UserActivity) {

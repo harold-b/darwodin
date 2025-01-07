@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -86,6 +87,14 @@ SavePanel_allowsOtherFileTypes :: #force_inline proc "c" (self: ^SavePanel) -> b
 @(objc_type=SavePanel, objc_name="setAllowsOtherFileTypes")
 SavePanel_setAllowsOtherFileTypes :: #force_inline proc "c" (self: ^SavePanel, allowsOtherFileTypes: bool) {
     msgSend(nil, self, "setAllowsOtherFileTypes:", allowsOtherFileTypes)
+}
+@(objc_type=SavePanel, objc_name="currentContentType")
+SavePanel_currentContentType :: #force_inline proc "c" (self: ^SavePanel) -> ^UTType {
+    return msgSend(^UTType, self, "currentContentType")
+}
+@(objc_type=SavePanel, objc_name="setCurrentContentType")
+SavePanel_setCurrentContentType :: #force_inline proc "c" (self: ^SavePanel, currentContentType: ^UTType) {
+    msgSend(nil, self, "setCurrentContentType:", currentContentType)
 }
 @(objc_type=SavePanel, objc_name="accessoryView")
 SavePanel_accessoryView :: #force_inline proc "c" (self: ^SavePanel) -> ^View {
@@ -202,6 +211,14 @@ SavePanel_tagNames :: #force_inline proc "c" (self: ^SavePanel) -> ^NS.Array {
 @(objc_type=SavePanel, objc_name="setTagNames")
 SavePanel_setTagNames :: #force_inline proc "c" (self: ^SavePanel, tagNames: ^NS.Array) {
     msgSend(nil, self, "setTagNames:", tagNames)
+}
+@(objc_type=SavePanel, objc_name="showsContentTypes")
+SavePanel_showsContentTypes :: #force_inline proc "c" (self: ^SavePanel) -> bool {
+    return msgSend(bool, self, "showsContentTypes")
+}
+@(objc_type=SavePanel, objc_name="setShowsContentTypes")
+SavePanel_setShowsContentTypes :: #force_inline proc "c" (self: ^SavePanel, showsContentTypes: bool) {
+    msgSend(nil, self, "setShowsContentTypes:", showsContentTypes)
 }
 @(objc_type=SavePanel, objc_name="filename")
 SavePanel_filename :: #force_inline proc "c" (self: ^SavePanel) -> ^NS.String {
@@ -467,6 +484,8 @@ SavePanel_VTable :: struct {
     setAllowedContentTypes: proc(self: ^SavePanel, allowedContentTypes: ^NS.Array),
     allowsOtherFileTypes: proc(self: ^SavePanel) -> bool,
     setAllowsOtherFileTypes: proc(self: ^SavePanel, allowsOtherFileTypes: bool),
+    currentContentType: proc(self: ^SavePanel) -> ^UTType,
+    setCurrentContentType: proc(self: ^SavePanel, currentContentType: ^UTType),
     accessoryView: proc(self: ^SavePanel) -> ^View,
     setAccessoryView: proc(self: ^SavePanel, accessoryView: ^View),
     delegate: proc(self: ^SavePanel) -> ^OpenSavePanelDelegate,
@@ -496,6 +515,8 @@ SavePanel_VTable :: struct {
     setShowsTagField: proc(self: ^SavePanel, showsTagField: bool),
     tagNames: proc(self: ^SavePanel) -> ^NS.Array,
     setTagNames: proc(self: ^SavePanel, tagNames: ^NS.Array),
+    showsContentTypes: proc(self: ^SavePanel) -> bool,
+    setShowsContentTypes: proc(self: ^SavePanel, showsContentTypes: bool),
     filename: proc(self: ^SavePanel) -> ^NS.String,
     directory: proc(self: ^SavePanel) -> ^NS.String,
     setDirectory: proc(self: ^SavePanel, path: ^NS.String),
@@ -724,6 +745,26 @@ SavePanel_odin_extend :: proc(cls: Class, vt: ^SavePanel_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsOtherFileTypes:"), auto_cast setAllowsOtherFileTypes, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.currentContentType != nil {
+        currentContentType :: proc "c" (self: ^SavePanel, _: SEL) -> ^UTType {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SavePanel_VTable)vt_ctx.super_vt).currentContentType(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("currentContentType"), auto_cast currentContentType, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCurrentContentType != nil {
+        setCurrentContentType :: proc "c" (self: ^SavePanel, _: SEL, currentContentType: ^UTType) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^SavePanel_VTable)vt_ctx.super_vt).setCurrentContentType(self, currentContentType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCurrentContentType:"), auto_cast setCurrentContentType, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.accessoryView != nil {
         accessoryView :: proc "c" (self: ^SavePanel, _: SEL) -> ^View {
@@ -1014,6 +1055,26 @@ SavePanel_odin_extend :: proc(cls: Class, vt: ^SavePanel_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTagNames:"), auto_cast setTagNames, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.showsContentTypes != nil {
+        showsContentTypes :: proc "c" (self: ^SavePanel, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SavePanel_VTable)vt_ctx.super_vt).showsContentTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showsContentTypes"), auto_cast showsContentTypes, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setShowsContentTypes != nil {
+        setShowsContentTypes :: proc "c" (self: ^SavePanel, _: SEL, showsContentTypes: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^SavePanel_VTable)vt_ctx.super_vt).setShowsContentTypes(self, showsContentTypes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsContentTypes:"), auto_cast setShowsContentTypes, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.filename != nil {
         filename :: proc "c" (self: ^SavePanel, _: SEL) -> ^NS.String {

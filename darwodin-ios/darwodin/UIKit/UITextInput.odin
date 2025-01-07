@@ -23,8 +23,8 @@ TextInput :: struct { using _: intrinsics.objc_object,
 TextInput_textInRange :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange) -> ^NS.String {
     return msgSend(^NS.String, self, "textInRange:", range)
 }
-@(objc_type=TextInput, objc_name="replaceRange")
-TextInput_replaceRange :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange, text: ^NS.String) {
+@(objc_type=TextInput, objc_name="replaceRange_withText")
+TextInput_replaceRange_withText :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange, text: ^NS.String) {
     msgSend(nil, self, "replaceRange:withText:", range, text)
 }
 @(objc_type=TextInput, objc_name="setMarkedText")
@@ -175,6 +175,30 @@ TextInput_willPresentEditMenuWithAnimator :: #force_inline proc "c" (self: ^Text
 TextInput_willDismissEditMenuWithAnimator :: #force_inline proc "c" (self: ^TextInput, animator: ^EditMenuInteractionAnimating) {
     msgSend(nil, self, "willDismissEditMenuWithAnimator:", animator)
 }
+@(objc_type=TextInput, objc_name="insertAdaptiveImageGlyph")
+TextInput_insertAdaptiveImageGlyph :: #force_inline proc "c" (self: ^TextInput, adaptiveImageGlyph: ^NSAdaptiveImageGlyph, replacementRange: ^TextRange) {
+    msgSend(nil, self, "insertAdaptiveImageGlyph:replacementRange:", adaptiveImageGlyph, replacementRange)
+}
+@(objc_type=TextInput, objc_name="insertAttributedText")
+TextInput_insertAttributedText :: #force_inline proc "c" (self: ^TextInput, string: ^NS.AttributedString) {
+    msgSend(nil, self, "insertAttributedText:", string)
+}
+@(objc_type=TextInput, objc_name="attributedTextInRange")
+TextInput_attributedTextInRange :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange) -> ^NS.AttributedString {
+    return msgSend(^NS.AttributedString, self, "attributedTextInRange:", range)
+}
+@(objc_type=TextInput, objc_name="replaceRange_withAttributedText")
+TextInput_replaceRange_withAttributedText :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange, attributedText: ^NS.AttributedString) {
+    msgSend(nil, self, "replaceRange:withAttributedText:", range, attributedText)
+}
+@(objc_type=TextInput, objc_name="willPresentWritingTools")
+TextInput_willPresentWritingTools :: #force_inline proc "c" (self: ^TextInput) {
+    msgSend(nil, self, "willPresentWritingTools")
+}
+@(objc_type=TextInput, objc_name="didDismissWritingTools")
+TextInput_didDismissWritingTools :: #force_inline proc "c" (self: ^TextInput) {
+    msgSend(nil, self, "didDismissWritingTools")
+}
 @(objc_type=TextInput, objc_name="selectedTextRange")
 TextInput_selectedTextRange :: #force_inline proc "c" (self: ^TextInput) -> ^TextRange {
     return msgSend(^TextRange, self, "selectedTextRange")
@@ -231,6 +255,18 @@ TextInput_setSelectionAffinity :: #force_inline proc "c" (self: ^TextInput, sele
 TextInput_insertDictationResultPlaceholder :: #force_inline proc "c" (self: ^TextInput) -> id {
     return msgSend(id, self, "insertDictationResultPlaceholder")
 }
+@(objc_type=TextInput, objc_name="supportsAdaptiveImageGlyph")
+TextInput_supportsAdaptiveImageGlyph :: #force_inline proc "c" (self: ^TextInput) -> bool {
+    return msgSend(bool, self, "supportsAdaptiveImageGlyph")
+}
+@(objc_type=TextInput, objc_name="setSupportsAdaptiveImageGlyph")
+TextInput_setSupportsAdaptiveImageGlyph :: #force_inline proc "c" (self: ^TextInput, supportsAdaptiveImageGlyph: bool) {
+    msgSend(nil, self, "setSupportsAdaptiveImageGlyph:", supportsAdaptiveImageGlyph)
+}
+@(objc_type=TextInput, objc_name="isEditable")
+TextInput_isEditable :: #force_inline proc "c" (self: ^TextInput) -> bool {
+    return msgSend(bool, self, "isEditable")
+}
 @(objc_type=TextInput, objc_name="positionFromPosition")
 TextInput_positionFromPosition :: proc {
     TextInput_positionFromPosition_offset,
@@ -249,9 +285,15 @@ TextInput_positionWithinRange :: proc {
     TextInput_positionWithinRange_atCharacterOffset,
 }
 
+@(objc_type=TextInput, objc_name="replaceRange")
+TextInput_replaceRange :: proc {
+    TextInput_replaceRange_withText,
+    TextInput_replaceRange_withAttributedText,
+}
+
 TextInput_VTable :: struct {
     textInRange: proc(self: ^TextInput, range: ^TextRange) -> ^NS.String,
-    replaceRange: proc(self: ^TextInput, range: ^TextRange, text: ^NS.String),
+    replaceRange_withText: proc(self: ^TextInput, range: ^TextRange, text: ^NS.String),
     setMarkedText: proc(self: ^TextInput, markedText: ^NS.String, selectedRange: NS._NSRange),
     unmarkText: proc(self: ^TextInput),
     textRangeFromPosition: proc(self: ^TextInput, fromPosition: ^TextPosition, toPosition: ^TextPosition) -> ^TextRange,
@@ -289,6 +331,12 @@ TextInput_VTable :: struct {
     editMenuForTextRange: proc(self: ^TextInput, textRange: ^TextRange, suggestedActions: ^NS.Array) -> ^Menu,
     willPresentEditMenuWithAnimator: proc(self: ^TextInput, animator: ^EditMenuInteractionAnimating),
     willDismissEditMenuWithAnimator: proc(self: ^TextInput, animator: ^EditMenuInteractionAnimating),
+    insertAdaptiveImageGlyph: proc(self: ^TextInput, adaptiveImageGlyph: ^NSAdaptiveImageGlyph, replacementRange: ^TextRange),
+    insertAttributedText: proc(self: ^TextInput, string: ^NS.AttributedString),
+    attributedTextInRange: proc(self: ^TextInput, range: ^TextRange) -> ^NS.AttributedString,
+    replaceRange_withAttributedText: proc(self: ^TextInput, range: ^TextRange, attributedText: ^NS.AttributedString),
+    willPresentWritingTools: proc(self: ^TextInput),
+    didDismissWritingTools: proc(self: ^TextInput),
     selectedTextRange: proc(self: ^TextInput) -> ^TextRange,
     setSelectedTextRange: proc(self: ^TextInput, selectedTextRange: ^TextRange),
     markedTextRange: proc(self: ^TextInput) -> ^TextRange,
@@ -303,6 +351,9 @@ TextInput_VTable :: struct {
     selectionAffinity: proc(self: ^TextInput) -> TextStorageDirection,
     setSelectionAffinity: proc(self: ^TextInput, selectionAffinity: TextStorageDirection),
     insertDictationResultPlaceholder: proc(self: ^TextInput) -> id,
+    supportsAdaptiveImageGlyph: proc(self: ^TextInput) -> bool,
+    setSupportsAdaptiveImageGlyph: proc(self: ^TextInput, supportsAdaptiveImageGlyph: bool),
+    isEditable: proc(self: ^TextInput) -> bool,
 }
 
 TextInput_odin_extend :: proc(cls: Class, vt: ^TextInput_VTable) {
@@ -319,15 +370,15 @@ TextInput_odin_extend :: proc(cls: Class, vt: ^TextInput_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textInRange:"), auto_cast textInRange, "@@:@") do panic("Failed to register objC method.")
     }
-    if vt.replaceRange != nil {
-        replaceRange :: proc "c" (self: ^TextInput, _: SEL, range: ^TextRange, text: ^NS.String) {
+    if vt.replaceRange_withText != nil {
+        replaceRange_withText :: proc "c" (self: ^TextInput, _: SEL, range: ^TextRange, text: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^TextInput_VTable)vt_ctx.protocol_vt).replaceRange(self, range, text)
+            (cast(^TextInput_VTable)vt_ctx.protocol_vt).replaceRange_withText(self, range, text)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceRange:withText:"), auto_cast replaceRange, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceRange:withText:"), auto_cast replaceRange_withText, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.setMarkedText != nil {
         setMarkedText :: proc "c" (self: ^TextInput, _: SEL, markedText: ^NS.String, selectedRange: NS._NSRange) {
@@ -699,6 +750,66 @@ TextInput_odin_extend :: proc(cls: Class, vt: ^TextInput_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("willDismissEditMenuWithAnimator:"), auto_cast willDismissEditMenuWithAnimator, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.insertAdaptiveImageGlyph != nil {
+        insertAdaptiveImageGlyph :: proc "c" (self: ^TextInput, _: SEL, adaptiveImageGlyph: ^NSAdaptiveImageGlyph, replacementRange: ^TextRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInput_VTable)vt_ctx.protocol_vt).insertAdaptiveImageGlyph(self, adaptiveImageGlyph, replacementRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertAdaptiveImageGlyph:replacementRange:"), auto_cast insertAdaptiveImageGlyph, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.insertAttributedText != nil {
+        insertAttributedText :: proc "c" (self: ^TextInput, _: SEL, string: ^NS.AttributedString) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInput_VTable)vt_ctx.protocol_vt).insertAttributedText(self, string)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertAttributedText:"), auto_cast insertAttributedText, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.attributedTextInRange != nil {
+        attributedTextInRange :: proc "c" (self: ^TextInput, _: SEL, range: ^TextRange) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInput_VTable)vt_ctx.protocol_vt).attributedTextInRange(self, range)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributedTextInRange:"), auto_cast attributedTextInRange, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.replaceRange_withAttributedText != nil {
+        replaceRange_withAttributedText :: proc "c" (self: ^TextInput, _: SEL, range: ^TextRange, attributedText: ^NS.AttributedString) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInput_VTable)vt_ctx.protocol_vt).replaceRange_withAttributedText(self, range, attributedText)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceRange:withAttributedText:"), auto_cast replaceRange_withAttributedText, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.willPresentWritingTools != nil {
+        willPresentWritingTools :: proc "c" (self: ^TextInput, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInput_VTable)vt_ctx.protocol_vt).willPresentWritingTools(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("willPresentWritingTools"), auto_cast willPresentWritingTools, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.didDismissWritingTools != nil {
+        didDismissWritingTools :: proc "c" (self: ^TextInput, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInput_VTable)vt_ctx.protocol_vt).didDismissWritingTools(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("didDismissWritingTools"), auto_cast didDismissWritingTools, "v@:") do panic("Failed to register objC method.")
+    }
     if vt.selectedTextRange != nil {
         selectedTextRange :: proc "c" (self: ^TextInput, _: SEL) -> ^TextRange {
 
@@ -838,6 +949,36 @@ TextInput_odin_extend :: proc(cls: Class, vt: ^TextInput_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertDictationResultPlaceholder"), auto_cast insertDictationResultPlaceholder, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.supportsAdaptiveImageGlyph != nil {
+        supportsAdaptiveImageGlyph :: proc "c" (self: ^TextInput, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInput_VTable)vt_ctx.protocol_vt).supportsAdaptiveImageGlyph(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("supportsAdaptiveImageGlyph"), auto_cast supportsAdaptiveImageGlyph, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSupportsAdaptiveImageGlyph != nil {
+        setSupportsAdaptiveImageGlyph :: proc "c" (self: ^TextInput, _: SEL, supportsAdaptiveImageGlyph: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInput_VTable)vt_ctx.protocol_vt).setSupportsAdaptiveImageGlyph(self, supportsAdaptiveImageGlyph)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSupportsAdaptiveImageGlyph:"), auto_cast setSupportsAdaptiveImageGlyph, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isEditable != nil {
+        isEditable :: proc "c" (self: ^TextInput, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInput_VTable)vt_ctx.protocol_vt).isEditable(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isEditable"), auto_cast isEditable, "B@:") do panic("Failed to register objC method.")
     }
 }
 

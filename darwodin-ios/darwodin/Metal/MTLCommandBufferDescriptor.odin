@@ -42,6 +42,14 @@ CommandBufferDescriptor_errorOptions :: #force_inline proc "c" (self: ^CommandBu
 CommandBufferDescriptor_setErrorOptions :: #force_inline proc "c" (self: ^CommandBufferDescriptor, errorOptions: CommandBufferErrorOptions) {
     msgSend(nil, self, "setErrorOptions:", errorOptions)
 }
+@(objc_type=CommandBufferDescriptor, objc_name="logState")
+CommandBufferDescriptor_logState :: #force_inline proc "c" (self: ^CommandBufferDescriptor) -> ^LogState {
+    return msgSend(^LogState, self, "logState")
+}
+@(objc_type=CommandBufferDescriptor, objc_name="setLogState")
+CommandBufferDescriptor_setLogState :: #force_inline proc "c" (self: ^CommandBufferDescriptor, logState: ^LogState) {
+    msgSend(nil, self, "setLogState:", logState)
+}
 @(objc_type=CommandBufferDescriptor, objc_name="load", objc_is_class_method=true)
 CommandBufferDescriptor_load :: #force_inline proc "c" () {
     msgSend(nil, CommandBufferDescriptor, "load")

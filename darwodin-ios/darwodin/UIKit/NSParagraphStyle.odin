@@ -43,10 +43,6 @@ NSParagraphStyle_lineSpacing :: #force_inline proc "c" (self: ^NSParagraphStyle)
 NSParagraphStyle_paragraphSpacing :: #force_inline proc "c" (self: ^NSParagraphStyle) -> CG.Float {
     return msgSend(CG.Float, self, "paragraphSpacing")
 }
-@(objc_type=NSParagraphStyle, objc_name="alignment")
-NSParagraphStyle_alignment :: #force_inline proc "c" (self: ^NSParagraphStyle) -> NSTextAlignment {
-    return msgSend(NSTextAlignment, self, "alignment")
-}
 @(objc_type=NSParagraphStyle, objc_name="headIndent")
 NSParagraphStyle_headIndent :: #force_inline proc "c" (self: ^NSParagraphStyle) -> CG.Float {
     return msgSend(CG.Float, self, "headIndent")
@@ -110,6 +106,10 @@ NSParagraphStyle_allowsDefaultTighteningForTruncation :: #force_inline proc "c" 
 @(objc_type=NSParagraphStyle, objc_name="lineBreakStrategy")
 NSParagraphStyle_lineBreakStrategy :: #force_inline proc "c" (self: ^NSParagraphStyle) -> NSLineBreakStrategy {
     return msgSend(NSLineBreakStrategy, self, "lineBreakStrategy")
+}
+@(objc_type=NSParagraphStyle, objc_name="alignment")
+NSParagraphStyle_alignment :: #force_inline proc "c" (self: ^NSParagraphStyle) -> NSTextAlignment {
+    return msgSend(NSTextAlignment, self, "alignment")
 }
 @(objc_type=NSParagraphStyle, objc_name="supportsSecureCoding", objc_is_class_method=true)
 NSParagraphStyle_supportsSecureCoding :: #force_inline proc "c" () -> bool {
@@ -243,7 +243,6 @@ NSParagraphStyle_VTable :: struct {
     defaultParagraphStyle: proc() -> ^NSParagraphStyle,
     lineSpacing: proc(self: ^NSParagraphStyle) -> CG.Float,
     paragraphSpacing: proc(self: ^NSParagraphStyle) -> CG.Float,
-    alignment: proc(self: ^NSParagraphStyle) -> NSTextAlignment,
     headIndent: proc(self: ^NSParagraphStyle) -> CG.Float,
     tailIndent: proc(self: ^NSParagraphStyle) -> CG.Float,
     firstLineHeadIndent: proc(self: ^NSParagraphStyle) -> CG.Float,
@@ -260,6 +259,7 @@ NSParagraphStyle_VTable :: struct {
     textLists: proc(self: ^NSParagraphStyle) -> ^NS.Array,
     allowsDefaultTighteningForTruncation: proc(self: ^NSParagraphStyle) -> bool,
     lineBreakStrategy: proc(self: ^NSParagraphStyle) -> NSLineBreakStrategy,
+    alignment: proc(self: ^NSParagraphStyle) -> NSTextAlignment,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -338,16 +338,6 @@ NSParagraphStyle_odin_extend :: proc(cls: Class, vt: ^NSParagraphStyle_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphSpacing"), auto_cast paragraphSpacing, "d@:") do panic("Failed to register objC method.")
-    }
-    if vt.alignment != nil {
-        alignment :: proc "c" (self: ^NSParagraphStyle, _: SEL) -> NSTextAlignment {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^NSParagraphStyle_VTable)vt_ctx.super_vt).alignment(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.headIndent != nil {
         headIndent :: proc "c" (self: ^NSParagraphStyle, _: SEL) -> CG.Float {
@@ -508,6 +498,16 @@ NSParagraphStyle_odin_extend :: proc(cls: Class, vt: ^NSParagraphStyle_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakStrategy"), auto_cast lineBreakStrategy, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.alignment != nil {
+        alignment :: proc "c" (self: ^NSParagraphStyle, _: SEL) -> NSTextAlignment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSParagraphStyle_VTable)vt_ctx.super_vt).alignment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {

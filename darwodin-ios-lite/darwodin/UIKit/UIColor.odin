@@ -198,6 +198,14 @@ Color_initWithDynamicProvider :: #force_inline proc "c" (self: ^Color, dynamicPr
 Color_resolvedColorWithTraitCollection :: #force_inline proc "c" (self: ^Color, traitCollection: ^TraitCollection) -> ^Color {
     return msgSend(^Color, self, "resolvedColorWithTraitCollection:", traitCollection)
 }
+@(objc_type=Color, objc_name="colorWithProminence")
+Color_colorWithProminence :: #force_inline proc "c" (self: ^Color, prominence: ColorProminence) -> ^Color {
+    return msgSend(^Color, self, "colorWithProminence:", prominence)
+}
+@(objc_type=Color, objc_name="prominence")
+Color_prominence :: #force_inline proc "c" (self: ^Color) -> ColorProminence {
+    return msgSend(ColorProminence, self, "prominence")
+}
 @(objc_type=Color, objc_name="systemRedColor", objc_is_class_method=true)
 Color_systemRedColor :: #force_inline proc "c" () -> ^Color {
     return msgSend(^Color, Color, "systemRedColor")
@@ -551,6 +559,8 @@ Color_VTable :: struct {
     colorWithDynamicProvider: proc(dynamicProvider: proc "c" (traitCollection: ^TraitCollection) -> ^Color) -> ^Color,
     initWithDynamicProvider: proc(self: ^Color, dynamicProvider: proc "c" (traitCollection: ^TraitCollection) -> ^Color) -> ^Color,
     resolvedColorWithTraitCollection: proc(self: ^Color, traitCollection: ^TraitCollection) -> ^Color,
+    colorWithProminence: proc(self: ^Color, prominence: ColorProminence) -> ^Color,
+    prominence: proc(self: ^Color) -> ColorProminence,
     systemRedColor: proc() -> ^Color,
     systemGreenColor: proc() -> ^Color,
     systemBlueColor: proc() -> ^Color,
@@ -1060,6 +1070,26 @@ Color_odin_extend :: proc(cls: Class, vt: ^Color_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("resolvedColorWithTraitCollection:"), auto_cast resolvedColorWithTraitCollection, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.colorWithProminence != nil {
+        colorWithProminence :: proc "c" (self: ^Color, _: SEL, prominence: ColorProminence) -> ^Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).colorWithProminence(self, prominence)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("colorWithProminence:"), auto_cast colorWithProminence, "@@:l") do panic("Failed to register objC method.")
+    }
+    if vt.prominence != nil {
+        prominence :: proc "c" (self: ^Color, _: SEL) -> ColorProminence {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Color_VTable)vt_ctx.super_vt).prominence(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prominence"), auto_cast prominence, "l@:") do panic("Failed to register objC method.")
     }
     if vt.systemRedColor != nil {
         systemRedColor :: proc "c" (self: Class, _: SEL) -> ^Color {

@@ -53,6 +53,14 @@ NumberFormatter_formattingContext :: #force_inline proc "c" (self: ^NumberFormat
 NumberFormatter_setFormattingContext :: #force_inline proc "c" (self: ^NumberFormatter, formattingContext: FormattingContext) {
     msgSend(nil, self, "setFormattingContext:", formattingContext)
 }
+@(objc_type=NumberFormatter, objc_name="minimumGroupingDigits")
+NumberFormatter_minimumGroupingDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> Integer {
+    return msgSend(Integer, self, "minimumGroupingDigits")
+}
+@(objc_type=NumberFormatter, objc_name="setMinimumGroupingDigits")
+NumberFormatter_setMinimumGroupingDigits :: #force_inline proc "c" (self: ^NumberFormatter, minimumGroupingDigits: Integer) {
+    msgSend(nil, self, "setMinimumGroupingDigits:", minimumGroupingDigits)
+}
 @(objc_type=NumberFormatter, objc_name="numberStyle")
 NumberFormatter_numberStyle :: #force_inline proc "c" (self: ^NumberFormatter) -> NumberFormatterStyle {
     return msgSend(NumberFormatterStyle, self, "numberStyle")
@@ -633,6 +641,8 @@ NumberFormatter_VTable :: struct {
     setDefaultFormatterBehavior: proc(behavior: NumberFormatterBehavior),
     formattingContext: proc(self: ^NumberFormatter) -> FormattingContext,
     setFormattingContext: proc(self: ^NumberFormatter, formattingContext: FormattingContext),
+    minimumGroupingDigits: proc(self: ^NumberFormatter) -> Integer,
+    setMinimumGroupingDigits: proc(self: ^NumberFormatter, minimumGroupingDigits: Integer),
     numberStyle: proc(self: ^NumberFormatter) -> NumberFormatterStyle,
     setNumberStyle: proc(self: ^NumberFormatter, numberStyle: NumberFormatterStyle),
     locale: proc(self: ^NumberFormatter) -> ^Locale,
@@ -862,6 +872,26 @@ NumberFormatter_odin_extend :: proc(cls: Class, vt: ^NumberFormatter_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFormattingContext:"), auto_cast setFormattingContext, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.minimumGroupingDigits != nil {
+        minimumGroupingDigits :: proc "c" (self: ^NumberFormatter, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NumberFormatter_VTable)vt_ctx.super_vt).minimumGroupingDigits(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("minimumGroupingDigits"), auto_cast minimumGroupingDigits, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMinimumGroupingDigits != nil {
+        setMinimumGroupingDigits :: proc "c" (self: ^NumberFormatter, _: SEL, minimumGroupingDigits: Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^NumberFormatter_VTable)vt_ctx.super_vt).setMinimumGroupingDigits(self, minimumGroupingDigits)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumGroupingDigits:"), auto_cast setMinimumGroupingDigits, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.numberStyle != nil {
         numberStyle :: proc "c" (self: ^NumberFormatter, _: SEL) -> NumberFormatterStyle {

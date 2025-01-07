@@ -89,6 +89,10 @@ Scene_completeStateRestoration :: #force_inline proc "c" (self: ^Scene) {
 Scene_getDefaultAudioSessionWithCompletionHandler :: #force_inline proc "c" (self: ^Scene, handler: proc "c" (_arg_0: ^AVAudioSession)) {
     msgSend(nil, self, "getDefaultAudioSessionWithCompletionHandler:", handler)
 }
+@(objc_type=Scene, objc_name="systemProtectionManager")
+Scene_systemProtectionManager :: #force_inline proc "c" (self: ^Scene) -> ^SceneSystemProtectionManager {
+    return msgSend(^SceneSystemProtectionManager, self, "systemProtectionManager")
+}
 @(objc_type=Scene, objc_name="clearTextInputContextIdentifier", objc_is_class_method=true)
 Scene_clearTextInputContextIdentifier :: #force_inline proc "c" (identifier: ^NS.String) {
     msgSend(nil, Scene, "clearTextInputContextIdentifier:", identifier)
@@ -231,6 +235,7 @@ Scene_VTable :: struct {
     extendStateRestoration: proc(self: ^Scene),
     completeStateRestoration: proc(self: ^Scene),
     getDefaultAudioSessionWithCompletionHandler: proc(self: ^Scene, handler: proc "c" (_arg_0: ^AVAudioSession)),
+    systemProtectionManager: proc(self: ^Scene) -> ^SceneSystemProtectionManager,
     clearTextInputContextIdentifier: proc(identifier: ^NS.String),
     load: proc(),
     initialize: proc(),
@@ -448,6 +453,16 @@ Scene_odin_extend :: proc(cls: Class, vt: ^Scene_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("getDefaultAudioSessionWithCompletionHandler:"), auto_cast getDefaultAudioSessionWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
+    }
+    if vt.systemProtectionManager != nil {
+        systemProtectionManager :: proc "c" (self: ^Scene, _: SEL) -> ^SceneSystemProtectionManager {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Scene_VTable)vt_ctx.super_vt).systemProtectionManager(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("systemProtectionManager"), auto_cast systemProtectionManager, "@@:") do panic("Failed to register objC method.")
     }
     if vt.clearTextInputContextIdentifier != nil {
         clearTextInputContextIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) {

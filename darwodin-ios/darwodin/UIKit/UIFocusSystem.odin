@@ -41,13 +41,13 @@ FocusSystem_updateFocusIfNeeded :: #force_inline proc "c" (self: ^FocusSystem) {
 FocusSystem_environment :: #force_inline proc "c" (environment: ^FocusEnvironment, otherEnvironment: ^FocusEnvironment) -> bool {
     return msgSend(bool, FocusSystem, "environment:containsEnvironment:", environment, otherEnvironment)
 }
-@(objc_type=FocusSystem, objc_name="registerURL", objc_is_class_method=true)
-FocusSystem_registerURL :: #force_inline proc "c" (soundFileURL: ^NS.URL, identifier: ^NS.String) {
-    msgSend(nil, FocusSystem, "registerURL:forSoundIdentifier:", soundFileURL, identifier)
-}
 @(objc_type=FocusSystem, objc_name="focusedItem")
 FocusSystem_focusedItem :: #force_inline proc "c" (self: ^FocusSystem) -> ^FocusItem {
     return msgSend(^FocusItem, self, "focusedItem")
+}
+@(objc_type=FocusSystem, objc_name="registerURL", objc_is_class_method=true)
+FocusSystem_registerURL :: #force_inline proc "c" (soundFileURL: ^NS.URL, identifier: ^NS.String) {
+    msgSend(nil, FocusSystem, "registerURL:forSoundIdentifier:", soundFileURL, identifier)
 }
 @(objc_type=FocusSystem, objc_name="load", objc_is_class_method=true)
 FocusSystem_load :: #force_inline proc "c" () {
@@ -175,8 +175,8 @@ FocusSystem_VTable :: struct {
     requestFocusUpdateToEnvironment: proc(self: ^FocusSystem, environment: ^FocusEnvironment),
     updateFocusIfNeeded: proc(self: ^FocusSystem),
     environment: proc(environment: ^FocusEnvironment, otherEnvironment: ^FocusEnvironment) -> bool,
-    registerURL: proc(soundFileURL: ^NS.URL, identifier: ^NS.String),
     focusedItem: proc(self: ^FocusSystem) -> ^FocusItem,
+    registerURL: proc(soundFileURL: ^NS.URL, identifier: ^NS.String),
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^NS._NSZone) -> ^FocusSystem,
@@ -274,16 +274,6 @@ FocusSystem_odin_extend :: proc(cls: Class, vt: ^FocusSystem_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("environment:containsEnvironment:"), auto_cast environment, "B#:@@") do panic("Failed to register objC method.")
     }
-    if vt.registerURL != nil {
-        registerURL :: proc "c" (self: Class, _: SEL, soundFileURL: ^NS.URL, identifier: ^NS.String) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^FocusSystem_VTable)vt_ctx.super_vt).registerURL( soundFileURL, identifier)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("registerURL:forSoundIdentifier:"), auto_cast registerURL, "v#:@@") do panic("Failed to register objC method.")
-    }
     if vt.focusedItem != nil {
         focusedItem :: proc "c" (self: ^FocusSystem, _: SEL) -> ^FocusItem {
 
@@ -293,6 +283,16 @@ FocusSystem_odin_extend :: proc(cls: Class, vt: ^FocusSystem_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("focusedItem"), auto_cast focusedItem, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.registerURL != nil {
+        registerURL :: proc "c" (self: Class, _: SEL, soundFileURL: ^NS.URL, identifier: ^NS.String) {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^FocusSystem_VTable)vt_ctx.super_vt).registerURL( soundFileURL, identifier)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("registerURL:forSoundIdentifier:"), auto_cast registerURL, "v#:@@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

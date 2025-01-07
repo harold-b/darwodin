@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -295,10 +296,6 @@ Window_setDynamicDepthLimit :: #force_inline proc "c" (self: ^Window, flag: bool
 Window_invalidateShadow :: #force_inline proc "c" (self: ^Window) {
     msgSend(nil, self, "invalidateShadow")
 }
-@(objc_type=Window, objc_name="disableScreenUpdatesUntilFlush")
-Window_disableScreenUpdatesUntilFlush :: #force_inline proc "c" (self: ^Window) {
-    msgSend(nil, self, "disableScreenUpdatesUntilFlush")
-}
 @(objc_type=Window, objc_name="toggleFullScreen")
 Window_toggleFullScreen :: #force_inline proc "c" (self: ^Window, sender: id) {
     msgSend(nil, self, "toggleFullScreen:", sender)
@@ -447,6 +444,14 @@ Window_addTabbedWindow :: #force_inline proc "c" (self: ^Window, window: ^Window
 Window_transferWindowSharingToWindow :: #force_inline proc "c" (self: ^Window, window: ^Window, completionHandler: proc "c" (error: ^NS.Error)) {
     msgSend(nil, self, "transferWindowSharingToWindow:completionHandler:", window, completionHandler)
 }
+@(objc_type=Window, objc_name="requestSharingOfWindow")
+Window_requestSharingOfWindow :: #force_inline proc "c" (self: ^Window, window: ^Window, completionHandler: proc "c" (error: ^NS.Error)) {
+    msgSend(nil, self, "requestSharingOfWindow:completionHandler:", window, completionHandler)
+}
+@(objc_type=Window, objc_name="requestSharingOfWindowUsingPreview")
+Window_requestSharingOfWindowUsingPreview :: #force_inline proc "c" (self: ^Window, image: ^NS.Image, title: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+    msgSend(nil, self, "requestSharingOfWindowUsingPreview:title:completionHandler:", image, title, completionHandler)
+}
 @(objc_type=Window, objc_name="defaultDepthLimit", objc_is_class_method=true)
 Window_defaultDepthLimit :: #force_inline proc "c" () -> WindowDepth {
     return msgSend(WindowDepth, Window, "defaultDepthLimit")
@@ -558,6 +563,10 @@ Window_styleMask :: #force_inline proc "c" (self: ^Window) -> WindowStyleMask {
 @(objc_type=Window, objc_name="setStyleMask")
 Window_setStyleMask :: #force_inline proc "c" (self: ^Window, styleMask: WindowStyleMask) {
     msgSend(nil, self, "setStyleMask:", styleMask)
+}
+@(objc_type=Window, objc_name="cascadingReferenceFrame")
+Window_cascadingReferenceFrame :: #force_inline proc "c" (self: ^Window) -> NS.Rect {
+    return msgSend(NS.Rect, self, "cascadingReferenceFrame")
 }
 @(objc_type=Window, objc_name="frame")
 Window_frame :: #force_inline proc "c" (self: ^Window) -> NS.Rect {
@@ -1159,6 +1168,10 @@ Window_resetCursorRects :: #force_inline proc "c" (self: ^Window) {
 Window_areCursorRectsEnabled :: #force_inline proc "c" (self: ^Window) -> bool {
     return msgSend(bool, self, "areCursorRectsEnabled")
 }
+@(objc_type=Window, objc_name="beginDraggingSessionWithItems")
+Window_beginDraggingSessionWithItems :: #force_inline proc "c" (self: ^Window, items: ^NS.Array, event: ^Event, source: ^DraggingSource) -> ^DraggingSession {
+    return msgSend(^DraggingSession, self, "beginDraggingSessionWithItems:event:source:", items, event, source)
+}
 @(objc_type=Window, objc_name="dragImage")
 Window_dragImage :: #force_inline proc "c" (self: ^Window, image: ^NS.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool) {
     msgSend(nil, self, "dragImage:at:offset:event:pasteboard:source:slideBack:", image, baseLocation, initialOffset, event, pboard, sourceObj, slideFlag)
@@ -1170,14 +1183,6 @@ Window_registerForDraggedTypes :: #force_inline proc "c" (self: ^Window, newType
 @(objc_type=Window, objc_name="unregisterDraggedTypes")
 Window_unregisterDraggedTypes :: #force_inline proc "c" (self: ^Window) {
     msgSend(nil, self, "unregisterDraggedTypes")
-}
-@(objc_type=Window, objc_name="initWithWindowRef")
-Window_initWithWindowRef :: #force_inline proc "c" (self: ^Window, windowRef: rawptr) -> ^Window {
-    return msgSend(^Window, self, "initWithWindowRef:", windowRef)
-}
-@(objc_type=Window, objc_name="windowRef")
-Window_windowRef :: #force_inline proc "c" (self: ^Window) -> rawptr {
-    return msgSend(rawptr, self, "windowRef")
 }
 @(objc_type=Window, objc_name="displayLinkWithTarget")
 Window_displayLinkWithTarget :: #force_inline proc "c" (self: ^Window, target: id, selector: SEL) -> ^CA.DisplayLink {
@@ -1239,6 +1244,14 @@ Window_flushWindow :: #force_inline proc "c" (self: ^Window) {
 Window_flushWindowIfNeeded :: #force_inline proc "c" (self: ^Window) {
     msgSend(nil, self, "flushWindowIfNeeded")
 }
+@(objc_type=Window, objc_name="initWithWindowRef")
+Window_initWithWindowRef :: #force_inline proc "c" (self: ^Window, windowRef: rawptr) -> ^Window {
+    return msgSend(^Window, self, "initWithWindowRef:", windowRef)
+}
+@(objc_type=Window, objc_name="disableScreenUpdatesUntilFlush")
+Window_disableScreenUpdatesUntilFlush :: #force_inline proc "c" (self: ^Window) {
+    msgSend(nil, self, "disableScreenUpdatesUntilFlush")
+}
 @(objc_type=Window, objc_name="isFlushWindowDisabled")
 Window_isFlushWindowDisabled :: #force_inline proc "c" (self: ^Window) -> bool {
     return msgSend(bool, self, "isFlushWindowDisabled")
@@ -1282,6 +1295,10 @@ Window_showsResizeIndicator :: #force_inline proc "c" (self: ^Window) -> bool {
 @(objc_type=Window, objc_name="setShowsResizeIndicator")
 Window_setShowsResizeIndicator :: #force_inline proc "c" (self: ^Window, showsResizeIndicator: bool) {
     msgSend(nil, self, "setShowsResizeIndicator:", showsResizeIndicator)
+}
+@(objc_type=Window, objc_name="windowRef")
+Window_windowRef :: #force_inline proc "c" (self: ^Window) -> rawptr {
+    return msgSend(rawptr, self, "windowRef")
 }
 @(objc_type=Window, objc_name="updateConstraintsIfNeeded")
 Window_updateConstraintsIfNeeded :: #force_inline proc "c" (self: ^Window) {
@@ -1661,7 +1678,6 @@ Window_VTable :: struct {
     print: proc(self: ^Window, sender: id),
     setDynamicDepthLimit: proc(self: ^Window, flag: bool),
     invalidateShadow: proc(self: ^Window),
-    disableScreenUpdatesUntilFlush: proc(self: ^Window),
     toggleFullScreen: proc(self: ^Window, sender: id),
     setFrameFromString: proc(self: ^Window, string: ^NS.String),
     saveFrameUsingName: proc(self: ^Window, name: ^NS.String),
@@ -1699,6 +1715,8 @@ Window_VTable :: struct {
     toggleTabOverview: proc(self: ^Window, sender: id),
     addTabbedWindow: proc(self: ^Window, window: ^Window, ordered: WindowOrderingMode),
     transferWindowSharingToWindow: proc(self: ^Window, window: ^Window, completionHandler: proc "c" (error: ^NS.Error)),
+    requestSharingOfWindow: proc(self: ^Window, window: ^Window, completionHandler: proc "c" (error: ^NS.Error)),
+    requestSharingOfWindowUsingPreview: proc(self: ^Window, image: ^NS.Image, title: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)),
     defaultDepthLimit: proc() -> WindowDepth,
     title: proc(self: ^Window) -> ^NS.String,
     setTitle: proc(self: ^Window, title: ^NS.String),
@@ -1727,6 +1745,7 @@ Window_VTable :: struct {
     windowNumber: proc(self: ^Window) -> NS.Integer,
     styleMask: proc(self: ^Window) -> WindowStyleMask,
     setStyleMask: proc(self: ^Window, styleMask: WindowStyleMask),
+    cascadingReferenceFrame: proc(self: ^Window) -> NS.Rect,
     frame: proc(self: ^Window) -> NS.Rect,
     inLiveResize: proc(self: ^Window) -> bool,
     resizeIncrements: proc(self: ^Window) -> NS.Size,
@@ -1877,11 +1896,10 @@ Window_VTable :: struct {
     invalidateCursorRectsForView: proc(self: ^Window, view: ^View),
     resetCursorRects: proc(self: ^Window),
     areCursorRectsEnabled: proc(self: ^Window) -> bool,
+    beginDraggingSessionWithItems: proc(self: ^Window, items: ^NS.Array, event: ^Event, source: ^DraggingSource) -> ^DraggingSession,
     dragImage: proc(self: ^Window, image: ^NS.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool),
     registerForDraggedTypes: proc(self: ^Window, newTypes: ^NS.Array),
     unregisterDraggedTypes: proc(self: ^Window),
-    initWithWindowRef: proc(self: ^Window, windowRef: rawptr) -> ^Window,
-    windowRef: proc(self: ^Window) -> rawptr,
     displayLinkWithTarget: proc(self: ^Window, target: id, selector: SEL) -> ^CA.DisplayLink,
     cacheImageInRect: proc(self: ^Window, rect: NS.Rect),
     restoreCachedImage: proc(self: ^Window),
@@ -1897,6 +1915,8 @@ Window_VTable :: struct {
     enableFlushWindow: proc(self: ^Window),
     flushWindow: proc(self: ^Window),
     flushWindowIfNeeded: proc(self: ^Window),
+    initWithWindowRef: proc(self: ^Window, windowRef: rawptr) -> ^Window,
+    disableScreenUpdatesUntilFlush: proc(self: ^Window),
     isFlushWindowDisabled: proc(self: ^Window) -> bool,
     isAutodisplay: proc(self: ^Window) -> bool,
     setAutodisplay: proc(self: ^Window, autodisplay: bool),
@@ -1908,6 +1928,7 @@ Window_VTable :: struct {
     backingLocation: proc(self: ^Window) -> WindowBackingLocation,
     showsResizeIndicator: proc(self: ^Window) -> bool,
     setShowsResizeIndicator: proc(self: ^Window, showsResizeIndicator: bool),
+    windowRef: proc(self: ^Window) -> rawptr,
     updateConstraintsIfNeeded: proc(self: ^Window),
     layoutIfNeeded: proc(self: ^Window),
     anchorAttributeForOrientation: proc(self: ^Window, orientation: LayoutConstraintOrientation) -> LayoutAttribute,
@@ -2641,16 +2662,6 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateShadow"), auto_cast invalidateShadow, "v@:") do panic("Failed to register objC method.")
     }
-    if vt.disableScreenUpdatesUntilFlush != nil {
-        disableScreenUpdatesUntilFlush :: proc "c" (self: ^Window, _: SEL) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^Window_VTable)vt_ctx.super_vt).disableScreenUpdatesUntilFlush(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("disableScreenUpdatesUntilFlush"), auto_cast disableScreenUpdatesUntilFlush, "v@:") do panic("Failed to register objC method.")
-    }
     if vt.toggleFullScreen != nil {
         toggleFullScreen :: proc "c" (self: ^Window, _: SEL, sender: id) {
 
@@ -3021,6 +3032,26 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("transferWindowSharingToWindow:completionHandler:"), auto_cast transferWindowSharingToWindow, "v@:@?") do panic("Failed to register objC method.")
     }
+    if vt.requestSharingOfWindow != nil {
+        requestSharingOfWindow :: proc "c" (self: ^Window, _: SEL, window: ^Window, completionHandler: proc "c" (error: ^NS.Error)) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).requestSharingOfWindow(self, window, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("requestSharingOfWindow:completionHandler:"), auto_cast requestSharingOfWindow, "v@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.requestSharingOfWindowUsingPreview != nil {
+        requestSharingOfWindowUsingPreview :: proc "c" (self: ^Window, _: SEL, image: ^NS.Image, title: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).requestSharingOfWindowUsingPreview(self, image, title, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("requestSharingOfWindowUsingPreview:title:completionHandler:"), auto_cast requestSharingOfWindowUsingPreview, "v@:@@?") do panic("Failed to register objC method.")
+    }
     if vt.defaultDepthLimit != nil {
         defaultDepthLimit :: proc "c" (self: Class, _: SEL) -> WindowDepth {
 
@@ -3300,6 +3331,16 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setStyleMask:"), auto_cast setStyleMask, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.cascadingReferenceFrame != nil {
+        cascadingReferenceFrame :: proc "c" (self: ^Window, _: SEL) -> NS.Rect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).cascadingReferenceFrame(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cascadingReferenceFrame"), auto_cast cascadingReferenceFrame, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.frame != nil {
         frame :: proc "c" (self: ^Window, _: SEL) -> NS.Rect {
@@ -4801,6 +4842,16 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("areCursorRectsEnabled"), auto_cast areCursorRectsEnabled, "B@:") do panic("Failed to register objC method.")
     }
+    if vt.beginDraggingSessionWithItems != nil {
+        beginDraggingSessionWithItems :: proc "c" (self: ^Window, _: SEL, items: ^NS.Array, event: ^Event, source: ^DraggingSource) -> ^DraggingSession {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).beginDraggingSessionWithItems(self, items, event, source)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("beginDraggingSessionWithItems:event:source:"), auto_cast beginDraggingSessionWithItems, "@@:@@@") do panic("Failed to register objC method.")
+    }
     if vt.dragImage != nil {
         dragImage :: proc "c" (self: ^Window, _: SEL, image: ^NS.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool) {
 
@@ -4830,26 +4881,6 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("unregisterDraggedTypes"), auto_cast unregisterDraggedTypes, "v@:") do panic("Failed to register objC method.")
-    }
-    if vt.initWithWindowRef != nil {
-        initWithWindowRef :: proc "c" (self: ^Window, _: SEL, windowRef: rawptr) -> ^Window {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^Window_VTable)vt_ctx.super_vt).initWithWindowRef(self, windowRef)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindowRef:"), auto_cast initWithWindowRef, "@@:^void") do panic("Failed to register objC method.")
-    }
-    if vt.windowRef != nil {
-        windowRef :: proc "c" (self: ^Window, _: SEL) -> rawptr {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^Window_VTable)vt_ctx.super_vt).windowRef(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("windowRef"), auto_cast windowRef, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.displayLinkWithTarget != nil {
         displayLinkWithTarget :: proc "c" (self: ^Window, _: SEL, target: id, selector: SEL) -> ^CA.DisplayLink {
@@ -5001,6 +5032,26 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("flushWindowIfNeeded"), auto_cast flushWindowIfNeeded, "v@:") do panic("Failed to register objC method.")
     }
+    if vt.initWithWindowRef != nil {
+        initWithWindowRef :: proc "c" (self: ^Window, _: SEL, windowRef: rawptr) -> ^Window {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).initWithWindowRef(self, windowRef)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindowRef:"), auto_cast initWithWindowRef, "@@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.disableScreenUpdatesUntilFlush != nil {
+        disableScreenUpdatesUntilFlush :: proc "c" (self: ^Window, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Window_VTable)vt_ctx.super_vt).disableScreenUpdatesUntilFlush(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("disableScreenUpdatesUntilFlush"), auto_cast disableScreenUpdatesUntilFlush, "v@:") do panic("Failed to register objC method.")
+    }
     if vt.isFlushWindowDisabled != nil {
         isFlushWindowDisabled :: proc "c" (self: ^Window, _: SEL) -> bool {
 
@@ -5110,6 +5161,16 @@ Window_odin_extend :: proc(cls: Class, vt: ^Window_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsResizeIndicator:"), auto_cast setShowsResizeIndicator, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.windowRef != nil {
+        windowRef :: proc "c" (self: ^Window, _: SEL) -> rawptr {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Window_VTable)vt_ctx.super_vt).windowRef(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("windowRef"), auto_cast windowRef, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.updateConstraintsIfNeeded != nil {
         updateConstraintsIfNeeded :: proc "c" (self: ^Window, _: SEL) {

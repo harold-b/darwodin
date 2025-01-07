@@ -26,9 +26,85 @@ TabBarController_init :: proc "c" (self: ^TabBarController) -> ^TabBarController
 }
 
 
+@(objc_type=TabBarController, objc_name="setTabs_animated")
+TabBarController_setTabs_animated :: #force_inline proc "c" (self: ^TabBarController, tabs: ^NS.Array, animated: bool) {
+    msgSend(nil, self, "setTabs:animated:", tabs, animated)
+}
+@(objc_type=TabBarController, objc_name="tabForIdentifier")
+TabBarController_tabForIdentifier :: #force_inline proc "c" (self: ^TabBarController, identifier: ^NS.String) -> ^Tab {
+    return msgSend(^Tab, self, "tabForIdentifier:", identifier)
+}
+@(objc_type=TabBarController, objc_name="initWithTabs")
+TabBarController_initWithTabs :: #force_inline proc "c" (self: ^TabBarController, tabs: ^NS.Array) -> ^TabBarController {
+    return msgSend(^TabBarController, self, "initWithTabs:", tabs)
+}
+@(objc_type=TabBarController, objc_name="setTabBarHidden_animated")
+TabBarController_setTabBarHidden_animated :: #force_inline proc "c" (self: ^TabBarController, hidden: bool, animated: bool) {
+    msgSend(nil, self, "setTabBarHidden:animated:", hidden, animated)
+}
 @(objc_type=TabBarController, objc_name="setViewControllers_animated")
 TabBarController_setViewControllers_animated :: #force_inline proc "c" (self: ^TabBarController, viewControllers: ^NS.Array, animated: bool) {
     msgSend(nil, self, "setViewControllers:animated:", viewControllers, animated)
+}
+@(objc_type=TabBarController, objc_name="delegate")
+TabBarController_delegate :: #force_inline proc "c" (self: ^TabBarController) -> ^TabBarControllerDelegate {
+    return msgSend(^TabBarControllerDelegate, self, "delegate")
+}
+@(objc_type=TabBarController, objc_name="setDelegate")
+TabBarController_setDelegate :: #force_inline proc "c" (self: ^TabBarController, delegate: ^TabBarControllerDelegate) {
+    msgSend(nil, self, "setDelegate:", delegate)
+}
+@(objc_type=TabBarController, objc_name="mode")
+TabBarController_mode :: #force_inline proc "c" (self: ^TabBarController) -> TabBarControllerMode {
+    return msgSend(TabBarControllerMode, self, "mode")
+}
+@(objc_type=TabBarController, objc_name="setMode")
+TabBarController_setMode :: #force_inline proc "c" (self: ^TabBarController, mode: TabBarControllerMode) {
+    msgSend(nil, self, "setMode:", mode)
+}
+@(objc_type=TabBarController, objc_name="sidebar")
+TabBarController_sidebar :: #force_inline proc "c" (self: ^TabBarController) -> ^TabBarControllerSidebar {
+    return msgSend(^TabBarControllerSidebar, self, "sidebar")
+}
+@(objc_type=TabBarController, objc_name="customizationIdentifier")
+TabBarController_customizationIdentifier :: #force_inline proc "c" (self: ^TabBarController) -> ^NS.String {
+    return msgSend(^NS.String, self, "customizationIdentifier")
+}
+@(objc_type=TabBarController, objc_name="setCustomizationIdentifier")
+TabBarController_setCustomizationIdentifier :: #force_inline proc "c" (self: ^TabBarController, customizationIdentifier: ^NS.String) {
+    msgSend(nil, self, "setCustomizationIdentifier:", customizationIdentifier)
+}
+@(objc_type=TabBarController, objc_name="compactTabIdentifiers")
+TabBarController_compactTabIdentifiers :: #force_inline proc "c" (self: ^TabBarController) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "compactTabIdentifiers")
+}
+@(objc_type=TabBarController, objc_name="setCompactTabIdentifiers")
+TabBarController_setCompactTabIdentifiers :: #force_inline proc "c" (self: ^TabBarController, compactTabIdentifiers: ^NS.Array) {
+    msgSend(nil, self, "setCompactTabIdentifiers:", compactTabIdentifiers)
+}
+@(objc_type=TabBarController, objc_name="selectedTab")
+TabBarController_selectedTab :: #force_inline proc "c" (self: ^TabBarController) -> ^Tab {
+    return msgSend(^Tab, self, "selectedTab")
+}
+@(objc_type=TabBarController, objc_name="setSelectedTab")
+TabBarController_setSelectedTab :: #force_inline proc "c" (self: ^TabBarController, selectedTab: ^Tab) {
+    msgSend(nil, self, "setSelectedTab:", selectedTab)
+}
+@(objc_type=TabBarController, objc_name="tabs")
+TabBarController_tabs :: #force_inline proc "c" (self: ^TabBarController) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "tabs")
+}
+@(objc_type=TabBarController, objc_name="setTabs_")
+TabBarController_setTabs_ :: #force_inline proc "c" (self: ^TabBarController, tabs: ^NS.Array) {
+    msgSend(nil, self, "setTabs:", tabs)
+}
+@(objc_type=TabBarController, objc_name="isTabBarHidden")
+TabBarController_isTabBarHidden :: #force_inline proc "c" (self: ^TabBarController) -> bool {
+    return msgSend(bool, self, "isTabBarHidden")
+}
+@(objc_type=TabBarController, objc_name="setTabBarHidden_")
+TabBarController_setTabBarHidden_ :: #force_inline proc "c" (self: ^TabBarController, tabBarHidden: bool) {
+    msgSend(nil, self, "setTabBarHidden:", tabBarHidden)
 }
 @(objc_type=TabBarController, objc_name="viewControllers")
 TabBarController_viewControllers :: #force_inline proc "c" (self: ^TabBarController) -> ^NS.Array {
@@ -69,14 +145,6 @@ TabBarController_setCustomizableViewControllers :: #force_inline proc "c" (self:
 @(objc_type=TabBarController, objc_name="tabBar")
 TabBarController_tabBar :: #force_inline proc "c" (self: ^TabBarController) -> ^TabBar {
     return msgSend(^TabBar, self, "tabBar")
-}
-@(objc_type=TabBarController, objc_name="delegate")
-TabBarController_delegate :: #force_inline proc "c" (self: ^TabBarController) -> ^TabBarControllerDelegate {
-    return msgSend(^TabBarControllerDelegate, self, "delegate")
-}
-@(objc_type=TabBarController, objc_name="setDelegate")
-TabBarController_setDelegate :: #force_inline proc "c" (self: ^TabBarController, delegate: ^TabBarControllerDelegate) {
-    msgSend(nil, self, "setDelegate:", delegate)
 }
 @(objc_type=TabBarController, objc_name="attemptRotationToDeviceOrientation", objc_is_class_method=true)
 TabBarController_attemptRotationToDeviceOrientation :: #force_inline proc "c" () {
@@ -202,6 +270,18 @@ TabBarController_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> 
 TabBarController_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
     return msgSend(Class, TabBarController, "classForKeyedUnarchiver")
 }
+@(objc_type=TabBarController, objc_name="setTabs")
+TabBarController_setTabs :: proc {
+    TabBarController_setTabs_animated,
+    TabBarController_setTabs_,
+}
+
+@(objc_type=TabBarController, objc_name="setTabBarHidden")
+TabBarController_setTabBarHidden :: proc {
+    TabBarController_setTabBarHidden_animated,
+    TabBarController_setTabBarHidden_,
+}
+
 @(objc_type=TabBarController, objc_name="setViewControllers")
 TabBarController_setViewControllers :: proc {
     TabBarController_setViewControllers_animated,
@@ -216,7 +296,26 @@ TabBarController_cancelPreviousPerformRequestsWithTarget :: proc {
 
 TabBarController_VTable :: struct {
     super: ViewController_VTable,
+    setTabs_animated: proc(self: ^TabBarController, tabs: ^NS.Array, animated: bool),
+    tabForIdentifier: proc(self: ^TabBarController, identifier: ^NS.String) -> ^Tab,
+    initWithTabs: proc(self: ^TabBarController, tabs: ^NS.Array) -> ^TabBarController,
+    setTabBarHidden_animated: proc(self: ^TabBarController, hidden: bool, animated: bool),
     setViewControllers_animated: proc(self: ^TabBarController, viewControllers: ^NS.Array, animated: bool),
+    delegate: proc(self: ^TabBarController) -> ^TabBarControllerDelegate,
+    setDelegate: proc(self: ^TabBarController, delegate: ^TabBarControllerDelegate),
+    mode: proc(self: ^TabBarController) -> TabBarControllerMode,
+    setMode: proc(self: ^TabBarController, mode: TabBarControllerMode),
+    sidebar: proc(self: ^TabBarController) -> ^TabBarControllerSidebar,
+    customizationIdentifier: proc(self: ^TabBarController) -> ^NS.String,
+    setCustomizationIdentifier: proc(self: ^TabBarController, customizationIdentifier: ^NS.String),
+    compactTabIdentifiers: proc(self: ^TabBarController) -> ^NS.Array,
+    setCompactTabIdentifiers: proc(self: ^TabBarController, compactTabIdentifiers: ^NS.Array),
+    selectedTab: proc(self: ^TabBarController) -> ^Tab,
+    setSelectedTab: proc(self: ^TabBarController, selectedTab: ^Tab),
+    tabs: proc(self: ^TabBarController) -> ^NS.Array,
+    setTabs_: proc(self: ^TabBarController, tabs: ^NS.Array),
+    isTabBarHidden: proc(self: ^TabBarController) -> bool,
+    setTabBarHidden_: proc(self: ^TabBarController, tabBarHidden: bool),
     viewControllers: proc(self: ^TabBarController) -> ^NS.Array,
     setViewControllers_: proc(self: ^TabBarController, viewControllers: ^NS.Array),
     selectedViewController: proc(self: ^TabBarController) -> ^ViewController,
@@ -227,8 +326,6 @@ TabBarController_VTable :: struct {
     customizableViewControllers: proc(self: ^TabBarController) -> ^NS.Array,
     setCustomizableViewControllers: proc(self: ^TabBarController, customizableViewControllers: ^NS.Array),
     tabBar: proc(self: ^TabBarController) -> ^TabBar,
-    delegate: proc(self: ^TabBarController) -> ^TabBarControllerDelegate,
-    setDelegate: proc(self: ^TabBarController, delegate: ^TabBarControllerDelegate),
     attemptRotationToDeviceOrientation: proc(),
     clearTextInputContextIdentifier: proc(identifier: ^NS.String),
     load: proc(),
@@ -269,6 +366,46 @@ TabBarController_odin_extend :: proc(cls: Class, vt: ^TabBarController_VTable) {
     
     ViewController_odin_extend(cls, &vt.super)
 
+    if vt.setTabs_animated != nil {
+        setTabs_animated :: proc "c" (self: ^TabBarController, _: SEL, tabs: ^NS.Array, animated: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setTabs_animated(self, tabs, animated)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTabs:animated:"), auto_cast setTabs_animated, "v@:@B") do panic("Failed to register objC method.")
+    }
+    if vt.tabForIdentifier != nil {
+        tabForIdentifier :: proc "c" (self: ^TabBarController, _: SEL, identifier: ^NS.String) -> ^Tab {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).tabForIdentifier(self, identifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabForIdentifier:"), auto_cast tabForIdentifier, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithTabs != nil {
+        initWithTabs :: proc "c" (self: ^TabBarController, _: SEL, tabs: ^NS.Array) -> ^TabBarController {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).initWithTabs(self, tabs)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTabs:"), auto_cast initWithTabs, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.setTabBarHidden_animated != nil {
+        setTabBarHidden_animated :: proc "c" (self: ^TabBarController, _: SEL, hidden: bool, animated: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setTabBarHidden_animated(self, hidden, animated)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTabBarHidden:animated:"), auto_cast setTabBarHidden_animated, "v@:BB") do panic("Failed to register objC method.")
+    }
     if vt.setViewControllers_animated != nil {
         setViewControllers_animated :: proc "c" (self: ^TabBarController, _: SEL, viewControllers: ^NS.Array, animated: bool) {
 
@@ -278,6 +415,156 @@ TabBarController_odin_extend :: proc(cls: Class, vt: ^TabBarController_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setViewControllers:animated:"), auto_cast setViewControllers_animated, "v@:@B") do panic("Failed to register objC method.")
+    }
+    if vt.delegate != nil {
+        delegate :: proc "c" (self: ^TabBarController, _: SEL) -> ^TabBarControllerDelegate {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).delegate(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDelegate != nil {
+        setDelegate :: proc "c" (self: ^TabBarController, _: SEL, delegate: ^TabBarControllerDelegate) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setDelegate(self, delegate)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.mode != nil {
+        mode :: proc "c" (self: ^TabBarController, _: SEL) -> TabBarControllerMode {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).mode(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mode"), auto_cast mode, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMode != nil {
+        setMode :: proc "c" (self: ^TabBarController, _: SEL, mode: TabBarControllerMode) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setMode(self, mode)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMode:"), auto_cast setMode, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.sidebar != nil {
+        sidebar :: proc "c" (self: ^TabBarController, _: SEL) -> ^TabBarControllerSidebar {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).sidebar(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sidebar"), auto_cast sidebar, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.customizationIdentifier != nil {
+        customizationIdentifier :: proc "c" (self: ^TabBarController, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).customizationIdentifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("customizationIdentifier"), auto_cast customizationIdentifier, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCustomizationIdentifier != nil {
+        setCustomizationIdentifier :: proc "c" (self: ^TabBarController, _: SEL, customizationIdentifier: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setCustomizationIdentifier(self, customizationIdentifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCustomizationIdentifier:"), auto_cast setCustomizationIdentifier, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.compactTabIdentifiers != nil {
+        compactTabIdentifiers :: proc "c" (self: ^TabBarController, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).compactTabIdentifiers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("compactTabIdentifiers"), auto_cast compactTabIdentifiers, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCompactTabIdentifiers != nil {
+        setCompactTabIdentifiers :: proc "c" (self: ^TabBarController, _: SEL, compactTabIdentifiers: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setCompactTabIdentifiers(self, compactTabIdentifiers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCompactTabIdentifiers:"), auto_cast setCompactTabIdentifiers, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.selectedTab != nil {
+        selectedTab :: proc "c" (self: ^TabBarController, _: SEL) -> ^Tab {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).selectedTab(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedTab"), auto_cast selectedTab, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedTab != nil {
+        setSelectedTab :: proc "c" (self: ^TabBarController, _: SEL, selectedTab: ^Tab) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setSelectedTab(self, selectedTab)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedTab:"), auto_cast setSelectedTab, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.tabs != nil {
+        tabs :: proc "c" (self: ^TabBarController, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).tabs(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabs"), auto_cast tabs, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTabs_ != nil {
+        setTabs_ :: proc "c" (self: ^TabBarController, _: SEL, tabs: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setTabs_(self, tabs)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTabs:"), auto_cast setTabs_, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.isTabBarHidden != nil {
+        isTabBarHidden :: proc "c" (self: ^TabBarController, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TabBarController_VTable)vt_ctx.super_vt).isTabBarHidden(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isTabBarHidden"), auto_cast isTabBarHidden, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTabBarHidden_ != nil {
+        setTabBarHidden_ :: proc "c" (self: ^TabBarController, _: SEL, tabBarHidden: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TabBarController_VTable)vt_ctx.super_vt).setTabBarHidden_(self, tabBarHidden)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTabBarHidden:"), auto_cast setTabBarHidden_, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.viewControllers != nil {
         viewControllers :: proc "c" (self: ^TabBarController, _: SEL) -> ^NS.Array {
@@ -378,26 +665,6 @@ TabBarController_odin_extend :: proc(cls: Class, vt: ^TabBarController_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar"), auto_cast tabBar, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.delegate != nil {
-        delegate :: proc "c" (self: ^TabBarController, _: SEL) -> ^TabBarControllerDelegate {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^TabBarController_VTable)vt_ctx.super_vt).delegate(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^TabBarController, _: SEL, delegate: ^TabBarControllerDelegate) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^TabBarController_VTable)vt_ctx.super_vt).setDelegate(self, delegate)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attemptRotationToDeviceOrientation != nil {
         attemptRotationToDeviceOrientation :: proc "c" (self: Class, _: SEL) {

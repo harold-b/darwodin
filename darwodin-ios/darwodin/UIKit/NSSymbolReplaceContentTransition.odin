@@ -47,6 +47,10 @@ NSSymbolReplaceContentTransition_transitionWithByLayer :: #force_inline proc "c"
 NSSymbolReplaceContentTransition_transitionWithWholeSymbol :: #force_inline proc "c" (self: ^NSSymbolReplaceContentTransition) -> ^NSSymbolReplaceContentTransition {
     return msgSend(^NSSymbolReplaceContentTransition, self, "transitionWithWholeSymbol")
 }
+@(objc_type=NSSymbolReplaceContentTransition, objc_name="magicTransitionWithFallback", objc_is_class_method=true)
+NSSymbolReplaceContentTransition_magicTransitionWithFallback :: #force_inline proc "c" (fallback: ^NSSymbolReplaceContentTransition) -> ^NSSymbolMagicReplaceContentTransition {
+    return msgSend(^NSSymbolMagicReplaceContentTransition, NSSymbolReplaceContentTransition, "magicTransitionWithFallback:", fallback)
+}
 @(objc_type=NSSymbolReplaceContentTransition, objc_name="new", objc_is_class_method=true)
 NSSymbolReplaceContentTransition_new :: #force_inline proc "c" () -> ^NSSymbolReplaceContentTransition {
     return msgSend(^NSSymbolReplaceContentTransition, NSSymbolReplaceContentTransition, "new")
@@ -181,6 +185,7 @@ NSSymbolReplaceContentTransition_VTable :: struct {
     replaceOffUpTransition: proc() -> ^NSSymbolReplaceContentTransition,
     transitionWithByLayer: proc(self: ^NSSymbolReplaceContentTransition) -> ^NSSymbolReplaceContentTransition,
     transitionWithWholeSymbol: proc(self: ^NSSymbolReplaceContentTransition) -> ^NSSymbolReplaceContentTransition,
+    magicTransitionWithFallback: proc(fallback: ^NSSymbolReplaceContentTransition) -> ^NSSymbolMagicReplaceContentTransition,
     new: proc() -> ^NSSymbolReplaceContentTransition,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
@@ -279,6 +284,16 @@ NSSymbolReplaceContentTransition_odin_extend :: proc(cls: Class, vt: ^NSSymbolRe
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("transitionWithWholeSymbol"), auto_cast transitionWithWholeSymbol, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.magicTransitionWithFallback != nil {
+        magicTransitionWithFallback :: proc "c" (self: Class, _: SEL, fallback: ^NSSymbolReplaceContentTransition) -> ^NSSymbolMagicReplaceContentTransition {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSSymbolReplaceContentTransition_VTable)vt_ctx.super_vt).magicTransitionWithFallback( fallback)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("magicTransitionWithFallback:"), auto_cast magicTransitionWithFallback, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
         new :: proc "c" (self: Class, _: SEL) -> ^NSSymbolReplaceContentTransition {

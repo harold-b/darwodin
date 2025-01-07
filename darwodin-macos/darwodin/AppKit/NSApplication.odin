@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -49,8 +50,8 @@ Application_deactivate :: #force_inline proc "c" (self: ^Application) {
     msgSend(nil, self, "deactivate")
 }
 @(objc_type=Application, objc_name="activateIgnoringOtherApps")
-Application_activateIgnoringOtherApps :: #force_inline proc "c" (self: ^Application, flag: bool) {
-    msgSend(nil, self, "activateIgnoringOtherApps:", flag)
+Application_activateIgnoringOtherApps :: #force_inline proc "c" (self: ^Application, ignoreOtherApps: bool) {
+    msgSend(nil, self, "activateIgnoringOtherApps:", ignoreOtherApps)
 }
 @(objc_type=Application, objc_name="activate")
 Application_activate :: #force_inline proc "c" (self: ^Application) {
@@ -273,8 +274,8 @@ Application_sendEvent :: #force_inline proc "c" (self: ^Application, event: ^Eve
     msgSend(nil, self, "sendEvent:", event)
 }
 @(objc_type=Application, objc_name="postEvent")
-Application_postEvent :: #force_inline proc "c" (self: ^Application, event: ^Event, flag: bool) {
-    msgSend(nil, self, "postEvent:atStart:", event, flag)
+Application_postEvent :: #force_inline proc "c" (self: ^Application, event: ^Event, atStart: bool) {
+    msgSend(nil, self, "postEvent:atStart:", event, atStart)
 }
 @(objc_type=Application, objc_name="nextEventMatchingMask")
 Application_nextEventMatchingMask :: #force_inline proc "c" (self: ^Application, mask: EventMask, expiration: ^NS.Date, mode: ^NS.String, deqFlag: bool) -> ^Event {
@@ -429,8 +430,8 @@ Application_endSheet_returnCode :: #force_inline proc "c" (self: ^Application, s
     msgSend(nil, self, "endSheet:returnCode:", sheet, returnCode)
 }
 @(objc_type=Application, objc_name="makeWindowsPerform")
-Application_makeWindowsPerform :: #force_inline proc "c" (self: ^Application, selector: SEL, flag: bool) -> ^Window {
-    return msgSend(^Window, self, "makeWindowsPerform:inOrder:", selector, flag)
+Application_makeWindowsPerform :: #force_inline proc "c" (self: ^Application, selector: SEL, inOrder: bool) -> ^Window {
+    return msgSend(^Window, self, "makeWindowsPerform:inOrder:", selector, inOrder)
 }
 @(objc_type=Application, objc_name="context")
 Application_context :: #force_inline proc "c" (self: ^Application) -> ^GraphicsContext {
@@ -677,7 +678,7 @@ Application_VTable :: struct {
     unhideWithoutActivation: proc(self: ^Application),
     windowWithWindowNumber: proc(self: ^Application, windowNum: NS.Integer) -> ^Window,
     deactivate: proc(self: ^Application),
-    activateIgnoringOtherApps: proc(self: ^Application, flag: bool),
+    activateIgnoringOtherApps: proc(self: ^Application, ignoreOtherApps: bool),
     activate: proc(self: ^Application),
     yieldActivationToApplication: proc(self: ^Application, application: ^RunningApplication),
     yieldActivationToApplicationWithBundleIdentifier: proc(self: ^Application, bundleIdentifier: ^NS.String),
@@ -733,7 +734,7 @@ Application_VTable :: struct {
     setAppearance: proc(self: ^Application, appearance: ^Appearance),
     effectiveAppearance: proc(self: ^Application) -> ^Appearance,
     sendEvent: proc(self: ^Application, event: ^Event),
-    postEvent: proc(self: ^Application, event: ^Event, flag: bool),
+    postEvent: proc(self: ^Application, event: ^Event, atStart: bool),
     nextEventMatchingMask: proc(self: ^Application, mask: EventMask, expiration: ^NS.Date, mode: ^NS.String, deqFlag: bool) -> ^Event,
     discardEventsMatchingMask: proc(self: ^Application, mask: EventMask, lastEvent: ^Event),
     currentEvent: proc(self: ^Application) -> ^Event,
@@ -772,7 +773,7 @@ Application_VTable :: struct {
     beginSheet: proc(self: ^Application, sheet: ^Window, docWindow: ^Window, modalDelegate: id, didEndSelector: SEL, contextInfo: rawptr),
     endSheet_: proc(self: ^Application, sheet: ^Window),
     endSheet_returnCode: proc(self: ^Application, sheet: ^Window, returnCode: NS.Integer),
-    makeWindowsPerform: proc(self: ^Application, selector: SEL, flag: bool) -> ^Window,
+    makeWindowsPerform: proc(self: ^Application, selector: SEL, inOrder: bool) -> ^Window,
     _context: proc(self: ^Application) -> ^GraphicsContext,
     activateContextHelpMode: proc(self: ^Application, sender: id),
     showHelp: proc(self: ^Application, sender: id),
@@ -885,11 +886,11 @@ Application_odin_extend :: proc(cls: Class, vt: ^Application_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("deactivate"), auto_cast deactivate, "v@:") do panic("Failed to register objC method.")
     }
     if vt.activateIgnoringOtherApps != nil {
-        activateIgnoringOtherApps :: proc "c" (self: ^Application, _: SEL, flag: bool) {
+        activateIgnoringOtherApps :: proc "c" (self: ^Application, _: SEL, ignoreOtherApps: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^Application_VTable)vt_ctx.super_vt).activateIgnoringOtherApps(self, flag)
+            (cast(^Application_VTable)vt_ctx.super_vt).activateIgnoringOtherApps(self, ignoreOtherApps)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("activateIgnoringOtherApps:"), auto_cast activateIgnoringOtherApps, "v@:B") do panic("Failed to register objC method.")
@@ -1445,11 +1446,11 @@ Application_odin_extend :: proc(cls: Class, vt: ^Application_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sendEvent:"), auto_cast sendEvent, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.postEvent != nil {
-        postEvent :: proc "c" (self: ^Application, _: SEL, event: ^Event, flag: bool) {
+        postEvent :: proc "c" (self: ^Application, _: SEL, event: ^Event, atStart: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^Application_VTable)vt_ctx.super_vt).postEvent(self, event, flag)
+            (cast(^Application_VTable)vt_ctx.super_vt).postEvent(self, event, atStart)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("postEvent:atStart:"), auto_cast postEvent, "v@:@B") do panic("Failed to register objC method.")
@@ -1835,11 +1836,11 @@ Application_odin_extend :: proc(cls: Class, vt: ^Application_VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("endSheet:returnCode:"), auto_cast endSheet_returnCode, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.makeWindowsPerform != nil {
-        makeWindowsPerform :: proc "c" (self: ^Application, _: SEL, selector: SEL, flag: bool) -> ^Window {
+        makeWindowsPerform :: proc "c" (self: ^Application, _: SEL, selector: SEL, inOrder: bool) -> ^Window {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^Application_VTable)vt_ctx.super_vt).makeWindowsPerform(self, selector, flag)
+            return (cast(^Application_VTable)vt_ctx.super_vt).makeWindowsPerform(self, selector, inOrder)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeWindowsPerform:inOrder:"), auto_cast makeWindowsPerform, "@@::B") do panic("Failed to register objC method.")

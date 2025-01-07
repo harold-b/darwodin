@@ -117,6 +117,10 @@ CollectionView_indexPathForItemAtPoint :: #force_inline proc "c" (self: ^Collect
 CollectionView_indexPathForCell :: #force_inline proc "c" (self: ^CollectionView, cell: ^CollectionViewCell) -> ^NS.IndexPath {
     return msgSend(^NS.IndexPath, self, "indexPathForCell:", cell)
 }
+@(objc_type=CollectionView, objc_name="indexPathForSupplementaryView")
+CollectionView_indexPathForSupplementaryView :: #force_inline proc "c" (self: ^CollectionView, supplementaryView: ^CollectionReusableView) -> ^NS.IndexPath {
+    return msgSend(^NS.IndexPath, self, "indexPathForSupplementaryView:", supplementaryView)
+}
 @(objc_type=CollectionView, objc_name="cellForItemAtIndexPath")
 CollectionView_cellForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionView, indexPath: ^NS.IndexPath) -> ^CollectionViewCell {
     return msgSend(^CollectionViewCell, self, "cellForItemAtIndexPath:", indexPath)
@@ -728,6 +732,7 @@ CollectionView_VTable :: struct {
     layoutAttributesForSupplementaryElementOfKind: proc(self: ^CollectionView, kind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes,
     indexPathForItemAtPoint: proc(self: ^CollectionView, point: CG.Point) -> ^NS.IndexPath,
     indexPathForCell: proc(self: ^CollectionView, cell: ^CollectionViewCell) -> ^NS.IndexPath,
+    indexPathForSupplementaryView: proc(self: ^CollectionView, supplementaryView: ^CollectionReusableView) -> ^NS.IndexPath,
     cellForItemAtIndexPath: proc(self: ^CollectionView, indexPath: ^NS.IndexPath) -> ^CollectionViewCell,
     supplementaryViewForElementKind: proc(self: ^CollectionView, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionReusableView,
     visibleSupplementaryViewsOfKind: proc(self: ^CollectionView, elementKind: ^NS.String) -> ^NS.Array,
@@ -1101,6 +1106,16 @@ CollectionView_odin_extend :: proc(cls: Class, vt: ^CollectionView_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathForCell:"), auto_cast indexPathForCell, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.indexPathForSupplementaryView != nil {
+        indexPathForSupplementaryView :: proc "c" (self: ^CollectionView, _: SEL, supplementaryView: ^CollectionReusableView) -> ^NS.IndexPath {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionView_VTable)vt_ctx.super_vt).indexPathForSupplementaryView(self, supplementaryView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathForSupplementaryView:"), auto_cast indexPathForSupplementaryView, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.cellForItemAtIndexPath != nil {
         cellForItemAtIndexPath :: proc "c" (self: ^CollectionView, _: SEL, indexPath: ^NS.IndexPath) -> ^CollectionViewCell {

@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -127,6 +128,18 @@ TextViewDelegate_textView_candidates_forSelectedRange :: #force_inline proc "c" 
 TextViewDelegate_textView_shouldSelectCandidateAtIndex :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, index: NS.UInteger) -> bool {
     return msgSend(bool, self, "textView:shouldSelectCandidateAtIndex:", textView, index)
 }
+@(objc_type=TextViewDelegate, objc_name="textViewWritingToolsWillBegin")
+TextViewDelegate_textViewWritingToolsWillBegin :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView) {
+    msgSend(nil, self, "textViewWritingToolsWillBegin:", textView)
+}
+@(objc_type=TextViewDelegate, objc_name="textViewWritingToolsDidEnd")
+TextViewDelegate_textViewWritingToolsDidEnd :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView) {
+    msgSend(nil, self, "textViewWritingToolsDidEnd:", textView)
+}
+@(objc_type=TextViewDelegate, objc_name="textView_writingToolsIgnoredRangesInEnclosingRange")
+TextViewDelegate_textView_writingToolsIgnoredRangesInEnclosingRange :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, enclosingRange: NS._NSRange) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "textView:writingToolsIgnoredRangesInEnclosingRange:", textView, enclosingRange)
+}
 @(objc_type=TextViewDelegate, objc_name="textView_clickedOnLink")
 TextViewDelegate_textView_clickedOnLink :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, link: id) -> bool {
     return msgSend(bool, self, "textView:clickedOnLink:", textView, link)
@@ -171,6 +184,9 @@ TextViewDelegate_VTable :: struct {
     textView_candidatesForSelectedRange: proc(self: ^TextViewDelegate, textView: ^TextView, selectedRange: NS._NSRange) -> ^NS.Array,
     textView_candidates_forSelectedRange: proc(self: ^TextViewDelegate, textView: ^TextView, candidates: ^NS.Array, selectedRange: NS._NSRange) -> ^NS.Array,
     textView_shouldSelectCandidateAtIndex: proc(self: ^TextViewDelegate, textView: ^TextView, index: NS.UInteger) -> bool,
+    textViewWritingToolsWillBegin: proc(self: ^TextViewDelegate, textView: ^TextView),
+    textViewWritingToolsDidEnd: proc(self: ^TextViewDelegate, textView: ^TextView),
+    textView_writingToolsIgnoredRangesInEnclosingRange: proc(self: ^TextViewDelegate, textView: ^TextView, enclosingRange: NS._NSRange) -> ^NS.Array,
     textView_clickedOnLink: proc(self: ^TextViewDelegate, textView: ^TextView, link: id) -> bool,
     textView_clickedOnCell_inRect: proc(self: ^TextViewDelegate, textView: ^TextView, cell: ^TextAttachmentCellProtocol, cellFrame: NS.Rect),
     textView_doubleClickedOnCell_inRect: proc(self: ^TextViewDelegate, textView: ^TextView, cell: ^TextAttachmentCellProtocol, cellFrame: NS.Rect),
@@ -450,6 +466,36 @@ TextViewDelegate_odin_extend :: proc(cls: Class, vt: ^TextViewDelegate_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldSelectCandidateAtIndex:"), auto_cast textView_shouldSelectCandidateAtIndex, "B@:@L") do panic("Failed to register objC method.")
+    }
+    if vt.textViewWritingToolsWillBegin != nil {
+        textViewWritingToolsWillBegin :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textViewWritingToolsWillBegin(self, textView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewWritingToolsWillBegin:"), auto_cast textViewWritingToolsWillBegin, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textViewWritingToolsDidEnd != nil {
+        textViewWritingToolsDidEnd :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textViewWritingToolsDidEnd(self, textView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewWritingToolsDidEnd:"), auto_cast textViewWritingToolsDidEnd, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textView_writingToolsIgnoredRangesInEnclosingRange != nil {
+        textView_writingToolsIgnoredRangesInEnclosingRange :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView, enclosingRange: NS._NSRange) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textView_writingToolsIgnoredRangesInEnclosingRange(self, textView, enclosingRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:writingToolsIgnoredRangesInEnclosingRange:"), auto_cast textView_writingToolsIgnoredRangesInEnclosingRange, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.textView_clickedOnLink != nil {
         textView_clickedOnLink :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView, link: id) -> bool {

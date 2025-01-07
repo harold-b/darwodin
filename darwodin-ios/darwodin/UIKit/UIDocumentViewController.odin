@@ -47,6 +47,14 @@ DocumentViewController_document :: #force_inline proc "c" (self: ^DocumentViewCo
 DocumentViewController_setDocument :: #force_inline proc "c" (self: ^DocumentViewController, document: ^Document) {
     msgSend(nil, self, "setDocument:", document)
 }
+@(objc_type=DocumentViewController, objc_name="launchOptions")
+DocumentViewController_launchOptions :: #force_inline proc "c" (self: ^DocumentViewController) -> ^DocumentViewControllerLaunchOptions {
+    return msgSend(^DocumentViewControllerLaunchOptions, self, "launchOptions")
+}
+@(objc_type=DocumentViewController, objc_name="setLaunchOptions")
+DocumentViewController_setLaunchOptions :: #force_inline proc "c" (self: ^DocumentViewController, launchOptions: ^DocumentViewControllerLaunchOptions) {
+    msgSend(nil, self, "setLaunchOptions:", launchOptions)
+}
 @(objc_type=DocumentViewController, objc_name="undoRedoItemGroup")
 DocumentViewController_undoRedoItemGroup :: #force_inline proc "c" (self: ^DocumentViewController) -> ^BarButtonItemGroup {
     return msgSend(^BarButtonItemGroup, self, "undoRedoItemGroup")
@@ -189,6 +197,8 @@ DocumentViewController_VTable :: struct {
     documentDidOpen: proc(self: ^DocumentViewController),
     document: proc(self: ^DocumentViewController) -> ^Document,
     setDocument: proc(self: ^DocumentViewController, document: ^Document),
+    launchOptions: proc(self: ^DocumentViewController) -> ^DocumentViewControllerLaunchOptions,
+    setLaunchOptions: proc(self: ^DocumentViewController, launchOptions: ^DocumentViewControllerLaunchOptions),
     undoRedoItemGroup: proc(self: ^DocumentViewController) -> ^BarButtonItemGroup,
     attemptRotationToDeviceOrientation: proc(),
     clearTextInputContextIdentifier: proc(identifier: ^NS.String),
@@ -289,6 +299,26 @@ DocumentViewController_odin_extend :: proc(cls: Class, vt: ^DocumentViewControll
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDocument:"), auto_cast setDocument, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.launchOptions != nil {
+        launchOptions :: proc "c" (self: ^DocumentViewController, _: SEL) -> ^DocumentViewControllerLaunchOptions {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentViewController_VTable)vt_ctx.super_vt).launchOptions(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchOptions"), auto_cast launchOptions, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLaunchOptions != nil {
+        setLaunchOptions :: proc "c" (self: ^DocumentViewController, _: SEL, launchOptions: ^DocumentViewControllerLaunchOptions) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DocumentViewController_VTable)vt_ctx.super_vt).setLaunchOptions(self, launchOptions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLaunchOptions:"), auto_cast setLaunchOptions, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.undoRedoItemGroup != nil {
         undoRedoItemGroup :: proc "c" (self: ^DocumentViewController, _: SEL) -> ^BarButtonItemGroup {

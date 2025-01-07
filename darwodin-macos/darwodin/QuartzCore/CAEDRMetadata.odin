@@ -19,6 +19,10 @@ EDRMetadata :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
+@(objc_type=EDRMetadata, objc_name="new", objc_is_class_method=true)
+EDRMetadata_new :: #force_inline proc "c" () -> ^EDRMetadata {
+    return msgSend(^EDRMetadata, EDRMetadata, "new")
+}
 @(objc_type=EDRMetadata, objc_name="init")
 EDRMetadata_init :: #force_inline proc "c" (self: ^EDRMetadata) -> ^EDRMetadata {
     return msgSend(^EDRMetadata, self, "init")
@@ -54,10 +58,6 @@ EDRMetadata_load :: #force_inline proc "c" () {
 @(objc_type=EDRMetadata, objc_name="initialize", objc_is_class_method=true)
 EDRMetadata_initialize :: #force_inline proc "c" () {
     msgSend(nil, EDRMetadata, "initialize")
-}
-@(objc_type=EDRMetadata, objc_name="new", objc_is_class_method=true)
-EDRMetadata_new :: #force_inline proc "c" () -> ^EDRMetadata {
-    return msgSend(^EDRMetadata, EDRMetadata, "new")
 }
 @(objc_type=EDRMetadata, objc_name="allocWithZone", objc_is_class_method=true)
 EDRMetadata_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^EDRMetadata {
@@ -179,6 +179,7 @@ EDRMetadata_cancelPreviousPerformRequestsWithTarget :: proc {
 
 EDRMetadata_VTable :: struct {
     super: NS.Object_VTable,
+    new: proc() -> ^EDRMetadata,
     init: proc(self: ^EDRMetadata) -> ^EDRMetadata,
     _HDR10MetadataWithDisplayInfo: proc(displayData: ^NS.Data, contentData: ^NS.Data, scale: cffi.float) -> ^EDRMetadata,
     _HDR10MetadataWithMinLuminance: proc(minNits: cffi.float, maxNits: cffi.float, scale: cffi.float) -> ^EDRMetadata,
@@ -188,7 +189,6 @@ EDRMetadata_VTable :: struct {
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
-    new: proc() -> ^EDRMetadata,
     allocWithZone: proc(zone: ^NS._NSZone) -> ^EDRMetadata,
     alloc: proc() -> ^EDRMetadata,
     copyWithZone: proc(zone: ^NS._NSZone) -> id,
@@ -226,6 +226,16 @@ EDRMetadata_odin_extend :: proc(cls: Class, vt: ^EDRMetadata_VTable) {
     
     NS.Object_odin_extend(cls, &vt.super)
 
+    if vt.new != nil {
+        new :: proc "c" (self: Class, _: SEL) -> ^EDRMetadata {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^EDRMetadata_VTable)vt_ctx.super_vt).new()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
+    }
     if vt.init != nil {
         init :: proc "c" (self: ^EDRMetadata, _: SEL) -> ^EDRMetadata {
 
@@ -315,16 +325,6 @@ EDRMetadata_odin_extend :: proc(cls: Class, vt: ^EDRMetadata_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("initialize"), auto_cast initialize, "v#:") do panic("Failed to register objC method.")
-    }
-    if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^EDRMetadata {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^EDRMetadata_VTable)vt_ctx.super_vt).new()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.allocWithZone != nil {
         allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> ^EDRMetadata {

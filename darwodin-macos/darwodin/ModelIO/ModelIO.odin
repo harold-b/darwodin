@@ -11,8 +11,6 @@ import CA "../QuartzCore"
 import MTL "../Metal"
 import AK "../AppKit"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -404,10 +402,12 @@ AxisAlignedBoundingBox :: struct #align (16) {
     maxBounds: vector_float3,
     minBounds: vector_float3,
 }
+#assert(size_of(AxisAlignedBoundingBox) == 32)
 
 /// MDLVoxelIndexExtent
 VoxelIndexExtent :: struct #align (16) {
     minimumExtent: VoxelIndex,
     maximumExtent: VoxelIndex,
 }
+#assert(size_of(VoxelIndexExtent) == 32)
 

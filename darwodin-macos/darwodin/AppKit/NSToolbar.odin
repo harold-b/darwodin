@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -33,13 +34,13 @@ Toolbar_insertItemWithItemIdentifier :: #force_inline proc "c" (self: ^Toolbar, 
 Toolbar_removeItemAtIndex :: #force_inline proc "c" (self: ^Toolbar, index: NS.Integer) {
     msgSend(nil, self, "removeItemAtIndex:", index)
 }
+@(objc_type=Toolbar, objc_name="removeItemWithItemIdentifier")
+Toolbar_removeItemWithItemIdentifier :: #force_inline proc "c" (self: ^Toolbar, itemIdentifier: ^NS.String) {
+    msgSend(nil, self, "removeItemWithItemIdentifier:", itemIdentifier)
+}
 @(objc_type=Toolbar, objc_name="runCustomizationPalette")
 Toolbar_runCustomizationPalette :: #force_inline proc "c" (self: ^Toolbar, sender: id) {
     msgSend(nil, self, "runCustomizationPalette:", sender)
-}
-@(objc_type=Toolbar, objc_name="setConfigurationFromDictionary")
-Toolbar_setConfigurationFromDictionary :: #force_inline proc "c" (self: ^Toolbar, configDict: ^NS.Dictionary) {
-    msgSend(nil, self, "setConfigurationFromDictionary:", configDict)
 }
 @(objc_type=Toolbar, objc_name="validateVisibleItems")
 Toolbar_validateVisibleItems :: #force_inline proc "c" (self: ^Toolbar) {
@@ -81,22 +82,6 @@ Toolbar_selectedItemIdentifier :: #force_inline proc "c" (self: ^Toolbar) -> ^NS
 Toolbar_setSelectedItemIdentifier :: #force_inline proc "c" (self: ^Toolbar, selectedItemIdentifier: ^NS.String) {
     msgSend(nil, self, "setSelectedItemIdentifier:", selectedItemIdentifier)
 }
-@(objc_type=Toolbar, objc_name="sizeMode")
-Toolbar_sizeMode :: #force_inline proc "c" (self: ^Toolbar) -> ToolbarSizeMode {
-    return msgSend(ToolbarSizeMode, self, "sizeMode")
-}
-@(objc_type=Toolbar, objc_name="setSizeMode")
-Toolbar_setSizeMode :: #force_inline proc "c" (self: ^Toolbar, sizeMode: ToolbarSizeMode) {
-    msgSend(nil, self, "setSizeMode:", sizeMode)
-}
-@(objc_type=Toolbar, objc_name="showsBaselineSeparator")
-Toolbar_showsBaselineSeparator :: #force_inline proc "c" (self: ^Toolbar) -> bool {
-    return msgSend(bool, self, "showsBaselineSeparator")
-}
-@(objc_type=Toolbar, objc_name="setShowsBaselineSeparator")
-Toolbar_setShowsBaselineSeparator :: #force_inline proc "c" (self: ^Toolbar, showsBaselineSeparator: bool) {
-    msgSend(nil, self, "setShowsBaselineSeparator:", showsBaselineSeparator)
-}
 @(objc_type=Toolbar, objc_name="allowsUserCustomization")
 Toolbar_allowsUserCustomization :: #force_inline proc "c" (self: ^Toolbar) -> bool {
     return msgSend(bool, self, "allowsUserCustomization")
@@ -104,6 +89,14 @@ Toolbar_allowsUserCustomization :: #force_inline proc "c" (self: ^Toolbar) -> bo
 @(objc_type=Toolbar, objc_name="setAllowsUserCustomization")
 Toolbar_setAllowsUserCustomization :: #force_inline proc "c" (self: ^Toolbar, allowsUserCustomization: bool) {
     msgSend(nil, self, "setAllowsUserCustomization:", allowsUserCustomization)
+}
+@(objc_type=Toolbar, objc_name="allowsDisplayModeCustomization")
+Toolbar_allowsDisplayModeCustomization :: #force_inline proc "c" (self: ^Toolbar) -> bool {
+    return msgSend(bool, self, "allowsDisplayModeCustomization")
+}
+@(objc_type=Toolbar, objc_name="setAllowsDisplayModeCustomization")
+Toolbar_setAllowsDisplayModeCustomization :: #force_inline proc "c" (self: ^Toolbar, allowsDisplayModeCustomization: bool) {
+    msgSend(nil, self, "setAllowsDisplayModeCustomization:", allowsDisplayModeCustomization)
 }
 @(objc_type=Toolbar, objc_name="identifier")
 Toolbar_identifier :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.String {
@@ -117,6 +110,14 @@ Toolbar_items :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.Array {
 Toolbar_visibleItems :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.Array {
     return msgSend(^NS.Array, self, "visibleItems")
 }
+@(objc_type=Toolbar, objc_name="itemIdentifiers")
+Toolbar_itemIdentifiers :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "itemIdentifiers")
+}
+@(objc_type=Toolbar, objc_name="setItemIdentifiers")
+Toolbar_setItemIdentifiers :: #force_inline proc "c" (self: ^Toolbar, itemIdentifiers: ^NS.Array) {
+    msgSend(nil, self, "setItemIdentifiers:", itemIdentifiers)
+}
 @(objc_type=Toolbar, objc_name="centeredItemIdentifiers")
 Toolbar_centeredItemIdentifiers :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.Set {
     return msgSend(^NS.Set, self, "centeredItemIdentifiers")
@@ -124,14 +125,6 @@ Toolbar_centeredItemIdentifiers :: #force_inline proc "c" (self: ^Toolbar) -> ^N
 @(objc_type=Toolbar, objc_name="setCenteredItemIdentifiers")
 Toolbar_setCenteredItemIdentifiers :: #force_inline proc "c" (self: ^Toolbar, centeredItemIdentifiers: ^NS.Set) {
     msgSend(nil, self, "setCenteredItemIdentifiers:", centeredItemIdentifiers)
-}
-@(objc_type=Toolbar, objc_name="centeredItemIdentifier")
-Toolbar_centeredItemIdentifier :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.String {
-    return msgSend(^NS.String, self, "centeredItemIdentifier")
-}
-@(objc_type=Toolbar, objc_name="setCenteredItemIdentifier")
-Toolbar_setCenteredItemIdentifier :: #force_inline proc "c" (self: ^Toolbar, centeredItemIdentifier: ^NS.String) {
-    msgSend(nil, self, "setCenteredItemIdentifier:", centeredItemIdentifier)
 }
 @(objc_type=Toolbar, objc_name="autosavesConfiguration")
 Toolbar_autosavesConfiguration :: #force_inline proc "c" (self: ^Toolbar) -> bool {
@@ -141,10 +134,6 @@ Toolbar_autosavesConfiguration :: #force_inline proc "c" (self: ^Toolbar) -> boo
 Toolbar_setAutosavesConfiguration :: #force_inline proc "c" (self: ^Toolbar, autosavesConfiguration: bool) {
     msgSend(nil, self, "setAutosavesConfiguration:", autosavesConfiguration)
 }
-@(objc_type=Toolbar, objc_name="configurationDictionary")
-Toolbar_configurationDictionary :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "configurationDictionary")
-}
 @(objc_type=Toolbar, objc_name="allowsExtensionItems")
 Toolbar_allowsExtensionItems :: #force_inline proc "c" (self: ^Toolbar) -> bool {
     return msgSend(bool, self, "allowsExtensionItems")
@@ -152,6 +141,26 @@ Toolbar_allowsExtensionItems :: #force_inline proc "c" (self: ^Toolbar) -> bool 
 @(objc_type=Toolbar, objc_name="setAllowsExtensionItems")
 Toolbar_setAllowsExtensionItems :: #force_inline proc "c" (self: ^Toolbar, allowsExtensionItems: bool) {
     msgSend(nil, self, "setAllowsExtensionItems:", allowsExtensionItems)
+}
+@(objc_type=Toolbar, objc_name="setConfigurationFromDictionary")
+Toolbar_setConfigurationFromDictionary :: #force_inline proc "c" (self: ^Toolbar, configDict: ^NS.Dictionary) {
+    msgSend(nil, self, "setConfigurationFromDictionary:", configDict)
+}
+@(objc_type=Toolbar, objc_name="sizeMode")
+Toolbar_sizeMode :: #force_inline proc "c" (self: ^Toolbar) -> ToolbarSizeMode {
+    return msgSend(ToolbarSizeMode, self, "sizeMode")
+}
+@(objc_type=Toolbar, objc_name="setSizeMode")
+Toolbar_setSizeMode :: #force_inline proc "c" (self: ^Toolbar, sizeMode: ToolbarSizeMode) {
+    msgSend(nil, self, "setSizeMode:", sizeMode)
+}
+@(objc_type=Toolbar, objc_name="centeredItemIdentifier")
+Toolbar_centeredItemIdentifier :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.String {
+    return msgSend(^NS.String, self, "centeredItemIdentifier")
+}
+@(objc_type=Toolbar, objc_name="setCenteredItemIdentifier")
+Toolbar_setCenteredItemIdentifier :: #force_inline proc "c" (self: ^Toolbar, centeredItemIdentifier: ^NS.String) {
+    msgSend(nil, self, "setCenteredItemIdentifier:", centeredItemIdentifier)
 }
 @(objc_type=Toolbar, objc_name="fullScreenAccessoryView")
 Toolbar_fullScreenAccessoryView :: #force_inline proc "c" (self: ^Toolbar) -> ^View {
@@ -176,6 +185,18 @@ Toolbar_fullScreenAccessoryViewMaxHeight :: #force_inline proc "c" (self: ^Toolb
 @(objc_type=Toolbar, objc_name="setFullScreenAccessoryViewMaxHeight")
 Toolbar_setFullScreenAccessoryViewMaxHeight :: #force_inline proc "c" (self: ^Toolbar, fullScreenAccessoryViewMaxHeight: CG.Float) {
     msgSend(nil, self, "setFullScreenAccessoryViewMaxHeight:", fullScreenAccessoryViewMaxHeight)
+}
+@(objc_type=Toolbar, objc_name="showsBaselineSeparator")
+Toolbar_showsBaselineSeparator :: #force_inline proc "c" (self: ^Toolbar) -> bool {
+    return msgSend(bool, self, "showsBaselineSeparator")
+}
+@(objc_type=Toolbar, objc_name="setShowsBaselineSeparator")
+Toolbar_setShowsBaselineSeparator :: #force_inline proc "c" (self: ^Toolbar, showsBaselineSeparator: bool) {
+    msgSend(nil, self, "setShowsBaselineSeparator:", showsBaselineSeparator)
+}
+@(objc_type=Toolbar, objc_name="configurationDictionary")
+Toolbar_configurationDictionary :: #force_inline proc "c" (self: ^Toolbar) -> ^NS.Dictionary {
+    return msgSend(^NS.Dictionary, self, "configurationDictionary")
 }
 @(objc_type=Toolbar, objc_name="load", objc_is_class_method=true)
 Toolbar_load :: #force_inline proc "c" () {
@@ -325,8 +346,8 @@ Toolbar_VTable :: struct {
     init: proc(self: ^Toolbar) -> ^Toolbar,
     insertItemWithItemIdentifier: proc(self: ^Toolbar, itemIdentifier: ^NS.String, index: NS.Integer),
     removeItemAtIndex: proc(self: ^Toolbar, index: NS.Integer),
+    removeItemWithItemIdentifier: proc(self: ^Toolbar, itemIdentifier: ^NS.String),
     runCustomizationPalette: proc(self: ^Toolbar, sender: id),
-    setConfigurationFromDictionary: proc(self: ^Toolbar, configDict: ^NS.Dictionary),
     validateVisibleItems: proc(self: ^Toolbar),
     delegate: proc(self: ^Toolbar) -> ^ToolbarDelegate,
     setDelegate: proc(self: ^Toolbar, delegate: ^ToolbarDelegate),
@@ -337,30 +358,35 @@ Toolbar_VTable :: struct {
     setDisplayMode: proc(self: ^Toolbar, displayMode: ToolbarDisplayMode),
     selectedItemIdentifier: proc(self: ^Toolbar) -> ^NS.String,
     setSelectedItemIdentifier: proc(self: ^Toolbar, selectedItemIdentifier: ^NS.String),
-    sizeMode: proc(self: ^Toolbar) -> ToolbarSizeMode,
-    setSizeMode: proc(self: ^Toolbar, sizeMode: ToolbarSizeMode),
-    showsBaselineSeparator: proc(self: ^Toolbar) -> bool,
-    setShowsBaselineSeparator: proc(self: ^Toolbar, showsBaselineSeparator: bool),
     allowsUserCustomization: proc(self: ^Toolbar) -> bool,
     setAllowsUserCustomization: proc(self: ^Toolbar, allowsUserCustomization: bool),
+    allowsDisplayModeCustomization: proc(self: ^Toolbar) -> bool,
+    setAllowsDisplayModeCustomization: proc(self: ^Toolbar, allowsDisplayModeCustomization: bool),
     identifier: proc(self: ^Toolbar) -> ^NS.String,
     items: proc(self: ^Toolbar) -> ^NS.Array,
     visibleItems: proc(self: ^Toolbar) -> ^NS.Array,
+    itemIdentifiers: proc(self: ^Toolbar) -> ^NS.Array,
+    setItemIdentifiers: proc(self: ^Toolbar, itemIdentifiers: ^NS.Array),
     centeredItemIdentifiers: proc(self: ^Toolbar) -> ^NS.Set,
     setCenteredItemIdentifiers: proc(self: ^Toolbar, centeredItemIdentifiers: ^NS.Set),
-    centeredItemIdentifier: proc(self: ^Toolbar) -> ^NS.String,
-    setCenteredItemIdentifier: proc(self: ^Toolbar, centeredItemIdentifier: ^NS.String),
     autosavesConfiguration: proc(self: ^Toolbar) -> bool,
     setAutosavesConfiguration: proc(self: ^Toolbar, autosavesConfiguration: bool),
-    configurationDictionary: proc(self: ^Toolbar) -> ^NS.Dictionary,
     allowsExtensionItems: proc(self: ^Toolbar) -> bool,
     setAllowsExtensionItems: proc(self: ^Toolbar, allowsExtensionItems: bool),
+    setConfigurationFromDictionary: proc(self: ^Toolbar, configDict: ^NS.Dictionary),
+    sizeMode: proc(self: ^Toolbar) -> ToolbarSizeMode,
+    setSizeMode: proc(self: ^Toolbar, sizeMode: ToolbarSizeMode),
+    centeredItemIdentifier: proc(self: ^Toolbar) -> ^NS.String,
+    setCenteredItemIdentifier: proc(self: ^Toolbar, centeredItemIdentifier: ^NS.String),
     fullScreenAccessoryView: proc(self: ^Toolbar) -> ^View,
     setFullScreenAccessoryView: proc(self: ^Toolbar, fullScreenAccessoryView: ^View),
     fullScreenAccessoryViewMinHeight: proc(self: ^Toolbar) -> CG.Float,
     setFullScreenAccessoryViewMinHeight: proc(self: ^Toolbar, fullScreenAccessoryViewMinHeight: CG.Float),
     fullScreenAccessoryViewMaxHeight: proc(self: ^Toolbar) -> CG.Float,
     setFullScreenAccessoryViewMaxHeight: proc(self: ^Toolbar, fullScreenAccessoryViewMaxHeight: CG.Float),
+    showsBaselineSeparator: proc(self: ^Toolbar) -> bool,
+    setShowsBaselineSeparator: proc(self: ^Toolbar, showsBaselineSeparator: bool),
+    configurationDictionary: proc(self: ^Toolbar) -> ^NS.Dictionary,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^Toolbar,
@@ -444,6 +470,16 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeItemAtIndex:"), auto_cast removeItemAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
+    if vt.removeItemWithItemIdentifier != nil {
+        removeItemWithItemIdentifier :: proc "c" (self: ^Toolbar, _: SEL, itemIdentifier: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Toolbar_VTable)vt_ctx.super_vt).removeItemWithItemIdentifier(self, itemIdentifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeItemWithItemIdentifier:"), auto_cast removeItemWithItemIdentifier, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.runCustomizationPalette != nil {
         runCustomizationPalette :: proc "c" (self: ^Toolbar, _: SEL, sender: id) {
 
@@ -453,16 +489,6 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("runCustomizationPalette:"), auto_cast runCustomizationPalette, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.setConfigurationFromDictionary != nil {
-        setConfigurationFromDictionary :: proc "c" (self: ^Toolbar, _: SEL, configDict: ^NS.Dictionary) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^Toolbar_VTable)vt_ctx.super_vt).setConfigurationFromDictionary(self, configDict)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setConfigurationFromDictionary:"), auto_cast setConfigurationFromDictionary, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.validateVisibleItems != nil {
         validateVisibleItems :: proc "c" (self: ^Toolbar, _: SEL) {
@@ -564,46 +590,6 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedItemIdentifier:"), auto_cast setSelectedItemIdentifier, "v@:@") do panic("Failed to register objC method.")
     }
-    if vt.sizeMode != nil {
-        sizeMode :: proc "c" (self: ^Toolbar, _: SEL) -> ToolbarSizeMode {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^Toolbar_VTable)vt_ctx.super_vt).sizeMode(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("sizeMode"), auto_cast sizeMode, "L@:") do panic("Failed to register objC method.")
-    }
-    if vt.setSizeMode != nil {
-        setSizeMode :: proc "c" (self: ^Toolbar, _: SEL, sizeMode: ToolbarSizeMode) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^Toolbar_VTable)vt_ctx.super_vt).setSizeMode(self, sizeMode)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSizeMode:"), auto_cast setSizeMode, "v@:L") do panic("Failed to register objC method.")
-    }
-    if vt.showsBaselineSeparator != nil {
-        showsBaselineSeparator :: proc "c" (self: ^Toolbar, _: SEL) -> bool {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^Toolbar_VTable)vt_ctx.super_vt).showsBaselineSeparator(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("showsBaselineSeparator"), auto_cast showsBaselineSeparator, "B@:") do panic("Failed to register objC method.")
-    }
-    if vt.setShowsBaselineSeparator != nil {
-        setShowsBaselineSeparator :: proc "c" (self: ^Toolbar, _: SEL, showsBaselineSeparator: bool) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^Toolbar_VTable)vt_ctx.super_vt).setShowsBaselineSeparator(self, showsBaselineSeparator)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsBaselineSeparator:"), auto_cast setShowsBaselineSeparator, "v@:B") do panic("Failed to register objC method.")
-    }
     if vt.allowsUserCustomization != nil {
         allowsUserCustomization :: proc "c" (self: ^Toolbar, _: SEL) -> bool {
 
@@ -623,6 +609,26 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsUserCustomization:"), auto_cast setAllowsUserCustomization, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.allowsDisplayModeCustomization != nil {
+        allowsDisplayModeCustomization :: proc "c" (self: ^Toolbar, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Toolbar_VTable)vt_ctx.super_vt).allowsDisplayModeCustomization(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsDisplayModeCustomization"), auto_cast allowsDisplayModeCustomization, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsDisplayModeCustomization != nil {
+        setAllowsDisplayModeCustomization :: proc "c" (self: ^Toolbar, _: SEL, allowsDisplayModeCustomization: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Toolbar_VTable)vt_ctx.super_vt).setAllowsDisplayModeCustomization(self, allowsDisplayModeCustomization)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsDisplayModeCustomization:"), auto_cast setAllowsDisplayModeCustomization, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.identifier != nil {
         identifier :: proc "c" (self: ^Toolbar, _: SEL) -> ^NS.String {
@@ -654,6 +660,26 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("visibleItems"), auto_cast visibleItems, "@@:") do panic("Failed to register objC method.")
     }
+    if vt.itemIdentifiers != nil {
+        itemIdentifiers :: proc "c" (self: ^Toolbar, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Toolbar_VTable)vt_ctx.super_vt).itemIdentifiers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifiers"), auto_cast itemIdentifiers, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setItemIdentifiers != nil {
+        setItemIdentifiers :: proc "c" (self: ^Toolbar, _: SEL, itemIdentifiers: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Toolbar_VTable)vt_ctx.super_vt).setItemIdentifiers(self, itemIdentifiers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setItemIdentifiers:"), auto_cast setItemIdentifiers, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.centeredItemIdentifiers != nil {
         centeredItemIdentifiers :: proc "c" (self: ^Toolbar, _: SEL) -> ^NS.Set {
 
@@ -673,26 +699,6 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCenteredItemIdentifiers:"), auto_cast setCenteredItemIdentifiers, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.centeredItemIdentifier != nil {
-        centeredItemIdentifier :: proc "c" (self: ^Toolbar, _: SEL) -> ^NS.String {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^Toolbar_VTable)vt_ctx.super_vt).centeredItemIdentifier(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("centeredItemIdentifier"), auto_cast centeredItemIdentifier, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.setCenteredItemIdentifier != nil {
-        setCenteredItemIdentifier :: proc "c" (self: ^Toolbar, _: SEL, centeredItemIdentifier: ^NS.String) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^Toolbar_VTable)vt_ctx.super_vt).setCenteredItemIdentifier(self, centeredItemIdentifier)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setCenteredItemIdentifier:"), auto_cast setCenteredItemIdentifier, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.autosavesConfiguration != nil {
         autosavesConfiguration :: proc "c" (self: ^Toolbar, _: SEL) -> bool {
@@ -714,16 +720,6 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutosavesConfiguration:"), auto_cast setAutosavesConfiguration, "v@:B") do panic("Failed to register objC method.")
     }
-    if vt.configurationDictionary != nil {
-        configurationDictionary :: proc "c" (self: ^Toolbar, _: SEL) -> ^NS.Dictionary {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^Toolbar_VTable)vt_ctx.super_vt).configurationDictionary(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("configurationDictionary"), auto_cast configurationDictionary, "@@:") do panic("Failed to register objC method.")
-    }
     if vt.allowsExtensionItems != nil {
         allowsExtensionItems :: proc "c" (self: ^Toolbar, _: SEL) -> bool {
 
@@ -743,6 +739,56 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsExtensionItems:"), auto_cast setAllowsExtensionItems, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.setConfigurationFromDictionary != nil {
+        setConfigurationFromDictionary :: proc "c" (self: ^Toolbar, _: SEL, configDict: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Toolbar_VTable)vt_ctx.super_vt).setConfigurationFromDictionary(self, configDict)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setConfigurationFromDictionary:"), auto_cast setConfigurationFromDictionary, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.sizeMode != nil {
+        sizeMode :: proc "c" (self: ^Toolbar, _: SEL) -> ToolbarSizeMode {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Toolbar_VTable)vt_ctx.super_vt).sizeMode(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sizeMode"), auto_cast sizeMode, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSizeMode != nil {
+        setSizeMode :: proc "c" (self: ^Toolbar, _: SEL, sizeMode: ToolbarSizeMode) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Toolbar_VTable)vt_ctx.super_vt).setSizeMode(self, sizeMode)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSizeMode:"), auto_cast setSizeMode, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.centeredItemIdentifier != nil {
+        centeredItemIdentifier :: proc "c" (self: ^Toolbar, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Toolbar_VTable)vt_ctx.super_vt).centeredItemIdentifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("centeredItemIdentifier"), auto_cast centeredItemIdentifier, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCenteredItemIdentifier != nil {
+        setCenteredItemIdentifier :: proc "c" (self: ^Toolbar, _: SEL, centeredItemIdentifier: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Toolbar_VTable)vt_ctx.super_vt).setCenteredItemIdentifier(self, centeredItemIdentifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCenteredItemIdentifier:"), auto_cast setCenteredItemIdentifier, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.fullScreenAccessoryView != nil {
         fullScreenAccessoryView :: proc "c" (self: ^Toolbar, _: SEL) -> ^View {
@@ -803,6 +849,36 @@ Toolbar_odin_extend :: proc(cls: Class, vt: ^Toolbar_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFullScreenAccessoryViewMaxHeight:"), auto_cast setFullScreenAccessoryViewMaxHeight, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.showsBaselineSeparator != nil {
+        showsBaselineSeparator :: proc "c" (self: ^Toolbar, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Toolbar_VTable)vt_ctx.super_vt).showsBaselineSeparator(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showsBaselineSeparator"), auto_cast showsBaselineSeparator, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setShowsBaselineSeparator != nil {
+        setShowsBaselineSeparator :: proc "c" (self: ^Toolbar, _: SEL, showsBaselineSeparator: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Toolbar_VTable)vt_ctx.super_vt).setShowsBaselineSeparator(self, showsBaselineSeparator)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsBaselineSeparator:"), auto_cast setShowsBaselineSeparator, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.configurationDictionary != nil {
+        configurationDictionary :: proc "c" (self: ^Toolbar, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Toolbar_VTable)vt_ctx.super_vt).configurationDictionary(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("configurationDictionary"), auto_cast configurationDictionary, "@@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

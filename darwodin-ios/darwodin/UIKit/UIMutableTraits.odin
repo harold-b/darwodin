@@ -179,6 +179,14 @@ MutableTraits_typesettingLanguage :: #force_inline proc "c" (self: ^MutableTrait
 MutableTraits_setTypesettingLanguage :: #force_inline proc "c" (self: ^MutableTraits, typesettingLanguage: ^NS.String) {
     msgSend(nil, self, "setTypesettingLanguage:", typesettingLanguage)
 }
+@(objc_type=MutableTraits, objc_name="listEnvironment")
+MutableTraits_listEnvironment :: #force_inline proc "c" (self: ^MutableTraits) -> ListEnvironment {
+    return msgSend(ListEnvironment, self, "listEnvironment")
+}
+@(objc_type=MutableTraits, objc_name="setListEnvironment")
+MutableTraits_setListEnvironment :: #force_inline proc "c" (self: ^MutableTraits, listEnvironment: ListEnvironment) {
+    msgSend(nil, self, "setListEnvironment:", listEnvironment)
+}
 MutableTraits_VTable :: struct {
     setCGFloatValue: proc(self: ^MutableTraits, value: CG.Float, trait: ^Class),
     valueForCGFloatTrait: proc(self: ^MutableTraits, trait: ^Class) -> CG.Float,
@@ -220,6 +228,8 @@ MutableTraits_VTable :: struct {
     setSceneCaptureState: proc(self: ^MutableTraits, sceneCaptureState: SceneCaptureState),
     typesettingLanguage: proc(self: ^MutableTraits) -> ^NS.String,
     setTypesettingLanguage: proc(self: ^MutableTraits, typesettingLanguage: ^NS.String),
+    listEnvironment: proc(self: ^MutableTraits) -> ListEnvironment,
+    setListEnvironment: proc(self: ^MutableTraits, listEnvironment: ListEnvironment),
 }
 
 MutableTraits_odin_extend :: proc(cls: Class, vt: ^MutableTraits_VTable) {
@@ -625,6 +635,26 @@ MutableTraits_odin_extend :: proc(cls: Class, vt: ^MutableTraits_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTypesettingLanguage:"), auto_cast setTypesettingLanguage, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.listEnvironment != nil {
+        listEnvironment :: proc "c" (self: ^MutableTraits, _: SEL) -> ListEnvironment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableTraits_VTable)vt_ctx.protocol_vt).listEnvironment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("listEnvironment"), auto_cast listEnvironment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setListEnvironment != nil {
+        setListEnvironment :: proc "c" (self: ^MutableTraits, _: SEL, listEnvironment: ListEnvironment) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableTraits_VTable)vt_ctx.protocol_vt).setListEnvironment(self, listEnvironment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setListEnvironment:"), auto_cast setListEnvironment, "v@:l") do panic("Failed to register objC method.")
     }
 }
 

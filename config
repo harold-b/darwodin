@@ -5,6 +5,7 @@ darwodin_lite_suffix=-lite
 darwodin_base_frameworks=(
   CoreFoundation
   CoreGraphics
+  CoreText
   Foundation
   QuartzCore
   Metal
@@ -26,7 +27,7 @@ function darwodin_get_header_for_framework()
 {
   framework=$1
 
-  case $f in
+  case $framework in
     FSEvents)
     framework=CoreServices
     ;;

@@ -534,6 +534,14 @@ TableView_hasActiveDrag :: #force_inline proc "c" (self: ^TableView) -> bool {
 TableView_hasActiveDrop :: #force_inline proc "c" (self: ^TableView) -> bool {
     return msgSend(bool, self, "hasActiveDrop")
 }
+@(objc_type=TableView, objc_name="contentHuggingElements")
+TableView_contentHuggingElements :: #force_inline proc "c" (self: ^TableView) -> TableViewContentHuggingElements {
+    return msgSend(TableViewContentHuggingElements, self, "contentHuggingElements")
+}
+@(objc_type=TableView, objc_name="setContentHuggingElements")
+TableView_setContentHuggingElements :: #force_inline proc "c" (self: ^TableView, contentHuggingElements: TableViewContentHuggingElements) {
+    msgSend(nil, self, "setContentHuggingElements:", contentHuggingElements)
+}
 @(objc_type=TableView, objc_name="userInterfaceLayoutDirectionForSemanticContentAttribute_", objc_is_class_method=true)
 TableView_userInterfaceLayoutDirectionForSemanticContentAttribute_ :: #force_inline proc "c" (attribute: SemanticContentAttribute) -> UserInterfaceLayoutDirection {
     return msgSend(UserInterfaceLayoutDirection, TableView, "userInterfaceLayoutDirectionForSemanticContentAttribute:", attribute)
@@ -974,6 +982,8 @@ TableView_VTable :: struct {
     setDragInteractionEnabled: proc(self: ^TableView, dragInteractionEnabled: bool),
     hasActiveDrag: proc(self: ^TableView) -> bool,
     hasActiveDrop: proc(self: ^TableView) -> bool,
+    contentHuggingElements: proc(self: ^TableView) -> TableViewContentHuggingElements,
+    setContentHuggingElements: proc(self: ^TableView, contentHuggingElements: TableViewContentHuggingElements),
     userInterfaceLayoutDirectionForSemanticContentAttribute_: proc(attribute: SemanticContentAttribute) -> UserInterfaceLayoutDirection,
     userInterfaceLayoutDirectionForSemanticContentAttribute_relativeToLayoutDirection: proc(semanticContentAttribute: SemanticContentAttribute, layoutDirection: UserInterfaceLayoutDirection) -> UserInterfaceLayoutDirection,
     layerClass: proc() -> Class,
@@ -2320,6 +2330,26 @@ TableView_odin_extend :: proc(cls: Class, vt: ^TableView_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasActiveDrop"), auto_cast hasActiveDrop, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.contentHuggingElements != nil {
+        contentHuggingElements :: proc "c" (self: ^TableView, _: SEL) -> TableViewContentHuggingElements {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TableView_VTable)vt_ctx.super_vt).contentHuggingElements(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentHuggingElements"), auto_cast contentHuggingElements, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setContentHuggingElements != nil {
+        setContentHuggingElements :: proc "c" (self: ^TableView, _: SEL, contentHuggingElements: TableViewContentHuggingElements) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TableView_VTable)vt_ctx.super_vt).setContentHuggingElements(self, contentHuggingElements)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setContentHuggingElements:"), auto_cast setContentHuggingElements, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.userInterfaceLayoutDirectionForSemanticContentAttribute_ != nil {
         userInterfaceLayoutDirectionForSemanticContentAttribute_ :: proc "c" (self: Class, _: SEL, attribute: SemanticContentAttribute) -> UserInterfaceLayoutDirection {

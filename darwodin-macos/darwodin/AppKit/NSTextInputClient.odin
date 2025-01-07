@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -85,6 +86,10 @@ TextInputClient_drawsVerticallyForCharacterAtIndex :: #force_inline proc "c" (se
 TextInputClient_preferredTextAccessoryPlacement :: #force_inline proc "c" (self: ^TextInputClient) -> TextCursorAccessoryPlacement {
     return msgSend(TextCursorAccessoryPlacement, self, "preferredTextAccessoryPlacement")
 }
+@(objc_type=TextInputClient, objc_name="insertAdaptiveImageGlyph")
+TextInputClient_insertAdaptiveImageGlyph :: #force_inline proc "c" (self: ^TextInputClient, adaptiveImageGlyph: ^AdaptiveImageGlyph, replacementRange: NS._NSRange) {
+    msgSend(nil, self, "insertAdaptiveImageGlyph:replacementRange:", adaptiveImageGlyph, replacementRange)
+}
 @(objc_type=TextInputClient, objc_name="unionRectInVisibleSelectedRange")
 TextInputClient_unionRectInVisibleSelectedRange :: #force_inline proc "c" (self: ^TextInputClient) -> NS.Rect {
     return msgSend(NS.Rect, self, "unionRectInVisibleSelectedRange")
@@ -92,6 +97,10 @@ TextInputClient_unionRectInVisibleSelectedRange :: #force_inline proc "c" (self:
 @(objc_type=TextInputClient, objc_name="documentVisibleRect")
 TextInputClient_documentVisibleRect :: #force_inline proc "c" (self: ^TextInputClient) -> NS.Rect {
     return msgSend(NS.Rect, self, "documentVisibleRect")
+}
+@(objc_type=TextInputClient, objc_name="supportsAdaptiveImageGlyph")
+TextInputClient_supportsAdaptiveImageGlyph :: #force_inline proc "c" (self: ^TextInputClient) -> bool {
+    return msgSend(bool, self, "supportsAdaptiveImageGlyph")
 }
 TextInputClient_VTable :: struct {
     insertText: proc(self: ^TextInputClient, string: id, replacementRange: NS._NSRange),
@@ -111,8 +120,10 @@ TextInputClient_VTable :: struct {
     windowLevel: proc(self: ^TextInputClient) -> NS.Integer,
     drawsVerticallyForCharacterAtIndex: proc(self: ^TextInputClient, charIndex: NS.UInteger) -> bool,
     preferredTextAccessoryPlacement: proc(self: ^TextInputClient) -> TextCursorAccessoryPlacement,
+    insertAdaptiveImageGlyph: proc(self: ^TextInputClient, adaptiveImageGlyph: ^AdaptiveImageGlyph, replacementRange: NS._NSRange),
     unionRectInVisibleSelectedRange: proc(self: ^TextInputClient) -> NS.Rect,
     documentVisibleRect: proc(self: ^TextInputClient) -> NS.Rect,
+    supportsAdaptiveImageGlyph: proc(self: ^TextInputClient) -> bool,
 }
 
 TextInputClient_odin_extend :: proc(cls: Class, vt: ^TextInputClient_VTable) {
@@ -289,6 +300,16 @@ TextInputClient_odin_extend :: proc(cls: Class, vt: ^TextInputClient_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredTextAccessoryPlacement"), auto_cast preferredTextAccessoryPlacement, "l@:") do panic("Failed to register objC method.")
     }
+    if vt.insertAdaptiveImageGlyph != nil {
+        insertAdaptiveImageGlyph :: proc "c" (self: ^TextInputClient, _: SEL, adaptiveImageGlyph: ^AdaptiveImageGlyph, replacementRange: NS._NSRange) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInputClient_VTable)vt_ctx.protocol_vt).insertAdaptiveImageGlyph(self, adaptiveImageGlyph, replacementRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertAdaptiveImageGlyph:replacementRange:"), auto_cast insertAdaptiveImageGlyph, "v@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
     if vt.unionRectInVisibleSelectedRange != nil {
         unionRectInVisibleSelectedRange :: proc "c" (self: ^TextInputClient, _: SEL) -> NS.Rect {
 
@@ -308,6 +329,16 @@ TextInputClient_odin_extend :: proc(cls: Class, vt: ^TextInputClient_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentVisibleRect"), auto_cast documentVisibleRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
+    }
+    if vt.supportsAdaptiveImageGlyph != nil {
+        supportsAdaptiveImageGlyph :: proc "c" (self: ^TextInputClient, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInputClient_VTable)vt_ctx.protocol_vt).supportsAdaptiveImageGlyph(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("supportsAdaptiveImageGlyph"), auto_cast supportsAdaptiveImageGlyph, "B@:") do panic("Failed to register objC method.")
     }
 }
 

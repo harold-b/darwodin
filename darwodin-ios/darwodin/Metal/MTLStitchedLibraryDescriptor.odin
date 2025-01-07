@@ -42,6 +42,22 @@ StitchedLibraryDescriptor_functions :: #force_inline proc "c" (self: ^StitchedLi
 StitchedLibraryDescriptor_setFunctions :: #force_inline proc "c" (self: ^StitchedLibraryDescriptor, functions: ^NS.Array) {
     msgSend(nil, self, "setFunctions:", functions)
 }
+@(objc_type=StitchedLibraryDescriptor, objc_name="binaryArchives")
+StitchedLibraryDescriptor_binaryArchives :: #force_inline proc "c" (self: ^StitchedLibraryDescriptor) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "binaryArchives")
+}
+@(objc_type=StitchedLibraryDescriptor, objc_name="setBinaryArchives")
+StitchedLibraryDescriptor_setBinaryArchives :: #force_inline proc "c" (self: ^StitchedLibraryDescriptor, binaryArchives: ^NS.Array) {
+    msgSend(nil, self, "setBinaryArchives:", binaryArchives)
+}
+@(objc_type=StitchedLibraryDescriptor, objc_name="options")
+StitchedLibraryDescriptor_options :: #force_inline proc "c" (self: ^StitchedLibraryDescriptor) -> StitchedLibraryOptions {
+    return msgSend(StitchedLibraryOptions, self, "options")
+}
+@(objc_type=StitchedLibraryDescriptor, objc_name="setOptions")
+StitchedLibraryDescriptor_setOptions :: #force_inline proc "c" (self: ^StitchedLibraryDescriptor, options: StitchedLibraryOptions) {
+    msgSend(nil, self, "setOptions:", options)
+}
 @(objc_type=StitchedLibraryDescriptor, objc_name="load", objc_is_class_method=true)
 StitchedLibraryDescriptor_load :: #force_inline proc "c" () {
     msgSend(nil, StitchedLibraryDescriptor, "load")

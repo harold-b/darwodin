@@ -104,6 +104,10 @@ TraitCollection_traitCollectionWithTypesettingLanguage :: #force_inline proc "c"
 TraitCollection_traitCollectionWithSceneCaptureState :: #force_inline proc "c" (sceneCaptureState: SceneCaptureState) -> ^TraitCollection {
     return msgSend(^TraitCollection, TraitCollection, "traitCollectionWithSceneCaptureState:", sceneCaptureState)
 }
+@(objc_type=TraitCollection, objc_name="traitCollectionWithListEnvironment", objc_is_class_method=true)
+TraitCollection_traitCollectionWithListEnvironment :: #force_inline proc "c" (listEnvironment: ListEnvironment) -> ^TraitCollection {
+    return msgSend(^TraitCollection, TraitCollection, "traitCollectionWithListEnvironment:", listEnvironment)
+}
 @(objc_type=TraitCollection, objc_name="userInterfaceIdiom")
 TraitCollection_userInterfaceIdiom :: #force_inline proc "c" (self: ^TraitCollection) -> UserInterfaceIdiom {
     return msgSend(UserInterfaceIdiom, self, "userInterfaceIdiom")
@@ -171,6 +175,10 @@ TraitCollection_typesettingLanguage :: #force_inline proc "c" (self: ^TraitColle
 @(objc_type=TraitCollection, objc_name="sceneCaptureState")
 TraitCollection_sceneCaptureState :: #force_inline proc "c" (self: ^TraitCollection) -> SceneCaptureState {
     return msgSend(SceneCaptureState, self, "sceneCaptureState")
+}
+@(objc_type=TraitCollection, objc_name="listEnvironment")
+TraitCollection_listEnvironment :: #force_inline proc "c" (self: ^TraitCollection) -> ListEnvironment {
+    return msgSend(ListEnvironment, self, "listEnvironment")
 }
 @(objc_type=TraitCollection, objc_name="traitCollectionWithTraits", objc_is_class_method=true)
 TraitCollection_traitCollectionWithTraits :: #force_inline proc "c" (mutations: TraitMutations) -> ^TraitCollection {
@@ -397,6 +405,7 @@ TraitCollection_VTable :: struct {
     traitCollectionWithImageDynamicRange: proc(imageDynamicRange: ImageDynamicRange) -> ^TraitCollection,
     traitCollectionWithTypesettingLanguage: proc(language: ^NS.String) -> ^TraitCollection,
     traitCollectionWithSceneCaptureState: proc(sceneCaptureState: SceneCaptureState) -> ^TraitCollection,
+    traitCollectionWithListEnvironment: proc(listEnvironment: ListEnvironment) -> ^TraitCollection,
     userInterfaceIdiom: proc(self: ^TraitCollection) -> UserInterfaceIdiom,
     userInterfaceStyle: proc(self: ^TraitCollection) -> UserInterfaceStyle,
     layoutDirection: proc(self: ^TraitCollection) -> TraitEnvironmentLayoutDirection,
@@ -414,6 +423,7 @@ TraitCollection_VTable :: struct {
     imageDynamicRange: proc(self: ^TraitCollection) -> ImageDynamicRange,
     typesettingLanguage: proc(self: ^TraitCollection) -> ^NS.String,
     sceneCaptureState: proc(self: ^TraitCollection) -> SceneCaptureState,
+    listEnvironment: proc(self: ^TraitCollection) -> ListEnvironment,
     traitCollectionWithTraits: proc(mutations: TraitMutations) -> ^TraitCollection,
     traitCollectionByModifyingTraits: proc(self: ^TraitCollection, mutations: TraitMutations) -> ^TraitCollection,
     traitCollectionWithCGFloatValue: proc(value: CG.Float, trait: ^Class) -> ^TraitCollection,
@@ -682,6 +692,16 @@ TraitCollection_odin_extend :: proc(cls: Class, vt: ^TraitCollection_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("traitCollectionWithSceneCaptureState:"), auto_cast traitCollectionWithSceneCaptureState, "@#:l") do panic("Failed to register objC method.")
     }
+    if vt.traitCollectionWithListEnvironment != nil {
+        traitCollectionWithListEnvironment :: proc "c" (self: Class, _: SEL, listEnvironment: ListEnvironment) -> ^TraitCollection {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).traitCollectionWithListEnvironment( listEnvironment)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("traitCollectionWithListEnvironment:"), auto_cast traitCollectionWithListEnvironment, "@#:l") do panic("Failed to register objC method.")
+    }
     if vt.userInterfaceIdiom != nil {
         userInterfaceIdiom :: proc "c" (self: ^TraitCollection, _: SEL) -> UserInterfaceIdiom {
 
@@ -851,6 +871,16 @@ TraitCollection_odin_extend :: proc(cls: Class, vt: ^TraitCollection_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("sceneCaptureState"), auto_cast sceneCaptureState, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.listEnvironment != nil {
+        listEnvironment :: proc "c" (self: ^TraitCollection, _: SEL) -> ListEnvironment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TraitCollection_VTable)vt_ctx.super_vt).listEnvironment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("listEnvironment"), auto_cast listEnvironment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.traitCollectionWithTraits != nil {
         traitCollectionWithTraits :: proc "c" (self: Class, _: SEL, mutations: TraitMutations) -> ^TraitCollection {

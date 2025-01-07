@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -23,6 +24,22 @@ PopUpButton_init :: proc "c" (self: ^PopUpButton) -> ^PopUpButton {
 }
 
 
+@(objc_type=PopUpButton, objc_name="popUpButtonWithMenu", objc_is_class_method=true)
+PopUpButton_popUpButtonWithMenu :: #force_inline proc "c" (menu: ^Menu, target: id, action: SEL) -> ^PopUpButton {
+    return msgSend(^PopUpButton, PopUpButton, "popUpButtonWithMenu:target:action:", menu, target, action)
+}
+@(objc_type=PopUpButton, objc_name="pullDownButtonWithTitle_menu", objc_is_class_method=true)
+PopUpButton_pullDownButtonWithTitle_menu :: #force_inline proc "c" (title: ^NS.String, menu: ^Menu) -> ^PopUpButton {
+    return msgSend(^PopUpButton, PopUpButton, "pullDownButtonWithTitle:menu:", title, menu)
+}
+@(objc_type=PopUpButton, objc_name="pullDownButtonWithImage", objc_is_class_method=true)
+PopUpButton_pullDownButtonWithImage :: #force_inline proc "c" (image: ^NS.Image, menu: ^Menu) -> ^PopUpButton {
+    return msgSend(^PopUpButton, PopUpButton, "pullDownButtonWithImage:menu:", image, menu)
+}
+@(objc_type=PopUpButton, objc_name="pullDownButtonWithTitle_image_menu", objc_is_class_method=true)
+PopUpButton_pullDownButtonWithTitle_image_menu :: #force_inline proc "c" (title: ^NS.String, image: ^NS.Image, menu: ^Menu) -> ^PopUpButton {
+    return msgSend(^PopUpButton, PopUpButton, "pullDownButtonWithTitle:image:menu:", title, image, menu)
+}
 @(objc_type=PopUpButton, objc_name="initWithFrame")
 PopUpButton_initWithFrame :: #force_inline proc "c" (self: ^PopUpButton, buttonFrame: NS.Rect, flag: bool) -> ^PopUpButton {
     return msgSend(^PopUpButton, self, "initWithFrame:pullsDown:", buttonFrame, flag)
@@ -138,6 +155,22 @@ PopUpButton_preferredEdge :: #force_inline proc "c" (self: ^PopUpButton) -> NS.R
 @(objc_type=PopUpButton, objc_name="setPreferredEdge")
 PopUpButton_setPreferredEdge :: #force_inline proc "c" (self: ^PopUpButton, preferredEdge: NS.RectEdge) {
     msgSend(nil, self, "setPreferredEdge:", preferredEdge)
+}
+@(objc_type=PopUpButton, objc_name="usesItemFromMenu")
+PopUpButton_usesItemFromMenu :: #force_inline proc "c" (self: ^PopUpButton) -> bool {
+    return msgSend(bool, self, "usesItemFromMenu")
+}
+@(objc_type=PopUpButton, objc_name="setUsesItemFromMenu")
+PopUpButton_setUsesItemFromMenu :: #force_inline proc "c" (self: ^PopUpButton, usesItemFromMenu: bool) {
+    msgSend(nil, self, "setUsesItemFromMenu:", usesItemFromMenu)
+}
+@(objc_type=PopUpButton, objc_name="altersStateOfSelectedItem")
+PopUpButton_altersStateOfSelectedItem :: #force_inline proc "c" (self: ^PopUpButton) -> bool {
+    return msgSend(bool, self, "altersStateOfSelectedItem")
+}
+@(objc_type=PopUpButton, objc_name="setAltersStateOfSelectedItem")
+PopUpButton_setAltersStateOfSelectedItem :: #force_inline proc "c" (self: ^PopUpButton, altersStateOfSelectedItem: bool) {
+    msgSend(nil, self, "setAltersStateOfSelectedItem:", altersStateOfSelectedItem)
 }
 @(objc_type=PopUpButton, objc_name="itemArray")
 PopUpButton_itemArray :: #force_inline proc "c" (self: ^PopUpButton) -> ^NS.Array {
@@ -367,6 +400,12 @@ PopUpButton_setDefaultPlaceholder :: #force_inline proc "c" (placeholder: id, ma
 PopUpButton_defaultPlaceholderForMarker :: #force_inline proc "c" (marker: id, binding: ^NS.String) -> id {
     return msgSend(id, PopUpButton, "defaultPlaceholderForMarker:withBinding:", marker, binding)
 }
+@(objc_type=PopUpButton, objc_name="pullDownButtonWithTitle")
+PopUpButton_pullDownButtonWithTitle :: proc {
+    PopUpButton_pullDownButtonWithTitle_menu,
+    PopUpButton_pullDownButtonWithTitle_image_menu,
+}
+
 @(objc_type=PopUpButton, objc_name="buttonWithTitle")
 PopUpButton_buttonWithTitle :: proc {
     PopUpButton_buttonWithTitle_image_target_action,
@@ -381,6 +420,10 @@ PopUpButton_cancelPreviousPerformRequestsWithTarget :: proc {
 
 PopUpButton_VTable :: struct {
     super: Button_VTable,
+    popUpButtonWithMenu: proc(menu: ^Menu, target: id, action: SEL) -> ^PopUpButton,
+    pullDownButtonWithTitle_menu: proc(title: ^NS.String, menu: ^Menu) -> ^PopUpButton,
+    pullDownButtonWithImage: proc(image: ^NS.Image, menu: ^Menu) -> ^PopUpButton,
+    pullDownButtonWithTitle_image_menu: proc(title: ^NS.String, image: ^NS.Image, menu: ^Menu) -> ^PopUpButton,
     initWithFrame: proc(self: ^PopUpButton, buttonFrame: NS.Rect, flag: bool) -> ^PopUpButton,
     addItemWithTitle: proc(self: ^PopUpButton, title: ^NS.String),
     addItemsWithTitles: proc(self: ^PopUpButton, itemTitles: ^NS.Array),
@@ -410,6 +453,10 @@ PopUpButton_VTable :: struct {
     setAutoenablesItems: proc(self: ^PopUpButton, autoenablesItems: bool),
     preferredEdge: proc(self: ^PopUpButton) -> NS.RectEdge,
     setPreferredEdge: proc(self: ^PopUpButton, preferredEdge: NS.RectEdge),
+    usesItemFromMenu: proc(self: ^PopUpButton) -> bool,
+    setUsesItemFromMenu: proc(self: ^PopUpButton, usesItemFromMenu: bool),
+    altersStateOfSelectedItem: proc(self: ^PopUpButton) -> bool,
+    setAltersStateOfSelectedItem: proc(self: ^PopUpButton, altersStateOfSelectedItem: bool),
     itemArray: proc(self: ^PopUpButton) -> ^NS.Array,
     numberOfItems: proc(self: ^PopUpButton) -> NS.Integer,
     lastItem: proc(self: ^PopUpButton) -> ^MenuItem,
@@ -476,6 +523,46 @@ PopUpButton_odin_extend :: proc(cls: Class, vt: ^PopUpButton_VTable) {
     
     Button_odin_extend(cls, &vt.super)
 
+    if vt.popUpButtonWithMenu != nil {
+        popUpButtonWithMenu :: proc "c" (self: Class, _: SEL, menu: ^Menu, target: id, action: SEL) -> ^PopUpButton {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PopUpButton_VTable)vt_ctx.super_vt).popUpButtonWithMenu( menu, target, action)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("popUpButtonWithMenu:target:action:"), auto_cast popUpButtonWithMenu, "@#:@@:") do panic("Failed to register objC method.")
+    }
+    if vt.pullDownButtonWithTitle_menu != nil {
+        pullDownButtonWithTitle_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, menu: ^Menu) -> ^PopUpButton {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PopUpButton_VTable)vt_ctx.super_vt).pullDownButtonWithTitle_menu( title, menu)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithTitle:menu:"), auto_cast pullDownButtonWithTitle_menu, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.pullDownButtonWithImage != nil {
+        pullDownButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, menu: ^Menu) -> ^PopUpButton {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PopUpButton_VTable)vt_ctx.super_vt).pullDownButtonWithImage( image, menu)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithImage:menu:"), auto_cast pullDownButtonWithImage, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.pullDownButtonWithTitle_image_menu != nil {
+        pullDownButtonWithTitle_image_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, menu: ^Menu) -> ^PopUpButton {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PopUpButton_VTable)vt_ctx.super_vt).pullDownButtonWithTitle_image_menu( title, image, menu)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithTitle:image:menu:"), auto_cast pullDownButtonWithTitle_image_menu, "@#:@@@") do panic("Failed to register objC method.")
+    }
     if vt.initWithFrame != nil {
         initWithFrame :: proc "c" (self: ^PopUpButton, _: SEL, buttonFrame: NS.Rect, flag: bool) -> ^PopUpButton {
 
@@ -765,6 +852,46 @@ PopUpButton_odin_extend :: proc(cls: Class, vt: ^PopUpButton_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredEdge:"), auto_cast setPreferredEdge, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.usesItemFromMenu != nil {
+        usesItemFromMenu :: proc "c" (self: ^PopUpButton, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PopUpButton_VTable)vt_ctx.super_vt).usesItemFromMenu(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesItemFromMenu"), auto_cast usesItemFromMenu, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesItemFromMenu != nil {
+        setUsesItemFromMenu :: proc "c" (self: ^PopUpButton, _: SEL, usesItemFromMenu: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PopUpButton_VTable)vt_ctx.super_vt).setUsesItemFromMenu(self, usesItemFromMenu)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesItemFromMenu:"), auto_cast setUsesItemFromMenu, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.altersStateOfSelectedItem != nil {
+        altersStateOfSelectedItem :: proc "c" (self: ^PopUpButton, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PopUpButton_VTable)vt_ctx.super_vt).altersStateOfSelectedItem(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("altersStateOfSelectedItem"), auto_cast altersStateOfSelectedItem, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAltersStateOfSelectedItem != nil {
+        setAltersStateOfSelectedItem :: proc "c" (self: ^PopUpButton, _: SEL, altersStateOfSelectedItem: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PopUpButton_VTable)vt_ctx.super_vt).setAltersStateOfSelectedItem(self, altersStateOfSelectedItem)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAltersStateOfSelectedItem:"), auto_cast setAltersStateOfSelectedItem, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.itemArray != nil {
         itemArray :: proc "c" (self: ^PopUpButton, _: SEL) -> ^NS.Array {

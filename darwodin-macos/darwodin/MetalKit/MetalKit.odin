@@ -9,9 +9,8 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
+import MDL "../ModelIO"
 import AK "../AppKit"
-
-@private va_list :: rawptr
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -48,22 +47,22 @@ foreign lib {
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="MTKModelIOVertexDescriptorFromMetal")
-    ModelIOVertexDescriptorFromMetal :: proc(metalDescriptor: ^MTL.VertexDescriptor) -> ^MDLVertexDescriptor ---
+    ModelIOVertexDescriptorFromMetal :: proc(metalDescriptor: ^MTL.VertexDescriptor) -> ^MDL.VertexDescriptor ---
 
     @(link_name="MTKModelIOVertexDescriptorFromMetalWithError")
-    ModelIOVertexDescriptorFromMetalWithError :: proc(metalDescriptor: ^MTL.VertexDescriptor, error: ^^NS.Error) -> ^MDLVertexDescriptor ---
+    ModelIOVertexDescriptorFromMetalWithError :: proc(metalDescriptor: ^MTL.VertexDescriptor, error: ^^NS.Error) -> ^MDL.VertexDescriptor ---
 
     @(link_name="MTKMetalVertexDescriptorFromModelIO")
-    MetalVertexDescriptorFromModelIO :: proc(modelIODescriptor: ^MDLVertexDescriptor) -> ^MTL.VertexDescriptor ---
+    MetalVertexDescriptorFromModelIO :: proc(modelIODescriptor: ^MDL.VertexDescriptor) -> ^MTL.VertexDescriptor ---
 
     @(link_name="MTKMetalVertexDescriptorFromModelIOWithError")
-    MetalVertexDescriptorFromModelIOWithError :: proc(modelIODescriptor: ^MDLVertexDescriptor, error: ^^NS.Error) -> ^MTL.VertexDescriptor ---
+    MetalVertexDescriptorFromModelIOWithError :: proc(modelIODescriptor: ^MDL.VertexDescriptor, error: ^^NS.Error) -> ^MTL.VertexDescriptor ---
 
     @(link_name="MTKModelIOVertexFormatFromMetal")
-    ModelIOVertexFormatFromMetal :: proc(vertexFormat: MTL.VertexFormat) -> MDLVertexFormat ---
+    ModelIOVertexFormatFromMetal :: proc(vertexFormat: MTL.VertexFormat) -> MDL.VertexFormat ---
 
     @(link_name="MTKMetalVertexFormatFromModelIO")
-    MetalVertexFormatFromModelIO :: proc(vertexFormat: MDLVertexFormat) -> MTL.VertexFormat ---
+    MetalVertexFormatFromModelIO :: proc(vertexFormat: MDL.VertexFormat) -> MTL.VertexFormat ---
 
 }
 

@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -110,6 +111,10 @@ WindowDelegate_window_didDecodeRestorableState :: #force_inline proc "c" (self: 
 @(objc_type=WindowDelegate, objc_name="previewRepresentableActivityItemsForWindow")
 WindowDelegate_previewRepresentableActivityItemsForWindow :: #force_inline proc "c" (self: ^WindowDelegate, window: ^Window) -> ^NS.Array {
     return msgSend(^NS.Array, self, "previewRepresentableActivityItemsForWindow:", window)
+}
+@(objc_type=WindowDelegate, objc_name="windowForSharingRequestFromWindow")
+WindowDelegate_windowForSharingRequestFromWindow :: #force_inline proc "c" (self: ^WindowDelegate, window: ^Window) -> ^Window {
+    return msgSend(^Window, self, "windowForSharingRequestFromWindow:", window)
 }
 @(objc_type=WindowDelegate, objc_name="windowDidResize")
 WindowDelegate_windowDidResize :: #force_inline proc "c" (self: ^WindowDelegate, notification: ^NS.Notification) {
@@ -257,6 +262,7 @@ WindowDelegate_VTable :: struct {
     window_willEncodeRestorableState: proc(self: ^WindowDelegate, window: ^Window, state: ^NS.Coder),
     window_didDecodeRestorableState: proc(self: ^WindowDelegate, window: ^Window, state: ^NS.Coder),
     previewRepresentableActivityItemsForWindow: proc(self: ^WindowDelegate, window: ^Window) -> ^NS.Array,
+    windowForSharingRequestFromWindow: proc(self: ^WindowDelegate, window: ^Window) -> ^Window,
     windowDidResize: proc(self: ^WindowDelegate, notification: ^NS.Notification),
     windowDidExpose: proc(self: ^WindowDelegate, notification: ^NS.Notification),
     windowWillMove: proc(self: ^WindowDelegate, notification: ^NS.Notification),
@@ -521,6 +527,16 @@ WindowDelegate_odin_extend :: proc(cls: Class, vt: ^WindowDelegate_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("previewRepresentableActivityItemsForWindow:"), auto_cast previewRepresentableActivityItemsForWindow, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.windowForSharingRequestFromWindow != nil {
+        windowForSharingRequestFromWindow :: proc "c" (self: ^WindowDelegate, _: SEL, window: ^Window) -> ^Window {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^WindowDelegate_VTable)vt_ctx.protocol_vt).windowForSharingRequestFromWindow(self, window)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("windowForSharingRequestFromWindow:"), auto_cast windowForSharingRequestFromWindow, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.windowDidResize != nil {
         windowDidResize :: proc "c" (self: ^WindowDelegate, _: SEL, notification: ^NS.Notification) {

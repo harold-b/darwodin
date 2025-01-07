@@ -105,9 +105,17 @@ NSTextStorage_localizedAttributedStringWithFormat_context :: #force_inline proc 
 NSTextStorage_localizedAttributedStringWithFormat_options_context :: #force_inline proc "c" (format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, _context: ^NS.Dictionary) -> ^NS.AttributedString {
     return msgSend(^NS.AttributedString, NSTextStorage, "localizedAttributedStringWithFormat:options:context:", format, options, _context)
 }
-@(objc_type=NSTextStorage, objc_name="attributedStringWithAttachment", objc_is_class_method=true)
-NSTextStorage_attributedStringWithAttachment :: #force_inline proc "c" (attachment: ^NSTextAttachment) -> ^NS.AttributedString {
+@(objc_type=NSTextStorage, objc_name="attributedStringWithAttachment_", objc_is_class_method=true)
+NSTextStorage_attributedStringWithAttachment_ :: #force_inline proc "c" (attachment: ^NSTextAttachment) -> ^NS.AttributedString {
     return msgSend(^NS.AttributedString, NSTextStorage, "attributedStringWithAttachment:", attachment)
+}
+@(objc_type=NSTextStorage, objc_name="attributedStringWithAttachment_attributes", objc_is_class_method=true)
+NSTextStorage_attributedStringWithAttachment_attributes :: #force_inline proc "c" (attachment: ^NSTextAttachment, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
+    return msgSend(^NS.AttributedString, NSTextStorage, "attributedStringWithAttachment:attributes:", attachment, attributes)
+}
+@(objc_type=NSTextStorage, objc_name="attributedStringWithAdaptiveImageGlyph", objc_is_class_method=true)
+NSTextStorage_attributedStringWithAdaptiveImageGlyph :: #force_inline proc "c" (adaptiveImageGlyph: ^NSAdaptiveImageGlyph, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
+    return msgSend(^NS.AttributedString, NSTextStorage, "attributedStringWithAdaptiveImageGlyph:attributes:", adaptiveImageGlyph, attributes)
 }
 @(objc_type=NSTextStorage, objc_name="load", objc_is_class_method=true)
 NSTextStorage_load :: #force_inline proc "c" () {
@@ -233,6 +241,12 @@ NSTextStorage_localizedAttributedStringWithFormat :: proc {
     NSTextStorage_localizedAttributedStringWithFormat_options_context,
 }
 
+@(objc_type=NSTextStorage, objc_name="attributedStringWithAttachment")
+NSTextStorage_attributedStringWithAttachment :: proc {
+    NSTextStorage_attributedStringWithAttachment_,
+    NSTextStorage_attributedStringWithAttachment_attributes,
+}
+
 @(objc_type=NSTextStorage, objc_name="cancelPreviousPerformRequestsWithTarget")
 NSTextStorage_cancelPreviousPerformRequestsWithTarget :: proc {
     NSTextStorage_cancelPreviousPerformRequestsWithTarget_selector_object,
@@ -261,7 +275,9 @@ NSTextStorage_VTable :: struct {
     localizedAttributedStringWithFormat_options: proc(format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions) -> ^NS.AttributedString,
     localizedAttributedStringWithFormat_context: proc(format: ^NS.AttributedString, _context: ^NS.Dictionary) -> ^NS.AttributedString,
     localizedAttributedStringWithFormat_options_context: proc(format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, _context: ^NS.Dictionary) -> ^NS.AttributedString,
-    attributedStringWithAttachment: proc(attachment: ^NSTextAttachment) -> ^NS.AttributedString,
+    attributedStringWithAttachment_: proc(attachment: ^NSTextAttachment) -> ^NS.AttributedString,
+    attributedStringWithAttachment_attributes: proc(attachment: ^NSTextAttachment, attributes: ^NS.Dictionary) -> ^NS.AttributedString,
+    attributedStringWithAdaptiveImageGlyph: proc(adaptiveImageGlyph: ^NSAdaptiveImageGlyph, attributes: ^NS.Dictionary) -> ^NS.AttributedString,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^NSTextStorage,
@@ -500,15 +516,35 @@ NSTextStorage_odin_extend :: proc(cls: Class, vt: ^NSTextStorage_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:options:context:"), auto_cast localizedAttributedStringWithFormat_options_context, "@#:@L@") do panic("Failed to register objC method.")
     }
-    if vt.attributedStringWithAttachment != nil {
-        attributedStringWithAttachment :: proc "c" (self: Class, _: SEL, attachment: ^NSTextAttachment) -> ^NS.AttributedString {
+    if vt.attributedStringWithAttachment_ != nil {
+        attributedStringWithAttachment_ :: proc "c" (self: Class, _: SEL, attachment: ^NSTextAttachment) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^NSTextStorage_VTable)vt_ctx.super_vt).attributedStringWithAttachment( attachment)
+            return (cast(^NSTextStorage_VTable)vt_ctx.super_vt).attributedStringWithAttachment_( attachment)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAttachment:"), auto_cast attributedStringWithAttachment, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAttachment:"), auto_cast attributedStringWithAttachment_, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.attributedStringWithAttachment_attributes != nil {
+        attributedStringWithAttachment_attributes :: proc "c" (self: Class, _: SEL, attachment: ^NSTextAttachment, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSTextStorage_VTable)vt_ctx.super_vt).attributedStringWithAttachment_attributes( attachment, attributes)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAttachment:attributes:"), auto_cast attributedStringWithAttachment_attributes, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.attributedStringWithAdaptiveImageGlyph != nil {
+        attributedStringWithAdaptiveImageGlyph :: proc "c" (self: Class, _: SEL, adaptiveImageGlyph: ^NSAdaptiveImageGlyph, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSTextStorage_VTable)vt_ctx.super_vt).attributedStringWithAdaptiveImageGlyph( adaptiveImageGlyph, attributes)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAdaptiveImageGlyph:attributes:"), auto_cast attributedStringWithAdaptiveImageGlyph, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

@@ -6,10 +6,9 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
-
-@private va_list :: rawptr
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -558,6 +557,7 @@ HUDWindowMask :: 8192
 UnscaledWindowMask :: 2048
 WindowFullScreenButton :: 7
 DockWindowLevel :: 20
+WindowSharingReadWrite :: 2
 UnknownColorSpaceModel :: -1
 GrayColorSpaceModel :: 0
 RGBColorSpaceModel :: 1
@@ -1790,6 +1790,7 @@ foreign lib {
     @(link_name="NSSplitViewDidResizeSubviewsNotification") SplitViewDidResizeSubviewsNotification: ^NS.String
     @(link_name="NSSplitViewItemUnspecifiedDimension") SplitViewItemUnspecifiedDimension: CG.Float
     @(link_name="NSSplitViewControllerAutomaticDimension") SplitViewControllerAutomaticDimension: CG.Float
+    @(link_name="NSPopUpButtonCellWillPopUpNotification") PopUpButtonCellWillPopUpNotification: ^NS.String
     @(link_name="NSPopUpButtonWillPopUpNotification") PopUpButtonWillPopUpNotification: ^NS.String
     @(link_name="NSPrintOperationExistsException") PrintOperationExistsException: ^NS.String
     @(link_name="NSPrintPhotoJobStyleHint") PrintPhotoJobStyleHint: ^NS.String
@@ -1869,6 +1870,45 @@ foreign lib {
     @(link_name="NSUnderlineColorAttributeName") UnderlineColorAttributeName: ^NS.String
     @(link_name="NSStrikethroughColorAttributeName") StrikethroughColorAttributeName: ^NS.String
     @(link_name="NSWritingDirectionAttributeName") WritingDirectionAttributeName: ^NS.String
+    @(link_name="NSTextHighlightStyleAttributeName") TextHighlightStyleAttributeName: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeAttributeName") TextHighlightColorSchemeAttributeName: ^NS.String
+    @(link_name="NSAdaptiveImageGlyphAttributeName") AdaptiveImageGlyphAttributeName: ^NS.String
+    @(link_name="NSTextEffectLetterpressStyle") TextEffectLetterpressStyle: ^NS.String
+    @(link_name="NSTextHighlightStyleDefault") TextHighlightStyleDefault: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeDefault") TextHighlightColorSchemeDefault: ^NS.String
+    @(link_name="NSTextHighlightColorSchemePurple") TextHighlightColorSchemePurple: ^NS.String
+    @(link_name="NSTextHighlightColorSchemePink") TextHighlightColorSchemePink: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeOrange") TextHighlightColorSchemeOrange: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeMint") TextHighlightColorSchemeMint: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeBlue") TextHighlightColorSchemeBlue: ^NS.String
+    @(link_name="NSPlainTextDocumentType") PlainTextDocumentType: ^NS.String
+    @(link_name="NSRTFTextDocumentType") RTFTextDocumentType: ^NS.String
+    @(link_name="NSRTFDTextDocumentType") RTFDTextDocumentType: ^NS.String
+    @(link_name="NSHTMLTextDocumentType") HTMLTextDocumentType: ^NS.String
+    @(link_name="NSTextLayoutSectionOrientation") TextLayoutSectionOrientation: ^NS.String
+    @(link_name="NSTextLayoutSectionRange") TextLayoutSectionRange: ^NS.String
+    @(link_name="NSDocumentTypeDocumentAttribute") DocumentTypeDocumentAttribute: ^NS.String
+    @(link_name="NSCharacterEncodingDocumentAttribute") CharacterEncodingDocumentAttribute: ^NS.String
+    @(link_name="NSDefaultAttributesDocumentAttribute") DefaultAttributesDocumentAttribute: ^NS.String
+    @(link_name="NSPaperSizeDocumentAttribute") PaperSizeDocumentAttribute: ^NS.String
+    @(link_name="NSViewSizeDocumentAttribute") ViewSizeDocumentAttribute: ^NS.String
+    @(link_name="NSViewZoomDocumentAttribute") ViewZoomDocumentAttribute: ^NS.String
+    @(link_name="NSViewModeDocumentAttribute") ViewModeDocumentAttribute: ^NS.String
+    @(link_name="NSDefaultFontExcludedDocumentAttribute") DefaultFontExcludedDocumentAttribute: ^NS.String
+    @(link_name="NSReadOnlyDocumentAttribute") ReadOnlyDocumentAttribute: ^NS.String
+    @(link_name="NSBackgroundColorDocumentAttribute") BackgroundColorDocumentAttribute: ^NS.String
+    @(link_name="NSHyphenationFactorDocumentAttribute") HyphenationFactorDocumentAttribute: ^NS.String
+    @(link_name="NSDefaultTabIntervalDocumentAttribute") DefaultTabIntervalDocumentAttribute: ^NS.String
+    @(link_name="NSTextLayoutSectionsAttribute") TextLayoutSectionsAttribute: ^NS.String
+    @(link_name="NSTextScalingDocumentAttribute") TextScalingDocumentAttribute: ^NS.String
+    @(link_name="NSSourceTextScalingDocumentAttribute") SourceTextScalingDocumentAttribute: ^NS.String
+    @(link_name="NSCocoaVersionDocumentAttribute") CocoaVersionDocumentAttribute: ^NS.String
+    @(link_name="NSDocumentTypeDocumentOption") DocumentTypeDocumentOption: ^NS.String
+    @(link_name="NSDefaultAttributesDocumentOption") DefaultAttributesDocumentOption: ^NS.String
+    @(link_name="NSCharacterEncodingDocumentOption") CharacterEncodingDocumentOption: ^NS.String
+    @(link_name="NSTargetTextScalingDocumentOption") TargetTextScalingDocumentOption: ^NS.String
+    @(link_name="NSSourceTextScalingDocumentOption") SourceTextScalingDocumentOption: ^NS.String
+    @(link_name="NSTextKit1ListMarkerFormatDocumentOption") TextKit1ListMarkerFormatDocumentOption: ^NS.String
     @(link_name="NSCursorAttributeName") CursorAttributeName: ^NS.String
     @(link_name="NSToolTipAttributeName") ToolTipAttributeName: ^NS.String
     @(link_name="NSMarkedClauseSegmentAttributeName") MarkedClauseSegmentAttributeName: ^NS.String
@@ -1876,22 +1916,13 @@ foreign lib {
     @(link_name="NSSpellingStateAttributeName") SpellingStateAttributeName: ^NS.String
     @(link_name="NSSuperscriptAttributeName") SuperscriptAttributeName: ^NS.String
     @(link_name="NSGlyphInfoAttributeName") GlyphInfoAttributeName: ^NS.String
-    @(link_name="NSTextEffectLetterpressStyle") TextEffectLetterpressStyle: ^NS.String
-    @(link_name="NSPlainTextDocumentType") PlainTextDocumentType: ^NS.String
-    @(link_name="NSRTFTextDocumentType") RTFTextDocumentType: ^NS.String
-    @(link_name="NSRTFDTextDocumentType") RTFDTextDocumentType: ^NS.String
-    @(link_name="NSHTMLTextDocumentType") HTMLTextDocumentType: ^NS.String
     @(link_name="NSMacSimpleTextDocumentType") MacSimpleTextDocumentType: ^NS.String
     @(link_name="NSDocFormatTextDocumentType") DocFormatTextDocumentType: ^NS.String
     @(link_name="NSWordMLTextDocumentType") WordMLTextDocumentType: ^NS.String
     @(link_name="NSWebArchiveTextDocumentType") WebArchiveTextDocumentType: ^NS.String
     @(link_name="NSOfficeOpenXMLTextDocumentType") OfficeOpenXMLTextDocumentType: ^NS.String
     @(link_name="NSOpenDocumentTextDocumentType") OpenDocumentTextDocumentType: ^NS.String
-    @(link_name="NSTextLayoutSectionOrientation") TextLayoutSectionOrientation: ^NS.String
-    @(link_name="NSTextLayoutSectionRange") TextLayoutSectionRange: ^NS.String
-    @(link_name="NSDocumentTypeDocumentAttribute") DocumentTypeDocumentAttribute: ^NS.String
     @(link_name="NSConvertedDocumentAttribute") ConvertedDocumentAttribute: ^NS.String
-    @(link_name="NSCocoaVersionDocumentAttribute") CocoaVersionDocumentAttribute: ^NS.String
     @(link_name="NSFileTypeDocumentAttribute") FileTypeDocumentAttribute: ^NS.String
     @(link_name="NSTitleDocumentAttribute") TitleDocumentAttribute: ^NS.String
     @(link_name="NSCompanyDocumentAttribute") CompanyDocumentAttribute: ^NS.String
@@ -1906,30 +1937,13 @@ foreign lib {
     @(link_name="NSManagerDocumentAttribute") ManagerDocumentAttribute: ^NS.String
     @(link_name="NSCategoryDocumentAttribute") CategoryDocumentAttribute: ^NS.String
     @(link_name="NSAppearanceDocumentAttribute") AppearanceDocumentAttribute: ^NS.String
-    @(link_name="NSCharacterEncodingDocumentAttribute") CharacterEncodingDocumentAttribute: ^NS.String
-    @(link_name="NSDefaultAttributesDocumentAttribute") DefaultAttributesDocumentAttribute: ^NS.String
-    @(link_name="NSPaperSizeDocumentAttribute") PaperSizeDocumentAttribute: ^NS.String
+    @(link_name="NSExcludedElementsDocumentAttribute") ExcludedElementsDocumentAttribute: ^NS.String
+    @(link_name="NSTextEncodingNameDocumentAttribute") TextEncodingNameDocumentAttribute: ^NS.String
+    @(link_name="NSPrefixSpacesDocumentAttribute") PrefixSpacesDocumentAttribute: ^NS.String
     @(link_name="NSLeftMarginDocumentAttribute") LeftMarginDocumentAttribute: ^NS.String
     @(link_name="NSRightMarginDocumentAttribute") RightMarginDocumentAttribute: ^NS.String
     @(link_name="NSTopMarginDocumentAttribute") TopMarginDocumentAttribute: ^NS.String
     @(link_name="NSBottomMarginDocumentAttribute") BottomMarginDocumentAttribute: ^NS.String
-    @(link_name="NSViewSizeDocumentAttribute") ViewSizeDocumentAttribute: ^NS.String
-    @(link_name="NSViewZoomDocumentAttribute") ViewZoomDocumentAttribute: ^NS.String
-    @(link_name="NSViewModeDocumentAttribute") ViewModeDocumentAttribute: ^NS.String
-    @(link_name="NSReadOnlyDocumentAttribute") ReadOnlyDocumentAttribute: ^NS.String
-    @(link_name="NSBackgroundColorDocumentAttribute") BackgroundColorDocumentAttribute: ^NS.String
-    @(link_name="NSHyphenationFactorDocumentAttribute") HyphenationFactorDocumentAttribute: ^NS.String
-    @(link_name="NSDefaultTabIntervalDocumentAttribute") DefaultTabIntervalDocumentAttribute: ^NS.String
-    @(link_name="NSTextLayoutSectionsAttribute") TextLayoutSectionsAttribute: ^NS.String
-    @(link_name="NSExcludedElementsDocumentAttribute") ExcludedElementsDocumentAttribute: ^NS.String
-    @(link_name="NSTextEncodingNameDocumentAttribute") TextEncodingNameDocumentAttribute: ^NS.String
-    @(link_name="NSPrefixSpacesDocumentAttribute") PrefixSpacesDocumentAttribute: ^NS.String
-    @(link_name="NSDefaultFontExcludedDocumentAttribute") DefaultFontExcludedDocumentAttribute: ^NS.String
-    @(link_name="NSTextScalingDocumentAttribute") TextScalingDocumentAttribute: ^NS.String
-    @(link_name="NSSourceTextScalingDocumentAttribute") SourceTextScalingDocumentAttribute: ^NS.String
-    @(link_name="NSDocumentTypeDocumentOption") DocumentTypeDocumentOption: ^NS.String
-    @(link_name="NSDefaultAttributesDocumentOption") DefaultAttributesDocumentOption: ^NS.String
-    @(link_name="NSCharacterEncodingDocumentOption") CharacterEncodingDocumentOption: ^NS.String
     @(link_name="NSTextEncodingNameDocumentOption") TextEncodingNameDocumentOption: ^NS.String
     @(link_name="NSBaseURLDocumentOption") BaseURLDocumentOption: ^NS.String
     @(link_name="NSTimeoutDocumentOption") TimeoutDocumentOption: ^NS.String
@@ -1937,8 +1951,6 @@ foreign lib {
     @(link_name="NSWebResourceLoadDelegateDocumentOption") WebResourceLoadDelegateDocumentOption: ^NS.String
     @(link_name="NSTextSizeMultiplierDocumentOption") TextSizeMultiplierDocumentOption: ^NS.String
     @(link_name="NSFileTypeDocumentOption") FileTypeDocumentOption: ^NS.String
-    @(link_name="NSTargetTextScalingDocumentOption") TargetTextScalingDocumentOption: ^NS.String
-    @(link_name="NSSourceTextScalingDocumentOption") SourceTextScalingDocumentOption: ^NS.String
     @(link_name="NSCharacterShapeAttributeName") CharacterShapeAttributeName: ^NS.String
     @(link_name="NSUsesScreenFontsDocumentAttribute") UsesScreenFontsDocumentAttribute: ^NS.String
     @(link_name="NSObliquenessAttributeName") ObliquenessAttributeName: ^NS.String
@@ -1949,6 +1961,7 @@ foreign lib {
     @(link_name="NSTextStorageWillProcessEditingNotification") TextStorageWillProcessEditingNotification: ^NS.String
     @(link_name="NSTextStorageDidProcessEditingNotification") TextStorageDidProcessEditingNotification: ^NS.String
     @(link_name="NSToolbarItemKey") ToolbarItemKey: ^NS.String
+    @(link_name="NSToolbarNewIndexKey") ToolbarNewIndexKey: ^NS.String
     @(link_name="NSToolbarWillAddItemNotification") ToolbarWillAddItemNotification: ^NS.String
     @(link_name="NSToolbarDidRemoveItemNotification") ToolbarDidRemoveItemNotification: ^NS.String
     @(link_name="NSToolbarSpaceItemIdentifier") ToolbarSpaceItemIdentifier: ^NS.String
@@ -2002,7 +2015,6 @@ foreign lib {
     @(link_name="NSRulerViewUnitPoints") RulerViewUnitPoints: ^NS.String
     @(link_name="NSRulerViewUnitPicas") RulerViewUnitPicas: ^NS.String
     @(link_name="NSInterfaceStyleDefault") InterfaceStyleDefault: ^NS.String
-    @(link_name="NSPopUpButtonCellWillPopUpNotification") PopUpButtonCellWillPopUpNotification: ^NS.String
     @(link_name="NSSoundPboardType") SoundPboardType: ^NS.String
     @(link_name="NSDrawerWillOpenNotification") DrawerWillOpenNotification: ^NS.String
     @(link_name="NSDrawerDidOpenNotification") DrawerDidOpenNotification: ^NS.String
@@ -2680,6 +2692,12 @@ TextContentType :: distinct ^NS.String
 /// NSTextEffectStyle
 TextEffectStyle :: distinct ^NS.String
 
+/// NSTextHighlightStyle
+TextHighlightStyle :: distinct ^NS.String
+
+/// NSTextHighlightColorScheme
+TextHighlightColorScheme :: distinct ^NS.String
+
 /// NSAttributedStringDocumentType
 AttributedStringDocumentType :: distinct ^NS.String
 
@@ -3298,6 +3316,13 @@ ViewLayerContentsPlacement :: enum cffi.long {
     TopLeft = 11,
 }
 
+/// NSWritingDirection
+WritingDirection :: enum cffi.long {
+    Natural = -1,
+    LeftToRight = 0,
+    RightToLeft = 1,
+}
+
 /// NSTextAlignment
 TextAlignment :: enum cffi.long {
     Left = 0,
@@ -3305,13 +3330,6 @@ TextAlignment :: enum cffi.long {
     Right = 2,
     Justified = 3,
     Natural = 4,
-}
-
-/// NSWritingDirection
-WritingDirection :: enum cffi.long {
-    Natural = -1,
-    LeftToRight = 0,
-    RightToLeft = 1,
 }
 
 /// NSTextMovement
@@ -3788,6 +3806,20 @@ CollectionLayoutSectionOrthogonalScrollingBehavior :: enum cffi.long {
     GroupPagingCentered = 5,
 }
 
+/// NSHorizontalDirections
+HorizontalDirections :: enum cffi.ulong {
+    Left = 1,
+    Right = 2,
+    All = 3,
+}
+
+/// NSVerticalDirections
+VerticalDirections :: enum cffi.ulong {
+    Up = 1,
+    Down = 2,
+    All = 3,
+}
+
 /// NSFontDescriptorSymbolicTraits
 FontDescriptorSymbolicTraits :: enum cffi.uint {
     TraitItalic = 1,
@@ -3894,7 +3926,6 @@ WindowStyleMask :: bit_set[WindowStyleMaskFlag; cffi.ulong]
 WindowSharingType :: enum cffi.ulong {
     None = 0,
     ReadOnly = 1,
-    ReadWrite = 2,
 }
 
 /// NSWindowCollectionBehavior
@@ -4136,6 +4167,25 @@ ColorWellStyle :: enum cffi.long {
     Expanded = 2,
 }
 
+/// NSCursorFrameResizePosition
+CursorFrameResizePosition :: enum cffi.ulong {
+    Top = 1,
+    Left = 2,
+    Bottom = 4,
+    Right = 8,
+    TopLeft = 3,
+    TopRight = 9,
+    BottomLeft = 6,
+    BottomRight = 12,
+}
+
+/// NSCursorFrameResizeDirections
+CursorFrameResizeDirections :: enum cffi.ulong {
+    Inward = 1,
+    Outward = 2,
+    All = 3,
+}
+
 /// NSGradientDrawingOptions
 GradientDrawingOptions :: enum cffi.ulong {
     DrawsBeforeStartingLocation = 1,
@@ -4347,6 +4397,13 @@ PageLayoutResult :: enum cffi.long {
     Changed = 1,
 }
 
+/// NSPopUpArrowPosition
+PopUpArrowPosition :: enum cffi.ulong {
+    NoArrow = 0,
+    AtCenter = 1,
+    AtBottom = 2,
+}
+
 /// NSPrintingPageOrder
 PrintingPageOrder :: enum cffi.long {
     DescendingPageOrder = -1,
@@ -4505,6 +4562,12 @@ SegmentDistribution :: enum cffi.long {
     FillProportionally = 3,
 }
 
+/// NSSharingCollaborationMode
+SharingCollaborationMode :: enum cffi.long {
+    SendCopy = 0,
+    Collaborate = 1,
+}
+
 /// NSTickMarkPosition
 TickMarkPosition :: enum cffi.ulong {
     Below = 0,
@@ -4578,6 +4641,32 @@ TextInputTraitType :: enum cffi.long {
     Yes = 2,
 }
 
+/// NSWritingToolsBehavior
+WritingToolsBehavior :: enum cffi.long {
+    None = -1,
+    Default = 0,
+    Complete = 1,
+    Limited = 2,
+}
+
+/// NSWritingToolsResultOptions
+WritingToolsResultOptions :: enum cffi.ulong {
+    Default = 0,
+    PlainText = 1,
+    RichText = 2,
+    List = 4,
+    Table = 8,
+}
+
+/// NSWritingToolsAllowedInputOptions
+WritingToolsAllowedInputOptions :: enum cffi.ulong {
+    Default = 0,
+    PlainText = 1,
+    RichText = 2,
+    List = 4,
+    Table = 8,
+}
+
 /// NSTextFieldBezelStyle
 TextFieldBezelStyle :: enum cffi.ulong {
     SquareBezel = 0,
@@ -4617,16 +4706,16 @@ WritingDirectionFormatType :: enum cffi.long {
     Override = 2,
 }
 
-/// NSSpellingState
-SpellingState :: enum cffi.long {
-    SpellingFlag = 1,
-    GrammarFlag = 2,
-}
-
 /// NSTextScalingType
 TextScalingType :: enum cffi.long {
     Standard = 0,
     iOS = 1,
+}
+
+/// NSSpellingState
+SpellingState :: enum cffi.long {
+    SpellingFlag = 1,
+    GrammarFlag = 2,
 }
 
 /// NSTextStorageEditActions
@@ -4931,13 +5020,6 @@ TabState :: enum cffi.ulong {
     SelectedTab = 0,
     BackgroundTab = 1,
     PressedTab = 2,
-}
-
-/// NSPopUpArrowPosition
-PopUpArrowPosition :: enum cffi.ulong {
-    NoArrow = 0,
-    AtCenter = 1,
-    AtBottom = 2,
 }
 
 /// NSLineCapStyle
@@ -5336,9 +5418,10 @@ _NSModalSession :: struct {}
 
 /// NSDirectionalEdgeInsets
 DirectionalEdgeInsets :: struct #align (8) {
-    top : CG.Float,
-    leading : CG.Float,
-    bottom : CG.Float,
-    trailing : CG.Float,
+    top: CG.Float,
+    leading: CG.Float,
+    bottom: CG.Float,
+    trailing: CG.Float,
 }
+#assert(size_of(DirectionalEdgeInsets) == 32)
 

@@ -56,11 +56,13 @@ frameworks_path="${sysroot}/System/Library/Frameworks"
 framework_lower="$(echo $framework | tr '[:upper:]' '[:lower:]')"
 out_file="${framework_lower}.json"
 
+source ./config
 if [[ -z "$include" ]]; then
-  include=$framework
+  # The header might not match the framework, so map it if necessarry
+  include=$(darwodin_get_header_for_framework $framework)
 fi
 
-echo "Framework: '$framework'" # : include '${include}'"
+echo "Framework: '$framework': '${include}.h'"
 
 
 header="$(mktemp).h"
@@ -74,6 +76,7 @@ fi
   # "-isystem${sysroot}/usr/include/c++/v1" \
   # "-isystem${sysroot}/usr/include" \
   # -DOS_OBJECT_USE_OBJC=0 \
+echo " > ${out_dir}/${out_file}"
 ${CGEN} -ObjC --no-sysroot --sysroot "${sysroot}" \
   ${defs[@]} \
   "-isystem${xcode_toolchain_include}" \

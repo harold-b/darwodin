@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -64,8 +65,8 @@ ApplicationDelegate_applicationShouldTerminateAfterLastWindowClosed :: #force_in
     return msgSend(bool, self, "applicationShouldTerminateAfterLastWindowClosed:", sender)
 }
 @(objc_type=ApplicationDelegate, objc_name="applicationShouldHandleReopen")
-ApplicationDelegate_applicationShouldHandleReopen :: #force_inline proc "c" (self: ^ApplicationDelegate, sender: ^Application, flag: bool) -> bool {
-    return msgSend(bool, self, "applicationShouldHandleReopen:hasVisibleWindows:", sender, flag)
+ApplicationDelegate_applicationShouldHandleReopen :: #force_inline proc "c" (self: ^ApplicationDelegate, sender: ^Application, hasVisibleWindows: bool) -> bool {
+    return msgSend(bool, self, "applicationShouldHandleReopen:hasVisibleWindows:", sender, hasVisibleWindows)
 }
 @(objc_type=ApplicationDelegate, objc_name="applicationDockMenu")
 ApplicationDelegate_applicationDockMenu :: #force_inline proc "c" (self: ^ApplicationDelegate, sender: ^Application) -> ^Menu {
@@ -211,7 +212,7 @@ ApplicationDelegate_VTable :: struct {
     application_printFile: proc(self: ^ApplicationDelegate, sender: ^Application, filename: ^NS.String) -> bool,
     application_printFiles_withSettings_showPrintPanels: proc(self: ^ApplicationDelegate, application: ^Application, fileNames: ^NS.Array, printSettings: ^NS.Dictionary, showPrintPanels: bool) -> ApplicationPrintReply,
     applicationShouldTerminateAfterLastWindowClosed: proc(self: ^ApplicationDelegate, sender: ^Application) -> bool,
-    applicationShouldHandleReopen: proc(self: ^ApplicationDelegate, sender: ^Application, flag: bool) -> bool,
+    applicationShouldHandleReopen: proc(self: ^ApplicationDelegate, sender: ^Application, hasVisibleWindows: bool) -> bool,
     applicationDockMenu: proc(self: ^ApplicationDelegate, sender: ^Application) -> ^Menu,
     application_willPresentError: proc(self: ^ApplicationDelegate, application: ^Application, error: ^NS.Error) -> ^NS.Error,
     application_didRegisterForRemoteNotificationsWithDeviceToken: proc(self: ^ApplicationDelegate, application: ^Application, deviceToken: ^NS.Data),
@@ -362,11 +363,11 @@ ApplicationDelegate_odin_extend :: proc(cls: Class, vt: ^ApplicationDelegate_VTa
         if !class_addMethod(cls, intrinsics.objc_find_selector("applicationShouldTerminateAfterLastWindowClosed:"), auto_cast applicationShouldTerminateAfterLastWindowClosed, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.applicationShouldHandleReopen != nil {
-        applicationShouldHandleReopen :: proc "c" (self: ^ApplicationDelegate, _: SEL, sender: ^Application, flag: bool) -> bool {
+        applicationShouldHandleReopen :: proc "c" (self: ^ApplicationDelegate, _: SEL, sender: ^Application, hasVisibleWindows: bool) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^ApplicationDelegate_VTable)vt_ctx.protocol_vt).applicationShouldHandleReopen(self, sender, flag)
+            return (cast(^ApplicationDelegate_VTable)vt_ctx.protocol_vt).applicationShouldHandleReopen(self, sender, hasVisibleWindows)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("applicationShouldHandleReopen:hasVisibleWindows:"), auto_cast applicationShouldHandleReopen, "B@:@B") do panic("Failed to register objC method.")

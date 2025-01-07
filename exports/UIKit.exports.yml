@@ -25,6 +25,8 @@ Typedefs:
     UIFontDescriptorSystemDesign: UI.FontDescriptorSystemDesign
     NSDataAssetName: UI.NSDataAssetName
     NSTextEffectStyle: UI.NSTextEffectStyle
+    NSTextHighlightStyle: UI.NSTextHighlightStyle
+    NSTextHighlightColorScheme: UI.NSTextHighlightColorScheme
     NSAttributedStringDocumentType: UI.NSAttributedStringDocumentType
     NSTextLayoutSectionKey: UI.NSTextLayoutSectionKey
     NSAttributedStringDocumentAttributeKey: UI.NSAttributedStringDocumentAttributeKey
@@ -79,6 +81,7 @@ Typedefs:
     UICollectionLayoutListSwipeActionsConfigurationProvider: UI.CollectionLayoutListSwipeActionsConfigurationProvider
     UICollectionLayoutListItemSeparatorHandler: UI.CollectionLayoutListItemSeparatorHandler
     UIConfigurationStateCustomKey: UI.ConfigurationStateCustomKey
+    UIDocumentCreationIntent: UI.DocumentCreationIntent
     NSFileProviderItemIdentifier: UI.NSFileProviderItemIdentifier
     UIGraphicsImageDrawingActions: UI.GraphicsImageDrawingActions
     UIGraphicsPDFDrawingActions: UI.GraphicsPDFDrawingActions
@@ -102,6 +105,11 @@ Typedefs:
     UIGraphicsDrawingActions: UI.GraphicsDrawingActions
     UIWindowSceneActivationActionConfigurationProvider: UI.WindowSceneActivationActionConfigurationProvider
     UIWindowSceneActivationInteractionConfigurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider
+    UITextFormattingViewControllerTextAlignment: UI.TextFormattingViewControllerTextAlignment
+    UITextFormattingViewControllerTextList: UI.TextFormattingViewControllerTextList
+    UITextFormattingViewControllerHighlight: UI.TextFormattingViewControllerHighlight
+    UITextFormattingViewControllerChangeType: UI.TextFormattingViewControllerChangeType
+    UITextFormattingViewControllerComponentKey: UI.TextFormattingViewControllerComponentKey
     NSTextListMarkerFormat: UI.NSTextListMarkerFormat
     UIActivityType: UI.ActivityType
     UIActivityViewControllerCompletionHandler: UI.ActivityViewControllerCompletionHandler
@@ -111,12 +119,14 @@ Enums:
     UIAccessibilityNavigationStyle: UI.AccessibilityNavigationStyle
     UIAccessibilityContainerType: UI.AccessibilityContainerType
     UIAccessibilityDirectTouchOptions: UI.AccessibilityDirectTouchOptions
+    UIAccessibilityExpandedStatus: UI.AccessibilityExpandedStatus
     UIRectEdge: UI.RectEdge
     UIRectCorner: UI.RectCorner
     UIAxis: UI.Axis
     NSDirectionalRectEdge: UI.NSDirectionalRectEdge
     UIDirectionalRectEdge: UI.DirectionalRectEdge
     NSRectAlignment: UI.NSRectAlignment
+    UIColorProminence: UI.ColorProminence
     UIFontDescriptorSymbolicTraits: UI.FontDescriptorSymbolicTraits
     UIPreferredPresentationStyle: UI.PreferredPresentationStyle
     UIImageOrientation: UI.ImageOrientation
@@ -128,8 +138,8 @@ Enums:
     NSWritingDirectionFormatType: UI.NSWritingDirectionFormatType
     NSTextScalingType: UI.NSTextScalingType
     NSTextWritingDirection: UI.NSTextWritingDirection
-    NSTextAlignment: UI.NSTextAlignment
     NSWritingDirection: UI.NSWritingDirection
+    NSTextAlignment: UI.NSTextAlignment
     NSLineBreakMode: UI.NSLineBreakMode
     NSLineBreakStrategy: UI.NSLineBreakStrategy
     NSStringDrawingOptions: UI.NSStringDrawingOptions
@@ -170,7 +180,9 @@ Enums:
     UISceneActivationState: UI.SceneActivationState
     UISceneCaptureState: UI.SceneCaptureState
     UISceneErrorCode: UI.SceneErrorCode
+    UIListEnvironment: UI.ListEnvironment
     UIFocusHeading: UI.FocusHeading
+    UIFocusItemDeferralMode: UI.FocusItemDeferralMode
     UIViewAnimationCurve: UI.ViewAnimationCurve
     UIViewContentMode: UI.ViewContentMode
     UIViewAnimationTransition: UI.ViewAnimationTransition
@@ -199,9 +211,12 @@ Enums:
     UITextSmartDashesType: UI.TextSmartDashesType
     UITextSmartInsertDeleteType: UI.TextSmartInsertDeleteType
     UITextInlinePredictionType: UI.TextInlinePredictionType
+    UITextMathExpressionCompletionType: UI.TextMathExpressionCompletionType
     UIKeyboardType: UI.KeyboardType
     UIKeyboardAppearance: UI.KeyboardAppearance
     UIReturnKeyType: UI.ReturnKeyType
+    UIWritingToolsBehavior: UI.WritingToolsBehavior
+    UIWritingToolsResultOptions: UI.WritingToolsResultOptions
     UITextStorageDirection: UI.TextStorageDirection
     UITextLayoutDirection: UI.TextLayoutDirection
     UITextGranularity: UI.TextGranularity
@@ -285,6 +300,7 @@ Enums:
     UITableViewStyle: UI.TableViewStyle
     UITableViewScrollPosition: UI.TableViewScrollPosition
     UITableViewRowAnimation: UI.TableViewRowAnimation
+    UITableViewContentHuggingElements: UI.TableViewContentHuggingElements
     UITableViewRowActionStyle: UI.TableViewRowActionStyle
     UITableViewSeparatorInsetReference: UI.TableViewSeparatorInsetReference
     UITableViewSelfSizingInvalidation: UI.TableViewSelfSizingInvalidation
@@ -292,6 +308,7 @@ Enums:
     UICollectionLayoutListAppearance: UI.CollectionLayoutListAppearance
     UICollectionLayoutListHeaderMode: UI.CollectionLayoutListHeaderMode
     UICollectionLayoutListFooterMode: UI.CollectionLayoutListFooterMode
+    UICollectionLayoutListContentHuggingElements: UI.CollectionLayoutListContentHuggingElements
     UIListSeparatorVisibility: UI.ListSeparatorVisibility
     UICellConfigurationDragState: UI.CellConfigurationDragState
     UICellConfigurationDropState: UI.CellConfigurationDropState
@@ -370,6 +387,7 @@ Enums:
     UISplitViewControllerDisplayModeButtonVisibility: UI.SplitViewControllerDisplayModeButtonVisibility
     UISwitchStyle: UI.SwitchStyle
     UITabBarItemPositioning: UI.TabBarItemPositioning
+    UITabBarControllerMode: UI.TabBarControllerMode
     UITabBarSystemItem: UI.TabBarSystemItem
     UITextSearchFoundTextStyle: UI.TextSearchFoundTextStyle
     UIFindSessionSearchResultDisplayStyle: UI.FindSessionSearchResultDisplayStyle
@@ -405,6 +423,11 @@ Enums:
     UICalendarViewDecorationSize: UI.CalendarViewDecorationSize
     UIEditMenuArrowDirection: UI.EditMenuArrowDirection
     UIContentUnavailableAlignment: UI.ContentUnavailableAlignment
+    UITabPlacement: UI.TabPlacement
+    UITabGroupSidebarAppearance: UI.TabGroupSidebarAppearance
+    UITabBarControllerSidebarLayout: UI.TabBarControllerSidebarLayout
+    UITextFormattingViewControllerComponentSize: UI.TextFormattingViewControllerComponentSize
+    NSTextListOptions: UI.NSTextListOptions
     NSTextSelectionGranularity: UI.NSTextSelectionGranularity
     NSTextSelectionAffinity: UI.NSTextSelectionAffinity
     NSTextSelectionNavigationDirection: UI.NSTextSelectionNavigationDirection
@@ -417,12 +440,13 @@ Enums:
     NSTextLayoutFragmentState: UI.NSTextLayoutFragmentState
     NSTextLayoutManagerSegmentType: UI.NSTextLayoutManagerSegmentType
     NSTextLayoutManagerSegmentOptions: UI.NSTextLayoutManagerSegmentOptions
-    NSTextListOptions: UI.NSTextListOptions
     UIDocumentBrowserErrorCode: UI.DocumentBrowserErrorCode
     UIDocumentBrowserImportMode: UI.DocumentBrowserImportMode
     UIDocumentBrowserUserInterfaceStyle: UI.DocumentBrowserUserInterfaceStyle
     UIDocumentBrowserActionAvailability: UI.DocumentBrowserActionAvailability
     UIActivityCategory: UI.ActivityCategory
+    UIActivityCollaborationMode: UI.ActivityCollaborationMode
+    UIActivitySectionTypes: UI.ActivitySectionTypes
     UIPrinterJobTypes: UI.PrinterJobTypes
     UIPrintErrorCode: UI.PrintErrorCode
     UIPrintInfoOutputType: UI.PrintInfoOutputType
@@ -504,6 +528,7 @@ ObjCClasses:
     UITraitTypesettingLanguage: UI.TraitTypesettingLanguage
     UITraitSceneCaptureState: UI.TraitSceneCaptureState
     UIDevice: UI.Device
+    UITraitListEnvironment: UI.TraitListEnvironment
     NSLayoutXAxisAnchor: UI.NSLayoutXAxisAnchor
     UILayoutGuide: UI.LayoutGuide
     UIFocusGuide: UI.FocusGuide
@@ -533,6 +558,8 @@ ObjCClasses:
     UITextRange: UI.TextRange
     UITextSelectionRect: UI.TextSelectionRect
     UIBarButtonItemGroup: UI.BarButtonItemGroup
+    UIBarButtonItem: UI.BarButtonItem
+    NSAdaptiveImageGlyph: UI.NSAdaptiveImageGlyph
     UIDictationPhrase: UI.DictationPhrase
     UITextPlaceholder: UI.TextPlaceholder
     UITextInputStringTokenizer: UI.TextInputStringTokenizer
@@ -555,7 +582,6 @@ ObjCClasses:
     UITextField: UI.TextField
     UIToolbar: UI.Toolbar
     UITabBar: UI.TabBar
-    UIBarButtonItem: UI.BarButtonItem
     UIActionSheet: UI.ActionSheet
     UIAlertView: UI.AlertView
     UIScene: UI.Scene
@@ -581,6 +607,7 @@ ObjCClasses:
     UIStoryboardUnwindSegueSource: UI.StoryboardUnwindSegueSource
     UIContentUnavailableConfiguration: UI.ContentUnavailableConfiguration
     UIContentUnavailableConfigurationState: UI.ContentUnavailableConfigurationState
+    UIViewControllerTransition: UI.ViewControllerTransition
     UIPresentationController: UI.PresentationController
     UISheetPresentationController: UI.SheetPresentationController
     UIPopoverPresentationController: UI.PopoverPresentationController
@@ -593,6 +620,7 @@ ObjCClasses:
     NSSymbolEffect: UI.NSSymbolEffect
     NSSymbolContentTransition: UI.NSSymbolContentTransition
     UISymbolEffectCompletionContext: UI.SymbolEffectCompletionContext
+    NSSymbolEffectOptionsRepeatBehavior: UI.NSSymbolEffectOptionsRepeatBehavior
     NSSymbolEffectOptions: UI.NSSymbolEffectOptions
     NSSymbolPulseEffect: UI.NSSymbolPulseEffect
     NSSymbolBounceEffect: UI.NSSymbolBounceEffect
@@ -600,9 +628,14 @@ ObjCClasses:
     NSSymbolScaleEffect: UI.NSSymbolScaleEffect
     NSSymbolAppearEffect: UI.NSSymbolAppearEffect
     NSSymbolDisappearEffect: UI.NSSymbolDisappearEffect
+    NSSymbolWiggleEffect: UI.NSSymbolWiggleEffect
+    NSSymbolRotateEffect: UI.NSSymbolRotateEffect
+    NSSymbolBreatheEffect: UI.NSSymbolBreatheEffect
+    NSSymbolMagicReplaceContentTransition: UI.NSSymbolMagicReplaceContentTransition
     NSSymbolReplaceContentTransition: UI.NSSymbolReplaceContentTransition
     NSSymbolAutomaticContentTransition: UI.NSSymbolAutomaticContentTransition
     UIVisualEffect: UI.VisualEffect
+    UIShadowProperties: UI.ShadowProperties
     UIBackgroundConfiguration: UI.BackgroundConfiguration
     UIButtonConfiguration: UI.ButtonConfiguration
     UIPointerStyle: UI.PointerStyle
@@ -693,7 +726,9 @@ ObjCClasses:
     UIDocumentProperties: UI.DocumentProperties
     UIDeferredMenuElement: UI.DeferredMenuElement
     UIDocument: UI.Document
+    UIDocumentViewControllerLaunchOptions: UI.DocumentViewControllerLaunchOptions
     UIDocumentViewController: UI.DocumentViewController
+    UIDocumentBrowserViewController: UI.DocumentBrowserViewController
     UIDocumentPickerViewController: UI.DocumentPickerViewController
     UIDocumentMenuViewController: UI.DocumentMenuViewController
     UIDocumentPickerExtensionViewController: UI.DocumentPickerExtensionViewController
@@ -784,6 +819,9 @@ ObjCClasses:
     UIStoryboardPopoverSegue: UI.StoryboardPopoverSegue
     UISwitch: UI.Switch
     UITabBarAppearance: UI.TabBarAppearance
+    UITabBarControllerSidebar: UI.TabBarControllerSidebar
+    UITab: UI.Tab
+    UITabGroup: UI.TabGroup
     UITabBarController: UI.TabBarController
     UITableViewController: UI.TableViewController
     UITextChecker: UI.TextChecker
@@ -798,6 +836,9 @@ ObjCClasses:
     NSTextStorage: UI.NSTextStorage
     UITextItem: UI.TextItem
     UITextItemMenuConfiguration: UI.TextItemMenuConfiguration
+    NSTextRange: UI.NSTextRange
+    UITextFormattingViewController: UI.TextFormattingViewController
+    UITextFormattingViewControllerConfiguration: UI.TextFormattingViewControllerConfiguration
     UIToolbarAppearance: UI.ToolbarAppearance
     UIVideoEditorController: UI.VideoEditorController
     UIWebViewInternal: UI.WebViewInternal
@@ -843,12 +884,15 @@ ObjCClasses:
     UIPencilInteractionTap: UI.PencilInteractionTap
     UIPencilInteractionSqueeze: UI.PencilInteractionSqueeze
     UIPencilInteraction: UI.PencilInteraction
+    UISceneSystemProtectionManager: UI.SceneSystemProtectionManager
     UIWindowSceneGeometryPreferencesMac: UI.WindowSceneGeometryPreferencesMac
     UIWindowSceneGeometryPreferencesIOS: UI.WindowSceneGeometryPreferencesIOS
     UIWindowSceneGeometryPreferencesVision: UI.WindowSceneGeometryPreferencesVision
     UIWindowScenePlacement: UI.WindowScenePlacement
     UIWindowSceneStandardPlacement: UI.WindowSceneStandardPlacement
     UIWindowSceneProminentPlacement: UI.WindowSceneProminentPlacement
+    UIWindowSceneReplacePlacement: UI.WindowSceneReplacePlacement
+    UIWindowScenePushPlacement: UI.WindowScenePushPlacement
     UIStatusBarManager: UI.StatusBarManager
     UIScreenshotService: UI.ScreenshotService
     UIMenuSystem: UI.MenuSystem
@@ -875,26 +919,42 @@ ObjCClasses:
     UICalendarView: UI.CalendarView
     UICalendarSelectionSingleDate: UI.CalendarSelectionSingleDate
     UICalendarSelectionMultiDate: UI.CalendarSelectionMultiDate
+    UICalendarSelectionWeekOfYear: UI.CalendarSelectionWeekOfYear
     UIEditMenuConfiguration: UI.EditMenuConfiguration
     UIEditMenuInteraction: UI.EditMenuInteraction
     UIContentUnavailableImageProperties: UI.ContentUnavailableImageProperties
     UIContentUnavailableTextProperties: UI.ContentUnavailableTextProperties
     UIContentUnavailableButtonProperties: UI.ContentUnavailableButtonProperties
     UIContentUnavailableView: UI.ContentUnavailableView
-    NSTextRange: UI.NSTextRange
+    UIUpdateInfo: UI.UpdateInfo
+    UIUpdateActionPhase: UI.UpdateActionPhase
+    UIUpdateLink: UI.UpdateLink
+    UISearchTab: UI.SearchTab
+    UITabSidebarScrollTarget: UI.TabSidebarScrollTarget
+    UITabSidebarItem: UI.TabSidebarItem
+    UITabSidebarItemRequest: UI.TabSidebarItemRequest
+    UIZoomTransitionInteractionContext: UI.ZoomTransitionInteractionContext
+    UIZoomTransitionAlignmentRectContext: UI.ZoomTransitionAlignmentRectContext
+    UIZoomTransitionOptions: UI.ZoomTransitionOptions
+    UIZoomTransitionSourceViewProviderContext: UI.ZoomTransitionSourceViewProviderContext
+    UITextFormattingViewControllerFormattingStyle: UI.TextFormattingViewControllerFormattingStyle
+    UITextFormattingViewControllerComponentGroup: UI.TextFormattingViewControllerComponentGroup
+    UITextFormattingViewControllerFormattingDescriptor: UI.TextFormattingViewControllerFormattingDescriptor
+    UITextFormattingViewControllerChangeValue: UI.TextFormattingViewControllerChangeValue
+    UITextFormattingViewControllerComponent: UI.TextFormattingViewControllerComponent
+    NSTextContentManager: UI.NSTextContentManager
+    NSTextElement: UI.NSTextElement
+    NSTextParagraph: UI.NSTextParagraph
     NSTextSelection: UI.NSTextSelection
     NSTextLineFragment: UI.NSTextLineFragment
     NSTextSelectionNavigation: UI.NSTextSelectionNavigation
-    NSTextLayoutFragment: UI.NSTextLayoutFragment
     NSTextViewportLayoutController: UI.NSTextViewportLayoutController
-    NSTextElement: UI.NSTextElement
-    NSTextParagraph: UI.NSTextParagraph
+    NSTextLayoutFragment: UI.NSTextLayoutFragment
     NSTextContentStorage: UI.NSTextContentStorage
-    NSTextContentManager: UI.NSTextContentManager
     NSTextListElement: UI.NSTextListElement
     UIDocumentBrowserAction: UI.DocumentBrowserAction
     UIDocumentBrowserTransitionController: UI.DocumentBrowserTransitionController
-    UIDocumentBrowserViewController: UI.DocumentBrowserViewController
+    UIActivityCollaborationModeRestriction: UI.ActivityCollaborationModeRestriction
     UIActivityItemProvider: UI.ActivityItemProvider
     UIDocumentInteractionController: UI.DocumentInteractionController
     UIPrinter: UI.Printer
@@ -915,8 +975,8 @@ ObjCProtocols:
     UIItemProviderReadingAugmentationProviding: UI.ItemProviderReadingAugmentationProviding
     UIItemProviderReadingAugmentationDesignating: UI.ItemProviderReadingAugmentationDesignating
     NSTextLocation: UI.NSTextLocation
-    NSTextAttachmentContainer: UI.NSTextAttachmentContainer
     NSTextAttachmentLayout: UI.NSTextAttachmentLayout
+    NSTextAttachmentContainer: UI.NSTextAttachmentContainer
     UIAccelerometerDelegate: UI.AccelerometerDelegate
     UIPopoverPresentationControllerSourceItem: UI.PopoverPresentationControllerSourceItem
     UIMenuLeaf: UI.MenuLeaf
@@ -1109,7 +1169,11 @@ ObjCProtocols:
     UICalendarViewDelegate: UI.CalendarViewDelegate
     UICalendarSelectionSingleDateDelegate: UI.CalendarSelectionSingleDateDelegate
     UICalendarSelectionMultiDateDelegate: UI.CalendarSelectionMultiDateDelegate
+    UICalendarSelectionWeekOfYearDelegate: UI.CalendarSelectionWeekOfYearDelegate
     UIEditMenuInteractionDelegate: UI.EditMenuInteractionDelegate
+    UITabBarControllerSidebarDelegate: UI.TabBarControllerSidebarDelegate
+    UITabBarControllerSidebarAnimating: UI.TabBarControllerSidebarAnimating
+    UITextFormattingViewControllerDelegate: UI.TextFormattingViewControllerDelegate
     NSTextSelectionDataSource: UI.NSTextSelectionDataSource
     NSTextViewportLayoutControllerDelegate: UI.NSTextViewportLayoutControllerDelegate
     NSTextContentManagerDelegate: UI.NSTextContentManagerDelegate
@@ -1330,7 +1394,17 @@ ExternVars:
     ::NSUnderlineColorAttributeName: UI.NSUnderlineColorAttributeName
     ::NSStrikethroughColorAttributeName: UI.NSStrikethroughColorAttributeName
     ::NSWritingDirectionAttributeName: UI.NSWritingDirectionAttributeName
+    ::NSTextHighlightStyleAttributeName: UI.NSTextHighlightStyleAttributeName
+    ::NSTextHighlightColorSchemeAttributeName: UI.NSTextHighlightColorSchemeAttributeName
+    ::NSAdaptiveImageGlyphAttributeName: UI.NSAdaptiveImageGlyphAttributeName
     ::NSTextEffectLetterpressStyle: UI.NSTextEffectLetterpressStyle
+    ::NSTextHighlightStyleDefault: UI.NSTextHighlightStyleDefault
+    ::NSTextHighlightColorSchemeDefault: UI.NSTextHighlightColorSchemeDefault
+    ::NSTextHighlightColorSchemePurple: UI.NSTextHighlightColorSchemePurple
+    ::NSTextHighlightColorSchemePink: UI.NSTextHighlightColorSchemePink
+    ::NSTextHighlightColorSchemeOrange: UI.NSTextHighlightColorSchemeOrange
+    ::NSTextHighlightColorSchemeMint: UI.NSTextHighlightColorSchemeMint
+    ::NSTextHighlightColorSchemeBlue: UI.NSTextHighlightColorSchemeBlue
     ::NSPlainTextDocumentType: UI.NSPlainTextDocumentType
     ::NSRTFTextDocumentType: UI.NSRTFTextDocumentType
     ::NSRTFDTextDocumentType: UI.NSRTFDTextDocumentType
@@ -1341,7 +1415,6 @@ ExternVars:
     ::NSCharacterEncodingDocumentAttribute: UI.NSCharacterEncodingDocumentAttribute
     ::NSDefaultAttributesDocumentAttribute: UI.NSDefaultAttributesDocumentAttribute
     ::NSPaperSizeDocumentAttribute: UI.NSPaperSizeDocumentAttribute
-    ::NSPaperMarginDocumentAttribute: UI.NSPaperMarginDocumentAttribute
     ::NSViewSizeDocumentAttribute: UI.NSViewSizeDocumentAttribute
     ::NSViewZoomDocumentAttribute: UI.NSViewZoomDocumentAttribute
     ::NSViewModeDocumentAttribute: UI.NSViewModeDocumentAttribute
@@ -1359,6 +1432,8 @@ ExternVars:
     ::NSCharacterEncodingDocumentOption: UI.NSCharacterEncodingDocumentOption
     ::NSTargetTextScalingDocumentOption: UI.NSTargetTextScalingDocumentOption
     ::NSSourceTextScalingDocumentOption: UI.NSSourceTextScalingDocumentOption
+    ::NSTextKit1ListMarkerFormatDocumentOption: UI.NSTextKit1ListMarkerFormatDocumentOption
+    ::NSPaperMarginDocumentAttribute: UI.NSPaperMarginDocumentAttribute
     ::NSObliquenessAttributeName: UI.NSObliquenessAttributeName
     ::NSExpansionAttributeName: UI.NSExpansionAttributeName
     ::NSVerticalGlyphFormAttributeName: UI.NSVerticalGlyphFormAttributeName
@@ -1468,6 +1543,7 @@ ExternVars:
     ::UIActionPasteAndSearch: UI.ActionPasteAndSearch
     ::UIScrollViewDecelerationRateNormal: UI.ScrollViewDecelerationRateNormal
     ::UIScrollViewDecelerationRateFast: UI.ScrollViewDecelerationRateFast
+    ::UIAccessibilityCustomActionCategoryEdit: UI.AccessibilityCustomActionCategoryEdit
     ::UITextContentTypeName: UI.TextContentTypeName
     ::UITextContentTypeNamePrefix: UI.TextContentTypeNamePrefix
     ::UITextContentTypeGivenName: UI.TextContentTypeGivenName
@@ -1627,6 +1703,7 @@ ExternVars:
     ::UITableViewSelectionDidChangeNotification: UI.TableViewSelectionDidChangeNotification
     ::UIListSeparatorAutomaticInsets: UI.ListSeparatorAutomaticInsets
     ::UIListContentImageStandardDimension: UI.ListContentImageStandardDimension
+    ::UIDocumentCreationIntentDefault: UI.DocumentCreationIntentDefault
     ::UIDocumentStateChangedNotification: UI.DocumentStateChangedNotification
     ::NSUserActivityDocumentURLKey: UI.NSUserActivityDocumentURLKey
     ::NSFileProviderRootContainerItemIdentifier: UI.NSFileProviderRootContainerItemIdentifier
@@ -1735,6 +1812,7 @@ ExternVars:
     ::UIFloatRangeZero: UI.FloatRangeZero
     ::UIFloatRangeInfinite: UI.FloatRangeInfinite
     ::UITextItemTagAttributeName: UI.TextItemTagAttributeName
+    ::UISceneSystemProtectionDidChangeNotification: UI.SceneSystemProtectionDidChangeNotification
     ::UIProposedSceneSizeNoPreference: UI.ProposedSceneSizeNoPreference
     ::UIPointerAccessoryPositionTop: UI.PointerAccessoryPositionTop
     ::UIPointerAccessoryPositionTopRight: UI.PointerAccessoryPositionTopRight
@@ -1744,7 +1822,55 @@ ExternVars:
     ::UIPointerAccessoryPositionBottomLeft: UI.PointerAccessoryPositionBottomLeft
     ::UIPointerAccessoryPositionLeft: UI.PointerAccessoryPositionLeft
     ::UIPointerAccessoryPositionTopLeft: UI.PointerAccessoryPositionTopLeft
-    ::NSTextContentStorageUnsupportedAttributeAddedNotification: UI.NSTextContentStorageUnsupportedAttributeAddedNotification
+    ::UITextFormattingViewControllerTextAlignmentLeft: UI.TextFormattingViewControllerTextAlignmentLeft
+    ::UITextFormattingViewControllerTextAlignmentCenter: UI.TextFormattingViewControllerTextAlignmentCenter
+    ::UITextFormattingViewControllerTextAlignmentRight: UI.TextFormattingViewControllerTextAlignmentRight
+    ::UITextFormattingViewControllerTextAlignmentJustified: UI.TextFormattingViewControllerTextAlignmentJustified
+    ::UITextFormattingViewControllerTextAlignmentNatural: UI.TextFormattingViewControllerTextAlignmentNatural
+    ::UITextFormattingViewControllerTextListDisc: UI.TextFormattingViewControllerTextListDisc
+    ::UITextFormattingViewControllerTextListHyphen: UI.TextFormattingViewControllerTextListHyphen
+    ::UITextFormattingViewControllerTextListDecimal: UI.TextFormattingViewControllerTextListDecimal
+    ::UITextFormattingViewControllerTextListOther: UI.TextFormattingViewControllerTextListOther
+    ::UITextFormattingViewControllerHighlightDefault: UI.TextFormattingViewControllerHighlightDefault
+    ::UITextFormattingViewControllerHighlightPurple: UI.TextFormattingViewControllerHighlightPurple
+    ::UITextFormattingViewControllerHighlightPink: UI.TextFormattingViewControllerHighlightPink
+    ::UITextFormattingViewControllerHighlightOrange: UI.TextFormattingViewControllerHighlightOrange
+    ::UITextFormattingViewControllerHighlightMint: UI.TextFormattingViewControllerHighlightMint
+    ::UITextFormattingViewControllerHighlightBlue: UI.TextFormattingViewControllerHighlightBlue
+    ::UITextFormattingViewControllerUndefinedChangeType: UI.TextFormattingViewControllerUndefinedChangeType
+    ::UITextFormattingViewControllerSetBoldChangeType: UI.TextFormattingViewControllerSetBoldChangeType
+    ::UITextFormattingViewControllerRemoveBoldChangeType: UI.TextFormattingViewControllerRemoveBoldChangeType
+    ::UITextFormattingViewControllerSetItalicChangeType: UI.TextFormattingViewControllerSetItalicChangeType
+    ::UITextFormattingViewControllerRemoveItalicChangeType: UI.TextFormattingViewControllerRemoveItalicChangeType
+    ::UITextFormattingViewControllerSetUnderlineChangeType: UI.TextFormattingViewControllerSetUnderlineChangeType
+    ::UITextFormattingViewControllerRemoveUnderlineChangeType: UI.TextFormattingViewControllerRemoveUnderlineChangeType
+    ::UITextFormattingViewControllerSetStrikethroughChangeType: UI.TextFormattingViewControllerSetStrikethroughChangeType
+    ::UITextFormattingViewControllerRemoveStrikethroughChangeType: UI.TextFormattingViewControllerRemoveStrikethroughChangeType
+    ::UITextFormattingViewControllerFontChangeType: UI.TextFormattingViewControllerFontChangeType
+    ::UITextFormattingViewControllerFontSizeChangeType: UI.TextFormattingViewControllerFontSizeChangeType
+    ::UITextFormattingViewControllerIncreaseFontSizeChangeType: UI.TextFormattingViewControllerIncreaseFontSizeChangeType
+    ::UITextFormattingViewControllerDecreaseFontSizeChangeType: UI.TextFormattingViewControllerDecreaseFontSizeChangeType
+    ::UITextFormattingViewControllerTextColorChangeType: UI.TextFormattingViewControllerTextColorChangeType
+    ::UITextFormattingViewControllerLineHeightPointSizeChangeType: UI.TextFormattingViewControllerLineHeightPointSizeChangeType
+    ::UITextFormattingViewControllerIncreaseIndentationChangeType: UI.TextFormattingViewControllerIncreaseIndentationChangeType
+    ::UITextFormattingViewControllerDecreaseIndentationChangeType: UI.TextFormattingViewControllerDecreaseIndentationChangeType
+    ::UITextFormattingViewControllerFormattingStyleChangeType: UI.TextFormattingViewControllerFormattingStyleChangeType
+    ::UITextFormattingViewControllerTextListChangeType: UI.TextFormattingViewControllerTextListChangeType
+    ::UITextFormattingViewControllerTextAlignmentChangeType: UI.TextFormattingViewControllerTextAlignmentChangeType
+    ::UITextFormattingViewControllerHighlightChangeType: UI.TextFormattingViewControllerHighlightChangeType
+    ::UITextFormattingViewControllerFormattingStylesComponentKey: UI.TextFormattingViewControllerFormattingStylesComponentKey
+    ::UITextFormattingViewControllerFontAttributesComponentKey: UI.TextFormattingViewControllerFontAttributesComponentKey
+    ::UITextFormattingViewControllerFontPickerComponentKey: UI.TextFormattingViewControllerFontPickerComponentKey
+    ::UITextFormattingViewControllerFontSizeComponentKey: UI.TextFormattingViewControllerFontSizeComponentKey
+    ::UITextFormattingViewControllerFontPointSizeComponentKey: UI.TextFormattingViewControllerFontPointSizeComponentKey
+    ::UITextFormattingViewControllerTextAlignmentComponentKey: UI.TextFormattingViewControllerTextAlignmentComponentKey
+    ::UITextFormattingViewControllerTextAlignmentAndJustificationComponentKey: UI.TextFormattingViewControllerTextAlignmentAndJustificationComponentKey
+    ::UITextFormattingViewControllerTextIndentationComponentKey: UI.TextFormattingViewControllerTextIndentationComponentKey
+    ::UITextFormattingViewControllerLineHeightComponentKey: UI.TextFormattingViewControllerLineHeightComponentKey
+    ::UITextFormattingViewControllerListStylesComponentKey: UI.TextFormattingViewControllerListStylesComponentKey
+    ::UITextFormattingViewControllerTextColorComponentKey: UI.TextFormattingViewControllerTextColorComponentKey
+    ::UITextFormattingViewControllerHighlightComponentKey: UI.TextFormattingViewControllerHighlightComponentKey
+    ::UITextFormattingViewControllerHighlightPickerComponentKey: UI.TextFormattingViewControllerHighlightPickerComponentKey
     ::NSTextListMarkerBox: UI.NSTextListMarkerBox
     ::NSTextListMarkerCheck: UI.NSTextListMarkerCheck
     ::NSTextListMarkerCircle: UI.NSTextListMarkerCircle
@@ -1762,6 +1888,7 @@ ExternVars:
     ::NSTextListMarkerLowercaseRoman: UI.NSTextListMarkerLowercaseRoman
     ::NSTextListMarkerUppercaseRoman: UI.NSTextListMarkerUppercaseRoman
     ::NSTextListMarkerDecimal: UI.NSTextListMarkerDecimal
+    ::NSTextContentStorageUnsupportedAttributeAddedNotification: UI.NSTextContentStorageUnsupportedAttributeAddedNotification
     ::UIDocumentBrowserErrorDomain: UI.DocumentBrowserErrorDomain
     ::UIActivityTypePostToFacebook: UI.ActivityTypePostToFacebook
     ::UIActivityTypePostToTwitter: UI.ActivityTypePostToTwitter
@@ -1783,6 +1910,8 @@ ExternVars:
     ::UIActivityTypeCollaborationInviteWithLink: UI.ActivityTypeCollaborationInviteWithLink
     ::UIActivityTypeCollaborationCopyLink: UI.ActivityTypeCollaborationCopyLink
     ::UIActivityTypeAddToHomeScreen: UI.ActivityTypeAddToHomeScreen
+    ::UIActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions: UI.ActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions
+    ::UIActivityItemsConfigurationMetadataKeyShareRecipients: UI.ActivityItemsConfigurationMetadataKeyShareRecipients
     ::UIPrintErrorDomain: UI.PrintErrorDomain
 
 ConstVars:

@@ -116,6 +116,14 @@ CommandBuffer_pushDebugGroup :: #force_inline proc "c" (self: ^CommandBuffer, st
 CommandBuffer_popDebugGroup :: #force_inline proc "c" (self: ^CommandBuffer) {
     msgSend(nil, self, "popDebugGroup")
 }
+@(objc_type=CommandBuffer, objc_name="useResidencySet")
+CommandBuffer_useResidencySet :: #force_inline proc "c" (self: ^CommandBuffer, residencySet: ^ResidencySet) {
+    msgSend(nil, self, "useResidencySet:", residencySet)
+}
+@(objc_type=CommandBuffer, objc_name="useResidencySets")
+CommandBuffer_useResidencySets :: #force_inline proc "c" (self: ^CommandBuffer, residencySets: ^^ResidencySet, count: NS.UInteger) {
+    msgSend(nil, self, "useResidencySets:count:", residencySets, count)
+}
 @(objc_type=CommandBuffer, objc_name="device")
 CommandBuffer_device :: #force_inline proc "c" (self: ^CommandBuffer) -> ^Device {
     return msgSend(^Device, self, "device")

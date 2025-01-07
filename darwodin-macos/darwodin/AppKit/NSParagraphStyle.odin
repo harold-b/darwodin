@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -42,10 +43,6 @@ ParagraphStyle_lineSpacing :: #force_inline proc "c" (self: ^ParagraphStyle) -> 
 @(objc_type=ParagraphStyle, objc_name="paragraphSpacing")
 ParagraphStyle_paragraphSpacing :: #force_inline proc "c" (self: ^ParagraphStyle) -> CG.Float {
     return msgSend(CG.Float, self, "paragraphSpacing")
-}
-@(objc_type=ParagraphStyle, objc_name="alignment")
-ParagraphStyle_alignment :: #force_inline proc "c" (self: ^ParagraphStyle) -> TextAlignment {
-    return msgSend(TextAlignment, self, "alignment")
 }
 @(objc_type=ParagraphStyle, objc_name="headIndent")
 ParagraphStyle_headIndent :: #force_inline proc "c" (self: ^ParagraphStyle) -> CG.Float {
@@ -99,9 +96,21 @@ ParagraphStyle_tabStops :: #force_inline proc "c" (self: ^ParagraphStyle) -> ^NS
 ParagraphStyle_defaultTabInterval :: #force_inline proc "c" (self: ^ParagraphStyle) -> CG.Float {
     return msgSend(CG.Float, self, "defaultTabInterval")
 }
+@(objc_type=ParagraphStyle, objc_name="textLists")
+ParagraphStyle_textLists :: #force_inline proc "c" (self: ^ParagraphStyle) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "textLists")
+}
 @(objc_type=ParagraphStyle, objc_name="allowsDefaultTighteningForTruncation")
 ParagraphStyle_allowsDefaultTighteningForTruncation :: #force_inline proc "c" (self: ^ParagraphStyle) -> bool {
     return msgSend(bool, self, "allowsDefaultTighteningForTruncation")
+}
+@(objc_type=ParagraphStyle, objc_name="lineBreakStrategy")
+ParagraphStyle_lineBreakStrategy :: #force_inline proc "c" (self: ^ParagraphStyle) -> LineBreakStrategy {
+    return msgSend(LineBreakStrategy, self, "lineBreakStrategy")
+}
+@(objc_type=ParagraphStyle, objc_name="alignment")
+ParagraphStyle_alignment :: #force_inline proc "c" (self: ^ParagraphStyle) -> TextAlignment {
+    return msgSend(TextAlignment, self, "alignment")
 }
 @(objc_type=ParagraphStyle, objc_name="tighteningFactorForTruncation")
 ParagraphStyle_tighteningFactorForTruncation :: #force_inline proc "c" (self: ^ParagraphStyle) -> cffi.float {
@@ -111,17 +120,9 @@ ParagraphStyle_tighteningFactorForTruncation :: #force_inline proc "c" (self: ^P
 ParagraphStyle_textBlocks :: #force_inline proc "c" (self: ^ParagraphStyle) -> ^NS.Array {
     return msgSend(^NS.Array, self, "textBlocks")
 }
-@(objc_type=ParagraphStyle, objc_name="textLists")
-ParagraphStyle_textLists :: #force_inline proc "c" (self: ^ParagraphStyle) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "textLists")
-}
 @(objc_type=ParagraphStyle, objc_name="headerLevel")
 ParagraphStyle_headerLevel :: #force_inline proc "c" (self: ^ParagraphStyle) -> NS.Integer {
     return msgSend(NS.Integer, self, "headerLevel")
-}
-@(objc_type=ParagraphStyle, objc_name="lineBreakStrategy")
-ParagraphStyle_lineBreakStrategy :: #force_inline proc "c" (self: ^ParagraphStyle) -> LineBreakStrategy {
-    return msgSend(LineBreakStrategy, self, "lineBreakStrategy")
 }
 @(objc_type=ParagraphStyle, objc_name="supportsSecureCoding", objc_is_class_method=true)
 ParagraphStyle_supportsSecureCoding :: #force_inline proc "c" () -> bool {
@@ -275,7 +276,6 @@ ParagraphStyle_VTable :: struct {
     defaultParagraphStyle: proc() -> ^ParagraphStyle,
     lineSpacing: proc(self: ^ParagraphStyle) -> CG.Float,
     paragraphSpacing: proc(self: ^ParagraphStyle) -> CG.Float,
-    alignment: proc(self: ^ParagraphStyle) -> TextAlignment,
     headIndent: proc(self: ^ParagraphStyle) -> CG.Float,
     tailIndent: proc(self: ^ParagraphStyle) -> CG.Float,
     firstLineHeadIndent: proc(self: ^ParagraphStyle) -> CG.Float,
@@ -289,12 +289,13 @@ ParagraphStyle_VTable :: struct {
     usesDefaultHyphenation: proc(self: ^ParagraphStyle) -> bool,
     tabStops: proc(self: ^ParagraphStyle) -> ^NS.Array,
     defaultTabInterval: proc(self: ^ParagraphStyle) -> CG.Float,
+    textLists: proc(self: ^ParagraphStyle) -> ^NS.Array,
     allowsDefaultTighteningForTruncation: proc(self: ^ParagraphStyle) -> bool,
+    lineBreakStrategy: proc(self: ^ParagraphStyle) -> LineBreakStrategy,
+    alignment: proc(self: ^ParagraphStyle) -> TextAlignment,
     tighteningFactorForTruncation: proc(self: ^ParagraphStyle) -> cffi.float,
     textBlocks: proc(self: ^ParagraphStyle) -> ^NS.Array,
-    textLists: proc(self: ^ParagraphStyle) -> ^NS.Array,
     headerLevel: proc(self: ^ParagraphStyle) -> NS.Integer,
-    lineBreakStrategy: proc(self: ^ParagraphStyle) -> LineBreakStrategy,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -378,16 +379,6 @@ ParagraphStyle_odin_extend :: proc(cls: Class, vt: ^ParagraphStyle_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphSpacing"), auto_cast paragraphSpacing, "d@:") do panic("Failed to register objC method.")
-    }
-    if vt.alignment != nil {
-        alignment :: proc "c" (self: ^ParagraphStyle, _: SEL) -> TextAlignment {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ParagraphStyle_VTable)vt_ctx.super_vt).alignment(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.headIndent != nil {
         headIndent :: proc "c" (self: ^ParagraphStyle, _: SEL) -> CG.Float {
@@ -519,6 +510,16 @@ ParagraphStyle_odin_extend :: proc(cls: Class, vt: ^ParagraphStyle_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultTabInterval"), auto_cast defaultTabInterval, "d@:") do panic("Failed to register objC method.")
     }
+    if vt.textLists != nil {
+        textLists :: proc "c" (self: ^ParagraphStyle, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ParagraphStyle_VTable)vt_ctx.super_vt).textLists(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textLists"), auto_cast textLists, "@@:") do panic("Failed to register objC method.")
+    }
     if vt.allowsDefaultTighteningForTruncation != nil {
         allowsDefaultTighteningForTruncation :: proc "c" (self: ^ParagraphStyle, _: SEL) -> bool {
 
@@ -528,6 +529,26 @@ ParagraphStyle_odin_extend :: proc(cls: Class, vt: ^ParagraphStyle_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsDefaultTighteningForTruncation"), auto_cast allowsDefaultTighteningForTruncation, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.lineBreakStrategy != nil {
+        lineBreakStrategy :: proc "c" (self: ^ParagraphStyle, _: SEL) -> LineBreakStrategy {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ParagraphStyle_VTable)vt_ctx.super_vt).lineBreakStrategy(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakStrategy"), auto_cast lineBreakStrategy, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.alignment != nil {
+        alignment :: proc "c" (self: ^ParagraphStyle, _: SEL) -> TextAlignment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ParagraphStyle_VTable)vt_ctx.super_vt).alignment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.tighteningFactorForTruncation != nil {
         tighteningFactorForTruncation :: proc "c" (self: ^ParagraphStyle, _: SEL) -> cffi.float {
@@ -549,16 +570,6 @@ ParagraphStyle_odin_extend :: proc(cls: Class, vt: ^ParagraphStyle_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textBlocks"), auto_cast textBlocks, "@@:") do panic("Failed to register objC method.")
     }
-    if vt.textLists != nil {
-        textLists :: proc "c" (self: ^ParagraphStyle, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ParagraphStyle_VTable)vt_ctx.super_vt).textLists(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textLists"), auto_cast textLists, "@@:") do panic("Failed to register objC method.")
-    }
     if vt.headerLevel != nil {
         headerLevel :: proc "c" (self: ^ParagraphStyle, _: SEL) -> NS.Integer {
 
@@ -568,16 +579,6 @@ ParagraphStyle_odin_extend :: proc(cls: Class, vt: ^ParagraphStyle_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("headerLevel"), auto_cast headerLevel, "l@:") do panic("Failed to register objC method.")
-    }
-    if vt.lineBreakStrategy != nil {
-        lineBreakStrategy :: proc "c" (self: ^ParagraphStyle, _: SEL) -> LineBreakStrategy {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ParagraphStyle_VTable)vt_ctx.super_vt).lineBreakStrategy(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakStrategy"), auto_cast lineBreakStrategy, "L@:") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {

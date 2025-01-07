@@ -7,8 +7,6 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -307,6 +305,7 @@ foreign lib {
     @(link_name="NSInflectionAgreementConceptAttributeName") InflectionAgreementConceptAttributeName: ^String
     @(link_name="NSInflectionReferentConceptAttributeName") InflectionReferentConceptAttributeName: ^String
     @(link_name="NSInflectionAlternativeAttributeName") InflectionAlternativeAttributeName: ^String
+    @(link_name="NSLocalizedNumberFormatAttributeName") LocalizedNumberFormatAttributeName: ^String
     @(link_name="NSPresentationIntentAttributeName") PresentationIntentAttributeName: ^String
     @(link_name="NSCurrentLocaleDidChangeNotification") CurrentLocaleDidChangeNotification: ^String
     @(link_name="NSLocaleIdentifier") LocaleIdentifier: ^String
@@ -1576,6 +1575,9 @@ LinguisticTagScheme :: distinct ^String
 /// NSLinguisticTag
 LinguisticTag :: distinct ^String
 
+/// NSUndoManagerUserInfoKey
+UndoManagerUserInfoKey :: distinct ^String
+
 /// SSLContextRef
 SSLContextRef :: distinct ^SSLContext
 
@@ -1724,6 +1726,7 @@ CalendarUnit :: enum cffi.ulong {
     WeekOfYear = 8192,
     YearForWeekOfYear = 16384,
     Nanosecond = 32768,
+    DayOfYear = 65536,
     Calendar = 1048576,
     TimeZone = 2097152,
     EraCalendarUnit = 2,
@@ -2468,6 +2471,7 @@ SecAccessControlCreateFlag :: enum cffi.ulong {
     kSecAccessControlTouchIDCurrentSet = 3,
     kSecAccessControlDevicePasscode = 4,
     kSecAccessControlWatch = 5,
+    kSecAccessControlCompanion = 5,
     kSecAccessControlOr = 14,
     kSecAccessControlAnd = 15,
     kSecAccessControlPrivateKeyUsage = 30,
@@ -3050,84 +3054,97 @@ _NSZone :: struct {}
 
 /// NSFastEnumerationState
 FastEnumerationState :: struct #align (8) {
-    state : cffi.ulong,
-    itemsPtr : ^id,
-    mutationsPtr : ^cffi.ulong,
-    extra : [5]cffi.ulong,
+    state: cffi.ulong,
+    itemsPtr: ^id,
+    mutationsPtr: ^cffi.ulong,
+    extra: [5]cffi.ulong,
 }
+#assert(size_of(FastEnumerationState) == 64)
 
 /// _NSRange
 _NSRange :: struct #align (8) {
-    location : UInteger,
-    length : UInteger,
+    location: UInteger,
+    length: UInteger,
 }
+#assert(size_of(_NSRange) == 16)
 
 /// NSSwappedFloat
 SwappedFloat :: struct #align (4) {
-    v : cffi.uint,
+    v: cffi.uint,
 }
+#assert(size_of(SwappedFloat) == 4)
 
 /// NSSwappedDouble
 SwappedDouble :: struct #align (8) {
-    v : cffi.ulonglong,
+    v: cffi.ulonglong,
 }
+#assert(size_of(SwappedDouble) == 8)
 
 /// NSDecimal
-Decimal :: struct #align (4) {
-    _exponent : cffi.int,
-    _length : cffi.uint,
-    _isNegative : cffi.uint,
-    _isCompact : cffi.uint,
-    _reserved : cffi.uint,
-    _mantissa : [8]cffi.ushort,
+Decimal :: struct #align (4) #max_field_align(4) {
+    using _: bit_field cffi.int {
+        _exponent: cffi.int | 8,
+        _length: cffi.uint | 4,
+        _isNegative: cffi.uint | 1,
+        _isCompact: cffi.uint | 1,
+        _reserved: cffi.uint | 18,
+    },
+    _mantissa: [8]cffi.ushort,
 }
+#assert(size_of(Decimal) == 20)
 
 /// NSHashEnumerator
 HashEnumerator :: struct #align (8) {
-    _pi : UInteger,
-    _si : UInteger,
-    _bs : rawptr,
+    _pi: UInteger,
+    _si: UInteger,
+    _bs: rawptr,
 }
+#assert(size_of(HashEnumerator) == 24)
 
 /// NSHashTableCallBacks
 HashTableCallBacks :: struct #align (8) {
-    hash : proc "c" (table: ^HashTable, _arg_0: rawptr) -> UInteger,
-    isEqual : proc "c" (table: ^HashTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
-    retain : proc "c" (table: ^HashTable, _arg_0: rawptr),
-    release : proc "c" (table: ^HashTable, _arg_0: rawptr),
-    describe : proc "c" (table: ^HashTable, _arg_0: rawptr) -> ^String,
+    hash: proc "c" (table: ^HashTable, _arg_0: rawptr) -> UInteger,
+    isEqual: proc "c" (table: ^HashTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
+    retain: proc "c" (table: ^HashTable, _arg_0: rawptr),
+    release: proc "c" (table: ^HashTable, _arg_0: rawptr),
+    describe: proc "c" (table: ^HashTable, _arg_0: rawptr) -> ^String,
 }
+#assert(size_of(HashTableCallBacks) == 40)
 
 /// NSMapEnumerator
 MapEnumerator :: struct #align (8) {
-    _pi : UInteger,
-    _si : UInteger,
-    _bs : rawptr,
+    _pi: UInteger,
+    _si: UInteger,
+    _bs: rawptr,
 }
+#assert(size_of(MapEnumerator) == 24)
 
 /// NSMapTableKeyCallBacks
 MapTableKeyCallBacks :: struct #align (8) {
-    hash : proc "c" (table: ^MapTable, _arg_0: rawptr) -> UInteger,
-    isEqual : proc "c" (table: ^MapTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
-    retain : proc "c" (table: ^MapTable, _arg_0: rawptr),
-    release : proc "c" (table: ^MapTable, _arg_0: rawptr),
-    describe : proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
-    notAKeyMarker : rawptr,
+    hash: proc "c" (table: ^MapTable, _arg_0: rawptr) -> UInteger,
+    isEqual: proc "c" (table: ^MapTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
+    retain: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    release: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    describe: proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
+    notAKeyMarker: rawptr,
 }
+#assert(size_of(MapTableKeyCallBacks) == 48)
 
 /// NSMapTableValueCallBacks
 MapTableValueCallBacks :: struct #align (8) {
-    retain : proc "c" (table: ^MapTable, _arg_0: rawptr),
-    release : proc "c" (table: ^MapTable, _arg_0: rawptr),
-    describe : proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
+    retain: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    release: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    describe: proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
 }
+#assert(size_of(MapTableValueCallBacks) == 24)
 
 /// NSOperatingSystemVersion
 OperatingSystemVersion :: struct #align (8) {
-    majorVersion : Integer,
-    minorVersion : Integer,
-    patchVersion : Integer,
+    majorVersion: Integer,
+    minorVersion: Integer,
+    patchVersion: Integer,
 }
+#assert(size_of(OperatingSystemVersion) == 24)
 
 /// __SecCertificate
 __SecCertificate :: struct {}
@@ -3155,16 +3172,18 @@ __SecKeychainSearch :: struct {}
 
 /// SecKeychainAttribute
 SecKeychainAttribute :: struct #align (8) {
-    tag : SecKeychainAttrType,
-    length : CF.UInt32,
-    data : rawptr,
+    tag: SecKeychainAttrType,
+    length: CF.UInt32,
+    data: rawptr,
 }
+#assert(size_of(SecKeychainAttribute) == 16)
 
 /// SecKeychainAttributeList
 SecKeychainAttributeList :: struct #align (8) {
-    count : CF.UInt32,
-    attr : ^SecKeychainAttribute,
+    count: CF.UInt32,
+    attr: ^SecKeychainAttribute,
 }
+#assert(size_of(SecKeychainAttributeList) == 16)
 
 /// __SecTrustedApplication
 __SecTrustedApplication :: struct {}
@@ -3180,10 +3199,11 @@ __SecPassword :: struct {}
 
 /// SecKeychainAttributeInfo
 SecKeychainAttributeInfo :: struct #align (8) {
-    count : CF.UInt32,
-    tag : ^CF.UInt32,
-    format : ^CF.UInt32,
+    count: CF.UInt32,
+    tag: ^CF.UInt32,
+    format: ^CF.UInt32,
 }
+#assert(size_of(SecKeychainAttributeInfo) == 24)
 
 /// __SecRandom
 __SecRandom :: struct {}

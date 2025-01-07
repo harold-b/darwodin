@@ -8,8 +8,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -59,6 +57,9 @@ foreign lib {
     @(link_name="kCAFillModeBackwards") FillModeBackwards: ^NS.String
     @(link_name="kCAFillModeBoth") FillModeBoth: ^NS.String
     @(link_name="kCAFillModeRemoved") FillModeRemoved: ^NS.String
+    @(link_name="CAToneMapModeAutomatic") ToneMapModeAutomatic: ^NS.String
+    @(link_name="CAToneMapModeNever") ToneMapModeNever: ^NS.String
+    @(link_name="CAToneMapModeIfSupported") ToneMapModeIfSupported: ^NS.String
     @(link_name="kCAGravityCenter") GravityCenter: ^NS.String
     @(link_name="kCAGravityTop") GravityTop: ^NS.String
     @(link_name="kCAGravityBottom") GravityBottom: ^NS.String
@@ -162,24 +163,6 @@ foreign lib {
 }
 @(default_calling_convention="c")
 foreign lib {
-    @(link_name="CGLayerCreateWithContext")
-    CGLayerCreateWithContext :: proc(_context: CG.ContextRef, size: CG.Size, auxiliaryInfo: CF.DictionaryRef) -> CG.LayerRef ---
-
-    @(link_name="CGLayerRetain")
-    CGLayerRetain :: proc(layer: CG.LayerRef) -> CG.LayerRef ---
-
-    @(link_name="CGLayerRelease")
-    CGLayerRelease :: proc(layer: CG.LayerRef) ---
-
-    @(link_name="CGLayerGetSize")
-    CGLayerGetSize :: proc(layer: CG.LayerRef) -> CG.Size ---
-
-    @(link_name="CGLayerGetContext")
-    CGLayerGetContext :: proc(layer: CG.LayerRef) -> CG.ContextRef ---
-
-    @(link_name="CGLayerGetTypeID")
-    CGLayerGetTypeID :: proc() -> CF.TypeID ---
-
     @(link_name="CGLSetCurrentContext")
     CGLSetCurrentContext :: proc(ctx: CGLContextObj) -> CGLError ---
 
@@ -506,6 +489,9 @@ LayerContentsFilter :: distinct ^NS.String
 /// CALayerCornerCurve
 LayerCornerCurve :: distinct ^NS.String
 
+/// CAToneMapMode
+ToneMapMode :: distinct ^NS.String
+
 /// CAAnimationCalculationMode
 AnimationCalculationMode :: distinct ^NS.String
 
@@ -794,28 +780,30 @@ _cl_device_id :: struct {}
 
 /// CATransform3D
 Transform3D :: struct #align (8) {
-    m11 : CG.Float,
-    m12 : CG.Float,
-    m13 : CG.Float,
-    m14 : CG.Float,
-    m21 : CG.Float,
-    m22 : CG.Float,
-    m23 : CG.Float,
-    m24 : CG.Float,
-    m31 : CG.Float,
-    m32 : CG.Float,
-    m33 : CG.Float,
-    m34 : CG.Float,
-    m41 : CG.Float,
-    m42 : CG.Float,
-    m43 : CG.Float,
-    m44 : CG.Float,
+    m11: CG.Float,
+    m12: CG.Float,
+    m13: CG.Float,
+    m14: CG.Float,
+    m21: CG.Float,
+    m22: CG.Float,
+    m23: CG.Float,
+    m24: CG.Float,
+    m31: CG.Float,
+    m32: CG.Float,
+    m33: CG.Float,
+    m34: CG.Float,
+    m41: CG.Float,
+    m42: CG.Float,
+    m43: CG.Float,
+    m44: CG.Float,
 }
+#assert(size_of(Transform3D) == 128)
 
 /// CAFrameRateRange
 FrameRateRange :: struct #align (4) {
-    minimum : cffi.float,
-    maximum : cffi.float,
-    preferred : cffi.float,
+    minimum: cffi.float,
+    maximum: cffi.float,
+    preferred: cffi.float,
 }
+#assert(size_of(FrameRateRange) == 12)
 

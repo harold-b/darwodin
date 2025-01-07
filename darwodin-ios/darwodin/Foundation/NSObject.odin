@@ -365,6 +365,10 @@ Object_observationInfo :: #force_inline proc "c" (self: ^Object) -> rawptr {
 Object_setObservationInfo :: #force_inline proc "c" (self: ^Object, observationInfo: rawptr) {
     msgSend(nil, self, "setObservationInfo:", observationInfo)
 }
+@(objc_type=Object, objc_name="setSharedObservers")
+Object_setSharedObservers :: #force_inline proc "c" (self: ^Object, sharedObservers: ^KeyValueSharedObserversSnapshot) {
+    msgSend(nil, self, "setSharedObservers:", sharedObservers)
+}
 @(objc_type=Object, objc_name="replacementObjectForKeyedArchiver")
 Object_replacementObjectForKeyedArchiver :: #force_inline proc "c" (self: ^Object, archiver: ^KeyedArchiver) -> id {
     return msgSend(id, self, "replacementObjectForKeyedArchiver:", archiver)
@@ -539,6 +543,7 @@ Object_VTable :: struct {
     automaticallyNotifiesObserversForKey: proc(key: ^String) -> bool,
     observationInfo: proc(self: ^Object) -> rawptr,
     setObservationInfo: proc(self: ^Object, observationInfo: rawptr),
+    setSharedObservers: proc(self: ^Object, sharedObservers: ^KeyValueSharedObserversSnapshot),
     replacementObjectForKeyedArchiver: proc(self: ^Object, archiver: ^KeyedArchiver) -> id,
     classFallbacksForKeyedArchiver: proc() -> ^Array,
     classForKeyedArchiver: proc(self: ^Object) -> Class,
@@ -1423,6 +1428,16 @@ Object_odin_extend :: proc(cls: Class, vt: ^Object_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setObservationInfo:"), auto_cast setObservationInfo, "v@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.setSharedObservers != nil {
+        setSharedObservers :: proc "c" (self: ^Object, _: SEL, sharedObservers: ^KeyValueSharedObserversSnapshot) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Object_VTable)vt_ctx.super_vt).setSharedObservers(self, sharedObservers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSharedObservers:"), auto_cast setSharedObservers, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.replacementObjectForKeyedArchiver != nil {
         replacementObjectForKeyedArchiver :: proc "c" (self: ^Object, _: SEL, archiver: ^KeyedArchiver) -> id {

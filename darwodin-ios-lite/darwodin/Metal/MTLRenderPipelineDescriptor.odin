@@ -282,6 +282,14 @@ RenderPipelineDescriptor_maxFragmentCallStackDepth :: #force_inline proc "c" (se
 RenderPipelineDescriptor_setMaxFragmentCallStackDepth :: #force_inline proc "c" (self: ^RenderPipelineDescriptor, maxFragmentCallStackDepth: NS.UInteger) {
     msgSend(nil, self, "setMaxFragmentCallStackDepth:", maxFragmentCallStackDepth)
 }
+@(objc_type=RenderPipelineDescriptor, objc_name="shaderValidation")
+RenderPipelineDescriptor_shaderValidation :: #force_inline proc "c" (self: ^RenderPipelineDescriptor) -> ShaderValidation {
+    return msgSend(ShaderValidation, self, "shaderValidation")
+}
+@(objc_type=RenderPipelineDescriptor, objc_name="setShaderValidation")
+RenderPipelineDescriptor_setShaderValidation :: #force_inline proc "c" (self: ^RenderPipelineDescriptor, shaderValidation: ShaderValidation) {
+    msgSend(nil, self, "setShaderValidation:", shaderValidation)
+}
 @(objc_type=RenderPipelineDescriptor, objc_name="load", objc_is_class_method=true)
 RenderPipelineDescriptor_load :: #force_inline proc "c" () {
     msgSend(nil, RenderPipelineDescriptor, "load")

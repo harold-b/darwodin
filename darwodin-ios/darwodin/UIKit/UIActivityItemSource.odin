@@ -43,6 +43,10 @@ ActivityItemSource_activityViewController_thumbnailImageForActivityType_suggeste
 ActivityItemSource_activityViewControllerLinkMetadata :: #force_inline proc "c" (self: ^ActivityItemSource, activityViewController: ^ActivityViewController) -> ^LPLinkMetadata {
     return msgSend(^LPLinkMetadata, self, "activityViewControllerLinkMetadata:", activityViewController)
 }
+@(objc_type=ActivityItemSource, objc_name="activityViewControllerShareRecipients")
+ActivityItemSource_activityViewControllerShareRecipients :: #force_inline proc "c" (self: ^ActivityItemSource, activityViewController: ^ActivityViewController) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "activityViewControllerShareRecipients:", activityViewController)
+}
 ActivityItemSource_VTable :: struct {
     activityViewControllerPlaceholderItem: proc(self: ^ActivityItemSource, activityViewController: ^ActivityViewController) -> id,
     activityViewController_itemForActivityType: proc(self: ^ActivityItemSource, activityViewController: ^ActivityViewController, activityType: ^NS.String) -> id,
@@ -50,6 +54,7 @@ ActivityItemSource_VTable :: struct {
     activityViewController_dataTypeIdentifierForActivityType: proc(self: ^ActivityItemSource, activityViewController: ^ActivityViewController, activityType: ^NS.String) -> ^NS.String,
     activityViewController_thumbnailImageForActivityType_suggestedSize: proc(self: ^ActivityItemSource, activityViewController: ^ActivityViewController, activityType: ^NS.String, size: CG.Size) -> ^Image,
     activityViewControllerLinkMetadata: proc(self: ^ActivityItemSource, activityViewController: ^ActivityViewController) -> ^LPLinkMetadata,
+    activityViewControllerShareRecipients: proc(self: ^ActivityItemSource, activityViewController: ^ActivityViewController) -> ^NS.Array,
 }
 
 ActivityItemSource_odin_extend :: proc(cls: Class, vt: ^ActivityItemSource_VTable) {
@@ -115,6 +120,16 @@ ActivityItemSource_odin_extend :: proc(cls: Class, vt: ^ActivityItemSource_VTabl
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("activityViewControllerLinkMetadata:"), auto_cast activityViewControllerLinkMetadata, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.activityViewControllerShareRecipients != nil {
+        activityViewControllerShareRecipients :: proc "c" (self: ^ActivityItemSource, _: SEL, activityViewController: ^ActivityViewController) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ActivityItemSource_VTable)vt_ctx.protocol_vt).activityViewControllerShareRecipients(self, activityViewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("activityViewControllerShareRecipients:"), auto_cast activityViewControllerShareRecipients, "@@:@") do panic("Failed to register objC method.")
     }
 }
 

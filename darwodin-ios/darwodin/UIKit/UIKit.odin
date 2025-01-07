@@ -9,8 +9,6 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -195,7 +193,17 @@ foreign lib {
     @(link_name="NSUnderlineColorAttributeName") NSUnderlineColorAttributeName: ^NS.String
     @(link_name="NSStrikethroughColorAttributeName") NSStrikethroughColorAttributeName: ^NS.String
     @(link_name="NSWritingDirectionAttributeName") NSWritingDirectionAttributeName: ^NS.String
+    @(link_name="NSTextHighlightStyleAttributeName") NSTextHighlightStyleAttributeName: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeAttributeName") NSTextHighlightColorSchemeAttributeName: ^NS.String
+    @(link_name="NSAdaptiveImageGlyphAttributeName") NSAdaptiveImageGlyphAttributeName: ^NS.String
     @(link_name="NSTextEffectLetterpressStyle") NSTextEffectLetterpressStyle: ^NS.String
+    @(link_name="NSTextHighlightStyleDefault") NSTextHighlightStyleDefault: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeDefault") NSTextHighlightColorSchemeDefault: ^NS.String
+    @(link_name="NSTextHighlightColorSchemePurple") NSTextHighlightColorSchemePurple: ^NS.String
+    @(link_name="NSTextHighlightColorSchemePink") NSTextHighlightColorSchemePink: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeOrange") NSTextHighlightColorSchemeOrange: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeMint") NSTextHighlightColorSchemeMint: ^NS.String
+    @(link_name="NSTextHighlightColorSchemeBlue") NSTextHighlightColorSchemeBlue: ^NS.String
     @(link_name="NSPlainTextDocumentType") NSPlainTextDocumentType: ^NS.String
     @(link_name="NSRTFTextDocumentType") NSRTFTextDocumentType: ^NS.String
     @(link_name="NSRTFDTextDocumentType") NSRTFDTextDocumentType: ^NS.String
@@ -206,7 +214,6 @@ foreign lib {
     @(link_name="NSCharacterEncodingDocumentAttribute") NSCharacterEncodingDocumentAttribute: ^NS.String
     @(link_name="NSDefaultAttributesDocumentAttribute") NSDefaultAttributesDocumentAttribute: ^NS.String
     @(link_name="NSPaperSizeDocumentAttribute") NSPaperSizeDocumentAttribute: ^NS.String
-    @(link_name="NSPaperMarginDocumentAttribute") NSPaperMarginDocumentAttribute: ^NS.String
     @(link_name="NSViewSizeDocumentAttribute") NSViewSizeDocumentAttribute: ^NS.String
     @(link_name="NSViewZoomDocumentAttribute") NSViewZoomDocumentAttribute: ^NS.String
     @(link_name="NSViewModeDocumentAttribute") NSViewModeDocumentAttribute: ^NS.String
@@ -224,6 +231,8 @@ foreign lib {
     @(link_name="NSCharacterEncodingDocumentOption") NSCharacterEncodingDocumentOption: ^NS.String
     @(link_name="NSTargetTextScalingDocumentOption") NSTargetTextScalingDocumentOption: ^NS.String
     @(link_name="NSSourceTextScalingDocumentOption") NSSourceTextScalingDocumentOption: ^NS.String
+    @(link_name="NSTextKit1ListMarkerFormatDocumentOption") NSTextKit1ListMarkerFormatDocumentOption: ^NS.String
+    @(link_name="NSPaperMarginDocumentAttribute") NSPaperMarginDocumentAttribute: ^NS.String
     @(link_name="NSObliquenessAttributeName") NSObliquenessAttributeName: ^NS.String
     @(link_name="NSExpansionAttributeName") NSExpansionAttributeName: ^NS.String
     @(link_name="NSVerticalGlyphFormAttributeName") NSVerticalGlyphFormAttributeName: ^NS.String
@@ -333,6 +342,7 @@ foreign lib {
     @(link_name="UIActionPasteAndSearch") ActionPasteAndSearch: ^NS.String
     @(link_name="UIScrollViewDecelerationRateNormal") ScrollViewDecelerationRateNormal: ScrollViewDecelerationRate
     @(link_name="UIScrollViewDecelerationRateFast") ScrollViewDecelerationRateFast: ScrollViewDecelerationRate
+    @(link_name="UIAccessibilityCustomActionCategoryEdit") AccessibilityCustomActionCategoryEdit: ^NS.String
     @(link_name="UITextContentTypeName") TextContentTypeName: ^NS.String
     @(link_name="UITextContentTypeNamePrefix") TextContentTypeNamePrefix: ^NS.String
     @(link_name="UITextContentTypeGivenName") TextContentTypeGivenName: ^NS.String
@@ -492,6 +502,7 @@ foreign lib {
     @(link_name="UITableViewSelectionDidChangeNotification") TableViewSelectionDidChangeNotification: ^NS.String
     @(link_name="UIListSeparatorAutomaticInsets") ListSeparatorAutomaticInsets: NSDirectionalEdgeInsets
     @(link_name="UIListContentImageStandardDimension") ListContentImageStandardDimension: CG.Float
+    @(link_name="UIDocumentCreationIntentDefault") DocumentCreationIntentDefault: ^NS.String
     @(link_name="UIDocumentStateChangedNotification") DocumentStateChangedNotification: ^NS.String
     @(link_name="NSUserActivityDocumentURLKey") NSUserActivityDocumentURLKey: ^NS.String
     @(link_name="NSFileProviderRootContainerItemIdentifier") NSFileProviderRootContainerItemIdentifier: ^NS.String
@@ -600,6 +611,7 @@ foreign lib {
     @(link_name="UIFloatRangeZero") FloatRangeZero: FloatRange
     @(link_name="UIFloatRangeInfinite") FloatRangeInfinite: FloatRange
     @(link_name="UITextItemTagAttributeName") TextItemTagAttributeName: ^NS.String
+    @(link_name="UISceneSystemProtectionDidChangeNotification") SceneSystemProtectionDidChangeNotification: ^NS.String
     @(link_name="UIProposedSceneSizeNoPreference") ProposedSceneSizeNoPreference: CG.Float
     @(link_name="UIPointerAccessoryPositionTop") PointerAccessoryPositionTop: PointerAccessoryPosition
     @(link_name="UIPointerAccessoryPositionTopRight") PointerAccessoryPositionTopRight: PointerAccessoryPosition
@@ -609,7 +621,55 @@ foreign lib {
     @(link_name="UIPointerAccessoryPositionBottomLeft") PointerAccessoryPositionBottomLeft: PointerAccessoryPosition
     @(link_name="UIPointerAccessoryPositionLeft") PointerAccessoryPositionLeft: PointerAccessoryPosition
     @(link_name="UIPointerAccessoryPositionTopLeft") PointerAccessoryPositionTopLeft: PointerAccessoryPosition
-    @(link_name="NSTextContentStorageUnsupportedAttributeAddedNotification") NSTextContentStorageUnsupportedAttributeAddedNotification: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextAlignmentLeft") TextFormattingViewControllerTextAlignmentLeft: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextAlignmentCenter") TextFormattingViewControllerTextAlignmentCenter: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextAlignmentRight") TextFormattingViewControllerTextAlignmentRight: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextAlignmentJustified") TextFormattingViewControllerTextAlignmentJustified: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextAlignmentNatural") TextFormattingViewControllerTextAlignmentNatural: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextListDisc") TextFormattingViewControllerTextListDisc: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextListHyphen") TextFormattingViewControllerTextListHyphen: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextListDecimal") TextFormattingViewControllerTextListDecimal: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextListOther") TextFormattingViewControllerTextListOther: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightDefault") TextFormattingViewControllerHighlightDefault: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightPurple") TextFormattingViewControllerHighlightPurple: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightPink") TextFormattingViewControllerHighlightPink: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightOrange") TextFormattingViewControllerHighlightOrange: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightMint") TextFormattingViewControllerHighlightMint: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightBlue") TextFormattingViewControllerHighlightBlue: ^NS.String
+    @(link_name="UITextFormattingViewControllerUndefinedChangeType") TextFormattingViewControllerUndefinedChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerSetBoldChangeType") TextFormattingViewControllerSetBoldChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerRemoveBoldChangeType") TextFormattingViewControllerRemoveBoldChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerSetItalicChangeType") TextFormattingViewControllerSetItalicChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerRemoveItalicChangeType") TextFormattingViewControllerRemoveItalicChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerSetUnderlineChangeType") TextFormattingViewControllerSetUnderlineChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerRemoveUnderlineChangeType") TextFormattingViewControllerRemoveUnderlineChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerSetStrikethroughChangeType") TextFormattingViewControllerSetStrikethroughChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerRemoveStrikethroughChangeType") TextFormattingViewControllerRemoveStrikethroughChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerFontChangeType") TextFormattingViewControllerFontChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerFontSizeChangeType") TextFormattingViewControllerFontSizeChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerIncreaseFontSizeChangeType") TextFormattingViewControllerIncreaseFontSizeChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerDecreaseFontSizeChangeType") TextFormattingViewControllerDecreaseFontSizeChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextColorChangeType") TextFormattingViewControllerTextColorChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerLineHeightPointSizeChangeType") TextFormattingViewControllerLineHeightPointSizeChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerIncreaseIndentationChangeType") TextFormattingViewControllerIncreaseIndentationChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerDecreaseIndentationChangeType") TextFormattingViewControllerDecreaseIndentationChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerFormattingStyleChangeType") TextFormattingViewControllerFormattingStyleChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextListChangeType") TextFormattingViewControllerTextListChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextAlignmentChangeType") TextFormattingViewControllerTextAlignmentChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightChangeType") TextFormattingViewControllerHighlightChangeType: ^NS.String
+    @(link_name="UITextFormattingViewControllerFormattingStylesComponentKey") TextFormattingViewControllerFormattingStylesComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerFontAttributesComponentKey") TextFormattingViewControllerFontAttributesComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerFontPickerComponentKey") TextFormattingViewControllerFontPickerComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerFontSizeComponentKey") TextFormattingViewControllerFontSizeComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerFontPointSizeComponentKey") TextFormattingViewControllerFontPointSizeComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextAlignmentComponentKey") TextFormattingViewControllerTextAlignmentComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextAlignmentAndJustificationComponentKey") TextFormattingViewControllerTextAlignmentAndJustificationComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextIndentationComponentKey") TextFormattingViewControllerTextIndentationComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerLineHeightComponentKey") TextFormattingViewControllerLineHeightComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerListStylesComponentKey") TextFormattingViewControllerListStylesComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerTextColorComponentKey") TextFormattingViewControllerTextColorComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightComponentKey") TextFormattingViewControllerHighlightComponentKey: ^NS.String
+    @(link_name="UITextFormattingViewControllerHighlightPickerComponentKey") TextFormattingViewControllerHighlightPickerComponentKey: ^NS.String
     @(link_name="NSTextListMarkerBox") NSTextListMarkerBox: ^NS.String
     @(link_name="NSTextListMarkerCheck") NSTextListMarkerCheck: ^NS.String
     @(link_name="NSTextListMarkerCircle") NSTextListMarkerCircle: ^NS.String
@@ -627,6 +687,7 @@ foreign lib {
     @(link_name="NSTextListMarkerLowercaseRoman") NSTextListMarkerLowercaseRoman: ^NS.String
     @(link_name="NSTextListMarkerUppercaseRoman") NSTextListMarkerUppercaseRoman: ^NS.String
     @(link_name="NSTextListMarkerDecimal") NSTextListMarkerDecimal: ^NS.String
+    @(link_name="NSTextContentStorageUnsupportedAttributeAddedNotification") NSTextContentStorageUnsupportedAttributeAddedNotification: ^NS.String
     @(link_name="UIDocumentBrowserErrorDomain") DocumentBrowserErrorDomain: ^NS.String
     @(link_name="UIActivityTypePostToFacebook") ActivityTypePostToFacebook: ^NS.String
     @(link_name="UIActivityTypePostToTwitter") ActivityTypePostToTwitter: ^NS.String
@@ -648,6 +709,8 @@ foreign lib {
     @(link_name="UIActivityTypeCollaborationInviteWithLink") ActivityTypeCollaborationInviteWithLink: ^NS.String
     @(link_name="UIActivityTypeCollaborationCopyLink") ActivityTypeCollaborationCopyLink: ^NS.String
     @(link_name="UIActivityTypeAddToHomeScreen") ActivityTypeAddToHomeScreen: ^NS.String
+    @(link_name="UIActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions") ActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions: ^NS.String
+    @(link_name="UIActivityItemsConfigurationMetadataKeyShareRecipients") ActivityItemsConfigurationMetadataKeyShareRecipients: ^NS.String
     @(link_name="UIPrintErrorDomain") PrintErrorDomain: ^NS.String
 }
 @(default_calling_convention="c")
@@ -938,6 +1001,12 @@ NSDataAssetName :: distinct ^NS.String
 /// NSTextEffectStyle
 NSTextEffectStyle :: distinct ^NS.String
 
+/// NSTextHighlightStyle
+NSTextHighlightStyle :: distinct ^NS.String
+
+/// NSTextHighlightColorScheme
+NSTextHighlightColorScheme :: distinct ^NS.String
+
 /// NSAttributedStringDocumentType
 NSAttributedStringDocumentType :: distinct ^NS.String
 
@@ -1104,6 +1173,9 @@ CollectionLayoutListItemSeparatorHandler :: distinct proc "c" (indexPath: ^NS.In
 /// UIConfigurationStateCustomKey
 ConfigurationStateCustomKey :: distinct ^NS.String
 
+/// UIDocumentCreationIntent
+DocumentCreationIntent :: distinct ^NS.String
+
 /// NSFileProviderItemIdentifier
 NSFileProviderItemIdentifier :: distinct ^NS.String
 
@@ -1175,6 +1247,21 @@ WindowSceneActivationActionConfigurationProvider :: distinct proc "c" (action: ^
 /// UIWindowSceneActivationInteractionConfigurationProvider
 WindowSceneActivationInteractionConfigurationProvider :: distinct proc "c" (interaction: ^WindowSceneActivationInteraction, location: CG.Point) -> ^WindowSceneActivationConfiguration
 
+/// UITextFormattingViewControllerTextAlignment
+TextFormattingViewControllerTextAlignment :: distinct ^NS.String
+
+/// UITextFormattingViewControllerTextList
+TextFormattingViewControllerTextList :: distinct ^NS.String
+
+/// UITextFormattingViewControllerHighlight
+TextFormattingViewControllerHighlight :: distinct ^NS.String
+
+/// UITextFormattingViewControllerChangeType
+TextFormattingViewControllerChangeType :: distinct ^NS.String
+
+/// UITextFormattingViewControllerComponentKey
+TextFormattingViewControllerComponentKey :: distinct ^NS.String
+
 /// NSTextListMarkerFormat
 NSTextListMarkerFormat :: distinct ^NS.String
 
@@ -1212,6 +1299,13 @@ AccessibilityDirectTouchOptions :: enum cffi.ulong {
     OptionNone = 0,
     ilentOnTouch = 1,
     OptionRequiresActivation = 2,
+}
+
+/// UIAccessibilityExpandedStatus
+AccessibilityExpandedStatus :: enum cffi.long {
+    Unsupported = 0,
+    Expanded = 1,
+    Collapsed = 2,
 }
 
 /// UIRectEdge
@@ -1272,6 +1366,14 @@ NSRectAlignment :: enum cffi.long {
     BottomTrailing = 6,
     Trailing = 7,
     TopTrailing = 8,
+}
+
+/// UIColorProminence
+ColorProminence :: enum cffi.long {
+    Primary = 0,
+    Secondary = 1,
+    Tertiary = 2,
+    Quaternary = 3,
 }
 
 /// UIFontDescriptorSymbolicTraits
@@ -1386,6 +1488,13 @@ NSTextWritingDirection :: enum cffi.long {
     Override = 2,
 }
 
+/// NSWritingDirection
+NSWritingDirection :: enum cffi.long {
+    Natural = -1,
+    LeftToRight = 0,
+    RightToLeft = 1,
+}
+
 /// NSTextAlignment
 NSTextAlignment :: enum cffi.long {
     Left = 0,
@@ -1393,13 +1502,6 @@ NSTextAlignment :: enum cffi.long {
     Right = 2,
     Justified = 3,
     Natural = 4,
-}
-
-/// NSWritingDirection
-NSWritingDirection :: enum cffi.long {
-    Natural = -1,
-    LeftToRight = 0,
-    RightToLeft = 1,
 }
 
 /// NSLineBreakMode
@@ -1688,9 +1790,9 @@ InterfaceOrientationMaskFlag :: enum cffi.ulong {
 }
 InterfaceOrientationMask :: bit_set[InterfaceOrientationMaskFlag; cffi.ulong]
 
-InterfaceOrientationMaskFlag_Landscape :: InterfaceOrientationMask{ .Landscape, .All,  }
-InterfaceOrientationMaskFlag_All :: InterfaceOrientationMask{ .LandscapeRight, .PortraitUpsideDown, .Landscape, .All,  }
-InterfaceOrientationMaskFlag_AllButUpsideDown :: InterfaceOrientationMask{ .LandscapeRight, .Landscape, .All,  }
+InterfaceOrientationMaskFlag_Landscape :: InterfaceOrientationMask{ .LandscapeRight, .LandscapeLeft,  }
+InterfaceOrientationMaskFlag_All :: InterfaceOrientationMask{ .Portrait, .PortraitUpsideDown, .LandscapeRight, .LandscapeLeft,  }
+InterfaceOrientationMaskFlag_AllButUpsideDown :: InterfaceOrientationMask{ .Portrait, .LandscapeRight, .LandscapeLeft,  }
 
 /// UIDeviceBatteryState
 DeviceBatteryState :: enum cffi.long {
@@ -1771,6 +1873,17 @@ SceneErrorCode :: enum cffi.long {
     GeometryRequestDenied = 101,
 }
 
+/// UIListEnvironment
+ListEnvironment :: enum cffi.long {
+    Unspecified = 0,
+    None = 1,
+    Plain = 2,
+    Grouped = 3,
+    InsetGrouped = 4,
+    Sidebar = 5,
+    SidebarPlain = 6,
+}
+
 /// UIFocusHeading
 FocusHeading :: enum cffi.ulong {
     None = 0,
@@ -1782,6 +1895,13 @@ FocusHeading :: enum cffi.ulong {
     Previous = 32,
     First = 256,
     Last = 512,
+}
+
+/// UIFocusItemDeferralMode
+FocusItemDeferralMode :: enum cffi.long {
+    Automatic = 0,
+    Always = 1,
+    Never = 2,
 }
 
 /// UIViewAnimationCurve
@@ -2055,6 +2175,13 @@ TextInlinePredictionType :: enum cffi.long {
     Yes = 2,
 }
 
+/// UITextMathExpressionCompletionType
+TextMathExpressionCompletionType :: enum cffi.long {
+    Default = 0,
+    No = 1,
+    Yes = 2,
+}
+
 /// UIKeyboardType
 KeyboardType :: enum cffi.long {
     Default = 0,
@@ -2094,6 +2221,23 @@ ReturnKeyType :: enum cffi.long {
     Done = 9,
     EmergencyCall = 10,
     Continue = 11,
+}
+
+/// UIWritingToolsBehavior
+WritingToolsBehavior :: enum cffi.long {
+    None = -1,
+    Default = 0,
+    Complete = 1,
+    Limited = 2,
+}
+
+/// UIWritingToolsResultOptions
+WritingToolsResultOptions :: enum cffi.ulong {
+    Default = 0,
+    PlainText = 1,
+    RichText = 2,
+    List = 4,
+    Table = 8,
 }
 
 /// UITextStorageDirection
@@ -2773,6 +2917,12 @@ TableViewRowAnimation :: enum cffi.long {
     Automatic = 100,
 }
 
+/// UITableViewContentHuggingElements
+TableViewContentHuggingElements :: enum cffi.long {
+    None = 0,
+    SectionHeaders = 1,
+}
+
 /// UITableViewRowActionStyle
 TableViewRowActionStyle :: enum cffi.long {
     Default = 0,
@@ -2821,6 +2971,12 @@ CollectionLayoutListHeaderMode :: enum cffi.long {
 CollectionLayoutListFooterMode :: enum cffi.long {
     None = 0,
     Supplementary = 1,
+}
+
+/// UICollectionLayoutListContentHuggingElements
+CollectionLayoutListContentHuggingElements :: enum cffi.ulong {
+    None = 0,
+    SupplementaryHeader = 1,
 }
 
 /// UIListSeparatorVisibility
@@ -3257,7 +3413,7 @@ ScrollTypeMaskFlag :: enum cffi.long {
 }
 ScrollTypeMask :: bit_set[ScrollTypeMaskFlag; cffi.long]
 
-ScrollTypeMaskFlag_All :: ScrollTypeMask{ .Continuous, .All,  }
+ScrollTypeMaskFlag_All :: ScrollTypeMask{ .Discrete, .Continuous,  }
 
 /// UINavigationControllerOperation
 NavigationControllerOperation :: enum cffi.long {
@@ -3485,6 +3641,7 @@ PasteControlDisplayMode :: enum cffi.ulong {
     IconAndLabel = 0,
     IconOnly = 1,
     LabelOnly = 2,
+    ArrowAndLabel = 3,
 }
 
 /// UIPopoverArrowDirection
@@ -3657,6 +3814,13 @@ TabBarItemPositioning :: enum cffi.long {
     Automatic = 0,
     Fill = 1,
     Centered = 2,
+}
+
+/// UITabBarControllerMode
+TabBarControllerMode :: enum cffi.long {
+    Automatic = 0,
+    TabBar = 1,
+    TabSidebar = 2,
 }
 
 /// UITabBarSystemItem
@@ -3932,6 +4096,46 @@ ContentUnavailableAlignment :: enum cffi.long {
     Natural = 1,
 }
 
+/// UITabPlacement
+TabPlacement :: enum cffi.long {
+    Automatic = 0,
+    Default = 1,
+    Optional = 2,
+    Movable = 3,
+    Pinned = 4,
+    Fixed = 5,
+    SidebarOnly = 6,
+}
+
+/// UITabGroupSidebarAppearance
+TabGroupSidebarAppearance :: enum cffi.ulong {
+    Automatic = 0,
+    Inline = 1,
+    RootSection = 2,
+}
+
+/// UITabBarControllerSidebarLayout
+TabBarControllerSidebarLayout :: enum cffi.long {
+    Automatic = 0,
+    Overlap = 1,
+    Tile = 2,
+}
+
+/// UITextFormattingViewControllerComponentSize
+TextFormattingViewControllerComponentSize :: enum cffi.long {
+    Automatic = 0,
+    Mini = 1,
+    Small = 2,
+    Regular = 3,
+    Large = 4,
+    ExtraLarge = 5,
+}
+
+/// NSTextListOptions
+NSTextListOptions :: enum cffi.ulong {
+    PrependEnclosingMarker = 1,
+}
+
 /// NSTextSelectionGranularity
 NSTextSelectionGranularity :: enum cffi.long {
     Character = 0,
@@ -4027,11 +4231,6 @@ NSTextLayoutManagerSegmentOptions :: enum cffi.ulong {
     UpstreamAffinity = 16,
 }
 
-/// NSTextListOptions
-NSTextListOptions :: enum cffi.ulong {
-    PrependEnclosingMarker = 1,
-}
-
 /// UIDocumentBrowserErrorCode
 DocumentBrowserErrorCode :: enum cffi.long {
     Generic = 1,
@@ -4062,6 +4261,18 @@ DocumentBrowserActionAvailability :: enum cffi.long {
 ActivityCategory :: enum cffi.long {
     Action = 0,
     Share = 1,
+}
+
+/// UIActivityCollaborationMode
+ActivityCollaborationMode :: enum cffi.long {
+    SendCopy = 0,
+    Collaborate = 1,
+}
+
+/// UIActivitySectionTypes
+ActivitySectionTypes :: enum cffi.ulong {
+    None = 0,
+    PeopleSuggestions = 1,
 }
 
 /// UIPrinterJobTypes
@@ -4123,41 +4334,47 @@ PrintRenderingQuality :: enum cffi.long {
 
 /// UIEdgeInsets
 EdgeInsets :: struct #align (8) {
-    top : CG.Float,
-    left : CG.Float,
-    bottom : CG.Float,
-    right : CG.Float,
+    top: CG.Float,
+    left: CG.Float,
+    bottom: CG.Float,
+    right: CG.Float,
 }
+#assert(size_of(EdgeInsets) == 32)
 
 /// NSDirectionalEdgeInsets
 NSDirectionalEdgeInsets :: struct #align (8) {
-    top : CG.Float,
-    leading : CG.Float,
-    bottom : CG.Float,
-    trailing : CG.Float,
+    top: CG.Float,
+    leading: CG.Float,
+    bottom: CG.Float,
+    trailing: CG.Float,
 }
+#assert(size_of(NSDirectionalEdgeInsets) == 32)
 
 /// UIOffset
 Offset :: struct #align (8) {
-    horizontal : CG.Float,
-    vertical : CG.Float,
+    horizontal: CG.Float,
+    vertical: CG.Float,
 }
+#assert(size_of(Offset) == 16)
 
 /// NSFileProviderTypeAndCreator
 NSFileProviderTypeAndCreator :: struct #align (4) {
-    type : CF.OSType,
-    creator : CF.OSType,
+    type: CF.OSType,
+    creator: CF.OSType,
 }
+#assert(size_of(NSFileProviderTypeAndCreator) == 8)
 
 /// UIFloatRange
 FloatRange :: struct #align (8) {
-    minimum : CG.Float,
-    maximum : CG.Float,
+    minimum: CG.Float,
+    maximum: CG.Float,
 }
+#assert(size_of(FloatRange) == 16)
 
 /// UIPointerAccessoryPosition
 PointerAccessoryPosition :: struct #align (8) {
-    offset : CG.Float,
-    angle : CG.Float,
+    offset: CG.Float,
+    angle: CG.Float,
 }
+#assert(size_of(PointerAccessoryPosition) == 16)
 

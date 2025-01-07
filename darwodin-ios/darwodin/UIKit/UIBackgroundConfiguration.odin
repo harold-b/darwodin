@@ -24,29 +24,17 @@ BackgroundConfiguration :: struct { using _: NS.Object,
 BackgroundConfiguration_clearConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
     return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "clearConfiguration")
 }
-@(objc_type=BackgroundConfiguration, objc_name="listPlainCellConfiguration", objc_is_class_method=true)
-BackgroundConfiguration_listPlainCellConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
-    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listPlainCellConfiguration")
+@(objc_type=BackgroundConfiguration, objc_name="listCellConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listCellConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listCellConfiguration")
 }
-@(objc_type=BackgroundConfiguration, objc_name="listPlainHeaderFooterConfiguration", objc_is_class_method=true)
-BackgroundConfiguration_listPlainHeaderFooterConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
-    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listPlainHeaderFooterConfiguration")
+@(objc_type=BackgroundConfiguration, objc_name="listHeaderConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listHeaderConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listHeaderConfiguration")
 }
-@(objc_type=BackgroundConfiguration, objc_name="listGroupedCellConfiguration", objc_is_class_method=true)
-BackgroundConfiguration_listGroupedCellConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
-    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listGroupedCellConfiguration")
-}
-@(objc_type=BackgroundConfiguration, objc_name="listGroupedHeaderFooterConfiguration", objc_is_class_method=true)
-BackgroundConfiguration_listGroupedHeaderFooterConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
-    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listGroupedHeaderFooterConfiguration")
-}
-@(objc_type=BackgroundConfiguration, objc_name="listSidebarHeaderConfiguration", objc_is_class_method=true)
-BackgroundConfiguration_listSidebarHeaderConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
-    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listSidebarHeaderConfiguration")
-}
-@(objc_type=BackgroundConfiguration, objc_name="listSidebarCellConfiguration", objc_is_class_method=true)
-BackgroundConfiguration_listSidebarCellConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
-    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listSidebarCellConfiguration")
+@(objc_type=BackgroundConfiguration, objc_name="listFooterConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listFooterConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listFooterConfiguration")
 }
 @(objc_type=BackgroundConfiguration, objc_name="listAccompaniedSidebarCellConfiguration", objc_is_class_method=true)
 BackgroundConfiguration_listAccompaniedSidebarCellConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
@@ -71,6 +59,30 @@ BackgroundConfiguration_resolvedBackgroundColorForTintColor :: #force_inline pro
 @(objc_type=BackgroundConfiguration, objc_name="resolvedStrokeColorForTintColor")
 BackgroundConfiguration_resolvedStrokeColorForTintColor :: #force_inline proc "c" (self: ^BackgroundConfiguration, tintColor: ^Color) -> ^Color {
     return msgSend(^Color, self, "resolvedStrokeColorForTintColor:", tintColor)
+}
+@(objc_type=BackgroundConfiguration, objc_name="listPlainCellConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listPlainCellConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listPlainCellConfiguration")
+}
+@(objc_type=BackgroundConfiguration, objc_name="listGroupedCellConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listGroupedCellConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listGroupedCellConfiguration")
+}
+@(objc_type=BackgroundConfiguration, objc_name="listSidebarCellConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listSidebarCellConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listSidebarCellConfiguration")
+}
+@(objc_type=BackgroundConfiguration, objc_name="listPlainHeaderFooterConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listPlainHeaderFooterConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listPlainHeaderFooterConfiguration")
+}
+@(objc_type=BackgroundConfiguration, objc_name="listGroupedHeaderFooterConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listGroupedHeaderFooterConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listGroupedHeaderFooterConfiguration")
+}
+@(objc_type=BackgroundConfiguration, objc_name="listSidebarHeaderConfiguration", objc_is_class_method=true)
+BackgroundConfiguration_listSidebarHeaderConfiguration :: #force_inline proc "c" () -> ^BackgroundConfiguration {
+    return msgSend(^BackgroundConfiguration, BackgroundConfiguration, "listSidebarHeaderConfiguration")
 }
 @(objc_type=BackgroundConfiguration, objc_name="customView")
 BackgroundConfiguration_customView :: #force_inline proc "c" (self: ^BackgroundConfiguration) -> ^View {
@@ -175,6 +187,10 @@ BackgroundConfiguration_strokeOutset :: #force_inline proc "c" (self: ^Backgroun
 @(objc_type=BackgroundConfiguration, objc_name="setStrokeOutset")
 BackgroundConfiguration_setStrokeOutset :: #force_inline proc "c" (self: ^BackgroundConfiguration, strokeOutset: CG.Float) {
     msgSend(nil, self, "setStrokeOutset:", strokeOutset)
+}
+@(objc_type=BackgroundConfiguration, objc_name="shadowProperties")
+BackgroundConfiguration_shadowProperties :: #force_inline proc "c" (self: ^BackgroundConfiguration) -> ^ShadowProperties {
+    return msgSend(^ShadowProperties, self, "shadowProperties")
 }
 @(objc_type=BackgroundConfiguration, objc_name="supportsSecureCoding", objc_is_class_method=true)
 BackgroundConfiguration_supportsSecureCoding :: #force_inline proc "c" () -> bool {
@@ -301,18 +317,21 @@ BackgroundConfiguration_cancelPreviousPerformRequestsWithTarget :: proc {
 BackgroundConfiguration_VTable :: struct {
     super: NS.Object_VTable,
     clearConfiguration: proc() -> ^BackgroundConfiguration,
-    listPlainCellConfiguration: proc() -> ^BackgroundConfiguration,
-    listPlainHeaderFooterConfiguration: proc() -> ^BackgroundConfiguration,
-    listGroupedCellConfiguration: proc() -> ^BackgroundConfiguration,
-    listGroupedHeaderFooterConfiguration: proc() -> ^BackgroundConfiguration,
-    listSidebarHeaderConfiguration: proc() -> ^BackgroundConfiguration,
-    listSidebarCellConfiguration: proc() -> ^BackgroundConfiguration,
+    listCellConfiguration: proc() -> ^BackgroundConfiguration,
+    listHeaderConfiguration: proc() -> ^BackgroundConfiguration,
+    listFooterConfiguration: proc() -> ^BackgroundConfiguration,
     listAccompaniedSidebarCellConfiguration: proc() -> ^BackgroundConfiguration,
     new: proc() -> ^BackgroundConfiguration,
     init: proc(self: ^BackgroundConfiguration) -> ^BackgroundConfiguration,
     updatedConfigurationForState: proc(self: ^BackgroundConfiguration, state: ^ConfigurationState) -> ^BackgroundConfiguration,
     resolvedBackgroundColorForTintColor: proc(self: ^BackgroundConfiguration, tintColor: ^Color) -> ^Color,
     resolvedStrokeColorForTintColor: proc(self: ^BackgroundConfiguration, tintColor: ^Color) -> ^Color,
+    listPlainCellConfiguration: proc() -> ^BackgroundConfiguration,
+    listGroupedCellConfiguration: proc() -> ^BackgroundConfiguration,
+    listSidebarCellConfiguration: proc() -> ^BackgroundConfiguration,
+    listPlainHeaderFooterConfiguration: proc() -> ^BackgroundConfiguration,
+    listGroupedHeaderFooterConfiguration: proc() -> ^BackgroundConfiguration,
+    listSidebarHeaderConfiguration: proc() -> ^BackgroundConfiguration,
     customView: proc(self: ^BackgroundConfiguration) -> ^View,
     setCustomView: proc(self: ^BackgroundConfiguration, customView: ^View),
     cornerRadius: proc(self: ^BackgroundConfiguration) -> CG.Float,
@@ -339,6 +358,7 @@ BackgroundConfiguration_VTable :: struct {
     setStrokeWidth: proc(self: ^BackgroundConfiguration, strokeWidth: CG.Float),
     strokeOutset: proc(self: ^BackgroundConfiguration) -> CG.Float,
     setStrokeOutset: proc(self: ^BackgroundConfiguration, strokeOutset: CG.Float),
+    shadowProperties: proc(self: ^BackgroundConfiguration) -> ^ShadowProperties,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -387,65 +407,35 @@ BackgroundConfiguration_odin_extend :: proc(cls: Class, vt: ^BackgroundConfigura
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("clearConfiguration"), auto_cast clearConfiguration, "@#:") do panic("Failed to register objC method.")
     }
-    if vt.listPlainCellConfiguration != nil {
-        listPlainCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+    if vt.listCellConfiguration != nil {
+        listCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listPlainCellConfiguration()
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listCellConfiguration()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("listPlainCellConfiguration"), auto_cast listPlainCellConfiguration, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listCellConfiguration"), auto_cast listCellConfiguration, "@#:") do panic("Failed to register objC method.")
     }
-    if vt.listPlainHeaderFooterConfiguration != nil {
-        listPlainHeaderFooterConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+    if vt.listHeaderConfiguration != nil {
+        listHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listPlainHeaderFooterConfiguration()
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listHeaderConfiguration()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("listPlainHeaderFooterConfiguration"), auto_cast listPlainHeaderFooterConfiguration, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listHeaderConfiguration"), auto_cast listHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
     }
-    if vt.listGroupedCellConfiguration != nil {
-        listGroupedCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+    if vt.listFooterConfiguration != nil {
+        listFooterConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listGroupedCellConfiguration()
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listFooterConfiguration()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("listGroupedCellConfiguration"), auto_cast listGroupedCellConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.listGroupedHeaderFooterConfiguration != nil {
-        listGroupedHeaderFooterConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listGroupedHeaderFooterConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("listGroupedHeaderFooterConfiguration"), auto_cast listGroupedHeaderFooterConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.listSidebarHeaderConfiguration != nil {
-        listSidebarHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listSidebarHeaderConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("listSidebarHeaderConfiguration"), auto_cast listSidebarHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.listSidebarCellConfiguration != nil {
-        listSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listSidebarCellConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("listSidebarCellConfiguration"), auto_cast listSidebarCellConfiguration, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listFooterConfiguration"), auto_cast listFooterConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listAccompaniedSidebarCellConfiguration != nil {
         listAccompaniedSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
@@ -506,6 +496,66 @@ BackgroundConfiguration_odin_extend :: proc(cls: Class, vt: ^BackgroundConfigura
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("resolvedStrokeColorForTintColor:"), auto_cast resolvedStrokeColorForTintColor, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.listPlainCellConfiguration != nil {
+        listPlainCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listPlainCellConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listPlainCellConfiguration"), auto_cast listPlainCellConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.listGroupedCellConfiguration != nil {
+        listGroupedCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listGroupedCellConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listGroupedCellConfiguration"), auto_cast listGroupedCellConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.listSidebarCellConfiguration != nil {
+        listSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listSidebarCellConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listSidebarCellConfiguration"), auto_cast listSidebarCellConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.listPlainHeaderFooterConfiguration != nil {
+        listPlainHeaderFooterConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listPlainHeaderFooterConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listPlainHeaderFooterConfiguration"), auto_cast listPlainHeaderFooterConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.listGroupedHeaderFooterConfiguration != nil {
+        listGroupedHeaderFooterConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listGroupedHeaderFooterConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listGroupedHeaderFooterConfiguration"), auto_cast listGroupedHeaderFooterConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.listSidebarHeaderConfiguration != nil {
+        listSidebarHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^BackgroundConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).listSidebarHeaderConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("listSidebarHeaderConfiguration"), auto_cast listSidebarHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.customView != nil {
         customView :: proc "c" (self: ^BackgroundConfiguration, _: SEL) -> ^View {
@@ -766,6 +816,16 @@ BackgroundConfiguration_odin_extend :: proc(cls: Class, vt: ^BackgroundConfigura
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setStrokeOutset:"), auto_cast setStrokeOutset, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.shadowProperties != nil {
+        shadowProperties :: proc "c" (self: ^BackgroundConfiguration, _: SEL) -> ^ShadowProperties {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^BackgroundConfiguration_VTable)vt_ctx.super_vt).shadowProperties(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shadowProperties"), auto_cast shadowProperties, "@@:") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {

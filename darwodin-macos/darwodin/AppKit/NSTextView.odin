@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -698,6 +699,34 @@ TextView_allowedInputSourceLocales :: #force_inline proc "c" (self: ^TextView) -
 TextView_setAllowedInputSourceLocales :: #force_inline proc "c" (self: ^TextView, allowedInputSourceLocales: ^NS.Array) {
     msgSend(nil, self, "setAllowedInputSourceLocales:", allowedInputSourceLocales)
 }
+@(objc_type=TextView, objc_name="isWritingToolsActive")
+TextView_isWritingToolsActive :: #force_inline proc "c" (self: ^TextView) -> bool {
+    return msgSend(bool, self, "isWritingToolsActive")
+}
+@(objc_type=TextView, objc_name="writingToolsBehavior")
+TextView_writingToolsBehavior :: #force_inline proc "c" (self: ^TextView) -> WritingToolsBehavior {
+    return msgSend(WritingToolsBehavior, self, "writingToolsBehavior")
+}
+@(objc_type=TextView, objc_name="setWritingToolsBehavior")
+TextView_setWritingToolsBehavior :: #force_inline proc "c" (self: ^TextView, writingToolsBehavior: WritingToolsBehavior) {
+    msgSend(nil, self, "setWritingToolsBehavior:", writingToolsBehavior)
+}
+@(objc_type=TextView, objc_name="allowedWritingToolsResultOptions")
+TextView_allowedWritingToolsResultOptions :: #force_inline proc "c" (self: ^TextView) -> WritingToolsResultOptions {
+    return msgSend(WritingToolsResultOptions, self, "allowedWritingToolsResultOptions")
+}
+@(objc_type=TextView, objc_name="setAllowedWritingToolsResultOptions")
+TextView_setAllowedWritingToolsResultOptions :: #force_inline proc "c" (self: ^TextView, allowedWritingToolsResultOptions: WritingToolsResultOptions) {
+    msgSend(nil, self, "setAllowedWritingToolsResultOptions:", allowedWritingToolsResultOptions)
+}
+@(objc_type=TextView, objc_name="writingToolsAllowedInputOptions")
+TextView_writingToolsAllowedInputOptions :: #force_inline proc "c" (self: ^TextView) -> WritingToolsAllowedInputOptions {
+    return msgSend(WritingToolsAllowedInputOptions, self, "writingToolsAllowedInputOptions")
+}
+@(objc_type=TextView, objc_name="setWritingToolsAllowedInputOptions")
+TextView_setWritingToolsAllowedInputOptions :: #force_inline proc "c" (self: ^TextView, writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions) {
+    msgSend(nil, self, "setWritingToolsAllowedInputOptions:", writingToolsAllowedInputOptions)
+}
 @(objc_type=TextView, objc_name="smartDeleteRangeForProposedRange")
 TextView_smartDeleteRangeForProposedRange :: #force_inline proc "c" (self: ^TextView, proposedCharRange: NS._NSRange) -> NS._NSRange {
     return msgSend(NS._NSRange, self, "smartDeleteRangeForProposedRange:", proposedCharRange)
@@ -858,6 +887,14 @@ TextView_inlinePredictionType :: #force_inline proc "c" (self: ^TextView) -> Tex
 TextView_setInlinePredictionType :: #force_inline proc "c" (self: ^TextView, inlinePredictionType: TextInputTraitType) {
     msgSend(nil, self, "setInlinePredictionType:", inlinePredictionType)
 }
+@(objc_type=TextView, objc_name="mathExpressionCompletionType")
+TextView_mathExpressionCompletionType :: #force_inline proc "c" (self: ^TextView) -> TextInputTraitType {
+    return msgSend(TextInputTraitType, self, "mathExpressionCompletionType")
+}
+@(objc_type=TextView, objc_name="setMathExpressionCompletionType")
+TextView_setMathExpressionCompletionType :: #force_inline proc "c" (self: ^TextView, mathExpressionCompletionType: TextInputTraitType) {
+    msgSend(nil, self, "setMathExpressionCompletionType:", mathExpressionCompletionType)
+}
 @(objc_type=TextView, objc_name="toggleQuickLookPreviewPanel")
 TextView_toggleQuickLookPreviewPanel :: #force_inline proc "c" (self: ^TextView, sender: id) {
     msgSend(nil, self, "toggleQuickLookPreviewPanel:", sender)
@@ -925,6 +962,22 @@ TextView_scrollableDocumentContentTextView :: #force_inline proc "c" () -> ^Scro
 @(objc_type=TextView, objc_name="scrollablePlainDocumentContentTextView", objc_is_class_method=true)
 TextView_scrollablePlainDocumentContentTextView :: #force_inline proc "c" () -> ^ScrollView {
     return msgSend(^ScrollView, TextView, "scrollablePlainDocumentContentTextView")
+}
+@(objc_type=TextView, objc_name="drawTextHighlightBackgroundForTextRange")
+TextView_drawTextHighlightBackgroundForTextRange :: #force_inline proc "c" (self: ^TextView, textRange: ^TextRange, origin: CG.Point) {
+    msgSend(nil, self, "drawTextHighlightBackgroundForTextRange:origin:", textRange, origin)
+}
+@(objc_type=TextView, objc_name="highlight")
+TextView_highlight :: #force_inline proc "c" (self: ^TextView, sender: id) {
+    msgSend(nil, self, "highlight:", sender)
+}
+@(objc_type=TextView, objc_name="textHighlightAttributes")
+TextView_textHighlightAttributes :: #force_inline proc "c" (self: ^TextView) -> ^NS.Dictionary {
+    return msgSend(^NS.Dictionary, self, "textHighlightAttributes")
+}
+@(objc_type=TextView, objc_name="setTextHighlightAttributes")
+TextView_setTextHighlightAttributes :: #force_inline proc "c" (self: ^TextView, textHighlightAttributes: ^NS.Dictionary) {
+    msgSend(nil, self, "setTextHighlightAttributes:", textHighlightAttributes)
 }
 @(objc_type=TextView, objc_name="toggleBaseWritingDirection")
 TextView_toggleBaseWritingDirection :: #force_inline proc "c" (self: ^TextView, sender: id) {
@@ -1302,6 +1355,13 @@ TextView_VTable :: struct {
     setRulerVisible: proc(self: ^TextView, rulerVisible: bool),
     allowedInputSourceLocales: proc(self: ^TextView) -> ^NS.Array,
     setAllowedInputSourceLocales: proc(self: ^TextView, allowedInputSourceLocales: ^NS.Array),
+    isWritingToolsActive: proc(self: ^TextView) -> bool,
+    writingToolsBehavior: proc(self: ^TextView) -> WritingToolsBehavior,
+    setWritingToolsBehavior: proc(self: ^TextView, writingToolsBehavior: WritingToolsBehavior),
+    allowedWritingToolsResultOptions: proc(self: ^TextView) -> WritingToolsResultOptions,
+    setAllowedWritingToolsResultOptions: proc(self: ^TextView, allowedWritingToolsResultOptions: WritingToolsResultOptions),
+    writingToolsAllowedInputOptions: proc(self: ^TextView) -> WritingToolsAllowedInputOptions,
+    setWritingToolsAllowedInputOptions: proc(self: ^TextView, writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions),
     smartDeleteRangeForProposedRange: proc(self: ^TextView, proposedCharRange: NS._NSRange) -> NS._NSRange,
     toggleSmartInsertDelete: proc(self: ^TextView, sender: id),
     smartInsertForString: proc(self: ^TextView, pasteString: ^NS.String, charRangeToReplace: NS._NSRange, beforeString: ^^NS.String, afterString: ^^NS.String),
@@ -1342,6 +1402,8 @@ TextView_VTable :: struct {
     setIncrementalSearchingEnabled: proc(self: ^TextView, incrementalSearchingEnabled: bool),
     inlinePredictionType: proc(self: ^TextView) -> TextInputTraitType,
     setInlinePredictionType: proc(self: ^TextView, inlinePredictionType: TextInputTraitType),
+    mathExpressionCompletionType: proc(self: ^TextView) -> TextInputTraitType,
+    setMathExpressionCompletionType: proc(self: ^TextView, mathExpressionCompletionType: TextInputTraitType),
     toggleQuickLookPreviewPanel: proc(self: ^TextView, sender: id),
     quickLookPreviewableItemsInRanges: proc(self: ^TextView, ranges: ^NS.Array) -> ^NS.Array,
     updateQuickLookPreviewPanel: proc(self: ^TextView),
@@ -1359,6 +1421,10 @@ TextView_VTable :: struct {
     fieldEditor: proc() -> ^TextView,
     scrollableDocumentContentTextView: proc() -> ^ScrollView,
     scrollablePlainDocumentContentTextView: proc() -> ^ScrollView,
+    drawTextHighlightBackgroundForTextRange: proc(self: ^TextView, textRange: ^TextRange, origin: CG.Point),
+    highlight: proc(self: ^TextView, sender: id),
+    textHighlightAttributes: proc(self: ^TextView) -> ^NS.Dictionary,
+    setTextHighlightAttributes: proc(self: ^TextView, textHighlightAttributes: ^NS.Dictionary),
     toggleBaseWritingDirection: proc(self: ^TextView, sender: id),
     focusView: proc() -> ^View,
     defaultMenu: proc() -> ^Menu,
@@ -3071,6 +3137,76 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedInputSourceLocales:"), auto_cast setAllowedInputSourceLocales, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.isWritingToolsActive != nil {
+        isWritingToolsActive :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isWritingToolsActive(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isWritingToolsActive"), auto_cast isWritingToolsActive, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.writingToolsBehavior != nil {
+        writingToolsBehavior :: proc "c" (self: ^TextView, _: SEL) -> WritingToolsBehavior {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).writingToolsBehavior(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsBehavior"), auto_cast writingToolsBehavior, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWritingToolsBehavior != nil {
+        setWritingToolsBehavior :: proc "c" (self: ^TextView, _: SEL, writingToolsBehavior: WritingToolsBehavior) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setWritingToolsBehavior(self, writingToolsBehavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWritingToolsBehavior:"), auto_cast setWritingToolsBehavior, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.allowedWritingToolsResultOptions != nil {
+        allowedWritingToolsResultOptions :: proc "c" (self: ^TextView, _: SEL) -> WritingToolsResultOptions {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).allowedWritingToolsResultOptions(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedWritingToolsResultOptions"), auto_cast allowedWritingToolsResultOptions, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowedWritingToolsResultOptions != nil {
+        setAllowedWritingToolsResultOptions :: proc "c" (self: ^TextView, _: SEL, allowedWritingToolsResultOptions: WritingToolsResultOptions) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAllowedWritingToolsResultOptions(self, allowedWritingToolsResultOptions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedWritingToolsResultOptions:"), auto_cast setAllowedWritingToolsResultOptions, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.writingToolsAllowedInputOptions != nil {
+        writingToolsAllowedInputOptions :: proc "c" (self: ^TextView, _: SEL) -> WritingToolsAllowedInputOptions {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).writingToolsAllowedInputOptions(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsAllowedInputOptions"), auto_cast writingToolsAllowedInputOptions, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWritingToolsAllowedInputOptions != nil {
+        setWritingToolsAllowedInputOptions :: proc "c" (self: ^TextView, _: SEL, writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setWritingToolsAllowedInputOptions(self, writingToolsAllowedInputOptions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWritingToolsAllowedInputOptions:"), auto_cast setWritingToolsAllowedInputOptions, "v@:L") do panic("Failed to register objC method.")
+    }
     if vt.smartDeleteRangeForProposedRange != nil {
         smartDeleteRangeForProposedRange :: proc "c" (self: ^TextView, _: SEL, proposedCharRange: NS._NSRange) -> NS._NSRange {
 
@@ -3471,6 +3607,26 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInlinePredictionType:"), auto_cast setInlinePredictionType, "v@:l") do panic("Failed to register objC method.")
     }
+    if vt.mathExpressionCompletionType != nil {
+        mathExpressionCompletionType :: proc "c" (self: ^TextView, _: SEL) -> TextInputTraitType {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).mathExpressionCompletionType(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mathExpressionCompletionType"), auto_cast mathExpressionCompletionType, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMathExpressionCompletionType != nil {
+        setMathExpressionCompletionType :: proc "c" (self: ^TextView, _: SEL, mathExpressionCompletionType: TextInputTraitType) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setMathExpressionCompletionType(self, mathExpressionCompletionType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMathExpressionCompletionType:"), auto_cast setMathExpressionCompletionType, "v@:l") do panic("Failed to register objC method.")
+    }
     if vt.toggleQuickLookPreviewPanel != nil {
         toggleQuickLookPreviewPanel :: proc "c" (self: ^TextView, _: SEL, sender: id) {
 
@@ -3640,6 +3796,46 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("scrollablePlainDocumentContentTextView"), auto_cast scrollablePlainDocumentContentTextView, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.drawTextHighlightBackgroundForTextRange != nil {
+        drawTextHighlightBackgroundForTextRange :: proc "c" (self: ^TextView, _: SEL, textRange: ^TextRange, origin: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).drawTextHighlightBackgroundForTextRange(self, textRange, origin)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("drawTextHighlightBackgroundForTextRange:origin:"), auto_cast drawTextHighlightBackgroundForTextRange, "v@:@{CGPoint=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.highlight != nil {
+        highlight :: proc "c" (self: ^TextView, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).highlight(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("highlight:"), auto_cast highlight, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textHighlightAttributes != nil {
+        textHighlightAttributes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).textHighlightAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textHighlightAttributes"), auto_cast textHighlightAttributes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTextHighlightAttributes != nil {
+        setTextHighlightAttributes :: proc "c" (self: ^TextView, _: SEL, textHighlightAttributes: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setTextHighlightAttributes(self, textHighlightAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextHighlightAttributes:"), auto_cast setTextHighlightAttributes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.toggleBaseWritingDirection != nil {
         toggleBaseWritingDirection :: proc "c" (self: ^TextView, _: SEL, sender: id) {

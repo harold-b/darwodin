@@ -109,6 +109,14 @@ MutableURLRequest_requiresDNSSECValidation :: #force_inline proc "c" (self: ^Mut
 MutableURLRequest_setRequiresDNSSECValidation :: #force_inline proc "c" (self: ^MutableURLRequest, requiresDNSSECValidation: bool) {
     msgSend(nil, self, "setRequiresDNSSECValidation:", requiresDNSSECValidation)
 }
+@(objc_type=MutableURLRequest, objc_name="allowsPersistentDNS")
+MutableURLRequest_allowsPersistentDNS :: #force_inline proc "c" (self: ^MutableURLRequest) -> bool {
+    return msgSend(bool, self, "allowsPersistentDNS")
+}
+@(objc_type=MutableURLRequest, objc_name="setAllowsPersistentDNS")
+MutableURLRequest_setAllowsPersistentDNS :: #force_inline proc "c" (self: ^MutableURLRequest, allowsPersistentDNS: bool) {
+    msgSend(nil, self, "setAllowsPersistentDNS:", allowsPersistentDNS)
+}
 @(objc_type=MutableURLRequest, objc_name="setValue")
 MutableURLRequest_setValue :: #force_inline proc "c" (self: ^MutableURLRequest, value: ^String, field: ^String) {
     msgSend(nil, self, "setValue:forHTTPHeaderField:", value, field)
@@ -337,6 +345,8 @@ MutableURLRequest_VTable :: struct {
     setAttribution: proc(self: ^MutableURLRequest, attribution: URLRequestAttribution),
     requiresDNSSECValidation: proc(self: ^MutableURLRequest) -> bool,
     setRequiresDNSSECValidation: proc(self: ^MutableURLRequest, requiresDNSSECValidation: bool),
+    allowsPersistentDNS: proc(self: ^MutableURLRequest) -> bool,
+    setAllowsPersistentDNS: proc(self: ^MutableURLRequest, allowsPersistentDNS: bool),
     setValue: proc(self: ^MutableURLRequest, value: ^String, field: ^String),
     addValue: proc(self: ^MutableURLRequest, value: ^String, field: ^String),
     _HTTPMethod: proc(self: ^MutableURLRequest) -> ^String,
@@ -613,6 +623,26 @@ MutableURLRequest_odin_extend :: proc(cls: Class, vt: ^MutableURLRequest_VTable)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRequiresDNSSECValidation:"), auto_cast setRequiresDNSSECValidation, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.allowsPersistentDNS != nil {
+        allowsPersistentDNS :: proc "c" (self: ^MutableURLRequest, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).allowsPersistentDNS(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsPersistentDNS"), auto_cast allowsPersistentDNS, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsPersistentDNS != nil {
+        setAllowsPersistentDNS :: proc "c" (self: ^MutableURLRequest, _: SEL, allowsPersistentDNS: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableURLRequest_VTable)vt_ctx.super_vt).setAllowsPersistentDNS(self, allowsPersistentDNS)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsPersistentDNS:"), auto_cast setAllowsPersistentDNS, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.setValue != nil {
         setValue :: proc "c" (self: ^MutableURLRequest, _: SEL, value: ^String, field: ^String) {

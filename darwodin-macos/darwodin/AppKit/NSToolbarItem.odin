@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -156,6 +157,14 @@ ToolbarItem_setView :: #force_inline proc "c" (self: ^ToolbarItem, view: ^View) 
 @(objc_type=ToolbarItem, objc_name="isVisible")
 ToolbarItem_isVisible :: #force_inline proc "c" (self: ^ToolbarItem) -> bool {
     return msgSend(bool, self, "isVisible")
+}
+@(objc_type=ToolbarItem, objc_name="isHidden")
+ToolbarItem_isHidden :: #force_inline proc "c" (self: ^ToolbarItem) -> bool {
+    return msgSend(bool, self, "isHidden")
+}
+@(objc_type=ToolbarItem, objc_name="setHidden")
+ToolbarItem_setHidden :: #force_inline proc "c" (self: ^ToolbarItem, hidden: bool) {
+    msgSend(nil, self, "setHidden:", hidden)
 }
 @(objc_type=ToolbarItem, objc_name="minSize")
 ToolbarItem_minSize :: #force_inline proc "c" (self: ^ToolbarItem) -> NS.Size {
@@ -370,6 +379,8 @@ ToolbarItem_VTable :: struct {
     view: proc(self: ^ToolbarItem) -> ^View,
     setView: proc(self: ^ToolbarItem, view: ^View),
     isVisible: proc(self: ^ToolbarItem) -> bool,
+    isHidden: proc(self: ^ToolbarItem) -> bool,
+    setHidden: proc(self: ^ToolbarItem, hidden: bool),
     minSize: proc(self: ^ToolbarItem) -> NS.Size,
     setMinSize: proc(self: ^ToolbarItem, minSize: NS.Size),
     maxSize: proc(self: ^ToolbarItem) -> NS.Size,
@@ -751,6 +762,26 @@ ToolbarItem_odin_extend :: proc(cls: Class, vt: ^ToolbarItem_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isVisible"), auto_cast isVisible, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isHidden != nil {
+        isHidden :: proc "c" (self: ^ToolbarItem, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ToolbarItem_VTable)vt_ctx.super_vt).isHidden(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isHidden"), auto_cast isHidden, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHidden != nil {
+        setHidden :: proc "c" (self: ^ToolbarItem, _: SEL, hidden: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ToolbarItem_VTable)vt_ctx.super_vt).setHidden(self, hidden)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHidden:"), auto_cast setHidden, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.minSize != nil {
         minSize :: proc "c" (self: ^ToolbarItem, _: SEL) -> NS.Size {

@@ -190,6 +190,14 @@ MeshRenderPipelineDescriptor_supportIndirectCommandBuffers :: #force_inline proc
 MeshRenderPipelineDescriptor_setSupportIndirectCommandBuffers :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor, supportIndirectCommandBuffers: bool) {
     msgSend(nil, self, "setSupportIndirectCommandBuffers:", supportIndirectCommandBuffers)
 }
+@(objc_type=MeshRenderPipelineDescriptor, objc_name="binaryArchives")
+MeshRenderPipelineDescriptor_binaryArchives :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "binaryArchives")
+}
+@(objc_type=MeshRenderPipelineDescriptor, objc_name="setBinaryArchives")
+MeshRenderPipelineDescriptor_setBinaryArchives :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor, binaryArchives: ^NS.Array) {
+    msgSend(nil, self, "setBinaryArchives:", binaryArchives)
+}
 @(objc_type=MeshRenderPipelineDescriptor, objc_name="objectLinkedFunctions")
 MeshRenderPipelineDescriptor_objectLinkedFunctions :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor) -> ^LinkedFunctions {
     return msgSend(^LinkedFunctions, self, "objectLinkedFunctions")
@@ -213,6 +221,14 @@ MeshRenderPipelineDescriptor_fragmentLinkedFunctions :: #force_inline proc "c" (
 @(objc_type=MeshRenderPipelineDescriptor, objc_name="setFragmentLinkedFunctions")
 MeshRenderPipelineDescriptor_setFragmentLinkedFunctions :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor, fragmentLinkedFunctions: ^LinkedFunctions) {
     msgSend(nil, self, "setFragmentLinkedFunctions:", fragmentLinkedFunctions)
+}
+@(objc_type=MeshRenderPipelineDescriptor, objc_name="shaderValidation")
+MeshRenderPipelineDescriptor_shaderValidation :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor) -> ShaderValidation {
+    return msgSend(ShaderValidation, self, "shaderValidation")
+}
+@(objc_type=MeshRenderPipelineDescriptor, objc_name="setShaderValidation")
+MeshRenderPipelineDescriptor_setShaderValidation :: #force_inline proc "c" (self: ^MeshRenderPipelineDescriptor, shaderValidation: ShaderValidation) {
+    msgSend(nil, self, "setShaderValidation:", shaderValidation)
 }
 @(objc_type=MeshRenderPipelineDescriptor, objc_name="load", objc_is_class_method=true)
 MeshRenderPipelineDescriptor_load :: #force_inline proc "c" () {

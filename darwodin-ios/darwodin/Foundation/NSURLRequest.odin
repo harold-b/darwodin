@@ -89,6 +89,10 @@ URLRequest_attribution :: #force_inline proc "c" (self: ^URLRequest) -> URLReque
 URLRequest_requiresDNSSECValidation :: #force_inline proc "c" (self: ^URLRequest) -> bool {
     return msgSend(bool, self, "requiresDNSSECValidation")
 }
+@(objc_type=URLRequest, objc_name="allowsPersistentDNS")
+URLRequest_allowsPersistentDNS :: #force_inline proc "c" (self: ^URLRequest) -> bool {
+    return msgSend(bool, self, "allowsPersistentDNS")
+}
 @(objc_type=URLRequest, objc_name="valueForHTTPHeaderField")
 URLRequest_valueForHTTPHeaderField :: #force_inline proc "c" (self: ^URLRequest, field: ^String) -> ^String {
     return msgSend(^String, self, "valueForHTTPHeaderField:", field)
@@ -269,6 +273,7 @@ URLRequest_VTable :: struct {
     assumesHTTP3Capable: proc(self: ^URLRequest) -> bool,
     attribution: proc(self: ^URLRequest) -> URLRequestAttribution,
     requiresDNSSECValidation: proc(self: ^URLRequest) -> bool,
+    allowsPersistentDNS: proc(self: ^URLRequest) -> bool,
     valueForHTTPHeaderField: proc(self: ^URLRequest, field: ^String) -> ^String,
     _HTTPMethod: proc(self: ^URLRequest) -> ^String,
     allHTTPHeaderFields: proc(self: ^URLRequest) -> ^Dictionary,
@@ -473,6 +478,16 @@ URLRequest_odin_extend :: proc(cls: Class, vt: ^URLRequest_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("requiresDNSSECValidation"), auto_cast requiresDNSSECValidation, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.allowsPersistentDNS != nil {
+        allowsPersistentDNS :: proc "c" (self: ^URLRequest, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^URLRequest_VTable)vt_ctx.super_vt).allowsPersistentDNS(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsPersistentDNS"), auto_cast allowsPersistentDNS, "B@:") do panic("Failed to register objC method.")
     }
     if vt.valueForHTTPHeaderField != nil {
         valueForHTTPHeaderField :: proc "c" (self: ^URLRequest, _: SEL, field: ^String) -> ^String {

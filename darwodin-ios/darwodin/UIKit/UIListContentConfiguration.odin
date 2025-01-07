@@ -32,6 +32,46 @@ ListContentConfiguration_subtitleCellConfiguration :: #force_inline proc "c" () 
 ListContentConfiguration_valueCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
     return msgSend(^ListContentConfiguration, ListContentConfiguration, "valueCellConfiguration")
 }
+@(objc_type=ListContentConfiguration, objc_name="headerConfiguration", objc_is_class_method=true)
+ListContentConfiguration_headerConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "headerConfiguration")
+}
+@(objc_type=ListContentConfiguration, objc_name="footerConfiguration", objc_is_class_method=true)
+ListContentConfiguration_footerConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "footerConfiguration")
+}
+@(objc_type=ListContentConfiguration, objc_name="prominentInsetGroupedHeaderConfiguration", objc_is_class_method=true)
+ListContentConfiguration_prominentInsetGroupedHeaderConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "prominentInsetGroupedHeaderConfiguration")
+}
+@(objc_type=ListContentConfiguration, objc_name="extraProminentInsetGroupedHeaderConfiguration", objc_is_class_method=true)
+ListContentConfiguration_extraProminentInsetGroupedHeaderConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "extraProminentInsetGroupedHeaderConfiguration")
+}
+@(objc_type=ListContentConfiguration, objc_name="accompaniedSidebarCellConfiguration", objc_is_class_method=true)
+ListContentConfiguration_accompaniedSidebarCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "accompaniedSidebarCellConfiguration")
+}
+@(objc_type=ListContentConfiguration, objc_name="accompaniedSidebarSubtitleCellConfiguration", objc_is_class_method=true)
+ListContentConfiguration_accompaniedSidebarSubtitleCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "accompaniedSidebarSubtitleCellConfiguration")
+}
+@(objc_type=ListContentConfiguration, objc_name="new", objc_is_class_method=true)
+ListContentConfiguration_new :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "new")
+}
+@(objc_type=ListContentConfiguration, objc_name="init")
+ListContentConfiguration_init :: #force_inline proc "c" (self: ^ListContentConfiguration) -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, self, "init")
+}
+@(objc_type=ListContentConfiguration, objc_name="sidebarCellConfiguration", objc_is_class_method=true)
+ListContentConfiguration_sidebarCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "sidebarCellConfiguration")
+}
+@(objc_type=ListContentConfiguration, objc_name="sidebarSubtitleCellConfiguration", objc_is_class_method=true)
+ListContentConfiguration_sidebarSubtitleCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
+    return msgSend(^ListContentConfiguration, ListContentConfiguration, "sidebarSubtitleCellConfiguration")
+}
 @(objc_type=ListContentConfiguration, objc_name="plainHeaderConfiguration", objc_is_class_method=true)
 ListContentConfiguration_plainHeaderConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
     return msgSend(^ListContentConfiguration, ListContentConfiguration, "plainHeaderConfiguration")
@@ -48,41 +88,9 @@ ListContentConfiguration_groupedHeaderConfiguration :: #force_inline proc "c" ()
 ListContentConfiguration_groupedFooterConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
     return msgSend(^ListContentConfiguration, ListContentConfiguration, "groupedFooterConfiguration")
 }
-@(objc_type=ListContentConfiguration, objc_name="prominentInsetGroupedHeaderConfiguration", objc_is_class_method=true)
-ListContentConfiguration_prominentInsetGroupedHeaderConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
-    return msgSend(^ListContentConfiguration, ListContentConfiguration, "prominentInsetGroupedHeaderConfiguration")
-}
-@(objc_type=ListContentConfiguration, objc_name="extraProminentInsetGroupedHeaderConfiguration", objc_is_class_method=true)
-ListContentConfiguration_extraProminentInsetGroupedHeaderConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
-    return msgSend(^ListContentConfiguration, ListContentConfiguration, "extraProminentInsetGroupedHeaderConfiguration")
-}
-@(objc_type=ListContentConfiguration, objc_name="sidebarCellConfiguration", objc_is_class_method=true)
-ListContentConfiguration_sidebarCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
-    return msgSend(^ListContentConfiguration, ListContentConfiguration, "sidebarCellConfiguration")
-}
-@(objc_type=ListContentConfiguration, objc_name="sidebarSubtitleCellConfiguration", objc_is_class_method=true)
-ListContentConfiguration_sidebarSubtitleCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
-    return msgSend(^ListContentConfiguration, ListContentConfiguration, "sidebarSubtitleCellConfiguration")
-}
-@(objc_type=ListContentConfiguration, objc_name="accompaniedSidebarCellConfiguration", objc_is_class_method=true)
-ListContentConfiguration_accompaniedSidebarCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
-    return msgSend(^ListContentConfiguration, ListContentConfiguration, "accompaniedSidebarCellConfiguration")
-}
-@(objc_type=ListContentConfiguration, objc_name="accompaniedSidebarSubtitleCellConfiguration", objc_is_class_method=true)
-ListContentConfiguration_accompaniedSidebarSubtitleCellConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
-    return msgSend(^ListContentConfiguration, ListContentConfiguration, "accompaniedSidebarSubtitleCellConfiguration")
-}
 @(objc_type=ListContentConfiguration, objc_name="sidebarHeaderConfiguration", objc_is_class_method=true)
 ListContentConfiguration_sidebarHeaderConfiguration :: #force_inline proc "c" () -> ^ListContentConfiguration {
     return msgSend(^ListContentConfiguration, ListContentConfiguration, "sidebarHeaderConfiguration")
-}
-@(objc_type=ListContentConfiguration, objc_name="new", objc_is_class_method=true)
-ListContentConfiguration_new :: #force_inline proc "c" () -> ^ListContentConfiguration {
-    return msgSend(^ListContentConfiguration, ListContentConfiguration, "new")
-}
-@(objc_type=ListContentConfiguration, objc_name="init")
-ListContentConfiguration_init :: #force_inline proc "c" (self: ^ListContentConfiguration) -> ^ListContentConfiguration {
-    return msgSend(^ListContentConfiguration, self, "init")
 }
 @(objc_type=ListContentConfiguration, objc_name="image")
 ListContentConfiguration_image :: #force_inline proc "c" (self: ^ListContentConfiguration) -> ^Image {
@@ -183,6 +191,14 @@ ListContentConfiguration_textToSecondaryTextVerticalPadding :: #force_inline pro
 @(objc_type=ListContentConfiguration, objc_name="setTextToSecondaryTextVerticalPadding")
 ListContentConfiguration_setTextToSecondaryTextVerticalPadding :: #force_inline proc "c" (self: ^ListContentConfiguration, textToSecondaryTextVerticalPadding: CG.Float) {
     msgSend(nil, self, "setTextToSecondaryTextVerticalPadding:", textToSecondaryTextVerticalPadding)
+}
+@(objc_type=ListContentConfiguration, objc_name="alpha")
+ListContentConfiguration_alpha :: #force_inline proc "c" (self: ^ListContentConfiguration) -> CG.Float {
+    return msgSend(CG.Float, self, "alpha")
+}
+@(objc_type=ListContentConfiguration, objc_name="setAlpha")
+ListContentConfiguration_setAlpha :: #force_inline proc "c" (self: ^ListContentConfiguration, alpha: CG.Float) {
+    msgSend(nil, self, "setAlpha:", alpha)
 }
 @(objc_type=ListContentConfiguration, objc_name="supportsSecureCoding", objc_is_class_method=true)
 ListContentConfiguration_supportsSecureCoding :: #force_inline proc "c" () -> bool {
@@ -311,19 +327,21 @@ ListContentConfiguration_VTable :: struct {
     cellConfiguration: proc() -> ^ListContentConfiguration,
     subtitleCellConfiguration: proc() -> ^ListContentConfiguration,
     valueCellConfiguration: proc() -> ^ListContentConfiguration,
+    headerConfiguration: proc() -> ^ListContentConfiguration,
+    footerConfiguration: proc() -> ^ListContentConfiguration,
+    prominentInsetGroupedHeaderConfiguration: proc() -> ^ListContentConfiguration,
+    extraProminentInsetGroupedHeaderConfiguration: proc() -> ^ListContentConfiguration,
+    accompaniedSidebarCellConfiguration: proc() -> ^ListContentConfiguration,
+    accompaniedSidebarSubtitleCellConfiguration: proc() -> ^ListContentConfiguration,
+    new: proc() -> ^ListContentConfiguration,
+    init: proc(self: ^ListContentConfiguration) -> ^ListContentConfiguration,
+    sidebarCellConfiguration: proc() -> ^ListContentConfiguration,
+    sidebarSubtitleCellConfiguration: proc() -> ^ListContentConfiguration,
     plainHeaderConfiguration: proc() -> ^ListContentConfiguration,
     plainFooterConfiguration: proc() -> ^ListContentConfiguration,
     groupedHeaderConfiguration: proc() -> ^ListContentConfiguration,
     groupedFooterConfiguration: proc() -> ^ListContentConfiguration,
-    prominentInsetGroupedHeaderConfiguration: proc() -> ^ListContentConfiguration,
-    extraProminentInsetGroupedHeaderConfiguration: proc() -> ^ListContentConfiguration,
-    sidebarCellConfiguration: proc() -> ^ListContentConfiguration,
-    sidebarSubtitleCellConfiguration: proc() -> ^ListContentConfiguration,
-    accompaniedSidebarCellConfiguration: proc() -> ^ListContentConfiguration,
-    accompaniedSidebarSubtitleCellConfiguration: proc() -> ^ListContentConfiguration,
     sidebarHeaderConfiguration: proc() -> ^ListContentConfiguration,
-    new: proc() -> ^ListContentConfiguration,
-    init: proc(self: ^ListContentConfiguration) -> ^ListContentConfiguration,
     image: proc(self: ^ListContentConfiguration) -> ^Image,
     setImage: proc(self: ^ListContentConfiguration, image: ^Image),
     imageProperties: proc(self: ^ListContentConfiguration) -> ^ListContentImageProperties,
@@ -349,6 +367,8 @@ ListContentConfiguration_VTable :: struct {
     setTextToSecondaryTextHorizontalPadding: proc(self: ^ListContentConfiguration, textToSecondaryTextHorizontalPadding: CG.Float),
     textToSecondaryTextVerticalPadding: proc(self: ^ListContentConfiguration) -> CG.Float,
     setTextToSecondaryTextVerticalPadding: proc(self: ^ListContentConfiguration, textToSecondaryTextVerticalPadding: CG.Float),
+    alpha: proc(self: ^ListContentConfiguration) -> CG.Float,
+    setAlpha: proc(self: ^ListContentConfiguration, alpha: CG.Float),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -417,6 +437,106 @@ ListContentConfiguration_odin_extend :: proc(cls: Class, vt: ^ListContentConfigu
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("valueCellConfiguration"), auto_cast valueCellConfiguration, "@#:") do panic("Failed to register objC method.")
     }
+    if vt.headerConfiguration != nil {
+        headerConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).headerConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("headerConfiguration"), auto_cast headerConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.footerConfiguration != nil {
+        footerConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).footerConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("footerConfiguration"), auto_cast footerConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.prominentInsetGroupedHeaderConfiguration != nil {
+        prominentInsetGroupedHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).prominentInsetGroupedHeaderConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("prominentInsetGroupedHeaderConfiguration"), auto_cast prominentInsetGroupedHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.extraProminentInsetGroupedHeaderConfiguration != nil {
+        extraProminentInsetGroupedHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).extraProminentInsetGroupedHeaderConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("extraProminentInsetGroupedHeaderConfiguration"), auto_cast extraProminentInsetGroupedHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.accompaniedSidebarCellConfiguration != nil {
+        accompaniedSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).accompaniedSidebarCellConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accompaniedSidebarCellConfiguration"), auto_cast accompaniedSidebarCellConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.accompaniedSidebarSubtitleCellConfiguration != nil {
+        accompaniedSidebarSubtitleCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).accompaniedSidebarSubtitleCellConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("accompaniedSidebarSubtitleCellConfiguration"), auto_cast accompaniedSidebarSubtitleCellConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.new != nil {
+        new :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).new()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.init != nil {
+        init :: proc "c" (self: ^ListContentConfiguration, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).init(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.sidebarCellConfiguration != nil {
+        sidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).sidebarCellConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("sidebarCellConfiguration"), auto_cast sidebarCellConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.sidebarSubtitleCellConfiguration != nil {
+        sidebarSubtitleCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).sidebarSubtitleCellConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("sidebarSubtitleCellConfiguration"), auto_cast sidebarSubtitleCellConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
     if vt.plainHeaderConfiguration != nil {
         plainHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
 
@@ -457,66 +577,6 @@ ListContentConfiguration_odin_extend :: proc(cls: Class, vt: ^ListContentConfigu
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("groupedFooterConfiguration"), auto_cast groupedFooterConfiguration, "@#:") do panic("Failed to register objC method.")
     }
-    if vt.prominentInsetGroupedHeaderConfiguration != nil {
-        prominentInsetGroupedHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).prominentInsetGroupedHeaderConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("prominentInsetGroupedHeaderConfiguration"), auto_cast prominentInsetGroupedHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.extraProminentInsetGroupedHeaderConfiguration != nil {
-        extraProminentInsetGroupedHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).extraProminentInsetGroupedHeaderConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("extraProminentInsetGroupedHeaderConfiguration"), auto_cast extraProminentInsetGroupedHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.sidebarCellConfiguration != nil {
-        sidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).sidebarCellConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("sidebarCellConfiguration"), auto_cast sidebarCellConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.sidebarSubtitleCellConfiguration != nil {
-        sidebarSubtitleCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).sidebarSubtitleCellConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("sidebarSubtitleCellConfiguration"), auto_cast sidebarSubtitleCellConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.accompaniedSidebarCellConfiguration != nil {
-        accompaniedSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).accompaniedSidebarCellConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("accompaniedSidebarCellConfiguration"), auto_cast accompaniedSidebarCellConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.accompaniedSidebarSubtitleCellConfiguration != nil {
-        accompaniedSidebarSubtitleCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).accompaniedSidebarSubtitleCellConfiguration()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("accompaniedSidebarSubtitleCellConfiguration"), auto_cast accompaniedSidebarSubtitleCellConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
     if vt.sidebarHeaderConfiguration != nil {
         sidebarHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
 
@@ -526,26 +586,6 @@ ListContentConfiguration_odin_extend :: proc(cls: Class, vt: ^ListContentConfigu
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("sidebarHeaderConfiguration"), auto_cast sidebarHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^ListContentConfiguration {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).new()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.init != nil {
-        init :: proc "c" (self: ^ListContentConfiguration, _: SEL) -> ^ListContentConfiguration {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).init(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
         image :: proc "c" (self: ^ListContentConfiguration, _: SEL) -> ^Image {
@@ -796,6 +836,26 @@ ListContentConfiguration_odin_extend :: proc(cls: Class, vt: ^ListContentConfigu
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextToSecondaryTextVerticalPadding:"), auto_cast setTextToSecondaryTextVerticalPadding, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.alpha != nil {
+        alpha :: proc "c" (self: ^ListContentConfiguration, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).alpha(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alpha"), auto_cast alpha, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAlpha != nil {
+        setAlpha :: proc "c" (self: ^ListContentConfiguration, _: SEL, alpha: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ListContentConfiguration_VTable)vt_ctx.super_vt).setAlpha(self, alpha)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAlpha:"), auto_cast setAlpha, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {

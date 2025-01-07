@@ -80,7 +80,10 @@ Cpp:
     - ^ConstStrFileNameParam
     - ^UnsignedWide
     - ^integer_t
+    - ^u_int64_t
     - ^u_int32_t
+    - ^u_int16_t
+    - ^u_int8_t
     - ^cpu_type_t
     - ^__darwin_
     - ^dev_t

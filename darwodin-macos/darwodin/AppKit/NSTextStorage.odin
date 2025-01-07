@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -177,9 +178,17 @@ TextStorage_textUnfilteredFileTypes :: #force_inline proc "c" () -> ^NS.Array {
 TextStorage_textUnfilteredPasteboardTypes :: #force_inline proc "c" () -> ^NS.Array {
     return msgSend(^NS.Array, TextStorage, "textUnfilteredPasteboardTypes")
 }
-@(objc_type=TextStorage, objc_name="attributedStringWithAttachment", objc_is_class_method=true)
-TextStorage_attributedStringWithAttachment :: #force_inline proc "c" (attachment: ^TextAttachment) -> ^NS.AttributedString {
+@(objc_type=TextStorage, objc_name="attributedStringWithAttachment_", objc_is_class_method=true)
+TextStorage_attributedStringWithAttachment_ :: #force_inline proc "c" (attachment: ^TextAttachment) -> ^NS.AttributedString {
     return msgSend(^NS.AttributedString, TextStorage, "attributedStringWithAttachment:", attachment)
+}
+@(objc_type=TextStorage, objc_name="attributedStringWithAttachment_attributes", objc_is_class_method=true)
+TextStorage_attributedStringWithAttachment_attributes :: #force_inline proc "c" (attachment: ^TextAttachment, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
+    return msgSend(^NS.AttributedString, TextStorage, "attributedStringWithAttachment:attributes:", attachment, attributes)
+}
+@(objc_type=TextStorage, objc_name="attributedStringWithAdaptiveImageGlyph", objc_is_class_method=true)
+TextStorage_attributedStringWithAdaptiveImageGlyph :: #force_inline proc "c" (adaptiveImageGlyph: ^AdaptiveImageGlyph, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
+    return msgSend(^NS.AttributedString, TextStorage, "attributedStringWithAdaptiveImageGlyph:attributes:", adaptiveImageGlyph, attributes)
 }
 @(objc_type=TextStorage, objc_name="load", objc_is_class_method=true)
 TextStorage_load :: #force_inline proc "c" () {
@@ -325,6 +334,12 @@ TextStorage_localizedAttributedStringWithFormat :: proc {
     TextStorage_localizedAttributedStringWithFormat_options_context,
 }
 
+@(objc_type=TextStorage, objc_name="attributedStringWithAttachment")
+TextStorage_attributedStringWithAttachment :: proc {
+    TextStorage_attributedStringWithAttachment_,
+    TextStorage_attributedStringWithAttachment_attributes,
+}
+
 @(objc_type=TextStorage, objc_name="cancelPreviousPerformRequestsWithTarget")
 TextStorage_cancelPreviousPerformRequestsWithTarget :: proc {
     TextStorage_cancelPreviousPerformRequestsWithTarget_selector_object,
@@ -371,7 +386,9 @@ TextStorage_VTable :: struct {
     textPasteboardTypes: proc() -> ^NS.Array,
     textUnfilteredFileTypes: proc() -> ^NS.Array,
     textUnfilteredPasteboardTypes: proc() -> ^NS.Array,
-    attributedStringWithAttachment: proc(attachment: ^TextAttachment) -> ^NS.AttributedString,
+    attributedStringWithAttachment_: proc(attachment: ^TextAttachment) -> ^NS.AttributedString,
+    attributedStringWithAttachment_attributes: proc(attachment: ^TextAttachment, attributes: ^NS.Dictionary) -> ^NS.AttributedString,
+    attributedStringWithAdaptiveImageGlyph: proc(adaptiveImageGlyph: ^AdaptiveImageGlyph, attributes: ^NS.Dictionary) -> ^NS.AttributedString,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^TextStorage,
@@ -795,15 +812,35 @@ TextStorage_odin_extend :: proc(cls: Class, vt: ^TextStorage_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("textUnfilteredPasteboardTypes"), auto_cast textUnfilteredPasteboardTypes, "@#:") do panic("Failed to register objC method.")
     }
-    if vt.attributedStringWithAttachment != nil {
-        attributedStringWithAttachment :: proc "c" (self: Class, _: SEL, attachment: ^TextAttachment) -> ^NS.AttributedString {
+    if vt.attributedStringWithAttachment_ != nil {
+        attributedStringWithAttachment_ :: proc "c" (self: Class, _: SEL, attachment: ^TextAttachment) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^TextStorage_VTable)vt_ctx.super_vt).attributedStringWithAttachment( attachment)
+            return (cast(^TextStorage_VTable)vt_ctx.super_vt).attributedStringWithAttachment_( attachment)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAttachment:"), auto_cast attributedStringWithAttachment, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAttachment:"), auto_cast attributedStringWithAttachment_, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.attributedStringWithAttachment_attributes != nil {
+        attributedStringWithAttachment_attributes :: proc "c" (self: Class, _: SEL, attachment: ^TextAttachment, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextStorage_VTable)vt_ctx.super_vt).attributedStringWithAttachment_attributes( attachment, attributes)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAttachment:attributes:"), auto_cast attributedStringWithAttachment_attributes, "@#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.attributedStringWithAdaptiveImageGlyph != nil {
+        attributedStringWithAdaptiveImageGlyph :: proc "c" (self: Class, _: SEL, adaptiveImageGlyph: ^AdaptiveImageGlyph, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextStorage_VTable)vt_ctx.super_vt).attributedStringWithAdaptiveImageGlyph( adaptiveImageGlyph, attributes)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAdaptiveImageGlyph:attributes:"), auto_cast attributedStringWithAdaptiveImageGlyph, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

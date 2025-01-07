@@ -39,6 +39,10 @@ FocusItem_focusEffect :: #force_inline proc "c" (self: ^FocusItem) -> ^FocusEffe
 FocusItem_focusGroupPriority :: #force_inline proc "c" (self: ^FocusItem) -> FocusGroupPriority {
     return msgSend(FocusGroupPriority, self, "focusGroupPriority")
 }
+@(objc_type=FocusItem, objc_name="focusItemDeferralMode")
+FocusItem_focusItemDeferralMode :: #force_inline proc "c" (self: ^FocusItem) -> FocusItemDeferralMode {
+    return msgSend(FocusItemDeferralMode, self, "focusItemDeferralMode")
+}
 @(objc_type=FocusItem, objc_name="isTransparentFocusItem")
 FocusItem_isTransparentFocusItem :: #force_inline proc "c" (self: ^FocusItem) -> bool {
     return msgSend(bool, self, "isTransparentFocusItem")
@@ -49,6 +53,7 @@ FocusItem_VTable :: struct {
     frame: proc(self: ^FocusItem) -> CG.Rect,
     focusEffect: proc(self: ^FocusItem) -> ^FocusEffect,
     focusGroupPriority: proc(self: ^FocusItem) -> FocusGroupPriority,
+    focusItemDeferralMode: proc(self: ^FocusItem) -> FocusItemDeferralMode,
     isTransparentFocusItem: proc(self: ^FocusItem) -> bool,
 }
 
@@ -105,6 +110,16 @@ FocusItem_odin_extend :: proc(cls: Class, vt: ^FocusItem_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("focusGroupPriority"), auto_cast focusGroupPriority, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.focusItemDeferralMode != nil {
+        focusItemDeferralMode :: proc "c" (self: ^FocusItem, _: SEL) -> FocusItemDeferralMode {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^FocusItem_VTable)vt_ctx.protocol_vt).focusItemDeferralMode(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("focusItemDeferralMode"), auto_cast focusItemDeferralMode, "l@:") do panic("Failed to register objC method.")
     }
     if vt.isTransparentFocusItem != nil {
         isTransparentFocusItem :: proc "c" (self: ^FocusItem, _: SEL) -> bool {

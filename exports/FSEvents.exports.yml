@@ -86,6 +86,9 @@ Typedefs:
     FSSpecHandle: FS.SpecHandle
     FSSpecArrayPtr: FS.SpecArrayPtr
     ConstFSSpecPtr: FS.ConstFSSpecPtr
+    ParmBlkPtr: FS.ParmBlkPtr
+    IOCompletionProcPtr: FS.IOCompletionProcPtr
+    IOCompletionUPP: FS.IOCompletionUPP
     FSCatalogInfoBitmap: FS.CatalogInfoBitmap
     FSCatalogInfoPtr: FS.CatalogInfoPtr
     FSRefParamPtr: FS.RefParamPtr
@@ -117,7 +120,14 @@ Typedefs:
     FSFileOperationStage: FS.FileOperationStage
     FSFileOperationStatusProcPtr: FS.FileOperationStatusProcPtr
     FSPathFileOperationStatusProcPtr: FS.PathFileOperationStatusProcPtr
+    ResID: FS.ResID
+    ResAttributes: FS.ResAttributes
+    ResFileAttributes: FS.ResFileAttributes
+    ResourceCount: FS.ResourceCount
+    ResourceIndex: FS.ResourceIndex
+    ResFileRefNum: FS.ResFileRefNum
     FSAliasInfoBitmap: FS.AliasInfoBitmap
+    AliasPtr: FS.AliasPtr
     AliasHandle: FS.AliasHandle
     FSAliasInfoPtr: FS.AliasInfoPtr
     FSAliasFilterProcPtr: FS.AliasFilterProcPtr
@@ -389,6 +399,9 @@ ConstVars:
     ::kTextEncodingUnicodeV11_0: FS.kTextEncodingUnicodeV11_0
     ::kTextEncodingUnicodeV12_1: FS.kTextEncodingUnicodeV12_1
     ::kTextEncodingUnicodeV13_0: FS.kTextEncodingUnicodeV13_0
+    ::kTextEncodingUnicodeV14_0: FS.kTextEncodingUnicodeV14_0
+    ::kTextEncodingUnicodeV15_0: FS.kTextEncodingUnicodeV15_0
+    ::kTextEncodingUnicodeV15_1: FS.kTextEncodingUnicodeV15_1
     ::kTextEncodingISOLatin1: FS.kTextEncodingISOLatin1
     ::kTextEncodingISOLatin2: FS.kTextEncodingISOLatin2
     ::kTextEncodingISOLatin3: FS.kTextEncodingISOLatin3

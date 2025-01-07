@@ -56,8 +56,10 @@ for f in ${frameworks[@]}; do
       args=(--def definitions/ios/${framework_lower}.json)
     fi
 
+    # Implicitly add AppKit/UIKit dependency (external types) for higher-level frameowrks.
     if [ ${framework_lower} != "corefoundation" ] &&
        [ ${framework_lower} != "coregraphics" ] &&
+       [ ${framework_lower} != "coretext" ] &&
        [ ${framework_lower} != "fsevents" ] &&
        [ ${framework_lower} != "foundation" ] &&
        [ ${framework_lower} != "quartzcore" ] &&

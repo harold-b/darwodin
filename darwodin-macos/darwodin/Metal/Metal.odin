@@ -10,8 +10,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import AK "../AppKit"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -1417,7 +1415,7 @@ ResourceID :: struct #align (8) {
 #assert(size_of(ResourceID) == 8)
 
 /// MTLTextureSwizzleChannels
-TextureSwizzleChannels :: struct  {
+TextureSwizzleChannels :: struct #align (1) {
     red: TextureSwizzle,
     green: TextureSwizzle,
     blue: TextureSwizzle,

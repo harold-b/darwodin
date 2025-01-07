@@ -9,6 +9,7 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
+import MDL "../ModelIO"
 import UI "../UIKit"
 
 
@@ -24,11 +25,11 @@ Mesh_init :: #force_inline proc "c" (self: ^Mesh) -> ^Mesh {
     return msgSend(^Mesh, self, "init")
 }
 @(objc_type=Mesh, objc_name="initWithMesh")
-Mesh_initWithMesh :: #force_inline proc "c" (self: ^Mesh, mesh: ^MDLMesh, device: ^MTL.Device, error: ^^NS.Error) -> ^Mesh {
+Mesh_initWithMesh :: #force_inline proc "c" (self: ^Mesh, mesh: ^MDL.Mesh, device: ^MTL.Device, error: ^^NS.Error) -> ^Mesh {
     return msgSend(^Mesh, self, "initWithMesh:device:error:", mesh, device, error)
 }
 @(objc_type=Mesh, objc_name="newMeshesFromAsset", objc_is_class_method=true)
-Mesh_newMeshesFromAsset :: #force_inline proc "c" (asset: ^MDLAsset, device: ^MTL.Device, sourceMeshes: ^^NS.Array, error: ^^NS.Error) -> ^NS.Array {
+Mesh_newMeshesFromAsset :: #force_inline proc "c" (asset: ^MDL.Asset, device: ^MTL.Device, sourceMeshes: ^^NS.Array, error: ^^NS.Error) -> ^NS.Array {
     return msgSend(^NS.Array, Mesh, "newMeshesFromAsset:device:sourceMeshes:error:", asset, device, sourceMeshes, error)
 }
 @(objc_type=Mesh, objc_name="vertexBuffers")
@@ -36,8 +37,8 @@ Mesh_vertexBuffers :: #force_inline proc "c" (self: ^Mesh) -> ^NS.Array {
     return msgSend(^NS.Array, self, "vertexBuffers")
 }
 @(objc_type=Mesh, objc_name="vertexDescriptor")
-Mesh_vertexDescriptor :: #force_inline proc "c" (self: ^Mesh) -> ^MDLVertexDescriptor {
-    return msgSend(^MDLVertexDescriptor, self, "vertexDescriptor")
+Mesh_vertexDescriptor :: #force_inline proc "c" (self: ^Mesh) -> ^MDL.VertexDescriptor {
+    return msgSend(^MDL.VertexDescriptor, self, "vertexDescriptor")
 }
 @(objc_type=Mesh, objc_name="submeshes")
 Mesh_submeshes :: #force_inline proc "c" (self: ^Mesh) -> ^NS.Array {

@@ -9,6 +9,7 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
+import MDL "../ModelIO"
 import UI "../UIKit"
 
 
@@ -18,7 +19,7 @@ import UI "../UIKit"
 ///
 @(objc_class="MTKMeshBufferAllocator")
 MeshBufferAllocator :: struct { using _: NS.Object, 
-    using _: MDLMeshBufferAllocator,
+    using _: MDL.MeshBufferAllocator,
 }
 
 @(objc_type=MeshBufferAllocator, objc_name="init")

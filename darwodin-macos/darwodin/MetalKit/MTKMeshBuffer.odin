@@ -9,6 +9,7 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
+import MDL "../ModelIO"
 import AK "../AppKit"
 
 
@@ -18,8 +19,8 @@ import AK "../AppKit"
 ///
 @(objc_class="MTKMeshBuffer")
 MeshBuffer :: struct { using _: NS.Object, 
-    using _: MDLMeshBuffer,
-    using _: MDLNamed,
+    using _: MDL.MeshBuffer,
+    using _: MDL.Named,
 }
 
 @(objc_type=MeshBuffer, objc_name="init")
@@ -35,8 +36,8 @@ MeshBuffer_allocator :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MeshBuffe
     return msgSend(^MeshBufferAllocator, self, "allocator")
 }
 @(objc_type=MeshBuffer, objc_name="zone")
-MeshBuffer_zone :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MDLMeshBufferZone {
-    return msgSend(^MDLMeshBufferZone, self, "zone")
+MeshBuffer_zone :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MDL.MeshBufferZone {
+    return msgSend(^MDL.MeshBufferZone, self, "zone")
 }
 @(objc_type=MeshBuffer, objc_name="buffer")
 MeshBuffer_buffer :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MTL.Buffer {
@@ -47,8 +48,8 @@ MeshBuffer_offset :: #force_inline proc "c" (self: ^MeshBuffer) -> NS.UInteger {
     return msgSend(NS.UInteger, self, "offset")
 }
 @(objc_type=MeshBuffer, objc_name="type")
-MeshBuffer_type :: #force_inline proc "c" (self: ^MeshBuffer) -> MDLMeshBufferType {
-    return msgSend(MDLMeshBufferType, self, "type")
+MeshBuffer_type :: #force_inline proc "c" (self: ^MeshBuffer) -> MDL.MeshBufferType {
+    return msgSend(MDL.MeshBufferType, self, "type")
 }
 @(objc_type=MeshBuffer, objc_name="load", objc_is_class_method=true)
 MeshBuffer_load :: #force_inline proc "c" () {

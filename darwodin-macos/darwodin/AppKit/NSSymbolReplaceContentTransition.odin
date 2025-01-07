@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -46,6 +47,10 @@ SymbolReplaceContentTransition_transitionWithByLayer :: #force_inline proc "c" (
 @(objc_type=SymbolReplaceContentTransition, objc_name="transitionWithWholeSymbol")
 SymbolReplaceContentTransition_transitionWithWholeSymbol :: #force_inline proc "c" (self: ^SymbolReplaceContentTransition) -> ^SymbolReplaceContentTransition {
     return msgSend(^SymbolReplaceContentTransition, self, "transitionWithWholeSymbol")
+}
+@(objc_type=SymbolReplaceContentTransition, objc_name="magicTransitionWithFallback", objc_is_class_method=true)
+SymbolReplaceContentTransition_magicTransitionWithFallback :: #force_inline proc "c" (fallback: ^SymbolReplaceContentTransition) -> ^SymbolMagicReplaceContentTransition {
+    return msgSend(^SymbolMagicReplaceContentTransition, SymbolReplaceContentTransition, "magicTransitionWithFallback:", fallback)
 }
 @(objc_type=SymbolReplaceContentTransition, objc_name="new", objc_is_class_method=true)
 SymbolReplaceContentTransition_new :: #force_inline proc "c" () -> ^SymbolReplaceContentTransition {
@@ -201,6 +206,7 @@ SymbolReplaceContentTransition_VTable :: struct {
     replaceOffUpTransition: proc() -> ^SymbolReplaceContentTransition,
     transitionWithByLayer: proc(self: ^SymbolReplaceContentTransition) -> ^SymbolReplaceContentTransition,
     transitionWithWholeSymbol: proc(self: ^SymbolReplaceContentTransition) -> ^SymbolReplaceContentTransition,
+    magicTransitionWithFallback: proc(fallback: ^SymbolReplaceContentTransition) -> ^SymbolMagicReplaceContentTransition,
     new: proc() -> ^SymbolReplaceContentTransition,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
@@ -304,6 +310,16 @@ SymbolReplaceContentTransition_odin_extend :: proc(cls: Class, vt: ^SymbolReplac
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("transitionWithWholeSymbol"), auto_cast transitionWithWholeSymbol, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.magicTransitionWithFallback != nil {
+        magicTransitionWithFallback :: proc "c" (self: Class, _: SEL, fallback: ^SymbolReplaceContentTransition) -> ^SymbolMagicReplaceContentTransition {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^SymbolReplaceContentTransition_VTable)vt_ctx.super_vt).magicTransitionWithFallback( fallback)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("magicTransitionWithFallback:"), auto_cast magicTransitionWithFallback, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
         new :: proc "c" (self: Class, _: SEL) -> ^SymbolReplaceContentTransition {

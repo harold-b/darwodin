@@ -103,6 +103,14 @@ AccessibilityCustomAction_actionHandler :: #force_inline proc "c" (self: ^Access
 AccessibilityCustomAction_setActionHandler :: #force_inline proc "c" (self: ^AccessibilityCustomAction, actionHandler: AccessibilityCustomActionHandler) {
     msgSend(nil, self, "setActionHandler:", actionHandler)
 }
+@(objc_type=AccessibilityCustomAction, objc_name="category")
+AccessibilityCustomAction_category :: #force_inline proc "c" (self: ^AccessibilityCustomAction) -> ^NS.String {
+    return msgSend(^NS.String, self, "category")
+}
+@(objc_type=AccessibilityCustomAction, objc_name="setCategory")
+AccessibilityCustomAction_setCategory :: #force_inline proc "c" (self: ^AccessibilityCustomAction, category: ^NS.String) {
+    msgSend(nil, self, "setCategory:", category)
+}
 @(objc_type=AccessibilityCustomAction, objc_name="load", objc_is_class_method=true)
 AccessibilityCustomAction_load :: #force_inline proc "c" () {
     msgSend(nil, AccessibilityCustomAction, "load")
@@ -263,6 +271,8 @@ AccessibilityCustomAction_VTable :: struct {
     setSelector: proc(self: ^AccessibilityCustomAction, selector: SEL),
     actionHandler: proc(self: ^AccessibilityCustomAction) -> AccessibilityCustomActionHandler,
     setActionHandler: proc(self: ^AccessibilityCustomAction, actionHandler: AccessibilityCustomActionHandler),
+    category: proc(self: ^AccessibilityCustomAction) -> ^NS.String,
+    setCategory: proc(self: ^AccessibilityCustomAction, category: ^NS.String),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^AccessibilityCustomAction,
@@ -500,6 +510,26 @@ AccessibilityCustomAction_odin_extend :: proc(cls: Class, vt: ^AccessibilityCust
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setActionHandler:"), auto_cast setActionHandler, "v@:?") do panic("Failed to register objC method.")
+    }
+    if vt.category != nil {
+        category :: proc "c" (self: ^AccessibilityCustomAction, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^AccessibilityCustomAction_VTable)vt_ctx.super_vt).category(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("category"), auto_cast category, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCategory != nil {
+        setCategory :: proc "c" (self: ^AccessibilityCustomAction, _: SEL, category: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^AccessibilityCustomAction_VTable)vt_ctx.super_vt).setCategory(self, category)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCategory:"), auto_cast setCategory, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

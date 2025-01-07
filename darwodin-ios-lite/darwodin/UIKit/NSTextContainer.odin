@@ -17,7 +17,6 @@ import CA "../QuartzCore"
 @(objc_class="NSTextContainer")
 NSTextContainer :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
-    using _: NSTextLayoutOrientationProvider,
 }
 
 NSTextContainer_VTable :: struct {

@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -26,10 +27,6 @@ GraphicsContext_init :: proc "c" (self: ^GraphicsContext) -> ^GraphicsContext {
 @(objc_type=GraphicsContext, objc_name="graphicsContextWithAttributes", objc_is_class_method=true)
 GraphicsContext_graphicsContextWithAttributes :: #force_inline proc "c" (attributes: ^NS.Dictionary) -> ^GraphicsContext {
     return msgSend(^GraphicsContext, GraphicsContext, "graphicsContextWithAttributes:", attributes)
-}
-@(objc_type=GraphicsContext, objc_name="graphicsContextWithWindow", objc_is_class_method=true)
-GraphicsContext_graphicsContextWithWindow :: #force_inline proc "c" (window: ^Window) -> ^GraphicsContext {
-    return msgSend(^GraphicsContext, GraphicsContext, "graphicsContextWithWindow:", window)
 }
 @(objc_type=GraphicsContext, objc_name="graphicsContextWithBitmapImageRep", objc_is_class_method=true)
 GraphicsContext_graphicsContextWithBitmapImageRep :: #force_inline proc "c" (bitmapRep: ^BitmapImageRep) -> ^GraphicsContext {
@@ -146,6 +143,10 @@ GraphicsContext_setFocusStack :: #force_inline proc "c" (self: ^GraphicsContext,
 @(objc_type=GraphicsContext, objc_name="graphicsContextWithGraphicsPort", objc_is_class_method=true)
 GraphicsContext_graphicsContextWithGraphicsPort :: #force_inline proc "c" (graphicsPort: rawptr, initialFlippedState: bool) -> ^GraphicsContext {
     return msgSend(^GraphicsContext, GraphicsContext, "graphicsContextWithGraphicsPort:flipped:", graphicsPort, initialFlippedState)
+}
+@(objc_type=GraphicsContext, objc_name="graphicsContextWithWindow", objc_is_class_method=true)
+GraphicsContext_graphicsContextWithWindow :: #force_inline proc "c" (window: ^Window) -> ^GraphicsContext {
+    return msgSend(^GraphicsContext, GraphicsContext, "graphicsContextWithWindow:", window)
 }
 @(objc_type=GraphicsContext, objc_name="graphicsPort")
 GraphicsContext_graphicsPort :: #force_inline proc "c" (self: ^GraphicsContext) -> rawptr {
@@ -296,7 +297,6 @@ GraphicsContext_cancelPreviousPerformRequestsWithTarget :: proc {
 GraphicsContext_VTable :: struct {
     super: NS.Object_VTable,
     graphicsContextWithAttributes: proc(attributes: ^NS.Dictionary) -> ^GraphicsContext,
-    graphicsContextWithWindow: proc(window: ^Window) -> ^GraphicsContext,
     graphicsContextWithBitmapImageRep: proc(bitmapRep: ^BitmapImageRep) -> ^GraphicsContext,
     graphicsContextWithCGContext: proc(graphicsPort: CG.ContextRef, initialFlippedState: bool) -> ^GraphicsContext,
     currentContextDrawingToScreen: proc() -> bool,
@@ -326,6 +326,7 @@ GraphicsContext_VTable :: struct {
     focusStack: proc(self: ^GraphicsContext) -> id,
     setFocusStack: proc(self: ^GraphicsContext, stack: id),
     graphicsContextWithGraphicsPort: proc(graphicsPort: rawptr, initialFlippedState: bool) -> ^GraphicsContext,
+    graphicsContextWithWindow: proc(window: ^Window) -> ^GraphicsContext,
     graphicsPort: proc(self: ^GraphicsContext) -> rawptr,
     load: proc(),
     initialize: proc(),
@@ -379,16 +380,6 @@ GraphicsContext_odin_extend :: proc(cls: Class, vt: ^GraphicsContext_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("graphicsContextWithAttributes:"), auto_cast graphicsContextWithAttributes, "@#:@") do panic("Failed to register objC method.")
-    }
-    if vt.graphicsContextWithWindow != nil {
-        graphicsContextWithWindow :: proc "c" (self: Class, _: SEL, window: ^Window) -> ^GraphicsContext {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).graphicsContextWithWindow( window)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("graphicsContextWithWindow:"), auto_cast graphicsContextWithWindow, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.graphicsContextWithBitmapImageRep != nil {
         graphicsContextWithBitmapImageRep :: proc "c" (self: Class, _: SEL, bitmapRep: ^BitmapImageRep) -> ^GraphicsContext {
@@ -679,6 +670,16 @@ GraphicsContext_odin_extend :: proc(cls: Class, vt: ^GraphicsContext_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("graphicsContextWithGraphicsPort:flipped:"), auto_cast graphicsContextWithGraphicsPort, "@#:^voidB") do panic("Failed to register objC method.")
+    }
+    if vt.graphicsContextWithWindow != nil {
+        graphicsContextWithWindow :: proc "c" (self: Class, _: SEL, window: ^Window) -> ^GraphicsContext {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^GraphicsContext_VTable)vt_ctx.super_vt).graphicsContextWithWindow( window)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("graphicsContextWithWindow:"), auto_cast graphicsContextWithWindow, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.graphicsPort != nil {
         graphicsPort :: proc "c" (self: ^GraphicsContext, _: SEL) -> rawptr {

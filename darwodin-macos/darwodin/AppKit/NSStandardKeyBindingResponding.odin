@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -399,6 +400,10 @@ StandardKeyBindingResponding_makeTextWritingDirectionRightToLeft :: #force_inlin
 StandardKeyBindingResponding_quickLookPreviewItems :: #force_inline proc "c" (self: ^StandardKeyBindingResponding, sender: id) {
     msgSend(nil, self, "quickLookPreviewItems:", sender)
 }
+@(objc_type=StandardKeyBindingResponding, objc_name="showContextMenuForSelection")
+StandardKeyBindingResponding_showContextMenuForSelection :: #force_inline proc "c" (self: ^StandardKeyBindingResponding, sender: id) {
+    msgSend(nil, self, "showContextMenuForSelection:", sender)
+}
 StandardKeyBindingResponding_VTable :: struct {
     insertText: proc(self: ^StandardKeyBindingResponding, insertString: id),
     doCommandBySelector: proc(self: ^StandardKeyBindingResponding, selector: SEL),
@@ -495,6 +500,7 @@ StandardKeyBindingResponding_VTable :: struct {
     makeTextWritingDirectionLeftToRight: proc(self: ^StandardKeyBindingResponding, sender: id),
     makeTextWritingDirectionRightToLeft: proc(self: ^StandardKeyBindingResponding, sender: id),
     quickLookPreviewItems: proc(self: ^StandardKeyBindingResponding, sender: id),
+    showContextMenuForSelection: proc(self: ^StandardKeyBindingResponding, sender: id),
 }
 
 StandardKeyBindingResponding_odin_extend :: proc(cls: Class, vt: ^StandardKeyBindingResponding_VTable) {
@@ -1450,6 +1456,16 @@ StandardKeyBindingResponding_odin_extend :: proc(cls: Class, vt: ^StandardKeyBin
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("quickLookPreviewItems:"), auto_cast quickLookPreviewItems, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.showContextMenuForSelection != nil {
+        showContextMenuForSelection :: proc "c" (self: ^StandardKeyBindingResponding, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^StandardKeyBindingResponding_VTable)vt_ctx.protocol_vt).showContextMenuForSelection(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showContextMenuForSelection:"), auto_cast showContextMenuForSelection, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

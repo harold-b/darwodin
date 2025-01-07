@@ -31,14 +31,6 @@ NSTextTab_init :: proc "c" (self: ^NSTextTab) -> ^NSTextTab {
 NSTextTab_columnTerminatorsForLocale :: #force_inline proc "c" (aLocale: ^NS.Locale) -> ^NS.CharacterSet {
     return msgSend(^NS.CharacterSet, NSTextTab, "columnTerminatorsForLocale:", aLocale)
 }
-@(objc_type=NSTextTab, objc_name="initWithTextAlignment")
-NSTextTab_initWithTextAlignment :: #force_inline proc "c" (self: ^NSTextTab, alignment: NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^NSTextTab {
-    return msgSend(^NSTextTab, self, "initWithTextAlignment:location:options:", alignment, loc, options)
-}
-@(objc_type=NSTextTab, objc_name="alignment")
-NSTextTab_alignment :: #force_inline proc "c" (self: ^NSTextTab) -> NSTextAlignment {
-    return msgSend(NSTextAlignment, self, "alignment")
-}
 @(objc_type=NSTextTab, objc_name="location")
 NSTextTab_location :: #force_inline proc "c" (self: ^NSTextTab) -> CG.Float {
     return msgSend(CG.Float, self, "location")
@@ -46,6 +38,14 @@ NSTextTab_location :: #force_inline proc "c" (self: ^NSTextTab) -> CG.Float {
 @(objc_type=NSTextTab, objc_name="options")
 NSTextTab_options :: #force_inline proc "c" (self: ^NSTextTab) -> ^NS.Dictionary {
     return msgSend(^NS.Dictionary, self, "options")
+}
+@(objc_type=NSTextTab, objc_name="initWithTextAlignment")
+NSTextTab_initWithTextAlignment :: #force_inline proc "c" (self: ^NSTextTab, alignment: NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^NSTextTab {
+    return msgSend(^NSTextTab, self, "initWithTextAlignment:location:options:", alignment, loc, options)
+}
+@(objc_type=NSTextTab, objc_name="alignment")
+NSTextTab_alignment :: #force_inline proc "c" (self: ^NSTextTab) -> NSTextAlignment {
+    return msgSend(NSTextAlignment, self, "alignment")
 }
 @(objc_type=NSTextTab, objc_name="supportsSecureCoding", objc_is_class_method=true)
 NSTextTab_supportsSecureCoding :: #force_inline proc "c" () -> bool {
@@ -176,10 +176,10 @@ NSTextTab_cancelPreviousPerformRequestsWithTarget :: proc {
 NSTextTab_VTable :: struct {
     super: NS.Object_VTable,
     columnTerminatorsForLocale: proc(aLocale: ^NS.Locale) -> ^NS.CharacterSet,
-    initWithTextAlignment: proc(self: ^NSTextTab, alignment: NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^NSTextTab,
-    alignment: proc(self: ^NSTextTab) -> NSTextAlignment,
     location: proc(self: ^NSTextTab) -> CG.Float,
     options: proc(self: ^NSTextTab) -> ^NS.Dictionary,
+    initWithTextAlignment: proc(self: ^NSTextTab, alignment: NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^NSTextTab,
+    alignment: proc(self: ^NSTextTab) -> NSTextAlignment,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -229,26 +229,6 @@ NSTextTab_odin_extend :: proc(cls: Class, vt: ^NSTextTab_VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("columnTerminatorsForLocale:"), auto_cast columnTerminatorsForLocale, "@#:@") do panic("Failed to register objC method.")
     }
-    if vt.initWithTextAlignment != nil {
-        initWithTextAlignment :: proc "c" (self: ^NSTextTab, _: SEL, alignment: NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^NSTextTab {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^NSTextTab_VTable)vt_ctx.super_vt).initWithTextAlignment(self, alignment, loc, options)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTextAlignment:location:options:"), auto_cast initWithTextAlignment, "@@:ld@") do panic("Failed to register objC method.")
-    }
-    if vt.alignment != nil {
-        alignment :: proc "c" (self: ^NSTextTab, _: SEL) -> NSTextAlignment {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^NSTextTab_VTable)vt_ctx.super_vt).alignment(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
-    }
     if vt.location != nil {
         location :: proc "c" (self: ^NSTextTab, _: SEL) -> CG.Float {
 
@@ -268,6 +248,26 @@ NSTextTab_odin_extend :: proc(cls: Class, vt: ^NSTextTab_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("options"), auto_cast options, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.initWithTextAlignment != nil {
+        initWithTextAlignment :: proc "c" (self: ^NSTextTab, _: SEL, alignment: NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^NSTextTab {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSTextTab_VTable)vt_ctx.super_vt).initWithTextAlignment(self, alignment, loc, options)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTextAlignment:location:options:"), auto_cast initWithTextAlignment, "@@:ld@") do panic("Failed to register objC method.")
+    }
+    if vt.alignment != nil {
+        alignment :: proc "c" (self: ^NSTextTab, _: SEL) -> NSTextAlignment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSTextTab_VTable)vt_ctx.super_vt).alignment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {

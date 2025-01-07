@@ -76,6 +76,18 @@ TextViewDelegate_textView_textItemMenuWillDisplayForTextItem_animator :: #force_
 TextViewDelegate_textView_textItemMenuWillEndForTextItem_animator :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, textItem: ^TextItem, animator: ^ContextMenuInteractionAnimating) {
     msgSend(nil, self, "textView:textItemMenuWillEndForTextItem:animator:", textView, textItem, animator)
 }
+@(objc_type=TextViewDelegate, objc_name="textViewWritingToolsWillBegin")
+TextViewDelegate_textViewWritingToolsWillBegin :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView) {
+    msgSend(nil, self, "textViewWritingToolsWillBegin:", textView)
+}
+@(objc_type=TextViewDelegate, objc_name="textViewWritingToolsDidEnd")
+TextViewDelegate_textViewWritingToolsDidEnd :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView) {
+    msgSend(nil, self, "textViewWritingToolsDidEnd:", textView)
+}
+@(objc_type=TextViewDelegate, objc_name="textView_writingToolsIgnoredRangesInEnclosingRange")
+TextViewDelegate_textView_writingToolsIgnoredRangesInEnclosingRange :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, enclosingRange: NS._NSRange) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "textView:writingToolsIgnoredRangesInEnclosingRange:", textView, enclosingRange)
+}
 @(objc_type=TextViewDelegate, objc_name="textView_shouldInteractWithURL_inRange_interaction")
 TextViewDelegate_textView_shouldInteractWithURL_inRange_interaction :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, _URL: ^NS.URL, characterRange: NS._NSRange, interaction: TextItemInteraction) -> bool {
     return msgSend(bool, self, "textView:shouldInteractWithURL:inRange:interaction:", textView, _URL, characterRange, interaction)
@@ -92,6 +104,22 @@ TextViewDelegate_textView_shouldInteractWithURL_inRange :: #force_inline proc "c
 TextViewDelegate_textView_shouldInteractWithTextAttachment_inRange :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, textAttachment: ^NSTextAttachment, characterRange: NS._NSRange) -> bool {
     return msgSend(bool, self, "textView:shouldInteractWithTextAttachment:inRange:", textView, textAttachment, characterRange)
 }
+@(objc_type=TextViewDelegate, objc_name="textView_willBeginFormattingWithViewController")
+TextViewDelegate_textView_willBeginFormattingWithViewController :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController) {
+    msgSend(nil, self, "textView:willBeginFormattingWithViewController:", textView, viewController)
+}
+@(objc_type=TextViewDelegate, objc_name="textView_didBeginFormattingWithViewController")
+TextViewDelegate_textView_didBeginFormattingWithViewController :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController) {
+    msgSend(nil, self, "textView:didBeginFormattingWithViewController:", textView, viewController)
+}
+@(objc_type=TextViewDelegate, objc_name="textView_willEndFormattingWithViewController")
+TextViewDelegate_textView_willEndFormattingWithViewController :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController) {
+    msgSend(nil, self, "textView:willEndFormattingWithViewController:", textView, viewController)
+}
+@(objc_type=TextViewDelegate, objc_name="textView_didEndFormattingWithViewController")
+TextViewDelegate_textView_didEndFormattingWithViewController :: #force_inline proc "c" (self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController) {
+    msgSend(nil, self, "textView:didEndFormattingWithViewController:", textView, viewController)
+}
 TextViewDelegate_VTable :: struct {
     textViewShouldBeginEditing: proc(self: ^TextViewDelegate, textView: ^TextView) -> bool,
     textViewShouldEndEditing: proc(self: ^TextViewDelegate, textView: ^TextView) -> bool,
@@ -107,10 +135,17 @@ TextViewDelegate_VTable :: struct {
     textView_menuConfigurationForTextItem_defaultMenu: proc(self: ^TextViewDelegate, textView: ^TextView, textItem: ^TextItem, defaultMenu: ^Menu) -> ^TextItemMenuConfiguration,
     textView_textItemMenuWillDisplayForTextItem_animator: proc(self: ^TextViewDelegate, textView: ^TextView, textItem: ^TextItem, animator: ^ContextMenuInteractionAnimating),
     textView_textItemMenuWillEndForTextItem_animator: proc(self: ^TextViewDelegate, textView: ^TextView, textItem: ^TextItem, animator: ^ContextMenuInteractionAnimating),
+    textViewWritingToolsWillBegin: proc(self: ^TextViewDelegate, textView: ^TextView),
+    textViewWritingToolsDidEnd: proc(self: ^TextViewDelegate, textView: ^TextView),
+    textView_writingToolsIgnoredRangesInEnclosingRange: proc(self: ^TextViewDelegate, textView: ^TextView, enclosingRange: NS._NSRange) -> ^NS.Array,
     textView_shouldInteractWithURL_inRange_interaction: proc(self: ^TextViewDelegate, textView: ^TextView, _URL: ^NS.URL, characterRange: NS._NSRange, interaction: TextItemInteraction) -> bool,
     textView_shouldInteractWithTextAttachment_inRange_interaction: proc(self: ^TextViewDelegate, textView: ^TextView, textAttachment: ^NSTextAttachment, characterRange: NS._NSRange, interaction: TextItemInteraction) -> bool,
     textView_shouldInteractWithURL_inRange: proc(self: ^TextViewDelegate, textView: ^TextView, _URL: ^NS.URL, characterRange: NS._NSRange) -> bool,
     textView_shouldInteractWithTextAttachment_inRange: proc(self: ^TextViewDelegate, textView: ^TextView, textAttachment: ^NSTextAttachment, characterRange: NS._NSRange) -> bool,
+    textView_willBeginFormattingWithViewController: proc(self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController),
+    textView_didBeginFormattingWithViewController: proc(self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController),
+    textView_willEndFormattingWithViewController: proc(self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController),
+    textView_didEndFormattingWithViewController: proc(self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController),
 }
 
 TextViewDelegate_odin_extend :: proc(cls: Class, vt: ^TextViewDelegate_VTable) {
@@ -257,6 +292,36 @@ TextViewDelegate_odin_extend :: proc(cls: Class, vt: ^TextViewDelegate_VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textView:textItemMenuWillEndForTextItem:animator:"), auto_cast textView_textItemMenuWillEndForTextItem_animator, "v@:@@@") do panic("Failed to register objC method.")
     }
+    if vt.textViewWritingToolsWillBegin != nil {
+        textViewWritingToolsWillBegin :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textViewWritingToolsWillBegin(self, textView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewWritingToolsWillBegin:"), auto_cast textViewWritingToolsWillBegin, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textViewWritingToolsDidEnd != nil {
+        textViewWritingToolsDidEnd :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textViewWritingToolsDidEnd(self, textView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewWritingToolsDidEnd:"), auto_cast textViewWritingToolsDidEnd, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textView_writingToolsIgnoredRangesInEnclosingRange != nil {
+        textView_writingToolsIgnoredRangesInEnclosingRange :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView, enclosingRange: NS._NSRange) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textView_writingToolsIgnoredRangesInEnclosingRange(self, textView, enclosingRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:writingToolsIgnoredRangesInEnclosingRange:"), auto_cast textView_writingToolsIgnoredRangesInEnclosingRange, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
     if vt.textView_shouldInteractWithURL_inRange_interaction != nil {
         textView_shouldInteractWithURL_inRange_interaction :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView, _URL: ^NS.URL, characterRange: NS._NSRange, interaction: TextItemInteraction) -> bool {
 
@@ -296,6 +361,46 @@ TextViewDelegate_odin_extend :: proc(cls: Class, vt: ^TextViewDelegate_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldInteractWithTextAttachment:inRange:"), auto_cast textView_shouldInteractWithTextAttachment_inRange, "B@:@@{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.textView_willBeginFormattingWithViewController != nil {
+        textView_willBeginFormattingWithViewController :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView, viewController: ^TextFormattingViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textView_willBeginFormattingWithViewController(self, textView, viewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:willBeginFormattingWithViewController:"), auto_cast textView_willBeginFormattingWithViewController, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.textView_didBeginFormattingWithViewController != nil {
+        textView_didBeginFormattingWithViewController :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView, viewController: ^TextFormattingViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textView_didBeginFormattingWithViewController(self, textView, viewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:didBeginFormattingWithViewController:"), auto_cast textView_didBeginFormattingWithViewController, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.textView_willEndFormattingWithViewController != nil {
+        textView_willEndFormattingWithViewController :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView, viewController: ^TextFormattingViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textView_willEndFormattingWithViewController(self, textView, viewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:willEndFormattingWithViewController:"), auto_cast textView_willEndFormattingWithViewController, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.textView_didEndFormattingWithViewController != nil {
+        textView_didEndFormattingWithViewController :: proc "c" (self: ^TextViewDelegate, _: SEL, textView: ^TextView, viewController: ^TextFormattingViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextViewDelegate_VTable)vt_ctx.protocol_vt).textView_didEndFormattingWithViewController(self, textView, viewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:didEndFormattingWithViewController:"), auto_cast textView_didEndFormattingWithViewController, "v@:@@") do panic("Failed to register objC method.")
     }
 }
 

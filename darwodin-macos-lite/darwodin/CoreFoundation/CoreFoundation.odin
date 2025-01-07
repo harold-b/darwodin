@@ -5,8 +5,6 @@ import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -237,6 +235,7 @@ foreign lib {
     @(link_name="kCFNumberFormatterUseSignificantDigits") NumberFormatterUseSignificantDigits: NumberFormatterKey
     @(link_name="kCFNumberFormatterMinSignificantDigits") NumberFormatterMinSignificantDigits: NumberFormatterKey
     @(link_name="kCFNumberFormatterMaxSignificantDigits") NumberFormatterMaxSignificantDigits: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMinGroupingDigits") NumberFormatterMinGroupingDigits: NumberFormatterKey
     @(link_name="kCFPreferencesAnyApplication") PreferencesAnyApplication: StringRef
     @(link_name="kCFPreferencesCurrentApplication") PreferencesCurrentApplication: StringRef
     @(link_name="kCFPreferencesAnyHost") PreferencesAnyHost: StringRef
@@ -465,6 +464,18 @@ foreign lib {
 
     @(link_name="CFAllocatorCreate")
     AllocatorCreate :: proc(allocator: AllocatorRef, _context: ^AllocatorContext) -> AllocatorRef ---
+
+    @(link_name="CFAllocatorAllocateTyped")
+    AllocatorAllocateTyped :: proc(allocator: AllocatorRef, size: Index, descriptor: AllocatorTypeID, hint: OptionFlags) -> rawptr ---
+
+    @(link_name="CFAllocatorReallocateTyped")
+    AllocatorReallocateTyped :: proc(allocator: AllocatorRef, ptr: rawptr, newsize: Index, descriptor: AllocatorTypeID, hint: OptionFlags) -> rawptr ---
+
+    @(link_name="CFAllocatorAllocateBytes")
+    AllocatorAllocateBytes :: proc(allocator: AllocatorRef, size: Index, hint: OptionFlags) -> rawptr ---
+
+    @(link_name="CFAllocatorReallocateBytes")
+    AllocatorReallocateBytes :: proc(allocator: AllocatorRef, ptr: rawptr, newsize: Index, hint: OptionFlags) -> rawptr ---
 
     @(link_name="CFAllocatorAllocate")
     AllocatorAllocate :: proc(allocator: AllocatorRef, size: Index, hint: OptionFlags) -> rawptr ---
@@ -1285,8 +1296,8 @@ foreign lib {
     @(link_name="CFStringTransform")
     StringTransform :: proc(string: MutableStringRef, range: ^Range, transform: StringRef, reverse: Boolean) -> Boolean ---
 
-    // @(link_name="CFStringIsEncodingAvailable")
-    // StringIsEncodingAvailable :: proc(encoding: StringEncoding) -> Boolean ---
+    @(link_name="CFStringIsEncodingAvailable")
+    StringIsEncodingAvailable :: proc(encoding: StringEncoding) -> Boolean ---
 
     @(link_name="CFStringGetListOfAvailableEncodings")
     StringGetListOfAvailableEncodings :: proc() -> ^StringEncoding ---
@@ -2762,13 +2773,13 @@ foreign lib {
     BundleGetFunctionPointerForName :: proc(bundle: BundleRef, functionName: StringRef) -> rawptr ---
 
     @(link_name="CFBundleGetFunctionPointersForNames")
-    BundleGetFunctionPointersForNames :: proc(bundle: BundleRef, functionNames: ArrayRef, ftbl: ^rawptr) ---
+    BundleGetFunctionPointersForNames :: proc(bundle: BundleRef, functionNames: ArrayRef, ftbl: [^]rawptr) ---
 
     @(link_name="CFBundleGetDataPointerForName")
     BundleGetDataPointerForName :: proc(bundle: BundleRef, symbolName: StringRef) -> rawptr ---
 
     @(link_name="CFBundleGetDataPointersForNames")
-    BundleGetDataPointersForNames :: proc(bundle: BundleRef, symbolNames: ArrayRef, stbl: ^rawptr) ---
+    BundleGetDataPointersForNames :: proc(bundle: BundleRef, symbolNames: ArrayRef, stbl: [^]rawptr) ---
 
     @(link_name="CFBundleCopyAuxiliaryExecutableURL")
     BundleCopyAuxiliaryExecutableURL :: proc(bundle: BundleRef, executableName: StringRef) -> URLRef ---
@@ -2985,6 +2996,9 @@ foreign lib {
 
     @(link_name="CFAttributedStringEndEditing")
     AttributedStringEndEditing :: proc(aStr: MutableAttributedStringRef) ---
+
+    @(link_name="CFAttributedStringGetBidiLevelsAndResolvedDirections")
+    AttributedStringGetBidiLevelsAndResolvedDirections :: proc(attributedString: AttributedStringRef, range: Range, baseDirection: cffi.int8_t, bidiLevels: ^cffi.uint8_t, baseDirections: ^cffi.uint8_t) -> cffi.bool ---
 
     @(link_name="CFURLEnumeratorGetTypeID")
     URLEnumeratorGetTypeID :: proc() -> TypeID ---
@@ -3265,7 +3279,13 @@ __darwin_ssize_t :: distinct cffi.long
 /// __darwin_time_t
 __darwin_time_t :: distinct cffi.long
 
+/// u_int8_t
+
+/// u_int16_t
+
 /// u_int32_t
+
+/// u_int64_t
 
 /// __darwin_blkcnt_t
 __darwin_blkcnt_t :: distinct cffi.int64_t
@@ -3561,6 +3581,9 @@ SignedByte :: distinct SInt8
 
 /// UnsignedWidePtr
 UnsignedWidePtr :: distinct ^UnsignedWide
+
+/// CFAllocatorTypeID
+AllocatorTypeID :: distinct cffi.ulonglong
 
 /// CFTypeID
 TypeID :: distinct cffi.ulong
@@ -4324,6 +4347,7 @@ CalendarUnit :: enum cffi.ulong {
     WeekOfMonth = 4096,
     WeekOfYear = 8192,
     YearForWeekOfYear = 16384,
+    DayOfYear = 65536,
 }
 
 /// CFDateFormatterStyle
@@ -4786,194 +4810,228 @@ XMLParserStatusCode :: enum cffi.long {
 
 /// __darwin_pthread_handler_rec
 __darwin_pthread_handler_rec :: struct #align (8) {
-    __routine : proc "c" (_arg_0: rawptr),
-    __arg : rawptr,
-    __next : ^__darwin_pthread_handler_rec,
+    __routine: proc "c" (_arg_0: rawptr),
+    __arg: rawptr,
+    __next: ^__darwin_pthread_handler_rec,
 }
+#assert(size_of(__darwin_pthread_handler_rec) == 24)
 
 /// _opaque_pthread_attr_t
 _opaque_pthread_attr_t :: struct #align (8) {
-    __sig : cffi.long,
-    __opaque : [56]cffi.char,
+    __sig: cffi.long,
+    __opaque: [56]cffi.char,
 }
+#assert(size_of(_opaque_pthread_attr_t) == 64)
 
 /// _opaque_pthread_cond_t
 _opaque_pthread_cond_t :: struct #align (8) {
-    __sig : cffi.long,
-    __opaque : [40]cffi.char,
+    __sig: cffi.long,
+    __opaque: [40]cffi.char,
 }
+#assert(size_of(_opaque_pthread_cond_t) == 48)
 
 /// _opaque_pthread_condattr_t
 _opaque_pthread_condattr_t :: struct #align (8) {
-    __sig : cffi.long,
-    __opaque : [8]cffi.char,
+    __sig: cffi.long,
+    __opaque: [8]cffi.char,
 }
+#assert(size_of(_opaque_pthread_condattr_t) == 16)
 
 /// _opaque_pthread_mutex_t
 _opaque_pthread_mutex_t :: struct #align (8) {
-    __sig : cffi.long,
-    __opaque : [56]cffi.char,
+    __sig: cffi.long,
+    __opaque: [56]cffi.char,
 }
+#assert(size_of(_opaque_pthread_mutex_t) == 64)
 
 /// _opaque_pthread_mutexattr_t
 _opaque_pthread_mutexattr_t :: struct #align (8) {
-    __sig : cffi.long,
-    __opaque : [8]cffi.char,
+    __sig: cffi.long,
+    __opaque: [8]cffi.char,
 }
+#assert(size_of(_opaque_pthread_mutexattr_t) == 16)
 
 /// _opaque_pthread_once_t
 _opaque_pthread_once_t :: struct #align (8) {
-    __sig : cffi.long,
-    __opaque : [8]cffi.char,
+    __sig: cffi.long,
+    __opaque: [8]cffi.char,
 }
+#assert(size_of(_opaque_pthread_once_t) == 16)
 
 /// _opaque_pthread_rwlock_t
 _opaque_pthread_rwlock_t :: struct #align (8) {
-    __sig : cffi.long,
-    __opaque : [192]cffi.char,
+    __sig: cffi.long,
+    __opaque: [192]cffi.char,
 }
+#assert(size_of(_opaque_pthread_rwlock_t) == 200)
 
 /// _opaque_pthread_rwlockattr_t
 _opaque_pthread_rwlockattr_t :: struct #align (8) {
-    __sig : cffi.long,
-    __opaque : [16]cffi.char,
+    __sig: cffi.long,
+    __opaque: [16]cffi.char,
 }
+#assert(size_of(_opaque_pthread_rwlockattr_t) == 24)
 
 /// _opaque_pthread_t
 _opaque_pthread_t :: struct #align (8) {
-    __sig : cffi.long,
-    __cleanup_stack : ^__darwin_pthread_handler_rec,
-    __opaque : [8176]cffi.char,
+    __sig: cffi.long,
+    __cleanup_stack: ^__darwin_pthread_handler_rec,
+    __opaque: [8176]cffi.char,
 }
+#assert(size_of(_opaque_pthread_t) == 8192)
 
 /// __darwin_arm_exception_state
 __darwin_arm_exception_state :: struct #align (4) {
-    __exception : cffi.uint32_t,
-    __fsr : cffi.uint32_t,
-    __far : cffi.uint32_t,
+    __exception: cffi.uint32_t,
+    __fsr: cffi.uint32_t,
+    __far: cffi.uint32_t,
 }
+#assert(size_of(__darwin_arm_exception_state) == 12)
 
 /// __darwin_arm_exception_state64
 __darwin_arm_exception_state64 :: struct #align (8) {
-    __far : cffi.uint64_t,
-    __esr : cffi.uint32_t,
-    __exception : cffi.uint32_t,
+    __far: cffi.uint64_t,
+    __esr: cffi.uint32_t,
+    __exception: cffi.uint32_t,
 }
+#assert(size_of(__darwin_arm_exception_state64) == 16)
+
+/// __darwin_arm_exception_state64_v2
+__darwin_arm_exception_state64_v2 :: struct #align (8) {
+    __far: cffi.uint64_t,
+    __esr: cffi.uint64_t,
+}
+#assert(size_of(__darwin_arm_exception_state64_v2) == 16)
 
 /// __darwin_arm_thread_state
 __darwin_arm_thread_state :: struct #align (4) {
-    __r : [13]cffi.uint32_t,
-    __sp : cffi.uint32_t,
-    __lr : cffi.uint32_t,
-    __pc : cffi.uint32_t,
-    __cpsr : cffi.uint32_t,
+    __r: [13]cffi.uint32_t,
+    __sp: cffi.uint32_t,
+    __lr: cffi.uint32_t,
+    __pc: cffi.uint32_t,
+    __cpsr: cffi.uint32_t,
 }
+#assert(size_of(__darwin_arm_thread_state) == 68)
 
 /// __darwin_arm_thread_state64
 __darwin_arm_thread_state64 :: struct #align (8) {
-    __x : [29]cffi.uint64_t,
-    __fp : cffi.uint64_t,
-    __lr : cffi.uint64_t,
-    __sp : cffi.uint64_t,
-    __pc : cffi.uint64_t,
-    __cpsr : cffi.uint32_t,
-    __pad : cffi.uint32_t,
+    __x: [29]cffi.uint64_t,
+    __fp: cffi.uint64_t,
+    __lr: cffi.uint64_t,
+    __sp: cffi.uint64_t,
+    __pc: cffi.uint64_t,
+    __cpsr: cffi.uint32_t,
+    __pad: cffi.uint32_t,
 }
+#assert(size_of(__darwin_arm_thread_state64) == 272)
 
 /// __darwin_arm_vfp_state
 __darwin_arm_vfp_state :: struct #align (4) {
-    __r : [64]cffi.uint32_t,
-    __fpscr : cffi.uint32_t,
+    __r: [64]cffi.uint32_t,
+    __fpscr: cffi.uint32_t,
 }
+#assert(size_of(__darwin_arm_vfp_state) == 260)
 
 /// __darwin_arm_neon_state64
 __darwin_arm_neon_state64 :: struct #align (16) {
-    __v : [32]u128,
-    __fpsr : cffi.uint32_t,
-    __fpcr : cffi.uint32_t,
+    __v: [32]u128,
+    __fpsr: cffi.uint32_t,
+    __fpcr: cffi.uint32_t,
 }
+#assert(size_of(__darwin_arm_neon_state64) == 528)
 
 /// __darwin_arm_neon_state
 __darwin_arm_neon_state :: struct #align (16) {
-    __v : [16]u128,
-    __fpsr : cffi.uint32_t,
-    __fpcr : cffi.uint32_t,
+    __v: [16]u128,
+    __fpsr: cffi.uint32_t,
+    __fpcr: cffi.uint32_t,
 }
+#assert(size_of(__darwin_arm_neon_state) == 272)
 
 /// __darwin_arm_debug_state32
 __darwin_arm_debug_state32 :: struct #align (8) {
-    __bvr : [16]cffi.uint32_t,
-    __bcr : [16]cffi.uint32_t,
-    __wvr : [16]cffi.uint32_t,
-    __wcr : [16]cffi.uint32_t,
-    __mdscr_el1 : cffi.uint64_t,
+    __bvr: [16]cffi.uint32_t,
+    __bcr: [16]cffi.uint32_t,
+    __wvr: [16]cffi.uint32_t,
+    __wcr: [16]cffi.uint32_t,
+    __mdscr_el1: cffi.uint64_t,
 }
+#assert(size_of(__darwin_arm_debug_state32) == 264)
 
 /// __darwin_arm_debug_state64
 __darwin_arm_debug_state64 :: struct #align (8) {
-    __bvr : [16]cffi.uint64_t,
-    __bcr : [16]cffi.uint64_t,
-    __wvr : [16]cffi.uint64_t,
-    __wcr : [16]cffi.uint64_t,
-    __mdscr_el1 : cffi.uint64_t,
+    __bvr: [16]cffi.uint64_t,
+    __bcr: [16]cffi.uint64_t,
+    __wvr: [16]cffi.uint64_t,
+    __wcr: [16]cffi.uint64_t,
+    __mdscr_el1: cffi.uint64_t,
 }
+#assert(size_of(__darwin_arm_debug_state64) == 520)
 
 /// __darwin_arm_cpmu_state64
 __darwin_arm_cpmu_state64 :: struct #align (8) {
-    __ctrs : [16]cffi.uint64_t,
+    __ctrs: [16]cffi.uint64_t,
 }
+#assert(size_of(__darwin_arm_cpmu_state64) == 128)
 
 /// __darwin_mcontext32
 __darwin_mcontext32 :: struct #align (4) {
-    __es : __darwin_arm_exception_state,
-    __ss : __darwin_arm_thread_state,
-    __fs : __darwin_arm_vfp_state,
+    __es: __darwin_arm_exception_state,
+    __ss: __darwin_arm_thread_state,
+    __fs: __darwin_arm_vfp_state,
 }
+#assert(size_of(__darwin_mcontext32) == 340)
 
 /// __darwin_mcontext64
 __darwin_mcontext64 :: struct #align (16) {
-    __es : __darwin_arm_exception_state64,
-    __ss : __darwin_arm_thread_state64,
-    __ns : __darwin_arm_neon_state64,
+    __es: __darwin_arm_exception_state64,
+    __ss: __darwin_arm_thread_state64,
+    __ns: __darwin_arm_neon_state64,
 }
+#assert(size_of(__darwin_mcontext64) == 816)
 
 /// __darwin_sigaltstack
 __darwin_sigaltstack :: struct #align (8) {
-    ss_sp : rawptr,
-    ss_size : __darwin_size_t,
-    ss_flags : cffi.int,
+    ss_sp: rawptr,
+    ss_size: __darwin_size_t,
+    ss_flags: cffi.int,
 }
+#assert(size_of(__darwin_sigaltstack) == 24)
 
 /// __darwin_ucontext
 __darwin_ucontext :: struct #align (8) {
-    uc_onstack : cffi.int,
-    uc_sigmask : __darwin_sigset_t,
-    uc_stack : __darwin_sigaltstack,
-    uc_link : ^__darwin_ucontext,
-    uc_mcsize : __darwin_size_t,
-    uc_mcontext : ^__darwin_mcontext64,
+    uc_onstack: cffi.int,
+    uc_sigmask: __darwin_sigset_t,
+    uc_stack: __darwin_sigaltstack,
+    uc_link: ^__darwin_ucontext,
+    uc_mcsize: __darwin_size_t,
+    uc_mcontext: ^__darwin_mcontext64,
 }
+#assert(size_of(__darwin_ucontext) == 56)
 
 /// timespec
 timespec :: struct #align (8) {
-    tv_sec : __darwin_time_t,
-    tv_nsec : cffi.long,
+    tv_sec: __darwin_time_t,
+    tv_nsec: cffi.long,
 }
+#assert(size_of(timespec) == 16)
 
 /// UnsignedWide
 UnsignedWide :: struct #align (2) {
-    lo : UInt32,
-    hi : UInt32,
+    lo: UInt32,
+    hi: UInt32,
 }
+#assert(size_of(UnsignedWide) == 8)
 
 /// __CFString
 __CFString :: struct {}
 
 /// CFRange
 Range :: struct #align (8) {
-    location : Index,
-    length : Index,
+    location: Index,
+    length: Index,
 }
+#assert(size_of(Range) == 16)
 
 /// __CFNull
 __CFNull :: struct {}
@@ -4983,59 +5041,64 @@ __CFAllocator :: struct {}
 
 /// CFAllocatorContext
 AllocatorContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : AllocatorRetainCallBack,
-    release : AllocatorReleaseCallBack,
-    copyDescription : AllocatorCopyDescriptionCallBack,
-    allocate : AllocatorAllocateCallBack,
-    reallocate : AllocatorReallocateCallBack,
-    deallocate : AllocatorDeallocateCallBack,
-    preferredSize : AllocatorPreferredSizeCallBack,
+    version: Index,
+    info: rawptr,
+    retain: AllocatorRetainCallBack,
+    release: AllocatorReleaseCallBack,
+    copyDescription: AllocatorCopyDescriptionCallBack,
+    allocate: AllocatorAllocateCallBack,
+    reallocate: AllocatorReallocateCallBack,
+    deallocate: AllocatorDeallocateCallBack,
+    preferredSize: AllocatorPreferredSizeCallBack,
 }
+#assert(size_of(AllocatorContext) == 72)
 
 /// CFArrayCallBacks
 ArrayCallBacks :: struct #align (8) {
-    version : Index,
-    retain : ArrayRetainCallBack,
-    release : ArrayReleaseCallBack,
-    copyDescription : ArrayCopyDescriptionCallBack,
-    equal : ArrayEqualCallBack,
+    version: Index,
+    retain: ArrayRetainCallBack,
+    release: ArrayReleaseCallBack,
+    copyDescription: ArrayCopyDescriptionCallBack,
+    equal: ArrayEqualCallBack,
 }
+#assert(size_of(ArrayCallBacks) == 40)
 
 /// __CFArray
 __CFArray :: struct {}
 
 /// CFBagCallBacks
 BagCallBacks :: struct #align (8) {
-    version : Index,
-    retain : BagRetainCallBack,
-    release : BagReleaseCallBack,
-    copyDescription : BagCopyDescriptionCallBack,
-    equal : BagEqualCallBack,
-    hash : BagHashCallBack,
+    version: Index,
+    retain: BagRetainCallBack,
+    release: BagReleaseCallBack,
+    copyDescription: BagCopyDescriptionCallBack,
+    equal: BagEqualCallBack,
+    hash: BagHashCallBack,
 }
+#assert(size_of(BagCallBacks) == 48)
 
 /// __CFBag
 __CFBag :: struct {}
 
 /// CFBinaryHeapCompareContext
 BinaryHeapCompareContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
+#assert(size_of(BinaryHeapCompareContext) == 40)
 
 /// CFBinaryHeapCallBacks
 BinaryHeapCallBacks :: struct #align (8) {
-    version : Index,
-    retain : proc "c" (allocator: AllocatorRef, ptr: rawptr) -> rawptr,
-    release : proc "c" (allocator: AllocatorRef, ptr: rawptr),
-    copyDescription : proc "c" (ptr: rawptr) -> StringRef,
-    compare : proc "c" (ptr1: rawptr, ptr2: rawptr, _context: rawptr) -> ComparisonResult,
+    version: Index,
+    retain: proc "c" (allocator: AllocatorRef, ptr: rawptr) -> rawptr,
+    release: proc "c" (allocator: AllocatorRef, ptr: rawptr),
+    copyDescription: proc "c" (ptr: rawptr) -> StringRef,
+    compare: proc "c" (ptr1: rawptr, ptr2: rawptr, _context: rawptr) -> ComparisonResult,
 }
+#assert(size_of(BinaryHeapCallBacks) == 40)
 
 /// __CFBinaryHeap
 __CFBinaryHeap :: struct {}
@@ -5045,32 +5108,36 @@ __CFBitVector :: struct {}
 
 /// CFSwappedFloat32
 SwappedFloat32 :: struct #align (4) {
-    v : cffi.uint32_t,
+    v: cffi.uint32_t,
 }
+#assert(size_of(SwappedFloat32) == 4)
 
 /// CFSwappedFloat64
 SwappedFloat64 :: struct #align (8) {
-    v : cffi.uint64_t,
+    v: cffi.uint64_t,
 }
+#assert(size_of(SwappedFloat64) == 8)
 
 /// CFDictionaryKeyCallBacks
 DictionaryKeyCallBacks :: struct #align (8) {
-    version : Index,
-    retain : DictionaryRetainCallBack,
-    release : DictionaryReleaseCallBack,
-    copyDescription : DictionaryCopyDescriptionCallBack,
-    equal : DictionaryEqualCallBack,
-    hash : DictionaryHashCallBack,
+    version: Index,
+    retain: DictionaryRetainCallBack,
+    release: DictionaryReleaseCallBack,
+    copyDescription: DictionaryCopyDescriptionCallBack,
+    equal: DictionaryEqualCallBack,
+    hash: DictionaryHashCallBack,
 }
+#assert(size_of(DictionaryKeyCallBacks) == 48)
 
 /// CFDictionaryValueCallBacks
 DictionaryValueCallBacks :: struct #align (8) {
-    version : Index,
-    retain : DictionaryRetainCallBack,
-    release : DictionaryReleaseCallBack,
-    copyDescription : DictionaryCopyDescriptionCallBack,
-    equal : DictionaryEqualCallBack,
+    version: Index,
+    retain: DictionaryRetainCallBack,
+    release: DictionaryReleaseCallBack,
+    copyDescription: DictionaryCopyDescriptionCallBack,
+    equal: DictionaryEqualCallBack,
 }
+#assert(size_of(DictionaryValueCallBacks) == 40)
 
 /// __CFDictionary
 __CFDictionary :: struct {}
@@ -5089,23 +5156,25 @@ __CFTimeZone :: struct {}
 
 /// CFGregorianDate
 GregorianDate :: struct #align (8) {
-    year : SInt32,
-    month : SInt8,
-    day : SInt8,
-    hour : SInt8,
-    minute : SInt8,
-    second : cffi.double,
+    year: SInt32,
+    month: SInt8,
+    day: SInt8,
+    hour: SInt8,
+    minute: SInt8,
+    second: cffi.double,
 }
+#assert(size_of(GregorianDate) == 16)
 
 /// CFGregorianUnits
 GregorianUnits :: struct #align (8) {
-    years : SInt32,
-    months : SInt32,
-    days : SInt32,
-    hours : SInt32,
-    minutes : SInt32,
-    seconds : cffi.double,
+    years: SInt32,
+    months: SInt32,
+    days: SInt32,
+    hours: SInt32,
+    minutes: SInt32,
+    seconds: cffi.double,
 }
+#assert(size_of(GregorianUnits) == 32)
 
 /// __CFData
 __CFData :: struct {}
@@ -5118,14 +5187,15 @@ __CFError :: struct {}
 
 /// CFStringInlineBuffer
 StringInlineBuffer :: struct #align (8) {
-    buffer : [64]UniChar,
-    theString : StringRef,
-    directUniCharBuffer : ^UniChar,
-    directCStringBuffer : cstring,
-    rangeToBuffer : Range,
-    bufferedRangeStart : Index,
-    bufferedRangeEnd : Index,
+    buffer: [64]UniChar,
+    theString: StringRef,
+    directUniCharBuffer: ^UniChar,
+    directCStringBuffer: cstring,
+    rangeToBuffer: Range,
+    bufferedRangeStart: Index,
+    bufferedRangeEnd: Index,
 }
+#assert(size_of(StringInlineBuffer) == 184)
 
 /// __CFCalendar
 __CFCalendar :: struct {}
@@ -5159,86 +5229,95 @@ __CFRunLoopTimer :: struct {}
 
 /// CFRunLoopSourceContext
 RunLoopSourceContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
-    equal : proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
-    hash : proc "c" (info: rawptr) -> HashCode,
-    schedule : proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
-    cancel : proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
-    perform : proc "c" (info: rawptr),
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    equal: proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
+    hash: proc "c" (info: rawptr) -> HashCode,
+    schedule: proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
+    cancel: proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
+    perform: proc "c" (info: rawptr),
 }
+#assert(size_of(RunLoopSourceContext) == 80)
 
 /// CFRunLoopSourceContext1
 RunLoopSourceContext1 :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
-    equal : proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
-    hash : proc "c" (info: rawptr) -> HashCode,
-    getPort : proc "c" (info: rawptr) -> mach_port_t,
-    perform : proc "c" (msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr) -> rawptr,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    equal: proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
+    hash: proc "c" (info: rawptr) -> HashCode,
+    getPort: proc "c" (info: rawptr) -> mach_port_t,
+    perform: proc "c" (msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr) -> rawptr,
 }
+#assert(size_of(RunLoopSourceContext1) == 72)
 
 /// CFRunLoopObserverContext
 RunLoopObserverContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
+#assert(size_of(RunLoopObserverContext) == 40)
 
 /// CFRunLoopTimerContext
 RunLoopTimerContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
+#assert(size_of(RunLoopTimerContext) == 40)
 
 /// __CFSocket
 __CFSocket :: struct {}
 
 /// CFSocketSignature
 SocketSignature :: struct #align (8) {
-    protocolFamily : SInt32,
-    socketType : SInt32,
-    protocol : SInt32,
-    address : DataRef,
+    protocolFamily: SInt32,
+    socketType: SInt32,
+    protocol: SInt32,
+    address: DataRef,
 }
+#assert(size_of(SocketSignature) == 24)
 
 /// CFSocketContext
 SocketContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
+#assert(size_of(SocketContext) == 40)
 
 /// os_workgroup_attr_opaque_s
 os_workgroup_attr_opaque_s :: struct #align (4) {
-    sig : cffi.uint32_t,
-    opaque : [60]cffi.char,
+    sig: cffi.uint32_t,
+    opaque: [60]cffi.char,
 }
+#assert(size_of(os_workgroup_attr_opaque_s) == 64)
 
 /// os_workgroup_interval_data_opaque_s
 os_workgroup_interval_data_opaque_s :: struct #align (4) {
-    sig : cffi.uint32_t,
-    opaque : [56]cffi.char,
+    sig: cffi.uint32_t,
+    opaque: [56]cffi.char,
 }
+#assert(size_of(os_workgroup_interval_data_opaque_s) == 60)
 
 /// os_workgroup_join_token_opaque_s
 os_workgroup_join_token_opaque_s :: struct #align (4) {
-    sig : cffi.uint32_t,
-    opaque : [36]cffi.char,
+    sig: cffi.uint32_t,
+    opaque: [36]cffi.char,
 }
+#assert(size_of(os_workgroup_join_token_opaque_s) == 40)
 
 /// os_workgroup_s
 os_workgroup_s :: struct {}
@@ -5287,18 +5366,20 @@ dispatch_source_type_s :: struct {}
 
 /// CFStreamError
 StreamError :: struct #align (8) {
-    domain : Index,
-    error : SInt32,
+    domain: Index,
+    error: SInt32,
 }
+#assert(size_of(StreamError) == 16)
 
 /// CFStreamClientContext
 StreamClientContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
+#assert(size_of(StreamClientContext) == 40)
 
 /// __CFReadStream
 __CFReadStream :: struct {}
@@ -5308,25 +5389,27 @@ __CFWriteStream :: struct {}
 
 /// CFSetCallBacks
 SetCallBacks :: struct #align (8) {
-    version : Index,
-    retain : SetRetainCallBack,
-    release : SetReleaseCallBack,
-    copyDescription : SetCopyDescriptionCallBack,
-    equal : SetEqualCallBack,
-    hash : SetHashCallBack,
+    version: Index,
+    retain: SetRetainCallBack,
+    release: SetReleaseCallBack,
+    copyDescription: SetCopyDescriptionCallBack,
+    equal: SetEqualCallBack,
+    hash: SetHashCallBack,
 }
+#assert(size_of(SetCallBacks) == 48)
 
 /// __CFSet
 __CFSet :: struct {}
 
 /// CFTreeContext
 TreeContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : TreeRetainCallBack,
-    release : TreeReleaseCallBack,
-    copyDescription : TreeCopyDescriptionCallBack,
+    version: Index,
+    info: rawptr,
+    retain: TreeRetainCallBack,
+    release: TreeReleaseCallBack,
+    copyDescription: TreeCopyDescriptionCallBack,
 }
+#assert(size_of(TreeContext) == 40)
 
 /// __CFTree
 __CFTree :: struct {}
@@ -5335,24 +5418,25 @@ __CFTree :: struct {}
 __CFUUID :: struct {}
 
 /// CFUUIDBytes
-UUIDBytes :: struct  {
-    byte0 : UInt8,
-    byte1 : UInt8,
-    byte2 : UInt8,
-    byte3 : UInt8,
-    byte4 : UInt8,
-    byte5 : UInt8,
-    byte6 : UInt8,
-    byte7 : UInt8,
-    byte8 : UInt8,
-    byte9 : UInt8,
-    byte10 : UInt8,
-    byte11 : UInt8,
-    byte12 : UInt8,
-    byte13 : UInt8,
-    byte14 : UInt8,
-    byte15 : UInt8,
+UUIDBytes :: struct #align (1) {
+    byte0: UInt8,
+    byte1: UInt8,
+    byte2: UInt8,
+    byte3: UInt8,
+    byte4: UInt8,
+    byte5: UInt8,
+    byte6: UInt8,
+    byte7: UInt8,
+    byte8: UInt8,
+    byte9: UInt8,
+    byte10: UInt8,
+    byte11: UInt8,
+    byte12: UInt8,
+    byte13: UInt8,
+    byte14: UInt8,
+    byte15: UInt8,
 }
+#assert(size_of(UUIDBytes) == 16)
 
 /// __CFBundle
 __CFBundle :: struct {}
@@ -5362,12 +5446,13 @@ __CFMessagePort :: struct {}
 
 /// CFMessagePortContext
 MessagePortContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
+#assert(size_of(MessagePortContext) == 40)
 
 /// __CFPlugInInstance
 __CFPlugInInstance :: struct {}
@@ -5377,12 +5462,13 @@ __CFMachPort :: struct {}
 
 /// CFMachPortContext
 MachPortContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
+#assert(size_of(MachPortContext) == 40)
 
 /// __CFAttributedString
 __CFAttributedString :: struct {}
@@ -5413,12 +5499,13 @@ __CFFileDescriptor :: struct {}
 
 /// CFFileDescriptorContext
 FileDescriptorContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : proc "c" (info: rawptr) -> rawptr,
-    release : proc "c" (info: rawptr),
-    copyDescription : proc "c" (info: rawptr) -> StringRef,
+    version: Index,
+    info: rawptr,
+    retain: proc "c" (info: rawptr) -> rawptr,
+    release: proc "c" (info: rawptr),
+    copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
+#assert(size_of(FileDescriptorContext) == 40)
 
 /// __CFUserNotification
 __CFUserNotification :: struct {}
@@ -5428,111 +5515,126 @@ __CFXMLNode :: struct {}
 
 /// CFXMLElementInfo
 XMLElementInfo :: struct #align (8) {
-    attributes : DictionaryRef,
-    attributeOrder : ArrayRef,
-    isEmpty : Boolean,
-    _reserved : [3]cffi.char,
+    attributes: DictionaryRef,
+    attributeOrder: ArrayRef,
+    isEmpty: Boolean,
+    _reserved: [3]cffi.char,
 }
+#assert(size_of(XMLElementInfo) == 24)
 
 /// CFXMLProcessingInstructionInfo
 XMLProcessingInstructionInfo :: struct #align (8) {
-    dataString : StringRef,
+    dataString: StringRef,
 }
+#assert(size_of(XMLProcessingInstructionInfo) == 8)
 
 /// CFXMLDocumentInfo
 XMLDocumentInfo :: struct #align (8) {
-    sourceURL : URLRef,
-    encoding : StringEncoding,
+    sourceURL: URLRef,
+    encoding: StringEncoding,
 }
+#assert(size_of(XMLDocumentInfo) == 16)
 
 /// CFXMLExternalID
 XMLExternalID :: struct #align (8) {
-    systemID : URLRef,
-    publicID : StringRef,
+    systemID: URLRef,
+    publicID: StringRef,
 }
+#assert(size_of(XMLExternalID) == 16)
 
 /// CFXMLDocumentTypeInfo
 XMLDocumentTypeInfo :: struct #align (8) {
-    externalID : XMLExternalID,
+    externalID: XMLExternalID,
 }
+#assert(size_of(XMLDocumentTypeInfo) == 16)
 
 /// CFXMLNotationInfo
 XMLNotationInfo :: struct #align (8) {
-    externalID : XMLExternalID,
+    externalID: XMLExternalID,
 }
+#assert(size_of(XMLNotationInfo) == 16)
 
 /// CFXMLElementTypeDeclarationInfo
 XMLElementTypeDeclarationInfo :: struct #align (8) {
-    contentDescription : StringRef,
+    contentDescription: StringRef,
 }
+#assert(size_of(XMLElementTypeDeclarationInfo) == 8)
 
 /// CFXMLAttributeDeclarationInfo
 XMLAttributeDeclarationInfo :: struct #align (8) {
-    attributeName : StringRef,
-    typeString : StringRef,
-    defaultString : StringRef,
+    attributeName: StringRef,
+    typeString: StringRef,
+    defaultString: StringRef,
 }
+#assert(size_of(XMLAttributeDeclarationInfo) == 24)
 
 /// CFXMLAttributeListDeclarationInfo
 XMLAttributeListDeclarationInfo :: struct #align (8) {
-    numberOfAttributes : Index,
-    attributes : ^XMLAttributeDeclarationInfo,
+    numberOfAttributes: Index,
+    attributes: ^XMLAttributeDeclarationInfo,
 }
+#assert(size_of(XMLAttributeListDeclarationInfo) == 16)
 
 /// CFXMLEntityInfo
 XMLEntityInfo :: struct #align (8) {
-    entityType : XMLEntityTypeCode,
-    replacementText : StringRef,
-    entityID : XMLExternalID,
-    notationName : StringRef,
+    entityType: XMLEntityTypeCode,
+    replacementText: StringRef,
+    entityID: XMLExternalID,
+    notationName: StringRef,
 }
+#assert(size_of(XMLEntityInfo) == 40)
 
 /// CFXMLEntityReferenceInfo
 XMLEntityReferenceInfo :: struct #align (8) {
-    entityType : XMLEntityTypeCode,
+    entityType: XMLEntityTypeCode,
 }
+#assert(size_of(XMLEntityReferenceInfo) == 8)
 
 /// __CFXMLParser
 __CFXMLParser :: struct {}
 
 /// CFXMLParserCallBacks
 XMLParserCallBacks :: struct #align (8) {
-    version : Index,
-    createXMLStructure : XMLParserCreateXMLStructureCallBack,
-    addChild : XMLParserAddChildCallBack,
-    endXMLStructure : XMLParserEndXMLStructureCallBack,
-    resolveExternalEntity : XMLParserResolveExternalEntityCallBack,
-    handleError : XMLParserHandleErrorCallBack,
+    version: Index,
+    createXMLStructure: XMLParserCreateXMLStructureCallBack,
+    addChild: XMLParserAddChildCallBack,
+    endXMLStructure: XMLParserEndXMLStructureCallBack,
+    resolveExternalEntity: XMLParserResolveExternalEntityCallBack,
+    handleError: XMLParserHandleErrorCallBack,
 }
+#assert(size_of(XMLParserCallBacks) == 48)
 
 /// CFXMLParserContext
 XMLParserContext :: struct #align (8) {
-    version : Index,
-    info : rawptr,
-    retain : XMLParserRetainCallBack,
-    release : XMLParserReleaseCallBack,
-    copyDescription : XMLParserCopyDescriptionCallBack,
+    version: Index,
+    info: rawptr,
+    retain: XMLParserRetainCallBack,
+    release: XMLParserReleaseCallBack,
+    copyDescription: XMLParserCopyDescriptionCallBack,
 }
+#assert(size_of(XMLParserContext) == 40)
 
 /// __mbstate_t
 __mbstate_t :: struct #raw_union #align (8) {
-    __mbstate8 : [128]cffi.char,
-    _mbstateL : cffi.longlong,
+    __mbstate8: [128]cffi.char,
+    _mbstateL: cffi.longlong,
 }
+#assert(size_of(__mbstate_t) == 128)
 
 /// dispatch_object_t
 dispatch_object_t :: struct #raw_union #align (8) {
-    _os_obj : ^_os_object_s,
-    _do : ^dispatch_object_s,
-    _dq : ^dispatch_queue_s,
-    _dqa : ^dispatch_queue_attr_s,
-    _dg : ^dispatch_group_s,
-    _ds : ^dispatch_source_s,
-    _dch : ^dispatch_channel_s,
-    _dm : ^dispatch_mach_s,
-    _dmsg : ^dispatch_mach_msg_s,
-    _dsema : ^dispatch_semaphore_s,
-    _ddata : ^dispatch_data_s,
-    _dchannel : ^dispatch_io_s,
+    _os_obj: ^_os_object_s,
+    _do: ^dispatch_object_s,
+    _dq: ^dispatch_queue_s,
+    _dqa: ^dispatch_queue_attr_s,
+    _dg: ^dispatch_group_s,
+    _ds: ^dispatch_source_s,
+    _dch: ^dispatch_channel_s,
+    _dm: ^dispatch_mach_s,
+    _dmsg: ^dispatch_mach_msg_s,
+    _dsema: ^dispatch_semaphore_s,
+    _ddata: ^dispatch_data_s,
+    _dchannel: ^dispatch_io_s,
 }
+#assert(size_of(dispatch_object_t) == 8)
 

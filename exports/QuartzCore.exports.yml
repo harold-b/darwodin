@@ -11,6 +11,7 @@ Typedefs:
     CALayerContentsFormat: CA.LayerContentsFormat
     CALayerContentsFilter: CA.LayerContentsFilter
     CALayerCornerCurve: CA.LayerCornerCurve
+    CAToneMapMode: CA.ToneMapMode
     CAAnimationCalculationMode: CA.AnimationCalculationMode
     CAAnimationRotationMode: CA.AnimationRotationMode
     CATransitionType: CA.TransitionType
@@ -76,12 +77,6 @@ ObjCProtocols:
 
 
 Functions:
-    ::CGLayerCreateWithContext: CA.CGLayerCreateWithContext
-    ::CGLayerRetain: CA.CGLayerRetain
-    ::CGLayerRelease: CA.CGLayerRelease
-    ::CGLayerGetSize: CA.CGLayerGetSize
-    ::CGLayerGetContext: CA.CGLayerGetContext
-    ::CGLayerGetTypeID: CA.CGLayerGetTypeID
     ::CACurrentMediaTime: CA.CurrentMediaTime
     ::CATransform3DIsIdentity: CA.Transform3DIsIdentity
     ::CATransform3DEqualToTransform: CA.Transform3DEqualToTransform
@@ -105,6 +100,9 @@ ExternVars:
     ::kCAFillModeBackwards: CA.FillModeBackwards
     ::kCAFillModeBoth: CA.FillModeBoth
     ::kCAFillModeRemoved: CA.FillModeRemoved
+    ::CAToneMapModeAutomatic: CA.ToneMapModeAutomatic
+    ::CAToneMapModeNever: CA.ToneMapModeNever
+    ::CAToneMapModeIfSupported: CA.ToneMapModeIfSupported
     ::kCAGravityCenter: CA.GravityCenter
     ::kCAGravityTop: CA.GravityTop
     ::kCAGravityBottom: CA.GravityBottom

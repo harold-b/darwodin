@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -17,7 +18,6 @@ import CA "../QuartzCore"
 @(objc_class="NSTextAttachment")
 TextAttachment :: struct { using _: NS.Object, 
     using _: TextAttachmentLayout,
-    using _: TextAttachmentContainer,
     using _: NS.SecureCoding,
 }
 

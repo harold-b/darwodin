@@ -14,6 +14,7 @@ Structs:
     _opaque_pthread_t: CF._opaque_pthread_t
     __darwin_arm_exception_state: CF.__darwin_arm_exception_state
     __darwin_arm_exception_state64: CF.__darwin_arm_exception_state64
+    __darwin_arm_exception_state64_v2: CF.__darwin_arm_exception_state64_v2
     __darwin_arm_thread_state: CF.__darwin_arm_thread_state
     __darwin_arm_thread_state64: CF.__darwin_arm_thread_state64
     __darwin_arm_vfp_state: CF.__darwin_arm_vfp_state
@@ -231,6 +232,7 @@ Typedefs:
     ConstStrFileNameParam: CF.ConstStrFileNameParam
     SignedByte: CF.SignedByte
     UnsignedWidePtr: CF.UnsignedWidePtr
+    CFAllocatorTypeID: CF.AllocatorTypeID
     CFTypeID: CF.TypeID
     CFOptionFlags: CF.OptionFlags
     CFHashCode: CF.HashCode
@@ -467,6 +469,10 @@ Functions:
     ::CFAllocatorSetDefault: CF.AllocatorSetDefault
     ::CFAllocatorGetDefault: CF.AllocatorGetDefault
     ::CFAllocatorCreate: CF.AllocatorCreate
+    ::CFAllocatorAllocateTyped: CF.AllocatorAllocateTyped
+    ::CFAllocatorReallocateTyped: CF.AllocatorReallocateTyped
+    ::CFAllocatorAllocateBytes: CF.AllocatorAllocateBytes
+    ::CFAllocatorReallocateBytes: CF.AllocatorReallocateBytes
     ::CFAllocatorAllocate: CF.AllocatorAllocate
     ::CFAllocatorReallocate: CF.AllocatorReallocate
     ::CFAllocatorDeallocate: CF.AllocatorDeallocate
@@ -1306,6 +1312,7 @@ Functions:
     ::CFAttributedStringReplaceAttributedString: CF.AttributedStringReplaceAttributedString
     ::CFAttributedStringBeginEditing: CF.AttributedStringBeginEditing
     ::CFAttributedStringEndEditing: CF.AttributedStringEndEditing
+    ::CFAttributedStringGetBidiLevelsAndResolvedDirections: CF.AttributedStringGetBidiLevelsAndResolvedDirections
     ::CFURLEnumeratorGetTypeID: CF.URLEnumeratorGetTypeID
     ::CFURLEnumeratorCreateForDirectoryURL: CF.URLEnumeratorCreateForDirectoryURL
     ::CFURLEnumeratorCreateForMountedVolumes: CF.URLEnumeratorCreateForMountedVolumes
@@ -1511,6 +1518,7 @@ ExternVars:
     ::kCFNumberFormatterUseSignificantDigits: CF.NumberFormatterUseSignificantDigits
     ::kCFNumberFormatterMinSignificantDigits: CF.NumberFormatterMinSignificantDigits
     ::kCFNumberFormatterMaxSignificantDigits: CF.NumberFormatterMaxSignificantDigits
+    ::kCFNumberFormatterMinGroupingDigits: CF.NumberFormatterMinGroupingDigits
     ::kCFPreferencesAnyApplication: CF.PreferencesAnyApplication
     ::kCFPreferencesCurrentApplication: CF.PreferencesCurrentApplication
     ::kCFPreferencesAnyHost: CF.PreferencesAnyHost

@@ -94,6 +94,7 @@ ObjCClasses:
     MDLTransformOrientOp: MDL.TransformOrientOp
     MDLTransformStack: MDL.TransformStack
     MDLVoxelArray: MDL.VoxelArray
+    MDLUtility: MDL.Utility
 
 ObjCProtocols:
     MDLAssetResolver: MDL.AssetResolver

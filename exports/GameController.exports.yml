@@ -46,6 +46,7 @@ Enums:
     GCExtendedGamepadSnapshotDataVersion: GC.ExtendedGamepadSnapshotDataVersion
     GCMicroGamepadSnapshotDataVersion: GC.MicroGamepadSnapshotDataVersion
     GCControllerPlayerIndex: GC.ControllerPlayerIndex
+    GCUIEventTypes: GC.UIEventTypes
 
 ObjCClasses:
     GCColor: GC.Color
@@ -79,12 +80,14 @@ ObjCClasses:
     GCDeviceHaptics: GC.DeviceHaptics
     GCKeyboard: GC.Keyboard
     GCMouse: GC.Mouse
-    GCEventViewController: GC.EventViewController
     GCRacingWheelInput: GC.RacingWheelInput
     GCRacingWheel: GC.RacingWheel
     GCSteeringWheelElement: GC.SteeringWheelElement
     GCGearShifterElement: GC.GearShifterElement
     GCRacingWheelInputState: GC.RacingWheelInputState
+    GCEventViewController: GC.EventViewController
+    GCEventInteraction: GC.EventInteraction
+    GCGameControllerActivationContext: GC.GameControllerActivationContext
     GCVirtualControllerConfiguration: GC.VirtualControllerConfiguration
     GCVirtualControllerElementConfiguration: GC.VirtualControllerElementConfiguration
     GCVirtualController: GC.VirtualController
@@ -114,6 +117,7 @@ ObjCProtocols:
     GCDevicePhysicalInput: GC.DevicePhysicalInput
     GCButtonInput: GC.ButtonInput
     GCSwitchInput: GC.SwitchInput
+    GCGameControllerSceneDelegate: GC.GameControllerSceneDelegate
 
 
 Functions:

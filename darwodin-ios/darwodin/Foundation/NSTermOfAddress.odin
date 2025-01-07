@@ -30,6 +30,10 @@ TermOfAddress_feminine :: #force_inline proc "c" () -> ^TermOfAddress {
 TermOfAddress_masculine :: #force_inline proc "c" () -> ^TermOfAddress {
     return msgSend(^TermOfAddress, TermOfAddress, "masculine")
 }
+@(objc_type=TermOfAddress, objc_name="currentUser", objc_is_class_method=true)
+TermOfAddress_currentUser :: #force_inline proc "c" () -> ^TermOfAddress {
+    return msgSend(^TermOfAddress, TermOfAddress, "currentUser")
+}
 @(objc_type=TermOfAddress, objc_name="localizedForLanguageIdentifier", objc_is_class_method=true)
 TermOfAddress_localizedForLanguageIdentifier :: #force_inline proc "c" (language: ^String, pronouns: ^Array) -> ^TermOfAddress {
     return msgSend(^TermOfAddress, TermOfAddress, "localizedForLanguageIdentifier:withPronouns:", language, pronouns)
@@ -177,6 +181,7 @@ TermOfAddress_VTable :: struct {
     neutral: proc() -> ^TermOfAddress,
     feminine: proc() -> ^TermOfAddress,
     masculine: proc() -> ^TermOfAddress,
+    currentUser: proc() -> ^TermOfAddress,
     localizedForLanguageIdentifier: proc(language: ^String, pronouns: ^Array) -> ^TermOfAddress,
     new: proc() -> ^TermOfAddress,
     init: proc(self: ^TermOfAddress) -> ^TermOfAddress,
@@ -249,6 +254,16 @@ TermOfAddress_odin_extend :: proc(cls: Class, vt: ^TermOfAddress_VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("masculine"), auto_cast masculine, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.currentUser != nil {
+        currentUser :: proc "c" (self: Class, _: SEL) -> ^TermOfAddress {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TermOfAddress_VTable)vt_ctx.super_vt).currentUser()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("currentUser"), auto_cast currentUser, "@#:") do panic("Failed to register objC method.")
     }
     if vt.localizedForLanguageIdentifier != nil {
         localizedForLanguageIdentifier :: proc "c" (self: Class, _: SEL, language: ^String, pronouns: ^Array) -> ^TermOfAddress {

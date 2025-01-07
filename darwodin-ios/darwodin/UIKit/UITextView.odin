@@ -43,6 +43,10 @@ TextView_textViewUsingTextLayoutManager :: #force_inline proc "c" (usingTextLayo
 TextView_initWithCoder :: #force_inline proc "c" (self: ^TextView, coder: ^NS.Coder) -> ^TextView {
     return msgSend(^TextView, self, "initWithCoder:", coder)
 }
+@(objc_type=TextView, objc_name="drawTextHighlightBackgroundForTextRange")
+TextView_drawTextHighlightBackgroundForTextRange :: #force_inline proc "c" (self: ^TextView, textRange: ^NSTextRange, origin: CG.Point) {
+    msgSend(nil, self, "drawTextHighlightBackgroundForTextRange:origin:", textRange, origin)
+}
 @(objc_type=TextView, objc_name="delegate")
 TextView_delegate :: #force_inline proc "c" (self: ^TextView) -> ^TextViewDelegate {
     return msgSend(^TextViewDelegate, self, "delegate")
@@ -222,6 +226,42 @@ TextView_borderStyle :: #force_inline proc "c" (self: ^TextView) -> TextViewBord
 @(objc_type=TextView, objc_name="setBorderStyle")
 TextView_setBorderStyle :: #force_inline proc "c" (self: ^TextView, borderStyle: TextViewBorderStyle) {
     msgSend(nil, self, "setBorderStyle:", borderStyle)
+}
+@(objc_type=TextView, objc_name="textHighlightAttributes")
+TextView_textHighlightAttributes :: #force_inline proc "c" (self: ^TextView) -> ^NS.Dictionary {
+    return msgSend(^NS.Dictionary, self, "textHighlightAttributes")
+}
+@(objc_type=TextView, objc_name="setTextHighlightAttributes")
+TextView_setTextHighlightAttributes :: #force_inline proc "c" (self: ^TextView, textHighlightAttributes: ^NS.Dictionary) {
+    msgSend(nil, self, "setTextHighlightAttributes:", textHighlightAttributes)
+}
+@(objc_type=TextView, objc_name="isWritingToolsActive")
+TextView_isWritingToolsActive :: #force_inline proc "c" (self: ^TextView) -> bool {
+    return msgSend(bool, self, "isWritingToolsActive")
+}
+@(objc_type=TextView, objc_name="writingToolsBehavior")
+TextView_writingToolsBehavior :: #force_inline proc "c" (self: ^TextView) -> WritingToolsBehavior {
+    return msgSend(WritingToolsBehavior, self, "writingToolsBehavior")
+}
+@(objc_type=TextView, objc_name="setWritingToolsBehavior")
+TextView_setWritingToolsBehavior :: #force_inline proc "c" (self: ^TextView, writingToolsBehavior: WritingToolsBehavior) {
+    msgSend(nil, self, "setWritingToolsBehavior:", writingToolsBehavior)
+}
+@(objc_type=TextView, objc_name="allowedWritingToolsResultOptions")
+TextView_allowedWritingToolsResultOptions :: #force_inline proc "c" (self: ^TextView) -> WritingToolsResultOptions {
+    return msgSend(WritingToolsResultOptions, self, "allowedWritingToolsResultOptions")
+}
+@(objc_type=TextView, objc_name="setAllowedWritingToolsResultOptions")
+TextView_setAllowedWritingToolsResultOptions :: #force_inline proc "c" (self: ^TextView, allowedWritingToolsResultOptions: WritingToolsResultOptions) {
+    msgSend(nil, self, "setAllowedWritingToolsResultOptions:", allowedWritingToolsResultOptions)
+}
+@(objc_type=TextView, objc_name="textFormattingConfiguration")
+TextView_textFormattingConfiguration :: #force_inline proc "c" (self: ^TextView) -> ^TextFormattingViewControllerConfiguration {
+    return msgSend(^TextFormattingViewControllerConfiguration, self, "textFormattingConfiguration")
+}
+@(objc_type=TextView, objc_name="setTextFormattingConfiguration")
+TextView_setTextFormattingConfiguration :: #force_inline proc "c" (self: ^TextView, textFormattingConfiguration: ^TextFormattingViewControllerConfiguration) {
+    msgSend(nil, self, "setTextFormattingConfiguration:", textFormattingConfiguration)
 }
 @(objc_type=TextView, objc_name="interactionState")
 TextView_interactionState :: #force_inline proc "c" (self: ^TextView) -> id {
@@ -536,6 +576,7 @@ TextView_VTable :: struct {
     initWithFrame: proc(self: ^TextView, frame: CG.Rect, textContainer: ^NSTextContainer) -> ^TextView,
     textViewUsingTextLayoutManager: proc(usingTextLayoutManager: bool) -> ^TextView,
     initWithCoder: proc(self: ^TextView, coder: ^NS.Coder) -> ^TextView,
+    drawTextHighlightBackgroundForTextRange: proc(self: ^TextView, textRange: ^NSTextRange, origin: CG.Point),
     delegate: proc(self: ^TextView) -> ^TextViewDelegate,
     setDelegate: proc(self: ^TextView, delegate: ^TextViewDelegate),
     text: proc(self: ^TextView) -> ^NS.String,
@@ -581,6 +622,15 @@ TextView_VTable :: struct {
     setFindInteractionEnabled: proc(self: ^TextView, findInteractionEnabled: bool),
     borderStyle: proc(self: ^TextView) -> TextViewBorderStyle,
     setBorderStyle: proc(self: ^TextView, borderStyle: TextViewBorderStyle),
+    textHighlightAttributes: proc(self: ^TextView) -> ^NS.Dictionary,
+    setTextHighlightAttributes: proc(self: ^TextView, textHighlightAttributes: ^NS.Dictionary),
+    isWritingToolsActive: proc(self: ^TextView) -> bool,
+    writingToolsBehavior: proc(self: ^TextView) -> WritingToolsBehavior,
+    setWritingToolsBehavior: proc(self: ^TextView, writingToolsBehavior: WritingToolsBehavior),
+    allowedWritingToolsResultOptions: proc(self: ^TextView) -> WritingToolsResultOptions,
+    setAllowedWritingToolsResultOptions: proc(self: ^TextView, allowedWritingToolsResultOptions: WritingToolsResultOptions),
+    textFormattingConfiguration: proc(self: ^TextView) -> ^TextFormattingViewControllerConfiguration,
+    setTextFormattingConfiguration: proc(self: ^TextView, textFormattingConfiguration: ^TextFormattingViewControllerConfiguration),
     interactionState: proc(self: ^TextView) -> id,
     setInteractionState: proc(self: ^TextView, interactionState: id),
     userInterfaceLayoutDirectionForSemanticContentAttribute_: proc(attribute: SemanticContentAttribute) -> UserInterfaceLayoutDirection,
@@ -699,6 +749,16 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.drawTextHighlightBackgroundForTextRange != nil {
+        drawTextHighlightBackgroundForTextRange :: proc "c" (self: ^TextView, _: SEL, textRange: ^NSTextRange, origin: CG.Point) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).drawTextHighlightBackgroundForTextRange(self, textRange, origin)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("drawTextHighlightBackgroundForTextRange:origin:"), auto_cast drawTextHighlightBackgroundForTextRange, "v@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
         delegate :: proc "c" (self: ^TextView, _: SEL) -> ^TextViewDelegate {
@@ -1149,6 +1209,96 @@ TextView_odin_extend :: proc(cls: Class, vt: ^TextView_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderStyle:"), auto_cast setBorderStyle, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.textHighlightAttributes != nil {
+        textHighlightAttributes :: proc "c" (self: ^TextView, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).textHighlightAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textHighlightAttributes"), auto_cast textHighlightAttributes, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTextHighlightAttributes != nil {
+        setTextHighlightAttributes :: proc "c" (self: ^TextView, _: SEL, textHighlightAttributes: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setTextHighlightAttributes(self, textHighlightAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextHighlightAttributes:"), auto_cast setTextHighlightAttributes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.isWritingToolsActive != nil {
+        isWritingToolsActive :: proc "c" (self: ^TextView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).isWritingToolsActive(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isWritingToolsActive"), auto_cast isWritingToolsActive, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.writingToolsBehavior != nil {
+        writingToolsBehavior :: proc "c" (self: ^TextView, _: SEL) -> WritingToolsBehavior {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).writingToolsBehavior(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsBehavior"), auto_cast writingToolsBehavior, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWritingToolsBehavior != nil {
+        setWritingToolsBehavior :: proc "c" (self: ^TextView, _: SEL, writingToolsBehavior: WritingToolsBehavior) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setWritingToolsBehavior(self, writingToolsBehavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWritingToolsBehavior:"), auto_cast setWritingToolsBehavior, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.allowedWritingToolsResultOptions != nil {
+        allowedWritingToolsResultOptions :: proc "c" (self: ^TextView, _: SEL) -> WritingToolsResultOptions {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).allowedWritingToolsResultOptions(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedWritingToolsResultOptions"), auto_cast allowedWritingToolsResultOptions, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowedWritingToolsResultOptions != nil {
+        setAllowedWritingToolsResultOptions :: proc "c" (self: ^TextView, _: SEL, allowedWritingToolsResultOptions: WritingToolsResultOptions) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setAllowedWritingToolsResultOptions(self, allowedWritingToolsResultOptions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedWritingToolsResultOptions:"), auto_cast setAllowedWritingToolsResultOptions, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.textFormattingConfiguration != nil {
+        textFormattingConfiguration :: proc "c" (self: ^TextView, _: SEL) -> ^TextFormattingViewControllerConfiguration {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextView_VTable)vt_ctx.super_vt).textFormattingConfiguration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textFormattingConfiguration"), auto_cast textFormattingConfiguration, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTextFormattingConfiguration != nil {
+        setTextFormattingConfiguration :: proc "c" (self: ^TextView, _: SEL, textFormattingConfiguration: ^TextFormattingViewControllerConfiguration) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextView_VTable)vt_ctx.super_vt).setTextFormattingConfiguration(self, textFormattingConfiguration)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextFormattingConfiguration:"), auto_cast setTextFormattingConfiguration, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.interactionState != nil {
         interactionState :: proc "c" (self: ^TextView, _: SEL) -> id {

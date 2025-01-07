@@ -30,6 +30,10 @@ ListContentImageProperties_init :: proc "c" (self: ^ListContentImageProperties) 
 ListContentImageProperties_resolvedTintColorForTintColor :: #force_inline proc "c" (self: ^ListContentImageProperties, tintColor: ^Color) -> ^Color {
     return msgSend(^Color, self, "resolvedTintColorForTintColor:", tintColor)
 }
+@(objc_type=ListContentImageProperties, objc_name="resolvedStrokeColorForTintColor")
+ListContentImageProperties_resolvedStrokeColorForTintColor :: #force_inline proc "c" (self: ^ListContentImageProperties, tintColor: ^Color) -> ^Color {
+    return msgSend(^Color, self, "resolvedStrokeColorForTintColor:", tintColor)
+}
 @(objc_type=ListContentImageProperties, objc_name="preferredSymbolConfiguration")
 ListContentImageProperties_preferredSymbolConfiguration :: #force_inline proc "c" (self: ^ListContentImageProperties) -> ^ImageSymbolConfiguration {
     return msgSend(^ImageSymbolConfiguration, self, "preferredSymbolConfiguration")
@@ -85,6 +89,30 @@ ListContentImageProperties_accessibilityIgnoresInvertColors :: #force_inline pro
 @(objc_type=ListContentImageProperties, objc_name="setAccessibilityIgnoresInvertColors")
 ListContentImageProperties_setAccessibilityIgnoresInvertColors :: #force_inline proc "c" (self: ^ListContentImageProperties, accessibilityIgnoresInvertColors: bool) {
     msgSend(nil, self, "setAccessibilityIgnoresInvertColors:", accessibilityIgnoresInvertColors)
+}
+@(objc_type=ListContentImageProperties, objc_name="strokeWidth")
+ListContentImageProperties_strokeWidth :: #force_inline proc "c" (self: ^ListContentImageProperties) -> CG.Float {
+    return msgSend(CG.Float, self, "strokeWidth")
+}
+@(objc_type=ListContentImageProperties, objc_name="setStrokeWidth")
+ListContentImageProperties_setStrokeWidth :: #force_inline proc "c" (self: ^ListContentImageProperties, strokeWidth: CG.Float) {
+    msgSend(nil, self, "setStrokeWidth:", strokeWidth)
+}
+@(objc_type=ListContentImageProperties, objc_name="strokeColor")
+ListContentImageProperties_strokeColor :: #force_inline proc "c" (self: ^ListContentImageProperties) -> ^Color {
+    return msgSend(^Color, self, "strokeColor")
+}
+@(objc_type=ListContentImageProperties, objc_name="setStrokeColor")
+ListContentImageProperties_setStrokeColor :: #force_inline proc "c" (self: ^ListContentImageProperties, strokeColor: ^Color) {
+    msgSend(nil, self, "setStrokeColor:", strokeColor)
+}
+@(objc_type=ListContentImageProperties, objc_name="strokeColorTransformer")
+ListContentImageProperties_strokeColorTransformer :: #force_inline proc "c" (self: ^ListContentImageProperties) -> ConfigurationColorTransformer {
+    return msgSend(ConfigurationColorTransformer, self, "strokeColorTransformer")
+}
+@(objc_type=ListContentImageProperties, objc_name="setStrokeColorTransformer")
+ListContentImageProperties_setStrokeColorTransformer :: #force_inline proc "c" (self: ^ListContentImageProperties, strokeColorTransformer: ConfigurationColorTransformer) {
+    msgSend(nil, self, "setStrokeColorTransformer:", strokeColorTransformer)
 }
 @(objc_type=ListContentImageProperties, objc_name="supportsSecureCoding", objc_is_class_method=true)
 ListContentImageProperties_supportsSecureCoding :: #force_inline proc "c" () -> bool {
@@ -215,6 +243,7 @@ ListContentImageProperties_cancelPreviousPerformRequestsWithTarget :: proc {
 ListContentImageProperties_VTable :: struct {
     super: NS.Object_VTable,
     resolvedTintColorForTintColor: proc(self: ^ListContentImageProperties, tintColor: ^Color) -> ^Color,
+    resolvedStrokeColorForTintColor: proc(self: ^ListContentImageProperties, tintColor: ^Color) -> ^Color,
     preferredSymbolConfiguration: proc(self: ^ListContentImageProperties) -> ^ImageSymbolConfiguration,
     setPreferredSymbolConfiguration: proc(self: ^ListContentImageProperties, preferredSymbolConfiguration: ^ImageSymbolConfiguration),
     tintColor: proc(self: ^ListContentImageProperties) -> ^Color,
@@ -229,6 +258,12 @@ ListContentImageProperties_VTable :: struct {
     setReservedLayoutSize: proc(self: ^ListContentImageProperties, reservedLayoutSize: CG.Size),
     accessibilityIgnoresInvertColors: proc(self: ^ListContentImageProperties) -> bool,
     setAccessibilityIgnoresInvertColors: proc(self: ^ListContentImageProperties, accessibilityIgnoresInvertColors: bool),
+    strokeWidth: proc(self: ^ListContentImageProperties) -> CG.Float,
+    setStrokeWidth: proc(self: ^ListContentImageProperties, strokeWidth: CG.Float),
+    strokeColor: proc(self: ^ListContentImageProperties) -> ^Color,
+    setStrokeColor: proc(self: ^ListContentImageProperties, strokeColor: ^Color),
+    strokeColorTransformer: proc(self: ^ListContentImageProperties) -> ConfigurationColorTransformer,
+    setStrokeColorTransformer: proc(self: ^ListContentImageProperties, strokeColorTransformer: ConfigurationColorTransformer),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -277,6 +312,16 @@ ListContentImageProperties_odin_extend :: proc(cls: Class, vt: ^ListContentImage
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("resolvedTintColorForTintColor:"), auto_cast resolvedTintColorForTintColor, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.resolvedStrokeColorForTintColor != nil {
+        resolvedStrokeColorForTintColor :: proc "c" (self: ^ListContentImageProperties, _: SEL, tintColor: ^Color) -> ^Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentImageProperties_VTable)vt_ctx.super_vt).resolvedStrokeColorForTintColor(self, tintColor)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resolvedStrokeColorForTintColor:"), auto_cast resolvedStrokeColorForTintColor, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.preferredSymbolConfiguration != nil {
         preferredSymbolConfiguration :: proc "c" (self: ^ListContentImageProperties, _: SEL) -> ^ImageSymbolConfiguration {
@@ -417,6 +462,66 @@ ListContentImageProperties_odin_extend :: proc(cls: Class, vt: ^ListContentImage
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityIgnoresInvertColors:"), auto_cast setAccessibilityIgnoresInvertColors, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.strokeWidth != nil {
+        strokeWidth :: proc "c" (self: ^ListContentImageProperties, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentImageProperties_VTable)vt_ctx.super_vt).strokeWidth(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("strokeWidth"), auto_cast strokeWidth, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setStrokeWidth != nil {
+        setStrokeWidth :: proc "c" (self: ^ListContentImageProperties, _: SEL, strokeWidth: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ListContentImageProperties_VTable)vt_ctx.super_vt).setStrokeWidth(self, strokeWidth)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStrokeWidth:"), auto_cast setStrokeWidth, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.strokeColor != nil {
+        strokeColor :: proc "c" (self: ^ListContentImageProperties, _: SEL) -> ^Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentImageProperties_VTable)vt_ctx.super_vt).strokeColor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("strokeColor"), auto_cast strokeColor, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setStrokeColor != nil {
+        setStrokeColor :: proc "c" (self: ^ListContentImageProperties, _: SEL, strokeColor: ^Color) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ListContentImageProperties_VTable)vt_ctx.super_vt).setStrokeColor(self, strokeColor)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStrokeColor:"), auto_cast setStrokeColor, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.strokeColorTransformer != nil {
+        strokeColorTransformer :: proc "c" (self: ^ListContentImageProperties, _: SEL) -> ConfigurationColorTransformer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ListContentImageProperties_VTable)vt_ctx.super_vt).strokeColorTransformer(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("strokeColorTransformer"), auto_cast strokeColorTransformer, "?@:") do panic("Failed to register objC method.")
+    }
+    if vt.setStrokeColorTransformer != nil {
+        setStrokeColorTransformer :: proc "c" (self: ^ListContentImageProperties, _: SEL, strokeColorTransformer: ConfigurationColorTransformer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ListContentImageProperties_VTable)vt_ctx.super_vt).setStrokeColorTransformer(self, strokeColorTransformer)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStrokeColorTransformer:"), auto_cast setStrokeColorTransformer, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {

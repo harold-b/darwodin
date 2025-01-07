@@ -42,6 +42,22 @@ CompileOptions_fastMathEnabled :: #force_inline proc "c" (self: ^CompileOptions)
 CompileOptions_setFastMathEnabled :: #force_inline proc "c" (self: ^CompileOptions, fastMathEnabled: bool) {
     msgSend(nil, self, "setFastMathEnabled:", fastMathEnabled)
 }
+@(objc_type=CompileOptions, objc_name="mathMode")
+CompileOptions_mathMode :: #force_inline proc "c" (self: ^CompileOptions) -> MathMode {
+    return msgSend(MathMode, self, "mathMode")
+}
+@(objc_type=CompileOptions, objc_name="setMathMode")
+CompileOptions_setMathMode :: #force_inline proc "c" (self: ^CompileOptions, mathMode: MathMode) {
+    msgSend(nil, self, "setMathMode:", mathMode)
+}
+@(objc_type=CompileOptions, objc_name="mathFloatingPointFunctions")
+CompileOptions_mathFloatingPointFunctions :: #force_inline proc "c" (self: ^CompileOptions) -> MathFloatingPointFunctions {
+    return msgSend(MathFloatingPointFunctions, self, "mathFloatingPointFunctions")
+}
+@(objc_type=CompileOptions, objc_name="setMathFloatingPointFunctions")
+CompileOptions_setMathFloatingPointFunctions :: #force_inline proc "c" (self: ^CompileOptions, mathFloatingPointFunctions: MathFloatingPointFunctions) {
+    msgSend(nil, self, "setMathFloatingPointFunctions:", mathFloatingPointFunctions)
+}
 @(objc_type=CompileOptions, objc_name="languageVersion")
 CompileOptions_languageVersion :: #force_inline proc "c" (self: ^CompileOptions) -> LanguageVersion {
     return msgSend(LanguageVersion, self, "languageVersion")
@@ -113,6 +129,14 @@ CompileOptions_maxTotalThreadsPerThreadgroup :: #force_inline proc "c" (self: ^C
 @(objc_type=CompileOptions, objc_name="setMaxTotalThreadsPerThreadgroup")
 CompileOptions_setMaxTotalThreadsPerThreadgroup :: #force_inline proc "c" (self: ^CompileOptions, maxTotalThreadsPerThreadgroup: NS.UInteger) {
     msgSend(nil, self, "setMaxTotalThreadsPerThreadgroup:", maxTotalThreadsPerThreadgroup)
+}
+@(objc_type=CompileOptions, objc_name="enableLogging")
+CompileOptions_enableLogging :: #force_inline proc "c" (self: ^CompileOptions) -> bool {
+    return msgSend(bool, self, "enableLogging")
+}
+@(objc_type=CompileOptions, objc_name="setEnableLogging")
+CompileOptions_setEnableLogging :: #force_inline proc "c" (self: ^CompileOptions, enableLogging: bool) {
+    msgSend(nil, self, "setEnableLogging:", enableLogging)
 }
 @(objc_type=CompileOptions, objc_name="load", objc_is_class_method=true)
 CompileOptions_load :: #force_inline proc "c" () {

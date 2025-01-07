@@ -107,6 +107,14 @@ CollectionLayoutListConfiguration_headerTopPadding :: #force_inline proc "c" (se
 CollectionLayoutListConfiguration_setHeaderTopPadding :: #force_inline proc "c" (self: ^CollectionLayoutListConfiguration, headerTopPadding: CG.Float) {
     msgSend(nil, self, "setHeaderTopPadding:", headerTopPadding)
 }
+@(objc_type=CollectionLayoutListConfiguration, objc_name="contentHuggingElements")
+CollectionLayoutListConfiguration_contentHuggingElements :: #force_inline proc "c" (self: ^CollectionLayoutListConfiguration) -> CollectionLayoutListContentHuggingElements {
+    return msgSend(CollectionLayoutListContentHuggingElements, self, "contentHuggingElements")
+}
+@(objc_type=CollectionLayoutListConfiguration, objc_name="setContentHuggingElements")
+CollectionLayoutListConfiguration_setContentHuggingElements :: #force_inline proc "c" (self: ^CollectionLayoutListConfiguration, contentHuggingElements: CollectionLayoutListContentHuggingElements) {
+    msgSend(nil, self, "setContentHuggingElements:", contentHuggingElements)
+}
 @(objc_type=CollectionLayoutListConfiguration, objc_name="load", objc_is_class_method=true)
 CollectionLayoutListConfiguration_load :: #force_inline proc "c" () {
     msgSend(nil, CollectionLayoutListConfiguration, "load")
@@ -249,6 +257,8 @@ CollectionLayoutListConfiguration_VTable :: struct {
     setFooterMode: proc(self: ^CollectionLayoutListConfiguration, footerMode: CollectionLayoutListFooterMode),
     headerTopPadding: proc(self: ^CollectionLayoutListConfiguration) -> CG.Float,
     setHeaderTopPadding: proc(self: ^CollectionLayoutListConfiguration, headerTopPadding: CG.Float),
+    contentHuggingElements: proc(self: ^CollectionLayoutListConfiguration) -> CollectionLayoutListContentHuggingElements,
+    setContentHuggingElements: proc(self: ^CollectionLayoutListConfiguration, contentHuggingElements: CollectionLayoutListContentHuggingElements),
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^NS._NSZone) -> ^CollectionLayoutListConfiguration,
@@ -505,6 +515,26 @@ CollectionLayoutListConfiguration_odin_extend :: proc(cls: Class, vt: ^Collectio
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHeaderTopPadding:"), auto_cast setHeaderTopPadding, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.contentHuggingElements != nil {
+        contentHuggingElements :: proc "c" (self: ^CollectionLayoutListConfiguration, _: SEL) -> CollectionLayoutListContentHuggingElements {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^CollectionLayoutListConfiguration_VTable)vt_ctx.super_vt).contentHuggingElements(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentHuggingElements"), auto_cast contentHuggingElements, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setContentHuggingElements != nil {
+        setContentHuggingElements :: proc "c" (self: ^CollectionLayoutListConfiguration, _: SEL, contentHuggingElements: CollectionLayoutListContentHuggingElements) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^CollectionLayoutListConfiguration_VTable)vt_ctx.super_vt).setContentHuggingElements(self, contentHuggingElements)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setContentHuggingElements:"), auto_cast setContentHuggingElements, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

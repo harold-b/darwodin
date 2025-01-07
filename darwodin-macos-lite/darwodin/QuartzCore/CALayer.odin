@@ -379,6 +379,22 @@ Layer_wantsExtendedDynamicRangeContent :: #force_inline proc "c" (self: ^Layer) 
 Layer_setWantsExtendedDynamicRangeContent :: #force_inline proc "c" (self: ^Layer, wantsExtendedDynamicRangeContent: bool) {
     msgSend(nil, self, "setWantsExtendedDynamicRangeContent:", wantsExtendedDynamicRangeContent)
 }
+@(objc_type=Layer, objc_name="toneMapMode")
+Layer_toneMapMode :: #force_inline proc "c" (self: ^Layer) -> ^NS.String {
+    return msgSend(^NS.String, self, "toneMapMode")
+}
+@(objc_type=Layer, objc_name="setToneMapMode")
+Layer_setToneMapMode :: #force_inline proc "c" (self: ^Layer, toneMapMode: ^NS.String) {
+    msgSend(nil, self, "setToneMapMode:", toneMapMode)
+}
+@(objc_type=Layer, objc_name="wantsDynamicContentScaling")
+Layer_wantsDynamicContentScaling :: #force_inline proc "c" (self: ^Layer) -> bool {
+    return msgSend(bool, self, "wantsDynamicContentScaling")
+}
+@(objc_type=Layer, objc_name="setWantsDynamicContentScaling")
+Layer_setWantsDynamicContentScaling :: #force_inline proc "c" (self: ^Layer, wantsDynamicContentScaling: bool) {
+    msgSend(nil, self, "setWantsDynamicContentScaling:", wantsDynamicContentScaling)
+}
 @(objc_type=Layer, objc_name="minificationFilter")
 Layer_minificationFilter :: #force_inline proc "c" (self: ^Layer) -> ^NS.String {
     return msgSend(^NS.String, self, "minificationFilter")
@@ -889,6 +905,10 @@ Layer_VTable :: struct {
     setContentsFormat: proc(self: ^Layer, contentsFormat: ^NS.String),
     wantsExtendedDynamicRangeContent: proc(self: ^Layer) -> bool,
     setWantsExtendedDynamicRangeContent: proc(self: ^Layer, wantsExtendedDynamicRangeContent: bool),
+    toneMapMode: proc(self: ^Layer) -> ^NS.String,
+    setToneMapMode: proc(self: ^Layer, toneMapMode: ^NS.String),
+    wantsDynamicContentScaling: proc(self: ^Layer) -> bool,
+    setWantsDynamicContentScaling: proc(self: ^Layer, wantsDynamicContentScaling: bool),
     minificationFilter: proc(self: ^Layer) -> ^NS.String,
     setMinificationFilter: proc(self: ^Layer, minificationFilter: ^NS.String),
     magnificationFilter: proc(self: ^Layer) -> ^NS.String,
@@ -1897,6 +1917,46 @@ Layer_odin_extend :: proc(cls: Class, vt: ^Layer_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWantsExtendedDynamicRangeContent:"), auto_cast setWantsExtendedDynamicRangeContent, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.toneMapMode != nil {
+        toneMapMode :: proc "c" (self: ^Layer, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Layer_VTable)vt_ctx.super_vt).toneMapMode(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toneMapMode"), auto_cast toneMapMode, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setToneMapMode != nil {
+        setToneMapMode :: proc "c" (self: ^Layer, _: SEL, toneMapMode: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Layer_VTable)vt_ctx.super_vt).setToneMapMode(self, toneMapMode)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setToneMapMode:"), auto_cast setToneMapMode, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.wantsDynamicContentScaling != nil {
+        wantsDynamicContentScaling :: proc "c" (self: ^Layer, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^Layer_VTable)vt_ctx.super_vt).wantsDynamicContentScaling(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("wantsDynamicContentScaling"), auto_cast wantsDynamicContentScaling, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWantsDynamicContentScaling != nil {
+        setWantsDynamicContentScaling :: proc "c" (self: ^Layer, _: SEL, wantsDynamicContentScaling: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Layer_VTable)vt_ctx.super_vt).setWantsDynamicContentScaling(self, wantsDynamicContentScaling)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWantsDynamicContentScaling:"), auto_cast setWantsDynamicContentScaling, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.minificationFilter != nil {
         minificationFilter :: proc "c" (self: ^Layer, _: SEL) -> ^NS.String {

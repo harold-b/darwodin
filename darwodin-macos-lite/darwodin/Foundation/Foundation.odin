@@ -7,8 +7,6 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -396,6 +394,7 @@ foreign lib {
     @(link_name="NSInflectionAgreementConceptAttributeName") InflectionAgreementConceptAttributeName: ^String
     @(link_name="NSInflectionReferentConceptAttributeName") InflectionReferentConceptAttributeName: ^String
     @(link_name="NSInflectionAlternativeAttributeName") InflectionAlternativeAttributeName: ^String
+    @(link_name="NSLocalizedNumberFormatAttributeName") LocalizedNumberFormatAttributeName: ^String
     @(link_name="NSPresentationIntentAttributeName") PresentationIntentAttributeName: ^String
     @(link_name="NSCurrentLocaleDidChangeNotification") CurrentLocaleDidChangeNotification: ^String
     @(link_name="NSLocaleIdentifier") LocaleIdentifier: ^String
@@ -3351,6 +3350,9 @@ LinguisticTagScheme :: distinct ^String
 /// NSLinguisticTag
 LinguisticTag :: distinct ^String
 
+/// NSUndoManagerUserInfoKey
+UndoManagerUserInfoKey :: distinct ^String
+
 /// NSUserActivityPersistentIdentifier
 UserActivityPersistentIdentifier :: distinct ^String
 
@@ -3559,6 +3561,7 @@ CalendarUnit :: enum cffi.ulong {
     WeekOfYear = 8192,
     YearForWeekOfYear = 16384,
     Nanosecond = 32768,
+    DayOfYear = 65536,
     Calendar = 1048576,
     TimeZone = 2097152,
     EraCalendarUnit = 2,
@@ -4368,6 +4371,7 @@ SecAccessControlCreateFlag :: enum cffi.ulong {
     kSecAccessControlTouchIDCurrentSet = 3,
     kSecAccessControlDevicePasscode = 4,
     kSecAccessControlWatch = 5,
+    kSecAccessControlCompanion = 5,
     kSecAccessControlOr = 14,
     kSecAccessControlAnd = 15,
     kSecAccessControlPrivateKeyUsage = 30,
@@ -4747,6 +4751,7 @@ SecCSFlag :: enum cffi.uint {
     kSecCSQuickCheck = 26,
     kSecCSApplyEmbeddedPolicy = 25,
     kSecCSStripDisallowedXattrs = 24,
+    kSecCSMatchGuestRequirementInKernel = 23,
 }
 SecCSFlags :: bit_set[SecCSFlag; cffi.uint]
 
@@ -5448,92 +5453,106 @@ _NSZone :: struct {}
 
 /// NSFastEnumerationState
 FastEnumerationState :: struct #align (8) {
-    state : cffi.ulong,
-    itemsPtr : ^id,
-    mutationsPtr : ^cffi.ulong,
-    extra : [5]cffi.ulong,
+    state: cffi.ulong,
+    itemsPtr: ^id,
+    mutationsPtr: ^cffi.ulong,
+    extra: [5]cffi.ulong,
 }
+#assert(size_of(FastEnumerationState) == 64)
 
 /// _NSRange
 _NSRange :: struct #align (8) {
-    location : UInteger,
-    length : UInteger,
+    location: UInteger,
+    length: UInteger,
 }
+#assert(size_of(_NSRange) == 16)
 
 /// NSSwappedFloat
 SwappedFloat :: struct #align (4) {
-    v : cffi.uint,
+    v: cffi.uint,
 }
+#assert(size_of(SwappedFloat) == 4)
 
 /// NSSwappedDouble
 SwappedDouble :: struct #align (8) {
-    v : cffi.ulonglong,
+    v: cffi.ulonglong,
 }
+#assert(size_of(SwappedDouble) == 8)
 
 /// NSDecimal
-Decimal :: struct #align (4) {
-    _exponent : cffi.int,
-    _length : cffi.uint,
-    _isNegative : cffi.uint,
-    _isCompact : cffi.uint,
-    _reserved : cffi.uint,
-    _mantissa : [8]cffi.ushort,
+Decimal :: struct #align (4) #max_field_align(4) {
+    using _: bit_field cffi.int {
+        _exponent: cffi.int | 8,
+        _length: cffi.uint | 4,
+        _isNegative: cffi.uint | 1,
+        _isCompact: cffi.uint | 1,
+        _reserved: cffi.uint | 18,
+    },
+    _mantissa: [8]cffi.ushort,
 }
+#assert(size_of(Decimal) == 20)
 
 /// NSHashEnumerator
 HashEnumerator :: struct #align (8) {
-    _pi : UInteger,
-    _si : UInteger,
-    _bs : rawptr,
+    _pi: UInteger,
+    _si: UInteger,
+    _bs: rawptr,
 }
+#assert(size_of(HashEnumerator) == 24)
 
 /// NSHashTableCallBacks
 HashTableCallBacks :: struct #align (8) {
-    hash : proc "c" (table: ^HashTable, _arg_0: rawptr) -> UInteger,
-    isEqual : proc "c" (table: ^HashTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
-    retain : proc "c" (table: ^HashTable, _arg_0: rawptr),
-    release : proc "c" (table: ^HashTable, _arg_0: rawptr),
-    describe : proc "c" (table: ^HashTable, _arg_0: rawptr) -> ^String,
+    hash: proc "c" (table: ^HashTable, _arg_0: rawptr) -> UInteger,
+    isEqual: proc "c" (table: ^HashTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
+    retain: proc "c" (table: ^HashTable, _arg_0: rawptr),
+    release: proc "c" (table: ^HashTable, _arg_0: rawptr),
+    describe: proc "c" (table: ^HashTable, _arg_0: rawptr) -> ^String,
 }
+#assert(size_of(HashTableCallBacks) == 40)
 
 /// NSEdgeInsets
 EdgeInsets :: struct #align (8) {
-    top : CG.Float,
-    left : CG.Float,
-    bottom : CG.Float,
-    right : CG.Float,
+    top: CG.Float,
+    left: CG.Float,
+    bottom: CG.Float,
+    right: CG.Float,
 }
+#assert(size_of(EdgeInsets) == 32)
 
 /// NSMapEnumerator
 MapEnumerator :: struct #align (8) {
-    _pi : UInteger,
-    _si : UInteger,
-    _bs : rawptr,
+    _pi: UInteger,
+    _si: UInteger,
+    _bs: rawptr,
 }
+#assert(size_of(MapEnumerator) == 24)
 
 /// NSMapTableKeyCallBacks
 MapTableKeyCallBacks :: struct #align (8) {
-    hash : proc "c" (table: ^MapTable, _arg_0: rawptr) -> UInteger,
-    isEqual : proc "c" (table: ^MapTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
-    retain : proc "c" (table: ^MapTable, _arg_0: rawptr),
-    release : proc "c" (table: ^MapTable, _arg_0: rawptr),
-    describe : proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
-    notAKeyMarker : rawptr,
+    hash: proc "c" (table: ^MapTable, _arg_0: rawptr) -> UInteger,
+    isEqual: proc "c" (table: ^MapTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
+    retain: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    release: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    describe: proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
+    notAKeyMarker: rawptr,
 }
+#assert(size_of(MapTableKeyCallBacks) == 48)
 
 /// NSMapTableValueCallBacks
 MapTableValueCallBacks :: struct #align (8) {
-    retain : proc "c" (table: ^MapTable, _arg_0: rawptr),
-    release : proc "c" (table: ^MapTable, _arg_0: rawptr),
-    describe : proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
+    retain: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    release: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    describe: proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
 }
+#assert(size_of(MapTableValueCallBacks) == 24)
 
 /// NSOperatingSystemVersion
 OperatingSystemVersion :: struct #align (8) {
-    majorVersion : Integer,
-    minorVersion : Integer,
-    patchVersion : Integer,
+    majorVersion: Integer,
+    minorVersion: Integer,
+    patchVersion: Integer,
 }
+#assert(size_of(OperatingSystemVersion) == 24)
 
 /// __SecCertificate
 __SecCertificate :: struct {}
@@ -5561,16 +5580,18 @@ __SecKeychainSearch :: struct {}
 
 /// SecKeychainAttribute
 SecKeychainAttribute :: struct #align (8) {
-    tag : SecKeychainAttrType,
-    length : CF.UInt32,
-    data : rawptr,
+    tag: SecKeychainAttrType,
+    length: CF.UInt32,
+    data: rawptr,
 }
+#assert(size_of(SecKeychainAttribute) == 16)
 
 /// SecKeychainAttributeList
 SecKeychainAttributeList :: struct #align (8) {
-    count : CF.UInt32,
-    attr : ^SecKeychainAttribute,
+    count: CF.UInt32,
+    attr: ^SecKeychainAttribute,
 }
+#assert(size_of(SecKeychainAttributeList) == 16)
 
 /// __SecTrustedApplication
 __SecTrustedApplication :: struct {}
@@ -5586,1461 +5607,1634 @@ __SecPassword :: struct {}
 
 /// SecKeychainAttributeInfo
 SecKeychainAttributeInfo :: struct #align (8) {
-    count : CF.UInt32,
-    tag : ^CF.UInt32,
-    format : ^CF.UInt32,
+    count: CF.UInt32,
+    tag: ^CF.UInt32,
+    format: ^CF.UInt32,
 }
+#assert(size_of(SecKeychainAttributeInfo) == 24)
 
 /// cssm_data
 cssm_data :: struct #align (8) {
-    Length : cffi.size_t,
-    Data : ^cffi.uint8_t,
+    Length: cffi.size_t,
+    Data: ^cffi.uint8_t,
 }
+#assert(size_of(cssm_data) == 16)
 
 /// SecAsn1AlgId
 SecAsn1AlgId :: struct #align (8) {
-    algorithm : cssm_data,
-    parameters : cssm_data,
+    algorithm: cssm_data,
+    parameters: cssm_data,
 }
+#assert(size_of(SecAsn1AlgId) == 32)
 
 /// SecAsn1PubKeyInfo
 SecAsn1PubKeyInfo :: struct #align (8) {
-    algorithm : SecAsn1AlgId,
-    subjectPublicKey : cssm_data,
+    algorithm: SecAsn1AlgId,
+    subjectPublicKey: cssm_data,
 }
+#assert(size_of(SecAsn1PubKeyInfo) == 48)
 
 /// SecAsn1Template_struct
 SecAsn1Template_struct :: struct #align (8) {
-    kind : cffi.uint32_t,
-    offset : cffi.uint32_t,
-    sub : rawptr,
-    size : cffi.uint32_t,
+    kind: cffi.uint32_t,
+    offset: cffi.uint32_t,
+    sub: rawptr,
+    size: cffi.uint32_t,
 }
+#assert(size_of(SecAsn1Template_struct) == 24)
 
 /// cssm_guid
 cssm_guid :: struct #align (4) {
-    Data1 : cffi.uint,
-    Data2 : cffi.ushort,
-    Data3 : cffi.ushort,
-    Data4 : [8]cffi.uchar,
+    Data1: cffi.uint,
+    Data2: cffi.ushort,
+    Data3: cffi.ushort,
+    Data4: [8]cffi.uchar,
 }
+#assert(size_of(cssm_guid) == 16)
 
 /// cssm_version
 cssm_version :: struct #align (4) {
-    Major : cffi.uint,
-    Minor : cffi.uint,
+    Major: cffi.uint,
+    Minor: cffi.uint,
 }
+#assert(size_of(cssm_version) == 8)
 
 /// cssm_subservice_uid
 cssm_subservice_uid :: struct #align (4) {
-    Guid : cssm_guid,
-    Version : cssm_version,
-    SubserviceId : cffi.uint,
-    SubserviceType : CSSM_SERVICE_TYPE,
+    Guid: cssm_guid,
+    Version: cssm_version,
+    SubserviceId: cffi.uint,
+    SubserviceType: CSSM_SERVICE_TYPE,
 }
+#assert(size_of(cssm_subservice_uid) == 32)
 
 /// cssm_net_address
 cssm_net_address :: struct #align (8) {
-    AddressType : CSSM_NET_ADDRESS_TYPE,
-    Address : cssm_data,
+    AddressType: CSSM_NET_ADDRESS_TYPE,
+    Address: cssm_data,
 }
+#assert(size_of(cssm_net_address) == 24)
 
 /// cssm_crypto_data
 cssm_crypto_data :: struct #align (8) {
-    Param : cssm_data,
-    Callback : CSSM_CALLBACK,
-    CallerCtx : rawptr,
+    Param: cssm_data,
+    Callback: CSSM_CALLBACK,
+    CallerCtx: rawptr,
 }
+#assert(size_of(cssm_crypto_data) == 32)
 
 /// cssm_list_element
 cssm_list_element :: struct #align (8) {
-    NextElement : ^cssm_list_element,
-    WordID : CSSM_WORDID_TYPE,
-    ElementType : CSSM_LIST_ELEMENT_TYPE,
-    using _ : struct #raw_union  {
-        Element_Sublist : cssm_list,
-        Element_Word : cssm_data,
+    NextElement: ^cssm_list_element,
+    WordID: CSSM_WORDID_TYPE,
+    ElementType: CSSM_LIST_ELEMENT_TYPE,
+    Element : struct #raw_union  {
+        Sublist: cssm_list,
+        Word: cssm_data,
     },
 }
+#assert(size_of(cssm_list_element) == 40)
 
 /// cssm_list
 cssm_list :: struct #align (8) {
-    ListType : CSSM_LIST_TYPE,
-    Head : CSSM_LIST_ELEMENT_PTR,
-    Tail : CSSM_LIST_ELEMENT_PTR,
+    ListType: CSSM_LIST_TYPE,
+    Head: CSSM_LIST_ELEMENT_PTR,
+    Tail: CSSM_LIST_ELEMENT_PTR,
 }
+#assert(size_of(cssm_list) == 24)
 
 /// CSSM_TUPLE
 CSSM_TUPLE :: struct #align (8) {
-    Issuer : cssm_list,
-    Subject : cssm_list,
-    Delegate : CSSM_BOOL,
-    AuthorizationTag : cssm_list,
-    ValidityPeriod : cssm_list,
+    Issuer: cssm_list,
+    Subject: cssm_list,
+    Delegate: CSSM_BOOL,
+    AuthorizationTag: cssm_list,
+    ValidityPeriod: cssm_list,
 }
+#assert(size_of(CSSM_TUPLE) == 104)
 
 /// cssm_tuplegroup
 cssm_tuplegroup :: struct #align (8) {
-    NumberOfTuples : cffi.uint,
-    Tuples : CSSM_TUPLE_PTR,
+    NumberOfTuples: cffi.uint,
+    Tuples: CSSM_TUPLE_PTR,
 }
+#assert(size_of(cssm_tuplegroup) == 16)
 
 /// cssm_sample
 cssm_sample :: struct #align (8) {
-    TypedSample : cssm_list,
-    Verifier : ^cssm_subservice_uid,
+    TypedSample: cssm_list,
+    Verifier: ^cssm_subservice_uid,
 }
+#assert(size_of(cssm_sample) == 32)
 
 /// cssm_samplegroup
 cssm_samplegroup :: struct #align (8) {
-    NumberOfSamples : cffi.uint,
-    Samples : ^cssm_sample,
+    NumberOfSamples: cffi.uint,
+    Samples: ^cssm_sample,
 }
+#assert(size_of(cssm_samplegroup) == 16)
 
 /// cssm_memory_funcs
 cssm_memory_funcs :: struct #align (8) {
-    malloc_func : CSSM_MALLOC,
-    free_func : CSSM_FREE,
-    realloc_func : CSSM_REALLOC,
-    calloc_func : CSSM_CALLOC,
-    AllocRef : rawptr,
+    malloc_func: CSSM_MALLOC,
+    free_func: CSSM_FREE,
+    realloc_func: CSSM_REALLOC,
+    calloc_func: CSSM_CALLOC,
+    AllocRef: rawptr,
 }
+#assert(size_of(cssm_memory_funcs) == 40)
 
 /// cssm_encoded_cert
 cssm_encoded_cert :: struct #align (8) {
-    CertType : CSSM_CERT_TYPE,
-    CertEncoding : CSSM_CERT_ENCODING,
-    CertBlob : cssm_data,
+    CertType: CSSM_CERT_TYPE,
+    CertEncoding: CSSM_CERT_ENCODING,
+    CertBlob: cssm_data,
 }
+#assert(size_of(cssm_encoded_cert) == 24)
 
 /// cssm_parsed_cert
 cssm_parsed_cert :: struct #align (8) {
-    CertType : CSSM_CERT_TYPE,
-    ParsedCertFormat : CSSM_CERT_PARSE_FORMAT,
-    ParsedCert : rawptr,
+    CertType: CSSM_CERT_TYPE,
+    ParsedCertFormat: CSSM_CERT_PARSE_FORMAT,
+    ParsedCert: rawptr,
 }
+#assert(size_of(cssm_parsed_cert) == 16)
 
 /// cssm_cert_pair
 cssm_cert_pair :: struct #align (8) {
-    EncodedCert : cssm_encoded_cert,
-    ParsedCert : cssm_parsed_cert,
+    EncodedCert: cssm_encoded_cert,
+    ParsedCert: cssm_parsed_cert,
 }
+#assert(size_of(cssm_cert_pair) == 40)
 
 /// cssm_certgroup
 cssm_certgroup :: struct #align (8) {
-    CertType : CSSM_CERT_TYPE,
-    CertEncoding : CSSM_CERT_ENCODING,
-    NumCerts : cffi.uint,
-    using _ : struct #raw_union  {
-        GroupList_CertList : CSSM_DATA_PTR,
-        GroupList_EncodedCertList : CSSM_ENCODED_CERT_PTR,
-        GroupList_ParsedCertList : CSSM_PARSED_CERT_PTR,
-        GroupList_PairCertList : CSSM_CERT_PAIR_PTR,
+    CertType: CSSM_CERT_TYPE,
+    CertEncoding: CSSM_CERT_ENCODING,
+    NumCerts: cffi.uint,
+    GroupList : struct #raw_union  {
+        CertList: CSSM_DATA_PTR,
+        EncodedCertList: CSSM_ENCODED_CERT_PTR,
+        ParsedCertList: CSSM_PARSED_CERT_PTR,
+        PairCertList: CSSM_CERT_PAIR_PTR,
     },
-    CertGroupType : CSSM_CERTGROUP_TYPE,
-    Reserved : rawptr,
+    CertGroupType: CSSM_CERTGROUP_TYPE,
+    Reserved: rawptr,
 }
+#assert(size_of(cssm_certgroup) == 40)
 
 /// cssm_base_certs
 cssm_base_certs :: struct #align (8) {
-    TPHandle : CSSM_TP_HANDLE,
-    CLHandle : CSSM_CL_HANDLE,
-    Certs : cssm_certgroup,
+    TPHandle: CSSM_TP_HANDLE,
+    CLHandle: CSSM_CL_HANDLE,
+    Certs: cssm_certgroup,
 }
+#assert(size_of(cssm_base_certs) == 56)
 
 /// cssm_access_credentials
 cssm_access_credentials :: struct #align (8) {
-    EntryTag : CSSM_STRING,
-    BaseCerts : cssm_base_certs,
-    Samples : cssm_samplegroup,
-    Callback : CSSM_CHALLENGE_CALLBACK,
-    CallerCtx : rawptr,
+    EntryTag: CSSM_STRING,
+    BaseCerts: cssm_base_certs,
+    Samples: cssm_samplegroup,
+    Callback: CSSM_CHALLENGE_CALLBACK,
+    CallerCtx: rawptr,
 }
+#assert(size_of(cssm_access_credentials) == 160)
 
 /// cssm_authorizationgroup
 cssm_authorizationgroup :: struct #align (8) {
-    NumberOfAuthTags : cffi.uint,
-    AuthTags : ^CSSM_ACL_AUTHORIZATION_TAG,
+    NumberOfAuthTags: cffi.uint,
+    AuthTags: ^CSSM_ACL_AUTHORIZATION_TAG,
 }
+#assert(size_of(cssm_authorizationgroup) == 16)
 
 /// cssm_acl_validity_period
 cssm_acl_validity_period :: struct #align (8) {
-    StartDate : cssm_data,
-    EndDate : cssm_data,
+    StartDate: cssm_data,
+    EndDate: cssm_data,
 }
+#assert(size_of(cssm_acl_validity_period) == 32)
 
 /// cssm_acl_entry_prototype
 cssm_acl_entry_prototype :: struct #align (8) {
-    TypedSubject : cssm_list,
-    Delegate : CSSM_BOOL,
-    Authorization : cssm_authorizationgroup,
-    TimeRange : cssm_acl_validity_period,
-    EntryTag : CSSM_STRING,
+    TypedSubject: cssm_list,
+    Delegate: CSSM_BOOL,
+    Authorization: cssm_authorizationgroup,
+    TimeRange: cssm_acl_validity_period,
+    EntryTag: CSSM_STRING,
 }
+#assert(size_of(cssm_acl_entry_prototype) == 152)
 
 /// cssm_acl_owner_prototype
 cssm_acl_owner_prototype :: struct #align (8) {
-    TypedSubject : cssm_list,
-    Delegate : CSSM_BOOL,
+    TypedSubject: cssm_list,
+    Delegate: CSSM_BOOL,
 }
+#assert(size_of(cssm_acl_owner_prototype) == 32)
 
 /// cssm_acl_entry_input
 cssm_acl_entry_input :: struct #align (8) {
-    Prototype : cssm_acl_entry_prototype,
-    Callback : CSSM_ACL_SUBJECT_CALLBACK,
-    CallerContext : rawptr,
+    Prototype: cssm_acl_entry_prototype,
+    Callback: CSSM_ACL_SUBJECT_CALLBACK,
+    CallerContext: rawptr,
 }
+#assert(size_of(cssm_acl_entry_input) == 168)
 
 /// cssm_resource_control_context
 cssm_resource_control_context :: struct #align (8) {
-    AccessCred : CSSM_ACCESS_CREDENTIALS_PTR,
-    InitialAclEntry : cssm_acl_entry_input,
+    AccessCred: CSSM_ACCESS_CREDENTIALS_PTR,
+    InitialAclEntry: cssm_acl_entry_input,
 }
+#assert(size_of(cssm_resource_control_context) == 176)
 
 /// cssm_acl_entry_info
 cssm_acl_entry_info :: struct #align (8) {
-    EntryPublicInfo : cssm_acl_entry_prototype,
-    EntryHandle : CSSM_ACL_HANDLE,
+    EntryPublicInfo: cssm_acl_entry_prototype,
+    EntryHandle: CSSM_ACL_HANDLE,
 }
+#assert(size_of(cssm_acl_entry_info) == 160)
 
 /// cssm_acl_edit
 cssm_acl_edit :: struct #align (8) {
-    EditMode : CSSM_ACL_EDIT_MODE,
-    OldEntryHandle : CSSM_ACL_HANDLE,
-    NewEntry : ^cssm_acl_entry_input,
+    EditMode: CSSM_ACL_EDIT_MODE,
+    OldEntryHandle: CSSM_ACL_HANDLE,
+    NewEntry: ^cssm_acl_entry_input,
 }
+#assert(size_of(cssm_acl_edit) == 24)
 
 /// cssm_func_name_addr
 cssm_func_name_addr :: struct #align (8) {
-    Name : CSSM_STRING,
-    Address : CSSM_PROC_ADDR,
+    Name: CSSM_STRING,
+    Address: CSSM_PROC_ADDR,
 }
+#assert(size_of(cssm_func_name_addr) == 80)
 
 /// cssm_date
-cssm_date :: struct  {
-    Year : [4]cffi.uchar,
-    Month : [2]cffi.uchar,
-    Day : [2]cffi.uchar,
+cssm_date :: struct #align (1) {
+    Year: [4]cffi.uchar,
+    Month: [2]cffi.uchar,
+    Day: [2]cffi.uchar,
 }
+#assert(size_of(cssm_date) == 8)
 
 /// cssm_range
 cssm_range :: struct #align (4) {
-    Min : cffi.uint,
-    Max : cffi.uint,
+    Min: cffi.uint,
+    Max: cffi.uint,
 }
+#assert(size_of(cssm_range) == 8)
 
 /// cssm_query_size_data
 cssm_query_size_data :: struct #align (4) {
-    SizeInputBlock : cffi.uint,
-    SizeOutputBlock : cffi.uint,
+    SizeInputBlock: cffi.uint,
+    SizeOutputBlock: cffi.uint,
 }
+#assert(size_of(cssm_query_size_data) == 8)
 
 /// cssm_key_size
 cssm_key_size :: struct #align (4) {
-    LogicalKeySizeInBits : cffi.uint,
-    EffectiveKeySizeInBits : cffi.uint,
+    LogicalKeySizeInBits: cffi.uint,
+    EffectiveKeySizeInBits: cffi.uint,
 }
+#assert(size_of(cssm_key_size) == 8)
 
 /// cssm_keyheader
 cssm_keyheader :: struct #align (4) {
-    HeaderVersion : CSSM_HEADERVERSION,
-    CspId : cssm_guid,
-    BlobType : CSSM_KEYBLOB_TYPE,
-    Format : CSSM_KEYBLOB_FORMAT,
-    AlgorithmId : CSSM_ALGORITHMS,
-    KeyClass : CSSM_KEYCLASS,
-    LogicalKeySizeInBits : cffi.uint,
-    KeyAttr : CSSM_KEYATTR_FLAGS,
-    KeyUsage : CSSM_KEYUSE,
-    StartDate : cssm_date,
-    EndDate : cssm_date,
-    WrapAlgorithmId : CSSM_ALGORITHMS,
-    WrapMode : CSSM_ENCRYPT_MODE,
-    Reserved : cffi.uint,
+    HeaderVersion: CSSM_HEADERVERSION,
+    CspId: cssm_guid,
+    BlobType: CSSM_KEYBLOB_TYPE,
+    Format: CSSM_KEYBLOB_FORMAT,
+    AlgorithmId: CSSM_ALGORITHMS,
+    KeyClass: CSSM_KEYCLASS,
+    LogicalKeySizeInBits: cffi.uint,
+    KeyAttr: CSSM_KEYATTR_FLAGS,
+    KeyUsage: CSSM_KEYUSE,
+    StartDate: cssm_date,
+    EndDate: cssm_date,
+    WrapAlgorithmId: CSSM_ALGORITHMS,
+    WrapMode: CSSM_ENCRYPT_MODE,
+    Reserved: cffi.uint,
 }
+#assert(size_of(cssm_keyheader) == 76)
 
 /// cssm_key
 cssm_key :: struct #align (8) {
-    KeyHeader : cssm_keyheader,
-    KeyData : cssm_data,
+    KeyHeader: cssm_keyheader,
+    KeyData: cssm_data,
 }
+#assert(size_of(cssm_key) == 96)
 
 /// cssm_dl_db_handle
 cssm_dl_db_handle :: struct #align (8) {
-    DLHandle : CSSM_DL_HANDLE,
-    DBHandle : CSSM_DB_HANDLE,
+    DLHandle: CSSM_DL_HANDLE,
+    DBHandle: CSSM_DB_HANDLE,
 }
+#assert(size_of(cssm_dl_db_handle) == 16)
 
 /// cssm_context_attribute
 cssm_context_attribute :: struct #align (8) {
-    AttributeType : CSSM_ATTRIBUTE_TYPE,
-    AttributeLength : cffi.uint,
-    Attribute : cssm_context_attribute_value,
+    AttributeType: CSSM_ATTRIBUTE_TYPE,
+    AttributeLength: cffi.uint,
+    Attribute: cssm_context_attribute_value,
 }
+#assert(size_of(cssm_context_attribute) == 16)
 
 /// cssm_context_attribute::cssm_context_attribute_value::cssm_kr_profile
 cssm_kr_profile :: struct #align (8) {
-    UserName : cssm_kr_name,
-    UserCertificate : CSSM_CERTGROUP_PTR,
-    KRSCertChain : CSSM_CERTGROUP_PTR,
-    LE_KRANum : cffi.uchar,
-    LE_KRACertChainList : CSSM_CERTGROUP_PTR,
-    ENT_KRANum : cffi.uchar,
-    ENT_KRACertChainList : CSSM_CERTGROUP_PTR,
-    INDIV_KRANum : cffi.uchar,
-    INDIV_KRACertChainList : CSSM_CERTGROUP_PTR,
-    INDIV_AuthenticationInfo : CSSM_DATA_PTR,
-    KRSPFlags : cffi.uint,
-    KRSPExtensions : CSSM_DATA_PTR,
+    UserName: cssm_kr_name,
+    UserCertificate: CSSM_CERTGROUP_PTR,
+    KRSCertChain: CSSM_CERTGROUP_PTR,
+    LE_KRANum: cffi.uchar,
+    LE_KRACertChainList: CSSM_CERTGROUP_PTR,
+    ENT_KRANum: cffi.uchar,
+    ENT_KRACertChainList: CSSM_CERTGROUP_PTR,
+    INDIV_KRANum: cffi.uchar,
+    INDIV_KRACertChainList: CSSM_CERTGROUP_PTR,
+    INDIV_AuthenticationInfo: CSSM_DATA_PTR,
+    KRSPFlags: cffi.uint,
+    KRSPExtensions: CSSM_DATA_PTR,
 }
+#assert(size_of(cssm_kr_profile) == 104)
 
 /// cssm_context
 cssm_context :: struct #align (8) {
-    ContextType : CSSM_CONTEXT_TYPE,
-    AlgorithmType : CSSM_ALGORITHMS,
-    NumberOfAttributes : cffi.uint,
-    ContextAttributes : CSSM_CONTEXT_ATTRIBUTE_PTR,
-    CSPHandle : CSSM_CSP_HANDLE,
-    Privileged : CSSM_BOOL,
-    EncryptionProhibited : cffi.uint,
-    WorkFactor : cffi.uint,
-    Reserved : cffi.uint,
+    ContextType: CSSM_CONTEXT_TYPE,
+    AlgorithmType: CSSM_ALGORITHMS,
+    NumberOfAttributes: cffi.uint,
+    ContextAttributes: CSSM_CONTEXT_ATTRIBUTE_PTR,
+    CSPHandle: CSSM_CSP_HANDLE,
+    Privileged: CSSM_BOOL,
+    EncryptionProhibited: cffi.uint,
+    WorkFactor: cffi.uint,
+    Reserved: cffi.uint,
 }
+#assert(size_of(cssm_context) == 48)
 
 /// cssm_pkcs1_oaep_params
 cssm_pkcs1_oaep_params :: struct #align (8) {
-    HashAlgorithm : cffi.uint,
-    HashParams : cssm_data,
-    MGF : CSSM_PKCS_OAEP_MGF,
-    MGFParams : cssm_data,
-    PSource : CSSM_PKCS_OAEP_PSOURCE,
-    PSourceParams : cssm_data,
+    HashAlgorithm: cffi.uint,
+    HashParams: cssm_data,
+    MGF: CSSM_PKCS_OAEP_MGF,
+    MGFParams: cssm_data,
+    PSource: CSSM_PKCS_OAEP_PSOURCE,
+    PSourceParams: cssm_data,
 }
+#assert(size_of(cssm_pkcs1_oaep_params) == 72)
 
 /// cssm_csp_operational_statistics
 cssm_csp_operational_statistics :: struct #align (4) {
-    UserAuthenticated : CSSM_BOOL,
-    DeviceFlags : CSSM_CSP_FLAGS,
-    TokenMaxSessionCount : cffi.uint,
-    TokenOpenedSessionCount : cffi.uint,
-    TokenMaxRWSessionCount : cffi.uint,
-    TokenOpenedRWSessionCount : cffi.uint,
-    TokenTotalPublicMem : cffi.uint,
-    TokenFreePublicMem : cffi.uint,
-    TokenTotalPrivateMem : cffi.uint,
-    TokenFreePrivateMem : cffi.uint,
+    UserAuthenticated: CSSM_BOOL,
+    DeviceFlags: CSSM_CSP_FLAGS,
+    TokenMaxSessionCount: cffi.uint,
+    TokenOpenedSessionCount: cffi.uint,
+    TokenMaxRWSessionCount: cffi.uint,
+    TokenOpenedRWSessionCount: cffi.uint,
+    TokenTotalPublicMem: cffi.uint,
+    TokenFreePublicMem: cffi.uint,
+    TokenTotalPrivateMem: cffi.uint,
+    TokenFreePrivateMem: cffi.uint,
 }
+#assert(size_of(cssm_csp_operational_statistics) == 40)
 
 /// cssm_pkcs5_pbkdf1_params
 cssm_pkcs5_pbkdf1_params :: struct #align (8) {
-    Passphrase : cssm_data,
-    InitVector : cssm_data,
+    Passphrase: cssm_data,
+    InitVector: cssm_data,
 }
+#assert(size_of(cssm_pkcs5_pbkdf1_params) == 32)
 
 /// cssm_pkcs5_pbkdf2_params
 cssm_pkcs5_pbkdf2_params :: struct #align (8) {
-    Passphrase : cssm_data,
-    PseudoRandomFunction : CSSM_PKCS5_PBKDF2_PRF,
+    Passphrase: cssm_data,
+    PseudoRandomFunction: CSSM_PKCS5_PBKDF2_PRF,
 }
+#assert(size_of(cssm_pkcs5_pbkdf2_params) == 24)
 
 /// cssm_kea_derive_params
 cssm_kea_derive_params :: struct #align (8) {
-    Rb : cssm_data,
-    Yb : cssm_data,
+    Rb: cssm_data,
+    Yb: cssm_data,
 }
+#assert(size_of(cssm_kea_derive_params) == 32)
 
 /// cssm_tp_authority_id
 cssm_tp_authority_id :: struct #align (8) {
-    AuthorityCert : ^cssm_data,
-    AuthorityLocation : CSSM_NET_ADDRESS_PTR,
+    AuthorityCert: ^cssm_data,
+    AuthorityLocation: CSSM_NET_ADDRESS_PTR,
 }
+#assert(size_of(cssm_tp_authority_id) == 16)
 
 /// cssm_field
 cssm_field :: struct #align (8) {
-    FieldOid : cssm_data,
-    FieldValue : cssm_data,
+    FieldOid: cssm_data,
+    FieldValue: cssm_data,
 }
+#assert(size_of(cssm_field) == 32)
 
 /// cssm_tp_policyinfo
 cssm_tp_policyinfo :: struct #align (8) {
-    NumberOfPolicyIds : cffi.uint,
-    PolicyIds : CSSM_FIELD_PTR,
-    PolicyControl : rawptr,
+    NumberOfPolicyIds: cffi.uint,
+    PolicyIds: CSSM_FIELD_PTR,
+    PolicyControl: rawptr,
 }
+#assert(size_of(cssm_tp_policyinfo) == 24)
 
 /// cssm_dl_db_list
 cssm_dl_db_list :: struct #align (8) {
-    NumHandles : cffi.uint,
-    DLDBHandle : CSSM_DL_DB_HANDLE_PTR,
+    NumHandles: cffi.uint,
+    DLDBHandle: CSSM_DL_DB_HANDLE_PTR,
 }
+#assert(size_of(cssm_dl_db_list) == 16)
 
 /// cssm_tp_callerauth_context
 cssm_tp_callerauth_context :: struct #align (8) {
-    Policy : cssm_tp_policyinfo,
-    VerifyTime : CSSM_TIMESTRING,
-    VerificationAbortOn : CSSM_TP_STOP_ON,
-    CallbackWithVerifiedCert : CSSM_TP_VERIFICATION_RESULTS_CALLBACK,
-    NumberOfAnchorCerts : cffi.uint,
-    AnchorCerts : CSSM_DATA_PTR,
-    DBList : CSSM_DL_DB_LIST_PTR,
-    CallerCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
+    Policy: cssm_tp_policyinfo,
+    VerifyTime: CSSM_TIMESTRING,
+    VerificationAbortOn: CSSM_TP_STOP_ON,
+    CallbackWithVerifiedCert: CSSM_TP_VERIFICATION_RESULTS_CALLBACK,
+    NumberOfAnchorCerts: cffi.uint,
+    AnchorCerts: CSSM_DATA_PTR,
+    DBList: CSSM_DL_DB_LIST_PTR,
+    CallerCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 }
+#assert(size_of(cssm_tp_callerauth_context) == 80)
 
 /// cssm_encoded_crl
 cssm_encoded_crl :: struct #align (8) {
-    CrlType : CSSM_CRL_TYPE,
-    CrlEncoding : CSSM_CRL_ENCODING,
-    CrlBlob : cssm_data,
+    CrlType: CSSM_CRL_TYPE,
+    CrlEncoding: CSSM_CRL_ENCODING,
+    CrlBlob: cssm_data,
 }
+#assert(size_of(cssm_encoded_crl) == 24)
 
 /// cssm_parsed_crl
 cssm_parsed_crl :: struct #align (8) {
-    CrlType : CSSM_CRL_TYPE,
-    ParsedCrlFormat : CSSM_CRL_PARSE_FORMAT,
-    ParsedCrl : rawptr,
+    CrlType: CSSM_CRL_TYPE,
+    ParsedCrlFormat: CSSM_CRL_PARSE_FORMAT,
+    ParsedCrl: rawptr,
 }
+#assert(size_of(cssm_parsed_crl) == 16)
 
 /// cssm_crl_pair
 cssm_crl_pair :: struct #align (8) {
-    EncodedCrl : cssm_encoded_crl,
-    ParsedCrl : cssm_parsed_crl,
+    EncodedCrl: cssm_encoded_crl,
+    ParsedCrl: cssm_parsed_crl,
 }
+#assert(size_of(cssm_crl_pair) == 40)
 
 /// cssm_crlgroup
 cssm_crlgroup :: struct #align (8) {
-    CrlType : CSSM_CRL_TYPE,
-    CrlEncoding : CSSM_CRL_ENCODING,
-    NumberOfCrls : cffi.uint,
-    using _ : struct #raw_union  {
-        GroupCrlList_CrlList : CSSM_DATA_PTR,
-        GroupCrlList_EncodedCrlList : CSSM_ENCODED_CRL_PTR,
-        GroupCrlList_ParsedCrlList : CSSM_PARSED_CRL_PTR,
-        GroupCrlList_PairCrlList : CSSM_CRL_PAIR_PTR,
+    CrlType: CSSM_CRL_TYPE,
+    CrlEncoding: CSSM_CRL_ENCODING,
+    NumberOfCrls: cffi.uint,
+    GroupCrlList : struct #raw_union  {
+        CrlList: CSSM_DATA_PTR,
+        EncodedCrlList: CSSM_ENCODED_CRL_PTR,
+        ParsedCrlList: CSSM_PARSED_CRL_PTR,
+        PairCrlList: CSSM_CRL_PAIR_PTR,
     },
-    CrlGroupType : CSSM_CRLGROUP_TYPE,
+    CrlGroupType: CSSM_CRLGROUP_TYPE,
 }
+#assert(size_of(cssm_crlgroup) == 32)
 
 /// cssm_fieldgroup
 cssm_fieldgroup :: struct #align (8) {
-    NumberOfFields : cffi.int,
-    Fields : CSSM_FIELD_PTR,
+    NumberOfFields: cffi.int,
+    Fields: CSSM_FIELD_PTR,
 }
+#assert(size_of(cssm_fieldgroup) == 16)
 
 /// cssm_evidence
 cssm_evidence :: struct #align (8) {
-    EvidenceForm : CSSM_EVIDENCE_FORM,
-    Evidence : rawptr,
+    EvidenceForm: CSSM_EVIDENCE_FORM,
+    Evidence: rawptr,
 }
+#assert(size_of(cssm_evidence) == 16)
 
 /// cssm_tp_verify_context
 cssm_tp_verify_context :: struct #align (8) {
-    Action : CSSM_TP_ACTION,
-    ActionData : cssm_data,
-    Crls : cssm_crlgroup,
-    Cred : CSSM_TP_CALLERAUTH_CONTEXT_PTR,
+    Action: CSSM_TP_ACTION,
+    ActionData: cssm_data,
+    Crls: cssm_crlgroup,
+    Cred: CSSM_TP_CALLERAUTH_CONTEXT_PTR,
 }
+#assert(size_of(cssm_tp_verify_context) == 64)
 
 /// cssm_tp_verify_context_result
 cssm_tp_verify_context_result :: struct #align (8) {
-    NumberOfEvidences : cffi.uint,
-    Evidence : CSSM_EVIDENCE_PTR,
+    NumberOfEvidences: cffi.uint,
+    Evidence: CSSM_EVIDENCE_PTR,
 }
+#assert(size_of(cssm_tp_verify_context_result) == 16)
 
 /// cssm_tp_request_set
 cssm_tp_request_set :: struct #align (8) {
-    NumberOfRequests : cffi.uint,
-    Requests : rawptr,
+    NumberOfRequests: cffi.uint,
+    Requests: rawptr,
 }
+#assert(size_of(cssm_tp_request_set) == 16)
 
 /// cssm_tp_result_set
 cssm_tp_result_set :: struct #align (8) {
-    NumberOfResults : cffi.uint,
-    Results : rawptr,
+    NumberOfResults: cffi.uint,
+    Results: rawptr,
 }
+#assert(size_of(cssm_tp_result_set) == 16)
 
 /// cssm_tp_confirm_response
 cssm_tp_confirm_response :: struct #align (8) {
-    NumberOfResponses : cffi.uint,
-    Responses : CSSM_TP_CONFIRM_STATUS_PTR,
+    NumberOfResponses: cffi.uint,
+    Responses: CSSM_TP_CONFIRM_STATUS_PTR,
 }
+#assert(size_of(cssm_tp_confirm_response) == 16)
 
 /// cssm_tp_certissue_input
 cssm_tp_certissue_input :: struct #align (8) {
-    CSPSubserviceUid : cssm_subservice_uid,
-    CLHandle : CSSM_CL_HANDLE,
-    NumberOfTemplateFields : cffi.uint,
-    SubjectCertFields : CSSM_FIELD_PTR,
-    MoreServiceRequests : CSSM_TP_SERVICES,
-    NumberOfServiceControls : cffi.uint,
-    ServiceControls : CSSM_FIELD_PTR,
-    UserCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
+    CSPSubserviceUid: cssm_subservice_uid,
+    CLHandle: CSSM_CL_HANDLE,
+    NumberOfTemplateFields: cffi.uint,
+    SubjectCertFields: CSSM_FIELD_PTR,
+    MoreServiceRequests: CSSM_TP_SERVICES,
+    NumberOfServiceControls: cffi.uint,
+    ServiceControls: CSSM_FIELD_PTR,
+    UserCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 }
+#assert(size_of(cssm_tp_certissue_input) == 80)
 
 /// cssm_tp_certissue_output
 cssm_tp_certissue_output :: struct #align (8) {
-    IssueStatus : CSSM_TP_CERTISSUE_STATUS,
-    CertGroup : CSSM_CERTGROUP_PTR,
-    PerformedServiceRequests : CSSM_TP_SERVICES,
+    IssueStatus: CSSM_TP_CERTISSUE_STATUS,
+    CertGroup: CSSM_CERTGROUP_PTR,
+    PerformedServiceRequests: CSSM_TP_SERVICES,
 }
+#assert(size_of(cssm_tp_certissue_output) == 24)
 
 /// cssm_tp_certchange_input
 cssm_tp_certchange_input :: struct #align (8) {
-    Action : CSSM_TP_CERTCHANGE_ACTION,
-    Reason : CSSM_TP_CERTCHANGE_REASON,
-    CLHandle : CSSM_CL_HANDLE,
-    Cert : CSSM_DATA_PTR,
-    ChangeInfo : CSSM_FIELD_PTR,
-    StartTime : CSSM_TIMESTRING,
-    CallerCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
+    Action: CSSM_TP_CERTCHANGE_ACTION,
+    Reason: CSSM_TP_CERTCHANGE_REASON,
+    CLHandle: CSSM_CL_HANDLE,
+    Cert: CSSM_DATA_PTR,
+    ChangeInfo: CSSM_FIELD_PTR,
+    StartTime: CSSM_TIMESTRING,
+    CallerCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 }
+#assert(size_of(cssm_tp_certchange_input) == 48)
 
 /// cssm_tp_certchange_output
 cssm_tp_certchange_output :: struct #align (8) {
-    ActionStatus : CSSM_TP_CERTCHANGE_STATUS,
-    RevokeInfo : cssm_field,
+    ActionStatus: CSSM_TP_CERTCHANGE_STATUS,
+    RevokeInfo: cssm_field,
 }
+#assert(size_of(cssm_tp_certchange_output) == 40)
 
 /// cssm_tp_certverify_input
 cssm_tp_certverify_input :: struct #align (8) {
-    CLHandle : CSSM_CL_HANDLE,
-    Cert : CSSM_DATA_PTR,
-    VerifyContext : CSSM_TP_VERIFY_CONTEXT_PTR,
+    CLHandle: CSSM_CL_HANDLE,
+    Cert: CSSM_DATA_PTR,
+    VerifyContext: CSSM_TP_VERIFY_CONTEXT_PTR,
 }
+#assert(size_of(cssm_tp_certverify_input) == 24)
 
 /// cssm_tp_certverify_output
 cssm_tp_certverify_output :: struct #align (8) {
-    VerifyStatus : CSSM_TP_CERTVERIFY_STATUS,
-    NumberOfEvidence : cffi.uint,
-    Evidence : CSSM_EVIDENCE_PTR,
+    VerifyStatus: CSSM_TP_CERTVERIFY_STATUS,
+    NumberOfEvidence: cffi.uint,
+    Evidence: CSSM_EVIDENCE_PTR,
 }
+#assert(size_of(cssm_tp_certverify_output) == 16)
 
 /// cssm_tp_certnotarize_input
 cssm_tp_certnotarize_input :: struct #align (8) {
-    CLHandle : CSSM_CL_HANDLE,
-    NumberOfFields : cffi.uint,
-    MoreFields : CSSM_FIELD_PTR,
-    SignScope : CSSM_FIELD_PTR,
-    ScopeSize : cffi.uint,
-    MoreServiceRequests : CSSM_TP_SERVICES,
-    NumberOfServiceControls : cffi.uint,
-    ServiceControls : CSSM_FIELD_PTR,
-    UserCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
+    CLHandle: CSSM_CL_HANDLE,
+    NumberOfFields: cffi.uint,
+    MoreFields: CSSM_FIELD_PTR,
+    SignScope: CSSM_FIELD_PTR,
+    ScopeSize: cffi.uint,
+    MoreServiceRequests: CSSM_TP_SERVICES,
+    NumberOfServiceControls: cffi.uint,
+    ServiceControls: CSSM_FIELD_PTR,
+    UserCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 }
+#assert(size_of(cssm_tp_certnotarize_input) == 64)
 
 /// cssm_tp_certnotarize_output
 cssm_tp_certnotarize_output :: struct #align (8) {
-    NotarizeStatus : CSSM_TP_CERTNOTARIZE_STATUS,
-    NotarizedCertGroup : CSSM_CERTGROUP_PTR,
-    PerformedServiceRequests : CSSM_TP_SERVICES,
+    NotarizeStatus: CSSM_TP_CERTNOTARIZE_STATUS,
+    NotarizedCertGroup: CSSM_CERTGROUP_PTR,
+    PerformedServiceRequests: CSSM_TP_SERVICES,
 }
+#assert(size_of(cssm_tp_certnotarize_output) == 24)
 
 /// cssm_tp_certreclaim_input
 cssm_tp_certreclaim_input :: struct #align (8) {
-    CLHandle : CSSM_CL_HANDLE,
-    NumberOfSelectionFields : cffi.uint,
-    SelectionFields : CSSM_FIELD_PTR,
-    UserCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
+    CLHandle: CSSM_CL_HANDLE,
+    NumberOfSelectionFields: cffi.uint,
+    SelectionFields: CSSM_FIELD_PTR,
+    UserCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 }
+#assert(size_of(cssm_tp_certreclaim_input) == 32)
 
 /// cssm_tp_certreclaim_output
 cssm_tp_certreclaim_output :: struct #align (8) {
-    ReclaimStatus : CSSM_TP_CERTRECLAIM_STATUS,
-    ReclaimedCertGroup : CSSM_CERTGROUP_PTR,
-    KeyCacheHandle : CSSM_LONG_HANDLE,
+    ReclaimStatus: CSSM_TP_CERTRECLAIM_STATUS,
+    ReclaimedCertGroup: CSSM_CERTGROUP_PTR,
+    KeyCacheHandle: CSSM_LONG_HANDLE,
 }
+#assert(size_of(cssm_tp_certreclaim_output) == 24)
 
 /// cssm_tp_crlissue_input
 cssm_tp_crlissue_input :: struct #align (8) {
-    CLHandle : CSSM_CL_HANDLE,
-    CrlIdentifier : cffi.uint,
-    CrlThisTime : CSSM_TIMESTRING,
-    PolicyIdentifier : CSSM_FIELD_PTR,
-    CallerCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
+    CLHandle: CSSM_CL_HANDLE,
+    CrlIdentifier: cffi.uint,
+    CrlThisTime: CSSM_TIMESTRING,
+    PolicyIdentifier: CSSM_FIELD_PTR,
+    CallerCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
 }
+#assert(size_of(cssm_tp_crlissue_input) == 40)
 
 /// cssm_tp_crlissue_output
 cssm_tp_crlissue_output :: struct #align (8) {
-    IssueStatus : CSSM_TP_CRLISSUE_STATUS,
-    Crl : CSSM_ENCODED_CRL_PTR,
-    CrlNextTime : CSSM_TIMESTRING,
+    IssueStatus: CSSM_TP_CRLISSUE_STATUS,
+    Crl: CSSM_ENCODED_CRL_PTR,
+    CrlNextTime: CSSM_TIMESTRING,
 }
+#assert(size_of(cssm_tp_crlissue_output) == 24)
 
 /// cssm_cert_bundle_header
 cssm_cert_bundle_header :: struct #align (4) {
-    BundleType : CSSM_CERT_BUNDLE_TYPE,
-    BundleEncoding : CSSM_CERT_BUNDLE_ENCODING,
+    BundleType: CSSM_CERT_BUNDLE_TYPE,
+    BundleEncoding: CSSM_CERT_BUNDLE_ENCODING,
 }
+#assert(size_of(cssm_cert_bundle_header) == 8)
 
 /// cssm_cert_bundle
 cssm_cert_bundle :: struct #align (8) {
-    BundleHeader : cssm_cert_bundle_header,
-    Bundle : cssm_data,
+    BundleHeader: cssm_cert_bundle_header,
+    Bundle: cssm_data,
 }
+#assert(size_of(cssm_cert_bundle) == 24)
 
 /// cssm_db_attribute_info
 cssm_db_attribute_info :: struct #align (8) {
-    AttributeNameFormat : CSSM_DB_ATTRIBUTE_NAME_FORMAT,
-    Label : cssm_db_attribute_label,
-    AttributeFormat : CSSM_DB_ATTRIBUTE_FORMAT,
+    AttributeNameFormat: CSSM_DB_ATTRIBUTE_NAME_FORMAT,
+    Label: cssm_db_attribute_label,
+    AttributeFormat: CSSM_DB_ATTRIBUTE_FORMAT,
 }
+#assert(size_of(cssm_db_attribute_info) == 32)
 
 /// cssm_db_attribute_data
 cssm_db_attribute_data :: struct #align (8) {
-    Info : cssm_db_attribute_info,
-    NumberOfValues : cffi.uint,
-    Value : CSSM_DATA_PTR,
+    Info: cssm_db_attribute_info,
+    NumberOfValues: cffi.uint,
+    Value: CSSM_DATA_PTR,
 }
+#assert(size_of(cssm_db_attribute_data) == 48)
 
 /// cssm_db_record_attribute_info
 cssm_db_record_attribute_info :: struct #align (8) {
-    DataRecordType : CSSM_DB_RECORDTYPE,
-    NumberOfAttributes : cffi.uint,
-    AttributeInfo : CSSM_DB_ATTRIBUTE_INFO_PTR,
+    DataRecordType: CSSM_DB_RECORDTYPE,
+    NumberOfAttributes: cffi.uint,
+    AttributeInfo: CSSM_DB_ATTRIBUTE_INFO_PTR,
 }
+#assert(size_of(cssm_db_record_attribute_info) == 16)
 
 /// cssm_db_record_attribute_data
 cssm_db_record_attribute_data :: struct #align (8) {
-    DataRecordType : CSSM_DB_RECORDTYPE,
-    SemanticInformation : cffi.uint,
-    NumberOfAttributes : cffi.uint,
-    AttributeData : CSSM_DB_ATTRIBUTE_DATA_PTR,
+    DataRecordType: CSSM_DB_RECORDTYPE,
+    SemanticInformation: cffi.uint,
+    NumberOfAttributes: cffi.uint,
+    AttributeData: CSSM_DB_ATTRIBUTE_DATA_PTR,
 }
+#assert(size_of(cssm_db_record_attribute_data) == 24)
 
 /// cssm_db_parsing_module_info
 cssm_db_parsing_module_info :: struct #align (4) {
-    RecordType : CSSM_DB_RECORDTYPE,
-    ModuleSubserviceUid : cssm_subservice_uid,
+    RecordType: CSSM_DB_RECORDTYPE,
+    ModuleSubserviceUid: cssm_subservice_uid,
 }
+#assert(size_of(cssm_db_parsing_module_info) == 36)
 
 /// cssm_db_index_info
 cssm_db_index_info :: struct #align (8) {
-    IndexType : CSSM_DB_INDEX_TYPE,
-    IndexedDataLocation : CSSM_DB_INDEXED_DATA_LOCATION,
-    Info : cssm_db_attribute_info,
+    IndexType: CSSM_DB_INDEX_TYPE,
+    IndexedDataLocation: CSSM_DB_INDEXED_DATA_LOCATION,
+    Info: cssm_db_attribute_info,
 }
+#assert(size_of(cssm_db_index_info) == 40)
 
 /// cssm_db_unique_record
 cssm_db_unique_record :: struct #align (8) {
-    RecordLocator : cssm_db_index_info,
-    RecordIdentifier : cssm_data,
+    RecordLocator: cssm_db_index_info,
+    RecordIdentifier: cssm_data,
 }
+#assert(size_of(cssm_db_unique_record) == 56)
 
 /// cssm_db_record_index_info
 cssm_db_record_index_info :: struct #align (8) {
-    DataRecordType : CSSM_DB_RECORDTYPE,
-    NumberOfIndexes : cffi.uint,
-    IndexInfo : CSSM_DB_INDEX_INFO_PTR,
+    DataRecordType: CSSM_DB_RECORDTYPE,
+    NumberOfIndexes: cffi.uint,
+    IndexInfo: CSSM_DB_INDEX_INFO_PTR,
 }
+#assert(size_of(cssm_db_record_index_info) == 16)
 
 /// cssm_dbinfo
 cssm_dbinfo :: struct #align (8) {
-    NumberOfRecordTypes : cffi.uint,
-    DefaultParsingModules : CSSM_DB_PARSING_MODULE_INFO_PTR,
-    RecordAttributeNames : CSSM_DB_RECORD_ATTRIBUTE_INFO_PTR,
-    RecordIndexes : CSSM_DB_RECORD_INDEX_INFO_PTR,
-    IsLocal : CSSM_BOOL,
-    AccessPath : cstring,
-    Reserved : rawptr,
+    NumberOfRecordTypes: cffi.uint,
+    DefaultParsingModules: CSSM_DB_PARSING_MODULE_INFO_PTR,
+    RecordAttributeNames: CSSM_DB_RECORD_ATTRIBUTE_INFO_PTR,
+    RecordIndexes: CSSM_DB_RECORD_INDEX_INFO_PTR,
+    IsLocal: CSSM_BOOL,
+    AccessPath: cstring,
+    Reserved: rawptr,
 }
+#assert(size_of(cssm_dbinfo) == 56)
 
 /// cssm_selection_predicate
 cssm_selection_predicate :: struct #align (8) {
-    DbOperator : CSSM_DB_OPERATOR,
-    Attribute : cssm_db_attribute_data,
+    DbOperator: CSSM_DB_OPERATOR,
+    Attribute: cssm_db_attribute_data,
 }
+#assert(size_of(cssm_selection_predicate) == 56)
 
 /// cssm_query_limits
 cssm_query_limits :: struct #align (4) {
-    TimeLimit : cffi.uint,
-    SizeLimit : cffi.uint,
+    TimeLimit: cffi.uint,
+    SizeLimit: cffi.uint,
 }
+#assert(size_of(cssm_query_limits) == 8)
 
 /// cssm_query
 cssm_query :: struct #align (8) {
-    RecordType : CSSM_DB_RECORDTYPE,
-    Conjunctive : CSSM_DB_CONJUNCTIVE,
-    NumSelectionPredicates : cffi.uint,
-    SelectionPredicate : CSSM_SELECTION_PREDICATE_PTR,
-    QueryLimits : cssm_query_limits,
-    QueryFlags : CSSM_QUERY_FLAGS,
+    RecordType: CSSM_DB_RECORDTYPE,
+    Conjunctive: CSSM_DB_CONJUNCTIVE,
+    NumSelectionPredicates: cffi.uint,
+    SelectionPredicate: CSSM_SELECTION_PREDICATE_PTR,
+    QueryLimits: cssm_query_limits,
+    QueryFlags: CSSM_QUERY_FLAGS,
 }
+#assert(size_of(cssm_query) == 40)
 
 /// cssm_dl_pkcs11_attributes
 cssm_dl_pkcs11_attributes :: struct #align (4) {
-    DeviceAccessFlags : cffi.uint,
+    DeviceAccessFlags: cffi.uint,
 }
+#assert(size_of(cssm_dl_pkcs11_attributes) == 4)
 
 /// cssm_name_list
 cssm_name_list :: struct #align (8) {
-    NumStrings : cffi.uint,
-    String : ^cstring,
+    NumStrings: cffi.uint,
+    String: ^cstring,
 }
+#assert(size_of(cssm_name_list) == 16)
 
 /// cssm_db_schema_attribute_info
 cssm_db_schema_attribute_info :: struct #align (8) {
-    AttributeId : cffi.uint,
-    AttributeName : cstring,
-    AttributeNameID : cssm_data,
-    DataType : CSSM_DB_ATTRIBUTE_FORMAT,
+    AttributeId: cffi.uint,
+    AttributeName: cstring,
+    AttributeNameID: cssm_data,
+    DataType: CSSM_DB_ATTRIBUTE_FORMAT,
 }
+#assert(size_of(cssm_db_schema_attribute_info) == 40)
 
 /// cssm_db_schema_index_info
 cssm_db_schema_index_info :: struct #align (4) {
-    AttributeId : cffi.uint,
-    IndexId : cffi.uint,
-    IndexType : CSSM_DB_INDEX_TYPE,
-    IndexedDataLocation : CSSM_DB_INDEXED_DATA_LOCATION,
+    AttributeId: cffi.uint,
+    IndexId: cffi.uint,
+    IndexType: CSSM_DB_INDEX_TYPE,
+    IndexedDataLocation: CSSM_DB_INDEXED_DATA_LOCATION,
 }
+#assert(size_of(cssm_db_schema_index_info) == 16)
 
 /// cssm_x509_type_value_pair
 cssm_x509_type_value_pair :: struct #align (8) {
-    type : cssm_data,
-    valueType : CSSM_BER_TAG,
-    value : cssm_data,
+    type: cssm_data,
+    valueType: CSSM_BER_TAG,
+    value: cssm_data,
 }
+#assert(size_of(cssm_x509_type_value_pair) == 40)
 
 /// cssm_x509_rdn
 cssm_x509_rdn :: struct #align (8) {
-    numberOfPairs : cffi.uint,
-    AttributeTypeAndValue : CSSM_X509_TYPE_VALUE_PAIR_PTR,
+    numberOfPairs: cffi.uint,
+    AttributeTypeAndValue: CSSM_X509_TYPE_VALUE_PAIR_PTR,
 }
+#assert(size_of(cssm_x509_rdn) == 16)
 
 /// cssm_x509_name
 cssm_x509_name :: struct #align (8) {
-    numberOfRDNs : cffi.uint,
-    RelativeDistinguishedName : CSSM_X509_RDN_PTR,
+    numberOfRDNs: cffi.uint,
+    RelativeDistinguishedName: CSSM_X509_RDN_PTR,
 }
+#assert(size_of(cssm_x509_name) == 16)
 
 /// cssm_x509_time
 cssm_x509_time :: struct #align (8) {
-    timeType : CSSM_BER_TAG,
-    time : cssm_data,
+    timeType: CSSM_BER_TAG,
+    time: cssm_data,
 }
+#assert(size_of(cssm_x509_time) == 24)
 
 /// x509_validity
 x509_validity :: struct #align (8) {
-    notBefore : cssm_x509_time,
-    notAfter : cssm_x509_time,
+    notBefore: cssm_x509_time,
+    notAfter: cssm_x509_time,
 }
+#assert(size_of(x509_validity) == 48)
 
 /// cssm_x509ext_basicConstraints
 cssm_x509ext_basicConstraints :: struct #align (4) {
-    cA : CSSM_BOOL,
-    pathLenConstraintPresent : CSSM_X509_OPTION,
-    pathLenConstraint : cffi.uint,
+    cA: CSSM_BOOL,
+    pathLenConstraintPresent: CSSM_X509_OPTION,
+    pathLenConstraint: cffi.uint,
 }
+#assert(size_of(cssm_x509ext_basicConstraints) == 12)
 
 /// cssm_x509_extensionTagAndValue
 cssm_x509_extensionTagAndValue :: struct #align (8) {
-    type : CSSM_BER_TAG,
-    value : cssm_data,
+    type: CSSM_BER_TAG,
+    value: cssm_data,
 }
+#assert(size_of(cssm_x509_extensionTagAndValue) == 24)
 
 /// cssm_x509ext_pair
 cssm_x509ext_pair :: struct #align (8) {
-    tagAndValue : cssm_x509_extensionTagAndValue,
-    parsedValue : rawptr,
+    tagAndValue: cssm_x509_extensionTagAndValue,
+    parsedValue: rawptr,
 }
+#assert(size_of(cssm_x509ext_pair) == 32)
 
 /// cssm_x509_extension
 cssm_x509_extension :: struct #align (8) {
-    extnId : cssm_data,
-    critical : CSSM_BOOL,
-    format : CSSM_X509EXT_DATA_FORMAT,
-    value : cssm_x509ext_value,
-    BERvalue : cssm_data,
+    extnId: cssm_data,
+    critical: CSSM_BOOL,
+    format: CSSM_X509EXT_DATA_FORMAT,
+    value: cssm_x509ext_value,
+    BERvalue: cssm_data,
 }
+#assert(size_of(cssm_x509_extension) == 48)
 
 /// cssm_x509_extensions
 cssm_x509_extensions :: struct #align (8) {
-    numberOfExtensions : cffi.uint,
-    extensions : CSSM_X509_EXTENSION_PTR,
+    numberOfExtensions: cffi.uint,
+    extensions: CSSM_X509_EXTENSION_PTR,
 }
+#assert(size_of(cssm_x509_extensions) == 16)
 
 /// cssm_x509_tbs_certificate
 cssm_x509_tbs_certificate :: struct #align (8) {
-    version : cssm_data,
-    serialNumber : cssm_data,
-    signature : SecAsn1AlgId,
-    issuer : cssm_x509_name,
-    validity : x509_validity,
-    subject : cssm_x509_name,
-    subjectPublicKeyInfo : SecAsn1PubKeyInfo,
-    issuerUniqueIdentifier : cssm_data,
-    subjectUniqueIdentifier : cssm_data,
-    extensions : cssm_x509_extensions,
+    version: cssm_data,
+    serialNumber: cssm_data,
+    signature: SecAsn1AlgId,
+    issuer: cssm_x509_name,
+    validity: x509_validity,
+    subject: cssm_x509_name,
+    subjectPublicKeyInfo: SecAsn1PubKeyInfo,
+    issuerUniqueIdentifier: cssm_data,
+    subjectUniqueIdentifier: cssm_data,
+    extensions: cssm_x509_extensions,
 }
+#assert(size_of(cssm_x509_tbs_certificate) == 240)
 
 /// cssm_x509_signature
 cssm_x509_signature :: struct #align (8) {
-    algorithmIdentifier : SecAsn1AlgId,
-    encrypted : cssm_data,
+    algorithmIdentifier: SecAsn1AlgId,
+    encrypted: cssm_data,
 }
+#assert(size_of(cssm_x509_signature) == 48)
 
 /// cssm_x509_signed_certificate
 cssm_x509_signed_certificate :: struct #align (8) {
-    certificate : cssm_x509_tbs_certificate,
-    signature : cssm_x509_signature,
+    certificate: cssm_x509_tbs_certificate,
+    signature: cssm_x509_signature,
 }
+#assert(size_of(cssm_x509_signed_certificate) == 288)
 
 /// cssm_x509ext_policyQualifierInfo
 cssm_x509ext_policyQualifierInfo :: struct #align (8) {
-    policyQualifierId : cssm_data,
-    value : cssm_data,
+    policyQualifierId: cssm_data,
+    value: cssm_data,
 }
+#assert(size_of(cssm_x509ext_policyQualifierInfo) == 32)
 
 /// cssm_x509ext_policyQualifiers
 cssm_x509ext_policyQualifiers :: struct #align (8) {
-    numberOfPolicyQualifiers : cffi.uint,
-    policyQualifier : ^cssm_x509ext_policyQualifierInfo,
+    numberOfPolicyQualifiers: cffi.uint,
+    policyQualifier: ^cssm_x509ext_policyQualifierInfo,
 }
+#assert(size_of(cssm_x509ext_policyQualifiers) == 16)
 
 /// cssm_x509ext_policyInfo
 cssm_x509ext_policyInfo :: struct #align (8) {
-    policyIdentifier : cssm_data,
-    policyQualifiers : cssm_x509ext_policyQualifiers,
+    policyIdentifier: cssm_data,
+    policyQualifiers: cssm_x509ext_policyQualifiers,
 }
+#assert(size_of(cssm_x509ext_policyInfo) == 32)
 
 /// cssm_x509_revoked_cert_entry
 cssm_x509_revoked_cert_entry :: struct #align (8) {
-    certificateSerialNumber : cssm_data,
-    revocationDate : cssm_x509_time,
-    extensions : cssm_x509_extensions,
+    certificateSerialNumber: cssm_data,
+    revocationDate: cssm_x509_time,
+    extensions: cssm_x509_extensions,
 }
+#assert(size_of(cssm_x509_revoked_cert_entry) == 56)
 
 /// cssm_x509_revoked_cert_list
 cssm_x509_revoked_cert_list :: struct #align (8) {
-    numberOfRevokedCertEntries : cffi.uint,
-    revokedCertEntry : CSSM_X509_REVOKED_CERT_ENTRY_PTR,
+    numberOfRevokedCertEntries: cffi.uint,
+    revokedCertEntry: CSSM_X509_REVOKED_CERT_ENTRY_PTR,
 }
+#assert(size_of(cssm_x509_revoked_cert_list) == 16)
 
 /// cssm_x509_tbs_certlist
 cssm_x509_tbs_certlist :: struct #align (8) {
-    version : cssm_data,
-    signature : SecAsn1AlgId,
-    issuer : cssm_x509_name,
-    thisUpdate : cssm_x509_time,
-    nextUpdate : cssm_x509_time,
-    revokedCertificates : CSSM_X509_REVOKED_CERT_LIST_PTR,
-    extensions : cssm_x509_extensions,
+    version: cssm_data,
+    signature: SecAsn1AlgId,
+    issuer: cssm_x509_name,
+    thisUpdate: cssm_x509_time,
+    nextUpdate: cssm_x509_time,
+    revokedCertificates: CSSM_X509_REVOKED_CERT_LIST_PTR,
+    extensions: cssm_x509_extensions,
 }
+#assert(size_of(cssm_x509_tbs_certlist) == 136)
 
 /// cssm_x509_signed_crl
 cssm_x509_signed_crl :: struct #align (8) {
-    tbsCertList : cssm_x509_tbs_certlist,
-    signature : cssm_x509_signature,
+    tbsCertList: cssm_x509_tbs_certlist,
+    signature: cssm_x509_signature,
 }
+#assert(size_of(cssm_x509_signed_crl) == 184)
 
 /// __SecRandom
 __SecRandom :: struct {}
 
 /// __CE_OtherName
 __CE_OtherName :: struct #align (8) {
-    typeId : cssm_data,
-    value : cssm_data,
+    typeId: cssm_data,
+    value: cssm_data,
 }
+#assert(size_of(__CE_OtherName) == 32)
 
 /// __CE_GeneralName
 __CE_GeneralName :: struct #align (8) {
-    nameType : CE_GeneralNameType,
-    berEncoded : CSSM_BOOL,
-    name : cssm_data,
+    nameType: CE_GeneralNameType,
+    berEncoded: CSSM_BOOL,
+    name: cssm_data,
 }
+#assert(size_of(__CE_GeneralName) == 24)
 
 /// __CE_GeneralNames
 __CE_GeneralNames :: struct #align (8) {
-    numNames : cffi.uint,
-    generalName : ^__CE_GeneralName,
+    numNames: cffi.uint,
+    generalName: ^__CE_GeneralName,
 }
+#assert(size_of(__CE_GeneralNames) == 16)
 
 /// __CE_AuthorityKeyID
 __CE_AuthorityKeyID :: struct #align (8) {
-    keyIdentifierPresent : CSSM_BOOL,
-    keyIdentifier : cssm_data,
-    generalNamesPresent : CSSM_BOOL,
-    generalNames : ^__CE_GeneralNames,
-    serialNumberPresent : CSSM_BOOL,
-    serialNumber : cssm_data,
+    keyIdentifierPresent: CSSM_BOOL,
+    keyIdentifier: cssm_data,
+    generalNamesPresent: CSSM_BOOL,
+    generalNames: ^__CE_GeneralNames,
+    serialNumberPresent: CSSM_BOOL,
+    serialNumber: cssm_data,
 }
+#assert(size_of(__CE_AuthorityKeyID) == 64)
 
 /// __CE_ExtendedKeyUsage
 __CE_ExtendedKeyUsage :: struct #align (8) {
-    numPurposes : cffi.uint,
-    purposes : CSSM_OID_PTR,
+    numPurposes: cffi.uint,
+    purposes: CSSM_OID_PTR,
 }
+#assert(size_of(__CE_ExtendedKeyUsage) == 16)
 
 /// __CE_BasicConstraints
 __CE_BasicConstraints :: struct #align (4) {
-    cA : CSSM_BOOL,
-    pathLenConstraintPresent : CSSM_BOOL,
-    pathLenConstraint : cffi.uint,
+    cA: CSSM_BOOL,
+    pathLenConstraintPresent: CSSM_BOOL,
+    pathLenConstraint: cffi.uint,
 }
+#assert(size_of(__CE_BasicConstraints) == 12)
 
 /// __CE_PolicyQualifierInfo
 __CE_PolicyQualifierInfo :: struct #align (8) {
-    policyQualifierId : cssm_data,
-    qualifier : cssm_data,
+    policyQualifierId: cssm_data,
+    qualifier: cssm_data,
 }
+#assert(size_of(__CE_PolicyQualifierInfo) == 32)
 
 /// __CE_PolicyInformation
 __CE_PolicyInformation :: struct #align (8) {
-    certPolicyId : cssm_data,
-    numPolicyQualifiers : cffi.uint,
-    policyQualifiers : ^__CE_PolicyQualifierInfo,
+    certPolicyId: cssm_data,
+    numPolicyQualifiers: cffi.uint,
+    policyQualifiers: ^__CE_PolicyQualifierInfo,
 }
+#assert(size_of(__CE_PolicyInformation) == 32)
 
 /// __CE_CertPolicies
 __CE_CertPolicies :: struct #align (8) {
-    numPolicies : cffi.uint,
-    policies : ^__CE_PolicyInformation,
+    numPolicies: cffi.uint,
+    policies: ^__CE_PolicyInformation,
 }
+#assert(size_of(__CE_CertPolicies) == 16)
 
 /// __CE_DistributionPointName
 __CE_DistributionPointName :: struct #align (8) {
-    nameType : CE_CrlDistributionPointNameType,
-    using _ : struct #raw_union  {
-        dpn_fullName : ^__CE_GeneralNames,
-        dpn_rdn : CSSM_X509_RDN_PTR,
+    nameType: CE_CrlDistributionPointNameType,
+    dpn : struct #raw_union  {
+        fullName: ^__CE_GeneralNames,
+        rdn: CSSM_X509_RDN_PTR,
     },
 }
+#assert(size_of(__CE_DistributionPointName) == 16)
 
 /// __CE_CRLDistributionPoint
 __CE_CRLDistributionPoint :: struct #align (8) {
-    distPointName : ^__CE_DistributionPointName,
-    reasonsPresent : CSSM_BOOL,
-    reasons : CE_CrlDistReasonFlags,
-    crlIssuer : ^__CE_GeneralNames,
+    distPointName: ^__CE_DistributionPointName,
+    reasonsPresent: CSSM_BOOL,
+    reasons: CE_CrlDistReasonFlags,
+    crlIssuer: ^__CE_GeneralNames,
 }
+#assert(size_of(__CE_CRLDistributionPoint) == 24)
 
 /// __CE_CRLDistPointsSyntax
 __CE_CRLDistPointsSyntax :: struct #align (8) {
-    numDistPoints : cffi.uint,
-    distPoints : ^__CE_CRLDistributionPoint,
+    numDistPoints: cffi.uint,
+    distPoints: ^__CE_CRLDistributionPoint,
 }
+#assert(size_of(__CE_CRLDistPointsSyntax) == 16)
 
 /// __CE_AccessDescription
 __CE_AccessDescription :: struct #align (8) {
-    accessMethod : cssm_data,
-    accessLocation : __CE_GeneralName,
+    accessMethod: cssm_data,
+    accessLocation: __CE_GeneralName,
 }
+#assert(size_of(__CE_AccessDescription) == 40)
 
 /// __CE_AuthorityInfoAccess
 __CE_AuthorityInfoAccess :: struct #align (8) {
-    numAccessDescriptions : cffi.uint,
-    accessDescriptions : ^__CE_AccessDescription,
+    numAccessDescriptions: cffi.uint,
+    accessDescriptions: ^__CE_AccessDescription,
 }
+#assert(size_of(__CE_AuthorityInfoAccess) == 16)
 
 /// __CE_SemanticsInformation
 __CE_SemanticsInformation :: struct #align (8) {
-    semanticsIdentifier : ^cssm_data,
-    nameRegistrationAuthorities : ^CE_NameRegistrationAuthorities,
+    semanticsIdentifier: ^cssm_data,
+    nameRegistrationAuthorities: ^CE_NameRegistrationAuthorities,
 }
+#assert(size_of(__CE_SemanticsInformation) == 16)
 
 /// __CE_QC_Statement
 __CE_QC_Statement :: struct #align (8) {
-    statementId : cssm_data,
-    semanticsInfo : ^__CE_SemanticsInformation,
-    otherInfo : ^cssm_data,
+    statementId: cssm_data,
+    semanticsInfo: ^__CE_SemanticsInformation,
+    otherInfo: ^cssm_data,
 }
+#assert(size_of(__CE_QC_Statement) == 32)
 
 /// __CE_QC_Statements
 __CE_QC_Statements :: struct #align (8) {
-    numQCStatements : cffi.uint,
-    qcStatements : ^__CE_QC_Statement,
+    numQCStatements: cffi.uint,
+    qcStatements: ^__CE_QC_Statement,
 }
+#assert(size_of(__CE_QC_Statements) == 16)
 
 /// __CE_IssuingDistributionPoint
 __CE_IssuingDistributionPoint :: struct #align (8) {
-    distPointName : ^__CE_DistributionPointName,
-    onlyUserCertsPresent : CSSM_BOOL,
-    onlyUserCerts : CSSM_BOOL,
-    onlyCACertsPresent : CSSM_BOOL,
-    onlyCACerts : CSSM_BOOL,
-    onlySomeReasonsPresent : CSSM_BOOL,
-    onlySomeReasons : CE_CrlDistReasonFlags,
-    indirectCrlPresent : CSSM_BOOL,
-    indirectCrl : CSSM_BOOL,
+    distPointName: ^__CE_DistributionPointName,
+    onlyUserCertsPresent: CSSM_BOOL,
+    onlyUserCerts: CSSM_BOOL,
+    onlyCACertsPresent: CSSM_BOOL,
+    onlyCACerts: CSSM_BOOL,
+    onlySomeReasonsPresent: CSSM_BOOL,
+    onlySomeReasons: CE_CrlDistReasonFlags,
+    indirectCrlPresent: CSSM_BOOL,
+    indirectCrl: CSSM_BOOL,
 }
+#assert(size_of(__CE_IssuingDistributionPoint) == 40)
 
 /// __CE_GeneralSubtree
 __CE_GeneralSubtree :: struct #align (8) {
-    base : ^__CE_GeneralNames,
-    minimum : cffi.uint,
-    maximumPresent : CSSM_BOOL,
-    maximum : cffi.uint,
+    base: ^__CE_GeneralNames,
+    minimum: cffi.uint,
+    maximumPresent: CSSM_BOOL,
+    maximum: cffi.uint,
 }
+#assert(size_of(__CE_GeneralSubtree) == 24)
 
 /// __CE_GeneralSubtrees
 __CE_GeneralSubtrees :: struct #align (8) {
-    numSubtrees : cffi.uint,
-    subtrees : ^__CE_GeneralSubtree,
+    numSubtrees: cffi.uint,
+    subtrees: ^__CE_GeneralSubtree,
 }
+#assert(size_of(__CE_GeneralSubtrees) == 16)
 
 /// __CE_NameConstraints
 __CE_NameConstraints :: struct #align (8) {
-    permitted : ^__CE_GeneralSubtrees,
-    excluded : ^__CE_GeneralSubtrees,
+    permitted: ^__CE_GeneralSubtrees,
+    excluded: ^__CE_GeneralSubtrees,
 }
+#assert(size_of(__CE_NameConstraints) == 16)
 
 /// __CE_PolicyMapping
 __CE_PolicyMapping :: struct #align (8) {
-    issuerDomainPolicy : cssm_data,
-    subjectDomainPolicy : cssm_data,
+    issuerDomainPolicy: cssm_data,
+    subjectDomainPolicy: cssm_data,
 }
+#assert(size_of(__CE_PolicyMapping) == 32)
 
 /// __CE_PolicyMappings
 __CE_PolicyMappings :: struct #align (8) {
-    numPolicyMappings : cffi.uint,
-    policyMappings : ^__CE_PolicyMapping,
+    numPolicyMappings: cffi.uint,
+    policyMappings: ^__CE_PolicyMapping,
 }
+#assert(size_of(__CE_PolicyMappings) == 16)
 
 /// __CE_PolicyConstraints
 __CE_PolicyConstraints :: struct #align (4) {
-    requireExplicitPolicyPresent : CSSM_BOOL,
-    requireExplicitPolicy : cffi.uint,
-    inhibitPolicyMappingPresent : CSSM_BOOL,
-    inhibitPolicyMapping : cffi.uint,
+    requireExplicitPolicyPresent: CSSM_BOOL,
+    requireExplicitPolicy: cffi.uint,
+    inhibitPolicyMappingPresent: CSSM_BOOL,
+    inhibitPolicyMapping: cffi.uint,
 }
+#assert(size_of(__CE_PolicyConstraints) == 16)
 
 /// __CE_DataAndType
 __CE_DataAndType :: struct #align (8) {
-    type : CE_DataType,
-    extension : CE_Data,
-    critical : CSSM_BOOL,
+    type: CE_DataType,
+    extension: CE_Data,
+    critical: CSSM_BOOL,
 }
+#assert(size_of(__CE_DataAndType) == 80)
 
 /// cssm_acl_process_subject_selector
 cssm_acl_process_subject_selector :: struct #align (4) {
-    version : cffi.ushort,
-    mask : cffi.ushort,
-    uid : cffi.uint,
-    gid : cffi.uint,
+    version: cffi.ushort,
+    mask: cffi.ushort,
+    uid: cffi.uint,
+    gid: cffi.uint,
 }
+#assert(size_of(cssm_acl_process_subject_selector) == 12)
 
 /// cssm_acl_keychain_prompt_selector
 cssm_acl_keychain_prompt_selector :: struct #align (2) {
-    version : cffi.ushort,
-    flags : cffi.ushort,
+    version: cffi.ushort,
+    flags: cffi.ushort,
 }
+#assert(size_of(cssm_acl_keychain_prompt_selector) == 4)
 
 /// cssm_appledl_open_parameters
 cssm_appledl_open_parameters :: struct #align (4) {
-    length : cffi.uint,
-    version : cffi.uint,
-    autoCommit : CSSM_BOOL,
-    mask : cffi.uint,
-    mode : CF.mode_t,
+    length: cffi.uint,
+    version: cffi.uint,
+    autoCommit: CSSM_BOOL,
+    mask: cffi.uint,
+    mode: CF.mode_t,
 }
+#assert(size_of(cssm_appledl_open_parameters) == 20)
 
 /// cssm_applecspdl_db_settings_parameters
 cssm_applecspdl_db_settings_parameters :: struct #align (4) {
-    idleTimeout : cffi.uint,
-    lockOnSleep : cffi.uchar,
+    idleTimeout: cffi.uint,
+    lockOnSleep: cffi.uchar,
 }
+#assert(size_of(cssm_applecspdl_db_settings_parameters) == 8)
 
 /// cssm_applecspdl_db_is_locked_parameters
-cssm_applecspdl_db_is_locked_parameters :: struct  {
-    isLocked : cffi.uchar,
+cssm_applecspdl_db_is_locked_parameters :: struct #align (1) {
+    isLocked: cffi.uchar,
 }
+#assert(size_of(cssm_applecspdl_db_is_locked_parameters) == 1)
 
 /// cssm_applecspdl_db_change_password_parameters
 cssm_applecspdl_db_change_password_parameters :: struct #align (8) {
-    accessCredentials : ^cssm_access_credentials,
+    accessCredentials: ^cssm_access_credentials,
 }
+#assert(size_of(cssm_applecspdl_db_change_password_parameters) == 8)
 
 /// CSSM_APPLE_TP_NAME_OID
 CSSM_APPLE_TP_NAME_OID :: struct #align (8) {
-    string : cstring,
-    oid : ^cssm_data,
+    string: cstring,
+    oid: ^cssm_data,
 }
+#assert(size_of(CSSM_APPLE_TP_NAME_OID) == 16)
 
 /// CSSM_APPLE_TP_CERT_REQUEST
 CSSM_APPLE_TP_CERT_REQUEST :: struct #align (8) {
-    cspHand : CSSM_CSP_HANDLE,
-    clHand : CSSM_CL_HANDLE,
-    serialNumber : cffi.uint,
-    numSubjectNames : cffi.uint,
-    subjectNames : ^CSSM_APPLE_TP_NAME_OID,
-    numIssuerNames : cffi.uint,
-    issuerNames : ^CSSM_APPLE_TP_NAME_OID,
-    issuerNameX509 : CSSM_X509_NAME_PTR,
-    certPublicKey : ^cssm_key,
-    issuerPrivateKey : ^cssm_key,
-    signatureAlg : CSSM_ALGORITHMS,
-    signatureOid : cssm_data,
-    notBefore : cffi.uint,
-    notAfter : cffi.uint,
-    numExtensions : cffi.uint,
-    extensions : ^__CE_DataAndType,
-    challengeString : cstring,
+    cspHand: CSSM_CSP_HANDLE,
+    clHand: CSSM_CL_HANDLE,
+    serialNumber: cffi.uint,
+    numSubjectNames: cffi.uint,
+    subjectNames: ^CSSM_APPLE_TP_NAME_OID,
+    numIssuerNames: cffi.uint,
+    issuerNames: ^CSSM_APPLE_TP_NAME_OID,
+    issuerNameX509: CSSM_X509_NAME_PTR,
+    certPublicKey: ^cssm_key,
+    issuerPrivateKey: ^cssm_key,
+    signatureAlg: CSSM_ALGORITHMS,
+    signatureOid: cssm_data,
+    notBefore: cffi.uint,
+    notAfter: cffi.uint,
+    numExtensions: cffi.uint,
+    extensions: ^__CE_DataAndType,
+    challengeString: cstring,
 }
+#assert(size_of(CSSM_APPLE_TP_CERT_REQUEST) == 128)
 
 /// CSSM_APPLE_TP_SSL_OPTIONS
 CSSM_APPLE_TP_SSL_OPTIONS :: struct #align (8) {
-    Version : cffi.uint,
-    ServerNameLen : cffi.uint,
-    ServerName : cstring,
-    Flags : cffi.uint,
+    Version: cffi.uint,
+    ServerNameLen: cffi.uint,
+    ServerName: cstring,
+    Flags: cffi.uint,
 }
+#assert(size_of(CSSM_APPLE_TP_SSL_OPTIONS) == 24)
 
 /// CSSM_APPLE_TP_CRL_OPTIONS
 CSSM_APPLE_TP_CRL_OPTIONS :: struct #align (8) {
-    Version : cffi.uint,
-    CrlFlags : CSSM_APPLE_TP_CRL_OPT_FLAGS,
-    crlStore : CSSM_DL_DB_HANDLE_PTR,
+    Version: cffi.uint,
+    CrlFlags: CSSM_APPLE_TP_CRL_OPT_FLAGS,
+    crlStore: CSSM_DL_DB_HANDLE_PTR,
 }
+#assert(size_of(CSSM_APPLE_TP_CRL_OPTIONS) == 16)
 
 /// CSSM_APPLE_TP_SMIME_OPTIONS
 CSSM_APPLE_TP_SMIME_OPTIONS :: struct #align (8) {
-    Version : cffi.uint,
-    IntendedUsage : CE_KeyUsage,
-    SenderEmailLen : cffi.uint,
-    SenderEmail : cstring,
+    Version: cffi.uint,
+    IntendedUsage: CE_KeyUsage,
+    SenderEmailLen: cffi.uint,
+    SenderEmail: cstring,
 }
+#assert(size_of(CSSM_APPLE_TP_SMIME_OPTIONS) == 24)
 
 /// CSSM_APPLE_TP_ACTION_DATA
 CSSM_APPLE_TP_ACTION_DATA :: struct #align (4) {
-    Version : cffi.uint,
-    ActionFlags : CSSM_APPLE_TP_ACTION_FLAGS,
+    Version: cffi.uint,
+    ActionFlags: CSSM_APPLE_TP_ACTION_FLAGS,
 }
+#assert(size_of(CSSM_APPLE_TP_ACTION_DATA) == 8)
 
 /// CSSM_TP_APPLE_EVIDENCE_INFO
 CSSM_TP_APPLE_EVIDENCE_INFO :: struct #align (8) {
-    StatusBits : CSSM_TP_APPLE_CERT_STATUS,
-    NumStatusCodes : cffi.uint,
-    StatusCodes : ^CSSM_RETURN,
-    Index : cffi.uint,
-    DlDbHandle : cssm_dl_db_handle,
-    UniqueRecord : CSSM_DB_UNIQUE_RECORD_PTR,
+    StatusBits: CSSM_TP_APPLE_CERT_STATUS,
+    NumStatusCodes: cffi.uint,
+    StatusCodes: ^CSSM_RETURN,
+    Index: cffi.uint,
+    DlDbHandle: cssm_dl_db_handle,
+    UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR,
 }
+#assert(size_of(CSSM_TP_APPLE_EVIDENCE_INFO) == 48)
 
 /// CSSM_TP_APPLE_EVIDENCE_HEADER
 CSSM_TP_APPLE_EVIDENCE_HEADER :: struct #align (4) {
-    Version : cffi.uint,
+    Version: cffi.uint,
 }
+#assert(size_of(CSSM_TP_APPLE_EVIDENCE_HEADER) == 4)
 
 /// CSSM_APPLE_CL_CSR_REQUEST
 CSSM_APPLE_CL_CSR_REQUEST :: struct #align (8) {
-    subjectNameX509 : CSSM_X509_NAME_PTR,
-    signatureAlg : CSSM_ALGORITHMS,
-    signatureOid : cssm_data,
-    cspHand : CSSM_CSP_HANDLE,
-    subjectPublicKey : ^cssm_key,
-    subjectPrivateKey : ^cssm_key,
-    challengeString : cstring,
+    subjectNameX509: CSSM_X509_NAME_PTR,
+    signatureAlg: CSSM_ALGORITHMS,
+    signatureOid: cssm_data,
+    cspHand: CSSM_CSP_HANDLE,
+    subjectPublicKey: ^cssm_key,
+    subjectPrivateKey: ^cssm_key,
+    challengeString: cstring,
 }
+#assert(size_of(CSSM_APPLE_CL_CSR_REQUEST) == 64)
 
 /// SecKeychainSettings
 SecKeychainSettings :: struct #align (4) {
-    version : CF.UInt32,
-    lockOnSleep : CF.Boolean,
-    useLockInterval : CF.Boolean,
-    lockInterval : CF.UInt32,
+    version: CF.UInt32,
+    lockOnSleep: CF.Boolean,
+    useLockInterval: CF.Boolean,
+    lockInterval: CF.UInt32,
 }
+#assert(size_of(SecKeychainSettings) == 12)
 
 /// SecKeychainCallbackInfo
 SecKeychainCallbackInfo :: struct #align (8) {
-    version : CF.UInt32,
-    item : SecKeychainItemRef,
-    keychain : SecKeychainRef,
-    pid : CF.pid_t,
+    version: CF.UInt32,
+    item: SecKeychainItemRef,
+    keychain: SecKeychainRef,
+    pid: CF.pid_t,
 }
+#assert(size_of(SecKeychainCallbackInfo) == 32)
 
 /// SecKeyImportExportParameters
 SecKeyImportExportParameters :: struct #align (8) {
-    version : cffi.uint32_t,
-    flags : SecKeyImportExportFlags,
-    passphrase : CF.TypeRef,
-    alertTitle : CF.StringRef,
-    alertPrompt : CF.StringRef,
-    accessRef : SecAccessRef,
-    keyUsage : CSSM_KEYUSE,
-    keyAttributes : CSSM_KEYATTR_FLAGS,
+    version: cffi.uint32_t,
+    flags: SecKeyImportExportFlags,
+    passphrase: CF.TypeRef,
+    alertTitle: CF.StringRef,
+    alertPrompt: CF.StringRef,
+    accessRef: SecAccessRef,
+    keyUsage: CSSM_KEYUSE,
+    keyAttributes: CSSM_KEYATTR_FLAGS,
 }
+#assert(size_of(SecKeyImportExportParameters) == 48)
 
 /// SecItemImportExportKeyParameters
 SecItemImportExportKeyParameters :: struct #align (8) {
-    version : cffi.uint32_t,
-    flags : SecKeyImportExportFlags,
-    passphrase : CF.TypeRef,
-    alertTitle : CF.StringRef,
-    alertPrompt : CF.StringRef,
-    accessRef : SecAccessRef,
-    keyUsage : CF.ArrayRef,
-    keyAttributes : CF.ArrayRef,
+    version: cffi.uint32_t,
+    flags: SecKeyImportExportFlags,
+    passphrase: CF.TypeRef,
+    alertTitle: CF.StringRef,
+    alertPrompt: CF.StringRef,
+    accessRef: SecAccessRef,
+    keyUsage: CF.ArrayRef,
+    keyAttributes: CF.ArrayRef,
 }
+#assert(size_of(SecItemImportExportKeyParameters) == 56)
 
 /// __SecTrust
 __SecTrust :: struct {}
 
 /// cssm_manager_event_notification
 cssm_manager_event_notification :: struct #align (8) {
-    DestinationModuleManagerType : CSSM_SERVICE_MASK,
-    SourceModuleManagerType : CSSM_SERVICE_MASK,
-    Event : CSSM_MANAGER_EVENT_TYPES,
-    EventId : cffi.uint,
-    EventData : cssm_data,
+    DestinationModuleManagerType: CSSM_SERVICE_MASK,
+    SourceModuleManagerType: CSSM_SERVICE_MASK,
+    Event: CSSM_MANAGER_EVENT_TYPES,
+    EventId: cffi.uint,
+    EventData: cssm_data,
 }
+#assert(size_of(cssm_manager_event_notification) == 32)
 
 /// cssm_spi_ac_funcs
 cssm_spi_ac_funcs :: struct #align (8) {
-    AuthCompute : proc "c" (ACHandle: CSSM_AC_HANDLE, BaseAuthorizations: ^cssm_tuplegroup, Credentials: ^cssm_tuplegroup, NumberOfRequestors: cffi.uint, Requestors: ^cssm_list, RequestedAuthorizationPeriod: ^cssm_list, RequestedAuthorization: ^cssm_list, AuthorizationResult: CSSM_TUPLEGROUP_PTR) -> CSSM_RETURN,
-    PassThrough : proc "c" (ACHandle: CSSM_AC_HANDLE, TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ^cssm_dl_db_list, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    AuthCompute: proc "c" (ACHandle: CSSM_AC_HANDLE, BaseAuthorizations: ^cssm_tuplegroup, Credentials: ^cssm_tuplegroup, NumberOfRequestors: cffi.uint, Requestors: ^cssm_list, RequestedAuthorizationPeriod: ^cssm_list, RequestedAuthorization: ^cssm_list, AuthorizationResult: CSSM_TUPLEGROUP_PTR) -> CSSM_RETURN,
+    PassThrough: proc "c" (ACHandle: CSSM_AC_HANDLE, TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ^cssm_dl_db_list, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_spi_ac_funcs) == 16)
 
 /// cssm_spi_cl_funcs
 cssm_spi_cl_funcs :: struct #align (8) {
-    CertCreateTemplate : proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CertFields: ^cssm_field, CertTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetAllTemplateFields : proc "c" (CLHandle: CSSM_CL_HANDLE, CertTemplate: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    CertSign : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplate: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCert: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertVerify : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint) -> CSSM_RETURN,
-    CertVerifyWithKey : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data) -> CSSM_RETURN,
-    CertGetFirstFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetNextFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertAbortQuery : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    CertGetKeyInfo : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Key: ^CSSM_KEY_PTR) -> CSSM_RETURN,
-    CertGetAllFields : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    FreeFields : proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, FieldArray: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    FreeFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CertOrCrlOid: ^cssm_data, _Value: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertCache : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    CertGetFirstCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetNextCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertAbortCache : proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    CertGroupToSignedBundle : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertGroupToBundle: ^cssm_certgroup, BundleInfo: ^cssm_cert_bundle_header, SignedBundle: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGroupFromVerifiedBundle : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertBundle: ^cssm_cert_bundle, SignerCert: ^cssm_data, CertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
-    CertDescribeFormat : proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR) -> CSSM_RETURN,
-    CrlCreateTemplate : proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlTemplate: ^cssm_field, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlSetFields : proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlTemplate: ^cssm_field, OldCrl: ^cssm_data, ModifiedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlAddCert : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, Cert: ^cssm_data, NumberOfFields: cffi.uint, CrlEntryFields: ^cssm_field, OldCrl: ^cssm_data, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlRemoveCert : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, OldCrl: ^cssm_data, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlSign : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, UnsignedCrl: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlVerify : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint) -> CSSM_RETURN,
-    CrlVerifyWithKey : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data) -> CSSM_RETURN,
-    IsCertInCrl : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Crl: ^cssm_data, CertFound: ^CSSM_BOOL) -> CSSM_RETURN,
-    CrlGetFirstFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetNextFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlAbortQuery : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    CrlGetAllFields : proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, NumberOfCrlFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    CrlCache : proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    IsCertInCachedCrl : proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CrlHandle: CSSM_HANDLE, CertFound: ^CSSM_BOOL, CrlRecordIndex: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetFirstCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetNextCachedFieldValue : proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetAllCachedRecordFields : proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, NumberOfFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    CrlAbortCache : proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    CrlDescribeFormat : proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR) -> CSSM_RETURN,
-    PassThrough : proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    CertCreateTemplate: proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CertFields: ^cssm_field, CertTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGetAllTemplateFields: proc "c" (CLHandle: CSSM_CL_HANDLE, CertTemplate: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
+    CertSign: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplate: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCert: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertVerify: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint) -> CSSM_RETURN,
+    CertVerifyWithKey: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data) -> CSSM_RETURN,
+    CertGetFirstFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGetNextFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertAbortQuery: proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
+    CertGetKeyInfo: proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Key: ^CSSM_KEY_PTR) -> CSSM_RETURN,
+    CertGetAllFields: proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
+    FreeFields: proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, FieldArray: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
+    FreeFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, CertOrCrlOid: ^cssm_data, _Value: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertCache: proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
+    CertGetFirstCachedFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGetNextCachedFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertAbortCache: proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE) -> CSSM_RETURN,
+    CertGroupToSignedBundle: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertGroupToBundle: ^cssm_certgroup, BundleInfo: ^cssm_cert_bundle_header, SignedBundle: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGroupFromVerifiedBundle: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertBundle: ^cssm_cert_bundle, SignerCert: ^cssm_data, CertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
+    CertDescribeFormat: proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR) -> CSSM_RETURN,
+    CrlCreateTemplate: proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlTemplate: ^cssm_field, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlSetFields: proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlTemplate: ^cssm_field, OldCrl: ^cssm_data, ModifiedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlAddCert: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, Cert: ^cssm_data, NumberOfFields: cffi.uint, CrlEntryFields: ^cssm_field, OldCrl: ^cssm_data, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlRemoveCert: proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, OldCrl: ^cssm_data, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlSign: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, UnsignedCrl: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlVerify: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint) -> CSSM_RETURN,
+    CrlVerifyWithKey: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data) -> CSSM_RETURN,
+    IsCertInCrl: proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Crl: ^cssm_data, CertFound: ^CSSM_BOOL) -> CSSM_RETURN,
+    CrlGetFirstFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlGetNextFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlAbortQuery: proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
+    CrlGetAllFields: proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, NumberOfCrlFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
+    CrlCache: proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
+    IsCertInCachedCrl: proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CrlHandle: CSSM_HANDLE, CertFound: ^CSSM_BOOL, CrlRecordIndex: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlGetFirstCachedFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlGetNextCachedFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, _Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlGetAllCachedRecordFields: proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, NumberOfFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
+    CrlAbortCache: proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE) -> CSSM_RETURN,
+    CrlDescribeFormat: proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR) -> CSSM_RETURN,
+    PassThrough: proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_spi_cl_funcs) == 312)
 
 /// cssm_module_funcs
 cssm_module_funcs :: struct #align (8) {
-    ServiceType : CSSM_SERVICE_TYPE,
-    NumberOfServiceFuncs : cffi.uint,
-    ServiceFuncs : CSSM_PROC_ADDR,
+    ServiceType: CSSM_SERVICE_TYPE,
+    NumberOfServiceFuncs: cffi.uint,
+    ServiceFuncs: CSSM_PROC_ADDR,
 }
+#assert(size_of(cssm_module_funcs) == 16)
 
 /// cssm_upcalls
 cssm_upcalls :: struct #align (8) {
-    malloc_func : CSSM_UPCALLS_MALLOC,
-    free_func : CSSM_UPCALLS_FREE,
-    realloc_func : CSSM_UPCALLS_REALLOC,
-    calloc_func : CSSM_UPCALLS_CALLOC,
-    CcToHandle_func : proc "c" (Cc: CSSM_CC_HANDLE, ModuleHandle: CSSM_MODULE_HANDLE_PTR) -> CSSM_RETURN,
-    GetModuleInfo_func : proc "c" (Module: CSSM_MODULE_HANDLE, Guid: CSSM_GUID_PTR, Version: CSSM_VERSION_PTR, SubServiceId: ^cffi.uint, SubServiceType: ^CSSM_SERVICE_TYPE, AttachFlags: ^CSSM_ATTACH_FLAGS, KeyHierarchy: ^CSSM_KEY_HIERARCHY, AttachedMemFuncs: CSSM_API_MEMORY_FUNCS_PTR, FunctionTable: CSSM_FUNC_NAME_ADDR_PTR, NumFunctions: cffi.uint) -> CSSM_RETURN,
+    malloc_func: CSSM_UPCALLS_MALLOC,
+    free_func: CSSM_UPCALLS_FREE,
+    realloc_func: CSSM_UPCALLS_REALLOC,
+    calloc_func: CSSM_UPCALLS_CALLOC,
+    CcToHandle_func: proc "c" (Cc: CSSM_CC_HANDLE, ModuleHandle: CSSM_MODULE_HANDLE_PTR) -> CSSM_RETURN,
+    GetModuleInfo_func: proc "c" (Module: CSSM_MODULE_HANDLE, Guid: CSSM_GUID_PTR, Version: CSSM_VERSION_PTR, SubServiceId: ^cffi.uint, SubServiceType: ^CSSM_SERVICE_TYPE, AttachFlags: ^CSSM_ATTACH_FLAGS, KeyHierarchy: ^CSSM_KEY_HIERARCHY, AttachedMemFuncs: CSSM_API_MEMORY_FUNCS_PTR, FunctionTable: CSSM_FUNC_NAME_ADDR_PTR, NumFunctions: cffi.uint) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_upcalls) == 48)
 
 /// cssm_spi_csp_funcs
 cssm_spi_csp_funcs :: struct #align (8) {
-    EventNotify : proc "c" (CSPHandle: CSSM_CSP_HANDLE, Event: CSSM_CONTEXT_EVENT, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    QuerySize : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Encrypt: CSSM_BOOL, QuerySizeCount: cffi.uint, DataBlock: CSSM_QUERY_SIZE_DATA_PTR) -> CSSM_RETURN,
-    SignData : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, DigestAlgorithm: CSSM_ALGORITHMS, Signature: CSSM_DATA_PTR) -> CSSM_RETURN,
-    SignDataInit : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    SignDataUpdate : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    SignDataFinal : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Signature: CSSM_DATA_PTR) -> CSSM_RETURN,
-    VerifyData : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, DigestAlgorithm: CSSM_ALGORITHMS, Signature: ^cssm_data) -> CSSM_RETURN,
-    VerifyDataInit : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    VerifyDataUpdate : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    VerifyDataFinal : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Signature: ^cssm_data) -> CSSM_RETURN,
-    DigestData : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Digest: CSSM_DATA_PTR) -> CSSM_RETURN,
-    DigestDataInit : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    DigestDataUpdate : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    DigestDataClone : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, ClonedCCHandle: CSSM_CC_HANDLE) -> CSSM_RETURN,
-    DigestDataFinal : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Digest: CSSM_DATA_PTR) -> CSSM_RETURN,
-    GenerateMac : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Mac: CSSM_DATA_PTR) -> CSSM_RETURN,
-    GenerateMacInit : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    GenerateMacUpdate : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    GenerateMacFinal : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Mac: CSSM_DATA_PTR) -> CSSM_RETURN,
-    VerifyMac : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Mac: ^cssm_data) -> CSSM_RETURN,
-    VerifyMacInit : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    VerifyMacUpdate : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    VerifyMacFinal : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Mac: ^cssm_data) -> CSSM_RETURN,
-    EncryptData : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, ClearBufs: ^cssm_data, ClearBufCount: cffi.uint, CipherBufs: CSSM_DATA_PTR, CipherBufCount: cffi.uint, bytesEncrypted: ^CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    EncryptDataInit : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    EncryptDataUpdate : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, ClearBufs: ^cssm_data, ClearBufCount: cffi.uint, CipherBufs: CSSM_DATA_PTR, CipherBufCount: cffi.uint, bytesEncrypted: ^CSSM_SIZE) -> CSSM_RETURN,
-    EncryptDataFinal : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) -> CSSM_RETURN,
-    DecryptData : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, CipherBufs: ^cssm_data, CipherBufCount: cffi.uint, ClearBufs: CSSM_DATA_PTR, ClearBufCount: cffi.uint, bytesDecrypted: ^CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    DecryptDataInit : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    DecryptDataUpdate : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, CipherBufs: ^cssm_data, CipherBufCount: cffi.uint, ClearBufs: CSSM_DATA_PTR, ClearBufCount: cffi.uint, bytesDecrypted: ^CSSM_SIZE) -> CSSM_RETURN,
-    DecryptDataFinal : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) -> CSSM_RETURN,
-    QueryKeySizeInBits : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Key: ^cssm_key, KeySize: CSSM_KEY_SIZE_PTR) -> CSSM_RETURN,
-    GenerateKey : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, Key: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    GenerateKeyPair : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PublicKeyUsage: cffi.uint, PublicKeyAttr: cffi.uint, PublicKeyLabel: ^cssm_data, PublicKey: CSSM_KEY_PTR, PrivateKeyUsage: cffi.uint, PrivateKeyAttr: cffi.uint, PrivateKeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, PrivateKey: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    GenerateRandom : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, RandomNumber: CSSM_DATA_PTR) -> CSSM_RETURN,
-    GenerateAlgorithmParams : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, ParamBits: cffi.uint, Param: CSSM_DATA_PTR, NumberOfUpdatedAttibutes: ^cffi.uint, UpdatedAttributes: ^CSSM_CONTEXT_ATTRIBUTE_PTR) -> CSSM_RETURN,
-    WrapKey : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, DescriptiveData: ^cssm_data, WrappedKey: CSSM_WRAP_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    UnwrapKey : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PublicKey: ^cssm_key, WrappedKey: ^CSSM_WRAP_KEY, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, UnwrappedKey: CSSM_KEY_PTR, DescriptiveData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    DeriveKey : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Param: CSSM_DATA_PTR, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, DerivedKey: CSSM_KEY_PTR) -> CSSM_RETURN,
-    FreeKey : proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, KeyPtr: CSSM_KEY_PTR, Delete: CSSM_BOOL) -> CSSM_RETURN,
-    PassThrough : proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PassThroughId: cffi.uint, InData: rawptr, OutData: ^rawptr) -> CSSM_RETURN,
-    Login : proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, LoginName: ^cssm_data, Reserved: rawptr) -> CSSM_RETURN,
-    Logout : proc "c" (CSPHandle: CSSM_CSP_HANDLE) -> CSSM_RETURN,
-    ChangeLoginAcl : proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit) -> CSSM_RETURN,
-    ObtainPrivateKeyFromPublicKey : proc "c" (CSPHandle: CSSM_CSP_HANDLE, PublicKey: ^cssm_key, PrivateKey: CSSM_KEY_PTR) -> CSSM_RETURN,
-    RetrieveUniqueId : proc "c" (CSPHandle: CSSM_CSP_HANDLE, UniqueID: CSSM_DATA_PTR) -> CSSM_RETURN,
-    RetrieveCounter : proc "c" (CSPHandle: CSSM_CSP_HANDLE, Counter: CSSM_DATA_PTR) -> CSSM_RETURN,
-    VerifyDevice : proc "c" (CSPHandle: CSSM_CSP_HANDLE, DeviceCert: ^cssm_data) -> CSSM_RETURN,
-    GetTimeValue : proc "c" (CSPHandle: CSSM_CSP_HANDLE, TimeAlgorithm: CSSM_ALGORITHMS, TimeData: ^cssm_data) -> CSSM_RETURN,
-    GetOperationalStatistics : proc "c" (CSPHandle: CSSM_CSP_HANDLE, Statistics: ^cssm_csp_operational_statistics) -> CSSM_RETURN,
-    GetLoginAcl : proc "c" (CSPHandle: CSSM_CSP_HANDLE, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
-    GetKeyAcl : proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
-    ChangeKeyAcl : proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit, Key: ^cssm_key) -> CSSM_RETURN,
-    GetKeyOwner : proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
-    ChangeKeyOwner : proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
-    GetLoginOwner : proc "c" (CSPHandle: CSSM_CSP_HANDLE, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
-    ChangeLoginOwner : proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
+    EventNotify: proc "c" (CSPHandle: CSSM_CSP_HANDLE, Event: CSSM_CONTEXT_EVENT, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
+    QuerySize: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Encrypt: CSSM_BOOL, QuerySizeCount: cffi.uint, DataBlock: CSSM_QUERY_SIZE_DATA_PTR) -> CSSM_RETURN,
+    SignData: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, DigestAlgorithm: CSSM_ALGORITHMS, Signature: CSSM_DATA_PTR) -> CSSM_RETURN,
+    SignDataInit: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
+    SignDataUpdate: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
+    SignDataFinal: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Signature: CSSM_DATA_PTR) -> CSSM_RETURN,
+    VerifyData: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, DigestAlgorithm: CSSM_ALGORITHMS, Signature: ^cssm_data) -> CSSM_RETURN,
+    VerifyDataInit: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
+    VerifyDataUpdate: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
+    VerifyDataFinal: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Signature: ^cssm_data) -> CSSM_RETURN,
+    DigestData: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Digest: CSSM_DATA_PTR) -> CSSM_RETURN,
+    DigestDataInit: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
+    DigestDataUpdate: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
+    DigestDataClone: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, ClonedCCHandle: CSSM_CC_HANDLE) -> CSSM_RETURN,
+    DigestDataFinal: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Digest: CSSM_DATA_PTR) -> CSSM_RETURN,
+    GenerateMac: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Mac: CSSM_DATA_PTR) -> CSSM_RETURN,
+    GenerateMacInit: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
+    GenerateMacUpdate: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
+    GenerateMacFinal: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Mac: CSSM_DATA_PTR) -> CSSM_RETURN,
+    VerifyMac: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Mac: ^cssm_data) -> CSSM_RETURN,
+    VerifyMacInit: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
+    VerifyMacUpdate: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
+    VerifyMacFinal: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Mac: ^cssm_data) -> CSSM_RETURN,
+    EncryptData: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, ClearBufs: ^cssm_data, ClearBufCount: cffi.uint, CipherBufs: CSSM_DATA_PTR, CipherBufCount: cffi.uint, bytesEncrypted: ^CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
+    EncryptDataInit: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
+    EncryptDataUpdate: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, ClearBufs: ^cssm_data, ClearBufCount: cffi.uint, CipherBufs: CSSM_DATA_PTR, CipherBufCount: cffi.uint, bytesEncrypted: ^CSSM_SIZE) -> CSSM_RETURN,
+    EncryptDataFinal: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) -> CSSM_RETURN,
+    DecryptData: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, CipherBufs: ^cssm_data, CipherBufCount: cffi.uint, ClearBufs: CSSM_DATA_PTR, ClearBufCount: cffi.uint, bytesDecrypted: ^CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
+    DecryptDataInit: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
+    DecryptDataUpdate: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, CipherBufs: ^cssm_data, CipherBufCount: cffi.uint, ClearBufs: CSSM_DATA_PTR, ClearBufCount: cffi.uint, bytesDecrypted: ^CSSM_SIZE) -> CSSM_RETURN,
+    DecryptDataFinal: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) -> CSSM_RETURN,
+    QueryKeySizeInBits: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Key: ^cssm_key, KeySize: CSSM_KEY_SIZE_PTR) -> CSSM_RETURN,
+    GenerateKey: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, Key: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
+    GenerateKeyPair: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PublicKeyUsage: cffi.uint, PublicKeyAttr: cffi.uint, PublicKeyLabel: ^cssm_data, PublicKey: CSSM_KEY_PTR, PrivateKeyUsage: cffi.uint, PrivateKeyAttr: cffi.uint, PrivateKeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, PrivateKey: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
+    GenerateRandom: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, RandomNumber: CSSM_DATA_PTR) -> CSSM_RETURN,
+    GenerateAlgorithmParams: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, ParamBits: cffi.uint, Param: CSSM_DATA_PTR, NumberOfUpdatedAttibutes: ^cffi.uint, UpdatedAttributes: ^CSSM_CONTEXT_ATTRIBUTE_PTR) -> CSSM_RETURN,
+    WrapKey: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, DescriptiveData: ^cssm_data, WrappedKey: CSSM_WRAP_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
+    UnwrapKey: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PublicKey: ^cssm_key, WrappedKey: ^CSSM_WRAP_KEY, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, UnwrappedKey: CSSM_KEY_PTR, DescriptiveData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
+    DeriveKey: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Param: CSSM_DATA_PTR, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, DerivedKey: CSSM_KEY_PTR) -> CSSM_RETURN,
+    FreeKey: proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, KeyPtr: CSSM_KEY_PTR, Delete: CSSM_BOOL) -> CSSM_RETURN,
+    PassThrough: proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PassThroughId: cffi.uint, InData: rawptr, OutData: ^rawptr) -> CSSM_RETURN,
+    Login: proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, LoginName: ^cssm_data, Reserved: rawptr) -> CSSM_RETURN,
+    Logout: proc "c" (CSPHandle: CSSM_CSP_HANDLE) -> CSSM_RETURN,
+    ChangeLoginAcl: proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit) -> CSSM_RETURN,
+    ObtainPrivateKeyFromPublicKey: proc "c" (CSPHandle: CSSM_CSP_HANDLE, PublicKey: ^cssm_key, PrivateKey: CSSM_KEY_PTR) -> CSSM_RETURN,
+    RetrieveUniqueId: proc "c" (CSPHandle: CSSM_CSP_HANDLE, UniqueID: CSSM_DATA_PTR) -> CSSM_RETURN,
+    RetrieveCounter: proc "c" (CSPHandle: CSSM_CSP_HANDLE, Counter: CSSM_DATA_PTR) -> CSSM_RETURN,
+    VerifyDevice: proc "c" (CSPHandle: CSSM_CSP_HANDLE, DeviceCert: ^cssm_data) -> CSSM_RETURN,
+    GetTimeValue: proc "c" (CSPHandle: CSSM_CSP_HANDLE, TimeAlgorithm: CSSM_ALGORITHMS, TimeData: ^cssm_data) -> CSSM_RETURN,
+    GetOperationalStatistics: proc "c" (CSPHandle: CSSM_CSP_HANDLE, Statistics: ^cssm_csp_operational_statistics) -> CSSM_RETURN,
+    GetLoginAcl: proc "c" (CSPHandle: CSSM_CSP_HANDLE, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
+    GetKeyAcl: proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
+    ChangeKeyAcl: proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit, Key: ^cssm_key) -> CSSM_RETURN,
+    GetKeyOwner: proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
+    ChangeKeyOwner: proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
+    GetLoginOwner: proc "c" (CSPHandle: CSSM_CSP_HANDLE, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
+    ChangeLoginOwner: proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_spi_csp_funcs) == 456)
 
 /// cssm_spi_dl_funcs
 cssm_spi_dl_funcs :: struct #align (8) {
-    DbOpen : proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials, OpenParameters: rawptr, DbHandle: ^CSSM_DB_HANDLE) -> CSSM_RETURN,
-    DbClose : proc "c" (DLDBHandle: cssm_dl_db_handle) -> CSSM_RETURN,
-    DbCreate : proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, DBInfo: ^cssm_dbinfo, AccessRequest: CSSM_DB_ACCESS_TYPE, CredAndAclEntry: ^cssm_resource_control_context, OpenParameters: rawptr, DbHandle: ^CSSM_DB_HANDLE) -> CSSM_RETURN,
-    DbDelete : proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, AccessCred: ^cssm_access_credentials) -> CSSM_RETURN,
-    CreateRelation : proc "c" (DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE, RelationName: cstring, NumberOfAttributes: cffi.uint, pAttributeInfo: ^cssm_db_schema_attribute_info, NumberOfIndexes: cffi.uint, pIndexInfo: ^cssm_db_schema_index_info) -> CSSM_RETURN,
-    DestroyRelation : proc "c" (DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE) -> CSSM_RETURN,
-    Authenticate : proc "c" (DLDBHandle: cssm_dl_db_handle, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials) -> CSSM_RETURN,
-    GetDbAcl : proc "c" (DLDBHandle: cssm_dl_db_handle, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
-    ChangeDbAcl : proc "c" (DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit) -> CSSM_RETURN,
-    GetDbOwner : proc "c" (DLDBHandle: cssm_dl_db_handle, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
-    ChangeDbOwner : proc "c" (DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
-    GetDbNames : proc "c" (DLHandle: CSSM_DL_HANDLE, NameList: ^CSSM_NAME_LIST_PTR) -> CSSM_RETURN,
-    GetDbNameFromHandle : proc "c" (DLDBHandle: cssm_dl_db_handle, DbName: ^cstring) -> CSSM_RETURN,
-    FreeNameList : proc "c" (DLHandle: CSSM_DL_HANDLE, NameList: CSSM_NAME_LIST_PTR) -> CSSM_RETURN,
-    DataInsert : proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, Attributes: ^cssm_db_record_attribute_data, _Data: ^cssm_data, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    DataDelete : proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecordIdentifier: ^cssm_db_unique_record) -> CSSM_RETURN,
-    DataModify : proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, UniqueRecordIdentifier: CSSM_DB_UNIQUE_RECORD_PTR, AttributesToBeModified: ^cssm_db_record_attribute_data, DataToBeModified: ^cssm_data, ModifyMode: CSSM_DB_MODIFY_MODE) -> CSSM_RETURN,
-    DataGetFirst : proc "c" (DLDBHandle: cssm_dl_db_handle, Query: ^cssm_query, ResultsHandle: CSSM_HANDLE_PTR, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    DataGetNext : proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    DataAbortQuery : proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    DataGetFromUniqueRecordId : proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: ^cssm_db_unique_record, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR) -> CSSM_RETURN,
-    FreeUniqueRecord : proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    PassThrough : proc "c" (DLDBHandle: cssm_dl_db_handle, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    DbOpen: proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials, OpenParameters: rawptr, DbHandle: ^CSSM_DB_HANDLE) -> CSSM_RETURN,
+    DbClose: proc "c" (DLDBHandle: cssm_dl_db_handle) -> CSSM_RETURN,
+    DbCreate: proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, DBInfo: ^cssm_dbinfo, AccessRequest: CSSM_DB_ACCESS_TYPE, CredAndAclEntry: ^cssm_resource_control_context, OpenParameters: rawptr, DbHandle: ^CSSM_DB_HANDLE) -> CSSM_RETURN,
+    DbDelete: proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, AccessCred: ^cssm_access_credentials) -> CSSM_RETURN,
+    CreateRelation: proc "c" (DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE, RelationName: cstring, NumberOfAttributes: cffi.uint, pAttributeInfo: ^cssm_db_schema_attribute_info, NumberOfIndexes: cffi.uint, pIndexInfo: ^cssm_db_schema_index_info) -> CSSM_RETURN,
+    DestroyRelation: proc "c" (DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE) -> CSSM_RETURN,
+    Authenticate: proc "c" (DLDBHandle: cssm_dl_db_handle, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials) -> CSSM_RETURN,
+    GetDbAcl: proc "c" (DLDBHandle: cssm_dl_db_handle, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
+    ChangeDbAcl: proc "c" (DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit) -> CSSM_RETURN,
+    GetDbOwner: proc "c" (DLDBHandle: cssm_dl_db_handle, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
+    ChangeDbOwner: proc "c" (DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
+    GetDbNames: proc "c" (DLHandle: CSSM_DL_HANDLE, NameList: ^CSSM_NAME_LIST_PTR) -> CSSM_RETURN,
+    GetDbNameFromHandle: proc "c" (DLDBHandle: cssm_dl_db_handle, DbName: ^cstring) -> CSSM_RETURN,
+    FreeNameList: proc "c" (DLHandle: CSSM_DL_HANDLE, NameList: CSSM_NAME_LIST_PTR) -> CSSM_RETURN,
+    DataInsert: proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, Attributes: ^cssm_db_record_attribute_data, _Data: ^cssm_data, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
+    DataDelete: proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecordIdentifier: ^cssm_db_unique_record) -> CSSM_RETURN,
+    DataModify: proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, UniqueRecordIdentifier: CSSM_DB_UNIQUE_RECORD_PTR, AttributesToBeModified: ^cssm_db_record_attribute_data, DataToBeModified: ^cssm_data, ModifyMode: CSSM_DB_MODIFY_MODE) -> CSSM_RETURN,
+    DataGetFirst: proc "c" (DLDBHandle: cssm_dl_db_handle, Query: ^cssm_query, ResultsHandle: CSSM_HANDLE_PTR, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
+    DataGetNext: proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
+    DataAbortQuery: proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
+    DataGetFromUniqueRecordId: proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: ^cssm_db_unique_record, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, _Data: CSSM_DATA_PTR) -> CSSM_RETURN,
+    FreeUniqueRecord: proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
+    PassThrough: proc "c" (DLDBHandle: cssm_dl_db_handle, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_spi_dl_funcs) == 184)
 
 /// cssm_kr_name
 cssm_kr_name :: struct #align (8) {
-    Type : cffi.uchar,
-    Length : cffi.uchar,
-    Name : cstring,
+    Type: cffi.uchar,
+    Length: cffi.uchar,
+    Name: cstring,
 }
+#assert(size_of(cssm_kr_name) == 16)
 
 /// cssm_kr_wrappedproductinfo
 cssm_kr_wrappedproductinfo :: struct #align (4) {
-    StandardVersion : cssm_version,
-    StandardDescription : CSSM_STRING,
-    ProductVersion : cssm_version,
-    ProductDescription : CSSM_STRING,
-    ProductVendor : CSSM_STRING,
-    ProductFlags : cffi.uint,
+    StandardVersion: cssm_version,
+    StandardDescription: CSSM_STRING,
+    ProductVersion: cssm_version,
+    ProductDescription: CSSM_STRING,
+    ProductVendor: CSSM_STRING,
+    ProductFlags: cffi.uint,
 }
+#assert(size_of(cssm_kr_wrappedproductinfo) == 224)
 
 /// cssm_krsubservice
 cssm_krsubservice :: struct #align (8) {
-    SubServiceId : cffi.uint,
-    Description : cstring,
-    WrappedProduct : cssm_kr_wrappedproductinfo,
+    SubServiceId: cffi.uint,
+    Description: cstring,
+    WrappedProduct: cssm_kr_wrappedproductinfo,
 }
+#assert(size_of(cssm_krsubservice) == 240)
 
 /// cssm_kr_policy_list_item
 cssm_kr_policy_list_item :: struct #align (8) {
-    next : ^kr_policy_list_item,
-    AlgorithmId : CSSM_ALGORITHMS,
-    Mode : CSSM_ENCRYPT_MODE,
-    MaxKeyLength : cffi.uint,
-    MaxRounds : cffi.uint,
-    WorkFactor : cffi.uchar,
-    PolicyFlags : CSSM_KR_POLICY_FLAGS,
-    AlgClass : CSSM_CONTEXT_TYPE,
+    next: ^kr_policy_list_item,
+    AlgorithmId: CSSM_ALGORITHMS,
+    Mode: CSSM_ENCRYPT_MODE,
+    MaxKeyLength: cffi.uint,
+    MaxRounds: cffi.uint,
+    WorkFactor: cffi.uchar,
+    PolicyFlags: CSSM_KR_POLICY_FLAGS,
+    AlgClass: CSSM_CONTEXT_TYPE,
 }
+#assert(size_of(cssm_kr_policy_list_item) == 40)
 
 /// cssm_kr_policy_list_item::kr_policy_list_item
 kr_policy_list_item :: struct {}
 
 /// cssm_kr_policy_info
 cssm_kr_policy_info :: struct #align (8) {
-    krbNotAllowed : CSSM_BOOL,
-    numberOfEntries : cffi.uint,
-    policyEntry : ^cssm_kr_policy_list_item,
+    krbNotAllowed: CSSM_BOOL,
+    numberOfEntries: cffi.uint,
+    policyEntry: ^cssm_kr_policy_list_item,
 }
+#assert(size_of(cssm_kr_policy_info) == 16)
 
 /// cssm_spi_kr_funcs
 cssm_spi_kr_funcs :: struct #align (8) {
-    RegistrationRequest : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KRRegistrationContextHandle: CSSM_CC_HANDLE, KRRegistrationContext: ^cssm_context, KRInData: ^cssm_data, AccessCredentials: ^cssm_access_credentials, KRFlags: CSSM_KR_POLICY_FLAGS, EstimatedTime: ^cffi.int, ReferenceHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    RegistrationRetrieve : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ReferenceHandle: CSSM_HANDLE, EstimatedTime: ^cffi.int, KRProfile: CSSM_KR_PROFILE_PTR) -> CSSM_RETURN,
-    GenerateRecoveryFields : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KREnablementContextHandle: CSSM_CC_HANDLE, KREnablementContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, KRSPOptions: ^cssm_data, KRFlags: CSSM_KR_POLICY_FLAGS, KRFields: CSSM_DATA_PTR) -> CSSM_RETURN,
-    ProcessRecoveryFields : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KREnablementContextHandle: CSSM_CC_HANDLE, KREnablementContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, KRSPOptions: ^cssm_data, KRFlags: CSSM_KR_POLICY_FLAGS, KRFields: ^cssm_data) -> CSSM_RETURN,
-    RecoveryRequest : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KRRequestContextHandle: CSSM_CC_HANDLE, KRRequestContext: ^cssm_context, KRInData: ^cssm_data, AccessCredentials: ^cssm_access_credentials, EstimatedTime: ^cffi.int, ReferenceHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    RecoveryRetrieve : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ReferenceHandle: CSSM_HANDLE, EstimatedTime: ^cffi.int, CacheHandle: CSSM_HANDLE_PTR, NumberOfRecoveredKeys: ^cffi.uint) -> CSSM_RETURN,
-    GetRecoveredObject : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, CacheHandle: CSSM_HANDLE, IndexInResults: cffi.uint, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ^cssm_resource_control_context, Flags: cffi.uint, RecoveredKey: CSSM_KEY_PTR, OtherInfo: CSSM_DATA_PTR) -> CSSM_RETURN,
-    RecoveryRequestAbort : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    PassThrough : proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KeyRecoveryContextHandle: CSSM_CC_HANDLE, KeyRecoveryContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    RegistrationRequest: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KRRegistrationContextHandle: CSSM_CC_HANDLE, KRRegistrationContext: ^cssm_context, KRInData: ^cssm_data, AccessCredentials: ^cssm_access_credentials, KRFlags: CSSM_KR_POLICY_FLAGS, EstimatedTime: ^cffi.int, ReferenceHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
+    RegistrationRetrieve: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ReferenceHandle: CSSM_HANDLE, EstimatedTime: ^cffi.int, KRProfile: CSSM_KR_PROFILE_PTR) -> CSSM_RETURN,
+    GenerateRecoveryFields: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KREnablementContextHandle: CSSM_CC_HANDLE, KREnablementContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, KRSPOptions: ^cssm_data, KRFlags: CSSM_KR_POLICY_FLAGS, KRFields: CSSM_DATA_PTR) -> CSSM_RETURN,
+    ProcessRecoveryFields: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KREnablementContextHandle: CSSM_CC_HANDLE, KREnablementContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, KRSPOptions: ^cssm_data, KRFlags: CSSM_KR_POLICY_FLAGS, KRFields: ^cssm_data) -> CSSM_RETURN,
+    RecoveryRequest: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KRRequestContextHandle: CSSM_CC_HANDLE, KRRequestContext: ^cssm_context, KRInData: ^cssm_data, AccessCredentials: ^cssm_access_credentials, EstimatedTime: ^cffi.int, ReferenceHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
+    RecoveryRetrieve: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ReferenceHandle: CSSM_HANDLE, EstimatedTime: ^cffi.int, CacheHandle: CSSM_HANDLE_PTR, NumberOfRecoveredKeys: ^cffi.uint) -> CSSM_RETURN,
+    GetRecoveredObject: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, CacheHandle: CSSM_HANDLE, IndexInResults: cffi.uint, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ^cssm_resource_control_context, Flags: cffi.uint, RecoveredKey: CSSM_KEY_PTR, OtherInfo: CSSM_DATA_PTR) -> CSSM_RETURN,
+    RecoveryRequestAbort: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
+    PassThrough: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KeyRecoveryContextHandle: CSSM_CC_HANDLE, KeyRecoveryContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_spi_kr_funcs) == 72)
 
 /// cssm_spi_tp_funcs
 cssm_spi_tp_funcs :: struct #align (8) {
-    SubmitCredRequest : proc "c" (TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ^cssm_tp_authority_id, RequestType: CSSM_TP_AUTHORITY_REQUEST_TYPE, RequestInput: ^cssm_tp_request_set, CallerAuthContext: ^cssm_tp_callerauth_context, EstimatedTime: ^cffi.int, ReferenceIdentifier: CSSM_DATA_PTR) -> CSSM_RETURN,
-    RetrieveCredResult : proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, CallerAuthCredentials: ^cssm_tp_callerauth_context, EstimatedTime: ^cffi.int, ConfirmationRequired: ^CSSM_BOOL, RetrieveOutput: ^CSSM_TP_RESULT_SET_PTR) -> CSSM_RETURN,
-    ConfirmCredResult : proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, CallerAuthCredentials: ^cssm_tp_callerauth_context, Responses: ^cssm_tp_confirm_response, PreferredAuthority: ^cssm_tp_authority_id) -> CSSM_RETURN,
-    ReceiveConfirmation : proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, Responses: ^CSSM_TP_CONFIRM_RESPONSE_PTR, ElapsedTime: ^cffi.int) -> CSSM_RETURN,
-    CertReclaimKey : proc "c" (TPHandle: CSSM_TP_HANDLE, CertGroup: ^cssm_certgroup, CertIndex: cffi.uint, KeyCacheHandle: CSSM_LONG_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ^cssm_resource_control_context) -> CSSM_RETURN,
-    CertReclaimAbort : proc "c" (TPHandle: CSSM_TP_HANDLE, KeyCacheHandle: CSSM_LONG_HANDLE) -> CSSM_RETURN,
-    FormRequest : proc "c" (TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ^cssm_tp_authority_id, FormType: CSSM_TP_FORM_TYPE, BlankForm: CSSM_DATA_PTR) -> CSSM_RETURN,
-    FormSubmit : proc "c" (TPHandle: CSSM_TP_HANDLE, FormType: CSSM_TP_FORM_TYPE, Form: ^cssm_data, ClearanceAuthority: ^cssm_tp_authority_id, RepresentedAuthority: ^cssm_tp_authority_id, Credentials: CSSM_ACCESS_CREDENTIALS_PTR) -> CSSM_RETURN,
-    CertGroupVerify : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CertGroupToBeVerified: ^cssm_certgroup, VerifyContext: ^cssm_tp_verify_context, VerifyContextResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
-    CertCreateTemplate : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CertFields: ^cssm_field, CertTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetAllTemplateFields : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertTemplate: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    CertSign : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplateToBeSigned: ^cssm_data, SignerCertGroup: ^cssm_certgroup, SignerVerifyContext: ^cssm_tp_verify_context, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCert: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlVerify : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeVerified: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, VerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
-    CrlCreateTemplate : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlFields: ^cssm_field, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertRevoke : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ^cssm_data, CertGroupToBeRevoked: ^cssm_certgroup, RevokerCertGroup: ^cssm_certgroup, RevokerVerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, Reason: CSSM_TP_CERTCHANGE_REASON, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertRemoveFromCrlTemplate : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ^cssm_data, CertGroupToBeRemoved: ^cssm_certgroup, RevokerCertGroup: ^cssm_certgroup, RevokerVerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlSign : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeSigned: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, SignerVerifyContext: ^cssm_tp_verify_context, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    ApplyCrlToDb : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeApplied: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, ApplyCrlVerifyContext: ^cssm_tp_verify_context, ApplyCrlVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
-    CertGroupConstruct : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, DBList: ^cssm_dl_db_list, ConstructParams: rawptr, CertGroupFrag: ^cssm_certgroup, CertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
-    CertGroupPrune : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, DBList: ^cssm_dl_db_list, OrderedCertGroup: ^cssm_certgroup, PrunedCertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
-    CertGroupToTupleGroup : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertGroup: ^cssm_certgroup, TupleGroup: ^CSSM_TUPLEGROUP_PTR) -> CSSM_RETURN,
-    TupleGroupToCertGroup : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, TupleGroup: ^cssm_tuplegroup, CertTemplates: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
-    PassThrough : proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ^cssm_dl_db_list, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    SubmitCredRequest: proc "c" (TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ^cssm_tp_authority_id, RequestType: CSSM_TP_AUTHORITY_REQUEST_TYPE, RequestInput: ^cssm_tp_request_set, CallerAuthContext: ^cssm_tp_callerauth_context, EstimatedTime: ^cffi.int, ReferenceIdentifier: CSSM_DATA_PTR) -> CSSM_RETURN,
+    RetrieveCredResult: proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, CallerAuthCredentials: ^cssm_tp_callerauth_context, EstimatedTime: ^cffi.int, ConfirmationRequired: ^CSSM_BOOL, RetrieveOutput: ^CSSM_TP_RESULT_SET_PTR) -> CSSM_RETURN,
+    ConfirmCredResult: proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, CallerAuthCredentials: ^cssm_tp_callerauth_context, Responses: ^cssm_tp_confirm_response, PreferredAuthority: ^cssm_tp_authority_id) -> CSSM_RETURN,
+    ReceiveConfirmation: proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, Responses: ^CSSM_TP_CONFIRM_RESPONSE_PTR, ElapsedTime: ^cffi.int) -> CSSM_RETURN,
+    CertReclaimKey: proc "c" (TPHandle: CSSM_TP_HANDLE, CertGroup: ^cssm_certgroup, CertIndex: cffi.uint, KeyCacheHandle: CSSM_LONG_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ^cssm_resource_control_context) -> CSSM_RETURN,
+    CertReclaimAbort: proc "c" (TPHandle: CSSM_TP_HANDLE, KeyCacheHandle: CSSM_LONG_HANDLE) -> CSSM_RETURN,
+    FormRequest: proc "c" (TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ^cssm_tp_authority_id, FormType: CSSM_TP_FORM_TYPE, BlankForm: CSSM_DATA_PTR) -> CSSM_RETURN,
+    FormSubmit: proc "c" (TPHandle: CSSM_TP_HANDLE, FormType: CSSM_TP_FORM_TYPE, Form: ^cssm_data, ClearanceAuthority: ^cssm_tp_authority_id, RepresentedAuthority: ^cssm_tp_authority_id, Credentials: CSSM_ACCESS_CREDENTIALS_PTR) -> CSSM_RETURN,
+    CertGroupVerify: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CertGroupToBeVerified: ^cssm_certgroup, VerifyContext: ^cssm_tp_verify_context, VerifyContextResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
+    CertCreateTemplate: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CertFields: ^cssm_field, CertTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertGetAllTemplateFields: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertTemplate: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
+    CertSign: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplateToBeSigned: ^cssm_data, SignerCertGroup: ^cssm_certgroup, SignerVerifyContext: ^cssm_tp_verify_context, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCert: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlVerify: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeVerified: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, VerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
+    CrlCreateTemplate: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlFields: ^cssm_field, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertRevoke: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ^cssm_data, CertGroupToBeRevoked: ^cssm_certgroup, RevokerCertGroup: ^cssm_certgroup, RevokerVerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, Reason: CSSM_TP_CERTCHANGE_REASON, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CertRemoveFromCrlTemplate: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ^cssm_data, CertGroupToBeRemoved: ^cssm_certgroup, RevokerCertGroup: ^cssm_certgroup, RevokerVerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
+    CrlSign: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeSigned: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, SignerVerifyContext: ^cssm_tp_verify_context, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
+    ApplyCrlToDb: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeApplied: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, ApplyCrlVerifyContext: ^cssm_tp_verify_context, ApplyCrlVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
+    CertGroupConstruct: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, DBList: ^cssm_dl_db_list, ConstructParams: rawptr, CertGroupFrag: ^cssm_certgroup, CertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
+    CertGroupPrune: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, DBList: ^cssm_dl_db_list, OrderedCertGroup: ^cssm_certgroup, PrunedCertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
+    CertGroupToTupleGroup: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertGroup: ^cssm_certgroup, TupleGroup: ^CSSM_TUPLEGROUP_PTR) -> CSSM_RETURN,
+    TupleGroupToCertGroup: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, TupleGroup: ^cssm_tuplegroup, CertTemplates: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
+    PassThrough: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ^cssm_dl_db_list, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_spi_tp_funcs) == 184)
 
 /// cssm_state_funcs
 cssm_state_funcs :: struct #align (8) {
-    cssm_GetAttachFunctions : proc "c" (hAddIn: CSSM_MODULE_HANDLE, AddinType: CSSM_SERVICE_MASK, SPFunctions: ^rawptr, Guid: CSSM_GUID_PTR, Serialized: ^CSSM_BOOL) -> CSSM_RETURN,
-    cssm_ReleaseAttachFunctions : proc "c" (hAddIn: CSSM_MODULE_HANDLE) -> CSSM_RETURN,
-    cssm_GetAppMemoryFunctions : proc "c" (hAddIn: CSSM_MODULE_HANDLE, UpcallTable: CSSM_UPCALLS_PTR) -> CSSM_RETURN,
-    cssm_IsFuncCallValid : proc "c" (hAddin: CSSM_MODULE_HANDLE, SrcAddress: CSSM_PROC_ADDR, DestAddress: CSSM_PROC_ADDR, InPriv: CSSM_PRIVILEGE, OutPriv: ^CSSM_PRIVILEGE, Hints: CSSM_BITMASK, IsOK: ^CSSM_BOOL) -> CSSM_RETURN,
-    cssm_DeregisterManagerServices : proc "c" (GUID: ^cssm_guid) -> CSSM_RETURN,
-    cssm_DeliverModuleManagerEvent : proc "c" (EventDescription: ^cssm_manager_event_notification) -> CSSM_RETURN,
+    cssm_GetAttachFunctions: proc "c" (hAddIn: CSSM_MODULE_HANDLE, AddinType: CSSM_SERVICE_MASK, SPFunctions: ^rawptr, Guid: CSSM_GUID_PTR, Serialized: ^CSSM_BOOL) -> CSSM_RETURN,
+    cssm_ReleaseAttachFunctions: proc "c" (hAddIn: CSSM_MODULE_HANDLE) -> CSSM_RETURN,
+    cssm_GetAppMemoryFunctions: proc "c" (hAddIn: CSSM_MODULE_HANDLE, UpcallTable: CSSM_UPCALLS_PTR) -> CSSM_RETURN,
+    cssm_IsFuncCallValid: proc "c" (hAddin: CSSM_MODULE_HANDLE, SrcAddress: CSSM_PROC_ADDR, DestAddress: CSSM_PROC_ADDR, InPriv: CSSM_PRIVILEGE, OutPriv: ^CSSM_PRIVILEGE, Hints: CSSM_BITMASK, IsOK: ^CSSM_BOOL) -> CSSM_RETURN,
+    cssm_DeregisterManagerServices: proc "c" (GUID: ^cssm_guid) -> CSSM_RETURN,
+    cssm_DeliverModuleManagerEvent: proc "c" (EventDescription: ^cssm_manager_event_notification) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_state_funcs) == 48)
 
 /// cssm_manager_registration_info
 cssm_manager_registration_info :: struct #align (8) {
-    Initialize : proc "c" (VerMajor: cffi.uint, VerMinor: cffi.uint) -> CSSM_RETURN,
-    Terminate : proc "c" () -> CSSM_RETURN,
-    RegisterDispatchTable : proc "c" (CssmStateCallTable: CSSM_STATE_FUNCS_PTR) -> CSSM_RETURN,
-    DeregisterDispatchTable : proc "c" () -> CSSM_RETURN,
-    EventNotifyManager : proc "c" (EventDescription: ^cssm_manager_event_notification) -> CSSM_RETURN,
-    RefreshFunctionTable : proc "c" (FuncNameAddrPtr: CSSM_FUNC_NAME_ADDR_PTR, NumOfFuncNameAddr: cffi.uint) -> CSSM_RETURN,
+    Initialize: proc "c" (VerMajor: cffi.uint, VerMinor: cffi.uint) -> CSSM_RETURN,
+    Terminate: proc "c" () -> CSSM_RETURN,
+    RegisterDispatchTable: proc "c" (CssmStateCallTable: CSSM_STATE_FUNCS_PTR) -> CSSM_RETURN,
+    DeregisterDispatchTable: proc "c" () -> CSSM_RETURN,
+    EventNotifyManager: proc "c" (EventDescription: ^cssm_manager_event_notification) -> CSSM_RETURN,
+    RefreshFunctionTable: proc "c" (FuncNameAddrPtr: CSSM_FUNC_NAME_ADDR_PTR, NumOfFuncNameAddr: cffi.uint) -> CSSM_RETURN,
 }
+#assert(size_of(cssm_manager_registration_info) == 48)
 
 /// __SecCode
 __SecCode :: struct {}
@@ -7085,112 +7279,122 @@ SSLContext :: struct {}
 OpaqueAEDataStorageType :: struct {}
 
 /// AEDesc
-AEDesc :: struct #align (2) {
-    descriptorType : DescType,
-    dataHandle : AEDataStorage,
+AEDesc :: struct #align (2) #max_field_align(2) {
+    descriptorType: DescType,
+    dataHandle: AEDataStorage,
 }
+#assert(size_of(AEDesc) == 12)
 
 /// AEKeyDesc
 AEKeyDesc :: struct #align (2) {
-    descKey : AEKeyword,
-    descContent : AEDesc,
+    descKey: AEKeyword,
+    descContent: AEDesc,
 }
+#assert(size_of(AEKeyDesc) == 16)
 
 /// AERemoteProcessResolverContext
 AERemoteProcessResolverContext :: struct #align (2) {
-    version : CF.Index,
-    info : rawptr,
-    retain : CF.AllocatorRetainCallBack,
-    release : CF.AllocatorReleaseCallBack,
-    copyDescription : CF.AllocatorCopyDescriptionCallBack,
+    version: CF.Index,
+    info: rawptr,
+    retain: CF.AllocatorRetainCallBack,
+    release: CF.AllocatorReleaseCallBack,
+    copyDescription: CF.AllocatorCopyDescriptionCallBack,
 }
+#assert(size_of(AERemoteProcessResolverContext) == 40)
 
 /// AERemoteProcessResolver
 AERemoteProcessResolver :: struct {}
 
 /// AEBuildError
 AEBuildError :: struct #align (2) {
-    fError : AEBuildErrorCode,
-    fErrorPos : CF.UInt32,
+    fError: AEBuildErrorCode,
+    fErrorPos: CF.UInt32,
 }
+#assert(size_of(AEBuildError) == 8)
 
 /// OpaqueAEStreamRef
 OpaqueAEStreamRef :: struct {}
 
 /// NSAffineTransformStruct
 AffineTransformStruct :: struct #align (8) {
-    m11 : CG.Float,
-    m12 : CG.Float,
-    m21 : CG.Float,
-    m22 : CG.Float,
-    tX : CG.Float,
-    tY : CG.Float,
+    m11: CG.Float,
+    m12: CG.Float,
+    m21: CG.Float,
+    m22: CG.Float,
+    tX: CG.Float,
+    tY: CG.Float,
 }
+#assert(size_of(AffineTransformStruct) == 48)
 
 /// __NSAppleEventManagerSuspension
 __NSAppleEventManagerSuspension :: struct {}
 
 /// cssm_context_attribute::cssm_context_attribute_value
 cssm_context_attribute_value :: struct #raw_union #align (8) {
-    String : cstring,
-    Uint32 : cffi.uint,
-    AccessCredentials : CSSM_ACCESS_CREDENTIALS_PTR,
-    Key : CSSM_KEY_PTR,
-    Data : CSSM_DATA_PTR,
-    Padding : CSSM_PADDING,
-    Date : CSSM_DATE_PTR,
-    Range : CSSM_RANGE_PTR,
-    CryptoData : CSSM_CRYPTO_DATA_PTR,
-    Version : CSSM_VERSION_PTR,
-    DLDBHandle : CSSM_DL_DB_HANDLE_PTR,
-    KRProfile : ^cssm_kr_profile,
+    String: cstring,
+    Uint32: cffi.uint,
+    AccessCredentials: CSSM_ACCESS_CREDENTIALS_PTR,
+    Key: CSSM_KEY_PTR,
+    Data: CSSM_DATA_PTR,
+    Padding: CSSM_PADDING,
+    Date: CSSM_DATE_PTR,
+    Range: CSSM_RANGE_PTR,
+    CryptoData: CSSM_CRYPTO_DATA_PTR,
+    Version: CSSM_VERSION_PTR,
+    DLDBHandle: CSSM_DL_DB_HANDLE_PTR,
+    KRProfile: ^cssm_kr_profile,
 }
+#assert(size_of(cssm_context_attribute_value) == 8)
 
 /// cssm_db_attribute_info::cssm_db_attribute_label
 cssm_db_attribute_label :: struct #raw_union #align (8) {
-    AttributeName : cstring,
-    AttributeOID : cssm_data,
-    AttributeID : cffi.uint,
+    AttributeName: cstring,
+    AttributeOID: cssm_data,
+    AttributeID: cffi.uint,
 }
+#assert(size_of(cssm_db_attribute_label) == 16)
 
 /// cssm_x509_extension::cssm_x509ext_value
 cssm_x509ext_value :: struct #raw_union #align (8) {
-    tagAndValue : ^cssm_x509_extensionTagAndValue,
-    parsedValue : rawptr,
-    valuePair : ^cssm_x509ext_pair,
+    tagAndValue: ^cssm_x509_extensionTagAndValue,
+    parsedValue: rawptr,
+    valuePair: ^cssm_x509ext_pair,
 }
+#assert(size_of(cssm_x509ext_value) == 8)
 
 /// CE_Data
 CE_Data :: struct #raw_union #align (8) {
-    authorityKeyID : __CE_AuthorityKeyID,
-    subjectKeyID : CE_SubjectKeyID,
-    keyUsage : CE_KeyUsage,
-    subjectAltName : __CE_GeneralNames,
-    issuerAltName : __CE_GeneralNames,
-    extendedKeyUsage : __CE_ExtendedKeyUsage,
-    basicConstraints : __CE_BasicConstraints,
-    certPolicies : __CE_CertPolicies,
-    netscapeCertType : CE_NetscapeCertType,
-    crlNumber : CE_CrlNumber,
-    deltaCrl : CE_DeltaCrl,
-    crlReason : CE_CrlReason,
-    crlDistPoints : __CE_CRLDistPointsSyntax,
-    issuingDistPoint : __CE_IssuingDistributionPoint,
-    authorityInfoAccess : __CE_AuthorityInfoAccess,
-    qualifiedCertStatements : __CE_QC_Statements,
-    nameConstraints : __CE_NameConstraints,
-    policyMappings : __CE_PolicyMappings,
-    policyConstraints : __CE_PolicyConstraints,
-    inhibitAnyPolicy : CE_InhibitAnyPolicy,
-    rawData : cssm_data,
+    authorityKeyID: __CE_AuthorityKeyID,
+    subjectKeyID: CE_SubjectKeyID,
+    keyUsage: CE_KeyUsage,
+    subjectAltName: __CE_GeneralNames,
+    issuerAltName: __CE_GeneralNames,
+    extendedKeyUsage: __CE_ExtendedKeyUsage,
+    basicConstraints: __CE_BasicConstraints,
+    certPolicies: __CE_CertPolicies,
+    netscapeCertType: CE_NetscapeCertType,
+    crlNumber: CE_CrlNumber,
+    deltaCrl: CE_DeltaCrl,
+    crlReason: CE_CrlReason,
+    crlDistPoints: __CE_CRLDistPointsSyntax,
+    issuingDistPoint: __CE_IssuingDistributionPoint,
+    authorityInfoAccess: __CE_AuthorityInfoAccess,
+    qualifiedCertStatements: __CE_QC_Statements,
+    nameConstraints: __CE_NameConstraints,
+    policyMappings: __CE_PolicyMappings,
+    policyConstraints: __CE_PolicyConstraints,
+    inhibitAnyPolicy: CE_InhibitAnyPolicy,
+    rawData: cssm_data,
 }
+#assert(size_of(CE_Data) == 64)
 
 /// AEArrayData
 AEArrayData :: struct #raw_union #align (2) {
-    kAEDataArray : [1]CF.SInt16,
-    kAEPackedArray : [1]cffi.char,
-    kAEHandleArray : [1]CF.Handle,
-    kAEDescArray : [1]AEDesc,
-    kAEKeyDescArray : [1]AEKeyDesc,
+    kAEDataArray: [1]CF.SInt16,
+    kAEPackedArray: [1]cffi.char,
+    kAEHandleArray: [1]CF.Handle,
+    kAEDescArray: [1]AEDesc,
+    kAEKeyDescArray: [1]AEKeyDesc,
 }
+#assert(size_of(AEArrayData) == 16)
 

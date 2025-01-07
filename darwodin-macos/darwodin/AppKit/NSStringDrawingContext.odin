@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -36,8 +37,8 @@ StringDrawingContext_actualScaleFactor :: #force_inline proc "c" (self: ^StringD
     return msgSend(CG.Float, self, "actualScaleFactor")
 }
 @(objc_type=StringDrawingContext, objc_name="totalBounds")
-StringDrawingContext_totalBounds :: #force_inline proc "c" (self: ^StringDrawingContext) -> NS.Rect {
-    return msgSend(NS.Rect, self, "totalBounds")
+StringDrawingContext_totalBounds :: #force_inline proc "c" (self: ^StringDrawingContext) -> CG.Rect {
+    return msgSend(CG.Rect, self, "totalBounds")
 }
 @(objc_type=StringDrawingContext, objc_name="load", objc_is_class_method=true)
 StringDrawingContext_load :: #force_inline proc "c" () {
@@ -186,7 +187,7 @@ StringDrawingContext_VTable :: struct {
     minimumScaleFactor: proc(self: ^StringDrawingContext) -> CG.Float,
     setMinimumScaleFactor: proc(self: ^StringDrawingContext, minimumScaleFactor: CG.Float),
     actualScaleFactor: proc(self: ^StringDrawingContext) -> CG.Float,
-    totalBounds: proc(self: ^StringDrawingContext) -> NS.Rect,
+    totalBounds: proc(self: ^StringDrawingContext) -> CG.Rect,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^StringDrawingContext,
@@ -261,7 +262,7 @@ StringDrawingContext_odin_extend :: proc(cls: Class, vt: ^StringDrawingContext_V
         if !class_addMethod(cls, intrinsics.objc_find_selector("actualScaleFactor"), auto_cast actualScaleFactor, "d@:") do panic("Failed to register objC method.")
     }
     if vt.totalBounds != nil {
-        totalBounds :: proc "c" (self: ^StringDrawingContext, _: SEL) -> NS.Rect {
+        totalBounds :: proc "c" (self: ^StringDrawingContext, _: SEL) -> CG.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

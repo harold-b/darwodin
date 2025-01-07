@@ -1,6 +1,6 @@
 ---
 
-Defs: ../definitions/macos/coreservices.json
+Defs: ../definitions/macos/fsevents.json
 
 Mono  : { Emit: false }
 CSharp: { Emit: false }
@@ -14,6 +14,16 @@ Cpp:
   ExportTypes:
     - ^(_*FS|_*ConstFS|HFS|OpaqueFS).*
     - ^(Text|OpaqueText|UTC|_*DADisk|AliasRecord|AliasHandle|CatPositionRec|Findr|Fndr|GetVol|QElem).*
+    - ^ResID
+    - ^ResAttributes
+    - ^ResFileAttributes
+    - ^ResourceCount
+    - ^ResourceIndex
+    - ^ResFileRefNum
+    - ^AliasPtr
+    - ^IOCompletionUPP
+    - ^IOCompletionProcPtr
+    - ^ParmBlkPtr
 
   ExportMethods:
     - ^::FS.+
@@ -40,10 +50,10 @@ Odin:
     - ../exports/CoreFoundation.exports.yml
 
 
-  # ResolvedTypedefs:
+  ResolvedTypedefs:
+    - '[su]?int.*'
   #   - off_t
   #   - boolean_t
-  #   - '[su]?int.*'
 
   Packages:
     - Name  : FSEvents

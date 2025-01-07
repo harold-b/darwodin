@@ -9,8 +9,6 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -541,125 +539,143 @@ ControllerPlayerIndex :: enum cffi.long {
     _4 = 3,
 }
 
+/// GCUIEventTypes
+UIEventTypes :: enum cffi.ulong {
+    None = 0,
+    Gamepad = 1,
+}
+
 /// GCPoint2
 Point2 :: struct #align (4) {
-    x : cffi.float,
-    y : cffi.float,
+    x: cffi.float,
+    y: cffi.float,
 }
+#assert(size_of(Point2) == 8)
 
 /// GCDualSenseAdaptiveTriggerPositionalAmplitudes
 DualSenseAdaptiveTriggerPositionalAmplitudes :: struct #align (4) {
-    values : [10]cffi.float,
+    values: [10]cffi.float,
 }
+#assert(size_of(DualSenseAdaptiveTriggerPositionalAmplitudes) == 40)
 
 /// GCDualSenseAdaptiveTriggerPositionalResistiveStrengths
 DualSenseAdaptiveTriggerPositionalResistiveStrengths :: struct #align (4) {
-    values : [10]cffi.float,
+    values: [10]cffi.float,
 }
+#assert(size_of(DualSenseAdaptiveTriggerPositionalResistiveStrengths) == 40)
 
 /// GCAcceleration
 Acceleration :: struct #align (8) {
-    x : cffi.double,
-    y : cffi.double,
-    z : cffi.double,
+    x: cffi.double,
+    y: cffi.double,
+    z: cffi.double,
 }
+#assert(size_of(Acceleration) == 24)
 
 /// GCRotationRate
 RotationRate :: struct #align (8) {
-    x : cffi.double,
-    y : cffi.double,
-    z : cffi.double,
+    x: cffi.double,
+    y: cffi.double,
+    z: cffi.double,
 }
+#assert(size_of(RotationRate) == 24)
 
 /// GCEulerAngles
 EulerAngles :: struct #align (8) {
-    pitch : cffi.double,
-    yaw : cffi.double,
-    roll : cffi.double,
+    pitch: cffi.double,
+    yaw: cffi.double,
+    roll: cffi.double,
 }
+#assert(size_of(EulerAngles) == 24)
 
 /// GCQuaternion
 Quaternion :: struct #align (8) {
-    x : cffi.double,
-    y : cffi.double,
-    z : cffi.double,
-    w : cffi.double,
+    x: cffi.double,
+    y: cffi.double,
+    z: cffi.double,
+    w: cffi.double,
 }
+#assert(size_of(Quaternion) == 32)
 
 /// GCGamepadSnapShotDataV100
-GamepadSnapShotDataV100 :: struct  {
-    version : cffi.uint16_t,
-    size : cffi.uint16_t,
-    dpadX : cffi.float,
-    dpadY : cffi.float,
-    buttonA : cffi.float,
-    buttonB : cffi.float,
-    buttonX : cffi.float,
-    buttonY : cffi.float,
-    leftShoulder : cffi.float,
-    rightShoulder : cffi.float,
+GamepadSnapShotDataV100 :: struct #align (1) {
+    version: cffi.uint16_t,
+    size: cffi.uint16_t,
+    dpadX: cffi.float,
+    dpadY: cffi.float,
+    buttonA: cffi.float,
+    buttonB: cffi.float,
+    buttonX: cffi.float,
+    buttonY: cffi.float,
+    leftShoulder: cffi.float,
+    rightShoulder: cffi.float,
 }
+#assert(size_of(GamepadSnapShotDataV100) == 36)
 
 /// GCExtendedGamepadSnapshotData
-ExtendedGamepadSnapshotData :: struct  {
-    version : cffi.uint16_t,
-    size : cffi.uint16_t,
-    dpadX : cffi.float,
-    dpadY : cffi.float,
-    buttonA : cffi.float,
-    buttonB : cffi.float,
-    buttonX : cffi.float,
-    buttonY : cffi.float,
-    leftShoulder : cffi.float,
-    rightShoulder : cffi.float,
-    leftThumbstickX : cffi.float,
-    leftThumbstickY : cffi.float,
-    rightThumbstickX : cffi.float,
-    rightThumbstickY : cffi.float,
-    leftTrigger : cffi.float,
-    rightTrigger : cffi.float,
-    supportsClickableThumbsticks : bool,
-    leftThumbstickButton : bool,
-    rightThumbstickButton : bool,
+ExtendedGamepadSnapshotData :: struct #align (1) {
+    version: cffi.uint16_t,
+    size: cffi.uint16_t,
+    dpadX: cffi.float,
+    dpadY: cffi.float,
+    buttonA: cffi.float,
+    buttonB: cffi.float,
+    buttonX: cffi.float,
+    buttonY: cffi.float,
+    leftShoulder: cffi.float,
+    rightShoulder: cffi.float,
+    leftThumbstickX: cffi.float,
+    leftThumbstickY: cffi.float,
+    rightThumbstickX: cffi.float,
+    rightThumbstickY: cffi.float,
+    leftTrigger: cffi.float,
+    rightTrigger: cffi.float,
+    supportsClickableThumbsticks: bool,
+    leftThumbstickButton: bool,
+    rightThumbstickButton: bool,
 }
+#assert(size_of(ExtendedGamepadSnapshotData) == 63)
 
 /// GCExtendedGamepadSnapShotDataV100
 ExtendedGamepadSnapShotDataV100 :: struct #align (4) {
-    version : cffi.uint16_t,
-    size : cffi.uint16_t,
-    dpadX : cffi.float,
-    dpadY : cffi.float,
-    buttonA : cffi.float,
-    buttonB : cffi.float,
-    buttonX : cffi.float,
-    buttonY : cffi.float,
-    leftShoulder : cffi.float,
-    rightShoulder : cffi.float,
-    leftThumbstickX : cffi.float,
-    leftThumbstickY : cffi.float,
-    rightThumbstickX : cffi.float,
-    rightThumbstickY : cffi.float,
-    leftTrigger : cffi.float,
-    rightTrigger : cffi.float,
+    version: cffi.uint16_t,
+    size: cffi.uint16_t,
+    dpadX: cffi.float,
+    dpadY: cffi.float,
+    buttonA: cffi.float,
+    buttonB: cffi.float,
+    buttonX: cffi.float,
+    buttonY: cffi.float,
+    leftShoulder: cffi.float,
+    rightShoulder: cffi.float,
+    leftThumbstickX: cffi.float,
+    leftThumbstickY: cffi.float,
+    rightThumbstickX: cffi.float,
+    rightThumbstickY: cffi.float,
+    leftTrigger: cffi.float,
+    rightTrigger: cffi.float,
 }
+#assert(size_of(ExtendedGamepadSnapShotDataV100) == 60)
 
 /// GCMicroGamepadSnapshotData
-MicroGamepadSnapshotData :: struct  {
-    version : cffi.uint16_t,
-    size : cffi.uint16_t,
-    dpadX : cffi.float,
-    dpadY : cffi.float,
-    buttonA : cffi.float,
-    buttonX : cffi.float,
+MicroGamepadSnapshotData :: struct #align (1) {
+    version: cffi.uint16_t,
+    size: cffi.uint16_t,
+    dpadX: cffi.float,
+    dpadY: cffi.float,
+    buttonA: cffi.float,
+    buttonX: cffi.float,
 }
+#assert(size_of(MicroGamepadSnapshotData) == 20)
 
 /// GCMicroGamepadSnapShotDataV100
-MicroGamepadSnapShotDataV100 :: struct  {
-    version : cffi.uint16_t,
-    size : cffi.uint16_t,
-    dpadX : cffi.float,
-    dpadY : cffi.float,
-    buttonA : cffi.float,
-    buttonX : cffi.float,
+MicroGamepadSnapShotDataV100 :: struct #align (1) {
+    version: cffi.uint16_t,
+    size: cffi.uint16_t,
+    dpadX: cffi.float,
+    dpadY: cffi.float,
+    buttonA: cffi.float,
+    buttonX: cffi.float,
 }
+#assert(size_of(MicroGamepadSnapShotDataV100) == 20)
 

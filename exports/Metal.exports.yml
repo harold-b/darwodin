@@ -26,8 +26,10 @@ Structs:
     MTLQuadTessellationFactorsHalf: MTL.QuadTessellationFactorsHalf
     MTLTriangleTessellationFactorsHalf: MTL.TriangleTessellationFactorsHalf
     _MTLPackedFloat3: MTL._MTLPackedFloat3
+    MTLPackedFloatQuaternion: MTL.PackedFloatQuaternion
     _MTLPackedFloat4x3: MTL._MTLPackedFloat4x3
     _MTLAxisAlignedBoundingBox: MTL._MTLAxisAlignedBoundingBox
+    MTLComponentTransform: MTL.ComponentTransform
     MTLAccelerationStructureInstanceDescriptor: MTL.AccelerationStructureInstanceDescriptor
     MTLAccelerationStructureUserIDInstanceDescriptor: MTL.AccelerationStructureUserIDInstanceDescriptor
     MTLAccelerationStructureMotionInstanceDescriptor: MTL.AccelerationStructureMotionInstanceDescriptor
@@ -82,6 +84,8 @@ Enums:
     MTLLibraryType: MTL.LibraryType
     MTLLibraryOptimizationLevel: MTL.LibraryOptimizationLevel
     MTLCompileSymbolVisibility: MTL.CompileSymbolVisibility
+    MTLMathMode: MTL.MathMode
+    MTLMathFloatingPointFunctions: MTL.MathFloatingPointFunctions
     MTLLibraryError: MTL.LibraryError
     MTLCounterSampleBufferError: MTL.CounterSampleBufferError
     MTLIOCompressionMethod: MTL.IOCompressionMethod
@@ -113,6 +117,7 @@ Enums:
     MTLIndexType: MTL.IndexType
     MTLStepFunction: MTL.StepFunction
     MTLMutability: MTL.Mutability
+    MTLShaderValidation: MTL.ShaderValidation
     MTLPrimitiveType: MTL.PrimitiveType
     MTLVisibilityResultMode: MTL.VisibilityResultMode
     MTLCullMode: MTL.CullMode
@@ -134,11 +139,13 @@ Enums:
     MTLSamplerBorderColor: MTL.SamplerBorderColor
     MTLAccelerationStructureUsage: MTL.AccelerationStructureUsage
     MTLAccelerationStructureInstanceOptions: MTL.AccelerationStructureInstanceOptions
+    MTLMatrixLayout: MTL.MatrixLayout
     MTLMotionBorderMode: MTL.MotionBorderMode
     MTLCurveType: MTL.CurveType
     MTLCurveBasis: MTL.CurveBasis
     MTLCurveEndCaps: MTL.CurveEndCaps
     MTLAccelerationStructureInstanceDescriptorType: MTL.AccelerationStructureInstanceDescriptorType
+    MTLTransformType: MTL.TransformType
     MTLHeapType: MTL.HeapType
     MTLCaptureError: MTL.CaptureError
     MTLCaptureDestination: MTL.CaptureDestination
@@ -146,8 +153,11 @@ Enums:
     MTLFunctionLogType: MTL.FunctionLogType
     MTLAccelerationStructureRefitOptions: MTL.AccelerationStructureRefitOptions
     MTLDynamicLibraryError: MTL.DynamicLibraryError
+    MTLLogLevel: MTL.LogLevel
+    MTLLogStateError: MTL.LogStateError
     MTLBinaryArchiveError: MTL.BinaryArchiveError
     MTLIntersectionFunctionSignature: MTL.IntersectionFunctionSignature
+    MTLStitchedLibraryOptions: MTL.StitchedLibraryOptions
     MTLIOPriority: MTL.IOPriority
     MTLIOCommandQueueType: MTL.IOCommandQueueType
     MTLIOError: MTL.IOError
@@ -196,6 +206,8 @@ ObjCClasses:
     MTLVisibleFunctionTableDescriptor: MTL.VisibleFunctionTableDescriptor
     MTLIntersectionFunctionTableDescriptor: MTL.IntersectionFunctionTableDescriptor
     MTLStitchedLibraryDescriptor: MTL.StitchedLibraryDescriptor
+    MTLLogStateDescriptor: MTL.LogStateDescriptor
+    MTLResidencySetDescriptor: MTL.ResidencySetDescriptor
     MTLIOCommandQueueDescriptor: MTL.IOCommandQueueDescriptor
     MTLArgumentDescriptor: MTL.ArgumentDescriptor
     MTLArchitecture: MTL.Architecture
@@ -259,6 +271,7 @@ ObjCClasses:
 ObjCProtocols:
     MTLDevice: MTL.Device
     MTLCommandEncoder: MTL.CommandEncoder
+    MTLAllocation: MTL.Allocation
     MTLHeap: MTL.Heap
     MTLResource: MTL.Resource
     MTLTexture: MTL.Texture
@@ -292,6 +305,8 @@ ObjCProtocols:
     MTLFunctionHandle: MTL.FunctionHandle
     MTLVisibleFunctionTable: MTL.VisibleFunctionTable
     MTLIntersectionFunctionTable: MTL.IntersectionFunctionTable
+    MTLLogState: MTL.LogState
+    MTLResidencySet: MTL.ResidencySet
     MTLIOFileHandle: MTL.IOFileHandle
     MTLIOCommandQueue: MTL.IOCommandQueue
     MTLResourceStateCommandEncoder: MTL.ResourceStateCommandEncoder
@@ -349,6 +364,7 @@ ExternVars:
     ::MTLCommandBufferEncoderInfoErrorKey: MTL.CommandBufferEncoderInfoErrorKey
     ::MTLCaptureErrorDomain: MTL.CaptureErrorDomain
     ::MTLDynamicLibraryDomain: MTL.DynamicLibraryDomain
+    ::MTLLogStateErrorDomain: MTL.LogStateErrorDomain
     ::MTLBinaryArchiveDomain: MTL.BinaryArchiveDomain
     ::MTLIOErrorDomain: MTL.IOErrorDomain
 

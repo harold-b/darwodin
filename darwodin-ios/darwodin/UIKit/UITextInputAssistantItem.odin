@@ -47,6 +47,14 @@ TextInputAssistantItem_trailingBarButtonGroups :: #force_inline proc "c" (self: 
 TextInputAssistantItem_setTrailingBarButtonGroups :: #force_inline proc "c" (self: ^TextInputAssistantItem, trailingBarButtonGroups: ^NS.Array) {
     msgSend(nil, self, "setTrailingBarButtonGroups:", trailingBarButtonGroups)
 }
+@(objc_type=TextInputAssistantItem, objc_name="keyboardActionButtonItem")
+TextInputAssistantItem_keyboardActionButtonItem :: #force_inline proc "c" (self: ^TextInputAssistantItem) -> ^BarButtonItem {
+    return msgSend(^BarButtonItem, self, "keyboardActionButtonItem")
+}
+@(objc_type=TextInputAssistantItem, objc_name="setKeyboardActionButtonItem")
+TextInputAssistantItem_setKeyboardActionButtonItem :: #force_inline proc "c" (self: ^TextInputAssistantItem, keyboardActionButtonItem: ^BarButtonItem) {
+    msgSend(nil, self, "setKeyboardActionButtonItem:", keyboardActionButtonItem)
+}
 @(objc_type=TextInputAssistantItem, objc_name="load", objc_is_class_method=true)
 TextInputAssistantItem_load :: #force_inline proc "c" () {
     msgSend(nil, TextInputAssistantItem, "load")
@@ -177,6 +185,8 @@ TextInputAssistantItem_VTable :: struct {
     setLeadingBarButtonGroups: proc(self: ^TextInputAssistantItem, leadingBarButtonGroups: ^NS.Array),
     trailingBarButtonGroups: proc(self: ^TextInputAssistantItem) -> ^NS.Array,
     setTrailingBarButtonGroups: proc(self: ^TextInputAssistantItem, trailingBarButtonGroups: ^NS.Array),
+    keyboardActionButtonItem: proc(self: ^TextInputAssistantItem) -> ^BarButtonItem,
+    setKeyboardActionButtonItem: proc(self: ^TextInputAssistantItem, keyboardActionButtonItem: ^BarButtonItem),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^TextInputAssistantItem,
@@ -274,6 +284,26 @@ TextInputAssistantItem_odin_extend :: proc(cls: Class, vt: ^TextInputAssistantIt
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTrailingBarButtonGroups:"), auto_cast setTrailingBarButtonGroups, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.keyboardActionButtonItem != nil {
+        keyboardActionButtonItem :: proc "c" (self: ^TextInputAssistantItem, _: SEL) -> ^BarButtonItem {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInputAssistantItem_VTable)vt_ctx.super_vt).keyboardActionButtonItem(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("keyboardActionButtonItem"), auto_cast keyboardActionButtonItem, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setKeyboardActionButtonItem != nil {
+        setKeyboardActionButtonItem :: proc "c" (self: ^TextInputAssistantItem, _: SEL, keyboardActionButtonItem: ^BarButtonItem) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInputAssistantItem_VTable)vt_ctx.super_vt).setKeyboardActionButtonItem(self, keyboardActionButtonItem)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setKeyboardActionButtonItem:"), auto_cast setKeyboardActionButtonItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {

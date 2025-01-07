@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -50,14 +51,6 @@ MutableParagraphStyle_paragraphSpacing :: #force_inline proc "c" (self: ^Mutable
 @(objc_type=MutableParagraphStyle, objc_name="setParagraphSpacing")
 MutableParagraphStyle_setParagraphSpacing :: #force_inline proc "c" (self: ^MutableParagraphStyle, paragraphSpacing: CG.Float) {
     msgSend(nil, self, "setParagraphSpacing:", paragraphSpacing)
-}
-@(objc_type=MutableParagraphStyle, objc_name="alignment")
-MutableParagraphStyle_alignment :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> TextAlignment {
-    return msgSend(TextAlignment, self, "alignment")
-}
-@(objc_type=MutableParagraphStyle, objc_name="setAlignment")
-MutableParagraphStyle_setAlignment :: #force_inline proc "c" (self: ^MutableParagraphStyle, alignment: TextAlignment) {
-    msgSend(nil, self, "setAlignment:", alignment)
 }
 @(objc_type=MutableParagraphStyle, objc_name="firstLineHeadIndent")
 MutableParagraphStyle_firstLineHeadIndent :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> CG.Float {
@@ -171,6 +164,30 @@ MutableParagraphStyle_allowsDefaultTighteningForTruncation :: #force_inline proc
 MutableParagraphStyle_setAllowsDefaultTighteningForTruncation :: #force_inline proc "c" (self: ^MutableParagraphStyle, allowsDefaultTighteningForTruncation: bool) {
     msgSend(nil, self, "setAllowsDefaultTighteningForTruncation:", allowsDefaultTighteningForTruncation)
 }
+@(objc_type=MutableParagraphStyle, objc_name="lineBreakStrategy")
+MutableParagraphStyle_lineBreakStrategy :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> LineBreakStrategy {
+    return msgSend(LineBreakStrategy, self, "lineBreakStrategy")
+}
+@(objc_type=MutableParagraphStyle, objc_name="setLineBreakStrategy")
+MutableParagraphStyle_setLineBreakStrategy :: #force_inline proc "c" (self: ^MutableParagraphStyle, lineBreakStrategy: LineBreakStrategy) {
+    msgSend(nil, self, "setLineBreakStrategy:", lineBreakStrategy)
+}
+@(objc_type=MutableParagraphStyle, objc_name="textLists")
+MutableParagraphStyle_textLists :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> ^NS.Array {
+    return msgSend(^NS.Array, self, "textLists")
+}
+@(objc_type=MutableParagraphStyle, objc_name="setTextLists")
+MutableParagraphStyle_setTextLists :: #force_inline proc "c" (self: ^MutableParagraphStyle, textLists: ^NS.Array) {
+    msgSend(nil, self, "setTextLists:", textLists)
+}
+@(objc_type=MutableParagraphStyle, objc_name="alignment")
+MutableParagraphStyle_alignment :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> TextAlignment {
+    return msgSend(TextAlignment, self, "alignment")
+}
+@(objc_type=MutableParagraphStyle, objc_name="setAlignment")
+MutableParagraphStyle_setAlignment :: #force_inline proc "c" (self: ^MutableParagraphStyle, alignment: TextAlignment) {
+    msgSend(nil, self, "setAlignment:", alignment)
+}
 @(objc_type=MutableParagraphStyle, objc_name="tighteningFactorForTruncation")
 MutableParagraphStyle_tighteningFactorForTruncation :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> cffi.float {
     return msgSend(cffi.float, self, "tighteningFactorForTruncation")
@@ -187,14 +204,6 @@ MutableParagraphStyle_textBlocks :: #force_inline proc "c" (self: ^MutableParagr
 MutableParagraphStyle_setTextBlocks :: #force_inline proc "c" (self: ^MutableParagraphStyle, textBlocks: ^NS.Array) {
     msgSend(nil, self, "setTextBlocks:", textBlocks)
 }
-@(objc_type=MutableParagraphStyle, objc_name="textLists")
-MutableParagraphStyle_textLists :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "textLists")
-}
-@(objc_type=MutableParagraphStyle, objc_name="setTextLists")
-MutableParagraphStyle_setTextLists :: #force_inline proc "c" (self: ^MutableParagraphStyle, textLists: ^NS.Array) {
-    msgSend(nil, self, "setTextLists:", textLists)
-}
 @(objc_type=MutableParagraphStyle, objc_name="headerLevel")
 MutableParagraphStyle_headerLevel :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> NS.Integer {
     return msgSend(NS.Integer, self, "headerLevel")
@@ -202,14 +211,6 @@ MutableParagraphStyle_headerLevel :: #force_inline proc "c" (self: ^MutableParag
 @(objc_type=MutableParagraphStyle, objc_name="setHeaderLevel")
 MutableParagraphStyle_setHeaderLevel :: #force_inline proc "c" (self: ^MutableParagraphStyle, headerLevel: NS.Integer) {
     msgSend(nil, self, "setHeaderLevel:", headerLevel)
-}
-@(objc_type=MutableParagraphStyle, objc_name="lineBreakStrategy")
-MutableParagraphStyle_lineBreakStrategy :: #force_inline proc "c" (self: ^MutableParagraphStyle) -> LineBreakStrategy {
-    return msgSend(LineBreakStrategy, self, "lineBreakStrategy")
-}
-@(objc_type=MutableParagraphStyle, objc_name="setLineBreakStrategy")
-MutableParagraphStyle_setLineBreakStrategy :: #force_inline proc "c" (self: ^MutableParagraphStyle, lineBreakStrategy: LineBreakStrategy) {
-    msgSend(nil, self, "setLineBreakStrategy:", lineBreakStrategy)
 }
 @(objc_type=MutableParagraphStyle, objc_name="defaultWritingDirectionForLanguage", objc_is_class_method=true)
 MutableParagraphStyle_defaultWritingDirectionForLanguage :: #force_inline proc "c" (languageName: ^NS.String) -> WritingDirection {
@@ -374,8 +375,6 @@ MutableParagraphStyle_VTable :: struct {
     setLineSpacing: proc(self: ^MutableParagraphStyle, lineSpacing: CG.Float),
     paragraphSpacing: proc(self: ^MutableParagraphStyle) -> CG.Float,
     setParagraphSpacing: proc(self: ^MutableParagraphStyle, paragraphSpacing: CG.Float),
-    alignment: proc(self: ^MutableParagraphStyle) -> TextAlignment,
-    setAlignment: proc(self: ^MutableParagraphStyle, alignment: TextAlignment),
     firstLineHeadIndent: proc(self: ^MutableParagraphStyle) -> CG.Float,
     setFirstLineHeadIndent: proc(self: ^MutableParagraphStyle, firstLineHeadIndent: CG.Float),
     headIndent: proc(self: ^MutableParagraphStyle) -> CG.Float,
@@ -404,16 +403,18 @@ MutableParagraphStyle_VTable :: struct {
     setDefaultTabInterval: proc(self: ^MutableParagraphStyle, defaultTabInterval: CG.Float),
     allowsDefaultTighteningForTruncation: proc(self: ^MutableParagraphStyle) -> bool,
     setAllowsDefaultTighteningForTruncation: proc(self: ^MutableParagraphStyle, allowsDefaultTighteningForTruncation: bool),
+    lineBreakStrategy: proc(self: ^MutableParagraphStyle) -> LineBreakStrategy,
+    setLineBreakStrategy: proc(self: ^MutableParagraphStyle, lineBreakStrategy: LineBreakStrategy),
+    textLists: proc(self: ^MutableParagraphStyle) -> ^NS.Array,
+    setTextLists: proc(self: ^MutableParagraphStyle, textLists: ^NS.Array),
+    alignment: proc(self: ^MutableParagraphStyle) -> TextAlignment,
+    setAlignment: proc(self: ^MutableParagraphStyle, alignment: TextAlignment),
     tighteningFactorForTruncation: proc(self: ^MutableParagraphStyle) -> cffi.float,
     setTighteningFactorForTruncation: proc(self: ^MutableParagraphStyle, tighteningFactorForTruncation: cffi.float),
     textBlocks: proc(self: ^MutableParagraphStyle) -> ^NS.Array,
     setTextBlocks: proc(self: ^MutableParagraphStyle, textBlocks: ^NS.Array),
-    textLists: proc(self: ^MutableParagraphStyle) -> ^NS.Array,
-    setTextLists: proc(self: ^MutableParagraphStyle, textLists: ^NS.Array),
     headerLevel: proc(self: ^MutableParagraphStyle) -> NS.Integer,
     setHeaderLevel: proc(self: ^MutableParagraphStyle, headerLevel: NS.Integer),
-    lineBreakStrategy: proc(self: ^MutableParagraphStyle) -> LineBreakStrategy,
-    setLineBreakStrategy: proc(self: ^MutableParagraphStyle, lineBreakStrategy: LineBreakStrategy),
     defaultWritingDirectionForLanguage: proc(languageName: ^NS.String) -> WritingDirection,
     defaultParagraphStyle: proc() -> ^ParagraphStyle,
     supportsSecureCoding: proc() -> bool,
@@ -529,26 +530,6 @@ MutableParagraphStyle_odin_extend :: proc(cls: Class, vt: ^MutableParagraphStyle
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setParagraphSpacing:"), auto_cast setParagraphSpacing, "v@:d") do panic("Failed to register objC method.")
-    }
-    if vt.alignment != nil {
-        alignment :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> TextAlignment {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).alignment(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
-    }
-    if vt.setAlignment != nil {
-        setAlignment :: proc "c" (self: ^MutableParagraphStyle, _: SEL, alignment: TextAlignment) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).setAlignment(self, alignment)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAlignment:"), auto_cast setAlignment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.firstLineHeadIndent != nil {
         firstLineHeadIndent :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> CG.Float {
@@ -830,6 +811,66 @@ MutableParagraphStyle_odin_extend :: proc(cls: Class, vt: ^MutableParagraphStyle
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsDefaultTighteningForTruncation:"), auto_cast setAllowsDefaultTighteningForTruncation, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.lineBreakStrategy != nil {
+        lineBreakStrategy :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> LineBreakStrategy {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).lineBreakStrategy(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakStrategy"), auto_cast lineBreakStrategy, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLineBreakStrategy != nil {
+        setLineBreakStrategy :: proc "c" (self: ^MutableParagraphStyle, _: SEL, lineBreakStrategy: LineBreakStrategy) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).setLineBreakStrategy(self, lineBreakStrategy)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLineBreakStrategy:"), auto_cast setLineBreakStrategy, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.textLists != nil {
+        textLists :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).textLists(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textLists"), auto_cast textLists, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTextLists != nil {
+        setTextLists :: proc "c" (self: ^MutableParagraphStyle, _: SEL, textLists: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).setTextLists(self, textLists)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextLists:"), auto_cast setTextLists, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.alignment != nil {
+        alignment :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> TextAlignment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).alignment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAlignment != nil {
+        setAlignment :: proc "c" (self: ^MutableParagraphStyle, _: SEL, alignment: TextAlignment) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).setAlignment(self, alignment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAlignment:"), auto_cast setAlignment, "v@:l") do panic("Failed to register objC method.")
+    }
     if vt.tighteningFactorForTruncation != nil {
         tighteningFactorForTruncation :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> cffi.float {
 
@@ -870,26 +911,6 @@ MutableParagraphStyle_odin_extend :: proc(cls: Class, vt: ^MutableParagraphStyle
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextBlocks:"), auto_cast setTextBlocks, "v@:@") do panic("Failed to register objC method.")
     }
-    if vt.textLists != nil {
-        textLists :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).textLists(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textLists"), auto_cast textLists, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.setTextLists != nil {
-        setTextLists :: proc "c" (self: ^MutableParagraphStyle, _: SEL, textLists: ^NS.Array) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).setTextLists(self, textLists)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextLists:"), auto_cast setTextLists, "v@:@") do panic("Failed to register objC method.")
-    }
     if vt.headerLevel != nil {
         headerLevel :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> NS.Integer {
 
@@ -909,26 +930,6 @@ MutableParagraphStyle_odin_extend :: proc(cls: Class, vt: ^MutableParagraphStyle
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHeaderLevel:"), auto_cast setHeaderLevel, "v@:l") do panic("Failed to register objC method.")
-    }
-    if vt.lineBreakStrategy != nil {
-        lineBreakStrategy :: proc "c" (self: ^MutableParagraphStyle, _: SEL) -> LineBreakStrategy {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).lineBreakStrategy(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakStrategy"), auto_cast lineBreakStrategy, "L@:") do panic("Failed to register objC method.")
-    }
-    if vt.setLineBreakStrategy != nil {
-        setLineBreakStrategy :: proc "c" (self: ^MutableParagraphStyle, _: SEL, lineBreakStrategy: LineBreakStrategy) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^MutableParagraphStyle_VTable)vt_ctx.super_vt).setLineBreakStrategy(self, lineBreakStrategy)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setLineBreakStrategy:"), auto_cast setLineBreakStrategy, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.defaultWritingDirectionForLanguage != nil {
         defaultWritingDirectionForLanguage :: proc "c" (self: Class, _: SEL, languageName: ^NS.String) -> WritingDirection {

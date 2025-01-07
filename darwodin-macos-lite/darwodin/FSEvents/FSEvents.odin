@@ -6,8 +6,6 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -146,6 +144,9 @@ kTextEncodingUnicodeV10_0 :: 276
 kTextEncodingUnicodeV11_0 :: 277
 kTextEncodingUnicodeV12_1 :: 278
 kTextEncodingUnicodeV13_0 :: 279
+kTextEncodingUnicodeV14_0 :: 280
+kTextEncodingUnicodeV15_0 :: 281
+kTextEncodingUnicodeV15_1 :: 282
 kTextEncodingISOLatin1 :: 513
 kTextEncodingISOLatin2 :: 514
 kTextEncodingISOLatin3 :: 515
@@ -416,432 +417,432 @@ EventStreamEventFlagItemIsLastHardlink :: 2097152
 EventStreamEventFlagItemCloned :: 4194304
 EventStreamEventIdSinceNow :: 18446744073709551615
 foreign lib {
-    @(link_name="kFSOperationTotalBytesKey") OperationTotalBytesKey: ^CF.__CFString
-    @(link_name="kFSOperationBytesCompleteKey") OperationBytesCompleteKey: ^CF.__CFString
-    @(link_name="kFSOperationBytesRemainingKey") OperationBytesRemainingKey: ^CF.__CFString
-    @(link_name="kFSOperationTotalObjectsKey") OperationTotalObjectsKey: ^CF.__CFString
-    @(link_name="kFSOperationObjectsCompleteKey") OperationObjectsCompleteKey: ^CF.__CFString
-    @(link_name="kFSOperationObjectsRemainingKey") OperationObjectsRemainingKey: ^CF.__CFString
-    @(link_name="kFSOperationTotalUserVisibleObjectsKey") OperationTotalUserVisibleObjectsKey: ^CF.__CFString
-    @(link_name="kFSOperationUserVisibleObjectsCompleteKey") OperationUserVisibleObjectsCompleteKey: ^CF.__CFString
-    @(link_name="kFSOperationUserVisibleObjectsRemainingKey") OperationUserVisibleObjectsRemainingKey: ^CF.__CFString
-    @(link_name="kFSOperationThroughputKey") OperationThroughputKey: ^CF.__CFString
+    @(link_name="kFSOperationTotalBytesKey") OperationTotalBytesKey: CF.StringRef
+    @(link_name="kFSOperationBytesCompleteKey") OperationBytesCompleteKey: CF.StringRef
+    @(link_name="kFSOperationBytesRemainingKey") OperationBytesRemainingKey: CF.StringRef
+    @(link_name="kFSOperationTotalObjectsKey") OperationTotalObjectsKey: CF.StringRef
+    @(link_name="kFSOperationObjectsCompleteKey") OperationObjectsCompleteKey: CF.StringRef
+    @(link_name="kFSOperationObjectsRemainingKey") OperationObjectsRemainingKey: CF.StringRef
+    @(link_name="kFSOperationTotalUserVisibleObjectsKey") OperationTotalUserVisibleObjectsKey: CF.StringRef
+    @(link_name="kFSOperationUserVisibleObjectsCompleteKey") OperationUserVisibleObjectsCompleteKey: CF.StringRef
+    @(link_name="kFSOperationUserVisibleObjectsRemainingKey") OperationUserVisibleObjectsRemainingKey: CF.StringRef
+    @(link_name="kFSOperationThroughputKey") OperationThroughputKey: CF.StringRef
 }
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="FSMakeFSRefUnicode")
-    MakeFSRefUnicode :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^cffi.ushort, textEncodingHint: TextEncoding, newRef: ^Ref) -> cffi.short ---
+    MakeFSRefUnicode :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^CF.UniChar, textEncodingHint: TextEncoding, newRef: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSCompareFSRefs")
-    CompareFSRefs :: proc(ref1: ^Ref, ref2: ^Ref) -> cffi.short ---
+    CompareFSRefs :: proc(ref1: ^Ref, ref2: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSCreateFileUnicode")
-    CreateFileUnicode :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^cffi.ushort, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, newRef: ^Ref, newSpec: SpecPtr) -> cffi.short ---
+    CreateFileUnicode :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^CF.UniChar, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, newRef: ^Ref, newSpec: SpecPtr) -> CF.OSErr ---
 
     @(link_name="FSCreateDirectoryUnicode")
-    CreateDirectoryUnicode :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^cffi.ushort, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, newRef: ^Ref, newSpec: SpecPtr, newDirID: ^cffi.uint) -> cffi.short ---
+    CreateDirectoryUnicode :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^CF.UniChar, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, newRef: ^Ref, newSpec: SpecPtr, newDirID: ^CF.UInt32) -> CF.OSErr ---
 
     @(link_name="FSDeleteObject")
-    DeleteObject :: proc(ref: ^Ref) -> cffi.short ---
+    DeleteObject :: proc(ref: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSUnlinkObject")
-    UnlinkObject :: proc(ref: ^Ref) -> cffi.short ---
+    UnlinkObject :: proc(ref: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSMoveObject")
-    MoveObject :: proc(ref: ^Ref, destDirectory: ^Ref, newRef: ^Ref) -> cffi.short ---
+    MoveObject :: proc(ref: ^Ref, destDirectory: ^Ref, newRef: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSExchangeObjects")
-    ExchangeObjects :: proc(ref: ^Ref, destRef: ^Ref) -> cffi.short ---
+    ExchangeObjects :: proc(ref: ^Ref, destRef: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSReplaceObject")
-    ReplaceObject :: proc(originalObject: ^Ref, replacementObject: ^Ref, newName: CF.StringRef, temporaryName: CF.StringRef, temporaryDirectory: ^Ref, flags: CF.OptionBits, resultObject: ^Ref) -> cffi.int ---
+    ReplaceObject :: proc(originalObject: ^Ref, replacementObject: ^Ref, newName: CF.StringRef, temporaryName: CF.StringRef, temporaryDirectory: ^Ref, flags: CF.OptionBits, resultObject: ^Ref) -> CF.OSStatus ---
 
     @(link_name="FSPathReplaceObject")
-    PathReplaceObject :: proc(originalObjectPath: cstring, replacementObjectPath: cstring, newName: CF.StringRef, temporaryName: CF.StringRef, temporaryDirectoryPath: cstring, flags: CF.OptionBits) -> cffi.int ---
+    PathReplaceObject :: proc(originalObjectPath: cstring, replacementObjectPath: cstring, newName: CF.StringRef, temporaryName: CF.StringRef, temporaryDirectoryPath: cstring, flags: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSGetTemporaryDirectoryForReplaceObject")
-    GetTemporaryDirectoryForReplaceObject :: proc(originalObject: ^Ref, temporaryDirectory: ^Ref, flags: CF.OptionBits) -> cffi.int ---
+    GetTemporaryDirectoryForReplaceObject :: proc(originalObject: ^Ref, temporaryDirectory: ^Ref, flags: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSPathGetTemporaryDirectoryForReplaceObject")
-    PathGetTemporaryDirectoryForReplaceObject :: proc(originalObjectPath: cstring, temporaryDirectoryPath: cstring, maxPathSize: CF.UInt32, flags: CF.OptionBits) -> cffi.int ---
+    PathGetTemporaryDirectoryForReplaceObject :: proc(originalObjectPath: cstring, temporaryDirectoryPath: cstring, maxPathSize: CF.UInt32, flags: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSRenameUnicode")
-    RenameUnicode :: proc(ref: ^Ref, nameLength: CF.UniCharCount, name: ^cffi.ushort, textEncodingHint: TextEncoding, newRef: ^Ref) -> cffi.short ---
+    RenameUnicode :: proc(ref: ^Ref, nameLength: CF.UniCharCount, name: ^CF.UniChar, textEncodingHint: TextEncoding, newRef: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSGetCatalogInfo")
-    GetCatalogInfo :: proc(ref: ^Ref, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, outName: ^HFSUniStr255, fsSpec: SpecPtr, parentRef: ^Ref) -> cffi.short ---
+    GetCatalogInfo :: proc(ref: ^Ref, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, outName: ^HFSUniStr255, fsSpec: SpecPtr, parentRef: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSSetCatalogInfo")
-    SetCatalogInfo :: proc(ref: ^Ref, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo) -> cffi.short ---
+    SetCatalogInfo :: proc(ref: ^Ref, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo) -> CF.OSErr ---
 
     @(link_name="FSOpenIterator")
-    OpenIterator :: proc(container: ^Ref, iteratorFlags: IteratorFlags, iterator: ^^OpaqueFSIterator) -> cffi.short ---
+    OpenIterator :: proc(container: ^Ref, iteratorFlags: IteratorFlags, iterator: ^Iterator) -> CF.OSErr ---
 
     @(link_name="FSCloseIterator")
-    CloseIterator :: proc(iterator: Iterator) -> cffi.short ---
+    CloseIterator :: proc(iterator: Iterator) -> CF.OSErr ---
 
     @(link_name="FSGetCatalogInfoBulk")
-    GetCatalogInfoBulk :: proc(iterator: Iterator, maximumObjects: CF.ItemCount, actualObjects: ^cffi.ulong, containerChanged: ^cffi.uchar, whichInfo: CatalogInfoBitmap, catalogInfos: ^CatalogInfo, refs: ^Ref, specs: SpecPtr, names: ^HFSUniStr255) -> cffi.short ---
+    GetCatalogInfoBulk :: proc(iterator: Iterator, maximumObjects: CF.ItemCount, actualObjects: ^CF.ItemCount, containerChanged: ^CF.Boolean, whichInfo: CatalogInfoBitmap, catalogInfos: ^CatalogInfo, refs: ^Ref, specs: SpecPtr, names: ^HFSUniStr255) -> CF.OSErr ---
 
     @(link_name="FSCatalogSearch")
-    CatalogSearch :: proc(iterator: Iterator, searchCriteria: ^SearchParams, maximumObjects: CF.ItemCount, actualObjects: ^cffi.ulong, containerChanged: ^cffi.uchar, whichInfo: CatalogInfoBitmap, catalogInfos: ^CatalogInfo, refs: ^Ref, specs: SpecPtr, names: ^HFSUniStr255) -> cffi.short ---
+    CatalogSearch :: proc(iterator: Iterator, searchCriteria: ^SearchParams, maximumObjects: CF.ItemCount, actualObjects: ^CF.ItemCount, containerChanged: ^CF.Boolean, whichInfo: CatalogInfoBitmap, catalogInfos: ^CatalogInfo, refs: ^Ref, specs: SpecPtr, names: ^HFSUniStr255) -> CF.OSErr ---
 
     @(link_name="FSCreateFileAndOpenForkUnicode")
-    CreateFileAndOpenForkUnicode :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^cffi.ushort, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, forkNameLength: CF.UniCharCount, forkName: ^cffi.ushort, permissions: CF.SInt8, forkRefNum: ^cffi.int, newRef: ^Ref) -> cffi.int ---
+    CreateFileAndOpenForkUnicode :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^CF.UniChar, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, forkNameLength: CF.UniCharCount, forkName: ^CF.UniChar, permissions: CF.SInt8, forkRefNum: ^IORefNum, newRef: ^Ref) -> CF.OSStatus ---
 
     @(link_name="FSCreateFork")
-    CreateFork :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^cffi.ushort) -> cffi.short ---
+    CreateFork :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^CF.UniChar) -> CF.OSErr ---
 
     @(link_name="FSDeleteFork")
-    DeleteFork :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^cffi.ushort) -> cffi.short ---
+    DeleteFork :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^CF.UniChar) -> CF.OSErr ---
 
     @(link_name="FSIterateForks")
-    IterateForks :: proc(ref: ^Ref, forkIterator: ^CatPositionRec, forkName: ^HFSUniStr255, forkSize: ^cffi.longlong, forkPhysicalSize: ^cffi.ulonglong) -> cffi.short ---
+    IterateForks :: proc(ref: ^Ref, forkIterator: ^CatPositionRec, forkName: ^HFSUniStr255, forkSize: ^CF.SInt64, forkPhysicalSize: ^CF.UInt64) -> CF.OSErr ---
 
     @(link_name="FSOpenFork")
-    OpenFork :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^cffi.ushort, permissions: CF.SInt8, forkRefNum: ^cffi.int) -> cffi.short ---
+    OpenFork :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^CF.UniChar, permissions: CF.SInt8, forkRefNum: ^IORefNum) -> CF.OSErr ---
 
     @(link_name="FSReadFork")
-    ReadFork :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.ByteCount, buffer: rawptr, actualCount: ^cffi.ulong) -> cffi.short ---
+    ReadFork :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.ByteCount, buffer: rawptr, actualCount: ^CF.ByteCount) -> CF.OSErr ---
 
     @(link_name="FSWriteFork")
-    WriteFork :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.ByteCount, buffer: rawptr, actualCount: ^cffi.ulong) -> cffi.short ---
+    WriteFork :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.ByteCount, buffer: rawptr, actualCount: ^CF.ByteCount) -> CF.OSErr ---
 
     @(link_name="FSGetForkPosition")
-    GetForkPosition :: proc(forkRefNum: IORefNum, position: ^cffi.longlong) -> cffi.short ---
+    GetForkPosition :: proc(forkRefNum: IORefNum, position: ^CF.SInt64) -> CF.OSErr ---
 
     @(link_name="FSSetForkPosition")
-    SetForkPosition :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64) -> cffi.short ---
+    SetForkPosition :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64) -> CF.OSErr ---
 
     @(link_name="FSGetForkSize")
-    GetForkSize :: proc(forkRefNum: IORefNum, forkSize: ^cffi.longlong) -> cffi.short ---
+    GetForkSize :: proc(forkRefNum: IORefNum, forkSize: ^CF.SInt64) -> CF.OSErr ---
 
     @(link_name="FSSetForkSize")
-    SetForkSize :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64) -> cffi.short ---
+    SetForkSize :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64) -> CF.OSErr ---
 
     @(link_name="FSAllocateFork")
-    AllocateFork :: proc(forkRefNum: IORefNum, flags: AllocationFlags, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.UInt64, actualCount: ^cffi.ulonglong) -> cffi.short ---
+    AllocateFork :: proc(forkRefNum: IORefNum, flags: AllocationFlags, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.UInt64, actualCount: ^CF.UInt64) -> CF.OSErr ---
 
     @(link_name="FSFlushFork")
-    FlushFork :: proc(forkRefNum: IORefNum) -> cffi.short ---
+    FlushFork :: proc(forkRefNum: IORefNum) -> CF.OSErr ---
 
     @(link_name="FSCloseFork")
-    CloseFork :: proc(forkRefNum: IORefNum) -> cffi.short ---
+    CloseFork :: proc(forkRefNum: IORefNum) -> CF.OSErr ---
 
     @(link_name="FSGetForkCBInfo")
-    GetForkCBInfo :: proc(desiredRefNum: IORefNum, volume: VolumeRefNum, iterator: ^cffi.short, actualRefNum: ^cffi.int, forkInfo: ^ForkInfo, ref: ^Ref, outForkName: ^HFSUniStr255) -> cffi.short ---
+    GetForkCBInfo :: proc(desiredRefNum: IORefNum, volume: VolumeRefNum, iterator: ^cffi.short, actualRefNum: ^IORefNum, forkInfo: ^ForkInfo, ref: ^Ref, outForkName: ^HFSUniStr255) -> CF.OSErr ---
 
     @(link_name="FSLockRange")
-    LockRange :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.UInt64, rangeStart: ^cffi.ulonglong) -> cffi.int ---
+    LockRange :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.UInt64, rangeStart: ^CF.UInt64) -> CF.OSStatus ---
 
     @(link_name="FSUnlockRange")
-    UnlockRange :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.UInt64, rangeStart: ^cffi.ulonglong) -> cffi.int ---
+    UnlockRange :: proc(forkRefNum: IORefNum, positionMode: CF.UInt16, positionOffset: CF.SInt64, requestCount: CF.UInt64, rangeStart: ^CF.UInt64) -> CF.OSStatus ---
 
     @(link_name="FSGetVolumeInfo")
-    GetVolumeInfo :: proc(volume: VolumeRefNum, volumeIndex: CF.ItemCount, actualVolume: ^cffi.short, whichInfo: VolumeInfoBitmap, info: ^VolumeInfo, volumeName: ^HFSUniStr255, rootDirectory: ^Ref) -> cffi.short ---
+    GetVolumeInfo :: proc(volume: VolumeRefNum, volumeIndex: CF.ItemCount, actualVolume: ^VolumeRefNum, whichInfo: VolumeInfoBitmap, info: ^VolumeInfo, volumeName: ^HFSUniStr255, rootDirectory: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSSetVolumeInfo")
-    SetVolumeInfo :: proc(volume: VolumeRefNum, whichInfo: VolumeInfoBitmap, info: ^VolumeInfo) -> cffi.short ---
+    SetVolumeInfo :: proc(volume: VolumeRefNum, whichInfo: VolumeInfoBitmap, info: ^VolumeInfo) -> CF.OSErr ---
 
     @(link_name="FSGetDataForkName")
-    GetDataForkName :: proc(dataForkName: ^HFSUniStr255) -> cffi.short ---
+    GetDataForkName :: proc(dataForkName: ^HFSUniStr255) -> CF.OSErr ---
 
     @(link_name="FSGetResourceForkName")
-    GetResourceForkName :: proc(resourceForkName: ^HFSUniStr255) -> cffi.short ---
+    GetResourceForkName :: proc(resourceForkName: ^HFSUniStr255) -> CF.OSErr ---
 
     @(link_name="FSRefMakePath")
-    RefMakePath :: proc(ref: ^Ref, path: ^cffi.uchar, pathBufferSize: CF.UInt32) -> cffi.int ---
+    RefMakePath :: proc(ref: ^Ref, path: ^CF.UInt8, pathBufferSize: CF.UInt32) -> CF.OSStatus ---
 
     @(link_name="FSPathMakeRef")
-    PathMakeRef :: proc(path: ^cffi.uchar, ref: ^Ref, isDirectory: ^cffi.uchar) -> cffi.int ---
+    PathMakeRef :: proc(path: ^CF.UInt8, ref: ^Ref, isDirectory: ^CF.Boolean) -> CF.OSStatus ---
 
     @(link_name="FSPathMakeRefWithOptions")
-    PathMakeRefWithOptions :: proc(path: ^cffi.uchar, options: CF.OptionBits, ref: ^Ref, isDirectory: ^cffi.uchar) -> cffi.int ---
+    PathMakeRefWithOptions :: proc(path: ^CF.UInt8, options: CF.OptionBits, ref: ^Ref, isDirectory: ^CF.Boolean) -> CF.OSStatus ---
 
     @(link_name="FSIsFSRefValid")
-    IsFSRefValid :: proc(ref: ^Ref) -> cffi.uchar ---
+    IsFSRefValid :: proc(ref: ^Ref) -> CF.Boolean ---
 
     @(link_name="FSCreateVolumeOperation")
-    CreateVolumeOperation :: proc(volumeOp: ^^OpaqueFSVolumeOperation) -> cffi.int ---
+    CreateVolumeOperation :: proc(volumeOp: ^VolumeOperation) -> CF.OSStatus ---
 
     @(link_name="FSDisposeVolumeOperation")
-    DisposeVolumeOperation :: proc(volumeOp: VolumeOperation) -> cffi.int ---
+    DisposeVolumeOperation :: proc(volumeOp: VolumeOperation) -> CF.OSStatus ---
 
     @(link_name="FSMountLocalVolumeSync")
-    MountLocalVolumeSync :: proc(diskID: CF.StringRef, mountDir: CF.URLRef, mountedVolumeRefNum: ^cffi.short, flags: CF.OptionBits) -> cffi.int ---
+    MountLocalVolumeSync :: proc(diskID: CF.StringRef, mountDir: CF.URLRef, mountedVolumeRefNum: ^VolumeRefNum, flags: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSMountLocalVolumeAsync")
-    MountLocalVolumeAsync :: proc(diskID: CF.StringRef, mountDir: CF.URLRef, volumeOp: VolumeOperation, clientData: rawptr, flags: CF.OptionBits, callback: VolumeMountUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> cffi.int ---
+    MountLocalVolumeAsync :: proc(diskID: CF.StringRef, mountDir: CF.URLRef, volumeOp: VolumeOperation, clientData: rawptr, flags: CF.OptionBits, callback: VolumeMountUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSMountServerVolumeSync")
-    MountServerVolumeSync :: proc(url: CF.URLRef, mountDir: CF.URLRef, user: CF.StringRef, password: CF.StringRef, mountedVolumeRefNum: ^cffi.short, flags: CF.OptionBits) -> cffi.int ---
+    MountServerVolumeSync :: proc(url: CF.URLRef, mountDir: CF.URLRef, user: CF.StringRef, password: CF.StringRef, mountedVolumeRefNum: ^VolumeRefNum, flags: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSMountServerVolumeAsync")
-    MountServerVolumeAsync :: proc(url: CF.URLRef, mountDir: CF.URLRef, user: CF.StringRef, password: CF.StringRef, volumeOp: VolumeOperation, clientData: rawptr, flags: CF.OptionBits, callback: VolumeMountUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> cffi.int ---
+    MountServerVolumeAsync :: proc(url: CF.URLRef, mountDir: CF.URLRef, user: CF.StringRef, password: CF.StringRef, volumeOp: VolumeOperation, clientData: rawptr, flags: CF.OptionBits, callback: VolumeMountUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSGetAsyncMountStatus")
-    GetAsyncMountStatus :: proc(volumeOp: VolumeOperation, status: ^cffi.uint, volumeOpStatus: ^cffi.int, mountedVolumeRefNum: ^cffi.short, clientData: ^rawptr) -> cffi.int ---
+    GetAsyncMountStatus :: proc(volumeOp: VolumeOperation, status: ^MountStatus, volumeOpStatus: ^CF.OSStatus, mountedVolumeRefNum: ^VolumeRefNum, clientData: ^rawptr) -> CF.OSStatus ---
 
     @(link_name="FSUnmountVolumeSync")
-    UnmountVolumeSync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, dissenter: ^cffi.int) -> cffi.int ---
+    UnmountVolumeSync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, dissenter: ^CF.pid_t) -> CF.OSStatus ---
 
     @(link_name="FSUnmountVolumeAsync")
-    UnmountVolumeAsync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, volumeOp: VolumeOperation, clientData: rawptr, callback: VolumeUnmountUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> cffi.int ---
+    UnmountVolumeAsync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, volumeOp: VolumeOperation, clientData: rawptr, callback: VolumeUnmountUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSGetAsyncUnmountStatus")
-    GetAsyncUnmountStatus :: proc(volumeOp: VolumeOperation, status: ^cffi.uint, volumeOpStatus: ^cffi.int, volumeRefNum: ^cffi.short, dissenter: ^cffi.int, clientData: ^rawptr) -> cffi.int ---
+    GetAsyncUnmountStatus :: proc(volumeOp: VolumeOperation, status: ^UnmountStatus, volumeOpStatus: ^CF.OSStatus, volumeRefNum: ^VolumeRefNum, dissenter: ^CF.pid_t, clientData: ^rawptr) -> CF.OSStatus ---
 
     @(link_name="FSCancelVolumeOperation")
-    CancelVolumeOperation :: proc(volumeOp: VolumeOperation) -> cffi.int ---
+    CancelVolumeOperation :: proc(volumeOp: VolumeOperation) -> CF.OSStatus ---
 
     @(link_name="FSEjectVolumeSync")
-    EjectVolumeSync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, dissenter: ^cffi.int) -> cffi.int ---
+    EjectVolumeSync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, dissenter: ^CF.pid_t) -> CF.OSStatus ---
 
     @(link_name="FSEjectVolumeAsync")
-    EjectVolumeAsync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, volumeOp: VolumeOperation, clientData: rawptr, callback: VolumeEjectUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> cffi.int ---
+    EjectVolumeAsync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, volumeOp: VolumeOperation, clientData: rawptr, callback: VolumeEjectUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSGetAsyncEjectStatus")
-    GetAsyncEjectStatus :: proc(volumeOp: VolumeOperation, status: ^cffi.uint, volumeOpStatus: ^cffi.int, volumeRefNum: ^cffi.short, dissenter: ^cffi.int, clientData: ^rawptr) -> cffi.int ---
+    GetAsyncEjectStatus :: proc(volumeOp: VolumeOperation, status: ^EjectStatus, volumeOpStatus: ^CF.OSStatus, volumeRefNum: ^VolumeRefNum, dissenter: ^CF.pid_t, clientData: ^rawptr) -> CF.OSStatus ---
 
     @(link_name="FSCopyDiskIDForVolume")
-    CopyDiskIDForVolume :: proc(vRefNum: VolumeRefNum, diskID: ^^CF.__CFString) -> cffi.int ---
+    CopyDiskIDForVolume :: proc(vRefNum: VolumeRefNum, diskID: ^CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSCopyURLForVolume")
-    CopyURLForVolume :: proc(vRefNum: VolumeRefNum, url: ^^CF.__CFURL) -> cffi.int ---
+    CopyURLForVolume :: proc(vRefNum: VolumeRefNum, url: ^CF.URLRef) -> CF.OSStatus ---
 
     @(link_name="FSGetVolumeForDiskID")
-    GetVolumeForDiskID :: proc(diskID: CF.StringRef, vRefNum: ^cffi.short) -> cffi.int ---
+    GetVolumeForDiskID :: proc(diskID: CF.StringRef, vRefNum: ^VolumeRefNum) -> CF.OSStatus ---
 
     @(link_name="FSCopyDADiskForVolume")
-    CopyDADiskForVolume :: proc(vRefNum: VolumeRefNum, disk: ^^__DADisk) -> cffi.int ---
+    CopyDADiskForVolume :: proc(vRefNum: VolumeRefNum, disk: ^DADiskRef) -> CF.OSStatus ---
 
     @(link_name="FSGetVolumeForDADisk")
-    GetVolumeForDADisk :: proc(disk: DADiskRef, vRefNum: ^cffi.short) -> cffi.int ---
+    GetVolumeForDADisk :: proc(disk: DADiskRef, vRefNum: ^VolumeRefNum) -> CF.OSStatus ---
 
     @(link_name="FSCopyObjectSync")
-    CopyObjectSync :: proc(source: ^Ref, destDir: ^Ref, destName: CF.StringRef, target: ^Ref, options: CF.OptionBits) -> cffi.int ---
+    CopyObjectSync :: proc(source: ^Ref, destDir: ^Ref, destName: CF.StringRef, target: ^Ref, options: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSMoveObjectSync")
-    MoveObjectSync :: proc(source: ^Ref, destDir: ^Ref, destName: CF.StringRef, target: ^Ref, options: CF.OptionBits) -> cffi.int ---
+    MoveObjectSync :: proc(source: ^Ref, destDir: ^Ref, destName: CF.StringRef, target: ^Ref, options: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSMoveObjectToTrashSync")
-    MoveObjectToTrashSync :: proc(source: ^Ref, target: ^Ref, options: CF.OptionBits) -> cffi.int ---
+    MoveObjectToTrashSync :: proc(source: ^Ref, target: ^Ref, options: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSPathCopyObjectSync")
-    PathCopyObjectSync :: proc(sourcePath: cstring, destDirPath: cstring, destName: CF.StringRef, targetPath: ^cstring, options: CF.OptionBits) -> cffi.int ---
+    PathCopyObjectSync :: proc(sourcePath: cstring, destDirPath: cstring, destName: CF.StringRef, targetPath: ^cstring, options: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSPathMoveObjectSync")
-    PathMoveObjectSync :: proc(sourcePath: cstring, destDirPath: cstring, destName: CF.StringRef, targetPath: ^cstring, options: CF.OptionBits) -> cffi.int ---
+    PathMoveObjectSync :: proc(sourcePath: cstring, destDirPath: cstring, destName: CF.StringRef, targetPath: ^cstring, options: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSPathMoveObjectToTrashSync")
-    PathMoveObjectToTrashSync :: proc(sourcePath: cstring, targetPath: ^cstring, options: CF.OptionBits) -> cffi.int ---
+    PathMoveObjectToTrashSync :: proc(sourcePath: cstring, targetPath: ^cstring, options: CF.OptionBits) -> CF.OSStatus ---
 
     @(link_name="FSFileOperationGetTypeID")
-    FileOperationGetTypeID :: proc() -> cffi.ulong ---
+    FileOperationGetTypeID :: proc() -> CF.TypeID ---
 
     @(link_name="FSFileOperationCreate")
-    FileOperationCreate :: proc(alloc: CF.AllocatorRef) -> ^__FSFileOperation ---
+    FileOperationCreate :: proc(alloc: CF.AllocatorRef) -> FileOperationRef ---
 
     @(link_name="FSFileOperationScheduleWithRunLoop")
-    FileOperationScheduleWithRunLoop :: proc(fileOp: FileOperationRef, runLoop: CF.RunLoopRef, runLoopMode: CF.StringRef) -> cffi.int ---
+    FileOperationScheduleWithRunLoop :: proc(fileOp: FileOperationRef, runLoop: CF.RunLoopRef, runLoopMode: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSFileOperationUnscheduleFromRunLoop")
-    FileOperationUnscheduleFromRunLoop :: proc(fileOp: FileOperationRef, runLoop: CF.RunLoopRef, runLoopMode: CF.StringRef) -> cffi.int ---
+    FileOperationUnscheduleFromRunLoop :: proc(fileOp: FileOperationRef, runLoop: CF.RunLoopRef, runLoopMode: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSCopyObjectAsync")
-    CopyObjectAsync :: proc(fileOp: FileOperationRef, source: ^Ref, destDir: ^Ref, destName: CF.StringRef, flags: CF.OptionBits, callback: FileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> cffi.int ---
+    CopyObjectAsync :: proc(fileOp: FileOperationRef, source: ^Ref, destDir: ^Ref, destName: CF.StringRef, flags: CF.OptionBits, callback: FileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> CF.OSStatus ---
 
     @(link_name="FSMoveObjectAsync")
-    MoveObjectAsync :: proc(fileOp: FileOperationRef, source: ^Ref, destDir: ^Ref, destName: CF.StringRef, flags: CF.OptionBits, callback: FileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> cffi.int ---
+    MoveObjectAsync :: proc(fileOp: FileOperationRef, source: ^Ref, destDir: ^Ref, destName: CF.StringRef, flags: CF.OptionBits, callback: FileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> CF.OSStatus ---
 
     @(link_name="FSMoveObjectToTrashAsync")
-    MoveObjectToTrashAsync :: proc(fileOp: FileOperationRef, source: ^Ref, flags: CF.OptionBits, callback: FileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> cffi.int ---
+    MoveObjectToTrashAsync :: proc(fileOp: FileOperationRef, source: ^Ref, flags: CF.OptionBits, callback: FileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> CF.OSStatus ---
 
     @(link_name="FSPathCopyObjectAsync")
-    PathCopyObjectAsync :: proc(fileOp: FileOperationRef, sourcePath: cstring, destDirPath: cstring, destName: CF.StringRef, flags: CF.OptionBits, callback: PathFileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> cffi.int ---
+    PathCopyObjectAsync :: proc(fileOp: FileOperationRef, sourcePath: cstring, destDirPath: cstring, destName: CF.StringRef, flags: CF.OptionBits, callback: PathFileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> CF.OSStatus ---
 
     @(link_name="FSPathMoveObjectAsync")
-    PathMoveObjectAsync :: proc(fileOp: FileOperationRef, sourcePath: cstring, destDirPath: cstring, destName: CF.StringRef, flags: CF.OptionBits, callback: PathFileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> cffi.int ---
+    PathMoveObjectAsync :: proc(fileOp: FileOperationRef, sourcePath: cstring, destDirPath: cstring, destName: CF.StringRef, flags: CF.OptionBits, callback: PathFileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> CF.OSStatus ---
 
     @(link_name="FSPathMoveObjectToTrashAsync")
-    PathMoveObjectToTrashAsync :: proc(fileOp: FileOperationRef, sourcePath: cstring, flags: CF.OptionBits, callback: PathFileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> cffi.int ---
+    PathMoveObjectToTrashAsync :: proc(fileOp: FileOperationRef, sourcePath: cstring, flags: CF.OptionBits, callback: PathFileOperationStatusProcPtr, statusChangeInterval: CF.TimeInterval, clientContext: ^FileOperationClientContext) -> CF.OSStatus ---
 
     @(link_name="FSFileOperationCancel")
-    FileOperationCancel :: proc(fileOp: FileOperationRef) -> cffi.int ---
+    FileOperationCancel :: proc(fileOp: FileOperationRef) -> CF.OSStatus ---
 
     @(link_name="FSFileOperationCopyStatus")
-    FileOperationCopyStatus :: proc(fileOp: FileOperationRef, currentItem: ^Ref, stage: ^cffi.uint, error: ^cffi.int, statusDictionary: ^^CF.__CFDictionary, info: ^rawptr) -> cffi.int ---
+    FileOperationCopyStatus :: proc(fileOp: FileOperationRef, currentItem: ^Ref, stage: ^FileOperationStage, error: ^CF.OSStatus, statusDictionary: ^CF.DictionaryRef, info: ^rawptr) -> CF.OSStatus ---
 
     @(link_name="FSPathFileOperationCopyStatus")
-    PathFileOperationCopyStatus :: proc(fileOp: FileOperationRef, currentItem: ^cstring, stage: ^cffi.uint, error: ^cffi.int, statusDictionary: ^^CF.__CFDictionary, info: ^rawptr) -> cffi.int ---
+    PathFileOperationCopyStatus :: proc(fileOp: FileOperationRef, currentItem: ^cstring, stage: ^FileOperationStage, error: ^CF.OSStatus, statusDictionary: ^CF.DictionaryRef, info: ^rawptr) -> CF.OSStatus ---
 
     @(link_name="FSCreateStringFromHFSUniStr")
-    CreateStringFromHFSUniStr :: proc(alloc: CF.AllocatorRef, uniStr: ^HFSUniStr255) -> ^CF.__CFString ---
+    CreateStringFromHFSUniStr :: proc(alloc: CF.AllocatorRef, uniStr: ^HFSUniStr255) -> CF.StringRef ---
 
     @(link_name="FSGetHFSUniStrFromString")
-    GetHFSUniStrFromString :: proc(theString: CF.StringRef, uniStr: ^HFSUniStr255) -> cffi.int ---
+    GetHFSUniStrFromString :: proc(theString: CF.StringRef, uniStr: ^HFSUniStr255) -> CF.OSStatus ---
 
     @(link_name="FSFileSecurityGetTypeID")
-    FileSecurityGetTypeID :: proc() -> cffi.ulong ---
+    FileSecurityGetTypeID :: proc() -> CF.TypeID ---
 
     @(link_name="FSFileSecurityCreate")
-    FileSecurityCreate :: proc(alloc: CF.AllocatorRef) -> ^__FSFileSecurity ---
+    FileSecurityCreate :: proc(alloc: CF.AllocatorRef) -> FileSecurityRef ---
 
     @(link_name="FSFileSecurityCreateWithFSPermissionInfo")
-    FileSecurityCreateWithFSPermissionInfo :: proc(alloc: CF.AllocatorRef, permissions: ^PermissionInfo) -> ^__FSFileSecurity ---
+    FileSecurityCreateWithFSPermissionInfo :: proc(alloc: CF.AllocatorRef, permissions: ^PermissionInfo) -> FileSecurityRef ---
 
     @(link_name="FSFileSecurityRefCreateCopy")
-    FileSecurityRefCreateCopy :: proc(alloc: CF.AllocatorRef, fileSec: FileSecurityRef) -> ^__FSFileSecurity ---
+    FileSecurityRefCreateCopy :: proc(alloc: CF.AllocatorRef, fileSec: FileSecurityRef) -> FileSecurityRef ---
 
     @(link_name="FSFileSecurityGetOwnerUUID")
-    FileSecurityGetOwnerUUID :: proc(fileSec: FileSecurityRef, owner: ^CF.UUIDBytes) -> cffi.int ---
+    FileSecurityGetOwnerUUID :: proc(fileSec: FileSecurityRef, owner: ^CF.UUIDBytes) -> CF.OSStatus ---
 
     @(link_name="FSFileSecuritySetOwnerUUID")
-    FileSecuritySetOwnerUUID :: proc(fileSec: FileSecurityRef, owner: ^CF.UUIDBytes) -> cffi.int ---
+    FileSecuritySetOwnerUUID :: proc(fileSec: FileSecurityRef, owner: ^CF.UUIDBytes) -> CF.OSStatus ---
 
     @(link_name="FSFileSecurityGetGroupUUID")
-    FileSecurityGetGroupUUID :: proc(fileSec: FileSecurityRef, group: ^CF.UUIDBytes) -> cffi.int ---
+    FileSecurityGetGroupUUID :: proc(fileSec: FileSecurityRef, group: ^CF.UUIDBytes) -> CF.OSStatus ---
 
     @(link_name="FSFileSecuritySetGroupUUID")
-    FileSecuritySetGroupUUID :: proc(fileSec: FileSecurityRef, group: ^CF.UUIDBytes) -> cffi.int ---
+    FileSecuritySetGroupUUID :: proc(fileSec: FileSecurityRef, group: ^CF.UUIDBytes) -> CF.OSStatus ---
 
     @(link_name="FSFileSecurityCopyAccessControlList")
-    FileSecurityCopyAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: ^^CF._acl) -> cffi.int ---
+    FileSecurityCopyAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: ^CF.acl_t) -> CF.OSStatus ---
 
     @(link_name="FSFileSecuritySetAccessControlList")
-    FileSecuritySetAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: CF.acl_t) -> cffi.int ---
+    FileSecuritySetAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: CF.acl_t) -> CF.OSStatus ---
 
     @(link_name="FSFileSecurityGetOwner")
-    FileSecurityGetOwner :: proc(fileSec: FileSecurityRef, owner: ^cffi.uint) -> cffi.int ---
+    FileSecurityGetOwner :: proc(fileSec: FileSecurityRef, owner: ^CF.UInt32) -> CF.OSStatus ---
 
     @(link_name="FSFileSecuritySetOwner")
-    FileSecuritySetOwner :: proc(fileSec: FileSecurityRef, owner: CF.UInt32) -> cffi.int ---
+    FileSecuritySetOwner :: proc(fileSec: FileSecurityRef, owner: CF.UInt32) -> CF.OSStatus ---
 
     @(link_name="FSFileSecurityGetGroup")
-    FileSecurityGetGroup :: proc(fileSec: FileSecurityRef, group: ^cffi.uint) -> cffi.int ---
+    FileSecurityGetGroup :: proc(fileSec: FileSecurityRef, group: ^CF.UInt32) -> CF.OSStatus ---
 
     @(link_name="FSFileSecuritySetGroup")
-    FileSecuritySetGroup :: proc(fileSec: FileSecurityRef, group: CF.UInt32) -> cffi.int ---
+    FileSecuritySetGroup :: proc(fileSec: FileSecurityRef, group: CF.UInt32) -> CF.OSStatus ---
 
     @(link_name="FSFileSecurityGetMode")
-    FileSecurityGetMode :: proc(fileSec: FileSecurityRef, mode: ^cffi.ushort) -> cffi.int ---
+    FileSecurityGetMode :: proc(fileSec: FileSecurityRef, mode: ^CF.UInt16) -> CF.OSStatus ---
 
     @(link_name="FSFileSecuritySetMode")
-    FileSecuritySetMode :: proc(fileSec: FileSecurityRef, mode: CF.UInt16) -> cffi.int ---
+    FileSecuritySetMode :: proc(fileSec: FileSecurityRef, mode: CF.UInt16) -> CF.OSStatus ---
 
     @(link_name="FSGetVolumeParms")
-    GetVolumeParms :: proc(volume: VolumeRefNum, buffer: ^GetVolParmsInfoBuffer, bufferSize: CF.ByteCount) -> cffi.int ---
+    GetVolumeParms :: proc(volume: VolumeRefNum, buffer: ^GetVolParmsInfoBuffer, bufferSize: CF.ByteCount) -> CF.OSStatus ---
 
     @(link_name="FSGetVolumeMountInfoSize")
-    GetVolumeMountInfoSize :: proc(volume: VolumeRefNum, size: ^cffi.ulong) -> cffi.int ---
+    GetVolumeMountInfoSize :: proc(volume: VolumeRefNum, size: ^CF.ByteCount) -> CF.OSStatus ---
 
     @(link_name="FSGetVolumeMountInfo")
-    GetVolumeMountInfo :: proc(volume: VolumeRefNum, buffer: CF.BytePtr, bufferSize: CF.ByteCount, actualSize: ^cffi.ulong) -> cffi.int ---
+    GetVolumeMountInfo :: proc(volume: VolumeRefNum, buffer: CF.BytePtr, bufferSize: CF.ByteCount, actualSize: ^CF.ByteCount) -> CF.OSStatus ---
 
     @(link_name="FSVolumeMount")
-    VolumeMount :: proc(buffer: CF.BytePtr, mountedVolume: ^cffi.short) -> cffi.int ---
+    VolumeMount :: proc(buffer: CF.BytePtr, mountedVolume: ^VolumeRefNum) -> CF.OSStatus ---
 
     @(link_name="FSFlushVolume")
-    FlushVolume :: proc(vRefNum: VolumeRefNum) -> cffi.int ---
+    FlushVolume :: proc(vRefNum: VolumeRefNum) -> CF.OSStatus ---
 
     @(link_name="FSResolveNodeID")
-    ResolveNodeID :: proc(volume: VolumeRefNum, nodeID: CF.UInt32, newRef: RefPtr) -> cffi.int ---
+    ResolveNodeID :: proc(volume: VolumeRefNum, nodeID: CF.UInt32, newRef: RefPtr) -> CF.OSStatus ---
 
     @(link_name="FSOpenResFile")
-    OpenResFile :: proc(ref: ^Ref, permission: CF.SInt8) -> cffi.int ---
+    OpenResFile :: proc(ref: ^Ref, permission: CF.SInt8) -> ResFileRefNum ---
 
     @(link_name="FSCreateResFile")
-    CreateResFile :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^cffi.ushort, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, newRef: ^Ref, newSpec: SpecPtr) ---
+    CreateResFile :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^CF.UniChar, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, newRef: ^Ref, newSpec: SpecPtr) ---
 
     @(link_name="FSResourceFileAlreadyOpen")
-    ResourceFileAlreadyOpen :: proc(resourceFileRef: ^Ref, inChain: ^cffi.uchar, refNum: ^cffi.int) -> cffi.uchar ---
+    ResourceFileAlreadyOpen :: proc(resourceFileRef: ^Ref, inChain: ^CF.Boolean, refNum: ^ResFileRefNum) -> CF.Boolean ---
 
     @(link_name="FSOpenOrphanResFile")
-    OpenOrphanResFile :: proc(ref: ^Ref, permission: CF.SignedByte, refNum: ^cffi.int) -> cffi.short ---
+    OpenOrphanResFile :: proc(ref: ^Ref, permission: CF.SignedByte, refNum: ^ResFileRefNum) -> CF.OSErr ---
 
     @(link_name="FSCreateResourceFile")
-    CreateResourceFile :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^cffi.ushort, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, forkNameLength: CF.UniCharCount, forkName: ^cffi.ushort, newRef: ^Ref, newSpec: SpecPtr) -> cffi.short ---
+    CreateResourceFile :: proc(parentRef: ^Ref, nameLength: CF.UniCharCount, name: ^CF.UniChar, whichInfo: CatalogInfoBitmap, catalogInfo: ^CatalogInfo, forkNameLength: CF.UniCharCount, forkName: ^CF.UniChar, newRef: ^Ref, newSpec: SpecPtr) -> CF.OSErr ---
 
     @(link_name="FSCreateResourceFork")
-    CreateResourceFork :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^cffi.ushort, flags: CF.UInt32) -> cffi.short ---
+    CreateResourceFork :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^CF.UniChar, flags: CF.UInt32) -> CF.OSErr ---
 
     @(link_name="FSOpenResourceFile")
-    OpenResourceFile :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^cffi.ushort, permissions: CF.SInt8, refNum: ^cffi.int) -> cffi.short ---
+    OpenResourceFile :: proc(ref: ^Ref, forkNameLength: CF.UniCharCount, forkName: ^CF.UniChar, permissions: CF.SInt8, refNum: ^ResFileRefNum) -> CF.OSErr ---
 
     @(link_name="FSNewAlias")
-    NewAlias :: proc(fromFile: ^Ref, target: ^Ref, inAlias: ^^^AliasRecord) -> cffi.short ---
+    NewAlias :: proc(fromFile: ^Ref, target: ^Ref, inAlias: ^AliasHandle) -> CF.OSErr ---
 
     @(link_name="FSNewAliasMinimal")
-    NewAliasMinimal :: proc(target: ^Ref, inAlias: ^^^AliasRecord) -> cffi.short ---
+    NewAliasMinimal :: proc(target: ^Ref, inAlias: ^AliasHandle) -> CF.OSErr ---
 
     @(link_name="FSIsAliasFile")
-    IsAliasFile :: proc(fileRef: ^Ref, aliasFileFlag: ^cffi.uchar, folderFlag: ^cffi.uchar) -> cffi.short ---
+    IsAliasFile :: proc(fileRef: ^Ref, aliasFileFlag: ^CF.Boolean, folderFlag: ^CF.Boolean) -> CF.OSErr ---
 
     @(link_name="FSResolveAliasWithMountFlags")
-    ResolveAliasWithMountFlags :: proc(fromFile: ^Ref, inAlias: AliasHandle, target: ^Ref, wasChanged: ^cffi.uchar, mountFlags: cffi.ulong) -> cffi.short ---
+    ResolveAliasWithMountFlags :: proc(fromFile: ^Ref, inAlias: AliasHandle, target: ^Ref, wasChanged: ^CF.Boolean, mountFlags: cffi.ulong) -> CF.OSErr ---
 
     @(link_name="FSResolveAlias")
-    ResolveAlias :: proc(fromFile: ^Ref, alias: AliasHandle, target: ^Ref, wasChanged: ^cffi.uchar) -> cffi.short ---
+    ResolveAlias :: proc(fromFile: ^Ref, alias: AliasHandle, target: ^Ref, wasChanged: ^CF.Boolean) -> CF.OSErr ---
 
     @(link_name="FSResolveAliasFileWithMountFlags")
-    ResolveAliasFileWithMountFlags :: proc(theRef: ^Ref, resolveAliasChains: CF.Boolean, targetIsFolder: ^cffi.uchar, wasAliased: ^cffi.uchar, mountFlags: cffi.ulong) -> cffi.short ---
+    ResolveAliasFileWithMountFlags :: proc(theRef: ^Ref, resolveAliasChains: CF.Boolean, targetIsFolder: ^CF.Boolean, wasAliased: ^CF.Boolean, mountFlags: cffi.ulong) -> CF.OSErr ---
 
     @(link_name="FSResolveAliasFile")
-    ResolveAliasFile :: proc(theRef: ^Ref, resolveAliasChains: CF.Boolean, targetIsFolder: ^cffi.uchar, wasAliased: ^cffi.uchar) -> cffi.short ---
+    ResolveAliasFile :: proc(theRef: ^Ref, resolveAliasChains: CF.Boolean, targetIsFolder: ^CF.Boolean, wasAliased: ^CF.Boolean) -> CF.OSErr ---
 
     @(link_name="FSFollowFinderAlias")
-    FollowFinderAlias :: proc(fromFile: ^Ref, alias: AliasHandle, logon: CF.Boolean, target: ^Ref, wasChanged: ^cffi.uchar) -> cffi.short ---
+    FollowFinderAlias :: proc(fromFile: ^Ref, alias: AliasHandle, logon: CF.Boolean, target: ^Ref, wasChanged: ^CF.Boolean) -> CF.OSErr ---
 
     @(link_name="FSUpdateAlias")
-    UpdateAlias :: proc(fromFile: ^Ref, target: ^Ref, alias: AliasHandle, wasChanged: ^cffi.uchar) -> cffi.short ---
+    UpdateAlias :: proc(fromFile: ^Ref, target: ^Ref, alias: AliasHandle, wasChanged: ^CF.Boolean) -> CF.OSErr ---
 
     @(link_name="FSNewAliasUnicode")
-    NewAliasUnicode :: proc(fromFile: ^Ref, targetParentRef: ^Ref, targetNameLength: CF.UniCharCount, targetName: ^cffi.ushort, inAlias: ^^^AliasRecord, isDirectory: ^cffi.uchar) -> cffi.short ---
+    NewAliasUnicode :: proc(fromFile: ^Ref, targetParentRef: ^Ref, targetNameLength: CF.UniCharCount, targetName: ^CF.UniChar, inAlias: ^AliasHandle, isDirectory: ^CF.Boolean) -> CF.OSErr ---
 
     @(link_name="FSNewAliasMinimalUnicode")
-    NewAliasMinimalUnicode :: proc(targetParentRef: ^Ref, targetNameLength: CF.UniCharCount, targetName: ^cffi.ushort, inAlias: ^^^AliasRecord, isDirectory: ^cffi.uchar) -> cffi.short ---
+    NewAliasMinimalUnicode :: proc(targetParentRef: ^Ref, targetNameLength: CF.UniCharCount, targetName: ^CF.UniChar, inAlias: ^AliasHandle, isDirectory: ^CF.Boolean) -> CF.OSErr ---
 
     @(link_name="FSNewAliasFromPath")
-    NewAliasFromPath :: proc(fromFilePath: cstring, targetPath: cstring, flags: CF.OptionBits, inAlias: ^^^AliasRecord, isDirectory: ^cffi.uchar) -> cffi.int ---
+    NewAliasFromPath :: proc(fromFilePath: cstring, targetPath: cstring, flags: CF.OptionBits, inAlias: ^AliasHandle, isDirectory: ^CF.Boolean) -> CF.OSStatus ---
 
     @(link_name="FSMatchAliasBulk")
-    MatchAliasBulk :: proc(fromFile: ^Ref, rulesMask: cffi.ulong, inAlias: AliasHandle, aliasCount: ^cffi.short, aliasList: ^Ref, needsUpdate: ^cffi.uchar, aliasFilter: AliasFilterProcPtr, yourDataPtr: rawptr) -> cffi.int ---
+    MatchAliasBulk :: proc(fromFile: ^Ref, rulesMask: cffi.ulong, inAlias: AliasHandle, aliasCount: ^cffi.short, aliasList: ^Ref, needsUpdate: ^CF.Boolean, aliasFilter: AliasFilterProcPtr, yourDataPtr: rawptr) -> CF.OSStatus ---
 
     @(link_name="FSCopyAliasInfo")
-    CopyAliasInfo :: proc(inAlias: AliasHandle, targetName: ^HFSUniStr255, volumeName: ^HFSUniStr255, pathString: ^^CF.__CFString, whichInfo: ^cffi.uint, info: ^AliasInfo) -> cffi.int ---
+    CopyAliasInfo :: proc(inAlias: AliasHandle, targetName: ^HFSUniStr255, volumeName: ^HFSUniStr255, pathString: ^CF.StringRef, whichInfo: ^AliasInfoBitmap, info: ^AliasInfo) -> CF.OSStatus ---
 
     @(link_name="FSFindFolder")
-    FindFolder :: proc(vRefNum: VolumeRefNum, folderType: CF.OSType, createFolder: CF.Boolean, foundRef: ^Ref) -> cffi.short ---
+    FindFolder :: proc(vRefNum: VolumeRefNum, folderType: CF.OSType, createFolder: CF.Boolean, foundRef: ^Ref) -> CF.OSErr ---
 
     @(link_name="FSDetermineIfRefIsEnclosedByFolder")
-    DetermineIfRefIsEnclosedByFolder :: proc(domainOrVRefNum: VolumeRefNum, folderType: CF.OSType, inRef: ^Ref, outResult: ^cffi.uchar) -> cffi.short ---
+    DetermineIfRefIsEnclosedByFolder :: proc(domainOrVRefNum: VolumeRefNum, folderType: CF.OSType, inRef: ^Ref, outResult: ^CF.Boolean) -> CF.OSErr ---
 
     @(link_name="FSEventStreamCreate")
-    EventStreamCreate :: proc(allocator: CF.AllocatorRef, callback: EventStreamCallback, _context: ^EventStreamContext, pathsToWatch: CF.ArrayRef, sinceWhen: EventStreamEventId, latency: CF.TimeInterval, flags: EventStreamCreateFlags) -> ^__FSEventStream ---
+    EventStreamCreate :: proc(allocator: CF.AllocatorRef, callback: EventStreamCallback, _context: ^EventStreamContext, pathsToWatch: CF.ArrayRef, sinceWhen: EventStreamEventId, latency: CF.TimeInterval, flags: EventStreamCreateFlags) -> EventStreamRef ---
 
     @(link_name="FSEventStreamCreateRelativeToDevice")
-    EventStreamCreateRelativeToDevice :: proc(allocator: CF.AllocatorRef, callback: EventStreamCallback, _context: ^EventStreamContext, deviceToWatch: CF.dev_t, pathsToWatchRelativeToDevice: CF.ArrayRef, sinceWhen: EventStreamEventId, latency: CF.TimeInterval, flags: EventStreamCreateFlags) -> ^__FSEventStream ---
+    EventStreamCreateRelativeToDevice :: proc(allocator: CF.AllocatorRef, callback: EventStreamCallback, _context: ^EventStreamContext, deviceToWatch: CF.dev_t, pathsToWatchRelativeToDevice: CF.ArrayRef, sinceWhen: EventStreamEventId, latency: CF.TimeInterval, flags: EventStreamCreateFlags) -> EventStreamRef ---
 
     @(link_name="FSEventStreamGetLatestEventId")
-    EventStreamGetLatestEventId :: proc(streamRef: ConstFSEventStreamRef) -> cffi.ulonglong ---
+    EventStreamGetLatestEventId :: proc(streamRef: ConstFSEventStreamRef) -> EventStreamEventId ---
 
     @(link_name="FSEventStreamGetDeviceBeingWatched")
-    EventStreamGetDeviceBeingWatched :: proc(streamRef: ConstFSEventStreamRef) -> cffi.int ---
+    EventStreamGetDeviceBeingWatched :: proc(streamRef: ConstFSEventStreamRef) -> CF.dev_t ---
 
     @(link_name="FSEventStreamCopyPathsBeingWatched")
-    EventStreamCopyPathsBeingWatched :: proc(streamRef: ConstFSEventStreamRef) -> ^CF.__CFArray ---
+    EventStreamCopyPathsBeingWatched :: proc(streamRef: ConstFSEventStreamRef) -> CF.ArrayRef ---
 
     @(link_name="FSEventsGetCurrentEventId")
-    EventsGetCurrentEventId :: proc() -> cffi.ulonglong ---
+    EventsGetCurrentEventId :: proc() -> EventStreamEventId ---
 
     @(link_name="FSEventsCopyUUIDForDevice")
-    EventsCopyUUIDForDevice :: proc(dev: CF.dev_t) -> ^CF.__CFUUID ---
+    EventsCopyUUIDForDevice :: proc(dev: CF.dev_t) -> CF.UUIDRef ---
 
     @(link_name="FSEventsGetLastEventIdForDeviceBeforeTime")
-    EventsGetLastEventIdForDeviceBeforeTime :: proc(dev: CF.dev_t, time: CF.CFAbsoluteTime) -> cffi.ulonglong ---
+    EventsGetLastEventIdForDeviceBeforeTime :: proc(dev: CF.dev_t, time: CF.CFAbsoluteTime) -> EventStreamEventId ---
 
     @(link_name="FSEventsPurgeEventsForDeviceUpToEventId")
-    EventsPurgeEventsForDeviceUpToEventId :: proc(dev: CF.dev_t, eventId: EventStreamEventId) -> cffi.uchar ---
+    EventsPurgeEventsForDeviceUpToEventId :: proc(dev: CF.dev_t, eventId: EventStreamEventId) -> CF.Boolean ---
 
     @(link_name="FSEventStreamRetain")
     EventStreamRetain :: proc(streamRef: EventStreamRef) ---
@@ -862,10 +863,10 @@ foreign lib {
     EventStreamInvalidate :: proc(streamRef: EventStreamRef) ---
 
     @(link_name="FSEventStreamStart")
-    EventStreamStart :: proc(streamRef: EventStreamRef) -> cffi.uchar ---
+    EventStreamStart :: proc(streamRef: EventStreamRef) -> CF.Boolean ---
 
     @(link_name="FSEventStreamFlushAsync")
-    EventStreamFlushAsync :: proc(streamRef: EventStreamRef) -> cffi.ulonglong ---
+    EventStreamFlushAsync :: proc(streamRef: EventStreamRef) -> EventStreamEventId ---
 
     @(link_name="FSEventStreamFlushSync")
     EventStreamFlushSync :: proc(streamRef: EventStreamRef) ---
@@ -877,10 +878,10 @@ foreign lib {
     EventStreamShow :: proc(streamRef: ConstFSEventStreamRef) ---
 
     @(link_name="FSEventStreamCopyDescription")
-    EventStreamCopyDescription :: proc(streamRef: ConstFSEventStreamRef) -> ^CF.__CFString ---
+    EventStreamCopyDescription :: proc(streamRef: ConstFSEventStreamRef) -> CF.StringRef ---
 
     @(link_name="FSEventStreamSetExclusionPaths")
-    EventStreamSetExclusionPaths :: proc(streamRef: EventStreamRef, pathsToExclude: CF.ArrayRef) -> cffi.uchar ---
+    EventStreamSetExclusionPaths :: proc(streamRef: EventStreamRef, pathsToExclude: CF.ArrayRef) -> CF.Boolean ---
 
 }
 
@@ -888,28 +889,28 @@ foreign lib {
 UTCDateTimePtr :: distinct ^UTCDateTime
 
 /// UTCDateTimeHandle
-UTCDateTimeHandle :: distinct ^^UTCDateTime
+UTCDateTimeHandle :: distinct ^UTCDateTimePtr
 
 /// TextEncodingBase
-TextEncodingBase :: distinct cffi.uint
+TextEncodingBase :: distinct CF.UInt32
 
 /// TextEncodingVariant
-TextEncodingVariant :: distinct cffi.uint
+TextEncodingVariant :: distinct CF.UInt32
 
 /// TextEncodingFormat
-TextEncodingFormat :: distinct cffi.uint
+TextEncodingFormat :: distinct CF.UInt32
 
 /// TextEncoding
-TextEncoding :: distinct cffi.uint
+TextEncoding :: distinct CF.UInt32
 
 /// TextEncodingNameSelector
-TextEncodingNameSelector :: distinct cffi.uint
+TextEncodingNameSelector :: distinct CF.UInt32
 
 /// TextEncodingRunPtr
 TextEncodingRunPtr :: distinct ^TextEncodingRun
 
 /// TextPtr
-TextPtr :: distinct ^cffi.uchar
+TextPtr :: distinct ^CF.UInt8
 
 /// QElemPtr
 QElemPtr :: distinct ^QElem
@@ -918,7 +919,7 @@ QElemPtr :: distinct ^QElem
 DADiskRef :: distinct ^__DADisk
 
 /// FSVolumeRefNum
-VolumeRefNum :: distinct cffi.short
+VolumeRefNum :: distinct CF.SInt16
 
 /// FSIORefNum
 IORefNum :: distinct cffi.int
@@ -933,16 +934,25 @@ FileSecurityRef :: distinct ^__FSFileSecurity
 SpecPtr :: distinct ^Spec
 
 /// FSSpecHandle
-SpecHandle :: distinct ^^Spec
+SpecHandle :: distinct ^SpecPtr
 
 /// FSSpecArrayPtr
-SpecArrayPtr :: distinct ^Spec
+SpecArrayPtr :: distinct SpecPtr
 
 /// ConstFSSpecPtr
 ConstFSSpecPtr :: distinct ^Spec
 
+/// ParmBlkPtr
+ParmBlkPtr :: distinct rawptr
+
+/// IOCompletionProcPtr
+IOCompletionProcPtr :: distinct proc "c" (paramBlock: ParmBlkPtr)
+
+/// IOCompletionUPP
+IOCompletionUPP :: distinct IOCompletionProcPtr
+
 /// FSCatalogInfoBitmap
-CatalogInfoBitmap :: distinct cffi.uint
+CatalogInfoBitmap :: distinct CF.UInt32
 
 /// FSCatalogInfoPtr
 CatalogInfoPtr :: distinct ^CatalogInfo
@@ -957,7 +967,7 @@ RefForkIOParamPtr :: distinct ^RefForkIOParam
 Iterator :: distinct ^OpaqueFSIterator
 
 /// FSIteratorFlags
-IteratorFlags :: distinct cffi.uint
+IteratorFlags :: distinct CF.OptionBits
 
 /// FSSearchParamsPtr
 SearchParamsPtr :: distinct ^SearchParams
@@ -966,13 +976,13 @@ SearchParamsPtr :: distinct ^SearchParams
 CatalogBulkParamPtr :: distinct ^CatalogBulkParam
 
 /// FSAllocationFlags
-AllocationFlags :: distinct cffi.ushort
+AllocationFlags :: distinct CF.UInt16
 
 /// FSForkIOParamPtr
 ForkIOParamPtr :: distinct ^ForkIOParam
 
 /// FSForkInfoFlags
-ForkInfoFlags :: distinct cffi.uchar
+ForkInfoFlags :: distinct CF.UInt8
 
 /// FSForkInfoPtr
 ForkInfoPtr :: distinct ^ForkInfo
@@ -984,7 +994,7 @@ ForkCBInfoParamPtr :: distinct ^ForkCBInfoParam
 RangeLockParamPtr :: distinct ^RangeLockParam
 
 /// FSVolumeInfoBitmap
-VolumeInfoBitmap :: distinct cffi.uint
+VolumeInfoBitmap :: distinct CF.UInt32
 
 /// FSVolumeInfoPtr
 VolumeInfoPtr :: distinct ^VolumeInfo
@@ -993,58 +1003,79 @@ VolumeInfoPtr :: distinct ^VolumeInfo
 VolumeInfoParamPtr :: distinct ^VolumeInfoParam
 
 /// FSMountStatus
-MountStatus :: distinct cffi.uint
+MountStatus :: distinct CF.UInt32
 
 /// FSEjectStatus
-EjectStatus :: distinct cffi.uint
+EjectStatus :: distinct CF.UInt32
 
 /// FSUnmountStatus
-UnmountStatus :: distinct cffi.uint
+UnmountStatus :: distinct CF.UInt32
 
 /// FSVolumeOperation
 VolumeOperation :: distinct ^OpaqueFSVolumeOperation
 
 /// FSVolumeMountProcPtr
-VolumeMountProcPtr :: distinct proc "c" (volumeOp: ^OpaqueFSVolumeOperation, clientData: rawptr, err: cffi.int, mountedVolumeRefNum: cffi.short)
+VolumeMountProcPtr :: distinct proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, mountedVolumeRefNum: VolumeRefNum)
 
 /// FSVolumeUnmountProcPtr
-VolumeUnmountProcPtr :: distinct proc "c" (volumeOp: ^OpaqueFSVolumeOperation, clientData: rawptr, err: cffi.int, volumeRefNum: cffi.short, dissenter: cffi.int)
+VolumeUnmountProcPtr :: distinct proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: CF.pid_t)
 
 /// FSVolumeEjectProcPtr
-VolumeEjectProcPtr :: distinct proc "c" (volumeOp: ^OpaqueFSVolumeOperation, clientData: rawptr, err: cffi.int, volumeRefNum: cffi.short, dissenter: cffi.int)
+VolumeEjectProcPtr :: distinct proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: CF.pid_t)
 
 /// FSVolumeMountUPP
-VolumeMountUPP :: distinct proc "c" (volumeOp: ^OpaqueFSVolumeOperation, clientData: rawptr, err: cffi.int, mountedVolumeRefNum: cffi.short)
+VolumeMountUPP :: distinct VolumeMountProcPtr
 
 /// FSVolumeUnmountUPP
-VolumeUnmountUPP :: distinct proc "c" (volumeOp: ^OpaqueFSVolumeOperation, clientData: rawptr, err: cffi.int, volumeRefNum: cffi.short, dissenter: cffi.int)
+VolumeUnmountUPP :: distinct VolumeUnmountProcPtr
 
 /// FSVolumeEjectUPP
-VolumeEjectUPP :: distinct proc "c" (volumeOp: ^OpaqueFSVolumeOperation, clientData: rawptr, err: cffi.int, volumeRefNum: cffi.short, dissenter: cffi.int)
+VolumeEjectUPP :: distinct VolumeEjectProcPtr
 
 /// FSFileOperationRef
 FileOperationRef :: distinct ^__FSFileOperation
 
 /// FSFileOperationStage
-FileOperationStage :: distinct cffi.uint
+FileOperationStage :: distinct CF.UInt32
 
 /// FSFileOperationStatusProcPtr
-FileOperationStatusProcPtr :: distinct proc "c" (fileOp: ^__FSFileOperation, currentItem: ^Ref, stage: cffi.uint, error: cffi.int, statusDictionary: ^CF.__CFDictionary, info: rawptr)
+FileOperationStatusProcPtr :: distinct proc "c" (fileOp: FileOperationRef, currentItem: ^Ref, stage: FileOperationStage, error: CF.OSStatus, statusDictionary: CF.DictionaryRef, info: rawptr)
 
 /// FSPathFileOperationStatusProcPtr
-PathFileOperationStatusProcPtr :: distinct proc "c" (fileOp: ^__FSFileOperation, currentItem: cstring, stage: cffi.uint, error: cffi.int, statusDictionary: ^CF.__CFDictionary, info: rawptr)
+PathFileOperationStatusProcPtr :: distinct proc "c" (fileOp: FileOperationRef, currentItem: cstring, stage: FileOperationStage, error: CF.OSStatus, statusDictionary: CF.DictionaryRef, info: rawptr)
+
+/// ResID
+ResID :: distinct CF.SInt16
+
+/// ResAttributes
+ResAttributes :: distinct CF.SInt16
+
+/// ResFileAttributes
+ResFileAttributes :: distinct CF.SInt16
+
+/// ResourceCount
+ResourceCount :: distinct CF.SInt16
+
+/// ResourceIndex
+ResourceIndex :: distinct CF.SInt16
+
+/// ResFileRefNum
+ResFileRefNum :: distinct IORefNum
 
 /// FSAliasInfoBitmap
-AliasInfoBitmap :: distinct cffi.uint
+AliasInfoBitmap :: distinct CF.UInt32
+
+/// AliasPtr
+AliasPtr :: distinct ^AliasRecord
 
 /// AliasHandle
-AliasHandle :: distinct ^^AliasRecord
+AliasHandle :: distinct ^AliasPtr
 
 /// FSAliasInfoPtr
 AliasInfoPtr :: distinct ^AliasInfo
 
 /// FSAliasFilterProcPtr
-AliasFilterProcPtr :: distinct proc "c" (ref: ^Ref, quitFlag: ^cffi.uchar, myDataPtr: cstring) -> cffi.uchar
+AliasFilterProcPtr :: distinct proc "c" (ref: ^Ref, quitFlag: ^CF.Boolean, myDataPtr: CF.Ptr) -> CF.Boolean
 
 /// TextBreakLocatorRef
 TextBreakLocatorRef :: distinct ^OpaqueTextBreakLocatorRef
@@ -1059,7 +1090,7 @@ HFSExtentRecord :: distinct [3]HFSExtentDescriptor
 HFSPlusExtentRecord :: distinct [8]HFSPlusExtentDescriptor
 
 /// HFSCatalogNodeID
-HFSCatalogNodeID :: distinct cffi.uint
+HFSCatalogNodeID :: distinct CF.UInt32
 
 /// TextChunkPtr
 TextChunkPtr :: distinct ^TextChunk
@@ -1068,16 +1099,16 @@ TextChunkPtr :: distinct ^TextChunk
 TextRangePtr :: distinct ^TextRange
 
 /// TextRangeHandle
-TextRangeHandle :: distinct ^^TextRange
+TextRangeHandle :: distinct ^TextRangePtr
 
 /// TextRangeArrayPtr
 TextRangeArrayPtr :: distinct ^TextRangeArray
 
 /// TextRangeArrayHandle
-TextRangeArrayHandle :: distinct ^^TextRangeArray
+TextRangeArrayHandle :: distinct ^TextRangeArrayPtr
 
 /// FSEventStreamEventId
-EventStreamEventId :: distinct cffi.ulonglong
+EventStreamEventId :: distinct CF.UInt64
 
 /// FSEventStreamRef
 EventStreamRef :: distinct ^__FSEventStream
@@ -1086,302 +1117,322 @@ EventStreamRef :: distinct ^__FSEventStream
 ConstFSEventStreamRef :: distinct ^__FSEventStream
 
 /// FSEventStreamCallback
-EventStreamCallback :: distinct proc "c" (streamRef: ^__FSEventStream, clientCallBackInfo: rawptr, numEvents: cffi.ulong, eventPaths: rawptr, eventFlags: ^cffi.uint, eventIds: ^cffi.ulonglong)
+EventStreamCallback :: distinct proc "c" (streamRef: ConstFSEventStreamRef, clientCallBackInfo: rawptr, numEvents: cffi.size_t, eventPaths: rawptr, eventFlags: ^EventStreamEventFlags, eventIds: ^EventStreamEventId)
 
 /// FSRef
-Ref :: struct  {
-    hidden : [80]cffi.uchar,
+Ref :: struct #align (1) {
+    hidden: [80]CF.UInt8,
 }
+#assert(size_of(Ref) == 80)
 
 /// UTCDateTime
-UTCDateTime :: struct #align (2) {
-    highSeconds : cffi.ushort,
-    lowSeconds : cffi.uint,
-    fraction : cffi.ushort,
+UTCDateTime :: struct #align (2) #max_field_align(2) {
+    highSeconds: CF.UInt16,
+    lowSeconds: CF.UInt32,
+    fraction: CF.UInt16,
 }
+#assert(size_of(UTCDateTime) == 8)
 
 /// TextEncodingRun
 TextEncodingRun :: struct #align (2) {
-    offset : cffi.ulong,
-    textEncoding : cffi.uint,
+    offset: CF.ByteOffset,
+    textEncoding: TextEncoding,
 }
+#assert(size_of(TextEncodingRun) == 12)
 
 /// QElem
 QElem :: struct #align (2) {
-    qLink : ^QElem,
-    qType : cffi.short,
-    qData : [1]cffi.short,
+    qLink: ^QElem,
+    qType: cffi.short,
+    qData: [1]cffi.short,
 }
+#assert(size_of(QElem) == 12)
 
 /// __DADisk
 __DADisk :: struct {}
 
 /// HFSUniStr255
 HFSUniStr255 :: struct #align (2) {
-    length : cffi.ushort,
-    unicode : [255]cffi.ushort,
+    length: cffi.ushort,
+    unicode: [255]cffi.ushort,
 }
+#assert(size_of(HFSUniStr255) == 512)
 
 /// __FSFileSecurity
 __FSFileSecurity :: struct {}
 
 /// CatPositionRec
 CatPositionRec :: struct #align (2) {
-    initialize : cffi.int,
-    priv : [6]cffi.short,
+    initialize: CF.SInt32,
+    priv: [6]CF.SInt16,
 }
+#assert(size_of(CatPositionRec) == 16)
 
 /// FSSpec
-Spec :: struct  {
-    hidden : [70]cffi.uchar,
+Spec :: struct #align (1) {
+    hidden: [70]CF.UInt8,
 }
+#assert(size_of(Spec) == 70)
 
 /// FSPermissionInfo
-PermissionInfo :: struct #align (2) {
-    userID : cffi.uint,
-    groupID : cffi.uint,
-    reserved1 : cffi.uchar,
-    userAccess : cffi.uchar,
-    mode : cffi.ushort,
-    fileSec : ^__FSFileSecurity,
+PermissionInfo :: struct #align (2) #max_field_align(2) {
+    userID: CF.UInt32,
+    groupID: CF.UInt32,
+    reserved1: CF.UInt8,
+    userAccess: CF.UInt8,
+    mode: CF.UInt16,
+    fileSec: FileSecurityRef,
 }
+#assert(size_of(PermissionInfo) == 20)
 
 /// FSCatalogInfo
-CatalogInfo :: struct #align (2) {
-    nodeFlags : cffi.ushort,
-    volume : cffi.short,
-    parentDirID : cffi.uint,
-    nodeID : cffi.uint,
-    sharingFlags : cffi.uchar,
-    userPrivileges : cffi.uchar,
-    reserved1 : cffi.uchar,
-    reserved2 : cffi.uchar,
-    createDate : UTCDateTime,
-    contentModDate : UTCDateTime,
-    attributeModDate : UTCDateTime,
-    accessDate : UTCDateTime,
-    backupDate : UTCDateTime,
-    permissions : PermissionInfo,
-    finderInfo : [16]cffi.uchar,
-    extFinderInfo : [16]cffi.uchar,
-    dataLogicalSize : cffi.ulonglong,
-    dataPhysicalSize : cffi.ulonglong,
-    rsrcLogicalSize : cffi.ulonglong,
-    rsrcPhysicalSize : cffi.ulonglong,
-    valence : cffi.uint,
-    textEncodingHint : cffi.uint,
+CatalogInfo :: struct #align (2) #max_field_align(2) {
+    nodeFlags: CF.UInt16,
+    volume: VolumeRefNum,
+    parentDirID: CF.UInt32,
+    nodeID: CF.UInt32,
+    sharingFlags: CF.UInt8,
+    userPrivileges: CF.UInt8,
+    reserved1: CF.UInt8,
+    reserved2: CF.UInt8,
+    createDate: UTCDateTime,
+    contentModDate: UTCDateTime,
+    attributeModDate: UTCDateTime,
+    accessDate: UTCDateTime,
+    backupDate: UTCDateTime,
+    permissions: PermissionInfo,
+    finderInfo: [16]CF.UInt8,
+    extFinderInfo: [16]CF.UInt8,
+    dataLogicalSize: CF.UInt64,
+    dataPhysicalSize: CF.UInt64,
+    rsrcLogicalSize: CF.UInt64,
+    rsrcPhysicalSize: CF.UInt64,
+    valence: CF.UInt32,
+    textEncodingHint: TextEncoding,
 }
+#assert(size_of(CatalogInfo) == 148)
 
 /// FSRefParam
-RefParam :: struct #align (2) {
-    qLink : ^QElem,
-    qType : cffi.short,
-    ioTrap : cffi.short,
-    ioCmdAddr : cstring,
-    ioCompletion : proc "c" (),
-    ioResult : cffi.short,
-    ioNamePtr : ^cffi.uchar,
-    ioVRefNum : cffi.short,
-    reserved1 : cffi.short,
-    reserved2 : cffi.uchar,
-    reserved3 : cffi.uchar,
-    ref : ^Ref,
-    whichInfo : cffi.uint,
-    catInfo : ^CatalogInfo,
-    nameLength : cffi.ulong,
-    name : ^cffi.ushort,
-    ioDirID : cffi.uint,
-    spec : ^Spec,
-    parentRef : ^Ref,
-    newRef : ^Ref,
-    textEncodingHint : cffi.uint,
-    outName : ^HFSUniStr255,
+RefParam :: struct #align (2) #max_field_align(2) {
+    qLink: QElemPtr,
+    qType: CF.SInt16,
+    ioTrap: CF.SInt16,
+    ioCmdAddr: CF.Ptr,
+    ioCompletion: IOCompletionUPP,
+    ioResult: CF.OSErr,
+    ioNamePtr: CF.ConstStringPtr,
+    ioVRefNum: VolumeRefNum,
+    reserved1: CF.SInt16,
+    reserved2: CF.UInt8,
+    reserved3: CF.UInt8,
+    ref: ^Ref,
+    whichInfo: CatalogInfoBitmap,
+    catInfo: ^CatalogInfo,
+    nameLength: CF.UniCharCount,
+    name: ^CF.UniChar,
+    ioDirID: CF.UInt32,
+    spec: SpecPtr,
+    parentRef: ^Ref,
+    newRef: ^Ref,
+    textEncodingHint: TextEncoding,
+    outName: ^HFSUniStr255,
 }
+#assert(size_of(RefParam) == 120)
 
 /// FSRefForkIOParam
-RefForkIOParam :: struct #align (2) {
-    qLink : ^QElem,
-    qType : cffi.short,
-    ioTrap : cffi.short,
-    ioCmdAddr : cstring,
-    ioCompletion : proc "c" (),
-    ioResult : cffi.short,
-    parentRef : ^Ref,
-    nameLength : cffi.ulong,
-    name : ^cffi.ushort,
-    whichInfo : cffi.uint,
-    catInfo : ^CatalogInfo,
-    forkNameLength : cffi.ulong,
-    forkName : ^cffi.ushort,
-    permissions : cffi.schar,
-    reserved1 : cffi.uchar,
-    forkRefNum : cffi.int,
-    newRef : ^Ref,
+RefForkIOParam :: struct #align (2) #max_field_align(2) {
+    qLink: QElemPtr,
+    qType: CF.SInt16,
+    ioTrap: CF.SInt16,
+    ioCmdAddr: CF.Ptr,
+    ioCompletion: IOCompletionUPP,
+    ioResult: CF.OSErr,
+    parentRef: ^Ref,
+    nameLength: CF.UniCharCount,
+    name: ^CF.UniChar,
+    whichInfo: CatalogInfoBitmap,
+    catInfo: ^CatalogInfo,
+    forkNameLength: CF.UniCharCount,
+    forkName: ^CF.UniChar,
+    permissions: CF.SInt8,
+    reserved1: CF.UInt8,
+    forkRefNum: IORefNum,
+    newRef: ^Ref,
 }
+#assert(size_of(RefForkIOParam) == 96)
 
 /// OpaqueFSIterator
 OpaqueFSIterator :: struct {}
 
 /// FSSearchParams
 SearchParams :: struct #align (2) {
-    searchTime : cffi.int,
-    searchBits : cffi.uint,
-    searchNameLength : cffi.ulong,
-    searchName : ^cffi.ushort,
-    searchInfo1 : ^CatalogInfo,
-    searchInfo2 : ^CatalogInfo,
+    searchTime: CF.Duration,
+    searchBits: CF.OptionBits,
+    searchNameLength: CF.UniCharCount,
+    searchName: ^CF.UniChar,
+    searchInfo1: ^CatalogInfo,
+    searchInfo2: ^CatalogInfo,
 }
+#assert(size_of(SearchParams) == 40)
 
 /// FSCatalogBulkParam
-CatalogBulkParam :: struct #align (2) {
-    qLink : ^QElem,
-    qType : cffi.short,
-    ioTrap : cffi.short,
-    ioCmdAddr : cstring,
-    ioCompletion : proc "c" (),
-    ioResult : cffi.short,
-    containerChanged : cffi.uchar,
-    reserved : cffi.uchar,
-    iteratorFlags : cffi.uint,
-    iterator : ^OpaqueFSIterator,
-    container : ^Ref,
-    maximumItems : cffi.ulong,
-    actualItems : cffi.ulong,
-    whichInfo : cffi.uint,
-    catalogInfo : ^CatalogInfo,
-    refs : ^Ref,
-    specs : ^Spec,
-    names : ^HFSUniStr255,
-    searchParams : ^SearchParams,
+CatalogBulkParam :: struct #align (2) #max_field_align(2) {
+    qLink: QElemPtr,
+    qType: CF.SInt16,
+    ioTrap: CF.SInt16,
+    ioCmdAddr: CF.Ptr,
+    ioCompletion: IOCompletionUPP,
+    ioResult: CF.OSErr,
+    containerChanged: CF.Boolean,
+    reserved: CF.UInt8,
+    iteratorFlags: IteratorFlags,
+    iterator: Iterator,
+    container: ^Ref,
+    maximumItems: CF.ItemCount,
+    actualItems: CF.ItemCount,
+    whichInfo: CatalogInfoBitmap,
+    catalogInfo: ^CatalogInfo,
+    refs: ^Ref,
+    specs: SpecPtr,
+    names: ^HFSUniStr255,
+    searchParams: ^SearchParams,
 }
+#assert(size_of(CatalogBulkParam) == 112)
 
 /// FSForkIOParam
-ForkIOParam :: struct #align (2) {
-    qLink : ^QElem,
-    qType : cffi.short,
-    ioTrap : cffi.short,
-    ioCmdAddr : cstring,
-    ioCompletion : proc "c" (),
-    ioResult : cffi.short,
-    reserved1 : rawptr,
-    reserved2 : cffi.short,
-    forkRefNum : cffi.int,
-    reserved3 : cffi.uchar,
-    permissions : cffi.schar,
-    ref : ^Ref,
-    buffer : cstring,
-    requestCount : cffi.uint,
-    actualCount : cffi.uint,
-    positionMode : cffi.ushort,
-    positionOffset : cffi.longlong,
-    allocationFlags : cffi.ushort,
-    allocationAmount : cffi.ulonglong,
-    forkNameLength : cffi.ulong,
-    forkName : ^cffi.ushort,
-    forkIterator : CatPositionRec,
-    outForkName : ^HFSUniStr255,
+ForkIOParam :: struct #align (2) #max_field_align(2) {
+    qLink: QElemPtr,
+    qType: CF.SInt16,
+    ioTrap: CF.SInt16,
+    ioCmdAddr: CF.Ptr,
+    ioCompletion: IOCompletionUPP,
+    ioResult: CF.OSErr,
+    reserved1: rawptr,
+    reserved2: CF.SInt16,
+    forkRefNum: IORefNum,
+    reserved3: CF.UInt8,
+    permissions: CF.SInt8,
+    ref: ^Ref,
+    buffer: CF.Ptr,
+    requestCount: CF.UInt32,
+    actualCount: CF.UInt32,
+    positionMode: CF.UInt16,
+    positionOffset: CF.SInt64,
+    allocationFlags: AllocationFlags,
+    allocationAmount: CF.UInt64,
+    forkNameLength: CF.UniCharCount,
+    forkName: ^CF.UniChar,
+    forkIterator: CatPositionRec,
+    outForkName: ^HFSUniStr255,
 }
+#assert(size_of(ForkIOParam) == 130)
 
 /// FSForkInfo
 ForkInfo :: struct #align (2) {
-    flags : cffi.uchar,
-    permissions : cffi.schar,
-    volume : cffi.short,
-    reserved2 : cffi.uint,
-    nodeID : cffi.uint,
-    forkID : cffi.uint,
-    currentPosition : cffi.ulonglong,
-    logicalEOF : cffi.ulonglong,
-    physicalEOF : cffi.ulonglong,
-    process : cffi.ulonglong,
+    flags: ForkInfoFlags,
+    permissions: CF.SInt8,
+    volume: VolumeRefNum,
+    reserved2: CF.UInt32,
+    nodeID: CF.UInt32,
+    forkID: CF.UInt32,
+    currentPosition: CF.UInt64,
+    logicalEOF: CF.UInt64,
+    physicalEOF: CF.UInt64,
+    process: CF.UInt64,
 }
+#assert(size_of(ForkInfo) == 48)
 
 /// FSForkCBInfoParam
-ForkCBInfoParam :: struct #align (2) {
-    qLink : ^QElem,
-    qType : cffi.short,
-    ioTrap : cffi.short,
-    ioCmdAddr : cstring,
-    ioCompletion : proc "c" (),
-    ioResult : cffi.short,
-    desiredRefNum : cffi.int,
-    volumeRefNum : cffi.short,
-    iterator : cffi.int,
-    actualRefNum : cffi.short,
-    ref : ^Ref,
-    forkInfo : ^ForkInfo,
-    forkName : ^HFSUniStr255,
+ForkCBInfoParam :: struct #align (2) #max_field_align(2) {
+    qLink: QElemPtr,
+    qType: CF.SInt16,
+    ioTrap: CF.SInt16,
+    ioCmdAddr: CF.Ptr,
+    ioCompletion: IOCompletionUPP,
+    ioResult: CF.OSErr,
+    desiredRefNum: IORefNum,
+    volumeRefNum: VolumeRefNum,
+    iterator: IORefNum,
+    actualRefNum: VolumeRefNum,
+    ref: ^Ref,
+    forkInfo: ^ForkInfo,
+    forkName: ^HFSUniStr255,
 }
+#assert(size_of(ForkCBInfoParam) == 66)
 
 /// FSRangeLockParam
-RangeLockParam :: struct #align (2) {
-    qLink : ^QElem,
-    qType : cffi.short,
-    ioTrap : cffi.short,
-    ioCmdAddr : cstring,
-    ioCompletion : proc "c" (),
-    ioResult : cffi.short,
-    forkRefNum : cffi.int,
-    requestCount : cffi.ulonglong,
-    positionMode : cffi.ushort,
-    positionOffset : cffi.longlong,
-    rangeStart : cffi.ulonglong,
+RangeLockParam :: struct #align (2) #max_field_align(2) {
+    qLink: QElemPtr,
+    qType: CF.SInt16,
+    ioTrap: CF.SInt16,
+    ioCmdAddr: CF.Ptr,
+    ioCompletion: IOCompletionUPP,
+    ioResult: CF.OSErr,
+    forkRefNum: IORefNum,
+    requestCount: CF.UInt64,
+    positionMode: CF.UInt16,
+    positionOffset: CF.SInt64,
+    rangeStart: CF.UInt64,
 }
+#assert(size_of(RangeLockParam) == 60)
 
 /// FSVolumeInfo
 VolumeInfo :: struct #align (2) {
-    createDate : UTCDateTime,
-    modifyDate : UTCDateTime,
-    backupDate : UTCDateTime,
-    checkedDate : UTCDateTime,
-    fileCount : cffi.uint,
-    folderCount : cffi.uint,
-    totalBytes : cffi.ulonglong,
-    freeBytes : cffi.ulonglong,
-    blockSize : cffi.uint,
-    totalBlocks : cffi.uint,
-    freeBlocks : cffi.uint,
-    nextAllocation : cffi.uint,
-    rsrcClumpSize : cffi.uint,
-    dataClumpSize : cffi.uint,
-    nextCatalogID : cffi.uint,
-    finderInfo : [32]cffi.uchar,
-    flags : cffi.ushort,
-    filesystemID : cffi.ushort,
-    signature : cffi.ushort,
-    driveNumber : cffi.ushort,
-    driverRefNum : cffi.int,
+    createDate: UTCDateTime,
+    modifyDate: UTCDateTime,
+    backupDate: UTCDateTime,
+    checkedDate: UTCDateTime,
+    fileCount: CF.UInt32,
+    folderCount: CF.UInt32,
+    totalBytes: CF.UInt64,
+    freeBytes: CF.UInt64,
+    blockSize: CF.UInt32,
+    totalBlocks: CF.UInt32,
+    freeBlocks: CF.UInt32,
+    nextAllocation: CF.UInt32,
+    rsrcClumpSize: CF.UInt32,
+    dataClumpSize: CF.UInt32,
+    nextCatalogID: CF.UInt32,
+    finderInfo: [32]CF.UInt8,
+    flags: CF.UInt16,
+    filesystemID: CF.UInt16,
+    signature: CF.UInt16,
+    driveNumber: CF.UInt16,
+    driverRefNum: IORefNum,
 }
+#assert(size_of(VolumeInfo) == 128)
 
 /// FSVolumeInfoParam
-VolumeInfoParam :: struct #align (2) {
-    qLink : ^QElem,
-    qType : cffi.short,
-    ioTrap : cffi.short,
-    ioCmdAddr : cstring,
-    ioCompletion : proc "c" (),
-    ioResult : cffi.short,
-    ioNamePtr : ^cffi.uchar,
-    ioVRefNum : cffi.short,
-    volumeIndex : cffi.uint,
-    whichInfo : cffi.uint,
-    volumeInfo : ^VolumeInfo,
-    volumeName : ^HFSUniStr255,
-    ref : ^Ref,
+VolumeInfoParam :: struct #align (2) #max_field_align(2) {
+    qLink: QElemPtr,
+    qType: CF.SInt16,
+    ioTrap: CF.SInt16,
+    ioCmdAddr: CF.Ptr,
+    ioCompletion: IOCompletionUPP,
+    ioResult: CF.OSErr,
+    ioNamePtr: CF.StringPtr,
+    ioVRefNum: VolumeRefNum,
+    volumeIndex: CF.UInt32,
+    whichInfo: VolumeInfoBitmap,
+    volumeInfo: ^VolumeInfo,
+    volumeName: ^HFSUniStr255,
+    ref: ^Ref,
 }
+#assert(size_of(VolumeInfoParam) == 72)
 
 /// GetVolParmsInfoBuffer
-GetVolParmsInfoBuffer :: struct #align (2) {
-    vMVersion : cffi.short,
-    vMAttrib : cffi.int,
-    vMLocalHand : ^cstring,
-    vMServerAdr : cffi.int,
-    vMVolumeGrade : cffi.int,
-    vMForeignPrivID : cffi.short,
-    vMExtendedAttributes : cffi.int,
-    vMDeviceID : rawptr,
-    vMMaxNameLength : cffi.ulong,
+GetVolParmsInfoBuffer :: struct #align (2) #max_field_align(2) {
+    vMVersion: CF.SInt16,
+    vMAttrib: CF.SInt32,
+    vMLocalHand: CF.Handle,
+    vMServerAdr: CF.SInt32,
+    vMVolumeGrade: CF.SInt32,
+    vMForeignPrivID: CF.SInt16,
+    vMExtendedAttributes: CF.SInt32,
+    vMDeviceID: rawptr,
+    vMMaxNameLength: CF.UniCharCount,
 }
+#assert(size_of(GetVolParmsInfoBuffer) == 44)
 
 /// OpaqueFSVolumeOperation
 OpaqueFSVolumeOperation :: struct {}
@@ -1391,34 +1442,37 @@ __FSFileOperation :: struct {}
 
 /// FSFileOperationClientContext
 FileOperationClientContext :: struct #align (2) {
-    version : cffi.long,
-    info : rawptr,
-    retain : proc "c" () -> rawptr,
-    release : proc "c" (),
-    copyDescription : proc "c" () -> ^CF.__CFString,
+    version: CF.Index,
+    info: rawptr,
+    retain: CF.AllocatorRetainCallBack,
+    release: CF.AllocatorReleaseCallBack,
+    copyDescription: CF.AllocatorCopyDescriptionCallBack,
 }
+#assert(size_of(FileOperationClientContext) == 40)
 
 /// AliasRecord
-AliasRecord :: struct  {
-    hidden : [6]cffi.uchar,
+AliasRecord :: struct #align (1) {
+    hidden: [6]CF.UInt8,
 }
+#assert(size_of(AliasRecord) == 6)
 
 /// FSAliasInfo
 AliasInfo :: struct #align (2) {
-    volumeCreateDate : UTCDateTime,
-    targetCreateDate : UTCDateTime,
-    fileType : cffi.uint,
-    fileCreator : cffi.uint,
-    parentDirID : cffi.uint,
-    nodeID : cffi.uint,
-    filesystemID : cffi.ushort,
-    signature : cffi.ushort,
-    volumeIsBootVolume : cffi.uchar,
-    volumeIsAutomounted : cffi.uchar,
-    volumeIsEjectable : cffi.uchar,
-    volumeHasPersistentFileIDs : cffi.uchar,
-    isDirectory : cffi.uchar,
+    volumeCreateDate: UTCDateTime,
+    targetCreateDate: UTCDateTime,
+    fileType: CF.OSType,
+    fileCreator: CF.OSType,
+    parentDirID: CF.UInt32,
+    nodeID: CF.UInt32,
+    filesystemID: CF.UInt16,
+    signature: CF.UInt16,
+    volumeIsBootVolume: CF.Boolean,
+    volumeIsAutomounted: CF.Boolean,
+    volumeIsEjectable: CF.Boolean,
+    volumeHasPersistentFileIDs: CF.Boolean,
+    isDirectory: CF.Boolean,
 }
+#assert(size_of(AliasInfo) == 42)
 
 /// OpaqueTextBreakLocatorRef
 OpaqueTextBreakLocatorRef :: struct {}
@@ -1427,353 +1481,393 @@ OpaqueTextBreakLocatorRef :: struct {}
 OpaqueTextToUnicodeInfo :: struct {}
 
 /// HFSExtentKey
-HFSExtentKey :: struct #align (2) {
-    keyLength : cffi.uchar,
-    forkType : cffi.uchar,
-    fileID : cffi.uint,
-    startBlock : cffi.ushort,
+HFSExtentKey :: struct #align (2) #max_field_align(2) {
+    keyLength: cffi.uchar,
+    forkType: cffi.uchar,
+    fileID: cffi.uint,
+    startBlock: cffi.ushort,
 }
+#assert(size_of(HFSExtentKey) == 8)
 
 /// HFSPlusExtentKey
 HFSPlusExtentKey :: struct #align (2) {
-    keyLength : cffi.ushort,
-    forkType : cffi.uchar,
-    pad : cffi.uchar,
-    fileID : cffi.uint,
-    startBlock : cffi.uint,
+    keyLength: cffi.ushort,
+    forkType: cffi.uchar,
+    pad: cffi.uchar,
+    fileID: cffi.uint,
+    startBlock: cffi.uint,
 }
+#assert(size_of(HFSPlusExtentKey) == 12)
 
 /// HFSExtentDescriptor
 HFSExtentDescriptor :: struct #align (2) {
-    startBlock : cffi.ushort,
-    blockCount : cffi.ushort,
+    startBlock: cffi.ushort,
+    blockCount: cffi.ushort,
 }
+#assert(size_of(HFSExtentDescriptor) == 4)
 
 /// HFSPlusExtentDescriptor
 HFSPlusExtentDescriptor :: struct #align (2) {
-    startBlock : cffi.uint,
-    blockCount : cffi.uint,
+    startBlock: cffi.uint,
+    blockCount: cffi.uint,
 }
+#assert(size_of(HFSPlusExtentDescriptor) == 8)
 
 /// FndrFileInfo
 FndrFileInfo :: struct #align (2) {
-    fdType : cffi.uint,
-    fdCreator : cffi.uint,
-    fdFlags : cffi.ushort,
-    fdLocation_v : cffi.short,
-    fdLocation_h : cffi.short,
-    opaque : cffi.short,
+    fdType: cffi.uint,
+    fdCreator: cffi.uint,
+    fdFlags: cffi.ushort,
+    fdLocation : struct  {
+        v: cffi.int16_t,
+        h: cffi.int16_t,
+    },
+    opaque: cffi.int16_t,
 }
+#assert(size_of(FndrFileInfo) == 16)
 
 /// FndrDirInfo
 FndrDirInfo :: struct #align (2) {
-    frRect_top : cffi.short,
-    frRect_left : cffi.short,
-    frRect_bottom : cffi.short,
-    frRect_right : cffi.short,
-    frFlags : cffi.ushort,
-    frLocation_v : cffi.ushort,
-    frLocation_h : cffi.ushort,
-    opaque : cffi.short,
+    frRect : struct  {
+        top: cffi.int16_t,
+        left: cffi.int16_t,
+        bottom: cffi.int16_t,
+        right: cffi.int16_t,
+    },
+    frFlags: cffi.ushort,
+    frLocation : struct  {
+        v: cffi.ushort,
+        h: cffi.ushort,
+    },
+    opaque: cffi.int16_t,
 }
+#assert(size_of(FndrDirInfo) == 16)
 
 /// FndrOpaqueInfo
 FndrOpaqueInfo :: struct #align (2) {
-    opaque : [16]cffi.schar,
+    opaque: [16]cffi.int8_t,
 }
+#assert(size_of(FndrOpaqueInfo) == 16)
 
 /// FndrExtendedDirInfo
 FndrExtendedDirInfo :: struct #align (2) {
-    document_id : cffi.uint,
-    date_added : cffi.uint,
-    extended_flags : cffi.ushort,
-    reserved3 : cffi.ushort,
-    write_gen_counter : cffi.uint,
+    document_id: cffi.uint,
+    date_added: cffi.uint,
+    extended_flags: cffi.ushort,
+    reserved3: cffi.ushort,
+    write_gen_counter: cffi.uint,
 }
+#assert(size_of(FndrExtendedDirInfo) == 16)
 
 /// FndrExtendedFileInfo
 FndrExtendedFileInfo :: struct #align (2) {
-    document_id : cffi.uint,
-    date_added : cffi.uint,
-    extended_flags : cffi.ushort,
-    reserved2 : cffi.ushort,
-    write_gen_counter : cffi.uint,
+    document_id: cffi.uint,
+    date_added: cffi.uint,
+    extended_flags: cffi.ushort,
+    reserved2: cffi.ushort,
+    write_gen_counter: cffi.uint,
 }
+#assert(size_of(FndrExtendedFileInfo) == 16)
 
 /// HFSPlusForkData
 HFSPlusForkData :: struct #align (2) {
-    logicalSize : cffi.ulonglong,
-    clumpSize : cffi.uint,
-    totalBlocks : cffi.uint,
-    extents : [8]HFSPlusExtentDescriptor,
+    logicalSize: cffi.ulonglong,
+    clumpSize: cffi.uint,
+    totalBlocks: cffi.uint,
+    extents: HFSPlusExtentRecord,
 }
+#assert(size_of(HFSPlusForkData) == 80)
 
 /// HFSPlusBSDInfo
 HFSPlusBSDInfo :: struct #align (2) {
-    ownerID : cffi.uint,
-    groupID : cffi.uint,
-    adminFlags : cffi.uchar,
-    ownerFlags : cffi.uchar,
-    fileMode : cffi.ushort,
-    special_iNodeNum : cffi.uint,
-    special_linkCount : cffi.uint,
-    special_rawDevice : cffi.uint,
+    ownerID: cffi.uint,
+    groupID: cffi.uint,
+    adminFlags: cffi.uchar,
+    ownerFlags: cffi.uchar,
+    fileMode: cffi.ushort,
+    special : struct #raw_union  {
+        iNodeNum: cffi.uint,
+        linkCount: cffi.uint,
+        rawDevice: cffi.uint,
+    },
 }
+#assert(size_of(HFSPlusBSDInfo) == 16)
 
 /// HFSCatalogKey
-HFSCatalogKey :: struct #align (2) {
-    keyLength : cffi.uchar,
-    reserved : cffi.uchar,
-    parentID : cffi.uint,
-    nodeName : [32]cffi.uchar,
+HFSCatalogKey :: struct #align (2) #max_field_align(2) {
+    keyLength: cffi.uchar,
+    reserved: cffi.uchar,
+    parentID: cffi.uint,
+    nodeName: [32]cffi.uchar,
 }
+#assert(size_of(HFSCatalogKey) == 38)
 
 /// HFSPlusCatalogKey
-HFSPlusCatalogKey :: struct #align (2) {
-    keyLength : cffi.ushort,
-    parentID : cffi.uint,
-    nodeName : HFSUniStr255,
+HFSPlusCatalogKey :: struct #align (2) #max_field_align(2) {
+    keyLength: cffi.ushort,
+    parentID: cffi.uint,
+    nodeName: HFSUniStr255,
 }
+#assert(size_of(HFSPlusCatalogKey) == 518)
 
 /// HFSCatalogFolder
-HFSCatalogFolder :: struct #align (2) {
-    recordType : cffi.short,
-    flags : cffi.ushort,
-    valence : cffi.ushort,
-    folderID : cffi.uint,
-    createDate : cffi.uint,
-    modifyDate : cffi.uint,
-    backupDate : cffi.uint,
-    userInfo : FndrDirInfo,
-    finderInfo : FndrOpaqueInfo,
-    reserved : [4]cffi.uint,
+HFSCatalogFolder :: struct #align (2) #max_field_align(2) {
+    recordType: cffi.int16_t,
+    flags: cffi.ushort,
+    valence: cffi.ushort,
+    folderID: cffi.uint,
+    createDate: cffi.uint,
+    modifyDate: cffi.uint,
+    backupDate: cffi.uint,
+    userInfo: FndrDirInfo,
+    finderInfo: FndrOpaqueInfo,
+    reserved: [4]cffi.uint,
 }
+#assert(size_of(HFSCatalogFolder) == 70)
 
 /// HFSPlusCatalogFolder
 HFSPlusCatalogFolder :: struct #align (2) {
-    recordType : cffi.short,
-    flags : cffi.ushort,
-    valence : cffi.uint,
-    folderID : cffi.uint,
-    createDate : cffi.uint,
-    contentModDate : cffi.uint,
-    attributeModDate : cffi.uint,
-    accessDate : cffi.uint,
-    backupDate : cffi.uint,
-    bsdInfo : HFSPlusBSDInfo,
-    userInfo : FndrDirInfo,
-    finderInfo : FndrOpaqueInfo,
-    textEncoding : cffi.uint,
-    folderCount : cffi.uint,
+    recordType: cffi.int16_t,
+    flags: cffi.ushort,
+    valence: cffi.uint,
+    folderID: cffi.uint,
+    createDate: cffi.uint,
+    contentModDate: cffi.uint,
+    attributeModDate: cffi.uint,
+    accessDate: cffi.uint,
+    backupDate: cffi.uint,
+    bsdInfo: HFSPlusBSDInfo,
+    userInfo: FndrDirInfo,
+    finderInfo: FndrOpaqueInfo,
+    textEncoding: cffi.uint,
+    folderCount: cffi.uint,
 }
+#assert(size_of(HFSPlusCatalogFolder) == 88)
 
 /// HFSCatalogFile
-HFSCatalogFile :: struct #align (2) {
-    recordType : cffi.short,
-    flags : cffi.uchar,
-    fileType : cffi.schar,
-    userInfo : FndrFileInfo,
-    fileID : cffi.uint,
-    dataStartBlock : cffi.ushort,
-    dataLogicalSize : cffi.int,
-    dataPhysicalSize : cffi.int,
-    rsrcStartBlock : cffi.ushort,
-    rsrcLogicalSize : cffi.int,
-    rsrcPhysicalSize : cffi.int,
-    createDate : cffi.uint,
-    modifyDate : cffi.uint,
-    backupDate : cffi.uint,
-    finderInfo : FndrOpaqueInfo,
-    clumpSize : cffi.ushort,
-    dataExtents : [3]HFSExtentDescriptor,
-    rsrcExtents : [3]HFSExtentDescriptor,
-    reserved : cffi.uint,
+HFSCatalogFile :: struct #align (2) #max_field_align(2) {
+    recordType: cffi.int16_t,
+    flags: cffi.uchar,
+    fileType: cffi.int8_t,
+    userInfo: FndrFileInfo,
+    fileID: cffi.uint,
+    dataStartBlock: cffi.ushort,
+    dataLogicalSize: cffi.int32_t,
+    dataPhysicalSize: cffi.int32_t,
+    rsrcStartBlock: cffi.ushort,
+    rsrcLogicalSize: cffi.int32_t,
+    rsrcPhysicalSize: cffi.int32_t,
+    createDate: cffi.uint,
+    modifyDate: cffi.uint,
+    backupDate: cffi.uint,
+    finderInfo: FndrOpaqueInfo,
+    clumpSize: cffi.ushort,
+    dataExtents: HFSExtentRecord,
+    rsrcExtents: HFSExtentRecord,
+    reserved: cffi.uint,
 }
+#assert(size_of(HFSCatalogFile) == 102)
 
 /// HFSPlusCatalogFile
 HFSPlusCatalogFile :: struct #align (2) {
-    recordType : cffi.short,
-    flags : cffi.ushort,
-    reserved1 : cffi.uint,
-    fileID : cffi.uint,
-    createDate : cffi.uint,
-    contentModDate : cffi.uint,
-    attributeModDate : cffi.uint,
-    accessDate : cffi.uint,
-    backupDate : cffi.uint,
-    bsdInfo : HFSPlusBSDInfo,
-    userInfo : FndrFileInfo,
-    finderInfo : FndrOpaqueInfo,
-    textEncoding : cffi.uint,
-    reserved2 : cffi.uint,
-    dataFork : HFSPlusForkData,
-    resourceFork : HFSPlusForkData,
+    recordType: cffi.int16_t,
+    flags: cffi.ushort,
+    reserved1: cffi.uint,
+    fileID: cffi.uint,
+    createDate: cffi.uint,
+    contentModDate: cffi.uint,
+    attributeModDate: cffi.uint,
+    accessDate: cffi.uint,
+    backupDate: cffi.uint,
+    bsdInfo: HFSPlusBSDInfo,
+    userInfo: FndrFileInfo,
+    finderInfo: FndrOpaqueInfo,
+    textEncoding: cffi.uint,
+    reserved2: cffi.uint,
+    dataFork: HFSPlusForkData,
+    resourceFork: HFSPlusForkData,
 }
+#assert(size_of(HFSPlusCatalogFile) == 248)
 
 /// HFSCatalogThread
-HFSCatalogThread :: struct #align (2) {
-    recordType : cffi.short,
-    reserved : [2]cffi.int,
-    parentID : cffi.uint,
-    nodeName : [32]cffi.uchar,
+HFSCatalogThread :: struct #align (2) #max_field_align(2) {
+    recordType: cffi.int16_t,
+    reserved: [2]cffi.int32_t,
+    parentID: cffi.uint,
+    nodeName: [32]cffi.uchar,
 }
+#assert(size_of(HFSCatalogThread) == 46)
 
 /// HFSPlusCatalogThread
 HFSPlusCatalogThread :: struct #align (2) {
-    recordType : cffi.short,
-    reserved : cffi.short,
-    parentID : cffi.uint,
-    nodeName : HFSUniStr255,
+    recordType: cffi.int16_t,
+    reserved: cffi.int16_t,
+    parentID: cffi.uint,
+    nodeName: HFSUniStr255,
 }
+#assert(size_of(HFSPlusCatalogThread) == 520)
 
 /// HFSPlusAttrForkData
 HFSPlusAttrForkData :: struct #align (2) {
-    recordType : cffi.uint,
-    reserved : cffi.uint,
-    theFork : HFSPlusForkData,
+    recordType: cffi.uint,
+    reserved: cffi.uint,
+    theFork: HFSPlusForkData,
 }
+#assert(size_of(HFSPlusAttrForkData) == 88)
 
 /// HFSPlusAttrExtents
 HFSPlusAttrExtents :: struct #align (2) {
-    recordType : cffi.uint,
-    reserved : cffi.uint,
-    extents : [8]HFSPlusExtentDescriptor,
+    recordType: cffi.uint,
+    reserved: cffi.uint,
+    extents: HFSPlusExtentRecord,
 }
+#assert(size_of(HFSPlusAttrExtents) == 72)
 
 /// HFSPlusAttrData
 HFSPlusAttrData :: struct #align (2) {
-    recordType : cffi.uint,
-    reserved : [2]cffi.uint,
-    attrSize : cffi.uint,
-    attrData : [2]cffi.uchar,
+    recordType: cffi.uint,
+    reserved: [2]cffi.uint,
+    attrSize: cffi.uint,
+    attrData: [2]cffi.uchar,
 }
+#assert(size_of(HFSPlusAttrData) == 18)
 
 /// HFSPlusAttrInlineData
 HFSPlusAttrInlineData :: struct #align (2) {
-    recordType : cffi.uint,
-    reserved : cffi.uint,
-    logicalSize : cffi.uint,
-    userData : [2]cffi.uchar,
+    recordType: cffi.uint,
+    reserved: cffi.uint,
+    logicalSize: cffi.uint,
+    userData: [2]cffi.uchar,
 }
+#assert(size_of(HFSPlusAttrInlineData) == 14)
 
 /// HFSPlusAttrKey
 HFSPlusAttrKey :: struct #align (2) {
-    keyLength : cffi.ushort,
-    pad : cffi.ushort,
-    fileID : cffi.uint,
-    startBlock : cffi.uint,
-    attrNameLen : cffi.ushort,
-    attrName : [127]cffi.ushort,
+    keyLength: cffi.ushort,
+    pad: cffi.ushort,
+    fileID: cffi.uint,
+    startBlock: cffi.uint,
+    attrNameLen: cffi.ushort,
+    attrName: [127]cffi.ushort,
 }
+#assert(size_of(HFSPlusAttrKey) == 268)
 
 /// HFSMasterDirectoryBlock
-HFSMasterDirectoryBlock :: struct #align (2) {
-    drSigWord : cffi.ushort,
-    drCrDate : cffi.uint,
-    drLsMod : cffi.uint,
-    drAtrb : cffi.ushort,
-    drNmFls : cffi.ushort,
-    drVBMSt : cffi.ushort,
-    drAllocPtr : cffi.ushort,
-    drNmAlBlks : cffi.ushort,
-    drAlBlkSiz : cffi.uint,
-    drClpSiz : cffi.uint,
-    drAlBlSt : cffi.ushort,
-    drNxtCNID : cffi.uint,
-    drFreeBks : cffi.ushort,
-    drVN : [28]cffi.uchar,
-    drVolBkUp : cffi.uint,
-    drVSeqNum : cffi.ushort,
-    drWrCnt : cffi.uint,
-    drXTClpSiz : cffi.uint,
-    drCTClpSiz : cffi.uint,
-    drNmRtDirs : cffi.ushort,
-    drFilCnt : cffi.uint,
-    drDirCnt : cffi.uint,
-    drFndrInfo : [8]cffi.uint,
-    drEmbedSigWord : cffi.ushort,
-    drEmbedExtent : HFSExtentDescriptor,
-    drXTFlSize : cffi.uint,
-    drXTExtRec : [3]HFSExtentDescriptor,
-    drCTFlSize : cffi.uint,
-    drCTExtRec : [3]HFSExtentDescriptor,
+HFSMasterDirectoryBlock :: struct #align (2) #max_field_align(2) {
+    drSigWord: cffi.ushort,
+    drCrDate: cffi.uint,
+    drLsMod: cffi.uint,
+    drAtrb: cffi.ushort,
+    drNmFls: cffi.ushort,
+    drVBMSt: cffi.ushort,
+    drAllocPtr: cffi.ushort,
+    drNmAlBlks: cffi.ushort,
+    drAlBlkSiz: cffi.uint,
+    drClpSiz: cffi.uint,
+    drAlBlSt: cffi.ushort,
+    drNxtCNID: cffi.uint,
+    drFreeBks: cffi.ushort,
+    drVN: [28]cffi.uchar,
+    drVolBkUp: cffi.uint,
+    drVSeqNum: cffi.ushort,
+    drWrCnt: cffi.uint,
+    drXTClpSiz: cffi.uint,
+    drCTClpSiz: cffi.uint,
+    drNmRtDirs: cffi.ushort,
+    drFilCnt: cffi.uint,
+    drDirCnt: cffi.uint,
+    drFndrInfo: [8]cffi.uint,
+    drEmbedSigWord: cffi.ushort,
+    drEmbedExtent: HFSExtentDescriptor,
+    drXTFlSize: cffi.uint,
+    drXTExtRec: HFSExtentRecord,
+    drCTFlSize: cffi.uint,
+    drCTExtRec: HFSExtentRecord,
 }
+#assert(size_of(HFSMasterDirectoryBlock) == 162)
 
 /// HFSPlusVolumeHeader
 HFSPlusVolumeHeader :: struct #align (2) {
-    signature : cffi.ushort,
-    version : cffi.ushort,
-    attributes : cffi.uint,
-    lastMountedVersion : cffi.uint,
-    journalInfoBlock : cffi.uint,
-    createDate : cffi.uint,
-    modifyDate : cffi.uint,
-    backupDate : cffi.uint,
-    checkedDate : cffi.uint,
-    fileCount : cffi.uint,
-    folderCount : cffi.uint,
-    blockSize : cffi.uint,
-    totalBlocks : cffi.uint,
-    freeBlocks : cffi.uint,
-    nextAllocation : cffi.uint,
-    rsrcClumpSize : cffi.uint,
-    dataClumpSize : cffi.uint,
-    nextCatalogID : cffi.uint,
-    writeCount : cffi.uint,
-    encodingsBitmap : cffi.ulonglong,
-    finderInfo : [32]cffi.uchar,
-    allocationFile : HFSPlusForkData,
-    extentsFile : HFSPlusForkData,
-    catalogFile : HFSPlusForkData,
-    attributesFile : HFSPlusForkData,
-    startupFile : HFSPlusForkData,
+    signature: cffi.ushort,
+    version: cffi.ushort,
+    attributes: cffi.uint,
+    lastMountedVersion: cffi.uint,
+    journalInfoBlock: cffi.uint,
+    createDate: cffi.uint,
+    modifyDate: cffi.uint,
+    backupDate: cffi.uint,
+    checkedDate: cffi.uint,
+    fileCount: cffi.uint,
+    folderCount: cffi.uint,
+    blockSize: cffi.uint,
+    totalBlocks: cffi.uint,
+    freeBlocks: cffi.uint,
+    nextAllocation: cffi.uint,
+    rsrcClumpSize: cffi.uint,
+    dataClumpSize: cffi.uint,
+    nextCatalogID: cffi.uint,
+    writeCount: cffi.uint,
+    encodingsBitmap: cffi.ulonglong,
+    finderInfo: [32]cffi.uchar,
+    allocationFile: HFSPlusForkData,
+    extentsFile: HFSPlusForkData,
+    catalogFile: HFSPlusForkData,
+    attributesFile: HFSPlusForkData,
+    startupFile: HFSPlusForkData,
 }
+#assert(size_of(HFSPlusVolumeHeader) == 512)
 
 /// TextChunk
 TextChunk :: struct #align (2) {
-    ckID : cffi.uint,
-    ckSize : cffi.int,
-    text : [1]cffi.char,
+    ckID: CF.UInt32,
+    ckSize: CF.SInt32,
+    text: [1]cffi.char,
 }
+#assert(size_of(TextChunk) == 10)
 
 /// TextEncodingRec
 TextEncodingRec :: struct #align (4) {
-    base : cffi.uint,
-    variant : cffi.uint,
-    format : cffi.uint,
+    base: CF.UInt32,
+    variant: CF.UInt32,
+    format: CF.UInt32,
 }
+#assert(size_of(TextEncodingRec) == 12)
 
 /// TextRange
 TextRange :: struct #align (2) {
-    fStart : cffi.int,
-    fEnd : cffi.int,
-    fHiliteStyle : cffi.short,
+    fStart: CF.SInt32,
+    fEnd: CF.SInt32,
+    fHiliteStyle: CF.SInt16,
 }
+#assert(size_of(TextRange) == 10)
 
 /// TextRangeArray
 TextRangeArray :: struct #align (2) {
-    fNumOfRanges : cffi.short,
-    fRange : [1]TextRange,
+    fNumOfRanges: CF.SInt16,
+    fRange: [1]TextRange,
 }
+#assert(size_of(TextRangeArray) == 12)
 
 /// __FSEventStream
 __FSEventStream :: struct {}
 
 /// FSEventStreamContext
 EventStreamContext :: struct #align (2) {
-    version : cffi.long,
-    info : rawptr,
-    retain : proc "c" () -> rawptr,
-    release : proc "c" (),
-    copyDescription : proc "c" () -> ^CF.__CFString,
+    version: CF.Index,
+    info: rawptr,
+    retain: CF.AllocatorRetainCallBack,
+    release: CF.AllocatorReleaseCallBack,
+    copyDescription: CF.AllocatorCopyDescriptionCallBack,
 }
+#assert(size_of(EventStreamContext) == 40)
 
 /// HFSPlusAttrRecord
-HFSPlusAttrRecord :: struct #raw_union  {
-    recordType : cffi.uint,
-    inlineData : HFSPlusAttrInlineData,
-    attrData : HFSPlusAttrData,
-    forkData : HFSPlusAttrForkData,
-    overflowExtents : HFSPlusAttrExtents,
+HFSPlusAttrRecord :: struct #raw_union #align (4) {
+    recordType: cffi.uint,
+    inlineData: HFSPlusAttrInlineData,
+    attrData: HFSPlusAttrData,
+    forkData: HFSPlusAttrForkData,
+    overflowExtents: HFSPlusAttrExtents,
 }
+#assert(size_of(HFSPlusAttrRecord) == 88)
 

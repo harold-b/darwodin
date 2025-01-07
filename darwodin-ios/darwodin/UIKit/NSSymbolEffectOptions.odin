@@ -64,6 +64,14 @@ NSSymbolEffectOptions_optionsWithSpeedStatic :: #force_inline proc "c" (speed: c
 NSSymbolEffectOptions_optionsWithSpeed :: #force_inline proc "c" (self: ^NSSymbolEffectOptions, speed: cffi.double) -> ^NSSymbolEffectOptions {
     return msgSend(^NSSymbolEffectOptions, self, "optionsWithSpeed:", speed)
 }
+@(objc_type=NSSymbolEffectOptions, objc_name="optionsWithRepeatBehaviorStatic", objc_is_class_method=true)
+NSSymbolEffectOptions_optionsWithRepeatBehaviorStatic :: #force_inline proc "c" (behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptions {
+    return msgSend(^NSSymbolEffectOptions, NSSymbolEffectOptions, "optionsWithRepeatBehavior:", behavior)
+}
+@(objc_type=NSSymbolEffectOptions, objc_name="optionsWithRepeatBehavior")
+NSSymbolEffectOptions_optionsWithRepeatBehavior :: #force_inline proc "c" (self: ^NSSymbolEffectOptions, behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptions {
+    return msgSend(^NSSymbolEffectOptions, self, "optionsWithRepeatBehavior:", behavior)
+}
 @(objc_type=NSSymbolEffectOptions, objc_name="supportsSecureCoding", objc_is_class_method=true)
 NSSymbolEffectOptions_supportsSecureCoding :: #force_inline proc "c" () -> bool {
     return msgSend(bool, NSSymbolEffectOptions, "supportsSecureCoding")
@@ -199,6 +207,8 @@ NSSymbolEffectOptions_VTable :: struct {
     optionsWithRepeatCount: proc(self: ^NSSymbolEffectOptions, count: NS.Integer) -> ^NSSymbolEffectOptions,
     optionsWithSpeedStatic: proc(speed: cffi.double) -> ^NSSymbolEffectOptions,
     optionsWithSpeed: proc(self: ^NSSymbolEffectOptions, speed: cffi.double) -> ^NSSymbolEffectOptions,
+    optionsWithRepeatBehaviorStatic: proc(behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptions,
+    optionsWithRepeatBehavior: proc(self: ^NSSymbolEffectOptions, behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptions,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -346,6 +356,26 @@ NSSymbolEffectOptions_odin_extend :: proc(cls: Class, vt: ^NSSymbolEffectOptions
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("optionsWithSpeed:"), auto_cast optionsWithSpeed, "@@:d") do panic("Failed to register objC method.")
+    }
+    if vt.optionsWithRepeatBehaviorStatic != nil {
+        optionsWithRepeatBehaviorStatic :: proc "c" (self: Class, _: SEL, behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptions {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSSymbolEffectOptions_VTable)vt_ctx.super_vt).optionsWithRepeatBehaviorStatic( behavior)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("optionsWithRepeatBehavior:"), auto_cast optionsWithRepeatBehaviorStatic, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.optionsWithRepeatBehavior != nil {
+        optionsWithRepeatBehavior :: proc "c" (self: ^NSSymbolEffectOptions, _: SEL, behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptions {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSSymbolEffectOptions_VTable)vt_ctx.super_vt).optionsWithRepeatBehavior(self, behavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("optionsWithRepeatBehavior:"), auto_cast optionsWithRepeatBehavior, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {

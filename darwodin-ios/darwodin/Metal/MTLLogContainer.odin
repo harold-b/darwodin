@@ -17,6 +17,7 @@ import UI "../UIKit"
 ///
 @(objc_class="MTLLogContainer")
 LogContainer :: struct { using _: intrinsics.objc_object, 
+    using _: NS.ObjectProtocol,
     using _: NS.FastEnumeration,
 }
 

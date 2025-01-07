@@ -15,28 +15,28 @@ ios_frameworks=(
 )
 
 # MacOS
-echo "Generating macOS definitions..."
+echo "=== Generating macOS definitions ==="
 for f in ${macos_frameworks[@]}; do
 
-    include=$(darwodin_get_header_for_framework $f)
+    # include=$(darwodin_get_header_for_framework $f)
         
     flist=($(echo "$f" | tr ',' ' '))
     for ((i=0; i < ${#flist[@]}; i++ )); do
-        flist[$i]="-f ${flist[$i]} -i $include"
+        flist[$i]="-f ${flist[$i]}"
     done
     ./gen-def ${flist[@]}
 done
 
 # iOS
 echo ""
-echo "Generating iOS definitions..."
+echo ""=== Generating iOS definitions "==="
 for f in ${ios_frameworks[@]}; do
 
-    include=$(darwodin_get_header_for_framework $f)
+    # include=$(darwodin_get_header_for_framework $f)
 
     flist=($(echo "$f" | tr ',' ' '))
     for ((i=0; i < ${#flist[@]}; i++ )); do
-        flist[$i]="-f ${flist[$i]} -i $include"
+        flist[$i]="-f ${flist[$i]}"
     done
 
     ./gen-def -ios ${flist[@]}

@@ -2,17 +2,17 @@
 set -eo pipefail
 cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-echo "Binding macOS..."
+echo "=== Binding macOS ==="
 ./bind-all
 
 echo ""
-echo "Binding macOS Lite..."
+echo "=== Binding macOS Lite ==="
 ./bind-all -lite
 
 echo ""
-echo "Binding iOS..."
+echo "=== Binding iOS ==="
 ./bind-all -ios
 
 echo ""
-echo "Binding iOS Lite..."
+echo "=== Binding iOS Lite ==="
 ./bind-all -ios -lite

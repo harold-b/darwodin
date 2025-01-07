@@ -289,6 +289,14 @@ ViewController_modalTransitionStyle :: #force_inline proc "c" (self: ^ViewContro
 ViewController_setModalTransitionStyle :: #force_inline proc "c" (self: ^ViewController, modalTransitionStyle: ModalTransitionStyle) {
     msgSend(nil, self, "setModalTransitionStyle:", modalTransitionStyle)
 }
+@(objc_type=ViewController, objc_name="preferredTransition")
+ViewController_preferredTransition :: #force_inline proc "c" (self: ^ViewController) -> ^ViewControllerTransition {
+    return msgSend(^ViewControllerTransition, self, "preferredTransition")
+}
+@(objc_type=ViewController, objc_name="setPreferredTransition")
+ViewController_setPreferredTransition :: #force_inline proc "c" (self: ^ViewController, preferredTransition: ^ViewControllerTransition) {
+    msgSend(nil, self, "setPreferredTransition:", preferredTransition)
+}
 @(objc_type=ViewController, objc_name="modalPresentationStyle")
 ViewController_modalPresentationStyle :: #force_inline proc "c" (self: ^ViewController) -> ModalPresentationStyle {
     return msgSend(ModalPresentationStyle, self, "modalPresentationStyle")
@@ -801,6 +809,10 @@ ViewController_tabBarObservedScrollView :: #force_inline proc "c" (self: ^ViewCo
 ViewController_setTabBarObservedScrollView :: #force_inline proc "c" (self: ^ViewController, tabBarObservedScrollView: ^ScrollView) {
     msgSend(nil, self, "setTabBarObservedScrollView:", tabBarObservedScrollView)
 }
+@(objc_type=ViewController, objc_name="tab")
+ViewController_tab :: #force_inline proc "c" (self: ^ViewController) -> ^Tab {
+    return msgSend(^Tab, self, "tab")
+}
 @(objc_type=ViewController, objc_name="clearTextInputContextIdentifier", objc_is_class_method=true)
 ViewController_clearTextInputContextIdentifier :: #force_inline proc "c" (identifier: ^NS.String) {
     msgSend(nil, ViewController, "clearTextInputContextIdentifier:", identifier)
@@ -1006,6 +1018,8 @@ ViewController_VTable :: struct {
     isMovingFromParentViewController: proc(self: ^ViewController) -> bool,
     modalTransitionStyle: proc(self: ^ViewController) -> ModalTransitionStyle,
     setModalTransitionStyle: proc(self: ^ViewController, modalTransitionStyle: ModalTransitionStyle),
+    preferredTransition: proc(self: ^ViewController) -> ^ViewControllerTransition,
+    setPreferredTransition: proc(self: ^ViewController, preferredTransition: ^ViewControllerTransition),
     modalPresentationStyle: proc(self: ^ViewController) -> ModalPresentationStyle,
     setModalPresentationStyle: proc(self: ^ViewController, modalPresentationStyle: ModalPresentationStyle),
     modalPresentationCapturesStatusBarAppearance: proc(self: ^ViewController) -> bool,
@@ -1134,6 +1148,7 @@ ViewController_VTable :: struct {
     tabBarController: proc(self: ^ViewController) -> ^TabBarController,
     tabBarObservedScrollView: proc(self: ^ViewController) -> ^ScrollView,
     setTabBarObservedScrollView: proc(self: ^ViewController, tabBarObservedScrollView: ^ScrollView),
+    tab: proc(self: ^ViewController) -> ^Tab,
     clearTextInputContextIdentifier: proc(identifier: ^NS.String),
     load: proc(),
     initialize: proc(),
@@ -1822,6 +1837,26 @@ ViewController_odin_extend :: proc(cls: Class, vt: ^ViewController_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setModalTransitionStyle:"), auto_cast setModalTransitionStyle, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.preferredTransition != nil {
+        preferredTransition :: proc "c" (self: ^ViewController, _: SEL) -> ^ViewControllerTransition {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).preferredTransition(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredTransition"), auto_cast preferredTransition, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredTransition != nil {
+        setPreferredTransition :: proc "c" (self: ^ViewController, _: SEL, preferredTransition: ^ViewControllerTransition) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ViewController_VTable)vt_ctx.super_vt).setPreferredTransition(self, preferredTransition)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredTransition:"), auto_cast setPreferredTransition, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.modalPresentationStyle != nil {
         modalPresentationStyle :: proc "c" (self: ^ViewController, _: SEL) -> ModalPresentationStyle {
@@ -3102,6 +3137,16 @@ ViewController_odin_extend :: proc(cls: Class, vt: ^ViewController_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTabBarObservedScrollView:"), auto_cast setTabBarObservedScrollView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.tab != nil {
+        tab :: proc "c" (self: ^ViewController, _: SEL) -> ^Tab {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ViewController_VTable)vt_ctx.super_vt).tab(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tab"), auto_cast tab, "@@:") do panic("Failed to register objC method.")
     }
     if vt.clearTextInputContextIdentifier != nil {
         clearTextInputContextIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) {

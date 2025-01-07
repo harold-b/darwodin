@@ -172,6 +172,14 @@ DateComponents_yearForWeekOfYear :: #force_inline proc "c" (self: ^DateComponent
 DateComponents_setYearForWeekOfYear :: #force_inline proc "c" (self: ^DateComponents, yearForWeekOfYear: Integer) {
     msgSend(nil, self, "setYearForWeekOfYear:", yearForWeekOfYear)
 }
+@(objc_type=DateComponents, objc_name="dayOfYear")
+DateComponents_dayOfYear :: #force_inline proc "c" (self: ^DateComponents) -> Integer {
+    return msgSend(Integer, self, "dayOfYear")
+}
+@(objc_type=DateComponents, objc_name="setDayOfYear")
+DateComponents_setDayOfYear :: #force_inline proc "c" (self: ^DateComponents, dayOfYear: Integer) {
+    msgSend(nil, self, "setDayOfYear:", dayOfYear)
+}
 @(objc_type=DateComponents, objc_name="isLeapMonth")
 DateComponents_isLeapMonth :: #force_inline proc "c" (self: ^DateComponents) -> bool {
     return msgSend(bool, self, "isLeapMonth")
@@ -353,6 +361,8 @@ DateComponents_VTable :: struct {
     setWeekOfYear: proc(self: ^DateComponents, weekOfYear: Integer),
     yearForWeekOfYear: proc(self: ^DateComponents) -> Integer,
     setYearForWeekOfYear: proc(self: ^DateComponents, yearForWeekOfYear: Integer),
+    dayOfYear: proc(self: ^DateComponents) -> Integer,
+    setDayOfYear: proc(self: ^DateComponents, dayOfYear: Integer),
     isLeapMonth: proc(self: ^DateComponents) -> bool,
     setLeapMonth: proc(self: ^DateComponents, leapMonth: bool),
     date: proc(self: ^DateComponents) -> ^Date,
@@ -765,6 +775,26 @@ DateComponents_odin_extend :: proc(cls: Class, vt: ^DateComponents_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setYearForWeekOfYear:"), auto_cast setYearForWeekOfYear, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.dayOfYear != nil {
+        dayOfYear :: proc "c" (self: ^DateComponents, _: SEL) -> Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DateComponents_VTable)vt_ctx.super_vt).dayOfYear(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dayOfYear"), auto_cast dayOfYear, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDayOfYear != nil {
+        setDayOfYear :: proc "c" (self: ^DateComponents, _: SEL, dayOfYear: Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^DateComponents_VTable)vt_ctx.super_vt).setDayOfYear(self, dayOfYear)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDayOfYear:"), auto_cast setDayOfYear, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isLeapMonth != nil {
         isLeapMonth :: proc "c" (self: ^DateComponents, _: SEL) -> bool {

@@ -9,6 +9,7 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
+import MDL "../ModelIO"
 import AK "../AppKit"
 
 
@@ -60,7 +61,7 @@ TextureLoader_newTextureWithCGImage_options_completionHandler :: #force_inline p
     msgSend(nil, self, "newTextureWithCGImage:options:completionHandler:", cgImage, options, completionHandler)
 }
 @(objc_type=TextureLoader, objc_name="newTextureWithMDLTexture_options_completionHandler")
-TextureLoader_newTextureWithMDLTexture_options_completionHandler :: #force_inline proc "c" (self: ^TextureLoader, texture: ^MDLTexture, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) {
+TextureLoader_newTextureWithMDLTexture_options_completionHandler :: #force_inline proc "c" (self: ^TextureLoader, texture: ^MDL.Texture, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) {
     msgSend(nil, self, "newTextureWithMDLTexture:options:completionHandler:", texture, options, completionHandler)
 }
 @(objc_type=TextureLoader, objc_name="newTextureWithContentsOfURL_options_error")
@@ -80,7 +81,7 @@ TextureLoader_newTextureWithCGImage_options_error :: #force_inline proc "c" (sel
     return msgSend(^MTL.Texture, self, "newTextureWithCGImage:options:error:", cgImage, options, error)
 }
 @(objc_type=TextureLoader, objc_name="newTextureWithMDLTexture_options_error")
-TextureLoader_newTextureWithMDLTexture_options_error :: #force_inline proc "c" (self: ^TextureLoader, texture: ^MDLTexture, options: ^NS.Dictionary, error: ^^NS.Error) -> ^MTL.Texture {
+TextureLoader_newTextureWithMDLTexture_options_error :: #force_inline proc "c" (self: ^TextureLoader, texture: ^MDL.Texture, options: ^NS.Dictionary, error: ^^NS.Error) -> ^MTL.Texture {
     return msgSend(^MTL.Texture, self, "newTextureWithMDLTexture:options:error:", texture, options, error)
 }
 @(objc_type=TextureLoader, objc_name="newTextureWithName_scaleFactor_bundle_options_error")

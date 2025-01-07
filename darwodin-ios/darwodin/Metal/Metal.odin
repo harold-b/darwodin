@@ -10,8 +10,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import UI "../UIKit"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
@@ -52,6 +50,7 @@ foreign lib {
     @(link_name="MTLCommandBufferEncoderInfoErrorKey") CommandBufferEncoderInfoErrorKey: ^NS.String
     @(link_name="MTLCaptureErrorDomain") CaptureErrorDomain: ^NS.String
     @(link_name="MTLDynamicLibraryDomain") DynamicLibraryDomain: ^NS.String
+    @(link_name="MTLLogStateErrorDomain") LogStateErrorDomain: ^NS.String
     @(link_name="MTLBinaryArchiveDomain") BinaryArchiveDomain: ^NS.String
     @(link_name="MTLIOErrorDomain") IOErrorDomain: ^NS.String
 }
@@ -522,7 +521,9 @@ BindingAccess :: enum cffi.ulong {
 /// MTLFunctionOptions
 FunctionOption :: enum cffi.ulong {
     CompileToBinary = 0,
+    StoreFunctionInMetalPipelinesScript = 1,
     StoreFunctionInMetalScript = 1,
+    FailOnBinaryArchiveMiss = 2,
 }
 FunctionOptions :: bit_set[FunctionOption; cffi.ulong]
 
@@ -556,6 +557,7 @@ LanguageVersion :: enum cffi.ulong {
     _2_4 = 131076,
     _3_0 = 196608,
     _3_1 = 196609,
+    _3_2 = 196610,
 }
 
 /// MTLLibraryType
@@ -574,6 +576,19 @@ LibraryOptimizationLevel :: enum cffi.long {
 CompileSymbolVisibility :: enum cffi.long {
     Default = 0,
     Hidden = 1,
+}
+
+/// MTLMathMode
+MathMode :: enum cffi.long {
+    Safe = 0,
+    Relaxed = 1,
+    Fast = 2,
+}
+
+/// MTLMathFloatingPointFunctions
+MathFloatingPointFunctions :: enum cffi.long {
+    Fast = 0,
+    Precise = 1,
 }
 
 /// MTLLibraryError
@@ -661,6 +676,7 @@ GPUFamily :: enum cffi.long {
 /// MTLPipelineOption
 PipelineOption :: enum cffi.ulong {
     ArgumentInfo = 0,
+    BindingInfo = 0,
     BufferTypeInfo = 1,
     FailOnBinaryArchiveMiss = 2,
 }
@@ -973,6 +989,13 @@ Mutability :: enum cffi.ulong {
     Immutable = 2,
 }
 
+/// MTLShaderValidation
+ShaderValidation :: enum cffi.long {
+    Default = 0,
+    Enabled = 1,
+    Disabled = 2,
+}
+
 /// MTLPrimitiveType
 PrimitiveType :: enum cffi.ulong {
     Point = 0,
@@ -1150,6 +1173,12 @@ AccelerationStructureInstanceOption :: enum cffi.uint {
 }
 AccelerationStructureInstanceOptions :: bit_set[AccelerationStructureInstanceOption; cffi.uint]
 
+/// MTLMatrixLayout
+MatrixLayout :: enum cffi.long {
+    ColumnMajor = 0,
+    RowMajor = 1,
+}
+
 /// MTLMotionBorderMode
 MotionBorderMode :: enum cffi.uint {
     Clamp = 0,
@@ -1184,6 +1213,12 @@ AccelerationStructureInstanceDescriptorType :: enum cffi.ulong {
     Motion = 2,
     Indirect = 3,
     IndirectMotion = 4,
+}
+
+/// MTLTransformType
+TransformType :: enum cffi.long {
+    PackedFloat4x3 = 0,
+    Component = 1,
 }
 
 /// MTLHeapType
@@ -1240,6 +1275,22 @@ DynamicLibraryError :: enum cffi.ulong {
     Unsupported = 5,
 }
 
+/// MTLLogLevel
+LogLevel :: enum cffi.long {
+    Undefined = 0,
+    Debug = 1,
+    Info = 2,
+    Notice = 3,
+    Error = 4,
+    Fault = 5,
+}
+
+/// MTLLogStateError
+LogStateError :: enum cffi.ulong {
+    InvalidSize = 1,
+    Invalid = 2,
+}
+
 /// MTLBinaryArchiveError
 BinaryArchiveError :: enum cffi.ulong {
     None = 0,
@@ -1261,6 +1312,13 @@ IntersectionFunctionSignature :: enum cffi.ulong {
     MaxLevels = 64,
     CurveData = 128,
 }
+
+/// MTLStitchedLibraryOptions
+StitchedLibraryOption :: enum cffi.ulong {
+    FailOnBinaryArchiveMiss = 0,
+    StoreLibraryInMetalPipelinesScript = 1,
+}
+StitchedLibraryOptions :: bit_set[StitchedLibraryOption; cffi.ulong]
 
 /// MTLIOPriority
 IOPriority :: enum cffi.long {
@@ -1297,161 +1355,311 @@ IOCompressionStatus :: enum cffi.long {
 
 /// MTLOrigin
 Origin :: struct #align (8) {
+    x: NS.UInteger,
+    y: NS.UInteger,
+    z: NS.UInteger,
 }
 #assert(size_of(Origin) == 24)
 
 /// MTLSize
 Size :: struct #align (8) {
+    width: NS.UInteger,
+    height: NS.UInteger,
+    depth: NS.UInteger,
 }
 #assert(size_of(Size) == 24)
 
 /// MTLRegion
 Region :: struct #align (8) {
+    origin: Origin,
+    size: Size,
 }
 #assert(size_of(Region) == 48)
 
 /// MTLSamplePosition
 SamplePosition :: struct #align (4) {
+    x: cffi.float,
+    y: cffi.float,
 }
 #assert(size_of(SamplePosition) == 8)
 
 /// MTLResourceID
 ResourceID :: struct #align (8) {
+    _impl: cffi.uint64_t,
 }
 #assert(size_of(ResourceID) == 8)
 
 /// MTLTextureSwizzleChannels
-TextureSwizzleChannels :: struct  {
+TextureSwizzleChannels :: struct #align (1) {
+    red: TextureSwizzle,
+    green: TextureSwizzle,
+    blue: TextureSwizzle,
+    alpha: TextureSwizzle,
 }
 #assert(size_of(TextureSwizzleChannels) == 4)
 
 /// MTLCounterResultTimestamp
 CounterResultTimestamp :: struct #align (8) {
+    timestamp: cffi.uint64_t,
 }
 #assert(size_of(CounterResultTimestamp) == 8)
 
 /// MTLCounterResultStageUtilization
 CounterResultStageUtilization :: struct #align (8) {
+    totalCycles: cffi.uint64_t,
+    vertexCycles: cffi.uint64_t,
+    tessellationCycles: cffi.uint64_t,
+    postTessellationVertexCycles: cffi.uint64_t,
+    fragmentCycles: cffi.uint64_t,
+    renderTargetCycles: cffi.uint64_t,
 }
 #assert(size_of(CounterResultStageUtilization) == 48)
 
 /// MTLCounterResultStatistic
 CounterResultStatistic :: struct #align (8) {
+    tessellationInputPatches: cffi.uint64_t,
+    vertexInvocations: cffi.uint64_t,
+    postTessellationVertexInvocations: cffi.uint64_t,
+    clipperInvocations: cffi.uint64_t,
+    clipperPrimitivesOut: cffi.uint64_t,
+    fragmentInvocations: cffi.uint64_t,
+    fragmentsPassed: cffi.uint64_t,
+    computeKernelInvocations: cffi.uint64_t,
 }
 #assert(size_of(CounterResultStatistic) == 64)
 
 /// MTLAccelerationStructureSizes
 AccelerationStructureSizes :: struct #align (8) {
+    accelerationStructureSize: NS.UInteger,
+    buildScratchBufferSize: NS.UInteger,
+    refitScratchBufferSize: NS.UInteger,
 }
 #assert(size_of(AccelerationStructureSizes) == 24)
 
 /// MTLSizeAndAlign
 SizeAndAlign :: struct #align (8) {
+    size: NS.UInteger,
+    align: NS.UInteger,
 }
 #assert(size_of(SizeAndAlign) == 16)
 
 /// MTLMapIndirectArguments
 MapIndirectArguments :: struct #align (4) {
+    regionOriginX: cffi.uint32_t,
+    regionOriginY: cffi.uint32_t,
+    regionOriginZ: cffi.uint32_t,
+    regionSizeWidth: cffi.uint32_t,
+    regionSizeHeight: cffi.uint32_t,
+    regionSizeDepth: cffi.uint32_t,
+    mipMapLevel: cffi.uint32_t,
+    sliceId: cffi.uint32_t,
 }
 #assert(size_of(MapIndirectArguments) == 32)
 
 /// MTLClearColor
 ClearColor :: struct #align (8) {
+    red: cffi.double,
+    green: cffi.double,
+    blue: cffi.double,
+    alpha: cffi.double,
 }
 #assert(size_of(ClearColor) == 32)
 
 /// MTLDispatchThreadgroupsIndirectArguments
 DispatchThreadgroupsIndirectArguments :: struct #align (4) {
+    threadgroupsPerGrid: [3]cffi.uint32_t,
 }
 #assert(size_of(DispatchThreadgroupsIndirectArguments) == 12)
 
 /// MTLStageInRegionIndirectArguments
 StageInRegionIndirectArguments :: struct #align (4) {
+    stageInOrigin: [3]cffi.uint32_t,
+    stageInSize: [3]cffi.uint32_t,
 }
 #assert(size_of(StageInRegionIndirectArguments) == 24)
 
 /// MTLScissorRect
 ScissorRect :: struct #align (8) {
+    x: NS.UInteger,
+    y: NS.UInteger,
+    width: NS.UInteger,
+    height: NS.UInteger,
 }
 #assert(size_of(ScissorRect) == 32)
 
 /// MTLViewport
 Viewport :: struct #align (8) {
+    originX: cffi.double,
+    originY: cffi.double,
+    width: cffi.double,
+    height: cffi.double,
+    znear: cffi.double,
+    zfar: cffi.double,
 }
 #assert(size_of(Viewport) == 48)
 
 /// MTLDrawPrimitivesIndirectArguments
 DrawPrimitivesIndirectArguments :: struct #align (4) {
+    vertexCount: cffi.uint32_t,
+    instanceCount: cffi.uint32_t,
+    vertexStart: cffi.uint32_t,
+    baseInstance: cffi.uint32_t,
 }
 #assert(size_of(DrawPrimitivesIndirectArguments) == 16)
 
 /// MTLDrawIndexedPrimitivesIndirectArguments
 DrawIndexedPrimitivesIndirectArguments :: struct #align (4) {
+    indexCount: cffi.uint32_t,
+    instanceCount: cffi.uint32_t,
+    indexStart: cffi.uint32_t,
+    baseVertex: cffi.int32_t,
+    baseInstance: cffi.uint32_t,
 }
 #assert(size_of(DrawIndexedPrimitivesIndirectArguments) == 20)
 
 /// MTLVertexAmplificationViewMapping
 VertexAmplificationViewMapping :: struct #align (4) {
+    viewportArrayIndexOffset: cffi.uint32_t,
+    renderTargetArrayIndexOffset: cffi.uint32_t,
 }
 #assert(size_of(VertexAmplificationViewMapping) == 8)
 
 /// MTLDrawPatchIndirectArguments
 DrawPatchIndirectArguments :: struct #align (4) {
+    patchCount: cffi.uint32_t,
+    instanceCount: cffi.uint32_t,
+    patchStart: cffi.uint32_t,
+    baseInstance: cffi.uint32_t,
 }
 #assert(size_of(DrawPatchIndirectArguments) == 16)
 
 /// MTLQuadTessellationFactorsHalf
 QuadTessellationFactorsHalf :: struct #align (2) {
+    edgeTessellationFactor: [4]cffi.uint16_t,
+    insideTessellationFactor: [2]cffi.uint16_t,
 }
 #assert(size_of(QuadTessellationFactorsHalf) == 12)
 
 /// MTLTriangleTessellationFactorsHalf
 TriangleTessellationFactorsHalf :: struct #align (2) {
+    edgeTessellationFactor: [3]cffi.uint16_t,
+    insideTessellationFactor: cffi.uint16_t,
 }
 #assert(size_of(TriangleTessellationFactorsHalf) == 8)
 
 /// _MTLPackedFloat3
 _MTLPackedFloat3 :: struct #align (4) {
+    using _ : struct #raw_union  {
+        using _ : struct  {
+            x: cffi.float,
+            y: cffi.float,
+            z: cffi.float,
+        },
+        elements: [3]cffi.float,
+    },
 }
 #assert(size_of(_MTLPackedFloat3) == 12)
 
+/// MTLPackedFloatQuaternion
+PackedFloatQuaternion :: struct #align (4) {
+    x: cffi.float,
+    y: cffi.float,
+    z: cffi.float,
+    w: cffi.float,
+}
+#assert(size_of(PackedFloatQuaternion) == 16)
+
 /// _MTLPackedFloat4x3
 _MTLPackedFloat4x3 :: struct #align (4) {
+    columns: [4]_MTLPackedFloat3,
 }
 #assert(size_of(_MTLPackedFloat4x3) == 48)
 
 /// _MTLAxisAlignedBoundingBox
 _MTLAxisAlignedBoundingBox :: struct #align (4) {
+    min: _MTLPackedFloat3,
+    max: _MTLPackedFloat3,
 }
 #assert(size_of(_MTLAxisAlignedBoundingBox) == 24)
 
+/// MTLComponentTransform
+ComponentTransform :: struct #align (4) {
+    scale: _MTLPackedFloat3,
+    shear: _MTLPackedFloat3,
+    pivot: _MTLPackedFloat3,
+    rotation: PackedFloatQuaternion,
+    translation: _MTLPackedFloat3,
+}
+#assert(size_of(ComponentTransform) == 64)
+
 /// MTLAccelerationStructureInstanceDescriptor
 AccelerationStructureInstanceDescriptor :: struct #align (4) {
+    transformationMatrix: _MTLPackedFloat4x3,
+    options: AccelerationStructureInstanceOptions,
+    mask: cffi.uint32_t,
+    intersectionFunctionTableOffset: cffi.uint32_t,
+    accelerationStructureIndex: cffi.uint32_t,
 }
 #assert(size_of(AccelerationStructureInstanceDescriptor) == 64)
 
 /// MTLAccelerationStructureUserIDInstanceDescriptor
 AccelerationStructureUserIDInstanceDescriptor :: struct #align (4) {
+    transformationMatrix: _MTLPackedFloat4x3,
+    options: AccelerationStructureInstanceOptions,
+    mask: cffi.uint32_t,
+    intersectionFunctionTableOffset: cffi.uint32_t,
+    accelerationStructureIndex: cffi.uint32_t,
+    userID: cffi.uint32_t,
 }
 #assert(size_of(AccelerationStructureUserIDInstanceDescriptor) == 68)
 
 /// MTLAccelerationStructureMotionInstanceDescriptor
 AccelerationStructureMotionInstanceDescriptor :: struct #align (4) {
+    options: AccelerationStructureInstanceOptions,
+    mask: cffi.uint32_t,
+    intersectionFunctionTableOffset: cffi.uint32_t,
+    accelerationStructureIndex: cffi.uint32_t,
+    userID: cffi.uint32_t,
+    motionTransformsStartIndex: cffi.uint32_t,
+    motionTransformsCount: cffi.uint32_t,
+    motionStartBorderMode: MotionBorderMode,
+    motionEndBorderMode: MotionBorderMode,
+    motionStartTime: cffi.float,
+    motionEndTime: cffi.float,
 }
 #assert(size_of(AccelerationStructureMotionInstanceDescriptor) == 44)
 
 /// MTLIndirectAccelerationStructureInstanceDescriptor
 IndirectAccelerationStructureInstanceDescriptor :: struct #align (8) {
+    transformationMatrix: _MTLPackedFloat4x3,
+    options: AccelerationStructureInstanceOptions,
+    mask: cffi.uint32_t,
+    intersectionFunctionTableOffset: cffi.uint32_t,
+    userID: cffi.uint32_t,
+    accelerationStructureID: ResourceID,
 }
 #assert(size_of(IndirectAccelerationStructureInstanceDescriptor) == 72)
 
 /// MTLIndirectAccelerationStructureMotionInstanceDescriptor
 IndirectAccelerationStructureMotionInstanceDescriptor :: struct #align (8) {
+    options: AccelerationStructureInstanceOptions,
+    mask: cffi.uint32_t,
+    intersectionFunctionTableOffset: cffi.uint32_t,
+    userID: cffi.uint32_t,
+    accelerationStructureID: ResourceID,
+    motionTransformsStartIndex: cffi.uint32_t,
+    motionTransformsCount: cffi.uint32_t,
+    motionStartBorderMode: MotionBorderMode,
+    motionEndBorderMode: MotionBorderMode,
+    motionStartTime: cffi.float,
+    motionEndTime: cffi.float,
 }
 #assert(size_of(IndirectAccelerationStructureMotionInstanceDescriptor) == 48)
 
 /// MTLIndirectCommandBufferExecutionRange
 IndirectCommandBufferExecutionRange :: struct #align (4) {
+    location: cffi.uint32_t,
+    length: cffi.uint32_t,
 }
 #assert(size_of(IndirectCommandBufferExecutionRange) == 8)
 

@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -93,6 +94,14 @@ MenuItem_attributedTitle :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.Attr
 @(objc_type=MenuItem, objc_name="setAttributedTitle")
 MenuItem_setAttributedTitle :: #force_inline proc "c" (self: ^MenuItem, attributedTitle: ^NS.AttributedString) {
     msgSend(nil, self, "setAttributedTitle:", attributedTitle)
+}
+@(objc_type=MenuItem, objc_name="subtitle")
+MenuItem_subtitle :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.String {
+    return msgSend(^NS.String, self, "subtitle")
+}
+@(objc_type=MenuItem, objc_name="setSubtitle")
+MenuItem_setSubtitle :: #force_inline proc "c" (self: ^MenuItem, subtitle: ^NS.String) {
+    msgSend(nil, self, "setSubtitle:", subtitle)
 }
 @(objc_type=MenuItem, objc_name="isSeparatorItem")
 MenuItem_isSeparatorItem :: #force_inline proc "c" (self: ^MenuItem) -> bool {
@@ -458,6 +467,8 @@ MenuItem_VTable :: struct {
     setTitle: proc(self: ^MenuItem, title: ^NS.String),
     attributedTitle: proc(self: ^MenuItem) -> ^NS.AttributedString,
     setAttributedTitle: proc(self: ^MenuItem, attributedTitle: ^NS.AttributedString),
+    subtitle: proc(self: ^MenuItem) -> ^NS.String,
+    setSubtitle: proc(self: ^MenuItem, subtitle: ^NS.String),
     isSeparatorItem: proc(self: ^MenuItem) -> bool,
     isSectionHeader: proc(self: ^MenuItem) -> bool,
     keyEquivalent: proc(self: ^MenuItem) -> ^NS.String,
@@ -711,6 +722,26 @@ MenuItem_odin_extend :: proc(cls: Class, vt: ^MenuItem_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedTitle:"), auto_cast setAttributedTitle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.subtitle != nil {
+        subtitle :: proc "c" (self: ^MenuItem, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^MenuItem_VTable)vt_ctx.super_vt).subtitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subtitle"), auto_cast subtitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSubtitle != nil {
+        setSubtitle :: proc "c" (self: ^MenuItem, _: SEL, subtitle: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^MenuItem_VTable)vt_ctx.super_vt).setSubtitle(self, subtitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSubtitle:"), auto_cast setSubtitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isSeparatorItem != nil {
         isSeparatorItem :: proc "c" (self: ^MenuItem, _: SEL) -> bool {

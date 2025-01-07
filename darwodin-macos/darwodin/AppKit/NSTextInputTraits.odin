@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -105,6 +106,38 @@ TextInputTraits_inlinePredictionType :: #force_inline proc "c" (self: ^TextInput
 TextInputTraits_setInlinePredictionType :: #force_inline proc "c" (self: ^TextInputTraits, inlinePredictionType: TextInputTraitType) {
     msgSend(nil, self, "setInlinePredictionType:", inlinePredictionType)
 }
+@(objc_type=TextInputTraits, objc_name="mathExpressionCompletionType")
+TextInputTraits_mathExpressionCompletionType :: #force_inline proc "c" (self: ^TextInputTraits) -> TextInputTraitType {
+    return msgSend(TextInputTraitType, self, "mathExpressionCompletionType")
+}
+@(objc_type=TextInputTraits, objc_name="setMathExpressionCompletionType")
+TextInputTraits_setMathExpressionCompletionType :: #force_inline proc "c" (self: ^TextInputTraits, mathExpressionCompletionType: TextInputTraitType) {
+    msgSend(nil, self, "setMathExpressionCompletionType:", mathExpressionCompletionType)
+}
+@(objc_type=TextInputTraits, objc_name="writingToolsBehavior")
+TextInputTraits_writingToolsBehavior :: #force_inline proc "c" (self: ^TextInputTraits) -> WritingToolsBehavior {
+    return msgSend(WritingToolsBehavior, self, "writingToolsBehavior")
+}
+@(objc_type=TextInputTraits, objc_name="setWritingToolsBehavior")
+TextInputTraits_setWritingToolsBehavior :: #force_inline proc "c" (self: ^TextInputTraits, writingToolsBehavior: WritingToolsBehavior) {
+    msgSend(nil, self, "setWritingToolsBehavior:", writingToolsBehavior)
+}
+@(objc_type=TextInputTraits, objc_name="allowedWritingToolsResultOptions")
+TextInputTraits_allowedWritingToolsResultOptions :: #force_inline proc "c" (self: ^TextInputTraits) -> WritingToolsResultOptions {
+    return msgSend(WritingToolsResultOptions, self, "allowedWritingToolsResultOptions")
+}
+@(objc_type=TextInputTraits, objc_name="setAllowedWritingToolsResultOptions")
+TextInputTraits_setAllowedWritingToolsResultOptions :: #force_inline proc "c" (self: ^TextInputTraits, allowedWritingToolsResultOptions: WritingToolsResultOptions) {
+    msgSend(nil, self, "setAllowedWritingToolsResultOptions:", allowedWritingToolsResultOptions)
+}
+@(objc_type=TextInputTraits, objc_name="writingToolsAllowedInputOptions")
+TextInputTraits_writingToolsAllowedInputOptions :: #force_inline proc "c" (self: ^TextInputTraits) -> WritingToolsAllowedInputOptions {
+    return msgSend(WritingToolsAllowedInputOptions, self, "writingToolsAllowedInputOptions")
+}
+@(objc_type=TextInputTraits, objc_name="setWritingToolsAllowedInputOptions")
+TextInputTraits_setWritingToolsAllowedInputOptions :: #force_inline proc "c" (self: ^TextInputTraits, writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions) {
+    msgSend(nil, self, "setWritingToolsAllowedInputOptions:", writingToolsAllowedInputOptions)
+}
 TextInputTraits_VTable :: struct {
     autocorrectionType: proc(self: ^TextInputTraits) -> TextInputTraitType,
     setAutocorrectionType: proc(self: ^TextInputTraits, autocorrectionType: TextInputTraitType),
@@ -128,6 +161,14 @@ TextInputTraits_VTable :: struct {
     setTextCompletionType: proc(self: ^TextInputTraits, textCompletionType: TextInputTraitType),
     inlinePredictionType: proc(self: ^TextInputTraits) -> TextInputTraitType,
     setInlinePredictionType: proc(self: ^TextInputTraits, inlinePredictionType: TextInputTraitType),
+    mathExpressionCompletionType: proc(self: ^TextInputTraits) -> TextInputTraitType,
+    setMathExpressionCompletionType: proc(self: ^TextInputTraits, mathExpressionCompletionType: TextInputTraitType),
+    writingToolsBehavior: proc(self: ^TextInputTraits) -> WritingToolsBehavior,
+    setWritingToolsBehavior: proc(self: ^TextInputTraits, writingToolsBehavior: WritingToolsBehavior),
+    allowedWritingToolsResultOptions: proc(self: ^TextInputTraits) -> WritingToolsResultOptions,
+    setAllowedWritingToolsResultOptions: proc(self: ^TextInputTraits, allowedWritingToolsResultOptions: WritingToolsResultOptions),
+    writingToolsAllowedInputOptions: proc(self: ^TextInputTraits) -> WritingToolsAllowedInputOptions,
+    setWritingToolsAllowedInputOptions: proc(self: ^TextInputTraits, writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions),
 }
 
 TextInputTraits_odin_extend :: proc(cls: Class, vt: ^TextInputTraits_VTable) {
@@ -353,6 +394,86 @@ TextInputTraits_odin_extend :: proc(cls: Class, vt: ^TextInputTraits_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInlinePredictionType:"), auto_cast setInlinePredictionType, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.mathExpressionCompletionType != nil {
+        mathExpressionCompletionType :: proc "c" (self: ^TextInputTraits, _: SEL) -> TextInputTraitType {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInputTraits_VTable)vt_ctx.protocol_vt).mathExpressionCompletionType(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mathExpressionCompletionType"), auto_cast mathExpressionCompletionType, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMathExpressionCompletionType != nil {
+        setMathExpressionCompletionType :: proc "c" (self: ^TextInputTraits, _: SEL, mathExpressionCompletionType: TextInputTraitType) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInputTraits_VTable)vt_ctx.protocol_vt).setMathExpressionCompletionType(self, mathExpressionCompletionType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMathExpressionCompletionType:"), auto_cast setMathExpressionCompletionType, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.writingToolsBehavior != nil {
+        writingToolsBehavior :: proc "c" (self: ^TextInputTraits, _: SEL) -> WritingToolsBehavior {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInputTraits_VTable)vt_ctx.protocol_vt).writingToolsBehavior(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsBehavior"), auto_cast writingToolsBehavior, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWritingToolsBehavior != nil {
+        setWritingToolsBehavior :: proc "c" (self: ^TextInputTraits, _: SEL, writingToolsBehavior: WritingToolsBehavior) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInputTraits_VTable)vt_ctx.protocol_vt).setWritingToolsBehavior(self, writingToolsBehavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWritingToolsBehavior:"), auto_cast setWritingToolsBehavior, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.allowedWritingToolsResultOptions != nil {
+        allowedWritingToolsResultOptions :: proc "c" (self: ^TextInputTraits, _: SEL) -> WritingToolsResultOptions {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInputTraits_VTable)vt_ctx.protocol_vt).allowedWritingToolsResultOptions(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedWritingToolsResultOptions"), auto_cast allowedWritingToolsResultOptions, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowedWritingToolsResultOptions != nil {
+        setAllowedWritingToolsResultOptions :: proc "c" (self: ^TextInputTraits, _: SEL, allowedWritingToolsResultOptions: WritingToolsResultOptions) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInputTraits_VTable)vt_ctx.protocol_vt).setAllowedWritingToolsResultOptions(self, allowedWritingToolsResultOptions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedWritingToolsResultOptions:"), auto_cast setAllowedWritingToolsResultOptions, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.writingToolsAllowedInputOptions != nil {
+        writingToolsAllowedInputOptions :: proc "c" (self: ^TextInputTraits, _: SEL) -> WritingToolsAllowedInputOptions {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^TextInputTraits_VTable)vt_ctx.protocol_vt).writingToolsAllowedInputOptions(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsAllowedInputOptions"), auto_cast writingToolsAllowedInputOptions, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWritingToolsAllowedInputOptions != nil {
+        setWritingToolsAllowedInputOptions :: proc "c" (self: ^TextInputTraits, _: SEL, writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^TextInputTraits_VTable)vt_ctx.protocol_vt).setWritingToolsAllowedInputOptions(self, writingToolsAllowedInputOptions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWritingToolsAllowedInputOptions:"), auto_cast setWritingToolsAllowedInputOptions, "v@:L") do panic("Failed to register objC method.")
     }
 }
 

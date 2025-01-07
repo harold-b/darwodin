@@ -12,8 +12,6 @@ import MTL "../Metal"
 import MDL "../ModelIO"
 import AK "../AppKit"
 
-@private va_list :: rawptr
-
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send

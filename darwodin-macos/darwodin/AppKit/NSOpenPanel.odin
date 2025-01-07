@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -86,6 +87,14 @@ OpenPanel_isAccessoryViewDisclosed :: #force_inline proc "c" (self: ^OpenPanel) 
 @(objc_type=OpenPanel, objc_name="setAccessoryViewDisclosed")
 OpenPanel_setAccessoryViewDisclosed :: #force_inline proc "c" (self: ^OpenPanel, accessoryViewDisclosed: bool) {
     msgSend(nil, self, "setAccessoryViewDisclosed:", accessoryViewDisclosed)
+}
+@(objc_type=OpenPanel, objc_name="showsContentTypes")
+OpenPanel_showsContentTypes :: #force_inline proc "c" (self: ^OpenPanel) -> bool {
+    return msgSend(bool, self, "showsContentTypes")
+}
+@(objc_type=OpenPanel, objc_name="setShowsContentTypes")
+OpenPanel_setShowsContentTypes :: #force_inline proc "c" (self: ^OpenPanel, showsContentTypes: bool) {
+    msgSend(nil, self, "setShowsContentTypes:", showsContentTypes)
 }
 @(objc_type=OpenPanel, objc_name="filenames")
 OpenPanel_filenames :: #force_inline proc "c" (self: ^OpenPanel) -> ^NS.Array {
@@ -335,6 +344,8 @@ OpenPanel_VTable :: struct {
     setCanDownloadUbiquitousContents: proc(self: ^OpenPanel, canDownloadUbiquitousContents: bool),
     isAccessoryViewDisclosed: proc(self: ^OpenPanel) -> bool,
     setAccessoryViewDisclosed: proc(self: ^OpenPanel, accessoryViewDisclosed: bool),
+    showsContentTypes: proc(self: ^OpenPanel) -> bool,
+    setShowsContentTypes: proc(self: ^OpenPanel, showsContentTypes: bool),
     filenames: proc(self: ^OpenPanel) -> ^NS.Array,
     beginSheetForDirectory: proc(self: ^OpenPanel, path: ^NS.String, name: ^NS.String, fileTypes: ^NS.Array, docWindow: ^Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr),
     beginForDirectory: proc(self: ^OpenPanel, path: ^NS.String, name: ^NS.String, fileTypes: ^NS.Array, delegate: id, didEndSelector: SEL, contextInfo: rawptr),
@@ -559,6 +570,26 @@ OpenPanel_odin_extend :: proc(cls: Class, vt: ^OpenPanel_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessoryViewDisclosed:"), auto_cast setAccessoryViewDisclosed, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.showsContentTypes != nil {
+        showsContentTypes :: proc "c" (self: ^OpenPanel, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenPanel_VTable)vt_ctx.super_vt).showsContentTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showsContentTypes"), auto_cast showsContentTypes, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setShowsContentTypes != nil {
+        setShowsContentTypes :: proc "c" (self: ^OpenPanel, _: SEL, showsContentTypes: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenPanel_VTable)vt_ctx.super_vt).setShowsContentTypes(self, showsContentTypes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsContentTypes:"), auto_cast setShowsContentTypes, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.filenames != nil {
         filenames :: proc "c" (self: ^OpenPanel, _: SEL) -> ^NS.Array {

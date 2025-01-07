@@ -17,7 +17,7 @@ import UI "../UIKit"
 ///
 @(objc_class="MTLResource")
 Resource :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+    using _: Allocation,
 }
 
 @(objc_type=Resource, objc_name="setPurgeableState")

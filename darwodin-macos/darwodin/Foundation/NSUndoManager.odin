@@ -77,6 +77,18 @@ UndoManager_setActionIsDiscardable :: #force_inline proc "c" (self: ^UndoManager
 UndoManager_setActionName :: #force_inline proc "c" (self: ^UndoManager, actionName: ^String) {
     msgSend(nil, self, "setActionName:", actionName)
 }
+@(objc_type=UndoManager, objc_name="undoActionUserInfoValueForKey")
+UndoManager_undoActionUserInfoValueForKey :: #force_inline proc "c" (self: ^UndoManager, key: ^String) -> id {
+    return msgSend(id, self, "undoActionUserInfoValueForKey:", key)
+}
+@(objc_type=UndoManager, objc_name="redoActionUserInfoValueForKey")
+UndoManager_redoActionUserInfoValueForKey :: #force_inline proc "c" (self: ^UndoManager, key: ^String) -> id {
+    return msgSend(id, self, "redoActionUserInfoValueForKey:", key)
+}
+@(objc_type=UndoManager, objc_name="setActionUserInfoValue")
+UndoManager_setActionUserInfoValue :: #force_inline proc "c" (self: ^UndoManager, info: id, key: ^String) {
+    msgSend(nil, self, "setActionUserInfoValue:forKey:", info, key)
+}
 @(objc_type=UndoManager, objc_name="undoMenuTitleForUndoActionName")
 UndoManager_undoMenuTitleForUndoActionName :: #force_inline proc "c" (self: ^UndoManager, actionName: ^String) -> ^String {
     return msgSend(^String, self, "undoMenuTitleForUndoActionName:", actionName)
@@ -317,6 +329,9 @@ UndoManager_VTable :: struct {
     registerUndoWithTarget_handler: proc(self: ^UndoManager, target: id, undoHandler: proc "c" (target: id)),
     setActionIsDiscardable: proc(self: ^UndoManager, discardable: bool),
     setActionName: proc(self: ^UndoManager, actionName: ^String),
+    undoActionUserInfoValueForKey: proc(self: ^UndoManager, key: ^String) -> id,
+    redoActionUserInfoValueForKey: proc(self: ^UndoManager, key: ^String) -> id,
+    setActionUserInfoValue: proc(self: ^UndoManager, info: id, key: ^String),
     undoMenuTitleForUndoActionName: proc(self: ^UndoManager, actionName: ^String) -> ^String,
     redoMenuTitleForUndoActionName: proc(self: ^UndoManager, actionName: ^String) -> ^String,
     groupingLevel: proc(self: ^UndoManager) -> Integer,
@@ -518,6 +533,36 @@ UndoManager_odin_extend :: proc(cls: Class, vt: ^UndoManager_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setActionName:"), auto_cast setActionName, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.undoActionUserInfoValueForKey != nil {
+        undoActionUserInfoValueForKey :: proc "c" (self: ^UndoManager, _: SEL, key: ^String) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^UndoManager_VTable)vt_ctx.super_vt).undoActionUserInfoValueForKey(self, key)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("undoActionUserInfoValueForKey:"), auto_cast undoActionUserInfoValueForKey, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.redoActionUserInfoValueForKey != nil {
+        redoActionUserInfoValueForKey :: proc "c" (self: ^UndoManager, _: SEL, key: ^String) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^UndoManager_VTable)vt_ctx.super_vt).redoActionUserInfoValueForKey(self, key)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("redoActionUserInfoValueForKey:"), auto_cast redoActionUserInfoValueForKey, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.setActionUserInfoValue != nil {
+        setActionUserInfoValue :: proc "c" (self: ^UndoManager, _: SEL, info: id, key: ^String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^UndoManager_VTable)vt_ctx.super_vt).setActionUserInfoValue(self, info, key)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setActionUserInfoValue:forKey:"), auto_cast setActionUserInfoValue, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.undoMenuTitleForUndoActionName != nil {
         undoMenuTitleForUndoActionName :: proc "c" (self: ^UndoManager, _: SEL, actionName: ^String) -> ^String {

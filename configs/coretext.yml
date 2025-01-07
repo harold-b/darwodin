@@ -1,0 +1,103 @@
+---
+
+Defs: ../definitions/macos/coretext.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*CT.+
+    - ^ATSFontRef
+
+  ExportMethods:
+    - ^::CT.+
+
+  ExportVars:
+    - ^::k?CT.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : CoreText
+      Export: CT
+      DarwinLinkLibs: [system:CoreText.framework]
+      Filter: .*
+
+      # Imports:
+      #   - |
+
+      # TypeMap:
+        
+
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: .*
+    Transforms:
+    - Kind  : RemoveTypeWordsFromElements
+    - Kind  : RemovePartialTypeNamePrefix
+    - Kind  : RemoveUnderscorePrefix
+    - Kind  : UnderscoreNumbers
+
+  TypeTransforms:
+    - Type: ^(CT).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: Flag$ # Transforms for bit_set types
+      Transforms:
+      - Kind  : AppendSuffix
+        Source: s
+    - Type: Mask$
+      Transforms:
+      - Kind  : None
+
+  BitSetMap:
+    - Type: Flags?$
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: s
+    - Type: Mask$
+      Transforms:
+        - Kind  : AppendSuffix
+          Source: Flag
+
+  ProcTransforms:
+    - Type: ^(CT)Label.+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: ^(_*CT).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+
+  VarTransforms:
+    - Type: ^(kCT).+
+      Transforms:
+        - Kind  : ReplacePrefix
+          Source: $group0
+          Target: k

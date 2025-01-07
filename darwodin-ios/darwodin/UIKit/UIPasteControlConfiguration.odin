@@ -49,6 +49,14 @@ PasteControlConfiguration_cornerRadius :: #force_inline proc "c" (self: ^PasteCo
 PasteControlConfiguration_setCornerRadius :: #force_inline proc "c" (self: ^PasteControlConfiguration, cornerRadius: CG.Float) {
     msgSend(nil, self, "setCornerRadius:", cornerRadius)
 }
+@(objc_type=PasteControlConfiguration, objc_name="imagePlacement")
+PasteControlConfiguration_imagePlacement :: #force_inline proc "c" (self: ^PasteControlConfiguration) -> NSDirectionalRectEdge {
+    return msgSend(NSDirectionalRectEdge, self, "imagePlacement")
+}
+@(objc_type=PasteControlConfiguration, objc_name="setImagePlacement")
+PasteControlConfiguration_setImagePlacement :: #force_inline proc "c" (self: ^PasteControlConfiguration, imagePlacement: NSDirectionalRectEdge) {
+    msgSend(nil, self, "setImagePlacement:", imagePlacement)
+}
 @(objc_type=PasteControlConfiguration, objc_name="baseForegroundColor")
 PasteControlConfiguration_baseForegroundColor :: #force_inline proc "c" (self: ^PasteControlConfiguration) -> ^Color {
     return msgSend(^Color, self, "baseForegroundColor")
@@ -199,6 +207,8 @@ PasteControlConfiguration_VTable :: struct {
     setCornerStyle: proc(self: ^PasteControlConfiguration, cornerStyle: ButtonConfigurationCornerStyle),
     cornerRadius: proc(self: ^PasteControlConfiguration) -> CG.Float,
     setCornerRadius: proc(self: ^PasteControlConfiguration, cornerRadius: CG.Float),
+    imagePlacement: proc(self: ^PasteControlConfiguration) -> NSDirectionalRectEdge,
+    setImagePlacement: proc(self: ^PasteControlConfiguration, imagePlacement: NSDirectionalRectEdge),
     baseForegroundColor: proc(self: ^PasteControlConfiguration) -> ^Color,
     setBaseForegroundColor: proc(self: ^PasteControlConfiguration, baseForegroundColor: ^Color),
     baseBackgroundColor: proc(self: ^PasteControlConfiguration) -> ^Color,
@@ -301,6 +311,26 @@ PasteControlConfiguration_odin_extend :: proc(cls: Class, vt: ^PasteControlConfi
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCornerRadius:"), auto_cast setCornerRadius, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.imagePlacement != nil {
+        imagePlacement :: proc "c" (self: ^PasteControlConfiguration, _: SEL) -> NSDirectionalRectEdge {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^PasteControlConfiguration_VTable)vt_ctx.super_vt).imagePlacement(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("imagePlacement"), auto_cast imagePlacement, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setImagePlacement != nil {
+        setImagePlacement :: proc "c" (self: ^PasteControlConfiguration, _: SEL, imagePlacement: NSDirectionalRectEdge) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^PasteControlConfiguration_VTable)vt_ctx.super_vt).setImagePlacement(self, imagePlacement)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setImagePlacement:"), auto_cast setImagePlacement, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.baseForegroundColor != nil {
         baseForegroundColor :: proc "c" (self: ^PasteControlConfiguration, _: SEL) -> ^Color {

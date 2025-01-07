@@ -73,6 +73,10 @@ DocumentBrowserViewController_allowsDocumentCreation :: #force_inline proc "c" (
 DocumentBrowserViewController_setAllowsDocumentCreation :: #force_inline proc "c" (self: ^DocumentBrowserViewController, allowsDocumentCreation: bool) {
     msgSend(nil, self, "setAllowsDocumentCreation:", allowsDocumentCreation)
 }
+@(objc_type=DocumentBrowserViewController, objc_name="activeDocumentCreationIntent")
+DocumentBrowserViewController_activeDocumentCreationIntent :: #force_inline proc "c" (self: ^DocumentBrowserViewController) -> ^NS.String {
+    return msgSend(^NS.String, self, "activeDocumentCreationIntent")
+}
 @(objc_type=DocumentBrowserViewController, objc_name="allowsPickingMultipleItems")
 DocumentBrowserViewController_allowsPickingMultipleItems :: #force_inline proc "c" (self: ^DocumentBrowserViewController) -> bool {
     return msgSend(bool, self, "allowsPickingMultipleItems")
@@ -293,6 +297,7 @@ DocumentBrowserViewController_VTable :: struct {
     setDelegate: proc(self: ^DocumentBrowserViewController, delegate: ^DocumentBrowserViewControllerDelegate),
     allowsDocumentCreation: proc(self: ^DocumentBrowserViewController) -> bool,
     setAllowsDocumentCreation: proc(self: ^DocumentBrowserViewController, allowsDocumentCreation: bool),
+    activeDocumentCreationIntent: proc(self: ^DocumentBrowserViewController) -> ^NS.String,
     allowsPickingMultipleItems: proc(self: ^DocumentBrowserViewController) -> bool,
     setAllowsPickingMultipleItems: proc(self: ^DocumentBrowserViewController, allowsPickingMultipleItems: bool),
     allowedContentTypes: proc(self: ^DocumentBrowserViewController) -> ^NS.Array,
@@ -471,6 +476,16 @@ DocumentBrowserViewController_odin_extend :: proc(cls: Class, vt: ^DocumentBrows
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsDocumentCreation:"), auto_cast setAllowsDocumentCreation, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.activeDocumentCreationIntent != nil {
+        activeDocumentCreationIntent :: proc "c" (self: ^DocumentBrowserViewController, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^DocumentBrowserViewController_VTable)vt_ctx.super_vt).activeDocumentCreationIntent(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("activeDocumentCreationIntent"), auto_cast activeDocumentCreationIntent, "@@:") do panic("Failed to register objC method.")
     }
     if vt.allowsPickingMultipleItems != nil {
         allowsPickingMultipleItems :: proc "c" (self: ^DocumentBrowserViewController, _: SEL) -> bool {

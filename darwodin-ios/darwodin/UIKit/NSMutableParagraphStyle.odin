@@ -51,14 +51,6 @@ NSMutableParagraphStyle_paragraphSpacing :: #force_inline proc "c" (self: ^NSMut
 NSMutableParagraphStyle_setParagraphSpacing :: #force_inline proc "c" (self: ^NSMutableParagraphStyle, paragraphSpacing: CG.Float) {
     msgSend(nil, self, "setParagraphSpacing:", paragraphSpacing)
 }
-@(objc_type=NSMutableParagraphStyle, objc_name="alignment")
-NSMutableParagraphStyle_alignment :: #force_inline proc "c" (self: ^NSMutableParagraphStyle) -> NSTextAlignment {
-    return msgSend(NSTextAlignment, self, "alignment")
-}
-@(objc_type=NSMutableParagraphStyle, objc_name="setAlignment")
-NSMutableParagraphStyle_setAlignment :: #force_inline proc "c" (self: ^NSMutableParagraphStyle, alignment: NSTextAlignment) {
-    msgSend(nil, self, "setAlignment:", alignment)
-}
 @(objc_type=NSMutableParagraphStyle, objc_name="firstLineHeadIndent")
 NSMutableParagraphStyle_firstLineHeadIndent :: #force_inline proc "c" (self: ^NSMutableParagraphStyle) -> CG.Float {
     return msgSend(CG.Float, self, "firstLineHeadIndent")
@@ -186,6 +178,14 @@ NSMutableParagraphStyle_textLists :: #force_inline proc "c" (self: ^NSMutablePar
 @(objc_type=NSMutableParagraphStyle, objc_name="setTextLists")
 NSMutableParagraphStyle_setTextLists :: #force_inline proc "c" (self: ^NSMutableParagraphStyle, textLists: ^NS.Array) {
     msgSend(nil, self, "setTextLists:", textLists)
+}
+@(objc_type=NSMutableParagraphStyle, objc_name="alignment")
+NSMutableParagraphStyle_alignment :: #force_inline proc "c" (self: ^NSMutableParagraphStyle) -> NSTextAlignment {
+    return msgSend(NSTextAlignment, self, "alignment")
+}
+@(objc_type=NSMutableParagraphStyle, objc_name="setAlignment")
+NSMutableParagraphStyle_setAlignment :: #force_inline proc "c" (self: ^NSMutableParagraphStyle, alignment: NSTextAlignment) {
+    msgSend(nil, self, "setAlignment:", alignment)
 }
 @(objc_type=NSMutableParagraphStyle, objc_name="defaultWritingDirectionForLanguage", objc_is_class_method=true)
 NSMutableParagraphStyle_defaultWritingDirectionForLanguage :: #force_inline proc "c" (languageName: ^NS.String) -> NSWritingDirection {
@@ -330,8 +330,6 @@ NSMutableParagraphStyle_VTable :: struct {
     setLineSpacing: proc(self: ^NSMutableParagraphStyle, lineSpacing: CG.Float),
     paragraphSpacing: proc(self: ^NSMutableParagraphStyle) -> CG.Float,
     setParagraphSpacing: proc(self: ^NSMutableParagraphStyle, paragraphSpacing: CG.Float),
-    alignment: proc(self: ^NSMutableParagraphStyle) -> NSTextAlignment,
-    setAlignment: proc(self: ^NSMutableParagraphStyle, alignment: NSTextAlignment),
     firstLineHeadIndent: proc(self: ^NSMutableParagraphStyle) -> CG.Float,
     setFirstLineHeadIndent: proc(self: ^NSMutableParagraphStyle, firstLineHeadIndent: CG.Float),
     headIndent: proc(self: ^NSMutableParagraphStyle) -> CG.Float,
@@ -364,6 +362,8 @@ NSMutableParagraphStyle_VTable :: struct {
     setLineBreakStrategy: proc(self: ^NSMutableParagraphStyle, lineBreakStrategy: NSLineBreakStrategy),
     textLists: proc(self: ^NSMutableParagraphStyle) -> ^NS.Array,
     setTextLists: proc(self: ^NSMutableParagraphStyle, textLists: ^NS.Array),
+    alignment: proc(self: ^NSMutableParagraphStyle) -> NSTextAlignment,
+    setAlignment: proc(self: ^NSMutableParagraphStyle, alignment: NSTextAlignment),
     defaultWritingDirectionForLanguage: proc(languageName: ^NS.String) -> NSWritingDirection,
     defaultParagraphStyle: proc() -> ^NSParagraphStyle,
     supportsSecureCoding: proc() -> bool,
@@ -474,26 +474,6 @@ NSMutableParagraphStyle_odin_extend :: proc(cls: Class, vt: ^NSMutableParagraphS
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setParagraphSpacing:"), auto_cast setParagraphSpacing, "v@:d") do panic("Failed to register objC method.")
-    }
-    if vt.alignment != nil {
-        alignment :: proc "c" (self: ^NSMutableParagraphStyle, _: SEL) -> NSTextAlignment {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^NSMutableParagraphStyle_VTable)vt_ctx.super_vt).alignment(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
-    }
-    if vt.setAlignment != nil {
-        setAlignment :: proc "c" (self: ^NSMutableParagraphStyle, _: SEL, alignment: NSTextAlignment) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^NSMutableParagraphStyle_VTable)vt_ctx.super_vt).setAlignment(self, alignment)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAlignment:"), auto_cast setAlignment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.firstLineHeadIndent != nil {
         firstLineHeadIndent :: proc "c" (self: ^NSMutableParagraphStyle, _: SEL) -> CG.Float {
@@ -814,6 +794,26 @@ NSMutableParagraphStyle_odin_extend :: proc(cls: Class, vt: ^NSMutableParagraphS
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextLists:"), auto_cast setTextLists, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.alignment != nil {
+        alignment :: proc "c" (self: ^NSMutableParagraphStyle, _: SEL) -> NSTextAlignment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^NSMutableParagraphStyle_VTable)vt_ctx.super_vt).alignment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAlignment != nil {
+        setAlignment :: proc "c" (self: ^NSMutableParagraphStyle, _: SEL, alignment: NSTextAlignment) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^NSMutableParagraphStyle_VTable)vt_ctx.super_vt).setAlignment(self, alignment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAlignment:"), auto_cast setAlignment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.defaultWritingDirectionForLanguage != nil {
         defaultWritingDirectionForLanguage :: proc "c" (self: Class, _: SEL, languageName: ^NS.String) -> NSWritingDirection {

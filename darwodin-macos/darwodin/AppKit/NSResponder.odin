@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -166,6 +167,10 @@ Responder_quickLookWithEvent :: #force_inline proc "c" (self: ^Responder, event:
 @(objc_type=Responder, objc_name="pressureChangeWithEvent")
 Responder_pressureChangeWithEvent :: #force_inline proc "c" (self: ^Responder, event: ^Event) {
     msgSend(nil, self, "pressureChangeWithEvent:", event)
+}
+@(objc_type=Responder, objc_name="contextMenuKeyDown")
+Responder_contextMenuKeyDown :: #force_inline proc "c" (self: ^Responder, event: ^Event) {
+    msgSend(nil, self, "contextMenuKeyDown:", event)
 }
 @(objc_type=Responder, objc_name="noResponderFor")
 Responder_noResponderFor :: #force_inline proc "c" (self: ^Responder, eventSelector: SEL) {
@@ -512,6 +517,7 @@ Responder_VTable :: struct {
     touchesCancelledWithEvent: proc(self: ^Responder, event: ^Event),
     quickLookWithEvent: proc(self: ^Responder, event: ^Event),
     pressureChangeWithEvent: proc(self: ^Responder, event: ^Event),
+    contextMenuKeyDown: proc(self: ^Responder, event: ^Event),
     noResponderFor: proc(self: ^Responder, eventSelector: SEL),
     becomeFirstResponder: proc(self: ^Responder) -> bool,
     resignFirstResponder: proc(self: ^Responder) -> bool,
@@ -962,6 +968,16 @@ Responder_odin_extend :: proc(cls: Class, vt: ^Responder_VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("pressureChangeWithEvent:"), auto_cast pressureChangeWithEvent, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.contextMenuKeyDown != nil {
+        contextMenuKeyDown :: proc "c" (self: ^Responder, _: SEL, event: ^Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^Responder_VTable)vt_ctx.super_vt).contextMenuKeyDown(self, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contextMenuKeyDown:"), auto_cast contextMenuKeyDown, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.noResponderFor != nil {
         noResponderFor :: proc "c" (self: ^Responder, _: SEL, eventSelector: SEL) {

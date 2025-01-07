@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CT "../CoreText"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -43,6 +44,14 @@ OpenSavePanelDelegate_panel_willExpand :: #force_inline proc "c" (self: ^OpenSav
 OpenSavePanelDelegate_panelSelectionDidChange :: #force_inline proc "c" (self: ^OpenSavePanelDelegate, sender: id) {
     msgSend(nil, self, "panelSelectionDidChange:", sender)
 }
+@(objc_type=OpenSavePanelDelegate, objc_name="panel_displayNameForType")
+OpenSavePanelDelegate_panel_displayNameForType :: #force_inline proc "c" (self: ^OpenSavePanelDelegate, sender: id, type: ^UTType) -> ^NS.String {
+    return msgSend(^NS.String, self, "panel:displayNameForType:", sender, type)
+}
+@(objc_type=OpenSavePanelDelegate, objc_name="panel_didSelectType")
+OpenSavePanelDelegate_panel_didSelectType :: #force_inline proc "c" (self: ^OpenSavePanelDelegate, sender: id, type: ^UTType) {
+    msgSend(nil, self, "panel:didSelectType:", sender, type)
+}
 OpenSavePanelDelegate_VTable :: struct {
     panel_shouldEnableURL: proc(self: ^OpenSavePanelDelegate, sender: id, url: ^NS.URL) -> bool,
     panel_validateURL_error: proc(self: ^OpenSavePanelDelegate, sender: id, url: ^NS.URL, outError: ^^NS.Error) -> bool,
@@ -50,6 +59,8 @@ OpenSavePanelDelegate_VTable :: struct {
     panel_userEnteredFilename_confirmed: proc(self: ^OpenSavePanelDelegate, sender: id, filename: ^NS.String, okFlag: bool) -> ^NS.String,
     panel_willExpand: proc(self: ^OpenSavePanelDelegate, sender: id, expanding: bool),
     panelSelectionDidChange: proc(self: ^OpenSavePanelDelegate, sender: id),
+    panel_displayNameForType: proc(self: ^OpenSavePanelDelegate, sender: id, type: ^UTType) -> ^NS.String,
+    panel_didSelectType: proc(self: ^OpenSavePanelDelegate, sender: id, type: ^UTType),
 }
 
 OpenSavePanelDelegate_odin_extend :: proc(cls: Class, vt: ^OpenSavePanelDelegate_VTable) {
@@ -115,6 +126,26 @@ OpenSavePanelDelegate_odin_extend :: proc(cls: Class, vt: ^OpenSavePanelDelegate
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("panelSelectionDidChange:"), auto_cast panelSelectionDidChange, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.panel_displayNameForType != nil {
+        panel_displayNameForType :: proc "c" (self: ^OpenSavePanelDelegate, _: SEL, sender: id, type: ^UTType) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^OpenSavePanelDelegate_VTable)vt_ctx.protocol_vt).panel_displayNameForType(self, sender, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("panel:displayNameForType:"), auto_cast panel_displayNameForType, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.panel_didSelectType != nil {
+        panel_didSelectType :: proc "c" (self: ^OpenSavePanelDelegate, _: SEL, sender: id, type: ^UTType) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^OpenSavePanelDelegate_VTable)vt_ctx.protocol_vt).panel_didSelectType(self, sender, type)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("panel:didSelectType:"), auto_cast panel_didSelectType, "v@:@@") do panic("Failed to register objC method.")
     }
 }
 

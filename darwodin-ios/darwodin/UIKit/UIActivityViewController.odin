@@ -57,6 +57,14 @@ ActivityViewController_excludedActivityTypes :: #force_inline proc "c" (self: ^A
 ActivityViewController_setExcludedActivityTypes :: #force_inline proc "c" (self: ^ActivityViewController, excludedActivityTypes: ^NS.Array) {
     msgSend(nil, self, "setExcludedActivityTypes:", excludedActivityTypes)
 }
+@(objc_type=ActivityViewController, objc_name="excludedActivitySectionTypes")
+ActivityViewController_excludedActivitySectionTypes :: #force_inline proc "c" (self: ^ActivityViewController) -> ActivitySectionTypes {
+    return msgSend(ActivitySectionTypes, self, "excludedActivitySectionTypes")
+}
+@(objc_type=ActivityViewController, objc_name="setExcludedActivitySectionTypes")
+ActivityViewController_setExcludedActivitySectionTypes :: #force_inline proc "c" (self: ^ActivityViewController, excludedActivitySectionTypes: ActivitySectionTypes) {
+    msgSend(nil, self, "setExcludedActivitySectionTypes:", excludedActivitySectionTypes)
+}
 @(objc_type=ActivityViewController, objc_name="allowsProminentActivity")
 ActivityViewController_allowsProminentActivity :: #force_inline proc "c" (self: ^ActivityViewController) -> bool {
     return msgSend(bool, self, "allowsProminentActivity")
@@ -211,6 +219,8 @@ ActivityViewController_VTable :: struct {
     setCompletionWithItemsHandler: proc(self: ^ActivityViewController, completionWithItemsHandler: ActivityViewControllerCompletionWithItemsHandler),
     excludedActivityTypes: proc(self: ^ActivityViewController) -> ^NS.Array,
     setExcludedActivityTypes: proc(self: ^ActivityViewController, excludedActivityTypes: ^NS.Array),
+    excludedActivitySectionTypes: proc(self: ^ActivityViewController) -> ActivitySectionTypes,
+    setExcludedActivitySectionTypes: proc(self: ^ActivityViewController, excludedActivitySectionTypes: ActivitySectionTypes),
     allowsProminentActivity: proc(self: ^ActivityViewController) -> bool,
     setAllowsProminentActivity: proc(self: ^ActivityViewController, allowsProminentActivity: bool),
     initWithActivityItemsConfiguration: proc(self: ^ActivityViewController, activityItemsConfiguration: ^ActivityItemsConfigurationReading) -> ^ActivityViewController,
@@ -353,6 +363,26 @@ ActivityViewController_odin_extend :: proc(cls: Class, vt: ^ActivityViewControll
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setExcludedActivityTypes:"), auto_cast setExcludedActivityTypes, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.excludedActivitySectionTypes != nil {
+        excludedActivitySectionTypes :: proc "c" (self: ^ActivityViewController, _: SEL) -> ActivitySectionTypes {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^ActivityViewController_VTable)vt_ctx.super_vt).excludedActivitySectionTypes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("excludedActivitySectionTypes"), auto_cast excludedActivitySectionTypes, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setExcludedActivitySectionTypes != nil {
+        setExcludedActivitySectionTypes :: proc "c" (self: ^ActivityViewController, _: SEL, excludedActivitySectionTypes: ActivitySectionTypes) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^ActivityViewController_VTable)vt_ctx.super_vt).setExcludedActivitySectionTypes(self, excludedActivitySectionTypes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setExcludedActivitySectionTypes:"), auto_cast setExcludedActivitySectionTypes, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.allowsProminentActivity != nil {
         allowsProminentActivity :: proc "c" (self: ^ActivityViewController, _: SEL) -> bool {
