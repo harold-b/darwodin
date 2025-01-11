@@ -132,9 +132,10 @@ Cpp:
     - ^OS_object$
     - ^OS_os_workgroup
     - ^OS_dispatch
+    - ^CFStringEncoding$
 
-  IgnoreMethods:
-    - ^::CFStringGetBytes # Conflicts with sys/darwin/core_foundation
+  # IgnoreMethods:
+    # - ^::CFStringGetBytes # Conflicts with sys/darwin/core_foundation
 
 
 Odin:
@@ -146,6 +147,8 @@ Odin:
   ExportTypeMapDir: ../exports
 
   # LinkLibraryNameDarwin: system:Cocoa.framework
+  NonDistinctTypeDefs:
+    - ^.+Ref$
 
   ResolvedTypedefs:
     - off_t
@@ -163,16 +166,21 @@ Odin:
 
       Imports:
         - |
-          FSRef    :: struct {}
-          NSObject :: intrinsics.objc_object
-          NSString :: NSObject
+          FSRef             :: struct {}
+          NSObject          :: intrinsics.objc_object
+          NSString          :: NSObject
           NSMethodSignature :: NSObject
-          OS_object :: NSObject
-          OS_os_workgroup :: NSObject
-          NSUInteger :: cffi.ulong
-          _NSZone  :: struct {}
-          Boolean :: b8
-          task_id_token_t :: mach_port_t
+          OS_object         :: NSObject
+          OS_os_workgroup   :: NSObject
+          NSUInteger        :: cffi.ulong
+          _NSZone           :: struct {}
+          Boolean           :: b8
+          task_id_token_t   :: mach_port_t
+
+          // StringEncoding :: union #no_nil {
+          //     StringBuiltInEncodings,
+          //     StringEncodings,
+          // }
 
           KERN_SUCCESS            :: 0
           DISPATCH_TIME_NOW       :: 0
@@ -189,6 +197,7 @@ Odin:
         OS_os_workgroup: OS_os_workgroup
         Boolean: Boolean
         CFAbsoluteTime: CFAbsoluteTime
+        CFStringEncoding: StringEncoding
 
       # ExternalTypes:
 
@@ -239,6 +248,10 @@ Odin:
       - Kind  : UnderscoreNumbers
 
   TypeTransforms:
+    - Type: ^CFStringEncodings$
+      Transforms:
+      - Kind  : RemoveSuffix
+        Source: s
     - Type: ^(CF).+
       Transforms:
         - Kind  : RemovePrefix
@@ -250,6 +263,7 @@ Odin:
     - Type: Mask$
       Transforms:
       - Kind  : None
+      
 
   BitSetMap:
     - Type: Flags?$
@@ -268,12 +282,14 @@ Odin:
         Source: $group0
 
   VarTransforms:
-    - Type: ^(kCFLocaleIdentifier|kCFNumberFormatterRoundingMode)$
+    # - Type: ^(kCFLocaleIdentifier|kCFNumberFormatterRoundingMode)$
+    - Type: ^kCF.+
       Transforms:
         - Kind  : ReplacePrefix
           Source: kCF
           Target: k
-    - Type: ^(_*k?CF).+
+    - Type: ^_kCF.+
       Transforms:
-        - Kind  : RemovePrefix
-          Source: $group0
+        - Kind  : ReplacePrefix
+          Source: _kCF
+          Target: k

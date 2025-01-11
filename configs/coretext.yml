@@ -49,18 +49,28 @@ Odin:
       # Imports:
       #   - |
 
-      # TypeMap:
+      TypeMap:
+        CFStringEncoding: CF.StringEncoding
         
+      IgnoreEnumItems:
+        - ^kCTFont.+Class$
+        - ^kCTFont.+Trait$
 
 
   # Symbol Transformers
   EnumTransforms:
   - Type: .*
     Transforms:
-    - Kind  : RemoveTypeWordsFromElements
-    - Kind  : RemovePartialTypeNamePrefix
-    - Kind  : RemoveUnderscorePrefix
-    - Kind  : UnderscoreNumbers
+      - Kind  : RemovePrefix
+        Source: k
+      - Kind  : RemoveTypeWordsFromElements
+      - Kind  : RemovePartialTypeNamePrefix
+      - Kind  : RemoveUnderscorePrefix
+      - Kind  : UnderscoreNumbers
+  - Type: ^CTFontSymbolicTraits$
+    Transforms:
+      - Kind  : RemovePrefix
+        Source: Trait
 
   TypeTransforms:
     - Type: ^(CT).+
@@ -76,7 +86,7 @@ Odin:
       - Kind  : None
 
   BitSetMap:
-    - Type: Flags?$
+    - Type: (Flags?|Options?|UnderlineStyleModifiers|Traits)$
       Transforms:
         - Kind  : RemoveSuffix
           Source: s

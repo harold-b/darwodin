@@ -38,6 +38,7 @@ AppKit:
   - NSWindow
   - NSWindowController
   - NSWindowDelegate
+  - NSColor
 
 UIKit:
   - UIApplication

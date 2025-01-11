@@ -55,7 +55,7 @@ Player_isInvitable :: #force_inline proc "c" (self: ^Player) -> bool {
     return msgSend(bool, self, "isInvitable")
 }
 @(objc_type=Player, objc_name="loadPhotoForSize")
-Player_loadPhotoForSize :: #force_inline proc "c" (self: ^Player, size: PhotoSize, completionHandler: proc "c" (photo: ^NSImage, error: ^NS.Error)) {
+Player_loadPhotoForSize :: #force_inline proc "c" (self: ^Player, size: PhotoSize, completionHandler: proc "c" (photo: ^NS.Image, error: ^NS.Error)) {
     msgSend(nil, self, "loadPhotoForSize:withCompletionHandler:", size, completionHandler)
 }
 @(objc_type=Player, objc_name="loadPlayersForIdentifiers", objc_is_class_method=true)

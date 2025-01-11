@@ -91,8 +91,8 @@ AccessPoint_setLocation :: #force_inline proc "c" (self: ^AccessPoint, location:
     msgSend(nil, self, "setLocation:", location)
 }
 @(objc_type=AccessPoint, objc_name="frameInScreenCoordinates")
-AccessPoint_frameInScreenCoordinates :: #force_inline proc "c" (self: ^AccessPoint) -> NSRect {
-    return msgSend(NSRect, self, "frameInScreenCoordinates")
+AccessPoint_frameInScreenCoordinates :: #force_inline proc "c" (self: ^AccessPoint) -> NS.Rect {
+    return msgSend(NS.Rect, self, "frameInScreenCoordinates")
 }
 @(objc_type=AccessPoint, objc_name="parentWindow")
 AccessPoint_parentWindow :: #force_inline proc "c" (self: ^AccessPoint) -> ^AK.Window {
