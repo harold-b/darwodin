@@ -1,15 +1,13 @@
 # Darwin platform bindings for Odin
 
 Last generated for the following SDKs:
-- MacOS 14.5
-- iOS 17.5
+- MacOS 15.0
+- iOS 18.0
 
-***Experimental/WIP***
 
 These are raw platform bindings generated directly from Objective-C framework headers. It is not meant as a replacement for the `vendor:darwin` package already included in Odin, but as a 1:1 direct, exhaustive bindings to Objective-C frameworks without manual modification or idiomatic changes, in order to have the full framework API available to Odin as needed.
 
 ## TODO:
-- [ ] More testing, etc.
 - [x] ~~Block handling~~: Odin already handles blocks, we'll leverage those instead.
 - [ ] Marking block function pointers as such?
 
