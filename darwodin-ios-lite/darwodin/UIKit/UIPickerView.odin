@@ -19,7 +19,3 @@ PickerView :: struct { using _: View,
     using _: NS.Coding,
 }
 
-PickerView_VTable :: struct {
-    super: View_VTable,
-}
-

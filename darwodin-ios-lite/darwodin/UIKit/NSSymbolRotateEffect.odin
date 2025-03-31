@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolRotateEffect")
 NSSymbolRotateEffect :: struct { using _: NSSymbolEffect, }
 
-NSSymbolRotateEffect_VTable :: struct {
-    super: NSSymbolEffect_VTable,
-}
-

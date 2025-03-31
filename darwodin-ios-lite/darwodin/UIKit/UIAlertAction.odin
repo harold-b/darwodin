@@ -19,7 +19,3 @@ AlertAction :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-AlertAction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

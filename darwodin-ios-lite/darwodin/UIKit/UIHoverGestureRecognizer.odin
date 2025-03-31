@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIHoverGestureRecognizer")
 HoverGestureRecognizer :: struct { using _: GestureRecognizer, }
 
-HoverGestureRecognizer_VTable :: struct {
-    super: GestureRecognizer_VTable,
-}
-

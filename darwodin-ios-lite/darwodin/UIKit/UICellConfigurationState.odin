@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICellConfigurationState")
 CellConfigurationState :: struct { using _: ViewConfigurationState, }
 
-CellConfigurationState_VTable :: struct {
-    super: ViewConfigurationState_VTable,
-}
-

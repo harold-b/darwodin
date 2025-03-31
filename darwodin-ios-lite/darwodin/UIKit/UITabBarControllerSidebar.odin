@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITabBarControllerSidebar")
 TabBarControllerSidebar :: struct { using _: NS.Object, }
 
-TabBarControllerSidebar_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

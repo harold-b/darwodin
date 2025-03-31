@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICellAccessoryOutlineDisclosure")
 CellAccessoryOutlineDisclosure :: struct { using _: CellAccessory, }
 
-CellAccessoryOutlineDisclosure_VTable :: struct {
-    super: CellAccessory_VTable,
-}
-

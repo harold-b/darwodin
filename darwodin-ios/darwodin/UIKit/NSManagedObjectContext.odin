@@ -28,12 +28,3 @@ NSManagedObjectContext_init :: proc "c" (self: ^NSManagedObjectContext) -> ^NSMa
 }
 
 
-NSManagedObjectContext_VTable :: struct {
-}
-
-NSManagedObjectContext_odin_extend :: proc(cls: Class, vt: ^NSManagedObjectContext_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

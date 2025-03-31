@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPress")
 Press :: struct { using _: NS.Object, }
 
-Press_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

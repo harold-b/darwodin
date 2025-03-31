@@ -19,6 +19,3 @@ TableViewDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TableViewDataSource_VTable :: struct {
-}
-

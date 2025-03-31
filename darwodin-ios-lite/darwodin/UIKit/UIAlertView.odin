@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIAlertView")
 AlertView :: struct { using _: View, }
 
-AlertView_VTable :: struct {
-    super: View_VTable,
-}
-

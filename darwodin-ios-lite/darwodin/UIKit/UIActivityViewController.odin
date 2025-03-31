@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIActivityViewController")
 ActivityViewController :: struct { using _: ViewController, }
 
-ActivityViewController_VTable :: struct {
-    super: ViewController_VTable,
-}
-

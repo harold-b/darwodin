@@ -19,7 +19,3 @@ VisualEffectView :: struct { using _: View,
     using _: NS.SecureCoding,
 }
 
-VisualEffectView_VTable :: struct {
-    super: View_VTable,
-}
-

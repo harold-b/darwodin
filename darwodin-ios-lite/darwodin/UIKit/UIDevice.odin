@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIDevice")
 Device :: struct { using _: NS.Object, }
 
-Device_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

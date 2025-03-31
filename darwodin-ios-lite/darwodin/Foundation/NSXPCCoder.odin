@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSXPCCoder")
 XPCCoder :: struct { using _: Coder, }
 
-XPCCoder_VTable :: struct {
-    super: Coder_VTable,
-}
-

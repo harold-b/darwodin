@@ -20,6 +20,3 @@ TraitChangeRegistration :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
-TraitChangeRegistration_VTable :: struct {
-}
-

@@ -19,6 +19,3 @@ TableViewDropCoordinator :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TableViewDropCoordinator_VTable :: struct {
-}
-

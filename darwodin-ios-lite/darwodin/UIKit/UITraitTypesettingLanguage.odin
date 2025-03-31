@@ -19,7 +19,3 @@ TraitTypesettingLanguage :: struct { using _: NS.Object,
     using _: ObjectTraitDefinition,
 }
 
-TraitTypesettingLanguage_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

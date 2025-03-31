@@ -19,7 +19,3 @@ FocusEffect :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-FocusEffect_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -33,34 +33,3 @@ SearchTextFieldDelegate_searchTextField :: proc {
     SearchTextFieldDelegate_searchTextField_didSelectSuggestion,
 }
 
-SearchTextFieldDelegate_VTable :: struct {
-    searchTextField_itemProviderForCopyingToken: proc(self: ^SearchTextFieldDelegate, searchTextField: ^SearchTextField, token: ^SearchToken) -> ^NS.ItemProvider,
-    searchTextField_didSelectSuggestion: proc(self: ^SearchTextFieldDelegate, searchTextField: ^SearchTextField, suggestion: ^SearchSuggestion),
-}
-
-SearchTextFieldDelegate_odin_extend :: proc(cls: Class, vt: ^SearchTextFieldDelegate_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.searchTextField_itemProviderForCopyingToken != nil {
-        searchTextField_itemProviderForCopyingToken :: proc "c" (self: ^SearchTextFieldDelegate, _: SEL, searchTextField: ^SearchTextField, token: ^SearchToken) -> ^NS.ItemProvider {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^SearchTextFieldDelegate_VTable)vt_ctx.protocol_vt).searchTextField_itemProviderForCopyingToken(self, searchTextField, token)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("searchTextField:itemProviderForCopyingToken:"), auto_cast searchTextField_itemProviderForCopyingToken, "@@:@@") do panic("Failed to register objC method.")
-    }
-    if vt.searchTextField_didSelectSuggestion != nil {
-        searchTextField_didSelectSuggestion :: proc "c" (self: ^SearchTextFieldDelegate, _: SEL, searchTextField: ^SearchTextField, suggestion: ^SearchSuggestion) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^SearchTextFieldDelegate_VTable)vt_ctx.protocol_vt).searchTextField_didSelectSuggestion(self, searchTextField, suggestion)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("searchTextField:didSelectSuggestion:"), auto_cast searchTextField_didSelectSuggestion, "v@:@@") do panic("Failed to register objC method.")
-    }
-}
-

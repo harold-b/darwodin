@@ -26,12 +26,3 @@ URLAuthenticationChallengeInternal_init :: proc "c" (self: ^URLAuthenticationCha
 }
 
 
-URLAuthenticationChallengeInternal_VTable :: struct {
-}
-
-URLAuthenticationChallengeInternal_odin_extend :: proc(cls: Class, vt: ^URLAuthenticationChallengeInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

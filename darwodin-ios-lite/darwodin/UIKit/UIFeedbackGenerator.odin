@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIFeedbackGenerator")
 FeedbackGenerator :: struct { using _: NS.Object, }
 
-FeedbackGenerator_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

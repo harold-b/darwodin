@@ -20,7 +20,3 @@ CollectionViewLayoutAttributes :: struct { using _: NS.Object,
     using _: DynamicItem,
 }
 
-CollectionViewLayoutAttributes_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

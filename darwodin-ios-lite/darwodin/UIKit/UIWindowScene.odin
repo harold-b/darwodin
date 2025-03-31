@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIWindowScene")
 WindowScene :: struct { using _: Scene, }
 
-WindowScene_VTable :: struct {
-    super: Scene_VTable,
-}
-

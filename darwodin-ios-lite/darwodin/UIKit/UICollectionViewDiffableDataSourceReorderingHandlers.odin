@@ -19,7 +19,3 @@ CollectionViewDiffableDataSourceReorderingHandlers :: struct { using _: NS.Objec
     using _: NS.Copying,
 }
 
-CollectionViewDiffableDataSourceReorderingHandlers_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

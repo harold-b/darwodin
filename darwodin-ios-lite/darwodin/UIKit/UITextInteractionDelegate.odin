@@ -19,6 +19,3 @@ TextInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextInteractionDelegate_VTable :: struct {
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIScreenEdgePanGestureRecognizer")
 ScreenEdgePanGestureRecognizer :: struct { using _: PanGestureRecognizer, }
 
-ScreenEdgePanGestureRecognizer_VTable :: struct {
-    super: PanGestureRecognizer_VTable,
-}
-

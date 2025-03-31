@@ -19,6 +19,3 @@ ColorPickerViewControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ColorPickerViewControllerDelegate_VTable :: struct {
-}
-

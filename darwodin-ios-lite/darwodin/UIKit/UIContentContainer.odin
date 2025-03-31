@@ -19,6 +19,3 @@ ContentContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ContentContainer_VTable :: struct {
-}
-

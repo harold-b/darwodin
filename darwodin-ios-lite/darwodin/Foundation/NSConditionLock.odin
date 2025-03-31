@@ -17,7 +17,3 @@ ConditionLock :: struct { using _: Object,
     using _: Locking,
 }
 
-ConditionLock_VTable :: struct {
-    super: Object_VTable,
-}
-

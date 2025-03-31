@@ -28,12 +28,3 @@ TextInteractionAssistant_init :: proc "c" (self: ^TextInteractionAssistant) -> ^
 }
 
 
-TextInteractionAssistant_VTable :: struct {
-}
-
-TextInteractionAssistant_odin_extend :: proc(cls: Class, vt: ^TextInteractionAssistant_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

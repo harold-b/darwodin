@@ -19,7 +19,3 @@ ApplicationShortcutIcon :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-ApplicationShortcutIcon_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

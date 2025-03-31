@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIAccessibilityCustomRotorItemResult")
 AccessibilityCustomRotorItemResult :: struct { using _: NS.Object, }
 
-AccessibilityCustomRotorItemResult_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

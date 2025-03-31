@@ -28,12 +28,3 @@ NSTextAlternatives_init :: proc "c" (self: ^NSTextAlternatives) -> ^NSTextAltern
 }
 
 
-NSTextAlternatives_VTable :: struct {
-}
-
-NSTextAlternatives_odin_extend :: proc(cls: Class, vt: ^NSTextAlternatives_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

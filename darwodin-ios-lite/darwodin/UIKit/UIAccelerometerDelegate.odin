@@ -19,6 +19,3 @@ AccelerometerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AccelerometerDelegate_VTable :: struct {
-}
-

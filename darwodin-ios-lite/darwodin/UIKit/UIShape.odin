@@ -20,7 +20,3 @@ Shape :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-Shape_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

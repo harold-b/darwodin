@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPencilHoverPose")
 PencilHoverPose :: struct { using _: NS.Object, }
 
-PencilHoverPose_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -17,7 +17,3 @@ UnitFrequency :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitFrequency_VTable :: struct {
-    super: Dimension_VTable,
-}
-

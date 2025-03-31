@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITextInputAssistantItem")
 TextInputAssistantItem :: struct { using _: NS.Object, }
 
-TextInputAssistantItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

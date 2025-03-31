@@ -28,12 +28,3 @@ WindowSceneDelegate_init :: proc "c" (self: ^WindowSceneDelegate) -> ^WindowScen
 }
 
 
-WindowSceneDelegate_VTable :: struct {
-}
-
-WindowSceneDelegate_odin_extend :: proc(cls: Class, vt: ^WindowSceneDelegate_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

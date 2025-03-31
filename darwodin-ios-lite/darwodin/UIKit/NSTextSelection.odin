@@ -19,7 +19,3 @@ NSTextSelection :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-NSTextSelection_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

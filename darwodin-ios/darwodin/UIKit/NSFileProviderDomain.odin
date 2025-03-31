@@ -28,12 +28,3 @@ NSFileProviderDomain_init :: proc "c" (self: ^NSFileProviderDomain) -> ^NSFilePr
 }
 
 
-NSFileProviderDomain_VTable :: struct {
-}
-
-NSFileProviderDomain_odin_extend :: proc(cls: Class, vt: ^NSFileProviderDomain_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

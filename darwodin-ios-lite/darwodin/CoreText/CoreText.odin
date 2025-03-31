@@ -856,10 +856,13 @@ FontDescriptorRef :: distinct ^__CTFontDescriptor
 FontPriority :: distinct cffi.uint32_t
 
 /// CTFontDescriptorProgressHandler
-FontDescriptorProgressHandler :: distinct proc "c" (state: FontDescriptorMatchingState, progressParameter: CF.DictionaryRef) -> cffi.bool
+FontDescriptorProgressHandler :: proc "c" (state: FontDescriptorMatchingState, progressParameter: CF.DictionaryRef) -> cffi.bool
 
 /// CTFontRef
 FontRef :: distinct ^__CTFont
+
+/// ATSFontRef
+ATSFontRef :: distinct CF.UInt32
 
 /// CTFontTableTag
 FontTableTag :: distinct CF.FourCharCode
@@ -871,7 +874,7 @@ FontCollectionRef :: distinct ^__CTFontCollection
 MutableFontCollectionRef :: distinct ^__CTFontCollection
 
 /// CTFontCollectionSortDescriptorsCallback
-FontCollectionSortDescriptorsCallback :: distinct proc "c" (first: FontDescriptorRef, second: FontDescriptorRef, refCon: rawptr) -> CF.ComparisonResult
+FontCollectionSortDescriptorsCallback :: proc "c" (first: FontDescriptorRef, second: FontDescriptorRef, refCon: rawptr) -> CF.ComparisonResult
 
 /// CTFrameRef
 FrameRef :: distinct ^__CTFrame
@@ -901,376 +904,378 @@ RunRef :: distinct ^__CTRun
 RunDelegateRef :: distinct ^__CTRunDelegate
 
 /// CTRunDelegateDeallocateCallback
-RunDelegateDeallocateCallback :: distinct proc "c" (refCon: rawptr)
+RunDelegateDeallocateCallback :: proc "c" (refCon: rawptr)
 
 /// CTRunDelegateGetAscentCallback
-RunDelegateGetAscentCallback :: distinct proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetAscentCallback :: proc "c" (refCon: rawptr) -> CG.Float
 
 /// CTRunDelegateGetDescentCallback
-RunDelegateGetDescentCallback :: distinct proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetDescentCallback :: proc "c" (refCon: rawptr) -> CG.Float
 
 /// CTRunDelegateGetWidthCallback
-RunDelegateGetWidthCallback :: distinct proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetWidthCallback :: proc "c" (refCon: rawptr) -> CG.Float
 
 /// CTTextTabRef
 TextTabRef :: distinct ^__CTTextTab
 
 /// CTFontSymbolicTraits
-FontSymbolicTraits :: enum cffi.uint {
-    kCTFontTraitItalic = 1,
-    kCTFontTraitBold = 2,
-    kCTFontTraitExpanded = 32,
-    kCTFontTraitCondensed = 64,
-    kCTFontTraitMonoSpace = 1024,
-    kCTFontTraitVertical = 2048,
-    kCTFontTraitUIOptimized = 4096,
-    kCTFontTraitColorGlyphs = 8192,
-    kCTFontTraitComposite = 16384,
-    kCTFontTraitClassMask = 4026531840,
-    kCTFontItalicTrait = 1,
-    kCTFontBoldTrait = 2,
-    kCTFontExpandedTrait = 32,
-    kCTFontCondensedTrait = 64,
-    kCTFontMonoSpaceTrait = 1024,
-    kCTFontVerticalTrait = 2048,
-    kCTFontUIOptimizedTrait = 4096,
-    kCTFontColorGlyphsTrait = 8192,
-    kCTFontCompositeTrait = 16384,
-    kCTFontClassMaskTrait = 4026531840,
+FontSymbolicTrait :: enum cffi.uint {
+    Italic = 0,
+    Bold = 1,
+    Expanded = 5,
+    Condensed = 6,
+    MonoSpace = 10,
+    Vertical = 11,
+    UIOptimized = 12,
+    ColorGlyphs = 13,
+    Composite = 14,
+    // ItalicTrait = 0,
+    // BoldTrait = 1,
+    // ExpandedTrait = 5,
+    // CondensedTrait = 6,
+    // MonoSpaceTrait = 10,
+    // VerticalTrait = 11,
+    // UIOptimizedTrait = 12,
+    // ColorGlyphsTrait = 13,
+    // CompositeTrait = 14,
 }
+FontSymbolicTraits :: bit_set[FontSymbolicTrait; cffi.uint]
+
 
 /// CTFontStylisticClass
 FontStylisticClass :: enum cffi.uint {
-    kCTFontClassUnknown = 0,
-    kCTFontClassOldStyleSerifs = 268435456,
-    kCTFontClassTransitionalSerifs = 536870912,
-    kCTFontClassModernSerifs = 805306368,
-    kCTFontClassClarendonSerifs = 1073741824,
-    kCTFontClassSlabSerifs = 1342177280,
-    kCTFontClassFreeformSerifs = 1879048192,
-    kCTFontClassSansSerif = 2147483648,
-    kCTFontClassOrnamentals = 2415919104,
-    kCTFontClassScripts = 2684354560,
-    kCTFontClassSymbolic = 3221225472,
-    kCTFontUnknownClass = 0,
-    kCTFontOldStyleSerifsClass = 268435456,
-    kCTFontTransitionalSerifsClass = 536870912,
-    kCTFontModernSerifsClass = 805306368,
-    kCTFontClarendonSerifsClass = 1073741824,
-    kCTFontSlabSerifsClass = 1342177280,
-    kCTFontFreeformSerifsClass = 1879048192,
-    kCTFontSansSerifClass = 2147483648,
-    kCTFontOrnamentalsClass = 2415919104,
-    kCTFontScriptsClass = 2684354560,
-    kCTFontSymbolicClass = 3221225472,
+    Unknown = 0,
+    OldStyleSerifs = 268435456,
+    TransitionalSerifs = 536870912,
+    ModernSerifs = 805306368,
+    ClarendonSerifs = 1073741824,
+    SlabSerifs = 1342177280,
+    FreeformSerifs = 1879048192,
+    SansSerif = 2147483648,
+    Ornamentals = 2415919104,
+    Scripts = 2684354560,
+    Symbolic = 3221225472,
+    // UnknownClass = 0,
+    // OldStyleSerifsClass = 268435456,
+    // TransitionalSerifsClass = 536870912,
+    // ModernSerifsClass = 805306368,
+    // ClarendonSerifsClass = 1073741824,
+    // SlabSerifsClass = 1342177280,
+    // FreeformSerifsClass = 1879048192,
+    // SansSerifClass = 2147483648,
+    // OrnamentalsClass = 2415919104,
+    // ScriptsClass = 2684354560,
+    // SymbolicClass = 3221225472,
 }
 
 /// CTFontOrientation
 FontOrientation :: enum cffi.uint {
-    kCTFontOrientationDefault = 0,
-    kCTFontOrientationHorizontal = 1,
-    kCTFontOrientationVertical = 2,
-    kCTFontDefaultOrientation = 0,
-    kCTFontHorizontalOrientation = 1,
-    kCTFontVerticalOrientation = 2,
+    Default = 0,
+    Horizontal = 1,
+    Vertical = 2,
+    DefaultOrientation = 0,
+    HorizontalOrientation = 1,
+    VerticalOrientation = 2,
 }
 
 /// CTFontFormat
 FontFormat :: enum cffi.uint {
-    kCTFontFormatUnrecognized = 0,
-    kCTFontFormatOpenTypePostScript = 1,
-    kCTFontFormatOpenTypeTrueType = 2,
-    kCTFontFormatTrueType = 3,
-    kCTFontFormatPostScript = 4,
-    kCTFontFormatBitmap = 5,
+    Unrecognized = 0,
+    OpenTypePostScript = 1,
+    OpenTypeTrueType = 2,
+    TrueType = 3,
+    PostScript = 4,
+    Bitmap = 5,
 }
 
 /// CTFontDescriptorMatchingState
 FontDescriptorMatchingState :: enum cffi.uint {
-    kCTFontDescriptorMatchingDidBegin = 0,
-    kCTFontDescriptorMatchingDidFinish = 1,
-    kCTFontDescriptorMatchingWillBeginQuerying = 2,
-    kCTFontDescriptorMatchingStalled = 3,
-    kCTFontDescriptorMatchingWillBeginDownloading = 4,
-    kCTFontDescriptorMatchingDownloading = 5,
-    kCTFontDescriptorMatchingDidFinishDownloading = 6,
-    kCTFontDescriptorMatchingDidMatch = 7,
-    kCTFontDescriptorMatchingDidFailWithError = 8,
+    DidBegin = 0,
+    DidFinish = 1,
+    WillBeginQuerying = 2,
+    Stalled = 3,
+    WillBeginDownloading = 4,
+    Downloading = 5,
+    DidFinishDownloading = 6,
+    DidMatch = 7,
+    DidFailWithError = 8,
 }
 
 /// CTFontOptions
-FontOptions :: enum cffi.ulong {
-    kCTFontOptionsDefault = 0,
-    kCTFontOptionsPreventAutoActivation = 1,
-    kCTFontOptionsPreventAutoDownload = 2,
-    kCTFontOptionsPreferSystemFont = 4,
+FontOption :: enum cffi.ulong {
+    PreventAutoActivation = 0,
+    PreventAutoDownload = 1,
+    PreferSystemFont = 2,
 }
+FontOptions :: bit_set[FontOption; cffi.ulong]
 
 /// CTFontUIFontType
 FontUIFontType :: enum cffi.uint {
-    kCTFontUIFontNone = 4294967295,
-    kCTFontUIFontUser = 0,
-    kCTFontUIFontUserFixedPitch = 1,
-    kCTFontUIFontSystem = 2,
-    kCTFontUIFontEmphasizedSystem = 3,
-    kCTFontUIFontSmallSystem = 4,
-    kCTFontUIFontSmallEmphasizedSystem = 5,
-    kCTFontUIFontMiniSystem = 6,
-    kCTFontUIFontMiniEmphasizedSystem = 7,
-    kCTFontUIFontViews = 8,
-    kCTFontUIFontApplication = 9,
-    kCTFontUIFontLabel = 10,
-    kCTFontUIFontMenuTitle = 11,
-    kCTFontUIFontMenuItem = 12,
-    kCTFontUIFontMenuItemMark = 13,
-    kCTFontUIFontMenuItemCmdKey = 14,
-    kCTFontUIFontWindowTitle = 15,
-    kCTFontUIFontPushButton = 16,
-    kCTFontUIFontUtilityWindowTitle = 17,
-    kCTFontUIFontAlertHeader = 18,
-    kCTFontUIFontSystemDetail = 19,
-    kCTFontUIFontEmphasizedSystemDetail = 20,
-    kCTFontUIFontToolbar = 21,
-    kCTFontUIFontSmallToolbar = 22,
-    kCTFontUIFontMessage = 23,
-    kCTFontUIFontPalette = 24,
-    kCTFontUIFontToolTip = 25,
-    kCTFontUIFontControlContent = 26,
-    kCTFontNoFontType = 4294967295,
-    kCTFontUserFontType = 0,
-    kCTFontUserFixedPitchFontType = 1,
-    kCTFontSystemFontType = 2,
-    kCTFontEmphasizedSystemFontType = 3,
-    kCTFontSmallSystemFontType = 4,
-    kCTFontSmallEmphasizedSystemFontType = 5,
-    kCTFontMiniSystemFontType = 6,
-    kCTFontMiniEmphasizedSystemFontType = 7,
-    kCTFontViewsFontType = 8,
-    kCTFontApplicationFontType = 9,
-    kCTFontLabelFontType = 10,
-    kCTFontMenuTitleFontType = 11,
-    kCTFontMenuItemFontType = 12,
-    kCTFontMenuItemMarkFontType = 13,
-    kCTFontMenuItemCmdKeyFontType = 14,
-    kCTFontWindowTitleFontType = 15,
-    kCTFontPushButtonFontType = 16,
-    kCTFontUtilityWindowTitleFontType = 17,
-    kCTFontAlertHeaderFontType = 18,
-    kCTFontSystemDetailFontType = 19,
-    kCTFontEmphasizedSystemDetailFontType = 20,
-    kCTFontToolbarFontType = 21,
-    kCTFontSmallToolbarFontType = 22,
-    kCTFontMessageFontType = 23,
-    kCTFontPaletteFontType = 24,
-    kCTFontToolTipFontType = 25,
-    kCTFontControlContentFontType = 26,
+    None = 4294967295,
+    User = 0,
+    UserFixedPitch = 1,
+    System = 2,
+    EmphasizedSystem = 3,
+    SmallSystem = 4,
+    SmallEmphasizedSystem = 5,
+    MiniSystem = 6,
+    MiniEmphasizedSystem = 7,
+    Views = 8,
+    Application = 9,
+    Label = 10,
+    MenuTitle = 11,
+    MenuItem = 12,
+    MenuItemMark = 13,
+    MenuItemCmdKey = 14,
+    WindowTitle = 15,
+    PushButton = 16,
+    UtilityWindowTitle = 17,
+    AlertHeader = 18,
+    SystemDetail = 19,
+    EmphasizedSystemDetail = 20,
+    Toolbar = 21,
+    SmallToolbar = 22,
+    Message = 23,
+    Palette = 24,
+    ToolTip = 25,
+    ControlContent = 26,
+    NoFontType = 4294967295,
+    UserFontType = 0,
+    UserFixedPitchFontType = 1,
+    SystemFontType = 2,
+    EmphasizedSystemFontType = 3,
+    SmallSystemFontType = 4,
+    SmallEmphasizedSystemFontType = 5,
+    MiniSystemFontType = 6,
+    MiniEmphasizedSystemFontType = 7,
+    ViewsFontType = 8,
+    ApplicationFontType = 9,
+    LabelFontType = 10,
+    MenuTitleFontType = 11,
+    MenuItemFontType = 12,
+    MenuItemMarkFontType = 13,
+    MenuItemCmdKeyFontType = 14,
+    WindowTitleFontType = 15,
+    PushButtonFontType = 16,
+    UtilityWindowTitleFontType = 17,
+    AlertHeaderFontType = 18,
+    SystemDetailFontType = 19,
+    EmphasizedSystemDetailFontType = 20,
+    ToolbarFontType = 21,
+    SmallToolbarFontType = 22,
+    MessageFontType = 23,
+    PaletteFontType = 24,
+    ToolTipFontType = 25,
+    ControlContentFontType = 26,
 }
 
 /// CTFontTableOptions
-FontTableOptions :: enum cffi.uint {
-    kCTFontTableOptionNoOptions = 0,
-    kCTFontTableOptionExcludeSynthetic = 1,
+FontTableOption :: enum cffi.uint {
+    OptionExcludeSynthetic = 0,
 }
+FontTableOptions :: bit_set[FontTableOption; cffi.uint]
 
 /// CTFontCollectionCopyOptions
-FontCollectionCopyOptions :: enum cffi.uint {
-    kCTFontCollectionCopyDefaultOptions = 0,
-    kCTFontCollectionCopyUnique = 1,
-    kCTFontCollectionCopyStandardSort = 2,
+FontCollectionCopyOption :: enum cffi.uint {
+    Unique = 0,
+    StandardSort = 1,
 }
+FontCollectionCopyOptions :: bit_set[FontCollectionCopyOption; cffi.uint]
 
 /// CTFontManagerError
 FontManagerError :: enum cffi.long {
-    kCTFontManagerErrorFileNotFound = 101,
-    kCTFontManagerErrorInsufficientPermissions = 102,
-    kCTFontManagerErrorUnrecognizedFormat = 103,
-    kCTFontManagerErrorInvalidFontData = 104,
-    kCTFontManagerErrorAlreadyRegistered = 105,
-    kCTFontManagerErrorExceededResourceLimit = 106,
-    kCTFontManagerErrorAssetNotFound = 107,
-    kCTFontManagerErrorNotRegistered = 201,
-    kCTFontManagerErrorInUse = 202,
-    kCTFontManagerErrorSystemRequired = 203,
-    kCTFontManagerErrorRegistrationFailed = 301,
-    kCTFontManagerErrorMissingEntitlement = 302,
-    kCTFontManagerErrorInsufficientInfo = 303,
-    kCTFontManagerErrorCancelledByUser = 304,
-    kCTFontManagerErrorDuplicatedName = 305,
-    kCTFontManagerErrorInvalidFilePath = 306,
-    kCTFontManagerErrorUnsupportedScope = 307,
+    FileNotFound = 101,
+    InsufficientPermissions = 102,
+    UnrecognizedFormat = 103,
+    InvalidFontData = 104,
+    AlreadyRegistered = 105,
+    ExceededResourceLimit = 106,
+    AssetNotFound = 107,
+    NotRegistered = 201,
+    InUse = 202,
+    SystemRequired = 203,
+    RegistrationFailed = 301,
+    MissingEntitlement = 302,
+    InsufficientInfo = 303,
+    CancelledByUser = 304,
+    DuplicatedName = 305,
+    InvalidFilePath = 306,
+    UnsupportedScope = 307,
 }
 
 /// CTFontManagerScope
 FontManagerScope :: enum cffi.uint {
-    kCTFontManagerScopeNone = 0,
-    kCTFontManagerScopeProcess = 1,
-    kCTFontManagerScopePersistent = 2,
-    kCTFontManagerScopeSession = 3,
-    kCTFontManagerScopeUser = 2,
+    None = 0,
+    Process = 1,
+    Persistent = 2,
+    Session = 3,
+    User = 2,
 }
 
 /// CTFontManagerAutoActivationSetting
 FontManagerAutoActivationSetting :: enum cffi.uint {
-    kCTFontManagerAutoActivationDefault = 0,
-    kCTFontManagerAutoActivationDisabled = 1,
-    kCTFontManagerAutoActivationEnabled = 2,
-    kCTFontManagerAutoActivationPromptUser = 3,
+    Default = 0,
+    Disabled = 1,
+    Enabled = 2,
+    PromptUser = 3,
 }
 
 /// CTFrameProgression
 FrameProgression :: enum cffi.uint {
-    kCTFrameProgressionTopToBottom = 0,
-    kCTFrameProgressionRightToLeft = 1,
-    kCTFrameProgressionLeftToRight = 2,
+    TopToBottom = 0,
+    RightToLeft = 1,
+    LeftToRight = 2,
 }
 
 /// CTFramePathFillRule
 FramePathFillRule :: enum cffi.uint {
-    kCTFramePathFillEvenOdd = 0,
-    kCTFramePathFillWindingNumber = 1,
+    EvenOdd = 0,
+    WindingNumber = 1,
 }
 
 /// CTLineBoundsOptions
-LineBoundsOptions :: enum cffi.ulong {
-    kCTLineBoundsExcludeTypographicLeading = 1,
-    kCTLineBoundsExcludeTypographicShifts = 2,
-    kCTLineBoundsUseHangingPunctuation = 4,
-    kCTLineBoundsUseGlyphPathBounds = 8,
-    kCTLineBoundsUseOpticalBounds = 16,
-    kCTLineBoundsIncludeLanguageExtents = 32,
+LineBoundsOption :: enum cffi.ulong {
+    ExcludeTypographicLeading = 0,
+    ExcludeTypographicShifts = 1,
+    UseHangingPunctuation = 2,
+    UseGlyphPathBounds = 3,
+    UseOpticalBounds = 4,
+    IncludeLanguageExtents = 5,
 }
+LineBoundsOptions :: bit_set[LineBoundsOption; cffi.ulong]
 
 /// CTLineTruncationType
 LineTruncationType :: enum cffi.uint {
-    kCTLineTruncationStart = 0,
-    kCTLineTruncationEnd = 1,
-    kCTLineTruncationMiddle = 2,
+    Start = 0,
+    End = 1,
+    Middle = 2,
 }
 
 /// CTCharacterCollection
 CharacterCollection :: enum cffi.ushort {
-    kCTCharacterCollectionIdentityMapping = 0,
-    kCTCharacterCollectionAdobeCNS1 = 1,
-    kCTCharacterCollectionAdobeGB1 = 2,
-    kCTCharacterCollectionAdobeJapan1 = 3,
-    kCTCharacterCollectionAdobeJapan2 = 4,
-    kCTCharacterCollectionAdobeKorea1 = 5,
-    kCTIdentityMappingCharacterCollection = 0,
-    kCTAdobeCNS1CharacterCollection = 1,
-    kCTAdobeGB1CharacterCollection = 2,
-    kCTAdobeJapan1CharacterCollection = 3,
-    kCTAdobeJapan2CharacterCollection = 4,
-    kCTAdobeKorea1CharacterCollection = 5,
+    IdentityMapping = 0,
+    AdobeCNS1 = 1,
+    AdobeGB1 = 2,
+    AdobeJapan1 = 3,
+    AdobeJapan2 = 4,
+    AdobeKorea1 = 5,
+    IdentityMappingCharacterCollection = 0,
+    AdobeCNS1CharacterCollection = 1,
+    AdobeGB1CharacterCollection = 2,
+    AdobeJapan1CharacterCollection = 3,
+    AdobeJapan2CharacterCollection = 4,
+    AdobeKorea1CharacterCollection = 5,
 }
 
 /// CTTextAlignment
 TextAlignment :: enum cffi.uchar {
-    kCTTextAlignmentLeft = 0,
-    kCTTextAlignmentRight = 1,
-    kCTTextAlignmentCenter = 2,
-    kCTTextAlignmentJustified = 3,
-    kCTTextAlignmentNatural = 4,
-    kCTLeftTextAlignment = 0,
-    kCTRightTextAlignment = 1,
-    kCTCenterTextAlignment = 2,
-    kCTJustifiedTextAlignment = 3,
-    kCTNaturalTextAlignment = 4,
+    Left = 0,
+    Right = 1,
+    Center = 2,
+    Justified = 3,
+    Natural = 4,
+    LeftTextAlignment = 0,
+    RightTextAlignment = 1,
+    CenterTextAlignment = 2,
+    JustifiedTextAlignment = 3,
+    NaturalTextAlignment = 4,
 }
 
 /// CTLineBreakMode
 LineBreakMode :: enum cffi.uchar {
-    kCTLineBreakByWordWrapping = 0,
-    kCTLineBreakByCharWrapping = 1,
-    kCTLineBreakByClipping = 2,
-    kCTLineBreakByTruncatingHead = 3,
-    kCTLineBreakByTruncatingTail = 4,
-    kCTLineBreakByTruncatingMiddle = 5,
+    ByWordWrapping = 0,
+    ByCharWrapping = 1,
+    ByClipping = 2,
+    ByTruncatingHead = 3,
+    ByTruncatingTail = 4,
+    ByTruncatingMiddle = 5,
 }
 
 /// CTWritingDirection
 WritingDirection :: enum cffi.schar {
-    kCTWritingDirectionNatural = -1,
-    kCTWritingDirectionLeftToRight = 0,
-    kCTWritingDirectionRightToLeft = 1,
+    Natural = -1,
+    LeftToRight = 0,
+    RightToLeft = 1,
 }
 
 /// CTParagraphStyleSpecifier
 ParagraphStyleSpecifier :: enum cffi.uint {
-    kCTParagraphStyleSpecifierAlignment = 0,
-    kCTParagraphStyleSpecifierFirstLineHeadIndent = 1,
-    kCTParagraphStyleSpecifierHeadIndent = 2,
-    kCTParagraphStyleSpecifierTailIndent = 3,
-    kCTParagraphStyleSpecifierTabStops = 4,
-    kCTParagraphStyleSpecifierDefaultTabInterval = 5,
-    kCTParagraphStyleSpecifierLineBreakMode = 6,
-    kCTParagraphStyleSpecifierLineHeightMultiple = 7,
-    kCTParagraphStyleSpecifierMaximumLineHeight = 8,
-    kCTParagraphStyleSpecifierMinimumLineHeight = 9,
-    kCTParagraphStyleSpecifierLineSpacing = 10,
-    kCTParagraphStyleSpecifierParagraphSpacing = 11,
-    kCTParagraphStyleSpecifierParagraphSpacingBefore = 12,
-    kCTParagraphStyleSpecifierBaseWritingDirection = 13,
-    kCTParagraphStyleSpecifierMaximumLineSpacing = 14,
-    kCTParagraphStyleSpecifierMinimumLineSpacing = 15,
-    kCTParagraphStyleSpecifierLineSpacingAdjustment = 16,
-    kCTParagraphStyleSpecifierLineBoundsOptions = 17,
-    kCTParagraphStyleSpecifierCount = 18,
+    Alignment = 0,
+    FirstLineHeadIndent = 1,
+    HeadIndent = 2,
+    TailIndent = 3,
+    TabStops = 4,
+    DefaultTabInterval = 5,
+    LineBreakMode = 6,
+    LineHeightMultiple = 7,
+    MaximumLineHeight = 8,
+    MinimumLineHeight = 9,
+    LineSpacing = 10,
+    ParagraphSpacing = 11,
+    ParagraphSpacingBefore = 12,
+    BaseWritingDirection = 13,
+    MaximumLineSpacing = 14,
+    MinimumLineSpacing = 15,
+    LineSpacingAdjustment = 16,
+    LineBoundsOptions = 17,
+    Count = 18,
 }
 
 /// CTRubyAlignment
 RubyAlignment :: enum cffi.uchar {
-    kCTRubyAlignmentInvalid = 255,
-    kCTRubyAlignmentAuto = 0,
-    kCTRubyAlignmentStart = 1,
-    kCTRubyAlignmentCenter = 2,
-    kCTRubyAlignmentEnd = 3,
-    kCTRubyAlignmentDistributeLetter = 4,
-    kCTRubyAlignmentDistributeSpace = 5,
-    kCTRubyAlignmentLineEdge = 6,
+    Invalid = 255,
+    Auto = 0,
+    Start = 1,
+    Center = 2,
+    End = 3,
+    DistributeLetter = 4,
+    DistributeSpace = 5,
+    LineEdge = 6,
 }
 
 /// CTRubyOverhang
 RubyOverhang :: enum cffi.uchar {
-    kCTRubyOverhangInvalid = 255,
-    kCTRubyOverhangAuto = 0,
-    kCTRubyOverhangStart = 1,
-    kCTRubyOverhangEnd = 2,
-    kCTRubyOverhangNone = 3,
+    Invalid = 255,
+    Auto = 0,
+    Start = 1,
+    End = 2,
+    None = 3,
 }
 
 /// CTRubyPosition
 RubyPosition :: enum cffi.uchar {
-    kCTRubyPositionBefore = 0,
-    kCTRubyPositionAfter = 1,
-    kCTRubyPositionInterCharacter = 2,
-    kCTRubyPositionInline = 3,
-    kCTRubyPositionCount = 4,
+    Before = 0,
+    After = 1,
+    InterCharacter = 2,
+    Inline = 3,
+    Count = 4,
 }
 
 /// CTRunStatus
 RunStatus :: enum cffi.uint {
-    kCTRunStatusNoStatus = 0,
-    kCTRunStatusRightToLeft = 1,
-    kCTRunStatusNonMonotonic = 2,
-    kCTRunStatusHasNonIdentityMatrix = 4,
+    NoStatus = 0,
+    RightToLeft = 1,
+    NonMonotonic = 2,
+    HasNonIdentityMatrix = 4,
 }
 
 /// CTUnderlineStyle
 UnderlineStyle :: enum cffi.int {
-    kCTUnderlineStyleNone = 0,
-    kCTUnderlineStyleSingle = 1,
-    kCTUnderlineStyleThick = 2,
-    kCTUnderlineStyleDouble = 9,
+    None = 0,
+    Single = 1,
+    Thick = 2,
+    Double = 9,
 }
 
 /// CTUnderlineStyleModifiers
-UnderlineStyleModifiers :: enum cffi.int {
-    kCTUnderlinePatternSolid = 0,
-    kCTUnderlinePatternDot = 256,
-    kCTUnderlinePatternDash = 512,
-    kCTUnderlinePatternDashDot = 768,
-    kCTUnderlinePatternDashDotDot = 1024,
+UnderlineStyleModifier :: enum cffi.int {
+    PatternDot = 8,
+    PatternDash = 9,
+    PatternDashDotDot = 10,
 }
+UnderlineStyleModifiers :: bit_set[UnderlineStyleModifier; cffi.int]
+
+UnderlineStyleModifier_PatternDashDot :: UnderlineStyleModifiers{ .PatternDot, .PatternDash,  }
 
 /// __CTFontDescriptor
 __CTFontDescriptor :: struct {}

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIViewPrintFormatter")
 ViewPrintFormatter :: struct { using _: PrintFormatter, }
 
-ViewPrintFormatter_VTable :: struct {
-    super: PrintFormatter_VTable,
-}
-

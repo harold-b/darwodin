@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITabGroup")
 TabGroup :: struct { using _: Tab, }
 
-TabGroup_VTable :: struct {
-    super: Tab_VTable,
-}
-

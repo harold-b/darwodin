@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITextCursorDropPositionAnimator")
 TextCursorDropPositionAnimator :: struct { using _: NS.Object, }
 
-TextCursorDropPositionAnimator_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -26,12 +26,3 @@ Host_init :: proc "c" (self: ^Host) -> ^Host {
 }
 
 
-Host_VTable :: struct {
-}
-
-Host_odin_extend :: proc(cls: Class, vt: ^Host_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

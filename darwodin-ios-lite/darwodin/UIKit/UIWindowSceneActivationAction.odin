@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIWindowSceneActivationAction")
 WindowSceneActivationAction :: struct { using _: Action, }
 
-WindowSceneActivationAction_VTable :: struct {
-    super: Action_VTable,
-}
-

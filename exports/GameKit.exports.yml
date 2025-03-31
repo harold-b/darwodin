@@ -40,6 +40,7 @@ Enums:
     GKSessionMode: GK.SessionMode
     GKPeerConnectionState: GK.PeerConnectionState
     GKVoiceChatServiceError: GK.VoiceChatServiceError
+    GKPeerPickerConnectionType: GK.PeerPickerConnectionType
     GKSessionError: GK.SessionError
     GKVoiceChatPlayerState: GK.VoiceChatPlayerState
 
@@ -111,7 +112,6 @@ ObjCClasses:
     GKLeaderboardEntry: GK.LeaderboardEntry
     GKLeaderboard: GK.Leaderboard
     GKAchievement: GK.Achievement
-    GKDialogController: GK.DialogController
     GKGameCenterViewController: GK.GameCenterViewController
     GKAccessPoint: GK.AccessPoint
     GKAchievementDescription: GK.AchievementDescription
@@ -121,7 +121,6 @@ ObjCClasses:
     GKScoreChallenge: GK.ScoreChallenge
     GKAchievementChallenge: GK.AchievementChallenge
     GKChallengeEventHandler: GK.ChallengeEventHandler
-    GKChallengesViewController: GK.ChallengesViewController
     GKCloudPlayer: GK.CloudPlayer
     GKFriendRequestComposeViewController: GK.FriendRequestComposeViewController
     GKGameSession: GK.GameSession
@@ -144,6 +143,7 @@ ObjCClasses:
     GKNotificationBanner: GK.NotificationBanner
     GKSession: GK.Session
     GKVoiceChatService: GK.VoiceChatService
+    GKPeerPickerController: GK.PeerPickerController
     GKTurnBasedMatchmakerViewController: GK.TurnBasedMatchmakerViewController
 
 ObjCProtocols:
@@ -155,10 +155,8 @@ ObjCProtocols:
     GKStrategist: GK.Strategist
     GKSceneRootNodeType: GK.SceneRootNodeType
     GKGameCenterControllerDelegate: GK.GameCenterControllerDelegate
-    GKViewController: GK.ViewController
     GKAchievementViewControllerDelegate: GK.AchievementViewControllerDelegate
     GKChallengeEventHandlerDelegate: GK.ChallengeEventHandlerDelegate
-    GKChallengesViewControllerDelegate: GK.ChallengesViewControllerDelegate
     GKChallengeListener: GK.ChallengeListener
     GKFriendRequestComposeViewControllerDelegate: GK.FriendRequestComposeViewControllerDelegate
     GKGameSessionEventListener: GK.GameSessionEventListener
@@ -172,6 +170,7 @@ ObjCProtocols:
     GKMatchmakerViewControllerDelegate: GK.MatchmakerViewControllerDelegate
     GKSessionDelegate: GK.SessionDelegate
     GKVoiceChatClient: GK.VoiceChatClient
+    GKPeerPickerControllerDelegate: GK.PeerPickerControllerDelegate
     GKTurnBasedMatchmakerViewControllerDelegate: GK.TurnBasedMatchmakerViewControllerDelegate
 
 

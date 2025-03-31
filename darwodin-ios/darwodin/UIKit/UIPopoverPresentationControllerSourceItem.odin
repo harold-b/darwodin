@@ -23,23 +23,3 @@ PopoverPresentationControllerSourceItem :: struct { using _: intrinsics.objc_obj
 PopoverPresentationControllerSourceItem_frameInView :: #force_inline proc "c" (self: ^PopoverPresentationControllerSourceItem, referenceView: ^View) -> CG.Rect {
     return msgSend(CG.Rect, self, "frameInView:", referenceView)
 }
-PopoverPresentationControllerSourceItem_VTable :: struct {
-    frameInView: proc(self: ^PopoverPresentationControllerSourceItem, referenceView: ^View) -> CG.Rect,
-}
-
-PopoverPresentationControllerSourceItem_odin_extend :: proc(cls: Class, vt: ^PopoverPresentationControllerSourceItem_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.frameInView != nil {
-        frameInView :: proc "c" (self: ^PopoverPresentationControllerSourceItem, _: SEL, referenceView: ^View) -> CG.Rect {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^PopoverPresentationControllerSourceItem_VTable)vt_ctx.protocol_vt).frameInView(self, referenceView)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("frameInView:"), auto_cast frameInView, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@") do panic("Failed to register objC method.")
-    }
-}
-

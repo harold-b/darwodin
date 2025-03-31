@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISearchTab")
 SearchTab :: struct { using _: Tab, }
 
-SearchTab_VTable :: struct {
-    super: Tab_VTable,
-}
-

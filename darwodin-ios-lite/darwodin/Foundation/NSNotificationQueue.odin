@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSNotificationQueue")
 NotificationQueue :: struct { using _: Object, }
 
-NotificationQueue_VTable :: struct {
-    super: Object_VTable,
-}
-

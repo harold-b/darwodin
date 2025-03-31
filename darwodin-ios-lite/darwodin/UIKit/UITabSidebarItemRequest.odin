@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITabSidebarItemRequest")
 TabSidebarItemRequest :: struct { using _: NS.Object, }
 
-TabSidebarItemRequest_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

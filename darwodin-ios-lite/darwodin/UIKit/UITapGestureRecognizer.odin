@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITapGestureRecognizer")
 TapGestureRecognizer :: struct { using _: GestureRecognizer, }
 
-TapGestureRecognizer_VTable :: struct {
-    super: GestureRecognizer_VTable,
-}
-

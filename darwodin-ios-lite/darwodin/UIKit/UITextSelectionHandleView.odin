@@ -19,6 +19,3 @@ TextSelectionHandleView :: struct { using _: intrinsics.objc_object,
     using _: CoordinateSpace,
 }
 
-TextSelectionHandleView_VTable :: struct {
-}
-

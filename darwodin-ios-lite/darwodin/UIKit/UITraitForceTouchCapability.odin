@@ -19,7 +19,3 @@ TraitForceTouchCapability :: struct { using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 
-TraitForceTouchCapability_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -19,7 +19,3 @@ TraitLayoutDirection :: struct { using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 
-TraitLayoutDirection_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

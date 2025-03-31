@@ -19,6 +19,3 @@ AppearanceContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AppearanceContainer_VTable :: struct {
-}
-

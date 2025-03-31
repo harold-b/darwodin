@@ -25,34 +25,3 @@ ItemProviderReading_objectWithItemProviderData :: #force_inline proc "c" (data: 
 ItemProviderReading_readableTypeIdentifiersForItemProvider :: #force_inline proc "c" () -> ^Array {
     return msgSend(^Array, ItemProviderReading, "readableTypeIdentifiersForItemProvider")
 }
-ItemProviderReading_VTable :: struct {
-    objectWithItemProviderData: proc(data: ^Data, typeIdentifier: ^String, outError: ^^Error) -> ^ItemProviderReading,
-    readableTypeIdentifiersForItemProvider: proc() -> ^Array,
-}
-
-ItemProviderReading_odin_extend :: proc(cls: Class, vt: ^ItemProviderReading_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.objectWithItemProviderData != nil {
-        objectWithItemProviderData :: proc "c" (self: Class, _: SEL, data: ^Data, typeIdentifier: ^String, outError: ^^Error) -> ^ItemProviderReading {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ItemProviderReading_VTable)vt_ctx.protocol_vt).objectWithItemProviderData( data, typeIdentifier, outError)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("objectWithItemProviderData:typeIdentifier:error:"), auto_cast objectWithItemProviderData, "@#:@@^void") do panic("Failed to register objC method.")
-    }
-    if vt.readableTypeIdentifiersForItemProvider != nil {
-        readableTypeIdentifiersForItemProvider :: proc "c" (self: Class, _: SEL) -> ^Array {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ItemProviderReading_VTable)vt_ctx.protocol_vt).readableTypeIdentifiersForItemProvider()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypeIdentifiersForItemProvider"), auto_cast readableTypeIdentifiersForItemProvider, "@#:") do panic("Failed to register objC method.")
-    }
-}
-

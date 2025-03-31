@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPopoverPresentationController")
 PopoverPresentationController :: struct { using _: PresentationController, }
 
-PopoverPresentationController_VTable :: struct {
-    super: PresentationController_VTable,
-}
-

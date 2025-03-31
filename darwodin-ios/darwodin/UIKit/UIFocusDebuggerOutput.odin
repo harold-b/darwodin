@@ -19,12 +19,3 @@ FocusDebuggerOutput :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-FocusDebuggerOutput_VTable :: struct {
-}
-
-FocusDebuggerOutput_odin_extend :: proc(cls: Class, vt: ^FocusDebuggerOutput_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -19,7 +19,3 @@ ActivityItemsConfiguration :: struct { using _: NS.Object,
     using _: ActivityItemsConfigurationReading,
 }
 
-ActivityItemsConfiguration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -19,6 +19,3 @@ TextInputDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextInputDelegate_VTable :: struct {
-}
-

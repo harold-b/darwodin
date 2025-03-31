@@ -20,7 +20,3 @@ TextFormattingViewControllerFormattingDescriptor :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-TextFormattingViewControllerFormattingDescriptor_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

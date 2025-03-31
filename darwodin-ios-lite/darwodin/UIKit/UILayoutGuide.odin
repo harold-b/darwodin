@@ -19,7 +19,3 @@ LayoutGuide :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-LayoutGuide_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

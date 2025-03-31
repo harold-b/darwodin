@@ -19,6 +19,3 @@ SearchResultsUpdating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-SearchResultsUpdating_VTable :: struct {
-}
-

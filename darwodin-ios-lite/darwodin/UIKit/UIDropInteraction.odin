@@ -19,7 +19,3 @@ DropInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
-DropInteraction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

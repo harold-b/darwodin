@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableArray")
 MutableArray :: struct { using _: Array, }
 
-MutableArray_VTable :: struct {
-    super: Array_VTable,
-}
-

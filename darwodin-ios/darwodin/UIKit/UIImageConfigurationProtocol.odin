@@ -17,12 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIImageConfiguration")
 ImageConfigurationProtocol :: struct { using _: intrinsics.objc_object, }
 
-ImageConfigurationProtocol_VTable :: struct {
-}
-
-ImageConfigurationProtocol_odin_extend :: proc(cls: Class, vt: ^ImageConfigurationProtocol_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

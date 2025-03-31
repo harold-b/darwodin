@@ -19,7 +19,3 @@ CollectionViewCompositionalLayoutConfiguration :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-CollectionViewCompositionalLayoutConfiguration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

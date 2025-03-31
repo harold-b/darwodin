@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIInterpolatingMotionEffect")
 InterpolatingMotionEffect :: struct { using _: MotionEffect, }
 
-InterpolatingMotionEffect_VTable :: struct {
-    super: MotionEffect_VTable,
-}
-

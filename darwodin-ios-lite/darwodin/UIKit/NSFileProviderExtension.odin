@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSFileProviderExtension")
 NSFileProviderExtension :: struct { using _: NS.Object, }
 
-NSFileProviderExtension_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

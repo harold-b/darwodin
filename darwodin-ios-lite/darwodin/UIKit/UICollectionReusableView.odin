@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICollectionReusableView")
 CollectionReusableView :: struct { using _: View, }
 
-CollectionReusableView_VTable :: struct {
-    super: View_VTable,
-}
-

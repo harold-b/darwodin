@@ -17,7 +17,3 @@ UnitElectricPotentialDifference :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitElectricPotentialDifference_VTable :: struct {
-    super: Dimension_VTable,
-}
-

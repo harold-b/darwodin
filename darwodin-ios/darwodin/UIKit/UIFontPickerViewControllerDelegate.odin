@@ -27,34 +27,3 @@ FontPickerViewControllerDelegate_fontPickerViewControllerDidCancel :: #force_inl
 FontPickerViewControllerDelegate_fontPickerViewControllerDidPickFont :: #force_inline proc "c" (self: ^FontPickerViewControllerDelegate, viewController: ^FontPickerViewController) {
     msgSend(nil, self, "fontPickerViewControllerDidPickFont:", viewController)
 }
-FontPickerViewControllerDelegate_VTable :: struct {
-    fontPickerViewControllerDidCancel: proc(self: ^FontPickerViewControllerDelegate, viewController: ^FontPickerViewController),
-    fontPickerViewControllerDidPickFont: proc(self: ^FontPickerViewControllerDelegate, viewController: ^FontPickerViewController),
-}
-
-FontPickerViewControllerDelegate_odin_extend :: proc(cls: Class, vt: ^FontPickerViewControllerDelegate_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.fontPickerViewControllerDidCancel != nil {
-        fontPickerViewControllerDidCancel :: proc "c" (self: ^FontPickerViewControllerDelegate, _: SEL, viewController: ^FontPickerViewController) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^FontPickerViewControllerDelegate_VTable)vt_ctx.protocol_vt).fontPickerViewControllerDidCancel(self, viewController)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fontPickerViewControllerDidCancel:"), auto_cast fontPickerViewControllerDidCancel, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.fontPickerViewControllerDidPickFont != nil {
-        fontPickerViewControllerDidPickFont :: proc "c" (self: ^FontPickerViewControllerDelegate, _: SEL, viewController: ^FontPickerViewController) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^FontPickerViewControllerDelegate_VTable)vt_ctx.protocol_vt).fontPickerViewControllerDidPickFont(self, viewController)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fontPickerViewControllerDidPickFont:"), auto_cast fontPickerViewControllerDidPickFont, "v@:@") do panic("Failed to register objC method.")
-    }
-}
-

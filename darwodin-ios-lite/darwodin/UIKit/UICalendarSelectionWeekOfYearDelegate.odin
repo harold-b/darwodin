@@ -19,6 +19,3 @@ CalendarSelectionWeekOfYearDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-CalendarSelectionWeekOfYearDelegate_VTable :: struct {
-}
-

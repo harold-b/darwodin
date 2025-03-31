@@ -26,12 +26,3 @@ PredicateOperator_init :: proc "c" (self: ^PredicateOperator) -> ^PredicateOpera
 }
 
 
-PredicateOperator_VTable :: struct {
-}
-
-PredicateOperator_odin_extend :: proc(cls: Class, vt: ^PredicateOperator_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

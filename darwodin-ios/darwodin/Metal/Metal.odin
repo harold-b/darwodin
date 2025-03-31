@@ -98,28 +98,28 @@ AutoreleasedRenderPipelineReflection :: distinct ^RenderPipelineReflection
 AutoreleasedComputePipelineReflection :: distinct ^ComputePipelineReflection
 
 /// MTLNewLibraryCompletionHandler
-NewLibraryCompletionHandler :: distinct proc "c" (library: ^Library, error: ^NS.Error)
+NewLibraryCompletionHandler :: proc "c" (library: ^Library, error: ^NS.Error)
 
 /// MTLNewRenderPipelineStateCompletionHandler
-NewRenderPipelineStateCompletionHandler :: distinct proc "c" (renderPipelineState: ^RenderPipelineState, error: ^NS.Error)
+NewRenderPipelineStateCompletionHandler :: proc "c" (renderPipelineState: ^RenderPipelineState, error: ^NS.Error)
 
 /// MTLNewRenderPipelineStateWithReflectionCompletionHandler
-NewRenderPipelineStateWithReflectionCompletionHandler :: distinct proc "c" (renderPipelineState: ^RenderPipelineState, reflection: ^RenderPipelineReflection, error: ^NS.Error)
+NewRenderPipelineStateWithReflectionCompletionHandler :: proc "c" (renderPipelineState: ^RenderPipelineState, reflection: ^RenderPipelineReflection, error: ^NS.Error)
 
 /// MTLNewComputePipelineStateCompletionHandler
-NewComputePipelineStateCompletionHandler :: distinct proc "c" (computePipelineState: ^ComputePipelineState, error: ^NS.Error)
+NewComputePipelineStateCompletionHandler :: proc "c" (computePipelineState: ^ComputePipelineState, error: ^NS.Error)
 
 /// MTLNewComputePipelineStateWithReflectionCompletionHandler
-NewComputePipelineStateWithReflectionCompletionHandler :: distinct proc "c" (computePipelineState: ^ComputePipelineState, reflection: ^ComputePipelineReflection, error: ^NS.Error)
+NewComputePipelineStateWithReflectionCompletionHandler :: proc "c" (computePipelineState: ^ComputePipelineState, reflection: ^ComputePipelineReflection, error: ^NS.Error)
 
 /// MTLTimestamp
 Timestamp :: distinct cffi.uint64_t
 
 /// MTLCommandBufferHandler
-CommandBufferHandler :: distinct proc "c" (_arg_0: ^CommandBuffer)
+CommandBufferHandler :: proc "c" (_arg_0: ^CommandBuffer)
 
 /// MTLDrawablePresentedHandler
-DrawablePresentedHandler :: distinct proc "c" (_arg_0: ^Drawable)
+DrawablePresentedHandler :: proc "c" (_arg_0: ^Drawable)
 
 /// MTLPackedFloat3
 PackedFloat3 :: distinct _MTLPackedFloat3
@@ -131,10 +131,10 @@ PackedFloat4x3 :: distinct _MTLPackedFloat4x3
 AxisAlignedBoundingBox :: distinct _MTLAxisAlignedBoundingBox
 
 /// MTLSharedEventNotificationBlock
-SharedEventNotificationBlock :: distinct proc "c" (_arg_0: ^SharedEvent, value: cffi.uint64_t)
+SharedEventNotificationBlock :: proc "c" (_arg_0: ^SharedEvent, value: cffi.uint64_t)
 
 /// MTLIOCommandBufferHandler
-IOCommandBufferHandler :: distinct proc "c" (_arg_0: ^IOCommandBuffer)
+IOCommandBufferHandler :: proc "c" (_arg_0: ^IOCommandBuffer)
 
 /// MTLIOCompressionContext
 IOCompressionContext :: distinct rawptr

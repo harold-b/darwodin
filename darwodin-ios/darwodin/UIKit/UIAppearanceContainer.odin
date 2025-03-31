@@ -19,12 +19,3 @@ AppearanceContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AppearanceContainer_VTable :: struct {
-}
-
-AppearanceContainer_odin_extend :: proc(cls: Class, vt: ^AppearanceContainer_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

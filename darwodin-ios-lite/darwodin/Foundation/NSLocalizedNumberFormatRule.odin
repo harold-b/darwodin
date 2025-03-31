@@ -18,7 +18,3 @@ LocalizedNumberFormatRule :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-LocalizedNumberFormatRule_VTable :: struct {
-    super: Object_VTable,
-}
-

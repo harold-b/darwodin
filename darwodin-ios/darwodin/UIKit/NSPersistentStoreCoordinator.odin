@@ -28,12 +28,3 @@ NSPersistentStoreCoordinator_init :: proc "c" (self: ^NSPersistentStoreCoordinat
 }
 
 
-NSPersistentStoreCoordinator_VTable :: struct {
-}
-
-NSPersistentStoreCoordinator_odin_extend :: proc(cls: Class, vt: ^NSPersistentStoreCoordinator_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIUpdateLink")
 UpdateLink :: struct { using _: NS.Object, }
 
-UpdateLink_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIGraphicsPDFRenderer")
 GraphicsPDFRenderer :: struct { using _: GraphicsRenderer, }
 
-GraphicsPDFRenderer_VTable :: struct {
-    super: GraphicsRenderer_VTable,
-}
-

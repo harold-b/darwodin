@@ -16,7 +16,3 @@ import NS "../Foundation"
 @(objc_class="EAGLSharegroup")
 EAGLSharegroup :: struct { using _: NS.Object, }
 
-EAGLSharegroup_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

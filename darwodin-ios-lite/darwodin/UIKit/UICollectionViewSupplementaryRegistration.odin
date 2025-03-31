@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICollectionViewSupplementaryRegistration")
 CollectionViewSupplementaryRegistration :: struct { using _: NS.Object, }
 
-CollectionViewSupplementaryRegistration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

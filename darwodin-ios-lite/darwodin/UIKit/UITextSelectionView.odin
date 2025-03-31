@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITextSelectionView")
 TextSelectionView :: struct { using _: intrinsics.objc_object, }
 
-TextSelectionView_VTable :: struct {
-}
-

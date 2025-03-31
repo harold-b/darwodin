@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIUpdateInfo")
 UpdateInfo :: struct { using _: NS.Object, }
 
-UpdateInfo_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

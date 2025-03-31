@@ -20,7 +20,3 @@ NSTextContentManager :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-NSTextContentManager_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

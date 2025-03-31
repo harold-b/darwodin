@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITextFormattingViewController")
 TextFormattingViewController :: struct { using _: ViewController, }
 
-TextFormattingViewController_VTable :: struct {
-    super: ViewController_VTable,
-}
-

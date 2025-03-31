@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPinchGestureRecognizer")
 PinchGestureRecognizer :: struct { using _: GestureRecognizer, }
 
-PinchGestureRecognizer_VTable :: struct {
-    super: GestureRecognizer_VTable,
-}
-

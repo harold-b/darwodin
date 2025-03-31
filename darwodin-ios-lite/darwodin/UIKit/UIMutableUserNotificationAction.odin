@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIMutableUserNotificationAction")
 MutableUserNotificationAction :: struct { using _: UserNotificationAction, }
 
-MutableUserNotificationAction_VTable :: struct {
-    super: UserNotificationAction_VTable,
-}
-

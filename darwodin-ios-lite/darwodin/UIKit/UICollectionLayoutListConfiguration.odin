@@ -19,7 +19,3 @@ CollectionLayoutListConfiguration :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-CollectionLayoutListConfiguration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

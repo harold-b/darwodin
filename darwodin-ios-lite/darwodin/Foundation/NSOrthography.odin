@@ -18,7 +18,3 @@ Orthography :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-Orthography_VTable :: struct {
-    super: Object_VTable,
-}
-

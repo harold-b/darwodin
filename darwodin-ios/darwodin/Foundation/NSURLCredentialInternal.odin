@@ -26,12 +26,3 @@ URLCredentialInternal_init :: proc "c" (self: ^URLCredentialInternal) -> ^URLCre
 }
 
 
-URLCredentialInternal_VTable :: struct {
-}
-
-URLCredentialInternal_odin_extend :: proc(cls: Class, vt: ^URLCredentialInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

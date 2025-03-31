@@ -19,7 +19,3 @@ NSTextContentStorage :: struct { using _: NSTextContentManager,
     using _: NSTextStorageObserving,
 }
 
-NSTextContentStorage_VTable :: struct {
-    super: NSTextContentManager_VTable,
-}
-

@@ -17,7 +17,3 @@ UnitVolume :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitVolume_VTable :: struct {
-    super: Dimension_VTable,
-}
-

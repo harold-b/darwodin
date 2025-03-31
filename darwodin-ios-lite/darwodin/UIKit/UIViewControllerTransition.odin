@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIViewControllerTransition")
 ViewControllerTransition :: struct { using _: NS.Object, }
 
-ViewControllerTransition_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

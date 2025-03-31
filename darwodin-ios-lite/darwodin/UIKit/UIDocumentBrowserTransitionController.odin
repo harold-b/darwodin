@@ -19,7 +19,3 @@ DocumentBrowserTransitionController :: struct { using _: NS.Object,
     using _: ViewControllerAnimatedTransitioning,
 }
 
-DocumentBrowserTransitionController_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -19,6 +19,3 @@ PasteConfigurationSupporting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-PasteConfigurationSupporting_VTable :: struct {
-}
-

@@ -19,7 +19,3 @@ NSTextStorage :: struct { using _: NS.MutableAttributedString,
     using _: NS.SecureCoding,
 }
 
-NSTextStorage_VTable :: struct {
-    super: NS.MutableAttributedString_VTable,
-}
-

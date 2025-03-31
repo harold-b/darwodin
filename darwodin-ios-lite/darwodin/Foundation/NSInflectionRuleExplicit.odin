@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSInflectionRuleExplicit")
 InflectionRuleExplicit :: struct { using _: InflectionRule, }
 
-InflectionRuleExplicit_VTable :: struct {
-    super: InflectionRule_VTable,
-}
-

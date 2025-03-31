@@ -19,7 +19,3 @@ ZoomTransitionOptions :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-ZoomTransitionOptions_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

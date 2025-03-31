@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIDynamicAnimator")
 DynamicAnimator :: struct { using _: NS.Object, }
 
-DynamicAnimator_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

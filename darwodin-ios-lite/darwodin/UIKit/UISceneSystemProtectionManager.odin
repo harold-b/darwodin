@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISceneSystemProtectionManager")
 SceneSystemProtectionManager :: struct { using _: NS.Object, }
 
-SceneSystemProtectionManager_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

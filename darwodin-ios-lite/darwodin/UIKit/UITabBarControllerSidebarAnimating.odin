@@ -19,6 +19,3 @@ TabBarControllerSidebarAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TabBarControllerSidebarAnimating_VTable :: struct {
-}
-

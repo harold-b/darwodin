@@ -18,7 +18,3 @@ TimeZone :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-TimeZone_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -16,7 +16,3 @@ import NS "../Foundation"
 @(objc_class="EAGLContext")
 EAGLContext :: struct { using _: NS.Object, }
 
-EAGLContext_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

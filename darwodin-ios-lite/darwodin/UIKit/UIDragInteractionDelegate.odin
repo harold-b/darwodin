@@ -19,6 +19,3 @@ DragInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-DragInteractionDelegate_VTable :: struct {
-}
-

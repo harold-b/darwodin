@@ -19,7 +19,3 @@ PointerShape :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-PointerShape_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

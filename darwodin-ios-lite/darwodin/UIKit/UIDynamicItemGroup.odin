@@ -19,7 +19,3 @@ DynamicItemGroup :: struct { using _: NS.Object,
     using _: DynamicItem,
 }
 
-DynamicItemGroup_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

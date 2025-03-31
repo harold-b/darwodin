@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIActivity")
 Activity :: struct { using _: NS.Object, }
 
-Activity_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

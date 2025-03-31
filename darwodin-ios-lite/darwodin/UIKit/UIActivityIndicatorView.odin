@@ -19,7 +19,3 @@ ActivityIndicatorView :: struct { using _: View,
     using _: NS.Coding,
 }
 
-ActivityIndicatorView_VTable :: struct {
-    super: View_VTable,
-}
-

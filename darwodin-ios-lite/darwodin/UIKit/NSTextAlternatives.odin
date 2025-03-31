@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextAlternatives")
 NSTextAlternatives :: struct { using _: intrinsics.objc_object, }
 
-NSTextAlternatives_VTable :: struct {
-}
-

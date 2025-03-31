@@ -21,7 +21,3 @@ NSAdaptiveImageGlyph :: struct { using _: NS.Object,
     using _: CTAdaptiveImageProviding,
 }
 
-NSAdaptiveImageGlyph_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

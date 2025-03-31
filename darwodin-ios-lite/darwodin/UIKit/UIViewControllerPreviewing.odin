@@ -19,6 +19,3 @@ ViewControllerPreviewing :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ViewControllerPreviewing_VTable :: struct {
-}
-

@@ -19,7 +19,3 @@ ContentUnavailableConfigurationState :: struct { using _: NS.Object,
     using _: ConfigurationState,
 }
 
-ContentUnavailableConfigurationState_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

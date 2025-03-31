@@ -19,7 +19,3 @@ ResolvedShape :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-ResolvedShape_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

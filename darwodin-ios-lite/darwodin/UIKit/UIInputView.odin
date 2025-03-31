@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIInputView")
 InputView :: struct { using _: View, }
 
-InputView_VTable :: struct {
-    super: View_VTable,
-}
-

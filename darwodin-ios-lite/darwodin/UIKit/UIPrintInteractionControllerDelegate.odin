@@ -19,6 +19,3 @@ PrintInteractionControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-PrintInteractionControllerDelegate_VTable :: struct {
-}
-

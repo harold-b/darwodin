@@ -17,6 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITraitDefinition")
 TraitDefinition :: struct { using _: intrinsics.objc_object, }
 
-TraitDefinition_VTable :: struct {
-}
-

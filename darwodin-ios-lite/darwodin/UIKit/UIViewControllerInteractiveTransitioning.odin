@@ -19,6 +19,3 @@ ViewControllerInteractiveTransitioning :: struct { using _: intrinsics.objc_obje
     using _: NS.ObjectProtocol,
 }
 
-ViewControllerInteractiveTransitioning_VTable :: struct {
-}
-

@@ -17,7 +17,3 @@ MeasurementFormatter :: struct { using _: Formatter,
     using _: SecureCoding,
 }
 
-MeasurementFormatter_VTable :: struct {
-    super: Formatter_VTable,
-}
-

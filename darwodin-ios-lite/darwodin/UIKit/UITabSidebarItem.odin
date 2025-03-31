@@ -19,7 +19,3 @@ TabSidebarItem :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-TabSidebarItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

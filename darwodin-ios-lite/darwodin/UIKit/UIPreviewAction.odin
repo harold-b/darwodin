@@ -20,7 +20,3 @@ PreviewAction :: struct { using _: NS.Object,
     using _: PreviewActionItem,
 }
 
-PreviewAction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

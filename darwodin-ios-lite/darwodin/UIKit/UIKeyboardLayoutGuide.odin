@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIKeyboardLayoutGuide")
 KeyboardLayoutGuide :: struct { using _: TrackingLayoutGuide, }
 
-KeyboardLayoutGuide_VTable :: struct {
-    super: TrackingLayoutGuide_VTable,
-}
-

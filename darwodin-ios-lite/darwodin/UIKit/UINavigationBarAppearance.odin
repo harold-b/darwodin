@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UINavigationBarAppearance")
 NavigationBarAppearance :: struct { using _: BarAppearance, }
 
-NavigationBarAppearance_VTable :: struct {
-    super: BarAppearance_VTable,
-}
-

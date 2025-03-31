@@ -19,7 +19,3 @@ PrinterDestination :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-PrinterDestination_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

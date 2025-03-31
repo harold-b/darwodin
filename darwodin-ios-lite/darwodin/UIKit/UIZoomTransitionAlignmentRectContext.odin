@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIZoomTransitionAlignmentRectContext")
 ZoomTransitionAlignmentRectContext :: struct { using _: NS.Object, }
 
-ZoomTransitionAlignmentRectContext_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

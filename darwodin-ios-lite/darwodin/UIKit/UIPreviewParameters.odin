@@ -19,7 +19,3 @@ PreviewParameters :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-PreviewParameters_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

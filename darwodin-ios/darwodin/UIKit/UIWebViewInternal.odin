@@ -28,12 +28,3 @@ WebViewInternal_init :: proc "c" (self: ^WebViewInternal) -> ^WebViewInternal {
 }
 
 
-WebViewInternal_VTable :: struct {
-}
-
-WebViewInternal_odin_extend :: proc(cls: Class, vt: ^WebViewInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

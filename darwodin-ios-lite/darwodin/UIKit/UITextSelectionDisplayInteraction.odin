@@ -19,7 +19,3 @@ TextSelectionDisplayInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
-TextSelectionDisplayInteraction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

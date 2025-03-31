@@ -19,7 +19,3 @@ FontPickerViewControllerConfiguration :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-FontPickerViewControllerConfiguration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

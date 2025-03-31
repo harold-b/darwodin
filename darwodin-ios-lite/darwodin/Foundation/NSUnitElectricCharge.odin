@@ -17,7 +17,3 @@ UnitElectricCharge :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitElectricCharge_VTable :: struct {
-    super: Dimension_VTable,
-}
-

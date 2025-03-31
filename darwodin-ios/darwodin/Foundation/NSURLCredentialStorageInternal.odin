@@ -26,12 +26,3 @@ URLCredentialStorageInternal_init :: proc "c" (self: ^URLCredentialStorageIntern
 }
 
 
-URLCredentialStorageInternal_VTable :: struct {
-}
-
-URLCredentialStorageInternal_odin_extend :: proc(cls: Class, vt: ^URLCredentialStorageInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

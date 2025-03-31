@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICellAccessoryReorder")
 CellAccessoryReorder :: struct { using _: CellAccessory, }
 
-CellAccessoryReorder_VTable :: struct {
-    super: CellAccessory_VTable,
-}
-

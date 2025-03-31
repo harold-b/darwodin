@@ -19,12 +19,3 @@ ToolbarDelegate :: struct { using _: intrinsics.objc_object,
     using _: BarPositioningDelegate,
 }
 
-ToolbarDelegate_VTable :: struct {
-}
-
-ToolbarDelegate_odin_extend :: proc(cls: Class, vt: ^ToolbarDelegate_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

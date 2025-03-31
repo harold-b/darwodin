@@ -20,7 +20,3 @@ BarAppearance :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-BarAppearance_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

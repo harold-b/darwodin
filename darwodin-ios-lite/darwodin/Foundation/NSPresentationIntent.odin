@@ -18,7 +18,3 @@ PresentationIntent :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-PresentationIntent_VTable :: struct {
-    super: Object_VTable,
-}
-

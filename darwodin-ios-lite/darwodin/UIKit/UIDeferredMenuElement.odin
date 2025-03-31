@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIDeferredMenuElement")
 DeferredMenuElement :: struct { using _: MenuElement, }
 
-DeferredMenuElement_VTable :: struct {
-    super: MenuElement_VTable,
-}
-

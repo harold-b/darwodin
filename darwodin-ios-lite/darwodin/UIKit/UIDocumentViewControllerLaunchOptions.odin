@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIDocumentViewControllerLaunchOptions")
 DocumentViewControllerLaunchOptions :: struct { using _: NS.Object, }
 
-DocumentViewControllerLaunchOptions_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

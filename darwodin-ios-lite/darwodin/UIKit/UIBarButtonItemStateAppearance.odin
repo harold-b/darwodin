@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIBarButtonItemStateAppearance")
 BarButtonItemStateAppearance :: struct { using _: NS.Object, }
 
-BarButtonItemStateAppearance_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

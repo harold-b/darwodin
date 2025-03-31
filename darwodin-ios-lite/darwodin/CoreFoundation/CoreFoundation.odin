@@ -17,16 +17,21 @@ Protocol :: distinct id
 
 @require foreign import lib "system:CoreFoundation.framework"
 
-FSRef    :: struct {}
-NSObject :: intrinsics.objc_object
-NSString :: NSObject
+FSRef             :: struct {}
+NSObject          :: intrinsics.objc_object
+NSString          :: NSObject
 NSMethodSignature :: NSObject
-OS_object :: NSObject
-OS_os_workgroup :: NSObject
-NSUInteger :: cffi.ulong
-_NSZone  :: struct {}
-Boolean :: b8
-task_id_token_t :: mach_port_t
+OS_object         :: NSObject
+OS_os_workgroup   :: NSObject
+NSUInteger        :: cffi.ulong
+_NSZone           :: struct {}
+Boolean           :: b8
+task_id_token_t   :: mach_port_t
+
+// StringEncoding :: union #no_nil {
+//     StringBuiltInEncodings,
+//     StringEncodings,
+// }
 
 KERN_SUCCESS            :: 0
 DISPATCH_TIME_NOW       :: 0
@@ -36,412 +41,412 @@ DISPATCH_TIME_FOREVER   :: 0xFFFFFFFFFFFFFFFF
 OSUnknownByteOrder :: 0
 OSLittleEndian :: 1
 OSBigEndian :: 2
-NotificationDeliverImmediately :: 1
-NotificationPostToAllSessions :: 2
-CalendarComponentsWrap :: 1
-SocketAutomaticallyReenableReadCallBack :: 1
-SocketAutomaticallyReenableAcceptCallBack :: 2
-SocketAutomaticallyReenableDataCallBack :: 3
-SocketAutomaticallyReenableWriteCallBack :: 8
-SocketLeaveErrors :: 64
-SocketCloseOnInvalidate :: 128
+kNotificationDeliverImmediately :: 1
+kNotificationPostToAllSessions :: 2
+kCalendarComponentsWrap :: 1
+kSocketAutomaticallyReenableReadCallBack :: 1
+kSocketAutomaticallyReenableAcceptCallBack :: 2
+kSocketAutomaticallyReenableDataCallBack :: 3
+kSocketAutomaticallyReenableWriteCallBack :: 8
+kSocketLeaveErrors :: 64
+kSocketCloseOnInvalidate :: 128
 DISPATCH_WALLTIME_NOW :: 18446744073709551614
-PropertyListReadCorruptError :: 3840
-PropertyListReadUnknownVersionError :: 3841
-PropertyListReadStreamError :: 3842
-PropertyListWriteStreamError :: 3851
-BundleExecutableArchitectureI386 :: 7
-BundleExecutableArchitecturePPC :: 18
-BundleExecutableArchitectureX86_64 :: 16777223
-BundleExecutableArchitecturePPC64 :: 16777234
-BundleExecutableArchitectureARM64 :: 16777228
-MessagePortSuccess :: 0
-MessagePortSendTimeout :: -1
-MessagePortReceiveTimeout :: -2
-MessagePortIsInvalid :: -3
-MessagePortTransportError :: -4
-MessagePortBecameInvalidError :: -5
-StringTokenizerUnitWord :: 0
-StringTokenizerUnitSentence :: 1
-StringTokenizerUnitParagraph :: 2
-StringTokenizerUnitLineBreak :: 3
-StringTokenizerUnitWordBoundary :: 4
-StringTokenizerAttributeLatinTranscription :: 65536
-StringTokenizerAttributeLanguage :: 131072
-FileDescriptorReadCallBack :: 1
-FileDescriptorWriteCallBack :: 2
-UserNotificationStopAlertLevel :: 0
-UserNotificationNoteAlertLevel :: 1
-UserNotificationCautionAlertLevel :: 2
-UserNotificationPlainAlertLevel :: 3
-UserNotificationDefaultResponse :: 0
-UserNotificationAlternateResponse :: 1
-UserNotificationOtherResponse :: 2
-UserNotificationCancelResponse :: 3
-UserNotificationNoDefaultButtonFlag :: 32
-UserNotificationUseRadioButtonsFlag :: 64
-NotFound :: -1
+kPropertyListReadCorruptError :: 3840
+kPropertyListReadUnknownVersionError :: 3841
+kPropertyListReadStreamError :: 3842
+kPropertyListWriteStreamError :: 3851
+kBundleExecutableArchitectureI386 :: 7
+kBundleExecutableArchitecturePPC :: 18
+kBundleExecutableArchitectureX86_64 :: 16777223
+kBundleExecutableArchitecturePPC64 :: 16777234
+kBundleExecutableArchitectureARM64 :: 16777228
+kMessagePortSuccess :: 0
+kMessagePortSendTimeout :: -1
+kMessagePortReceiveTimeout :: -2
+kMessagePortIsInvalid :: -3
+kMessagePortTransportError :: -4
+kMessagePortBecameInvalidError :: -5
+kStringTokenizerUnitWord :: 0
+kStringTokenizerUnitSentence :: 1
+kStringTokenizerUnitParagraph :: 2
+kStringTokenizerUnitLineBreak :: 3
+kStringTokenizerUnitWordBoundary :: 4
+kStringTokenizerAttributeLatinTranscription :: 65536
+kStringTokenizerAttributeLanguage :: 131072
+kFileDescriptorReadCallBack :: 1
+kFileDescriptorWriteCallBack :: 2
+kUserNotificationStopAlertLevel :: 0
+kUserNotificationNoteAlertLevel :: 1
+kUserNotificationCautionAlertLevel :: 2
+kUserNotificationPlainAlertLevel :: 3
+kUserNotificationDefaultResponse :: 0
+kUserNotificationAlternateResponse :: 1
+kUserNotificationOtherResponse :: 2
+kUserNotificationCancelResponse :: 3
+kUserNotificationNoDefaultButtonFlag :: 32
+kUserNotificationUseRadioButtonsFlag :: 64
+kNotFound :: -1
 foreign lib {
-    @(link_name="kCFCoreFoundationVersionNumber") CoreFoundationVersionNumber: cffi.double
-    @(link_name="kCFNull") Null: NullRef
-    @(link_name="kCFAllocatorDefault") AllocatorDefault: AllocatorRef
-    @(link_name="kCFAllocatorSystemDefault") AllocatorSystemDefault: AllocatorRef
-    @(link_name="kCFAllocatorMalloc") AllocatorMalloc: AllocatorRef
-    @(link_name="kCFAllocatorMallocZone") AllocatorMallocZone: AllocatorRef
-    @(link_name="kCFAllocatorNull") AllocatorNull: AllocatorRef
-    @(link_name="kCFAllocatorUseContext") AllocatorUseContext: AllocatorRef
-    @(link_name="kCFTypeArrayCallBacks") TypeArrayCallBacks: ArrayCallBacks
-    @(link_name="kCFTypeBagCallBacks") TypeBagCallBacks: BagCallBacks
-    @(link_name="kCFCopyStringBagCallBacks") CopyStringBagCallBacks: BagCallBacks
-    @(link_name="kCFStringBinaryHeapCallBacks") StringBinaryHeapCallBacks: BinaryHeapCallBacks
-    @(link_name="kCFTypeDictionaryKeyCallBacks") TypeDictionaryKeyCallBacks: DictionaryKeyCallBacks
-    @(link_name="kCFCopyStringDictionaryKeyCallBacks") CopyStringDictionaryKeyCallBacks: DictionaryKeyCallBacks
-    @(link_name="kCFTypeDictionaryValueCallBacks") TypeDictionaryValueCallBacks: DictionaryValueCallBacks
-    @(link_name="kCFLocaleCurrentLocaleDidChangeNotification") LocaleCurrentLocaleDidChangeNotification: NotificationName
+    @(link_name="kCFCoreFoundationVersionNumber") kCoreFoundationVersionNumber: cffi.double
+    @(link_name="kCFNull") kNull: NullRef
+    @(link_name="kCFAllocatorDefault") kAllocatorDefault: AllocatorRef
+    @(link_name="kCFAllocatorSystemDefault") kAllocatorSystemDefault: AllocatorRef
+    @(link_name="kCFAllocatorMalloc") kAllocatorMalloc: AllocatorRef
+    @(link_name="kCFAllocatorMallocZone") kAllocatorMallocZone: AllocatorRef
+    @(link_name="kCFAllocatorNull") kAllocatorNull: AllocatorRef
+    @(link_name="kCFAllocatorUseContext") kAllocatorUseContext: AllocatorRef
+    @(link_name="kCFTypeArrayCallBacks") kTypeArrayCallBacks: ArrayCallBacks
+    @(link_name="kCFTypeBagCallBacks") kTypeBagCallBacks: BagCallBacks
+    @(link_name="kCFCopyStringBagCallBacks") kCopyStringBagCallBacks: BagCallBacks
+    @(link_name="kCFStringBinaryHeapCallBacks") kStringBinaryHeapCallBacks: BinaryHeapCallBacks
+    @(link_name="kCFTypeDictionaryKeyCallBacks") kTypeDictionaryKeyCallBacks: DictionaryKeyCallBacks
+    @(link_name="kCFCopyStringDictionaryKeyCallBacks") kCopyStringDictionaryKeyCallBacks: DictionaryKeyCallBacks
+    @(link_name="kCFTypeDictionaryValueCallBacks") kTypeDictionaryValueCallBacks: DictionaryValueCallBacks
+    @(link_name="kCFLocaleCurrentLocaleDidChangeNotification") kLocaleCurrentLocaleDidChangeNotification: NotificationName
     @(link_name="kCFLocaleIdentifier") kLocaleIdentifier: LocaleKey
-    @(link_name="kCFLocaleLanguageCode") LocaleLanguageCode: LocaleKey
-    @(link_name="kCFLocaleCountryCode") LocaleCountryCode: LocaleKey
-    @(link_name="kCFLocaleScriptCode") LocaleScriptCode: LocaleKey
-    @(link_name="kCFLocaleVariantCode") LocaleVariantCode: LocaleKey
-    @(link_name="kCFLocaleExemplarCharacterSet") LocaleExemplarCharacterSet: LocaleKey
-    @(link_name="kCFLocaleCalendarIdentifier") LocaleCalendarIdentifier: LocaleKey
-    @(link_name="kCFLocaleCalendar") LocaleCalendar: LocaleKey
-    @(link_name="kCFLocaleCollationIdentifier") LocaleCollationIdentifier: LocaleKey
-    @(link_name="kCFLocaleUsesMetricSystem") LocaleUsesMetricSystem: LocaleKey
-    @(link_name="kCFLocaleMeasurementSystem") LocaleMeasurementSystem: LocaleKey
-    @(link_name="kCFLocaleDecimalSeparator") LocaleDecimalSeparator: LocaleKey
-    @(link_name="kCFLocaleGroupingSeparator") LocaleGroupingSeparator: LocaleKey
-    @(link_name="kCFLocaleCurrencySymbol") LocaleCurrencySymbol: LocaleKey
-    @(link_name="kCFLocaleCurrencyCode") LocaleCurrencyCode: LocaleKey
-    @(link_name="kCFLocaleCollatorIdentifier") LocaleCollatorIdentifier: LocaleKey
-    @(link_name="kCFLocaleQuotationBeginDelimiterKey") LocaleQuotationBeginDelimiterKey: LocaleKey
-    @(link_name="kCFLocaleQuotationEndDelimiterKey") LocaleQuotationEndDelimiterKey: LocaleKey
-    @(link_name="kCFLocaleAlternateQuotationBeginDelimiterKey") LocaleAlternateQuotationBeginDelimiterKey: LocaleKey
-    @(link_name="kCFLocaleAlternateQuotationEndDelimiterKey") LocaleAlternateQuotationEndDelimiterKey: LocaleKey
-    @(link_name="kCFGregorianCalendar") GregorianCalendar: CalendarIdentifier
-    @(link_name="kCFBuddhistCalendar") BuddhistCalendar: CalendarIdentifier
-    @(link_name="kCFChineseCalendar") ChineseCalendar: CalendarIdentifier
-    @(link_name="kCFHebrewCalendar") HebrewCalendar: CalendarIdentifier
-    @(link_name="kCFIslamicCalendar") IslamicCalendar: CalendarIdentifier
-    @(link_name="kCFIslamicCivilCalendar") IslamicCivilCalendar: CalendarIdentifier
-    @(link_name="kCFJapaneseCalendar") JapaneseCalendar: CalendarIdentifier
-    @(link_name="kCFRepublicOfChinaCalendar") RepublicOfChinaCalendar: CalendarIdentifier
-    @(link_name="kCFPersianCalendar") PersianCalendar: CalendarIdentifier
-    @(link_name="kCFIndianCalendar") IndianCalendar: CalendarIdentifier
-    @(link_name="kCFISO8601Calendar") ISO8601Calendar: CalendarIdentifier
-    @(link_name="kCFIslamicTabularCalendar") IslamicTabularCalendar: CalendarIdentifier
-    @(link_name="kCFIslamicUmmAlQuraCalendar") IslamicUmmAlQuraCalendar: CalendarIdentifier
-    @(link_name="kCFAbsoluteTimeIntervalSince1970") AbsoluteTimeIntervalSince1970: TimeInterval
-    @(link_name="kCFAbsoluteTimeIntervalSince1904") AbsoluteTimeIntervalSince1904: TimeInterval
-    @(link_name="kCFErrorDomainPOSIX") ErrorDomainPOSIX: ErrorDomain
-    @(link_name="kCFErrorDomainOSStatus") ErrorDomainOSStatus: ErrorDomain
-    @(link_name="kCFErrorDomainMach") ErrorDomainMach: ErrorDomain
-    @(link_name="kCFErrorDomainCocoa") ErrorDomainCocoa: ErrorDomain
-    @(link_name="kCFErrorLocalizedDescriptionKey") ErrorLocalizedDescriptionKey: StringRef
-    @(link_name="kCFErrorLocalizedFailureKey") ErrorLocalizedFailureKey: StringRef
-    @(link_name="kCFErrorLocalizedFailureReasonKey") ErrorLocalizedFailureReasonKey: StringRef
-    @(link_name="kCFErrorLocalizedRecoverySuggestionKey") ErrorLocalizedRecoverySuggestionKey: StringRef
-    @(link_name="kCFErrorDescriptionKey") ErrorDescriptionKey: StringRef
-    @(link_name="kCFErrorUnderlyingErrorKey") ErrorUnderlyingErrorKey: StringRef
-    @(link_name="kCFErrorURLKey") ErrorURLKey: StringRef
-    @(link_name="kCFErrorFilePathKey") ErrorFilePathKey: StringRef
-    @(link_name="kCFStringTransformStripCombiningMarks") StringTransformStripCombiningMarks: StringRef
-    @(link_name="kCFStringTransformToLatin") StringTransformToLatin: StringRef
-    @(link_name="kCFStringTransformFullwidthHalfwidth") StringTransformFullwidthHalfwidth: StringRef
-    @(link_name="kCFStringTransformLatinKatakana") StringTransformLatinKatakana: StringRef
-    @(link_name="kCFStringTransformLatinHiragana") StringTransformLatinHiragana: StringRef
-    @(link_name="kCFStringTransformHiraganaKatakana") StringTransformHiraganaKatakana: StringRef
-    @(link_name="kCFStringTransformMandarinLatin") StringTransformMandarinLatin: StringRef
-    @(link_name="kCFStringTransformLatinHangul") StringTransformLatinHangul: StringRef
-    @(link_name="kCFStringTransformLatinArabic") StringTransformLatinArabic: StringRef
-    @(link_name="kCFStringTransformLatinHebrew") StringTransformLatinHebrew: StringRef
-    @(link_name="kCFStringTransformLatinThai") StringTransformLatinThai: StringRef
-    @(link_name="kCFStringTransformLatinCyrillic") StringTransformLatinCyrillic: StringRef
-    @(link_name="kCFStringTransformLatinGreek") StringTransformLatinGreek: StringRef
-    @(link_name="kCFStringTransformToXMLHex") StringTransformToXMLHex: StringRef
-    @(link_name="kCFStringTransformToUnicodeName") StringTransformToUnicodeName: StringRef
-    @(link_name="kCFStringTransformStripDiacritics") StringTransformStripDiacritics: StringRef
-    @(link_name="kCFTimeZoneSystemTimeZoneDidChangeNotification") TimeZoneSystemTimeZoneDidChangeNotification: NotificationName
-    @(link_name="kCFDateFormatterIsLenient") DateFormatterIsLenient: DateFormatterKey
-    @(link_name="kCFDateFormatterTimeZone") DateFormatterTimeZone: DateFormatterKey
-    @(link_name="kCFDateFormatterCalendarName") DateFormatterCalendarName: DateFormatterKey
-    @(link_name="kCFDateFormatterDefaultFormat") DateFormatterDefaultFormat: DateFormatterKey
-    @(link_name="kCFDateFormatterTwoDigitStartDate") DateFormatterTwoDigitStartDate: DateFormatterKey
-    @(link_name="kCFDateFormatterDefaultDate") DateFormatterDefaultDate: DateFormatterKey
-    @(link_name="kCFDateFormatterCalendar") DateFormatterCalendar: DateFormatterKey
-    @(link_name="kCFDateFormatterEraSymbols") DateFormatterEraSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterMonthSymbols") DateFormatterMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortMonthSymbols") DateFormatterShortMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterWeekdaySymbols") DateFormatterWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortWeekdaySymbols") DateFormatterShortWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterAMSymbol") DateFormatterAMSymbol: DateFormatterKey
-    @(link_name="kCFDateFormatterPMSymbol") DateFormatterPMSymbol: DateFormatterKey
-    @(link_name="kCFDateFormatterLongEraSymbols") DateFormatterLongEraSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterVeryShortMonthSymbols") DateFormatterVeryShortMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterStandaloneMonthSymbols") DateFormatterStandaloneMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortStandaloneMonthSymbols") DateFormatterShortStandaloneMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterVeryShortStandaloneMonthSymbols") DateFormatterVeryShortStandaloneMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterVeryShortWeekdaySymbols") DateFormatterVeryShortWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterStandaloneWeekdaySymbols") DateFormatterStandaloneWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortStandaloneWeekdaySymbols") DateFormatterShortStandaloneWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterVeryShortStandaloneWeekdaySymbols") DateFormatterVeryShortStandaloneWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterQuarterSymbols") DateFormatterQuarterSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortQuarterSymbols") DateFormatterShortQuarterSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterStandaloneQuarterSymbols") DateFormatterStandaloneQuarterSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortStandaloneQuarterSymbols") DateFormatterShortStandaloneQuarterSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterGregorianStartDate") DateFormatterGregorianStartDate: DateFormatterKey
-    @(link_name="kCFDateFormatterDoesRelativeDateFormattingKey") DateFormatterDoesRelativeDateFormattingKey: DateFormatterKey
-    @(link_name="kCFBooleanTrue") BooleanTrue: BooleanRef
-    @(link_name="kCFBooleanFalse") BooleanFalse: BooleanRef
-    @(link_name="kCFNumberPositiveInfinity") NumberPositiveInfinity: NumberRef
-    @(link_name="kCFNumberNegativeInfinity") NumberNegativeInfinity: NumberRef
-    @(link_name="kCFNumberNaN") NumberNaN: NumberRef
-    @(link_name="kCFNumberFormatterCurrencyCode") NumberFormatterCurrencyCode: NumberFormatterKey
-    @(link_name="kCFNumberFormatterDecimalSeparator") NumberFormatterDecimalSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterCurrencyDecimalSeparator") NumberFormatterCurrencyDecimalSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterAlwaysShowDecimalSeparator") NumberFormatterAlwaysShowDecimalSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterGroupingSeparator") NumberFormatterGroupingSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterUseGroupingSeparator") NumberFormatterUseGroupingSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPercentSymbol") NumberFormatterPercentSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterZeroSymbol") NumberFormatterZeroSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterNaNSymbol") NumberFormatterNaNSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterInfinitySymbol") NumberFormatterInfinitySymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinusSign") NumberFormatterMinusSign: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPlusSign") NumberFormatterPlusSign: NumberFormatterKey
-    @(link_name="kCFNumberFormatterCurrencySymbol") NumberFormatterCurrencySymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterExponentSymbol") NumberFormatterExponentSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinIntegerDigits") NumberFormatterMinIntegerDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMaxIntegerDigits") NumberFormatterMaxIntegerDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinFractionDigits") NumberFormatterMinFractionDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMaxFractionDigits") NumberFormatterMaxFractionDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterGroupingSize") NumberFormatterGroupingSize: NumberFormatterKey
-    @(link_name="kCFNumberFormatterSecondaryGroupingSize") NumberFormatterSecondaryGroupingSize: NumberFormatterKey
+    @(link_name="kCFLocaleLanguageCode") kLocaleLanguageCode: LocaleKey
+    @(link_name="kCFLocaleCountryCode") kLocaleCountryCode: LocaleKey
+    @(link_name="kCFLocaleScriptCode") kLocaleScriptCode: LocaleKey
+    @(link_name="kCFLocaleVariantCode") kLocaleVariantCode: LocaleKey
+    @(link_name="kCFLocaleExemplarCharacterSet") kLocaleExemplarCharacterSet: LocaleKey
+    @(link_name="kCFLocaleCalendarIdentifier") kLocaleCalendarIdentifier: LocaleKey
+    @(link_name="kCFLocaleCalendar") kLocaleCalendar: LocaleKey
+    @(link_name="kCFLocaleCollationIdentifier") kLocaleCollationIdentifier: LocaleKey
+    @(link_name="kCFLocaleUsesMetricSystem") kLocaleUsesMetricSystem: LocaleKey
+    @(link_name="kCFLocaleMeasurementSystem") kLocaleMeasurementSystem: LocaleKey
+    @(link_name="kCFLocaleDecimalSeparator") kLocaleDecimalSeparator: LocaleKey
+    @(link_name="kCFLocaleGroupingSeparator") kLocaleGroupingSeparator: LocaleKey
+    @(link_name="kCFLocaleCurrencySymbol") kLocaleCurrencySymbol: LocaleKey
+    @(link_name="kCFLocaleCurrencyCode") kLocaleCurrencyCode: LocaleKey
+    @(link_name="kCFLocaleCollatorIdentifier") kLocaleCollatorIdentifier: LocaleKey
+    @(link_name="kCFLocaleQuotationBeginDelimiterKey") kLocaleQuotationBeginDelimiterKey: LocaleKey
+    @(link_name="kCFLocaleQuotationEndDelimiterKey") kLocaleQuotationEndDelimiterKey: LocaleKey
+    @(link_name="kCFLocaleAlternateQuotationBeginDelimiterKey") kLocaleAlternateQuotationBeginDelimiterKey: LocaleKey
+    @(link_name="kCFLocaleAlternateQuotationEndDelimiterKey") kLocaleAlternateQuotationEndDelimiterKey: LocaleKey
+    @(link_name="kCFGregorianCalendar") kGregorianCalendar: CalendarIdentifier
+    @(link_name="kCFBuddhistCalendar") kBuddhistCalendar: CalendarIdentifier
+    @(link_name="kCFChineseCalendar") kChineseCalendar: CalendarIdentifier
+    @(link_name="kCFHebrewCalendar") kHebrewCalendar: CalendarIdentifier
+    @(link_name="kCFIslamicCalendar") kIslamicCalendar: CalendarIdentifier
+    @(link_name="kCFIslamicCivilCalendar") kIslamicCivilCalendar: CalendarIdentifier
+    @(link_name="kCFJapaneseCalendar") kJapaneseCalendar: CalendarIdentifier
+    @(link_name="kCFRepublicOfChinaCalendar") kRepublicOfChinaCalendar: CalendarIdentifier
+    @(link_name="kCFPersianCalendar") kPersianCalendar: CalendarIdentifier
+    @(link_name="kCFIndianCalendar") kIndianCalendar: CalendarIdentifier
+    @(link_name="kCFISO8601Calendar") kISO8601Calendar: CalendarIdentifier
+    @(link_name="kCFIslamicTabularCalendar") kIslamicTabularCalendar: CalendarIdentifier
+    @(link_name="kCFIslamicUmmAlQuraCalendar") kIslamicUmmAlQuraCalendar: CalendarIdentifier
+    @(link_name="kCFAbsoluteTimeIntervalSince1970") kAbsoluteTimeIntervalSince1970: TimeInterval
+    @(link_name="kCFAbsoluteTimeIntervalSince1904") kAbsoluteTimeIntervalSince1904: TimeInterval
+    @(link_name="kCFErrorDomainPOSIX") kErrorDomainPOSIX: ErrorDomain
+    @(link_name="kCFErrorDomainOSStatus") kErrorDomainOSStatus: ErrorDomain
+    @(link_name="kCFErrorDomainMach") kErrorDomainMach: ErrorDomain
+    @(link_name="kCFErrorDomainCocoa") kErrorDomainCocoa: ErrorDomain
+    @(link_name="kCFErrorLocalizedDescriptionKey") kErrorLocalizedDescriptionKey: StringRef
+    @(link_name="kCFErrorLocalizedFailureKey") kErrorLocalizedFailureKey: StringRef
+    @(link_name="kCFErrorLocalizedFailureReasonKey") kErrorLocalizedFailureReasonKey: StringRef
+    @(link_name="kCFErrorLocalizedRecoverySuggestionKey") kErrorLocalizedRecoverySuggestionKey: StringRef
+    @(link_name="kCFErrorDescriptionKey") kErrorDescriptionKey: StringRef
+    @(link_name="kCFErrorUnderlyingErrorKey") kErrorUnderlyingErrorKey: StringRef
+    @(link_name="kCFErrorURLKey") kErrorURLKey: StringRef
+    @(link_name="kCFErrorFilePathKey") kErrorFilePathKey: StringRef
+    @(link_name="kCFStringTransformStripCombiningMarks") kStringTransformStripCombiningMarks: StringRef
+    @(link_name="kCFStringTransformToLatin") kStringTransformToLatin: StringRef
+    @(link_name="kCFStringTransformFullwidthHalfwidth") kStringTransformFullwidthHalfwidth: StringRef
+    @(link_name="kCFStringTransformLatinKatakana") kStringTransformLatinKatakana: StringRef
+    @(link_name="kCFStringTransformLatinHiragana") kStringTransformLatinHiragana: StringRef
+    @(link_name="kCFStringTransformHiraganaKatakana") kStringTransformHiraganaKatakana: StringRef
+    @(link_name="kCFStringTransformMandarinLatin") kStringTransformMandarinLatin: StringRef
+    @(link_name="kCFStringTransformLatinHangul") kStringTransformLatinHangul: StringRef
+    @(link_name="kCFStringTransformLatinArabic") kStringTransformLatinArabic: StringRef
+    @(link_name="kCFStringTransformLatinHebrew") kStringTransformLatinHebrew: StringRef
+    @(link_name="kCFStringTransformLatinThai") kStringTransformLatinThai: StringRef
+    @(link_name="kCFStringTransformLatinCyrillic") kStringTransformLatinCyrillic: StringRef
+    @(link_name="kCFStringTransformLatinGreek") kStringTransformLatinGreek: StringRef
+    @(link_name="kCFStringTransformToXMLHex") kStringTransformToXMLHex: StringRef
+    @(link_name="kCFStringTransformToUnicodeName") kStringTransformToUnicodeName: StringRef
+    @(link_name="kCFStringTransformStripDiacritics") kStringTransformStripDiacritics: StringRef
+    @(link_name="kCFTimeZoneSystemTimeZoneDidChangeNotification") kTimeZoneSystemTimeZoneDidChangeNotification: NotificationName
+    @(link_name="kCFDateFormatterIsLenient") kDateFormatterIsLenient: DateFormatterKey
+    @(link_name="kCFDateFormatterTimeZone") kDateFormatterTimeZone: DateFormatterKey
+    @(link_name="kCFDateFormatterCalendarName") kDateFormatterCalendarName: DateFormatterKey
+    @(link_name="kCFDateFormatterDefaultFormat") kDateFormatterDefaultFormat: DateFormatterKey
+    @(link_name="kCFDateFormatterTwoDigitStartDate") kDateFormatterTwoDigitStartDate: DateFormatterKey
+    @(link_name="kCFDateFormatterDefaultDate") kDateFormatterDefaultDate: DateFormatterKey
+    @(link_name="kCFDateFormatterCalendar") kDateFormatterCalendar: DateFormatterKey
+    @(link_name="kCFDateFormatterEraSymbols") kDateFormatterEraSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterMonthSymbols") kDateFormatterMonthSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterShortMonthSymbols") kDateFormatterShortMonthSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterWeekdaySymbols") kDateFormatterWeekdaySymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterShortWeekdaySymbols") kDateFormatterShortWeekdaySymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterAMSymbol") kDateFormatterAMSymbol: DateFormatterKey
+    @(link_name="kCFDateFormatterPMSymbol") kDateFormatterPMSymbol: DateFormatterKey
+    @(link_name="kCFDateFormatterLongEraSymbols") kDateFormatterLongEraSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterVeryShortMonthSymbols") kDateFormatterVeryShortMonthSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterStandaloneMonthSymbols") kDateFormatterStandaloneMonthSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterShortStandaloneMonthSymbols") kDateFormatterShortStandaloneMonthSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterVeryShortStandaloneMonthSymbols") kDateFormatterVeryShortStandaloneMonthSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterVeryShortWeekdaySymbols") kDateFormatterVeryShortWeekdaySymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterStandaloneWeekdaySymbols") kDateFormatterStandaloneWeekdaySymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterShortStandaloneWeekdaySymbols") kDateFormatterShortStandaloneWeekdaySymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterVeryShortStandaloneWeekdaySymbols") kDateFormatterVeryShortStandaloneWeekdaySymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterQuarterSymbols") kDateFormatterQuarterSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterShortQuarterSymbols") kDateFormatterShortQuarterSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterStandaloneQuarterSymbols") kDateFormatterStandaloneQuarterSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterShortStandaloneQuarterSymbols") kDateFormatterShortStandaloneQuarterSymbols: DateFormatterKey
+    @(link_name="kCFDateFormatterGregorianStartDate") kDateFormatterGregorianStartDate: DateFormatterKey
+    @(link_name="kCFDateFormatterDoesRelativeDateFormattingKey") kDateFormatterDoesRelativeDateFormattingKey: DateFormatterKey
+    @(link_name="kCFBooleanTrue") kBooleanTrue: BooleanRef
+    @(link_name="kCFBooleanFalse") kBooleanFalse: BooleanRef
+    @(link_name="kCFNumberPositiveInfinity") kNumberPositiveInfinity: NumberRef
+    @(link_name="kCFNumberNegativeInfinity") kNumberNegativeInfinity: NumberRef
+    @(link_name="kCFNumberNaN") kNumberNaN: NumberRef
+    @(link_name="kCFNumberFormatterCurrencyCode") kNumberFormatterCurrencyCode: NumberFormatterKey
+    @(link_name="kCFNumberFormatterDecimalSeparator") kNumberFormatterDecimalSeparator: NumberFormatterKey
+    @(link_name="kCFNumberFormatterCurrencyDecimalSeparator") kNumberFormatterCurrencyDecimalSeparator: NumberFormatterKey
+    @(link_name="kCFNumberFormatterAlwaysShowDecimalSeparator") kNumberFormatterAlwaysShowDecimalSeparator: NumberFormatterKey
+    @(link_name="kCFNumberFormatterGroupingSeparator") kNumberFormatterGroupingSeparator: NumberFormatterKey
+    @(link_name="kCFNumberFormatterUseGroupingSeparator") kNumberFormatterUseGroupingSeparator: NumberFormatterKey
+    @(link_name="kCFNumberFormatterPercentSymbol") kNumberFormatterPercentSymbol: NumberFormatterKey
+    @(link_name="kCFNumberFormatterZeroSymbol") kNumberFormatterZeroSymbol: NumberFormatterKey
+    @(link_name="kCFNumberFormatterNaNSymbol") kNumberFormatterNaNSymbol: NumberFormatterKey
+    @(link_name="kCFNumberFormatterInfinitySymbol") kNumberFormatterInfinitySymbol: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMinusSign") kNumberFormatterMinusSign: NumberFormatterKey
+    @(link_name="kCFNumberFormatterPlusSign") kNumberFormatterPlusSign: NumberFormatterKey
+    @(link_name="kCFNumberFormatterCurrencySymbol") kNumberFormatterCurrencySymbol: NumberFormatterKey
+    @(link_name="kCFNumberFormatterExponentSymbol") kNumberFormatterExponentSymbol: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMinIntegerDigits") kNumberFormatterMinIntegerDigits: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMaxIntegerDigits") kNumberFormatterMaxIntegerDigits: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMinFractionDigits") kNumberFormatterMinFractionDigits: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMaxFractionDigits") kNumberFormatterMaxFractionDigits: NumberFormatterKey
+    @(link_name="kCFNumberFormatterGroupingSize") kNumberFormatterGroupingSize: NumberFormatterKey
+    @(link_name="kCFNumberFormatterSecondaryGroupingSize") kNumberFormatterSecondaryGroupingSize: NumberFormatterKey
     @(link_name="kCFNumberFormatterRoundingMode") kNumberFormatterRoundingMode: NumberFormatterKey
-    @(link_name="kCFNumberFormatterRoundingIncrement") NumberFormatterRoundingIncrement: NumberFormatterKey
-    @(link_name="kCFNumberFormatterFormatWidth") NumberFormatterFormatWidth: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPaddingPosition") NumberFormatterPaddingPosition: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPaddingCharacter") NumberFormatterPaddingCharacter: NumberFormatterKey
-    @(link_name="kCFNumberFormatterDefaultFormat") NumberFormatterDefaultFormat: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMultiplier") NumberFormatterMultiplier: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPositivePrefix") NumberFormatterPositivePrefix: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPositiveSuffix") NumberFormatterPositiveSuffix: NumberFormatterKey
-    @(link_name="kCFNumberFormatterNegativePrefix") NumberFormatterNegativePrefix: NumberFormatterKey
-    @(link_name="kCFNumberFormatterNegativeSuffix") NumberFormatterNegativeSuffix: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPerMillSymbol") NumberFormatterPerMillSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterInternationalCurrencySymbol") NumberFormatterInternationalCurrencySymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterCurrencyGroupingSeparator") NumberFormatterCurrencyGroupingSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterIsLenient") NumberFormatterIsLenient: NumberFormatterKey
-    @(link_name="kCFNumberFormatterUseSignificantDigits") NumberFormatterUseSignificantDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinSignificantDigits") NumberFormatterMinSignificantDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMaxSignificantDigits") NumberFormatterMaxSignificantDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinGroupingDigits") NumberFormatterMinGroupingDigits: NumberFormatterKey
-    @(link_name="kCFPreferencesAnyApplication") PreferencesAnyApplication: StringRef
-    @(link_name="kCFPreferencesCurrentApplication") PreferencesCurrentApplication: StringRef
-    @(link_name="kCFPreferencesAnyHost") PreferencesAnyHost: StringRef
-    @(link_name="kCFPreferencesCurrentHost") PreferencesCurrentHost: StringRef
-    @(link_name="kCFPreferencesAnyUser") PreferencesAnyUser: StringRef
-    @(link_name="kCFPreferencesCurrentUser") PreferencesCurrentUser: StringRef
-    @(link_name="kCFURLKeysOfUnsetValuesKey") URLKeysOfUnsetValuesKey: StringRef
-    @(link_name="kCFURLNameKey") URLNameKey: StringRef
-    @(link_name="kCFURLLocalizedNameKey") URLLocalizedNameKey: StringRef
-    @(link_name="kCFURLIsRegularFileKey") URLIsRegularFileKey: StringRef
-    @(link_name="kCFURLIsDirectoryKey") URLIsDirectoryKey: StringRef
-    @(link_name="kCFURLIsSymbolicLinkKey") URLIsSymbolicLinkKey: StringRef
-    @(link_name="kCFURLIsVolumeKey") URLIsVolumeKey: StringRef
-    @(link_name="kCFURLIsPackageKey") URLIsPackageKey: StringRef
-    @(link_name="kCFURLIsApplicationKey") URLIsApplicationKey: StringRef
-    @(link_name="kCFURLApplicationIsScriptableKey") URLApplicationIsScriptableKey: StringRef
-    @(link_name="kCFURLIsSystemImmutableKey") URLIsSystemImmutableKey: StringRef
-    @(link_name="kCFURLIsUserImmutableKey") URLIsUserImmutableKey: StringRef
-    @(link_name="kCFURLIsHiddenKey") URLIsHiddenKey: StringRef
-    @(link_name="kCFURLHasHiddenExtensionKey") URLHasHiddenExtensionKey: StringRef
-    @(link_name="kCFURLCreationDateKey") URLCreationDateKey: StringRef
-    @(link_name="kCFURLContentAccessDateKey") URLContentAccessDateKey: StringRef
-    @(link_name="kCFURLContentModificationDateKey") URLContentModificationDateKey: StringRef
-    @(link_name="kCFURLAttributeModificationDateKey") URLAttributeModificationDateKey: StringRef
-    @(link_name="kCFURLFileIdentifierKey") URLFileIdentifierKey: StringRef
-    @(link_name="kCFURLFileContentIdentifierKey") URLFileContentIdentifierKey: StringRef
-    @(link_name="kCFURLMayShareFileContentKey") URLMayShareFileContentKey: StringRef
-    @(link_name="kCFURLMayHaveExtendedAttributesKey") URLMayHaveExtendedAttributesKey: StringRef
-    @(link_name="kCFURLIsPurgeableKey") URLIsPurgeableKey: StringRef
-    @(link_name="kCFURLIsSparseKey") URLIsSparseKey: StringRef
-    @(link_name="kCFURLLinkCountKey") URLLinkCountKey: StringRef
-    @(link_name="kCFURLParentDirectoryURLKey") URLParentDirectoryURLKey: StringRef
-    @(link_name="kCFURLVolumeURLKey") URLVolumeURLKey: StringRef
-    @(link_name="kCFURLTypeIdentifierKey") URLTypeIdentifierKey: StringRef
-    @(link_name="kCFURLLocalizedTypeDescriptionKey") URLLocalizedTypeDescriptionKey: StringRef
-    @(link_name="kCFURLLabelNumberKey") URLLabelNumberKey: StringRef
-    @(link_name="kCFURLLabelColorKey") URLLabelColorKey: StringRef
-    @(link_name="kCFURLLocalizedLabelKey") URLLocalizedLabelKey: StringRef
-    @(link_name="kCFURLEffectiveIconKey") URLEffectiveIconKey: StringRef
-    @(link_name="kCFURLCustomIconKey") URLCustomIconKey: StringRef
-    @(link_name="kCFURLFileResourceIdentifierKey") URLFileResourceIdentifierKey: StringRef
-    @(link_name="kCFURLVolumeIdentifierKey") URLVolumeIdentifierKey: StringRef
-    @(link_name="kCFURLPreferredIOBlockSizeKey") URLPreferredIOBlockSizeKey: StringRef
-    @(link_name="kCFURLIsReadableKey") URLIsReadableKey: StringRef
-    @(link_name="kCFURLIsWritableKey") URLIsWritableKey: StringRef
-    @(link_name="kCFURLIsExecutableKey") URLIsExecutableKey: StringRef
-    @(link_name="kCFURLFileSecurityKey") URLFileSecurityKey: StringRef
-    @(link_name="kCFURLIsExcludedFromBackupKey") URLIsExcludedFromBackupKey: StringRef
-    @(link_name="kCFURLTagNamesKey") URLTagNamesKey: StringRef
-    @(link_name="kCFURLPathKey") URLPathKey: StringRef
-    @(link_name="kCFURLCanonicalPathKey") URLCanonicalPathKey: StringRef
-    @(link_name="kCFURLIsMountTriggerKey") URLIsMountTriggerKey: StringRef
-    @(link_name="kCFURLGenerationIdentifierKey") URLGenerationIdentifierKey: StringRef
-    @(link_name="kCFURLDocumentIdentifierKey") URLDocumentIdentifierKey: StringRef
-    @(link_name="kCFURLAddedToDirectoryDateKey") URLAddedToDirectoryDateKey: StringRef
-    @(link_name="kCFURLQuarantinePropertiesKey") URLQuarantinePropertiesKey: StringRef
-    @(link_name="kCFURLFileResourceTypeKey") URLFileResourceTypeKey: StringRef
-    @(link_name="kCFURLFileResourceTypeNamedPipe") URLFileResourceTypeNamedPipe: StringRef
-    @(link_name="kCFURLFileResourceTypeCharacterSpecial") URLFileResourceTypeCharacterSpecial: StringRef
-    @(link_name="kCFURLFileResourceTypeDirectory") URLFileResourceTypeDirectory: StringRef
-    @(link_name="kCFURLFileResourceTypeBlockSpecial") URLFileResourceTypeBlockSpecial: StringRef
-    @(link_name="kCFURLFileResourceTypeRegular") URLFileResourceTypeRegular: StringRef
-    @(link_name="kCFURLFileResourceTypeSymbolicLink") URLFileResourceTypeSymbolicLink: StringRef
-    @(link_name="kCFURLFileResourceTypeSocket") URLFileResourceTypeSocket: StringRef
-    @(link_name="kCFURLFileResourceTypeUnknown") URLFileResourceTypeUnknown: StringRef
-    @(link_name="kCFURLFileSizeKey") URLFileSizeKey: StringRef
-    @(link_name="kCFURLFileAllocatedSizeKey") URLFileAllocatedSizeKey: StringRef
-    @(link_name="kCFURLTotalFileSizeKey") URLTotalFileSizeKey: StringRef
-    @(link_name="kCFURLTotalFileAllocatedSizeKey") URLTotalFileAllocatedSizeKey: StringRef
-    @(link_name="kCFURLIsAliasFileKey") URLIsAliasFileKey: StringRef
-    @(link_name="kCFURLFileProtectionKey") URLFileProtectionKey: StringRef
-    @(link_name="kCFURLFileProtectionNone") URLFileProtectionNone: StringRef
-    @(link_name="kCFURLFileProtectionComplete") URLFileProtectionComplete: StringRef
-    @(link_name="kCFURLFileProtectionCompleteUnlessOpen") URLFileProtectionCompleteUnlessOpen: StringRef
-    @(link_name="kCFURLFileProtectionCompleteUntilFirstUserAuthentication") URLFileProtectionCompleteUntilFirstUserAuthentication: StringRef
-    @(link_name="kCFURLFileProtectionCompleteWhenUserInactive") URLFileProtectionCompleteWhenUserInactive: StringRef
-    @(link_name="kCFURLDirectoryEntryCountKey") URLDirectoryEntryCountKey: StringRef
-    @(link_name="kCFURLVolumeLocalizedFormatDescriptionKey") URLVolumeLocalizedFormatDescriptionKey: StringRef
-    @(link_name="kCFURLVolumeTotalCapacityKey") URLVolumeTotalCapacityKey: StringRef
-    @(link_name="kCFURLVolumeAvailableCapacityKey") URLVolumeAvailableCapacityKey: StringRef
-    @(link_name="kCFURLVolumeAvailableCapacityForImportantUsageKey") URLVolumeAvailableCapacityForImportantUsageKey: StringRef
-    @(link_name="kCFURLVolumeAvailableCapacityForOpportunisticUsageKey") URLVolumeAvailableCapacityForOpportunisticUsageKey: StringRef
-    @(link_name="kCFURLVolumeResourceCountKey") URLVolumeResourceCountKey: StringRef
-    @(link_name="kCFURLVolumeSupportsPersistentIDsKey") URLVolumeSupportsPersistentIDsKey: StringRef
-    @(link_name="kCFURLVolumeSupportsSymbolicLinksKey") URLVolumeSupportsSymbolicLinksKey: StringRef
-    @(link_name="kCFURLVolumeSupportsHardLinksKey") URLVolumeSupportsHardLinksKey: StringRef
-    @(link_name="kCFURLVolumeSupportsJournalingKey") URLVolumeSupportsJournalingKey: StringRef
-    @(link_name="kCFURLVolumeIsJournalingKey") URLVolumeIsJournalingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsSparseFilesKey") URLVolumeSupportsSparseFilesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsZeroRunsKey") URLVolumeSupportsZeroRunsKey: StringRef
-    @(link_name="kCFURLVolumeSupportsCaseSensitiveNamesKey") URLVolumeSupportsCaseSensitiveNamesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsCasePreservedNamesKey") URLVolumeSupportsCasePreservedNamesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsRootDirectoryDatesKey") URLVolumeSupportsRootDirectoryDatesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsVolumeSizesKey") URLVolumeSupportsVolumeSizesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsRenamingKey") URLVolumeSupportsRenamingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsAdvisoryFileLockingKey") URLVolumeSupportsAdvisoryFileLockingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsExtendedSecurityKey") URLVolumeSupportsExtendedSecurityKey: StringRef
-    @(link_name="kCFURLVolumeIsBrowsableKey") URLVolumeIsBrowsableKey: StringRef
-    @(link_name="kCFURLVolumeMaximumFileSizeKey") URLVolumeMaximumFileSizeKey: StringRef
-    @(link_name="kCFURLVolumeIsEjectableKey") URLVolumeIsEjectableKey: StringRef
-    @(link_name="kCFURLVolumeIsRemovableKey") URLVolumeIsRemovableKey: StringRef
-    @(link_name="kCFURLVolumeIsInternalKey") URLVolumeIsInternalKey: StringRef
-    @(link_name="kCFURLVolumeIsAutomountedKey") URLVolumeIsAutomountedKey: StringRef
-    @(link_name="kCFURLVolumeIsLocalKey") URLVolumeIsLocalKey: StringRef
-    @(link_name="kCFURLVolumeIsReadOnlyKey") URLVolumeIsReadOnlyKey: StringRef
-    @(link_name="kCFURLVolumeCreationDateKey") URLVolumeCreationDateKey: StringRef
-    @(link_name="kCFURLVolumeURLForRemountingKey") URLVolumeURLForRemountingKey: StringRef
-    @(link_name="kCFURLVolumeUUIDStringKey") URLVolumeUUIDStringKey: StringRef
-    @(link_name="kCFURLVolumeNameKey") URLVolumeNameKey: StringRef
-    @(link_name="kCFURLVolumeLocalizedNameKey") URLVolumeLocalizedNameKey: StringRef
-    @(link_name="kCFURLVolumeIsEncryptedKey") URLVolumeIsEncryptedKey: StringRef
-    @(link_name="kCFURLVolumeIsRootFileSystemKey") URLVolumeIsRootFileSystemKey: StringRef
-    @(link_name="kCFURLVolumeSupportsCompressionKey") URLVolumeSupportsCompressionKey: StringRef
-    @(link_name="kCFURLVolumeSupportsFileCloningKey") URLVolumeSupportsFileCloningKey: StringRef
-    @(link_name="kCFURLVolumeSupportsSwapRenamingKey") URLVolumeSupportsSwapRenamingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsExclusiveRenamingKey") URLVolumeSupportsExclusiveRenamingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsImmutableFilesKey") URLVolumeSupportsImmutableFilesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsAccessPermissionsKey") URLVolumeSupportsAccessPermissionsKey: StringRef
-    @(link_name="kCFURLVolumeSupportsFileProtectionKey") URLVolumeSupportsFileProtectionKey: StringRef
-    @(link_name="kCFURLVolumeTypeNameKey") URLVolumeTypeNameKey: StringRef
-    @(link_name="kCFURLVolumeSubtypeKey") URLVolumeSubtypeKey: StringRef
-    @(link_name="kCFURLVolumeMountFromLocationKey") URLVolumeMountFromLocationKey: StringRef
-    @(link_name="kCFURLIsUbiquitousItemKey") URLIsUbiquitousItemKey: StringRef
-    @(link_name="kCFURLUbiquitousItemHasUnresolvedConflictsKey") URLUbiquitousItemHasUnresolvedConflictsKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsDownloadedKey") URLUbiquitousItemIsDownloadedKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsDownloadingKey") URLUbiquitousItemIsDownloadingKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsUploadedKey") URLUbiquitousItemIsUploadedKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsUploadingKey") URLUbiquitousItemIsUploadingKey: StringRef
-    @(link_name="kCFURLUbiquitousItemPercentDownloadedKey") URLUbiquitousItemPercentDownloadedKey: StringRef
-    @(link_name="kCFURLUbiquitousItemPercentUploadedKey") URLUbiquitousItemPercentUploadedKey: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingStatusKey") URLUbiquitousItemDownloadingStatusKey: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingErrorKey") URLUbiquitousItemDownloadingErrorKey: StringRef
-    @(link_name="kCFURLUbiquitousItemUploadingErrorKey") URLUbiquitousItemUploadingErrorKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsExcludedFromSyncKey") URLUbiquitousItemIsExcludedFromSyncKey: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingStatusNotDownloaded") URLUbiquitousItemDownloadingStatusNotDownloaded: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingStatusDownloaded") URLUbiquitousItemDownloadingStatusDownloaded: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingStatusCurrent") URLUbiquitousItemDownloadingStatusCurrent: StringRef
-    @(link_name="kCFRunLoopDefaultMode") RunLoopDefaultMode: RunLoopMode
-    @(link_name="kCFRunLoopCommonModes") RunLoopCommonModes: RunLoopMode
-    @(link_name="kCFSocketCommandKey") SocketCommandKey: StringRef
-    @(link_name="kCFSocketNameKey") SocketNameKey: StringRef
-    @(link_name="kCFSocketValueKey") SocketValueKey: StringRef
-    @(link_name="kCFSocketResultKey") SocketResultKey: StringRef
-    @(link_name="kCFSocketErrorKey") SocketErrorKey: StringRef
-    @(link_name="kCFSocketRegisterCommand") SocketRegisterCommand: StringRef
-    @(link_name="kCFSocketRetrieveCommand") SocketRetrieveCommand: StringRef
-    @(link_name="kCFStreamPropertyDataWritten") StreamPropertyDataWritten: StreamPropertyKey
-    @(link_name="kCFStreamPropertyAppendToFile") StreamPropertyAppendToFile: StreamPropertyKey
-    @(link_name="kCFStreamPropertyFileCurrentOffset") StreamPropertyFileCurrentOffset: StreamPropertyKey
-    @(link_name="kCFStreamPropertySocketNativeHandle") StreamPropertySocketNativeHandle: StreamPropertyKey
-    @(link_name="kCFStreamPropertySocketRemoteHostName") StreamPropertySocketRemoteHostName: StreamPropertyKey
-    @(link_name="kCFStreamPropertySocketRemotePortNumber") StreamPropertySocketRemotePortNumber: StreamPropertyKey
-    @(link_name="kCFStreamErrorDomainSOCKS") StreamErrorDomainSOCKS: cffi.int
-    @(link_name="kCFStreamPropertySOCKSProxy") StreamPropertySOCKSProxy: StringRef
-    @(link_name="kCFStreamPropertySOCKSProxyHost") StreamPropertySOCKSProxyHost: StringRef
-    @(link_name="kCFStreamPropertySOCKSProxyPort") StreamPropertySOCKSProxyPort: StringRef
-    @(link_name="kCFStreamPropertySOCKSVersion") StreamPropertySOCKSVersion: StringRef
-    @(link_name="kCFStreamSocketSOCKSVersion4") StreamSocketSOCKSVersion4: StringRef
-    @(link_name="kCFStreamSocketSOCKSVersion5") StreamSocketSOCKSVersion5: StringRef
-    @(link_name="kCFStreamPropertySOCKSUser") StreamPropertySOCKSUser: StringRef
-    @(link_name="kCFStreamPropertySOCKSPassword") StreamPropertySOCKSPassword: StringRef
-    @(link_name="kCFStreamErrorDomainSSL") StreamErrorDomainSSL: cffi.int
-    @(link_name="kCFStreamPropertySocketSecurityLevel") StreamPropertySocketSecurityLevel: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelNone") StreamSocketSecurityLevelNone: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelSSLv2") StreamSocketSecurityLevelSSLv2: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelSSLv3") StreamSocketSecurityLevelSSLv3: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelTLSv1") StreamSocketSecurityLevelTLSv1: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelNegotiatedSSL") StreamSocketSecurityLevelNegotiatedSSL: StringRef
-    @(link_name="kCFStreamPropertyShouldCloseNativeSocket") StreamPropertyShouldCloseNativeSocket: StringRef
-    @(link_name="kCFTypeSetCallBacks") TypeSetCallBacks: SetCallBacks
-    @(link_name="kCFCopyStringSetCallBacks") CopyStringSetCallBacks: SetCallBacks
-    @(link_name="kCFURLFileExists") URLFileExists: StringRef
-    @(link_name="kCFURLFileDirectoryContents") URLFileDirectoryContents: StringRef
-    @(link_name="kCFURLFileLength") URLFileLength: StringRef
-    @(link_name="kCFURLFileLastModificationTime") URLFileLastModificationTime: StringRef
-    @(link_name="kCFURLFilePOSIXMode") URLFilePOSIXMode: StringRef
-    @(link_name="kCFURLFileOwnerID") URLFileOwnerID: StringRef
-    @(link_name="kCFURLHTTPStatusCode") URLHTTPStatusCode: StringRef
-    @(link_name="kCFURLHTTPStatusLine") URLHTTPStatusLine: StringRef
-    @(link_name="kCFBundleInfoDictionaryVersionKey") BundleInfoDictionaryVersionKey: StringRef
-    @(link_name="kCFBundleExecutableKey") BundleExecutableKey: StringRef
-    @(link_name="kCFBundleIdentifierKey") BundleIdentifierKey: StringRef
-    @(link_name="kCFBundleVersionKey") BundleVersionKey: StringRef
-    @(link_name="kCFBundleDevelopmentRegionKey") BundleDevelopmentRegionKey: StringRef
-    @(link_name="kCFBundleNameKey") BundleNameKey: StringRef
-    @(link_name="kCFBundleLocalizationsKey") BundleLocalizationsKey: StringRef
-    @(link_name="kCFPlugInDynamicRegistrationKey") PlugInDynamicRegistrationKey: StringRef
-    @(link_name="kCFPlugInDynamicRegisterFunctionKey") PlugInDynamicRegisterFunctionKey: StringRef
-    @(link_name="kCFPlugInUnloadFunctionKey") PlugInUnloadFunctionKey: StringRef
-    @(link_name="kCFPlugInFactoriesKey") PlugInFactoriesKey: StringRef
-    @(link_name="kCFPlugInTypesKey") PlugInTypesKey: StringRef
-    @(link_name="kCFUserNotificationIconURLKey") UserNotificationIconURLKey: StringRef
-    @(link_name="kCFUserNotificationSoundURLKey") UserNotificationSoundURLKey: StringRef
-    @(link_name="kCFUserNotificationLocalizationURLKey") UserNotificationLocalizationURLKey: StringRef
-    @(link_name="kCFUserNotificationAlertHeaderKey") UserNotificationAlertHeaderKey: StringRef
-    @(link_name="kCFUserNotificationAlertMessageKey") UserNotificationAlertMessageKey: StringRef
-    @(link_name="kCFUserNotificationDefaultButtonTitleKey") UserNotificationDefaultButtonTitleKey: StringRef
-    @(link_name="kCFUserNotificationAlternateButtonTitleKey") UserNotificationAlternateButtonTitleKey: StringRef
-    @(link_name="kCFUserNotificationOtherButtonTitleKey") UserNotificationOtherButtonTitleKey: StringRef
-    @(link_name="kCFUserNotificationProgressIndicatorValueKey") UserNotificationProgressIndicatorValueKey: StringRef
-    @(link_name="kCFUserNotificationPopUpTitlesKey") UserNotificationPopUpTitlesKey: StringRef
-    @(link_name="kCFUserNotificationTextFieldTitlesKey") UserNotificationTextFieldTitlesKey: StringRef
-    @(link_name="kCFUserNotificationCheckBoxTitlesKey") UserNotificationCheckBoxTitlesKey: StringRef
-    @(link_name="kCFUserNotificationTextFieldValuesKey") UserNotificationTextFieldValuesKey: StringRef
-    @(link_name="kCFUserNotificationPopUpSelectionKey") UserNotificationPopUpSelectionKey: StringRef
-    @(link_name="kCFUserNotificationAlertTopMostKey") UserNotificationAlertTopMostKey: StringRef
-    @(link_name="kCFUserNotificationKeyboardTypesKey") UserNotificationKeyboardTypesKey: StringRef
+    @(link_name="kCFNumberFormatterRoundingIncrement") kNumberFormatterRoundingIncrement: NumberFormatterKey
+    @(link_name="kCFNumberFormatterFormatWidth") kNumberFormatterFormatWidth: NumberFormatterKey
+    @(link_name="kCFNumberFormatterPaddingPosition") kNumberFormatterPaddingPosition: NumberFormatterKey
+    @(link_name="kCFNumberFormatterPaddingCharacter") kNumberFormatterPaddingCharacter: NumberFormatterKey
+    @(link_name="kCFNumberFormatterDefaultFormat") kNumberFormatterDefaultFormat: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMultiplier") kNumberFormatterMultiplier: NumberFormatterKey
+    @(link_name="kCFNumberFormatterPositivePrefix") kNumberFormatterPositivePrefix: NumberFormatterKey
+    @(link_name="kCFNumberFormatterPositiveSuffix") kNumberFormatterPositiveSuffix: NumberFormatterKey
+    @(link_name="kCFNumberFormatterNegativePrefix") kNumberFormatterNegativePrefix: NumberFormatterKey
+    @(link_name="kCFNumberFormatterNegativeSuffix") kNumberFormatterNegativeSuffix: NumberFormatterKey
+    @(link_name="kCFNumberFormatterPerMillSymbol") kNumberFormatterPerMillSymbol: NumberFormatterKey
+    @(link_name="kCFNumberFormatterInternationalCurrencySymbol") kNumberFormatterInternationalCurrencySymbol: NumberFormatterKey
+    @(link_name="kCFNumberFormatterCurrencyGroupingSeparator") kNumberFormatterCurrencyGroupingSeparator: NumberFormatterKey
+    @(link_name="kCFNumberFormatterIsLenient") kNumberFormatterIsLenient: NumberFormatterKey
+    @(link_name="kCFNumberFormatterUseSignificantDigits") kNumberFormatterUseSignificantDigits: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMinSignificantDigits") kNumberFormatterMinSignificantDigits: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMaxSignificantDigits") kNumberFormatterMaxSignificantDigits: NumberFormatterKey
+    @(link_name="kCFNumberFormatterMinGroupingDigits") kNumberFormatterMinGroupingDigits: NumberFormatterKey
+    @(link_name="kCFPreferencesAnyApplication") kPreferencesAnyApplication: StringRef
+    @(link_name="kCFPreferencesCurrentApplication") kPreferencesCurrentApplication: StringRef
+    @(link_name="kCFPreferencesAnyHost") kPreferencesAnyHost: StringRef
+    @(link_name="kCFPreferencesCurrentHost") kPreferencesCurrentHost: StringRef
+    @(link_name="kCFPreferencesAnyUser") kPreferencesAnyUser: StringRef
+    @(link_name="kCFPreferencesCurrentUser") kPreferencesCurrentUser: StringRef
+    @(link_name="kCFURLKeysOfUnsetValuesKey") kURLKeysOfUnsetValuesKey: StringRef
+    @(link_name="kCFURLNameKey") kURLNameKey: StringRef
+    @(link_name="kCFURLLocalizedNameKey") kURLLocalizedNameKey: StringRef
+    @(link_name="kCFURLIsRegularFileKey") kURLIsRegularFileKey: StringRef
+    @(link_name="kCFURLIsDirectoryKey") kURLIsDirectoryKey: StringRef
+    @(link_name="kCFURLIsSymbolicLinkKey") kURLIsSymbolicLinkKey: StringRef
+    @(link_name="kCFURLIsVolumeKey") kURLIsVolumeKey: StringRef
+    @(link_name="kCFURLIsPackageKey") kURLIsPackageKey: StringRef
+    @(link_name="kCFURLIsApplicationKey") kURLIsApplicationKey: StringRef
+    @(link_name="kCFURLApplicationIsScriptableKey") kURLApplicationIsScriptableKey: StringRef
+    @(link_name="kCFURLIsSystemImmutableKey") kURLIsSystemImmutableKey: StringRef
+    @(link_name="kCFURLIsUserImmutableKey") kURLIsUserImmutableKey: StringRef
+    @(link_name="kCFURLIsHiddenKey") kURLIsHiddenKey: StringRef
+    @(link_name="kCFURLHasHiddenExtensionKey") kURLHasHiddenExtensionKey: StringRef
+    @(link_name="kCFURLCreationDateKey") kURLCreationDateKey: StringRef
+    @(link_name="kCFURLContentAccessDateKey") kURLContentAccessDateKey: StringRef
+    @(link_name="kCFURLContentModificationDateKey") kURLContentModificationDateKey: StringRef
+    @(link_name="kCFURLAttributeModificationDateKey") kURLAttributeModificationDateKey: StringRef
+    @(link_name="kCFURLFileIdentifierKey") kURLFileIdentifierKey: StringRef
+    @(link_name="kCFURLFileContentIdentifierKey") kURLFileContentIdentifierKey: StringRef
+    @(link_name="kCFURLMayShareFileContentKey") kURLMayShareFileContentKey: StringRef
+    @(link_name="kCFURLMayHaveExtendedAttributesKey") kURLMayHaveExtendedAttributesKey: StringRef
+    @(link_name="kCFURLIsPurgeableKey") kURLIsPurgeableKey: StringRef
+    @(link_name="kCFURLIsSparseKey") kURLIsSparseKey: StringRef
+    @(link_name="kCFURLLinkCountKey") kURLLinkCountKey: StringRef
+    @(link_name="kCFURLParentDirectoryURLKey") kURLParentDirectoryURLKey: StringRef
+    @(link_name="kCFURLVolumeURLKey") kURLVolumeURLKey: StringRef
+    @(link_name="kCFURLTypeIdentifierKey") kURLTypeIdentifierKey: StringRef
+    @(link_name="kCFURLLocalizedTypeDescriptionKey") kURLLocalizedTypeDescriptionKey: StringRef
+    @(link_name="kCFURLLabelNumberKey") kURLLabelNumberKey: StringRef
+    @(link_name="kCFURLLabelColorKey") kURLLabelColorKey: StringRef
+    @(link_name="kCFURLLocalizedLabelKey") kURLLocalizedLabelKey: StringRef
+    @(link_name="kCFURLEffectiveIconKey") kURLEffectiveIconKey: StringRef
+    @(link_name="kCFURLCustomIconKey") kURLCustomIconKey: StringRef
+    @(link_name="kCFURLFileResourceIdentifierKey") kURLFileResourceIdentifierKey: StringRef
+    @(link_name="kCFURLVolumeIdentifierKey") kURLVolumeIdentifierKey: StringRef
+    @(link_name="kCFURLPreferredIOBlockSizeKey") kURLPreferredIOBlockSizeKey: StringRef
+    @(link_name="kCFURLIsReadableKey") kURLIsReadableKey: StringRef
+    @(link_name="kCFURLIsWritableKey") kURLIsWritableKey: StringRef
+    @(link_name="kCFURLIsExecutableKey") kURLIsExecutableKey: StringRef
+    @(link_name="kCFURLFileSecurityKey") kURLFileSecurityKey: StringRef
+    @(link_name="kCFURLIsExcludedFromBackupKey") kURLIsExcludedFromBackupKey: StringRef
+    @(link_name="kCFURLTagNamesKey") kURLTagNamesKey: StringRef
+    @(link_name="kCFURLPathKey") kURLPathKey: StringRef
+    @(link_name="kCFURLCanonicalPathKey") kURLCanonicalPathKey: StringRef
+    @(link_name="kCFURLIsMountTriggerKey") kURLIsMountTriggerKey: StringRef
+    @(link_name="kCFURLGenerationIdentifierKey") kURLGenerationIdentifierKey: StringRef
+    @(link_name="kCFURLDocumentIdentifierKey") kURLDocumentIdentifierKey: StringRef
+    @(link_name="kCFURLAddedToDirectoryDateKey") kURLAddedToDirectoryDateKey: StringRef
+    @(link_name="kCFURLQuarantinePropertiesKey") kURLQuarantinePropertiesKey: StringRef
+    @(link_name="kCFURLFileResourceTypeKey") kURLFileResourceTypeKey: StringRef
+    @(link_name="kCFURLFileResourceTypeNamedPipe") kURLFileResourceTypeNamedPipe: StringRef
+    @(link_name="kCFURLFileResourceTypeCharacterSpecial") kURLFileResourceTypeCharacterSpecial: StringRef
+    @(link_name="kCFURLFileResourceTypeDirectory") kURLFileResourceTypeDirectory: StringRef
+    @(link_name="kCFURLFileResourceTypeBlockSpecial") kURLFileResourceTypeBlockSpecial: StringRef
+    @(link_name="kCFURLFileResourceTypeRegular") kURLFileResourceTypeRegular: StringRef
+    @(link_name="kCFURLFileResourceTypeSymbolicLink") kURLFileResourceTypeSymbolicLink: StringRef
+    @(link_name="kCFURLFileResourceTypeSocket") kURLFileResourceTypeSocket: StringRef
+    @(link_name="kCFURLFileResourceTypeUnknown") kURLFileResourceTypeUnknown: StringRef
+    @(link_name="kCFURLFileSizeKey") kURLFileSizeKey: StringRef
+    @(link_name="kCFURLFileAllocatedSizeKey") kURLFileAllocatedSizeKey: StringRef
+    @(link_name="kCFURLTotalFileSizeKey") kURLTotalFileSizeKey: StringRef
+    @(link_name="kCFURLTotalFileAllocatedSizeKey") kURLTotalFileAllocatedSizeKey: StringRef
+    @(link_name="kCFURLIsAliasFileKey") kURLIsAliasFileKey: StringRef
+    @(link_name="kCFURLFileProtectionKey") kURLFileProtectionKey: StringRef
+    @(link_name="kCFURLFileProtectionNone") kURLFileProtectionNone: StringRef
+    @(link_name="kCFURLFileProtectionComplete") kURLFileProtectionComplete: StringRef
+    @(link_name="kCFURLFileProtectionCompleteUnlessOpen") kURLFileProtectionCompleteUnlessOpen: StringRef
+    @(link_name="kCFURLFileProtectionCompleteUntilFirstUserAuthentication") kURLFileProtectionCompleteUntilFirstUserAuthentication: StringRef
+    @(link_name="kCFURLFileProtectionCompleteWhenUserInactive") kURLFileProtectionCompleteWhenUserInactive: StringRef
+    @(link_name="kCFURLDirectoryEntryCountKey") kURLDirectoryEntryCountKey: StringRef
+    @(link_name="kCFURLVolumeLocalizedFormatDescriptionKey") kURLVolumeLocalizedFormatDescriptionKey: StringRef
+    @(link_name="kCFURLVolumeTotalCapacityKey") kURLVolumeTotalCapacityKey: StringRef
+    @(link_name="kCFURLVolumeAvailableCapacityKey") kURLVolumeAvailableCapacityKey: StringRef
+    @(link_name="kCFURLVolumeAvailableCapacityForImportantUsageKey") kURLVolumeAvailableCapacityForImportantUsageKey: StringRef
+    @(link_name="kCFURLVolumeAvailableCapacityForOpportunisticUsageKey") kURLVolumeAvailableCapacityForOpportunisticUsageKey: StringRef
+    @(link_name="kCFURLVolumeResourceCountKey") kURLVolumeResourceCountKey: StringRef
+    @(link_name="kCFURLVolumeSupportsPersistentIDsKey") kURLVolumeSupportsPersistentIDsKey: StringRef
+    @(link_name="kCFURLVolumeSupportsSymbolicLinksKey") kURLVolumeSupportsSymbolicLinksKey: StringRef
+    @(link_name="kCFURLVolumeSupportsHardLinksKey") kURLVolumeSupportsHardLinksKey: StringRef
+    @(link_name="kCFURLVolumeSupportsJournalingKey") kURLVolumeSupportsJournalingKey: StringRef
+    @(link_name="kCFURLVolumeIsJournalingKey") kURLVolumeIsJournalingKey: StringRef
+    @(link_name="kCFURLVolumeSupportsSparseFilesKey") kURLVolumeSupportsSparseFilesKey: StringRef
+    @(link_name="kCFURLVolumeSupportsZeroRunsKey") kURLVolumeSupportsZeroRunsKey: StringRef
+    @(link_name="kCFURLVolumeSupportsCaseSensitiveNamesKey") kURLVolumeSupportsCaseSensitiveNamesKey: StringRef
+    @(link_name="kCFURLVolumeSupportsCasePreservedNamesKey") kURLVolumeSupportsCasePreservedNamesKey: StringRef
+    @(link_name="kCFURLVolumeSupportsRootDirectoryDatesKey") kURLVolumeSupportsRootDirectoryDatesKey: StringRef
+    @(link_name="kCFURLVolumeSupportsVolumeSizesKey") kURLVolumeSupportsVolumeSizesKey: StringRef
+    @(link_name="kCFURLVolumeSupportsRenamingKey") kURLVolumeSupportsRenamingKey: StringRef
+    @(link_name="kCFURLVolumeSupportsAdvisoryFileLockingKey") kURLVolumeSupportsAdvisoryFileLockingKey: StringRef
+    @(link_name="kCFURLVolumeSupportsExtendedSecurityKey") kURLVolumeSupportsExtendedSecurityKey: StringRef
+    @(link_name="kCFURLVolumeIsBrowsableKey") kURLVolumeIsBrowsableKey: StringRef
+    @(link_name="kCFURLVolumeMaximumFileSizeKey") kURLVolumeMaximumFileSizeKey: StringRef
+    @(link_name="kCFURLVolumeIsEjectableKey") kURLVolumeIsEjectableKey: StringRef
+    @(link_name="kCFURLVolumeIsRemovableKey") kURLVolumeIsRemovableKey: StringRef
+    @(link_name="kCFURLVolumeIsInternalKey") kURLVolumeIsInternalKey: StringRef
+    @(link_name="kCFURLVolumeIsAutomountedKey") kURLVolumeIsAutomountedKey: StringRef
+    @(link_name="kCFURLVolumeIsLocalKey") kURLVolumeIsLocalKey: StringRef
+    @(link_name="kCFURLVolumeIsReadOnlyKey") kURLVolumeIsReadOnlyKey: StringRef
+    @(link_name="kCFURLVolumeCreationDateKey") kURLVolumeCreationDateKey: StringRef
+    @(link_name="kCFURLVolumeURLForRemountingKey") kURLVolumeURLForRemountingKey: StringRef
+    @(link_name="kCFURLVolumeUUIDStringKey") kURLVolumeUUIDStringKey: StringRef
+    @(link_name="kCFURLVolumeNameKey") kURLVolumeNameKey: StringRef
+    @(link_name="kCFURLVolumeLocalizedNameKey") kURLVolumeLocalizedNameKey: StringRef
+    @(link_name="kCFURLVolumeIsEncryptedKey") kURLVolumeIsEncryptedKey: StringRef
+    @(link_name="kCFURLVolumeIsRootFileSystemKey") kURLVolumeIsRootFileSystemKey: StringRef
+    @(link_name="kCFURLVolumeSupportsCompressionKey") kURLVolumeSupportsCompressionKey: StringRef
+    @(link_name="kCFURLVolumeSupportsFileCloningKey") kURLVolumeSupportsFileCloningKey: StringRef
+    @(link_name="kCFURLVolumeSupportsSwapRenamingKey") kURLVolumeSupportsSwapRenamingKey: StringRef
+    @(link_name="kCFURLVolumeSupportsExclusiveRenamingKey") kURLVolumeSupportsExclusiveRenamingKey: StringRef
+    @(link_name="kCFURLVolumeSupportsImmutableFilesKey") kURLVolumeSupportsImmutableFilesKey: StringRef
+    @(link_name="kCFURLVolumeSupportsAccessPermissionsKey") kURLVolumeSupportsAccessPermissionsKey: StringRef
+    @(link_name="kCFURLVolumeSupportsFileProtectionKey") kURLVolumeSupportsFileProtectionKey: StringRef
+    @(link_name="kCFURLVolumeTypeNameKey") kURLVolumeTypeNameKey: StringRef
+    @(link_name="kCFURLVolumeSubtypeKey") kURLVolumeSubtypeKey: StringRef
+    @(link_name="kCFURLVolumeMountFromLocationKey") kURLVolumeMountFromLocationKey: StringRef
+    @(link_name="kCFURLIsUbiquitousItemKey") kURLIsUbiquitousItemKey: StringRef
+    @(link_name="kCFURLUbiquitousItemHasUnresolvedConflictsKey") kURLUbiquitousItemHasUnresolvedConflictsKey: StringRef
+    @(link_name="kCFURLUbiquitousItemIsDownloadedKey") kURLUbiquitousItemIsDownloadedKey: StringRef
+    @(link_name="kCFURLUbiquitousItemIsDownloadingKey") kURLUbiquitousItemIsDownloadingKey: StringRef
+    @(link_name="kCFURLUbiquitousItemIsUploadedKey") kURLUbiquitousItemIsUploadedKey: StringRef
+    @(link_name="kCFURLUbiquitousItemIsUploadingKey") kURLUbiquitousItemIsUploadingKey: StringRef
+    @(link_name="kCFURLUbiquitousItemPercentDownloadedKey") kURLUbiquitousItemPercentDownloadedKey: StringRef
+    @(link_name="kCFURLUbiquitousItemPercentUploadedKey") kURLUbiquitousItemPercentUploadedKey: StringRef
+    @(link_name="kCFURLUbiquitousItemDownloadingStatusKey") kURLUbiquitousItemDownloadingStatusKey: StringRef
+    @(link_name="kCFURLUbiquitousItemDownloadingErrorKey") kURLUbiquitousItemDownloadingErrorKey: StringRef
+    @(link_name="kCFURLUbiquitousItemUploadingErrorKey") kURLUbiquitousItemUploadingErrorKey: StringRef
+    @(link_name="kCFURLUbiquitousItemIsExcludedFromSyncKey") kURLUbiquitousItemIsExcludedFromSyncKey: StringRef
+    @(link_name="kCFURLUbiquitousItemDownloadingStatusNotDownloaded") kURLUbiquitousItemDownloadingStatusNotDownloaded: StringRef
+    @(link_name="kCFURLUbiquitousItemDownloadingStatusDownloaded") kURLUbiquitousItemDownloadingStatusDownloaded: StringRef
+    @(link_name="kCFURLUbiquitousItemDownloadingStatusCurrent") kURLUbiquitousItemDownloadingStatusCurrent: StringRef
+    @(link_name="kCFRunLoopDefaultMode") kRunLoopDefaultMode: RunLoopMode
+    @(link_name="kCFRunLoopCommonModes") kRunLoopCommonModes: RunLoopMode
+    @(link_name="kCFSocketCommandKey") kSocketCommandKey: StringRef
+    @(link_name="kCFSocketNameKey") kSocketNameKey: StringRef
+    @(link_name="kCFSocketValueKey") kSocketValueKey: StringRef
+    @(link_name="kCFSocketResultKey") kSocketResultKey: StringRef
+    @(link_name="kCFSocketErrorKey") kSocketErrorKey: StringRef
+    @(link_name="kCFSocketRegisterCommand") kSocketRegisterCommand: StringRef
+    @(link_name="kCFSocketRetrieveCommand") kSocketRetrieveCommand: StringRef
+    @(link_name="kCFStreamPropertyDataWritten") kStreamPropertyDataWritten: StreamPropertyKey
+    @(link_name="kCFStreamPropertyAppendToFile") kStreamPropertyAppendToFile: StreamPropertyKey
+    @(link_name="kCFStreamPropertyFileCurrentOffset") kStreamPropertyFileCurrentOffset: StreamPropertyKey
+    @(link_name="kCFStreamPropertySocketNativeHandle") kStreamPropertySocketNativeHandle: StreamPropertyKey
+    @(link_name="kCFStreamPropertySocketRemoteHostName") kStreamPropertySocketRemoteHostName: StreamPropertyKey
+    @(link_name="kCFStreamPropertySocketRemotePortNumber") kStreamPropertySocketRemotePortNumber: StreamPropertyKey
+    @(link_name="kCFStreamErrorDomainSOCKS") kStreamErrorDomainSOCKS: cffi.int
+    @(link_name="kCFStreamPropertySOCKSProxy") kStreamPropertySOCKSProxy: StringRef
+    @(link_name="kCFStreamPropertySOCKSProxyHost") kStreamPropertySOCKSProxyHost: StringRef
+    @(link_name="kCFStreamPropertySOCKSProxyPort") kStreamPropertySOCKSProxyPort: StringRef
+    @(link_name="kCFStreamPropertySOCKSVersion") kStreamPropertySOCKSVersion: StringRef
+    @(link_name="kCFStreamSocketSOCKSVersion4") kStreamSocketSOCKSVersion4: StringRef
+    @(link_name="kCFStreamSocketSOCKSVersion5") kStreamSocketSOCKSVersion5: StringRef
+    @(link_name="kCFStreamPropertySOCKSUser") kStreamPropertySOCKSUser: StringRef
+    @(link_name="kCFStreamPropertySOCKSPassword") kStreamPropertySOCKSPassword: StringRef
+    @(link_name="kCFStreamErrorDomainSSL") kStreamErrorDomainSSL: cffi.int
+    @(link_name="kCFStreamPropertySocketSecurityLevel") kStreamPropertySocketSecurityLevel: StringRef
+    @(link_name="kCFStreamSocketSecurityLevelNone") kStreamSocketSecurityLevelNone: StringRef
+    @(link_name="kCFStreamSocketSecurityLevelSSLv2") kStreamSocketSecurityLevelSSLv2: StringRef
+    @(link_name="kCFStreamSocketSecurityLevelSSLv3") kStreamSocketSecurityLevelSSLv3: StringRef
+    @(link_name="kCFStreamSocketSecurityLevelTLSv1") kStreamSocketSecurityLevelTLSv1: StringRef
+    @(link_name="kCFStreamSocketSecurityLevelNegotiatedSSL") kStreamSocketSecurityLevelNegotiatedSSL: StringRef
+    @(link_name="kCFStreamPropertyShouldCloseNativeSocket") kStreamPropertyShouldCloseNativeSocket: StringRef
+    @(link_name="kCFTypeSetCallBacks") kTypeSetCallBacks: SetCallBacks
+    @(link_name="kCFCopyStringSetCallBacks") kCopyStringSetCallBacks: SetCallBacks
+    @(link_name="kCFURLFileExists") kURLFileExists: StringRef
+    @(link_name="kCFURLFileDirectoryContents") kURLFileDirectoryContents: StringRef
+    @(link_name="kCFURLFileLength") kURLFileLength: StringRef
+    @(link_name="kCFURLFileLastModificationTime") kURLFileLastModificationTime: StringRef
+    @(link_name="kCFURLFilePOSIXMode") kURLFilePOSIXMode: StringRef
+    @(link_name="kCFURLFileOwnerID") kURLFileOwnerID: StringRef
+    @(link_name="kCFURLHTTPStatusCode") kURLHTTPStatusCode: StringRef
+    @(link_name="kCFURLHTTPStatusLine") kURLHTTPStatusLine: StringRef
+    @(link_name="kCFBundleInfoDictionaryVersionKey") kBundleInfoDictionaryVersionKey: StringRef
+    @(link_name="kCFBundleExecutableKey") kBundleExecutableKey: StringRef
+    @(link_name="kCFBundleIdentifierKey") kBundleIdentifierKey: StringRef
+    @(link_name="kCFBundleVersionKey") kBundleVersionKey: StringRef
+    @(link_name="kCFBundleDevelopmentRegionKey") kBundleDevelopmentRegionKey: StringRef
+    @(link_name="kCFBundleNameKey") kBundleNameKey: StringRef
+    @(link_name="kCFBundleLocalizationsKey") kBundleLocalizationsKey: StringRef
+    @(link_name="kCFPlugInDynamicRegistrationKey") kPlugInDynamicRegistrationKey: StringRef
+    @(link_name="kCFPlugInDynamicRegisterFunctionKey") kPlugInDynamicRegisterFunctionKey: StringRef
+    @(link_name="kCFPlugInUnloadFunctionKey") kPlugInUnloadFunctionKey: StringRef
+    @(link_name="kCFPlugInFactoriesKey") kPlugInFactoriesKey: StringRef
+    @(link_name="kCFPlugInTypesKey") kPlugInTypesKey: StringRef
+    @(link_name="kCFUserNotificationIconURLKey") kUserNotificationIconURLKey: StringRef
+    @(link_name="kCFUserNotificationSoundURLKey") kUserNotificationSoundURLKey: StringRef
+    @(link_name="kCFUserNotificationLocalizationURLKey") kUserNotificationLocalizationURLKey: StringRef
+    @(link_name="kCFUserNotificationAlertHeaderKey") kUserNotificationAlertHeaderKey: StringRef
+    @(link_name="kCFUserNotificationAlertMessageKey") kUserNotificationAlertMessageKey: StringRef
+    @(link_name="kCFUserNotificationDefaultButtonTitleKey") kUserNotificationDefaultButtonTitleKey: StringRef
+    @(link_name="kCFUserNotificationAlternateButtonTitleKey") kUserNotificationAlternateButtonTitleKey: StringRef
+    @(link_name="kCFUserNotificationOtherButtonTitleKey") kUserNotificationOtherButtonTitleKey: StringRef
+    @(link_name="kCFUserNotificationProgressIndicatorValueKey") kUserNotificationProgressIndicatorValueKey: StringRef
+    @(link_name="kCFUserNotificationPopUpTitlesKey") kUserNotificationPopUpTitlesKey: StringRef
+    @(link_name="kCFUserNotificationTextFieldTitlesKey") kUserNotificationTextFieldTitlesKey: StringRef
+    @(link_name="kCFUserNotificationCheckBoxTitlesKey") kUserNotificationCheckBoxTitlesKey: StringRef
+    @(link_name="kCFUserNotificationTextFieldValuesKey") kUserNotificationTextFieldValuesKey: StringRef
+    @(link_name="kCFUserNotificationPopUpSelectionKey") kUserNotificationPopUpSelectionKey: StringRef
+    @(link_name="kCFUserNotificationAlertTopMostKey") kUserNotificationAlertTopMostKey: StringRef
+    @(link_name="kCFUserNotificationKeyboardTypesKey") kUserNotificationKeyboardTypesKey: StringRef
 }
 @(default_calling_convention="c")
 foreign lib {
@@ -1140,6 +1145,9 @@ foreign lib {
 
     @(link_name="CFStringGetCharactersPtr")
     StringGetCharactersPtr :: proc(theString: StringRef) -> ^UniChar ---
+
+    @(link_name="CFStringGetBytes")
+    StringGetBytes :: proc(theString: StringRef, range: Range, encoding: StringEncoding, lossByte: UInt8, isExternalRepresentation: Boolean, buffer: ^UInt8, maxBufLen: Index, usedBufLen: ^Index) -> Index ---
 
     @(link_name="CFStringCreateFromExternalRepresentation")
     StringCreateFromExternalRepresentation :: proc(alloc: AllocatorRef, data: DataRef, encoding: StringEncoding) -> StringRef ---
@@ -3147,8 +3155,6 @@ foreign lib {
 
 }
 
-/// __darwin_intptr_t
-
 /// __darwin_natural_t
 __darwin_natural_t :: distinct cffi.uint
 
@@ -3173,8 +3179,6 @@ __darwin_wchar_t :: distinct cffi.int
 /// __darwin_rune_t
 __darwin_rune_t :: distinct __darwin_wchar_t
 
-/// __darwin_wint_t
-
 /// __darwin_clock_t
 __darwin_clock_t :: distinct cffi.ulong
 
@@ -3186,14 +3190,6 @@ __darwin_ssize_t :: distinct cffi.long
 
 /// __darwin_time_t
 __darwin_time_t :: distinct cffi.long
-
-/// u_int8_t
-
-/// u_int16_t
-
-/// u_int32_t
-
-/// u_int64_t
 
 /// __darwin_blkcnt_t
 __darwin_blkcnt_t :: distinct cffi.int64_t
@@ -3230,8 +3226,6 @@ __darwin_mach_port_t :: distinct __darwin_mach_port_name_t
 
 /// __darwin_mode_t
 __darwin_mode_t :: distinct cffi.uint16_t
-
-/// __darwin_off_t
 
 /// __darwin_pid_t
 __darwin_pid_t :: distinct cffi.int32_t
@@ -3295,8 +3289,6 @@ mode_t :: distinct __darwin_mode_t
 
 /// pid_t
 pid_t :: distinct __darwin_pid_t
-
-/// off_t
 
 /// uid_t
 uid_t :: distinct __darwin_uid_t
@@ -3506,142 +3498,142 @@ HashCode :: distinct cffi.ulong
 Index :: distinct cffi.long
 
 /// CFTypeRef
-TypeRef :: distinct rawptr
+TypeRef :: rawptr
 
 /// CFStringRef
-StringRef :: distinct ^__CFString
+StringRef :: ^__CFString
 
 /// CFMutableStringRef
-MutableStringRef :: distinct ^__CFString
+MutableStringRef :: ^__CFString
 
 /// CFPropertyListRef
-PropertyListRef :: distinct TypeRef
+PropertyListRef :: TypeRef
 
 /// CFComparatorFunction
-ComparatorFunction :: distinct proc "c" (val1: rawptr, val2: rawptr, _context: rawptr) -> ComparisonResult
+ComparatorFunction :: proc "c" (val1: rawptr, val2: rawptr, _context: rawptr) -> ComparisonResult
 
 /// CFNullRef
-NullRef :: distinct ^__CFNull
+NullRef :: ^__CFNull
 
 /// CFAllocatorRef
-AllocatorRef :: distinct ^__CFAllocator
+AllocatorRef :: ^__CFAllocator
 
 /// CFAllocatorRetainCallBack
-AllocatorRetainCallBack :: distinct proc "c" (info: rawptr) -> rawptr
+AllocatorRetainCallBack :: proc "c" (info: rawptr) -> rawptr
 
 /// CFAllocatorReleaseCallBack
-AllocatorReleaseCallBack :: distinct proc "c" (info: rawptr)
+AllocatorReleaseCallBack :: proc "c" (info: rawptr)
 
 /// CFAllocatorCopyDescriptionCallBack
-AllocatorCopyDescriptionCallBack :: distinct proc "c" (info: rawptr) -> StringRef
+AllocatorCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
 
 /// CFAllocatorAllocateCallBack
-AllocatorAllocateCallBack :: distinct proc "c" (allocSize: Index, hint: OptionFlags, info: rawptr) -> rawptr
+AllocatorAllocateCallBack :: proc "c" (allocSize: Index, hint: OptionFlags, info: rawptr) -> rawptr
 
 /// CFAllocatorReallocateCallBack
-AllocatorReallocateCallBack :: distinct proc "c" (ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr) -> rawptr
+AllocatorReallocateCallBack :: proc "c" (ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr) -> rawptr
 
 /// CFAllocatorDeallocateCallBack
-AllocatorDeallocateCallBack :: distinct proc "c" (ptr: rawptr, info: rawptr)
+AllocatorDeallocateCallBack :: proc "c" (ptr: rawptr, info: rawptr)
 
 /// CFAllocatorPreferredSizeCallBack
-AllocatorPreferredSizeCallBack :: distinct proc "c" (size: Index, hint: OptionFlags, info: rawptr) -> Index
+AllocatorPreferredSizeCallBack :: proc "c" (size: Index, hint: OptionFlags, info: rawptr) -> Index
 
 /// CFArrayRetainCallBack
-ArrayRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+ArrayRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
 
 /// CFArrayReleaseCallBack
-ArrayReleaseCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr)
+ArrayReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
 
 /// CFArrayCopyDescriptionCallBack
-ArrayCopyDescriptionCallBack :: distinct proc "c" (value: rawptr) -> StringRef
+ArrayCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
 
 /// CFArrayEqualCallBack
-ArrayEqualCallBack :: distinct proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+ArrayEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
 
 /// CFArrayApplierFunction
-ArrayApplierFunction :: distinct proc "c" (value: rawptr, _context: rawptr)
+ArrayApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
 
 /// CFArrayRef
-ArrayRef :: distinct ^__CFArray
+ArrayRef :: ^__CFArray
 
 /// CFMutableArrayRef
-MutableArrayRef :: distinct ^__CFArray
+MutableArrayRef :: ^__CFArray
 
 /// CFBagRetainCallBack
-BagRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+BagRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
 
 /// CFBagReleaseCallBack
-BagReleaseCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr)
+BagReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
 
 /// CFBagCopyDescriptionCallBack
-BagCopyDescriptionCallBack :: distinct proc "c" (value: rawptr) -> StringRef
+BagCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
 
 /// CFBagEqualCallBack
-BagEqualCallBack :: distinct proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+BagEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
 
 /// CFBagHashCallBack
-BagHashCallBack :: distinct proc "c" (value: rawptr) -> HashCode
+BagHashCallBack :: proc "c" (value: rawptr) -> HashCode
 
 /// CFBagApplierFunction
-BagApplierFunction :: distinct proc "c" (value: rawptr, _context: rawptr)
+BagApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
 
 /// CFBagRef
-BagRef :: distinct ^__CFBag
+BagRef :: ^__CFBag
 
 /// CFMutableBagRef
-MutableBagRef :: distinct ^__CFBag
+MutableBagRef :: ^__CFBag
 
 /// CFBinaryHeapApplierFunction
-BinaryHeapApplierFunction :: distinct proc "c" (val: rawptr, _context: rawptr)
+BinaryHeapApplierFunction :: proc "c" (val: rawptr, _context: rawptr)
 
 /// CFBinaryHeapRef
-BinaryHeapRef :: distinct ^__CFBinaryHeap
+BinaryHeapRef :: ^__CFBinaryHeap
 
 /// CFBit
 Bit :: distinct UInt32
 
 /// CFBitVectorRef
-BitVectorRef :: distinct ^__CFBitVector
+BitVectorRef :: ^__CFBitVector
 
 /// CFMutableBitVectorRef
-MutableBitVectorRef :: distinct ^__CFBitVector
+MutableBitVectorRef :: ^__CFBitVector
 
 /// CFByteOrder
 ByteOrder :: distinct Index
 
 /// CFDictionaryRetainCallBack
-DictionaryRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+DictionaryRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
 
 /// CFDictionaryReleaseCallBack
-DictionaryReleaseCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr)
+DictionaryReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
 
 /// CFDictionaryCopyDescriptionCallBack
-DictionaryCopyDescriptionCallBack :: distinct proc "c" (value: rawptr) -> StringRef
+DictionaryCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
 
 /// CFDictionaryEqualCallBack
-DictionaryEqualCallBack :: distinct proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+DictionaryEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
 
 /// CFDictionaryHashCallBack
-DictionaryHashCallBack :: distinct proc "c" (value: rawptr) -> HashCode
+DictionaryHashCallBack :: proc "c" (value: rawptr) -> HashCode
 
 /// CFDictionaryApplierFunction
-DictionaryApplierFunction :: distinct proc "c" (key: rawptr, value: rawptr, _context: rawptr)
+DictionaryApplierFunction :: proc "c" (key: rawptr, value: rawptr, _context: rawptr)
 
 /// CFDictionaryRef
-DictionaryRef :: distinct ^__CFDictionary
+DictionaryRef :: ^__CFDictionary
 
 /// CFMutableDictionaryRef
-MutableDictionaryRef :: distinct ^__CFDictionary
+MutableDictionaryRef :: ^__CFDictionary
 
 /// CFNotificationName
 NotificationName :: distinct StringRef
 
 /// CFNotificationCenterRef
-NotificationCenterRef :: distinct ^__CFNotificationCenter
+NotificationCenterRef :: ^__CFNotificationCenter
 
 /// CFNotificationCallback
-NotificationCallback :: distinct proc "c" (center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef)
+NotificationCallback :: proc "c" (center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef)
 
 /// CFLocaleIdentifier
 LocaleIdentifier :: distinct StringRef
@@ -3650,7 +3642,7 @@ LocaleIdentifier :: distinct StringRef
 LocaleKey :: distinct StringRef
 
 /// CFLocaleRef
-LocaleRef :: distinct ^__CFLocale
+LocaleRef :: ^__CFLocale
 
 /// CFCalendarIdentifier
 CalendarIdentifier :: distinct StringRef
@@ -3662,63 +3654,58 @@ TimeInterval :: distinct cffi.double
 CFAbsoluteTime :: distinct TimeInterval
 
 /// CFDateRef
-DateRef :: distinct ^__CFDate
+DateRef :: ^__CFDate
 
 /// CFTimeZoneRef
-TimeZoneRef :: distinct ^__CFTimeZone
+TimeZoneRef :: ^__CFTimeZone
 
 /// CFDataRef
-DataRef :: distinct ^__CFData
+DataRef :: ^__CFData
 
 /// CFMutableDataRef
-MutableDataRef :: distinct ^__CFData
+MutableDataRef :: ^__CFData
 
 /// CFCharacterSetRef
-CharacterSetRef :: distinct ^__CFCharacterSet
+CharacterSetRef :: ^__CFCharacterSet
 
 /// CFMutableCharacterSetRef
-MutableCharacterSetRef :: distinct ^__CFCharacterSet
+MutableCharacterSetRef :: ^__CFCharacterSet
 
 /// CFErrorDomain
 ErrorDomain :: distinct StringRef
 
 /// CFErrorRef
-ErrorRef :: distinct ^__CFError
-
-/// CFStringEncoding
-StringEncoding :: distinct UInt32
+ErrorRef :: ^__CFError
 
 /// CFCalendarRef
-CalendarRef :: distinct ^__CFCalendar
+CalendarRef :: ^__CFCalendar
 
 /// CFDateFormatterKey
 DateFormatterKey :: distinct StringRef
 
 /// CFDateFormatterRef
-DateFormatterRef :: distinct ^__CFDateFormatter
+DateFormatterRef :: ^__CFDateFormatter
 
 /// CFBooleanRef
-BooleanRef :: distinct ^__CFBoolean
+BooleanRef :: ^__CFBoolean
 
 /// CFNumberRef
-NumberRef :: distinct ^__CFNumber
+NumberRef :: ^__CFNumber
 
 /// CFNumberFormatterKey
 NumberFormatterKey :: distinct StringRef
 
 /// CFNumberFormatterRef
-NumberFormatterRef :: distinct ^__CFNumberFormatter
+NumberFormatterRef :: ^__CFNumberFormatter
 
 /// CFURLRef
-URLRef :: distinct ^__CFURL
+URLRef :: ^__CFURL
 
 /// CFURLBookmarkFileCreationOptions
 URLBookmarkFileCreationOptions :: distinct OptionFlags
 
 /// natural_t
 natural_t :: distinct __darwin_natural_t
-
-/// integer_t
 
 /// mach_port_t
 mach_port_t :: distinct __darwin_mach_port_t
@@ -3733,37 +3720,37 @@ mach_port_type_array_t :: distinct ^mach_port_type_t
 RunLoopMode :: distinct StringRef
 
 /// CFRunLoopRef
-RunLoopRef :: distinct ^__CFRunLoop
+RunLoopRef :: ^__CFRunLoop
 
 /// CFRunLoopSourceRef
-RunLoopSourceRef :: distinct ^__CFRunLoopSource
+RunLoopSourceRef :: ^__CFRunLoopSource
 
 /// CFRunLoopObserverRef
-RunLoopObserverRef :: distinct ^__CFRunLoopObserver
+RunLoopObserverRef :: ^__CFRunLoopObserver
 
 /// CFRunLoopTimerRef
-RunLoopTimerRef :: distinct ^__CFRunLoopTimer
+RunLoopTimerRef :: ^__CFRunLoopTimer
 
 /// CFRunLoopObserverCallBack
-RunLoopObserverCallBack :: distinct proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity, info: rawptr)
+RunLoopObserverCallBack :: proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity, info: rawptr)
 
 /// CFRunLoopTimerCallBack
-RunLoopTimerCallBack :: distinct proc "c" (timer: RunLoopTimerRef, info: rawptr)
+RunLoopTimerCallBack :: proc "c" (timer: RunLoopTimerRef, info: rawptr)
 
 /// CFSocketRef
-SocketRef :: distinct ^__CFSocket
+SocketRef :: ^__CFSocket
 
 /// CFSocketCallBack
-SocketCallBack :: distinct proc "c" (s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr)
+SocketCallBack :: proc "c" (s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr)
 
 /// CFSocketNativeHandle
 SocketNativeHandle :: distinct cffi.int
 
 /// os_function_t
-os_function_t :: distinct proc "c" (_arg_0: rawptr)
+os_function_t :: proc "c" (_arg_0: rawptr)
 
 /// os_block_t
-os_block_t :: distinct proc "c" ()
+os_block_t :: proc "c" ()
 
 /// os_workgroup_t
 os_workgroup_t :: distinct ^os_workgroup_s
@@ -3784,7 +3771,7 @@ os_workgroup_join_token_t :: distinct ^os_workgroup_join_token_opaque_s
 os_workgroup_index :: distinct cffi.uint32_t
 
 /// os_workgroup_working_arena_destructor_t
-os_workgroup_working_arena_destructor_t :: distinct proc "c" (_arg_0: rawptr)
+os_workgroup_working_arena_destructor_t :: proc "c" (_arg_0: rawptr)
 
 /// os_workgroup_mpt_attr_s
 os_workgroup_mpt_attr_s :: distinct os_workgroup_max_parallel_threads_attr_s
@@ -3792,23 +3779,17 @@ os_workgroup_mpt_attr_s :: distinct os_workgroup_max_parallel_threads_attr_s
 /// os_workgroup_mpt_attr_t
 os_workgroup_mpt_attr_t :: distinct ^os_workgroup_max_parallel_threads_attr_s
 
-/// os_workgroup_interval_t
-
-/// os_workgroup_interval_data_s
-
-/// os_workgroup_interval_data_t
-
 /// os_workgroup_parallel_t
 os_workgroup_parallel_t :: distinct os_workgroup_t
 
 /// dispatch_function_t
-dispatch_function_t :: distinct proc "c" (_arg_0: rawptr)
+dispatch_function_t :: proc "c" (_arg_0: rawptr)
 
 /// dispatch_time_t
 dispatch_time_t :: distinct cffi.uint64_t
 
 /// dispatch_block_t
-dispatch_block_t :: distinct proc "c" ()
+dispatch_block_t :: proc "c" ()
 
 /// dispatch_qos_class_t
 dispatch_qos_class_t :: distinct qos_class_t
@@ -3877,7 +3858,7 @@ dispatch_once_t :: distinct cffi.intptr_t
 dispatch_data_t :: distinct ^dispatch_data_s
 
 /// dispatch_data_applier_t
-dispatch_data_applier_t :: distinct proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool
+dispatch_data_applier_t :: proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool
 
 /// dispatch_fd_t
 dispatch_fd_t :: distinct cffi.int
@@ -3889,12 +3870,10 @@ dispatch_io_t :: distinct ^dispatch_io_s
 dispatch_io_type_t :: distinct cffi.ulong
 
 /// dispatch_io_handler_t
-dispatch_io_handler_t :: distinct proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int)
+dispatch_io_handler_t :: proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int)
 
 /// dispatch_io_close_flags_t
 dispatch_io_close_flags_t :: distinct cffi.ulong
-
-/// dispatch_io_interval_flags_t
 
 /// dispatch_workloop_t
 dispatch_workloop_t :: distinct dispatch_queue_t
@@ -3903,139 +3882,139 @@ dispatch_workloop_t :: distinct dispatch_queue_t
 StreamPropertyKey :: distinct StringRef
 
 /// CFReadStreamRef
-ReadStreamRef :: distinct ^__CFReadStream
+ReadStreamRef :: ^__CFReadStream
 
 /// CFWriteStreamRef
-WriteStreamRef :: distinct ^__CFWriteStream
+WriteStreamRef :: ^__CFWriteStream
 
 /// CFReadStreamClientCallBack
-ReadStreamClientCallBack :: distinct proc "c" (stream: ReadStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
+ReadStreamClientCallBack :: proc "c" (stream: ReadStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
 
 /// CFWriteStreamClientCallBack
-WriteStreamClientCallBack :: distinct proc "c" (stream: WriteStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
+WriteStreamClientCallBack :: proc "c" (stream: WriteStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
 
 /// CFSetRetainCallBack
-SetRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+SetRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
 
 /// CFSetReleaseCallBack
-SetReleaseCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr)
+SetReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
 
 /// CFSetCopyDescriptionCallBack
-SetCopyDescriptionCallBack :: distinct proc "c" (value: rawptr) -> StringRef
+SetCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
 
 /// CFSetEqualCallBack
-SetEqualCallBack :: distinct proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+SetEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
 
 /// CFSetHashCallBack
-SetHashCallBack :: distinct proc "c" (value: rawptr) -> HashCode
+SetHashCallBack :: proc "c" (value: rawptr) -> HashCode
 
 /// CFSetApplierFunction
-SetApplierFunction :: distinct proc "c" (value: rawptr, _context: rawptr)
+SetApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
 
 /// CFSetRef
-SetRef :: distinct ^__CFSet
+SetRef :: ^__CFSet
 
 /// CFMutableSetRef
-MutableSetRef :: distinct ^__CFSet
+MutableSetRef :: ^__CFSet
 
 /// CFTreeRetainCallBack
-TreeRetainCallBack :: distinct proc "c" (info: rawptr) -> rawptr
+TreeRetainCallBack :: proc "c" (info: rawptr) -> rawptr
 
 /// CFTreeReleaseCallBack
-TreeReleaseCallBack :: distinct proc "c" (info: rawptr)
+TreeReleaseCallBack :: proc "c" (info: rawptr)
 
 /// CFTreeCopyDescriptionCallBack
-TreeCopyDescriptionCallBack :: distinct proc "c" (info: rawptr) -> StringRef
+TreeCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
 
 /// CFTreeApplierFunction
-TreeApplierFunction :: distinct proc "c" (value: rawptr, _context: rawptr)
+TreeApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
 
 /// CFTreeRef
-TreeRef :: distinct ^__CFTree
+TreeRef :: ^__CFTree
 
 /// CFUUIDRef
-UUIDRef :: distinct ^__CFUUID
+UUIDRef :: ^__CFUUID
 
 /// cpu_type_t
 cpu_type_t :: distinct cffi.int
 
 /// CFBundleRef
-BundleRef :: distinct ^__CFBundle
+BundleRef :: ^__CFBundle
 
 /// CFPlugInRef
-PlugInRef :: distinct ^__CFBundle
+PlugInRef :: ^__CFBundle
 
 /// CFBundleRefNum
 BundleRefNum :: distinct cffi.int
 
 /// CFMessagePortRef
-MessagePortRef :: distinct ^__CFMessagePort
+MessagePortRef :: ^__CFMessagePort
 
 /// CFMessagePortCallBack
-MessagePortCallBack :: distinct proc "c" (local: MessagePortRef, msgid: SInt32, data: DataRef, info: rawptr) -> DataRef
+MessagePortCallBack :: proc "c" (local: MessagePortRef, msgid: SInt32, data: DataRef, info: rawptr) -> DataRef
 
 /// CFMessagePortInvalidationCallBack
-MessagePortInvalidationCallBack :: distinct proc "c" (ms: MessagePortRef, info: rawptr)
+MessagePortInvalidationCallBack :: proc "c" (ms: MessagePortRef, info: rawptr)
 
 /// CFPlugInDynamicRegisterFunction
-PlugInDynamicRegisterFunction :: distinct proc "c" (plugIn: PlugInRef)
+PlugInDynamicRegisterFunction :: proc "c" (plugIn: PlugInRef)
 
 /// CFPlugInUnloadFunction
-PlugInUnloadFunction :: distinct proc "c" (plugIn: PlugInRef)
+PlugInUnloadFunction :: proc "c" (plugIn: PlugInRef)
 
 /// CFPlugInFactoryFunction
-PlugInFactoryFunction :: distinct proc "c" (allocator: AllocatorRef, typeUUID: UUIDRef) -> rawptr
+PlugInFactoryFunction :: proc "c" (allocator: AllocatorRef, typeUUID: UUIDRef) -> rawptr
 
 /// CFPlugInInstanceRef
-PlugInInstanceRef :: distinct ^__CFPlugInInstance
+PlugInInstanceRef :: ^__CFPlugInInstance
 
 /// CFPlugInInstanceGetInterfaceFunction
-PlugInInstanceGetInterfaceFunction :: distinct proc "c" (instance: PlugInInstanceRef, interfaceName: StringRef, ftbl: ^rawptr) -> Boolean
+PlugInInstanceGetInterfaceFunction :: proc "c" (instance: PlugInInstanceRef, interfaceName: StringRef, ftbl: ^rawptr) -> Boolean
 
 /// CFPlugInInstanceDeallocateInstanceDataFunction
-PlugInInstanceDeallocateInstanceDataFunction :: distinct proc "c" (instanceData: rawptr)
+PlugInInstanceDeallocateInstanceDataFunction :: proc "c" (instanceData: rawptr)
 
 /// CFMachPortRef
-MachPortRef :: distinct ^__CFMachPort
+MachPortRef :: ^__CFMachPort
 
 /// CFMachPortCallBack
-MachPortCallBack :: distinct proc "c" (port: MachPortRef, msg: rawptr, size: Index, info: rawptr)
+MachPortCallBack :: proc "c" (port: MachPortRef, msg: rawptr, size: Index, info: rawptr)
 
 /// CFMachPortInvalidationCallBack
-MachPortInvalidationCallBack :: distinct proc "c" (port: MachPortRef, info: rawptr)
+MachPortInvalidationCallBack :: proc "c" (port: MachPortRef, info: rawptr)
 
 /// CFAttributedStringRef
-AttributedStringRef :: distinct ^__CFAttributedString
+AttributedStringRef :: ^__CFAttributedString
 
 /// CFMutableAttributedStringRef
-MutableAttributedStringRef :: distinct ^__CFAttributedString
+MutableAttributedStringRef :: ^__CFAttributedString
 
 /// CFURLEnumeratorRef
-URLEnumeratorRef :: distinct ^__CFURLEnumerator
+URLEnumeratorRef :: ^__CFURLEnumerator
 
 /// acl_t
 acl_t :: distinct ^_acl
 
 /// CFFileSecurityRef
-FileSecurityRef :: distinct ^__CFFileSecurity
+FileSecurityRef :: ^__CFFileSecurity
 
 /// CFStringTokenizerRef
-StringTokenizerRef :: distinct ^__CFStringTokenizer
+StringTokenizerRef :: ^__CFStringTokenizer
 
 /// CFFileDescriptorNativeDescriptor
 FileDescriptorNativeDescriptor :: distinct cffi.int
 
 /// CFFileDescriptorRef
-FileDescriptorRef :: distinct ^__CFFileDescriptor
+FileDescriptorRef :: ^__CFFileDescriptor
 
 /// CFFileDescriptorCallBack
-FileDescriptorCallBack :: distinct proc "c" (f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr)
+FileDescriptorCallBack :: proc "c" (f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr)
 
 /// CFUserNotificationRef
-UserNotificationRef :: distinct ^__CFUserNotification
+UserNotificationRef :: ^__CFUserNotification
 
 /// CFUserNotificationCallBack
-UserNotificationCallBack :: distinct proc "c" (userNotification: UserNotificationRef, responseFlags: OptionFlags)
+UserNotificationCallBack :: proc "c" (userNotification: UserNotificationRef, responseFlags: OptionFlags)
 
 /// os_clockid_t
 os_clockid_t :: enum cffi.uint {
@@ -4435,7 +4414,7 @@ PropertyListFormat :: enum cffi.long {
 }
 
 /// CFStringEncodings
-StringEncodings :: enum cffi.long {
+StringEncoding :: enum cffi.long {
     MacJapanese = 1,
     MacChineseTrad = 2,
     MacKorean = 3,

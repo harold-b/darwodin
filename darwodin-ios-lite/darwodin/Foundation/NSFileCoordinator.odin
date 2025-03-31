@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSFileCoordinator")
 FileCoordinator :: struct { using _: Object, }
 
-FileCoordinator_VTable :: struct {
-    super: Object_VTable,
-}
-

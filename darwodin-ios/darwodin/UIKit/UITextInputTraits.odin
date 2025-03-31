@@ -28,12 +28,3 @@ TextInputTraits_init :: proc "c" (self: ^TextInputTraits) -> ^TextInputTraits {
 }
 
 
-TextInputTraits_VTable :: struct {
-}
-
-TextInputTraits_odin_extend :: proc(cls: Class, vt: ^TextInputTraits_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -20,7 +20,3 @@ NSTextLayoutManager :: struct { using _: NS.Object,
     using _: NSTextSelectionDataSource,
 }
 
-NSTextLayoutManager_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

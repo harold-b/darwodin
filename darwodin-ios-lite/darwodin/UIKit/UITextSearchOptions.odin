@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITextSearchOptions")
 TextSearchOptions :: struct { using _: NS.Object, }
 
-TextSearchOptions_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

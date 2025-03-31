@@ -17,7 +17,3 @@ ItemProvider :: struct { using _: Object,
     using _: Copying,
 }
 
-ItemProvider_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -19,6 +19,3 @@ SearchDisplayDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-SearchDisplayDelegate_VTable :: struct {
-}
-

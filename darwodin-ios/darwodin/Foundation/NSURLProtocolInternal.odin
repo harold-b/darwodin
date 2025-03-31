@@ -26,12 +26,3 @@ URLProtocolInternal_init :: proc "c" (self: ^URLProtocolInternal) -> ^URLProtoco
 }
 
 
-URLProtocolInternal_VTable :: struct {
-}
-
-URLProtocolInternal_odin_extend :: proc(cls: Class, vt: ^URLProtocolInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

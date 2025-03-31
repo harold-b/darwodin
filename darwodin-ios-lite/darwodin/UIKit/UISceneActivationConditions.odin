@@ -19,7 +19,3 @@ SceneActivationConditions :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-SceneActivationConditions_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

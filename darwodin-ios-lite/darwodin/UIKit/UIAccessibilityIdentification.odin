@@ -19,6 +19,3 @@ AccessibilityIdentification :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AccessibilityIdentification_VTable :: struct {
-}
-

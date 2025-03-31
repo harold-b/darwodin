@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITab")
 Tab :: struct { using _: NS.Object, }
 
-Tab_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UINotificationFeedbackGenerator")
 NotificationFeedbackGenerator :: struct { using _: FeedbackGenerator, }
 
-NotificationFeedbackGenerator_VTable :: struct {
-    super: FeedbackGenerator_VTable,
-}
-

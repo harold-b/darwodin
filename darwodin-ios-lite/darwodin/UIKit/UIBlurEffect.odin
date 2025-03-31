@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIBlurEffect")
 BlurEffect :: struct { using _: VisualEffect, }
 
-BlurEffect_VTable :: struct {
-    super: VisualEffect_VTable,
-}
-

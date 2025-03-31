@@ -19,6 +19,3 @@ CollectionViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object
     using _: DragAnimating,
 }
 
-CollectionViewDropPlaceholderContext_VTable :: struct {
-}
-

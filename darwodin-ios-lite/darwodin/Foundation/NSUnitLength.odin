@@ -17,7 +17,3 @@ UnitLength :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitLength_VTable :: struct {
-    super: Dimension_VTable,
-}
-

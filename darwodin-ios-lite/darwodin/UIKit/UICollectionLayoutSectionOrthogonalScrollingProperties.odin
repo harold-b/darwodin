@@ -19,7 +19,3 @@ CollectionLayoutSectionOrthogonalScrollingProperties :: struct { using _: NS.Obj
     using _: NS.Copying,
 }
 
-CollectionLayoutSectionOrthogonalScrollingProperties_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

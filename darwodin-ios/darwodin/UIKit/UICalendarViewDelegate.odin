@@ -27,34 +27,3 @@ CalendarViewDelegate_calendarView_decorationForDateComponents :: #force_inline p
 CalendarViewDelegate_calendarView_didChangeVisibleDateComponentsFrom :: #force_inline proc "c" (self: ^CalendarViewDelegate, calendarView: ^CalendarView, previousDateComponents: ^NS.DateComponents) {
     msgSend(nil, self, "calendarView:didChangeVisibleDateComponentsFrom:", calendarView, previousDateComponents)
 }
-CalendarViewDelegate_VTable :: struct {
-    calendarView_decorationForDateComponents: proc(self: ^CalendarViewDelegate, calendarView: ^CalendarView, dateComponents: ^NS.DateComponents) -> ^CalendarViewDecoration,
-    calendarView_didChangeVisibleDateComponentsFrom: proc(self: ^CalendarViewDelegate, calendarView: ^CalendarView, previousDateComponents: ^NS.DateComponents),
-}
-
-CalendarViewDelegate_odin_extend :: proc(cls: Class, vt: ^CalendarViewDelegate_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.calendarView_decorationForDateComponents != nil {
-        calendarView_decorationForDateComponents :: proc "c" (self: ^CalendarViewDelegate, _: SEL, calendarView: ^CalendarView, dateComponents: ^NS.DateComponents) -> ^CalendarViewDecoration {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^CalendarViewDelegate_VTable)vt_ctx.protocol_vt).calendarView_decorationForDateComponents(self, calendarView, dateComponents)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("calendarView:decorationForDateComponents:"), auto_cast calendarView_decorationForDateComponents, "@@:@@") do panic("Failed to register objC method.")
-    }
-    if vt.calendarView_didChangeVisibleDateComponentsFrom != nil {
-        calendarView_didChangeVisibleDateComponentsFrom :: proc "c" (self: ^CalendarViewDelegate, _: SEL, calendarView: ^CalendarView, previousDateComponents: ^NS.DateComponents) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^CalendarViewDelegate_VTable)vt_ctx.protocol_vt).calendarView_didChangeVisibleDateComponentsFrom(self, calendarView, previousDateComponents)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("calendarView:didChangeVisibleDateComponentsFrom:"), auto_cast calendarView_didChangeVisibleDateComponentsFrom, "v@:@@") do panic("Failed to register objC method.")
-    }
-}
-

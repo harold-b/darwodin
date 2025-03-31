@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITabSidebarScrollTarget")
 TabSidebarScrollTarget :: struct { using _: NS.Object, }
 
-TabSidebarScrollTarget_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

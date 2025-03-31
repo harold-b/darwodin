@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIZoomTransitionSourceViewProviderContext")
 ZoomTransitionSourceViewProviderContext :: struct { using _: NS.Object, }
 
-ZoomTransitionSourceViewProviderContext_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -19,7 +19,3 @@ ScribbleInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
-ScribbleInteraction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

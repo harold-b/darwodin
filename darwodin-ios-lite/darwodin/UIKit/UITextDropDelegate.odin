@@ -19,6 +19,3 @@ TextDropDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextDropDelegate_VTable :: struct {
-}
-

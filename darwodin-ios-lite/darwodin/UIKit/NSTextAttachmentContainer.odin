@@ -19,6 +19,3 @@ NSTextAttachmentContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-NSTextAttachmentContainer_VTable :: struct {
-}
-

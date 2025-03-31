@@ -26,12 +26,3 @@ URLConnectionInternal_init :: proc "c" (self: ^URLConnectionInternal) -> ^URLCon
 }
 
 
-URLConnectionInternal_VTable :: struct {
-}
-
-URLConnectionInternal_odin_extend :: proc(cls: Class, vt: ^URLConnectionInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

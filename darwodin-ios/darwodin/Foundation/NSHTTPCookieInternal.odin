@@ -26,12 +26,3 @@ HTTPCookieInternal_init :: proc "c" (self: ^HTTPCookieInternal) -> ^HTTPCookieIn
 }
 
 
-HTTPCookieInternal_VTable :: struct {
-}
-
-HTTPCookieInternal_odin_extend :: proc(cls: Class, vt: ^HTTPCookieInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -19,7 +19,3 @@ PercentDrivenInteractiveTransition :: struct { using _: NS.Object,
     using _: ViewControllerInteractiveTransitioning,
 }
 
-PercentDrivenInteractiveTransition_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

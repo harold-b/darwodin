@@ -27,34 +27,3 @@ NSCollectionLayoutEnvironment_container :: #force_inline proc "c" (self: ^NSColl
 NSCollectionLayoutEnvironment_traitCollection :: #force_inline proc "c" (self: ^NSCollectionLayoutEnvironment) -> ^TraitCollection {
     return msgSend(^TraitCollection, self, "traitCollection")
 }
-NSCollectionLayoutEnvironment_VTable :: struct {
-    container: proc(self: ^NSCollectionLayoutEnvironment) -> ^NSCollectionLayoutContainer,
-    traitCollection: proc(self: ^NSCollectionLayoutEnvironment) -> ^TraitCollection,
-}
-
-NSCollectionLayoutEnvironment_odin_extend :: proc(cls: Class, vt: ^NSCollectionLayoutEnvironment_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.container != nil {
-        container :: proc "c" (self: ^NSCollectionLayoutEnvironment, _: SEL) -> ^NSCollectionLayoutContainer {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^NSCollectionLayoutEnvironment_VTable)vt_ctx.protocol_vt).container(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("container"), auto_cast container, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.traitCollection != nil {
-        traitCollection :: proc "c" (self: ^NSCollectionLayoutEnvironment, _: SEL) -> ^TraitCollection {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^NSCollectionLayoutEnvironment_VTable)vt_ctx.protocol_vt).traitCollection(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("traitCollection"), auto_cast traitCollection, "@@:") do panic("Failed to register objC method.")
-    }
-}
-

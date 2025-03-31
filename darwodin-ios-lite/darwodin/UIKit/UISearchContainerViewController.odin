@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISearchContainerViewController")
 SearchContainerViewController :: struct { using _: ViewController, }
 
-SearchContainerViewController_VTable :: struct {
-    super: ViewController_VTable,
-}
-

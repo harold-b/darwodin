@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSCache")
 Cache :: struct { using _: Object, }
 
-Cache_VTable :: struct {
-    super: Object_VTable,
-}
-

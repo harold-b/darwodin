@@ -15,6 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLRequestInternal")
 URLRequestInternal :: struct { using _: intrinsics.objc_object, }
 
-URLRequestInternal_VTable :: struct {
-}
-

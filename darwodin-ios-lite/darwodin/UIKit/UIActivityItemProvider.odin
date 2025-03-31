@@ -19,7 +19,3 @@ ActivityItemProvider :: struct { using _: NS.Operation,
     using _: ActivityItemSource,
 }
 
-ActivityItemProvider_VTable :: struct {
-    super: NS.Operation_VTable,
-}
-

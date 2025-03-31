@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSUnitConverter")
 UnitConverter :: struct { using _: Object, }
 
-UnitConverter_VTable :: struct {
-    super: Object_VTable,
-}
-

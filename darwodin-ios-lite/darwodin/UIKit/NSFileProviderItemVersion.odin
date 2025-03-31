@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSFileProviderItemVersion")
 NSFileProviderItemVersion :: struct { using _: NS.Object, }
 
-NSFileProviderItemVersion_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

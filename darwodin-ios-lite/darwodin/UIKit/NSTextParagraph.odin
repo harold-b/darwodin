@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextParagraph")
 NSTextParagraph :: struct { using _: NSTextElement, }
 
-NSTextParagraph_VTable :: struct {
-    super: NSTextElement_VTable,
-}
-

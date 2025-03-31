@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIPasteControl")
 PasteControl :: struct { using _: Control, }
 
-PasteControl_VTable :: struct {
-    super: Control_VTable,
-}
-

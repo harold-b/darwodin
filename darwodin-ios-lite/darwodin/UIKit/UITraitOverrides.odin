@@ -19,6 +19,3 @@ TraitOverrides :: struct { using _: intrinsics.objc_object,
     using _: MutableTraits,
 }
 
-TraitOverrides_VTable :: struct {
-}
-

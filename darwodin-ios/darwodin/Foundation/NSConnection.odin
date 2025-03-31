@@ -26,12 +26,3 @@ Connection_init :: proc "c" (self: ^Connection) -> ^Connection {
 }
 
 
-Connection_VTable :: struct {
-}
-
-Connection_odin_extend :: proc(cls: Class, vt: ^Connection_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

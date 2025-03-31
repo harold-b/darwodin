@@ -19,6 +19,3 @@ TextFormattingViewControllerDelegate :: struct { using _: intrinsics.objc_object
     using _: NS.ObjectProtocol,
 }
 
-TextFormattingViewControllerDelegate_VTable :: struct {
-}
-

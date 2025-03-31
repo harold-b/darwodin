@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolWiggleEffect")
 NSSymbolWiggleEffect :: struct { using _: NSSymbolEffect, }
 
-NSSymbolWiggleEffect_VTable :: struct {
-    super: NSSymbolEffect_VTable,
-}
-

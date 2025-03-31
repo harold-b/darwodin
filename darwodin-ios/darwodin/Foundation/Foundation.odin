@@ -1287,7 +1287,7 @@ ExceptionName :: distinct ^String
 RunLoopMode :: distinct ^String
 
 /// NSComparator
-Comparator :: distinct proc "c" (obj1: id, obj2: id) -> ComparisonResult
+Comparator :: proc "c" (obj1: id, obj2: id) -> ComparisonResult
 
 /// NSZone
 Zone :: distinct _NSZone
@@ -1295,16 +1295,14 @@ Zone :: distinct _NSZone
 /// NSRange
 Range :: distinct _NSRange
 
-/// NSRangePointer
-
 /// unichar
 unichar :: distinct cffi.ushort
 
 /// NSItemProviderCompletionHandler
-ItemProviderCompletionHandler :: distinct proc "c" (item: ^SecureCoding, error: ^Error)
+ItemProviderCompletionHandler :: proc "c" (item: ^SecureCoding, error: ^Error)
 
 /// NSItemProviderLoadHandler
-ItemProviderLoadHandler :: distinct proc "c" (completionHandler: ItemProviderCompletionHandler, expectedValueClass: Class, options: ^Dictionary)
+ItemProviderLoadHandler :: proc "c" (completionHandler: ItemProviderCompletionHandler, expectedValueClass: Class, options: ^Dictionary)
 
 /// NSStringEncoding
 StringEncoding :: distinct UInteger
@@ -1325,10 +1323,10 @@ ProgressUserInfoKey :: distinct ^String
 ProgressFileOperationKind :: distinct ^String
 
 /// NSProgressUnpublishingHandler
-ProgressUnpublishingHandler :: distinct proc "c" ()
+ProgressUnpublishingHandler :: proc "c" ()
 
 /// NSProgressPublishingHandler
-ProgressPublishingHandler :: distinct proc "c" (progress: ^Progress) -> ProgressUnpublishingHandler
+ProgressPublishingHandler :: proc "c" (progress: ^Progress) -> ProgressUnpublishingHandler
 
 /// NSNotificationName
 NotificationName :: distinct ^String
@@ -1349,7 +1347,7 @@ AttributedStringFormattingContextKey :: distinct ^String
 LocaleKey :: distinct ^String
 
 /// NSUncaughtExceptionHandler
-UncaughtExceptionHandler :: distinct proc "c" (exception: ^Exception)
+UncaughtExceptionHandler :: proc "c" (exception: ^Exception)
 
 /// NSErrorDomain
 ErrorDomain :: distinct ^String
@@ -1499,10 +1497,10 @@ SecRandomRef :: distinct ^__SecRandom
 SecTrustRef :: distinct ^__SecTrust
 
 /// SecTrustCallback
-SecTrustCallback :: distinct proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType)
+SecTrustCallback :: proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType)
 
 /// SecTrustWithErrorCallback
-SecTrustWithErrorCallback :: distinct proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef)
+SecTrustWithErrorCallback :: proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef)
 
 /// SSLCipherSuite
 SSLCipherSuite :: distinct cffi.uint16_t
@@ -1520,15 +1518,13 @@ xpc_type_t :: distinct ^_xpc_type_s
 xpc_object_t :: distinct rawptr
 
 /// xpc_handler_t
-xpc_handler_t :: distinct proc "c" (object: xpc_object_t)
+xpc_handler_t :: proc "c" (object: xpc_object_t)
 
 /// xpc_connection_t
 xpc_connection_t :: distinct ^_xpc_connection_s
 
 /// xpc_connection_handler_t
-xpc_connection_handler_t :: distinct proc "c" (connection: xpc_connection_t)
-
-/// xpc_endpoint_t
+xpc_connection_handler_t :: proc "c" (connection: xpc_connection_t)
 
 /// xpc_rich_error_t
 xpc_rich_error_t :: distinct ^_xpc_rich_error_s
@@ -1537,37 +1533,37 @@ xpc_rich_error_t :: distinct ^_xpc_rich_error_s
 xpc_activity_t :: distinct ^_xpc_activity_s
 
 /// xpc_activity_handler_t
-xpc_activity_handler_t :: distinct proc "c" (activity: xpc_activity_t)
+xpc_activity_handler_t :: proc "c" (activity: xpc_activity_t)
 
 /// xpc_activity_state_t
 xpc_activity_state_t :: distinct cffi.long
 
 /// xpc_finalizer_t
-xpc_finalizer_t :: distinct proc "c" (value: rawptr)
+xpc_finalizer_t :: proc "c" (value: rawptr)
 
 /// xpc_session_t
 xpc_session_t :: distinct ^xpc_session_s
 
 /// xpc_session_cancel_handler_t
-xpc_session_cancel_handler_t :: distinct proc "c" (error: xpc_rich_error_t)
+xpc_session_cancel_handler_t :: proc "c" (error: xpc_rich_error_t)
 
 /// xpc_session_incoming_message_handler_t
-xpc_session_incoming_message_handler_t :: distinct proc "c" (message: xpc_object_t)
+xpc_session_incoming_message_handler_t :: proc "c" (message: xpc_object_t)
 
 /// xpc_session_reply_handler_t
-xpc_session_reply_handler_t :: distinct proc "c" (reply: xpc_object_t, error: xpc_rich_error_t)
+xpc_session_reply_handler_t :: proc "c" (reply: xpc_object_t, error: xpc_rich_error_t)
 
 /// xpc_listener_t
 xpc_listener_t :: distinct ^xpc_listener_s
 
 /// xpc_listener_incoming_session_handler_t
-xpc_listener_incoming_session_handler_t :: distinct proc "c" (peer: xpc_session_t)
+xpc_listener_incoming_session_handler_t :: proc "c" (peer: xpc_session_t)
 
 /// xpc_array_applier_t
-xpc_array_applier_t :: distinct proc "c" (index: cffi.size_t, value: xpc_object_t) -> cffi.bool
+xpc_array_applier_t :: proc "c" (index: cffi.size_t, value: xpc_object_t) -> cffi.bool
 
 /// xpc_dictionary_applier_t
-xpc_dictionary_applier_t :: distinct proc "c" (key: cstring, value: xpc_object_t) -> cffi.bool
+xpc_dictionary_applier_t :: proc "c" (key: cstring, value: xpc_object_t) -> cffi.bool
 
 /// NSLinguisticTagScheme
 LinguisticTagScheme :: distinct ^String
@@ -1585,10 +1581,10 @@ SSLContextRef :: distinct ^SSLContext
 SSLConnectionRef :: distinct rawptr
 
 /// SSLReadFunc
-SSLReadFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
+SSLReadFunc :: proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
 
 /// SSLWriteFunc
-SSLWriteFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
+SSLWriteFunc :: proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
 
 /// NSUserActivityPersistentIdentifier
 UserActivityPersistentIdentifier :: distinct ^String

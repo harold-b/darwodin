@@ -20,7 +20,3 @@ NSTextList :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-NSTextList_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

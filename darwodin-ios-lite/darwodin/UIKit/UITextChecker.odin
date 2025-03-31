@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UITextChecker")
 TextChecker :: struct { using _: NS.Object, }
 
-TextChecker_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

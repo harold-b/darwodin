@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIHoverEffectLayer")
 HoverEffectLayer :: struct { using _: CA.Layer, }
 
-HoverEffectLayer_VTable :: struct {
-    super: CA.Layer_VTable,
-}
-

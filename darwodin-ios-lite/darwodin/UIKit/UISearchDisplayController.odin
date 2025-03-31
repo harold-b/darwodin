@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISearchDisplayController")
 SearchDisplayController :: struct { using _: NS.Object, }
 
-SearchDisplayController_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

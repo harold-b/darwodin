@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UICollectionViewDropPlaceholder")
 CollectionViewDropPlaceholder :: struct { using _: CollectionViewPlaceholder, }
 
-CollectionViewDropPlaceholder_VTable :: struct {
-    super: CollectionViewPlaceholder_VTable,
-}
-

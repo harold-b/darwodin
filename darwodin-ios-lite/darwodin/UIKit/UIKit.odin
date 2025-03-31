@@ -954,8 +954,6 @@ foreign lib {
 
 }
 
-/// NSRangePointer
-
 /// UIAccessibilityTraits
 AccessibilityTraits :: distinct cffi.uint64_t
 
@@ -1029,7 +1027,7 @@ AccelerationValue :: distinct cffi.double
 MenuIdentifier :: distinct ^NS.String
 
 /// UITextAttributesConversionHandler
-TextAttributesConversionHandler :: distinct proc "c" (_arg_0: ^NS.Dictionary) -> ^NS.Dictionary
+TextAttributesConversionHandler :: proc "c" (_arg_0: ^NS.Dictionary) -> ^NS.Dictionary
 
 /// UILayoutPriority
 LayoutPriority :: distinct cffi.float
@@ -1053,10 +1051,10 @@ ContentSizeCategory :: distinct ^NS.String
 SceneSessionRole :: distinct ^NS.String
 
 /// UITraitMutations
-TraitMutations :: distinct proc "c" (mutableTraits: ^MutableTraits)
+TraitMutations :: proc "c" (mutableTraits: ^MutableTraits)
 
 /// UITraitChangeHandler
-TraitChangeHandler :: distinct proc "c" (traitEnvironment: ^TraitEnvironment, previousCollection: ^TraitCollection)
+TraitChangeHandler :: proc "c" (traitEnvironment: ^TraitEnvironment, previousCollection: ^TraitCollection)
 
 /// UIFocusSoundIdentifier
 FocusSoundIdentifier :: distinct ^NS.String
@@ -1068,19 +1066,19 @@ FocusGroupPriority :: distinct NS.Integer
 ActionIdentifier :: distinct ^NS.String
 
 /// UIActionHandler
-ActionHandler :: distinct proc "c" (action: ^Action)
+ActionHandler :: proc "c" (action: ^Action)
 
 /// UIContextMenuActionProvider
-ContextMenuActionProvider :: distinct proc "c" (suggestedActions: ^NS.Array) -> ^Menu
+ContextMenuActionProvider :: proc "c" (suggestedActions: ^NS.Array) -> ^Menu
 
 /// UIContextMenuContentPreviewProvider
-ContextMenuContentPreviewProvider :: distinct proc "c" () -> ^ViewController
+ContextMenuContentPreviewProvider :: proc "c" () -> ^ViewController
 
 /// UIScrollViewDecelerationRate
 ScrollViewDecelerationRate :: distinct CG.Float
 
 /// UIAccessibilityCustomActionHandler
-AccessibilityCustomActionHandler :: distinct proc "c" (customAction: ^AccessibilityCustomAction) -> bool
+AccessibilityCustomActionHandler :: proc "c" (customAction: ^AccessibilityCustomAction) -> bool
 
 /// UITextContentType
 TextContentType :: distinct ^NS.String
@@ -1092,7 +1090,7 @@ TextDirection :: distinct NS.Integer
 TextWritingDirection :: distinct NSWritingDirection
 
 /// UIAccessibilityCustomRotorSearch
-AccessibilityCustomRotorSearch :: distinct proc "c" (predicate: ^AccessibilityCustomRotorSearchPredicate) -> ^AccessibilityCustomRotorItemResult
+AccessibilityCustomRotorSearch :: proc "c" (predicate: ^AccessibilityCustomRotorSearchPredicate) -> ^AccessibilityCustomRotorItemResult
 
 /// UIBackgroundTaskIdentifier
 BackgroundTaskIdentifier :: distinct NS.UInteger
@@ -1106,69 +1104,65 @@ ApplicationLaunchOptionsKey :: distinct ^NS.String
 /// UIApplicationOpenURLOptionsKey
 ApplicationOpenURLOptionsKey :: distinct ^NS.String
 
-/// UIApplicationExtensionPointIdentifier
-
 /// UISymbolEffectCompletion
-SymbolEffectCompletion :: distinct proc "c" (_context: ^SymbolEffectCompletionContext)
+SymbolEffectCompletion :: proc "c" (_context: ^SymbolEffectCompletionContext)
 
 /// UIConfigurationColorTransformer
-ConfigurationColorTransformer :: distinct proc "c" (color: ^Color) -> ^Color
+ConfigurationColorTransformer :: proc "c" (color: ^Color) -> ^Color
 
 /// UIConfigurationTextAttributesTransformer
-ConfigurationTextAttributesTransformer :: distinct proc "c" (textAttributes: ^NS.Dictionary) -> ^NS.Dictionary
-
-/// UIButtonPointerStyleProvider
+ConfigurationTextAttributesTransformer :: proc "c" (textAttributes: ^NS.Dictionary) -> ^NS.Dictionary
 
 /// UIButtonConfigurationUpdateHandler
-ButtonConfigurationUpdateHandler :: distinct proc "c" (button: ^Button)
+ButtonConfigurationUpdateHandler :: proc "c" (button: ^Button)
 
 /// UICollectionViewLayoutInteractiveTransitionCompletion
-CollectionViewLayoutInteractiveTransitionCompletion :: distinct proc "c" (completed: bool, finished: bool)
+CollectionViewLayoutInteractiveTransitionCompletion :: proc "c" (completed: bool, finished: bool)
 
 /// UICollectionViewCellConfigurationUpdateHandler
-CollectionViewCellConfigurationUpdateHandler :: distinct proc "c" (cell: ^CollectionViewCell, state: ^CellConfigurationState)
+CollectionViewCellConfigurationUpdateHandler :: proc "c" (cell: ^CollectionViewCell, state: ^CellConfigurationState)
 
 /// UICollectionViewCompositionalLayoutSectionProvider
-CollectionViewCompositionalLayoutSectionProvider :: distinct proc "c" (sectionIndex: NS.Integer, layoutEnvironment: ^NSCollectionLayoutEnvironment) -> ^NSCollectionLayoutSection
+CollectionViewCompositionalLayoutSectionProvider :: proc "c" (sectionIndex: NS.Integer, layoutEnvironment: ^NSCollectionLayoutEnvironment) -> ^NSCollectionLayoutSection
 
 /// NSCollectionLayoutSectionVisibleItemsInvalidationHandler
-NSCollectionLayoutSectionVisibleItemsInvalidationHandler :: distinct proc "c" (visibleItems: ^NS.Array, contentOffset: CG.Point, layoutEnvironment: ^NSCollectionLayoutEnvironment)
+NSCollectionLayoutSectionVisibleItemsInvalidationHandler :: proc "c" (visibleItems: ^NS.Array, contentOffset: CG.Point, layoutEnvironment: ^NSCollectionLayoutEnvironment)
 
 /// UICollectionLayoutSectionOrthogonalScrollingDecelerationRate
 CollectionLayoutSectionOrthogonalScrollingDecelerationRate :: distinct CG.Float
 
 /// NSCollectionLayoutGroupCustomItemProvider
-NSCollectionLayoutGroupCustomItemProvider :: distinct proc "c" (layoutEnvironment: ^NSCollectionLayoutEnvironment) -> ^NS.Array
+NSCollectionLayoutGroupCustomItemProvider :: proc "c" (layoutEnvironment: ^NSCollectionLayoutEnvironment) -> ^NS.Array
 
 /// UICellAccessoryPosition
-CellAccessoryPosition :: distinct proc "c" (accessories: ^NS.Array) -> NS.UInteger
+CellAccessoryPosition :: proc "c" (accessories: ^NS.Array) -> NS.UInteger
 
 /// UIContextualActionHandler
-ContextualActionHandler :: distinct proc "c" (action: ^ContextualAction, sourceView: ^View, completionHandler: proc "c" (actionPerformed: bool))
+ContextualActionHandler :: proc "c" (action: ^ContextualAction, sourceView: ^View, completionHandler: proc "c" (actionPerformed: bool))
 
 /// UITableViewCellConfigurationUpdateHandler
-TableViewCellConfigurationUpdateHandler :: distinct proc "c" (cell: ^TableViewCell, state: ^CellConfigurationState)
+TableViewCellConfigurationUpdateHandler :: proc "c" (cell: ^TableViewCell, state: ^CellConfigurationState)
 
 /// UICollectionViewDiffableDataSourceCellProvider
-CollectionViewDiffableDataSourceCellProvider :: distinct proc "c" (collectionView: ^CollectionView, indexPath: ^NS.IndexPath, itemIdentifier: id) -> ^CollectionViewCell
+CollectionViewDiffableDataSourceCellProvider :: proc "c" (collectionView: ^CollectionView, indexPath: ^NS.IndexPath, itemIdentifier: id) -> ^CollectionViewCell
 
 /// UICollectionViewDiffableDataSourceSupplementaryViewProvider
-CollectionViewDiffableDataSourceSupplementaryViewProvider :: distinct proc "c" (collectionView: ^CollectionView, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionReusableView
+CollectionViewDiffableDataSourceSupplementaryViewProvider :: proc "c" (collectionView: ^CollectionView, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionReusableView
 
 /// UITableViewDiffableDataSourceCellProvider
-TableViewDiffableDataSourceCellProvider :: distinct proc "c" (tableView: ^TableView, indexPath: ^NS.IndexPath, itemIdentifier: id) -> ^TableViewCell
+TableViewDiffableDataSourceCellProvider :: proc "c" (tableView: ^TableView, indexPath: ^NS.IndexPath, itemIdentifier: id) -> ^TableViewCell
 
 /// UICollectionViewCellRegistrationConfigurationHandler
-CollectionViewCellRegistrationConfigurationHandler :: distinct proc "c" (cell: ^CollectionViewCell, indexPath: ^NS.IndexPath, item: id)
+CollectionViewCellRegistrationConfigurationHandler :: proc "c" (cell: ^CollectionViewCell, indexPath: ^NS.IndexPath, item: id)
 
 /// UICollectionViewSupplementaryRegistrationConfigurationHandler
-CollectionViewSupplementaryRegistrationConfigurationHandler :: distinct proc "c" (supplementaryView: ^CollectionReusableView, elementKind: ^NS.String, indexPath: ^NS.IndexPath)
+CollectionViewSupplementaryRegistrationConfigurationHandler :: proc "c" (supplementaryView: ^CollectionReusableView, elementKind: ^NS.String, indexPath: ^NS.IndexPath)
 
 /// UICollectionLayoutListSwipeActionsConfigurationProvider
-CollectionLayoutListSwipeActionsConfigurationProvider :: distinct proc "c" (indexPath: ^NS.IndexPath) -> ^SwipeActionsConfiguration
+CollectionLayoutListSwipeActionsConfigurationProvider :: proc "c" (indexPath: ^NS.IndexPath) -> ^SwipeActionsConfiguration
 
 /// UICollectionLayoutListItemSeparatorHandler
-CollectionLayoutListItemSeparatorHandler :: distinct proc "c" (indexPath: ^NS.IndexPath, sectionSeparatorConfiguration: ^ListSeparatorConfiguration) -> ^ListSeparatorConfiguration
+CollectionLayoutListItemSeparatorHandler :: proc "c" (indexPath: ^NS.IndexPath, sectionSeparatorConfiguration: ^ListSeparatorConfiguration) -> ^ListSeparatorConfiguration
 
 /// UIConfigurationStateCustomKey
 ConfigurationStateCustomKey :: distinct ^NS.String
@@ -1179,13 +1173,11 @@ DocumentCreationIntent :: distinct ^NS.String
 /// NSFileProviderItemIdentifier
 NSFileProviderItemIdentifier :: distinct ^NS.String
 
-/// NSFileProviderItem
-
 /// UIGraphicsImageDrawingActions
-GraphicsImageDrawingActions :: distinct proc "c" (rendererContext: ^GraphicsImageRendererContext)
+GraphicsImageDrawingActions :: proc "c" (rendererContext: ^GraphicsImageRendererContext)
 
 /// UIGraphicsPDFDrawingActions
-GraphicsPDFDrawingActions :: distinct proc "c" (rendererContext: ^GraphicsPDFRendererContext)
+GraphicsPDFDrawingActions :: proc "c" (rendererContext: ^GraphicsPDFRendererContext)
 
 /// UIImagePickerControllerInfoKey
 ImagePickerControllerInfoKey :: distinct ^NS.String
@@ -1212,10 +1204,10 @@ TransitionContextViewControllerKey :: distinct ^NS.String
 TransitionContextViewKey :: distinct ^NS.String
 
 /// UIStoryboardViewControllerCreator
-StoryboardViewControllerCreator :: distinct proc "c" (coder: ^NS.Coder) -> ^ViewController
+StoryboardViewControllerCreator :: proc "c" (coder: ^NS.Coder) -> ^ViewController
 
 /// UITableViewHeaderFooterViewConfigurationUpdateHandler
-TableViewHeaderFooterViewConfigurationUpdateHandler :: distinct proc "c" (headerFooterView: ^TableViewHeaderFooterView, state: ^ViewConfigurationState)
+TableViewHeaderFooterViewConfigurationUpdateHandler :: proc "c" (headerFooterView: ^TableViewHeaderFooterView, state: ^ViewConfigurationState)
 
 /// UITextSearchDocumentIdentifier
 TextSearchDocumentIdentifier :: distinct ^id
@@ -1239,13 +1231,13 @@ ScribbleElementIdentifier :: distinct ^id
 SheetPresentationControllerDetentIdentifier :: distinct ^NS.String
 
 /// UIGraphicsDrawingActions
-GraphicsDrawingActions :: distinct proc "c" (rendererContext: ^GraphicsRendererContext)
+GraphicsDrawingActions :: proc "c" (rendererContext: ^GraphicsRendererContext)
 
 /// UIWindowSceneActivationActionConfigurationProvider
-WindowSceneActivationActionConfigurationProvider :: distinct proc "c" (action: ^WindowSceneActivationAction) -> ^WindowSceneActivationConfiguration
+WindowSceneActivationActionConfigurationProvider :: proc "c" (action: ^WindowSceneActivationAction) -> ^WindowSceneActivationConfiguration
 
 /// UIWindowSceneActivationInteractionConfigurationProvider
-WindowSceneActivationInteractionConfigurationProvider :: distinct proc "c" (interaction: ^WindowSceneActivationInteraction, location: CG.Point) -> ^WindowSceneActivationConfiguration
+WindowSceneActivationInteractionConfigurationProvider :: proc "c" (interaction: ^WindowSceneActivationInteraction, location: CG.Point) -> ^WindowSceneActivationConfiguration
 
 /// UITextFormattingViewControllerTextAlignment
 TextFormattingViewControllerTextAlignment :: distinct ^NS.String
@@ -1269,14 +1261,10 @@ NSTextListMarkerFormat :: distinct ^NS.String
 ActivityType :: distinct ^NS.String
 
 /// UIActivityViewControllerCompletionHandler
-ActivityViewControllerCompletionHandler :: distinct proc "c" (activityType: ^NS.String, completed: bool)
+ActivityViewControllerCompletionHandler :: proc "c" (activityType: ^NS.String, completed: bool)
 
 /// UIActivityViewControllerCompletionWithItemsHandler
-ActivityViewControllerCompletionWithItemsHandler :: distinct proc "c" (activityType: ^NS.String, completed: bool, returnedItems: ^NS.Array, activityError: ^NS.Error)
-
-/// UIPrinterPickerCompletionHandler
-
-/// UIPrintInteractionCompletionHandler
+ActivityViewControllerCompletionWithItemsHandler :: proc "c" (activityType: ^NS.String, completed: bool, returnedItems: ^NS.Array, activityError: ^NS.Error)
 
 /// UIAccessibilityNavigationStyle
 AccessibilityNavigationStyle :: enum cffi.long {

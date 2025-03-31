@@ -19,6 +19,3 @@ TextPasteConfigurationSupporting :: struct { using _: intrinsics.objc_object,
     using _: PasteConfigurationSupporting,
 }
 
-TextPasteConfigurationSupporting_VTable :: struct {
-}
-

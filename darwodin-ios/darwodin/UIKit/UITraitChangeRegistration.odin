@@ -20,12 +20,3 @@ TraitChangeRegistration :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
-TraitChangeRegistration_VTable :: struct {
-}
-
-TraitChangeRegistration_odin_extend :: proc(cls: Class, vt: ^TraitChangeRegistration_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

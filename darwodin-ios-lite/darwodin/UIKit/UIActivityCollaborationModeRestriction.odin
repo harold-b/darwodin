@@ -20,7 +20,3 @@ ActivityCollaborationModeRestriction :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-ActivityCollaborationModeRestriction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

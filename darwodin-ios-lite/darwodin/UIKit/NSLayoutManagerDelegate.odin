@@ -19,6 +19,3 @@ NSLayoutManagerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-NSLayoutManagerDelegate_VTable :: struct {
-}
-

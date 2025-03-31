@@ -31,34 +31,3 @@ MetadataQueryDelegate_metadataQuery :: proc {
     MetadataQueryDelegate_metadataQuery_replacementValueForAttribute_value,
 }
 
-MetadataQueryDelegate_VTable :: struct {
-    metadataQuery_replacementObjectForResultObject: proc(self: ^MetadataQueryDelegate, query: ^MetadataQuery, result: ^MetadataItem) -> id,
-    metadataQuery_replacementValueForAttribute_value: proc(self: ^MetadataQueryDelegate, query: ^MetadataQuery, attrName: ^String, attrValue: id) -> id,
-}
-
-MetadataQueryDelegate_odin_extend :: proc(cls: Class, vt: ^MetadataQueryDelegate_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.metadataQuery_replacementObjectForResultObject != nil {
-        metadataQuery_replacementObjectForResultObject :: proc "c" (self: ^MetadataQueryDelegate, _: SEL, query: ^MetadataQuery, result: ^MetadataItem) -> id {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^MetadataQueryDelegate_VTable)vt_ctx.protocol_vt).metadataQuery_replacementObjectForResultObject(self, query, result)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("metadataQuery:replacementObjectForResultObject:"), auto_cast metadataQuery_replacementObjectForResultObject, "@@:@@") do panic("Failed to register objC method.")
-    }
-    if vt.metadataQuery_replacementValueForAttribute_value != nil {
-        metadataQuery_replacementValueForAttribute_value :: proc "c" (self: ^MetadataQueryDelegate, _: SEL, query: ^MetadataQuery, attrName: ^String, attrValue: id) -> id {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^MetadataQueryDelegate_VTable)vt_ctx.protocol_vt).metadataQuery_replacementValueForAttribute_value(self, query, attrName, attrValue)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("metadataQuery:replacementValueForAttribute:value:"), auto_cast metadataQuery_replacementValueForAttribute_value, "@@:@@@") do panic("Failed to register objC method.")
-    }
-}
-

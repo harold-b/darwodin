@@ -19,6 +19,3 @@ ViewControllerTransitionCoordinator :: struct { using _: intrinsics.objc_object,
     using _: ViewControllerTransitionCoordinatorContext,
 }
 
-ViewControllerTransitionCoordinator_VTable :: struct {
-}
-

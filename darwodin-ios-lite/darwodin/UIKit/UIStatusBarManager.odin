@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIStatusBarManager")
 StatusBarManager :: struct { using _: NS.Object, }
 
-StatusBarManager_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

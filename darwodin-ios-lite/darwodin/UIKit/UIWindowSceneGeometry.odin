@@ -19,7 +19,3 @@ WindowSceneGeometry :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-WindowSceneGeometry_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

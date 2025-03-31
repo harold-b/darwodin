@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIUpdateActionPhase")
 UpdateActionPhase :: struct { using _: NS.Object, }
 
-UpdateActionPhase_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

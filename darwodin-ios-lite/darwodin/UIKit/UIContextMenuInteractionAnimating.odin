@@ -19,6 +19,3 @@ ContextMenuInteractionAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ContextMenuInteractionAnimating_VTable :: struct {
-}
-

@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UISwipeActionsConfiguration")
 SwipeActionsConfiguration :: struct { using _: NS.Object, }
 
-SwipeActionsConfiguration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

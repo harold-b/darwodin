@@ -19,7 +19,3 @@ WindowSceneDragInteraction :: struct { using _: NS.Object,
     using _: Interaction,
 }
 
-WindowSceneDragInteraction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

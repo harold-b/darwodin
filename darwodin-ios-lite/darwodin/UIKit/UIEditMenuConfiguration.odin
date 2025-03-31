@@ -17,7 +17,3 @@ import CA "../QuartzCore"
 @(objc_class="UIEditMenuConfiguration")
 EditMenuConfiguration :: struct { using _: NS.Object, }
 
-EditMenuConfiguration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

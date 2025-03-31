@@ -19,6 +19,3 @@ NSTextSelectionDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-NSTextSelectionDataSource_VTable :: struct {
-}
-

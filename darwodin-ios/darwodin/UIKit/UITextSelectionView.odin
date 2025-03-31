@@ -28,12 +28,3 @@ TextSelectionView_init :: proc "c" (self: ^TextSelectionView) -> ^TextSelectionV
 }
 
 
-TextSelectionView_VTable :: struct {
-}
-
-TextSelectionView_odin_extend :: proc(cls: Class, vt: ^TextSelectionView_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -26,12 +26,3 @@ PortMessage_init :: proc "c" (self: ^PortMessage) -> ^PortMessage {
 }
 
 
-PortMessage_VTable :: struct {
-}
-
-PortMessage_odin_extend :: proc(cls: Class, vt: ^PortMessage_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

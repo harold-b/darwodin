@@ -20,7 +20,3 @@ ContentUnavailableConfiguration :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-ContentUnavailableConfiguration_VTable :: struct {
-    super: NS.Object_VTable,
-}
-
