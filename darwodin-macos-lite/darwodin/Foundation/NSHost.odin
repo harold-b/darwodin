@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSHost")
 Host :: struct { using _: Object, }
 
-Host_VTable :: struct {
-    super: Object_VTable,
-}
-

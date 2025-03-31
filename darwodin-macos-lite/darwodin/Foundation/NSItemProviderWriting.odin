@@ -17,6 +17,3 @@ ItemProviderWriting :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-ItemProviderWriting_VTable :: struct {
-}
-

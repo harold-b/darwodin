@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolBreatheEffect")
 SymbolBreatheEffect :: struct { using _: SymbolEffect, }
 
-SymbolBreatheEffect_VTable :: struct {
-    super: SymbolEffect_VTable,
-}
-

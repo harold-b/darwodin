@@ -17,6 +17,3 @@ UserNotificationCenterDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-UserNotificationCenterDelegate_VTable :: struct {
-}
-

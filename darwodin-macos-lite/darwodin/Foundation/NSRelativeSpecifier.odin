@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSRelativeSpecifier")
 RelativeSpecifier :: struct { using _: ScriptObjectSpecifier, }
 
-RelativeSpecifier_VTable :: struct {
-    super: ScriptObjectSpecifier_VTable,
-}
-

@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSToolbarItemGroup")
 ToolbarItemGroup :: struct { using _: ToolbarItem, }
 
-ToolbarItemGroup_VTable :: struct {
-    super: ToolbarItem_VTable,
-}
-

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSQuitCommand")
 QuitCommand :: struct { using _: ScriptCommand, }
 
-QuitCommand_VTable :: struct {
-    super: ScriptCommand_VTable,
-}
-

@@ -20,6 +20,3 @@ AccessibilityNavigableStaticText :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityStaticText,
 }
 
-AccessibilityNavigableStaticText_VTable :: struct {
-}
-

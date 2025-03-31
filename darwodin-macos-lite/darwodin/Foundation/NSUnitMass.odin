@@ -17,7 +17,3 @@ UnitMass :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitMass_VTable :: struct {
-    super: Dimension_VTable,
-}
-

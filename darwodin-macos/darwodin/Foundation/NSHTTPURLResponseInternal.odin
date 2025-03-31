@@ -26,12 +26,3 @@ HTTPURLResponseInternal_init :: proc "c" (self: ^HTTPURLResponseInternal) -> ^HT
 }
 
 
-HTTPURLResponseInternal_VTable :: struct {
-}
-
-HTTPURLResponseInternal_odin_extend :: proc(cls: Class, vt: ^HTTPURLResponseInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

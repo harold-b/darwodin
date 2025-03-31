@@ -28,34 +28,3 @@ PasteboardTypeOwner_pasteboard :: #force_inline proc "c" (self: ^PasteboardTypeO
 PasteboardTypeOwner_pasteboardChangedOwner :: #force_inline proc "c" (self: ^PasteboardTypeOwner, sender: ^Pasteboard) {
     msgSend(nil, self, "pasteboardChangedOwner:", sender)
 }
-PasteboardTypeOwner_VTable :: struct {
-    pasteboard: proc(self: ^PasteboardTypeOwner, sender: ^Pasteboard, type: ^NS.String),
-    pasteboardChangedOwner: proc(self: ^PasteboardTypeOwner, sender: ^Pasteboard),
-}
-
-PasteboardTypeOwner_odin_extend :: proc(cls: Class, vt: ^PasteboardTypeOwner_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.pasteboard != nil {
-        pasteboard :: proc "c" (self: ^PasteboardTypeOwner, _: SEL, sender: ^Pasteboard, type: ^NS.String) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^PasteboardTypeOwner_VTable)vt_ctx.protocol_vt).pasteboard(self, sender, type)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteboard:provideDataForType:"), auto_cast pasteboard, "v@:@@") do panic("Failed to register objC method.")
-    }
-    if vt.pasteboardChangedOwner != nil {
-        pasteboardChangedOwner :: proc "c" (self: ^PasteboardTypeOwner, _: SEL, sender: ^Pasteboard) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^PasteboardTypeOwner_VTable)vt_ctx.protocol_vt).pasteboardChangedOwner(self, sender)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteboardChangedOwner:"), auto_cast pasteboardChangedOwner, "v@:@") do panic("Failed to register objC method.")
-    }
-}
-

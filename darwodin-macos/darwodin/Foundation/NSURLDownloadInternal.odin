@@ -26,12 +26,3 @@ URLDownloadInternal_init :: proc "c" (self: ^URLDownloadInternal) -> ^URLDownloa
 }
 
 
-URLDownloadInternal_VTable :: struct {
-}
-
-URLDownloadInternal_odin_extend :: proc(cls: Class, vt: ^URLDownloadInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

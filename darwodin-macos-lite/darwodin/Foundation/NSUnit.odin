@@ -18,7 +18,3 @@ Unit :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-Unit_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -20,6 +20,3 @@ FilePromiseProviderDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-FilePromiseProviderDelegate_VTable :: struct {
-}
-

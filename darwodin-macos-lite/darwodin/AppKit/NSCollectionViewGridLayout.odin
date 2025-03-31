@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSCollectionViewGridLayout")
 CollectionViewGridLayout :: struct { using _: CollectionViewLayout, }
 
-CollectionViewGridLayout_VTable :: struct {
-    super: CollectionViewLayout_VTable,
-}
-

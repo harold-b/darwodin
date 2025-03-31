@@ -15,6 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSCachedURLResponseInternal")
 CachedURLResponseInternal :: struct { using _: intrinsics.objc_object, }
 
-CachedURLResponseInternal_VTable :: struct {
-}
-

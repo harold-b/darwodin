@@ -419,40 +419,40 @@ InputSwitchName :: distinct ^NS.String
 InputDirectionPadName :: distinct ^NS.String
 
 /// GCControllerAxisValueChangedHandler
-ControllerAxisValueChangedHandler :: distinct proc "c" (axis: ^ControllerAxisInput, value: cffi.float)
+ControllerAxisValueChangedHandler :: proc "c" (axis: ^ControllerAxisInput, value: cffi.float)
 
 /// GCControllerButtonValueChangedHandler
-ControllerButtonValueChangedHandler :: distinct proc "c" (button: ^ControllerButtonInput, value: cffi.float, pressed: bool)
+ControllerButtonValueChangedHandler :: proc "c" (button: ^ControllerButtonInput, value: cffi.float, pressed: bool)
 
 /// GCControllerButtonTouchedChangedHandler
-ControllerButtonTouchedChangedHandler :: distinct proc "c" (button: ^ControllerButtonInput, value: cffi.float, pressed: bool, touched: bool)
+ControllerButtonTouchedChangedHandler :: proc "c" (button: ^ControllerButtonInput, value: cffi.float, pressed: bool, touched: bool)
 
 /// GCControllerDirectionPadValueChangedHandler
-ControllerDirectionPadValueChangedHandler :: distinct proc "c" (dpad: ^ControllerDirectionPad, xValue: cffi.float, yValue: cffi.float)
+ControllerDirectionPadValueChangedHandler :: proc "c" (dpad: ^ControllerDirectionPad, xValue: cffi.float, yValue: cffi.float)
 
 /// GCControllerTouchpadHandler
-ControllerTouchpadHandler :: distinct proc "c" (touchpad: ^ControllerTouchpad, xValue: cffi.float, yValue: cffi.float, buttonValue: cffi.float, buttonPressed: bool)
+ControllerTouchpadHandler :: proc "c" (touchpad: ^ControllerTouchpad, xValue: cffi.float, yValue: cffi.float, buttonValue: cffi.float, buttonPressed: bool)
 
 /// GCMotionValueChangedHandler
-MotionValueChangedHandler :: distinct proc "c" (motion: ^Motion)
+MotionValueChangedHandler :: proc "c" (motion: ^Motion)
 
 /// GCGamepadValueChangedHandler
-GamepadValueChangedHandler :: distinct proc "c" (gamepad: ^Gamepad, element: ^ControllerElement)
+GamepadValueChangedHandler :: proc "c" (gamepad: ^Gamepad, element: ^ControllerElement)
 
 /// GCExtendedGamepadValueChangedHandler
-ExtendedGamepadValueChangedHandler :: distinct proc "c" (gamepad: ^ExtendedGamepad, element: ^ControllerElement)
+ExtendedGamepadValueChangedHandler :: proc "c" (gamepad: ^ExtendedGamepad, element: ^ControllerElement)
 
 /// GCKeyCode
 KeyCode :: distinct CF.Index
 
 /// GCKeyboardValueChangedHandler
-KeyboardValueChangedHandler :: distinct proc "c" (keyboard: ^KeyboardInput, key: ^ControllerButtonInput, keyCode: KeyCode, pressed: bool)
+KeyboardValueChangedHandler :: proc "c" (keyboard: ^KeyboardInput, key: ^ControllerButtonInput, keyCode: KeyCode, pressed: bool)
 
 /// GCMouseMoved
-MouseMoved :: distinct proc "c" (mouse: ^MouseInput, deltaX: cffi.float, deltaY: cffi.float)
+MouseMoved :: proc "c" (mouse: ^MouseInput, deltaX: cffi.float, deltaY: cffi.float)
 
 /// GCMicroGamepadValueChangedHandler
-MicroGamepadValueChangedHandler :: distinct proc "c" (gamepad: ^MicroGamepad, element: ^ControllerElement)
+MicroGamepadValueChangedHandler :: proc "c" (gamepad: ^MicroGamepad, element: ^ControllerElement)
 
 /// GCHapticsLocality
 HapticsLocality :: distinct ^NS.String

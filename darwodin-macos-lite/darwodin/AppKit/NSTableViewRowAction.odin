@@ -20,7 +20,3 @@ TableViewRowAction :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-TableViewRowAction_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

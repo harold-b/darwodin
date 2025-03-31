@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPanel")
 Panel :: struct { using _: Window, }
 
-Panel_VTable :: struct {
-    super: Window_VTable,
-}
-

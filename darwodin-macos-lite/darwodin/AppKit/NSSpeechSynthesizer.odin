@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSpeechSynthesizer")
 SpeechSynthesizer :: struct { using _: NS.Object, }
 
-SpeechSynthesizer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

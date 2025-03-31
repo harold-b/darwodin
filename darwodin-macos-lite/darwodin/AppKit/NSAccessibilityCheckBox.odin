@@ -20,6 +20,3 @@ AccessibilityCheckBox :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityButton,
 }
 
-AccessibilityCheckBox_VTable :: struct {
-}
-

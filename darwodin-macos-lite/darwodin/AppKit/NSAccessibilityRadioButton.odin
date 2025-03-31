@@ -20,6 +20,3 @@ AccessibilityRadioButton :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityButton,
 }
 
-AccessibilityRadioButton_VTable :: struct {
-}
-

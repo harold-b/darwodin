@@ -20,6 +20,3 @@ TokenFieldCellDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TokenFieldCellDelegate_VTable :: struct {
-}
-

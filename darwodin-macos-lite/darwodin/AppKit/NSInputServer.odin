@@ -21,7 +21,3 @@ InputServer :: struct { using _: NS.Object,
     using _: InputServerMouseTracker,
 }
 
-InputServer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

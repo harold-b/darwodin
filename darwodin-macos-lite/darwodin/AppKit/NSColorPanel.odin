@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSColorPanel")
 ColorPanel :: struct { using _: Panel, }
 
-ColorPanel_VTable :: struct {
-    super: Panel_VTable,
-}
-

@@ -16,7 +16,3 @@ import NS "../Foundation"
 @(objc_class="CARemoteLayerClient")
 RemoteLayerClient :: struct { using _: NS.Object, }
 
-RemoteLayerClient_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

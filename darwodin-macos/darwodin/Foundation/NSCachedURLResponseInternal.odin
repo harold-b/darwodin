@@ -26,12 +26,3 @@ CachedURLResponseInternal_init :: proc "c" (self: ^CachedURLResponseInternal) ->
 }
 
 
-CachedURLResponseInternal_VTable :: struct {
-}
-
-CachedURLResponseInternal_odin_extend :: proc(cls: Class, vt: ^CachedURLResponseInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -20,7 +20,3 @@ CollectionLayoutGroup :: struct { using _: CollectionLayoutItem,
     using _: NS.Copying,
 }
 
-CollectionLayoutGroup_VTable :: struct {
-    super: CollectionLayoutItem_VTable,
-}
-

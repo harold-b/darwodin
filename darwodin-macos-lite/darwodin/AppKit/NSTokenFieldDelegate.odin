@@ -20,6 +20,3 @@ TokenFieldDelegate :: struct { using _: intrinsics.objc_object,
     using _: TextFieldDelegate,
 }
 
-TokenFieldDelegate_VTable :: struct {
-}
-

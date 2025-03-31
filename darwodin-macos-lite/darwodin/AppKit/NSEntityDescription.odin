@@ -18,6 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSEntityDescription")
 EntityDescription :: struct { using _: intrinsics.objc_object, }
 
-EntityDescription_VTable :: struct {
-}
-

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSDistantObjectRequest")
 DistantObjectRequest :: struct { using _: Object, }
 
-DistantObjectRequest_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSBox")
 Box :: struct { using _: View, }
 
-Box_VTable :: struct {
-    super: View_VTable,
-}
-

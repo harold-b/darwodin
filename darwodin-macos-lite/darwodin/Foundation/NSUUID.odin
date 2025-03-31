@@ -18,7 +18,3 @@ UUID :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-UUID_VTable :: struct {
-    super: Object_VTable,
-}
-

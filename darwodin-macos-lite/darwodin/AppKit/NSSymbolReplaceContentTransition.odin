@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolReplaceContentTransition")
 SymbolReplaceContentTransition :: struct { using _: SymbolContentTransition, }
 
-SymbolReplaceContentTransition_VTable :: struct {
-    super: SymbolContentTransition_VTable,
-}
-

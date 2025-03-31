@@ -17,6 +17,3 @@ MetadataQueryDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-MetadataQueryDelegate_VTable :: struct {
-}
-

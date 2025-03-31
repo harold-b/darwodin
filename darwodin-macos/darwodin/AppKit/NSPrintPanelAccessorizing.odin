@@ -26,34 +26,3 @@ PrintPanelAccessorizing_localizedSummaryItems :: #force_inline proc "c" (self: ^
 PrintPanelAccessorizing_keyPathsForValuesAffectingPreview :: #force_inline proc "c" (self: ^PrintPanelAccessorizing) -> ^NS.Set {
     return msgSend(^NS.Set, self, "keyPathsForValuesAffectingPreview")
 }
-PrintPanelAccessorizing_VTable :: struct {
-    localizedSummaryItems: proc(self: ^PrintPanelAccessorizing) -> ^NS.Array,
-    keyPathsForValuesAffectingPreview: proc(self: ^PrintPanelAccessorizing) -> ^NS.Set,
-}
-
-PrintPanelAccessorizing_odin_extend :: proc(cls: Class, vt: ^PrintPanelAccessorizing_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.localizedSummaryItems != nil {
-        localizedSummaryItems :: proc "c" (self: ^PrintPanelAccessorizing, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^PrintPanelAccessorizing_VTable)vt_ctx.protocol_vt).localizedSummaryItems(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedSummaryItems"), auto_cast localizedSummaryItems, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.keyPathsForValuesAffectingPreview != nil {
-        keyPathsForValuesAffectingPreview :: proc "c" (self: ^PrintPanelAccessorizing, _: SEL) -> ^NS.Set {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^PrintPanelAccessorizing_VTable)vt_ctx.protocol_vt).keyPathsForValuesAffectingPreview(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("keyPathsForValuesAffectingPreview"), auto_cast keyPathsForValuesAffectingPreview, "@@:") do panic("Failed to register objC method.")
-    }
-}
-

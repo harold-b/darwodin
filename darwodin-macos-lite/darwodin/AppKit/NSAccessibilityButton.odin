@@ -20,6 +20,3 @@ AccessibilityButton :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
-AccessibilityButton_VTable :: struct {
-}
-

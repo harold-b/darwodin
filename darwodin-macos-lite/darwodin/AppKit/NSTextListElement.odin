@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextListElement")
 TextListElement :: struct { using _: TextParagraph, }
 
-TextListElement_VTable :: struct {
-    super: TextParagraph_VTable,
-}
-

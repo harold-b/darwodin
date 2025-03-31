@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSForm")
 Form :: struct { using _: Matrix, }
 
-Form_VTable :: struct {
-    super: Matrix_VTable,
-}
-

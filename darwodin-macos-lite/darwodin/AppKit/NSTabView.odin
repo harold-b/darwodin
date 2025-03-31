@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTabView")
 TabView :: struct { using _: View, }
 
-TabView_VTable :: struct {
-    super: View_VTable,
-}
-

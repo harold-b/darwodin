@@ -20,7 +20,3 @@ TextContentStorage :: struct { using _: TextContentManager,
     using _: TextStorageObserving,
 }
 
-TextContentStorage_VTable :: struct {
-    super: TextContentManager_VTable,
-}
-

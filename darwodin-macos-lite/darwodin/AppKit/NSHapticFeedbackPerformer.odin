@@ -20,6 +20,3 @@ HapticFeedbackPerformer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-HapticFeedbackPerformer_VTable :: struct {
-}
-

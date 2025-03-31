@@ -28,34 +28,3 @@ TextAttachmentContainer_imageForBounds :: #force_inline proc "c" (self: ^TextAtt
 TextAttachmentContainer_attachmentBoundsForTextContainer :: #force_inline proc "c" (self: ^TextAttachmentContainer, textContainer: ^TextContainer, lineFrag: CG.Rect, position: CG.Point, charIndex: NS.UInteger) -> CG.Rect {
     return msgSend(CG.Rect, self, "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:", textContainer, lineFrag, position, charIndex)
 }
-TextAttachmentContainer_VTable :: struct {
-    imageForBounds: proc(self: ^TextAttachmentContainer, imageBounds: CG.Rect, textContainer: ^TextContainer, charIndex: NS.UInteger) -> ^NS.Image,
-    attachmentBoundsForTextContainer: proc(self: ^TextAttachmentContainer, textContainer: ^TextContainer, lineFrag: CG.Rect, position: CG.Point, charIndex: NS.UInteger) -> CG.Rect,
-}
-
-TextAttachmentContainer_odin_extend :: proc(cls: Class, vt: ^TextAttachmentContainer_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.imageForBounds != nil {
-        imageForBounds :: proc "c" (self: ^TextAttachmentContainer, _: SEL, imageBounds: CG.Rect, textContainer: ^TextContainer, charIndex: NS.UInteger) -> ^NS.Image {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^TextAttachmentContainer_VTable)vt_ctx.protocol_vt).imageForBounds(self, imageBounds, textContainer, charIndex)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("imageForBounds:textContainer:characterIndex:"), auto_cast imageForBounds, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}@L") do panic("Failed to register objC method.")
-    }
-    if vt.attachmentBoundsForTextContainer != nil {
-        attachmentBoundsForTextContainer :: proc "c" (self: ^TextAttachmentContainer, _: SEL, textContainer: ^TextContainer, lineFrag: CG.Rect, position: CG.Point, charIndex: NS.UInteger) -> CG.Rect {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^TextAttachmentContainer_VTable)vt_ctx.protocol_vt).attachmentBoundsForTextContainer(self, textContainer, lineFrag, position, charIndex)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:"), auto_cast attachmentBoundsForTextContainer, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}L") do panic("Failed to register objC method.")
-    }
-}
-

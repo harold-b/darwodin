@@ -20,7 +20,3 @@ SegmentedControl :: struct { using _: Control,
     using _: UserInterfaceCompression,
 }
 
-SegmentedControl_VTable :: struct {
-    super: Control_VTable,
-}
-

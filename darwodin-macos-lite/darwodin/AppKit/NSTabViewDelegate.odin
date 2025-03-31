@@ -20,6 +20,3 @@ TabViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TabViewDelegate_VTable :: struct {
-}
-

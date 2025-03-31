@@ -21,7 +21,3 @@ Printer :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-Printer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

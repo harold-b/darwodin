@@ -22,23 +22,3 @@ TextLayoutOrientationProvider :: struct { using _: intrinsics.objc_object, }
 TextLayoutOrientationProvider_layoutOrientation :: #force_inline proc "c" (self: ^TextLayoutOrientationProvider) -> TextLayoutOrientation {
     return msgSend(TextLayoutOrientation, self, "layoutOrientation")
 }
-TextLayoutOrientationProvider_VTable :: struct {
-    layoutOrientation: proc(self: ^TextLayoutOrientationProvider) -> TextLayoutOrientation,
-}
-
-TextLayoutOrientationProvider_odin_extend :: proc(cls: Class, vt: ^TextLayoutOrientationProvider_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.layoutOrientation != nil {
-        layoutOrientation :: proc "c" (self: ^TextLayoutOrientationProvider, _: SEL) -> TextLayoutOrientation {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^TextLayoutOrientationProvider_VTable)vt_ctx.protocol_vt).layoutOrientation(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutOrientation"), auto_cast layoutOrientation, "l@:") do panic("Failed to register objC method.")
-    }
-}
-

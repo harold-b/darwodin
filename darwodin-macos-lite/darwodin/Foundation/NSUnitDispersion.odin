@@ -17,7 +17,3 @@ UnitDispersion :: struct { using _: Dimension,
     using _: SecureCoding,
 }
 
-UnitDispersion_VTable :: struct {
-    super: Dimension_VTable,
-}
-

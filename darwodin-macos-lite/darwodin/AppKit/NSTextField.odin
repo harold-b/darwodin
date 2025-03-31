@@ -22,7 +22,3 @@ TextField :: struct { using _: Control,
     using _: TextContent,
 }
 
-TextField_VTable :: struct {
-    super: Control_VTable,
-}
-

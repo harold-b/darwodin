@@ -16,7 +16,3 @@ import NS "../Foundation"
 @(objc_class="CAScrollLayer")
 ScrollLayer :: struct { using _: Layer, }
 
-ScrollLayer_VTable :: struct {
-    super: Layer_VTable,
-}
-

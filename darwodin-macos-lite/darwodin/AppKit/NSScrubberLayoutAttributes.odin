@@ -20,7 +20,3 @@ ScrubberLayoutAttributes :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-ScrubberLayoutAttributes_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

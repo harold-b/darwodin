@@ -20,7 +20,3 @@ CollectionLayoutAnchor :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-CollectionLayoutAnchor_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

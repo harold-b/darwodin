@@ -20,6 +20,3 @@ TextStorageDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextStorageDelegate_VTable :: struct {
-}
-

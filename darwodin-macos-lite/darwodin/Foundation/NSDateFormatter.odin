@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSDateFormatter")
 DateFormatter :: struct { using _: Formatter, }
 
-DateFormatter_VTable :: struct {
-    super: Formatter_VTable,
-}
-

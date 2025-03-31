@@ -21,7 +21,3 @@ PredicateEditorRowTemplate :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-PredicateEditorRowTemplate_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

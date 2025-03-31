@@ -29,12 +29,3 @@ PersistentStore_init :: proc "c" (self: ^PersistentStore) -> ^PersistentStore {
 }
 
 
-PersistentStore_VTable :: struct {
-}
-
-PersistentStore_odin_extend :: proc(cls: Class, vt: ^PersistentStore_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

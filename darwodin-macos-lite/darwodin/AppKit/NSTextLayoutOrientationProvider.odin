@@ -18,6 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextLayoutOrientationProvider")
 TextLayoutOrientationProvider :: struct { using _: intrinsics.objc_object, }
 
-TextLayoutOrientationProvider_VTable :: struct {
-}
-

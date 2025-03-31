@@ -3247,8 +3247,6 @@ foreign lib {
 
 }
 
-/// __darwin_intptr_t
-
 /// __darwin_natural_t
 __darwin_natural_t :: distinct cffi.uint
 
@@ -3273,8 +3271,6 @@ __darwin_wchar_t :: distinct cffi.int
 /// __darwin_rune_t
 __darwin_rune_t :: distinct __darwin_wchar_t
 
-/// __darwin_wint_t
-
 /// __darwin_clock_t
 __darwin_clock_t :: distinct cffi.ulong
 
@@ -3286,14 +3282,6 @@ __darwin_ssize_t :: distinct cffi.long
 
 /// __darwin_time_t
 __darwin_time_t :: distinct cffi.long
-
-/// u_int8_t
-
-/// u_int16_t
-
-/// u_int32_t
-
-/// u_int64_t
 
 /// __darwin_blkcnt_t
 __darwin_blkcnt_t :: distinct cffi.int64_t
@@ -3330,8 +3318,6 @@ __darwin_mach_port_t :: distinct __darwin_mach_port_name_t
 
 /// __darwin_mode_t
 __darwin_mode_t :: distinct cffi.uint16_t
-
-/// __darwin_off_t
 
 /// __darwin_pid_t
 __darwin_pid_t :: distinct cffi.int32_t
@@ -3395,8 +3381,6 @@ mode_t :: distinct __darwin_mode_t
 
 /// pid_t
 pid_t :: distinct __darwin_pid_t
-
-/// off_t
 
 /// uid_t
 uid_t :: distinct __darwin_uid_t
@@ -3606,142 +3590,142 @@ HashCode :: distinct cffi.ulong
 Index :: distinct cffi.long
 
 /// CFTypeRef
-TypeRef ::  rawptr
+TypeRef :: rawptr
 
 /// CFStringRef
-StringRef ::  ^__CFString
+StringRef :: ^__CFString
 
 /// CFMutableStringRef
-MutableStringRef ::  ^__CFString
+MutableStringRef :: ^__CFString
 
 /// CFPropertyListRef
-PropertyListRef ::  TypeRef
+PropertyListRef :: TypeRef
 
 /// CFComparatorFunction
-ComparatorFunction :: distinct proc "c" (val1: rawptr, val2: rawptr, _context: rawptr) -> ComparisonResult
+ComparatorFunction :: proc "c" (val1: rawptr, val2: rawptr, _context: rawptr) -> ComparisonResult
 
 /// CFNullRef
-NullRef ::  ^__CFNull
+NullRef :: ^__CFNull
 
 /// CFAllocatorRef
-AllocatorRef ::  ^__CFAllocator
+AllocatorRef :: ^__CFAllocator
 
 /// CFAllocatorRetainCallBack
-AllocatorRetainCallBack :: distinct proc "c" (info: rawptr) -> rawptr
+AllocatorRetainCallBack :: proc "c" (info: rawptr) -> rawptr
 
 /// CFAllocatorReleaseCallBack
-AllocatorReleaseCallBack :: distinct proc "c" (info: rawptr)
+AllocatorReleaseCallBack :: proc "c" (info: rawptr)
 
 /// CFAllocatorCopyDescriptionCallBack
-AllocatorCopyDescriptionCallBack :: distinct proc "c" (info: rawptr) -> StringRef
+AllocatorCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
 
 /// CFAllocatorAllocateCallBack
-AllocatorAllocateCallBack :: distinct proc "c" (allocSize: Index, hint: OptionFlags, info: rawptr) -> rawptr
+AllocatorAllocateCallBack :: proc "c" (allocSize: Index, hint: OptionFlags, info: rawptr) -> rawptr
 
 /// CFAllocatorReallocateCallBack
-AllocatorReallocateCallBack :: distinct proc "c" (ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr) -> rawptr
+AllocatorReallocateCallBack :: proc "c" (ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr) -> rawptr
 
 /// CFAllocatorDeallocateCallBack
-AllocatorDeallocateCallBack :: distinct proc "c" (ptr: rawptr, info: rawptr)
+AllocatorDeallocateCallBack :: proc "c" (ptr: rawptr, info: rawptr)
 
 /// CFAllocatorPreferredSizeCallBack
-AllocatorPreferredSizeCallBack :: distinct proc "c" (size: Index, hint: OptionFlags, info: rawptr) -> Index
+AllocatorPreferredSizeCallBack :: proc "c" (size: Index, hint: OptionFlags, info: rawptr) -> Index
 
 /// CFArrayRetainCallBack
-ArrayRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+ArrayRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
 
 /// CFArrayReleaseCallBack
-ArrayReleaseCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr)
+ArrayReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
 
 /// CFArrayCopyDescriptionCallBack
-ArrayCopyDescriptionCallBack :: distinct proc "c" (value: rawptr) -> StringRef
+ArrayCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
 
 /// CFArrayEqualCallBack
-ArrayEqualCallBack :: distinct proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+ArrayEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
 
 /// CFArrayApplierFunction
-ArrayApplierFunction :: distinct proc "c" (value: rawptr, _context: rawptr)
+ArrayApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
 
 /// CFArrayRef
-ArrayRef ::  ^__CFArray
+ArrayRef :: ^__CFArray
 
 /// CFMutableArrayRef
-MutableArrayRef ::  ^__CFArray
+MutableArrayRef :: ^__CFArray
 
 /// CFBagRetainCallBack
-BagRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+BagRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
 
 /// CFBagReleaseCallBack
-BagReleaseCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr)
+BagReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
 
 /// CFBagCopyDescriptionCallBack
-BagCopyDescriptionCallBack :: distinct proc "c" (value: rawptr) -> StringRef
+BagCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
 
 /// CFBagEqualCallBack
-BagEqualCallBack :: distinct proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+BagEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
 
 /// CFBagHashCallBack
-BagHashCallBack :: distinct proc "c" (value: rawptr) -> HashCode
+BagHashCallBack :: proc "c" (value: rawptr) -> HashCode
 
 /// CFBagApplierFunction
-BagApplierFunction :: distinct proc "c" (value: rawptr, _context: rawptr)
+BagApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
 
 /// CFBagRef
-BagRef ::  ^__CFBag
+BagRef :: ^__CFBag
 
 /// CFMutableBagRef
-MutableBagRef ::  ^__CFBag
+MutableBagRef :: ^__CFBag
 
 /// CFBinaryHeapApplierFunction
-BinaryHeapApplierFunction :: distinct proc "c" (val: rawptr, _context: rawptr)
+BinaryHeapApplierFunction :: proc "c" (val: rawptr, _context: rawptr)
 
 /// CFBinaryHeapRef
-BinaryHeapRef ::  ^__CFBinaryHeap
+BinaryHeapRef :: ^__CFBinaryHeap
 
 /// CFBit
 Bit :: distinct UInt32
 
 /// CFBitVectorRef
-BitVectorRef ::  ^__CFBitVector
+BitVectorRef :: ^__CFBitVector
 
 /// CFMutableBitVectorRef
-MutableBitVectorRef ::  ^__CFBitVector
+MutableBitVectorRef :: ^__CFBitVector
 
 /// CFByteOrder
 ByteOrder :: distinct Index
 
 /// CFDictionaryRetainCallBack
-DictionaryRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+DictionaryRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
 
 /// CFDictionaryReleaseCallBack
-DictionaryReleaseCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr)
+DictionaryReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
 
 /// CFDictionaryCopyDescriptionCallBack
-DictionaryCopyDescriptionCallBack :: distinct proc "c" (value: rawptr) -> StringRef
+DictionaryCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
 
 /// CFDictionaryEqualCallBack
-DictionaryEqualCallBack :: distinct proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+DictionaryEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
 
 /// CFDictionaryHashCallBack
-DictionaryHashCallBack :: distinct proc "c" (value: rawptr) -> HashCode
+DictionaryHashCallBack :: proc "c" (value: rawptr) -> HashCode
 
 /// CFDictionaryApplierFunction
-DictionaryApplierFunction :: distinct proc "c" (key: rawptr, value: rawptr, _context: rawptr)
+DictionaryApplierFunction :: proc "c" (key: rawptr, value: rawptr, _context: rawptr)
 
 /// CFDictionaryRef
-DictionaryRef ::  ^__CFDictionary
+DictionaryRef :: ^__CFDictionary
 
 /// CFMutableDictionaryRef
-MutableDictionaryRef ::  ^__CFDictionary
+MutableDictionaryRef :: ^__CFDictionary
 
 /// CFNotificationName
 NotificationName :: distinct StringRef
 
 /// CFNotificationCenterRef
-NotificationCenterRef ::  ^__CFNotificationCenter
+NotificationCenterRef :: ^__CFNotificationCenter
 
 /// CFNotificationCallback
-NotificationCallback :: distinct proc "c" (center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef)
+NotificationCallback :: proc "c" (center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef)
 
 /// CFLocaleIdentifier
 LocaleIdentifier :: distinct StringRef
@@ -3750,7 +3734,7 @@ LocaleIdentifier :: distinct StringRef
 LocaleKey :: distinct StringRef
 
 /// CFLocaleRef
-LocaleRef ::  ^__CFLocale
+LocaleRef :: ^__CFLocale
 
 /// CFCalendarIdentifier
 CalendarIdentifier :: distinct StringRef
@@ -3762,60 +3746,58 @@ TimeInterval :: distinct cffi.double
 CFAbsoluteTime :: distinct TimeInterval
 
 /// CFDateRef
-DateRef ::  ^__CFDate
+DateRef :: ^__CFDate
 
 /// CFTimeZoneRef
-TimeZoneRef ::  ^__CFTimeZone
+TimeZoneRef :: ^__CFTimeZone
 
 /// CFDataRef
-DataRef ::  ^__CFData
+DataRef :: ^__CFData
 
 /// CFMutableDataRef
-MutableDataRef ::  ^__CFData
+MutableDataRef :: ^__CFData
 
 /// CFCharacterSetRef
-CharacterSetRef ::  ^__CFCharacterSet
+CharacterSetRef :: ^__CFCharacterSet
 
 /// CFMutableCharacterSetRef
-MutableCharacterSetRef ::  ^__CFCharacterSet
+MutableCharacterSetRef :: ^__CFCharacterSet
 
 /// CFErrorDomain
 ErrorDomain :: distinct StringRef
 
 /// CFErrorRef
-ErrorRef ::  ^__CFError
+ErrorRef :: ^__CFError
 
 /// CFCalendarRef
-CalendarRef ::  ^__CFCalendar
+CalendarRef :: ^__CFCalendar
 
 /// CFDateFormatterKey
 DateFormatterKey :: distinct StringRef
 
 /// CFDateFormatterRef
-DateFormatterRef ::  ^__CFDateFormatter
+DateFormatterRef :: ^__CFDateFormatter
 
 /// CFBooleanRef
-BooleanRef ::  ^__CFBoolean
+BooleanRef :: ^__CFBoolean
 
 /// CFNumberRef
-NumberRef ::  ^__CFNumber
+NumberRef :: ^__CFNumber
 
 /// CFNumberFormatterKey
 NumberFormatterKey :: distinct StringRef
 
 /// CFNumberFormatterRef
-NumberFormatterRef ::  ^__CFNumberFormatter
+NumberFormatterRef :: ^__CFNumberFormatter
 
 /// CFURLRef
-URLRef ::  ^__CFURL
+URLRef :: ^__CFURL
 
 /// CFURLBookmarkFileCreationOptions
 URLBookmarkFileCreationOptions :: distinct OptionFlags
 
 /// natural_t
 natural_t :: distinct __darwin_natural_t
-
-/// integer_t
 
 /// mach_port_t
 mach_port_t :: distinct __darwin_mach_port_t
@@ -3830,37 +3812,37 @@ mach_port_type_array_t :: distinct ^mach_port_type_t
 RunLoopMode :: distinct StringRef
 
 /// CFRunLoopRef
-RunLoopRef ::  ^__CFRunLoop
+RunLoopRef :: ^__CFRunLoop
 
 /// CFRunLoopSourceRef
-RunLoopSourceRef ::  ^__CFRunLoopSource
+RunLoopSourceRef :: ^__CFRunLoopSource
 
 /// CFRunLoopObserverRef
-RunLoopObserverRef ::  ^__CFRunLoopObserver
+RunLoopObserverRef :: ^__CFRunLoopObserver
 
 /// CFRunLoopTimerRef
-RunLoopTimerRef ::  ^__CFRunLoopTimer
+RunLoopTimerRef :: ^__CFRunLoopTimer
 
 /// CFRunLoopObserverCallBack
-RunLoopObserverCallBack :: distinct proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity, info: rawptr)
+RunLoopObserverCallBack :: proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity, info: rawptr)
 
 /// CFRunLoopTimerCallBack
-RunLoopTimerCallBack :: distinct proc "c" (timer: RunLoopTimerRef, info: rawptr)
+RunLoopTimerCallBack :: proc "c" (timer: RunLoopTimerRef, info: rawptr)
 
 /// CFSocketRef
-SocketRef ::  ^__CFSocket
+SocketRef :: ^__CFSocket
 
 /// CFSocketCallBack
-SocketCallBack :: distinct proc "c" (s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr)
+SocketCallBack :: proc "c" (s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr)
 
 /// CFSocketNativeHandle
 SocketNativeHandle :: distinct cffi.int
 
 /// os_function_t
-os_function_t :: distinct proc "c" (_arg_0: rawptr)
+os_function_t :: proc "c" (_arg_0: rawptr)
 
 /// os_block_t
-os_block_t :: distinct proc "c" ()
+os_block_t :: proc "c" ()
 
 /// os_workgroup_t
 os_workgroup_t :: distinct ^os_workgroup_s
@@ -3881,7 +3863,7 @@ os_workgroup_join_token_t :: distinct ^os_workgroup_join_token_opaque_s
 os_workgroup_index :: distinct cffi.uint32_t
 
 /// os_workgroup_working_arena_destructor_t
-os_workgroup_working_arena_destructor_t :: distinct proc "c" (_arg_0: rawptr)
+os_workgroup_working_arena_destructor_t :: proc "c" (_arg_0: rawptr)
 
 /// os_workgroup_mpt_attr_s
 os_workgroup_mpt_attr_s :: distinct os_workgroup_max_parallel_threads_attr_s
@@ -3889,23 +3871,17 @@ os_workgroup_mpt_attr_s :: distinct os_workgroup_max_parallel_threads_attr_s
 /// os_workgroup_mpt_attr_t
 os_workgroup_mpt_attr_t :: distinct ^os_workgroup_max_parallel_threads_attr_s
 
-/// os_workgroup_interval_t
-
-/// os_workgroup_interval_data_s
-
-/// os_workgroup_interval_data_t
-
 /// os_workgroup_parallel_t
 os_workgroup_parallel_t :: distinct os_workgroup_t
 
 /// dispatch_function_t
-dispatch_function_t :: distinct proc "c" (_arg_0: rawptr)
+dispatch_function_t :: proc "c" (_arg_0: rawptr)
 
 /// dispatch_time_t
 dispatch_time_t :: distinct cffi.uint64_t
 
 /// dispatch_block_t
-dispatch_block_t :: distinct proc "c" ()
+dispatch_block_t :: proc "c" ()
 
 /// dispatch_qos_class_t
 dispatch_qos_class_t :: distinct qos_class_t
@@ -3974,7 +3950,7 @@ dispatch_once_t :: distinct cffi.intptr_t
 dispatch_data_t :: distinct ^dispatch_data_s
 
 /// dispatch_data_applier_t
-dispatch_data_applier_t :: distinct proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool
+dispatch_data_applier_t :: proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool
 
 /// dispatch_fd_t
 dispatch_fd_t :: distinct cffi.int
@@ -3986,12 +3962,10 @@ dispatch_io_t :: distinct ^dispatch_io_s
 dispatch_io_type_t :: distinct cffi.ulong
 
 /// dispatch_io_handler_t
-dispatch_io_handler_t :: distinct proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int)
+dispatch_io_handler_t :: proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int)
 
 /// dispatch_io_close_flags_t
 dispatch_io_close_flags_t :: distinct cffi.ulong
-
-/// dispatch_io_interval_flags_t
 
 /// dispatch_workloop_t
 dispatch_workloop_t :: distinct dispatch_queue_t
@@ -4000,172 +3974,172 @@ dispatch_workloop_t :: distinct dispatch_queue_t
 StreamPropertyKey :: distinct StringRef
 
 /// CFReadStreamRef
-ReadStreamRef ::  ^__CFReadStream
+ReadStreamRef :: ^__CFReadStream
 
 /// CFWriteStreamRef
-WriteStreamRef ::  ^__CFWriteStream
+WriteStreamRef :: ^__CFWriteStream
 
 /// CFReadStreamClientCallBack
-ReadStreamClientCallBack :: distinct proc "c" (stream: ReadStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
+ReadStreamClientCallBack :: proc "c" (stream: ReadStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
 
 /// CFWriteStreamClientCallBack
-WriteStreamClientCallBack :: distinct proc "c" (stream: WriteStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
+WriteStreamClientCallBack :: proc "c" (stream: WriteStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
 
 /// CFSetRetainCallBack
-SetRetainCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+SetRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
 
 /// CFSetReleaseCallBack
-SetReleaseCallBack :: distinct proc "c" (allocator: AllocatorRef, value: rawptr)
+SetReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
 
 /// CFSetCopyDescriptionCallBack
-SetCopyDescriptionCallBack :: distinct proc "c" (value: rawptr) -> StringRef
+SetCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
 
 /// CFSetEqualCallBack
-SetEqualCallBack :: distinct proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+SetEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
 
 /// CFSetHashCallBack
-SetHashCallBack :: distinct proc "c" (value: rawptr) -> HashCode
+SetHashCallBack :: proc "c" (value: rawptr) -> HashCode
 
 /// CFSetApplierFunction
-SetApplierFunction :: distinct proc "c" (value: rawptr, _context: rawptr)
+SetApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
 
 /// CFSetRef
-SetRef ::  ^__CFSet
+SetRef :: ^__CFSet
 
 /// CFMutableSetRef
-MutableSetRef ::  ^__CFSet
+MutableSetRef :: ^__CFSet
 
 /// CFTreeRetainCallBack
-TreeRetainCallBack :: distinct proc "c" (info: rawptr) -> rawptr
+TreeRetainCallBack :: proc "c" (info: rawptr) -> rawptr
 
 /// CFTreeReleaseCallBack
-TreeReleaseCallBack :: distinct proc "c" (info: rawptr)
+TreeReleaseCallBack :: proc "c" (info: rawptr)
 
 /// CFTreeCopyDescriptionCallBack
-TreeCopyDescriptionCallBack :: distinct proc "c" (info: rawptr) -> StringRef
+TreeCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
 
 /// CFTreeApplierFunction
-TreeApplierFunction :: distinct proc "c" (value: rawptr, _context: rawptr)
+TreeApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
 
 /// CFTreeRef
-TreeRef ::  ^__CFTree
+TreeRef :: ^__CFTree
 
 /// CFUUIDRef
-UUIDRef ::  ^__CFUUID
+UUIDRef :: ^__CFUUID
 
 /// cpu_type_t
 cpu_type_t :: distinct cffi.int
 
 /// CFBundleRef
-BundleRef ::  ^__CFBundle
+BundleRef :: ^__CFBundle
 
 /// CFPlugInRef
-PlugInRef ::  ^__CFBundle
+PlugInRef :: ^__CFBundle
 
 /// CFBundleRefNum
 BundleRefNum :: distinct cffi.int
 
 /// CFMessagePortRef
-MessagePortRef ::  ^__CFMessagePort
+MessagePortRef :: ^__CFMessagePort
 
 /// CFMessagePortCallBack
-MessagePortCallBack :: distinct proc "c" (local: MessagePortRef, msgid: SInt32, data: DataRef, info: rawptr) -> DataRef
+MessagePortCallBack :: proc "c" (local: MessagePortRef, msgid: SInt32, data: DataRef, info: rawptr) -> DataRef
 
 /// CFMessagePortInvalidationCallBack
-MessagePortInvalidationCallBack :: distinct proc "c" (ms: MessagePortRef, info: rawptr)
+MessagePortInvalidationCallBack :: proc "c" (ms: MessagePortRef, info: rawptr)
 
 /// CFPlugInDynamicRegisterFunction
-PlugInDynamicRegisterFunction :: distinct proc "c" (plugIn: PlugInRef)
+PlugInDynamicRegisterFunction :: proc "c" (plugIn: PlugInRef)
 
 /// CFPlugInUnloadFunction
-PlugInUnloadFunction :: distinct proc "c" (plugIn: PlugInRef)
+PlugInUnloadFunction :: proc "c" (plugIn: PlugInRef)
 
 /// CFPlugInFactoryFunction
-PlugInFactoryFunction :: distinct proc "c" (allocator: AllocatorRef, typeUUID: UUIDRef) -> rawptr
+PlugInFactoryFunction :: proc "c" (allocator: AllocatorRef, typeUUID: UUIDRef) -> rawptr
 
 /// CFPlugInInstanceRef
-PlugInInstanceRef ::  ^__CFPlugInInstance
+PlugInInstanceRef :: ^__CFPlugInInstance
 
 /// CFPlugInInstanceGetInterfaceFunction
-PlugInInstanceGetInterfaceFunction :: distinct proc "c" (instance: PlugInInstanceRef, interfaceName: StringRef, ftbl: ^rawptr) -> Boolean
+PlugInInstanceGetInterfaceFunction :: proc "c" (instance: PlugInInstanceRef, interfaceName: StringRef, ftbl: ^rawptr) -> Boolean
 
 /// CFPlugInInstanceDeallocateInstanceDataFunction
-PlugInInstanceDeallocateInstanceDataFunction :: distinct proc "c" (instanceData: rawptr)
+PlugInInstanceDeallocateInstanceDataFunction :: proc "c" (instanceData: rawptr)
 
 /// CFMachPortRef
-MachPortRef ::  ^__CFMachPort
+MachPortRef :: ^__CFMachPort
 
 /// CFMachPortCallBack
-MachPortCallBack :: distinct proc "c" (port: MachPortRef, msg: rawptr, size: Index, info: rawptr)
+MachPortCallBack :: proc "c" (port: MachPortRef, msg: rawptr, size: Index, info: rawptr)
 
 /// CFMachPortInvalidationCallBack
-MachPortInvalidationCallBack :: distinct proc "c" (port: MachPortRef, info: rawptr)
+MachPortInvalidationCallBack :: proc "c" (port: MachPortRef, info: rawptr)
 
 /// CFAttributedStringRef
-AttributedStringRef ::  ^__CFAttributedString
+AttributedStringRef :: ^__CFAttributedString
 
 /// CFMutableAttributedStringRef
-MutableAttributedStringRef ::  ^__CFAttributedString
+MutableAttributedStringRef :: ^__CFAttributedString
 
 /// CFURLEnumeratorRef
-URLEnumeratorRef ::  ^__CFURLEnumerator
+URLEnumeratorRef :: ^__CFURLEnumerator
 
 /// acl_t
 acl_t :: distinct ^_acl
 
 /// CFFileSecurityRef
-FileSecurityRef ::  ^__CFFileSecurity
+FileSecurityRef :: ^__CFFileSecurity
 
 /// CFStringTokenizerRef
-StringTokenizerRef ::  ^__CFStringTokenizer
+StringTokenizerRef :: ^__CFStringTokenizer
 
 /// CFFileDescriptorNativeDescriptor
 FileDescriptorNativeDescriptor :: distinct cffi.int
 
 /// CFFileDescriptorRef
-FileDescriptorRef ::  ^__CFFileDescriptor
+FileDescriptorRef :: ^__CFFileDescriptor
 
 /// CFFileDescriptorCallBack
-FileDescriptorCallBack :: distinct proc "c" (f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr)
+FileDescriptorCallBack :: proc "c" (f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr)
 
 /// CFUserNotificationRef
-UserNotificationRef ::  ^__CFUserNotification
+UserNotificationRef :: ^__CFUserNotification
 
 /// CFUserNotificationCallBack
-UserNotificationCallBack :: distinct proc "c" (userNotification: UserNotificationRef, responseFlags: OptionFlags)
+UserNotificationCallBack :: proc "c" (userNotification: UserNotificationRef, responseFlags: OptionFlags)
 
 /// CFXMLNodeRef
-XMLNodeRef ::  ^__CFXMLNode
+XMLNodeRef :: ^__CFXMLNode
 
 /// CFXMLTreeRef
-XMLTreeRef ::  TreeRef
+XMLTreeRef :: TreeRef
 
 /// CFXMLParserRef
-XMLParserRef ::  ^__CFXMLParser
+XMLParserRef :: ^__CFXMLParser
 
 /// CFXMLParserCreateXMLStructureCallBack
-XMLParserCreateXMLStructureCallBack :: distinct proc "c" (parser: XMLParserRef, nodeDesc: XMLNodeRef, info: rawptr) -> rawptr
+XMLParserCreateXMLStructureCallBack :: proc "c" (parser: XMLParserRef, nodeDesc: XMLNodeRef, info: rawptr) -> rawptr
 
 /// CFXMLParserAddChildCallBack
-XMLParserAddChildCallBack :: distinct proc "c" (parser: XMLParserRef, parent: rawptr, child: rawptr, info: rawptr)
+XMLParserAddChildCallBack :: proc "c" (parser: XMLParserRef, parent: rawptr, child: rawptr, info: rawptr)
 
 /// CFXMLParserEndXMLStructureCallBack
-XMLParserEndXMLStructureCallBack :: distinct proc "c" (parser: XMLParserRef, xmlType: rawptr, info: rawptr)
+XMLParserEndXMLStructureCallBack :: proc "c" (parser: XMLParserRef, xmlType: rawptr, info: rawptr)
 
 /// CFXMLParserResolveExternalEntityCallBack
-XMLParserResolveExternalEntityCallBack :: distinct proc "c" (parser: XMLParserRef, extID: ^XMLExternalID, info: rawptr) -> DataRef
+XMLParserResolveExternalEntityCallBack :: proc "c" (parser: XMLParserRef, extID: ^XMLExternalID, info: rawptr) -> DataRef
 
 /// CFXMLParserHandleErrorCallBack
-XMLParserHandleErrorCallBack :: distinct proc "c" (parser: XMLParserRef, error: XMLParserStatusCode, info: rawptr) -> Boolean
+XMLParserHandleErrorCallBack :: proc "c" (parser: XMLParserRef, error: XMLParserStatusCode, info: rawptr) -> Boolean
 
 /// CFXMLParserRetainCallBack
-XMLParserRetainCallBack :: distinct proc "c" (info: rawptr) -> rawptr
+XMLParserRetainCallBack :: proc "c" (info: rawptr) -> rawptr
 
 /// CFXMLParserReleaseCallBack
-XMLParserReleaseCallBack :: distinct proc "c" (info: rawptr)
+XMLParserReleaseCallBack :: proc "c" (info: rawptr)
 
 /// CFXMLParserCopyDescriptionCallBack
-XMLParserCopyDescriptionCallBack :: distinct proc "c" (info: rawptr) -> StringRef
+XMLParserCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
 
 /// os_clockid_t
 os_clockid_t :: enum cffi.uint {

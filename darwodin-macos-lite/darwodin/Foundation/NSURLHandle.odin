@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLHandle")
 URLHandle :: struct { using _: Object, }
 
-URLHandle_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -2328,18 +2328,6 @@ foreign lib {
 
 }
 
-/// NSRangePointer
-
-/// NSPoint
-
-/// NSPointPointer
-
-/// NSPointArray
-
-/// NSSizePointer
-
-/// NSRectPointer
-
 /// NSColorSpaceName
 ColorSpaceName :: distinct ^NS.String
 
@@ -2457,16 +2445,6 @@ ControlStateValue :: distinct NS.Integer
 /// NSCellStateValue
 CellStateValue :: distinct ControlStateValue
 
-/// NSPrinterTypeName
-
-/// NSPrinterPaperName
-
-/// NSPrintInfoAttributeKey
-
-/// NSPrintJobDispositionValue
-
-/// NSPrintInfoSettingKey
-
 /// NSBindingName
 BindingName :: distinct ^NS.String
 
@@ -2525,7 +2503,7 @@ StoryboardName :: distinct ^NS.String
 StoryboardSceneIdentifier :: distinct ^NS.String
 
 /// NSStoryboardControllerCreator
-StoryboardControllerCreator :: distinct proc "c" (coder: ^NS.Coder) -> id
+StoryboardControllerCreator :: proc "c" (coder: ^NS.Coder) -> id
 
 /// NSStoryboardSegueIdentifier
 StoryboardSegueIdentifier :: distinct ^NS.String
@@ -2537,22 +2515,22 @@ CollectionViewSupplementaryElementKind :: distinct ^NS.String
 CollectionViewDecorationElementKind :: distinct ^NS.String
 
 /// NSCollectionViewCompositionalLayoutSectionProvider
-CollectionViewCompositionalLayoutSectionProvider :: distinct proc "c" (section: NS.Integer, _arg_0: ^CollectionLayoutEnvironment) -> ^CollectionLayoutSection
+CollectionViewCompositionalLayoutSectionProvider :: proc "c" (section: NS.Integer, _arg_0: ^CollectionLayoutEnvironment) -> ^CollectionLayoutSection
 
 /// NSCollectionLayoutSectionVisibleItemsInvalidationHandler
-CollectionLayoutSectionVisibleItemsInvalidationHandler :: distinct proc "c" (visibleItems: ^NS.Array, contentOffset: CG.Point, layoutEnvironment: ^CollectionLayoutEnvironment)
+CollectionLayoutSectionVisibleItemsInvalidationHandler :: proc "c" (visibleItems: ^NS.Array, contentOffset: CG.Point, layoutEnvironment: ^CollectionLayoutEnvironment)
 
 /// NSCollectionLayoutGroupCustomItemProvider
-CollectionLayoutGroupCustomItemProvider :: distinct proc "c" (layoutEnvironment: ^CollectionLayoutEnvironment) -> ^NS.Array
+CollectionLayoutGroupCustomItemProvider :: proc "c" (layoutEnvironment: ^CollectionLayoutEnvironment) -> ^NS.Array
 
 /// NSCollectionViewTransitionLayoutAnimatedKey
 CollectionViewTransitionLayoutAnimatedKey :: distinct ^NS.String
 
 /// NSCollectionViewDiffableDataSourceItemProvider
-CollectionViewDiffableDataSourceItemProvider :: distinct proc "c" (_arg_0: ^CollectionView, _arg_1: ^NS.IndexPath, _arg_2: ^id) -> ^CollectionViewItem
+CollectionViewDiffableDataSourceItemProvider :: proc "c" (_arg_0: ^CollectionView, _arg_1: ^NS.IndexPath, _arg_2: ^id) -> ^CollectionViewItem
 
 /// NSCollectionViewDiffableDataSourceSupplementaryViewProvider
-CollectionViewDiffableDataSourceSupplementaryViewProvider :: distinct proc "c" (_arg_0: ^CollectionView, _arg_1: ^NS.String, _arg_2: ^NS.IndexPath) -> ^View
+CollectionViewDiffableDataSourceSupplementaryViewProvider :: proc "c" (_arg_0: ^CollectionView, _arg_1: ^NS.String, _arg_2: ^NS.IndexPath) -> ^View
 
 /// NSFontSymbolicTraits
 FontSymbolicTraits :: distinct cffi.uint32_t
@@ -2614,8 +2592,6 @@ WindowPersistableFrameDescriptor :: distinct ^NS.String
 /// NSWindowTabbingIdentifier
 WindowTabbingIdentifier :: distinct ^NS.String
 
-/// NSImageHintKey
-
 /// NSBitmapImageRepPropertyKey
 BitmapImageRepPropertyKey :: distinct ^NS.String
 
@@ -2676,10 +2652,6 @@ TextCheckingOptionKey :: distinct ^NS.String
 /// NSSplitViewAutosaveName
 SplitViewAutosaveName :: distinct ^NS.String
 
-/// NSPrintPanelJobStyleHint
-
-/// NSPrintPanelAccessorySummaryKey
-
 /// NSPasteboardTypeTextFinderOptionKey
 PasteboardTypeTextFinderOptionKey :: distinct ^NS.String
 
@@ -2732,13 +2704,13 @@ PasteboardTypeFindPanelSearchOptionKey :: distinct ^NS.String
 TableViewAutosaveName :: distinct ^NS.String
 
 /// NSTableViewDiffableDataSourceCellProvider
-TableViewDiffableDataSourceCellProvider :: distinct proc "c" (tableView: ^TableView, column: ^TableColumn, row: NS.Integer, itemId: id) -> ^View
+TableViewDiffableDataSourceCellProvider :: proc "c" (tableView: ^TableView, column: ^TableColumn, row: NS.Integer, itemId: id) -> ^View
 
 /// NSTableViewDiffableDataSourceRowProvider
-TableViewDiffableDataSourceRowProvider :: distinct proc "c" (tableView: ^TableView, row: NS.Integer, identifier: id) -> ^TableRowView
+TableViewDiffableDataSourceRowProvider :: proc "c" (tableView: ^TableView, row: NS.Integer, identifier: id) -> ^TableRowView
 
 /// NSTableViewDiffableDataSourceSectionHeaderViewProvider
-TableViewDiffableDataSourceSectionHeaderViewProvider :: distinct proc "c" (tableView: ^TableView, row: NS.Integer, sectionId: id) -> ^View
+TableViewDiffableDataSourceSectionHeaderViewProvider :: proc "c" (tableView: ^TableView, row: NS.Integer, sectionId: id) -> ^View
 
 /// NSRulerViewUnitName
 RulerViewUnitName :: distinct ^NS.String

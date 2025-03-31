@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSAlert")
 Alert :: struct { using _: NS.Object, }
 
-Alert_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

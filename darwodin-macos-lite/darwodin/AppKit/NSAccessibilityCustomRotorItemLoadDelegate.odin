@@ -18,6 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSAccessibilityCustomRotorItemLoadDelegate")
 AccessibilityCustomRotorItemLoadDelegate :: struct { using _: intrinsics.objc_object, }
 
-AccessibilityCustomRotorItemLoadDelegate_VTable :: struct {
-}
-

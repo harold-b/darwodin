@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSUserUnixTask")
 UserUnixTask :: struct { using _: UserScriptTask, }
 
-UserUnixTask_VTable :: struct {
-    super: UserScriptTask_VTable,
-}
-

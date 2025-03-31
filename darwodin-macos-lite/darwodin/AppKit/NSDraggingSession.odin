@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSDraggingSession")
 DraggingSession :: struct { using _: NS.Object, }
 
-DraggingSession_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

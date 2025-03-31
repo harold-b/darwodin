@@ -17,6 +17,3 @@ ExtensionRequestHandling :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-ExtensionRequestHandling_VTable :: struct {
-}
-

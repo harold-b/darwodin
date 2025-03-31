@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSKeyValueSharedObservers")
 KeyValueSharedObservers :: struct { using _: Object, }
 
-KeyValueSharedObservers_VTable :: struct {
-    super: Object_VTable,
-}
-

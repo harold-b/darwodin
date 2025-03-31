@@ -17,7 +17,3 @@ URLComponents :: struct { using _: Object,
     using _: Copying,
 }
 
-URLComponents_VTable :: struct {
-    super: Object_VTable,
-}
-

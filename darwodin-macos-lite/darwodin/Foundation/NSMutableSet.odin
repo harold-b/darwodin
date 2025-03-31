@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableSet")
 MutableSet :: struct { using _: Set, }
 
-MutableSet_VTable :: struct {
-    super: Set_VTable,
-}
-

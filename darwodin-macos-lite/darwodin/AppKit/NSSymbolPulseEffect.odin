@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSymbolPulseEffect")
 SymbolPulseEffect :: struct { using _: SymbolEffect, }
 
-SymbolPulseEffect_VTable :: struct {
-    super: SymbolEffect_VTable,
-}
-

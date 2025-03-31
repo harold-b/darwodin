@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSMachPort")
 MachPort :: struct { using _: Port, }
 
-MachPort_VTable :: struct {
-    super: Port_VTable,
-}
-

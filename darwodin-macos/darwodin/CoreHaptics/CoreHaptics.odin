@@ -79,19 +79,19 @@ HapticEventType :: distinct ^NS.String
 HapticAudioResourceID :: distinct NS.UInteger
 
 /// CHHapticAdvancedPatternPlayerCompletionHandler
-HapticAdvancedPatternPlayerCompletionHandler :: distinct proc "c" (error: ^NS.Error)
+HapticAdvancedPatternPlayerCompletionHandler :: proc "c" (error: ^NS.Error)
 
 /// CHHapticCompletionHandler
-HapticCompletionHandler :: distinct proc "c" (error: ^NS.Error)
+HapticCompletionHandler :: proc "c" (error: ^NS.Error)
 
 /// CHHapticEngineFinishedHandler
-HapticEngineFinishedHandler :: distinct proc "c" (error: ^NS.Error) -> HapticEngineFinishedAction
+HapticEngineFinishedHandler :: proc "c" (error: ^NS.Error) -> HapticEngineFinishedAction
 
 /// CHHapticEngineStoppedHandler
-HapticEngineStoppedHandler :: distinct proc "c" (stoppedReason: HapticEngineStoppedReason)
+HapticEngineStoppedHandler :: proc "c" (stoppedReason: HapticEngineStoppedReason)
 
 /// CHHapticEngineResetHandler
-HapticEngineResetHandler :: distinct proc "c" ()
+HapticEngineResetHandler :: proc "c" ()
 
 /// CHHapticAudioResourceKey
 HapticAudioResourceKey :: distinct ^NS.String

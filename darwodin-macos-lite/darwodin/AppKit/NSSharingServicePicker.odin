@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSharingServicePicker")
 SharingServicePicker :: struct { using _: NS.Object, }
 
-SharingServicePicker_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTypesetter")
 Typesetter :: struct { using _: NS.Object, }
 
-Typesetter_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

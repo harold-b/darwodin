@@ -21,23 +21,3 @@ ProgressReporting :: struct { using _: intrinsics.objc_object,
 ProgressReporting_progress :: #force_inline proc "c" (self: ^ProgressReporting) -> ^Progress {
     return msgSend(^Progress, self, "progress")
 }
-ProgressReporting_VTable :: struct {
-    progress: proc(self: ^ProgressReporting) -> ^Progress,
-}
-
-ProgressReporting_odin_extend :: proc(cls: Class, vt: ^ProgressReporting_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.progress != nil {
-        progress :: proc "c" (self: ^ProgressReporting, _: SEL) -> ^Progress {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^ProgressReporting_VTable)vt_ctx.protocol_vt).progress(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("progress"), auto_cast progress, "@@:") do panic("Failed to register objC method.")
-    }
-}
-

@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSButtonCell")
 ButtonCell :: struct { using _: ActionCell, }
 
-ButtonCell_VTable :: struct {
-    super: ActionCell_VTable,
-}
-

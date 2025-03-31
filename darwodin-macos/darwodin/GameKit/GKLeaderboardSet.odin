@@ -54,7 +54,7 @@ LeaderboardSet_loadLeaderboardsWithCompletionHandler :: #force_inline proc "c" (
     msgSend(nil, self, "loadLeaderboardsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LeaderboardSet, objc_name="loadImageWithCompletionHandler")
-LeaderboardSet_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^LeaderboardSet, completionHandler: proc "c" (image: ^NSImage, error: ^NS.Error)) {
+LeaderboardSet_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^LeaderboardSet, completionHandler: proc "c" (image: ^NS.Image, error: ^NS.Error)) {
     msgSend(nil, self, "loadImageWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LeaderboardSet, objc_name="supportsSecureCoding", objc_is_class_method=true)

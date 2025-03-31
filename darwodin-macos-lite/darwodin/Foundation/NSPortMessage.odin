@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSPortMessage")
 PortMessage :: struct { using _: Object, }
 
-PortMessage_VTable :: struct {
-    super: Object_VTable,
-}
-

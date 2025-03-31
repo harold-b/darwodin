@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPersistentDocument")
 PersistentDocument :: struct { using _: Document, }
 
-PersistentDocument_VTable :: struct {
-    super: Document_VTable,
-}
-

@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSFormCell")
 FormCell :: struct { using _: ActionCell, }
 
-FormCell_VTable :: struct {
-    super: ActionCell_VTable,
-}
-

@@ -20,7 +20,3 @@ PreviewRepresentingActivityItem :: struct { using _: NS.Object,
     using _: PreviewRepresentableActivityItem,
 }
 
-PreviewRepresentingActivityItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

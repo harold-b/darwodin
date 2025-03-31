@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableIndexSet")
 MutableIndexSet :: struct { using _: IndexSet, }
 
-MutableIndexSet_VTable :: struct {
-    super: IndexSet_VTable,
-}
-

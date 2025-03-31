@@ -79,10 +79,10 @@ TextureLoaderCubeLayout :: distinct ^NS.String
 TextureLoaderOrigin :: distinct ^NS.String
 
 /// MTKTextureLoaderCallback
-TextureLoaderCallback :: distinct proc "c" (texture: ^MTL.Texture, error: ^NS.Error)
+TextureLoaderCallback :: proc "c" (texture: ^MTL.Texture, error: ^NS.Error)
 
 /// MTKTextureLoaderArrayCallback
-TextureLoaderArrayCallback :: distinct proc "c" (textures: ^NS.Array, error: ^NS.Error)
+TextureLoaderArrayCallback :: proc "c" (textures: ^NS.Array, error: ^NS.Error)
 
 /// MTKModelError
 ModelError :: distinct ^NS.String

@@ -21,7 +21,3 @@ ImageCell :: struct { using _: Cell,
     using _: NS.Coding,
 }
 
-ImageCell_VTable :: struct {
-    super: Cell_VTable,
-}
-

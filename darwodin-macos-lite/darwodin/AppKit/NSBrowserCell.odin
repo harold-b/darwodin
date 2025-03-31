@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSBrowserCell")
 BrowserCell :: struct { using _: Cell, }
 
-BrowserCell_VTable :: struct {
-    super: Cell_VTable,
-}
-

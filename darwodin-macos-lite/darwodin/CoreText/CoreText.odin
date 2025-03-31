@@ -856,7 +856,7 @@ FontDescriptorRef :: distinct ^__CTFontDescriptor
 FontPriority :: distinct cffi.uint32_t
 
 /// CTFontDescriptorProgressHandler
-FontDescriptorProgressHandler :: distinct proc "c" (state: FontDescriptorMatchingState, progressParameter: CF.DictionaryRef) -> cffi.bool
+FontDescriptorProgressHandler :: proc "c" (state: FontDescriptorMatchingState, progressParameter: CF.DictionaryRef) -> cffi.bool
 
 /// CTFontRef
 FontRef :: distinct ^__CTFont
@@ -874,7 +874,7 @@ FontCollectionRef :: distinct ^__CTFontCollection
 MutableFontCollectionRef :: distinct ^__CTFontCollection
 
 /// CTFontCollectionSortDescriptorsCallback
-FontCollectionSortDescriptorsCallback :: distinct proc "c" (first: FontDescriptorRef, second: FontDescriptorRef, refCon: rawptr) -> CF.ComparisonResult
+FontCollectionSortDescriptorsCallback :: proc "c" (first: FontDescriptorRef, second: FontDescriptorRef, refCon: rawptr) -> CF.ComparisonResult
 
 /// CTFrameRef
 FrameRef :: distinct ^__CTFrame
@@ -904,16 +904,16 @@ RunRef :: distinct ^__CTRun
 RunDelegateRef :: distinct ^__CTRunDelegate
 
 /// CTRunDelegateDeallocateCallback
-RunDelegateDeallocateCallback :: distinct proc "c" (refCon: rawptr)
+RunDelegateDeallocateCallback :: proc "c" (refCon: rawptr)
 
 /// CTRunDelegateGetAscentCallback
-RunDelegateGetAscentCallback :: distinct proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetAscentCallback :: proc "c" (refCon: rawptr) -> CG.Float
 
 /// CTRunDelegateGetDescentCallback
-RunDelegateGetDescentCallback :: distinct proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetDescentCallback :: proc "c" (refCon: rawptr) -> CG.Float
 
 /// CTRunDelegateGetWidthCallback
-RunDelegateGetWidthCallback :: distinct proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetWidthCallback :: proc "c" (refCon: rawptr) -> CG.Float
 
 /// CTTextTabRef
 TextTabRef :: distinct ^__CTTextTab

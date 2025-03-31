@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSSocketPortNameServer")
 SocketPortNameServer :: struct { using _: PortNameServer, }
 
-SocketPortNameServer_VTable :: struct {
-    super: PortNameServer_VTable,
-}
-

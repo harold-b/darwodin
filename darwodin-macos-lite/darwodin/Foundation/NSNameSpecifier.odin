@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSNameSpecifier")
 NameSpecifier :: struct { using _: ScriptObjectSpecifier, }
 
-NameSpecifier_VTable :: struct {
-    super: ScriptObjectSpecifier_VTable,
-}
-

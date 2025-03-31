@@ -20,6 +20,3 @@ ViewToolTipOwner :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ViewToolTipOwner_VTable :: struct {
-}
-

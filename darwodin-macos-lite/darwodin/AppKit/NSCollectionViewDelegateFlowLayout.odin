@@ -20,6 +20,3 @@ CollectionViewDelegateFlowLayout :: struct { using _: intrinsics.objc_object,
     using _: CollectionViewDelegate,
 }
 
-CollectionViewDelegateFlowLayout_VTable :: struct {
-}
-

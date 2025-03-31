@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSProcessInfo")
 ProcessInfo :: struct { using _: Object, }
 
-ProcessInfo_VTable :: struct {
-    super: Object_VTable,
-}
-

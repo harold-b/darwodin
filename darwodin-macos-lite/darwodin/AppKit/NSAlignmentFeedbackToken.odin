@@ -20,6 +20,3 @@ AlignmentFeedbackToken :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AlignmentFeedbackToken_VTable :: struct {
-}
-

@@ -20,6 +20,3 @@ TextFinderBarContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextFinderBarContainer_VTable :: struct {
-}
-

@@ -28,34 +28,3 @@ PasteboardItemDataProvider_pasteboard :: #force_inline proc "c" (self: ^Pasteboa
 PasteboardItemDataProvider_pasteboardFinishedWithDataProvider :: #force_inline proc "c" (self: ^PasteboardItemDataProvider, pasteboard: ^Pasteboard) {
     msgSend(nil, self, "pasteboardFinishedWithDataProvider:", pasteboard)
 }
-PasteboardItemDataProvider_VTable :: struct {
-    pasteboard: proc(self: ^PasteboardItemDataProvider, pasteboard: ^Pasteboard, item: ^PasteboardItem, type: ^NS.String),
-    pasteboardFinishedWithDataProvider: proc(self: ^PasteboardItemDataProvider, pasteboard: ^Pasteboard),
-}
-
-PasteboardItemDataProvider_odin_extend :: proc(cls: Class, vt: ^PasteboardItemDataProvider_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.pasteboard != nil {
-        pasteboard :: proc "c" (self: ^PasteboardItemDataProvider, _: SEL, pasteboard: ^Pasteboard, item: ^PasteboardItem, type: ^NS.String) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^PasteboardItemDataProvider_VTable)vt_ctx.protocol_vt).pasteboard(self, pasteboard, item, type)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteboard:item:provideDataForType:"), auto_cast pasteboard, "v@:@@@") do panic("Failed to register objC method.")
-    }
-    if vt.pasteboardFinishedWithDataProvider != nil {
-        pasteboardFinishedWithDataProvider :: proc "c" (self: ^PasteboardItemDataProvider, _: SEL, pasteboard: ^Pasteboard) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^PasteboardItemDataProvider_VTable)vt_ctx.protocol_vt).pasteboardFinishedWithDataProvider(self, pasteboard)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteboardFinishedWithDataProvider:"), auto_cast pasteboardFinishedWithDataProvider, "v@:@") do panic("Failed to register objC method.")
-    }
-}
-

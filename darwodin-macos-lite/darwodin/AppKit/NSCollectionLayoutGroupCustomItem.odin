@@ -20,7 +20,3 @@ CollectionLayoutGroupCustomItem :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-CollectionLayoutGroupCustomItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

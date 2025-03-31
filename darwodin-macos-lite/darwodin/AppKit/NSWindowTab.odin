@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSWindowTab")
 WindowTab :: struct { using _: NS.Object, }
 
-WindowTab_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

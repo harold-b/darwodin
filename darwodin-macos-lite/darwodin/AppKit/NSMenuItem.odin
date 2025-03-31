@@ -25,7 +25,3 @@ MenuItem :: struct { using _: NS.Object,
     using _: Accessibility,
 }
 
-MenuItem_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

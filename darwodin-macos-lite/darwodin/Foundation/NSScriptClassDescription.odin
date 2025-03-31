@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSScriptClassDescription")
 ScriptClassDescription :: struct { using _: ClassDescription, }
 
-ScriptClassDescription_VTable :: struct {
-    super: ClassDescription_VTable,
-}
-

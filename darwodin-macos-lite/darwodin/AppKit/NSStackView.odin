@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSStackView")
 StackView :: struct { using _: View, }
 
-StackView_VTable :: struct {
-    super: View_VTable,
-}
-

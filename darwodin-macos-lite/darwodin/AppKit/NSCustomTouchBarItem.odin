@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSCustomTouchBarItem")
 CustomTouchBarItem :: struct { using _: TouchBarItem, }
 
-CustomTouchBarItem_VTable :: struct {
-    super: TouchBarItem_VTable,
-}
-

@@ -20,6 +20,3 @@ Editor :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-Editor_VTable :: struct {
-}
-

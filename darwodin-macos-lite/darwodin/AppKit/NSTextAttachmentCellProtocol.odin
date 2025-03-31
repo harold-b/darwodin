@@ -20,6 +20,3 @@ TextAttachmentCellProtocol :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-TextAttachmentCellProtocol_VTable :: struct {
-}
-

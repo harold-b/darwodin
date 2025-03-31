@@ -20,12 +20,3 @@ AccessibilityGroup :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
-AccessibilityGroup_VTable :: struct {
-}
-
-AccessibilityGroup_odin_extend :: proc(cls: Class, vt: ^AccessibilityGroup_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

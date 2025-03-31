@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSDeleteCommand")
 DeleteCommand :: struct { using _: ScriptCommand, }
 
-DeleteCommand_VTable :: struct {
-    super: ScriptCommand_VTable,
-}
-

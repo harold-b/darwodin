@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSSearchToolbarItem")
 SearchToolbarItem :: struct { using _: ToolbarItem, }
 
-SearchToolbarItem_VTable :: struct {
-    super: ToolbarItem_VTable,
-}
-

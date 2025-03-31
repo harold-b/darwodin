@@ -20,6 +20,3 @@ ScrubberDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ScrubberDataSource_VTable :: struct {
-}
-

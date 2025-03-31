@@ -20,7 +20,3 @@ GridColumn :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-GridColumn_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

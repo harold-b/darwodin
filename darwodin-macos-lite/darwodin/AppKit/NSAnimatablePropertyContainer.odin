@@ -18,6 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSAnimatablePropertyContainer")
 AnimatablePropertyContainer :: struct { using _: intrinsics.objc_object, }
 
-AnimatablePropertyContainer_VTable :: struct {
-}
-

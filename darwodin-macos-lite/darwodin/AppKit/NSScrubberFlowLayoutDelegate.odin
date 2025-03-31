@@ -20,6 +20,3 @@ ScrubberFlowLayoutDelegate :: struct { using _: intrinsics.objc_object,
     using _: ScrubberDelegate,
 }
 
-ScrubberFlowLayoutDelegate_VTable :: struct {
-}
-

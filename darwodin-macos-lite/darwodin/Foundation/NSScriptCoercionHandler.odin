@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSScriptCoercionHandler")
 ScriptCoercionHandler :: struct { using _: Object, }
 
-ScriptCoercionHandler_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -20,6 +20,3 @@ TableViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 
-TableViewDelegate_VTable :: struct {
-}
-

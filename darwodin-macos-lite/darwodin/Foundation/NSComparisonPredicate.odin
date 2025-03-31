@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSComparisonPredicate")
 ComparisonPredicate :: struct { using _: Predicate, }
 
-ComparisonPredicate_VTable :: struct {
-    super: Predicate_VTable,
-}
-

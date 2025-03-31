@@ -20,7 +20,3 @@ PanGestureRecognizer :: struct { using _: GestureRecognizer,
     using _: NS.Coding,
 }
 
-PanGestureRecognizer_VTable :: struct {
-    super: GestureRecognizer_VTable,
-}
-

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSCloseCommand")
 CloseCommand :: struct { using _: ScriptCommand, }
 
-CloseCommand_VTable :: struct {
-    super: ScriptCommand_VTable,
-}
-

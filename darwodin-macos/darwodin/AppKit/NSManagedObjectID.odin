@@ -29,12 +29,3 @@ ManagedObjectID_init :: proc "c" (self: ^ManagedObjectID) -> ^ManagedObjectID {
 }
 
 
-ManagedObjectID_VTable :: struct {
-}
-
-ManagedObjectID_odin_extend :: proc(cls: Class, vt: ^ManagedObjectID_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

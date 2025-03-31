@@ -1518,7 +1518,7 @@ ExceptionName :: distinct ^String
 RunLoopMode :: distinct ^String
 
 /// NSComparator
-Comparator :: distinct proc "c" (obj1: id, obj2: id) -> ComparisonResult
+Comparator :: proc "c" (obj1: id, obj2: id) -> ComparisonResult
 
 /// NSZone
 Zone :: distinct _NSZone
@@ -1526,16 +1526,14 @@ Zone :: distinct _NSZone
 /// NSRange
 Range :: distinct _NSRange
 
-/// NSRangePointer
-
 /// unichar
 unichar :: distinct cffi.ushort
 
 /// NSItemProviderCompletionHandler
-ItemProviderCompletionHandler :: distinct proc "c" (item: ^SecureCoding, error: ^Error)
+ItemProviderCompletionHandler :: proc "c" (item: ^SecureCoding, error: ^Error)
 
 /// NSItemProviderLoadHandler
-ItemProviderLoadHandler :: distinct proc "c" (completionHandler: ItemProviderCompletionHandler, expectedValueClass: Class, options: ^Dictionary)
+ItemProviderLoadHandler :: proc "c" (completionHandler: ItemProviderCompletionHandler, expectedValueClass: Class, options: ^Dictionary)
 
 /// NSStringEncoding
 StringEncoding :: distinct UInteger
@@ -1556,10 +1554,10 @@ ProgressUserInfoKey :: distinct ^String
 ProgressFileOperationKind :: distinct ^String
 
 /// NSProgressUnpublishingHandler
-ProgressUnpublishingHandler :: distinct proc "c" ()
+ProgressUnpublishingHandler :: proc "c" ()
 
 /// NSProgressPublishingHandler
-ProgressPublishingHandler :: distinct proc "c" (progress: ^Progress) -> ProgressUnpublishingHandler
+ProgressPublishingHandler :: proc "c" (progress: ^Progress) -> ProgressUnpublishingHandler
 
 /// NSNotificationName
 NotificationName :: distinct ^String
@@ -1580,7 +1578,7 @@ AttributedStringFormattingContextKey :: distinct ^String
 LocaleKey :: distinct ^String
 
 /// NSUncaughtExceptionHandler
-UncaughtExceptionHandler :: distinct proc "c" (exception: ^Exception)
+UncaughtExceptionHandler :: proc "c" (exception: ^Exception)
 
 /// NSErrorDomain
 ErrorDomain :: distinct ^String
@@ -1645,24 +1643,14 @@ PropertyListReadOptions :: distinct PropertyListMutabilityOptions
 /// NSPropertyListWriteOptions
 PropertyListWriteOptions :: distinct UInteger
 
-/// NSPoint
-
-/// NSPointPointer
-
-/// NSPointArray
-
 /// NSSize
 Size :: distinct CG.Size
-
-/// NSSizePointer
 
 /// NSSizeArray
 SizeArray :: distinct ^Size
 
 /// NSRect
 Rect :: distinct CG.Rect
-
-/// NSRectPointer
 
 /// NSRectArray
 RectArray :: distinct ^Rect
@@ -1755,7 +1743,7 @@ SecAsn1Oid :: distinct cssm_data
 SecAsn1Template :: distinct SecAsn1Template_struct
 
 /// SecAsn1TemplateChooser
-SecAsn1TemplateChooser :: distinct proc "c" (arg: rawptr, enc: CF.Boolean, buf: cstring, len: cffi.size_t, dest: rawptr) -> ^SecAsn1Template_struct
+SecAsn1TemplateChooser :: proc "c" (arg: rawptr, enc: CF.Boolean, buf: cstring, len: cffi.size_t, dest: rawptr) -> ^SecAsn1Template_struct
 
 /// SecAsn1TemplateChooserPtr
 SecAsn1TemplateChooserPtr :: distinct SecAsn1TemplateChooser
@@ -1854,7 +1842,7 @@ CSSM_MODULE_EVENT :: distinct cffi.uint
 CSSM_MODULE_EVENT_PTR :: distinct ^cffi.uint
 
 /// CSSM_API_ModuleEventHandler
-CSSM_API_ModuleEventHandler :: distinct proc "c" (ModuleGuid: ^cssm_guid, AppNotifyCallbackCtx: rawptr, SubserviceId: cffi.uint, ServiceType: CSSM_SERVICE_TYPE, EventType: CSSM_MODULE_EVENT) -> CSSM_RETURN
+CSSM_API_ModuleEventHandler :: proc "c" (ModuleGuid: ^cssm_guid, AppNotifyCallbackCtx: rawptr, SubserviceId: cffi.uint, ServiceType: CSSM_SERVICE_TYPE, EventType: CSSM_MODULE_EVENT) -> CSSM_RETURN
 
 /// CSSM_ATTACH_FLAGS
 CSSM_ATTACH_FLAGS :: distinct cffi.uint
@@ -1878,7 +1866,7 @@ CSSM_NET_ADDRESS_PTR :: distinct ^cssm_net_address
 CSSM_NET_PROTOCOL :: distinct cffi.uint
 
 /// CSSM_CALLBACK
-CSSM_CALLBACK :: distinct proc "c" (OutData: CSSM_DATA_PTR, CallerCtx: rawptr) -> CSSM_RETURN
+CSSM_CALLBACK :: proc "c" (OutData: CSSM_DATA_PTR, CallerCtx: rawptr) -> CSSM_RETURN
 
 /// CSSM_CRYPTO_DATA
 CSSM_CRYPTO_DATA :: distinct cssm_crypto_data
@@ -1938,16 +1926,16 @@ CSSM_SAMPLEGROUP :: distinct cssm_samplegroup
 CSSM_SAMPLEGROUP_PTR :: distinct ^cssm_samplegroup
 
 /// CSSM_MALLOC
-CSSM_MALLOC :: distinct proc "c" (size: CSSM_SIZE, allocref: rawptr) -> rawptr
+CSSM_MALLOC :: proc "c" (size: CSSM_SIZE, allocref: rawptr) -> rawptr
 
 /// CSSM_FREE
-CSSM_FREE :: distinct proc "c" (memblock: rawptr, allocref: rawptr)
+CSSM_FREE :: proc "c" (memblock: rawptr, allocref: rawptr)
 
 /// CSSM_REALLOC
-CSSM_REALLOC :: distinct proc "c" (memblock: rawptr, size: CSSM_SIZE, allocref: rawptr) -> rawptr
+CSSM_REALLOC :: proc "c" (memblock: rawptr, size: CSSM_SIZE, allocref: rawptr) -> rawptr
 
 /// CSSM_CALLOC
-CSSM_CALLOC :: distinct proc "c" (num: cffi.uint, size: CSSM_SIZE, allocref: rawptr) -> rawptr
+CSSM_CALLOC :: proc "c" (num: cffi.uint, size: CSSM_SIZE, allocref: rawptr) -> rawptr
 
 /// CSSM_MEMORY_FUNCS
 CSSM_MEMORY_FUNCS :: distinct cssm_memory_funcs
@@ -1962,7 +1950,7 @@ CSSM_API_MEMORY_FUNCS :: distinct cssm_memory_funcs
 CSSM_API_MEMORY_FUNCS_PTR :: distinct ^CSSM_API_MEMORY_FUNCS
 
 /// CSSM_CHALLENGE_CALLBACK
-CSSM_CHALLENGE_CALLBACK :: distinct proc "c" (Challenge: ^cssm_list, Response: CSSM_SAMPLEGROUP_PTR, CallerCtx: rawptr, MemFuncs: ^cssm_memory_funcs) -> CSSM_RETURN
+CSSM_CHALLENGE_CALLBACK :: proc "c" (Challenge: ^cssm_list, Response: CSSM_SAMPLEGROUP_PTR, CallerCtx: rawptr, MemFuncs: ^cssm_memory_funcs) -> CSSM_RETURN
 
 /// CSSM_CERT_TYPE
 CSSM_CERT_TYPE :: distinct cffi.uint
@@ -2055,7 +2043,7 @@ CSSM_ACL_OWNER_PROTOTYPE :: distinct cssm_acl_owner_prototype
 CSSM_ACL_OWNER_PROTOTYPE_PTR :: distinct ^cssm_acl_owner_prototype
 
 /// CSSM_ACL_SUBJECT_CALLBACK
-CSSM_ACL_SUBJECT_CALLBACK :: distinct proc "c" (SubjectRequest: ^cssm_list, SubjectResponse: CSSM_LIST_PTR, CallerContext: rawptr, MemFuncs: ^cssm_memory_funcs) -> CSSM_RETURN
+CSSM_ACL_SUBJECT_CALLBACK :: proc "c" (SubjectRequest: ^cssm_list, SubjectResponse: CSSM_LIST_PTR, CallerContext: rawptr, MemFuncs: ^cssm_memory_funcs) -> CSSM_RETURN
 
 /// CSSM_ACL_ENTRY_INPUT
 CSSM_ACL_ENTRY_INPUT :: distinct cssm_acl_entry_input
@@ -2088,7 +2076,7 @@ CSSM_ACL_EDIT :: distinct cssm_acl_edit
 CSSM_ACL_EDIT_PTR :: distinct ^cssm_acl_edit
 
 /// CSSM_PROC_ADDR
-CSSM_PROC_ADDR :: distinct proc "c" ()
+CSSM_PROC_ADDR :: proc "c" ()
 
 /// CSSM_PROC_ADDR_PTR
 CSSM_PROC_ADDR_PTR :: distinct CSSM_PROC_ADDR
@@ -2259,7 +2247,7 @@ CSSM_TP_AUTHORITY_REQUEST_TYPE :: distinct cffi.uint
 CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR :: distinct ^cffi.uint
 
 /// CSSM_TP_VERIFICATION_RESULTS_CALLBACK
-CSSM_TP_VERIFICATION_RESULTS_CALLBACK :: distinct proc "c" (ModuleHandle: CSSM_MODULE_HANDLE, CallerCtx: rawptr, VerifiedCert: CSSM_DATA_PTR) -> CSSM_RETURN
+CSSM_TP_VERIFICATION_RESULTS_CALLBACK :: proc "c" (ModuleHandle: CSSM_MODULE_HANDLE, CallerCtx: rawptr, VerifiedCert: CSSM_DATA_PTR) -> CSSM_RETURN
 
 /// CSSM_OID_PTR
 CSSM_OID_PTR :: distinct ^cssm_data
@@ -2817,7 +2805,7 @@ CSSM_X509_SIGNED_CRL_PTR :: distinct ^cssm_x509_signed_crl
 SecAccessOwnerType :: distinct CF.UInt32
 
 /// SecKeyGeneratePairBlock
-SecKeyGeneratePairBlock :: distinct proc "c" (publicKey: SecKeyRef, privateKey: SecKeyRef, error: CF.ErrorRef)
+SecKeyGeneratePairBlock :: proc "c" (publicKey: SecKeyRef, privateKey: SecKeyRef, error: CF.ErrorRef)
 
 /// SecKeyAlgorithm
 SecKeyAlgorithm :: distinct CF.StringRef
@@ -2852,8 +2840,6 @@ CE_CrlReason :: distinct cffi.uint
 /// CE_ExtendedKeyUsage
 CE_ExtendedKeyUsage :: distinct __CE_ExtendedKeyUsage
 
-/// CE_BasicConstraints
-
 /// CE_PolicyQualifierInfo
 CE_PolicyQualifierInfo :: distinct __CE_PolicyQualifierInfo
 
@@ -2868,12 +2854,6 @@ CE_NetscapeCertType :: distinct cffi.ushort
 
 /// CE_CrlDistReasonFlags
 CE_CrlDistReasonFlags :: distinct cffi.uchar
-
-/// CE_DistributionPointName
-
-/// CE_CRLDistributionPoint
-
-/// CE_CRLDistPointsSyntax
 
 /// CE_AccessDescription
 CE_AccessDescription :: distinct __CE_AccessDescription
@@ -2899,23 +2879,17 @@ CE_CrlNumber :: distinct cffi.uint
 /// CE_DeltaCrl
 CE_DeltaCrl :: distinct cffi.uint
 
-/// CE_IssuingDistributionPoint
-
 /// CE_GeneralSubtree
 CE_GeneralSubtree :: distinct __CE_GeneralSubtree
 
 /// CE_GeneralSubtrees
 CE_GeneralSubtrees :: distinct __CE_GeneralSubtrees
 
-/// CE_NameConstraints
-
 /// CE_PolicyMapping
 CE_PolicyMapping :: distinct __CE_PolicyMapping
 
 /// CE_PolicyMappings
 CE_PolicyMappings :: distinct __CE_PolicyMappings
-
-/// CE_PolicyConstraints
 
 /// CE_InhibitAnyPolicy
 CE_InhibitAnyPolicy :: distinct cffi.uint
@@ -2966,16 +2940,16 @@ CSSM_APPLE_TP_ACTION_FLAGS :: distinct cffi.uint
 CSSM_TP_APPLE_CERT_STATUS :: distinct cffi.uint
 
 /// SecKeychainCallback
-SecKeychainCallback :: distinct proc "c" (keychainEvent: SecKeychainEvent, info: ^SecKeychainCallbackInfo, _context: rawptr) -> CF.OSStatus
+SecKeychainCallback :: proc "c" (keychainEvent: SecKeychainEvent, info: ^SecKeychainCallbackInfo, _context: rawptr) -> CF.OSStatus
 
 /// SecTrustRef
 SecTrustRef :: distinct ^__SecTrust
 
 /// SecTrustCallback
-SecTrustCallback :: distinct proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType)
+SecTrustCallback :: proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType)
 
 /// SecTrustWithErrorCallback
-SecTrustWithErrorCallback :: distinct proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef)
+SecTrustWithErrorCallback :: proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef)
 
 /// SecTrustUserSetting
 SecTrustUserSetting :: distinct SecTrustResultType
@@ -3008,7 +2982,7 @@ CSSM_SPI_CL_FUNCS :: distinct cssm_spi_cl_funcs
 CSSM_SPI_CL_FUNCS_PTR :: distinct ^cssm_spi_cl_funcs
 
 /// CSSM_SPI_ModuleEventHandler
-CSSM_SPI_ModuleEventHandler :: distinct proc "c" (ModuleGuid: ^cssm_guid, CssmNotifyCallbackCtx: rawptr, SubserviceId: cffi.uint, ServiceType: CSSM_SERVICE_TYPE, EventType: CSSM_MODULE_EVENT) -> CSSM_RETURN
+CSSM_SPI_ModuleEventHandler :: proc "c" (ModuleGuid: ^cssm_guid, CssmNotifyCallbackCtx: rawptr, SubserviceId: cffi.uint, ServiceType: CSSM_SERVICE_TYPE, EventType: CSSM_MODULE_EVENT) -> CSSM_RETURN
 
 /// CSSM_CONTEXT_EVENT
 CSSM_CONTEXT_EVENT :: distinct cffi.uint
@@ -3020,16 +2994,16 @@ CSSM_MODULE_FUNCS :: distinct cssm_module_funcs
 CSSM_MODULE_FUNCS_PTR :: distinct ^cssm_module_funcs
 
 /// CSSM_UPCALLS_MALLOC
-CSSM_UPCALLS_MALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, size: cffi.size_t) -> rawptr
+CSSM_UPCALLS_MALLOC :: proc "c" (AddInHandle: CSSM_HANDLE, size: cffi.size_t) -> rawptr
 
 /// CSSM_UPCALLS_FREE
-CSSM_UPCALLS_FREE :: distinct proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr)
+CSSM_UPCALLS_FREE :: proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr)
 
 /// CSSM_UPCALLS_REALLOC
-CSSM_UPCALLS_REALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr, size: cffi.size_t) -> rawptr
+CSSM_UPCALLS_REALLOC :: proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr, size: cffi.size_t) -> rawptr
 
 /// CSSM_UPCALLS_CALLOC
-CSSM_UPCALLS_CALLOC :: distinct proc "c" (AddInHandle: CSSM_HANDLE, num: cffi.size_t, size: cffi.size_t) -> rawptr
+CSSM_UPCALLS_CALLOC :: proc "c" (AddInHandle: CSSM_HANDLE, num: cffi.size_t, size: cffi.size_t) -> rawptr
 
 /// CSSM_UPCALLS
 CSSM_UPCALLS :: distinct cssm_upcalls
@@ -3149,15 +3123,13 @@ xpc_type_t :: distinct ^_xpc_type_s
 xpc_object_t :: distinct rawptr
 
 /// xpc_handler_t
-xpc_handler_t :: distinct proc "c" (object: xpc_object_t)
+xpc_handler_t :: proc "c" (object: xpc_object_t)
 
 /// xpc_connection_t
 xpc_connection_t :: distinct ^_xpc_connection_s
 
 /// xpc_connection_handler_t
-xpc_connection_handler_t :: distinct proc "c" (connection: xpc_connection_t)
-
-/// xpc_endpoint_t
+xpc_connection_handler_t :: proc "c" (connection: xpc_connection_t)
 
 /// xpc_rich_error_t
 xpc_rich_error_t :: distinct ^_xpc_rich_error_s
@@ -3166,37 +3138,37 @@ xpc_rich_error_t :: distinct ^_xpc_rich_error_s
 xpc_activity_t :: distinct ^_xpc_activity_s
 
 /// xpc_activity_handler_t
-xpc_activity_handler_t :: distinct proc "c" (activity: xpc_activity_t)
+xpc_activity_handler_t :: proc "c" (activity: xpc_activity_t)
 
 /// xpc_activity_state_t
 xpc_activity_state_t :: distinct cffi.long
 
 /// xpc_finalizer_t
-xpc_finalizer_t :: distinct proc "c" (value: rawptr)
+xpc_finalizer_t :: proc "c" (value: rawptr)
 
 /// xpc_session_t
 xpc_session_t :: distinct ^xpc_session_s
 
 /// xpc_session_cancel_handler_t
-xpc_session_cancel_handler_t :: distinct proc "c" (error: xpc_rich_error_t)
+xpc_session_cancel_handler_t :: proc "c" (error: xpc_rich_error_t)
 
 /// xpc_session_incoming_message_handler_t
-xpc_session_incoming_message_handler_t :: distinct proc "c" (message: xpc_object_t)
+xpc_session_incoming_message_handler_t :: proc "c" (message: xpc_object_t)
 
 /// xpc_session_reply_handler_t
-xpc_session_reply_handler_t :: distinct proc "c" (reply: xpc_object_t, error: xpc_rich_error_t)
+xpc_session_reply_handler_t :: proc "c" (reply: xpc_object_t, error: xpc_rich_error_t)
 
 /// xpc_listener_t
 xpc_listener_t :: distinct ^xpc_listener_s
 
 /// xpc_listener_incoming_session_handler_t
-xpc_listener_incoming_session_handler_t :: distinct proc "c" (peer: xpc_session_t)
+xpc_listener_incoming_session_handler_t :: proc "c" (peer: xpc_session_t)
 
 /// xpc_array_applier_t
-xpc_array_applier_t :: distinct proc "c" (index: cffi.size_t, value: xpc_object_t) -> cffi.bool
+xpc_array_applier_t :: proc "c" (index: cffi.size_t, value: xpc_object_t) -> cffi.bool
 
 /// xpc_dictionary_applier_t
-xpc_dictionary_applier_t :: distinct proc "c" (key: cstring, value: xpc_object_t) -> cffi.bool
+xpc_dictionary_applier_t :: proc "c" (key: cstring, value: xpc_object_t) -> cffi.bool
 
 /// SecTaskRef
 SecTaskRef :: distinct ^__SecTask
@@ -3208,10 +3180,10 @@ SSLContextRef :: distinct ^SSLContext
 SSLConnectionRef :: distinct rawptr
 
 /// SSLReadFunc
-SSLReadFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
+SSLReadFunc :: proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
 
 /// SSLWriteFunc
-SSLWriteFunc :: distinct proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
+SSLWriteFunc :: proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
 
 /// SecTransformRef
 SecTransformRef :: distinct CF.TypeRef
@@ -3220,7 +3192,7 @@ SecTransformRef :: distinct CF.TypeRef
 SecGroupTransformRef :: distinct CF.TypeRef
 
 /// SecMessageBlock
-SecMessageBlock :: distinct proc "c" (message: CF.TypeRef, error: CF.ErrorRef, isFinal: CF.Boolean)
+SecMessageBlock :: proc "c" (message: CF.TypeRef, error: CF.ErrorRef, isFinal: CF.Boolean)
 
 /// SecTransformAttributeRef
 SecTransformAttributeRef :: distinct CF.TypeRef
@@ -3229,22 +3201,22 @@ SecTransformAttributeRef :: distinct CF.TypeRef
 SecTransformStringOrAttributeRef :: distinct CF.TypeRef
 
 /// SecTransformActionBlock
-SecTransformActionBlock :: distinct proc "c" () -> CF.TypeRef
+SecTransformActionBlock :: proc "c" () -> CF.TypeRef
 
 /// SecTransformAttributeActionBlock
-SecTransformAttributeActionBlock :: distinct proc "c" (attribute: SecTransformAttributeRef, value: CF.TypeRef) -> CF.TypeRef
+SecTransformAttributeActionBlock :: proc "c" (attribute: SecTransformAttributeRef, value: CF.TypeRef) -> CF.TypeRef
 
 /// SecTransformDataBlock
-SecTransformDataBlock :: distinct proc "c" (data: CF.TypeRef) -> CF.TypeRef
+SecTransformDataBlock :: proc "c" (data: CF.TypeRef) -> CF.TypeRef
 
 /// SecTransformInstanceBlock
-SecTransformInstanceBlock :: distinct proc "c" () -> CF.ErrorRef
+SecTransformInstanceBlock :: proc "c" () -> CF.ErrorRef
 
 /// SecTransformImplementationRef
 SecTransformImplementationRef :: distinct ^OpaqueSecTransformImplementation
 
 /// SecTransformCreateFP
-SecTransformCreateFP :: distinct proc "c" (name: CF.StringRef, newTransform: SecTransformRef, ref: SecTransformImplementationRef) -> SecTransformInstanceBlock
+SecTransformCreateFP :: proc "c" (name: CF.StringRef, newTransform: SecTransformRef, ref: SecTransformImplementationRef) -> SecTransformInstanceBlock
 
 /// DescType
 DescType :: distinct CF.ResType
@@ -3291,8 +3263,6 @@ AEEventID :: distinct CF.FourCharCode
 /// AEArrayType
 AEArrayType :: distinct CF.SInt8
 
-/// AEArrayDataPointer
-
 /// AESendPriority
 AESendPriority :: distinct CF.SInt16
 
@@ -3300,10 +3270,10 @@ AESendPriority :: distinct CF.SInt16
 AESendMode :: distinct CF.SInt32
 
 /// AECoerceDescProcPtr
-AECoerceDescProcPtr :: distinct proc "c" (fromDesc: ^AEDesc, toType: DescType, handlerRefcon: CF.SRefCon, toDesc: ^AEDesc) -> CF.OSErr
+AECoerceDescProcPtr :: proc "c" (fromDesc: ^AEDesc, toType: DescType, handlerRefcon: CF.SRefCon, toDesc: ^AEDesc) -> CF.OSErr
 
 /// AECoercePtrProcPtr
-AECoercePtrProcPtr :: distinct proc "c" (typeCode: DescType, dataPtr: rawptr, dataSize: CF.Size, toType: DescType, handlerRefcon: CF.SRefCon, result: ^AEDesc) -> CF.OSErr
+AECoercePtrProcPtr :: proc "c" (typeCode: DescType, dataPtr: rawptr, dataSize: CF.Size, toType: DescType, handlerRefcon: CF.SRefCon, result: ^AEDesc) -> CF.OSErr
 
 /// AECoerceDescUPP
 AECoerceDescUPP :: distinct AECoerceDescProcPtr
@@ -3315,13 +3285,13 @@ AECoercePtrUPP :: distinct AECoercePtrProcPtr
 AECoercionHandlerUPP :: distinct AECoerceDescUPP
 
 /// AEDisposeExternalProcPtr
-AEDisposeExternalProcPtr :: distinct proc "c" (dataPtr: rawptr, dataLength: CF.Size, refcon: CF.SRefCon)
+AEDisposeExternalProcPtr :: proc "c" (dataPtr: rawptr, dataLength: CF.Size, refcon: CF.SRefCon)
 
 /// AEDisposeExternalUPP
 AEDisposeExternalUPP :: distinct AEDisposeExternalProcPtr
 
 /// AEEventHandlerProcPtr
-AEEventHandlerProcPtr :: distinct proc "c" (theAppleEvent: ^AppleEvent, reply: ^AppleEvent, handlerRefcon: CF.SRefCon) -> CF.OSErr
+AEEventHandlerProcPtr :: proc "c" (theAppleEvent: ^AppleEvent, reply: ^AppleEvent, handlerRefcon: CF.SRefCon) -> CF.OSErr
 
 /// AEEventHandlerUPP
 AEEventHandlerUPP :: distinct AEEventHandlerProcPtr
@@ -3333,7 +3303,7 @@ AEEventSource :: distinct CF.SInt8
 AERemoteProcessResolverRef :: distinct ^AERemoteProcessResolver
 
 /// AERemoteProcessResolverCallback
-AERemoteProcessResolverCallback :: distinct proc "c" (ref: AERemoteProcessResolverRef, info: rawptr)
+AERemoteProcessResolverCallback :: proc "c" (ref: AERemoteProcessResolverRef, info: rawptr)
 
 /// AEBuildErrorCode
 AEBuildErrorCode :: distinct CF.UInt32
@@ -3357,7 +3327,7 @@ UndoManagerUserInfoKey :: distinct ^String
 UserActivityPersistentIdentifier :: distinct ^String
 
 /// NSBackgroundActivityCompletionHandler
-BackgroundActivityCompletionHandler :: distinct proc "c" (result: BackgroundActivityResult)
+BackgroundActivityCompletionHandler :: proc "c" (result: BackgroundActivityResult)
 
 /// NSDistributedNotificationCenterType
 DistributedNotificationCenterType :: distinct ^String
@@ -3366,16 +3336,16 @@ DistributedNotificationCenterType :: distinct ^String
 AppleEventManagerSuspensionID :: distinct ^__NSAppleEventManagerSuspension
 
 /// NSUserScriptTaskCompletionHandler
-UserScriptTaskCompletionHandler :: distinct proc "c" (error: ^Error)
+UserScriptTaskCompletionHandler :: proc "c" (error: ^Error)
 
 /// NSUserUnixTaskCompletionHandler
-UserUnixTaskCompletionHandler :: distinct proc "c" (error: ^Error)
+UserUnixTaskCompletionHandler :: proc "c" (error: ^Error)
 
 /// NSUserAppleScriptTaskCompletionHandler
-UserAppleScriptTaskCompletionHandler :: distinct proc "c" (result: ^AppleEventDescriptor, error: ^Error)
+UserAppleScriptTaskCompletionHandler :: proc "c" (result: ^AppleEventDescriptor, error: ^Error)
 
 /// NSUserAutomatorTaskCompletionHandler
-UserAutomatorTaskCompletionHandler :: distinct proc "c" (result: id, error: ^Error)
+UserAutomatorTaskCompletionHandler :: proc "c" (result: id, error: ^Error)
 
 /// CSSM_X509EXT_DATA_FORMAT
 CSSM_X509EXT_DATA_FORMAT :: enum cffi.uint {

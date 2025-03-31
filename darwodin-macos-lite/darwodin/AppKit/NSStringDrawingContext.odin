@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSStringDrawingContext")
 StringDrawingContext :: struct { using _: NS.Object, }
 
-StringDrawingContext_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSComboBox")
 ComboBox :: struct { using _: TextField, }
 
-ComboBox_VTable :: struct {
-    super: TextField_VTable,
-}
-

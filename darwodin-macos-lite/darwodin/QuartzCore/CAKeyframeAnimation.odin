@@ -16,7 +16,3 @@ import NS "../Foundation"
 @(objc_class="CAKeyframeAnimation")
 KeyframeAnimation :: struct { using _: PropertyAnimation, }
 
-KeyframeAnimation_VTable :: struct {
-    super: PropertyAnimation_VTable,
-}
-

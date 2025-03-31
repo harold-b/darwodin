@@ -18,7 +18,3 @@ Port :: struct { using _: Object,
     using _: Coding,
 }
 
-Port_VTable :: struct {
-    super: Object_VTable,
-}
-

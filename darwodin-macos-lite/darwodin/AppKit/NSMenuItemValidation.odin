@@ -20,6 +20,3 @@ MenuItemValidation :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-MenuItemValidation_VTable :: struct {
-}
-

@@ -18,6 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextInput")
 TextInput :: struct { using _: intrinsics.objc_object, }
 
-TextInput_VTable :: struct {
-}
-

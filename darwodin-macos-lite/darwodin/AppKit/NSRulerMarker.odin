@@ -21,7 +21,3 @@ RulerMarker :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-RulerMarker_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

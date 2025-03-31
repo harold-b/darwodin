@@ -21,7 +21,3 @@ Drawer :: struct { using _: Responder,
     using _: Accessibility,
 }
 
-Drawer_VTable :: struct {
-    super: Responder_VTable,
-}
-

@@ -153,7 +153,7 @@ Leaderboard_isLoading :: #force_inline proc "c" (self: ^Leaderboard) -> bool {
     return msgSend(bool, self, "isLoading")
 }
 @(objc_type=Leaderboard, objc_name="loadImageWithCompletionHandler")
-Leaderboard_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^Leaderboard, completionHandler: proc "c" (image: ^NSImage, error: ^NS.Error)) {
+Leaderboard_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^Leaderboard, completionHandler: proc "c" (image: ^NS.Image, error: ^NS.Error)) {
     msgSend(nil, self, "loadImageWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="load", objc_is_class_method=true)

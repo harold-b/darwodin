@@ -18,7 +18,3 @@ RegularExpression :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-RegularExpression_VTable :: struct {
-    super: Object_VTable,
-}
-

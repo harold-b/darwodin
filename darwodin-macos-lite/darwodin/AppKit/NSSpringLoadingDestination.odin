@@ -20,6 +20,3 @@ SpringLoadingDestination :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-SpringLoadingDestination_VTable :: struct {
-}
-

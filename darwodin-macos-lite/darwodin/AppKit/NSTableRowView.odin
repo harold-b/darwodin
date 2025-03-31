@@ -20,7 +20,3 @@ TableRowView :: struct { using _: View,
     using _: AccessibilityRow,
 }
 
-TableRowView_VTable :: struct {
-    super: View_VTable,
-}
-

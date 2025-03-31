@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextInsertionIndicator")
 TextInsertionIndicator :: struct { using _: View, }
 
-TextInsertionIndicator_VTable :: struct {
-    super: View_VTable,
-}
-

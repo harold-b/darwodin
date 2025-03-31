@@ -15,6 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSPredicateOperator")
 PredicateOperator :: struct { using _: intrinsics.objc_object, }
 
-PredicateOperator_VTable :: struct {
-}
-

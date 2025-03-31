@@ -26,12 +26,3 @@ Image_init :: proc "c" (self: ^Image) -> ^Image {
 }
 
 
-Image_VTable :: struct {
-}
-
-Image_odin_extend :: proc(cls: Class, vt: ^Image_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

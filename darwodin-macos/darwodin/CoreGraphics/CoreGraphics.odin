@@ -2281,26 +2281,22 @@ ColorSpaceRef :: distinct ^ColorSpace
 DataProviderRef :: distinct ^DataProvider
 
 /// CGDataProviderGetBytesCallback
-DataProviderGetBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
+DataProviderGetBytesCallback :: proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderSkipForwardCallback
-DataProviderSkipForwardCallback :: distinct proc "c" (info: rawptr, count: cffi.longlong) -> cffi.longlong
+DataProviderSkipForwardCallback :: proc "c" (info: rawptr, count: cffi.longlong) -> cffi.longlong
 
 /// CGDataProviderRewindCallback
-DataProviderRewindCallback :: distinct proc "c" (info: rawptr)
+DataProviderRewindCallback :: proc "c" (info: rawptr)
 
 /// CGDataProviderReleaseInfoCallback
-DataProviderReleaseInfoCallback :: distinct proc "c" (info: rawptr)
-
-/// CGDataProviderGetBytePointerCallback
-
-/// CGDataProviderReleaseBytePointerCallback
+DataProviderReleaseInfoCallback :: proc "c" (info: rawptr)
 
 /// CGDataProviderGetBytesAtPositionCallback
-DataProviderGetBytesAtPositionCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, pos: cffi.longlong, cnt: cffi.size_t) -> cffi.size_t
+DataProviderGetBytesAtPositionCallback :: proc "c" (info: rawptr, buffer: rawptr, pos: cffi.longlong, cnt: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderReleaseDataCallback
-DataProviderReleaseDataCallback :: distinct proc "c" (info: rawptr, data: rawptr, size: cffi.size_t)
+DataProviderReleaseDataCallback :: proc "c" (info: rawptr, data: rawptr, size: cffi.size_t)
 
 /// ColorSyncProfileRef
 ColorSyncProfileRef :: distinct ^ColorSyncProfile
@@ -2309,10 +2305,10 @@ ColorSyncProfileRef :: distinct ^ColorSyncProfile
 PatternRef :: distinct ^Pattern
 
 /// CGPatternDrawPatternCallback
-PatternDrawPatternCallback :: distinct proc "c" (info: rawptr, _context: ContextRef)
+PatternDrawPatternCallback :: proc "c" (info: rawptr, _context: ContextRef)
 
 /// CGPatternReleaseInfoCallback
-PatternReleaseInfoCallback :: distinct proc "c" (info: rawptr)
+PatternReleaseInfoCallback :: proc "c" (info: rawptr)
 
 /// CGFontRef
 FontRef :: distinct ^Font
@@ -2336,10 +2332,10 @@ MutablePathRef :: distinct ^Path
 PathRef :: distinct ^Path
 
 /// CGPathApplierFunction
-PathApplierFunction :: distinct proc "c" (info: rawptr, element: ^PathElement)
+PathApplierFunction :: proc "c" (info: rawptr, element: ^PathElement)
 
 /// CGPathApplyBlock
-PathApplyBlock :: distinct proc "c" (element: ^PathElement)
+PathApplyBlock :: proc "c" (element: ^PathElement)
 
 /// CGPDFDocumentRef
 PDFDocumentRef :: distinct ^PDFDocument
@@ -2372,13 +2368,13 @@ PDFStreamRef :: distinct ^PDFStream
 PDFStringRef :: distinct ^PDFString
 
 /// CGPDFArrayApplierBlock
-PDFArrayApplierBlock :: distinct proc "c" (index: cffi.size_t, value: PDFObjectRef, info: rawptr) -> cffi.bool
+PDFArrayApplierBlock :: proc "c" (index: cffi.size_t, value: PDFObjectRef, info: rawptr) -> cffi.bool
 
 /// CGPDFDictionaryApplierFunction
-PDFDictionaryApplierFunction :: distinct proc "c" (key: cstring, value: PDFObjectRef, info: rawptr)
+PDFDictionaryApplierFunction :: proc "c" (key: cstring, value: PDFObjectRef, info: rawptr)
 
 /// CGPDFDictionaryApplierBlock
-PDFDictionaryApplierBlock :: distinct proc "c" (key: cstring, value: PDFObjectRef, info: rawptr) -> cffi.bool
+PDFDictionaryApplierBlock :: proc "c" (key: cstring, value: PDFObjectRef, info: rawptr) -> cffi.bool
 
 /// CGShadingRef
 ShadingRef :: distinct ^Shading
@@ -2387,13 +2383,13 @@ ShadingRef :: distinct ^Shading
 FunctionRef :: distinct ^Function
 
 /// CGFunctionEvaluateCallback
-FunctionEvaluateCallback :: distinct proc "c" (info: rawptr, _in: ^Float, out: ^Float)
+FunctionEvaluateCallback :: proc "c" (info: rawptr, _in: ^Float, out: ^Float)
 
 /// CGFunctionReleaseInfoCallback
-FunctionReleaseInfoCallback :: distinct proc "c" (info: rawptr)
+FunctionReleaseInfoCallback :: proc "c" (info: rawptr)
 
 /// CGBitmapContextReleaseDataCallback
-BitmapContextReleaseDataCallback :: distinct proc "c" (releaseInfo: rawptr, data: rawptr)
+BitmapContextReleaseDataCallback :: proc "c" (releaseInfo: rawptr, data: rawptr)
 
 /// CGColorConversionInfoRef
 ColorConversionInfoRef :: distinct ^ColorConversionInfo
@@ -2402,13 +2398,13 @@ ColorConversionInfoRef :: distinct ^ColorConversionInfo
 DataConsumerRef :: distinct ^DataConsumer
 
 /// CGDataConsumerPutBytesCallback
-DataConsumerPutBytesCallback :: distinct proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
+DataConsumerPutBytesCallback :: proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
 
 /// CGDataConsumerReleaseInfoCallback
-DataConsumerReleaseInfoCallback :: distinct proc "c" (info: rawptr)
+DataConsumerReleaseInfoCallback :: proc "c" (info: rawptr)
 
 /// CGErrorCallback
-ErrorCallback :: distinct proc "c" ()
+ErrorCallback :: proc "c" ()
 
 /// CGLayerRef
 LayerRef :: distinct ^Layer
@@ -2426,7 +2422,7 @@ PDFOperatorTableRef :: distinct ^PDFOperatorTable
 PDFScannerRef :: distinct ^PDFScanner
 
 /// CGPDFOperatorCallback
-PDFOperatorCallback :: distinct proc "c" (scanner: PDFScannerRef, info: rawptr)
+PDFOperatorCallback :: proc "c" (scanner: PDFScannerRef, info: rawptr)
 
 /// CGWindowID
 WindowID :: distinct cffi.uint32_t
@@ -2459,7 +2455,7 @@ DisplayErr :: distinct Error
 DisplayConfigRef :: distinct ^_CGDisplayConfigRef
 
 /// CGDisplayReconfigurationCallBack
-DisplayReconfigurationCallBack :: distinct proc "c" (display: DirectDisplayID, flags: DisplayChangeSummaryFlags, userInfo: rawptr)
+DisplayReconfigurationCallBack :: proc "c" (display: DirectDisplayID, flags: DisplayChangeSummaryFlags, userInfo: rawptr)
 
 /// CGDisplayFadeReservationToken
 DisplayFadeReservationToken :: distinct cffi.uint32_t
@@ -2480,7 +2476,7 @@ DisplayStreamRef :: distinct ^DisplayStream
 DisplayStreamUpdateRef :: distinct ^DisplayStreamUpdate
 
 /// CGDisplayStreamFrameAvailableHandler
-DisplayStreamFrameAvailableHandler :: distinct proc "c" (status: DisplayStreamFrameStatus, displayTime: cffi.uint64_t, frameSurface: IOSurfaceRef, updateRef: DisplayStreamUpdateRef)
+DisplayStreamFrameAvailableHandler :: proc "c" (status: DisplayStreamFrameStatus, displayTime: cffi.uint64_t, frameSurface: IOSurfaceRef, updateRef: DisplayStreamUpdateRef)
 
 /// CGEventErr
 EventErr :: distinct Error
@@ -2498,10 +2494,10 @@ CharCode :: distinct cffi.uint16_t
 KeyCode :: distinct cffi.uint16_t
 
 /// CGScreenRefreshCallback
-ScreenRefreshCallback :: distinct proc "c" (count: cffi.uint32_t, rects: ^Rect, userInfo: rawptr)
+ScreenRefreshCallback :: proc "c" (count: cffi.uint32_t, rects: ^Rect, userInfo: rawptr)
 
 /// CGScreenUpdateMoveCallback
-ScreenUpdateMoveCallback :: distinct proc "c" (delta: ScreenUpdateMoveDelta, count: cffi.size_t, rects: ^Rect, userInfo: rawptr)
+ScreenUpdateMoveCallback :: proc "c" (delta: ScreenUpdateMoveDelta, count: cffi.size_t, rects: ^Rect, userInfo: rawptr)
 
 /// CGRectCount
 RectCount :: distinct cffi.uint32_t
@@ -2519,7 +2515,7 @@ EventMask :: distinct cffi.uint64_t
 EventTapProxy :: distinct ^__CGEventTapProxy
 
 /// CGEventTapCallBack
-EventTapCallBack :: distinct proc "c" (proxy: EventTapProxy, type: EventType, event: EventRef, userInfo: rawptr) -> EventRef
+EventTapCallBack :: proc "c" (proxy: EventTapProxy, type: EventType, event: EventRef, userInfo: rawptr) -> EventRef
 
 /// CGEventTapInformation
 EventTapInformation :: distinct __CGEventTapInformation
@@ -2534,25 +2530,25 @@ EventSourceKeyboardType :: distinct cffi.uint32_t
 PSConverterRef :: distinct ^PSConverter
 
 /// CGPSConverterBeginDocumentCallback
-PSConverterBeginDocumentCallback :: distinct proc "c" (info: rawptr)
+PSConverterBeginDocumentCallback :: proc "c" (info: rawptr)
 
 /// CGPSConverterEndDocumentCallback
-PSConverterEndDocumentCallback :: distinct proc "c" (info: rawptr, success: cffi.bool)
+PSConverterEndDocumentCallback :: proc "c" (info: rawptr, success: cffi.bool)
 
 /// CGPSConverterBeginPageCallback
-PSConverterBeginPageCallback :: distinct proc "c" (info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef)
+PSConverterBeginPageCallback :: proc "c" (info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef)
 
 /// CGPSConverterEndPageCallback
-PSConverterEndPageCallback :: distinct proc "c" (info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef)
+PSConverterEndPageCallback :: proc "c" (info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef)
 
 /// CGPSConverterProgressCallback
-PSConverterProgressCallback :: distinct proc "c" (info: rawptr)
+PSConverterProgressCallback :: proc "c" (info: rawptr)
 
 /// CGPSConverterMessageCallback
-PSConverterMessageCallback :: distinct proc "c" (info: rawptr, message: CF.StringRef)
+PSConverterMessageCallback :: proc "c" (info: rawptr, message: CF.StringRef)
 
 /// CGPSConverterReleaseInfoCallback
-PSConverterReleaseInfoCallback :: distinct proc "c" (info: rawptr)
+PSConverterReleaseInfoCallback :: proc "c" (info: rawptr)
 
 /// CGRectEdge
 RectEdge :: enum cffi.uint {

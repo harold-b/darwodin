@@ -20,6 +20,3 @@ UserActivityRestoring :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-UserActivityRestoring_VTable :: struct {
-}
-

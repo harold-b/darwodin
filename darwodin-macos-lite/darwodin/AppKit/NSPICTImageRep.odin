@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPICTImageRep")
 PICTImageRep :: struct { using _: ImageRep, }
 
-PICTImageRep_VTable :: struct {
-    super: ImageRep_VTable,
-}
-

@@ -26,12 +26,3 @@ URLCacheInternal_init :: proc "c" (self: ^URLCacheInternal) -> ^URLCacheInternal
 }
 
 
-URLCacheInternal_VTable :: struct {
-}
-
-URLCacheInternal_odin_extend :: proc(cls: Class, vt: ^URLCacheInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

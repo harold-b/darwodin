@@ -16,7 +16,3 @@ import NS "../Foundation"
 @(objc_class="CATransition")
 Transition :: struct { using _: Animation, }
 
-Transition_VTable :: struct {
-    super: Animation_VTable,
-}
-

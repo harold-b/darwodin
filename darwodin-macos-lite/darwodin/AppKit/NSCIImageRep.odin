@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSCIImageRep")
 CIImageRep :: struct { using _: ImageRep, }
 
-CIImageRep_VTable :: struct {
-    super: ImageRep_VTable,
-}
-

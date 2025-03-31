@@ -26,12 +26,3 @@ URLResponseInternal_init :: proc "c" (self: ^URLResponseInternal) -> ^URLRespons
 }
 
 
-URLResponseInternal_VTable :: struct {
-}
-
-URLResponseInternal_odin_extend :: proc(cls: Class, vt: ^URLResponseInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

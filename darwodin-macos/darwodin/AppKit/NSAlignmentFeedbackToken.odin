@@ -20,12 +20,3 @@ AlignmentFeedbackToken :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AlignmentFeedbackToken_VTable :: struct {
-}
-
-AlignmentFeedbackToken_odin_extend :: proc(cls: Class, vt: ^AlignmentFeedbackToken_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -17,7 +17,3 @@ XPCListenerEndpoint :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-XPCListenerEndpoint_VTable :: struct {
-    super: Object_VTable,
-}
-

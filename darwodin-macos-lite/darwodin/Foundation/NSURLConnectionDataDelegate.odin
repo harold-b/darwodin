@@ -17,6 +17,3 @@ URLConnectionDataDelegate :: struct { using _: intrinsics.objc_object,
     using _: URLConnectionDelegate,
 }
 
-URLConnectionDataDelegate_VTable :: struct {
-}
-

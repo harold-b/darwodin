@@ -29,12 +29,3 @@ EntityDescription_init :: proc "c" (self: ^EntityDescription) -> ^EntityDescript
 }
 
 
-EntityDescription_VTable :: struct {
-}
-
-EntityDescription_odin_extend :: proc(cls: Class, vt: ^EntityDescription_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSURLProtocol")
 URLProtocol :: struct { using _: Object, }
 
-URLProtocol_VTable :: struct {
-    super: Object_VTable,
-}
-

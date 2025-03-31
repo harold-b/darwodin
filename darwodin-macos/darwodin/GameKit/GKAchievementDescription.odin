@@ -66,20 +66,20 @@ AchievementDescription_rarityPercent :: #force_inline proc "c" (self: ^Achieveme
     return msgSend(^NS.Number, self, "rarityPercent")
 }
 @(objc_type=AchievementDescription, objc_name="loadImageWithCompletionHandler")
-AchievementDescription_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^AchievementDescription, completionHandler: proc "c" (image: ^NSImage, error: ^NS.Error)) {
+AchievementDescription_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^AchievementDescription, completionHandler: proc "c" (image: ^NS.Image, error: ^NS.Error)) {
     msgSend(nil, self, "loadImageWithCompletionHandler:", completionHandler)
 }
 @(objc_type=AchievementDescription, objc_name="incompleteAchievementImage", objc_is_class_method=true)
-AchievementDescription_incompleteAchievementImage :: #force_inline proc "c" () -> ^NSImage {
-    return msgSend(^NSImage, AchievementDescription, "incompleteAchievementImage")
+AchievementDescription_incompleteAchievementImage :: #force_inline proc "c" () -> ^NS.Image {
+    return msgSend(^NS.Image, AchievementDescription, "incompleteAchievementImage")
 }
 @(objc_type=AchievementDescription, objc_name="placeholderCompletedAchievementImage", objc_is_class_method=true)
-AchievementDescription_placeholderCompletedAchievementImage :: #force_inline proc "c" () -> ^NSImage {
-    return msgSend(^NSImage, AchievementDescription, "placeholderCompletedAchievementImage")
+AchievementDescription_placeholderCompletedAchievementImage :: #force_inline proc "c" () -> ^NS.Image {
+    return msgSend(^NS.Image, AchievementDescription, "placeholderCompletedAchievementImage")
 }
 @(objc_type=AchievementDescription, objc_name="image")
-AchievementDescription_image :: #force_inline proc "c" (self: ^AchievementDescription) -> ^NSImage {
-    return msgSend(^NSImage, self, "image")
+AchievementDescription_image :: #force_inline proc "c" (self: ^AchievementDescription) -> ^NS.Image {
+    return msgSend(^NS.Image, self, "image")
 }
 @(objc_type=AchievementDescription, objc_name="supportsSecureCoding", objc_is_class_method=true)
 AchievementDescription_supportsSecureCoding :: #force_inline proc "c" () -> bool {

@@ -19,7 +19,3 @@ EmitterCell :: struct { using _: NS.Object,
     using _: MediaTiming,
 }
 
-EmitterCell_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

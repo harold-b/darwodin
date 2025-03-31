@@ -26,12 +26,3 @@ URLProtectionSpaceInternal_init :: proc "c" (self: ^URLProtectionSpaceInternal) 
 }
 
 
-URLProtectionSpaceInternal_VTable :: struct {
-}
-
-URLProtectionSpaceInternal_odin_extend :: proc(cls: Class, vt: ^URLProtectionSpaceInternal_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

@@ -20,7 +20,3 @@ FilePromiseProvider :: struct { using _: NS.Object,
     using _: PasteboardWriting,
 }
 
-FilePromiseProvider_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

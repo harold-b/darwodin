@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPrintOperation")
 PrintOperation :: struct { using _: NS.Object, }
 
-PrintOperation_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

@@ -20,6 +20,3 @@ AccessibilityImage :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
-AccessibilityImage_VTable :: struct {
-}
-

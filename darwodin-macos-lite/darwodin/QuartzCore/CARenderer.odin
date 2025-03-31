@@ -16,7 +16,3 @@ import NS "../Foundation"
 @(objc_class="CARenderer")
 Renderer :: struct { using _: NS.Object, }
 
-Renderer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

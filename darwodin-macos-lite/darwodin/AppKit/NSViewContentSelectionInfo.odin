@@ -20,6 +20,3 @@ ViewContentSelectionInfo :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-ViewContentSelectionInfo_VTable :: struct {
-}
-

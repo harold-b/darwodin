@@ -20,12 +20,3 @@ MatrixDelegate :: struct { using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 
-MatrixDelegate_VTable :: struct {
-}
-
-MatrixDelegate_odin_extend :: proc(cls: Class, vt: ^MatrixDelegate_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

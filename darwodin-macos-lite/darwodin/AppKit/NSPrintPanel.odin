@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSPrintPanel")
 PrintPanel :: struct { using _: NS.Object, }
 
-PrintPanel_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

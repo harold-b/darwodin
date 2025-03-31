@@ -20,6 +20,3 @@ AccessibilityElementProtocol :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-AccessibilityElementProtocol_VTable :: struct {
-}
-

@@ -20,7 +20,3 @@ TextContainer :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-TextContainer_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

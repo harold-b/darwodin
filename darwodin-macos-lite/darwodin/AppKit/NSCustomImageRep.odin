@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSCustomImageRep")
 CustomImageRep :: struct { using _: ImageRep, }
 
-CustomImageRep_VTable :: struct {
-    super: ImageRep_VTable,
-}
-

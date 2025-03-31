@@ -16,7 +16,3 @@ import NS "../Foundation"
 @(objc_class="CAPropertyAnimation")
 PropertyAnimation :: struct { using _: Animation, }
 
-PropertyAnimation_VTable :: struct {
-    super: Animation_VTable,
-}
-

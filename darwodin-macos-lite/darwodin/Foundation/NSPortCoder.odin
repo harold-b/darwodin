@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSPortCoder")
 PortCoder :: struct { using _: Coder, }
 
-PortCoder_VTable :: struct {
-    super: Coder_VTable,
-}
-

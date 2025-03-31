@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTokenField")
 TokenField :: struct { using _: TextField, }
 
-TokenField_VTable :: struct {
-    super: TextField_VTable,
-}
-

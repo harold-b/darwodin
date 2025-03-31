@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSMiddleSpecifier")
 MiddleSpecifier :: struct { using _: ScriptObjectSpecifier, }
 
-MiddleSpecifier_VTable :: struct {
-    super: ScriptObjectSpecifier_VTable,
-}
-

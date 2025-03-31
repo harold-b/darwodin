@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSUnarchiver")
 Unarchiver :: struct { using _: Coder, }
 
-Unarchiver_VTable :: struct {
-    super: Coder_VTable,
-}
-

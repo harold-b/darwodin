@@ -29,12 +29,3 @@ QueryGenerationToken_init :: proc "c" (self: ^QueryGenerationToken) -> ^QueryGen
 }
 
 
-QueryGenerationToken_VTable :: struct {
-}
-
-QueryGenerationToken_odin_extend :: proc(cls: Class, vt: ^QueryGenerationToken_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-}
-

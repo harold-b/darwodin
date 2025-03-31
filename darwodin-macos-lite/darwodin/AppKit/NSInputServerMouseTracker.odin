@@ -18,6 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSInputServerMouseTracker")
 InputServerMouseTracker :: struct { using _: intrinsics.objc_object, }
 
-InputServerMouseTracker_VTable :: struct {
-}
-

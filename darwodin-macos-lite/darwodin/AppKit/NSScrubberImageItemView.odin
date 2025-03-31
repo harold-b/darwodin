@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSScrubberImageItemView")
 ScrubberImageItemView :: struct { using _: ScrubberItemView, }
 
-ScrubberImageItemView_VTable :: struct {
-    super: ScrubberItemView_VTable,
-}
-

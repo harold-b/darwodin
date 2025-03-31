@@ -17,6 +17,3 @@ FileManagerDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-FileManagerDelegate_VTable :: struct {
-}
-

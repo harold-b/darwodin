@@ -21,7 +21,3 @@ UserInterfaceCompressionOptions :: struct { using _: NS.Object,
     using _: NS.Coding,
 }
 
-UserInterfaceCompressionOptions_VTable :: struct {
-    super: NS.Object_VTable,
-}
-

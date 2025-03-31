@@ -28,34 +28,3 @@ StackViewDelegate_stackView_willDetachViews :: #force_inline proc "c" (self: ^St
 StackViewDelegate_stackView_didReattachViews :: #force_inline proc "c" (self: ^StackViewDelegate, stackView: ^StackView, views: ^NS.Array) {
     msgSend(nil, self, "stackView:didReattachViews:", stackView, views)
 }
-StackViewDelegate_VTable :: struct {
-    stackView_willDetachViews: proc(self: ^StackViewDelegate, stackView: ^StackView, views: ^NS.Array),
-    stackView_didReattachViews: proc(self: ^StackViewDelegate, stackView: ^StackView, views: ^NS.Array),
-}
-
-StackViewDelegate_odin_extend :: proc(cls: Class, vt: ^StackViewDelegate_VTable) {
-    assert(vt != nil);
-    meta := ObjC.object_getClass(auto_cast cls)
-    _=meta
-    if vt.stackView_willDetachViews != nil {
-        stackView_willDetachViews :: proc "c" (self: ^StackViewDelegate, _: SEL, stackView: ^StackView, views: ^NS.Array) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^StackViewDelegate_VTable)vt_ctx.protocol_vt).stackView_willDetachViews(self, stackView, views)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("stackView:willDetachViews:"), auto_cast stackView_willDetachViews, "v@:@@") do panic("Failed to register objC method.")
-    }
-    if vt.stackView_didReattachViews != nil {
-        stackView_didReattachViews :: proc "c" (self: ^StackViewDelegate, _: SEL, stackView: ^StackView, views: ^NS.Array) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^StackViewDelegate_VTable)vt_ctx.protocol_vt).stackView_didReattachViews(self, stackView, views)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("stackView:didReattachViews:"), auto_cast stackView_didReattachViews, "v@:@@") do panic("Failed to register objC method.")
-    }
-}
-

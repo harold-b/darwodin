@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSTextFieldCell")
 TextFieldCell :: struct { using _: ActionCell, }
 
-TextFieldCell_VTable :: struct {
-    super: ActionCell_VTable,
-}
-

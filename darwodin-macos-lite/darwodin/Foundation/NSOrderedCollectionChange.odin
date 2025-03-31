@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSOrderedCollectionChange")
 OrderedCollectionChange :: struct { using _: Object, }
 
-OrderedCollectionChange_VTable :: struct {
-    super: Object_VTable,
-}
-

@@ -15,7 +15,3 @@ import CG "../CoreGraphics"
 @(objc_class="NSMutableAttributedString")
 MutableAttributedString :: struct { using _: AttributedString, }
 
-MutableAttributedString_VTable :: struct {
-    super: AttributedString_VTable,
-}
-

@@ -18,7 +18,3 @@ import CA "../QuartzCore"
 @(objc_class="NSObjectController")
 ObjectController :: struct { using _: Controller, }
 
-ObjectController_VTable :: struct {
-    super: Controller_VTable,
-}
-
