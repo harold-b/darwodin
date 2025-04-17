@@ -39,6 +39,10 @@ AppKit:
   - NSWindowController
   - NSWindowDelegate
   - NSColor
+  - NSDraggingDestination
+  - NSMagnificationGestureRecognizer
+  - NSGestureRecognizer
+  - NSPanGestureRecognizer
 
 UIKit:
   - UIApplication
