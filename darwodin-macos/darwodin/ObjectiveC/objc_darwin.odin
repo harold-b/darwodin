@@ -34,8 +34,8 @@ foreign ObjC {
 	objc_lookUpClass         :: proc "c" (name: cstring) -> Class ---
     class_getInstanceSize    :: proc "c" (cls: Class) -> c.size_t ---
 
-// foreign ObjC {
-// 	sel_registerName       :: proc "c" (name: cstring) -> SEL ---
+    sel_registerName :: proc "c" (name: cstring) -> SEL ---
+
 
 // 	class_addMethod         :: proc "c" (cls: Class, name: SEL, imp: IMP, types: cstring) -> BOOL ---
 // 	class_getInstanceMethod :: proc "c" (cls: Class, name: SEL) -> Method ---
@@ -43,6 +43,17 @@ foreign ObjC {
 
 // 	method_setImplementation :: proc "c" (method: Method, imp: IMP) ---
 	// object_getIndexedIvars   :: proc(obj: id) -> rawptr ---
+}
+
+SelectorVariant :: union {
+    SEL,     // Selector
+    cstring, // Selector name
+}
+
+MethodInfo :: struct {
+    method:   rawptr,
+    selector: SelectorVariant,
+    type_code: string,
 }
 
 SubclasserProc :: proc(cls: Class, vtable: rawptr)
@@ -68,7 +79,7 @@ class_get_metaclass :: #force_inline proc "contextless" ( cls: Class ) -> Class 
 //     return transmute(Class)((transmute(^Class)cls)^)
 // }
 
-make_subclasser :: #force_inline proc( $T: typeid, vtable: ^T, impl: proc(cls:Class, vt:^T) ) -> ObjectVTableInfo {
+make_subclasser :: #force_inline proc( vtable: ^$T, impl: proc(cls:Class, vt:^T) ) -> ObjectVTableInfo {
     return ObjectVTableInfo{
         vt   = vtable,
         size = size_of(T),
@@ -127,7 +138,7 @@ register_subclass :: proc(
     superclass: Class, 
     superclass_overrides: Maybe(ObjectVTableInfo) = nil,
     protocol: Maybe(ObjectVTableInfo) = nil,
-    _context: ^runtime.Context = nil
+    _context := context
 ) -> Class {
     assert(superclass != nil)
 
@@ -146,7 +157,6 @@ register_subclass :: proc(
     cls := objc_lookUpClass(class_name); if cls != nil {
         return cls
     }
-
 
     extra_size: uint = uint(size_of(ClassVTInfo)) + 8 + super_size + proto_size
 
@@ -179,7 +189,7 @@ register_subclass :: proc(
     intrinsics.mem_zero(p_info, size_of(ClassVTInfo))
 
     // Assign the context
-    p_info._context = _context^ if _context != nil else runtime.default_context()
+    p_info._context = _context
 
     if superclass_overrides != nil {
         p_info.super_vt = p_super_vt
@@ -210,3 +220,46 @@ alloc_user_object :: proc "contextless" (cls: Class, _context: ^runtime.Context 
     return obj
 }
 
+
+// selector_from_variant :: proc( selector: SelectorVariant ) -> (sel: SEL) {
+//     switch v in selector {
+//         case SEL:
+//             sel = v
+
+//         case cstring:
+//             sel = intrinsics.objc_find_selector(v)
+//             if sel == nil {
+//                 sel = sel_registerName(v)
+//                 assert(sel != nil)
+//             }
+
+//         case:
+//             panic("Invalid selector")
+//     }
+
+//     return
+// }
+
+wrap_method_v0 :: proc( class: Class, selector: SEL, $Method: proc( self: ^$T ), ctx := context ) {
+
+    // sel := selector_from_variant(selector)
+    sel := selector
+
+    wrapper :: proc "c" ( self: ^T, _: SEL ) {
+        context = runtime.default_context()
+        Method(self)
+    }
+
+    if !class_addMethod(class, sel, auto_cast wrapper, "@:") {
+        panic("Failed to add method!")
+    }
+}
+
+// initWithFrame :: proc "c" (self: ^AK.View, _: SEL, frameRect: NS.Rect) -> ^AK.View {
+
+//     vt_ctx := ObjC.object_get_vtable_info(self)
+//     context = vt_ctx._context
+//     return (cast(^VTable)vt_ctx.super_vt).initWithFrame(self, frameRect)
+// }
+
+// if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")

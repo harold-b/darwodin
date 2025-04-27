@@ -72,10 +72,11 @@ for f in ${frameworks[@]}; do
     csgen ${cgen_args[@]} ${args[@]} --odin-out "${out_path}" "$framework_cfg"
 done
 
-# # Copy Objective-C sources
+
+# Copy Objective-C sources
 # # if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
 #   if [[ ! -h "${out_folder}/darwodin/ObjectiveC" ]]; then
 #     # ln -s "$(pwd)/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
 #     cp -r "ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
 #   fi
-# # fi
+# fi

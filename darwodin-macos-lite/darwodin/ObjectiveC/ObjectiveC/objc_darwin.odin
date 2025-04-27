@@ -45,6 +45,17 @@ foreign ObjC {
 	// object_getIndexedIvars   :: proc(obj: id) -> rawptr ---
 }
 
+SelectorVariant :: union {
+    SEL,     // Selector
+    cstring, // Selector name
+}
+
+MethodInfo :: struct {
+    method:   rawptr,
+    selector: SelectorVariant,
+    type_code: string,
+}
+
 SubclasserProc :: proc(cls: Class, vtable: rawptr)
 
 ObjectVTableInfo :: struct {
@@ -147,7 +158,6 @@ register_subclass :: proc(
         return cls
     }
 
-
     extra_size: uint = uint(size_of(ClassVTInfo)) + 8 + super_size + proto_size
 
     cls = objc_allocateClassPair(superclass, class_name, extra_size)
@@ -210,3 +220,46 @@ alloc_user_object :: proc "contextless" (cls: Class, _context: ^runtime.Context 
     return obj
 }
 
+
+// selector_from_variant :: proc( selector: SelectorVariant ) -> (sel: SEL) {
+//     switch v in selector {
+//         case SEL:
+//             sel = v
+
+//         case cstring:
+//             sel = intrinsics.objc_find_selector(v)
+//             if sel == nil {
+//                 sel = sel_registerName(v)
+//                 assert(sel != nil)
+//             }
+
+//         case:
+//             panic("Invalid selector")
+//     }
+
+//     return
+// }
+
+wrap_method_v0 :: proc( class: Class, selector: SEL, $Method: proc( self: ^$T ), ctx := context ) {
+
+    // sel := selector_from_variant(selector)
+    sel := selector
+
+    wrapper :: proc "c" ( self: ^T, _: SEL ) {
+        context = runtime.default_context()
+        Method(self)
+    }
+
+    if !class_addMethod(class, sel, auto_cast wrapper, "@:") {
+        panic("Failed to add method!")
+    }
+}
+
+// initWithFrame :: proc "c" (self: ^AK.View, _: SEL, frameRect: NS.Rect) -> ^AK.View {
+
+//     vt_ctx := ObjC.object_get_vtable_info(self)
+//     context = vt_ctx._context
+//     return (cast(^VTable)vt_ctx.super_vt).initWithFrame(self, frameRect)
+// }
+
+// if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")

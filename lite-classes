@@ -43,6 +43,7 @@ AppKit:
   - NSMagnificationGestureRecognizer
   - NSGestureRecognizer
   - NSPanGestureRecognizer
+  - NSHelpManager
 
 UIKit:
   - UIApplication
