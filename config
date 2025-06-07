@@ -6,13 +6,15 @@ darwodin_base_frameworks=(
   CoreFoundation
   CoreGraphics
   CoreText
+  Security
   Foundation
   QuartzCore
+  AppKit
   Metal
+  ModelIO
   MetalKit
   MetalFX
   GameController
-  ModelIO
   LocalAuthentication
   CloudKit
   GameKit
@@ -20,12 +22,12 @@ darwodin_base_frameworks=(
 )
 
 darwodin_macos_frameworks=(
-  AppKit
+  # AppKit
   FSEvents
 )
 
 darwodin_ios_frameworks=(
-  UIKit
+  # UIKit
 )
 
 function darwodin_get_header_for_framework()
@@ -57,5 +59,22 @@ function darwodin_get_output_folder()
     echo "${darwodin_out_dir_ios}${suffix}"
   else
     echo "${darwodin_out_dir_macos}${suffix}"
+  fi
+}
+
+function darwodin_framework_depends_on_appkit()
+{
+  if [ ${framework_lower} != "corefoundation" ] &&
+      [ ${framework_lower} != "coregraphics" ] &&
+      [ ${framework_lower} != "coretext" ] &&
+      [ ${framework_lower} != "security" ] &&
+      [ ${framework_lower} != "fsevents" ] &&
+      [ ${framework_lower} != "foundation" ] &&
+      [ ${framework_lower} != "quartzcore" ] &&
+      [ ${framework_lower} != "appkit" ] &&
+      [ ${framework_lower} != "uikit" ]; then
+    echo 0
+  else
+    echo 1
   fi
 }

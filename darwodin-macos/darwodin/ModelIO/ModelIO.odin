@@ -127,6 +127,7 @@ foreign lib {
     @(link_name="MDLVertexAttributeTangent") VertexAttributeTangent: ^NS.String
     @(link_name="MDLVertexAttributeTextureCoordinate") VertexAttributeTextureCoordinate: ^NS.String
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="MDLabelGetTypeID")

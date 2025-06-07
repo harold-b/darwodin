@@ -36,6 +36,7 @@ Odin:
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
     - ../exports/CoreText.exports.yml
+    - ../exports/Security.exports.yml
     - ../exports/Foundation.exports.yml
     - ../exports/QuartzCore.exports.yml
 

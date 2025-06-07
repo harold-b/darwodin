@@ -23,11 +23,12 @@ MTLDevice :: intrinsics.objc_object
 cl_device_id :: struct {}
 
 
-FontIndexMax :: 65534
-FontIndexInvalid :: 65535
-GlyphMax :: 65534
-BitmapByteOrder16Host :: 4096
-BitmapByteOrder32Host :: 8192
+FontIndexMax         :: 65534
+FontIndexInvalid     :: 65535
+GlyphMax             :: 65534
+BitmapByteOrder16Host:: 4096
+BitmapByteOrder32Host:: 8192
+
 foreign lib {
     @(link_name="CGPointZero") PointZero: Point
     @(link_name="CGSizeZero") SizeZero: Size
@@ -152,6 +153,7 @@ foreign lib {
     @(link_name="kCGDisplayStreamYCbCrMatrix_ITU_R_601_4") DisplayStreamYCbCrMatrix_ITU_R_601_4: CF.StringRef
     @(link_name="kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995") DisplayStreamYCbCrMatrix_SMPTE_240M_1995: CF.StringRef
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="CGRectGetMinX")

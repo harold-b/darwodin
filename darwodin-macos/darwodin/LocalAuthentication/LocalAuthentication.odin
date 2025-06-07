@@ -25,6 +25,7 @@ foreign lib {
     @(link_name="LATouchIDAuthenticationMaximumAllowableReuseDuration") TouchIDAuthenticationMaximumAllowableReuseDuration: NS.TimeInterval
     @(link_name="LAErrorDomain") ErrorDomain: ^NS.String
 }
+
 /// LABiometryType
 BiometryType :: enum cffi.long {
     None = 0,

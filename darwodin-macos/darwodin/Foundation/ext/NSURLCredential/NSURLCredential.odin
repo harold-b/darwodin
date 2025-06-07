@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../../../ObjectiveC"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
+import Sec "../../../Security"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -29,12 +30,12 @@ VTable :: struct {
     user: proc(self: ^NS.URLCredential) -> ^NS.String,
     password: proc(self: ^NS.URLCredential) -> ^NS.String,
     hasPassword: proc(self: ^NS.URLCredential) -> bool,
-    initWithIdentity: proc(self: ^NS.URLCredential, identity: NS.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential,
-    credentialWithIdentity: proc(identity: NS.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential,
-    identity: proc(self: ^NS.URLCredential) -> NS.SecIdentityRef,
+    initWithIdentity: proc(self: ^NS.URLCredential, identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential,
+    credentialWithIdentity: proc(identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential,
+    identity: proc(self: ^NS.URLCredential) -> Sec.SecIdentityRef,
     certificates: proc(self: ^NS.URLCredential) -> ^NS.Array,
-    initWithTrust: proc(self: ^NS.URLCredential, trust: NS.SecTrustRef) -> ^NS.URLCredential,
-    credentialForTrust: proc(trust: NS.SecTrustRef) -> ^NS.URLCredential,
+    initWithTrust: proc(self: ^NS.URLCredential, trust: Sec.SecTrustRef) -> ^NS.URLCredential,
+    credentialForTrust: proc(trust: Sec.SecTrustRef) -> ^NS.URLCredential,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -137,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasPassword"), auto_cast hasPassword, "B@:") do panic("Failed to register objC method.")
     }
     if vt.initWithIdentity != nil {
-        initWithIdentity :: proc "c" (self: ^NS.URLCredential, _: SEL, identity: NS.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential {
+        initWithIdentity :: proc "c" (self: ^NS.URLCredential, _: SEL, identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdentity:certificates:persistence:"), auto_cast initWithIdentity, "@@:^void@L") do panic("Failed to register objC method.")
     }
     if vt.credentialWithIdentity != nil {
-        credentialWithIdentity :: proc "c" (self: Class, _: SEL, identity: NS.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential {
+        credentialWithIdentity :: proc "c" (self: Class, _: SEL, identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("credentialWithIdentity:certificates:persistence:"), auto_cast credentialWithIdentity, "@#:^void@L") do panic("Failed to register objC method.")
     }
     if vt.identity != nil {
-        identity :: proc "c" (self: ^NS.URLCredential, _: SEL) -> NS.SecIdentityRef {
+        identity :: proc "c" (self: ^NS.URLCredential, _: SEL) -> Sec.SecIdentityRef {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -177,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("certificates"), auto_cast certificates, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTrust != nil {
-        initWithTrust :: proc "c" (self: ^NS.URLCredential, _: SEL, trust: NS.SecTrustRef) -> ^NS.URLCredential {
+        initWithTrust :: proc "c" (self: ^NS.URLCredential, _: SEL, trust: Sec.SecTrustRef) -> ^NS.URLCredential {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -187,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTrust:"), auto_cast initWithTrust, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.credentialForTrust != nil {
-        credentialForTrust :: proc "c" (self: Class, _: SEL, trust: NS.SecTrustRef) -> ^NS.URLCredential {
+        credentialForTrust :: proc "c" (self: Class, _: SEL, trust: Sec.SecTrustRef) -> ^NS.URLCredential {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

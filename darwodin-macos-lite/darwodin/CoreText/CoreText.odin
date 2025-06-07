@@ -20,91 +20,92 @@ Protocol :: distinct id
 foreign import lib "system:CoreText.framework"
 
 
-kFontClassMaskShift :: 28
-kFontPrioritySystem :: 10000
-kFontPriorityNetwork :: 20000
-kFontPriorityComputer :: 30000
-kFontPriorityUser :: 40000
-kFontPriorityDynamic :: 50000
-kFontPriorityProcess :: 60000
-kFontTableBASE :: 1111577413
-kFontTableCBDT :: 1128416340
-kFontTableCBLC :: 1128418371
-kFontTableCFF :: 1128678944
-kFontTableCFF2 :: 1128678962
-kFontTableCOLR :: 1129270354
-kFontTableCPAL :: 1129333068
-kFontTableDSIG :: 1146308935
-kFontTableEBDT :: 1161970772
-kFontTableEBLC :: 1161972803
-kFontTableEBSC :: 1161974595
-kFontTableGDEF :: 1195656518
-kFontTableGPOS :: 1196445523
-kFontTableGSUB :: 1196643650
-kFontTableHVAR :: 1213612370
-kFontTableJSTF :: 1246975046
-kFontTableLTSH :: 1280594760
-kFontTableMATH :: 1296127048
-kFontTableMERG :: 1296388679
-kFontTableMVAR :: 1297498450
-kFontTableOS2 :: 1330851634
-kFontTablePCLT :: 1346587732
-kFontTableSTAT :: 1398030676
-kFontTableSVG :: 1398163232
-kFontTableVDMX :: 1447316824
-kFontTableVORG :: 1448038983
-kFontTableVVAR :: 1448493394
-kFontTableZapf :: 1516335206
-kFontTableAcnt :: 1633906292
-kFontTableAnkr :: 1634626418
-kFontTableAvar :: 1635148146
-kFontTableBdat :: 1650745716
-kFontTableBhed :: 1651008868
-kFontTableBloc :: 1651273571
-kFontTableBsln :: 1651731566
-kFontTableCidg :: 1667851367
-kFontTableCmap :: 1668112752
-kFontTableCvar :: 1668702578
-kFontTableCvt :: 1668707360
-kFontTableFdsc :: 1717859171
-kFontTableFeat :: 1717920116
-kFontTableFmtx :: 1718449272
-kFontTableFond :: 1718578788
-kFontTableFpgm :: 1718642541
-kFontTableFvar :: 1719034226
-kFontTableGasp :: 1734439792
-kFontTableGlyf :: 1735162214
-kFontTableGvar :: 1735811442
-kFontTableHdmx :: 1751412088
-kFontTableHead :: 1751474532
-kFontTableHhea :: 1751672161
-kFontTableHmtx :: 1752003704
-kFontTableHsty :: 1752396921
-kFontTableJust :: 1786082164
-kFontTableKern :: 1801810542
-kFontTableKerx :: 1801810552
-kFontTableLcar :: 1818452338
-kFontTableLoca :: 1819239265
-kFontTableLtag :: 1819566439
-kFontTableMaxp :: 1835104368
-kFontTableMeta :: 1835365473
-kFontTableMort :: 1836020340
-kFontTableMorx :: 1836020344
-kFontTableName :: 1851878757
-kFontTableOpbd :: 1869636196
-kFontTablePost :: 1886352244
-kFontTablePrep :: 1886545264
-kFontTableProp :: 1886547824
-kFontTableSbit :: 1935829364
-kFontTableSbix :: 1935829368
-kFontTableTrak :: 1953653099
-kFontTableVhea :: 1986553185
-kFontTableVmtx :: 1986884728
-kFontTableXref :: 2020762982
-kRunDelegateVersion1 :: 1
-kRunDelegateCurrentVersion :: 1
-kWritingDirectionEmbedding :: 0
+kFontClassMaskShift       :: 28
+kFontPrioritySystem       :: 10000
+kFontPriorityNetwork      :: 20000
+kFontPriorityComputer     :: 30000
+kFontPriorityUser         :: 40000
+kFontPriorityDynamic      :: 50000
+kFontPriorityProcess      :: 60000
+kFontTableBASE            :: 1111577413
+kFontTableCBDT            :: 1128416340
+kFontTableCBLC            :: 1128418371
+kFontTableCFF             :: 1128678944
+kFontTableCFF2            :: 1128678962
+kFontTableCOLR            :: 1129270354
+kFontTableCPAL            :: 1129333068
+kFontTableDSIG            :: 1146308935
+kFontTableEBDT            :: 1161970772
+kFontTableEBLC            :: 1161972803
+kFontTableEBSC            :: 1161974595
+kFontTableGDEF            :: 1195656518
+kFontTableGPOS            :: 1196445523
+kFontTableGSUB            :: 1196643650
+kFontTableHVAR            :: 1213612370
+kFontTableJSTF            :: 1246975046
+kFontTableLTSH            :: 1280594760
+kFontTableMATH            :: 1296127048
+kFontTableMERG            :: 1296388679
+kFontTableMVAR            :: 1297498450
+kFontTableOS2             :: 1330851634
+kFontTablePCLT            :: 1346587732
+kFontTableSTAT            :: 1398030676
+kFontTableSVG             :: 1398163232
+kFontTableVDMX            :: 1447316824
+kFontTableVORG            :: 1448038983
+kFontTableVVAR            :: 1448493394
+kFontTableZapf            :: 1516335206
+kFontTableAcnt            :: 1633906292
+kFontTableAnkr            :: 1634626418
+kFontTableAvar            :: 1635148146
+kFontTableBdat            :: 1650745716
+kFontTableBhed            :: 1651008868
+kFontTableBloc            :: 1651273571
+kFontTableBsln            :: 1651731566
+kFontTableCidg            :: 1667851367
+kFontTableCmap            :: 1668112752
+kFontTableCvar            :: 1668702578
+kFontTableCvt             :: 1668707360
+kFontTableFdsc            :: 1717859171
+kFontTableFeat            :: 1717920116
+kFontTableFmtx            :: 1718449272
+kFontTableFond            :: 1718578788
+kFontTableFpgm            :: 1718642541
+kFontTableFvar            :: 1719034226
+kFontTableGasp            :: 1734439792
+kFontTableGlyf            :: 1735162214
+kFontTableGvar            :: 1735811442
+kFontTableHdmx            :: 1751412088
+kFontTableHead            :: 1751474532
+kFontTableHhea            :: 1751672161
+kFontTableHmtx            :: 1752003704
+kFontTableHsty            :: 1752396921
+kFontTableJust            :: 1786082164
+kFontTableKern            :: 1801810542
+kFontTableKerx            :: 1801810552
+kFontTableLcar            :: 1818452338
+kFontTableLoca            :: 1819239265
+kFontTableLtag            :: 1819566439
+kFontTableMaxp            :: 1835104368
+kFontTableMeta            :: 1835365473
+kFontTableMort            :: 1836020340
+kFontTableMorx            :: 1836020344
+kFontTableName            :: 1851878757
+kFontTableOpbd            :: 1869636196
+kFontTablePost            :: 1886352244
+kFontTablePrep            :: 1886545264
+kFontTableProp            :: 1886547824
+kFontTableSbit            :: 1935829364
+kFontTableSbix            :: 1935829368
+kFontTableTrak            :: 1953653099
+kFontTableVhea            :: 1986553185
+kFontTableVmtx            :: 1986884728
+kFontTableXref            :: 2020762982
+kRunDelegateVersion1      :: 1
+kRunDelegateCurrentVersion:: 1
+kWritingDirectionEmbedding:: 0
 kWritingDirectionOverride :: 2
+
 foreign lib {
     @(link_name="kCTFontSymbolicTrait") kFontSymbolicTrait: CF.StringRef
     @(link_name="kCTFontWeightTrait") kFontWeightTrait: CF.StringRef
@@ -236,6 +237,7 @@ foreign lib {
     @(link_name="kCTAdaptiveImageProviderAttributeName") kAdaptiveImageProviderAttributeName: CF.StringRef
     @(link_name="kCTTabColumnTerminatorsAttributeName") kTabColumnTerminatorsAttributeName: CF.StringRef
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="CTFontDescriptorGetTypeID")
@@ -1275,7 +1277,7 @@ UnderlineStyleModifier :: enum cffi.int {
 }
 UnderlineStyleModifiers :: bit_set[UnderlineStyleModifier; cffi.int]
 
-UnderlineStyleModifier_PatternDashDot :: UnderlineStyleModifiers{ .PatternDot, .PatternDash,  }
+UnderlineStyleModifiers_PatternDashDot :: UnderlineStyleModifiers{ .PatternDot, .PatternDash,  }
 
 /// __CTFontDescriptor
 __CTFontDescriptor :: struct {}

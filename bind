@@ -60,6 +60,7 @@ for f in ${frameworks[@]}; do
     if [ ${framework_lower} != "corefoundation" ] &&
        [ ${framework_lower} != "coregraphics" ] &&
        [ ${framework_lower} != "coretext" ] &&
+       [ ${framework_lower} != "security" ] &&
        [ ${framework_lower} != "fsevents" ] &&
        [ ${framework_lower} != "foundation" ] &&
        [ ${framework_lower} != "quartzcore" ] &&

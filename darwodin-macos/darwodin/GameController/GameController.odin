@@ -25,7 +25,8 @@ CHHapticEngine :: NS.Object
 IOHIDDeviceRef :: struct {}
 
 
-DualSenseAdaptiveTriggerDiscretePositionCount :: 10
+DualSenseAdaptiveTriggerDiscretePositionCount:: 10
+
 foreign lib {
     @(link_name="GCPoint2Zero") Point2Zero: Point2
     @(link_name="GCProductCategoryDualSense") ProductCategoryDualSense: ^NS.String
@@ -375,6 +376,7 @@ foreign lib {
     @(link_name="GCHapticsLocalityRightTrigger") HapticsLocalityRightTrigger: ^NS.String
     @(link_name="GCHapticDurationInfinite") HapticDurationInfinite: cffi.float
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="GCInputBackLeftButton")

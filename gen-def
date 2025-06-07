@@ -11,10 +11,7 @@ while true; do
     -ios)
       use_ios=1
     ;;
-    -framework)
-      shift && framework=$1 || exit 1
-    ;;
-    -f)
+    -framework|-f)
       shift && framework=$1 || exit 1
     ;;
     -i)

@@ -21,8 +21,9 @@ Protocol :: distinct id
 foreign import lib "system:GameKit.framework"
 
 
-GameModelMaxScore :: 16777216
-GameModelMinScore :: -16777216
+GameModelMaxScore:: 16777216
+GameModelMinScore:: -16777216
+
 foreign lib {
     @(link_name="GKErrorDomain") ErrorDomain: ^NS.String
     @(link_name="GKPlayerIDNoLongerAvailable") PlayerIDNoLongerAvailable: ^NS.String
@@ -36,6 +37,7 @@ foreign lib {
     @(link_name="GKVoiceChatServiceErrorDomain") VoiceChatServiceErrorDomain: ^NS.String
     @(link_name="GKSessionErrorDomain") SessionErrorDomain: ^NS.String
 }
+
 /// GKMatchProperties
 MatchProperties :: distinct NS.Dictionary
 

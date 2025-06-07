@@ -1,0 +1,113 @@
+---
+
+Defs: ../definitions/macos/security.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*Sec.+
+    - ^_*Auth.+
+    - ^_*Session.+
+    - ^_*Sec.+
+    - ^SSL.+
+    - ^tls.+
+    - ^cssm_.+
+    - ^CSSM_.+
+    - ^_*CE_.+
+    - ^x509.+
+    - x509_validity
+    - ^audit_token_t
+
+  ExportMethods:
+    - ^::Sec.+
+    - ^::Auth.+
+    - ^::Session.+
+
+  ExportVars:
+    - ^::k?Sec.+
+    - ^::k?Auth.+
+    - ^::k?Session.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/global.exports.yml
+    - ../exports/CoreFoundation.exports.yml
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : Security
+      Export: Sec
+      DarwinLinkLibs: [system:Security.framework]
+      Filter: .*
+
+      Imports:
+        - |
+          __sFILE :: rawptr
+          OpaqueSecIdentitySearchRef :: struct {}
+          OpaquePolicySearchRef :: struct {}
+          OpaqueSecTransformImplementation :: struct {}
+          xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead of exporting from Foundation
+
+      # TypeMap:
+
+
+  # Symbol Transformers
+  EnumTransforms:
+    - Type: .*
+      Transforms:
+      - Kind: RemoveTypeWordsFromElements
+      - Kind: RemovePartialTypeNamePrefix
+      - Kind: RemoveUnderscorePrefix
+      - Kind: UnderscoreNumbers
+
+    - Type: ^CSSM_X509EXT_DATA_FORMAT$
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: X509_DATAFORMAT_
+
+  TypeTransforms:
+    # - Type: ^(MTLFX).+
+    #   Transforms:
+    #   - Kind  : RemovePrefix
+    #     Source: $group0
+    - Type: (Flag|Option|Mask)$  # Transforms for bit_set types
+      Transforms:
+      - Kind  : AppendSuffix
+        Source: s
+
+  BitSetMap:
+    - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: s
+ 
+  # ProcTransforms:
+  # - Type: ^(_*MTLFX).+
+  #   Transforms:
+  #   - Kind  : RemovePrefix
+  #     Source: $group0
+
+  # VarTransforms:
+  #   - Type: ^(_*MTLFX).+
+  #     Transforms:
+  #       - Kind  : RemovePrefix
+  #         Source: $group0

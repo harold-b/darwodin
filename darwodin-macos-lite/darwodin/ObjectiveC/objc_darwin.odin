@@ -39,6 +39,7 @@ foreign ObjC {
 
     // NOTE: From Objective-C runtime:
     //  These functions must be cast to an appropriate function pointer type before being called. 
+    objc_msgSendSuper  :: proc "c" (super: ^objc_super, op: SEL, #c_vararg args: ..any ) -> id ---
     objc_msgSendSuper2 :: proc "c" (super: ^objc_super, op: SEL, #c_vararg args: ..any ) -> id ---
 
 

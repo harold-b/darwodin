@@ -27,19 +27,18 @@ frameworks=(
 )
 
 
-ios_arg=
-if [[ ${use_ios} -ne 1 ]]; then
-    frameworks+=(${darwodin_macos_frameworks[@]})
-else
-    frameworks+=(${darwodin_ios_frameworks[@]})
-    ios_arg=-ios
+ios_args=()
+if [[ ${use_ios} -eq 1 ]]; then
+    ios_args+=(-ios)
 fi
+# frameworks+=(${darwodin_ios_frameworks[@]})
+# frameworks+=(${darwodin_macos_frameworks[@]})
 
 if [[ ${lite} -eq 1 ]]; then
     lite_arg="-l"
 fi
 
-./bind ${frameworks[@]} ${lite_arg} ${ios_arg}
+./bind ${frameworks[@]} ${lite_arg} ${ios_args[@]}
 
 
 # Copy Objective-C package
@@ -53,11 +52,17 @@ excluded_frameworks=
 
 if [[ ${use_ios} -ne 1 ]]; then
     excluded_frameworks=(${darwodin_ios_frameworks[@]})
+    excluded_frameworks+=(UIKit)
 else
     excluded_frameworks=(${darwodin_macos_frameworks[@]})
+    excluded_frameworks+=(AppKit)
 fi
 
 for f in ${excluded_frameworks[@]}; do
-    mkdir -p "${out_dir}/darwodin/$f/"
-    echo "package $f" > "${out_dir}/darwodin/$f/${f}.odin"
+  if [[ "$f" == "AppKit" &&  ${use_ios} -eq 1 ]]; then
+    f=UIKit
+  fi
+
+  mkdir -p "${out_dir}/darwodin/$f/"
+  echo "package $f" > "${out_dir}/darwodin/$f/${f}.odin"
 done

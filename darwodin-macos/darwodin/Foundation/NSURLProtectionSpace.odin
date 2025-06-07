@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import Sec "../Security"
 
 
 
@@ -69,8 +70,8 @@ URLProtectionSpace_distinguishedNames :: #force_inline proc "c" (self: ^URLProte
     return msgSend(^Array, self, "distinguishedNames")
 }
 @(objc_type=URLProtectionSpace, objc_name="serverTrust")
-URLProtectionSpace_serverTrust :: #force_inline proc "c" (self: ^URLProtectionSpace) -> SecTrustRef {
-    return msgSend(SecTrustRef, self, "serverTrust")
+URLProtectionSpace_serverTrust :: #force_inline proc "c" (self: ^URLProtectionSpace) -> Sec.SecTrustRef {
+    return msgSend(Sec.SecTrustRef, self, "serverTrust")
 }
 @(objc_type=URLProtectionSpace, objc_name="supportsSecureCoding", objc_is_class_method=true)
 URLProtectionSpace_supportsSecureCoding :: #force_inline proc "c" () -> bool {

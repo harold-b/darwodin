@@ -66,6 +66,7 @@ foreign lib {
     @(link_name="CHHapticPatternKeyParameterCurve") HapticPatternKeyParameterCurve: ^NS.String
     @(link_name="CHHapticPatternKeyParameterCurveControlPoints") HapticPatternKeyParameterCurveControlPoints: ^NS.String
 }
+
 /// CHHapticEventParameterID
 HapticEventParameterID :: distinct ^NS.String
 

@@ -23,8 +23,9 @@ Protocol :: distinct id
 foreign import lib "system:Metal.framework"
 
 
-BufferLayoutStrideDynamic :: 18446744073709551615
-AttributeStrideStatic :: 18446744073709551615
+BufferLayoutStrideDynamic:: 18446744073709551615
+AttributeStrideStatic    :: 18446744073709551615
+
 foreign lib {
     @(link_name="MTLLibraryErrorDomain") LibraryErrorDomain: ^NS.String
     @(link_name="MTLCommonCounterTimestamp") CommonCounterTimestamp: ^NS.String
@@ -57,6 +58,7 @@ foreign lib {
     @(link_name="MTLBinaryArchiveDomain") BinaryArchiveDomain: ^NS.String
     @(link_name="MTLIOErrorDomain") IOErrorDomain: ^NS.String
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="MTLCreateSystemDefaultDevice")
@@ -1113,7 +1115,7 @@ ColorWriteMask :: enum cffi.ulong {
 }
 ColorWriteMasks :: bit_set[ColorWriteMask; cffi.ulong]
 
-ColorWriteMask_All :: ColorWriteMasks{ .Alpha, .Blue, .Green, .Red,  }
+ColorWriteMasks_All :: ColorWriteMasks{ .Alpha, .Blue, .Green, .Red,  }
 
 /// MTLPrimitiveTopologyClass
 PrimitiveTopologyClass :: enum cffi.ulong {

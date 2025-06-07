@@ -13,15 +13,7 @@ Cpp:
   
   ExportTypes:
     - ^_*NS.+
-    - ^_*Sec.+
-    - ^SSL.+
-    - ^tls.+
-    - ^cssm_.+
-    - ^CSSM_.+
-    - ^_*CE_.+
-    - ^x509.+
     - ^.*GrafP
-    - x509_validity
     - ^_?xpc_.+
     - ^unichar
     - ^(Opaque)?AE.+
@@ -53,6 +45,7 @@ Odin:
     - ../exports/global.exports.yml
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
+    - ../exports/Security.exports.yml
 
 
   ResolvedTypedefs:
@@ -97,11 +90,6 @@ Odin:
     Transforms:
     - Kind  : RemovePrefix
       Source: DNT_
-
-  - Type: ^CSSM_X509EXT_DATA_FORMAT$
-    Transforms:
-    - Kind  : RemovePrefix
-      Source: X509_DATAFORMAT_
 
 
   TypeTransforms:

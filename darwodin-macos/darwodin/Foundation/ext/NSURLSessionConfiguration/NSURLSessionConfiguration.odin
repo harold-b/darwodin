@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../../../ObjectiveC"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
+import Sec "../../../Security"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -55,14 +56,14 @@ VTable :: struct {
     setSessionSendsLaunchEvents: proc(self: ^NS.URLSessionConfiguration, sessionSendsLaunchEvents: bool),
     connectionProxyDictionary: proc(self: ^NS.URLSessionConfiguration) -> ^NS.Dictionary,
     setConnectionProxyDictionary: proc(self: ^NS.URLSessionConfiguration, connectionProxyDictionary: ^NS.Dictionary),
-    _TLSMinimumSupportedProtocol: proc(self: ^NS.URLSessionConfiguration) -> NS.SSLProtocol,
-    setTLSMinimumSupportedProtocol: proc(self: ^NS.URLSessionConfiguration, TLSMinimumSupportedProtocol: NS.SSLProtocol),
-    _TLSMaximumSupportedProtocol: proc(self: ^NS.URLSessionConfiguration) -> NS.SSLProtocol,
-    setTLSMaximumSupportedProtocol: proc(self: ^NS.URLSessionConfiguration, TLSMaximumSupportedProtocol: NS.SSLProtocol),
-    _TLSMinimumSupportedProtocolVersion: proc(self: ^NS.URLSessionConfiguration) -> NS.tls_protocol_version_t,
-    setTLSMinimumSupportedProtocolVersion: proc(self: ^NS.URLSessionConfiguration, TLSMinimumSupportedProtocolVersion: NS.tls_protocol_version_t),
-    _TLSMaximumSupportedProtocolVersion: proc(self: ^NS.URLSessionConfiguration) -> NS.tls_protocol_version_t,
-    setTLSMaximumSupportedProtocolVersion: proc(self: ^NS.URLSessionConfiguration, TLSMaximumSupportedProtocolVersion: NS.tls_protocol_version_t),
+    _TLSMinimumSupportedProtocol: proc(self: ^NS.URLSessionConfiguration) -> Sec.SSLProtocol,
+    setTLSMinimumSupportedProtocol: proc(self: ^NS.URLSessionConfiguration, TLSMinimumSupportedProtocol: Sec.SSLProtocol),
+    _TLSMaximumSupportedProtocol: proc(self: ^NS.URLSessionConfiguration) -> Sec.SSLProtocol,
+    setTLSMaximumSupportedProtocol: proc(self: ^NS.URLSessionConfiguration, TLSMaximumSupportedProtocol: Sec.SSLProtocol),
+    _TLSMinimumSupportedProtocolVersion: proc(self: ^NS.URLSessionConfiguration) -> Sec.tls_protocol_version_t,
+    setTLSMinimumSupportedProtocolVersion: proc(self: ^NS.URLSessionConfiguration, TLSMinimumSupportedProtocolVersion: Sec.tls_protocol_version_t),
+    _TLSMaximumSupportedProtocolVersion: proc(self: ^NS.URLSessionConfiguration) -> Sec.tls_protocol_version_t,
+    setTLSMaximumSupportedProtocolVersion: proc(self: ^NS.URLSessionConfiguration, TLSMaximumSupportedProtocolVersion: Sec.tls_protocol_version_t),
     _HTTPShouldUsePipelining: proc(self: ^NS.URLSessionConfiguration) -> bool,
     setHTTPShouldUsePipelining: proc(self: ^NS.URLSessionConfiguration, HTTPShouldUsePipelining: bool),
     _HTTPShouldSetCookies: proc(self: ^NS.URLSessionConfiguration) -> bool,
@@ -446,7 +447,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setConnectionProxyDictionary:"), auto_cast setConnectionProxyDictionary, "v@:@") do panic("Failed to register objC method.")
     }
     if vt._TLSMinimumSupportedProtocol != nil {
-        _TLSMinimumSupportedProtocol :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> NS.SSLProtocol {
+        _TLSMinimumSupportedProtocol :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> Sec.SSLProtocol {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -456,7 +457,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("TLSMinimumSupportedProtocol"), auto_cast _TLSMinimumSupportedProtocol, "i@:") do panic("Failed to register objC method.")
     }
     if vt.setTLSMinimumSupportedProtocol != nil {
-        setTLSMinimumSupportedProtocol :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, TLSMinimumSupportedProtocol: NS.SSLProtocol) {
+        setTLSMinimumSupportedProtocol :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, TLSMinimumSupportedProtocol: Sec.SSLProtocol) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -466,7 +467,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTLSMinimumSupportedProtocol:"), auto_cast setTLSMinimumSupportedProtocol, "v@:i") do panic("Failed to register objC method.")
     }
     if vt._TLSMaximumSupportedProtocol != nil {
-        _TLSMaximumSupportedProtocol :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> NS.SSLProtocol {
+        _TLSMaximumSupportedProtocol :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> Sec.SSLProtocol {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -476,7 +477,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("TLSMaximumSupportedProtocol"), auto_cast _TLSMaximumSupportedProtocol, "i@:") do panic("Failed to register objC method.")
     }
     if vt.setTLSMaximumSupportedProtocol != nil {
-        setTLSMaximumSupportedProtocol :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, TLSMaximumSupportedProtocol: NS.SSLProtocol) {
+        setTLSMaximumSupportedProtocol :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, TLSMaximumSupportedProtocol: Sec.SSLProtocol) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -486,7 +487,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTLSMaximumSupportedProtocol:"), auto_cast setTLSMaximumSupportedProtocol, "v@:i") do panic("Failed to register objC method.")
     }
     if vt._TLSMinimumSupportedProtocolVersion != nil {
-        _TLSMinimumSupportedProtocolVersion :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> NS.tls_protocol_version_t {
+        _TLSMinimumSupportedProtocolVersion :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> Sec.tls_protocol_version_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -496,7 +497,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("TLSMinimumSupportedProtocolVersion"), auto_cast _TLSMinimumSupportedProtocolVersion, "S@:") do panic("Failed to register objC method.")
     }
     if vt.setTLSMinimumSupportedProtocolVersion != nil {
-        setTLSMinimumSupportedProtocolVersion :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, TLSMinimumSupportedProtocolVersion: NS.tls_protocol_version_t) {
+        setTLSMinimumSupportedProtocolVersion :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, TLSMinimumSupportedProtocolVersion: Sec.tls_protocol_version_t) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -506,7 +507,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTLSMinimumSupportedProtocolVersion:"), auto_cast setTLSMinimumSupportedProtocolVersion, "v@:S") do panic("Failed to register objC method.")
     }
     if vt._TLSMaximumSupportedProtocolVersion != nil {
-        _TLSMaximumSupportedProtocolVersion :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> NS.tls_protocol_version_t {
+        _TLSMaximumSupportedProtocolVersion :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> Sec.tls_protocol_version_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -516,7 +517,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("TLSMaximumSupportedProtocolVersion"), auto_cast _TLSMaximumSupportedProtocolVersion, "S@:") do panic("Failed to register objC method.")
     }
     if vt.setTLSMaximumSupportedProtocolVersion != nil {
-        setTLSMaximumSupportedProtocolVersion :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, TLSMaximumSupportedProtocolVersion: NS.tls_protocol_version_t) {
+        setTLSMaximumSupportedProtocolVersion :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, TLSMaximumSupportedProtocolVersion: Sec.tls_protocol_version_t) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -44,6 +44,7 @@ foreign lib {
     @(link_name="MTKModelErrorDomain") ModelErrorDomain: ^NS.String
     @(link_name="MTKModelErrorKey") ModelErrorKey: ^NS.String
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="MTKModelIOVertexDescriptorFromMetal")
