@@ -24,6 +24,7 @@ Cpp:
     - ^x509.+
     - x509_validity
     - ^audit_token_t
+    - ^errSec.+
 
   ExportMethods:
     - ^::Sec.+
@@ -34,6 +35,7 @@ Cpp:
     - ^::k?Sec.+
     - ^::k?Auth.+
     - ^::k?Session.+
+    - ^::errSec.+
 
   IgnoreTypes  : []
   IgnoreMethods: []
