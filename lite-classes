@@ -44,6 +44,8 @@ AppKit:
   - NSGestureRecognizer
   - NSPanGestureRecognizer
   - NSHelpManager
+  - NSDraggingInfo
+  - NSPasteboard
 
 UIKit:
   - UIApplication
