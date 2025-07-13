@@ -21,19 +21,19 @@ PublicKey_exportBytesWithCompletion :: #force_inline proc "c" (self: ^PublicKey,
     msgSend(nil, self, "exportBytesWithCompletion:", handler)
 }
 @(objc_type=PublicKey, objc_name="encryptData")
-PublicKey_encryptData :: #force_inline proc "c" (self: ^PublicKey, data: ^NS.Data, algorithm: NS.SecKeyAlgorithm, handler: proc "c" (_arg_0: ^NS.Data, _arg_1: ^NS.Error)) {
+PublicKey_encryptData :: #force_inline proc "c" (self: ^PublicKey, data: ^NS.Data, algorithm: SecKeyAlgorithm, handler: proc "c" (_arg_0: ^NS.Data, _arg_1: ^NS.Error)) {
     msgSend(nil, self, "encryptData:secKeyAlgorithm:completion:", data, algorithm, handler)
 }
 @(objc_type=PublicKey, objc_name="canEncryptUsingSecKeyAlgorithm")
-PublicKey_canEncryptUsingSecKeyAlgorithm :: #force_inline proc "c" (self: ^PublicKey, algorithm: NS.SecKeyAlgorithm) -> bool {
+PublicKey_canEncryptUsingSecKeyAlgorithm :: #force_inline proc "c" (self: ^PublicKey, algorithm: SecKeyAlgorithm) -> bool {
     return msgSend(bool, self, "canEncryptUsingSecKeyAlgorithm:", algorithm)
 }
 @(objc_type=PublicKey, objc_name="verifyData")
-PublicKey_verifyData :: #force_inline proc "c" (self: ^PublicKey, signedData: ^NS.Data, signature: ^NS.Data, algorithm: NS.SecKeyAlgorithm, handler: proc "c" (_arg_0: ^NS.Error)) {
+PublicKey_verifyData :: #force_inline proc "c" (self: ^PublicKey, signedData: ^NS.Data, signature: ^NS.Data, algorithm: SecKeyAlgorithm, handler: proc "c" (_arg_0: ^NS.Error)) {
     msgSend(nil, self, "verifyData:signature:secKeyAlgorithm:completion:", signedData, signature, algorithm, handler)
 }
 @(objc_type=PublicKey, objc_name="canVerifyUsingSecKeyAlgorithm")
-PublicKey_canVerifyUsingSecKeyAlgorithm :: #force_inline proc "c" (self: ^PublicKey, algorithm: NS.SecKeyAlgorithm) -> bool {
+PublicKey_canVerifyUsingSecKeyAlgorithm :: #force_inline proc "c" (self: ^PublicKey, algorithm: SecKeyAlgorithm) -> bool {
     return msgSend(bool, self, "canVerifyUsingSecKeyAlgorithm:", algorithm)
 }
 @(objc_type=PublicKey, objc_name="new", objc_is_class_method=true)

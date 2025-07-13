@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import Sec "../Security"
 
 
 
@@ -146,35 +147,35 @@ URLSessionConfiguration_setConnectionProxyDictionary :: #force_inline proc "c" (
     msgSend(nil, self, "setConnectionProxyDictionary:", connectionProxyDictionary)
 }
 @(objc_type=URLSessionConfiguration, objc_name="TLSMinimumSupportedProtocol")
-URLSessionConfiguration_TLSMinimumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> SSLProtocol {
-    return msgSend(SSLProtocol, self, "TLSMinimumSupportedProtocol")
+URLSessionConfiguration_TLSMinimumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Sec.SSLProtocol {
+    return msgSend(Sec.SSLProtocol, self, "TLSMinimumSupportedProtocol")
 }
 @(objc_type=URLSessionConfiguration, objc_name="setTLSMinimumSupportedProtocol")
-URLSessionConfiguration_setTLSMinimumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMinimumSupportedProtocol: SSLProtocol) {
+URLSessionConfiguration_setTLSMinimumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMinimumSupportedProtocol: Sec.SSLProtocol) {
     msgSend(nil, self, "setTLSMinimumSupportedProtocol:", TLSMinimumSupportedProtocol)
 }
 @(objc_type=URLSessionConfiguration, objc_name="TLSMaximumSupportedProtocol")
-URLSessionConfiguration_TLSMaximumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> SSLProtocol {
-    return msgSend(SSLProtocol, self, "TLSMaximumSupportedProtocol")
+URLSessionConfiguration_TLSMaximumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Sec.SSLProtocol {
+    return msgSend(Sec.SSLProtocol, self, "TLSMaximumSupportedProtocol")
 }
 @(objc_type=URLSessionConfiguration, objc_name="setTLSMaximumSupportedProtocol")
-URLSessionConfiguration_setTLSMaximumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMaximumSupportedProtocol: SSLProtocol) {
+URLSessionConfiguration_setTLSMaximumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMaximumSupportedProtocol: Sec.SSLProtocol) {
     msgSend(nil, self, "setTLSMaximumSupportedProtocol:", TLSMaximumSupportedProtocol)
 }
 @(objc_type=URLSessionConfiguration, objc_name="TLSMinimumSupportedProtocolVersion")
-URLSessionConfiguration_TLSMinimumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> tls_protocol_version_t {
-    return msgSend(tls_protocol_version_t, self, "TLSMinimumSupportedProtocolVersion")
+URLSessionConfiguration_TLSMinimumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Sec.tls_protocol_version_t {
+    return msgSend(Sec.tls_protocol_version_t, self, "TLSMinimumSupportedProtocolVersion")
 }
 @(objc_type=URLSessionConfiguration, objc_name="setTLSMinimumSupportedProtocolVersion")
-URLSessionConfiguration_setTLSMinimumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMinimumSupportedProtocolVersion: tls_protocol_version_t) {
+URLSessionConfiguration_setTLSMinimumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMinimumSupportedProtocolVersion: Sec.tls_protocol_version_t) {
     msgSend(nil, self, "setTLSMinimumSupportedProtocolVersion:", TLSMinimumSupportedProtocolVersion)
 }
 @(objc_type=URLSessionConfiguration, objc_name="TLSMaximumSupportedProtocolVersion")
-URLSessionConfiguration_TLSMaximumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> tls_protocol_version_t {
-    return msgSend(tls_protocol_version_t, self, "TLSMaximumSupportedProtocolVersion")
+URLSessionConfiguration_TLSMaximumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Sec.tls_protocol_version_t {
+    return msgSend(Sec.tls_protocol_version_t, self, "TLSMaximumSupportedProtocolVersion")
 }
 @(objc_type=URLSessionConfiguration, objc_name="setTLSMaximumSupportedProtocolVersion")
-URLSessionConfiguration_setTLSMaximumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMaximumSupportedProtocolVersion: tls_protocol_version_t) {
+URLSessionConfiguration_setTLSMaximumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMaximumSupportedProtocolVersion: Sec.tls_protocol_version_t) {
     msgSend(nil, self, "setTLSMaximumSupportedProtocolVersion:", TLSMaximumSupportedProtocolVersion)
 }
 @(objc_type=URLSessionConfiguration, objc_name="HTTPShouldUsePipelining")

@@ -38,54 +38,56 @@ DISPATCH_TIME_NOW       :: 0
 DISPATCH_TIME_FOREVER   :: 0xFFFFFFFFFFFFFFFF
 
 
-OSUnknownByteOrder :: 0
-OSLittleEndian :: 1
-OSBigEndian :: 2
-kNotificationDeliverImmediately :: 1
-kNotificationPostToAllSessions :: 2
-kCalendarComponentsWrap :: 1
-kSocketAutomaticallyReenableReadCallBack :: 1
+
+OSUnknownByteOrder                         :: 0
+OSLittleEndian                             :: 1
+OSBigEndian                                :: 2
+kNotificationDeliverImmediately            :: 1
+kNotificationPostToAllSessions             :: 2
+kCalendarComponentsWrap                    :: 1
+kSocketAutomaticallyReenableReadCallBack   :: 1
 kSocketAutomaticallyReenableAcceptCallBack :: 2
-kSocketAutomaticallyReenableDataCallBack :: 3
-kSocketAutomaticallyReenableWriteCallBack :: 8
-kSocketLeaveErrors :: 64
-kSocketCloseOnInvalidate :: 128
-DISPATCH_WALLTIME_NOW :: 18446744073709551614
-kPropertyListReadCorruptError :: 3840
-kPropertyListReadUnknownVersionError :: 3841
-kPropertyListReadStreamError :: 3842
-kPropertyListWriteStreamError :: 3851
-kBundleExecutableArchitectureI386 :: 7
-kBundleExecutableArchitecturePPC :: 18
-kBundleExecutableArchitectureX86_64 :: 16777223
-kBundleExecutableArchitecturePPC64 :: 16777234
-kBundleExecutableArchitectureARM64 :: 16777228
-kMessagePortSuccess :: 0
-kMessagePortSendTimeout :: -1
-kMessagePortReceiveTimeout :: -2
-kMessagePortIsInvalid :: -3
-kMessagePortTransportError :: -4
-kMessagePortBecameInvalidError :: -5
-kStringTokenizerUnitWord :: 0
-kStringTokenizerUnitSentence :: 1
-kStringTokenizerUnitParagraph :: 2
-kStringTokenizerUnitLineBreak :: 3
-kStringTokenizerUnitWordBoundary :: 4
-kStringTokenizerAttributeLatinTranscription :: 65536
-kStringTokenizerAttributeLanguage :: 131072
-kFileDescriptorReadCallBack :: 1
-kFileDescriptorWriteCallBack :: 2
-kUserNotificationStopAlertLevel :: 0
-kUserNotificationNoteAlertLevel :: 1
-kUserNotificationCautionAlertLevel :: 2
-kUserNotificationPlainAlertLevel :: 3
-kUserNotificationDefaultResponse :: 0
-kUserNotificationAlternateResponse :: 1
-kUserNotificationOtherResponse :: 2
-kUserNotificationCancelResponse :: 3
-kUserNotificationNoDefaultButtonFlag :: 32
-kUserNotificationUseRadioButtonsFlag :: 64
-kNotFound :: -1
+kSocketAutomaticallyReenableDataCallBack   :: 3
+kSocketAutomaticallyReenableWriteCallBack  :: 8
+kSocketLeaveErrors                         :: 64
+kSocketCloseOnInvalidate                   :: 128
+DISPATCH_WALLTIME_NOW                      :: 18446744073709551614
+kPropertyListReadCorruptError              :: 3840
+kPropertyListReadUnknownVersionError       :: 3841
+kPropertyListReadStreamError               :: 3842
+kPropertyListWriteStreamError              :: 3851
+kBundleExecutableArchitectureI386          :: 7
+kBundleExecutableArchitecturePPC           :: 18
+kBundleExecutableArchitectureX86_64        :: 16777223
+kBundleExecutableArchitecturePPC64         :: 16777234
+kBundleExecutableArchitectureARM64         :: 16777228
+kMessagePortSuccess                        :: 0
+kMessagePortSendTimeout                    :: -1
+kMessagePortReceiveTimeout                 :: -2
+kMessagePortIsInvalid                      :: -3
+kMessagePortTransportError                 :: -4
+kMessagePortBecameInvalidError             :: -5
+kStringTokenizerUnitWord                   :: 0
+kStringTokenizerUnitSentence               :: 1
+kStringTokenizerUnitParagraph              :: 2
+kStringTokenizerUnitLineBreak              :: 3
+kStringTokenizerUnitWordBoundary           :: 4
+kStringTokenizerAttributeLatinTranscription:: 65536
+kStringTokenizerAttributeLanguage          :: 131072
+kFileDescriptorReadCallBack                :: 1
+kFileDescriptorWriteCallBack               :: 2
+kUserNotificationStopAlertLevel            :: 0
+kUserNotificationNoteAlertLevel            :: 1
+kUserNotificationCautionAlertLevel         :: 2
+kUserNotificationPlainAlertLevel           :: 3
+kUserNotificationDefaultResponse           :: 0
+kUserNotificationAlternateResponse         :: 1
+kUserNotificationOtherResponse             :: 2
+kUserNotificationCancelResponse            :: 3
+kUserNotificationNoDefaultButtonFlag       :: 32
+kUserNotificationUseRadioButtonsFlag       :: 64
+kNotFound                                  :: -1
+
 foreign lib {
     @(link_name="kCFCoreFoundationVersionNumber") kCoreFoundationVersionNumber: cffi.double
     @(link_name="kCFNull") kNull: NullRef
@@ -448,6 +450,7 @@ foreign lib {
     @(link_name="kCFUserNotificationAlertTopMostKey") kUserNotificationAlertTopMostKey: StringRef
     @(link_name="kCFUserNotificationKeyboardTypesKey") kUserNotificationKeyboardTypesKey: StringRef
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="CFNullGetTypeID")
@@ -4024,73 +4027,73 @@ os_clockid_t :: enum cffi.uint {
 /// qos_class_t
 qos_class_t :: enum cffi.uint {
     USER_INTERACTIVE = 33,
-    USER_INITIATED = 25,
-    DEFAULT = 21,
-    UTILITY = 17,
-    BACKGROUND = 9,
-    UNSPECIFIED = 0,
+    USER_INITIATED   = 25,
+    DEFAULT          = 21,
+    UTILITY          = 17,
+    BACKGROUND       = 9,
+    UNSPECIFIED      = 0,
 }
 
 /// dispatch_autorelease_frequency_t
 dispatch_autorelease_frequency_t :: enum cffi.ulong {
-    INHERIT = 0,
+    INHERIT   = 0,
     WORK_ITEM = 1,
-    NEVER = 2,
+    NEVER     = 2,
 }
 
 /// dispatch_block_flags_t
 dispatch_block_flags_t :: enum cffi.ulong {
-    BARRIER = 1,
-    DETACHED = 2,
-    ASSIGN_CURRENT = 4,
-    NO_QOS_CLASS = 8,
+    BARRIER           = 1,
+    DETACHED          = 2,
+    ASSIGN_CURRENT    = 4,
+    NO_QOS_CLASS      = 8,
     INHERIT_QOS_CLASS = 16,
     ENFORCE_QOS_CLASS = 32,
 }
 
 /// acl_tag_t
 acl_tag_t :: enum cffi.uint {
-    UNDEFINED_TAG = 0,
+    UNDEFINED_TAG  = 0,
     EXTENDED_ALLOW = 1,
-    EXTENDED_DENY = 2,
+    EXTENDED_DENY  = 2,
 }
 
 /// acl_type_t
 acl_type_t :: enum cffi.uint {
     EXTENDED = 256,
-    ACCESS = 0,
-    DEFAULT = 1,
-    AFS = 2,
-    CODA = 3,
-    NTFS = 4,
-    NWFS = 5,
+    ACCESS   = 0,
+    DEFAULT  = 1,
+    AFS      = 2,
+    CODA     = 3,
+    NTFS     = 4,
+    NWFS     = 5,
 }
 
 /// CFComparisonResult
 ComparisonResult :: enum cffi.long {
-    LessThan = -1,
-    EqualTo = 0,
+    LessThan    = -1,
+    EqualTo     = 0,
     GreaterThan = 1,
 }
 
 /// __CFByteOrder
 __CFByteOrder :: enum cffi.uint {
-    Unknown = 0,
+    Unknown      = 0,
     LittleEndian = 1,
-    BigEndian = 2,
+    BigEndian    = 2,
 }
 
 /// CFNotificationSuspensionBehavior
 NotificationSuspensionBehavior :: enum cffi.long {
-    Drop = 1,
-    Coalesce = 2,
-    Hold = 3,
+    Drop               = 1,
+    Coalesce           = 2,
+    Hold               = 3,
     DeliverImmediately = 4,
 }
 
 /// CFLocaleLanguageDirection
 LocaleLanguageDirection :: enum cffi.long {
-    Unknown = 0,
+    Unknown     = 0,
     LeftToRight = 1,
     RightToLeft = 2,
     TopToBottom = 3,
@@ -4099,170 +4102,169 @@ LocaleLanguageDirection :: enum cffi.long {
 
 /// CFGregorianUnitFlags
 GregorianUnitFlag :: enum cffi.ulong {
-    sYears = 0,
-    sMonths = 1,
-    sDays = 2,
-    sHours = 3,
+    sYears   = 0,
+    sMonths  = 1,
+    sDays    = 2,
+    sHours   = 3,
     sMinutes = 4,
     sSeconds = 5,
 }
 GregorianUnitFlags :: bit_set[GregorianUnitFlag; cffi.ulong]
 
-
 /// CFDataSearchFlags
 DataSearchFlag :: enum cffi.ulong {
     Backwards = 0,
-    Anchored = 1,
+    Anchored  = 1,
 }
 DataSearchFlags :: bit_set[DataSearchFlag; cffi.ulong]
 
 /// CFCharacterSetPredefinedSet
 CharacterSetPredefinedSet :: enum cffi.long {
-    Control = 1,
-    Whitespace = 2,
+    Control              = 1,
+    Whitespace           = 2,
     WhitespaceAndNewline = 3,
-    DecimalDigit = 4,
-    Letter = 5,
-    LowercaseLetter = 6,
-    UppercaseLetter = 7,
-    NonBase = 8,
-    Decomposable = 9,
-    AlphaNumeric = 10,
-    Punctuation = 11,
-    CapitalizedLetter = 13,
-    Symbol = 14,
-    Newline = 15,
-    Illegal = 12,
+    DecimalDigit         = 4,
+    Letter               = 5,
+    LowercaseLetter      = 6,
+    UppercaseLetter      = 7,
+    NonBase              = 8,
+    Decomposable         = 9,
+    AlphaNumeric         = 10,
+    Punctuation          = 11,
+    CapitalizedLetter    = 13,
+    Symbol               = 14,
+    Newline              = 15,
+    Illegal              = 12,
 }
 
 /// CFStringBuiltInEncodings
 StringBuiltInEncodings :: enum cffi.uint {
-    MacRoman = 0,
+    MacRoman      = 0,
     WindowsLatin1 = 1280,
-    ISOLatin1 = 513,
+    ISOLatin1     = 513,
     NextStepLatin = 2817,
-    ASCII = 1536,
-    Unicode = 256,
-    UTF8 = 134217984,
+    ASCII         = 1536,
+    Unicode       = 256,
+    UTF8          = 134217984,
     NonLossyASCII = 3071,
-    UTF16 = 256,
-    UTF16BE = 268435712,
-    UTF16LE = 335544576,
-    UTF32 = 201326848,
-    UTF32BE = 402653440,
-    UTF32LE = 469762304,
+    UTF16         = 256,
+    UTF16BE       = 268435712,
+    UTF16LE       = 335544576,
+    UTF32         = 201326848,
+    UTF32BE       = 402653440,
+    UTF32LE       = 469762304,
 }
 
 /// CFStringCompareFlags
 StringCompareFlag :: enum cffi.ulong {
-    CaseInsensitive = 0,
-    Backwards = 2,
-    Anchored = 3,
-    Nonliteral = 4,
-    Localized = 5,
-    Numerically = 6,
+    CaseInsensitive      = 0,
+    Backwards            = 2,
+    Anchored             = 3,
+    Nonliteral           = 4,
+    Localized            = 5,
+    Numerically          = 6,
     DiacriticInsensitive = 7,
-    WidthInsensitive = 8,
-    ForcedOrdering = 9,
+    WidthInsensitive     = 8,
+    ForcedOrdering       = 9,
 }
 StringCompareFlags :: bit_set[StringCompareFlag; cffi.ulong]
 
 /// CFStringNormalizationForm
 StringNormalizationForm :: enum cffi.long {
-    D = 0,
+    D  = 0,
     KD = 1,
-    C = 2,
+    C  = 2,
     KC = 3,
 }
 
 /// CFTimeZoneNameStyle
 TimeZoneNameStyle :: enum cffi.long {
-    Standard = 0,
-    ShortStandard = 1,
-    DaylightSaving = 2,
+    Standard            = 0,
+    ShortStandard       = 1,
+    DaylightSaving      = 2,
     ShortDaylightSaving = 3,
-    Generic = 4,
-    ShortGeneric = 5,
+    Generic             = 4,
+    ShortGeneric        = 5,
 }
 
 /// CFCalendarUnit
 CalendarUnit :: enum cffi.ulong {
-    Era = 2,
-    Year = 4,
-    Month = 8,
-    Day = 16,
-    Hour = 32,
-    Minute = 64,
-    Second = 128,
-    Week = 256,
-    Weekday = 512,
-    WeekdayOrdinal = 1024,
-    Quarter = 2048,
-    WeekOfMonth = 4096,
-    WeekOfYear = 8192,
+    Era               = 2,
+    Year              = 4,
+    Month             = 8,
+    Day               = 16,
+    Hour              = 32,
+    Minute            = 64,
+    Second            = 128,
+    Week              = 256,
+    Weekday           = 512,
+    WeekdayOrdinal    = 1024,
+    Quarter           = 2048,
+    WeekOfMonth       = 4096,
+    WeekOfYear        = 8192,
     YearForWeekOfYear = 16384,
-    DayOfYear = 65536,
+    DayOfYear         = 65536,
 }
 
 /// CFDateFormatterStyle
 DateFormatterStyle :: enum cffi.long {
-    NoStyle = 0,
-    ShortStyle = 1,
+    NoStyle     = 0,
+    ShortStyle  = 1,
     MediumStyle = 2,
-    LongStyle = 3,
-    FullStyle = 4,
+    LongStyle   = 3,
+    FullStyle   = 4,
 }
 
 /// CFISO8601DateFormatOptions
 ISO8601DateFormatOptions :: enum cffi.ulong {
-    Year = 1,
-    Month = 2,
-    WeekOfYear = 4,
-    Day = 16,
-    Time = 32,
-    TimeZone = 64,
-    SpaceBetweenDateAndTime = 128,
-    DashSeparatorInDate = 256,
-    ColonSeparatorInTime = 512,
+    Year                     = 1,
+    Month                    = 2,
+    WeekOfYear               = 4,
+    Day                      = 16,
+    Time                     = 32,
+    TimeZone                 = 64,
+    SpaceBetweenDateAndTime  = 128,
+    DashSeparatorInDate      = 256,
+    ColonSeparatorInTime     = 512,
     ColonSeparatorInTimeZone = 1024,
-    FractionalSeconds = 2048,
-    FullDate = 275,
-    FullTime = 1632,
-    InternetDateTime = 1907,
+    FractionalSeconds        = 2048,
+    FullDate                 = 275,
+    FullTime                 = 1632,
+    InternetDateTime         = 1907,
 }
 
 /// CFNumberType
 NumberType :: enum cffi.long {
-    SInt8Type = 1,
-    SInt16Type = 2,
-    SInt32Type = 3,
-    SInt64Type = 4,
-    Float32Type = 5,
-    Float64Type = 6,
-    CharType = 7,
-    ShortType = 8,
-    IntType = 9,
-    LongType = 10,
-    LongLongType = 11,
-    FloatType = 12,
-    DoubleType = 13,
-    CFIndexType = 14,
+    SInt8Type     = 1,
+    SInt16Type    = 2,
+    SInt32Type    = 3,
+    SInt64Type    = 4,
+    Float32Type   = 5,
+    Float64Type   = 6,
+    CharType      = 7,
+    ShortType     = 8,
+    IntType       = 9,
+    LongType      = 10,
+    LongLongType  = 11,
+    FloatType     = 12,
+    DoubleType    = 13,
+    CFIndexType   = 14,
     NSIntegerType = 15,
-    CGFloatType = 16,
-    MaxType = 16,
+    CGFloatType   = 16,
+    MaxType       = 16,
 }
 
 /// CFNumberFormatterStyle
 NumberFormatterStyle :: enum cffi.long {
-    NoStyle = 0,
-    DecimalStyle = 1,
-    CurrencyStyle = 2,
-    PercentStyle = 3,
-    ScientificStyle = 4,
-    SpellOutStyle = 5,
-    OrdinalStyle = 6,
-    CurrencyISOCodeStyle = 8,
-    CurrencyPluralStyle = 9,
+    NoStyle                 = 0,
+    DecimalStyle            = 1,
+    CurrencyStyle           = 2,
+    PercentStyle            = 3,
+    ScientificStyle         = 4,
+    SpellOutStyle           = 5,
+    OrdinalStyle            = 6,
+    CurrencyISOCodeStyle    = 8,
+    CurrencyPluralStyle     = 9,
     CurrencyAccountingStyle = 10,
 }
 
@@ -4274,416 +4276,416 @@ NumberFormatterOptionFlags :: bit_set[NumberFormatterOptionFlag; cffi.ulong]
 
 /// CFNumberFormatterRoundingMode
 NumberFormatterRoundingMode :: enum cffi.long {
-    RoundCeiling = 0,
-    RoundFloor = 1,
-    RoundDown = 2,
-    RoundUp = 3,
+    RoundCeiling  = 0,
+    RoundFloor    = 1,
+    RoundDown     = 2,
+    RoundUp       = 3,
     RoundHalfEven = 4,
     RoundHalfDown = 5,
-    RoundHalfUp = 6,
+    RoundHalfUp   = 6,
 }
 
 /// CFNumberFormatterPadPosition
 NumberFormatterPadPosition :: enum cffi.long {
     BeforePrefix = 0,
-    AfterPrefix = 1,
+    AfterPrefix  = 1,
     BeforeSuffix = 2,
-    AfterSuffix = 3,
+    AfterSuffix  = 3,
 }
 
 /// CFURLPathStyle
 URLPathStyle :: enum cffi.long {
-    POSIXPathStyle = 0,
-    HFSPathStyle = 1,
+    POSIXPathStyle   = 0,
+    HFSPathStyle     = 1,
     WindowsPathStyle = 2,
 }
 
 /// CFURLComponentType
 URLComponentType :: enum cffi.long {
-    Scheme = 1,
-    NetLocation = 2,
-    Path = 3,
+    Scheme            = 1,
+    NetLocation       = 2,
+    Path              = 3,
     ResourceSpecifier = 4,
-    User = 5,
-    Password = 6,
-    UserInfo = 7,
-    Host = 8,
-    Port = 9,
-    ParameterString = 10,
-    Query = 11,
-    Fragment = 12,
+    User              = 5,
+    Password          = 6,
+    UserInfo          = 7,
+    Host              = 8,
+    Port              = 9,
+    ParameterString   = 10,
+    Query             = 11,
+    Fragment          = 12,
 }
 
 /// CFURLBookmarkCreationOptions
 URLBookmarkCreationOptions :: enum cffi.ulong {
-    MinimalBookmarkMask = 512,
-    SuitableForBookmarkFile = 1024,
-    WithSecurityScope = 2048,
+    MinimalBookmarkMask              = 512,
+    SuitableForBookmarkFile          = 1024,
+    WithSecurityScope                = 2048,
     SecurityScopeAllowOnlyReadAccess = 4096,
-    WithoutImplicitSecurityScope = 536870912,
-    PreferFileIDResolutionMask = 256,
+    WithoutImplicitSecurityScope     = 536870912,
+    PreferFileIDResolutionMask       = 256,
 }
 
 /// CFURLBookmarkResolutionOptions
 URLBookmarkResolutionOptions :: enum cffi.ulong {
-    WithoutUIMask = 256,
-    WithoutMountingMask = 512,
-    WithSecurityScope = 1024,
+    WithoutUIMask                 = 256,
+    WithoutMountingMask           = 512,
+    WithSecurityScope             = 1024,
     WithoutImplicitStartAccessing = 32768,
-    kWithoutUIMask = 256,
-    kWithoutMountingMask = 512,
+    kWithoutUIMask                = 256,
+    kWithoutMountingMask          = 512,
 }
 
 /// CFRunLoopRunResult
 RunLoopRunResult :: enum cffi.int {
-    Finished = 1,
-    Stopped = 2,
-    TimedOut = 3,
+    Finished      = 1,
+    Stopped       = 2,
+    TimedOut      = 3,
     HandledSource = 4,
 }
 
 /// CFRunLoopActivity
 RunLoopActivity :: enum cffi.ulong {
-    Entry = 1,
-    BeforeTimers = 2,
+    Entry         = 1,
+    BeforeTimers  = 2,
     BeforeSources = 4,
     BeforeWaiting = 32,
-    AfterWaiting = 64,
-    Exit = 128,
+    AfterWaiting  = 64,
+    Exit          = 128,
     AllActivities = 268435455,
 }
 
 /// CFSocketError
 SocketError :: enum cffi.long {
     Success = 0,
-    Error = -1,
+    Error   = -1,
     Timeout = -2,
 }
 
 /// CFSocketCallBackType
 SocketCallBackType :: enum cffi.ulong {
-    NoCallBack = 0,
-    ReadCallBack = 1,
-    AcceptCallBack = 2,
-    DataCallBack = 3,
+    NoCallBack      = 0,
+    ReadCallBack    = 1,
+    AcceptCallBack  = 2,
+    DataCallBack    = 3,
     ConnectCallBack = 4,
-    WriteCallBack = 8,
+    WriteCallBack   = 8,
 }
 
 /// CFStreamStatus
 StreamStatus :: enum cffi.long {
     NotOpen = 0,
     Opening = 1,
-    Open = 2,
+    Open    = 2,
     Reading = 3,
     Writing = 4,
-    AtEnd = 5,
-    Closed = 6,
-    Error = 7,
+    AtEnd   = 5,
+    Closed  = 6,
+    Error   = 7,
 }
 
 /// CFStreamEventType
 StreamEventType :: enum cffi.ulong {
-    None = 0,
-    OpenCompleted = 1,
+    None              = 0,
+    OpenCompleted     = 1,
     HasBytesAvailable = 2,
-    CanAcceptBytes = 4,
-    ErrorOccurred = 8,
-    EndEncountered = 16,
+    CanAcceptBytes    = 4,
+    ErrorOccurred     = 8,
+    EndEncountered    = 16,
 }
 
 /// CFStreamErrorDomain
 StreamErrorDomain :: enum cffi.long {
-    Custom = -1,
-    POSIX = 1,
+    Custom      = -1,
+    POSIX       = 1,
     MacOSStatus = 2,
 }
 
 /// CFPropertyListMutabilityOptions
 PropertyListMutabilityOptions :: enum cffi.ulong {
-    Immutable = 0,
-    MutableContainers = 1,
+    Immutable                  = 0,
+    MutableContainers          = 1,
     MutableContainersAndLeaves = 2,
 }
 
 /// CFPropertyListFormat
 PropertyListFormat :: enum cffi.long {
-    OpenStepFormat = 1,
-    XMLFormat_v1_0 = 100,
+    OpenStepFormat    = 1,
+    XMLFormat_v1_0    = 100,
     BinaryFormat_v1_0 = 200,
 }
 
 /// CFStringEncodings
 StringEncoding :: enum cffi.long {
-    MacJapanese = 1,
-    MacChineseTrad = 2,
-    MacKorean = 3,
-    MacArabic = 4,
-    MacHebrew = 5,
-    MacGreek = 6,
-    MacCyrillic = 7,
-    MacDevanagari = 9,
-    MacGurmukhi = 10,
-    MacGujarati = 11,
-    MacOriya = 12,
-    MacBengali = 13,
-    MacTamil = 14,
-    MacTelugu = 15,
-    MacKannada = 16,
-    MacMalayalam = 17,
-    MacSinhalese = 18,
-    MacBurmese = 19,
-    MacKhmer = 20,
-    MacThai = 21,
-    MacLaotian = 22,
-    MacGeorgian = 23,
-    MacArmenian = 24,
-    MacChineseSimp = 25,
-    MacTibetan = 26,
-    MacMongolian = 27,
-    MacEthiopic = 28,
-    MacCentralEurRoman = 29,
-    MacVietnamese = 30,
-    MacExtArabic = 31,
-    MacSymbol = 33,
-    MacDingbats = 34,
-    MacTurkish = 35,
-    MacCroatian = 36,
-    MacIcelandic = 37,
-    MacRomanian = 38,
-    MacCeltic = 39,
-    MacGaelic = 40,
-    MacFarsi = 140,
-    MacUkrainian = 152,
-    MacInuit = 236,
-    MacVT100 = 252,
-    MacHFS = 255,
-    ISOLatin2 = 514,
-    ISOLatin3 = 515,
-    ISOLatin4 = 516,
-    ISOLatinCyrillic = 517,
-    ISOLatinArabic = 518,
-    ISOLatinGreek = 519,
-    ISOLatinHebrew = 520,
-    ISOLatin5 = 521,
-    ISOLatin6 = 522,
-    ISOLatinThai = 523,
-    ISOLatin7 = 525,
-    ISOLatin8 = 526,
-    ISOLatin9 = 527,
-    ISOLatin10 = 528,
-    DOSLatinUS = 1024,
-    DOSGreek = 1029,
-    DOSBalticRim = 1030,
-    DOSLatin1 = 1040,
-    DOSGreek1 = 1041,
-    DOSLatin2 = 1042,
-    DOSCyrillic = 1043,
-    DOSTurkish = 1044,
-    DOSPortuguese = 1045,
-    DOSIcelandic = 1046,
-    DOSHebrew = 1047,
-    DOSCanadianFrench = 1048,
-    DOSArabic = 1049,
-    DOSNordic = 1050,
-    DOSRussian = 1051,
-    DOSGreek2 = 1052,
-    DOSThai = 1053,
-    DOSJapanese = 1056,
-    DOSChineseSimplif = 1057,
-    DOSKorean = 1058,
-    DOSChineseTrad = 1059,
-    WindowsLatin2 = 1281,
-    WindowsCyrillic = 1282,
-    WindowsGreek = 1283,
-    WindowsLatin5 = 1284,
-    WindowsHebrew = 1285,
-    WindowsArabic = 1286,
-    WindowsBalticRim = 1287,
-    WindowsVietnamese = 1288,
-    WindowsKoreanJohab = 1296,
-    ANSEL = 1537,
-    JIS_X0201_76 = 1568,
-    JIS_X0208_83 = 1569,
-    JIS_X0208_90 = 1570,
-    JIS_X0212_90 = 1571,
-    JIS_C6226_78 = 1572,
-    ShiftJIS_X0213 = 1576,
+    MacJapanese             = 1,
+    MacChineseTrad          = 2,
+    MacKorean               = 3,
+    MacArabic               = 4,
+    MacHebrew               = 5,
+    MacGreek                = 6,
+    MacCyrillic             = 7,
+    MacDevanagari           = 9,
+    MacGurmukhi             = 10,
+    MacGujarati             = 11,
+    MacOriya                = 12,
+    MacBengali              = 13,
+    MacTamil                = 14,
+    MacTelugu               = 15,
+    MacKannada              = 16,
+    MacMalayalam            = 17,
+    MacSinhalese            = 18,
+    MacBurmese              = 19,
+    MacKhmer                = 20,
+    MacThai                 = 21,
+    MacLaotian              = 22,
+    MacGeorgian             = 23,
+    MacArmenian             = 24,
+    MacChineseSimp          = 25,
+    MacTibetan              = 26,
+    MacMongolian            = 27,
+    MacEthiopic             = 28,
+    MacCentralEurRoman      = 29,
+    MacVietnamese           = 30,
+    MacExtArabic            = 31,
+    MacSymbol               = 33,
+    MacDingbats             = 34,
+    MacTurkish              = 35,
+    MacCroatian             = 36,
+    MacIcelandic            = 37,
+    MacRomanian             = 38,
+    MacCeltic               = 39,
+    MacGaelic               = 40,
+    MacFarsi                = 140,
+    MacUkrainian            = 152,
+    MacInuit                = 236,
+    MacVT100                = 252,
+    MacHFS                  = 255,
+    ISOLatin2               = 514,
+    ISOLatin3               = 515,
+    ISOLatin4               = 516,
+    ISOLatinCyrillic        = 517,
+    ISOLatinArabic          = 518,
+    ISOLatinGreek           = 519,
+    ISOLatinHebrew          = 520,
+    ISOLatin5               = 521,
+    ISOLatin6               = 522,
+    ISOLatinThai            = 523,
+    ISOLatin7               = 525,
+    ISOLatin8               = 526,
+    ISOLatin9               = 527,
+    ISOLatin10              = 528,
+    DOSLatinUS              = 1024,
+    DOSGreek                = 1029,
+    DOSBalticRim            = 1030,
+    DOSLatin1               = 1040,
+    DOSGreek1               = 1041,
+    DOSLatin2               = 1042,
+    DOSCyrillic             = 1043,
+    DOSTurkish              = 1044,
+    DOSPortuguese           = 1045,
+    DOSIcelandic            = 1046,
+    DOSHebrew               = 1047,
+    DOSCanadianFrench       = 1048,
+    DOSArabic               = 1049,
+    DOSNordic               = 1050,
+    DOSRussian              = 1051,
+    DOSGreek2               = 1052,
+    DOSThai                 = 1053,
+    DOSJapanese             = 1056,
+    DOSChineseSimplif       = 1057,
+    DOSKorean               = 1058,
+    DOSChineseTrad          = 1059,
+    WindowsLatin2           = 1281,
+    WindowsCyrillic         = 1282,
+    WindowsGreek            = 1283,
+    WindowsLatin5           = 1284,
+    WindowsHebrew           = 1285,
+    WindowsArabic           = 1286,
+    WindowsBalticRim        = 1287,
+    WindowsVietnamese       = 1288,
+    WindowsKoreanJohab      = 1296,
+    ANSEL                   = 1537,
+    JIS_X0201_76            = 1568,
+    JIS_X0208_83            = 1569,
+    JIS_X0208_90            = 1570,
+    JIS_X0212_90            = 1571,
+    JIS_C6226_78            = 1572,
+    ShiftJIS_X0213          = 1576,
     ShiftJIS_X0213_MenKuTen = 1577,
-    GB_2312_80 = 1584,
-    GBK_95 = 1585,
-    GB_18030_2000 = 1586,
-    KSC_5601_87 = 1600,
-    KSC_5601_92_Johab = 1601,
-    CNS_11643_92_P1 = 1617,
-    CNS_11643_92_P2 = 1618,
-    CNS_11643_92_P3 = 1619,
-    ISO_2022_JP = 2080,
-    ISO_2022_JP_2 = 2081,
-    ISO_2022_JP_1 = 2082,
-    ISO_2022_JP_3 = 2083,
-    ISO_2022_CN = 2096,
-    ISO_2022_CN_EXT = 2097,
-    ISO_2022_KR = 2112,
-    EUC_JP = 2336,
-    EUC_CN = 2352,
-    EUC_TW = 2353,
-    EUC_KR = 2368,
-    ShiftJIS = 2561,
-    KOI8_R = 2562,
-    Big5 = 2563,
-    MacRomanLatin1 = 2564,
-    HZ_GB_2312 = 2565,
-    Big5_HKSCS_1999 = 2566,
-    VISCII = 2567,
-    KOI8_U = 2568,
-    Big5_E = 2569,
-    NextStepJapanese = 2818,
-    EBCDIC_US = 3073,
-    EBCDIC_CP037 = 3074,
-    UTF7 = 67109120,
-    UTF7_IMAP = 2576,
-    ShiftJIS_X0213_00 = 1576,
+    GB_2312_80              = 1584,
+    GBK_95                  = 1585,
+    GB_18030_2000           = 1586,
+    KSC_5601_87             = 1600,
+    KSC_5601_92_Johab       = 1601,
+    CNS_11643_92_P1         = 1617,
+    CNS_11643_92_P2         = 1618,
+    CNS_11643_92_P3         = 1619,
+    ISO_2022_JP             = 2080,
+    ISO_2022_JP_2           = 2081,
+    ISO_2022_JP_1           = 2082,
+    ISO_2022_JP_3           = 2083,
+    ISO_2022_CN             = 2096,
+    ISO_2022_CN_EXT         = 2097,
+    ISO_2022_KR             = 2112,
+    EUC_JP                  = 2336,
+    EUC_CN                  = 2352,
+    EUC_TW                  = 2353,
+    EUC_KR                  = 2368,
+    ShiftJIS                = 2561,
+    KOI8_R                  = 2562,
+    Big5                    = 2563,
+    MacRomanLatin1          = 2564,
+    HZ_GB_2312              = 2565,
+    Big5_HKSCS_1999         = 2566,
+    VISCII                  = 2567,
+    KOI8_U                  = 2568,
+    Big5_E                  = 2569,
+    NextStepJapanese        = 2818,
+    EBCDIC_US               = 3073,
+    EBCDIC_CP037            = 3074,
+    UTF7                    = 67109120,
+    UTF7_IMAP               = 2576,
+    ShiftJIS_X0213_00       = 1576,
 }
 
 /// CFURLError
 URLError :: enum cffi.long {
-    UnknownError = -10,
-    UnknownSchemeError = -11,
-    ResourceNotFoundError = -12,
+    UnknownError                 = -10,
+    UnknownSchemeError           = -11,
+    ResourceNotFoundError        = -12,
     ResourceAccessViolationError = -13,
-    RemoteHostUnavailableError = -14,
-    ImproperArgumentsError = -15,
-    UnknownPropertyKeyError = -16,
-    PropertyKeyUnavailableError = -17,
-    TimeoutError = -18,
+    RemoteHostUnavailableError   = -14,
+    ImproperArgumentsError       = -15,
+    UnknownPropertyKeyError      = -16,
+    PropertyKeyUnavailableError  = -17,
+    TimeoutError                 = -18,
 }
 
 /// CFURLEnumeratorOptions
 URLEnumeratorOptions :: enum cffi.ulong {
-    DefaultBehavior = 0,
-    DescendRecursively = 1,
-    SkipInvisibles = 2,
-    GenerateFileReferenceURLs = 4,
-    SkipPackageContents = 8,
-    IncludeDirectoriesPreOrder = 16,
+    DefaultBehavior             = 0,
+    DescendRecursively          = 1,
+    SkipInvisibles              = 2,
+    GenerateFileReferenceURLs   = 4,
+    SkipPackageContents         = 8,
+    IncludeDirectoriesPreOrder  = 16,
     IncludeDirectoriesPostOrder = 32,
-    GenerateRelativePathURLs = 64,
+    GenerateRelativePathURLs    = 64,
 }
 
 /// CFURLEnumeratorResult
 URLEnumeratorResult :: enum cffi.long {
-    Success = 1,
-    End = 2,
-    Error = 3,
+    Success                   = 1,
+    End                       = 2,
+    Error                     = 3,
     DirectoryPostOrderSuccess = 4,
 }
 
 /// CFFileSecurityClearOptions
 FileSecurityClearOptions :: enum cffi.ulong {
-    Owner = 1,
-    Group = 2,
-    Mode = 4,
-    OwnerUUID = 8,
-    GroupUUID = 16,
+    Owner             = 1,
+    Group             = 2,
+    Mode              = 4,
+    OwnerUUID         = 8,
+    GroupUUID         = 16,
     AccessControlList = 32,
 }
 
 /// CFStringTokenizerTokenType
 StringTokenizerTokenType :: enum cffi.ulong {
-    None = 0,
-    Normal = 1,
-    HasSubTokensMask = 2,
+    None                    = 0,
+    Normal                  = 1,
+    HasSubTokensMask        = 2,
     HasDerivedSubTokensMask = 4,
-    HasHasNumbersMask = 8,
-    HasNonLettersMask = 16,
-    IsCJWordMask = 32,
+    HasHasNumbersMask       = 8,
+    HasNonLettersMask       = 16,
+    IsCJWordMask            = 32,
 }
 
 /// __darwin_pthread_handler_rec
 __darwin_pthread_handler_rec :: struct #align (8) {
     __routine: proc "c" (_arg_0: rawptr),
-    __arg: rawptr,
-    __next: ^__darwin_pthread_handler_rec,
+    __arg:     rawptr,
+    __next:    ^__darwin_pthread_handler_rec,
 }
 #assert(size_of(__darwin_pthread_handler_rec) == 24)
 
 /// _opaque_pthread_attr_t
 _opaque_pthread_attr_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:    cffi.long,
     __opaque: [56]cffi.char,
 }
 #assert(size_of(_opaque_pthread_attr_t) == 64)
 
 /// _opaque_pthread_cond_t
 _opaque_pthread_cond_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:    cffi.long,
     __opaque: [40]cffi.char,
 }
 #assert(size_of(_opaque_pthread_cond_t) == 48)
 
 /// _opaque_pthread_condattr_t
 _opaque_pthread_condattr_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:    cffi.long,
     __opaque: [8]cffi.char,
 }
 #assert(size_of(_opaque_pthread_condattr_t) == 16)
 
 /// _opaque_pthread_mutex_t
 _opaque_pthread_mutex_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:    cffi.long,
     __opaque: [56]cffi.char,
 }
 #assert(size_of(_opaque_pthread_mutex_t) == 64)
 
 /// _opaque_pthread_mutexattr_t
 _opaque_pthread_mutexattr_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:    cffi.long,
     __opaque: [8]cffi.char,
 }
 #assert(size_of(_opaque_pthread_mutexattr_t) == 16)
 
 /// _opaque_pthread_once_t
 _opaque_pthread_once_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:    cffi.long,
     __opaque: [8]cffi.char,
 }
 #assert(size_of(_opaque_pthread_once_t) == 16)
 
 /// _opaque_pthread_rwlock_t
 _opaque_pthread_rwlock_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:    cffi.long,
     __opaque: [192]cffi.char,
 }
 #assert(size_of(_opaque_pthread_rwlock_t) == 200)
 
 /// _opaque_pthread_rwlockattr_t
 _opaque_pthread_rwlockattr_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:    cffi.long,
     __opaque: [16]cffi.char,
 }
 #assert(size_of(_opaque_pthread_rwlockattr_t) == 24)
 
 /// _opaque_pthread_t
 _opaque_pthread_t :: struct #align (8) {
-    __sig: cffi.long,
+    __sig:           cffi.long,
     __cleanup_stack: ^__darwin_pthread_handler_rec,
-    __opaque: [8176]cffi.char,
+    __opaque:        [8176]cffi.char,
 }
 #assert(size_of(_opaque_pthread_t) == 8192)
 
 /// __darwin_arm_exception_state
 __darwin_arm_exception_state :: struct #align (4) {
     __exception: cffi.uint32_t,
-    __fsr: cffi.uint32_t,
-    __far: cffi.uint32_t,
+    __fsr:       cffi.uint32_t,
+    __far:       cffi.uint32_t,
 }
 #assert(size_of(__darwin_arm_exception_state) == 12)
 
 /// __darwin_arm_exception_state64
 __darwin_arm_exception_state64 :: struct #align (8) {
-    __far: cffi.uint64_t,
-    __esr: cffi.uint32_t,
+    __far:       cffi.uint64_t,
+    __esr:       cffi.uint32_t,
     __exception: cffi.uint32_t,
 }
 #assert(size_of(__darwin_arm_exception_state64) == 16)
@@ -4697,36 +4699,36 @@ __darwin_arm_exception_state64_v2 :: struct #align (8) {
 
 /// __darwin_arm_thread_state
 __darwin_arm_thread_state :: struct #align (4) {
-    __r: [13]cffi.uint32_t,
-    __sp: cffi.uint32_t,
-    __lr: cffi.uint32_t,
-    __pc: cffi.uint32_t,
+    __r:    [13]cffi.uint32_t,
+    __sp:   cffi.uint32_t,
+    __lr:   cffi.uint32_t,
+    __pc:   cffi.uint32_t,
     __cpsr: cffi.uint32_t,
 }
 #assert(size_of(__darwin_arm_thread_state) == 68)
 
 /// __darwin_arm_thread_state64
 __darwin_arm_thread_state64 :: struct #align (8) {
-    __x: [29]cffi.uint64_t,
-    __fp: cffi.uint64_t,
-    __lr: cffi.uint64_t,
-    __sp: cffi.uint64_t,
-    __pc: cffi.uint64_t,
+    __x:    [29]cffi.uint64_t,
+    __fp:   cffi.uint64_t,
+    __lr:   cffi.uint64_t,
+    __sp:   cffi.uint64_t,
+    __pc:   cffi.uint64_t,
     __cpsr: cffi.uint32_t,
-    __pad: cffi.uint32_t,
+    __pad:  cffi.uint32_t,
 }
 #assert(size_of(__darwin_arm_thread_state64) == 272)
 
 /// __darwin_arm_vfp_state
 __darwin_arm_vfp_state :: struct #align (4) {
-    __r: [64]cffi.uint32_t,
+    __r:     [64]cffi.uint32_t,
     __fpscr: cffi.uint32_t,
 }
 #assert(size_of(__darwin_arm_vfp_state) == 260)
 
 /// __darwin_arm_neon_state64
 __darwin_arm_neon_state64 :: struct #align (16) {
-    __v: [32]u128,
+    __v:    [32]u128,
     __fpsr: cffi.uint32_t,
     __fpcr: cffi.uint32_t,
 }
@@ -4734,7 +4736,7 @@ __darwin_arm_neon_state64 :: struct #align (16) {
 
 /// __darwin_arm_neon_state
 __darwin_arm_neon_state :: struct #align (16) {
-    __v: [16]u128,
+    __v:    [16]u128,
     __fpsr: cffi.uint32_t,
     __fpcr: cffi.uint32_t,
 }
@@ -4742,20 +4744,20 @@ __darwin_arm_neon_state :: struct #align (16) {
 
 /// __darwin_arm_debug_state32
 __darwin_arm_debug_state32 :: struct #align (8) {
-    __bvr: [16]cffi.uint32_t,
-    __bcr: [16]cffi.uint32_t,
-    __wvr: [16]cffi.uint32_t,
-    __wcr: [16]cffi.uint32_t,
+    __bvr:       [16]cffi.uint32_t,
+    __bcr:       [16]cffi.uint32_t,
+    __wvr:       [16]cffi.uint32_t,
+    __wcr:       [16]cffi.uint32_t,
     __mdscr_el1: cffi.uint64_t,
 }
 #assert(size_of(__darwin_arm_debug_state32) == 264)
 
 /// __darwin_arm_debug_state64
 __darwin_arm_debug_state64 :: struct #align (8) {
-    __bvr: [16]cffi.uint64_t,
-    __bcr: [16]cffi.uint64_t,
-    __wvr: [16]cffi.uint64_t,
-    __wcr: [16]cffi.uint64_t,
+    __bvr:       [16]cffi.uint64_t,
+    __bcr:       [16]cffi.uint64_t,
+    __wvr:       [16]cffi.uint64_t,
+    __wcr:       [16]cffi.uint64_t,
     __mdscr_el1: cffi.uint64_t,
 }
 #assert(size_of(__darwin_arm_debug_state64) == 520)
@@ -4784,26 +4786,26 @@ __darwin_mcontext64 :: struct #align (16) {
 
 /// __darwin_sigaltstack
 __darwin_sigaltstack :: struct #align (8) {
-    ss_sp: rawptr,
-    ss_size: __darwin_size_t,
+    ss_sp:    rawptr,
+    ss_size:  __darwin_size_t,
     ss_flags: cffi.int,
 }
 #assert(size_of(__darwin_sigaltstack) == 24)
 
 /// __darwin_ucontext
 __darwin_ucontext :: struct #align (8) {
-    uc_onstack: cffi.int,
-    uc_sigmask: __darwin_sigset_t,
-    uc_stack: __darwin_sigaltstack,
-    uc_link: ^__darwin_ucontext,
-    uc_mcsize: __darwin_size_t,
+    uc_onstack:  cffi.int,
+    uc_sigmask:  __darwin_sigset_t,
+    uc_stack:    __darwin_sigaltstack,
+    uc_link:     ^__darwin_ucontext,
+    uc_mcsize:   __darwin_size_t,
     uc_mcontext: ^__darwin_mcontext64,
 }
 #assert(size_of(__darwin_ucontext) == 56)
 
 /// timespec
 timespec :: struct #align (8) {
-    tv_sec: __darwin_time_t,
+    tv_sec:  __darwin_time_t,
     tv_nsec: cffi.long,
 }
 #assert(size_of(timespec) == 16)
@@ -4821,7 +4823,7 @@ __CFString :: struct {}
 /// CFRange
 Range :: struct #align (8) {
     location: Index,
-    length: Index,
+    length:   Index,
 }
 #assert(size_of(Range) == 16)
 
@@ -4833,25 +4835,25 @@ __CFAllocator :: struct {}
 
 /// CFAllocatorContext
 AllocatorContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: AllocatorRetainCallBack,
-    release: AllocatorReleaseCallBack,
+    version:         Index,
+    info:            rawptr,
+    retain:          AllocatorRetainCallBack,
+    release:         AllocatorReleaseCallBack,
     copyDescription: AllocatorCopyDescriptionCallBack,
-    allocate: AllocatorAllocateCallBack,
-    reallocate: AllocatorReallocateCallBack,
-    deallocate: AllocatorDeallocateCallBack,
-    preferredSize: AllocatorPreferredSizeCallBack,
+    allocate:        AllocatorAllocateCallBack,
+    reallocate:      AllocatorReallocateCallBack,
+    deallocate:      AllocatorDeallocateCallBack,
+    preferredSize:   AllocatorPreferredSizeCallBack,
 }
 #assert(size_of(AllocatorContext) == 72)
 
 /// CFArrayCallBacks
 ArrayCallBacks :: struct #align (8) {
-    version: Index,
-    retain: ArrayRetainCallBack,
-    release: ArrayReleaseCallBack,
+    version:         Index,
+    retain:          ArrayRetainCallBack,
+    release:         ArrayReleaseCallBack,
     copyDescription: ArrayCopyDescriptionCallBack,
-    equal: ArrayEqualCallBack,
+    equal:           ArrayEqualCallBack,
 }
 #assert(size_of(ArrayCallBacks) == 40)
 
@@ -4860,12 +4862,12 @@ __CFArray :: struct {}
 
 /// CFBagCallBacks
 BagCallBacks :: struct #align (8) {
-    version: Index,
-    retain: BagRetainCallBack,
-    release: BagReleaseCallBack,
+    version:         Index,
+    retain:          BagRetainCallBack,
+    release:         BagReleaseCallBack,
     copyDescription: BagCopyDescriptionCallBack,
-    equal: BagEqualCallBack,
-    hash: BagHashCallBack,
+    equal:           BagEqualCallBack,
+    hash:            BagHashCallBack,
 }
 #assert(size_of(BagCallBacks) == 48)
 
@@ -4874,21 +4876,21 @@ __CFBag :: struct {}
 
 /// CFBinaryHeapCompareContext
 BinaryHeapCompareContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
 #assert(size_of(BinaryHeapCompareContext) == 40)
 
 /// CFBinaryHeapCallBacks
 BinaryHeapCallBacks :: struct #align (8) {
-    version: Index,
-    retain: proc "c" (allocator: AllocatorRef, ptr: rawptr) -> rawptr,
-    release: proc "c" (allocator: AllocatorRef, ptr: rawptr),
+    version:         Index,
+    retain:          proc "c" (allocator: AllocatorRef, ptr: rawptr) -> rawptr,
+    release:         proc "c" (allocator: AllocatorRef, ptr: rawptr),
     copyDescription: proc "c" (ptr: rawptr) -> StringRef,
-    compare: proc "c" (ptr1: rawptr, ptr2: rawptr, _context: rawptr) -> ComparisonResult,
+    compare:         proc "c" (ptr1: rawptr, ptr2: rawptr, _context: rawptr) -> ComparisonResult,
 }
 #assert(size_of(BinaryHeapCallBacks) == 40)
 
@@ -4912,22 +4914,22 @@ SwappedFloat64 :: struct #align (8) {
 
 /// CFDictionaryKeyCallBacks
 DictionaryKeyCallBacks :: struct #align (8) {
-    version: Index,
-    retain: DictionaryRetainCallBack,
-    release: DictionaryReleaseCallBack,
+    version:         Index,
+    retain:          DictionaryRetainCallBack,
+    release:         DictionaryReleaseCallBack,
     copyDescription: DictionaryCopyDescriptionCallBack,
-    equal: DictionaryEqualCallBack,
-    hash: DictionaryHashCallBack,
+    equal:           DictionaryEqualCallBack,
+    hash:            DictionaryHashCallBack,
 }
 #assert(size_of(DictionaryKeyCallBacks) == 48)
 
 /// CFDictionaryValueCallBacks
 DictionaryValueCallBacks :: struct #align (8) {
-    version: Index,
-    retain: DictionaryRetainCallBack,
-    release: DictionaryReleaseCallBack,
+    version:         Index,
+    retain:          DictionaryRetainCallBack,
+    release:         DictionaryReleaseCallBack,
     copyDescription: DictionaryCopyDescriptionCallBack,
-    equal: DictionaryEqualCallBack,
+    equal:           DictionaryEqualCallBack,
 }
 #assert(size_of(DictionaryValueCallBacks) == 40)
 
@@ -4948,10 +4950,10 @@ __CFTimeZone :: struct {}
 
 /// CFGregorianDate
 GregorianDate :: struct #align (8) {
-    year: SInt32,
-    month: SInt8,
-    day: SInt8,
-    hour: SInt8,
+    year:   SInt32,
+    month:  SInt8,
+    day:    SInt8,
+    hour:   SInt8,
     minute: SInt8,
     second: cffi.double,
 }
@@ -4959,10 +4961,10 @@ GregorianDate :: struct #align (8) {
 
 /// CFGregorianUnits
 GregorianUnits :: struct #align (8) {
-    years: SInt32,
-    months: SInt32,
-    days: SInt32,
-    hours: SInt32,
+    years:   SInt32,
+    months:  SInt32,
+    days:    SInt32,
+    hours:   SInt32,
     minutes: SInt32,
     seconds: cffi.double,
 }
@@ -4979,13 +4981,13 @@ __CFError :: struct {}
 
 /// CFStringInlineBuffer
 StringInlineBuffer :: struct #align (8) {
-    buffer: [64]UniChar,
-    theString: StringRef,
+    buffer:              [64]UniChar,
+    theString:           StringRef,
     directUniCharBuffer: ^UniChar,
     directCStringBuffer: cstring,
-    rangeToBuffer: Range,
-    bufferedRangeStart: Index,
-    bufferedRangeEnd: Index,
+    rangeToBuffer:       Range,
+    bufferedRangeStart:  Index,
+    bufferedRangeEnd:    Index,
 }
 #assert(size_of(StringInlineBuffer) == 184)
 
@@ -5021,49 +5023,49 @@ __CFRunLoopTimer :: struct {}
 
 /// CFRunLoopSourceContext
 RunLoopSourceContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
-    equal: proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
-    hash: proc "c" (info: rawptr) -> HashCode,
-    schedule: proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
-    cancel: proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
-    perform: proc "c" (info: rawptr),
+    equal:           proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
+    hash:            proc "c" (info: rawptr) -> HashCode,
+    schedule:        proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
+    cancel:          proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
+    perform:         proc "c" (info: rawptr),
 }
 #assert(size_of(RunLoopSourceContext) == 80)
 
 /// CFRunLoopSourceContext1
 RunLoopSourceContext1 :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
-    equal: proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
-    hash: proc "c" (info: rawptr) -> HashCode,
-    getPort: proc "c" (info: rawptr) -> mach_port_t,
-    perform: proc "c" (msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr) -> rawptr,
+    equal:           proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
+    hash:            proc "c" (info: rawptr) -> HashCode,
+    getPort:         proc "c" (info: rawptr) -> mach_port_t,
+    perform:         proc "c" (msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr) -> rawptr,
 }
 #assert(size_of(RunLoopSourceContext1) == 72)
 
 /// CFRunLoopObserverContext
 RunLoopObserverContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
 #assert(size_of(RunLoopObserverContext) == 40)
 
 /// CFRunLoopTimerContext
 RunLoopTimerContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
 #assert(size_of(RunLoopTimerContext) == 40)
@@ -5074,39 +5076,39 @@ __CFSocket :: struct {}
 /// CFSocketSignature
 SocketSignature :: struct #align (8) {
     protocolFamily: SInt32,
-    socketType: SInt32,
-    protocol: SInt32,
-    address: DataRef,
+    socketType:     SInt32,
+    protocol:       SInt32,
+    address:        DataRef,
 }
 #assert(size_of(SocketSignature) == 24)
 
 /// CFSocketContext
 SocketContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
 #assert(size_of(SocketContext) == 40)
 
 /// os_workgroup_attr_opaque_s
 os_workgroup_attr_opaque_s :: struct #align (4) {
-    sig: cffi.uint32_t,
+    sig:    cffi.uint32_t,
     opaque: [60]cffi.char,
 }
 #assert(size_of(os_workgroup_attr_opaque_s) == 64)
 
 /// os_workgroup_interval_data_opaque_s
 os_workgroup_interval_data_opaque_s :: struct #align (4) {
-    sig: cffi.uint32_t,
+    sig:    cffi.uint32_t,
     opaque: [56]cffi.char,
 }
 #assert(size_of(os_workgroup_interval_data_opaque_s) == 60)
 
 /// os_workgroup_join_token_opaque_s
 os_workgroup_join_token_opaque_s :: struct #align (4) {
-    sig: cffi.uint32_t,
+    sig:    cffi.uint32_t,
     opaque: [36]cffi.char,
 }
 #assert(size_of(os_workgroup_join_token_opaque_s) == 40)
@@ -5159,16 +5161,16 @@ dispatch_source_type_s :: struct {}
 /// CFStreamError
 StreamError :: struct #align (8) {
     domain: Index,
-    error: SInt32,
+    error:  SInt32,
 }
 #assert(size_of(StreamError) == 16)
 
 /// CFStreamClientContext
 StreamClientContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
 #assert(size_of(StreamClientContext) == 40)
@@ -5181,12 +5183,12 @@ __CFWriteStream :: struct {}
 
 /// CFSetCallBacks
 SetCallBacks :: struct #align (8) {
-    version: Index,
-    retain: SetRetainCallBack,
-    release: SetReleaseCallBack,
+    version:         Index,
+    retain:          SetRetainCallBack,
+    release:         SetReleaseCallBack,
     copyDescription: SetCopyDescriptionCallBack,
-    equal: SetEqualCallBack,
-    hash: SetHashCallBack,
+    equal:           SetEqualCallBack,
+    hash:            SetHashCallBack,
 }
 #assert(size_of(SetCallBacks) == 48)
 
@@ -5195,10 +5197,10 @@ __CFSet :: struct {}
 
 /// CFTreeContext
 TreeContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: TreeRetainCallBack,
-    release: TreeReleaseCallBack,
+    version:         Index,
+    info:            rawptr,
+    retain:          TreeRetainCallBack,
+    release:         TreeReleaseCallBack,
     copyDescription: TreeCopyDescriptionCallBack,
 }
 #assert(size_of(TreeContext) == 40)
@@ -5211,16 +5213,16 @@ __CFUUID :: struct {}
 
 /// CFUUIDBytes
 UUIDBytes :: struct #align (1) {
-    byte0: UInt8,
-    byte1: UInt8,
-    byte2: UInt8,
-    byte3: UInt8,
-    byte4: UInt8,
-    byte5: UInt8,
-    byte6: UInt8,
-    byte7: UInt8,
-    byte8: UInt8,
-    byte9: UInt8,
+    byte0:  UInt8,
+    byte1:  UInt8,
+    byte2:  UInt8,
+    byte3:  UInt8,
+    byte4:  UInt8,
+    byte5:  UInt8,
+    byte6:  UInt8,
+    byte7:  UInt8,
+    byte8:  UInt8,
+    byte9:  UInt8,
     byte10: UInt8,
     byte11: UInt8,
     byte12: UInt8,
@@ -5238,10 +5240,10 @@ __CFMessagePort :: struct {}
 
 /// CFMessagePortContext
 MessagePortContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
 #assert(size_of(MessagePortContext) == 40)
@@ -5254,10 +5256,10 @@ __CFMachPort :: struct {}
 
 /// CFMachPortContext
 MachPortContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
 #assert(size_of(MachPortContext) == 40)
@@ -5291,10 +5293,10 @@ __CFFileDescriptor :: struct {}
 
 /// CFFileDescriptorContext
 FileDescriptorContext :: struct #align (8) {
-    version: Index,
-    info: rawptr,
-    retain: proc "c" (info: rawptr) -> rawptr,
-    release: proc "c" (info: rawptr),
+    version:         Index,
+    info:            rawptr,
+    retain:          proc "c" (info: rawptr) -> rawptr,
+    release:         proc "c" (info: rawptr),
     copyDescription: proc "c" (info: rawptr) -> StringRef,
 }
 #assert(size_of(FileDescriptorContext) == 40)
@@ -5305,23 +5307,23 @@ __CFUserNotification :: struct {}
 /// __mbstate_t
 __mbstate_t :: struct #raw_union #align (8) {
     __mbstate8: [128]cffi.char,
-    _mbstateL: cffi.longlong,
+    _mbstateL:  cffi.longlong,
 }
 #assert(size_of(__mbstate_t) == 128)
 
 /// dispatch_object_t
 dispatch_object_t :: struct #raw_union #align (8) {
-    _os_obj: ^_os_object_s,
-    _do: ^dispatch_object_s,
-    _dq: ^dispatch_queue_s,
-    _dqa: ^dispatch_queue_attr_s,
-    _dg: ^dispatch_group_s,
-    _ds: ^dispatch_source_s,
-    _dch: ^dispatch_channel_s,
-    _dm: ^dispatch_mach_s,
-    _dmsg: ^dispatch_mach_msg_s,
-    _dsema: ^dispatch_semaphore_s,
-    _ddata: ^dispatch_data_s,
+    _os_obj:   ^_os_object_s,
+    _do:       ^dispatch_object_s,
+    _dq:       ^dispatch_queue_s,
+    _dqa:      ^dispatch_queue_attr_s,
+    _dg:       ^dispatch_group_s,
+    _ds:       ^dispatch_source_s,
+    _dch:      ^dispatch_channel_s,
+    _dm:       ^dispatch_mach_s,
+    _dmsg:     ^dispatch_mach_msg_s,
+    _dsema:    ^dispatch_semaphore_s,
+    _ddata:    ^dispatch_data_s,
     _dchannel: ^dispatch_io_s,
 }
 #assert(size_of(dispatch_object_t) == 8)

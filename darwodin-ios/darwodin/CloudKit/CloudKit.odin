@@ -21,6 +21,7 @@ Protocol :: distinct id
 foreign import lib "system:CloudKit.framework"
 
 
+
 foreign lib {
     @(link_name="CKRecordTypeUserRecord") RecordTypeUserRecord: ^NS.String
     @(link_name="CKRecordRecordIDKey") RecordRecordIDKey: ^NS.String
@@ -48,6 +49,7 @@ foreign lib {
     @(link_name="CKShareTypeKey") ShareTypeKey: ^NS.String
     @(link_name="CKQueryOperationMaximumResults") QueryOperationMaximumResults: NS.UInteger
 }
+
 /// CKRecordType
 RecordType :: distinct ^NS.String
 
@@ -71,39 +73,39 @@ SharePreparationHandler :: proc "c" (_arg_0: SharePreparationCompletionHandler)
 
 /// CKReferenceAction
 ReferenceAction :: enum cffi.ulong {
-    None = 0,
+    None       = 0,
     DeleteSelf = 1,
 }
 
 /// CKSubscriptionType
 SubscriptionType :: enum cffi.long {
-    Query = 1,
+    Query      = 1,
     RecordZone = 2,
-    Database = 3,
+    Database   = 3,
 }
 
 /// CKQuerySubscriptionOptions
 QuerySubscriptionOption :: enum cffi.ulong {
     FiresOnRecordCreation = 0,
-    FiresOnRecordUpdate = 1,
+    FiresOnRecordUpdate   = 1,
     FiresOnRecordDeletion = 2,
-    FiresOnce = 3,
+    FiresOnce             = 3,
 }
 QuerySubscriptionOptions :: bit_set[QuerySubscriptionOption; cffi.ulong]
 
 /// CKDatabaseScope
 DatabaseScope :: enum cffi.long {
-    Public = 1,
+    Public  = 1,
     Private = 2,
-    Shared = 3,
+    Shared  = 3,
 }
 
 /// CKAccountStatus
 AccountStatus :: enum cffi.long {
-    CouldNotDetermine = 0,
-    Available = 1,
-    Restricted = 2,
-    NoAccount = 3,
+    CouldNotDetermine      = 0,
+    Available              = 1,
+    Restricted             = 2,
+    NoAccount              = 3,
     TemporarilyUnavailable = 4,
 }
 
@@ -114,58 +116,58 @@ ApplicationPermissions :: enum cffi.ulong {
 
 /// CKApplicationPermissionStatus
 ApplicationPermissionStatus :: enum cffi.long {
-    InitialState = 0,
+    InitialState     = 0,
     CouldNotComplete = 1,
-    Denied = 2,
-    Granted = 3,
+    Denied           = 2,
+    Granted          = 3,
 }
 
 /// CKErrorCode
 ErrorCode :: enum cffi.long {
-    InternalError = 1,
-    PartialFailure = 2,
-    NetworkUnavailable = 3,
-    NetworkFailure = 4,
-    BadContainer = 5,
-    ServiceUnavailable = 6,
-    RequestRateLimited = 7,
-    MissingEntitlement = 8,
-    NotAuthenticated = 9,
-    PermissionFailure = 10,
-    UnknownItem = 11,
-    InvalidArguments = 12,
-    ResultsTruncated = 13,
-    ServerRecordChanged = 14,
-    ServerRejectedRequest = 15,
-    AssetFileNotFound = 16,
-    AssetFileModified = 17,
-    IncompatibleVersion = 18,
-    ConstraintViolation = 19,
-    OperationCancelled = 20,
-    ChangeTokenExpired = 21,
-    BatchRequestFailed = 22,
-    ZoneBusy = 23,
-    BadDatabase = 24,
-    QuotaExceeded = 25,
-    ZoneNotFound = 26,
-    LimitExceeded = 27,
-    UserDeletedZone = 28,
-    TooManyParticipants = 29,
-    AlreadyShared = 30,
-    ReferenceViolation = 31,
-    ManagedAccountRestricted = 32,
+    InternalError                  = 1,
+    PartialFailure                 = 2,
+    NetworkUnavailable             = 3,
+    NetworkFailure                 = 4,
+    BadContainer                   = 5,
+    ServiceUnavailable             = 6,
+    RequestRateLimited             = 7,
+    MissingEntitlement             = 8,
+    NotAuthenticated               = 9,
+    PermissionFailure              = 10,
+    UnknownItem                    = 11,
+    InvalidArguments               = 12,
+    ResultsTruncated               = 13,
+    ServerRecordChanged            = 14,
+    ServerRejectedRequest          = 15,
+    AssetFileNotFound              = 16,
+    AssetFileModified              = 17,
+    IncompatibleVersion            = 18,
+    ConstraintViolation            = 19,
+    OperationCancelled             = 20,
+    ChangeTokenExpired             = 21,
+    BatchRequestFailed             = 22,
+    ZoneBusy                       = 23,
+    BadDatabase                    = 24,
+    QuotaExceeded                  = 25,
+    ZoneNotFound                   = 26,
+    LimitExceeded                  = 27,
+    UserDeletedZone                = 28,
+    TooManyParticipants            = 29,
+    AlreadyShared                  = 30,
+    ReferenceViolation             = 31,
+    ManagedAccountRestricted       = 32,
     ParticipantMayNeedVerification = 33,
-    ServerResponseLost = 34,
-    AssetNotAvailable = 35,
-    AccountTemporarilyUnavailable = 36,
+    ServerResponseLost             = 34,
+    AssetNotAvailable              = 35,
+    AccountTemporarilyUnavailable  = 36,
 }
 
 /// CKNotificationType
 NotificationType :: enum cffi.long {
-    Query = 1,
-    RecordZone = 2,
+    Query            = 1,
+    RecordZone       = 2,
     ReadNotification = 3,
-    Database = 4,
+    Database         = 4,
 }
 
 /// CKQueryNotificationReason
@@ -177,126 +179,126 @@ QueryNotificationReason :: enum cffi.long {
 
 /// CKRecordZoneCapabilities
 RecordZoneCapabilities :: enum cffi.ulong {
-    apabilityFetchChanges = 1,
-    apabilityAtomic = 2,
-    apabilitySharing = 4,
+    apabilityFetchChanges    = 1,
+    apabilityAtomic          = 2,
+    apabilitySharing         = 4,
     apabilityZoneWideSharing = 8,
 }
 
 /// CKShareParticipantAcceptanceStatus
 ShareParticipantAcceptanceStatus :: enum cffi.long {
-    Unknown = 0,
-    Pending = 1,
+    Unknown  = 0,
+    Pending  = 1,
     Accepted = 2,
-    Removed = 3,
+    Removed  = 3,
 }
 
 /// CKShareParticipantPermission
 ShareParticipantPermission :: enum cffi.long {
-    Unknown = 0,
-    None = 1,
-    ReadOnly = 2,
+    Unknown   = 0,
+    None      = 1,
+    ReadOnly  = 2,
     ReadWrite = 3,
 }
 
 /// CKShareParticipantRole
 ShareParticipantRole :: enum cffi.long {
-    Unknown = 0,
-    Owner = 1,
+    Unknown     = 0,
+    Owner       = 1,
     PrivateUser = 3,
-    PublicUser = 4,
+    PublicUser  = 4,
 }
 
 /// CKShareParticipantType
 ShareParticipantType :: enum cffi.long {
-    Unknown = 0,
-    Owner = 1,
+    Unknown     = 0,
+    Owner       = 1,
     PrivateUser = 3,
-    PublicUser = 4,
+    PublicUser  = 4,
 }
 
 /// CKRecordSavePolicy
 RecordSavePolicy :: enum cffi.long {
     IfServerRecordUnchanged = 0,
-    ChangedKeys = 1,
-    AllKeys = 2,
+    ChangedKeys             = 1,
+    AllKeys                 = 2,
 }
 
 /// CKOperationGroupTransferSize
 OperationGroupTransferSize :: enum cffi.long {
-    Unknown = 0,
-    Kilobytes = 1,
-    Megabytes = 2,
-    TensOfMegabytes = 3,
+    Unknown             = 0,
+    Kilobytes           = 1,
+    Megabytes           = 2,
+    TensOfMegabytes     = 3,
     HundredsOfMegabytes = 4,
-    Gigabytes = 5,
-    TensOfGigabytes = 6,
+    Gigabytes           = 5,
+    TensOfGigabytes     = 6,
     HundredsOfGigabytes = 7,
 }
 
 /// CKSharingParticipantAccessOption
 SharingParticipantAccessOption :: enum cffi.ulong {
-    AnyoneWithLink = 0,
+    AnyoneWithLink          = 0,
     SpecifiedRecipientsOnly = 1,
 }
 SharingParticipantAccessOptions :: bit_set[SharingParticipantAccessOption; cffi.ulong]
 
-SharingParticipantAccessOption_Any :: SharingParticipantAccessOptions{ .AnyoneWithLink, .SpecifiedRecipientsOnly,  }
+Any :: SharingParticipantAccessOptions { .AnyoneWithLink, .SpecifiedRecipientsOnly, }
 
 /// CKSharingParticipantPermissionOption
 SharingParticipantPermissionOption :: enum cffi.ulong {
-    ReadOnly = 0,
+    ReadOnly  = 0,
     ReadWrite = 1,
 }
 SharingParticipantPermissionOptions :: bit_set[SharingParticipantPermissionOption; cffi.ulong]
 
-SharingParticipantPermissionOption_Any :: SharingParticipantPermissionOptions{ .ReadOnly, .ReadWrite,  }
+Any :: SharingParticipantPermissionOptions { .ReadOnly, .ReadWrite, }
 
 /// CKSyncEnginePendingRecordZoneChangeType
 SyncEnginePendingRecordZoneChangeType :: enum cffi.long {
-    SaveRecord = 0,
+    SaveRecord   = 0,
     DeleteRecord = 1,
 }
 
 /// CKSyncEnginePendingDatabaseChangeType
 SyncEnginePendingDatabaseChangeType :: enum cffi.long {
-    SaveZone = 0,
+    SaveZone   = 0,
     DeleteZone = 1,
 }
 
 /// CKSyncEngineSyncReason
 SyncEngineSyncReason :: enum cffi.long {
     Scheduled = 0,
-    Manual = 1,
+    Manual    = 1,
 }
 
 /// CKSyncEngineEventType
 SyncEngineEventType :: enum cffi.long {
-    StateUpdate = 0,
-    AccountChange = 1,
-    FetchedDatabaseChanges = 2,
-    FetchedRecordZoneChanges = 3,
-    SentDatabaseChanges = 4,
-    SentRecordZoneChanges = 5,
-    WillFetchChanges = 6,
+    StateUpdate                = 0,
+    AccountChange              = 1,
+    FetchedDatabaseChanges     = 2,
+    FetchedRecordZoneChanges   = 3,
+    SentDatabaseChanges        = 4,
+    SentRecordZoneChanges      = 5,
+    WillFetchChanges           = 6,
     WillFetchRecordZoneChanges = 7,
-    DidFetchRecordZoneChanges = 8,
-    DidFetchChanges = 9,
-    WillSendChanges = 10,
-    DidSendChanges = 11,
+    DidFetchRecordZoneChanges  = 8,
+    DidFetchChanges            = 9,
+    WillSendChanges            = 10,
+    DidSendChanges             = 11,
 }
 
 /// CKSyncEngineAccountChangeType
 SyncEngineAccountChangeType :: enum cffi.long {
-    SignIn = 0,
-    SignOut = 1,
+    SignIn         = 0,
+    SignOut        = 1,
     SwitchAccounts = 2,
 }
 
 /// CKSyncEngineZoneDeletionReason
 SyncEngineZoneDeletionReason :: enum cffi.long {
-    Deleted = 0,
-    Purged = 1,
+    Deleted            = 0,
+    Purged             = 1,
     EncryptedDataReset = 2,
 }
 

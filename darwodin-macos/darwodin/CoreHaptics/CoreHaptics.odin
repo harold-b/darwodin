@@ -21,6 +21,7 @@ Protocol :: distinct id
 foreign import lib "system:CoreHaptics.framework"
 
 
+
 foreign lib {
     @(link_name="CHHapticEventParameterIDHapticIntensity") HapticEventParameterIDHapticIntensity: ^NS.String
     @(link_name="CHHapticEventParameterIDHapticSharpness") HapticEventParameterIDHapticSharpness: ^NS.String
@@ -102,46 +103,46 @@ HapticPatternKey :: distinct ^NS.String
 
 /// CHHapticErrorCode
 HapticErrorCode :: enum cffi.long {
-    EngineNotRunning = -4805,
-    OperationNotPermitted = -4806,
-    EngineStartTimeout = -4808,
-    NotSupported = -4809,
-    ServerInitFailed = -4810,
-    ServerInterrupted = -4811,
-    InvalidPatternPlayer = -4812,
-    InvalidPatternData = -4813,
+    EngineNotRunning         = -4805,
+    OperationNotPermitted    = -4806,
+    EngineStartTimeout       = -4808,
+    NotSupported             = -4809,
+    ServerInitFailed         = -4810,
+    ServerInterrupted        = -4811,
+    InvalidPatternPlayer     = -4812,
+    InvalidPatternData       = -4813,
     InvalidPatternDictionary = -4814,
-    InvalidAudioSession = -4815,
-    InvalidEngineParameter = -4816,
-    InvalidParameterType = -4820,
-    InvalidEventType = -4821,
-    InvalidEventTime = -4822,
-    InvalidEventDuration = -4823,
-    InvalidAudioResource = -4824,
-    ResourceNotAvailable = -4825,
-    BadEventEntry = -4830,
-    BadParameterEntry = -4831,
-    InvalidTime = -4840,
-    FileNotFound = -4851,
-    InsufficientPower = -4897,
-    UnknownError = -4898,
-    MemoryError = -4899,
+    InvalidAudioSession      = -4815,
+    InvalidEngineParameter   = -4816,
+    InvalidParameterType     = -4820,
+    InvalidEventType         = -4821,
+    InvalidEventTime         = -4822,
+    InvalidEventDuration     = -4823,
+    InvalidAudioResource     = -4824,
+    ResourceNotAvailable     = -4825,
+    BadEventEntry            = -4830,
+    BadParameterEntry        = -4831,
+    InvalidTime              = -4840,
+    FileNotFound             = -4851,
+    InsufficientPower        = -4897,
+    UnknownError             = -4898,
+    MemoryError              = -4899,
 }
 
 /// CHHapticEngineFinishedAction
 HapticEngineFinishedAction :: enum cffi.long {
-    StopEngine = 1,
+    StopEngine         = 1,
     LeaveEngineRunning = 2,
 }
 
 /// CHHapticEngineStoppedReason
 HapticEngineStoppedReason :: enum cffi.long {
-    AudioSessionInterrupt = 1,
-    ApplicationSuspended = 2,
-    IdleTimeout = 3,
-    NotifyWhenFinished = 4,
-    EngineDestroyed = 5,
+    AudioSessionInterrupt    = 1,
+    ApplicationSuspended     = 2,
+    IdleTimeout              = 3,
+    NotifyWhenFinished       = 4,
+    EngineDestroyed          = 5,
     GameControllerDisconnect = 6,
-    SystemError = -1,
+    SystemError              = -1,
 }
 

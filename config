@@ -43,6 +43,23 @@ function darwodin_get_header_for_framework()
   echo $framework
 }
 
+function darwodin_filter_framework()
+{
+   framework=$1
+   is_ios=$2
+
+   case $framework in
+    AppKit|appkit)
+    if [[ $is_ios -eq 1 ]]; then
+      framework=UIKit
+    else
+      framework=AppKit
+    fi
+    ;;
+  esac
+
+  echo $framework
+}
 
 function darwodin_get_output_folder()
 {

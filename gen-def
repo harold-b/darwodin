@@ -48,12 +48,15 @@ if [[ ${use_ios} -eq 1 ]]; then
   out_dir=definitions/ios
 fi
 
+source ./config
+framework=$(darwodin_filter_framework $framework $use_ios)
+
 frameworks_path="${sysroot}/System/Library/Frameworks"
 
 framework_lower="$(echo $framework | tr '[:upper:]' '[:lower:]')"
 out_file="${framework_lower}.json"
 
-source ./config
+
 if [[ -z "$include" ]]; then
   # The header might not match the framework, so map it if necessarry
   include=$(darwodin_get_header_for_framework $framework)

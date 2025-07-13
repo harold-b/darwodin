@@ -23,6 +23,7 @@ MTLDevice :: intrinsics.objc_object
 cl_device_id :: struct {}
 
 
+
 FontIndexMax         :: 65534
 FontIndexInvalid     :: 65535
 GlyphMax             :: 65534
@@ -2562,37 +2563,37 @@ RectEdge :: enum cffi.uint {
 
 /// CGColorRenderingIntent
 ColorRenderingIntent :: enum cffi.int {
-    Default = 0,
+    Default              = 0,
     AbsoluteColorimetric = 1,
     RelativeColorimetric = 2,
-    Perceptual = 3,
-    Saturation = 4,
+    Perceptual           = 3,
+    Saturation           = 4,
 }
 
 /// CGColorSpaceModel
 ColorSpaceModel :: enum cffi.int {
-    Unknown = -1,
+    Unknown    = -1,
     Monochrome = 0,
-    RGB = 1,
-    CMYK = 2,
-    Lab = 3,
-    DeviceN = 4,
-    Indexed = 5,
-    Pattern = 6,
-    XYZ = 7,
+    RGB        = 1,
+    CMYK       = 2,
+    Lab        = 3,
+    DeviceN    = 4,
+    Indexed    = 5,
+    Pattern    = 6,
+    XYZ        = 7,
 }
 
 /// CGPatternTiling
 PatternTiling :: enum cffi.int {
-    NoDistortion = 0,
+    NoDistortion                     = 0,
     ConstantSpacingMinimalDistortion = 1,
-    ConstantSpacing = 2,
+    ConstantSpacing                  = 2,
 }
 
 /// CGFontPostScriptFormat
 FontPostScriptFormat :: enum cffi.int {
-    Type1 = 1,
-    Type3 = 3,
+    Type1  = 1,
+    Type3  = 3,
     Type42 = 42,
 }
 
@@ -2605,52 +2606,52 @@ GlyphDeprecatedEnum :: enum cffi.int {
 /// CGGradientDrawingOptions
 GradientDrawingOptions :: enum cffi.uint {
     DrawsBeforeStartLocation = 1,
-    DrawsAfterEndLocation = 2,
+    DrawsAfterEndLocation    = 2,
 }
 
 /// CGImageAlphaInfo
 ImageAlphaInfo :: enum cffi.uint {
-    None = 0,
-    PremultipliedLast = 1,
+    None               = 0,
+    PremultipliedLast  = 1,
     PremultipliedFirst = 2,
-    Last = 3,
-    First = 4,
-    NoneSkipLast = 5,
-    NoneSkipFirst = 6,
-    Only = 7,
+    Last               = 3,
+    First              = 4,
+    NoneSkipLast       = 5,
+    NoneSkipFirst      = 6,
+    Only               = 7,
 }
 
 /// CGImageByteOrderInfo
 ImageByteOrderInfo :: enum cffi.uint {
-    Mask = 28672,
-    Default = 0,
+    Mask      = 28672,
+    Default   = 0,
     _16Little = 4096,
     _32Little = 8192,
-    _16Big = 12288,
-    _32Big = 16384,
+    _16Big    = 12288,
+    _32Big    = 16384,
 }
 
 /// CGImagePixelFormatInfo
 ImagePixelFormatInfo :: enum cffi.uint {
-    Mask = 983040,
-    Packed = 0,
-    RGB555 = 65536,
-    RGB565 = 131072,
+    Mask      = 983040,
+    Packed    = 0,
+    RGB555    = 65536,
+    RGB565    = 131072,
     RGB101010 = 196608,
-    RGBCIF10 = 262144,
+    RGBCIF10  = 262144,
 }
 
 /// CGBitmapInfo
 BitmapInfo :: enum cffi.uint {
-    AlphaInfoMask = 31,
-    FloatInfoMask = 3840,
-    FloatComponents = 256,
-    ByteOrderMask = 28672,
-    ByteOrderDefault = 0,
+    AlphaInfoMask     = 31,
+    FloatInfoMask     = 3840,
+    FloatComponents   = 256,
+    ByteOrderMask     = 28672,
+    ByteOrderDefault  = 0,
     ByteOrder16Little = 4096,
     ByteOrder32Little = 8192,
-    ByteOrder16Big = 12288,
-    ByteOrder32Big = 16384,
+    ByteOrder16Big    = 12288,
+    ByteOrder32Big    = 16384,
 }
 
 /// CGLineJoin
@@ -2662,330 +2663,330 @@ LineJoin :: enum cffi.int {
 
 /// CGLineCap
 LineCap :: enum cffi.int {
-    Butt = 0,
-    Round = 1,
+    Butt   = 0,
+    Round  = 1,
     Square = 2,
 }
 
 /// CGPathElementType
 PathElementType :: enum cffi.int {
-    MoveToPoint = 0,
-    AddLineToPoint = 1,
+    MoveToPoint         = 0,
+    AddLineToPoint      = 1,
     AddQuadCurveToPoint = 2,
-    AddCurveToPoint = 3,
-    CloseSubpath = 4,
+    AddCurveToPoint     = 3,
+    CloseSubpath        = 4,
 }
 
 /// CGPDFObjectType
 PDFObjectType :: enum cffi.int {
-    Null = 1,
-    Boolean = 2,
-    Integer = 3,
-    Real = 4,
-    Name = 5,
-    String = 6,
-    Array = 7,
+    Null       = 1,
+    Boolean    = 2,
+    Integer    = 3,
+    Real       = 4,
+    Name       = 5,
+    String     = 6,
+    Array      = 7,
     Dictionary = 8,
-    Stream = 9,
+    Stream     = 9,
 }
 
 /// CGPDFDataFormat
 PDFDataFormat :: enum cffi.int {
-    Raw = 0,
+    Raw         = 0,
     JPEGEncoded = 1,
-    JPEG2000 = 2,
+    JPEG2000    = 2,
 }
 
 /// CGPDFBox
 PDFBox :: enum cffi.int {
     MediaBox = 0,
-    CropBox = 1,
+    CropBox  = 1,
     BleedBox = 2,
-    TrimBox = 3,
-    ArtBox = 4,
+    TrimBox  = 3,
+    ArtBox   = 4,
 }
 
 /// CGPDFAccessPermissions
 PDFAccessPermissions :: enum cffi.uint {
-    AllowsLowQualityPrinting = 1,
-    AllowsHighQualityPrinting = 2,
-    AllowsDocumentChanges = 4,
-    AllowsDocumentAssembly = 8,
-    AllowsContentCopying = 16,
+    AllowsLowQualityPrinting   = 1,
+    AllowsHighQualityPrinting  = 2,
+    AllowsDocumentChanges      = 4,
+    AllowsDocumentAssembly     = 8,
+    AllowsContentCopying       = 16,
     AllowsContentAccessibility = 32,
-    AllowsCommenting = 64,
-    AllowsFormFieldEntry = 128,
+    AllowsCommenting           = 64,
+    AllowsFormFieldEntry       = 128,
 }
 
 /// CGPathDrawingMode
 PathDrawingMode :: enum cffi.int {
-    Fill = 0,
-    EOFill = 1,
-    Stroke = 2,
-    FillStroke = 3,
+    Fill         = 0,
+    EOFill       = 1,
+    Stroke       = 2,
+    FillStroke   = 3,
     EOFillStroke = 4,
 }
 
 /// CGTextDrawingMode
 TextDrawingMode :: enum cffi.int {
-    Fill = 0,
-    Stroke = 1,
-    FillStroke = 2,
-    Invisible = 3,
-    FillClip = 4,
-    StrokeClip = 5,
+    Fill           = 0,
+    Stroke         = 1,
+    FillStroke     = 2,
+    Invisible      = 3,
+    FillClip       = 4,
+    StrokeClip     = 5,
     FillStrokeClip = 6,
-    Clip = 7,
+    Clip           = 7,
 }
 
 /// CGTextEncoding
 TextEncoding :: enum cffi.int {
     FontSpecific = 0,
-    MacRoman = 1,
+    MacRoman     = 1,
 }
 
 /// CGInterpolationQuality
 InterpolationQuality :: enum cffi.int {
     Default = 0,
-    None = 1,
-    Low = 2,
-    Medium = 4,
-    High = 3,
+    None    = 1,
+    Low     = 2,
+    Medium  = 4,
+    High    = 3,
 }
 
 /// CGBlendMode
 BlendMode :: enum cffi.int {
-    Normal = 0,
-    Multiply = 1,
-    Screen = 2,
-    Overlay = 3,
-    Darken = 4,
-    Lighten = 5,
-    ColorDodge = 6,
-    ColorBurn = 7,
-    SoftLight = 8,
-    HardLight = 9,
-    Difference = 10,
-    Exclusion = 11,
-    Hue = 12,
-    Saturation = 13,
-    Color = 14,
-    Luminosity = 15,
-    Clear = 16,
-    Copy = 17,
-    SourceIn = 18,
-    SourceOut = 19,
-    SourceAtop = 20,
+    Normal          = 0,
+    Multiply        = 1,
+    Screen          = 2,
+    Overlay         = 3,
+    Darken          = 4,
+    Lighten         = 5,
+    ColorDodge      = 6,
+    ColorBurn       = 7,
+    SoftLight       = 8,
+    HardLight       = 9,
+    Difference      = 10,
+    Exclusion       = 11,
+    Hue             = 12,
+    Saturation      = 13,
+    Color           = 14,
+    Luminosity      = 15,
+    Clear           = 16,
+    Copy            = 17,
+    SourceIn        = 18,
+    SourceOut       = 19,
+    SourceAtop      = 20,
     DestinationOver = 21,
-    DestinationIn = 22,
-    DestinationOut = 23,
+    DestinationIn   = 22,
+    DestinationOut  = 23,
     DestinationAtop = 24,
-    XOR = 25,
-    PlusDarker = 26,
-    PlusLighter = 27,
+    XOR             = 25,
+    PlusDarker      = 26,
+    PlusLighter     = 27,
 }
 
 /// CGToneMapping
 ToneMapping :: enum cffi.uint {
-    Default = 0,
+    Default                  = 0,
     ImageSpecificLumaScaling = 1,
-    ReferenceWhiteBased = 2,
-    ITURecommended = 3,
-    EXRGamma = 4,
-    None = 5,
+    ReferenceWhiteBased      = 2,
+    ITURecommended           = 3,
+    EXRGamma                 = 4,
+    None                     = 5,
 }
 
 /// CGColorConversionInfoTransformType
 ColorConversionInfoTransformType :: enum cffi.uint {
-    FromSpace = 0,
-    ToSpace = 1,
+    FromSpace  = 0,
+    ToSpace    = 1,
     ApplySpace = 2,
 }
 
 /// CGError
 Error :: enum cffi.int {
-    Success = 0,
-    Failure = 1000,
-    IllegalArgument = 1001,
+    Success           = 0,
+    Failure           = 1000,
+    IllegalArgument   = 1001,
     InvalidConnection = 1002,
-    InvalidContext = 1003,
-    CannotComplete = 1004,
-    NotImplemented = 1006,
-    RangeCheck = 1007,
-    TypeCheck = 1008,
-    InvalidOperation = 1010,
-    NoneAvailable = 1011,
+    InvalidContext    = 1003,
+    CannotComplete    = 1004,
+    NotImplemented    = 1006,
+    RangeCheck        = 1007,
+    TypeCheck         = 1008,
+    InvalidOperation  = 1010,
+    NoneAvailable     = 1011,
 }
 
 /// CGPDFTagType
 PDFTagType :: enum cffi.int {
-    Document = 100,
-    Part = 101,
-    Art = 102,
-    Section = 103,
-    Div = 104,
-    BlockQuote = 105,
-    Caption = 106,
-    TOC = 107,
-    TOCI = 108,
-    Index = 109,
-    NonStructure = 110,
-    Private = 111,
-    Paragraph = 200,
-    Header = 201,
-    Header1 = 202,
-    Header2 = 203,
-    Header3 = 204,
-    Header4 = 205,
-    Header5 = 206,
-    Header6 = 207,
-    List = 300,
-    ListItem = 301,
-    Label = 302,
-    ListBody = 303,
-    Table = 400,
-    TableRow = 401,
-    TableHeaderCell = 402,
-    TableDataCell = 403,
-    TableHeader = 404,
-    TableBody = 405,
-    TableFooter = 406,
-    Span = 500,
-    Quote = 501,
-    Note = 502,
-    Reference = 503,
-    Bibliography = 504,
-    Code = 505,
-    Link = 506,
-    Annotation = 507,
-    Ruby = 600,
-    RubyBaseText = 601,
+    Document           = 100,
+    Part               = 101,
+    Art                = 102,
+    Section            = 103,
+    Div                = 104,
+    BlockQuote         = 105,
+    Caption            = 106,
+    TOC                = 107,
+    TOCI               = 108,
+    Index              = 109,
+    NonStructure       = 110,
+    Private            = 111,
+    Paragraph          = 200,
+    Header             = 201,
+    Header1            = 202,
+    Header2            = 203,
+    Header3            = 204,
+    Header4            = 205,
+    Header5            = 206,
+    Header6            = 207,
+    List               = 300,
+    ListItem           = 301,
+    Label              = 302,
+    ListBody           = 303,
+    Table              = 400,
+    TableRow           = 401,
+    TableHeaderCell    = 402,
+    TableDataCell      = 403,
+    TableHeader        = 404,
+    TableBody          = 405,
+    TableFooter        = 406,
+    Span               = 500,
+    Quote              = 501,
+    Note               = 502,
+    Reference          = 503,
+    Bibliography       = 504,
+    Code               = 505,
+    Link               = 506,
+    Annotation         = 507,
+    Ruby               = 600,
+    RubyBaseText       = 601,
     RubyAnnotationText = 602,
-    RubyPunctuation = 603,
-    Warichu = 604,
-    WarichuText = 605,
+    RubyPunctuation    = 603,
+    Warichu            = 604,
+    WarichuText        = 605,
     WarichuPunctiation = 606,
-    Figure = 700,
-    Formula = 701,
-    Form = 702,
-    Object = 800,
+    Figure             = 700,
+    Formula            = 701,
+    Form               = 702,
+    Object             = 800,
 }
 
 /// CGWindowSharingType
 WindowSharingType :: enum cffi.uint {
-    None = 0,
-    ReadOnly = 1,
+    None      = 0,
+    ReadOnly  = 1,
     ReadWrite = 2,
 }
 
 /// CGWindowBackingType
 WindowBackingType :: enum cffi.uint {
-    StoreRetained = 0,
+    StoreRetained    = 0,
     StoreNonretained = 1,
-    StoreBuffered = 2,
+    StoreBuffered    = 2,
 }
 
 /// CGWindowListOption
 WindowListOption :: enum cffi.uint {
-    All = 0,
-    OnScreenOnly = 1,
-    OnScreenAboveWindow = 2,
-    OnScreenBelowWindow = 4,
-    IncludingWindow = 8,
+    All                    = 0,
+    OnScreenOnly           = 1,
+    OnScreenAboveWindow    = 2,
+    OnScreenBelowWindow    = 4,
+    IncludingWindow        = 8,
     ExcludeDesktopElements = 16,
 }
 
 /// CGWindowImageOption
 WindowImageOption :: enum cffi.uint {
-    Default = 0,
+    Default             = 0,
     BoundsIgnoreFraming = 1,
-    ShouldBeOpaque = 2,
-    OnlyShadows = 4,
-    BestResolution = 8,
-    NominalResolution = 16,
+    ShouldBeOpaque      = 2,
+    OnlyShadows         = 4,
+    BestResolution      = 8,
+    NominalResolution   = 16,
 }
 
 /// CGWindowLevelKey
 WindowLevelKey :: enum cffi.int {
-    BaseWindowLevelKey = 0,
-    MinimumWindowLevelKey = 1,
-    DesktopWindowLevelKey = 2,
-    BackstopMenuLevelKey = 3,
-    NormalWindowLevelKey = 4,
-    FloatingWindowLevelKey = 5,
-    TornOffMenuWindowLevelKey = 6,
-    DockWindowLevelKey = 7,
-    MainMenuWindowLevelKey = 8,
-    StatusWindowLevelKey = 9,
-    ModalPanelWindowLevelKey = 10,
-    PopUpMenuWindowLevelKey = 11,
-    DraggingWindowLevelKey = 12,
-    ScreenSaverWindowLevelKey = 13,
-    MaximumWindowLevelKey = 14,
-    OverlayWindowLevelKey = 15,
-    HelpWindowLevelKey = 16,
-    UtilityWindowLevelKey = 17,
-    DesktopIconWindowLevelKey = 18,
-    CursorWindowLevelKey = 19,
+    BaseWindowLevelKey              = 0,
+    MinimumWindowLevelKey           = 1,
+    DesktopWindowLevelKey           = 2,
+    BackstopMenuLevelKey            = 3,
+    NormalWindowLevelKey            = 4,
+    FloatingWindowLevelKey          = 5,
+    TornOffMenuWindowLevelKey       = 6,
+    DockWindowLevelKey              = 7,
+    MainMenuWindowLevelKey          = 8,
+    StatusWindowLevelKey            = 9,
+    ModalPanelWindowLevelKey        = 10,
+    PopUpMenuWindowLevelKey         = 11,
+    DraggingWindowLevelKey          = 12,
+    ScreenSaverWindowLevelKey       = 13,
+    MaximumWindowLevelKey           = 14,
+    OverlayWindowLevelKey           = 15,
+    HelpWindowLevelKey              = 16,
+    UtilityWindowLevelKey           = 17,
+    DesktopIconWindowLevelKey       = 18,
+    CursorWindowLevelKey            = 19,
     AssistiveTechHighWindowLevelKey = 20,
-    NumberOfWindowLevelKeys = 21,
+    NumberOfWindowLevelKeys         = 21,
 }
 
 /// CGCaptureOptions
 CaptureOptions :: enum cffi.uint {
     NoOptions = 0,
-    NoFill = 1,
+    NoFill    = 1,
 }
 
 /// CGConfigureOption
 ConfigureOption :: enum cffi.uint {
-    ForAppOnly = 0,
-    ForSession = 1,
+    ForAppOnly  = 0,
+    ForSession  = 1,
     Permanently = 2,
 }
 
 /// CGDisplayChangeSummaryFlags
 DisplayChangeSummaryFlag :: enum cffi.uint {
-    BeginConfigurationFlag = 0,
-    MovedFlag = 1,
-    SetMainFlag = 2,
-    SetModeFlag = 3,
-    AddFlag = 4,
-    RemoveFlag = 5,
-    EnabledFlag = 8,
-    DisabledFlag = 9,
-    MirrorFlag = 10,
-    UnMirrorFlag = 11,
+    BeginConfigurationFlag  = 0,
+    MovedFlag               = 1,
+    SetMainFlag             = 2,
+    SetModeFlag             = 3,
+    AddFlag                 = 4,
+    RemoveFlag              = 5,
+    EnabledFlag             = 8,
+    DisabledFlag            = 9,
+    MirrorFlag              = 10,
+    UnMirrorFlag            = 11,
     DesktopShapeChangedFlag = 12,
 }
 DisplayChangeSummaryFlags :: bit_set[DisplayChangeSummaryFlag; cffi.uint]
 
 /// CGDisplayStreamUpdateRectType
 DisplayStreamUpdateRectType :: enum cffi.int {
-    RefreshedRects = 0,
-    MovedRects = 1,
-    DirtyRects = 2,
+    RefreshedRects    = 0,
+    MovedRects        = 1,
+    DirtyRects        = 2,
     ReducedDirtyRects = 3,
 }
 
 /// CGDisplayStreamFrameStatus
 DisplayStreamFrameStatus :: enum cffi.int {
     FrameComplete = 0,
-    FrameIdle = 1,
-    FrameBlank = 2,
-    Stopped = 3,
+    FrameIdle     = 1,
+    FrameBlank    = 2,
+    Stopped       = 3,
 }
 
 /// CGScreenUpdateOperation
 ScreenUpdateOperation :: enum cffi.uint {
-    Refresh = 0,
-    Move = 1,
+    Refresh                    = 0,
+    Move                       = 1,
     ReducedDirtyRectangleCount = 2147483648,
 }
 
 /// CGEventFilterMask
 EventFilterMaskFlag :: enum cffi.uint {
-    PermitLocalMouseEvents = 0,
+    PermitLocalMouseEvents    = 0,
     PermitLocalKeyboardEvents = 1,
     PermitSystemDefinedEvents = 2,
 }
@@ -2993,168 +2994,168 @@ EventFilterMask :: bit_set[EventFilterMaskFlag; cffi.uint]
 
 /// CGEventSuppressionState
 EventSuppressionState :: enum cffi.uint {
-    SuppressionInterval = 0,
-    RemoteMouseDrag = 1,
+    SuppressionInterval            = 0,
+    RemoteMouseDrag                = 1,
     NumberOfEventSuppressionStates = 2,
 }
 
 /// CGMouseButton
 MouseButton :: enum cffi.uint {
-    Left = 0,
-    Right = 1,
+    Left   = 0,
+    Right  = 1,
     Center = 2,
 }
 
 /// CGScrollEventUnit
 ScrollEventUnit :: enum cffi.uint {
     Pixel = 0,
-    Line = 1,
+    Line  = 1,
 }
 
 /// CGMomentumScrollPhase
 MomentumScrollPhase :: enum cffi.uint {
-    None = 0,
-    Begin = 1,
+    None     = 0,
+    Begin    = 1,
     Continue = 2,
-    End = 3,
+    End      = 3,
 }
 
 /// CGScrollPhase
 ScrollPhase :: enum cffi.uint {
-    Began = 1,
-    Changed = 2,
-    Ended = 4,
+    Began     = 1,
+    Changed   = 2,
+    Ended     = 4,
     Cancelled = 8,
-    MayBegin = 128,
+    MayBegin  = 128,
 }
 
 /// CGGesturePhase
 GesturePhase :: enum cffi.uint {
-    None = 0,
-    Began = 1,
-    Changed = 2,
-    Ended = 4,
+    None      = 0,
+    Began     = 1,
+    Changed   = 2,
+    Ended     = 4,
     Cancelled = 8,
-    MayBegin = 128,
+    MayBegin  = 128,
 }
 
 /// CGEventFlags
 EventFlag :: enum cffi.ulonglong {
-    FlagMaskAlphaShift = 16,
-    FlagMaskShift = 17,
-    FlagMaskControl = 18,
-    FlagMaskAlternate = 19,
-    FlagMaskCommand = 20,
-    FlagMaskHelp = 22,
-    FlagMaskSecondaryFn = 23,
-    FlagMaskNumericPad = 21,
+    FlagMaskAlphaShift   = 16,
+    FlagMaskShift        = 17,
+    FlagMaskControl      = 18,
+    FlagMaskAlternate    = 19,
+    FlagMaskCommand      = 20,
+    FlagMaskHelp         = 22,
+    FlagMaskSecondaryFn  = 23,
+    FlagMaskNumericPad   = 21,
     FlagMaskNonCoalesced = 8,
 }
 EventFlags :: bit_set[EventFlag; cffi.ulonglong]
 
 /// CGEventType
 EventType :: enum cffi.uint {
-    Null = 0,
-    LeftMouseDown = 1,
-    LeftMouseUp = 2,
-    RightMouseDown = 3,
-    RightMouseUp = 4,
-    MouseMoved = 5,
-    LeftMouseDragged = 6,
-    RightMouseDragged = 7,
-    KeyDown = 10,
-    KeyUp = 11,
-    FlagsChanged = 12,
-    ScrollWheel = 22,
-    TabletPointer = 23,
-    TabletProximity = 24,
-    OtherMouseDown = 25,
-    OtherMouseUp = 26,
-    OtherMouseDragged = 27,
-    TapDisabledByTimeout = 4294967294,
+    Null                   = 0,
+    LeftMouseDown          = 1,
+    LeftMouseUp            = 2,
+    RightMouseDown         = 3,
+    RightMouseUp           = 4,
+    MouseMoved             = 5,
+    LeftMouseDragged       = 6,
+    RightMouseDragged      = 7,
+    KeyDown                = 10,
+    KeyUp                  = 11,
+    FlagsChanged           = 12,
+    ScrollWheel            = 22,
+    TabletPointer          = 23,
+    TabletProximity        = 24,
+    OtherMouseDown         = 25,
+    OtherMouseUp           = 26,
+    OtherMouseDragged      = 27,
+    TapDisabledByTimeout   = 4294967294,
     TapDisabledByUserInput = 4294967295,
 }
 
 /// CGEventField
 EventField :: enum cffi.uint {
-    MouseEventNumber = 0,
-    MouseEventClickState = 1,
-    MouseEventPressure = 2,
-    MouseEventButtonNumber = 3,
-    MouseEventDeltaX = 4,
-    MouseEventDeltaY = 5,
-    MouseEventInstantMouser = 6,
-    MouseEventSubtype = 7,
-    KeyboardEventAutorepeat = 8,
-    KeyboardEventKeycode = 9,
-    KeyboardEventKeyboardType = 10,
-    ScrollWheelEventDeltaAxis1 = 11,
-    ScrollWheelEventDeltaAxis2 = 12,
-    ScrollWheelEventDeltaAxis3 = 13,
+    MouseEventNumber                 = 0,
+    MouseEventClickState             = 1,
+    MouseEventPressure               = 2,
+    MouseEventButtonNumber           = 3,
+    MouseEventDeltaX                 = 4,
+    MouseEventDeltaY                 = 5,
+    MouseEventInstantMouser          = 6,
+    MouseEventSubtype                = 7,
+    KeyboardEventAutorepeat          = 8,
+    KeyboardEventKeycode             = 9,
+    KeyboardEventKeyboardType        = 10,
+    ScrollWheelEventDeltaAxis1       = 11,
+    ScrollWheelEventDeltaAxis2       = 12,
+    ScrollWheelEventDeltaAxis3       = 13,
     ScrollWheelEventFixedPtDeltaAxis1 = 93,
     ScrollWheelEventFixedPtDeltaAxis2 = 94,
     ScrollWheelEventFixedPtDeltaAxis3 = 95,
-    ScrollWheelEventPointDeltaAxis1 = 96,
-    ScrollWheelEventPointDeltaAxis2 = 97,
-    ScrollWheelEventPointDeltaAxis3 = 98,
-    ScrollWheelEventScrollPhase = 99,
-    ScrollWheelEventScrollCount = 100,
-    ScrollWheelEventMomentumPhase = 123,
-    ScrollWheelEventInstantMouser = 14,
-    TabletEventPointX = 15,
-    TabletEventPointY = 16,
-    TabletEventPointZ = 17,
-    TabletEventPointButtons = 18,
-    TabletEventPointPressure = 19,
-    TabletEventTiltX = 20,
-    TabletEventTiltY = 21,
-    TabletEventRotation = 22,
-    TabletEventTangentialPressure = 23,
-    TabletEventDeviceID = 24,
-    TabletEventVendor1 = 25,
-    TabletEventVendor2 = 26,
-    TabletEventVendor3 = 27,
-    TabletProximityEventVendorID = 28,
-    TabletProximityEventTabletID = 29,
-    TabletProximityEventPointerID = 30,
-    TabletProximityEventDeviceID = 31,
+    ScrollWheelEventPointDeltaAxis1  = 96,
+    ScrollWheelEventPointDeltaAxis2  = 97,
+    ScrollWheelEventPointDeltaAxis3  = 98,
+    ScrollWheelEventScrollPhase      = 99,
+    ScrollWheelEventScrollCount      = 100,
+    ScrollWheelEventMomentumPhase    = 123,
+    ScrollWheelEventInstantMouser    = 14,
+    TabletEventPointX                = 15,
+    TabletEventPointY                = 16,
+    TabletEventPointZ                = 17,
+    TabletEventPointButtons          = 18,
+    TabletEventPointPressure         = 19,
+    TabletEventTiltX                 = 20,
+    TabletEventTiltY                 = 21,
+    TabletEventRotation              = 22,
+    TabletEventTangentialPressure    = 23,
+    TabletEventDeviceID              = 24,
+    TabletEventVendor1               = 25,
+    TabletEventVendor2               = 26,
+    TabletEventVendor3               = 27,
+    TabletProximityEventVendorID     = 28,
+    TabletProximityEventTabletID     = 29,
+    TabletProximityEventPointerID    = 30,
+    TabletProximityEventDeviceID     = 31,
     TabletProximityEventSystemTabletID = 32,
     TabletProximityEventVendorPointerType = 33,
     TabletProximityEventVendorPointerSerialNumber = 34,
     TabletProximityEventVendorUniqueID = 35,
     TabletProximityEventCapabilityMask = 36,
-    TabletProximityEventPointerType = 37,
+    TabletProximityEventPointerType  = 37,
     TabletProximityEventEnterProximity = 38,
-    TargetProcessSerialNumber = 39,
-    TargetUnixProcessID = 40,
-    SourceUnixProcessID = 41,
-    SourceUserData = 42,
-    SourceUserID = 43,
-    SourceGroupID = 44,
-    SourceStateID = 45,
-    ScrollWheelEventIsContinuous = 88,
+    TargetProcessSerialNumber        = 39,
+    TargetUnixProcessID              = 40,
+    SourceUnixProcessID              = 41,
+    SourceUserData                   = 42,
+    SourceUserID                     = 43,
+    SourceGroupID                    = 44,
+    SourceStateID                    = 45,
+    ScrollWheelEventIsContinuous     = 88,
     MouseEventWindowUnderMousePointer = 91,
     MouseEventWindowUnderMousePointerThatCanHandleThisEvent = 92,
-    UnacceleratedPointerMovementX = 170,
-    UnacceleratedPointerMovementY = 171,
+    UnacceleratedPointerMovementX    = 170,
+    UnacceleratedPointerMovementY    = 171,
     ScrollWheelEventMomentumOptionPhase = 173,
     ScrollWheelEventAcceleratedDeltaAxis1 = 176,
     ScrollWheelEventAcceleratedDeltaAxis2 = 175,
-    ScrollWheelEventRawDeltaAxis1 = 178,
-    ScrollWheelEventRawDeltaAxis2 = 177,
+    ScrollWheelEventRawDeltaAxis1    = 178,
+    ScrollWheelEventRawDeltaAxis2    = 177,
 }
 
 /// CGEventMouseSubtype
 EventMouseSubtype :: enum cffi.uint {
-    Default = 0,
-    TabletPoint = 1,
+    Default         = 0,
+    TabletPoint     = 1,
     TabletProximity = 2,
 }
 
 /// CGEventTapLocation
 EventTapLocation :: enum cffi.uint {
-    HIDEventTap = 0,
-    SessionEventTap = 1,
+    HIDEventTap              = 0,
+    SessionEventTap          = 1,
     AnnotatedSessionEventTap = 2,
 }
 
@@ -3166,15 +3167,15 @@ EventTapPlacement :: enum cffi.uint {
 
 /// CGEventTapOptions
 EventTapOptions :: enum cffi.uint {
-    OptionDefault = 0,
+    OptionDefault    = 0,
     OptionListenOnly = 1,
 }
 
 /// CGEventSourceStateID
 EventSourceStateID :: enum cffi.int {
-    Private = -1,
+    Private              = -1,
     CombinedSessionState = 0,
-    HIDSystemState = 1,
+    HIDSystemState       = 1,
 }
 
 /// CGPoint
@@ -3186,7 +3187,7 @@ Point :: struct #align (8) {
 
 /// CGSize
 Size :: struct #align (8) {
-    width: Float,
+    width:  Float,
     height: Float,
 }
 #assert(size_of(Size) == 16)
@@ -3201,16 +3202,16 @@ Vector :: struct #align (8) {
 /// CGRect
 Rect :: struct #align (8) {
     origin: Point,
-    size: Size,
+    size:   Size,
 }
 #assert(size_of(Rect) == 32)
 
 /// CGAffineTransform
 AffineTransform :: struct #align (8) {
-    a: Float,
-    b: Float,
-    c: Float,
-    d: Float,
+    a:  Float,
+    b:  Float,
+    c:  Float,
+    d:  Float,
     tx: Float,
     ty: Float,
 }
@@ -3218,10 +3219,10 @@ AffineTransform :: struct #align (8) {
 
 /// CGAffineTransformComponents
 AffineTransformComponents :: struct #align (8) {
-    scale: Size,
+    scale:           Size,
     horizontalShear: Float,
-    rotation: Float,
-    translation: Vector,
+    rotation:        Float,
+    translation:     Vector,
 }
 #assert(size_of(AffineTransformComponents) == 48)
 
@@ -3242,21 +3243,21 @@ DataProvider :: struct {}
 
 /// CGDataProviderSequentialCallbacks
 DataProviderSequentialCallbacks :: struct #align (8) {
-    version: cffi.uint,
-    getBytes: DataProviderGetBytesCallback,
+    version:     cffi.uint,
+    getBytes:    DataProviderGetBytesCallback,
     skipForward: DataProviderSkipForwardCallback,
-    rewind: DataProviderRewindCallback,
+    rewind:      DataProviderRewindCallback,
     releaseInfo: DataProviderReleaseInfoCallback,
 }
 #assert(size_of(DataProviderSequentialCallbacks) == 40)
 
 /// CGDataProviderDirectCallbacks
 DataProviderDirectCallbacks :: struct #align (8) {
-    version: cffi.uint,
-    getBytePointer: proc "c" (info: rawptr) -> rawptr,
+    version:            cffi.uint,
+    getBytePointer:     proc "c" (info: rawptr) -> rawptr,
     releaseBytePointer: proc "c" (info: rawptr, pointer: rawptr),
     getBytesAtPosition: DataProviderGetBytesAtPositionCallback,
-    releaseInfo: DataProviderReleaseInfoCallback,
+    releaseInfo:        DataProviderReleaseInfoCallback,
 }
 #assert(size_of(DataProviderDirectCallbacks) == 40)
 
@@ -3268,7 +3269,7 @@ Pattern :: struct {}
 
 /// CGPatternCallbacks
 PatternCallbacks :: struct #align (8) {
-    version: cffi.uint,
+    version:     cffi.uint,
     drawPattern: PatternDrawPatternCallback,
     releaseInfo: PatternReleaseInfoCallback,
 }
@@ -3288,7 +3289,7 @@ Path :: struct {}
 
 /// CGPathElement
 PathElement :: struct #align (8) {
-    type: PathElementType,
+    type:   PathElementType,
     points: ^Point,
 }
 #assert(size_of(PathElement) == 16)
@@ -3322,8 +3323,8 @@ Function :: struct {}
 
 /// CGFunctionCallbacks
 FunctionCallbacks :: struct #align (8) {
-    version: cffi.uint,
-    evaluate: FunctionEvaluateCallback,
+    version:     cffi.uint,
+    evaluate:    FunctionEvaluateCallback,
     releaseInfo: FunctionReleaseInfoCallback,
 }
 #assert(size_of(FunctionCallbacks) == 24)
@@ -3333,13 +3334,13 @@ ColorConversionInfo :: struct {}
 
 /// CGColorDataFormat
 ColorDataFormat :: struct #align (8) {
-    version: cffi.uint32_t,
-    colorspace_info: CF.TypeRef,
-    bitmap_info: BitmapInfo,
+    version:            cffi.uint32_t,
+    colorspace_info:    CF.TypeRef,
+    bitmap_info:        BitmapInfo,
     bits_per_component: cffi.size_t,
-    bytes_per_row: cffi.size_t,
-    intent: ColorRenderingIntent,
-    decode: ^Float,
+    bytes_per_row:      cffi.size_t,
+    intent:             ColorRenderingIntent,
+    decode:             ^Float,
 }
 #assert(size_of(ColorDataFormat) == 56)
 
@@ -3348,7 +3349,7 @@ DataConsumer :: struct {}
 
 /// CGDataConsumerCallbacks
 DataConsumerCallbacks :: struct #align (8) {
-    putBytes: DataConsumerPutBytesCallback,
+    putBytes:        DataConsumerPutBytesCallback,
     releaseConsumer: DataConsumerReleaseInfoCallback,
 }
 #assert(size_of(DataConsumerCallbacks) == 16)
@@ -3370,9 +3371,9 @@ DisplayMode :: struct {}
 
 /// CGDeviceColor
 DeviceColor :: struct #align (4) {
-    red: cffi.float,
+    red:   cffi.float,
     green: cffi.float,
-    blue: cffi.float,
+    blue:  cffi.float,
 }
 #assert(size_of(DeviceColor) == 12)
 
@@ -3400,16 +3401,16 @@ __CGEventTapProxy :: struct {}
 
 /// __CGEventTapInformation
 __CGEventTapInformation :: struct #align (8) {
-    eventTapID: cffi.uint32_t,
-    tapPoint: EventTapLocation,
-    options: EventTapOptions,
-    eventsOfInterest: EventMask,
-    tappingProcess: CF.pid_t,
+    eventTapID:         cffi.uint32_t,
+    tapPoint:           EventTapLocation,
+    options:            EventTapOptions,
+    eventsOfInterest:   EventMask,
+    tappingProcess:     CF.pid_t,
     processBeingTapped: CF.pid_t,
-    enabled: cffi.bool,
-    minUsecLatency: cffi.float,
-    avgUsecLatency: cffi.float,
-    maxUsecLatency: cffi.float,
+    enabled:            cffi.bool,
+    minUsecLatency:     cffi.float,
+    avgUsecLatency:     cffi.float,
+    maxUsecLatency:     cffi.float,
 }
 #assert(size_of(__CGEventTapInformation) == 48)
 
@@ -3421,14 +3422,14 @@ PSConverter :: struct {}
 
 /// CGPSConverterCallbacks
 PSConverterCallbacks :: struct #align (8) {
-    version: cffi.uint,
+    version:       cffi.uint,
     beginDocument: PSConverterBeginDocumentCallback,
-    endDocument: PSConverterEndDocumentCallback,
-    beginPage: PSConverterBeginPageCallback,
-    endPage: PSConverterEndPageCallback,
-    noteProgress: PSConverterProgressCallback,
-    noteMessage: PSConverterMessageCallback,
-    releaseInfo: PSConverterReleaseInfoCallback,
+    endDocument:   PSConverterEndDocumentCallback,
+    beginPage:     PSConverterBeginPageCallback,
+    endPage:       PSConverterEndPageCallback,
+    noteProgress:  PSConverterProgressCallback,
+    noteMessage:   PSConverterMessageCallback,
+    releaseInfo:   PSConverterReleaseInfoCallback,
 }
 #assert(size_of(PSConverterCallbacks) == 64)
 

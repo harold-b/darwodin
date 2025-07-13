@@ -43,7 +43,7 @@ Context_isCredentialSet :: #force_inline proc "c" (self: ^Context, type: Credent
     return msgSend(bool, self, "isCredentialSet:", type)
 }
 @(objc_type=Context, objc_name="evaluateAccessControl")
-Context_evaluateAccessControl :: #force_inline proc "c" (self: ^Context, accessControl: NS.SecAccessControlRef, operation: AccessControlOperation, localizedReason: ^NS.String, reply: proc "c" (success: bool, error: ^NS.Error)) {
+Context_evaluateAccessControl :: #force_inline proc "c" (self: ^Context, accessControl: SecAccessControlRef, operation: AccessControlOperation, localizedReason: ^NS.String, reply: proc "c" (success: bool, error: ^NS.Error)) {
     msgSend(nil, self, "evaluateAccessControl:operation:localizedReason:reply:", accessControl, operation, localizedReason, reply)
 }
 @(objc_type=Context, objc_name="localizedFallbackTitle")

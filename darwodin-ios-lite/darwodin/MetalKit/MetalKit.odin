@@ -25,6 +25,7 @@ Protocol :: distinct id
 foreign import lib "system:MetalKit.framework"
 
 
+
 foreign lib {
     @(link_name="MTKTextureLoaderErrorDomain") TextureLoaderErrorDomain: ^NS.String
     @(link_name="MTKTextureLoaderErrorKey") TextureLoaderErrorKey: ^NS.String
@@ -44,6 +45,7 @@ foreign lib {
     @(link_name="MTKModelErrorDomain") ModelErrorDomain: ^NS.String
     @(link_name="MTKModelErrorKey") ModelErrorKey: ^NS.String
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="MTKModelIOVertexDescriptorFromMetal")

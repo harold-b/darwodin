@@ -47,7 +47,9 @@ cgen_args+=()
 
 out_path=../${out_folder}
 for f in ${frameworks[@]}; do
+    f=$(darwodin_filter_framework $f $use_ios)
     echo "$f"
+
     framework_lower="$(echo $f | tr '[:upper:]' '[:lower:]')"
     framework_cfg="configs/${framework_lower}.yml"
 

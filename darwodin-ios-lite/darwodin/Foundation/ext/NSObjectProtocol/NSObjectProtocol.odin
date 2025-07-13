@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../../../ObjectiveC"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
+import Sec "../../../Security"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod

@@ -23,11 +23,13 @@ MTLDevice :: intrinsics.objc_object
 cl_device_id :: struct {}
 
 
-FontIndexMax :: 65534
-FontIndexInvalid :: 65535
-GlyphMax :: 65534
-BitmapByteOrder16Host :: 4096
-BitmapByteOrder32Host :: 8192
+
+FontIndexMax         :: 65534
+FontIndexInvalid     :: 65535
+GlyphMax             :: 65534
+BitmapByteOrder16Host:: 4096
+BitmapByteOrder32Host:: 8192
+
 foreign lib {
     @(link_name="CGPointZero") PointZero: Point
     @(link_name="CGSizeZero") SizeZero: Size
@@ -127,6 +129,7 @@ foreign lib {
     @(link_name="kCGPDFTagPropertyTitleText") PDFTagPropertyTitleText: PDFTagProperty
     @(link_name="kCGPDFTagPropertyLanguageText") PDFTagPropertyLanguageText: PDFTagProperty
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="CGRectGetMinX")
@@ -1824,37 +1827,37 @@ RectEdge :: enum cffi.uint {
 
 /// CGColorRenderingIntent
 ColorRenderingIntent :: enum cffi.int {
-    Default = 0,
+    Default              = 0,
     AbsoluteColorimetric = 1,
     RelativeColorimetric = 2,
-    Perceptual = 3,
-    Saturation = 4,
+    Perceptual           = 3,
+    Saturation           = 4,
 }
 
 /// CGColorSpaceModel
 ColorSpaceModel :: enum cffi.int {
-    Unknown = -1,
+    Unknown    = -1,
     Monochrome = 0,
-    RGB = 1,
-    CMYK = 2,
-    Lab = 3,
-    DeviceN = 4,
-    Indexed = 5,
-    Pattern = 6,
-    XYZ = 7,
+    RGB        = 1,
+    CMYK       = 2,
+    Lab        = 3,
+    DeviceN    = 4,
+    Indexed    = 5,
+    Pattern    = 6,
+    XYZ        = 7,
 }
 
 /// CGPatternTiling
 PatternTiling :: enum cffi.int {
-    NoDistortion = 0,
+    NoDistortion                     = 0,
     ConstantSpacingMinimalDistortion = 1,
-    ConstantSpacing = 2,
+    ConstantSpacing                  = 2,
 }
 
 /// CGFontPostScriptFormat
 FontPostScriptFormat :: enum cffi.int {
-    Type1 = 1,
-    Type3 = 3,
+    Type1  = 1,
+    Type3  = 3,
     Type42 = 42,
 }
 
@@ -1867,52 +1870,52 @@ GlyphDeprecatedEnum :: enum cffi.int {
 /// CGGradientDrawingOptions
 GradientDrawingOptions :: enum cffi.uint {
     DrawsBeforeStartLocation = 1,
-    DrawsAfterEndLocation = 2,
+    DrawsAfterEndLocation    = 2,
 }
 
 /// CGImageAlphaInfo
 ImageAlphaInfo :: enum cffi.uint {
-    None = 0,
-    PremultipliedLast = 1,
+    None               = 0,
+    PremultipliedLast  = 1,
     PremultipliedFirst = 2,
-    Last = 3,
-    First = 4,
-    NoneSkipLast = 5,
-    NoneSkipFirst = 6,
-    Only = 7,
+    Last               = 3,
+    First              = 4,
+    NoneSkipLast       = 5,
+    NoneSkipFirst      = 6,
+    Only               = 7,
 }
 
 /// CGImageByteOrderInfo
 ImageByteOrderInfo :: enum cffi.uint {
-    Mask = 28672,
-    Default = 0,
+    Mask      = 28672,
+    Default   = 0,
     _16Little = 4096,
     _32Little = 8192,
-    _16Big = 12288,
-    _32Big = 16384,
+    _16Big    = 12288,
+    _32Big    = 16384,
 }
 
 /// CGImagePixelFormatInfo
 ImagePixelFormatInfo :: enum cffi.uint {
-    Mask = 983040,
-    Packed = 0,
-    RGB555 = 65536,
-    RGB565 = 131072,
+    Mask      = 983040,
+    Packed    = 0,
+    RGB555    = 65536,
+    RGB565    = 131072,
     RGB101010 = 196608,
-    RGBCIF10 = 262144,
+    RGBCIF10  = 262144,
 }
 
 /// CGBitmapInfo
 BitmapInfo :: enum cffi.uint {
-    AlphaInfoMask = 31,
-    FloatInfoMask = 3840,
-    FloatComponents = 256,
-    ByteOrderMask = 28672,
-    ByteOrderDefault = 0,
+    AlphaInfoMask     = 31,
+    FloatInfoMask     = 3840,
+    FloatComponents   = 256,
+    ByteOrderMask     = 28672,
+    ByteOrderDefault  = 0,
     ByteOrder16Little = 4096,
     ByteOrder32Little = 8192,
-    ByteOrder16Big = 12288,
-    ByteOrder32Big = 16384,
+    ByteOrder16Big    = 12288,
+    ByteOrder32Big    = 16384,
 }
 
 /// CGLineJoin
@@ -1924,213 +1927,213 @@ LineJoin :: enum cffi.int {
 
 /// CGLineCap
 LineCap :: enum cffi.int {
-    Butt = 0,
-    Round = 1,
+    Butt   = 0,
+    Round  = 1,
     Square = 2,
 }
 
 /// CGPathElementType
 PathElementType :: enum cffi.int {
-    MoveToPoint = 0,
-    AddLineToPoint = 1,
+    MoveToPoint         = 0,
+    AddLineToPoint      = 1,
     AddQuadCurveToPoint = 2,
-    AddCurveToPoint = 3,
-    CloseSubpath = 4,
+    AddCurveToPoint     = 3,
+    CloseSubpath        = 4,
 }
 
 /// CGPDFObjectType
 PDFObjectType :: enum cffi.int {
-    Null = 1,
-    Boolean = 2,
-    Integer = 3,
-    Real = 4,
-    Name = 5,
-    String = 6,
-    Array = 7,
+    Null       = 1,
+    Boolean    = 2,
+    Integer    = 3,
+    Real       = 4,
+    Name       = 5,
+    String     = 6,
+    Array      = 7,
     Dictionary = 8,
-    Stream = 9,
+    Stream     = 9,
 }
 
 /// CGPDFDataFormat
 PDFDataFormat :: enum cffi.int {
-    Raw = 0,
+    Raw         = 0,
     JPEGEncoded = 1,
-    JPEG2000 = 2,
+    JPEG2000    = 2,
 }
 
 /// CGPDFBox
 PDFBox :: enum cffi.int {
     MediaBox = 0,
-    CropBox = 1,
+    CropBox  = 1,
     BleedBox = 2,
-    TrimBox = 3,
-    ArtBox = 4,
+    TrimBox  = 3,
+    ArtBox   = 4,
 }
 
 /// CGPDFAccessPermissions
 PDFAccessPermissions :: enum cffi.uint {
-    AllowsLowQualityPrinting = 1,
-    AllowsHighQualityPrinting = 2,
-    AllowsDocumentChanges = 4,
-    AllowsDocumentAssembly = 8,
-    AllowsContentCopying = 16,
+    AllowsLowQualityPrinting   = 1,
+    AllowsHighQualityPrinting  = 2,
+    AllowsDocumentChanges      = 4,
+    AllowsDocumentAssembly     = 8,
+    AllowsContentCopying       = 16,
     AllowsContentAccessibility = 32,
-    AllowsCommenting = 64,
-    AllowsFormFieldEntry = 128,
+    AllowsCommenting           = 64,
+    AllowsFormFieldEntry       = 128,
 }
 
 /// CGPathDrawingMode
 PathDrawingMode :: enum cffi.int {
-    Fill = 0,
-    EOFill = 1,
-    Stroke = 2,
-    FillStroke = 3,
+    Fill         = 0,
+    EOFill       = 1,
+    Stroke       = 2,
+    FillStroke   = 3,
     EOFillStroke = 4,
 }
 
 /// CGTextDrawingMode
 TextDrawingMode :: enum cffi.int {
-    Fill = 0,
-    Stroke = 1,
-    FillStroke = 2,
-    Invisible = 3,
-    FillClip = 4,
-    StrokeClip = 5,
+    Fill           = 0,
+    Stroke         = 1,
+    FillStroke     = 2,
+    Invisible      = 3,
+    FillClip       = 4,
+    StrokeClip     = 5,
     FillStrokeClip = 6,
-    Clip = 7,
+    Clip           = 7,
 }
 
 /// CGTextEncoding
 TextEncoding :: enum cffi.int {
     FontSpecific = 0,
-    MacRoman = 1,
+    MacRoman     = 1,
 }
 
 /// CGInterpolationQuality
 InterpolationQuality :: enum cffi.int {
     Default = 0,
-    None = 1,
-    Low = 2,
-    Medium = 4,
-    High = 3,
+    None    = 1,
+    Low     = 2,
+    Medium  = 4,
+    High    = 3,
 }
 
 /// CGBlendMode
 BlendMode :: enum cffi.int {
-    Normal = 0,
-    Multiply = 1,
-    Screen = 2,
-    Overlay = 3,
-    Darken = 4,
-    Lighten = 5,
-    ColorDodge = 6,
-    ColorBurn = 7,
-    SoftLight = 8,
-    HardLight = 9,
-    Difference = 10,
-    Exclusion = 11,
-    Hue = 12,
-    Saturation = 13,
-    Color = 14,
-    Luminosity = 15,
-    Clear = 16,
-    Copy = 17,
-    SourceIn = 18,
-    SourceOut = 19,
-    SourceAtop = 20,
+    Normal          = 0,
+    Multiply        = 1,
+    Screen          = 2,
+    Overlay         = 3,
+    Darken          = 4,
+    Lighten         = 5,
+    ColorDodge      = 6,
+    ColorBurn       = 7,
+    SoftLight       = 8,
+    HardLight       = 9,
+    Difference      = 10,
+    Exclusion       = 11,
+    Hue             = 12,
+    Saturation      = 13,
+    Color           = 14,
+    Luminosity      = 15,
+    Clear           = 16,
+    Copy            = 17,
+    SourceIn        = 18,
+    SourceOut       = 19,
+    SourceAtop      = 20,
     DestinationOver = 21,
-    DestinationIn = 22,
-    DestinationOut = 23,
+    DestinationIn   = 22,
+    DestinationOut  = 23,
     DestinationAtop = 24,
-    XOR = 25,
-    PlusDarker = 26,
-    PlusLighter = 27,
+    XOR             = 25,
+    PlusDarker      = 26,
+    PlusLighter     = 27,
 }
 
 /// CGToneMapping
 ToneMapping :: enum cffi.uint {
-    Default = 0,
+    Default                  = 0,
     ImageSpecificLumaScaling = 1,
-    ReferenceWhiteBased = 2,
-    ITURecommended = 3,
-    EXRGamma = 4,
-    None = 5,
+    ReferenceWhiteBased      = 2,
+    ITURecommended           = 3,
+    EXRGamma                 = 4,
+    None                     = 5,
 }
 
 /// CGColorConversionInfoTransformType
 ColorConversionInfoTransformType :: enum cffi.uint {
-    FromSpace = 0,
-    ToSpace = 1,
+    FromSpace  = 0,
+    ToSpace    = 1,
     ApplySpace = 2,
 }
 
 /// CGError
 Error :: enum cffi.int {
-    Success = 0,
-    Failure = 1000,
-    IllegalArgument = 1001,
+    Success           = 0,
+    Failure           = 1000,
+    IllegalArgument   = 1001,
     InvalidConnection = 1002,
-    InvalidContext = 1003,
-    CannotComplete = 1004,
-    NotImplemented = 1006,
-    RangeCheck = 1007,
-    TypeCheck = 1008,
-    InvalidOperation = 1010,
-    NoneAvailable = 1011,
+    InvalidContext    = 1003,
+    CannotComplete    = 1004,
+    NotImplemented    = 1006,
+    RangeCheck        = 1007,
+    TypeCheck         = 1008,
+    InvalidOperation  = 1010,
+    NoneAvailable     = 1011,
 }
 
 /// CGPDFTagType
 PDFTagType :: enum cffi.int {
-    Document = 100,
-    Part = 101,
-    Art = 102,
-    Section = 103,
-    Div = 104,
-    BlockQuote = 105,
-    Caption = 106,
-    TOC = 107,
-    TOCI = 108,
-    Index = 109,
-    NonStructure = 110,
-    Private = 111,
-    Paragraph = 200,
-    Header = 201,
-    Header1 = 202,
-    Header2 = 203,
-    Header3 = 204,
-    Header4 = 205,
-    Header5 = 206,
-    Header6 = 207,
-    List = 300,
-    ListItem = 301,
-    Label = 302,
-    ListBody = 303,
-    Table = 400,
-    TableRow = 401,
-    TableHeaderCell = 402,
-    TableDataCell = 403,
-    TableHeader = 404,
-    TableBody = 405,
-    TableFooter = 406,
-    Span = 500,
-    Quote = 501,
-    Note = 502,
-    Reference = 503,
-    Bibliography = 504,
-    Code = 505,
-    Link = 506,
-    Annotation = 507,
-    Ruby = 600,
-    RubyBaseText = 601,
+    Document           = 100,
+    Part               = 101,
+    Art                = 102,
+    Section            = 103,
+    Div                = 104,
+    BlockQuote         = 105,
+    Caption            = 106,
+    TOC                = 107,
+    TOCI               = 108,
+    Index              = 109,
+    NonStructure       = 110,
+    Private            = 111,
+    Paragraph          = 200,
+    Header             = 201,
+    Header1            = 202,
+    Header2            = 203,
+    Header3            = 204,
+    Header4            = 205,
+    Header5            = 206,
+    Header6            = 207,
+    List               = 300,
+    ListItem           = 301,
+    Label              = 302,
+    ListBody           = 303,
+    Table              = 400,
+    TableRow           = 401,
+    TableHeaderCell    = 402,
+    TableDataCell      = 403,
+    TableHeader        = 404,
+    TableBody          = 405,
+    TableFooter        = 406,
+    Span               = 500,
+    Quote              = 501,
+    Note               = 502,
+    Reference          = 503,
+    Bibliography       = 504,
+    Code               = 505,
+    Link               = 506,
+    Annotation         = 507,
+    Ruby               = 600,
+    RubyBaseText       = 601,
     RubyAnnotationText = 602,
-    RubyPunctuation = 603,
-    Warichu = 604,
-    WarichuText = 605,
+    RubyPunctuation    = 603,
+    Warichu            = 604,
+    WarichuText        = 605,
     WarichuPunctiation = 606,
-    Figure = 700,
-    Formula = 701,
-    Form = 702,
-    Object = 800,
+    Figure             = 700,
+    Formula            = 701,
+    Form               = 702,
+    Object             = 800,
 }
 
 /// CGPoint
@@ -2142,7 +2145,7 @@ Point :: struct #align (8) {
 
 /// CGSize
 Size :: struct #align (8) {
-    width: Float,
+    width:  Float,
     height: Float,
 }
 #assert(size_of(Size) == 16)
@@ -2157,16 +2160,16 @@ Vector :: struct #align (8) {
 /// CGRect
 Rect :: struct #align (8) {
     origin: Point,
-    size: Size,
+    size:   Size,
 }
 #assert(size_of(Rect) == 32)
 
 /// CGAffineTransform
 AffineTransform :: struct #align (8) {
-    a: Float,
-    b: Float,
-    c: Float,
-    d: Float,
+    a:  Float,
+    b:  Float,
+    c:  Float,
+    d:  Float,
     tx: Float,
     ty: Float,
 }
@@ -2174,10 +2177,10 @@ AffineTransform :: struct #align (8) {
 
 /// CGAffineTransformComponents
 AffineTransformComponents :: struct #align (8) {
-    scale: Size,
+    scale:           Size,
     horizontalShear: Float,
-    rotation: Float,
-    translation: Vector,
+    rotation:        Float,
+    translation:     Vector,
 }
 #assert(size_of(AffineTransformComponents) == 48)
 
@@ -2198,21 +2201,21 @@ DataProvider :: struct {}
 
 /// CGDataProviderSequentialCallbacks
 DataProviderSequentialCallbacks :: struct #align (8) {
-    version: cffi.uint,
-    getBytes: DataProviderGetBytesCallback,
+    version:     cffi.uint,
+    getBytes:    DataProviderGetBytesCallback,
     skipForward: DataProviderSkipForwardCallback,
-    rewind: DataProviderRewindCallback,
+    rewind:      DataProviderRewindCallback,
     releaseInfo: DataProviderReleaseInfoCallback,
 }
 #assert(size_of(DataProviderSequentialCallbacks) == 40)
 
 /// CGDataProviderDirectCallbacks
 DataProviderDirectCallbacks :: struct #align (8) {
-    version: cffi.uint,
-    getBytePointer: proc "c" (info: rawptr) -> rawptr,
+    version:            cffi.uint,
+    getBytePointer:     proc "c" (info: rawptr) -> rawptr,
     releaseBytePointer: proc "c" (info: rawptr, pointer: rawptr),
     getBytesAtPosition: DataProviderGetBytesAtPositionCallback,
-    releaseInfo: DataProviderReleaseInfoCallback,
+    releaseInfo:        DataProviderReleaseInfoCallback,
 }
 #assert(size_of(DataProviderDirectCallbacks) == 40)
 
@@ -2224,7 +2227,7 @@ Pattern :: struct {}
 
 /// CGPatternCallbacks
 PatternCallbacks :: struct #align (8) {
-    version: cffi.uint,
+    version:     cffi.uint,
     drawPattern: PatternDrawPatternCallback,
     releaseInfo: PatternReleaseInfoCallback,
 }
@@ -2244,7 +2247,7 @@ Path :: struct {}
 
 /// CGPathElement
 PathElement :: struct #align (8) {
-    type: PathElementType,
+    type:   PathElementType,
     points: ^Point,
 }
 #assert(size_of(PathElement) == 16)
@@ -2278,8 +2281,8 @@ Function :: struct {}
 
 /// CGFunctionCallbacks
 FunctionCallbacks :: struct #align (8) {
-    version: cffi.uint,
-    evaluate: FunctionEvaluateCallback,
+    version:     cffi.uint,
+    evaluate:    FunctionEvaluateCallback,
     releaseInfo: FunctionReleaseInfoCallback,
 }
 #assert(size_of(FunctionCallbacks) == 24)
@@ -2289,13 +2292,13 @@ ColorConversionInfo :: struct {}
 
 /// CGColorDataFormat
 ColorDataFormat :: struct #align (8) {
-    version: cffi.uint32_t,
-    colorspace_info: CF.TypeRef,
-    bitmap_info: BitmapInfo,
+    version:            cffi.uint32_t,
+    colorspace_info:    CF.TypeRef,
+    bitmap_info:        BitmapInfo,
     bits_per_component: cffi.size_t,
-    bytes_per_row: cffi.size_t,
-    intent: ColorRenderingIntent,
-    decode: ^Float,
+    bytes_per_row:      cffi.size_t,
+    intent:             ColorRenderingIntent,
+    decode:             ^Float,
 }
 #assert(size_of(ColorDataFormat) == 56)
 
@@ -2304,7 +2307,7 @@ DataConsumer :: struct {}
 
 /// CGDataConsumerCallbacks
 DataConsumerCallbacks :: struct #align (8) {
-    putBytes: DataConsumerPutBytesCallback,
+    putBytes:        DataConsumerPutBytesCallback,
     releaseConsumer: DataConsumerReleaseInfoCallback,
 }
 #assert(size_of(DataConsumerCallbacks) == 16)

@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../../../ObjectiveC"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
+import Sec "../../../Security"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -34,7 +35,7 @@ VTable :: struct {
     protocol: proc(self: ^NS.URLProtectionSpace) -> ^NS.String,
     authenticationMethod: proc(self: ^NS.URLProtectionSpace) -> ^NS.String,
     distinguishedNames: proc(self: ^NS.URLProtectionSpace) -> ^NS.Array,
-    serverTrust: proc(self: ^NS.URLProtectionSpace) -> NS.SecTrustRef,
+    serverTrust: proc(self: ^NS.URLProtectionSpace) -> Sec.SecTrustRef,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -185,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("distinguishedNames"), auto_cast distinguishedNames, "@@:") do panic("Failed to register objC method.")
     }
     if vt.serverTrust != nil {
-        serverTrust :: proc "c" (self: ^NS.URLProtectionSpace, _: SEL) -> NS.SecTrustRef {
+        serverTrust :: proc "c" (self: ^NS.URLProtectionSpace, _: SEL) -> Sec.SecTrustRef {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

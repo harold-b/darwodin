@@ -48,6 +48,7 @@ GCMicroGamepadSnapshotData :: struct {}
 GCMicroGamepadSnapShotDataV100 :: struct {}
 
 
+
 TextReadInapplicableDocumentTypeError              :: 65806
 TextWriteInapplicableDocumentTypeError             :: 66062
 TextReadWriteErrorMinimum                          :: 65792
@@ -2753,181 +2754,181 @@ DataAssetName :: distinct ^NS.String
 
 /// NSCompositingOperation
 CompositingOperation :: enum cffi.ulong {
-    Clear = 0,
-    Copy = 1,
-    SourceOver = 2,
-    SourceIn = 3,
-    SourceOut = 4,
-    SourceAtop = 5,
+    Clear           = 0,
+    Copy            = 1,
+    SourceOver      = 2,
+    SourceIn        = 3,
+    SourceOut       = 4,
+    SourceAtop      = 5,
     DestinationOver = 6,
-    DestinationIn = 7,
-    DestinationOut = 8,
+    DestinationIn   = 7,
+    DestinationOut  = 8,
     DestinationAtop = 9,
-    XOR = 10,
-    PlusDarker = 11,
-    Highlight = 12,
-    PlusLighter = 13,
-    Multiply = 14,
-    Screen = 15,
-    Overlay = 16,
-    Darken = 17,
-    Lighten = 18,
-    ColorDodge = 19,
-    ColorBurn = 20,
-    SoftLight = 21,
-    HardLight = 22,
-    Difference = 23,
-    Exclusion = 24,
-    Hue = 25,
-    Saturation = 26,
-    Color = 27,
-    Luminosity = 28,
+    XOR             = 10,
+    PlusDarker      = 11,
+    Highlight       = 12,
+    PlusLighter     = 13,
+    Multiply        = 14,
+    Screen          = 15,
+    Overlay         = 16,
+    Darken          = 17,
+    Lighten         = 18,
+    ColorDodge      = 19,
+    ColorBurn       = 20,
+    SoftLight       = 21,
+    HardLight       = 22,
+    Difference      = 23,
+    Exclusion       = 24,
+    Hue             = 25,
+    Saturation      = 26,
+    Color           = 27,
+    Luminosity      = 28,
 }
 
 /// NSBackingStoreType
 BackingStoreType :: enum cffi.ulong {
-    Retained = 0,
+    Retained    = 0,
     Nonretained = 1,
-    Buffered = 2,
+    Buffered    = 2,
 }
 
 /// NSWindowOrderingMode
 WindowOrderingMode :: enum cffi.long {
     Above = 1,
     Below = -1,
-    Out = 0,
+    Out   = 0,
 }
 
 /// NSFocusRingPlacement
 FocusRingPlacement :: enum cffi.ulong {
-    Only = 0,
+    Only  = 0,
     Below = 1,
     Above = 2,
 }
 
 /// NSFocusRingType
 FocusRingType :: enum cffi.ulong {
-    Default = 0,
-    None = 1,
+    Default  = 0,
+    None     = 1,
     Exterior = 2,
 }
 
 /// NSColorRenderingIntent
 ColorRenderingIntent :: enum cffi.long {
-    Default = 0,
+    Default              = 0,
     AbsoluteColorimetric = 1,
     RelativeColorimetric = 2,
-    Perceptual = 3,
-    Saturation = 4,
+    Perceptual           = 3,
+    Saturation           = 4,
 }
 
 /// NSWindowDepth
 WindowDepth :: enum cffi.int {
-    TwentyfourBitRGB = 520,
-    SixtyfourBitRGB = 528,
+    TwentyfourBitRGB            = 520,
+    SixtyfourBitRGB             = 528,
     OnehundredtwentyeightBitRGB = 544,
 }
 
 /// NSDisplayGamut
 DisplayGamut :: enum cffi.long {
     SRGB = 1,
-    P3 = 2,
+    P3   = 2,
 }
 
 /// NSAnimationEffect
 AnimationEffect :: enum cffi.ulong {
     DisappearingItemDefault = 0,
-    Poof = 10,
+    Poof                    = 10,
 }
 
 /// NSImageInterpolation
 ImageInterpolation :: enum cffi.ulong {
     Default = 0,
-    None = 1,
-    Low = 2,
-    Medium = 4,
-    High = 3,
+    None    = 1,
+    Low     = 2,
+    Medium  = 4,
+    High    = 3,
 }
 
 /// NSAccessibilityAnnotationPosition
 AccessibilityAnnotationPosition :: enum cffi.long {
     FullRange = 0,
-    Start = 1,
-    End = 2,
+    Start     = 1,
+    End       = 2,
 }
 
 /// NSAccessibilityOrientation
 AccessibilityOrientation :: enum cffi.long {
-    Unknown = 0,
-    Vertical = 1,
+    Unknown    = 0,
+    Vertical   = 1,
     Horizontal = 2,
 }
 
 /// NSAccessibilitySortDirection
 AccessibilitySortDirection :: enum cffi.long {
-    Unknown = 0,
-    Ascending = 1,
+    Unknown    = 0,
+    Ascending  = 1,
     Descending = 2,
 }
 
 /// NSAccessibilityRulerMarkerType
 AccessibilityRulerMarkerType :: enum cffi.long {
-    Unknown = 0,
-    TabStopLeft = 1,
-    TabStopRight = 2,
-    TabStopCenter = 3,
-    TabStopDecimal = 4,
-    IndentHead = 5,
-    IndentTail = 6,
+    Unknown         = 0,
+    TabStopLeft     = 1,
+    TabStopRight    = 2,
+    TabStopCenter   = 3,
+    TabStopDecimal  = 4,
+    IndentHead      = 5,
+    IndentTail      = 6,
     IndentFirstLine = 7,
 }
 
 /// NSAccessibilityUnits
 AccessibilityUnits :: enum cffi.long {
-    Unknown = 0,
-    Inches = 1,
+    Unknown     = 0,
+    Inches      = 1,
     Centimeters = 2,
-    Points = 3,
-    Picas = 4,
+    Points      = 3,
+    Picas       = 4,
 }
 
 /// NSAccessibilityPriorityLevel
 AccessibilityPriorityLevel :: enum cffi.long {
-    Low = 10,
+    Low    = 10,
     Medium = 50,
-    High = 90,
+    High   = 90,
 }
 
 /// NSAccessibilityCustomRotorSearchDirection
 AccessibilityCustomRotorSearchDirection :: enum cffi.long {
     Previous = 0,
-    Next = 1,
+    Next     = 1,
 }
 
 /// NSAccessibilityCustomRotorType
 AccessibilityCustomRotorType :: enum cffi.long {
-    Custom = 0,
-    Any = 1,
-    Annotation = 2,
-    BoldText = 3,
-    Heading = 4,
-    HeadingLevel1 = 5,
-    HeadingLevel2 = 6,
-    HeadingLevel3 = 7,
-    HeadingLevel4 = 8,
-    HeadingLevel5 = 9,
-    HeadingLevel6 = 10,
-    Image = 11,
-    ItalicText = 12,
-    Landmark = 13,
-    Link = 14,
-    List = 15,
+    Custom         = 0,
+    Any            = 1,
+    Annotation     = 2,
+    BoldText       = 3,
+    Heading        = 4,
+    HeadingLevel1  = 5,
+    HeadingLevel2  = 6,
+    HeadingLevel3  = 7,
+    HeadingLevel4  = 8,
+    HeadingLevel5  = 9,
+    HeadingLevel6  = 10,
+    Image          = 11,
+    ItalicText     = 12,
+    Landmark       = 13,
+    Link           = 14,
+    List           = 15,
     MisspelledWord = 16,
-    Table = 17,
-    TextField = 18,
+    Table          = 17,
+    TextField      = 18,
     UnderlinedText = 19,
-    VisitedLink = 20,
-    Audiograph = 21,
+    VisitedLink    = 20,
+    Audiograph     = 21,
 }
 
 /// NSWorkspaceIconCreationOptions
@@ -2939,152 +2940,150 @@ WorkspaceIconCreationOptions :: enum cffi.ulong {
 /// NSWorkspaceAuthorizationType
 WorkspaceAuthorizationType :: enum cffi.long {
     CreateSymbolicLink = 0,
-    SetAttributes = 1,
-    ReplaceFile = 2,
+    SetAttributes      = 1,
+    ReplaceFile        = 2,
 }
 
 /// NSWorkspaceLaunchOptions
 WorkspaceLaunchOptions :: enum cffi.ulong {
-    AndPrint = 2,
-    WithErrorPresentation = 64,
+    AndPrint                 = 2,
+    WithErrorPresentation    = 64,
     InhibitingBackgroundOnly = 128,
-    WithoutAddingToRecents = 256,
-    WithoutActivation = 512,
-    Async = 65536,
-    NewInstance = 524288,
-    AndHide = 1048576,
-    AndHideOthers = 2097152,
-    Default = 65536,
-    AllowingClassicStartup = 131072,
-    PreferringClassic = 262144,
+    WithoutAddingToRecents   = 256,
+    WithoutActivation        = 512,
+    Async                    = 65536,
+    NewInstance              = 524288,
+    AndHide                  = 1048576,
+    AndHideOthers            = 2097152,
+    Default                  = 65536,
+    AllowingClassicStartup   = 131072,
+    PreferringClassic        = 262144,
 }
 
 /// NSTouchPhase
 TouchPhase :: enum cffi.ulong {
-    Began = 1,
-    Moved = 2,
+    Began      = 1,
+    Moved      = 2,
     Stationary = 4,
-    Ended = 8,
-    Cancelled = 16,
-    Touching = 7,
-    Any = 18446744073709551615,
+    Ended      = 8,
+    Cancelled  = 16,
+    Touching   = 7,
+    Any        = 18446744073709551615,
 }
 
 /// NSTouchType
 TouchType :: enum cffi.long {
-    Direct = 0,
+    Direct   = 0,
     Indirect = 1,
 }
 
 /// NSTouchTypeMask
 TouchTypeMaskFlag :: enum cffi.ulong {
-    Direct = 0,
+    Direct   = 0,
     Indirect = 1,
 }
 TouchTypeMask :: bit_set[TouchTypeMaskFlag; cffi.ulong]
 
 /// NSEventType
 EventType :: enum cffi.ulong {
-    LeftMouseDown = 1,
-    LeftMouseUp = 2,
-    RightMouseDown = 3,
-    RightMouseUp = 4,
-    MouseMoved = 5,
-    LeftMouseDragged = 6,
-    RightMouseDragged = 7,
-    MouseEntered = 8,
-    MouseExited = 9,
-    KeyDown = 10,
-    KeyUp = 11,
-    FlagsChanged = 12,
-    AppKitDefined = 13,
-    SystemDefined = 14,
+    LeftMouseDown      = 1,
+    LeftMouseUp        = 2,
+    RightMouseDown     = 3,
+    RightMouseUp       = 4,
+    MouseMoved         = 5,
+    LeftMouseDragged   = 6,
+    RightMouseDragged  = 7,
+    MouseEntered       = 8,
+    MouseExited        = 9,
+    KeyDown            = 10,
+    KeyUp              = 11,
+    FlagsChanged       = 12,
+    AppKitDefined      = 13,
+    SystemDefined      = 14,
     ApplicationDefined = 15,
-    Periodic = 16,
-    CursorUpdate = 17,
-    ScrollWheel = 22,
-    TabletPoint = 23,
-    TabletProximity = 24,
-    OtherMouseDown = 25,
-    OtherMouseUp = 26,
-    OtherMouseDragged = 27,
-    Gesture = 29,
-    Magnify = 30,
-    Swipe = 31,
-    Rotate = 18,
-    BeginGesture = 19,
-    EndGesture = 20,
-    SmartMagnify = 32,
-    QuickLook = 33,
-    Pressure = 34,
-    DirectTouch = 37,
-    ChangeMode = 38,
+    Periodic           = 16,
+    CursorUpdate       = 17,
+    ScrollWheel        = 22,
+    TabletPoint        = 23,
+    TabletProximity    = 24,
+    OtherMouseDown     = 25,
+    OtherMouseUp       = 26,
+    OtherMouseDragged  = 27,
+    Gesture            = 29,
+    Magnify            = 30,
+    Swipe              = 31,
+    Rotate             = 18,
+    BeginGesture       = 19,
+    EndGesture         = 20,
+    SmartMagnify       = 32,
+    QuickLook          = 33,
+    Pressure           = 34,
+    DirectTouch        = 37,
+    ChangeMode         = 38,
 }
 
 /// NSEventMask
 EventMaskFlag :: enum cffi.ulonglong {
-    LeftMouseDown = 1,
-    LeftMouseUp = 2,
-    RightMouseDown = 3,
-    RightMouseUp = 4,
-    MouseMoved = 5,
-    LeftMouseDragged = 6,
-    RightMouseDragged = 7,
-    MouseEntered = 8,
-    MouseExited = 9,
-    KeyDown = 10,
-    KeyUp = 11,
-    FlagsChanged = 12,
-    AppKitDefined = 13,
-    SystemDefined = 14,
+    LeftMouseDown      = 1,
+    LeftMouseUp        = 2,
+    RightMouseDown     = 3,
+    RightMouseUp       = 4,
+    MouseMoved         = 5,
+    LeftMouseDragged   = 6,
+    RightMouseDragged  = 7,
+    MouseEntered       = 8,
+    MouseExited        = 9,
+    KeyDown            = 10,
+    KeyUp              = 11,
+    FlagsChanged       = 12,
+    AppKitDefined      = 13,
+    SystemDefined      = 14,
     ApplicationDefined = 15,
-    Periodic = 16,
-    CursorUpdate = 17,
-    ScrollWheel = 22,
-    TabletPoint = 23,
-    TabletProximity = 24,
-    OtherMouseDown = 25,
-    OtherMouseUp = 26,
-    OtherMouseDragged = 27,
-    Gesture = 29,
-    Magnify = 30,
-    Swipe = 31,
-    Rotate = 18,
-    BeginGesture = 19,
-    EndGesture = 20,
-    SmartMagnify = 32,
-    Pressure = 34,
-    DirectTouch = 37,
-    ChangeMode = 38,
+    Periodic           = 16,
+    CursorUpdate       = 17,
+    ScrollWheel        = 22,
+    TabletPoint        = 23,
+    TabletProximity    = 24,
+    OtherMouseDown     = 25,
+    OtherMouseUp       = 26,
+    OtherMouseDragged  = 27,
+    Gesture            = 29,
+    Magnify            = 30,
+    Swipe              = 31,
+    Rotate             = 18,
+    BeginGesture       = 19,
+    EndGesture         = 20,
+    SmartMagnify       = 32,
+    Pressure           = 34,
+    DirectTouch        = 37,
+    ChangeMode         = 38,
 }
 EventMask :: bit_set[EventMaskFlag; cffi.ulonglong]
 
-
 /// NSEventModifierFlags
 EventModifierFlag :: enum cffi.ulong {
-    CapsLock = 16,
-    Shift = 17,
-    Control = 18,
-    Option = 19,
-    Command = 20,
+    CapsLock   = 16,
+    Shift      = 17,
+    Control    = 18,
+    Option     = 19,
+    Command    = 20,
     NumericPad = 21,
-    Help = 22,
-    Function = 23,
+    Help       = 22,
+    Function   = 23,
 }
 EventModifierFlags :: bit_set[EventModifierFlag; cffi.ulong]
-
 
 /// NSPointingDeviceType
 PointingDeviceType :: enum cffi.ulong {
     Unknown = 0,
-    Pen = 1,
-    Cursor = 2,
-    Eraser = 3,
+    Pen     = 1,
+    Cursor  = 2,
+    Eraser  = 3,
 }
 
 /// NSEventButtonMask
 EventButtonMaskFlag :: enum cffi.ulong {
-    PenTip = 0,
+    PenTip       = 0,
     PenLowerSide = 1,
     PenUpperSide = 2,
 }
@@ -3092,51 +3091,51 @@ EventButtonMask :: bit_set[EventButtonMaskFlag; cffi.ulong]
 
 /// NSEventPhase
 EventPhase :: enum cffi.ulong {
-    None = 0,
-    Began = 1,
+    None       = 0,
+    Began      = 1,
     Stationary = 2,
-    Changed = 4,
-    Ended = 8,
-    Cancelled = 16,
-    MayBegin = 32,
+    Changed    = 4,
+    Ended      = 8,
+    Cancelled  = 16,
+    MayBegin   = 32,
 }
 
 /// NSEventGestureAxis
 EventGestureAxis :: enum cffi.long {
-    None = 0,
+    None       = 0,
     Horizontal = 1,
-    Vertical = 2,
+    Vertical   = 2,
 }
 
 /// NSEventSwipeTrackingOptions
 EventSwipeTrackingOptions :: enum cffi.ulong {
-    LockDirection = 1,
+    LockDirection      = 1,
     ClampGestureAmount = 2,
 }
 
 /// NSEventSubtype
 EventSubtype :: enum cffi.short {
-    WindowExposed = 0,
-    ApplicationActivated = 1,
+    WindowExposed          = 0,
+    ApplicationActivated   = 1,
     ApplicationDeactivated = 2,
-    WindowMoved = 4,
-    ScreenChanged = 8,
-    PowerOff = 1,
-    MouseEvent = 0,
-    TabletPoint = 1,
-    TabletProximity = 2,
-    Touch = 3,
+    WindowMoved            = 4,
+    ScreenChanged          = 8,
+    PowerOff               = 1,
+    MouseEvent             = 0,
+    TabletPoint            = 1,
+    TabletProximity        = 2,
+    Touch                  = 3,
 }
 
 /// NSPressureBehavior
 PressureBehavior :: enum cffi.long {
-    Unknown = -1,
-    PrimaryDefault = 0,
-    PrimaryClick = 1,
-    PrimaryGeneric = 2,
+    Unknown            = -1,
+    PrimaryDefault     = 0,
+    PrimaryClick       = 1,
+    PrimaryGeneric     = 2,
     PrimaryAccelerator = 3,
-    PrimaryDeepClick = 5,
-    PrimaryDeepDrag = 6,
+    PrimaryDeepClick   = 5,
+    PrimaryDeepDrag    = 6,
 }
 
 /// NSPasteboardContentsOptions
@@ -3151,88 +3150,88 @@ PasteboardWritingOptions :: enum cffi.ulong {
 
 /// NSPasteboardReadingOptions
 PasteboardReadingOptions :: enum cffi.ulong {
-    AsData = 0,
-    AsString = 1,
+    AsData         = 0,
+    AsString       = 1,
     AsPropertyList = 2,
     AsKeyedArchive = 4,
 }
 
 /// NSApplicationActivationOptions
 ApplicationActivationOptions :: enum cffi.ulong {
-    ActivateAllWindows = 1,
+    ActivateAllWindows        = 1,
     ActivateIgnoringOtherApps = 2,
 }
 
 /// NSApplicationActivationPolicy
 ApplicationActivationPolicy :: enum cffi.long {
-    Regular = 0,
-    Accessory = 1,
+    Regular    = 0,
+    Accessory  = 1,
     Prohibited = 2,
 }
 
 /// NSAnimationCurve
 AnimationCurve :: enum cffi.ulong {
     EaseInOut = 0,
-    EaseIn = 1,
-    EaseOut = 2,
-    Linear = 3,
+    EaseIn    = 1,
+    EaseOut   = 2,
+    Linear    = 3,
 }
 
 /// NSAnimationBlockingMode
 AnimationBlockingMode :: enum cffi.ulong {
-    Blocking = 0,
-    Nonblocking = 1,
+    Blocking            = 0,
+    Nonblocking         = 1,
     NonblockingThreaded = 2,
 }
 
 /// NSDragOperation
 DragOperation :: enum cffi.ulong {
-    None = 0,
-    Copy = 1,
-    Link = 2,
-    Generic = 4,
-    Private = 8,
-    Move = 16,
-    Delete = 32,
-    Every = 18446744073709551615,
+    None         = 0,
+    Copy         = 1,
+    Link         = 2,
+    Generic      = 4,
+    Private      = 8,
+    Move         = 16,
+    Delete       = 32,
+    Every        = 18446744073709551615,
     All_Obsolete = 15,
-    All = 15,
+    All          = 15,
 }
 
 /// NSDraggingFormation
 DraggingFormation :: enum cffi.long {
     Default = 0,
-    None = 1,
-    Pile = 2,
-    List = 3,
-    Stack = 4,
+    None    = 1,
+    Pile    = 2,
+    List    = 3,
+    Stack   = 4,
 }
 
 /// NSDraggingContext
 DraggingContext :: enum cffi.long {
     OutsideApplication = 0,
-    WithinApplication = 1,
+    WithinApplication  = 1,
 }
 
 /// NSDraggingItemEnumerationOptions
 DraggingItemEnumerationOptions :: enum cffi.ulong {
-    Concurrent = 1,
+    Concurrent               = 1,
     ClearNonenumeratedImages = 65536,
 }
 
 /// NSSpringLoadingHighlight
 SpringLoadingHighlight :: enum cffi.long {
-    None = 0,
-    Standard = 1,
+    None       = 0,
+    Standard   = 1,
     Emphasized = 2,
 }
 
 /// NSSpringLoadingOptions
 SpringLoadingOptions :: enum cffi.ulong {
-    Disabled = 0,
-    Enabled = 1,
+    Disabled             = 0,
+    Enabled              = 1,
     ContinuousActivation = 2,
-    NoHover = 8,
+    NoHover              = 8,
 }
 
 /// NSUserInterfaceLayoutDirection
@@ -3244,199 +3243,199 @@ UserInterfaceLayoutDirection :: enum cffi.long {
 /// NSUserInterfaceLayoutOrientation
 UserInterfaceLayoutOrientation :: enum cffi.long {
     Horizontal = 0,
-    Vertical = 1,
+    Vertical   = 1,
 }
 
 /// NSAutoresizingMaskOptions
 AutoresizingMaskOptions :: enum cffi.ulong {
-    ViewNotSizable = 0,
-    ViewMinXMargin = 1,
-    ViewWidthSizable = 2,
-    ViewMaxXMargin = 4,
-    ViewMinYMargin = 8,
+    ViewNotSizable    = 0,
+    ViewMinXMargin    = 1,
+    ViewWidthSizable  = 2,
+    ViewMaxXMargin    = 4,
+    ViewMinYMargin    = 8,
     ViewHeightSizable = 16,
-    ViewMaxYMargin = 32,
+    ViewMaxYMargin    = 32,
 }
 
 /// NSBorderType
 BorderType :: enum cffi.ulong {
-    NoBorder = 0,
-    LineBorder = 1,
-    BezelBorder = 2,
+    NoBorder     = 0,
+    LineBorder   = 1,
+    BezelBorder  = 2,
     GrooveBorder = 3,
 }
 
 /// NSViewLayerContentsRedrawPolicy
 ViewLayerContentsRedrawPolicy :: enum cffi.long {
-    Never = 0,
+    Never             = 0,
     OnSetNeedsDisplay = 1,
-    DuringViewResize = 2,
-    BeforeViewResize = 3,
-    Crossfade = 4,
+    DuringViewResize  = 2,
+    BeforeViewResize  = 3,
+    Crossfade         = 4,
 }
 
 /// NSViewLayerContentsPlacement
 ViewLayerContentsPlacement :: enum cffi.long {
-    ScaleAxesIndependently = 0,
-    ScaleProportionallyToFit = 1,
+    ScaleAxesIndependently    = 0,
+    ScaleProportionallyToFit  = 1,
     ScaleProportionallyToFill = 2,
-    Center = 3,
-    Top = 4,
-    TopRight = 5,
-    Right = 6,
-    BottomRight = 7,
-    Bottom = 8,
-    BottomLeft = 9,
-    Left = 10,
-    TopLeft = 11,
+    Center                    = 3,
+    Top                       = 4,
+    TopRight                  = 5,
+    Right                     = 6,
+    BottomRight               = 7,
+    Bottom                    = 8,
+    BottomLeft                = 9,
+    Left                      = 10,
+    TopLeft                   = 11,
 }
 
 /// NSWritingDirection
 WritingDirection :: enum cffi.long {
-    Natural = -1,
+    Natural     = -1,
     LeftToRight = 0,
     RightToLeft = 1,
 }
 
 /// NSTextAlignment
 TextAlignment :: enum cffi.long {
-    Left = 0,
-    Center = 1,
-    Right = 2,
+    Left      = 0,
+    Center    = 1,
+    Right     = 2,
     Justified = 3,
-    Natural = 4,
+    Natural   = 4,
 }
 
 /// NSTextMovement
 TextMovement :: enum cffi.long {
-    Return = 16,
-    Tab = 17,
+    Return  = 16,
+    Tab     = 17,
     Backtab = 18,
-    Left = 19,
-    Right = 20,
-    Up = 21,
-    Down = 22,
-    Cancel = 23,
-    Other = 0,
+    Left    = 19,
+    Right   = 20,
+    Up      = 21,
+    Down    = 22,
+    Cancel  = 23,
+    Other   = 0,
 }
 
 /// NSLineBreakMode
 LineBreakMode :: enum cffi.ulong {
-    ByWordWrapping = 0,
-    ByCharWrapping = 1,
-    ByClipping = 2,
-    ByTruncatingHead = 3,
-    ByTruncatingTail = 4,
+    ByWordWrapping     = 0,
+    ByCharWrapping     = 1,
+    ByClipping         = 2,
+    ByTruncatingHead   = 3,
+    ByTruncatingTail   = 4,
     ByTruncatingMiddle = 5,
 }
 
 /// NSLineBreakStrategy
 LineBreakStrategy :: enum cffi.ulong {
-    None = 0,
-    PushOut = 1,
+    None               = 0,
+    PushOut            = 1,
     HangulWordPriority = 2,
-    Standard = 65535,
+    Standard           = 65535,
 }
 
 /// NSTextTabType
 TextTabType :: enum cffi.ulong {
-    LeftTabStopType = 0,
-    RightTabStopType = 1,
-    CenterTabStopType = 2,
+    LeftTabStopType    = 0,
+    RightTabStopType   = 1,
+    CenterTabStopType  = 2,
     DecimalTabStopType = 3,
 }
 
 /// NSCellType
 CellType :: enum cffi.ulong {
-    NullCellType = 0,
-    TextCellType = 1,
+    NullCellType  = 0,
+    TextCellType  = 1,
     ImageCellType = 2,
 }
 
 /// NSCellAttribute
 CellAttribute :: enum cffi.ulong {
-    Disabled = 0,
-    State = 1,
-    PushInCell = 2,
-    Editable = 3,
-    ChangeGrayCell = 4,
-    Highlighted = 5,
-    LightsByContents = 6,
-    LightsByGray = 7,
-    ChangeBackgroundCell = 8,
-    LightsByBackground = 9,
-    IsBordered = 10,
-    HasOverlappingImage = 11,
-    HasImageHorizontal = 12,
+    Disabled               = 0,
+    State                  = 1,
+    PushInCell             = 2,
+    Editable               = 3,
+    ChangeGrayCell         = 4,
+    Highlighted            = 5,
+    LightsByContents       = 6,
+    LightsByGray           = 7,
+    ChangeBackgroundCell   = 8,
+    LightsByBackground     = 9,
+    IsBordered             = 10,
+    HasOverlappingImage    = 11,
+    HasImageHorizontal     = 12,
     HasImageOnLeftOrBottom = 13,
-    ChangesContents = 14,
-    IsInsetButton = 15,
-    AllowsMixedState = 16,
+    ChangesContents        = 14,
+    IsInsetButton          = 15,
+    AllowsMixedState       = 16,
 }
 
 /// NSCellImagePosition
 CellImagePosition :: enum cffi.ulong {
-    NoImage = 0,
-    Only = 1,
-    Left = 2,
-    Right = 3,
-    Below = 4,
-    Above = 5,
+    NoImage  = 0,
+    Only     = 1,
+    Left     = 2,
+    Right    = 3,
+    Below    = 4,
+    Above    = 5,
     Overlaps = 6,
-    Leading = 7,
+    Leading  = 7,
     Trailing = 8,
 }
 
 /// NSImageScaling
 ImageScaling :: enum cffi.ulong {
-    ProportionallyDown = 0,
-    AxesIndependently = 1,
-    None = 2,
-    ProportionallyUpOrDown = 3,
+    ProportionallyDown        = 0,
+    AxesIndependently         = 1,
+    None                      = 2,
+    ProportionallyUpOrDown    = 3,
     DEPRECATED_Proportionally = 0,
-    DEPRECATED_ToFit = 1,
-    DEPRECATED_None = 2,
+    DEPRECATED_ToFit          = 1,
+    DEPRECATED_None           = 2,
 }
 
 /// NSCellStyleMask
 CellStyleMaskFlag :: enum cffi.ulong {
-    ContentsCellMask = 0,
-    PushInCellMask = 1,
-    ChangeGrayCellMask = 2,
+    ContentsCellMask         = 0,
+    PushInCellMask           = 1,
+    ChangeGrayCellMask       = 2,
     ChangeBackgroundCellMask = 3,
 }
 CellStyleMask :: bit_set[CellStyleMaskFlag; cffi.ulong]
 
 /// NSControlTint
 ControlTint :: enum cffi.ulong {
-    DefaultControlTint = 0,
-    BlueControlTint = 1,
+    DefaultControlTint  = 0,
+    BlueControlTint     = 1,
     GraphiteControlTint = 6,
-    ClearControlTint = 7,
+    ClearControlTint    = 7,
 }
 
 /// NSControlSize
 ControlSize :: enum cffi.ulong {
     Regular = 0,
-    Small = 1,
-    Mini = 2,
-    Large = 3,
+    Small   = 1,
+    Mini    = 2,
+    Large   = 3,
 }
 
 /// NSCellHitResult
 CellHitResult :: enum cffi.ulong {
-    None = 0,
-    ContentArea = 1,
+    None             = 0,
+    ContentArea      = 1,
     EditableTextArea = 2,
-    TrackableArea = 4,
+    TrackableArea    = 4,
 }
 
 /// NSBackgroundStyle
 BackgroundStyle :: enum cffi.long {
-    Normal = 0,
+    Normal     = 0,
     Emphasized = 1,
-    Raised = 2,
-    Lowered = 3,
+    Raised     = 2,
+    Lowered    = 3,
 }
 
 /// NSMenuPresentationStyle
@@ -3454,84 +3453,84 @@ MenuSelectionMode :: enum cffi.long {
 
 /// NSMenuProperties
 MenuProperties :: enum cffi.ulong {
-    PropertyItemTitle = 1,
-    PropertyItemAttributedTitle = 2,
-    PropertyItemKeyEquivalent = 4,
-    PropertyItemImage = 8,
-    PropertyItemEnabled = 16,
+    PropertyItemTitle                = 1,
+    PropertyItemAttributedTitle      = 2,
+    PropertyItemKeyEquivalent        = 4,
+    PropertyItemImage                = 8,
+    PropertyItemEnabled              = 16,
     PropertyItemAccessibilityDescription = 32,
 }
 
 /// NSPrinterTableStatus
 PrinterTableStatus :: enum cffi.ulong {
-    OK = 0,
+    OK       = 0,
     NotFound = 1,
-    Error = 2,
+    Error    = 2,
 }
 
 /// NSPaperOrientation
 PaperOrientation :: enum cffi.long {
-    Portrait = 0,
+    Portrait  = 0,
     Landscape = 1,
 }
 
 /// NSPrintingPaginationMode
 PrintingPaginationMode :: enum cffi.ulong {
     Automatic = 0,
-    Fit = 1,
-    Clip = 2,
+    Fit       = 1,
+    Clip      = 2,
 }
 
 /// NSPrintingOrientation
 PrintingOrientation :: enum cffi.ulong {
-    PortraitOrientation = 0,
+    PortraitOrientation  = 0,
     LandscapeOrientation = 1,
 }
 
 /// NSManagedObjectContextConcurrencyType
 ManagedObjectContextConcurrencyType :: enum cffi.ulong {
-    ConfinementConcurrencyType = 0,
+    ConfinementConcurrencyType  = 0,
     PrivateQueueConcurrencyType = 1,
-    MainQueueConcurrencyType = 2,
+    MainQueueConcurrencyType    = 2,
 }
 
 /// NSDocumentChangeType
 DocumentChangeType :: enum cffi.ulong {
-    Done = 0,
-    Undone = 1,
-    Redone = 5,
-    Cleared = 2,
+    Done              = 0,
+    Undone            = 1,
+    Redone            = 5,
+    Cleared           = 2,
     ReadOtherContents = 3,
-    Autosaved = 4,
-    Discardable = 256,
+    Autosaved         = 4,
+    Discardable       = 256,
 }
 
 /// NSSaveOperationType
 SaveOperationType :: enum cffi.ulong {
-    Operation = 0,
-    AsOperation = 1,
-    ToOperation = 2,
-    AutosaveInPlaceOperation = 4,
+    Operation                  = 0,
+    AsOperation                = 1,
+    ToOperation                = 2,
+    AutosaveInPlaceOperation   = 4,
     AutosaveElsewhereOperation = 3,
-    AutosaveAsOperation = 5,
-    AutosaveOperation = 3,
+    AutosaveAsOperation        = 5,
+    AutosaveOperation          = 3,
 }
 
 /// NSApplicationPresentationOptions
 ApplicationPresentationOptions :: enum cffi.ulong {
-    Default = 0,
-    AutoHideDock = 1,
-    HideDock = 2,
-    AutoHideMenuBar = 4,
-    HideMenuBar = 8,
-    DisableAppleMenu = 16,
-    DisableProcessSwitching = 32,
-    DisableForceQuit = 64,
-    DisableSessionTermination = 128,
-    DisableHideApplication = 256,
-    DisableMenuBarTransparency = 512,
-    FullScreen = 1024,
-    AutoHideToolbar = 2048,
+    Default                         = 0,
+    AutoHideDock                    = 1,
+    HideDock                        = 2,
+    AutoHideMenuBar                 = 4,
+    HideMenuBar                     = 8,
+    DisableAppleMenu                = 16,
+    DisableProcessSwitching         = 32,
+    DisableForceQuit                = 64,
+    DisableSessionTermination       = 128,
+    DisableHideApplication          = 256,
+    DisableMenuBarTransparency      = 512,
+    FullScreen                      = 1024,
+    AutoHideToolbar                 = 2048,
     DisableCursorLocationAssistance = 4096,
 }
 
@@ -3547,35 +3546,35 @@ WindowListOptions :: enum cffi.long {
 
 /// NSRequestUserAttentionType
 RequestUserAttentionType :: enum cffi.ulong {
-    CriticalRequest = 0,
+    CriticalRequest      = 0,
     InformationalRequest = 10,
 }
 
 /// NSApplicationDelegateReply
 ApplicationDelegateReply :: enum cffi.ulong {
     Success = 0,
-    Cancel = 1,
+    Cancel  = 1,
     Failure = 2,
 }
 
 /// NSApplicationTerminateReply
 ApplicationTerminateReply :: enum cffi.ulong {
     Cancel = 0,
-    Now = 1,
-    Later = 2,
+    Now    = 1,
+    Later  = 2,
 }
 
 /// NSApplicationPrintReply
 ApplicationPrintReply :: enum cffi.ulong {
     Cancelled = 0,
-    Success = 1,
-    Later = 2,
-    Failure = 3,
+    Success   = 1,
+    Later     = 2,
+    Failure   = 3,
 }
 
 /// NSRemoteNotificationType
 RemoteNotificationType :: enum cffi.ulong {
-    None = 0,
+    None  = 0,
     Badge = 1,
     Sound = 2,
     Alert = 4,
@@ -3584,153 +3583,153 @@ RemoteNotificationType :: enum cffi.ulong {
 /// NSColorType
 ColorType :: enum cffi.long {
     ComponentBased = 0,
-    Pattern = 1,
-    Catalog = 2,
+    Pattern        = 1,
+    Catalog        = 2,
 }
 
 /// NSColorSystemEffect
 ColorSystemEffect :: enum cffi.long {
-    None = 0,
-    Pressed = 1,
+    None        = 0,
+    Pressed     = 1,
     DeepPressed = 2,
-    Disabled = 3,
-    Rollover = 4,
+    Disabled    = 3,
+    Rollover    = 4,
 }
 
 /// NSAlertStyle
 AlertStyle :: enum cffi.ulong {
-    Warning = 0,
+    Warning       = 0,
     Informational = 1,
-    Critical = 2,
+    Critical      = 2,
 }
 
 /// NSTitlePosition
 TitlePosition :: enum cffi.ulong {
-    NoTitle = 0,
-    AboveTop = 1,
-    AtTop = 2,
-    BelowTop = 3,
+    NoTitle     = 0,
+    AboveTop    = 1,
+    AtTop       = 2,
+    BelowTop    = 3,
     AboveBottom = 4,
-    AtBottom = 5,
+    AtBottom    = 5,
     BelowBottom = 6,
 }
 
 /// NSBoxType
 BoxType :: enum cffi.ulong {
-    Primary = 0,
+    Primary   = 0,
     Separator = 2,
-    Custom = 4,
+    Custom    = 4,
 }
 
 /// NSButtonType
 ButtonType :: enum cffi.ulong {
-    MomentaryLight = 0,
-    PushOnPushOff = 1,
-    Toggle = 2,
-    Switch = 3,
-    Radio = 4,
-    MomentaryChange = 5,
-    OnOff = 6,
-    MomentaryPushIn = 7,
-    Accelerator = 8,
+    MomentaryLight        = 0,
+    PushOnPushOff         = 1,
+    Toggle                = 2,
+    Switch                = 3,
+    Radio                 = 4,
+    MomentaryChange       = 5,
+    OnOff                 = 6,
+    MomentaryPushIn       = 7,
+    Accelerator           = 8,
     MultiLevelAccelerator = 9,
 }
 
 /// NSBezelStyle
 BezelStyle :: enum cffi.ulong {
-    Automatic = 0,
-    Push = 1,
-    FlexiblePush = 2,
-    Disclosure = 5,
-    Circular = 7,
-    HelpButton = 9,
-    SmallSquare = 10,
-    Toolbar = 11,
+    Automatic          = 0,
+    Push               = 1,
+    FlexiblePush       = 2,
+    Disclosure         = 5,
+    Circular           = 7,
+    HelpButton         = 9,
+    SmallSquare        = 10,
+    Toolbar            = 11,
     AccessoryBarAction = 12,
-    AccessoryBar = 13,
-    PushDisclosure = 14,
-    Badge = 15,
-    ShadowlessSquare = 6,
-    TexturedSquare = 8,
-    Rounded = 1,
-    RegularSquare = 2,
-    TexturedRounded = 11,
-    RoundRect = 12,
-    Recessed = 13,
-    RoundedDisclosure = 14,
-    Inline = 15,
+    AccessoryBar       = 13,
+    PushDisclosure     = 14,
+    Badge              = 15,
+    ShadowlessSquare   = 6,
+    TexturedSquare     = 8,
+    Rounded            = 1,
+    RegularSquare      = 2,
+    TexturedRounded    = 11,
+    RoundRect          = 12,
+    Recessed           = 13,
+    RoundedDisclosure  = 14,
+    Inline             = 15,
 }
 
 /// NSGradientType
 GradientType :: enum cffi.ulong {
-    None = 0,
-    ConcaveWeak = 1,
+    None          = 0,
+    ConcaveWeak   = 1,
     ConcaveStrong = 2,
-    ConvexWeak = 3,
-    ConvexStrong = 4,
+    ConvexWeak    = 3,
+    ConvexStrong  = 4,
 }
 
 /// NSPopoverAppearance
 PopoverAppearance :: enum cffi.long {
     Minimal = 0,
-    HUD = 1,
+    HUD     = 1,
 }
 
 /// NSPopoverBehavior
 PopoverBehavior :: enum cffi.long {
     ApplicationDefined = 0,
-    Transient = 1,
-    Semitransient = 2,
+    Transient          = 1,
+    Semitransient      = 2,
 }
 
 /// NSViewControllerTransitionOptions
 ViewControllerTransitionOptions :: enum cffi.ulong {
-    None = 0,
-    Crossfade = 1,
-    SlideUp = 16,
-    SlideDown = 32,
-    SlideLeft = 64,
-    SlideRight = 128,
-    SlideForward = 320,
-    SlideBackward = 384,
+    None                 = 0,
+    Crossfade            = 1,
+    SlideUp              = 16,
+    SlideDown            = 32,
+    SlideLeft            = 64,
+    SlideRight           = 128,
+    SlideForward         = 320,
+    SlideBackward        = 384,
     AllowUserInteraction = 4096,
 }
 
 /// NSCollectionViewDropOperation
 CollectionViewDropOperation :: enum cffi.long {
-    On = 0,
+    On     = 0,
     Before = 1,
 }
 
 /// NSCollectionViewItemHighlightState
 CollectionViewItemHighlightState :: enum cffi.long {
-    None = 0,
-    ForSelection = 1,
+    None           = 0,
+    ForSelection   = 1,
     ForDeselection = 2,
-    AsDropTarget = 3,
+    AsDropTarget   = 3,
 }
 
 /// NSCollectionViewScrollPosition
 CollectionViewScrollPosition :: enum cffi.ulong {
-    None = 0,
-    Top = 1,
-    CenteredVertically = 2,
-    Bottom = 4,
+    None                  = 0,
+    Top                   = 1,
+    CenteredVertically    = 2,
+    Bottom                = 4,
     NearestHorizontalEdge = 512,
-    Left = 8,
-    CenteredHorizontally = 16,
-    Right = 32,
-    LeadingEdge = 64,
-    TrailingEdge = 128,
-    NearestVerticalEdge = 256,
+    Left                  = 8,
+    CenteredHorizontally  = 16,
+    Right                 = 32,
+    LeadingEdge           = 64,
+    TrailingEdge          = 128,
+    NearestVerticalEdge   = 256,
 }
 
 /// NSCollectionElementCategory
 CollectionElementCategory :: enum cffi.long {
-    Item = 0,
+    Item              = 0,
     SupplementaryView = 1,
-    DecorationView = 2,
-    InterItemGap = 3,
+    DecorationView    = 2,
+    InterItemGap      = 3,
 }
 
 /// NSCollectionUpdateAction
@@ -3738,93 +3737,93 @@ CollectionUpdateAction :: enum cffi.long {
     Insert = 0,
     Delete = 1,
     Reload = 2,
-    Move = 3,
-    None = 4,
+    Move   = 3,
+    None   = 4,
 }
 
 /// NSCollectionViewScrollDirection
 CollectionViewScrollDirection :: enum cffi.long {
-    Vertical = 0,
+    Vertical   = 0,
     Horizontal = 1,
 }
 
 /// NSDirectionalRectEdge
 DirectionalRectEdge :: enum cffi.ulong {
-    None = 0,
-    Top = 1,
-    Leading = 2,
-    Bottom = 4,
+    None     = 0,
+    Top      = 1,
+    Leading  = 2,
+    Bottom   = 4,
     Trailing = 8,
-    All = 15,
+    All      = 15,
 }
 
 /// NSRectAlignment
 RectAlignment :: enum cffi.long {
-    None = 0,
-    Top = 1,
-    TopLeading = 2,
-    Leading = 3,
-    BottomLeading = 4,
-    Bottom = 5,
+    None           = 0,
+    Top            = 1,
+    TopLeading     = 2,
+    Leading        = 3,
+    BottomLeading  = 4,
+    Bottom         = 5,
     BottomTrailing = 6,
-    Trailing = 7,
-    TopTrailing = 8,
+    Trailing       = 7,
+    TopTrailing    = 8,
 }
 
 /// NSCollectionLayoutSectionOrthogonalScrollingBehavior
 CollectionLayoutSectionOrthogonalScrollingBehavior :: enum cffi.long {
-    None = 0,
-    Continuous = 1,
+    None                           = 0,
+    Continuous                     = 1,
     ContinuousGroupLeadingBoundary = 2,
-    Paging = 3,
-    GroupPaging = 4,
-    GroupPagingCentered = 5,
+    Paging                         = 3,
+    GroupPaging                    = 4,
+    GroupPagingCentered            = 5,
 }
 
 /// NSHorizontalDirections
 HorizontalDirections :: enum cffi.ulong {
-    Left = 1,
+    Left  = 1,
     Right = 2,
-    All = 3,
+    All   = 3,
 }
 
 /// NSVerticalDirections
 VerticalDirections :: enum cffi.ulong {
-    Up = 1,
+    Up   = 1,
     Down = 2,
-    All = 3,
+    All  = 3,
 }
 
 /// NSFontDescriptorSymbolicTraits
 FontDescriptorSymbolicTraits :: enum cffi.uint {
-    TraitItalic = 1,
-    TraitBold = 2,
-    TraitExpanded = 32,
-    TraitCondensed = 64,
-    TraitMonoSpace = 1024,
-    TraitVertical = 2048,
-    TraitUIOptimized = 4096,
-    TraitTightLeading = 32768,
-    TraitLooseLeading = 65536,
-    TraitEmphasized = 2,
-    ClassMask = 4026531840,
-    ClassUnknown = 0,
-    ClassOldStyleSerifs = 268435456,
+    TraitItalic             = 1,
+    TraitBold               = 2,
+    TraitExpanded           = 32,
+    TraitCondensed          = 64,
+    TraitMonoSpace          = 1024,
+    TraitVertical           = 2048,
+    TraitUIOptimized        = 4096,
+    TraitTightLeading       = 32768,
+    TraitLooseLeading       = 65536,
+    TraitEmphasized         = 2,
+    ClassMask               = 4026531840,
+    ClassUnknown            = 0,
+    ClassOldStyleSerifs     = 268435456,
     ClassTransitionalSerifs = 536870912,
-    ClassModernSerifs = 805306368,
-    ClassClarendonSerifs = 1073741824,
-    ClassSlabSerifs = 1342177280,
-    ClassFreeformSerifs = 1879048192,
-    ClassSansSerif = 2147483648,
-    ClassOrnamentals = 2415919104,
-    ClassScripts = 2684354560,
-    ClassSymbolic = 3221225472,
+    ClassModernSerifs       = 805306368,
+    ClassClarendonSerifs    = 1073741824,
+    ClassSlabSerifs         = 1342177280,
+    ClassFreeformSerifs     = 1879048192,
+    ClassSansSerif          = 2147483648,
+    ClassOrnamentals        = 2415919104,
+    ClassScripts            = 2684354560,
+    ClassSymbolic           = 3221225472,
 }
 
 /// NSFontRenderingMode
 FontRenderingMode :: enum cffi.ulong {
-    DefaultRenderingMode = 0,
-    AntialiasedRenderingMode = 1,
+    DefaultRenderingMode             = 0,
+    AntialiasedRenderingMode         = 1,
     IntegerAdvancementsRenderingMode = 2,
     AntialiasedIntegerAdvancementsRenderingMode = 3,
 }
@@ -3841,25 +3840,25 @@ FontAssetRequestOptions :: enum cffi.ulong {
 
 /// NSFontCollectionVisibility
 FontCollectionVisibility :: enum cffi.ulong {
-    Process = 1,
-    User = 2,
+    Process  = 1,
+    User     = 2,
     Computer = 4,
 }
 
 /// NSFontTraitMask
 FontTraitMaskFlag :: enum cffi.ulong {
-    ItalicFontMask = 0,
-    BoldFontMask = 1,
-    UnboldFontMask = 2,
+    ItalicFontMask                  = 0,
+    BoldFontMask                    = 1,
+    UnboldFontMask                  = 2,
     NonStandardCharacterSetFontMask = 3,
-    NarrowFontMask = 4,
-    ExpandedFontMask = 5,
-    CondensedFontMask = 6,
-    SmallCapsFontMask = 7,
-    PosterFontMask = 8,
-    CompressedFontMask = 9,
-    FixedPitchFontMask = 10,
-    UnitalicFontMask = 24,
+    NarrowFontMask                  = 4,
+    ExpandedFontMask                = 5,
+    CondensedFontMask               = 6,
+    SmallCapsFontMask               = 7,
+    PosterFontMask                  = 8,
+    CompressedFontMask              = 9,
+    FixedPitchFontMask              = 10,
+    UnitalicFontMask                = 24,
 }
 FontTraitMask :: bit_set[FontTraitMaskFlag; cffi.ulong]
 
@@ -3870,72 +3869,72 @@ FontCollectionOptions :: enum cffi.ulong {
 
 /// NSFontAction
 FontAction :: enum cffi.ulong {
-    NoFontChangeAction = 0,
-    ViaPanelFontAction = 1,
-    AddTraitFontAction = 2,
-    SizeUpFontAction = 3,
-    SizeDownFontAction = 4,
-    HeavierFontAction = 5,
-    LighterFontAction = 6,
+    NoFontChangeAction    = 0,
+    ViaPanelFontAction    = 1,
+    AddTraitFontAction    = 2,
+    SizeUpFontAction      = 3,
+    SizeDownFontAction    = 4,
+    HeavierFontAction     = 5,
+    LighterFontAction     = 6,
     RemoveTraitFontAction = 7,
 }
 
 /// NSWindowStyleMask
 WindowStyleMaskFlag :: enum cffi.ulong {
-    Titled = 0,
-    Closable = 1,
-    Miniaturizable = 2,
-    Resizable = 3,
-    TexturedBackground = 8,
+    Titled                 = 0,
+    Closable               = 1,
+    Miniaturizable         = 2,
+    Resizable              = 3,
+    TexturedBackground     = 8,
     UnifiedTitleAndToolbar = 12,
-    FullScreen = 14,
-    FullSizeContentView = 15,
-    UtilityWindow = 4,
-    DocModalWindow = 6,
-    NonactivatingPanel = 7,
-    HUDWindow = 13,
+    FullScreen             = 14,
+    FullSizeContentView    = 15,
+    UtilityWindow          = 4,
+    DocModalWindow         = 6,
+    NonactivatingPanel     = 7,
+    HUDWindow              = 13,
 }
 WindowStyleMask :: bit_set[WindowStyleMaskFlag; cffi.ulong]
 
 /// NSWindowSharingType
 WindowSharingType :: enum cffi.ulong {
-    None = 0,
+    None     = 0,
     ReadOnly = 1,
 }
 
 /// NSWindowCollectionBehavior
 WindowCollectionBehavior :: enum cffi.ulong {
-    Default = 0,
-    CanJoinAllSpaces = 1,
-    MoveToActiveSpace = 2,
-    Managed = 4,
-    Transient = 8,
-    Stationary = 16,
-    ParticipatesInCycle = 32,
-    IgnoresCycle = 64,
-    FullScreenPrimary = 128,
-    FullScreenAuxiliary = 256,
-    FullScreenNone = 512,
-    FullScreenAllowsTiling = 2048,
+    Default                   = 0,
+    CanJoinAllSpaces          = 1,
+    MoveToActiveSpace         = 2,
+    Managed                   = 4,
+    Transient                 = 8,
+    Stationary                = 16,
+    ParticipatesInCycle       = 32,
+    IgnoresCycle              = 64,
+    FullScreenPrimary         = 128,
+    FullScreenAuxiliary       = 256,
+    FullScreenNone            = 512,
+    FullScreenAllowsTiling    = 2048,
     FullScreenDisallowsTiling = 4096,
-    Primary = 65536,
-    Auxiliary = 131072,
-    CanJoinAllApplications = 262144,
+    Primary                   = 65536,
+    Auxiliary                 = 131072,
+    CanJoinAllApplications    = 262144,
 }
 
 /// NSWindowAnimationBehavior
 WindowAnimationBehavior :: enum cffi.long {
-    Default = 0,
-    None = 2,
+    Default        = 0,
+    None           = 2,
     DocumentWindow = 3,
-    UtilityWindow = 4,
-    AlertPanel = 5,
+    UtilityWindow  = 4,
+    AlertPanel     = 5,
 }
 
 /// NSWindowNumberListOptions
 WindowNumberListOptions :: enum cffi.ulong {
     AllApplications = 1,
-    AllSpaces = 16,
+    AllSpaces       = 16,
 }
 
 /// NSWindowOcclusionState
@@ -3945,104 +3944,103 @@ WindowOcclusionState :: enum cffi.ulong {
 
 /// NSSelectionDirection
 SelectionDirection :: enum cffi.ulong {
-    DirectSelection = 0,
-    SelectingNext = 1,
+    DirectSelection   = 0,
+    SelectingNext     = 1,
     SelectingPrevious = 2,
 }
 
 /// NSWindowButton
 WindowButton :: enum cffi.ulong {
-    CloseButton = 0,
-    MiniaturizeButton = 1,
-    ZoomButton = 2,
-    ToolbarButton = 3,
-    DocumentIconButton = 4,
+    CloseButton            = 0,
+    MiniaturizeButton      = 1,
+    ZoomButton             = 2,
+    ToolbarButton          = 3,
+    DocumentIconButton     = 4,
     DocumentVersionsButton = 6,
 }
 
 /// NSWindowTitleVisibility
 WindowTitleVisibility :: enum cffi.long {
     Visible = 0,
-    Hidden = 1,
+    Hidden  = 1,
 }
 
 /// NSWindowToolbarStyle
 WindowToolbarStyle :: enum cffi.long {
-    Automatic = 0,
-    Expanded = 1,
-    Preference = 2,
-    Unified = 3,
+    Automatic      = 0,
+    Expanded       = 1,
+    Preference     = 2,
+    Unified        = 3,
     UnifiedCompact = 4,
 }
 
 /// NSWindowUserTabbingPreference
 WindowUserTabbingPreference :: enum cffi.long {
-    Manual = 0,
-    Always = 1,
+    Manual       = 0,
+    Always       = 1,
     InFullScreen = 2,
 }
 
 /// NSWindowTabbingMode
 WindowTabbingMode :: enum cffi.long {
-    Automatic = 0,
-    Preferred = 1,
+    Automatic  = 0,
+    Preferred  = 1,
     Disallowed = 2,
 }
 
 /// NSTitlebarSeparatorStyle
 TitlebarSeparatorStyle :: enum cffi.long {
     Automatic = 0,
-    None = 1,
-    Line = 2,
-    Shadow = 3,
+    None      = 1,
+    Line      = 2,
+    Shadow    = 3,
 }
 
 /// NSWindowBackingLocation
 WindowBackingLocation :: enum cffi.ulong {
-    Default = 0,
+    Default     = 0,
     VideoMemory = 1,
-    MainMemory = 2,
+    MainMemory  = 2,
 }
 
 /// NSFontPanelModeMask
 FontPanelModeMaskFlag :: enum cffi.ulong {
-    Face = 0,
-    Size = 1,
-    Collection = 2,
-    UnderlineEffect = 8,
+    Face                = 0,
+    Size                = 1,
+    Collection          = 2,
+    UnderlineEffect     = 8,
     StrikethroughEffect = 9,
-    TextColorEffect = 10,
+    TextColorEffect     = 10,
     DocumentColorEffect = 11,
-    ShadowEffect = 12,
+    ShadowEffect        = 12,
 }
 FontPanelModeMask :: bit_set[FontPanelModeMaskFlag; cffi.ulong]
 
-
 /// NSMatrixMode
 MatrixMode :: enum cffi.ulong {
-    RadioModeMatrix = 0,
+    RadioModeMatrix     = 0,
     HighlightModeMatrix = 1,
-    ListModeMatrix = 2,
-    TrackModeMatrix = 3,
+    ListModeMatrix      = 2,
+    TrackModeMatrix     = 3,
 }
 
 /// NSMenuItemBadgeType
 MenuItemBadgeType :: enum cffi.long {
-    None = 0,
-    Updates = 1,
+    None     = 0,
+    Updates  = 1,
     NewItems = 2,
-    Alerts = 3,
+    Alerts   = 3,
 }
 
 /// NSColorSpaceModel
 ColorSpaceModel :: enum cffi.long {
-    Unknown = -1,
-    Gray = 0,
-    RGB = 1,
-    CMYK = 2,
-    LAB = 3,
-    DeviceN = 4,
-    Indexed = 5,
+    Unknown   = -1,
+    Gray      = 0,
+    RGB       = 1,
+    CMYK      = 2,
+    LAB       = 3,
+    DeviceN   = 4,
+    Indexed   = 5,
     Patterned = 6,
 }
 
@@ -4055,326 +4053,326 @@ ImageLayoutDirection :: enum cffi.long {
 
 /// NSTIFFCompression
 TIFFCompression :: enum cffi.ulong {
-    None = 1,
+    None      = 1,
     CCITTFAX3 = 3,
     CCITTFAX4 = 4,
-    LZW = 5,
-    JPEG = 6,
-    NEXT = 32766,
-    PackBits = 32773,
-    OldJPEG = 32865,
+    LZW       = 5,
+    JPEG      = 6,
+    NEXT      = 32766,
+    PackBits  = 32773,
+    OldJPEG   = 32865,
 }
 
 /// NSBitmapImageFileType
 BitmapImageFileType :: enum cffi.ulong {
-    TIFF = 0,
-    BMP = 1,
-    GIF = 2,
-    JPEG = 3,
-    PNG = 4,
+    TIFF     = 0,
+    BMP      = 1,
+    GIF      = 2,
+    JPEG     = 3,
+    PNG      = 4,
     JPEG2000 = 5,
 }
 
 /// NSImageRepLoadStatus
 ImageRepLoadStatus :: enum cffi.long {
-    UnknownType = -1,
-    ReadingHeader = -2,
+    UnknownType     = -1,
+    ReadingHeader   = -2,
     WillNeedAllData = -3,
-    InvalidData = -4,
-    UnexpectedEOF = -5,
-    Completed = -6,
+    InvalidData     = -4,
+    UnexpectedEOF   = -5,
+    Completed       = -6,
 }
 
 /// NSBitmapFormat
 BitmapFormat :: enum cffi.ulong {
-    AlphaFirst = 1,
-    AlphaNonpremultiplied = 2,
-    FloatingPointSamples = 4,
-    SixteenBitLittleEndian = 256,
+    AlphaFirst               = 1,
+    AlphaNonpremultiplied    = 2,
+    FloatingPointSamples     = 4,
+    SixteenBitLittleEndian   = 256,
     ThirtyTwoBitLittleEndian = 512,
-    SixteenBitBigEndian = 1024,
-    ThirtyTwoBitBigEndian = 2048,
+    SixteenBitBigEndian      = 1024,
+    ThirtyTwoBitBigEndian    = 2048,
 }
 
 /// NSBrowserColumnResizingType
 BrowserColumnResizingType :: enum cffi.ulong {
-    NoColumnResizing = 0,
+    NoColumnResizing   = 0,
     AutoColumnResizing = 1,
     UserColumnResizing = 2,
 }
 
 /// NSBrowserDropOperation
 BrowserDropOperation :: enum cffi.ulong {
-    On = 0,
+    On    = 0,
     Above = 1,
 }
 
 /// NSColorPanelMode
 ColorPanelMode :: enum cffi.long {
-    None = -1,
-    Gray = 0,
-    RGB = 1,
-    CMYK = 2,
-    HSB = 3,
+    None          = -1,
+    Gray          = 0,
+    RGB           = 1,
+    CMYK          = 2,
+    HSB           = 3,
     CustomPalette = 4,
-    ColorList = 5,
-    Wheel = 6,
-    Crayon = 7,
+    ColorList     = 5,
+    Wheel         = 6,
+    Crayon        = 7,
 }
 
 /// NSColorPanelOptions
 ColorPanelOptions :: enum cffi.ulong {
-    GrayModeMask = 1,
-    RGBModeMask = 2,
-    CMYKModeMask = 4,
-    HSBModeMask = 8,
+    GrayModeMask          = 1,
+    RGBModeMask           = 2,
+    CMYKModeMask          = 4,
+    HSBModeMask           = 8,
     CustomPaletteModeMask = 16,
-    ColorListModeMask = 32,
-    WheelModeMask = 64,
-    CrayonModeMask = 128,
-    AllModesMask = 65535,
+    ColorListModeMask     = 32,
+    WheelModeMask         = 64,
+    CrayonModeMask        = 128,
+    AllModesMask          = 65535,
 }
 
 /// NSColorWellStyle
 ColorWellStyle :: enum cffi.long {
-    Default = 0,
-    Minimal = 1,
+    Default  = 0,
+    Minimal  = 1,
     Expanded = 2,
 }
 
 /// NSCursorFrameResizePosition
 CursorFrameResizePosition :: enum cffi.ulong {
-    Top = 1,
-    Left = 2,
-    Bottom = 4,
-    Right = 8,
-    TopLeft = 3,
-    TopRight = 9,
-    BottomLeft = 6,
+    Top         = 1,
+    Left        = 2,
+    Bottom      = 4,
+    Right       = 8,
+    TopLeft     = 3,
+    TopRight    = 9,
+    BottomLeft  = 6,
     BottomRight = 12,
 }
 
 /// NSCursorFrameResizeDirections
 CursorFrameResizeDirections :: enum cffi.ulong {
-    Inward = 1,
+    Inward  = 1,
     Outward = 2,
-    All = 3,
+    All     = 3,
 }
 
 /// NSGradientDrawingOptions
 GradientDrawingOptions :: enum cffi.ulong {
     DrawsBeforeStartingLocation = 1,
-    DrawsAfterEndingLocation = 2,
+    DrawsAfterEndingLocation    = 2,
 }
 
 /// NSGestureRecognizerState
 GestureRecognizerState :: enum cffi.long {
-    Possible = 0,
-    Began = 1,
-    Changed = 2,
-    Ended = 3,
-    Cancelled = 4,
-    Failed = 5,
+    Possible   = 0,
+    Began      = 1,
+    Changed    = 2,
+    Ended      = 3,
+    Cancelled  = 4,
+    Failed     = 5,
     Recognized = 3,
 }
 
 /// NSLayoutConstraintOrientation
 LayoutConstraintOrientation :: enum cffi.long {
     Horizontal = 0,
-    Vertical = 1,
+    Vertical   = 1,
 }
 
 /// NSLayoutRelation
 LayoutRelation :: enum cffi.long {
-    LessThanOrEqual = -1,
-    Equal = 0,
+    LessThanOrEqual    = -1,
+    Equal              = 0,
     GreaterThanOrEqual = 1,
 }
 
 /// NSLayoutAttribute
 LayoutAttribute :: enum cffi.long {
-    Left = 1,
-    Right = 2,
-    Top = 3,
-    Bottom = 4,
-    Leading = 5,
-    Trailing = 6,
-    Width = 7,
-    Height = 8,
-    CenterX = 9,
-    CenterY = 10,
-    LastBaseline = 11,
-    Baseline = 11,
-    FirstBaseline = 12,
+    Left           = 1,
+    Right          = 2,
+    Top            = 3,
+    Bottom         = 4,
+    Leading        = 5,
+    Trailing       = 6,
+    Width          = 7,
+    Height         = 8,
+    CenterX        = 9,
+    CenterY        = 10,
+    LastBaseline   = 11,
+    Baseline       = 11,
+    FirstBaseline  = 12,
     NotAnAttribute = 0,
 }
 
 /// NSLayoutFormatOptions
 LayoutFormatOptions :: enum cffi.ulong {
-    AlignAllLeft = 2,
-    AlignAllRight = 4,
-    AlignAllTop = 8,
-    AlignAllBottom = 16,
-    AlignAllLeading = 32,
-    AlignAllTrailing = 64,
-    AlignAllCenterX = 512,
-    AlignAllCenterY = 1024,
-    AlignAllLastBaseline = 2048,
-    AlignAllFirstBaseline = 4096,
-    AlignAllBaseline = 2048,
-    AlignmentMask = 65535,
+    AlignAllLeft               = 2,
+    AlignAllRight              = 4,
+    AlignAllTop                = 8,
+    AlignAllBottom             = 16,
+    AlignAllLeading            = 32,
+    AlignAllTrailing           = 64,
+    AlignAllCenterX            = 512,
+    AlignAllCenterY            = 1024,
+    AlignAllLastBaseline       = 2048,
+    AlignAllFirstBaseline      = 4096,
+    AlignAllBaseline           = 2048,
+    AlignmentMask              = 65535,
     DirectionLeadingToTrailing = 0,
-    DirectionLeftToRight = 65536,
-    DirectionRightToLeft = 131072,
-    DirectionMask = 196608,
+    DirectionLeftToRight       = 65536,
+    DirectionRightToLeft       = 131072,
+    DirectionMask              = 196608,
 }
 
 /// NSImageLoadStatus
 ImageLoadStatus :: enum cffi.ulong {
-    Completed = 0,
-    Cancelled = 1,
-    InvalidData = 2,
+    Completed     = 0,
+    Cancelled     = 1,
+    InvalidData   = 2,
     UnexpectedEOF = 3,
-    ReadError = 4,
+    ReadError     = 4,
 }
 
 /// NSImageCacheMode
 ImageCacheMode :: enum cffi.ulong {
     Default = 0,
-    Always = 1,
-    BySize = 2,
-    Never = 3,
+    Always  = 1,
+    BySize  = 2,
+    Never   = 3,
 }
 
 /// NSImageResizingMode
 ImageResizingMode :: enum cffi.long {
-    Tile = 0,
+    Tile    = 0,
     Stretch = 1,
 }
 
 /// NSImageSymbolScale
 ImageSymbolScale :: enum cffi.long {
-    Small = 1,
+    Small  = 1,
     Medium = 2,
-    Large = 3,
+    Large  = 3,
 }
 
 /// NSImageAlignment
 ImageAlignment :: enum cffi.ulong {
-    AlignCenter = 0,
-    AlignTop = 1,
-    AlignTopLeft = 2,
-    AlignTopRight = 3,
-    AlignLeft = 4,
-    AlignBottom = 5,
-    AlignBottomLeft = 6,
+    AlignCenter      = 0,
+    AlignTop         = 1,
+    AlignTopLeft     = 2,
+    AlignTopRight    = 3,
+    AlignLeft        = 4,
+    AlignBottom      = 5,
+    AlignBottomLeft  = 6,
     AlignBottomRight = 7,
-    AlignRight = 8,
+    AlignRight       = 8,
 }
 
 /// NSImageFrameStyle
 ImageFrameStyle :: enum cffi.ulong {
-    None = 0,
-    Photo = 1,
+    None      = 0,
+    Photo     = 1,
     GrayBezel = 2,
-    Groove = 3,
-    Button = 4,
+    Groove    = 3,
+    Button    = 4,
 }
 
 /// NSImageDynamicRange
 ImageDynamicRange :: enum cffi.long {
-    Unspecified = -1,
-    Standard = 0,
+    Unspecified     = -1,
+    Standard        = 0,
     ConstrainedHigh = 1,
-    High = 2,
+    High            = 2,
 }
 
 /// NSScrubberMode
 ScrubberMode :: enum cffi.long {
     Fixed = 0,
-    Free = 1,
+    Free  = 1,
 }
 
 /// NSScrubberAlignment
 ScrubberAlignment :: enum cffi.long {
-    None = 0,
-    Leading = 1,
+    None     = 0,
+    Leading  = 1,
     Trailing = 2,
-    Center = 3,
+    Center   = 3,
 }
 
 /// NSSharingContentScope
 SharingContentScope :: enum cffi.long {
-    Item = 0,
+    Item    = 0,
     Partial = 1,
-    Full = 2,
+    Full    = 2,
 }
 
 /// NSCloudKitSharingServiceOptions
 CloudKitSharingServiceOptions :: enum cffi.ulong {
-    Standard = 0,
-    AllowPublic = 1,
-    AllowPrivate = 2,
-    AllowReadOnly = 16,
+    Standard       = 0,
+    AllowPublic    = 1,
+    AllowPrivate   = 2,
+    AllowReadOnly  = 16,
     AllowReadWrite = 32,
 }
 
 /// NSSpeechBoundary
 SpeechBoundary :: enum cffi.ulong {
     ImmediateBoundary = 0,
-    WordBoundary = 1,
-    SentenceBoundary = 2,
+    WordBoundary      = 1,
+    SentenceBoundary  = 2,
 }
 
 /// NSCorrectionResponse
 CorrectionResponse :: enum cffi.long {
-    None = 0,
+    None     = 0,
     Accepted = 1,
     Rejected = 2,
-    Ignored = 3,
-    Edited = 4,
+    Ignored  = 3,
+    Edited   = 4,
     Reverted = 5,
 }
 
 /// NSCorrectionIndicatorType
 CorrectionIndicatorType :: enum cffi.long {
-    Default = 0,
+    Default   = 0,
     Reversion = 1,
-    Guesses = 2,
+    Guesses   = 2,
 }
 
 /// NSSplitViewDividerStyle
 SplitViewDividerStyle :: enum cffi.long {
-    Thick = 1,
-    Thin = 2,
+    Thick        = 1,
+    Thin         = 2,
     PaneSplitter = 3,
 }
 
 /// NSSplitViewItemBehavior
 SplitViewItemBehavior :: enum cffi.long {
-    Default = 0,
-    Sidebar = 1,
+    Default     = 0,
+    Sidebar     = 1,
     ContentList = 2,
-    Inspector = 3,
+    Inspector   = 3,
 }
 
 /// NSSplitViewItemCollapseBehavior
 SplitViewItemCollapseBehavior :: enum cffi.long {
-    Default = 0,
+    Default                          = 0,
     PreferResizingSplitViewWithFixedSiblings = 1,
     PreferResizingSiblingsWithFixedSplitView = 2,
-    UseConstraints = 3,
+    UseConstraints                   = 3,
 }
 
 /// NSPageLayoutResult
 PageLayoutResult :: enum cffi.long {
     Cancelled = 0,
-    Changed = 1,
+    Changed   = 1,
 }
 
 /// NSPopUpArrowPosition
 PopUpArrowPosition :: enum cffi.ulong {
-    NoArrow = 0,
+    NoArrow  = 0,
     AtCenter = 1,
     AtBottom = 2,
 }
@@ -4382,39 +4380,39 @@ PopUpArrowPosition :: enum cffi.ulong {
 /// NSPrintingPageOrder
 PrintingPageOrder :: enum cffi.long {
     DescendingPageOrder = -1,
-    SpecialPageOrder = 0,
-    AscendingPageOrder = 1,
-    UnknownPageOrder = 2,
+    SpecialPageOrder    = 0,
+    AscendingPageOrder  = 1,
+    UnknownPageOrder    = 2,
 }
 
 /// NSPrintRenderingQuality
 PrintRenderingQuality :: enum cffi.long {
-    Best = 0,
+    Best       = 0,
     Responsive = 1,
 }
 
 /// NSPrintPanelResult
 PrintPanelResult :: enum cffi.long {
     Cancelled = 0,
-    Printed = 1,
+    Printed   = 1,
 }
 
 /// NSPrintPanelOptions
 PrintPanelOptions :: enum cffi.ulong {
-    ShowsCopies = 1,
-    ShowsPageRange = 2,
-    ShowsPaperSize = 4,
-    ShowsOrientation = 8,
-    ShowsScaling = 16,
-    ShowsPrintSelection = 32,
+    ShowsCopies             = 1,
+    ShowsPageRange          = 2,
+    ShowsPaperSize          = 4,
+    ShowsOrientation        = 8,
+    ShowsScaling            = 16,
+    ShowsPrintSelection     = 32,
     ShowsPageSetupAccessory = 256,
-    ShowsPreview = 131072,
+    ShowsPreview            = 131072,
 }
 
 /// NSPDFPanelOptions
 PDFPanelOptions :: enum cffi.long {
-    ShowsPaperSize = 4,
-    ShowsOrientation = 8,
+    ShowsPaperSize          = 4,
+    ShowsOrientation        = 8,
     RequestsParentDirectory = 16777216,
 }
 
@@ -4427,41 +4425,41 @@ MediaLibrary :: enum cffi.ulong {
 
 /// NSUsableScrollerParts
 UsableScrollerParts :: enum cffi.ulong {
-    NoScrollerParts = 0,
+    NoScrollerParts    = 0,
     OnlyScrollerArrows = 1,
-    AllScrollerParts = 2,
+    AllScrollerParts   = 2,
 }
 
 /// NSScrollerPart
 ScrollerPart :: enum cffi.ulong {
-    NoPart = 0,
+    NoPart        = 0,
     DecrementPage = 1,
-    Knob = 2,
+    Knob          = 2,
     IncrementPage = 3,
     DecrementLine = 4,
     IncrementLine = 5,
-    KnobSlot = 6,
+    KnobSlot      = 6,
 }
 
 /// NSScrollerStyle
 ScrollerStyle :: enum cffi.long {
-    Legacy = 0,
+    Legacy  = 0,
     Overlay = 1,
 }
 
 /// NSScrollerKnobStyle
 ScrollerKnobStyle :: enum cffi.long {
     Default = 0,
-    Dark = 1,
-    Light = 2,
+    Dark    = 1,
+    Light   = 2,
 }
 
 /// NSScrollArrowPosition
 ScrollArrowPosition :: enum cffi.ulong {
-    erArrowsMaxEnd = 0,
-    erArrowsMinEnd = 1,
+    erArrowsMaxEnd         = 0,
+    erArrowsMinEnd         = 1,
     erArrowsDefaultSetting = 0,
-    erArrowsNone = 2,
+    erArrowsNone           = 2,
 }
 
 /// NSScrollerArrow
@@ -4472,225 +4470,225 @@ ScrollerArrow :: enum cffi.ulong {
 
 /// NSTextFinderAction
 TextFinderAction :: enum cffi.long {
-    ShowFindInterface = 1,
-    NextMatch = 2,
-    PreviousMatch = 3,
-    ReplaceAll = 4,
-    Replace = 5,
-    ReplaceAndFind = 6,
-    SetSearchString = 7,
+    ShowFindInterface     = 1,
+    NextMatch             = 2,
+    PreviousMatch         = 3,
+    ReplaceAll            = 4,
+    Replace               = 5,
+    ReplaceAndFind        = 6,
+    SetSearchString       = 7,
     ReplaceAllInSelection = 8,
-    SelectAll = 9,
-    SelectAllInSelection = 10,
-    HideFindInterface = 11,
-    ShowReplaceInterface = 12,
-    HideReplaceInterface = 13,
+    SelectAll             = 9,
+    SelectAllInSelection  = 10,
+    HideFindInterface     = 11,
+    ShowReplaceInterface  = 12,
+    HideReplaceInterface  = 13,
 }
 
 /// NSTextFinderMatchingType
 TextFinderMatchingType :: enum cffi.long {
-    Contains = 0,
+    Contains   = 0,
     StartsWith = 1,
-    FullWord = 2,
-    EndsWith = 3,
+    FullWord   = 2,
+    EndsWith   = 3,
 }
 
 /// NSScrollElasticity
 ScrollElasticity :: enum cffi.long {
     Automatic = 0,
-    None = 1,
-    Allowed = 2,
+    None      = 1,
+    Allowed   = 2,
 }
 
 /// NSScrollViewFindBarPosition
 ScrollViewFindBarPosition :: enum cffi.long {
     AboveHorizontalRuler = 0,
-    AboveContent = 1,
-    BelowContent = 2,
+    AboveContent         = 1,
+    BelowContent         = 2,
 }
 
 /// NSSegmentSwitchTracking
 SegmentSwitchTracking :: enum cffi.ulong {
-    SelectOne = 0,
-    SelectAny = 1,
-    Momentary = 2,
+    SelectOne            = 0,
+    SelectAny            = 1,
+    Momentary            = 2,
     MomentaryAccelerator = 3,
 }
 
 /// NSSegmentStyle
 SegmentStyle :: enum cffi.long {
-    Automatic = 0,
-    Rounded = 1,
-    RoundRect = 3,
-    TexturedSquare = 4,
-    SmallSquare = 6,
-    Separated = 8,
+    Automatic       = 0,
+    Rounded         = 1,
+    RoundRect       = 3,
+    TexturedSquare  = 4,
+    SmallSquare     = 6,
+    Separated       = 8,
     TexturedRounded = 2,
-    Capsule = 5,
+    Capsule         = 5,
 }
 
 /// NSSegmentDistribution
 SegmentDistribution :: enum cffi.long {
-    Fit = 0,
-    Fill = 1,
-    FillEqually = 2,
+    Fit                = 0,
+    Fill               = 1,
+    FillEqually        = 2,
     FillProportionally = 3,
 }
 
 /// NSSharingCollaborationMode
 SharingCollaborationMode :: enum cffi.long {
-    SendCopy = 0,
+    SendCopy    = 0,
     Collaborate = 1,
 }
 
 /// NSTickMarkPosition
 TickMarkPosition :: enum cffi.ulong {
-    Below = 0,
-    Above = 1,
-    Leading = 1,
+    Below    = 0,
+    Above    = 1,
+    Leading  = 1,
     Trailing = 0,
 }
 
 /// NSSliderType
 SliderType :: enum cffi.ulong {
-    Linear = 0,
+    Linear   = 0,
     Circular = 1,
 }
 
 /// NSStackViewGravity
 StackViewGravity :: enum cffi.long {
-    Top = 1,
-    Leading = 1,
-    Center = 2,
-    Bottom = 3,
+    Top      = 1,
+    Leading  = 1,
+    Center   = 2,
+    Bottom   = 3,
     Trailing = 3,
 }
 
 /// NSStackViewDistribution
 StackViewDistribution :: enum cffi.long {
-    GravityAreas = -1,
-    Fill = 0,
-    FillEqually = 1,
+    GravityAreas       = -1,
+    Fill               = 0,
+    FillEqually        = 1,
     FillProportionally = 2,
-    EqualSpacing = 3,
-    EqualCentering = 4,
+    EqualSpacing       = 3,
+    EqualCentering     = 4,
 }
 
 /// NSGridCellPlacement
 GridCellPlacement :: enum cffi.long {
     Inherited = 0,
-    None = 1,
-    Leading = 2,
-    Top = 2,
-    Trailing = 3,
-    Bottom = 3,
-    Center = 4,
-    Fill = 5,
+    None      = 1,
+    Leading   = 2,
+    Top       = 2,
+    Trailing  = 3,
+    Bottom    = 3,
+    Center    = 4,
+    Fill      = 5,
 }
 
 /// NSGridRowAlignment
 GridRowAlignment :: enum cffi.long {
-    Inherited = 0,
-    None = 1,
+    Inherited     = 0,
+    None          = 1,
     FirstBaseline = 2,
-    LastBaseline = 3,
+    LastBaseline  = 3,
 }
 
 /// NSTextCursorAccessoryPlacement
 TextCursorAccessoryPlacement :: enum cffi.long {
-    Unspecified = 0,
-    Backward = 1,
-    Forward = 2,
-    Invisible = 3,
-    Center = 4,
-    OffscreenLeft = 5,
-    OffscreenTop = 6,
-    OffscreenRight = 7,
+    Unspecified     = 0,
+    Backward        = 1,
+    Forward         = 2,
+    Invisible       = 3,
+    Center          = 4,
+    OffscreenLeft   = 5,
+    OffscreenTop    = 6,
+    OffscreenRight  = 7,
     OffscreenBottom = 8,
 }
 
 /// NSTextInputTraitType
 TextInputTraitType :: enum cffi.long {
     Default = 0,
-    No = 1,
-    Yes = 2,
+    No      = 1,
+    Yes     = 2,
 }
 
 /// NSWritingToolsBehavior
 WritingToolsBehavior :: enum cffi.long {
-    None = -1,
-    Default = 0,
+    None     = -1,
+    Default  = 0,
     Complete = 1,
-    Limited = 2,
+    Limited  = 2,
 }
 
 /// NSWritingToolsResultOptions
 WritingToolsResultOptions :: enum cffi.ulong {
-    Default = 0,
+    Default   = 0,
     PlainText = 1,
-    RichText = 2,
-    List = 4,
-    Table = 8,
+    RichText  = 2,
+    List      = 4,
+    Table     = 8,
 }
 
 /// NSWritingToolsAllowedInputOptions
 WritingToolsAllowedInputOptions :: enum cffi.ulong {
-    Default = 0,
+    Default   = 0,
     PlainText = 1,
-    RichText = 2,
-    List = 4,
-    Table = 8,
+    RichText  = 2,
+    List      = 4,
+    Table     = 8,
 }
 
 /// NSTextFieldBezelStyle
 TextFieldBezelStyle :: enum cffi.ulong {
-    SquareBezel = 0,
+    SquareBezel  = 0,
     RoundedBezel = 1,
 }
 
 /// NSTextInsertionIndicatorDisplayMode
 TextInsertionIndicatorDisplayMode :: enum cffi.long {
     Automatic = 0,
-    Hidden = 1,
-    Visible = 2,
+    Hidden    = 1,
+    Visible   = 2,
 }
 
 /// NSTextInsertionIndicatorAutomaticModeOptions
 TextInsertionIndicatorAutomaticModeOptions :: enum cffi.long {
-    ShowEffectsView = 1,
+    ShowEffectsView   = 1,
     ShowWhileTracking = 2,
 }
 
 /// NSUnderlineStyle
 UnderlineStyle :: enum cffi.long {
-    None = 0,
-    Single = 1,
-    Thick = 2,
-    Double = 9,
-    PatternSolid = 0,
-    PatternDot = 256,
-    PatternDash = 512,
-    PatternDashDot = 768,
+    None              = 0,
+    Single            = 1,
+    Thick             = 2,
+    Double            = 9,
+    PatternSolid      = 0,
+    PatternDot        = 256,
+    PatternDash       = 512,
+    PatternDashDot    = 768,
     PatternDashDotDot = 1024,
-    ByWord = 32768,
+    ByWord            = 32768,
 }
 
 /// NSWritingDirectionFormatType
 WritingDirectionFormatType :: enum cffi.long {
     Embedding = 0,
-    Override = 2,
+    Override  = 2,
 }
 
 /// NSTextScalingType
 TextScalingType :: enum cffi.long {
     Standard = 0,
-    iOS = 1,
+    iOS      = 1,
 }
 
 /// NSSpellingState
 SpellingState :: enum cffi.long {
     SpellingFlag = 1,
-    GrammarFlag = 2,
+    GrammarFlag  = 2,
 }
 
 /// NSTextStorageEditActions
@@ -4702,202 +4700,202 @@ TextStorageEditActions :: enum cffi.ulong {
 /// NSTextLayoutOrientation
 TextLayoutOrientation :: enum cffi.long {
     Horizontal = 0,
-    Vertical = 1,
+    Vertical   = 1,
 }
 
 /// NSGlyphProperty
 GlyphProperty :: enum cffi.long {
-    Null = 1,
+    Null             = 1,
     ControlCharacter = 2,
-    Elastic = 4,
+    Elastic          = 4,
     NonBaseCharacter = 8,
 }
 
 /// NSControlCharacterAction
 ControlCharacterAction :: enum cffi.long {
     ZeroAdvancement = 1,
-    Whitespace = 2,
-    HorizontalTab = 4,
-    LineBreak = 8,
-    ParagraphBreak = 16,
-    ContainerBreak = 32,
+    Whitespace      = 2,
+    HorizontalTab   = 4,
+    LineBreak       = 8,
+    ParagraphBreak  = 16,
+    ContainerBreak  = 32,
 }
 
 /// NSTypesetterBehavior
 TypesetterBehavior :: enum cffi.long {
-    LatestBehavior = -1,
-    OriginalBehavior = 0,
+    LatestBehavior          = -1,
+    OriginalBehavior        = 0,
     _10_2_WithCompatibility = 1,
-    _10_2 = 2,
-    _10_3 = 3,
-    _10_4 = 4,
+    _10_2                   = 2,
+    _10_3                   = 3,
+    _10_4                   = 4,
 }
 
 /// NSGlyphInscription
 GlyphInscription :: enum cffi.ulong {
-    InscribeBase = 0,
-    InscribeBelow = 1,
-    InscribeAbove = 2,
+    InscribeBase       = 0,
+    InscribeBelow      = 1,
+    InscribeAbove      = 2,
     InscribeOverstrike = 3,
-    InscribeOverBelow = 4,
+    InscribeOverBelow  = 4,
 }
 
 /// NSLineSweepDirection
 LineSweepDirection :: enum cffi.ulong {
-    Left = 0,
+    Left  = 0,
     Right = 1,
-    Down = 2,
-    Up = 3,
+    Down  = 2,
+    Up    = 3,
 }
 
 /// NSLineMovementDirection
 LineMovementDirection :: enum cffi.ulong {
     DoesntMove = 0,
-    MovesLeft = 1,
+    MovesLeft  = 1,
     MovesRight = 2,
-    MovesDown = 3,
-    MovesUp = 4,
+    MovesDown  = 3,
+    MovesUp    = 4,
 }
 
 /// NSTokenStyle
 TokenStyle :: enum cffi.ulong {
-    Default = 0,
-    None = 1,
-    Rounded = 2,
-    Squared = 3,
+    Default      = 0,
+    None         = 1,
+    Rounded      = 2,
+    Squared      = 3,
     PlainSquared = 4,
 }
 
 /// NSTrackingAreaOptions
 TrackingAreaOptions :: enum cffi.ulong {
-    MouseEnteredAndExited = 1,
-    MouseMoved = 2,
-    CursorUpdate = 4,
+    MouseEnteredAndExited    = 1,
+    MouseMoved               = 2,
+    CursorUpdate             = 4,
     ActiveWhenFirstResponder = 16,
-    ActiveInKeyWindow = 32,
-    ActiveInActiveApp = 64,
-    ActiveAlways = 128,
-    AssumeInside = 256,
-    InVisibleRect = 512,
-    EnabledDuringMouseDrag = 1024,
+    ActiveInKeyWindow        = 32,
+    ActiveInActiveApp        = 64,
+    ActiveAlways             = 128,
+    AssumeInside             = 256,
+    InVisibleRect            = 512,
+    EnabledDuringMouseDrag   = 1024,
 }
 
 /// NSToolbarDisplayMode
 ToolbarDisplayMode :: enum cffi.ulong {
-    Default = 0,
+    Default      = 0,
     IconAndLabel = 1,
-    IconOnly = 2,
-    LabelOnly = 3,
+    IconOnly     = 2,
+    LabelOnly    = 3,
 }
 
 /// NSToolbarSizeMode
 ToolbarSizeMode :: enum cffi.ulong {
     Default = 0,
     Regular = 1,
-    Small = 2,
+    Small   = 2,
 }
 
 /// NSComboButtonStyle
 ComboButtonStyle :: enum cffi.long {
-    Split = 0,
+    Split   = 0,
     Unified = 1,
 }
 
 /// NSSelectionGranularity
 SelectionGranularity :: enum cffi.ulong {
     SelectByCharacter = 0,
-    SelectByWord = 1,
+    SelectByWord      = 1,
     SelectByParagraph = 2,
 }
 
 /// NSSelectionAffinity
 SelectionAffinity :: enum cffi.ulong {
-    Upstream = 0,
+    Upstream   = 0,
     Downstream = 1,
 }
 
 /// NSFindPanelAction
 FindPanelAction :: enum cffi.ulong {
-    ShowFindPanel = 1,
-    Next = 2,
-    Previous = 3,
-    ReplaceAll = 4,
-    Replace = 5,
-    ReplaceAndFind = 6,
-    SetFindString = 7,
+    ShowFindPanel         = 1,
+    Next                  = 2,
+    Previous              = 3,
+    ReplaceAll            = 4,
+    Replace               = 5,
+    ReplaceAndFind        = 6,
+    SetFindString         = 7,
     ReplaceAllInSelection = 8,
-    SelectAll = 9,
-    SelectAllInSelection = 10,
+    SelectAll             = 9,
+    SelectAllInSelection  = 10,
 }
 
 /// NSFindPanelSubstringMatchType
 FindPanelSubstringMatchType :: enum cffi.ulong {
-    Contains = 0,
+    Contains   = 0,
     StartsWith = 1,
-    FullWord = 2,
-    EndsWith = 3,
+    FullWord   = 2,
+    EndsWith   = 3,
 }
 
 /// NSTableViewDropOperation
 TableViewDropOperation :: enum cffi.ulong {
-    On = 0,
+    On    = 0,
     Above = 1,
 }
 
 /// NSTableViewColumnAutoresizingStyle
 TableViewColumnAutoresizingStyle :: enum cffi.ulong {
-    NoColumnAutoresizing = 0,
-    UniformColumnAutoresizingStyle = 1,
+    NoColumnAutoresizing             = 0,
+    UniformColumnAutoresizingStyle   = 1,
     SequentialColumnAutoresizingStyle = 2,
     ReverseSequentialColumnAutoresizingStyle = 3,
-    LastColumnOnlyAutoresizingStyle = 4,
+    LastColumnOnlyAutoresizingStyle  = 4,
     FirstColumnOnlyAutoresizingStyle = 5,
 }
 
 /// NSTableViewGridLineStyle
 TableViewGridLineStyle :: enum cffi.ulong {
-    None = 0,
-    SolidVerticalGridLineMask = 1,
-    SolidHorizontalGridLineMask = 2,
+    None                         = 0,
+    SolidVerticalGridLineMask    = 1,
+    SolidHorizontalGridLineMask  = 2,
     DashedHorizontalGridLineMask = 8,
 }
 
 /// NSTableViewRowSizeStyle
 TableViewRowSizeStyle :: enum cffi.long {
     Default = -1,
-    Custom = 0,
-    Small = 1,
-    Medium = 2,
-    Large = 3,
+    Custom  = 0,
+    Small   = 1,
+    Medium  = 2,
+    Large   = 3,
 }
 
 /// NSTableViewStyle
 TableViewStyle :: enum cffi.long {
-    Automatic = 0,
-    FullWidth = 1,
-    Inset = 2,
+    Automatic  = 0,
+    FullWidth  = 1,
+    Inset      = 2,
     SourceList = 3,
-    Plain = 4,
+    Plain      = 4,
 }
 
 /// NSTableViewSelectionHighlightStyle
 TableViewSelectionHighlightStyle :: enum cffi.long {
-    None = -1,
-    Regular = 0,
+    None       = -1,
+    Regular    = 0,
     SourceList = 1,
 }
 
 /// NSTableViewDraggingDestinationFeedbackStyle
 TableViewDraggingDestinationFeedbackStyle :: enum cffi.long {
-    None = -1,
-    Regular = 0,
+    None       = -1,
+    Regular    = 0,
     SourceList = 1,
-    Gap = 2,
+    Gap        = 2,
 }
 
 /// NSTableRowActionEdge
 TableRowActionEdge :: enum cffi.long {
-    Leading = 0,
+    Leading  = 0,
     Trailing = 1,
 }
 
@@ -4905,102 +4903,102 @@ TableRowActionEdge :: enum cffi.long {
 TableViewAnimationOptions :: enum cffi.ulong {
     EffectNone = 0,
     EffectFade = 1,
-    EffectGap = 2,
-    SlideUp = 16,
-    SlideDown = 32,
-    SlideLeft = 48,
+    EffectGap  = 2,
+    SlideUp    = 16,
+    SlideDown  = 32,
+    SlideLeft  = 48,
     SlideRight = 64,
 }
 
 /// NSTableColumnResizingOptions
 TableColumnResizingOptions :: enum cffi.ulong {
-    NoResizing = 0,
+    NoResizing       = 0,
     AutoresizingMask = 1,
     UserResizingMask = 2,
 }
 
 /// NSTableViewRowActionStyle
 TableViewRowActionStyle :: enum cffi.long {
-    Regular = 0,
+    Regular     = 0,
     Destructive = 1,
 }
 
 /// NSStringDrawingOptions
 StringDrawingOptions :: enum cffi.long {
-    UsesLineFragmentOrigin = 1,
-    UsesFontLeading = 2,
-    UsesDeviceMetrics = 8,
-    TruncatesLastVisibleLine = 32,
+    UsesLineFragmentOrigin        = 1,
+    UsesFontLeading               = 2,
+    UsesDeviceMetrics             = 8,
+    TruncatesLastVisibleLine      = 32,
     DisableScreenFontSubstitution = 4,
-    OneShot = 16,
+    OneShot                       = 16,
 }
 
 /// NSRulerOrientation
 RulerOrientation :: enum cffi.ulong {
     HorizontalRuler = 0,
-    VerticalRuler = 1,
+    VerticalRuler   = 1,
 }
 
 /// NSProgressIndicatorStyle
 ProgressIndicatorStyle :: enum cffi.ulong {
-    Bar = 0,
+    Bar      = 0,
     Spinning = 1,
 }
 
 /// NSProgressIndicatorThickness
 ProgressIndicatorThickness :: enum cffi.ulong {
-    PreferredThickness = 14,
+    PreferredThickness      = 14,
     PreferredSmallThickness = 10,
     PreferredLargeThickness = 18,
-    PreferredAquaThickness = 12,
+    PreferredAquaThickness  = 12,
 }
 
 /// NSTabViewType
 TabViewType :: enum cffi.ulong {
-    TopTabsBezelBorder = 0,
-    LeftTabsBezelBorder = 1,
+    TopTabsBezelBorder    = 0,
+    LeftTabsBezelBorder   = 1,
     BottomTabsBezelBorder = 2,
-    RightTabsBezelBorder = 3,
-    NoTabsBezelBorder = 4,
-    NoTabsLineBorder = 5,
-    NoTabsNoBorder = 6,
+    RightTabsBezelBorder  = 3,
+    NoTabsBezelBorder     = 4,
+    NoTabsLineBorder      = 5,
+    NoTabsNoBorder        = 6,
 }
 
 /// NSTabPosition
 TabPosition :: enum cffi.ulong {
-    None = 0,
-    Top = 1,
-    Left = 2,
+    None   = 0,
+    Top    = 1,
+    Left   = 2,
     Bottom = 3,
-    Right = 4,
+    Right  = 4,
 }
 
 /// NSTabViewBorderType
 TabViewBorderType :: enum cffi.ulong {
-    None = 0,
-    Line = 1,
+    None  = 0,
+    Line  = 1,
     Bezel = 2,
 }
 
 /// NSTabViewControllerTabStyle
 TabViewControllerTabStyle :: enum cffi.long {
-    SegmentedControlOnTop = 0,
+    SegmentedControlOnTop    = 0,
     SegmentedControlOnBottom = 1,
-    Toolbar = 2,
-    Unspecified = -1,
+    Toolbar                  = 2,
+    Unspecified              = -1,
 }
 
 /// NSTabState
 TabState :: enum cffi.ulong {
-    SelectedTab = 0,
+    SelectedTab   = 0,
     BackgroundTab = 1,
-    PressedTab = 2,
+    PressedTab    = 2,
 }
 
 /// NSLineCapStyle
 LineCapStyle :: enum cffi.ulong {
-    Butt = 0,
-    Round = 1,
+    Butt   = 0,
+    Round  = 1,
     Square = 2,
 }
 
@@ -5019,53 +5017,53 @@ WindingRule :: enum cffi.ulong {
 
 /// NSBezierPathElement
 BezierPathElement :: enum cffi.ulong {
-    MoveTo = 0,
-    LineTo = 1,
-    CubicCurveTo = 2,
-    ClosePath = 3,
+    MoveTo           = 0,
+    LineTo           = 1,
+    CubicCurveTo     = 2,
+    ClosePath        = 3,
     QuadraticCurveTo = 4,
-    CurveTo = 2,
+    CurveTo          = 2,
 }
 
 /// NSStatusItemBehavior
 StatusItemBehavior :: enum cffi.ulong {
-    RemovalAllowed = 2,
+    RemovalAllowed       = 2,
     TerminationOnRemoval = 4,
 }
 
 /// NSDrawerState
 DrawerState :: enum cffi.ulong {
-    ClosedState = 0,
+    ClosedState  = 0,
     OpeningState = 1,
-    OpenState = 2,
+    OpenState    = 2,
     ClosingState = 3,
 }
 
 /// NSOpenGLGlobalOption
 OpenGLGlobalOption :: enum cffi.uint {
-    GOFormatCacheSize = 501,
+    GOFormatCacheSize  = 501,
     GOClearFormatCache = 502,
-    GORetainRenderers = 503,
-    GOUseBuildCache = 506,
-    GOResetLibrary = 504,
+    GORetainRenderers  = 503,
+    GOUseBuildCache    = 506,
+    GOResetLibrary     = 504,
 }
 
 /// NSOpenGLContextParameter
 OpenGLContextParameter :: enum cffi.long {
-    SwapInterval = 222,
-    SurfaceOrder = 235,
-    SurfaceOpacity = 236,
-    SurfaceBackingSize = 304,
-    ReclaimResources = 308,
-    CurrentRendererID = 309,
-    GPUVertexProcessing = 310,
-    GPUFragmentProcessing = 311,
-    HasDrawable = 314,
-    MPSwapsInFlight = 315,
-    SwapRectangle = 200,
-    SwapRectangleEnable = 201,
-    RasterizationEnable = 221,
-    StateValidation = 301,
+    SwapInterval           = 222,
+    SurfaceOrder           = 235,
+    SurfaceOpacity         = 236,
+    SurfaceBackingSize     = 304,
+    ReclaimResources       = 308,
+    CurrentRendererID      = 309,
+    GPUVertexProcessing    = 310,
+    GPUFragmentProcessing  = 311,
+    HasDrawable            = 314,
+    MPSwapsInFlight        = 315,
+    SwapRectangle          = 200,
+    SwapRectangleEnable    = 201,
+    RasterizationEnable    = 221,
+    StateValidation        = 301,
     SurfaceSurfaceVolatile = 306,
 }
 
@@ -5079,28 +5077,28 @@ ToolbarItemGroupSelectionMode :: enum cffi.long {
 /// NSToolbarItemGroupControlRepresentation
 ToolbarItemGroupControlRepresentation :: enum cffi.long {
     Automatic = 0,
-    Expanded = 1,
+    Expanded  = 1,
     Collapsed = 2,
 }
 
 /// NSCharacterCollection
 CharacterCollection :: enum cffi.ulong {
     IdentityMappingCharacterCollection = 0,
-    AdobeCNS1CharacterCollection = 1,
-    AdobeGB1CharacterCollection = 2,
-    AdobeJapan1CharacterCollection = 3,
-    AdobeJapan2CharacterCollection = 4,
-    AdobeKorea1CharacterCollection = 5,
+    AdobeCNS1CharacterCollection     = 1,
+    AdobeGB1CharacterCollection      = 2,
+    AdobeJapan1CharacterCollection   = 3,
+    AdobeJapan2CharacterCollection   = 4,
+    AdobeKorea1CharacterCollection   = 5,
 }
 
 /// NSTypesetterControlCharacterAction
 TypesetterControlCharacterAction :: enum cffi.ulong {
     ZeroAdvancementAction = 1,
-    WhitespaceAction = 2,
-    HorizontalTabAction = 4,
-    LineBreakAction = 8,
-    ParagraphBreakAction = 16,
-    ContainerBreakAction = 32,
+    WhitespaceAction      = 2,
+    HorizontalTabAction   = 4,
+    LineBreakAction       = 8,
+    ParagraphBreakAction  = 16,
+    ContainerBreakAction  = 32,
 }
 
 /// NSTextListOptions
@@ -5110,16 +5108,16 @@ TextListOptions :: enum cffi.ulong {
 
 /// NSTextBlockValueType
 TextBlockValueType :: enum cffi.ulong {
-    AbsoluteValueType = 0,
+    AbsoluteValueType   = 0,
     PercentageValueType = 1,
 }
 
 /// NSTextBlockDimension
 TextBlockDimension :: enum cffi.ulong {
-    Width = 0,
-    MinimumWidth = 1,
-    MaximumWidth = 2,
-    Height = 4,
+    Width         = 0,
+    MinimumWidth  = 1,
+    MaximumWidth  = 2,
+    Height        = 4,
     MinimumHeight = 5,
     MaximumHeight = 6,
 }
@@ -5127,129 +5125,128 @@ TextBlockDimension :: enum cffi.ulong {
 /// NSTextBlockLayer
 TextBlockLayer :: enum cffi.long {
     Padding = -1,
-    Border = 0,
-    Margin = 1,
+    Border  = 0,
+    Margin  = 1,
 }
 
 /// NSTextBlockVerticalAlignment
 TextBlockVerticalAlignment :: enum cffi.ulong {
-    TopAlignment = 0,
-    MiddleAlignment = 1,
-    BottomAlignment = 2,
+    TopAlignment      = 0,
+    MiddleAlignment   = 1,
+    BottomAlignment   = 2,
     BaselineAlignment = 3,
 }
 
 /// NSTextTableLayoutAlgorithm
 TextTableLayoutAlgorithm :: enum cffi.ulong {
     AutomaticLayoutAlgorithm = 0,
-    FixedLayoutAlgorithm = 1,
+    FixedLayoutAlgorithm     = 1,
 }
 
 /// NSDatePickerStyle
 DatePickerStyle :: enum cffi.ulong {
     TextFieldAndStepper = 0,
-    ClockAndCalendar = 1,
-    TextField = 2,
+    ClockAndCalendar    = 1,
+    TextField           = 2,
 }
 
 /// NSDatePickerMode
 DatePickerMode :: enum cffi.ulong {
     Single = 0,
-    Range = 1,
+    Range  = 1,
 }
 
 /// NSDatePickerElementFlags
 DatePickerElementFlag :: enum cffi.ulong {
     TimeZone = 4,
-    Era = 8,
+    Era      = 8,
 }
 DatePickerElementFlags :: bit_set[DatePickerElementFlag; cffi.ulong]
 
-
 /// NSLevelIndicatorStyle
 LevelIndicatorStyle :: enum cffi.ulong {
-    Relevancy = 0,
+    Relevancy          = 0,
     ContinuousCapacity = 1,
-    DiscreteCapacity = 2,
-    Rating = 3,
+    DiscreteCapacity   = 2,
+    Rating             = 3,
 }
 
 /// NSLevelIndicatorPlaceholderVisibility
 LevelIndicatorPlaceholderVisibility :: enum cffi.long {
-    Automatic = 0,
-    Always = 1,
+    Automatic    = 0,
+    Always       = 1,
     WhileEditing = 2,
 }
 
 /// NSRuleEditorNestingMode
 RuleEditorNestingMode :: enum cffi.ulong {
-    Single = 0,
-    List = 1,
+    Single   = 0,
+    List     = 1,
     Compound = 2,
-    Simple = 3,
+    Simple   = 3,
 }
 
 /// NSRuleEditorRowType
 RuleEditorRowType :: enum cffi.ulong {
-    Simple = 0,
+    Simple   = 0,
     Compound = 1,
 }
 
 /// NSAttributeType
 AttributeType :: enum cffi.ulong {
-    UndefinedAttributeType = 0,
-    Integer16AttributeType = 100,
-    Integer32AttributeType = 200,
-    Integer64AttributeType = 300,
-    DecimalAttributeType = 400,
-    DoubleAttributeType = 500,
-    FloatAttributeType = 600,
-    StringAttributeType = 700,
-    BooleanAttributeType = 800,
-    DateAttributeType = 900,
-    BinaryDataAttributeType = 1000,
-    UUIDAttributeType = 1100,
-    URIAttributeType = 1200,
+    UndefinedAttributeType     = 0,
+    Integer16AttributeType     = 100,
+    Integer32AttributeType     = 200,
+    Integer64AttributeType     = 300,
+    DecimalAttributeType       = 400,
+    DoubleAttributeType        = 500,
+    FloatAttributeType         = 600,
+    StringAttributeType        = 700,
+    BooleanAttributeType       = 800,
+    DateAttributeType          = 900,
+    BinaryDataAttributeType    = 1000,
+    UUIDAttributeType          = 1100,
+    URIAttributeType           = 1200,
     TransformableAttributeType = 1800,
-    ObjectIDAttributeType = 2000,
-    CompositeAttributeType = 2100,
+    ObjectIDAttributeType      = 2000,
+    CompositeAttributeType     = 2100,
 }
 
 /// NSPathStyle
 PathStyle :: enum cffi.long {
-    Standard = 0,
-    PopUp = 2,
+    Standard      = 0,
+    PopUp         = 2,
     NavigationBar = 1,
 }
 
 /// NSPageControllerTransitionStyle
 PageControllerTransitionStyle :: enum cffi.long {
-    StackHistory = 0,
-    StackBook = 1,
+    StackHistory    = 0,
+    StackBook       = 1,
     HorizontalStrip = 2,
 }
 
 /// NSVisualEffectMaterial
 VisualEffectMaterial :: enum cffi.long {
-    Titlebar = 3,
-    Selection = 4,
-    Menu = 5,
-    Popover = 6,
-    Sidebar = 7,
-    HeaderView = 10,
-    Sheet = 11,
-    WindowBackground = 12,
-    HUDWindow = 13,
-    FullScreenUI = 15,
-    ToolTip = 17,
-    ContentBackground = 18,
+    Titlebar              = 3,
+    Selection             = 4,
+    Menu                  = 5,
+    Popover               = 6,
+    Sidebar               = 7,
+    HeaderView            = 10,
+    Sheet                 = 11,
+    WindowBackground      = 12,
+    HUDWindow             = 13,
+    FullScreenUI          = 15,
+    ToolTip               = 17,
+    ContentBackground     = 18,
     UnderWindowBackground = 21,
-    UnderPageBackground = 22,
-    AppearanceBased = 0,
-    Light = 1,
-    Dark = 2,
-    MediumLight = 8,
-    UltraDark = 9,
+    UnderPageBackground   = 22,
+    AppearanceBased       = 0,
+    Light                 = 1,
+    Dark                  = 2,
+    MediumLight           = 8,
+    UltraDark             = 9,
 }
 
 /// NSVisualEffectBlendingMode
@@ -5261,21 +5258,21 @@ VisualEffectBlendingMode :: enum cffi.long {
 /// NSVisualEffectState
 VisualEffectState :: enum cffi.long {
     FollowsWindowActiveState = 0,
-    Active = 1,
-    Inactive = 2,
+    Active                   = 1,
+    Inactive                 = 2,
 }
 
 /// NSHapticFeedbackPattern
 HapticFeedbackPattern :: enum cffi.long {
-    Generic = 0,
-    Alignment = 1,
+    Generic     = 0,
+    Alignment   = 1,
     LevelChange = 2,
 }
 
 /// NSHapticFeedbackPerformanceTime
 HapticFeedbackPerformanceTime :: enum cffi.ulong {
-    Default = 0,
-    Now = 1,
+    Default       = 0,
+    Now           = 1,
     DrawCompleted = 2,
 }
 
@@ -5289,50 +5286,50 @@ PickerTouchBarItemSelectionMode :: enum cffi.long {
 /// NSPickerTouchBarItemControlRepresentation
 PickerTouchBarItemControlRepresentation :: enum cffi.long {
     Automatic = 0,
-    Expanded = 1,
+    Expanded  = 1,
     Collapsed = 2,
 }
 
 /// NSTextSelectionGranularity
 TextSelectionGranularity :: enum cffi.long {
     Character = 0,
-    Word = 1,
+    Word      = 1,
     Paragraph = 2,
-    Line = 3,
-    Sentence = 4,
+    Line      = 3,
+    Sentence  = 4,
 }
 
 /// NSTextSelectionAffinity
 TextSelectionAffinity :: enum cffi.long {
-    Upstream = 0,
+    Upstream   = 0,
     Downstream = 1,
 }
 
 /// NSTextSelectionNavigationDirection
 TextSelectionNavigationDirection :: enum cffi.long {
-    Forward = 0,
+    Forward  = 0,
     Backward = 1,
-    Right = 2,
-    Left = 3,
-    Up = 4,
-    Down = 5,
+    Right    = 2,
+    Left     = 3,
+    Up       = 4,
+    Down     = 5,
 }
 
 /// NSTextSelectionNavigationDestination
 TextSelectionNavigationDestination :: enum cffi.long {
     Character = 0,
-    Word = 1,
-    Line = 2,
-    Sentence = 3,
+    Word      = 1,
+    Line      = 2,
+    Sentence  = 3,
     Paragraph = 4,
     Container = 5,
-    Document = 6,
+    Document  = 6,
 }
 
 /// NSTextSelectionNavigationModifier
 TextSelectionNavigationModifier :: enum cffi.ulong {
-    Extend = 1,
-    Visual = 2,
+    Extend   = 1,
+    Visual   = 2,
     Multiple = 4,
 }
 
@@ -5345,47 +5342,47 @@ TextSelectionNavigationWritingDirection :: enum cffi.long {
 /// NSTextSelectionNavigationLayoutOrientation
 TextSelectionNavigationLayoutOrientation :: enum cffi.long {
     Horizontal = 0,
-    Vertical = 1,
+    Vertical   = 1,
 }
 
 /// NSTextContentManagerEnumerationOptions
 TextContentManagerEnumerationOptions :: enum cffi.ulong {
-    None = 0,
+    None    = 0,
     Reverse = 1,
 }
 
 /// NSTextLayoutFragmentEnumerationOptions
 TextLayoutFragmentEnumerationOptions :: enum cffi.ulong {
-    None = 0,
-    Reverse = 1,
-    EstimatesSize = 2,
-    EnsuresLayout = 4,
+    None                     = 0,
+    Reverse                  = 1,
+    EstimatesSize            = 2,
+    EnsuresLayout            = 4,
     EnsuresExtraLineFragment = 8,
 }
 
 /// NSTextLayoutFragmentState
 TextLayoutFragmentState :: enum cffi.ulong {
-    None = 0,
-    EstimatedUsageBounds = 1,
+    None                  = 0,
+    EstimatedUsageBounds  = 1,
     CalculatedUsageBounds = 2,
-    LayoutAvailable = 3,
+    LayoutAvailable       = 3,
 }
 
 /// NSTextLayoutManagerSegmentType
 TextLayoutManagerSegmentType :: enum cffi.long {
-    Standard = 0,
+    Standard  = 0,
     Selection = 1,
     Highlight = 2,
 }
 
 /// NSTextLayoutManagerSegmentOptions
 TextLayoutManagerSegmentOptions :: enum cffi.ulong {
-    None = 0,
-    RangeNotRequired = 1,
+    None                    = 0,
+    RangeNotRequired        = 1,
     MiddleFragmentsExcluded = 2,
-    HeadSegmentExtended = 4,
-    TailSegmentExtended = 8,
-    UpstreamAffinity = 16,
+    HeadSegmentExtended     = 4,
+    TailSegmentExtended     = 8,
+    UpstreamAffinity        = 16,
 }
 
 /// _NSModalSession
@@ -5393,9 +5390,9 @@ _NSModalSession :: struct {}
 
 /// NSDirectionalEdgeInsets
 DirectionalEdgeInsets :: struct #align (8) {
-    top: CG.Float,
-    leading: CG.Float,
-    bottom: CG.Float,
+    top:      CG.Float,
+    leading:  CG.Float,
+    bottom:   CG.Float,
     trailing: CG.Float,
 }
 #assert(size_of(DirectionalEdgeInsets) == 32)

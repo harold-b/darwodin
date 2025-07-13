@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import Sec "../Security"
 
 
 
@@ -49,27 +50,27 @@ URLCredential_hasPassword :: #force_inline proc "c" (self: ^URLCredential) -> bo
     return msgSend(bool, self, "hasPassword")
 }
 @(objc_type=URLCredential, objc_name="initWithIdentity")
-URLCredential_initWithIdentity :: #force_inline proc "c" (self: ^URLCredential, identity: SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential {
+URLCredential_initWithIdentity :: #force_inline proc "c" (self: ^URLCredential, identity: Sec.SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential {
     return msgSend(^URLCredential, self, "initWithIdentity:certificates:persistence:", identity, certArray, persistence)
 }
 @(objc_type=URLCredential, objc_name="credentialWithIdentity", objc_is_class_method=true)
-URLCredential_credentialWithIdentity :: #force_inline proc "c" (identity: SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential {
+URLCredential_credentialWithIdentity :: #force_inline proc "c" (identity: Sec.SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential {
     return msgSend(^URLCredential, URLCredential, "credentialWithIdentity:certificates:persistence:", identity, certArray, persistence)
 }
 @(objc_type=URLCredential, objc_name="identity")
-URLCredential_identity :: #force_inline proc "c" (self: ^URLCredential) -> SecIdentityRef {
-    return msgSend(SecIdentityRef, self, "identity")
+URLCredential_identity :: #force_inline proc "c" (self: ^URLCredential) -> Sec.SecIdentityRef {
+    return msgSend(Sec.SecIdentityRef, self, "identity")
 }
 @(objc_type=URLCredential, objc_name="certificates")
 URLCredential_certificates :: #force_inline proc "c" (self: ^URLCredential) -> ^Array {
     return msgSend(^Array, self, "certificates")
 }
 @(objc_type=URLCredential, objc_name="initWithTrust")
-URLCredential_initWithTrust :: #force_inline proc "c" (self: ^URLCredential, trust: SecTrustRef) -> ^URLCredential {
+URLCredential_initWithTrust :: #force_inline proc "c" (self: ^URLCredential, trust: Sec.SecTrustRef) -> ^URLCredential {
     return msgSend(^URLCredential, self, "initWithTrust:", trust)
 }
 @(objc_type=URLCredential, objc_name="credentialForTrust", objc_is_class_method=true)
-URLCredential_credentialForTrust :: #force_inline proc "c" (trust: SecTrustRef) -> ^URLCredential {
+URLCredential_credentialForTrust :: #force_inline proc "c" (trust: Sec.SecTrustRef) -> ^URLCredential {
     return msgSend(^URLCredential, URLCredential, "credentialForTrust:", trust)
 }
 @(objc_type=URLCredential, objc_name="supportsSecureCoding", objc_is_class_method=true)

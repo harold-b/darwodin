@@ -24,10 +24,11 @@ Protocol :: distinct id
 foreign import lib "system:MetalFX.framework"
 
 
+
 /// MTLFXSpatialScalerColorProcessingMode
 SpatialScalerColorProcessingMode :: enum cffi.long {
     Perceptual = 0,
-    Linear = 1,
-    HDR = 2,
+    Linear     = 1,
+    HDR        = 2,
 }
 

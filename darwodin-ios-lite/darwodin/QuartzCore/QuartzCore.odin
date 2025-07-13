@@ -27,6 +27,7 @@ MTLPixelFormat :: cffi.ulong
 CVTimeStamp :: struct {}
 
 
+
 foreign lib {
     @(link_name="CATransform3DIdentity") Transform3DIdentity: Transform3D
     @(link_name="kCAFillModeForwards") FillModeForwards: ^NS.String
@@ -142,6 +143,7 @@ foreign lib {
     @(link_name="kCAValueFunctionTranslateY") ValueFunctionTranslateY: ^NS.String
     @(link_name="kCAValueFunctionTranslateZ") ValueFunctionTranslateZ: ^NS.String
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="CACurrentMediaTime")
@@ -262,10 +264,10 @@ ValueFunctionName :: distinct ^NS.String
 
 /// CAEdgeAntialiasingMask
 EdgeAntialiasingMaskFlag :: enum cffi.uint {
-    kCALayerLeftEdge = 0,
-    kCALayerRightEdge = 1,
+    kCALayerLeftEdge   = 0,
+    kCALayerRightEdge  = 1,
     kCALayerBottomEdge = 2,
-    kCALayerTopEdge = 3,
+    kCALayerTopEdge    = 3,
 }
 EdgeAntialiasingMask :: bit_set[EdgeAntialiasingMaskFlag; cffi.uint]
 
@@ -308,8 +310,8 @@ Transform3D :: struct #align (8) {
 
 /// CAFrameRateRange
 FrameRateRange :: struct #align (4) {
-    minimum: cffi.float,
-    maximum: cffi.float,
+    minimum:   cffi.float,
+    maximum:   cffi.float,
     preferred: cffi.float,
 }
 #assert(size_of(FrameRateRange) == 12)

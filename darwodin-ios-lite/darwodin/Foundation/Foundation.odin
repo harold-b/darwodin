@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import Sec "../Security"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -24,205 +25,207 @@ OpaqueSecIdentitySearchRef :: struct {}
 OpaquePolicySearchRef :: struct {}
 
 
-ASCIIStringEncoding :: 1
-NEXTSTEPStringEncoding :: 2
-JapaneseEUCStringEncoding :: 3
-UTF8StringEncoding :: 4
-ISOLatin1StringEncoding :: 5
-SymbolStringEncoding :: 6
-NonLossyASCIIStringEncoding :: 7
-ShiftJISStringEncoding :: 8
-ISOLatin2StringEncoding :: 9
-UnicodeStringEncoding :: 10
-WindowsCP1251StringEncoding :: 11
-WindowsCP1252StringEncoding :: 12
-WindowsCP1253StringEncoding :: 13
-WindowsCP1254StringEncoding :: 14
-WindowsCP1250StringEncoding :: 15
-ISO2022JPStringEncoding :: 21
-MacOSRomanStringEncoding :: 30
-UTF16StringEncoding :: 10
-UTF16BigEndianStringEncoding :: 2415919360
-UTF16LittleEndianStringEncoding :: 2483028224
-UTF32StringEncoding :: 2348810496
-UTF32BigEndianStringEncoding :: 2550137088
-UTF32LittleEndianStringEncoding :: 2617245952
-ProprietaryStringEncoding :: 65536
-BundleExecutableArchitectureI386 :: 7
-BundleExecutableArchitecturePPC :: 18
-BundleExecutableArchitectureX86_64 :: 16777223
-BundleExecutableArchitecturePPC64 :: 16777234
-BundleExecutableArchitectureARM64 :: 16777228
-_UnknownByteOrder :: 0
-_LittleEndian :: 1
-_BigEndian :: 2
-WrapCalendarComponents :: 1
-DateComponentUndefined :: 9223372036854775807
-UndefinedDateComponent :: 9223372036854775807
-OpenStepUnicodeReservedBase :: 62464
-WindowsNTOperatingSystem :: 1
-Windows95OperatingSystem :: 2
-SolarisOperatingSystem :: 3
-HPUXOperatingSystem :: 4
-MACHOperatingSystem :: 5
-SunOSOperatingSystem :: 6
-OSF1OperatingSystem :: 7
-TextCheckingAllSystemTypes :: 4294967295
-TextCheckingAllCustomTypes :: 18446744069414584320
-TextCheckingAllTypes :: 18446744073709551615
-URLErrorCancelledReasonUserForceQuitApplication :: 0
-URLErrorCancelledReasonBackgroundUpdatesDisabled :: 1
-URLErrorCancelledReasonInsufficientSystemResources :: 2
-URLErrorUnknown :: -1
-URLErrorCancelled :: -999
-URLErrorBadURL :: -1000
-URLErrorTimedOut :: -1001
-URLErrorUnsupportedURL :: -1002
-URLErrorCannotFindHost :: -1003
-URLErrorCannotConnectToHost :: -1004
-URLErrorNetworkConnectionLost :: -1005
-URLErrorDNSLookupFailed :: -1006
-URLErrorHTTPTooManyRedirects :: -1007
-URLErrorResourceUnavailable :: -1008
-URLErrorNotConnectedToInternet :: -1009
-URLErrorRedirectToNonExistentLocation :: -1010
-URLErrorBadServerResponse :: -1011
-URLErrorUserCancelledAuthentication :: -1012
-URLErrorUserAuthenticationRequired :: -1013
-URLErrorZeroByteResource :: -1014
-URLErrorCannotDecodeRawData :: -1015
-URLErrorCannotDecodeContentData :: -1016
-URLErrorCannotParseResponse :: -1017
-URLErrorAppTransportSecurityRequiresSecureConnection :: -1022
-URLErrorFileDoesNotExist :: -1100
-URLErrorFileIsDirectory :: -1101
-URLErrorNoPermissionsToReadFile :: -1102
-URLErrorDataLengthExceedsMaximum :: -1103
-URLErrorFileOutsideSafeArea :: -1104
-URLErrorSecureConnectionFailed :: -1200
-URLErrorServerCertificateHasBadDate :: -1201
-URLErrorServerCertificateUntrusted :: -1202
-URLErrorServerCertificateHasUnknownRoot :: -1203
-URLErrorServerCertificateNotYetValid :: -1204
-URLErrorClientCertificateRejected :: -1205
-URLErrorClientCertificateRequired :: -1206
-URLErrorCannotLoadFromNetwork :: -2000
-URLErrorCannotCreateFile :: -3000
-URLErrorCannotOpenFile :: -3001
-URLErrorCannotCloseFile :: -3002
-URLErrorCannotWriteToFile :: -3003
-URLErrorCannotRemoveFile :: -3004
-URLErrorCannotMoveFile :: -3005
-URLErrorDownloadDecodingFailedMidStream :: -3006
-URLErrorDownloadDecodingFailedToComplete :: -3007
-URLErrorInternationalRoamingOff :: -1018
-URLErrorCallIsActive :: -1019
-URLErrorDataNotAllowed :: -1020
-URLErrorRequestBodyStreamExhausted :: -1021
-URLErrorBackgroundSessionRequiresSharedContainer :: -995
-URLErrorBackgroundSessionInUseByAnotherProcess :: -996
-URLErrorBackgroundSessionWasDisconnected :: -997
-FileNoSuchFileError :: 4
-FileLockingError :: 255
-FileReadUnknownError :: 256
-FileReadNoPermissionError :: 257
-FileReadInvalidFileNameError :: 258
-FileReadCorruptFileError :: 259
-FileReadNoSuchFileError :: 260
-FileReadInapplicableStringEncodingError :: 261
-FileReadUnsupportedSchemeError :: 262
-FileReadTooLargeError :: 263
-FileReadUnknownStringEncodingError :: 264
-FileWriteUnknownError :: 512
-FileWriteNoPermissionError :: 513
-FileWriteInvalidFileNameError :: 514
-FileWriteFileExistsError :: 516
-FileWriteInapplicableStringEncodingError :: 517
-FileWriteUnsupportedSchemeError :: 518
-FileWriteOutOfSpaceError :: 640
-FileWriteVolumeReadOnlyError :: 642
-FileManagerUnmountUnknownError :: 768
-FileManagerUnmountBusyError :: 769
-KeyValueValidationError :: 1024
-FormattingError :: 2048
-UserCancelledError :: 3072
-FeatureUnsupportedError :: 3328
-ExecutableNotLoadableError :: 3584
-ExecutableArchitectureMismatchError :: 3585
-ExecutableRuntimeMismatchError :: 3586
-ExecutableLoadError :: 3587
-ExecutableLinkError :: 3588
-FileErrorMinimum :: 0
-FileErrorMaximum :: 1023
-ValidationErrorMinimum :: 1024
-ValidationErrorMaximum :: 2047
-ExecutableErrorMinimum :: 3584
-ExecutableErrorMaximum :: 3839
-FormattingErrorMinimum :: 2048
-FormattingErrorMaximum :: 2559
-PropertyListReadCorruptError :: 3840
-PropertyListReadUnknownVersionError :: 3841
-PropertyListReadStreamError :: 3842
-PropertyListWriteStreamError :: 3851
-PropertyListWriteInvalidError :: 3852
-PropertyListErrorMinimum :: 3840
-PropertyListErrorMaximum :: 4095
-XPCConnectionInterrupted :: 4097
-XPCConnectionInvalid :: 4099
-XPCConnectionReplyInvalid :: 4101
-XPCConnectionCodeSigningRequirementFailure :: 4102
-XPCConnectionErrorMinimum :: 4096
-XPCConnectionErrorMaximum :: 4224
-UbiquitousFileUnavailableError :: 4353
-UbiquitousFileNotUploadedDueToQuotaError :: 4354
-UbiquitousFileUbiquityServerNotAvailable :: 4355
-UbiquitousFileErrorMinimum :: 4352
-UbiquitousFileErrorMaximum :: 4607
-UserActivityHandoffFailedError :: 4608
-UserActivityConnectionUnavailableError :: 4609
-UserActivityRemoteApplicationTimedOutError :: 4610
-UserActivityHandoffUserInfoTooLargeError :: 4611
-UserActivityErrorMinimum :: 4608
-UserActivityErrorMaximum :: 4863
-CoderReadCorruptError :: 4864
-CoderValueNotFoundError :: 4865
-CoderInvalidValueError :: 4866
-CoderErrorMinimum :: 4864
-CoderErrorMaximum :: 4991
-BundleErrorMinimum :: 4992
-BundleErrorMaximum :: 5119
-BundleOnDemandResourceOutOfSpaceError :: 4992
-BundleOnDemandResourceExceededMaximumSizeError :: 4993
-BundleOnDemandResourceInvalidTagError :: 4994
-CloudSharingNetworkFailureError :: 5120
-CloudSharingQuotaExceededError :: 5121
-CloudSharingTooManyParticipantsError :: 5122
-CloudSharingConflictError :: 5123
-CloudSharingNoPermissionError :: 5124
-CloudSharingOtherError :: 5375
-CloudSharingErrorMinimum :: 5120
-CloudSharingErrorMaximum :: 5375
-CompressionFailedError :: 5376
-DecompressionFailedError :: 5377
-CompressionErrorMinimum :: 5376
-CompressionErrorMaximum :: 5503
-UbiquitousKeyValueStoreServerChange :: 0
-UbiquitousKeyValueStoreInitialSyncChange :: 1
-UbiquitousKeyValueStoreQuotaViolationChange :: 2
-UbiquitousKeyValueStoreAccountChange :: 3
-NotFound :: 9223372036854775807
-HashTableStrongMemory :: 0
-HashTableZeroingWeakMemory :: 1
-HashTableCopyIn :: 65536
-HashTableObjectPointerPersonality :: 512
-HashTableWeakMemory :: 5
-MapTableStrongMemory :: 0
-MapTableZeroingWeakMemory :: 1
-MapTableCopyIn :: 65536
-MapTableObjectPointerPersonality :: 512
-MapTableWeakMemory :: 5
-OperationQueueDefaultMaxConcurrentOperationCount :: -1
-UndoCloseGroupingRunLoopOrdering :: 350000
+
+ASCIIStringEncoding                                 :: 1
+NEXTSTEPStringEncoding                              :: 2
+JapaneseEUCStringEncoding                           :: 3
+UTF8StringEncoding                                  :: 4
+ISOLatin1StringEncoding                             :: 5
+SymbolStringEncoding                                :: 6
+NonLossyASCIIStringEncoding                         :: 7
+ShiftJISStringEncoding                              :: 8
+ISOLatin2StringEncoding                             :: 9
+UnicodeStringEncoding                               :: 10
+WindowsCP1251StringEncoding                         :: 11
+WindowsCP1252StringEncoding                         :: 12
+WindowsCP1253StringEncoding                         :: 13
+WindowsCP1254StringEncoding                         :: 14
+WindowsCP1250StringEncoding                         :: 15
+ISO2022JPStringEncoding                             :: 21
+MacOSRomanStringEncoding                            :: 30
+UTF16StringEncoding                                 :: 10
+UTF16BigEndianStringEncoding                        :: 2415919360
+UTF16LittleEndianStringEncoding                     :: 2483028224
+UTF32StringEncoding                                 :: 2348810496
+UTF32BigEndianStringEncoding                        :: 2550137088
+UTF32LittleEndianStringEncoding                     :: 2617245952
+ProprietaryStringEncoding                           :: 65536
+BundleExecutableArchitectureI386                    :: 7
+BundleExecutableArchitecturePPC                     :: 18
+BundleExecutableArchitectureX86_64                  :: 16777223
+BundleExecutableArchitecturePPC64                   :: 16777234
+BundleExecutableArchitectureARM64                   :: 16777228
+_UnknownByteOrder                                   :: 0
+_LittleEndian                                       :: 1
+_BigEndian                                          :: 2
+WrapCalendarComponents                              :: 1
+DateComponentUndefined                              :: 9223372036854775807
+UndefinedDateComponent                              :: 9223372036854775807
+OpenStepUnicodeReservedBase                         :: 62464
+WindowsNTOperatingSystem                            :: 1
+Windows95OperatingSystem                            :: 2
+SolarisOperatingSystem                              :: 3
+HPUXOperatingSystem                                 :: 4
+MACHOperatingSystem                                 :: 5
+SunOSOperatingSystem                                :: 6
+OSF1OperatingSystem                                 :: 7
+TextCheckingAllSystemTypes                          :: 4294967295
+TextCheckingAllCustomTypes                          :: 18446744069414584320
+TextCheckingAllTypes                                :: 18446744073709551615
+URLErrorCancelledReasonUserForceQuitApplication     :: 0
+URLErrorCancelledReasonBackgroundUpdatesDisabled    :: 1
+URLErrorCancelledReasonInsufficientSystemResources  :: 2
+URLErrorUnknown                                     :: -1
+URLErrorCancelled                                   :: -999
+URLErrorBadURL                                      :: -1000
+URLErrorTimedOut                                    :: -1001
+URLErrorUnsupportedURL                              :: -1002
+URLErrorCannotFindHost                              :: -1003
+URLErrorCannotConnectToHost                         :: -1004
+URLErrorNetworkConnectionLost                       :: -1005
+URLErrorDNSLookupFailed                             :: -1006
+URLErrorHTTPTooManyRedirects                        :: -1007
+URLErrorResourceUnavailable                         :: -1008
+URLErrorNotConnectedToInternet                      :: -1009
+URLErrorRedirectToNonExistentLocation               :: -1010
+URLErrorBadServerResponse                           :: -1011
+URLErrorUserCancelledAuthentication                 :: -1012
+URLErrorUserAuthenticationRequired                  :: -1013
+URLErrorZeroByteResource                            :: -1014
+URLErrorCannotDecodeRawData                         :: -1015
+URLErrorCannotDecodeContentData                     :: -1016
+URLErrorCannotParseResponse                         :: -1017
+URLErrorAppTransportSecurityRequiresSecureConnection:: -1022
+URLErrorFileDoesNotExist                            :: -1100
+URLErrorFileIsDirectory                             :: -1101
+URLErrorNoPermissionsToReadFile                     :: -1102
+URLErrorDataLengthExceedsMaximum                    :: -1103
+URLErrorFileOutsideSafeArea                         :: -1104
+URLErrorSecureConnectionFailed                      :: -1200
+URLErrorServerCertificateHasBadDate                 :: -1201
+URLErrorServerCertificateUntrusted                  :: -1202
+URLErrorServerCertificateHasUnknownRoot             :: -1203
+URLErrorServerCertificateNotYetValid                :: -1204
+URLErrorClientCertificateRejected                   :: -1205
+URLErrorClientCertificateRequired                   :: -1206
+URLErrorCannotLoadFromNetwork                       :: -2000
+URLErrorCannotCreateFile                            :: -3000
+URLErrorCannotOpenFile                              :: -3001
+URLErrorCannotCloseFile                             :: -3002
+URLErrorCannotWriteToFile                           :: -3003
+URLErrorCannotRemoveFile                            :: -3004
+URLErrorCannotMoveFile                              :: -3005
+URLErrorDownloadDecodingFailedMidStream             :: -3006
+URLErrorDownloadDecodingFailedToComplete            :: -3007
+URLErrorInternationalRoamingOff                     :: -1018
+URLErrorCallIsActive                                :: -1019
+URLErrorDataNotAllowed                              :: -1020
+URLErrorRequestBodyStreamExhausted                  :: -1021
+URLErrorBackgroundSessionRequiresSharedContainer    :: -995
+URLErrorBackgroundSessionInUseByAnotherProcess      :: -996
+URLErrorBackgroundSessionWasDisconnected            :: -997
+FileNoSuchFileError                                 :: 4
+FileLockingError                                    :: 255
+FileReadUnknownError                                :: 256
+FileReadNoPermissionError                           :: 257
+FileReadInvalidFileNameError                        :: 258
+FileReadCorruptFileError                            :: 259
+FileReadNoSuchFileError                             :: 260
+FileReadInapplicableStringEncodingError             :: 261
+FileReadUnsupportedSchemeError                      :: 262
+FileReadTooLargeError                               :: 263
+FileReadUnknownStringEncodingError                  :: 264
+FileWriteUnknownError                               :: 512
+FileWriteNoPermissionError                          :: 513
+FileWriteInvalidFileNameError                       :: 514
+FileWriteFileExistsError                            :: 516
+FileWriteInapplicableStringEncodingError            :: 517
+FileWriteUnsupportedSchemeError                     :: 518
+FileWriteOutOfSpaceError                            :: 640
+FileWriteVolumeReadOnlyError                        :: 642
+FileManagerUnmountUnknownError                      :: 768
+FileManagerUnmountBusyError                         :: 769
+KeyValueValidationError                             :: 1024
+FormattingError                                     :: 2048
+UserCancelledError                                  :: 3072
+FeatureUnsupportedError                             :: 3328
+ExecutableNotLoadableError                          :: 3584
+ExecutableArchitectureMismatchError                 :: 3585
+ExecutableRuntimeMismatchError                      :: 3586
+ExecutableLoadError                                 :: 3587
+ExecutableLinkError                                 :: 3588
+FileErrorMinimum                                    :: 0
+FileErrorMaximum                                    :: 1023
+ValidationErrorMinimum                              :: 1024
+ValidationErrorMaximum                              :: 2047
+ExecutableErrorMinimum                              :: 3584
+ExecutableErrorMaximum                              :: 3839
+FormattingErrorMinimum                              :: 2048
+FormattingErrorMaximum                              :: 2559
+PropertyListReadCorruptError                        :: 3840
+PropertyListReadUnknownVersionError                 :: 3841
+PropertyListReadStreamError                         :: 3842
+PropertyListWriteStreamError                        :: 3851
+PropertyListWriteInvalidError                       :: 3852
+PropertyListErrorMinimum                            :: 3840
+PropertyListErrorMaximum                            :: 4095
+XPCConnectionInterrupted                            :: 4097
+XPCConnectionInvalid                                :: 4099
+XPCConnectionReplyInvalid                           :: 4101
+XPCConnectionCodeSigningRequirementFailure          :: 4102
+XPCConnectionErrorMinimum                           :: 4096
+XPCConnectionErrorMaximum                           :: 4224
+UbiquitousFileUnavailableError                      :: 4353
+UbiquitousFileNotUploadedDueToQuotaError            :: 4354
+UbiquitousFileUbiquityServerNotAvailable            :: 4355
+UbiquitousFileErrorMinimum                          :: 4352
+UbiquitousFileErrorMaximum                          :: 4607
+UserActivityHandoffFailedError                      :: 4608
+UserActivityConnectionUnavailableError              :: 4609
+UserActivityRemoteApplicationTimedOutError          :: 4610
+UserActivityHandoffUserInfoTooLargeError            :: 4611
+UserActivityErrorMinimum                            :: 4608
+UserActivityErrorMaximum                            :: 4863
+CoderReadCorruptError                               :: 4864
+CoderValueNotFoundError                             :: 4865
+CoderInvalidValueError                              :: 4866
+CoderErrorMinimum                                   :: 4864
+CoderErrorMaximum                                   :: 4991
+BundleErrorMinimum                                  :: 4992
+BundleErrorMaximum                                  :: 5119
+BundleOnDemandResourceOutOfSpaceError               :: 4992
+BundleOnDemandResourceExceededMaximumSizeError      :: 4993
+BundleOnDemandResourceInvalidTagError               :: 4994
+CloudSharingNetworkFailureError                     :: 5120
+CloudSharingQuotaExceededError                      :: 5121
+CloudSharingTooManyParticipantsError                :: 5122
+CloudSharingConflictError                           :: 5123
+CloudSharingNoPermissionError                       :: 5124
+CloudSharingOtherError                              :: 5375
+CloudSharingErrorMinimum                            :: 5120
+CloudSharingErrorMaximum                            :: 5375
+CompressionFailedError                              :: 5376
+DecompressionFailedError                            :: 5377
+CompressionErrorMinimum                             :: 5376
+CompressionErrorMaximum                             :: 5503
+UbiquitousKeyValueStoreServerChange                 :: 0
+UbiquitousKeyValueStoreInitialSyncChange            :: 1
+UbiquitousKeyValueStoreQuotaViolationChange         :: 2
+UbiquitousKeyValueStoreAccountChange                :: 3
+NotFound                                            :: 9223372036854775807
+HashTableStrongMemory                               :: 0
+HashTableZeroingWeakMemory                          :: 1
+HashTableCopyIn                                     :: 65536
+HashTableObjectPointerPersonality                   :: 512
+HashTableWeakMemory                                 :: 5
+MapTableStrongMemory                                :: 0
+MapTableZeroingWeakMemory                           :: 1
+MapTableCopyIn                                      :: 65536
+MapTableObjectPointerPersonality                    :: 512
+MapTableWeakMemory                                  :: 5
+OperationQueueDefaultMaxConcurrentOperationCount    :: -1
+UndoCloseGroupingRunLoopOrdering                    :: 350000
+
 foreign lib {
     @(link_name="NSFoundationVersionNumber") FoundationVersionNumber: cffi.double
     @(link_name="NSItemProviderPreferredImageSizeKey") ItemProviderPreferredImageSizeKey: ^String
@@ -985,6 +988,7 @@ foreign lib {
     @(link_name="NSURLSessionUploadTaskResumeData") URLSessionUploadTaskResumeData: ^String
     @(link_name="NSUserActivityTypeBrowsingWeb") UserActivityTypeBrowsingWeb: ^String
 }
+
 @(default_calling_convention="c")
 foreign lib {
     @(link_name="NSStringFromSelector")
@@ -1439,72 +1443,6 @@ StreamSOCKSProxyVersion :: distinct ^String
 /// NSStreamNetworkServiceTypeValue
 StreamNetworkServiceTypeValue :: distinct ^String
 
-/// SecCertificateRef
-SecCertificateRef :: distinct ^__SecCertificate
-
-/// SecIdentityRef
-SecIdentityRef :: distinct ^__SecIdentity
-
-/// SecKeyRef
-SecKeyRef :: distinct ^__SecKey
-
-/// SecPolicyRef
-SecPolicyRef :: distinct ^__SecPolicy
-
-/// SecAccessControlRef
-SecAccessControlRef :: distinct ^__SecAccessControl
-
-/// SecKeychainRef
-SecKeychainRef :: distinct ^__SecKeychain
-
-/// SecKeychainItemRef
-SecKeychainItemRef :: distinct ^__SecKeychainItem
-
-/// SecKeychainSearchRef
-SecKeychainSearchRef :: distinct ^__SecKeychainSearch
-
-/// SecKeychainAttrType
-SecKeychainAttrType :: distinct CF.OSType
-
-/// SecKeychainAttributePtr
-SecKeychainAttributePtr :: distinct ^SecKeychainAttribute
-
-/// SecKeychainStatus
-SecKeychainStatus :: distinct CF.UInt32
-
-/// SecTrustedApplicationRef
-SecTrustedApplicationRef :: distinct ^__SecTrustedApplication
-
-/// SecAccessRef
-SecAccessRef :: distinct ^__SecAccess
-
-/// SecACLRef
-SecACLRef :: distinct ^__SecACL
-
-/// SecPasswordRef
-SecPasswordRef :: distinct ^__SecPassword
-
-/// SecKeyAlgorithm
-SecKeyAlgorithm :: distinct CF.StringRef
-
-/// SecKeyKeyExchangeParameter
-SecKeyKeyExchangeParameter :: distinct CF.StringRef
-
-/// SecRandomRef
-SecRandomRef :: distinct ^__SecRandom
-
-/// SecTrustRef
-SecTrustRef :: distinct ^__SecTrust
-
-/// SecTrustCallback
-SecTrustCallback :: proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType)
-
-/// SecTrustWithErrorCallback
-SecTrustWithErrorCallback :: proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef)
-
-/// SSLCipherSuite
-SSLCipherSuite :: distinct cffi.uint16_t
-
 /// NSValueTransformerName
 ValueTransformerName :: distinct ^String
 
@@ -1574,62 +1512,50 @@ LinguisticTag :: distinct ^String
 /// NSUndoManagerUserInfoKey
 UndoManagerUserInfoKey :: distinct ^String
 
-/// SSLContextRef
-SSLContextRef :: distinct ^SSLContext
-
-/// SSLConnectionRef
-SSLConnectionRef :: distinct rawptr
-
-/// SSLReadFunc
-SSLReadFunc :: proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
-
-/// SSLWriteFunc
-SSLWriteFunc :: proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
-
 /// NSUserActivityPersistentIdentifier
 UserActivityPersistentIdentifier :: distinct ^String
 
 /// xpc_session_create_flags_t
 xpc_session_create_flags_t :: enum cffi.ulonglong {
-    NONE = 0,
-    INACTIVE = 1,
+    NONE            = 0,
+    INACTIVE        = 1,
     MACH_PRIVILEGED = 2,
 }
 
 /// xpc_listener_create_flags_t
 xpc_listener_create_flags_t :: enum cffi.ulonglong {
-    NONE = 0,
-    INACTIVE = 1,
-    FORCE_MACH = 2,
+    NONE             = 0,
+    INACTIVE         = 1,
+    FORCE_MACH       = 2,
     FORCE_XPCSERVICE = 4,
 }
 
 /// NSComparisonResult
 ComparisonResult :: enum cffi.long {
-    OrderedAscending = -1,
-    OrderedSame = 0,
+    OrderedAscending  = -1,
+    OrderedSame       = 0,
     OrderedDescending = 1,
 }
 
 /// NSEnumerationOptions
 EnumerationOptions :: enum cffi.ulong {
     Concurrent = 1,
-    Reverse = 2,
+    Reverse    = 2,
 }
 
 /// NSSortOptions
 SortOptions :: enum cffi.ulong {
     Concurrent = 1,
-    Stable = 16,
+    Stable     = 16,
 }
 
 /// NSQualityOfService
 QualityOfService :: enum cffi.long {
     UserInteractive = 33,
-    UserInitiated = 25,
-    Utility = 17,
-    Background = 9,
-    Default = -1,
+    UserInitiated   = 25,
+    Utility         = 17,
+    Background      = 9,
+    Default         = -1,
 }
 
 /// NSCollectionChangeType
@@ -1641,22 +1567,22 @@ CollectionChangeType :: enum cffi.long {
 /// NSOrderedCollectionDifferenceCalculationOptions
 OrderedCollectionDifferenceCalculationOptions :: enum cffi.ulong {
     OmitInsertedObjects = 1,
-    OmitRemovedObjects = 2,
-    InferMoves = 4,
+    OmitRemovedObjects  = 2,
+    InferMoves          = 4,
 }
 
 /// NSBinarySearchingOptions
 BinarySearchingOptions :: enum cffi.ulong {
-    FirstEqual = 256,
-    LastEqual = 512,
+    FirstEqual     = 256,
+    LastEqual      = 512,
     InsertionIndex = 1024,
 }
 
 /// NSItemProviderRepresentationVisibility
 ItemProviderRepresentationVisibility :: enum cffi.long {
-    All = 0,
-    Team = 1,
-    Group = 2,
+    All        = 0,
+    Team       = 1,
+    Group      = 2,
     OwnProcess = 3,
 }
 
@@ -1667,135 +1593,135 @@ ItemProviderFileOptions :: enum cffi.long {
 
 /// NSItemProviderErrorCode
 ItemProviderErrorCode :: enum cffi.long {
-    UnknownError = -1,
-    ItemUnavailableError = -1000,
+    UnknownError              = -1,
+    ItemUnavailableError      = -1000,
     UnexpectedValueClassError = -1100,
-    UnavailableCoercionError = -1200,
+    UnavailableCoercionError  = -1200,
 }
 
 /// NSStringCompareOptions
 StringCompareOptions :: enum cffi.ulong {
-    CaseInsensitiveSearch = 1,
-    LiteralSearch = 2,
-    BackwardsSearch = 4,
-    AnchoredSearch = 8,
-    NumericSearch = 64,
+    CaseInsensitiveSearch      = 1,
+    LiteralSearch              = 2,
+    BackwardsSearch            = 4,
+    AnchoredSearch             = 8,
+    NumericSearch              = 64,
     DiacriticInsensitiveSearch = 128,
-    WidthInsensitiveSearch = 256,
-    ForcedOrderingSearch = 512,
-    RegularExpressionSearch = 1024,
+    WidthInsensitiveSearch     = 256,
+    ForcedOrderingSearch       = 512,
+    RegularExpressionSearch    = 1024,
 }
 
 /// NSStringEncodingConversionOptions
 StringEncodingConversionOptions :: enum cffi.ulong {
-    AllowLossy = 1,
+    AllowLossy             = 1,
     ExternalRepresentation = 2,
 }
 
 /// NSStringEnumerationOptions
 StringEnumerationOptions :: enum cffi.ulong {
-    ByLines = 0,
-    ByParagraphs = 1,
+    ByLines                      = 0,
+    ByParagraphs                 = 1,
     ByComposedCharacterSequences = 2,
-    ByWords = 3,
-    BySentences = 4,
-    ByCaretPositions = 5,
-    ByDeletionClusters = 6,
-    Reverse = 256,
-    SubstringNotRequired = 512,
-    Localized = 1024,
+    ByWords                      = 3,
+    BySentences                  = 4,
+    ByCaretPositions             = 5,
+    ByDeletionClusters           = 6,
+    Reverse                      = 256,
+    SubstringNotRequired         = 512,
+    Localized                    = 1024,
 }
 
 /// NSCalendarUnit
 CalendarUnit :: enum cffi.ulong {
-    Era = 2,
-    Year = 4,
-    Month = 8,
-    Day = 16,
-    Hour = 32,
-    Minute = 64,
-    Second = 128,
-    Weekday = 512,
-    WeekdayOrdinal = 1024,
-    Quarter = 2048,
-    WeekOfMonth = 4096,
-    WeekOfYear = 8192,
-    YearForWeekOfYear = 16384,
-    Nanosecond = 32768,
-    DayOfYear = 65536,
-    Calendar = 1048576,
-    TimeZone = 2097152,
-    EraCalendarUnit = 2,
-    YearCalendarUnit = 4,
-    MonthCalendarUnit = 8,
-    DayCalendarUnit = 16,
-    HourCalendarUnit = 32,
-    MinuteCalendarUnit = 64,
-    SecondCalendarUnit = 128,
-    WeekCalendarUnit = 256,
-    WeekdayCalendarUnit = 512,
-    WeekdayOrdinalCalendarUnit = 1024,
-    QuarterCalendarUnit = 2048,
-    WeekOfMonthCalendarUnit = 4096,
-    WeekOfYearCalendarUnit = 8192,
+    Era                           = 2,
+    Year                          = 4,
+    Month                         = 8,
+    Day                           = 16,
+    Hour                          = 32,
+    Minute                        = 64,
+    Second                        = 128,
+    Weekday                       = 512,
+    WeekdayOrdinal                = 1024,
+    Quarter                       = 2048,
+    WeekOfMonth                   = 4096,
+    WeekOfYear                    = 8192,
+    YearForWeekOfYear             = 16384,
+    Nanosecond                    = 32768,
+    DayOfYear                     = 65536,
+    Calendar                      = 1048576,
+    TimeZone                      = 2097152,
+    EraCalendarUnit               = 2,
+    YearCalendarUnit              = 4,
+    MonthCalendarUnit             = 8,
+    DayCalendarUnit               = 16,
+    HourCalendarUnit              = 32,
+    MinuteCalendarUnit            = 64,
+    SecondCalendarUnit            = 128,
+    WeekCalendarUnit              = 256,
+    WeekdayCalendarUnit           = 512,
+    WeekdayOrdinalCalendarUnit    = 1024,
+    QuarterCalendarUnit           = 2048,
+    WeekOfMonthCalendarUnit       = 4096,
+    WeekOfYearCalendarUnit        = 8192,
     YearForWeekOfYearCalendarUnit = 16384,
-    CalendarUnit = 1048576,
-    TimeZoneCalendarUnit = 2097152,
+    CalendarUnit                  = 1048576,
+    TimeZoneCalendarUnit          = 2097152,
 }
 
 /// NSCalendarOptions
 CalendarOptions :: enum cffi.ulong {
-    WrapComponents = 1,
-    MatchStrictly = 2,
-    SearchBackwards = 4,
+    WrapComponents                   = 1,
+    MatchStrictly                    = 2,
+    SearchBackwards                  = 4,
     MatchPreviousTimePreservingSmallerUnits = 256,
     MatchNextTimePreservingSmallerUnits = 512,
-    MatchNextTime = 1024,
-    MatchFirst = 4096,
-    MatchLast = 8192,
+    MatchNextTime                    = 1024,
+    MatchFirst                       = 4096,
+    MatchLast                        = 8192,
 }
 
 /// NSDecodingFailurePolicy
 DecodingFailurePolicy :: enum cffi.long {
-    RaiseException = 0,
+    RaiseException    = 0,
     SetErrorAndReturn = 1,
 }
 
 /// NSDataReadingOptions
 DataReadingOptions :: enum cffi.ulong {
     MappedIfSafe = 1,
-    Uncached = 2,
+    Uncached     = 2,
     MappedAlways = 8,
-    Mapped = 1,
-    MappedRead = 1,
+    Mapped       = 1,
+    MappedRead   = 1,
     UncachedRead = 2,
 }
 
 /// NSDataWritingOptions
 DataWritingOptions :: enum cffi.ulong {
-    Atomic = 1,
-    WithoutOverwriting = 2,
-    FileProtectionNone = 268435456,
-    FileProtectionComplete = 536870912,
+    Atomic                           = 1,
+    WithoutOverwriting               = 2,
+    FileProtectionNone               = 268435456,
+    FileProtectionComplete           = 536870912,
     FileProtectionCompleteUnlessOpen = 805306368,
     FileProtectionCompleteUntilFirstUserAuthentication = 1073741824,
     FileProtectionCompleteWhenUserInactive = 1342177280,
-    FileProtectionMask = 4026531840,
-    AtomicWrite = 1,
+    FileProtectionMask               = 4026531840,
+    AtomicWrite                      = 1,
 }
 
 /// NSDataSearchOptions
 DataSearchOptions :: enum cffi.ulong {
     Backwards = 1,
-    Anchored = 2,
+    Anchored  = 2,
 }
 
 /// NSDataBase64EncodingOptions
 DataBase64EncodingOptions :: enum cffi.ulong {
-    _64CharacterLineLength = 1,
-    _76CharacterLineLength = 2,
+    _64CharacterLineLength    = 1,
+    _76CharacterLineLength    = 2,
     EndLineWithCarriageReturn = 16,
-    EndLineWithLineFeed = 32,
+    EndLineWithLineFeed       = 32,
 }
 
 /// NSDataBase64DecodingOptions
@@ -1806,201 +1732,201 @@ DataBase64DecodingOptions :: enum cffi.ulong {
 /// NSDataCompressionAlgorithm
 DataCompressionAlgorithm :: enum cffi.long {
     LZFSE = 0,
-    LZ4 = 1,
-    LZMA = 2,
-    Zlib = 3,
+    LZ4   = 1,
+    LZMA  = 2,
+    Zlib  = 3,
 }
 
 /// NSAttributedStringEnumerationOptions
 AttributedStringEnumerationOptions :: enum cffi.ulong {
-    Reverse = 2,
+    Reverse                          = 2,
     LongestEffectiveRangeNotRequired = 1048576,
 }
 
 /// NSInlinePresentationIntent
 InlinePresentationIntent :: enum cffi.ulong {
-    Emphasized = 1,
+    Emphasized         = 1,
     StronglyEmphasized = 2,
-    Code = 4,
-    Strikethrough = 32,
-    SoftBreak = 64,
-    LineBreak = 128,
-    InlineHTML = 256,
-    BlockHTML = 512,
+    Code               = 4,
+    Strikethrough      = 32,
+    SoftBreak          = 64,
+    LineBreak          = 128,
+    InlineHTML         = 256,
+    BlockHTML          = 512,
 }
 
 /// NSAttributedStringMarkdownParsingFailurePolicy
 AttributedStringMarkdownParsingFailurePolicy :: enum cffi.long {
-    ReturnError = 0,
+    ReturnError                     = 0,
     ReturnPartiallyParsedIfPossible = 1,
 }
 
 /// NSAttributedStringMarkdownInterpretedSyntax
 AttributedStringMarkdownInterpretedSyntax :: enum cffi.long {
-    Full = 0,
-    InlineOnly = 1,
+    Full                           = 0,
+    InlineOnly                     = 1,
     InlineOnlyPreservingWhitespace = 2,
 }
 
 /// NSAttributedStringFormattingOptions
 AttributedStringFormattingOptions :: enum cffi.ulong {
     InsertArgumentAttributesWithoutMerging = 1,
-    ApplyReplacementIndexAttribute = 2,
+    ApplyReplacementIndexAttribute   = 2,
 }
 
 /// NSPresentationIntentKind
 PresentationIntentKind :: enum cffi.long {
-    Paragraph = 0,
-    Header = 1,
-    OrderedList = 2,
-    UnorderedList = 3,
-    ListItem = 4,
-    CodeBlock = 5,
-    BlockQuote = 6,
-    ThematicBreak = 7,
-    Table = 8,
+    Paragraph      = 0,
+    Header         = 1,
+    OrderedList    = 2,
+    UnorderedList  = 3,
+    ListItem       = 4,
+    CodeBlock      = 5,
+    BlockQuote     = 6,
+    ThematicBreak  = 7,
+    Table          = 8,
     TableHeaderRow = 9,
-    TableRow = 10,
-    TableCell = 11,
+    TableRow       = 10,
+    TableCell      = 11,
 }
 
 /// NSPresentationIntentTableColumnAlignment
 PresentationIntentTableColumnAlignment :: enum cffi.long {
-    Left = 0,
+    Left   = 0,
     Center = 1,
-    Right = 2,
+    Right  = 2,
 }
 
 /// NSFormattingContext
 FormattingContext :: enum cffi.long {
-    Unknown = 0,
-    Dynamic = 1,
-    Standalone = 2,
-    ListItem = 3,
+    Unknown             = 0,
+    Dynamic             = 1,
+    Standalone          = 2,
+    ListItem            = 3,
     BeginningOfSentence = 4,
-    MiddleOfSentence = 5,
+    MiddleOfSentence    = 5,
 }
 
 /// NSFormattingUnitStyle
 FormattingUnitStyle :: enum cffi.long {
-    Short = 1,
+    Short  = 1,
     Medium = 2,
-    Long = 3,
+    Long   = 3,
 }
 
 /// NSDateFormatterStyle
 DateFormatterStyle :: enum cffi.ulong {
-    NoStyle = 0,
-    ShortStyle = 1,
+    NoStyle     = 0,
+    ShortStyle  = 1,
     MediumStyle = 2,
-    LongStyle = 3,
-    FullStyle = 4,
+    LongStyle   = 3,
+    FullStyle   = 4,
 }
 
 /// NSDateFormatterBehavior
 DateFormatterBehavior :: enum cffi.ulong {
     Default = 0,
-    _10_4 = 1040,
+    _10_4   = 1040,
 }
 
 /// NSDateIntervalFormatterStyle
 DateIntervalFormatterStyle :: enum cffi.ulong {
-    NoStyle = 0,
-    ShortStyle = 1,
+    NoStyle     = 0,
+    ShortStyle  = 1,
     MediumStyle = 2,
-    LongStyle = 3,
-    FullStyle = 4,
+    LongStyle   = 3,
+    FullStyle   = 4,
 }
 
 /// NSISO8601DateFormatOptions
 ISO8601DateFormatOptions :: enum cffi.ulong {
-    WithYear = 1,
-    WithMonth = 2,
-    WithWeekOfYear = 4,
-    WithDay = 16,
-    WithTime = 32,
-    WithTimeZone = 64,
-    WithSpaceBetweenDateAndTime = 128,
-    WithDashSeparatorInDate = 256,
-    WithColonSeparatorInTime = 512,
+    WithYear                     = 1,
+    WithMonth                    = 2,
+    WithWeekOfYear               = 4,
+    WithDay                      = 16,
+    WithTime                     = 32,
+    WithTimeZone                 = 64,
+    WithSpaceBetweenDateAndTime  = 128,
+    WithDashSeparatorInDate      = 256,
+    WithColonSeparatorInTime     = 512,
     WithColonSeparatorInTimeZone = 1024,
-    WithFractionalSeconds = 2048,
-    WithFullDate = 275,
-    WithFullTime = 1632,
-    WithInternetDateTime = 1907,
+    WithFractionalSeconds        = 2048,
+    WithFullDate                 = 275,
+    WithFullTime                 = 1632,
+    WithInternetDateTime         = 1907,
 }
 
 /// NSMassFormatterUnit
 MassFormatterUnit :: enum cffi.long {
-    Gram = 11,
+    Gram     = 11,
     Kilogram = 14,
-    Ounce = 1537,
-    Pound = 1538,
-    Stone = 1539,
+    Ounce    = 1537,
+    Pound    = 1538,
+    Stone    = 1539,
 }
 
 /// NSLengthFormatterUnit
 LengthFormatterUnit :: enum cffi.long {
     Millimeter = 8,
     Centimeter = 9,
-    Meter = 11,
-    Kilometer = 14,
-    Inch = 1281,
-    Foot = 1282,
-    Yard = 1283,
-    Mile = 1284,
+    Meter      = 11,
+    Kilometer  = 14,
+    Inch       = 1281,
+    Foot       = 1282,
+    Yard       = 1283,
+    Mile       = 1284,
 }
 
 /// NSEnergyFormatterUnit
 EnergyFormatterUnit :: enum cffi.long {
-    Joule = 11,
-    Kilojoule = 14,
-    Calorie = 1793,
+    Joule       = 11,
+    Kilojoule   = 14,
+    Calorie     = 1793,
     Kilocalorie = 1794,
 }
 
 /// NSNumberFormatterBehavior
 NumberFormatterBehavior :: enum cffi.ulong {
     Default = 0,
-    _10_4 = 1040,
+    _10_4   = 1040,
 }
 
 /// NSNumberFormatterStyle
 NumberFormatterStyle :: enum cffi.ulong {
-    NoStyle = 0,
-    DecimalStyle = 1,
-    CurrencyStyle = 2,
-    PercentStyle = 3,
-    ScientificStyle = 4,
-    SpellOutStyle = 5,
-    OrdinalStyle = 6,
-    CurrencyISOCodeStyle = 8,
-    CurrencyPluralStyle = 9,
+    NoStyle                 = 0,
+    DecimalStyle            = 1,
+    CurrencyStyle           = 2,
+    PercentStyle            = 3,
+    ScientificStyle         = 4,
+    SpellOutStyle           = 5,
+    OrdinalStyle            = 6,
+    CurrencyISOCodeStyle    = 8,
+    CurrencyPluralStyle     = 9,
     CurrencyAccountingStyle = 10,
 }
 
 /// NSNumberFormatterPadPosition
 NumberFormatterPadPosition :: enum cffi.ulong {
     BeforePrefix = 0,
-    AfterPrefix = 1,
+    AfterPrefix  = 1,
     BeforeSuffix = 2,
-    AfterSuffix = 3,
+    AfterSuffix  = 3,
 }
 
 /// NSNumberFormatterRoundingMode
 NumberFormatterRoundingMode :: enum cffi.ulong {
-    RoundCeiling = 0,
-    RoundFloor = 1,
-    RoundDown = 2,
-    RoundUp = 3,
+    RoundCeiling  = 0,
+    RoundFloor    = 1,
+    RoundDown     = 2,
+    RoundUp       = 3,
     RoundHalfEven = 4,
     RoundHalfDown = 5,
-    RoundHalfUp = 6,
+    RoundHalfUp   = 6,
 }
 
 /// NSLocaleLanguageDirection
 LocaleLanguageDirection :: enum cffi.ulong {
-    Unknown = 0,
+    Unknown     = 0,
     LeftToRight = 1,
     RightToLeft = 2,
     TopToBottom = 3,
@@ -2009,17 +1935,17 @@ LocaleLanguageDirection :: enum cffi.ulong {
 
 /// NSMeasurementFormatterUnitOptions
 MeasurementFormatterUnitOptions :: enum cffi.ulong {
-    ProvidedUnit = 1,
-    NaturalScale = 2,
+    ProvidedUnit           = 1,
+    NaturalScale           = 2,
     TemperatureWithoutUnit = 4,
 }
 
 /// NSPersonNameComponentsFormatterStyle
 PersonNameComponentsFormatterStyle :: enum cffi.long {
-    Default = 0,
-    Short = 1,
-    Medium = 2,
-    Long = 3,
+    Default     = 0,
+    Short       = 1,
+    Medium      = 2,
+    Long        = 3,
     Abbreviated = 4,
 }
 
@@ -2031,390 +1957,389 @@ PersonNameComponentsFormatterOptions :: enum cffi.ulong {
 /// NSRelativeDateTimeFormatterStyle
 RelativeDateTimeFormatterStyle :: enum cffi.long {
     umeric = 0,
-    amed = 1,
+    amed   = 1,
 }
 
 /// NSRelativeDateTimeFormatterUnitsStyle
 RelativeDateTimeFormatterUnitsStyle :: enum cffi.long {
-    Full = 0,
-    SpellOut = 1,
-    Short = 2,
+    Full        = 0,
+    SpellOut    = 1,
+    Short       = 2,
     Abbreviated = 3,
 }
 
 /// NSRoundingMode
 RoundingMode :: enum cffi.ulong {
-    RoundPlain = 0,
-    RoundDown = 1,
-    RoundUp = 2,
+    RoundPlain   = 0,
+    RoundDown    = 1,
+    RoundUp      = 2,
     RoundBankers = 3,
 }
 
 /// NSCalculationError
 CalculationError :: enum cffi.ulong {
-    NoError = 0,
+    NoError         = 0,
     LossOfPrecision = 1,
-    Underflow = 2,
-    Overflow = 3,
-    DivideByZero = 4,
+    Underflow       = 2,
+    Overflow        = 3,
+    DivideByZero    = 4,
 }
 
 /// NSSearchPathDirectory
 SearchPathDirectory :: enum cffi.ulong {
-    ApplicationDirectory = 1,
-    DemoApplicationDirectory = 2,
+    ApplicationDirectory          = 1,
+    DemoApplicationDirectory      = 2,
     DeveloperApplicationDirectory = 3,
-    AdminApplicationDirectory = 4,
-    LibraryDirectory = 5,
-    DeveloperDirectory = 6,
-    UserDirectory = 7,
-    DocumentationDirectory = 8,
-    DocumentDirectory = 9,
-    CoreServiceDirectory = 10,
+    AdminApplicationDirectory     = 4,
+    LibraryDirectory              = 5,
+    DeveloperDirectory            = 6,
+    UserDirectory                 = 7,
+    DocumentationDirectory        = 8,
+    DocumentDirectory             = 9,
+    CoreServiceDirectory          = 10,
     AutosavedInformationDirectory = 11,
-    DesktopDirectory = 12,
-    CachesDirectory = 13,
-    ApplicationSupportDirectory = 14,
-    DownloadsDirectory = 15,
-    InputMethodsDirectory = 16,
-    MoviesDirectory = 17,
-    MusicDirectory = 18,
-    PicturesDirectory = 19,
-    PrinterDescriptionDirectory = 20,
-    SharedPublicDirectory = 21,
-    PreferencePanesDirectory = 22,
-    ApplicationScriptsDirectory = 23,
-    ItemReplacementDirectory = 99,
-    AllApplicationsDirectory = 100,
-    AllLibrariesDirectory = 101,
-    TrashDirectory = 102,
+    DesktopDirectory              = 12,
+    CachesDirectory               = 13,
+    ApplicationSupportDirectory   = 14,
+    DownloadsDirectory            = 15,
+    InputMethodsDirectory         = 16,
+    MoviesDirectory               = 17,
+    MusicDirectory                = 18,
+    PicturesDirectory             = 19,
+    PrinterDescriptionDirectory   = 20,
+    SharedPublicDirectory         = 21,
+    PreferencePanesDirectory      = 22,
+    ApplicationScriptsDirectory   = 23,
+    ItemReplacementDirectory      = 99,
+    AllApplicationsDirectory      = 100,
+    AllLibrariesDirectory         = 101,
+    TrashDirectory                = 102,
 }
 
 /// NSSearchPathDomainMask
 SearchPathDomainMaskFlag :: enum cffi.ulong {
-    UserDomainMask = 0,
-    LocalDomainMask = 1,
+    UserDomainMask    = 0,
+    LocalDomainMask   = 1,
     NetworkDomainMask = 2,
-    SystemDomainMask = 3,
+    SystemDomainMask  = 3,
 }
 SearchPathDomainMask :: bit_set[SearchPathDomainMaskFlag; cffi.ulong]
 
-
 /// NSURLBookmarkCreationOptions
 URLBookmarkCreationOptions :: enum cffi.ulong {
-    PreferFileIDResolution = 256,
-    MinimalBookmark = 512,
-    SuitableForBookmarkFile = 1024,
-    WithSecurityScope = 2048,
+    PreferFileIDResolution           = 256,
+    MinimalBookmark                  = 512,
+    SuitableForBookmarkFile          = 1024,
+    WithSecurityScope                = 2048,
     SecurityScopeAllowOnlyReadAccess = 4096,
-    WithoutImplicitSecurityScope = 536870912,
+    WithoutImplicitSecurityScope     = 536870912,
 }
 
 /// NSURLBookmarkResolutionOptions
 URLBookmarkResolutionOptions :: enum cffi.ulong {
-    WithoutUI = 256,
-    WithoutMounting = 512,
-    WithSecurityScope = 1024,
+    WithoutUI                     = 256,
+    WithoutMounting               = 512,
+    WithSecurityScope             = 1024,
     WithoutImplicitStartAccessing = 32768,
 }
 
 /// NSVolumeEnumerationOptions
 VolumeEnumerationOptions :: enum cffi.ulong {
-    SkipHiddenVolumes = 2,
+    SkipHiddenVolumes        = 2,
     ProduceFileReferenceURLs = 4,
 }
 
 /// NSDirectoryEnumerationOptions
 DirectoryEnumerationOptions :: enum cffi.ulong {
     SkipsSubdirectoryDescendants = 1,
-    SkipsPackageDescendants = 2,
-    SkipsHiddenFiles = 4,
+    SkipsPackageDescendants      = 2,
+    SkipsHiddenFiles             = 4,
     IncludesDirectoriesPostOrder = 8,
-    ProducesRelativePathURLs = 16,
+    ProducesRelativePathURLs     = 16,
 }
 
 /// NSFileManagerItemReplacementOptions
 FileManagerItemReplacementOptions :: enum cffi.ulong {
-    UsingNewMetadataOnly = 1,
+    UsingNewMetadataOnly      = 1,
     WithoutDeletingBackupItem = 2,
 }
 
 /// NSURLRelationship
 URLRelationship :: enum cffi.long {
     Contains = 0,
-    Same = 1,
-    Other = 2,
+    Same     = 1,
+    Other    = 2,
 }
 
 /// NSFileManagerUnmountOptions
 FileManagerUnmountOptions :: enum cffi.ulong {
     AllPartitionsAndEjectDisk = 1,
-    WithoutUI = 2,
+    WithoutUI                 = 2,
 }
 
 /// NSPointerFunctionsOptions
 PointerFunctionsOptions :: enum cffi.ulong {
-    StrongMemory = 0,
-    ZeroingWeakMemory = 1,
-    OpaqueMemory = 2,
-    MallocMemory = 3,
-    MachVirtualMemory = 4,
-    WeakMemory = 5,
-    ObjectPersonality = 0,
-    OpaquePersonality = 256,
+    StrongMemory             = 0,
+    ZeroingWeakMemory        = 1,
+    OpaqueMemory             = 2,
+    MallocMemory             = 3,
+    MachVirtualMemory        = 4,
+    WeakMemory               = 5,
+    ObjectPersonality        = 0,
+    OpaquePersonality        = 256,
     ObjectPointerPersonality = 512,
-    CStringPersonality = 768,
-    StructPersonality = 1024,
-    IntegerPersonality = 1280,
-    CopyIn = 65536,
+    CStringPersonality       = 768,
+    StructPersonality        = 1024,
+    IntegerPersonality       = 1280,
+    CopyIn                   = 65536,
 }
 
 /// NSHTTPCookieAcceptPolicy
 HTTPCookieAcceptPolicy :: enum cffi.ulong {
-    Always = 0,
-    Never = 1,
+    Always                     = 0,
+    Never                      = 1,
     OnlyFromMainDocumentDomain = 2,
 }
 
 /// NSJSONReadingOptions
 JSONReadingOptions :: enum cffi.ulong {
-    MutableContainers = 1,
-    MutableLeaves = 2,
-    FragmentsAllowed = 4,
-    JSON5Allowed = 8,
+    MutableContainers         = 1,
+    MutableLeaves             = 2,
+    FragmentsAllowed          = 4,
+    JSON5Allowed              = 8,
     TopLevelDictionaryAssumed = 16,
-    AllowFragments = 4,
+    AllowFragments            = 4,
 }
 
 /// NSJSONWritingOptions
 JSONWritingOptions :: enum cffi.ulong {
-    PrettyPrinted = 1,
-    SortedKeys = 2,
-    FragmentsAllowed = 4,
+    PrettyPrinted          = 1,
+    SortedKeys             = 2,
+    FragmentsAllowed       = 4,
     WithoutEscapingSlashes = 8,
 }
 
 /// NSKeyValueObservingOptions
 KeyValueObservingOptions :: enum cffi.ulong {
-    OptionNew = 1,
-    OptionOld = 2,
+    OptionNew     = 1,
+    OptionOld     = 2,
     OptionInitial = 4,
-    OptionPrior = 8,
+    OptionPrior   = 8,
 }
 
 /// NSKeyValueChange
 KeyValueChange :: enum cffi.ulong {
-    Setting = 1,
-    Insertion = 2,
-    Removal = 3,
+    Setting     = 1,
+    Insertion   = 2,
+    Removal     = 3,
     Replacement = 4,
 }
 
 /// NSKeyValueSetMutationKind
 KeyValueSetMutationKind :: enum cffi.ulong {
-    UnionSetMutation = 1,
-    MinusSetMutation = 2,
+    UnionSetMutation     = 1,
+    MinusSetMutation     = 2,
     IntersectSetMutation = 3,
-    SetMutation = 4,
+    SetMutation          = 4,
 }
 
 /// NSPropertyListMutabilityOptions
 PropertyListMutabilityOptions :: enum cffi.ulong {
-    Immutable = 0,
-    MutableContainers = 1,
+    Immutable                  = 0,
+    MutableContainers          = 1,
     MutableContainersAndLeaves = 2,
 }
 
 /// NSPropertyListFormat
 PropertyListFormat :: enum cffi.ulong {
-    OpenStepFormat = 1,
-    XMLFormat_v1_0 = 100,
+    OpenStepFormat    = 1,
+    XMLFormat_v1_0    = 100,
     BinaryFormat_v1_0 = 200,
 }
 
 /// NSGrammaticalGender
 GrammaticalGender :: enum cffi.long {
-    NotSet = 0,
-    Feminine = 1,
+    NotSet    = 0,
+    Feminine  = 1,
     Masculine = 2,
-    Neuter = 3,
+    Neuter    = 3,
 }
 
 /// NSGrammaticalPartOfSpeech
 GrammaticalPartOfSpeech :: enum cffi.long {
-    NotSet = 0,
-    Determiner = 1,
-    Pronoun = 2,
-    Letter = 3,
-    Adverb = 4,
-    Particle = 5,
-    Adjective = 6,
-    Adposition = 7,
-    Verb = 8,
-    Noun = 9,
-    Conjunction = 10,
-    Numeral = 11,
+    NotSet       = 0,
+    Determiner   = 1,
+    Pronoun      = 2,
+    Letter       = 3,
+    Adverb       = 4,
+    Particle     = 5,
+    Adjective    = 6,
+    Adposition   = 7,
+    Verb         = 8,
+    Noun         = 9,
+    Conjunction  = 10,
+    Numeral      = 11,
     Interjection = 12,
-    Preposition = 13,
+    Preposition  = 13,
     Abbreviation = 14,
 }
 
 /// NSGrammaticalNumber
 GrammaticalNumber :: enum cffi.long {
-    NotSet = 0,
-    Singular = 1,
-    Zero = 2,
-    Plural = 3,
-    PluralTwo = 4,
-    PluralFew = 5,
+    NotSet     = 0,
+    Singular   = 1,
+    Zero       = 2,
+    Plural     = 3,
+    PluralTwo  = 4,
+    PluralFew  = 5,
     PluralMany = 6,
 }
 
 /// NSGrammaticalCase
 GrammaticalCase :: enum cffi.long {
-    NotSet = 0,
-    Nominative = 1,
-    Accusative = 2,
-    Dative = 3,
-    Genitive = 4,
+    NotSet        = 0,
+    Nominative    = 1,
+    Accusative    = 2,
+    Dative        = 3,
+    Genitive      = 4,
     Prepositional = 5,
-    Ablative = 6,
-    Adessive = 7,
-    Allative = 8,
-    Elative = 9,
-    Illative = 10,
-    Essive = 11,
-    Inessive = 12,
-    Locative = 13,
-    Translative = 14,
+    Ablative      = 6,
+    Adessive      = 7,
+    Allative      = 8,
+    Elative       = 9,
+    Illative      = 10,
+    Essive        = 11,
+    Inessive      = 12,
+    Locative      = 13,
+    Translative   = 14,
 }
 
 /// NSGrammaticalPronounType
 GrammaticalPronounType :: enum cffi.long {
-    NotSet = 0,
-    Personal = 1,
-    Reflexive = 2,
+    NotSet     = 0,
+    Personal   = 1,
+    Reflexive  = 2,
     Possessive = 3,
 }
 
 /// NSGrammaticalPerson
 GrammaticalPerson :: enum cffi.long {
     NotSet = 0,
-    First = 1,
+    First  = 1,
     Second = 2,
-    Third = 3,
+    Third  = 3,
 }
 
 /// NSGrammaticalDetermination
 GrammaticalDetermination :: enum cffi.long {
-    NotSet = 0,
+    NotSet      = 0,
     Independent = 1,
-    Dependent = 2,
+    Dependent   = 2,
 }
 
 /// NSGrammaticalDefiniteness
 GrammaticalDefiniteness :: enum cffi.long {
-    NotSet = 0,
+    NotSet     = 0,
     Indefinite = 1,
-    Definite = 2,
+    Definite   = 2,
 }
 
 /// NSPostingStyle
 PostingStyle :: enum cffi.ulong {
     PostWhenIdle = 1,
-    PostASAP = 2,
-    PostNow = 3,
+    PostASAP     = 2,
+    PostNow      = 3,
 }
 
 /// NSNotificationCoalescing
 NotificationCoalescing :: enum cffi.ulong {
     NoCoalescing = 0,
-    OnName = 1,
-    OnSender = 2,
+    OnName       = 1,
+    OnSender     = 2,
 }
 
 /// NSOperationQueuePriority
 OperationQueuePriority :: enum cffi.long {
-    VeryLow = -8,
-    Low = -4,
-    Normal = 0,
-    High = 4,
+    VeryLow  = -8,
+    Low      = -4,
+    Normal   = 0,
+    High     = 4,
     VeryHigh = 8,
 }
 
 /// NSMachPortOptions
 MachPortOptions :: enum cffi.ulong {
-    DeallocateNone = 0,
-    DeallocateSendRight = 1,
+    DeallocateNone         = 0,
+    DeallocateSendRight    = 1,
     DeallocateReceiveRight = 2,
 }
 
 /// NSActivityOptions
 ActivityOptions :: enum cffi.ulonglong {
-    IdleDisplaySleepDisabled = 1099511627776,
-    IdleSystemSleepDisabled = 1048576,
-    SuddenTerminationDisabled = 16384,
-    AutomaticTerminationDisabled = 32768,
-    AnimationTrackingEnabled = 35184372088832,
-    TrackingEnabled = 70368744177664,
-    UserInitiated = 16777215,
+    IdleDisplaySleepDisabled         = 1099511627776,
+    IdleSystemSleepDisabled          = 1048576,
+    SuddenTerminationDisabled        = 16384,
+    AutomaticTerminationDisabled     = 32768,
+    AnimationTrackingEnabled         = 35184372088832,
+    TrackingEnabled                  = 70368744177664,
+    UserInitiated                    = 16777215,
     UserInitiatedAllowingIdleSystemSleep = 15728639,
-    Background = 255,
-    LatencyCritical = 1095216660480,
-    UserInteractive = 1095233437695,
+    Background                       = 255,
+    LatencyCritical                  = 1095216660480,
+    UserInteractive                  = 1095233437695,
 }
 
 /// NSProcessInfoThermalState
 ProcessInfoThermalState :: enum cffi.long {
-    Nominal = 0,
-    Fair = 1,
-    Serious = 2,
+    Nominal  = 0,
+    Fair     = 1,
+    Serious  = 2,
     Critical = 3,
 }
 
 /// NSTextCheckingType
 TextCheckingType :: enum cffi.ulonglong {
-    Orthography = 1,
-    Spelling = 2,
-    Grammar = 4,
-    Date = 8,
-    Address = 16,
-    Link = 32,
-    Quote = 64,
-    Dash = 128,
-    Replacement = 256,
-    Correction = 512,
-    RegularExpression = 1024,
-    PhoneNumber = 2048,
+    Orthography        = 1,
+    Spelling           = 2,
+    Grammar            = 4,
+    Date               = 8,
+    Address            = 16,
+    Link               = 32,
+    Quote              = 64,
+    Dash               = 128,
+    Replacement        = 256,
+    Correction         = 512,
+    RegularExpression  = 1024,
+    PhoneNumber        = 2048,
     TransitInformation = 4096,
 }
 
 /// NSRegularExpressionOptions
 RegularExpressionOptions :: enum cffi.ulong {
-    CaseInsensitive = 1,
+    CaseInsensitive            = 1,
     AllowCommentsAndWhitespace = 2,
-    IgnoreMetacharacters = 4,
-    DotMatchesLineSeparators = 8,
-    AnchorsMatchLines = 16,
-    UseUnixLineSeparators = 32,
-    UseUnicodeWordBoundaries = 64,
+    IgnoreMetacharacters       = 4,
+    DotMatchesLineSeparators   = 8,
+    AnchorsMatchLines          = 16,
+    UseUnixLineSeparators      = 32,
+    UseUnicodeWordBoundaries   = 64,
 }
 
 /// NSMatchingOptions
 MatchingOptions :: enum cffi.ulong {
-    ReportProgress = 1,
-    ReportCompletion = 2,
-    Anchored = 4,
-    WithTransparentBounds = 8,
+    ReportProgress         = 1,
+    ReportCompletion       = 2,
+    Anchored               = 4,
+    WithTransparentBounds  = 8,
     WithoutAnchoringBounds = 16,
 }
 
 /// NSMatchingFlags
 MatchingFlag :: enum cffi.ulong {
-    Progress = 0,
-    Completed = 1,
-    HitEnd = 2,
-    RequiredEnd = 3,
+    Progress      = 0,
+    Completed     = 1,
+    HitEnd        = 2,
+    RequiredEnd   = 3,
     InternalError = 4,
 }
 MatchingFlags :: bit_set[MatchingFlag; cffi.ulong]
@@ -2423,317 +2348,189 @@ MatchingFlags :: bit_set[MatchingFlag; cffi.ulong]
 StreamStatus :: enum cffi.ulong {
     NotOpen = 0,
     Opening = 1,
-    Open = 2,
+    Open    = 2,
     Reading = 3,
     Writing = 4,
-    AtEnd = 5,
-    Closed = 6,
-    Error = 7,
+    AtEnd   = 5,
+    Closed  = 6,
+    Error   = 7,
 }
 
 /// NSStreamEvent
 StreamEvent :: enum cffi.ulong {
-    None = 0,
-    OpenCompleted = 1,
+    None              = 0,
+    OpenCompleted     = 1,
     HasBytesAvailable = 2,
     HasSpaceAvailable = 4,
-    ErrorOccurred = 8,
-    EndEncountered = 16,
+    ErrorOccurred     = 8,
+    EndEncountered    = 16,
 }
 
 /// NSTimeZoneNameStyle
 TimeZoneNameStyle :: enum cffi.long {
-    Standard = 0,
-    ShortStandard = 1,
-    DaylightSaving = 2,
+    Standard            = 0,
+    ShortStandard       = 1,
+    DaylightSaving      = 2,
     ShortDaylightSaving = 3,
-    Generic = 4,
-    ShortGeneric = 5,
+    Generic             = 4,
+    ShortGeneric        = 5,
 }
 
 /// NSURLCacheStoragePolicy
 URLCacheStoragePolicy :: enum cffi.ulong {
-    Allowed = 0,
+    Allowed             = 0,
     AllowedInMemoryOnly = 1,
-    NotAllowed = 2,
-}
-
-/// SecAccessControlCreateFlags
-SecAccessControlCreateFlag :: enum cffi.ulong {
-    kSecAccessControlUserPresence = 0,
-    kSecAccessControlBiometryAny = 1,
-    kSecAccessControlTouchIDAny = 1,
-    kSecAccessControlBiometryCurrentSet = 3,
-    kSecAccessControlTouchIDCurrentSet = 3,
-    kSecAccessControlDevicePasscode = 4,
-    kSecAccessControlWatch = 5,
-    kSecAccessControlCompanion = 5,
-    kSecAccessControlOr = 14,
-    kSecAccessControlAnd = 15,
-    kSecAccessControlPrivateKeyUsage = 30,
-    kSecAccessControlApplicationPassword = 31,
-}
-SecAccessControlCreateFlags :: bit_set[SecAccessControlCreateFlag; cffi.ulong]
-
-/// SecPadding
-SecPadding :: enum cffi.uint {
-    kSecPaddingNone = 0,
-    kSecPaddingPKCS1 = 1,
-    kSecPaddingOAEP = 2,
-    kSecPaddingSigRaw = 16384,
-    kSecPaddingPKCS1MD2 = 32768,
-    kSecPaddingPKCS1MD5 = 32769,
-    kSecPaddingPKCS1SHA1 = 32770,
-    kSecPaddingPKCS1SHA224 = 32771,
-    kSecPaddingPKCS1SHA256 = 32772,
-    kSecPaddingPKCS1SHA384 = 32773,
-    kSecPaddingPKCS1SHA512 = 32774,
-}
-
-/// SecKeyOperationType
-SecKeyOperationType :: enum cffi.long {
-    kSecKeyOperationTypeSign = 0,
-    kSecKeyOperationTypeVerify = 1,
-    kSecKeyOperationTypeEncrypt = 2,
-    kSecKeyOperationTypeDecrypt = 3,
-    kSecKeyOperationTypeKeyExchange = 4,
-}
-
-/// SecTrustResultType
-SecTrustResultType :: enum cffi.uint {
-    kSecTrustResultInvalid = 0,
-    kSecTrustResultProceed = 1,
-    kSecTrustResultConfirm = 2,
-    kSecTrustResultDeny = 3,
-    kSecTrustResultUnspecified = 4,
-    kSecTrustResultRecoverableTrustFailure = 5,
-    kSecTrustResultFatalTrustFailure = 6,
-    kSecTrustResultOtherError = 7,
-}
-
-/// SSLCiphersuiteGroup
-SSLCiphersuiteGroup :: enum cffi.int {
-    kSSLCiphersuiteGroupDefault = 0,
-    kSSLCiphersuiteGroupCompatibility = 1,
-    kSSLCiphersuiteGroupLegacy = 2,
-    kSSLCiphersuiteGroupATS = 3,
-    kSSLCiphersuiteGroupATSCompatibility = 4,
-}
-
-/// tls_protocol_version_t
-tls_protocol_version_t :: enum cffi.ushort {
-    LSv10 = 769,
-    LSv11 = 770,
-    LSv12 = 771,
-    LSv13 = 772,
-    DTLSv10 = 65279,
-    DTLSv12 = 65277,
-}
-
-/// tls_ciphersuite_t
-tls_ciphersuite_t :: enum cffi.ushort {
-    RSA_WITH_3DES_EDE_CBC_SHA = 10,
-    RSA_WITH_AES_128_CBC_SHA = 47,
-    RSA_WITH_AES_256_CBC_SHA = 53,
-    RSA_WITH_AES_128_GCM_SHA256 = 156,
-    RSA_WITH_AES_256_GCM_SHA384 = 157,
-    RSA_WITH_AES_128_CBC_SHA256 = 60,
-    RSA_WITH_AES_256_CBC_SHA256 = 61,
-    ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA = 49160,
-    ECDHE_ECDSA_WITH_AES_128_CBC_SHA = 49161,
-    ECDHE_ECDSA_WITH_AES_256_CBC_SHA = 49162,
-    ECDHE_RSA_WITH_3DES_EDE_CBC_SHA = 49170,
-    ECDHE_RSA_WITH_AES_128_CBC_SHA = 49171,
-    ECDHE_RSA_WITH_AES_256_CBC_SHA = 49172,
-    ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 = 49187,
-    ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 = 49188,
-    ECDHE_RSA_WITH_AES_128_CBC_SHA256 = 49191,
-    ECDHE_RSA_WITH_AES_256_CBC_SHA384 = 49192,
-    ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 = 49195,
-    ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 = 49196,
-    ECDHE_RSA_WITH_AES_128_GCM_SHA256 = 49199,
-    ECDHE_RSA_WITH_AES_256_GCM_SHA384 = 49200,
-    ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 = 52392,
-    ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 = 52393,
-    AES_128_GCM_SHA256 = 4865,
-    AES_256_GCM_SHA384 = 4866,
-    CHACHA20_POLY1305_SHA256 = 4867,
-}
-
-/// tls_ciphersuite_group_t
-tls_ciphersuite_group_t :: enum cffi.ushort {
-    default = 0,
-    compatibility = 1,
-    legacy = 2,
-    ats = 3,
-    ats_compatibility = 4,
-}
-
-/// SSLProtocol
-SSLProtocol :: enum cffi.int {
-    kSSLProtocolUnknown = 0,
-    kTLSProtocol1 = 4,
-    kTLSProtocol11 = 7,
-    kTLSProtocol12 = 8,
-    kDTLSProtocol1 = 9,
-    kTLSProtocol13 = 10,
-    kDTLSProtocol12 = 11,
-    kTLSProtocolMaxSupported = 999,
-    kSSLProtocol2 = 1,
-    kSSLProtocol3 = 2,
-    kSSLProtocol3Only = 3,
-    kTLSProtocol1Only = 5,
-    kSSLProtocolAll = 6,
+    NotAllowed          = 2,
 }
 
 /// NSURLCredentialPersistence
 URLCredentialPersistence :: enum cffi.ulong {
-    None = 0,
-    ForSession = 1,
-    Permanent = 2,
+    None           = 0,
+    ForSession     = 1,
+    Permanent      = 2,
     Synchronizable = 3,
 }
 
 /// NSURLErrorNetworkUnavailableReason
 URLErrorNetworkUnavailableReason :: enum cffi.long {
-    Cellular = 0,
-    Expensive = 1,
+    Cellular    = 0,
+    Expensive   = 1,
     Constrained = 2,
 }
 
 /// NSURLRequestCachePolicy
 URLRequestCachePolicy :: enum cffi.ulong {
-    UseProtocolCachePolicy = 0,
-    ReloadIgnoringLocalCacheData = 1,
+    UseProtocolCachePolicy           = 0,
+    ReloadIgnoringLocalCacheData     = 1,
     ReloadIgnoringLocalAndRemoteCacheData = 4,
-    ReloadIgnoringCacheData = 1,
-    ReturnCacheDataElseLoad = 2,
-    ReturnCacheDataDontLoad = 3,
-    ReloadRevalidatingCacheData = 5,
+    ReloadIgnoringCacheData          = 1,
+    ReturnCacheDataElseLoad          = 2,
+    ReturnCacheDataDontLoad          = 3,
+    ReloadRevalidatingCacheData      = 5,
 }
 
 /// NSURLRequestNetworkServiceType
 URLRequestNetworkServiceType :: enum cffi.ulong {
-    Default = 0,
-    VoIP = 1,
-    Video = 2,
-    Background = 3,
-    Voice = 4,
+    Default        = 0,
+    VoIP           = 1,
+    Video          = 2,
+    Background     = 3,
+    Voice          = 4,
     ResponsiveData = 6,
-    AVStreaming = 8,
-    ResponsiveAV = 9,
-    CallSignaling = 11,
+    AVStreaming    = 8,
+    ResponsiveAV   = 9,
+    CallSignaling  = 11,
 }
 
 /// NSURLRequestAttribution
 URLRequestAttribution :: enum cffi.ulong {
     Developer = 0,
-    User = 1,
+    User      = 1,
 }
 
 /// NSXMLParserExternalEntityResolvingPolicy
 XMLParserExternalEntityResolvingPolicy :: enum cffi.ulong {
-    ResolveExternalEntitiesNever = 0,
+    ResolveExternalEntitiesNever     = 0,
     ResolveExternalEntitiesNoNetwork = 1,
     ResolveExternalEntitiesSameOriginOnly = 2,
-    ResolveExternalEntitiesAlways = 3,
+    ResolveExternalEntitiesAlways    = 3,
 }
 
 /// NSXMLParserError
 XMLParserError :: enum cffi.long {
-    InternalError = 1,
-    OutOfMemoryError = 2,
-    DocumentStartError = 3,
-    EmptyDocumentError = 4,
-    PrematureDocumentEndError = 5,
-    InvalidHexCharacterRefError = 6,
-    InvalidDecimalCharacterRefError = 7,
-    InvalidCharacterRefError = 8,
-    InvalidCharacterError = 9,
-    CharacterRefAtEOFError = 10,
-    CharacterRefInPrologError = 11,
-    CharacterRefInEpilogError = 12,
-    CharacterRefInDTDError = 13,
-    EntityRefAtEOFError = 14,
-    EntityRefInPrologError = 15,
-    EntityRefInEpilogError = 16,
-    EntityRefInDTDError = 17,
-    ParsedEntityRefAtEOFError = 18,
-    ParsedEntityRefInPrologError = 19,
-    ParsedEntityRefInEpilogError = 20,
+    InternalError                    = 1,
+    OutOfMemoryError                 = 2,
+    DocumentStartError               = 3,
+    EmptyDocumentError               = 4,
+    PrematureDocumentEndError        = 5,
+    InvalidHexCharacterRefError      = 6,
+    InvalidDecimalCharacterRefError  = 7,
+    InvalidCharacterRefError         = 8,
+    InvalidCharacterError            = 9,
+    CharacterRefAtEOFError           = 10,
+    CharacterRefInPrologError        = 11,
+    CharacterRefInEpilogError        = 12,
+    CharacterRefInDTDError           = 13,
+    EntityRefAtEOFError              = 14,
+    EntityRefInPrologError           = 15,
+    EntityRefInEpilogError           = 16,
+    EntityRefInDTDError              = 17,
+    ParsedEntityRefAtEOFError        = 18,
+    ParsedEntityRefInPrologError     = 19,
+    ParsedEntityRefInEpilogError     = 20,
     ParsedEntityRefInInternalSubsetError = 21,
-    EntityReferenceWithoutNameError = 22,
-    EntityReferenceMissingSemiError = 23,
-    ParsedEntityRefNoNameError = 24,
-    ParsedEntityRefMissingSemiError = 25,
-    UndeclaredEntityError = 26,
-    UnparsedEntityError = 28,
-    EntityIsExternalError = 29,
-    EntityIsParameterError = 30,
-    UnknownEncodingError = 31,
-    EncodingNotSupportedError = 32,
-    StringNotStartedError = 33,
-    StringNotClosedError = 34,
-    NamespaceDeclarationError = 35,
-    EntityNotStartedError = 36,
-    EntityNotFinishedError = 37,
-    LessThanSymbolInAttributeError = 38,
-    AttributeNotStartedError = 39,
-    AttributeNotFinishedError = 40,
-    AttributeHasNoValueError = 41,
-    AttributeRedefinedError = 42,
-    LiteralNotStartedError = 43,
-    LiteralNotFinishedError = 44,
-    CommentNotFinishedError = 45,
+    EntityReferenceWithoutNameError  = 22,
+    EntityReferenceMissingSemiError  = 23,
+    ParsedEntityRefNoNameError       = 24,
+    ParsedEntityRefMissingSemiError  = 25,
+    UndeclaredEntityError            = 26,
+    UnparsedEntityError              = 28,
+    EntityIsExternalError            = 29,
+    EntityIsParameterError           = 30,
+    UnknownEncodingError             = 31,
+    EncodingNotSupportedError        = 32,
+    StringNotStartedError            = 33,
+    StringNotClosedError             = 34,
+    NamespaceDeclarationError        = 35,
+    EntityNotStartedError            = 36,
+    EntityNotFinishedError           = 37,
+    LessThanSymbolInAttributeError   = 38,
+    AttributeNotStartedError         = 39,
+    AttributeNotFinishedError        = 40,
+    AttributeHasNoValueError         = 41,
+    AttributeRedefinedError          = 42,
+    LiteralNotStartedError           = 43,
+    LiteralNotFinishedError          = 44,
+    CommentNotFinishedError          = 45,
     ProcessingInstructionNotStartedError = 46,
     ProcessingInstructionNotFinishedError = 47,
-    NotationNotStartedError = 48,
-    NotationNotFinishedError = 49,
-    AttributeListNotStartedError = 50,
-    AttributeListNotFinishedError = 51,
-    MixedContentDeclNotStartedError = 52,
+    NotationNotStartedError          = 48,
+    NotationNotFinishedError         = 49,
+    AttributeListNotStartedError     = 50,
+    AttributeListNotFinishedError    = 51,
+    MixedContentDeclNotStartedError  = 52,
     MixedContentDeclNotFinishedError = 53,
     ElementContentDeclNotStartedError = 54,
     ElementContentDeclNotFinishedError = 55,
-    XMLDeclNotStartedError = 56,
-    XMLDeclNotFinishedError = 57,
+    XMLDeclNotStartedError           = 56,
+    XMLDeclNotFinishedError          = 57,
     ConditionalSectionNotStartedError = 58,
     ConditionalSectionNotFinishedError = 59,
-    ExternalSubsetNotFinishedError = 60,
-    DOCTYPEDeclNotFinishedError = 61,
-    MisplacedCDATAEndStringError = 62,
-    CDATANotFinishedError = 63,
-    MisplacedXMLDeclarationError = 64,
-    SpaceRequiredError = 65,
-    SeparatorRequiredError = 66,
-    NMTOKENRequiredError = 67,
-    NAMERequiredError = 68,
-    PCDATARequiredError = 69,
-    URIRequiredError = 70,
-    PublicIdentifierRequiredError = 71,
-    LTRequiredError = 72,
-    GTRequiredError = 73,
-    LTSlashRequiredError = 74,
-    EqualExpectedError = 75,
-    TagNameMismatchError = 76,
-    UnfinishedTagError = 77,
-    StandaloneValueError = 78,
-    InvalidEncodingNameError = 79,
+    ExternalSubsetNotFinishedError   = 60,
+    DOCTYPEDeclNotFinishedError      = 61,
+    MisplacedCDATAEndStringError     = 62,
+    CDATANotFinishedError            = 63,
+    MisplacedXMLDeclarationError     = 64,
+    SpaceRequiredError               = 65,
+    SeparatorRequiredError           = 66,
+    NMTOKENRequiredError             = 67,
+    NAMERequiredError                = 68,
+    PCDATARequiredError              = 69,
+    URIRequiredError                 = 70,
+    PublicIdentifierRequiredError    = 71,
+    LTRequiredError                  = 72,
+    GTRequiredError                  = 73,
+    LTSlashRequiredError             = 74,
+    EqualExpectedError               = 75,
+    TagNameMismatchError             = 76,
+    UnfinishedTagError               = 77,
+    StandaloneValueError             = 78,
+    InvalidEncodingNameError         = 79,
     CommentContainsDoubleHyphenError = 80,
-    InvalidEncodingError = 81,
-    ExternalStandaloneEntityError = 82,
-    InvalidConditionalSectionError = 83,
-    EntityValueRequiredError = 84,
-    NotWellBalancedError = 85,
-    ExtraContentError = 86,
-    InvalidCharacterInEntityError = 87,
-    ParsedEntityRefInInternalError = 88,
-    EntityRefLoopError = 89,
-    EntityBoundaryError = 90,
-    InvalidURIError = 91,
-    URIFragmentError = 92,
-    NoDTDError = 94,
-    DelegateAbortedParseError = 512,
+    InvalidEncodingError             = 81,
+    ExternalStandaloneEntityError    = 82,
+    InvalidConditionalSectionError   = 83,
+    EntityValueRequiredError         = 84,
+    NotWellBalancedError             = 85,
+    ExtraContentError                = 86,
+    InvalidCharacterInEntityError    = 87,
+    ParsedEntityRefInInternalError   = 88,
+    EntityRefLoopError               = 89,
+    EntityBoundaryError              = 90,
+    InvalidURIError                  = 91,
+    URIFragmentError                 = 92,
+    NoDTDError                       = 94,
+    DelegateAbortedParseError        = 512,
 }
 
 /// NSXPCConnectionOptions
@@ -2743,118 +2540,118 @@ XPCConnectionOptions :: enum cffi.ulong {
 
 /// NSByteCountFormatterUnits
 ByteCountFormatterUnits :: enum cffi.ulong {
-    UseDefault = 0,
-    UseBytes = 1,
-    UseKB = 2,
-    UseMB = 4,
-    UseGB = 8,
-    UseTB = 16,
-    UsePB = 32,
-    UseEB = 64,
-    UseZB = 128,
+    UseDefault    = 0,
+    UseBytes      = 1,
+    UseKB         = 2,
+    UseMB         = 4,
+    UseGB         = 8,
+    UseTB         = 16,
+    UsePB         = 32,
+    UseEB         = 64,
+    UseZB         = 128,
     UseYBOrHigher = 65280,
-    UseAll = 65535,
+    UseAll        = 65535,
 }
 
 /// NSByteCountFormatterCountStyle
 ByteCountFormatterCountStyle :: enum cffi.long {
-    File = 0,
-    Memory = 1,
+    File    = 0,
+    Memory  = 1,
     Decimal = 2,
-    Binary = 3,
+    Binary  = 3,
 }
 
 /// NSComparisonPredicateOptions
 ComparisonPredicateOptions :: enum cffi.ulong {
-    CaseInsensitivePredicateOption = 1,
+    CaseInsensitivePredicateOption   = 1,
     DiacriticInsensitivePredicateOption = 2,
-    NormalizedPredicateOption = 4,
+    NormalizedPredicateOption        = 4,
 }
 
 /// NSComparisonPredicateModifier
 ComparisonPredicateModifier :: enum cffi.ulong {
     DirectPredicateModifier = 0,
-    AllPredicateModifier = 1,
-    AnyPredicateModifier = 2,
+    AllPredicateModifier    = 1,
+    AnyPredicateModifier    = 2,
 }
 
 /// NSPredicateOperatorType
 PredicateOperatorType :: enum cffi.ulong {
-    LessThanPredicateOperatorType = 0,
+    LessThanPredicateOperatorType    = 0,
     LessThanOrEqualToPredicateOperatorType = 1,
     GreaterThanPredicateOperatorType = 2,
     GreaterThanOrEqualToPredicateOperatorType = 3,
-    EqualToPredicateOperatorType = 4,
-    NotEqualToPredicateOperatorType = 5,
-    MatchesPredicateOperatorType = 6,
-    LikePredicateOperatorType = 7,
-    BeginsWithPredicateOperatorType = 8,
-    EndsWithPredicateOperatorType = 9,
-    InPredicateOperatorType = 10,
+    EqualToPredicateOperatorType     = 4,
+    NotEqualToPredicateOperatorType  = 5,
+    MatchesPredicateOperatorType     = 6,
+    LikePredicateOperatorType        = 7,
+    BeginsWithPredicateOperatorType  = 8,
+    EndsWithPredicateOperatorType    = 9,
+    InPredicateOperatorType          = 10,
     CustomSelectorPredicateOperatorType = 11,
-    ContainsPredicateOperatorType = 99,
-    BetweenPredicateOperatorType = 100,
+    ContainsPredicateOperatorType    = 99,
+    BetweenPredicateOperatorType     = 100,
 }
 
 /// NSCompoundPredicateType
 CompoundPredicateType :: enum cffi.ulong {
     NotPredicateType = 0,
     AndPredicateType = 1,
-    OrPredicateType = 2,
+    OrPredicateType  = 2,
 }
 
 /// NSDateComponentsFormatterUnitsStyle
 DateComponentsFormatterUnitsStyle :: enum cffi.long {
-    Positional = 0,
+    Positional  = 0,
     Abbreviated = 1,
-    Short = 2,
-    Full = 3,
-    SpellOut = 4,
-    Brief = 5,
+    Short       = 2,
+    Full        = 3,
+    SpellOut    = 4,
+    Brief       = 5,
 }
 
 /// NSDateComponentsFormatterZeroFormattingBehavior
 DateComponentsFormatterZeroFormattingBehavior :: enum cffi.ulong {
-    None = 0,
-    Default = 1,
-    DropLeading = 2,
-    DropMiddle = 4,
+    None         = 0,
+    Default      = 1,
+    DropLeading  = 2,
+    DropMiddle   = 4,
     DropTrailing = 8,
-    DropAll = 14,
-    Pad = 65536,
+    DropAll      = 14,
+    Pad          = 65536,
 }
 
 /// NSExpressionType
 ExpressionType :: enum cffi.ulong {
-    ConstantValueExpressionType = 0,
+    ConstantValueExpressionType   = 0,
     EvaluatedObjectExpressionType = 1,
-    VariableExpressionType = 2,
-    KeyPathExpressionType = 3,
-    FunctionExpressionType = 4,
-    UnionSetExpressionType = 5,
-    IntersectSetExpressionType = 6,
-    MinusSetExpressionType = 7,
-    SubqueryExpressionType = 13,
-    AggregateExpressionType = 14,
-    AnyKeyExpressionType = 15,
-    BlockExpressionType = 19,
-    ConditionalExpressionType = 20,
+    VariableExpressionType        = 2,
+    KeyPathExpressionType         = 3,
+    FunctionExpressionType        = 4,
+    UnionSetExpressionType        = 5,
+    IntersectSetExpressionType    = 6,
+    MinusSetExpressionType        = 7,
+    SubqueryExpressionType        = 13,
+    AggregateExpressionType       = 14,
+    AnyKeyExpressionType          = 15,
+    BlockExpressionType           = 19,
+    ConditionalExpressionType     = 20,
 }
 
 /// NSFileCoordinatorReadingOptions
 FileCoordinatorReadingOptions :: enum cffi.ulong {
-    WithoutChanges = 1,
-    ResolvesSymbolicLink = 2,
+    WithoutChanges                   = 1,
+    ResolvesSymbolicLink             = 2,
     ImmediatelyAvailableMetadataOnly = 4,
-    ForUploading = 8,
+    ForUploading                     = 8,
 }
 
 /// NSFileCoordinatorWritingOptions
 FileCoordinatorWritingOptions :: enum cffi.ulong {
-    ForDeleting = 1,
-    ForMoving = 2,
-    ForMerging = 4,
-    ForReplacing = 8,
+    ForDeleting                    = 1,
+    ForMoving                      = 2,
+    ForMerging                     = 4,
+    ForReplacing                   = 8,
     ContentIndependentMetadataOnly = 16,
 }
 
@@ -2870,105 +2667,55 @@ FileVersionReplacingOptions :: enum cffi.ulong {
 
 /// NSFileWrapperReadingOptions
 FileWrapperReadingOptions :: enum cffi.ulong {
-    Immediate = 1,
+    Immediate      = 1,
     WithoutMapping = 2,
 }
 
 /// NSFileWrapperWritingOptions
 FileWrapperWritingOptions :: enum cffi.ulong {
-    Atomic = 1,
+    Atomic           = 1,
     WithNameUpdating = 2,
 }
 
 /// NSLinguisticTaggerUnit
 LinguisticTaggerUnit :: enum cffi.long {
-    Word = 0,
-    Sentence = 1,
+    Word      = 0,
+    Sentence  = 1,
     Paragraph = 2,
-    Document = 3,
+    Document  = 3,
 }
 
 /// NSLinguisticTaggerOptions
 LinguisticTaggerOptions :: enum cffi.ulong {
-    OmitWords = 1,
+    OmitWords       = 1,
     OmitPunctuation = 2,
-    OmitWhitespace = 4,
-    OmitOther = 8,
-    JoinNames = 16,
+    OmitWhitespace  = 4,
+    OmitOther       = 8,
+    JoinNames       = 16,
 }
 
 /// NSNetServicesError
 NetServicesError :: enum cffi.long {
-    UnknownError = -72000,
-    CollisionError = -72001,
-    NotFoundError = -72002,
-    ActivityInProgress = -72003,
-    BadArgumentError = -72004,
-    CancelledError = -72005,
-    InvalidError = -72006,
-    TimeoutError = -72007,
+    UnknownError                     = -72000,
+    CollisionError                   = -72001,
+    NotFoundError                    = -72002,
+    ActivityInProgress               = -72003,
+    BadArgumentError                 = -72004,
+    CancelledError                   = -72005,
+    InvalidError                     = -72006,
+    TimeoutError                     = -72007,
     MissingRequiredConfigurationError = -72008,
 }
 
 /// NSNetServiceOptions
 NetServiceOptions :: enum cffi.ulong {
-    NoAutoRename = 1,
+    NoAutoRename         = 1,
     ListenForConnections = 2,
-}
-
-/// SSLSessionOption
-SSLSessionOption :: enum cffi.int {
-    kSSLSessionOptionBreakOnServerAuth = 0,
-    kSSLSessionOptionBreakOnCertRequested = 1,
-    kSSLSessionOptionBreakOnClientAuth = 2,
-    kSSLSessionOptionFalseStart = 3,
-    kSSLSessionOptionSendOneByteRecord = 4,
-    kSSLSessionOptionAllowServerIdentityChange = 5,
-    kSSLSessionOptionFallback = 6,
-    kSSLSessionOptionBreakOnClientHello = 7,
-    kSSLSessionOptionAllowRenegotiation = 8,
-    kSSLSessionOptionEnableSessionTickets = 9,
-}
-
-/// SSLSessionState
-SSLSessionState :: enum cffi.int {
-    kSSLIdle = 0,
-    kSSLHandshake = 1,
-    kSSLConnected = 2,
-    kSSLClosed = 3,
-    kSSLAborted = 4,
-}
-
-/// SSLClientCertificateState
-SSLClientCertificateState :: enum cffi.int {
-    kSSLClientCertNone = 0,
-    kSSLClientCertRequested = 1,
-    kSSLClientCertSent = 2,
-    kSSLClientCertRejected = 3,
-}
-
-/// SSLProtocolSide
-SSLProtocolSide :: enum cffi.int {
-    kSSLServerSide = 0,
-    kSSLClientSide = 1,
-}
-
-/// SSLConnectionType
-SSLConnectionType :: enum cffi.int {
-    kSSLStreamType = 0,
-    kSSLDatagramType = 1,
-}
-
-/// SSLAuthenticate
-SSLAuthenticate :: enum cffi.int {
-    kNeverAuthenticate = 0,
-    kAlwaysAuthenticate = 1,
-    kTryAuthenticate = 2,
 }
 
 /// NSURLSessionTaskState
 URLSessionTaskState :: enum cffi.long {
-    Running = 0,
+    Running   = 0,
     Suspended = 1,
     Canceling = 2,
     Completed = 3,
@@ -2976,73 +2723,73 @@ URLSessionTaskState :: enum cffi.long {
 
 /// NSURLSessionWebSocketMessageType
 URLSessionWebSocketMessageType :: enum cffi.long {
-    Data = 0,
+    Data   = 0,
     String = 1,
 }
 
 /// NSURLSessionWebSocketCloseCode
 URLSessionWebSocketCloseCode :: enum cffi.long {
-    Invalid = 0,
-    NormalClosure = 1000,
-    GoingAway = 1001,
-    ProtocolError = 1002,
-    UnsupportedData = 1003,
-    NoStatusReceived = 1005,
-    AbnormalClosure = 1006,
-    InvalidFramePayloadData = 1007,
-    PolicyViolation = 1008,
-    MessageTooBig = 1009,
+    Invalid                   = 0,
+    NormalClosure             = 1000,
+    GoingAway                 = 1001,
+    ProtocolError             = 1002,
+    UnsupportedData           = 1003,
+    NoStatusReceived          = 1005,
+    AbnormalClosure           = 1006,
+    InvalidFramePayloadData   = 1007,
+    PolicyViolation           = 1008,
+    MessageTooBig             = 1009,
     MandatoryExtensionMissing = 1010,
-    InternalServerError = 1011,
-    TLSHandshakeFailure = 1015,
+    InternalServerError       = 1011,
+    TLSHandshakeFailure       = 1015,
 }
 
 /// NSURLSessionMultipathServiceType
 URLSessionMultipathServiceType :: enum cffi.long {
-    None = 0,
-    Handover = 1,
+    None        = 0,
+    Handover    = 1,
     Interactive = 2,
-    Aggregate = 3,
+    Aggregate   = 3,
 }
 
 /// NSURLSessionDelayedRequestDisposition
 URLSessionDelayedRequestDisposition :: enum cffi.long {
     ContinueLoading = 0,
-    UseNewRequest = 1,
-    Cancel = 2,
+    UseNewRequest   = 1,
+    Cancel          = 2,
 }
 
 /// NSURLSessionAuthChallengeDisposition
 URLSessionAuthChallengeDisposition :: enum cffi.long {
-    UseCredential = 0,
-    PerformDefaultHandling = 1,
+    UseCredential                 = 0,
+    PerformDefaultHandling        = 1,
     CancelAuthenticationChallenge = 2,
-    RejectProtectionSpace = 3,
+    RejectProtectionSpace         = 3,
 }
 
 /// NSURLSessionResponseDisposition
 URLSessionResponseDisposition :: enum cffi.long {
-    Cancel = 0,
-    Allow = 1,
+    Cancel         = 0,
+    Allow          = 1,
     BecomeDownload = 2,
-    BecomeStream = 3,
+    BecomeStream   = 3,
 }
 
 /// NSURLSessionTaskMetricsResourceFetchType
 URLSessionTaskMetricsResourceFetchType :: enum cffi.long {
-    Unknown = 0,
+    Unknown     = 0,
     NetworkLoad = 1,
-    ServerPush = 2,
-    LocalCache = 3,
+    ServerPush  = 2,
+    LocalCache  = 3,
 }
 
 /// NSURLSessionTaskMetricsDomainResolutionProtocol
 URLSessionTaskMetricsDomainResolutionProtocol :: enum cffi.long {
     Unknown = 0,
-    UDP = 1,
-    TCP = 2,
-    TLS = 3,
-    HTTPS = 4,
+    UDP     = 1,
+    TCP     = 2,
+    TLS     = 3,
+    HTTPS   = 4,
 }
 
 /// _NSZone
@@ -3050,17 +2797,17 @@ _NSZone :: struct {}
 
 /// NSFastEnumerationState
 FastEnumerationState :: struct #align (8) {
-    state: cffi.ulong,
-    itemsPtr: ^id,
+    state:        cffi.ulong,
+    itemsPtr:     ^id,
     mutationsPtr: ^cffi.ulong,
-    extra: [5]cffi.ulong,
+    extra:        [5]cffi.ulong,
 }
 #assert(size_of(FastEnumerationState) == 64)
 
 /// _NSRange
 _NSRange :: struct #align (8) {
     location: UInteger,
-    length: UInteger,
+    length:   UInteger,
 }
 #assert(size_of(_NSRange) == 16)
 
@@ -3079,13 +2826,13 @@ SwappedDouble :: struct #align (8) {
 /// NSDecimal
 Decimal :: struct #align (4) #max_field_align(4) {
     using _: bit_field cffi.int {
-        _exponent: cffi.int | 8,
-        _length: cffi.uint | 4,
+        _exponent:   cffi.int | 8,
+        _length:     cffi.uint | 4,
         _isNegative: cffi.uint | 1,
-        _isCompact: cffi.uint | 1,
-        _reserved: cffi.uint | 18,
+        _isCompact:  cffi.uint | 1,
+        _reserved:   cffi.uint | 18,
     },
-    _mantissa: [8]cffi.ushort,
+    _mantissa:   [8]cffi.ushort,
 }
 #assert(size_of(Decimal) == 20)
 
@@ -3099,10 +2846,10 @@ HashEnumerator :: struct #align (8) {
 
 /// NSHashTableCallBacks
 HashTableCallBacks :: struct #align (8) {
-    hash: proc "c" (table: ^HashTable, _arg_0: rawptr) -> UInteger,
-    isEqual: proc "c" (table: ^HashTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
-    retain: proc "c" (table: ^HashTable, _arg_0: rawptr),
-    release: proc "c" (table: ^HashTable, _arg_0: rawptr),
+    hash:     proc "c" (table: ^HashTable, _arg_0: rawptr) -> UInteger,
+    isEqual:  proc "c" (table: ^HashTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
+    retain:   proc "c" (table: ^HashTable, _arg_0: rawptr),
+    release:  proc "c" (table: ^HashTable, _arg_0: rawptr),
     describe: proc "c" (table: ^HashTable, _arg_0: rawptr) -> ^String,
 }
 #assert(size_of(HashTableCallBacks) == 40)
@@ -3117,19 +2864,19 @@ MapEnumerator :: struct #align (8) {
 
 /// NSMapTableKeyCallBacks
 MapTableKeyCallBacks :: struct #align (8) {
-    hash: proc "c" (table: ^MapTable, _arg_0: rawptr) -> UInteger,
-    isEqual: proc "c" (table: ^MapTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
-    retain: proc "c" (table: ^MapTable, _arg_0: rawptr),
-    release: proc "c" (table: ^MapTable, _arg_0: rawptr),
-    describe: proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
+    hash:          proc "c" (table: ^MapTable, _arg_0: rawptr) -> UInteger,
+    isEqual:       proc "c" (table: ^MapTable, _arg_0: rawptr, _arg_1: rawptr) -> bool,
+    retain:        proc "c" (table: ^MapTable, _arg_0: rawptr),
+    release:       proc "c" (table: ^MapTable, _arg_0: rawptr),
+    describe:      proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
     notAKeyMarker: rawptr,
 }
 #assert(size_of(MapTableKeyCallBacks) == 48)
 
 /// NSMapTableValueCallBacks
 MapTableValueCallBacks :: struct #align (8) {
-    retain: proc "c" (table: ^MapTable, _arg_0: rawptr),
-    release: proc "c" (table: ^MapTable, _arg_0: rawptr),
+    retain:   proc "c" (table: ^MapTable, _arg_0: rawptr),
+    release:  proc "c" (table: ^MapTable, _arg_0: rawptr),
     describe: proc "c" (table: ^MapTable, _arg_0: rawptr) -> ^String,
 }
 #assert(size_of(MapTableValueCallBacks) == 24)
@@ -3141,71 +2888,6 @@ OperatingSystemVersion :: struct #align (8) {
     patchVersion: Integer,
 }
 #assert(size_of(OperatingSystemVersion) == 24)
-
-/// __SecCertificate
-__SecCertificate :: struct {}
-
-/// __SecIdentity
-__SecIdentity :: struct {}
-
-/// __SecKey
-__SecKey :: struct {}
-
-/// __SecPolicy
-__SecPolicy :: struct {}
-
-/// __SecAccessControl
-__SecAccessControl :: struct {}
-
-/// __SecKeychain
-__SecKeychain :: struct {}
-
-/// __SecKeychainItem
-__SecKeychainItem :: struct {}
-
-/// __SecKeychainSearch
-__SecKeychainSearch :: struct {}
-
-/// SecKeychainAttribute
-SecKeychainAttribute :: struct #align (8) {
-    tag: SecKeychainAttrType,
-    length: CF.UInt32,
-    data: rawptr,
-}
-#assert(size_of(SecKeychainAttribute) == 16)
-
-/// SecKeychainAttributeList
-SecKeychainAttributeList :: struct #align (8) {
-    count: CF.UInt32,
-    attr: ^SecKeychainAttribute,
-}
-#assert(size_of(SecKeychainAttributeList) == 16)
-
-/// __SecTrustedApplication
-__SecTrustedApplication :: struct {}
-
-/// __SecAccess
-__SecAccess :: struct {}
-
-/// __SecACL
-__SecACL :: struct {}
-
-/// __SecPassword
-__SecPassword :: struct {}
-
-/// SecKeychainAttributeInfo
-SecKeychainAttributeInfo :: struct #align (8) {
-    count: CF.UInt32,
-    tag: ^CF.UInt32,
-    format: ^CF.UInt32,
-}
-#assert(size_of(SecKeychainAttributeInfo) == 24)
-
-/// __SecRandom
-__SecRandom :: struct {}
-
-/// __SecTrust
-__SecTrust :: struct {}
 
 /// _xpc_type_s
 _xpc_type_s :: struct {}
@@ -3233,7 +2915,4 @@ xpc_session_s :: struct {}
 
 /// xpc_listener_s
 xpc_listener_s :: struct {}
-
-/// SSLContext
-SSLContext :: struct {}
 
