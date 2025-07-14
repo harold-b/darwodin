@@ -35,7 +35,7 @@ while true; do
         #"-show-debug-messages"
         "-show-system-calls"
         # -show-more-timings
-        -keep-temp-files
+        # -keep-temp-files
         # -use-separate-modules
       )
     ;;
