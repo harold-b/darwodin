@@ -59,10 +59,6 @@ else
 fi
 
 for f in ${excluded_frameworks[@]}; do
-  if [[ "$f" == "AppKit" &&  ${use_ios} -eq 1 ]]; then
-    f=UIKit
-  fi
-
   mkdir -p "${out_dir}/darwodin/$f/"
-  echo "package $f" > "${out_dir}/darwodin/$f/${f}.odin"
+  echo "package darwodin_$f" > "${out_dir}/darwodin/$f/${f}.odin"
 done

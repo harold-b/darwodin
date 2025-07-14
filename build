@@ -34,7 +34,7 @@ while true; do
         "-debug"
         #"-show-debug-messages"
         "-show-system-calls"
-        -show-more-timings
+        # -show-more-timings
         -keep-temp-files
         # -use-separate-modules
       )
@@ -75,7 +75,7 @@ if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
   if [[ "${ios}" -eq 1 ]]; then
     extra_args+=(-subtarget:ios)
   else
-    extra_args+=(-subtarget:ios-simulator)
+    extra_args+=(-subtarget:iphonesimulator)
   fi
 
   if [[ ${lite} -eq 1 ]]; then

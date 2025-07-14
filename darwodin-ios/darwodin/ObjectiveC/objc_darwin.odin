@@ -37,12 +37,22 @@ foreign ObjC {
     sel_registerName :: proc "c" (name: cstring) -> SEL ---
 
 
+    // NOTE: From Objective-C runtime:
+    //  These functions must be cast to an appropriate function pointer type before being called. 
+    objc_msgSendSuper2 :: proc "c" (super: ^objc_super, op: SEL, #c_vararg args: ..any ) -> id ---
+
+
 // 	class_addMethod         :: proc "c" (cls: Class, name: SEL, imp: IMP, types: cstring) -> BOOL ---
 // 	class_getInstanceMethod :: proc "c" (cls: Class, name: SEL) -> Method ---
 	class_createInstance    :: proc "c" (cls: Class, extraBytes: c.size_t) -> id ---
 
 // 	method_setImplementation :: proc "c" (method: Method, imp: IMP) ---
 	// object_getIndexedIvars   :: proc(obj: id) -> rawptr ---
+}
+
+objc_super :: struct {
+    receiver:    id,
+    super_class: Class,
 }
 
 SelectorVariant :: union {
