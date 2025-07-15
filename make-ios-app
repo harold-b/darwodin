@@ -24,6 +24,7 @@ echo 'Compile LaunchScreen'
 ibtool --errors --warnings --notices \
   --module ${app_name} \
   --target-device iphone \
+  --target-device ipad \
   --minimum-deployment-target 17.0 \
   --auto-activate-custom-fonts \
   --output-format human-readable-text \
@@ -36,6 +37,7 @@ echo 'Link LaunchScreen'
 ibtool --errors --warnings --notices \
   --module ${app_name} \
   --target-device iphone \
+  --target-device ipad \
   --minimum-deployment-target 17.0 \
   --output-format human-readable-text \
   --link "${app_bundle_dir}" \

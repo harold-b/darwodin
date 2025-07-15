@@ -33,7 +33,7 @@ while true; do
         "-o:none"
         "-debug"
         #"-show-debug-messages"
-        "-show-system-calls"
+        # "-show-system-calls"
         # -show-more-timings
         -keep-temp-files
         # -use-separate-modules

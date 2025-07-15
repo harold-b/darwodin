@@ -10,7 +10,8 @@ import UI  "root:darwodin/UIKit"
 import CA  "root:darwodin/QuartzCore"
 import MTL "root:darwodin/Metal"
 
-// Class    :: ^intrinsics.objc_class
+@private msgSend  :: intrinsics.objc_send
+@private Class    :: ^intrinsics.objc_class
 
 run_app :: proc() {
     fmt.printfln("Launching...")
@@ -36,8 +37,8 @@ IOSAppDelegate_T :: struct {
     main_window: ^UI.Window,
     metal_view:  ^IOSMetalView,
     metal_layer: ^CA.MetalLayer,
-    // device: ^MTL.Device,
-    // queue:  ^MTL.CommandQueue,
+    // device:      ^MTL.Device,
+    // queue:       ^MTL.CommandQueue,
 }
 
 @(private="file")
@@ -47,19 +48,20 @@ get_objc_ctx :: proc "c" ( self: ^IOSAppDelegate_T ) -> runtime.Context {
 
 @(objc_type=IOSAppDelegate, objc_name="applicationDidFinishLaunching", objc_selector="applicationDidFinishLaunching:")
 IOSAppDelegate_applicationDidFinishLaunching :: proc( self: ^IOSAppDelegate, application: ^UI.Application ) {
+    self.ctx = runtime.default_context()    // TODO: Set before at init
+    context = self.ctx
+
     fmt.printfln("IOSAppDelegate_applicationDidFinishLaunching")
 
     main_screen := UI.Screen.mainScreen()
     win_frame   := main_screen->applicationFrame()
     scale       := main_screen->nativeScale()
 
-    main_window := UI.Window.alloc()->init()//initWithFrame( frame )
+    main_window := UI.Window.alloc()->init()
     main_window->setBackgroundColor( UI.Color.magentaColor() )
 
-    metal_view := IOSMetalView.alloc()->init()
-    metal_view->setFrame(win_frame)
-
-    vc := UI.ViewController.alloc()->init()
+    vc         := UI.ViewController.alloc()->init()
+    metal_view := IOSMetalView.alloc()->initWithFrame(win_frame)
     vc->setView(metal_view)
 
     main_window->setRootViewController(vc)
@@ -67,7 +69,11 @@ IOSAppDelegate_applicationDidFinishLaunching :: proc( self: ^IOSAppDelegate, app
 
     self.main_window = main_window
     self.metal_view  = auto_cast metal_view
-    self.metal_layer = auto_cast metal_view->layer()
+
+    layer := metal_view->layer()
+    self.metal_layer = auto_cast layer->retain()
+
+    init_metal(scale, win_frame.size, self.metal_layer)
 }
 
 @(objc_type=IOSAppDelegate, objc_name="willFinishLaunchingWithOptions", objc_selector="application:willFinishLaunchingWithOptions:")
@@ -89,10 +95,22 @@ IOSAppDelegate_window :: proc( self: ^IOSAppDelegate ) -> ^UI.Window {
 )
 IOSMetalView :: struct { using _: UI.View }
 
-@(objc_type=IOSMetalView, objc_name="layerClass")
-IOSMetalView_layerClass :: proc "c" ( self: ^IOSMetalView ) -> UI.Class {
+@(objc_type=IOSMetalView, objc_name="alloc", objc_is_class_method=true, objc_implement=false)
+IOSMetalView_alloc :: #force_inline proc "c" () -> ^IOSMetalView {
+    return msgSend(^IOSMetalView, IOSMetalView, "alloc")
+}
+
+@(objc_type=IOSMetalView, objc_name="layerClass", objc_is_class_method=true)
+IOSMetalView_layerClass :: proc "c" () -> Class {
+    context=runtime.default_context()
+    fmt.printfln("IOSMetalView_layerClass")
     return intrinsics.objc_find_class("CAMetalLayer")
 }
+
+
+// layerClass = proc() -> ObjC.Class {
+// return intrinsics.objc_find_class( "CAMetalLayer" )
+// },
 
 // setWindow: proc(self: ^UI.ApplicationDelegate, window: ^UI.Window),
 // return intrinsics.objc_find_class( "CAMetalLayer" )

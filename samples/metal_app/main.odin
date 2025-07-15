@@ -3,6 +3,8 @@ package main
 
 import "core:fmt"
 import "core:thread"
+import "core:time"
+import "core:math"
 import "base:runtime"
 import "base:intrinsics"
 
@@ -14,8 +16,18 @@ import CA   "root:darwodin/QuartzCore"
 import MTL  "root:darwodin/Metal"
 import GC   "root:darwodin/GameController"
 import FS   "root:darwodin/FSEvents"
+
 // import MDL "root:darwodin/ModelIO"
 // import NS  "root:darwodin/AppKit"
+
+
+Metal_Context :: struct {
+    layer:         ^CA.MetalLayer,
+    device:        ^MTL.Device,
+    queue:         ^MTL.CommandQueue,
+    screen_size:  [2]f64,
+    screen_scale: f64,
+}
 
 main :: proc() {
 
@@ -58,7 +70,7 @@ else {
 // when ODIN_PLATFORM_SUBTARGET == .Default {
 //     init_macos :: proc() {
 //         vt := NS.ApplicationDelegate_VTable{
-//             applicationDidFinishLaunching = proc(self: ^NS.ApplicationDelegate, notification: ^NSF.Notification){
+//             applicationDidFinishLaunching = proc(self: ^NS.ApplicationDelegate, notification: ^NS.Notification){
 //                 on_app_launched()
 //             },
 //             applicationShouldTerminateAfterLastWindowClosed = proc(self: ^NS.ApplicationDelegate, sender: ^NS.Application) -> bool {
@@ -84,7 +96,7 @@ else {
 //             .Miniaturizable,
 //         }
 
-//         rect := NSF.Rect {
+//         rect := NS.Rect {
 //             size = {
 //                 width  = 1280,
 //                 height = 720,
@@ -147,7 +159,7 @@ else {
 //                     return main_window
 //                 },
 //             }
-        
+
 //             o   := ObjC.make_subclasser(UI.ApplicationDelegate_VTable, &vt, UI.ApplicationDelegate_odin_extend)
 //             cls := ObjC.register_subclass( UI_APP_DELEGATE_NAME, intrinsics.objc_find_class("UIResponder"), nil, o )
 //         }
@@ -159,7 +171,7 @@ else {
 //             superclass := intrinsics.objc_find_class( "UIResponder" )
 //             cls        := ObjC.objc_allocateClassPair( superclass, DUMMY_APP_DELEGATE_NAME, 0 )
         
-//             willFinishLaunchingWithOptions :: proc "c" ( self: ^UI.ApplicationDelegate, _: UI.SEL, application: ^UI.Application, launchOptions: ^NSF.Dictionary ) -> bool {
+//             willFinishLaunchingWithOptions :: proc "c" ( self: ^UI.ApplicationDelegate, _: UI.SEL, application: ^UI.Application, launchOptions: ^NS.Dictionary ) -> bool {
 
 //                 del_class := ObjC.objc_lookUpClass( UI_APP_DELEGATE_NAME );
 //                 del       := cast(^UI.ApplicationDelegate)ObjC.alloc_user_object( del_class )
@@ -175,7 +187,7 @@ else {
 //             ObjC.objc_registerClassPair( cls )
 //         }
         
-//         ns_dummy_del_name := cast(^NSF.String)NSF.String.alloc()->initWithCStringNoCopy(DUMMY_APP_DELEGATE_NAME, auto_cast len(DUMMY_APP_DELEGATE_NAME), false)
+//         ns_dummy_del_name := cast(^NS.String)NS.String.alloc()->initWithCStringNoCopy(DUMMY_APP_DELEGATE_NAME, auto_cast len(DUMMY_APP_DELEGATE_NAME), false)
 
 //         _ = UI.ApplicationMain(0, nil, nil, ns_dummy_del_name)
 //     }
@@ -189,9 +201,9 @@ else {
 //                 return intrinsics.objc_find_class( "CAMetalLayer" )
 //             },
 //         }
-    
+
 //         cls: ObjC.Class
-    
+
 //         o   := ObjC.make_subclasser( UI.View_VTable, &vt, UI.View_odin_extend )
 //         cls =  ObjC.register_subclass( "MetalUIView", intrinsics.objc_find_class("UIView"), superclass_overrides=o )
     
@@ -244,148 +256,200 @@ else {
 // }
 
 
-// init_metal :: proc( scale: CG.Float, size: CG.Size ) {
-//     fmt.printfln( "Initializing Metal" )
-//     size:=size
+init_metal :: proc( scale: CG.Float, size: CG.Size, layer: ^CA.MetalLayer ) {
+    fmt.printfln( "Initializing Metal: %vx%v @ %s", size.width, size.height, scale)
 
-//     device = MTL.CreateSystemDefaultDevice()
-//     queue  = device->newCommandQueue()
+    device := MTL.CreateSystemDefaultDevice()
+    queue  := device->newCommandQueue()
 
-//     layer->setDevice( auto_cast device )
-//     layer->setPixelFormat( auto_cast MTL.PixelFormat.BGRA8Unorm )
-// 	layer->setOpaque( true )
-//     layer->setAllowsNextDrawableTimeout( false )
-//     layer->setMaximumDrawableCount( 2 )
+    layer->setDevice( auto_cast device )
+    layer->setPixelFormat( auto_cast MTL.PixelFormat.BGRA8Unorm )
+	layer->setOpaque( true )
+    layer->setAllowsNextDrawableTimeout( false )
+    layer->setMaximumDrawableCount( 2 )
 
-//     size.width  *= scale
-//     size.height *= scale
+    drawable_size := size
+    drawable_size.width  *= scale
+    drawable_size.height *= scale
+    layer->setDrawableSize(drawable_size)
 
-//     layer->setDrawableSize( size )
+    metal_context := new(Metal_Context)
+    metal_context.layer        = layer
+    metal_context.device       = device
+    metal_context.queue        = queue
+    metal_context.screen_size  = [2]f64{ auto_cast size.width, auto_cast size.height }
+    metal_context.screen_scale = auto_cast scale
 
-//     render_thread = thread.create_and_start( render_main, priority = .High )
-// }
+    // render_thread := thread.create_and_start( render_main, priority = .High )
+    render_thread := thread.create(render_main, priority = .High)
+    render_thread.user_args[0] = metal_context
+    thread.start(render_thread)
+}
 
-// render_main :: proc() {
+render_main :: proc( t: ^thread.Thread ) {
+    metal_context := cast(^Metal_Context)t.user_args[0]
+    layer        := metal_context.layer
+    device       := metal_context.device
+    queue        := metal_context.queue
+
+    screen_scale := metal_context.screen_scale
+    screen_size  := metal_context.screen_size
+
+    Constants :: struct {
+        aspect_ratio: f32,
+        rotation:     f32,
+    }
+
+    ROT_SPEED_DEG: f32: 45
+
+    constants := Constants {
+        aspect_ratio = f32(screen_size.x / screen_size.y),
+    }
     
-//     pso := metal_shader_build_source( test_shader_code, "vs_main", "ps_main" )
+    pso := metal_shader_build_source( device, test_shader_code, "vs_main", "ps_main" )
 
-//     for {
-//         autoreleasePool := NSF.AutoreleasePool.alloc()->init()
-//         defer autoreleasePool->release()
+    prev_time := time.tick_now()
+    for {
+        autoreleasePool := NS.AutoreleasePool.alloc()->init()
+        defer autoreleasePool->release()
 
-//         drawable := layer->nextDrawable()
-//         assert( drawable != nil )
+        drawable := layer->nextDrawable()
+        assert( drawable != nil )
 
-//         scale: CG.Float = 1
+        now := time.tick_now()
+        dt  := cast(f32)time.duration_seconds(time.tick_diff(prev_time, now))
+        prev_time = now
 
-//         when ODIN_PLATFORM_SUBTARGET == .Default {
-//             scale = main_window->screen()->backingScaleFactor()
-//         }
-//         else {
-//             scale = main_window->screen()->nativeScale()
-//         }
+        constants.rotation += math.to_radians(ROT_SPEED_DEG) * dt
+        constants.rotation = math.mod(constants.rotation, math.TAU)
 
-//         size := metal_view->bounds().size
+        viewport := MTL.Viewport {
+            znear  = -1,
+            zfar   = 10.0,
+            width  = screen_size.x * screen_scale,
+            height = screen_size.y * screen_scale,
+        }
 
-//         viewport := MTL.Viewport{
-//             znear  = -1,
-//             zfar   = 10.0,
-//             width  = f64(size.width * scale),
-//             height = f64(size.height * scale),
-//         }
+        pass  := MTL.RenderPassDescriptor.renderPassDescriptor()
+        color := pass->colorAttachments()->objectAtIndexedSubscript(0)
+        color->setTexture(auto_cast drawable->texture())
 
-//         pass  := MTL.RenderPassDescriptor.renderPassDescriptor()
-//         color := pass->colorAttachments()->objectAtIndexedSubscript( 0 )
-//         color->setTexture( auto_cast drawable->texture() )
+        color->setLoadAction(.Clear)
+        color->setStoreAction(.Store)
+        color->setClearColor(MTL.ClearColor{})
 
-//         color->setLoadAction( .Clear )
-//         color->setStoreAction( .Store )
-//         color->setClearColor( MTL.ClearColor{} )
-        
-//         commands := queue->commandBuffer() 
-//         encoder  := commands->renderCommandEncoderWithDescriptor( pass )
+        commands := queue->commandBuffer() 
+        encoder  := commands->renderCommandEncoderWithDescriptor(pass)
 
-//         encoder->setViewport( viewport )
+        encoder->setViewport(viewport)
+        encoder->setRenderPipelineState(pso)
+        encoder->setVertexBytes_length_atIndex(&constants, auto_cast size_of(constants), 0)
+        encoder->drawPrimitives(.Triangle, 0, 3)
+        encoder->endEncoding()
 
-//         encoder->setRenderPipelineState( pso )
-//         encoder->drawPrimitives( .Triangle, 0, 3 )
+        commands->presentDrawable_(auto_cast drawable)
+        commands->commit()
+    }
+}
 
-//         encoder->endEncoding()
+metal_shader_build_source :: proc( device: ^MTL.Device, source_code: string, vs_main: string, ps_main: string ) -> ^MTL.RenderPipelineState {
 
-//         commands->presentDrawable_( auto_cast drawable )
-//         commands->commit()
-//     }
-// }
+    ns_source  := odin_to_ns_string( source_code )
+    ns_vs_main := odin_to_ns_string( vs_main )
+    ns_ps_main := odin_to_ns_string( ps_main )
+    defer {
+        ns_source->release()
+        ns_vs_main->release()
+        ns_ps_main->release()
+    }
 
+    err: ^NS.Error
+    defer if err != nil do err->release()
 
-// metal_shader_build_source :: proc( source_code: string, vs_main: string, ps_main: string ) -> ^MTL.RenderPipelineState {
+    lib := device->newLibraryWithSource_options_error( ns_source, nil, &err )
+    if lib == nil {
+        fmt.printfln("Error when compiling shader: {}", err->description()->UTF8String())
+        return nil
+    }
 
-//     ns_source  := odin_to_ns_string( source_code )
-//     ns_vs_main := odin_to_ns_string( vs_main )
-//     ns_ps_main := odin_to_ns_string( ps_main )
-//     defer {
-//         ns_source->release()
-//         ns_vs_main->release()
-//         ns_ps_main->release()
-//     }
+    vertex_function   := lib->newFunctionWithName( ns_vs_main )
+	fragment_function := lib->newFunctionWithName( ns_ps_main )
+	defer vertex_function->release()
+	defer fragment_function->release()
 
-//     err: ^NSF.Error
-//     defer if err != nil do err->release()
+	desc := MTL.RenderPipelineDescriptor.alloc()->init()
+	defer desc->release()
 
-//     lib := device->newLibraryWithSource_options_error( ns_source, nil, &err )
-//     if lib == nil {
-//         fmt.printfln("Error when compiling shader: {}", err->description()->UTF8String())
-//         return nil
-//     }
+	desc->setVertexFunction( vertex_function )
+	desc->setFragmentFunction( fragment_function )
+    desc->colorAttachments()->objectAtIndexedSubscript(0)->setPixelFormat( .BGRA8Unorm )
 
-//     vertex_function   := lib->newFunctionWithName( ns_vs_main )
-// 	fragment_function := lib->newFunctionWithName( ns_ps_main )
-// 	defer vertex_function->release()
-// 	defer fragment_function->release()
+    pso := device->newRenderPipelineStateWithDescriptor( desc, &err )
+    if pso == nil {
+        fmt.printfln("Error when creating RenderPipelineState: %s", err->description()->UTF8String())
+        return nil
+    }
 
-// 	desc := MTL.RenderPipelineDescriptor.alloc()->init()
-// 	defer desc->release()
-
-// 	desc->setVertexFunction( vertex_function )
-// 	desc->setFragmentFunction( fragment_function )
-//     desc->colorAttachments()->objectAtIndexedSubscript(0)->setPixelFormat( .BGRA8Unorm )
-
-//     pso := device->newRenderPipelineStateWithDescriptor( desc, &err )
-//     if pso == nil {
-//         fmt.printfln("Error when creating RenderPipelineState: %s", err->description()->UTF8String())
-//         return nil
-//     }
-
-//     return pso
-// }
+    return pso
+}
 
 
-// @private
-// test_shader_code := `
-//     #include <metal_stdlib>
-//     using namespace metal;
+@private
+test_shader_code := `
+    #include <metal_stdlib>
+    using namespace metal;
 
-//     struct v2f {
-//         float4 position [[position]];
-//         half3 color;
-//     };
+    struct Constants {
+        float aspect_ratio;
+        float rotation;
+    };
 
-//     v2f vertex vs_main( uint vertex_id [[vertex_id]] )
-//     {
-//         float3 positions[] = {
-//             float3(  0.0,  0.1, 0.0 ),
-//             float3( -0.5, -0.4, 0.0 ),
-//             float3(  0.5, -0.4, 0.0 )
-//         };
-//         v2f o;
-//         o.position = float4(positions[vertex_id], 1.0);
-//         o.color = half3(1,0,0);
-//         return o;
-//     }
+    struct v2f {
+        float4 position [[position]];
+        float3 color;
+    };
 
-//     half4 fragment ps_main(v2f in [[stage_in]]) 
-//     {
-//         return half4(in.color, 1.0);
-//     }
-//     `
+    v2f vertex vs_main( 
+        device const Constants& constants [[buffer(0)]],
+        uint vertex_id [[vertex_id]] )
+    {
+        float a = constants.aspect_ratio;
+        float w = 0.5;
+        float h = 0.5;
+
+
+        float cos_theta = cos(constants.rotation);
+        float sin_theta = sin(constants.rotation);
+
+        float2x2 mrot = float2x2(
+            cos_theta, -sin_theta,
+            sin_theta, cos_theta
+        );
+
+        float2 positions[] = {
+            float2(  0,  h ),
+            float2( -w, -h ),
+            float2(  w, -h ),
+        };
+
+        float3 colors[] = {
+            float3( 1.0, 0.0, 1.0 ),
+            float3( 1.0, 1.0, 0.0 ),
+            float3( 0.0, 1.0, 1.0 ),
+        };
+
+        float2 pos = mrot * positions[vertex_id];
+        pos.y *= a;
+
+        v2f o;
+        o.position = float4(pos, 0, 1);
+        o.color    = colors[vertex_id];
+        return o;
+    }
+
+    float4 fragment ps_main(v2f in [[stage_in]]) 
+    {
+        return float4(in.color, 1.0);
+    }
+    `
 
