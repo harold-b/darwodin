@@ -9,10 +9,14 @@
             "name": "samples",
             "path": "samples"
         },
+        // {
+        //     "name": "root",
+        //     "path": "darwodin-macos"
+        // },
         {
             "name": "root",
-            "path": "darwodin-macos"
-        }
+            "path": "darwodin-ios"
+        },
     ],
     "enable_document_symbols": true,
     "enable_semantic_tokens": false,

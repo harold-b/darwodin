@@ -20,7 +20,7 @@ extra_args=()
 lite=
 ios=
 iphonesim=
-
+is_lib=
 
 
 while true; do
@@ -35,8 +35,9 @@ while true; do
         #"-show-debug-messages"
         "-show-system-calls"
         # -show-more-timings
-        # -keep-temp-files
+        -keep-temp-files
         # -use-separate-modules
+        -use-single-module
       )
     ;;
     -lite)
@@ -57,6 +58,11 @@ while true; do
     -out)
         shift && out_dir=$1 || exit 1
     ;;
+    -obj)
+      # Compile to object file
+      extra_args+=(-build-mode:obj)
+      is_lib=1
+    ;;
   esac
   shift || break
 done
@@ -73,7 +79,7 @@ if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
   root="./darwodin-ios"
 
   if [[ "${ios}" -eq 1 ]]; then
-    extra_args+=(-subtarget:ios)
+    extra_args+=(-subtarget:iphone)
   else
     extra_args+=(-subtarget:iphonesimulator)
   fi
@@ -88,11 +94,11 @@ mkdir -p "${out_dir}"
 TIMEFORMAT='Build Time: %R seconds'
 set -x
 time {
+    # "-minimum-os-version:17.04" \
 odin build samples/metal_app \
     "-collection:samples=./samples" \
     "-collection:root=${root}" \
     "-out:${out_dir}/main" \
-    "-minimum-os-version:17.04" \
     ${debug_args[@]} \
     -thread-count:${thread_count} \
     -target:darwin_arm64 \
@@ -102,5 +108,7 @@ set +x
 
 
 if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
-  ./make-ios-app
+  if [[ ${is_lib} -ne 1 ]]; then
+    ./make-ios-app
+  fi
 fi

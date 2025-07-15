@@ -87,6 +87,25 @@
                     "message": 5
                 }
             }
+        },
+
+        {
+            "label": "build-iphonesim-lib",
+            "type": "shell",
+            "command": "${workspaceFolder}/build",
+            "args": [ "-debug", "-iphonesim", "-l", "-obj" ],
+            "problemMatcher": {
+                "owner": "odin",
+                "fileLocation": ["absolute"],
+                "pattern": {
+                    "regexp": "^(.+)\\(([0-9]+)\\:([0-9]+)\\) (.+)\\:(.+)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
         }
     ]
 }

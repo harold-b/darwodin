@@ -15,6 +15,7 @@ mkdir -p "${app_bundle_dir}"
 
 echo 'Copy bundle files'
 cp ${bin_dir}/main ${app_bundle_dir}/
+cp -r ${bin_dir}/main.dSYM ${app_bundle_dir}/
 cp ${ios_src_dir}/Info.plist ${app_bundle_dir}/
 plutil -convert binary1 ${app_bundle_dir}/Info.plist
 
