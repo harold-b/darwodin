@@ -1,4 +1,4 @@
-#+build darwin
+#+build darwin, darwin:iphone, darwin:iphonesimulator
 package main
 
 import "core:fmt"
@@ -9,22 +9,20 @@ import "base:intrinsics"
 import ObjC "root:darwodin/ObjectiveC"
 import CF   "root:darwodin/CoreFoundation"
 import CG   "root:darwodin/CoreGraphics"
-import NSF  "root:darwodin/Foundation"
+import NS   "root:darwodin/Foundation"
 import CA   "root:darwodin/QuartzCore"
 import MTL  "root:darwodin/Metal"
 import GC   "root:darwodin/GameController"
 import FS   "root:darwodin/FSEvents"
 // import MDL "root:darwodin/ModelIO"
-
-import UI  "root:darwodin/UIKit"
-import NS  "root:darwodin/AppKit"
+// import NS  "root:darwodin/AppKit"
 
 main :: proc() {
 
-    autorelease := NSF.AutoreleasePool.alloc()->init()
+    autorelease := NS.AutoreleasePool.alloc()->init()
     defer autorelease->release()
 
-    when ODIN_PLATFORM_SUBTARGET == .Default {
+    when !ODIN_PLATFORM_SUBTARGET_IOS {
         fmt.println( "Hello, Odin macOS world!" )
         // init_macos()
     }
@@ -32,6 +30,12 @@ main :: proc() {
         fmt.println( "Hello, Odin iOS world!" )
         // init_ios()
     }
+
+    run_app()
+}
+
+odin_to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^NS.String {
+    return NS.String.alloc()->initWithBytesNoCopy(raw_data(str), NS.UInteger(len(str)), NS.UTF8StringEncoding, false)
 }
 
 // UI_APP_DELEGATE_NAME    :: "MyUIAppDelegate"
@@ -42,14 +46,13 @@ main :: proc() {
 // layer:            ^CA.MetalLayer
 // render_thread:    ^thread.Thread
 
-// when ODIN_PLATFORM_SUBTARGET == .Default {
-//     main_window:      ^NS.Window
-//     metal_view:       ^NS.View
-// }
-// else {
-//     main_window:      ^UI.Window
-//     metal_view:       ^UI.View
-// }
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    // main_window:      ^NS.Window
+    // metal_view:       ^NS.View
+}
+else {
+    
+}
 
 
 // when ODIN_PLATFORM_SUBTARGET == .Default {
@@ -129,10 +132,11 @@ main :: proc() {
 
 //         return view
 //     }
-// } 
-// else {
-//     init_ios :: proc() {
+// }
+// else {  // iOS
 
+    // init_ios :: proc() {
+        
 //         // Register real app delegate
 //         {
 //             vt := UI.ApplicationDelegate_VTable{
@@ -194,9 +198,8 @@ main :: proc() {
 //         view := ( cast(^UI.View)ObjC.alloc_user_object(cls) )->init()
 
 //         return view
-//     }
-    
-// }
+    // }
+// }   // End when
 
 
 // on_app_launched :: proc() {
@@ -356,9 +359,6 @@ main :: proc() {
 //     return pso
 // }
 
-// odin_to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^NSF.String {
-//     return NSF.String.alloc()->initWithBytesNoCopy(raw_data(str), NSF.UInteger(len(str)), NSF.UTF8StringEncoding, false)
-// }
 
 // @private
 // test_shader_code := `

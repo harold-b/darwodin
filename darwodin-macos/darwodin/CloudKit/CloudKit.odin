@@ -243,7 +243,7 @@ SharingParticipantAccessOption :: enum cffi.ulong {
 }
 SharingParticipantAccessOptions :: bit_set[SharingParticipantAccessOption; cffi.ulong]
 
-Any :: SharingParticipantAccessOptions { .AnyoneWithLink, .SpecifiedRecipientsOnly, }
+SharingParticipantAccessOptions_Any :: SharingParticipantAccessOptions { .AnyoneWithLink, .SpecifiedRecipientsOnly, }
 
 /// CKSharingParticipantPermissionOption
 SharingParticipantPermissionOption :: enum cffi.ulong {
@@ -252,7 +252,7 @@ SharingParticipantPermissionOption :: enum cffi.ulong {
 }
 SharingParticipantPermissionOptions :: bit_set[SharingParticipantPermissionOption; cffi.ulong]
 
-Any :: SharingParticipantPermissionOptions { .ReadOnly, .ReadWrite, }
+SharingParticipantPermissionOptions_Any :: SharingParticipantPermissionOptions { .ReadOnly, .ReadWrite, }
 
 /// CKSyncEnginePendingRecordZoneChangeType
 SyncEnginePendingRecordZoneChangeType :: enum cffi.long {

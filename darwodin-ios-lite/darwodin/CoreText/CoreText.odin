@@ -1277,7 +1277,7 @@ UnderlineStyleModifier :: enum cffi.int {
 }
 UnderlineStyleModifiers :: bit_set[UnderlineStyleModifier; cffi.int]
 
-PatternDashDot :: UnderlineStyleModifiers { .PatternDot, .PatternDash, }
+UnderlineStyleModifiers_PatternDashDot :: UnderlineStyleModifiers { .PatternDot, .PatternDash, }
 
 /// __CTFontDescriptor
 __CTFontDescriptor :: struct {}

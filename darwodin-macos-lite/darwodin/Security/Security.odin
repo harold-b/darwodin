@@ -4127,15 +4127,15 @@ SSLSessionOption :: enum cffi.int {
 }
 SSLSessionOptions :: bit_set[SSLSessionOption; cffi.int]
 
-kSSLSessionOptionFalseStart :: SSLSessionOptions { .kSSLSessionOptionBreakOnCertRequested, .kSSLSessionOptionBreakOnClientAuth, }
+SSLSessionOptions_kSSLSessionOptionFalseStart :: SSLSessionOptions { .kSSLSessionOptionBreakOnCertRequested, .kSSLSessionOptionBreakOnClientAuth, }
 
-kSSLSessionOptionAllowServerIdentityChange :: SSLSessionOptions { .kSSLSessionOptionBreakOnCertRequested, .kSSLSessionOptionSendOneByteRecord, }
+SSLSessionOptions_kSSLSessionOptionAllowServerIdentityChange :: SSLSessionOptions { .kSSLSessionOptionBreakOnCertRequested, .kSSLSessionOptionSendOneByteRecord, }
 
-kSSLSessionOptionFallback :: SSLSessionOptions { .kSSLSessionOptionBreakOnClientAuth, .kSSLSessionOptionSendOneByteRecord, }
+SSLSessionOptions_kSSLSessionOptionFallback :: SSLSessionOptions { .kSSLSessionOptionBreakOnClientAuth, .kSSLSessionOptionSendOneByteRecord, }
 
-kSSLSessionOptionBreakOnClientHello :: SSLSessionOptions { .kSSLSessionOptionBreakOnCertRequested, .kSSLSessionOptionBreakOnClientAuth, .kSSLSessionOptionSendOneByteRecord, }
+SSLSessionOptions_kSSLSessionOptionBreakOnClientHello :: SSLSessionOptions { .kSSLSessionOptionBreakOnCertRequested, .kSSLSessionOptionBreakOnClientAuth, .kSSLSessionOptionSendOneByteRecord, }
 
-kSSLSessionOptionEnableSessionTickets :: SSLSessionOptions { .kSSLSessionOptionBreakOnCertRequested, .kSSLSessionOptionAllowRenegotiation, }
+SSLSessionOptions_kSSLSessionOptionEnableSessionTickets :: SSLSessionOptions { .kSSLSessionOptionBreakOnCertRequested, .kSSLSessionOptionAllowRenegotiation, }
 
 /// SSLSessionState
 SSLSessionState :: enum cffi.int {

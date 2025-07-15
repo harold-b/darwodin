@@ -1116,7 +1116,7 @@ ColorWriteMask :: enum cffi.ulong {
 }
 ColorWriteMasks :: bit_set[ColorWriteMask; cffi.ulong]
 
-All :: ColorWriteMasks { .Alpha, .Blue, .Green, .Red, }
+ColorWriteMasks_All :: ColorWriteMasks { .Alpha, .Blue, .Green, .Red, }
 
 /// MTLPrimitiveTopologyClass
 PrimitiveTopologyClass :: enum cffi.ulong {
