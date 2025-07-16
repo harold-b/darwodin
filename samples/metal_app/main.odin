@@ -20,6 +20,8 @@ import FS   "root:darwodin/FSEvents"
 // import MDL "root:darwodin/ModelIO"
 // import NS  "root:darwodin/AppKit"
 
+@private msgSend :: intrinsics.objc_send
+@private Class   :: ^intrinsics.objc_class
 
 Metal_Context :: struct {
     layer:        ^CA.MetalLayer,
@@ -127,73 +129,6 @@ odin_to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^NS.Str
 //         return view
 //     }
 // }
-// else {  // iOS
-
-    // init_ios :: proc() {
-        
-//         // Register real app delegate
-//         {
-//             vt := UI.ApplicationDelegate_VTable{
-//                 applicationDidFinishLaunching=proc(self: ^UI.ApplicationDelegate, application: ^UI.Application) {
-//                     on_app_launched()
-//                 },
-//                 window = proc(self: ^UI.ApplicationDelegate) -> ^UI.Window {
-//                     return main_window
-//                 },
-//             }
-
-//             o   := ObjC.make_subclasser(UI.ApplicationDelegate_VTable, &vt, UI.ApplicationDelegate_odin_extend)
-//             cls := ObjC.register_subclass( UI_APP_DELEGATE_NAME, intrinsics.objc_find_class("UIResponder"), nil, o )
-//         }
-
-//         // Create a dummy/intermediate app delegate to detect app launch. 
-//         // This delegate doesn't use automatic wrappers, as those require the instances
-//         // to be created in a special manner, and UIApplicationMain will handle the delegate creation itself.
-//         {
-//             superclass := intrinsics.objc_find_class( "UIResponder" )
-//             cls        := ObjC.objc_allocateClassPair( superclass, DUMMY_APP_DELEGATE_NAME, 0 )
-        
-//             willFinishLaunchingWithOptions :: proc "c" ( self: ^UI.ApplicationDelegate, _: UI.SEL, application: ^UI.Application, launchOptions: ^NS.Dictionary ) -> bool {
-
-//                 del_class := ObjC.objc_lookUpClass( UI_APP_DELEGATE_NAME );
-//                 del       := cast(^UI.ApplicationDelegate)ObjC.alloc_user_object( del_class )
-                
-//                 application->setDelegate( del )
-//                 return true
-//             }
-        
-//             if !ObjC.class_addMethod( cls, intrinsics.objc_find_selector("application:willFinishLaunchingWithOptions:"), auto_cast willFinishLaunchingWithOptions, "B@:@@" ) {
-//                 panic( "Failed to register objC method." )
-//             }
-
-//             ObjC.objc_registerClassPair( cls )
-//         }
-        
-//         ns_dummy_del_name := cast(^NS.String)NS.String.alloc()->initWithCStringNoCopy(DUMMY_APP_DELEGATE_NAME, auto_cast len(DUMMY_APP_DELEGATE_NAME), false)
-
-//         _ = UI.ApplicationMain(0, nil, nil, ns_dummy_del_name)
-//     }
-
-//     metal_view_create :: proc() -> ^UI.View {
-
-//         fmt.printfln( "Creating MetalView" )
-    
-//         vt := UI.View_VTable{
-//             layerClass = proc() -> ObjC.Class {
-//                 return intrinsics.objc_find_class( "CAMetalLayer" )
-//             },
-//         }
-
-//         cls: ObjC.Class
-
-//         o   := ObjC.make_subclasser( UI.View_VTable, &vt, UI.View_odin_extend )
-//         cls =  ObjC.register_subclass( "MetalUIView", intrinsics.objc_find_class("UIView"), superclass_overrides=o )
-    
-//         view := ( cast(^UI.View)ObjC.alloc_user_object(cls) )->init()
-
-//         return view
-    // }
-// }   // End when
 
 
 // on_app_launched :: proc() {
@@ -202,32 +137,12 @@ odin_to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^NS.Str
 //     scale:     CG.Float = 1
 //     win_frame: CG.Rect
 
-//     when ODIN_PLATFORM_SUBTARGET == .Default {
-//         win_frame = auto_cast main_window->frame()
-//         scale     = main_window->screen()->backingScaleFactor()
-//         assert(win_frame != {})
+//     win_frame = auto_cast main_window->frame()
+//     scale     = main_window->screen()->backingScaleFactor()
+//     assert(win_frame != {})
 
-//         metal_view = metal_view_create( win_frame )
-//         main_window->setContentView( metal_view )
-//     }
-//     else {
-//         main_screen := UI.Screen.mainScreen()
-//         // frame       =  main_screen->bounds()
-//         win_frame = main_screen->applicationFrame()
-//         scale     = main_screen->nativeScale()
-
-//         main_window = auto_cast UI.Window.alloc()->init()//initWithFrame( frame )
-//         main_window->setBackgroundColor( UI.Color.magentaColor() )
-
-//         vc: ^UI.ViewController = auto_cast UI.ViewController.alloc()->init()
-//         metal_view             = metal_view_create()
-
-//         metal_view->setFrame( win_frame )
-//         vc->setView( metal_view )
-
-//         main_window->setRootViewController( vc )
-//         main_window->makeKeyAndVisible()
-//     }
+//     metal_view = metal_view_create( win_frame )
+//     main_window->setContentView( metal_view )
 
 //     layer = auto_cast metal_view->layer()
 //     assert(layer != nil)
@@ -241,6 +156,10 @@ odin_to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^NS.Str
 init_metal :: proc( scale: CG.Float, size: CG.Size, layer: ^CA.MetalLayer ) {
     fmt.printfln( "Initializing Metal: %vx%v @ %s", size.width, size.height, scale)
 
+    drawable_size := size
+    drawable_size.width  *= scale
+    drawable_size.height *= scale
+
     device := MTL.CreateSystemDefaultDevice()
     queue  := device->newCommandQueue()
 
@@ -249,11 +168,7 @@ init_metal :: proc( scale: CG.Float, size: CG.Size, layer: ^CA.MetalLayer ) {
 	layer->setOpaque( true )
     layer->setAllowsNextDrawableTimeout( false )
     layer->setMaximumDrawableCount( 2 )
-
-    drawable_size := size
-    drawable_size.width  *= scale
-    drawable_size.height *= scale
-    layer->setDrawableSize(drawable_size)
+    layer->setDrawableSize( drawable_size )
 
     pso := metal_shader_build_source( device, test_shader_code, "vs_main", "ps_main" )
 
@@ -330,8 +245,8 @@ render_frame :: proc( using metal_context: Metal_Context, drawable: ^CA.MetalDra
     commands->commit()
 }
 
-@(objc_class="MetalDisplayLinkDelegate", 
-  objc_implement, 
+@(objc_implement,
+  objc_class            = "MetalDisplayLinkDelegate", 
   objc_superclass       = NS.Object, 
   objc_ivar             = MetalDisplayLinkDelegate_T,
   objc_context_provider = mdl_get_ctx)
@@ -475,4 +390,3 @@ test_shader_code := `
         return float4(in.color, 1.0);
     }
     `
-

@@ -43,8 +43,7 @@ fi
 
 # Copy Objective-C package
 out_dir=$(darwodin_get_output_folder "${use_ios}" "${lite}")
-
-cp -r ./ObjectiveC "$out_dir/darwodin/ObjectiveC"
+rsync -rah ./ObjectiveC "$out_dir/darwodin/"
 
 
 # Create dummy packaged for frameworks not in the target sdk

@@ -231,29 +231,8 @@ alloc_user_object :: proc "contextless" (cls: Class, _context: ^runtime.Context 
     return obj
 }
 
-
-// selector_from_variant :: proc( selector: SelectorVariant ) -> (sel: SEL) {
-//     switch v in selector {
-//         case SEL:
-//             sel = v
-
-//         case cstring:
-//             sel = intrinsics.objc_find_selector(v)
-//             if sel == nil {
-//                 sel = sel_registerName(v)
-//                 assert(sel != nil)
-//             }
-
-//         case:
-//             panic("Invalid selector")
-//     }
-
-//     return
-// }
-
-super_msg_send :: proc( self: ^T, $R: typeid, selector: SEL ) -> R
-    where intrinsics.type_is_string(TS),
-          intrinsics.type_is_subtype_of(T, intrinsics.objc_object) {
+super_msg_send :: #force_inline proc "contextless" ( self: ^$T, $R: typeid, selector: SEL ) -> R
+    where intrinsics.type_is_subtype_of(T, intrinsics.objc_object) {
 
     msg_sendSuper := cast(proc "c" (^objc_super, SEL) -> id)objc_msgSendSuper
     super         := objc_super{ receiver = self, super_class = self->superclass() }
