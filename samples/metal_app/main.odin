@@ -1,4 +1,4 @@
-#+build darwin, darwin:iphone, darwin:iphonesimulator
+#+build darwin
 package main
 
 import "base:runtime"
@@ -16,9 +16,6 @@ import CA   "root:darwodin/QuartzCore"
 import MTL  "root:darwodin/Metal"
 import GC   "root:darwodin/GameController"
 import FS   "root:darwodin/FSEvents"
-
-// import MDL "root:darwodin/ModelIO"
-// import NS  "root:darwodin/AppKit"
 
 @private msgSend :: intrinsics.objc_send
 @private Class   :: ^intrinsics.objc_class
@@ -51,110 +48,8 @@ odin_to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^NS.Str
     return NS.String.alloc()->initWithBytesNoCopy(raw_data(str), NS.UInteger(len(str)), NS.UTF8StringEncoding, false)
 }
 
-// when ODIN_PLATFORM_SUBTARGET == .Default {
-//     init_macos :: proc() {
-//         vt := NS.ApplicationDelegate_VTable{
-//             applicationDidFinishLaunching = proc(self: ^NS.ApplicationDelegate, notification: ^NS.Notification){
-//                 on_app_launched()
-//             },
-//             applicationShouldTerminateAfterLastWindowClosed = proc(self: ^NS.ApplicationDelegate, sender: ^NS.Application) -> bool {
-//                 return true
-//             },
-//         }
-
-//         o := ObjC.make_subclasser( 
-//             NS.ApplicationDelegate_VTable, 
-//             &vt, 
-//             NS.ApplicationDelegate_odin_extend,
-//         )
-
-//         cls      := ObjC.register_subclass( "MyAppDelegate", intrinsics.objc_find_class("NSObject"), nil, protocol=o )
-//         delegate := cast(^NS.ApplicationDelegate)ObjC.alloc_user_object( cls )
-
-//         app := NS.Application.sharedApplication()
-
-//         style: NS.WindowStyleMask = {
-//             .Closable,
-//             .Titled,
-//             .Resizable,
-//             .Miniaturizable,
-//         }
-
-//         rect := NS.Rect {
-//             size = {
-//                 width  = 1280,
-//                 height = 720,
-//             },
-//         }
-
-//         // initWithContentRect_styleMask_backing_defer
-//         main_window = NS.Window.alloc()->initWithContentRect( rect, style, NS.BackingStoreType.Buffered, false )
-//         main_window->setOpaque( true )
-//         main_window->makeKeyAndOrderFront( nil )
-        
-//         app->activateIgnoringOtherApps( true );
-//         app->setDelegate( delegate )
-//         app->run();
-//     }
-
-//     metal_view_create :: proc( frame: CG.Rect ) -> ^NS.View {
-
-//         fmt.printfln( "Creating MetalView" )
-    
-//         vt := NS.View_VTable{
-//             // super = {
-//             //     keyDown = keyDown,
-//             //     keyUp = keyUp,
-//             //     acceptsFirstResponder = acceptsFirstResponder,
-//             //     becomeFirstResponder = becomeFirstResponder,
-//             //     resignFirstResponder = resignFirstResponder,
-//             // },
-
-//             makeBackingLayer = proc(self: ^NS.View) -> ^CA.Layer {
-//                 return CA.MetalLayer.layer()
-//             },
-//         }
-    
-//         o   := ObjC.make_subclasser( NS.View_VTable, &vt, NS.View_odin_extend )
-//         cls := ObjC.register_subclass( "MetalNSView", intrinsics.objc_find_class("NSView"), o )
-//         assert(cls != nil)
-
-//         view: ^NS.View = auto_cast ObjC.alloc_user_object( cls )
-//         assert(view != nil)
-
-//         view = view->initWithFrame( auto_cast frame )
-//         assert(view != nil)
-//         view->setWantsLayer( true )
-
-//         return view
-//     }
-// }
-
-
-// on_app_launched :: proc() {
-//     fmt.printfln("Application launched!")
-
-//     scale:     CG.Float = 1
-//     win_frame: CG.Rect
-
-//     win_frame = auto_cast main_window->frame()
-//     scale     = main_window->screen()->backingScaleFactor()
-//     assert(win_frame != {})
-
-//     metal_view = metal_view_create( win_frame )
-//     main_window->setContentView( metal_view )
-
-//     layer = auto_cast metal_view->layer()
-//     assert(layer != nil)
-//     layer->retain()
-
-//     // init metal
-//     init_metal( scale, win_frame.size )
-// }
-
-
 init_metal :: proc( scale: CG.Float, size: CG.Size, layer: ^CA.MetalLayer ) {
-    fmt.printfln( "Initializing Metal: %vx%v @ %s", size.width, size.height, scale)
+    fmt.printfln( "Initializing Metal: %vx%v @ %v", size.width, size.height, scale)
 
     drawable_size := size
     drawable_size.width  *= scale
@@ -271,7 +166,7 @@ MetalDisplayLinkDelegate_alloc :: #force_inline proc "c" () -> ^MetalDisplayLink
     return msgSend(^MetalDisplayLinkDelegate, MetalDisplayLinkDelegate, "alloc")
 }
 
-@(objc_type=MetalDisplayLinkDelegate, objc_name="initWithContext", objc_implement=false)
+@(objc_type=MetalDisplayLinkDelegate, objc_implement=false)
 MetalDisplayLinkDelegate_initWithContext :: proc "c" ( self: ^MetalDisplayLinkDelegate, ctx: runtime.Context, metal: Metal_Context ) -> ^MetalDisplayLinkDelegate {
 
     self := ObjC.super_msg_send(self, ^MetalDisplayLinkDelegate, ObjC.SELECTOR("init"))
@@ -282,7 +177,7 @@ MetalDisplayLinkDelegate_initWithContext :: proc "c" ( self: ^MetalDisplayLinkDe
     return self
 }
 
-@(objc_type=MetalDisplayLinkDelegate, objc_name="metalDisplayLink", objc_selector="metalDisplayLink:needsUpdate:")
+@(objc_type=MetalDisplayLinkDelegate, objc_selector="metalDisplayLink:needsUpdate:")
 MetalDisplayLinkDelegate_metalDisplayLink :: proc ( self: ^MetalDisplayLinkDelegate, link: ^CA.MetalDisplayLink, update: ^CA.MetalDisplayLinkUpdate ) {
     autoreleasePool := NS.AutoreleasePool.alloc()->init()
     defer autoreleasePool->release()
