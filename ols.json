@@ -15,7 +15,7 @@
         // },
         {
             "name": "root",
-            "path": "darwodin-ios"
+            "path": "darwodin-ios-lite"
         },
     ],
     "enable_document_symbols": true,

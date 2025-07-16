@@ -10,15 +10,12 @@ import UI  "root:darwodin/UIKit"
 import CA  "root:darwodin/QuartzCore"
 import MTL "root:darwodin/Metal"
 
-@private msgSend  :: intrinsics.objc_send
-@private Class    :: ^intrinsics.objc_class
+@private msgSend :: intrinsics.objc_send
+@private Class   :: ^intrinsics.objc_class
 
 run_app :: proc() {
-    fmt.printfln("Launching...")
-
+    fmt.printfln("Launching iOS App...")
     _ = UI.ApplicationMain(0, nil, nil, odin_to_ns_string("IOSAppDelegate"))
-
-    //         main_screen := UI.Screen.mainScreen()
 }
 
 
@@ -37,8 +34,6 @@ IOSAppDelegate_T :: struct {
     main_window: ^UI.Window,
     metal_view:  ^IOSMetalView,
     metal_layer: ^CA.MetalLayer,
-    // device:      ^MTL.Device,
-    // queue:       ^MTL.CommandQueue,
 }
 
 @(private="file")
@@ -95,7 +90,7 @@ IOSAppDelegate_window :: proc( self: ^IOSAppDelegate ) -> ^UI.Window {
 )
 IOSMetalView :: struct { using _: UI.View }
 
-@(objc_type=IOSMetalView, objc_name="alloc", objc_is_class_method=true, objc_implement=false)
+@(objc_type=IOSMetalView, objc_implement=false, objc_name="alloc", objc_is_class_method=true)
 IOSMetalView_alloc :: #force_inline proc "c" () -> ^IOSMetalView {
     return msgSend(^IOSMetalView, IOSMetalView, "alloc")
 }
@@ -106,12 +101,3 @@ IOSMetalView_layerClass :: proc "c" () -> Class {
     fmt.printfln("IOSMetalView_layerClass")
     return intrinsics.objc_find_class("CAMetalLayer")
 }
-
-
-// layerClass = proc() -> ObjC.Class {
-// return intrinsics.objc_find_class( "CAMetalLayer" )
-// },
-
-// setWindow: proc(self: ^UI.ApplicationDelegate, window: ^UI.Window),
-// return intrinsics.objc_find_class( "CAMetalLayer" )
-// }

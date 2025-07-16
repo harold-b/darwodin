@@ -39,6 +39,7 @@ foreign ObjC {
 
     // NOTE: From Objective-C runtime:
     //  These functions must be cast to an appropriate function pointer type before being called. 
+    objc_msgSendSuper  :: proc "c" (super: ^objc_super, op: SEL, #c_vararg args: ..any ) -> id ---
     objc_msgSendSuper2 :: proc "c" (super: ^objc_super, op: SEL, #c_vararg args: ..any ) -> id ---
 
 
@@ -250,26 +251,14 @@ alloc_user_object :: proc "contextless" (cls: Class, _context: ^runtime.Context 
 //     return
 // }
 
-wrap_method_v0 :: proc( class: Class, selector: SEL, $Method: proc( self: ^$T ), ctx := context ) {
 
-    // sel := selector_from_variant(selector)
-    sel := selector
+super_msg_send :: #force_inline proc "contextless" ( self: ^$T, $R: typeid, selector: SEL ) -> R
+    where intrinsics.type_is_subtype_of(T, intrinsics.objc_object) {
 
-    wrapper :: proc "c" ( self: ^T, _: SEL ) {
-        context = runtime.default_context()
-        Method(self)
-    }
+    msg_sendSuper := cast(proc "c" (^objc_super, SEL) -> id)objc_msgSendSuper
+    super         := objc_super{ receiver = self, super_class = self->superclass() }
 
-    if !class_addMethod(class, sel, auto_cast wrapper, "@:") {
-        panic("Failed to add method!")
-    }
+    return auto_cast msg_sendSuper(&super, selector)
 }
 
-// initWithFrame :: proc "c" (self: ^AK.View, _: SEL, frameRect: NS.Rect) -> ^AK.View {
-
-//     vt_ctx := ObjC.object_get_vtable_info(self)
-//     context = vt_ctx._context
-//     return (cast(^VTable)vt_ctx.super_vt).initWithFrame(self, frameRect)
-// }
-
-// if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+SELECTOR :: intrinsics.objc_find_selector

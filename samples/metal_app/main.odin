@@ -1,12 +1,12 @@
 #+build darwin, darwin:iphone, darwin:iphonesimulator
 package main
 
+import "base:runtime"
+import "base:intrinsics"
 import "core:fmt"
 import "core:thread"
 import "core:time"
 import "core:math"
-import "base:runtime"
-import "base:intrinsics"
 
 import ObjC "root:darwodin/ObjectiveC"
 import CF   "root:darwodin/CoreFoundation"
@@ -22,9 +22,10 @@ import FS   "root:darwodin/FSEvents"
 
 
 Metal_Context :: struct {
-    layer:         ^CA.MetalLayer,
-    device:        ^MTL.Device,
-    queue:         ^MTL.CommandQueue,
+    layer:        ^CA.MetalLayer,
+    device:       ^MTL.Device,
+    queue:        ^MTL.CommandQueue,
+    pso:          ^MTL.RenderPipelineState,
     screen_size:  [2]f64,
     screen_scale: f64,
 }
@@ -36,11 +37,9 @@ main :: proc() {
 
     when !ODIN_PLATFORM_SUBTARGET_IOS {
         fmt.println( "Hello, Odin macOS world!" )
-        // init_macos()
     }
     else {
         fmt.println( "Hello, Odin iOS world!" )
-        // init_ios()
     }
 
     run_app()
@@ -49,23 +48,6 @@ main :: proc() {
 odin_to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^NS.String {
     return NS.String.alloc()->initWithBytesNoCopy(raw_data(str), NS.UInteger(len(str)), NS.UTF8StringEncoding, false)
 }
-
-// UI_APP_DELEGATE_NAME    :: "MyUIAppDelegate"
-// DUMMY_APP_DELEGATE_NAME :: "MyDummyAppDelegate"
-
-// device:           ^MTL.Device
-// queue:            ^MTL.CommandQueue
-// layer:            ^CA.MetalLayer
-// render_thread:    ^thread.Thread
-
-when ODIN_PLATFORM_SUBTARGET == .Default {
-    // main_window:      ^NS.Window
-    // metal_view:       ^NS.View
-}
-else {
-    
-}
-
 
 // when ODIN_PLATFORM_SUBTARGET == .Default {
 //     init_macos :: proc() {
@@ -273,83 +255,124 @@ init_metal :: proc( scale: CG.Float, size: CG.Size, layer: ^CA.MetalLayer ) {
     drawable_size.height *= scale
     layer->setDrawableSize(drawable_size)
 
-    metal_context := new(Metal_Context)
-    metal_context.layer        = layer
-    metal_context.device       = device
-    metal_context.queue        = queue
-    metal_context.screen_size  = [2]f64{ auto_cast size.width, auto_cast size.height }
-    metal_context.screen_scale = auto_cast scale
+    pso := metal_shader_build_source( device, test_shader_code, "vs_main", "ps_main" )
 
-    // render_thread := thread.create_and_start( render_main, priority = .High )
-    render_thread := thread.create(render_main, priority = .High)
-    render_thread.user_args[0] = metal_context
-    thread.start(render_thread)
+    metal_context := Metal_Context {
+        layer        = layer,
+        device       = device,
+        queue        = queue,
+        pso          = pso,
+        screen_size  = [2]f64{ auto_cast size.width, auto_cast size.height },
+        screen_scale = auto_cast scale,
+    }
+
+    mdl_delegate := MetalDisplayLinkDelegate.alloc()->initWithContext(context, metal_context)
+
+    display_link := CA.MetalDisplayLink.alloc()->initWithMetalLayer(layer)
+    display_link->setDelegate(mdl_delegate)
+    display_link->addToRunLoop(NS.RunLoop.mainRunLoop(), NS.RunLoopCommonModes)
 }
 
-render_main :: proc( t: ^thread.Thread ) {
-    metal_context := cast(^Metal_Context)t.user_args[0]
-    layer        := metal_context.layer
-    device       := metal_context.device
-    queue        := metal_context.queue
+render_frame :: proc( using metal_context: Metal_Context, drawable: ^CA.MetalDrawable ) {
+    // layer        := metal_context.layer
+    // device       := metal_context.device
+    // queue        := metal_context.queue
+    // screen_scale := metal_context.screen_scale
+    // screen_size  := metal_context.screen_size
 
-    screen_scale := metal_context.screen_scale
-    screen_size  := metal_context.screen_size
+    ROT_SPEED_DEG: f32: 45
 
     Constants :: struct {
         aspect_ratio: f32,
         rotation:     f32,
     }
+    @static constants: Constants
 
-    ROT_SPEED_DEG: f32: 45
+    constants.aspect_ratio = f32(screen_size.x / screen_size.y)
 
-    constants := Constants {
-        aspect_ratio = f32(screen_size.x / screen_size.y),
+    @static prev_time: time.Tick
+    if prev_time._nsec == 0 {
+        prev_time = time.tick_now()
     }
-    
-    pso := metal_shader_build_source( device, test_shader_code, "vs_main", "ps_main" )
 
-    prev_time := time.tick_now()
-    for {
-        autoreleasePool := NS.AutoreleasePool.alloc()->init()
-        defer autoreleasePool->release()
+    now := time.tick_now()
+    dt  := cast(f32)time.duration_seconds(time.tick_diff(prev_time, now))
+    prev_time = now
 
-        drawable := layer->nextDrawable()
-        assert( drawable != nil )
+    constants.rotation += math.to_radians(ROT_SPEED_DEG) * dt
+    constants.rotation = math.mod(constants.rotation, math.TAU)
 
-        now := time.tick_now()
-        dt  := cast(f32)time.duration_seconds(time.tick_diff(prev_time, now))
-        prev_time = now
-
-        constants.rotation += math.to_radians(ROT_SPEED_DEG) * dt
-        constants.rotation = math.mod(constants.rotation, math.TAU)
-
-        viewport := MTL.Viewport {
-            znear  = -1,
-            zfar   = 10.0,
-            width  = screen_size.x * screen_scale,
-            height = screen_size.y * screen_scale,
-        }
-
-        pass  := MTL.RenderPassDescriptor.renderPassDescriptor()
-        color := pass->colorAttachments()->objectAtIndexedSubscript(0)
-        color->setTexture(auto_cast drawable->texture())
-
-        color->setLoadAction(.Clear)
-        color->setStoreAction(.Store)
-        color->setClearColor(MTL.ClearColor{})
-
-        commands := queue->commandBuffer() 
-        encoder  := commands->renderCommandEncoderWithDescriptor(pass)
-
-        encoder->setViewport(viewport)
-        encoder->setRenderPipelineState(pso)
-        encoder->setVertexBytes_length_atIndex(&constants, auto_cast size_of(constants), 0)
-        encoder->drawPrimitives(.Triangle, 0, 3)
-        encoder->endEncoding()
-
-        commands->presentDrawable_(auto_cast drawable)
-        commands->commit()
+    viewport := MTL.Viewport {
+        znear  = -1,
+        zfar   = 10.0,
+        width  = screen_size.x * screen_scale,
+        height = screen_size.y * screen_scale,
     }
+
+    pass  := MTL.RenderPassDescriptor.renderPassDescriptor()
+    color := pass->colorAttachments()->objectAtIndexedSubscript(0)
+    color->setTexture(auto_cast drawable->texture())
+
+    color->setLoadAction(.Clear)
+    color->setStoreAction(.Store)
+    color->setClearColor(MTL.ClearColor{})
+
+    commands := queue->commandBuffer() 
+    encoder  := commands->renderCommandEncoderWithDescriptor(pass)
+
+    encoder->setViewport(viewport)
+    encoder->setRenderPipelineState(pso)
+    encoder->setVertexBytes_length_atIndex(&constants, auto_cast size_of(constants), 0)
+    encoder->drawPrimitives(.Triangle, 0, 3)
+    encoder->endEncoding()
+
+    commands->presentDrawable_(auto_cast drawable)
+    commands->commit()
+}
+
+@(objc_class="MetalDisplayLinkDelegate", 
+  objc_implement, 
+  objc_superclass       = NS.Object, 
+  objc_ivar             = MetalDisplayLinkDelegate_T,
+  objc_context_provider = mdl_get_ctx)
+MetalDisplayLinkDelegate :: struct { 
+    using _: NS.Object, 
+    using _: CA.MetalDisplayLinkDelegate
+}
+
+MetalDisplayLinkDelegate_T :: struct {
+    ctx:       runtime.Context,
+    metal_ctx: Metal_Context,
+}
+
+// TODO: Set strong linkage objc_ivar procs! Otherwise might not compile
+@(export)
+mdl_get_ctx :: proc "c" ( self: ^MetalDisplayLinkDelegate_T ) -> runtime.Context {
+    return self.ctx
+}
+
+@(objc_type=MetalDisplayLinkDelegate, objc_implement=false, objc_name="alloc", objc_is_class_method=true)
+MetalDisplayLinkDelegate_alloc :: #force_inline proc "c" () -> ^MetalDisplayLinkDelegate {
+    return msgSend(^MetalDisplayLinkDelegate, MetalDisplayLinkDelegate, "alloc")
+}
+
+@(objc_type=MetalDisplayLinkDelegate, objc_name="initWithContext", objc_implement=false)
+MetalDisplayLinkDelegate_initWithContext :: proc "c" ( self: ^MetalDisplayLinkDelegate, ctx: runtime.Context, metal: Metal_Context ) -> ^MetalDisplayLinkDelegate {
+
+    self := ObjC.super_msg_send(self, ^MetalDisplayLinkDelegate, ObjC.SELECTOR("init"))
+    if self != nil {
+        self.ctx       = ctx
+        self.metal_ctx = metal
+    }
+    return self
+}
+
+@(objc_type=MetalDisplayLinkDelegate, objc_name="metalDisplayLink", objc_selector="metalDisplayLink:needsUpdate:")
+MetalDisplayLinkDelegate_metalDisplayLink :: proc ( self: ^MetalDisplayLinkDelegate, link: ^CA.MetalDisplayLink, update: ^CA.MetalDisplayLinkUpdate ) {
+    autoreleasePool := NS.AutoreleasePool.alloc()->init()
+    defer autoreleasePool->release()
+
+    render_frame(self.metal_ctx, update->drawable())
 }
 
 metal_shader_build_source :: proc( device: ^MTL.Device, source_code: string, vs_main: string, ps_main: string ) -> ^MTL.RenderPipelineState {
