@@ -1,4 +1,4 @@
-#+build darwin:iphone, darwin:iphonesimulator
+#+build darwin:ios
 package main
 
 import "base:runtime"
