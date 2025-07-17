@@ -161,7 +161,7 @@ mdl_get_ctx :: proc "c" ( self: ^MetalDisplayLinkDelegate_T ) -> runtime.Context
     return self.ctx
 }
 
-@(objc_type=MetalDisplayLinkDelegate, objc_implement=false, objc_name="alloc", objc_is_class_method=true)
+@(objc_type=MetalDisplayLinkDelegate, objc_implement=false, objc_is_class_method=true)
 MetalDisplayLinkDelegate_alloc :: #force_inline proc "c" () -> ^MetalDisplayLinkDelegate {
     return msgSend(^MetalDisplayLinkDelegate, MetalDisplayLinkDelegate, "alloc")
 }
