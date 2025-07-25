@@ -24,6 +24,7 @@ Foundation:
   - NSURL
   - NSValue
   - NSThread
+  - NSHost
 
 AppKit:
   - NSApplication

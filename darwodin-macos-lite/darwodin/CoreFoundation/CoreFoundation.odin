@@ -1145,8 +1145,8 @@ foreign lib {
     @(link_name="CFStringGetPascalString")
     StringGetPascalString :: proc(theString: StringRef, buffer: StringPtr, bufferSize: Index, encoding: StringEncoding) -> Boolean ---
 
-    @(link_name="CFStringGetCString")
-    StringGetCString :: proc(theString: StringRef, buffer: cstring, bufferSize: Index, encoding: StringEncoding) -> Boolean ---
+    // @(link_name="CFStringGetCString")
+    // StringGetCString :: proc(theString: StringRef, buffer: cstring, bufferSize: Index, encoding: StringEncoding) -> Boolean ---
 
     @(link_name="CFStringGetPascalStringPtr")
     StringGetPascalStringPtr :: proc(theString: StringRef, encoding: StringEncoding) -> ConstStringPtr ---
@@ -1157,8 +1157,8 @@ foreign lib {
     @(link_name="CFStringGetCharactersPtr")
     StringGetCharactersPtr :: proc(theString: StringRef) -> ^UniChar ---
 
-    @(link_name="CFStringGetBytes")
-    StringGetBytes :: proc(theString: StringRef, range: Range, encoding: StringEncoding, lossByte: UInt8, isExternalRepresentation: Boolean, buffer: ^UInt8, maxBufLen: Index, usedBufLen: ^Index) -> Index ---
+    // @(link_name="CFStringGetBytes")
+    // StringGetBytes :: proc(theString: StringRef, range: Range, encoding: StringEncoding, lossByte: UInt8, isExternalRepresentation: Boolean, buffer: ^UInt8, maxBufLen: Index, usedBufLen: ^Index) -> Index ---
 
     @(link_name="CFStringCreateFromExternalRepresentation")
     StringCreateFromExternalRepresentation :: proc(alloc: AllocatorRef, data: DataRef, encoding: StringEncoding) -> StringRef ---
@@ -1175,8 +1175,8 @@ foreign lib {
     @(link_name="CFStringGetSystemEncoding")
     StringGetSystemEncoding :: proc() -> StringEncoding ---
 
-    @(link_name="CFStringGetMaximumSizeForEncoding")
-    StringGetMaximumSizeForEncoding :: proc(length: Index, encoding: StringEncoding) -> Index ---
+    // @(link_name="CFStringGetMaximumSizeForEncoding")
+    // StringGetMaximumSizeForEncoding :: proc(length: Index, encoding: StringEncoding) -> Index ---
 
     @(link_name="CFStringGetFileSystemRepresentation")
     StringGetFileSystemRepresentation :: proc(string: StringRef, buffer: cstring, maxBufLen: Index) -> Boolean ---
@@ -1307,8 +1307,8 @@ foreign lib {
     @(link_name="CFStringTransform")
     StringTransform :: proc(string: MutableStringRef, range: ^Range, transform: StringRef, reverse: Boolean) -> Boolean ---
 
-    @(link_name="CFStringIsEncodingAvailable")
-    StringIsEncodingAvailable :: proc(encoding: StringEncoding) -> Boolean ---
+    // @(link_name="CFStringIsEncodingAvailable")
+    // StringIsEncodingAvailable :: proc(encoding: StringEncoding) -> Boolean ---
 
     @(link_name="CFStringGetListOfAvailableEncodings")
     StringGetListOfAvailableEncodings :: proc() -> ^StringEncoding ---
