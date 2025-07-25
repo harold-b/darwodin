@@ -21,5 +21,22 @@ Protocol :: distinct id
 import NS "../../"
 
 VTable :: struct {
+    countByEnumeratingWithState: proc(self: ^NS.FastEnumeration, state: ^NS.FastEnumerationState, buffer: ^id, len: NS.UInteger) -> NS.UInteger,
+}
+
+extend :: proc(cls: Class, vt: ^VTable) {
+    assert(vt != nil);
+    meta := ObjC.object_getClass(auto_cast cls)
+    _=meta
+    if vt.countByEnumeratingWithState != nil {
+        countByEnumeratingWithState :: proc "c" (self: ^NS.FastEnumeration, _: SEL, state: ^NS.FastEnumerationState, buffer: ^id, len: NS.UInteger) -> NS.UInteger {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).countByEnumeratingWithState(self, state, buffer, len)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("countByEnumeratingWithState:objects:count:"), auto_cast countByEnumeratingWithState, "L@:^void^voidL") do panic("Failed to register objC method.")
+    }
 }
 

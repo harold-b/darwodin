@@ -67,6 +67,9 @@ extend :: proc(cls: Class, vt: ^VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    
+    NSEnumerator.extend(cls, &vt.super)
+
     if vt.skipDescendents != nil {
         skipDescendents :: proc "c" (self: ^NS.DirectoryEnumerator, _: SEL) {
 
