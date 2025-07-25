@@ -26,6 +26,7 @@ Foundation:
   - NSThread
   - NSHost
   - NSDirectoryEnumerator
+  - NSFileManager
 
 AppKit:
   - NSApplication
