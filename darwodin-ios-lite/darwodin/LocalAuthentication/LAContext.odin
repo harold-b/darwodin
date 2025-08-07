@@ -27,7 +27,7 @@ Context_canEvaluatePolicy :: #force_inline proc "c" (self: ^Context, policy: Pol
     return msgSend(bool, self, "canEvaluatePolicy:error:", policy, error)
 }
 @(objc_type=Context, objc_name="evaluatePolicy")
-Context_evaluatePolicy :: #force_inline proc "c" (self: ^Context, policy: Policy, localizedReason: ^NS.String, reply: proc "c" (success: bool, error: ^NS.Error)) {
+Context_evaluatePolicy :: #force_inline proc "c" (self: ^Context, policy: Policy, localizedReason: ^NS.String, reply: ^Objc_Block(proc "c" (success: bool, error: ^NS.Error))) {
     msgSend(nil, self, "evaluatePolicy:localizedReason:reply:", policy, localizedReason, reply)
 }
 @(objc_type=Context, objc_name="invalidate")
@@ -43,7 +43,7 @@ Context_isCredentialSet :: #force_inline proc "c" (self: ^Context, type: Credent
     return msgSend(bool, self, "isCredentialSet:", type)
 }
 @(objc_type=Context, objc_name="evaluateAccessControl")
-Context_evaluateAccessControl :: #force_inline proc "c" (self: ^Context, accessControl: SecAccessControlRef, operation: AccessControlOperation, localizedReason: ^NS.String, reply: proc "c" (success: bool, error: ^NS.Error)) {
+Context_evaluateAccessControl :: #force_inline proc "c" (self: ^Context, accessControl: SecAccessControlRef, operation: AccessControlOperation, localizedReason: ^NS.String, reply: ^Objc_Block(proc "c" (success: bool, error: ^NS.Error))) {
     msgSend(nil, self, "evaluateAccessControl:operation:localizedReason:reply:", accessControl, operation, localizedReason, reply)
 }
 @(objc_type=Context, objc_name="localizedFallbackTitle")

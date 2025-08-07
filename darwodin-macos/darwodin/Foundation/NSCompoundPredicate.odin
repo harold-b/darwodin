@@ -71,7 +71,7 @@ CompoundPredicate_predicateWithValue :: #force_inline proc "c" (value: bool) -> 
     return msgSend(^Predicate, CompoundPredicate, "predicateWithValue:", value)
 }
 @(objc_type=CompoundPredicate, objc_name="predicateWithBlock", objc_is_class_method=true)
-CompoundPredicate_predicateWithBlock :: #force_inline proc "c" (block: proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool) -> ^Predicate {
+CompoundPredicate_predicateWithBlock :: #force_inline proc "c" (block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool)) -> ^Predicate {
     return msgSend(^Predicate, CompoundPredicate, "predicateWithBlock:", block)
 }
 @(objc_type=CompoundPredicate, objc_name="supportsSecureCoding", objc_is_class_method=true)

@@ -34,8 +34,8 @@ VTable :: struct {
     initWithString_: proc(self: ^NS.AttributedString, str: ^NS.String) -> ^NS.AttributedString,
     initWithString_attributes: proc(self: ^NS.AttributedString, str: ^NS.String, attrs: ^NS.Dictionary) -> ^NS.AttributedString,
     initWithAttributedString: proc(self: ^NS.AttributedString, attrStr: ^NS.AttributedString) -> ^NS.AttributedString,
-    enumerateAttributesInRange: proc(self: ^NS.AttributedString, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: proc "c" (attrs: ^NS.Dictionary, range: NS._NSRange, stop: ^bool)),
-    enumerateAttribute: proc(self: ^NS.AttributedString, attrName: ^NS.String, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: proc "c" (value: id, range: NS._NSRange, stop: ^bool)),
+    enumerateAttributesInRange: proc(self: ^NS.AttributedString, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (attrs: ^NS.Dictionary, range: NS._NSRange, stop: ^bool))),
+    enumerateAttribute: proc(self: ^NS.AttributedString, attrName: ^NS.String, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (value: id, range: NS._NSRange, stop: ^bool))),
     length: proc(self: ^NS.AttributedString) -> NS.UInteger,
     initWithContentsOfMarkdownFileAtURL: proc(self: ^NS.AttributedString, markdownFile: ^NS.URL, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString,
     initWithMarkdown: proc(self: ^NS.AttributedString, markdown: ^NS.Data, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString,
@@ -189,7 +189,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedString:"), auto_cast initWithAttributedString, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.enumerateAttributesInRange != nil {
-        enumerateAttributesInRange :: proc "c" (self: ^NS.AttributedString, _: SEL, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: proc "c" (attrs: ^NS.Dictionary, range: NS._NSRange, stop: ^bool)) {
+        enumerateAttributesInRange :: proc "c" (self: ^NS.AttributedString, _: SEL, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (attrs: ^NS.Dictionary, range: NS._NSRange, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateAttributesInRange:options:usingBlock:"), auto_cast enumerateAttributesInRange, "v@:{_NSRange=LL}L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateAttribute != nil {
-        enumerateAttribute :: proc "c" (self: ^NS.AttributedString, _: SEL, attrName: ^NS.String, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: proc "c" (value: id, range: NS._NSRange, stop: ^bool)) {
+        enumerateAttribute :: proc "c" (self: ^NS.AttributedString, _: SEL, attrName: ^NS.String, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (value: id, range: NS._NSRange, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

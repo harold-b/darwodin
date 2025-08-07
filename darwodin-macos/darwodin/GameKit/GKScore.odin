@@ -34,7 +34,7 @@ Score_initWithLeaderboardIdentifier_player :: #force_inline proc "c" (self: ^Sco
     return msgSend(^Score, self, "initWithLeaderboardIdentifier:player:", identifier, player)
 }
 @(objc_type=Score, objc_name="reportScores_withCompletionHandler", objc_is_class_method=true)
-Score_reportScores_withCompletionHandler :: #force_inline proc "c" (scores: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+Score_reportScores_withCompletionHandler :: #force_inline proc "c" (scores: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, Score, "reportScores:withCompletionHandler:", scores, completionHandler)
 }
 @(objc_type=Score, objc_name="value")
@@ -86,7 +86,7 @@ Score_setShouldSetDefaultLeaderboard :: #force_inline proc "c" (self: ^Score, sh
     msgSend(nil, self, "setShouldSetDefaultLeaderboard:", shouldSetDefaultLeaderboard)
 }
 @(objc_type=Score, objc_name="reportScoreWithCompletionHandler")
-Score_reportScoreWithCompletionHandler :: #force_inline proc "c" (self: ^Score, completionHandler: proc "c" (error: ^NS.Error)) {
+Score_reportScoreWithCompletionHandler :: #force_inline proc "c" (self: ^Score, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "reportScoreWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Score, objc_name="initWithCategory")
@@ -110,11 +110,11 @@ Score_playerID :: #force_inline proc "c" (self: ^Score) -> ^NS.String {
     return msgSend(^NS.String, self, "playerID")
 }
 @(objc_type=Score, objc_name="reportScores_withEligibleChallenges_withCompletionHandler", objc_is_class_method=true)
-Score_reportScores_withEligibleChallenges_withCompletionHandler :: #force_inline proc "c" (scores: ^NS.Array, challenges: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+Score_reportScores_withEligibleChallenges_withCompletionHandler :: #force_inline proc "c" (scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, Score, "reportScores:withEligibleChallenges:withCompletionHandler:", scores, challenges, completionHandler)
 }
 @(objc_type=Score, objc_name="reportLeaderboardScores", objc_is_class_method=true)
-Score_reportLeaderboardScores :: #force_inline proc "c" (scores: ^NS.Array, challenges: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+Score_reportLeaderboardScores :: #force_inline proc "c" (scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, Score, "reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:", scores, challenges, completionHandler)
 }
 @(objc_type=Score, objc_name="issueChallengeToPlayers")

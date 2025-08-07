@@ -17,7 +17,7 @@ import AK "../AppKit"
 SyncEngineRecordZoneChangeBatch :: struct { using _: NS.Object, }
 
 @(objc_type=SyncEngineRecordZoneChangeBatch, objc_name="initWithPendingChanges")
-SyncEngineRecordZoneChangeBatch_initWithPendingChanges :: #force_inline proc "c" (self: ^SyncEngineRecordZoneChangeBatch, pendingChanges: ^NS.Array, recordProvider: proc "c" (recordID: ^RecordID) -> ^Record) -> ^SyncEngineRecordZoneChangeBatch {
+SyncEngineRecordZoneChangeBatch_initWithPendingChanges :: #force_inline proc "c" (self: ^SyncEngineRecordZoneChangeBatch, pendingChanges: ^NS.Array, recordProvider: ^Objc_Block(proc "c" (recordID: ^RecordID) -> ^Record)) -> ^SyncEngineRecordZoneChangeBatch {
     return msgSend(^SyncEngineRecordZoneChangeBatch, self, "initWithPendingChanges:recordProvider:", pendingChanges, recordProvider)
 }
 @(objc_type=SyncEngineRecordZoneChangeBatch, objc_name="initWithRecordsToSave")

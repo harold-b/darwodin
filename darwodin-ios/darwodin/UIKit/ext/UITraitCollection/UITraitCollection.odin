@@ -81,7 +81,7 @@ VTable :: struct {
     changedTraitsFromTraitCollection: proc(self: ^UI.TraitCollection, traitCollection: ^UI.TraitCollection) -> ^NS.Set,
     systemTraitsAffectingColorAppearance: proc() -> ^NS.Array,
     systemTraitsAffectingImageLookup: proc() -> ^NS.Array,
-    performAsCurrentTraitCollection: proc(self: ^UI.TraitCollection, actions: proc "c" ()),
+    performAsCurrentTraitCollection: proc(self: ^UI.TraitCollection, actions: ^Objc_Block(proc "c" ())),
     currentTraitCollection: proc() -> ^UI.TraitCollection,
     setCurrentTraitCollection: proc(currentTraitCollection: ^UI.TraitCollection),
     hasDifferentColorAppearanceComparedToTraitCollection: proc(self: ^UI.TraitCollection, traitCollection: ^UI.TraitCollection) -> bool,
@@ -666,7 +666,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemTraitsAffectingImageLookup"), auto_cast systemTraitsAffectingImageLookup, "@#:") do panic("Failed to register objC method.")
     }
     if vt.performAsCurrentTraitCollection != nil {
-        performAsCurrentTraitCollection :: proc "c" (self: ^UI.TraitCollection, _: SEL, actions: proc "c" ()) {
+        performAsCurrentTraitCollection :: proc "c" (self: ^UI.TraitCollection, _: SEL, actions: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

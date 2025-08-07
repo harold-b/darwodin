@@ -23,7 +23,7 @@ URLSessionTaskDelegate_URLSession_didCreateTask :: #force_inline proc "c" (self:
     msgSend(nil, self, "URLSession:didCreateTask:", session, task)
 }
 @(objc_type=URLSessionTaskDelegate, objc_name="URLSession_task_willBeginDelayedRequest_completionHandler")
-URLSessionTaskDelegate_URLSession_task_willBeginDelayedRequest_completionHandler :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, request: ^URLRequest, completionHandler: proc "c" (disposition: URLSessionDelayedRequestDisposition, newRequest: ^URLRequest)) {
+URLSessionTaskDelegate_URLSession_task_willBeginDelayedRequest_completionHandler :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, request: ^URLRequest, completionHandler: ^Objc_Block(proc "c" (disposition: URLSessionDelayedRequestDisposition, newRequest: ^URLRequest))) {
     msgSend(nil, self, "URLSession:task:willBeginDelayedRequest:completionHandler:", session, task, request, completionHandler)
 }
 @(objc_type=URLSessionTaskDelegate, objc_name="URLSession_taskIsWaitingForConnectivity")
@@ -31,19 +31,19 @@ URLSessionTaskDelegate_URLSession_taskIsWaitingForConnectivity :: #force_inline 
     msgSend(nil, self, "URLSession:taskIsWaitingForConnectivity:", session, task)
 }
 @(objc_type=URLSessionTaskDelegate, objc_name="URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler")
-URLSessionTaskDelegate_URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, response: ^HTTPURLResponse, request: ^URLRequest, completionHandler: proc "c" (_arg_0: ^URLRequest)) {
+URLSessionTaskDelegate_URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, response: ^HTTPURLResponse, request: ^URLRequest, completionHandler: ^Objc_Block(proc "c" (_: ^URLRequest))) {
     msgSend(nil, self, "URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:", session, task, response, request, completionHandler)
 }
 @(objc_type=URLSessionTaskDelegate, objc_name="URLSession_task_didReceiveChallenge_completionHandler")
-URLSessionTaskDelegate_URLSession_task_didReceiveChallenge_completionHandler :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, challenge: ^URLAuthenticationChallenge, completionHandler: proc "c" (disposition: URLSessionAuthChallengeDisposition, credential: ^URLCredential)) {
+URLSessionTaskDelegate_URLSession_task_didReceiveChallenge_completionHandler :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, challenge: ^URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" (disposition: URLSessionAuthChallengeDisposition, credential: ^URLCredential))) {
     msgSend(nil, self, "URLSession:task:didReceiveChallenge:completionHandler:", session, task, challenge, completionHandler)
 }
 @(objc_type=URLSessionTaskDelegate, objc_name="URLSession_task_needNewBodyStream")
-URLSessionTaskDelegate_URLSession_task_needNewBodyStream :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, completionHandler: proc "c" (bodyStream: ^InputStream)) {
+URLSessionTaskDelegate_URLSession_task_needNewBodyStream :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" (bodyStream: ^InputStream))) {
     msgSend(nil, self, "URLSession:task:needNewBodyStream:", session, task, completionHandler)
 }
 @(objc_type=URLSessionTaskDelegate, objc_name="URLSession_task_needNewBodyStreamFromOffset_completionHandler")
-URLSessionTaskDelegate_URLSession_task_needNewBodyStreamFromOffset_completionHandler :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, offset: cffi.int64_t, completionHandler: proc "c" (bodyStream: ^InputStream)) {
+URLSessionTaskDelegate_URLSession_task_needNewBodyStreamFromOffset_completionHandler :: #force_inline proc "c" (self: ^URLSessionTaskDelegate, session: ^URLSession, task: ^URLSessionTask, offset: cffi.int64_t, completionHandler: ^Objc_Block(proc "c" (bodyStream: ^InputStream))) {
     msgSend(nil, self, "URLSession:task:needNewBodyStreamFromOffset:completionHandler:", session, task, offset, completionHandler)
 }
 @(objc_type=URLSessionTaskDelegate, objc_name="URLSession_task_didSendBodyData_totalBytesSent_totalBytesExpectedToSend")

@@ -33,11 +33,11 @@ OperationQueue_addOperations :: #force_inline proc "c" (self: ^OperationQueue, o
     msgSend(nil, self, "addOperations:waitUntilFinished:", ops, wait)
 }
 @(objc_type=OperationQueue, objc_name="addOperationWithBlock")
-OperationQueue_addOperationWithBlock :: #force_inline proc "c" (self: ^OperationQueue, block: proc "c" ()) {
+OperationQueue_addOperationWithBlock :: #force_inline proc "c" (self: ^OperationQueue, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addOperationWithBlock:", block)
 }
 @(objc_type=OperationQueue, objc_name="addBarrierBlock")
-OperationQueue_addBarrierBlock :: #force_inline proc "c" (self: ^OperationQueue, barrier: proc "c" ()) {
+OperationQueue_addBarrierBlock :: #force_inline proc "c" (self: ^OperationQueue, barrier: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addBarrierBlock:", barrier)
 }
 @(objc_type=OperationQueue, objc_name="cancelAllOperations")

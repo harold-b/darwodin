@@ -17,11 +17,11 @@ import AK "../AppKit"
 PublicKey :: struct { using _: NS.Object, }
 
 @(objc_type=PublicKey, objc_name="exportBytesWithCompletion")
-PublicKey_exportBytesWithCompletion :: #force_inline proc "c" (self: ^PublicKey, handler: proc "c" (_arg_0: ^NS.Data, _arg_1: ^NS.Error)) {
+PublicKey_exportBytesWithCompletion :: #force_inline proc "c" (self: ^PublicKey, handler: ^Objc_Block(proc "c" (_: ^NS.Data, _1: ^NS.Error))) {
     msgSend(nil, self, "exportBytesWithCompletion:", handler)
 }
 @(objc_type=PublicKey, objc_name="encryptData")
-PublicKey_encryptData :: #force_inline proc "c" (self: ^PublicKey, data: ^NS.Data, algorithm: SecKeyAlgorithm, handler: proc "c" (_arg_0: ^NS.Data, _arg_1: ^NS.Error)) {
+PublicKey_encryptData :: #force_inline proc "c" (self: ^PublicKey, data: ^NS.Data, algorithm: SecKeyAlgorithm, handler: ^Objc_Block(proc "c" (_: ^NS.Data, _1: ^NS.Error))) {
     msgSend(nil, self, "encryptData:secKeyAlgorithm:completion:", data, algorithm, handler)
 }
 @(objc_type=PublicKey, objc_name="canEncryptUsingSecKeyAlgorithm")
@@ -29,7 +29,7 @@ PublicKey_canEncryptUsingSecKeyAlgorithm :: #force_inline proc "c" (self: ^Publi
     return msgSend(bool, self, "canEncryptUsingSecKeyAlgorithm:", algorithm)
 }
 @(objc_type=PublicKey, objc_name="verifyData")
-PublicKey_verifyData :: #force_inline proc "c" (self: ^PublicKey, signedData: ^NS.Data, signature: ^NS.Data, algorithm: SecKeyAlgorithm, handler: proc "c" (_arg_0: ^NS.Error)) {
+PublicKey_verifyData :: #force_inline proc "c" (self: ^PublicKey, signedData: ^NS.Data, signature: ^NS.Data, algorithm: SecKeyAlgorithm, handler: ^Objc_Block(proc "c" (_: ^NS.Error))) {
     msgSend(nil, self, "verifyData:signature:secKeyAlgorithm:completion:", signedData, signature, algorithm, handler)
 }
 @(objc_type=PublicKey, objc_name="canVerifyUsingSecKeyAlgorithm")

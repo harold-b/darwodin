@@ -39,11 +39,11 @@ VTable :: struct {
     openDocument: proc(self: ^AK.DocumentController, sender: id),
     _URLsFromRunningOpenPanel: proc(self: ^AK.DocumentController) -> ^NS.Array,
     runModalOpenPanel: proc(self: ^AK.DocumentController, openPanel: ^AK.OpenPanel, types: ^NS.Array) -> NS.Integer,
-    beginOpenPanelWithCompletionHandler: proc(self: ^AK.DocumentController, completionHandler: proc "c" (_arg_0: ^NS.Array)),
-    beginOpenPanel: proc(self: ^AK.DocumentController, openPanel: ^AK.OpenPanel, inTypes: ^NS.Array, completionHandler: proc "c" (result: NS.Integer)),
-    openDocumentWithContentsOfURL_display_completionHandler: proc(self: ^AK.DocumentController, url: ^NS.URL, displayDocument: bool, completionHandler: proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error)),
+    beginOpenPanelWithCompletionHandler: proc(self: ^AK.DocumentController, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array))),
+    beginOpenPanel: proc(self: ^AK.DocumentController, openPanel: ^AK.OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (result: NS.Integer))),
+    openDocumentWithContentsOfURL_display_completionHandler: proc(self: ^AK.DocumentController, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))),
     makeDocumentWithContentsOfURL_ofType_error: proc(self: ^AK.DocumentController, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
-    reopenDocumentForURL_withContentsOfURL_display_completionHandler: proc(self: ^AK.DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error)),
+    reopenDocumentForURL_withContentsOfURL_display_completionHandler: proc(self: ^AK.DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))),
     makeDocumentForURL: proc(self: ^AK.DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
     saveAllDocuments: proc(self: ^AK.DocumentController, sender: id),
     reviewUnsavedDocumentsWithAlertTitle: proc(self: ^AK.DocumentController, title: ^NS.String, cancellable: bool, delegate: id, didReviewAllSelector: SEL, contextInfo: rawptr),
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("runModalOpenPanel:forTypes:"), auto_cast runModalOpenPanel, "l@:@@") do panic("Failed to register objC method.")
     }
     if vt.beginOpenPanelWithCompletionHandler != nil {
-        beginOpenPanelWithCompletionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, completionHandler: proc "c" (_arg_0: ^NS.Array)) {
+        beginOpenPanelWithCompletionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -260,7 +260,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginOpenPanelWithCompletionHandler:"), auto_cast beginOpenPanelWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.beginOpenPanel != nil {
-        beginOpenPanel :: proc "c" (self: ^AK.DocumentController, _: SEL, openPanel: ^AK.OpenPanel, inTypes: ^NS.Array, completionHandler: proc "c" (result: NS.Integer)) {
+        beginOpenPanel :: proc "c" (self: ^AK.DocumentController, _: SEL, openPanel: ^AK.OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (result: NS.Integer))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginOpenPanel:forTypes:completionHandler:"), auto_cast beginOpenPanel, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.openDocumentWithContentsOfURL_display_completionHandler != nil {
-        openDocumentWithContentsOfURL_display_completionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, completionHandler: proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error)) {
+        openDocumentWithContentsOfURL_display_completionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeDocumentWithContentsOfURL:ofType:error:"), auto_cast makeDocumentWithContentsOfURL_ofType_error, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.reopenDocumentForURL_withContentsOfURL_display_completionHandler != nil {
-        reopenDocumentForURL_withContentsOfURL_display_completionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error)) {
+        reopenDocumentForURL_withContentsOfURL_display_completionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

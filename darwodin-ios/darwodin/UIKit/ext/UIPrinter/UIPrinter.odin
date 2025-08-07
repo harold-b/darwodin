@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     printerWithURL: proc(url: ^NS.URL) -> ^UI.Printer,
-    contactPrinter: proc(self: ^UI.Printer, completionHandler: proc "c" (available: bool)),
+    contactPrinter: proc(self: ^UI.Printer, completionHandler: ^Objc_Block(proc "c" (available: bool))),
     _URL: proc(self: ^UI.Printer) -> ^NS.URL,
     displayName: proc(self: ^UI.Printer) -> ^NS.String,
     displayLocation: proc(self: ^UI.Printer) -> ^NS.String,
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("printerWithURL:"), auto_cast printerWithURL, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.contactPrinter != nil {
-        contactPrinter :: proc "c" (self: ^UI.Printer, _: SEL, completionHandler: proc "c" (available: bool)) {
+        contactPrinter :: proc "c" (self: ^UI.Printer, _: SEL, completionHandler: ^Objc_Block(proc "c" (available: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

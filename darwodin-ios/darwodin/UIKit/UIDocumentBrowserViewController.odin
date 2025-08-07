@@ -40,15 +40,15 @@ DocumentBrowserViewController_initWithNibName :: #force_inline proc "c" (self: ^
     return msgSend(^DocumentBrowserViewController, self, "initWithNibName:bundle:", nibName, bundle)
 }
 @(objc_type=DocumentBrowserViewController, objc_name="revealDocumentAtURL")
-DocumentBrowserViewController_revealDocumentAtURL :: #force_inline proc "c" (self: ^DocumentBrowserViewController, url: ^NS.URL, importIfNeeded: bool, completion: proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error)) {
+DocumentBrowserViewController_revealDocumentAtURL :: #force_inline proc "c" (self: ^DocumentBrowserViewController, url: ^NS.URL, importIfNeeded: bool, completion: ^Objc_Block(proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error))) {
     msgSend(nil, self, "revealDocumentAtURL:importIfNeeded:completion:", url, importIfNeeded, completion)
 }
 @(objc_type=DocumentBrowserViewController, objc_name="importDocumentAtURL")
-DocumentBrowserViewController_importDocumentAtURL :: #force_inline proc "c" (self: ^DocumentBrowserViewController, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: DocumentBrowserImportMode, completion: proc "c" (_arg_0: ^NS.URL, _arg_1: ^NS.Error)) {
+DocumentBrowserViewController_importDocumentAtURL :: #force_inline proc "c" (self: ^DocumentBrowserViewController, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: DocumentBrowserImportMode, completion: ^Objc_Block(proc "c" (_: ^NS.URL, _1: ^NS.Error))) {
     msgSend(nil, self, "importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:", documentURL, neighbourURL, importMode, completion)
 }
 @(objc_type=DocumentBrowserViewController, objc_name="renameDocumentAtURL")
-DocumentBrowserViewController_renameDocumentAtURL :: #force_inline proc "c" (self: ^DocumentBrowserViewController, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: proc "c" (finalURL: ^NS.URL, error: ^NS.Error)) {
+DocumentBrowserViewController_renameDocumentAtURL :: #force_inline proc "c" (self: ^DocumentBrowserViewController, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (finalURL: ^NS.URL, error: ^NS.Error))) {
     msgSend(nil, self, "renameDocumentAtURL:proposedName:completionHandler:", documentURL, proposedName, completionHandler)
 }
 @(objc_type=DocumentBrowserViewController, objc_name="transitionControllerForDocumentAtURL")

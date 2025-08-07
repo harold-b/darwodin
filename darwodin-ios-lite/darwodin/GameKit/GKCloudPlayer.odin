@@ -23,7 +23,7 @@ CloudPlayer_init :: proc "c" (self: ^CloudPlayer) -> ^CloudPlayer {
 
 
 @(objc_type=CloudPlayer, objc_name="getCurrentSignedInPlayerForContainer", objc_is_class_method=true)
-CloudPlayer_getCurrentSignedInPlayerForContainer :: #force_inline proc "c" (containerName: ^NS.String, handler: proc "c" (player: ^CloudPlayer, error: ^NS.Error)) {
+CloudPlayer_getCurrentSignedInPlayerForContainer :: #force_inline proc "c" (containerName: ^NS.String, handler: ^Objc_Block(proc "c" (player: ^CloudPlayer, error: ^NS.Error))) {
     msgSend(nil, CloudPlayer, "getCurrentSignedInPlayerForContainer:completionHandler:", containerName, handler)
 }
 @(objc_type=CloudPlayer, objc_name="load", objc_is_class_method=true)

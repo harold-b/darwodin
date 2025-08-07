@@ -26,11 +26,11 @@ AnimationContext_init :: proc "c" (self: ^AnimationContext) -> ^AnimationContext
 
 
 @(objc_type=AnimationContext, objc_name="runAnimationGroup_completionHandler", objc_is_class_method=true)
-AnimationContext_runAnimationGroup_completionHandler :: #force_inline proc "c" (changes: proc "c" (_context: ^AnimationContext), completionHandler: proc "c" ()) {
+AnimationContext_runAnimationGroup_completionHandler :: #force_inline proc "c" (changes: ^Objc_Block(proc "c" (_context: ^AnimationContext)), completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, AnimationContext, "runAnimationGroup:completionHandler:", changes, completionHandler)
 }
 @(objc_type=AnimationContext, objc_name="runAnimationGroup_", objc_is_class_method=true)
-AnimationContext_runAnimationGroup_ :: #force_inline proc "c" (changes: proc "c" (_context: ^AnimationContext)) {
+AnimationContext_runAnimationGroup_ :: #force_inline proc "c" (changes: ^Objc_Block(proc "c" (_context: ^AnimationContext))) {
     msgSend(nil, AnimationContext, "runAnimationGroup:", changes)
 }
 @(objc_type=AnimationContext, objc_name="beginGrouping", objc_is_class_method=true)
@@ -62,11 +62,11 @@ AnimationContext_setTimingFunction :: #force_inline proc "c" (self: ^AnimationCo
     msgSend(nil, self, "setTimingFunction:", timingFunction)
 }
 @(objc_type=AnimationContext, objc_name="completionHandler")
-AnimationContext_completionHandler :: #force_inline proc "c" (self: ^AnimationContext) -> proc "c" () {
-    return msgSend(proc "c" (), self, "completionHandler")
+AnimationContext_completionHandler :: #force_inline proc "c" (self: ^AnimationContext) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "completionHandler")
 }
 @(objc_type=AnimationContext, objc_name="setCompletionHandler")
-AnimationContext_setCompletionHandler :: #force_inline proc "c" (self: ^AnimationContext, completionHandler: proc "c" ()) {
+AnimationContext_setCompletionHandler :: #force_inline proc "c" (self: ^AnimationContext, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setCompletionHandler:", completionHandler)
 }
 @(objc_type=AnimationContext, objc_name="allowsImplicitAnimation")

@@ -23,11 +23,11 @@ BlockOperation_init :: proc "c" (self: ^BlockOperation) -> ^BlockOperation {
 
 
 @(objc_type=BlockOperation, objc_name="blockOperationWithBlock", objc_is_class_method=true)
-BlockOperation_blockOperationWithBlock :: #force_inline proc "c" (block: proc "c" ()) -> ^BlockOperation {
+BlockOperation_blockOperationWithBlock :: #force_inline proc "c" (block: ^Objc_Block(proc "c" ())) -> ^BlockOperation {
     return msgSend(^BlockOperation, BlockOperation, "blockOperationWithBlock:", block)
 }
 @(objc_type=BlockOperation, objc_name="addExecutionBlock")
-BlockOperation_addExecutionBlock :: #force_inline proc "c" (self: ^BlockOperation, block: proc "c" ()) {
+BlockOperation_addExecutionBlock :: #force_inline proc "c" (self: ^BlockOperation, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addExecutionBlock:", block)
 }
 @(objc_type=BlockOperation, objc_name="executionBlocks")

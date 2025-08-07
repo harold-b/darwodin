@@ -56,11 +56,11 @@ PhysicalInputProfile_hasRemappedElements :: #force_inline proc "c" (self: ^Physi
     return msgSend(bool, self, "hasRemappedElements")
 }
 @(objc_type=PhysicalInputProfile, objc_name="valueDidChangeHandler")
-PhysicalInputProfile_valueDidChangeHandler :: #force_inline proc "c" (self: ^PhysicalInputProfile) -> proc "c" () {
-    return msgSend(proc "c" (), self, "valueDidChangeHandler")
+PhysicalInputProfile_valueDidChangeHandler :: #force_inline proc "c" (self: ^PhysicalInputProfile) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "valueDidChangeHandler")
 }
 @(objc_type=PhysicalInputProfile, objc_name="setValueDidChangeHandler")
-PhysicalInputProfile_setValueDidChangeHandler :: #force_inline proc "c" (self: ^PhysicalInputProfile, valueDidChangeHandler: proc "c" ()) {
+PhysicalInputProfile_setValueDidChangeHandler :: #force_inline proc "c" (self: ^PhysicalInputProfile, valueDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setValueDidChangeHandler:", valueDidChangeHandler)
 }
 @(objc_type=PhysicalInputProfile, objc_name="elements")

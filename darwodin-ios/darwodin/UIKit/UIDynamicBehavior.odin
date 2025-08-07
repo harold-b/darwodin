@@ -42,11 +42,11 @@ DynamicBehavior_childBehaviors :: #force_inline proc "c" (self: ^DynamicBehavior
     return msgSend(^NS.Array, self, "childBehaviors")
 }
 @(objc_type=DynamicBehavior, objc_name="action")
-DynamicBehavior_action :: #force_inline proc "c" (self: ^DynamicBehavior) -> proc "c" () {
-    return msgSend(proc "c" (), self, "action")
+DynamicBehavior_action :: #force_inline proc "c" (self: ^DynamicBehavior) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "action")
 }
 @(objc_type=DynamicBehavior, objc_name="setAction")
-DynamicBehavior_setAction :: #force_inline proc "c" (self: ^DynamicBehavior, action: proc "c" ()) {
+DynamicBehavior_setAction :: #force_inline proc "c" (self: ^DynamicBehavior, action: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setAction:", action)
 }
 @(objc_type=DynamicBehavior, objc_name="dynamicAnimator")

@@ -28,7 +28,7 @@ TableViewRowAction_init :: proc "c" (self: ^TableViewRowAction) -> ^TableViewRow
 
 
 @(objc_type=TableViewRowAction, objc_name="rowActionWithStyle", objc_is_class_method=true)
-TableViewRowAction_rowActionWithStyle :: #force_inline proc "c" (style: TableViewRowActionStyle, title: ^NS.String, handler: proc "c" (action: ^TableViewRowAction, row: NS.Integer)) -> ^TableViewRowAction {
+TableViewRowAction_rowActionWithStyle :: #force_inline proc "c" (style: TableViewRowActionStyle, title: ^NS.String, handler: ^Objc_Block(proc "c" (action: ^TableViewRowAction, row: NS.Integer))) -> ^TableViewRowAction {
     return msgSend(^TableViewRowAction, TableViewRowAction, "rowActionWithStyle:title:handler:", style, title, handler)
 }
 @(objc_type=TableViewRowAction, objc_name="style")

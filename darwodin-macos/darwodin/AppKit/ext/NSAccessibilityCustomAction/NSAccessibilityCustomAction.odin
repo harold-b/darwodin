@@ -27,12 +27,12 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithName_handler: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, handler: proc "c" () -> bool) -> ^AK.AccessibilityCustomAction,
+    initWithName_handler: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> ^AK.AccessibilityCustomAction,
     initWithName_target_selector: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> ^AK.AccessibilityCustomAction,
     name: proc(self: ^AK.AccessibilityCustomAction) -> ^NS.String,
     setName: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String),
-    handler: proc(self: ^AK.AccessibilityCustomAction) -> proc "c" () -> bool,
-    setHandler: proc(self: ^AK.AccessibilityCustomAction, handler: proc "c" () -> bool),
+    handler: proc(self: ^AK.AccessibilityCustomAction) -> ^Objc_Block(proc "c" () -> bool),
+    setHandler: proc(self: ^AK.AccessibilityCustomAction, handler: ^Objc_Block(proc "c" () -> bool)),
     target: proc(self: ^AK.AccessibilityCustomAction) -> ^NS.ObjectProtocol,
     setTarget: proc(self: ^AK.AccessibilityCustomAction, target: ^NS.ObjectProtocol),
     selector: proc(self: ^AK.AccessibilityCustomAction) -> SEL,
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithName_handler != nil {
-        initWithName_handler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String, handler: proc "c" () -> bool) -> ^AK.AccessibilityCustomAction {
+        initWithName_handler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> ^AK.AccessibilityCustomAction {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setName:"), auto_cast setName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.handler != nil {
-        handler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL) -> proc "c" () -> bool {
+        handler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL) -> ^Objc_Block(proc "c" () -> bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("handler"), auto_cast handler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setHandler != nil {
-        setHandler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, handler: proc "c" () -> bool) {
+        setHandler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, handler: ^Objc_Block(proc "c" () -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

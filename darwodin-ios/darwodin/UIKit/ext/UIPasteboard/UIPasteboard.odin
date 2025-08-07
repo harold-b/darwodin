@@ -46,10 +46,10 @@ VTable :: struct {
     dataForPasteboardType_inItemSet: proc(self: ^UI.Pasteboard, pasteboardType: ^NS.String, itemSet: ^NS.IndexSet) -> ^NS.Array,
     addItems: proc(self: ^UI.Pasteboard, items: ^NS.Array),
     setItems_options: proc(self: ^UI.Pasteboard, items: ^NS.Array, options: ^NS.Dictionary),
-    detectPatternsForPatterns_completionHandler: proc(self: ^UI.Pasteboard, patterns: ^NS.Set, completionHandler: proc "c" (_arg_0: ^NS.Set, _arg_1: ^NS.Error)),
-    detectPatternsForPatterns_inItemSet_completionHandler: proc(self: ^UI.Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: proc "c" (_arg_0: ^NS.Array, _arg_1: ^NS.Error)),
-    detectValuesForPatterns_completionHandler: proc(self: ^UI.Pasteboard, patterns: ^NS.Set, completionHandler: proc "c" (_arg_0: ^NS.Dictionary, _arg_1: ^NS.Error)),
-    detectValuesForPatterns_inItemSet_completionHandler: proc(self: ^UI.Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: proc "c" (_arg_0: ^NS.Array, _arg_1: ^NS.Error)),
+    detectPatternsForPatterns_completionHandler: proc(self: ^UI.Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Set, _1: ^NS.Error))),
+    detectPatternsForPatterns_inItemSet_completionHandler: proc(self: ^UI.Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))),
+    detectValuesForPatterns_completionHandler: proc(self: ^UI.Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Dictionary, _1: ^NS.Error))),
+    detectValuesForPatterns_inItemSet_completionHandler: proc(self: ^UI.Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))),
     generalPasteboard: proc() -> ^UI.Pasteboard,
     name: proc(self: ^UI.Pasteboard) -> ^NS.String,
     isPersistent: proc(self: ^UI.Pasteboard) -> bool,
@@ -309,7 +309,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setItems:options:"), auto_cast setItems_options, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.detectPatternsForPatterns_completionHandler != nil {
-        detectPatternsForPatterns_completionHandler :: proc "c" (self: ^UI.Pasteboard, _: SEL, patterns: ^NS.Set, completionHandler: proc "c" (_arg_0: ^NS.Set, _arg_1: ^NS.Error)) {
+        detectPatternsForPatterns_completionHandler :: proc "c" (self: ^UI.Pasteboard, _: SEL, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Set, _1: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -319,7 +319,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("detectPatternsForPatterns:completionHandler:"), auto_cast detectPatternsForPatterns_completionHandler, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.detectPatternsForPatterns_inItemSet_completionHandler != nil {
-        detectPatternsForPatterns_inItemSet_completionHandler :: proc "c" (self: ^UI.Pasteboard, _: SEL, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: proc "c" (_arg_0: ^NS.Array, _arg_1: ^NS.Error)) {
+        detectPatternsForPatterns_inItemSet_completionHandler :: proc "c" (self: ^UI.Pasteboard, _: SEL, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -329,7 +329,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("detectPatternsForPatterns:inItemSet:completionHandler:"), auto_cast detectPatternsForPatterns_inItemSet_completionHandler, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.detectValuesForPatterns_completionHandler != nil {
-        detectValuesForPatterns_completionHandler :: proc "c" (self: ^UI.Pasteboard, _: SEL, patterns: ^NS.Set, completionHandler: proc "c" (_arg_0: ^NS.Dictionary, _arg_1: ^NS.Error)) {
+        detectValuesForPatterns_completionHandler :: proc "c" (self: ^UI.Pasteboard, _: SEL, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Dictionary, _1: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -339,7 +339,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("detectValuesForPatterns:completionHandler:"), auto_cast detectValuesForPatterns_completionHandler, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.detectValuesForPatterns_inItemSet_completionHandler != nil {
-        detectValuesForPatterns_inItemSet_completionHandler :: proc "c" (self: ^UI.Pasteboard, _: SEL, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: proc "c" (_arg_0: ^NS.Array, _arg_1: ^NS.Error)) {
+        detectValuesForPatterns_inItemSet_completionHandler :: proc "c" (self: ^UI.Pasteboard, _: SEL, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

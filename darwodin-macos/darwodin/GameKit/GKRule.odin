@@ -39,7 +39,7 @@ Rule_ruleWithPredicate_retractingFact_grade :: #force_inline proc "c" (predicate
     return msgSend(^Rule, Rule, "ruleWithPredicate:retractingFact:grade:", predicate, fact, grade)
 }
 @(objc_type=Rule, objc_name="ruleWithBlockPredicate", objc_is_class_method=true)
-Rule_ruleWithBlockPredicate :: #force_inline proc "c" (predicate: proc "c" (_arg_0: ^RuleSystem) -> bool, action: proc "c" (_arg_0: ^RuleSystem)) -> ^Rule {
+Rule_ruleWithBlockPredicate :: #force_inline proc "c" (predicate: ^Objc_Block(proc "c" (_: ^RuleSystem) -> bool), action: ^Objc_Block(proc "c" (_: ^RuleSystem))) -> ^Rule {
     return msgSend(^Rule, Rule, "ruleWithBlockPredicate:action:", predicate, action)
 }
 @(objc_type=Rule, objc_name="salience")

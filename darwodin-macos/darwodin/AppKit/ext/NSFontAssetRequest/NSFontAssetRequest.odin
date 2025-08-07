@@ -29,7 +29,7 @@ VTable :: struct {
     super: NSObject.VTable,
     init: proc(self: ^AK.FontAssetRequest) -> ^AK.FontAssetRequest,
     initWithFontDescriptors: proc(self: ^AK.FontAssetRequest, fontDescriptors: ^NS.Array, options: AK.FontAssetRequestOptions) -> ^AK.FontAssetRequest,
-    downloadFontAssetsWithCompletionHandler: proc(self: ^AK.FontAssetRequest, completionHandler: proc "c" (error: ^NS.Error) -> bool),
+    downloadFontAssetsWithCompletionHandler: proc(self: ^AK.FontAssetRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error) -> bool)),
     downloadedFontDescriptors: proc(self: ^AK.FontAssetRequest) -> ^NS.Array,
     progress: proc(self: ^AK.FontAssetRequest) -> ^NS.Progress,
     load: proc(),
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFontDescriptors:options:"), auto_cast initWithFontDescriptors, "@@:@L") do panic("Failed to register objC method.")
     }
     if vt.downloadFontAssetsWithCompletionHandler != nil {
-        downloadFontAssetsWithCompletionHandler :: proc "c" (self: ^AK.FontAssetRequest, _: SEL, completionHandler: proc "c" (error: ^NS.Error) -> bool) {
+        downloadFontAssetsWithCompletionHandler :: proc "c" (self: ^AK.FontAssetRequest, _: SEL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error) -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

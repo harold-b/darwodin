@@ -66,7 +66,7 @@ CollectionReusableView_setAnimationsEnabled :: #force_inline proc "c" (enabled: 
     msgSend(nil, CollectionReusableView, "setAnimationsEnabled:", enabled)
 }
 @(objc_type=CollectionReusableView, objc_name="performWithoutAnimation", objc_is_class_method=true)
-CollectionReusableView_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: proc "c" ()) {
+CollectionReusableView_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionReusableView, "performWithoutAnimation:", actionsWithoutAnimation)
 }
 @(objc_type=CollectionReusableView, objc_name="areAnimationsEnabled", objc_is_class_method=true)
@@ -78,47 +78,47 @@ CollectionReusableView_inheritedAnimationDuration :: #force_inline proc "c" () -
     return msgSend(NS.TimeInterval, CollectionReusableView, "inheritedAnimationDuration")
 }
 @(objc_type=CollectionReusableView, objc_name="animateWithDuration_delay_options_animations_completion", objc_is_class_method=true)
-CollectionReusableView_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionReusableView_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionReusableView, "animateWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=CollectionReusableView, objc_name="animateWithDuration_animations_completion", objc_is_class_method=true)
-CollectionReusableView_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionReusableView_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionReusableView, "animateWithDuration:animations:completion:", duration, animations, completion)
 }
 @(objc_type=CollectionReusableView, objc_name="animateWithDuration_animations", objc_is_class_method=true)
-CollectionReusableView_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" ()) {
+CollectionReusableView_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionReusableView, "animateWithDuration:animations:", duration, animations)
 }
 @(objc_type=CollectionReusableView, objc_name="animateWithSpringDuration", objc_is_class_method=true)
-CollectionReusableView_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionReusableView_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionReusableView, "animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:", duration, bounce, velocity, delay, options, animations, completion)
 }
 @(objc_type=CollectionReusableView, objc_name="animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion", objc_is_class_method=true)
-CollectionReusableView_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionReusableView_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionReusableView, "animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:", duration, delay, dampingRatio, velocity, options, animations, completion)
 }
 @(objc_type=CollectionReusableView, objc_name="transitionWithView", objc_is_class_method=true)
-CollectionReusableView_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionReusableView_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionReusableView, "transitionWithView:duration:options:animations:completion:", view, duration, options, animations, completion)
 }
 @(objc_type=CollectionReusableView, objc_name="transitionFromView", objc_is_class_method=true)
-CollectionReusableView_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: proc "c" (finished: bool)) {
+CollectionReusableView_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionReusableView, "transitionFromView:toView:duration:options:completion:", fromView, toView, duration, options, completion)
 }
 @(objc_type=CollectionReusableView, objc_name="performSystemAnimation", objc_is_class_method=true)
-CollectionReusableView_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionReusableView_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionReusableView, "performSystemAnimation:onViews:options:animations:completion:", animation, views, options, parallelAnimations, completion)
 }
 @(objc_type=CollectionReusableView, objc_name="modifyAnimationsWithRepeatCount", objc_is_class_method=true)
-CollectionReusableView_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: proc "c" ()) {
+CollectionReusableView_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionReusableView, "modifyAnimationsWithRepeatCount:autoreverses:animations:", count, autoreverses, animations)
 }
 @(objc_type=CollectionReusableView, objc_name="animateKeyframesWithDuration", objc_is_class_method=true)
-CollectionReusableView_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionReusableView_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionReusableView, "animateKeyframesWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=CollectionReusableView, objc_name="addKeyframeWithRelativeStartTime", objc_is_class_method=true)
-CollectionReusableView_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: proc "c" ()) {
+CollectionReusableView_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionReusableView, "addKeyframeWithRelativeStartTime:relativeDuration:animations:", frameStartTime, frameDuration, animations)
 }
 @(objc_type=CollectionReusableView, objc_name="requiresConstraintBasedLayout", objc_is_class_method=true)

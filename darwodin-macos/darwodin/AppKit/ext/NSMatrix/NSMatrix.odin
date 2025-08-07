@@ -33,7 +33,7 @@ VTable :: struct {
     makeCellAtRow: proc(self: ^AK.Matrix, row: NS.Integer, col: NS.Integer) -> ^AK.Cell,
     sendAction_to_forAllCells: proc(self: ^AK.Matrix, selector: SEL, object: id, flag: bool),
     sortUsingSelector: proc(self: ^AK.Matrix, comparator: SEL),
-    sortUsingFunction: proc(self: ^AK.Matrix, compare: proc "c" (_arg_0: id, _arg_1: id, _arg_2: rawptr) -> NS.Integer, _context: rawptr),
+    sortUsingFunction: proc(self: ^AK.Matrix, compare: proc "c" (_: id, _1: id, _2: rawptr) -> NS.Integer, _context: rawptr),
     setSelectionFrom: proc(self: ^AK.Matrix, startPos: NS.Integer, endPos: NS.Integer, anchorPos: NS.Integer, lit: bool),
     deselectSelectedCell: proc(self: ^AK.Matrix),
     deselectAllCells: proc(self: ^AK.Matrix),
@@ -238,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sortUsingSelector:"), auto_cast sortUsingSelector, "v@::") do panic("Failed to register objC method.")
     }
     if vt.sortUsingFunction != nil {
-        sortUsingFunction :: proc "c" (self: ^AK.Matrix, _: SEL, compare: proc "c" (_arg_0: id, _arg_1: id, _arg_2: rawptr) -> NS.Integer, _context: rawptr) {
+        sortUsingFunction :: proc "c" (self: ^AK.Matrix, _: SEL, compare: proc "c" (_: id, _1: id, _2: rawptr) -> NS.Integer, _context: rawptr) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

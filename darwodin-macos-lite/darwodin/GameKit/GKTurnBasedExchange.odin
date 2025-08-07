@@ -23,11 +23,11 @@ TurnBasedExchange_init :: proc "c" (self: ^TurnBasedExchange) -> ^TurnBasedExcha
 
 
 @(objc_type=TurnBasedExchange, objc_name="cancelWithLocalizableMessageKey")
-TurnBasedExchange_cancelWithLocalizableMessageKey :: #force_inline proc "c" (self: ^TurnBasedExchange, key: ^NS.String, arguments: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedExchange_cancelWithLocalizableMessageKey :: #force_inline proc "c" (self: ^TurnBasedExchange, key: ^NS.String, arguments: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "cancelWithLocalizableMessageKey:arguments:completionHandler:", key, arguments, completionHandler)
 }
 @(objc_type=TurnBasedExchange, objc_name="replyWithLocalizableMessageKey")
-TurnBasedExchange_replyWithLocalizableMessageKey :: #force_inline proc "c" (self: ^TurnBasedExchange, key: ^NS.String, arguments: ^NS.Array, data: ^NS.Data, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedExchange_replyWithLocalizableMessageKey :: #force_inline proc "c" (self: ^TurnBasedExchange, key: ^NS.String, arguments: ^NS.Array, data: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "replyWithLocalizableMessageKey:arguments:data:completionHandler:", key, arguments, data, completionHandler)
 }
 @(objc_type=TurnBasedExchange, objc_name="exchangeID")

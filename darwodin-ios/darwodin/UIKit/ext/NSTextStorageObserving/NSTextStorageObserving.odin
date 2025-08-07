@@ -25,7 +25,7 @@ import UI "../../"
 
 VTable :: struct {
     processEditingForTextStorage: proc(self: ^UI.NSTextStorageObserving, textStorage: ^UI.NSTextStorage, editMask: UI.NSTextStorageEditActions, newCharRange: NS._NSRange, delta: NS.Integer, invalidatedCharRange: NS._NSRange),
-    performEditingTransactionForTextStorage: proc(self: ^UI.NSTextStorageObserving, textStorage: ^UI.NSTextStorage, transaction: proc "c" ()),
+    performEditingTransactionForTextStorage: proc(self: ^UI.NSTextStorageObserving, textStorage: ^UI.NSTextStorage, transaction: ^Objc_Block(proc "c" ())),
     textStorage: proc(self: ^UI.NSTextStorageObserving) -> ^UI.NSTextStorage,
     setTextStorage: proc(self: ^UI.NSTextStorageObserving, textStorage: ^UI.NSTextStorage),
 }
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:"), auto_cast processEditingForTextStorage, "v@:@L{_NSRange=LL}l{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.performEditingTransactionForTextStorage != nil {
-        performEditingTransactionForTextStorage :: proc "c" (self: ^UI.NSTextStorageObserving, _: SEL, textStorage: ^UI.NSTextStorage, transaction: proc "c" ()) {
+        performEditingTransactionForTextStorage :: proc "c" (self: ^UI.NSTextStorageObserving, _: SEL, textStorage: ^UI.NSTextStorage, transaction: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

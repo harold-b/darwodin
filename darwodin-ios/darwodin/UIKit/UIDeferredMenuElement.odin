@@ -26,11 +26,11 @@ DeferredMenuElement_init :: proc "c" (self: ^DeferredMenuElement) -> ^DeferredMe
 
 
 @(objc_type=DeferredMenuElement, objc_name="elementWithProvider", objc_is_class_method=true)
-DeferredMenuElement_elementWithProvider :: #force_inline proc "c" (elementProvider: proc "c" (completion: proc "c" (elements: ^NS.Array))) -> ^DeferredMenuElement {
+DeferredMenuElement_elementWithProvider :: #force_inline proc "c" (elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> ^DeferredMenuElement {
     return msgSend(^DeferredMenuElement, DeferredMenuElement, "elementWithProvider:", elementProvider)
 }
 @(objc_type=DeferredMenuElement, objc_name="elementWithUncachedProvider", objc_is_class_method=true)
-DeferredMenuElement_elementWithUncachedProvider :: #force_inline proc "c" (elementProvider: proc "c" (completion: proc "c" (elements: ^NS.Array))) -> ^DeferredMenuElement {
+DeferredMenuElement_elementWithUncachedProvider :: #force_inline proc "c" (elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> ^DeferredMenuElement {
     return msgSend(^DeferredMenuElement, DeferredMenuElement, "elementWithUncachedProvider:", elementProvider)
 }
 @(objc_type=DeferredMenuElement, objc_name="new", objc_is_class_method=true)

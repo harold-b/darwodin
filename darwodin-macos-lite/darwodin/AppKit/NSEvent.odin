@@ -57,7 +57,7 @@ Event_coalescedTouchesForTouch :: #force_inline proc "c" (self: ^Event, touch: ^
     return msgSend(^NS.Array, self, "coalescedTouchesForTouch:", touch)
 }
 @(objc_type=Event, objc_name="trackSwipeEventWithOptions")
-Event_trackSwipeEventWithOptions :: #force_inline proc "c" (self: ^Event, options: EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: proc "c" (gestureAmount: CG.Float, phase: EventPhase, isComplete: bool, stop: ^bool)) {
+Event_trackSwipeEventWithOptions :: #force_inline proc "c" (self: ^Event, options: EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: ^Objc_Block(proc "c" (gestureAmount: CG.Float, phase: EventPhase, isComplete: bool, stop: ^bool))) {
     msgSend(nil, self, "trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:", options, minDampenThreshold, maxDampenThreshold, trackingHandler)
 }
 @(objc_type=Event, objc_name="startPeriodicEventsAfterDelay", objc_is_class_method=true)
@@ -85,11 +85,11 @@ Event_otherEventWithType :: #force_inline proc "c" (type: EventType, location: C
     return msgSend(^Event, Event, "otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:", type, location, flags, time, wNum, unusedPassNil, subtype, d1, d2)
 }
 @(objc_type=Event, objc_name="addGlobalMonitorForEventsMatchingMask", objc_is_class_method=true)
-Event_addGlobalMonitorForEventsMatchingMask :: #force_inline proc "c" (mask: EventMask, block: proc "c" (event: ^Event)) -> id {
+Event_addGlobalMonitorForEventsMatchingMask :: #force_inline proc "c" (mask: EventMask, block: ^Objc_Block(proc "c" (event: ^Event))) -> id {
     return msgSend(id, Event, "addGlobalMonitorForEventsMatchingMask:handler:", mask, block)
 }
 @(objc_type=Event, objc_name="addLocalMonitorForEventsMatchingMask", objc_is_class_method=true)
-Event_addLocalMonitorForEventsMatchingMask :: #force_inline proc "c" (mask: EventMask, block: proc "c" (event: ^Event) -> ^Event) -> id {
+Event_addLocalMonitorForEventsMatchingMask :: #force_inline proc "c" (mask: EventMask, block: ^Objc_Block(proc "c" (event: ^Event) -> ^Event)) -> id {
     return msgSend(id, Event, "addLocalMonitorForEventsMatchingMask:handler:", mask, block)
 }
 @(objc_type=Event, objc_name="removeMonitor", objc_is_class_method=true)

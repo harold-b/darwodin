@@ -22,7 +22,7 @@ WindowSceneActivationInteraction :: struct { using _: NS.Object,
 }
 
 @(objc_type=WindowSceneActivationInteraction, objc_name="initWithConfigurationProvider")
-WindowSceneActivationInteraction_initWithConfigurationProvider :: #force_inline proc "c" (self: ^WindowSceneActivationInteraction, configurationProvider: WindowSceneActivationInteractionConfigurationProvider, errorHandler: proc "c" (_arg_0: ^NS.Error)) -> ^WindowSceneActivationInteraction {
+WindowSceneActivationInteraction_initWithConfigurationProvider :: #force_inline proc "c" (self: ^WindowSceneActivationInteraction, configurationProvider: WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> ^WindowSceneActivationInteraction {
     return msgSend(^WindowSceneActivationInteraction, self, "initWithConfigurationProvider:errorHandler:", configurationProvider, errorHandler)
 }
 @(objc_type=WindowSceneActivationInteraction, objc_name="init")

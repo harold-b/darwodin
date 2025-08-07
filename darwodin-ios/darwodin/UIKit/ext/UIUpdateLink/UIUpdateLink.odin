@@ -31,7 +31,7 @@ VTable :: struct {
     init: proc(self: ^UI.UpdateLink) -> ^UI.UpdateLink,
     updateLinkForWindowScene_: proc(windowScene: ^UI.WindowScene) -> ^UI.UpdateLink,
     updateLinkForView_: proc(view: ^UI.View) -> ^UI.UpdateLink,
-    addActionToPhase_handler: proc(self: ^UI.UpdateLink, phase: ^UI.UpdateActionPhase, handler: proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo)),
+    addActionToPhase_handler: proc(self: ^UI.UpdateLink, phase: ^UI.UpdateActionPhase, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))),
     addActionToPhase_target_selector: proc(self: ^UI.UpdateLink, phase: ^UI.UpdateActionPhase, target: id, selector: SEL),
     currentUpdateInfo: proc(self: ^UI.UpdateLink) -> ^UI.UpdateInfo,
     isEnabled: proc(self: ^UI.UpdateLink) -> bool,
@@ -44,11 +44,11 @@ VTable :: struct {
     setWantsImmediatePresentation: proc(self: ^UI.UpdateLink, wantsImmediatePresentation: bool),
     preferredFrameRateRange: proc(self: ^UI.UpdateLink) -> CA.FrameRateRange,
     setPreferredFrameRateRange: proc(self: ^UI.UpdateLink, preferredFrameRateRange: CA.FrameRateRange),
-    addActionWithHandler: proc(self: ^UI.UpdateLink, handler: proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo)),
+    addActionWithHandler: proc(self: ^UI.UpdateLink, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))),
     addActionWithTarget: proc(self: ^UI.UpdateLink, target: id, selector: SEL),
-    updateLinkForWindowScene_actionHandler: proc(windowScene: ^UI.WindowScene, handler: proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo)) -> ^UI.UpdateLink,
+    updateLinkForWindowScene_actionHandler: proc(windowScene: ^UI.WindowScene, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))) -> ^UI.UpdateLink,
     updateLinkForWindowScene_actionTarget_selector: proc(windowScene: ^UI.WindowScene, target: id, selector: SEL) -> ^UI.UpdateLink,
-    updateLinkForView_actionHandler: proc(view: ^UI.View, handler: proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo)) -> ^UI.UpdateLink,
+    updateLinkForView_actionHandler: proc(view: ^UI.View, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))) -> ^UI.UpdateLink,
     updateLinkForView_actionTarget_selector: proc(view: ^UI.View, target: id, selector: SEL) -> ^UI.UpdateLink,
     load: proc(),
     initialize: proc(),
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("updateLinkForView:"), auto_cast updateLinkForView_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.addActionToPhase_handler != nil {
-        addActionToPhase_handler :: proc "c" (self: ^UI.UpdateLink, _: SEL, phase: ^UI.UpdateActionPhase, handler: proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo)) {
+        addActionToPhase_handler :: proc "c" (self: ^UI.UpdateLink, _: SEL, phase: ^UI.UpdateActionPhase, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredFrameRateRange:"), auto_cast setPreferredFrameRateRange, "v@:{CAFrameRateRange=fff}") do panic("Failed to register objC method.")
     }
     if vt.addActionWithHandler != nil {
-        addActionWithHandler :: proc "c" (self: ^UI.UpdateLink, _: SEL, handler: proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo)) {
+        addActionWithHandler :: proc "c" (self: ^UI.UpdateLink, _: SEL, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -278,7 +278,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addActionWithTarget:selector:"), auto_cast addActionWithTarget, "v@:@:") do panic("Failed to register objC method.")
     }
     if vt.updateLinkForWindowScene_actionHandler != nil {
-        updateLinkForWindowScene_actionHandler :: proc "c" (self: Class, _: SEL, windowScene: ^UI.WindowScene, handler: proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo)) -> ^UI.UpdateLink {
+        updateLinkForWindowScene_actionHandler :: proc "c" (self: Class, _: SEL, windowScene: ^UI.WindowScene, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))) -> ^UI.UpdateLink {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -298,7 +298,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("updateLinkForWindowScene:actionTarget:selector:"), auto_cast updateLinkForWindowScene_actionTarget_selector, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.updateLinkForView_actionHandler != nil {
-        updateLinkForView_actionHandler :: proc "c" (self: Class, _: SEL, view: ^UI.View, handler: proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo)) -> ^UI.UpdateLink {
+        updateLinkForView_actionHandler :: proc "c" (self: Class, _: SEL, view: ^UI.View, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))) -> ^UI.UpdateLink {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -41,8 +41,8 @@ VTable :: struct {
     setSearchText: proc(self: ^UI.FindInteraction, searchText: ^NS.String),
     replacementText: proc(self: ^UI.FindInteraction) -> ^NS.String,
     setReplacementText: proc(self: ^UI.FindInteraction, replacementText: ^NS.String),
-    optionsMenuProvider: proc(self: ^UI.FindInteraction) -> proc "c" () -> ^UI.Menu,
-    setOptionsMenuProvider: proc(self: ^UI.FindInteraction, optionsMenuProvider: proc "c" () -> ^UI.Menu),
+    optionsMenuProvider: proc(self: ^UI.FindInteraction) -> ^Objc_Block(proc "c" () -> ^UI.Menu),
+    setOptionsMenuProvider: proc(self: ^UI.FindInteraction, optionsMenuProvider: ^Objc_Block(proc "c" () -> ^UI.Menu)),
     delegate: proc(self: ^UI.FindInteraction) -> ^UI.FindInteractionDelegate,
     load: proc(),
     initialize: proc(),
@@ -222,7 +222,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setReplacementText:"), auto_cast setReplacementText, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.optionsMenuProvider != nil {
-        optionsMenuProvider :: proc "c" (self: ^UI.FindInteraction, _: SEL) -> proc "c" () -> ^UI.Menu {
+        optionsMenuProvider :: proc "c" (self: ^UI.FindInteraction, _: SEL) -> ^Objc_Block(proc "c" () -> ^UI.Menu) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -232,7 +232,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("optionsMenuProvider"), auto_cast optionsMenuProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setOptionsMenuProvider != nil {
-        setOptionsMenuProvider :: proc "c" (self: ^UI.FindInteraction, _: SEL, optionsMenuProvider: proc "c" () -> ^UI.Menu) {
+        setOptionsMenuProvider :: proc "c" (self: ^UI.FindInteraction, _: SEL, optionsMenuProvider: ^Objc_Block(proc "c" () -> ^UI.Menu)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

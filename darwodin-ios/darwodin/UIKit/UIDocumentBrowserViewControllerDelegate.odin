@@ -30,7 +30,7 @@ DocumentBrowserViewControllerDelegate_documentBrowser_didPickDocumentsAtURLs :: 
     msgSend(nil, self, "documentBrowser:didPickDocumentsAtURLs:", controller, documentURLs)
 }
 @(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_didRequestDocumentCreationWithHandler")
-DocumentBrowserViewControllerDelegate_documentBrowser_didRequestDocumentCreationWithHandler :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, importHandler: proc "c" (urlToImport: ^NS.URL, importMode: DocumentBrowserImportMode)) {
+DocumentBrowserViewControllerDelegate_documentBrowser_didRequestDocumentCreationWithHandler :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, importHandler: ^Objc_Block(proc "c" (urlToImport: ^NS.URL, importMode: DocumentBrowserImportMode))) {
     msgSend(nil, self, "documentBrowser:didRequestDocumentCreationWithHandler:", controller, importHandler)
 }
 @(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_didImportDocumentAtURL_toDestinationURL")

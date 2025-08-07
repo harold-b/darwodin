@@ -38,7 +38,7 @@ ContextMenuInteraction_locationInView :: #force_inline proc "c" (self: ^ContextM
     return msgSend(CG.Point, self, "locationInView:", view)
 }
 @(objc_type=ContextMenuInteraction, objc_name="updateVisibleMenuWithBlock")
-ContextMenuInteraction_updateVisibleMenuWithBlock :: #force_inline proc "c" (self: ^ContextMenuInteraction, block: proc "c" (visibleMenu: ^Menu) -> ^Menu) {
+ContextMenuInteraction_updateVisibleMenuWithBlock :: #force_inline proc "c" (self: ^ContextMenuInteraction, block: ^Objc_Block(proc "c" (visibleMenu: ^Menu) -> ^Menu)) {
     msgSend(nil, self, "updateVisibleMenuWithBlock:", block)
 }
 @(objc_type=ContextMenuInteraction, objc_name="dismissMenu")

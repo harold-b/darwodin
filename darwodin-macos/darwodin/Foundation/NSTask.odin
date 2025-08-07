@@ -121,11 +121,11 @@ Task_terminationReason :: #force_inline proc "c" (self: ^Task) -> TaskTerminatio
     return msgSend(TaskTerminationReason, self, "terminationReason")
 }
 @(objc_type=Task, objc_name="terminationHandler")
-Task_terminationHandler :: #force_inline proc "c" (self: ^Task) -> proc "c" () {
-    return msgSend(proc "c" (), self, "terminationHandler")
+Task_terminationHandler :: #force_inline proc "c" (self: ^Task) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "terminationHandler")
 }
 @(objc_type=Task, objc_name="setTerminationHandler")
-Task_setTerminationHandler :: #force_inline proc "c" (self: ^Task, terminationHandler: proc "c" ()) {
+Task_setTerminationHandler :: #force_inline proc "c" (self: ^Task, terminationHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setTerminationHandler:", terminationHandler)
 }
 @(objc_type=Task, objc_name="qualityOfService")
@@ -137,7 +137,7 @@ Task_setQualityOfService :: #force_inline proc "c" (self: ^Task, qualityOfServic
     msgSend(nil, self, "setQualityOfService:", qualityOfService)
 }
 @(objc_type=Task, objc_name="launchedTaskWithExecutableURL", objc_is_class_method=true)
-Task_launchedTaskWithExecutableURL :: #force_inline proc "c" (url: ^URL, arguments: ^Array, error: ^^Error, terminationHandler: proc "c" (_arg_0: ^Task)) -> ^Task {
+Task_launchedTaskWithExecutableURL :: #force_inline proc "c" (url: ^URL, arguments: ^Array, error: ^^Error, terminationHandler: ^Objc_Block(proc "c" (_: ^Task))) -> ^Task {
     return msgSend(^Task, Task, "launchedTaskWithExecutableURL:arguments:error:terminationHandler:", url, arguments, error, terminationHandler)
 }
 @(objc_type=Task, objc_name="waitUntilExit")

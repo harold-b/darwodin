@@ -28,7 +28,7 @@ import "../UIPresentationController"
 VTable :: struct {
     super: UIPresentationController.VTable,
     invalidateDetents: proc(self: ^UI.SheetPresentationController),
-    animateChanges: proc(self: ^UI.SheetPresentationController, changes: proc "c" ()),
+    animateChanges: proc(self: ^UI.SheetPresentationController, changes: ^Objc_Block(proc "c" ())),
     delegate: proc(self: ^UI.SheetPresentationController) -> ^UI.SheetPresentationControllerDelegate,
     setDelegate: proc(self: ^UI.SheetPresentationController, delegate: ^UI.SheetPresentationControllerDelegate),
     sourceView: proc(self: ^UI.SheetPresentationController) -> ^UI.View,
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateDetents"), auto_cast invalidateDetents, "v@:") do panic("Failed to register objC method.")
     }
     if vt.animateChanges != nil {
-        animateChanges :: proc "c" (self: ^UI.SheetPresentationController, _: SEL, changes: proc "c" ()) {
+        animateChanges :: proc "c" (self: ^UI.SheetPresentationController, _: SEL, changes: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

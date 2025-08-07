@@ -25,7 +25,7 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     mountedVolumeURLsIncludingResourceValuesForKeys: proc(self: ^NS.FileManager, propertyKeys: ^NS.Array, options: NS.VolumeEnumerationOptions) -> ^NS.Array,
-    unmountVolumeAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, mask: NS.FileManagerUnmountOptions, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
+    unmountVolumeAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, mask: NS.FileManagerUnmountOptions, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
     contentsOfDirectoryAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, keys: ^NS.Array, mask: NS.DirectoryEnumerationOptions, error: ^^NS.Error) -> ^NS.Array,
     _URLsForDirectory: proc(self: ^NS.FileManager, directory: NS.SearchPathDirectory, domainMask: NS.SearchPathDomainMask) -> ^NS.Array,
     _URLForDirectory: proc(self: ^NS.FileManager, directory: NS.SearchPathDirectory, domain: NS.SearchPathDomainMask, url: ^NS.URL, shouldCreate: bool, error: ^^NS.Error) -> ^NS.URL,
@@ -72,7 +72,7 @@ VTable :: struct {
     displayNameAtPath: proc(self: ^NS.FileManager, path: ^NS.String) -> ^NS.String,
     componentsToDisplayForPath: proc(self: ^NS.FileManager, path: ^NS.String) -> ^NS.Array,
     enumeratorAtPath: proc(self: ^NS.FileManager, path: ^NS.String) -> ^NS.DirectoryEnumerator,
-    enumeratorAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, keys: ^NS.Array, mask: NS.DirectoryEnumerationOptions, handler: proc "c" (url: ^NS.URL, error: ^NS.Error) -> bool) -> ^NS.DirectoryEnumerator,
+    enumeratorAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, keys: ^NS.Array, mask: NS.DirectoryEnumerationOptions, handler: ^Objc_Block(proc "c" (url: ^NS.URL, error: ^NS.Error) -> bool)) -> ^NS.DirectoryEnumerator,
     subpathsAtPath: proc(self: ^NS.FileManager, path: ^NS.String) -> ^NS.Array,
     contentsAtPath: proc(self: ^NS.FileManager, path: ^NS.String) -> ^NS.Data,
     createFileAtPath: proc(self: ^NS.FileManager, path: ^NS.String, data: ^NS.Data, attr: ^NS.Dictionary) -> bool,
@@ -85,7 +85,7 @@ VTable :: struct {
     evictUbiquitousItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, error: ^^NS.Error) -> bool,
     _URLForUbiquityContainerIdentifier: proc(self: ^NS.FileManager, containerIdentifier: ^NS.String) -> ^NS.URL,
     _URLForPublishingUbiquitousItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, outDate: ^^NS.Date, error: ^^NS.Error) -> ^NS.URL,
-    getFileProviderServicesForItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, completionHandler: proc "c" (services: ^NS.Dictionary, error: ^NS.Error)),
+    getFileProviderServicesForItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (services: ^NS.Dictionary, error: ^NS.Error))),
     containerURLForSecurityApplicationGroupIdentifier: proc(self: ^NS.FileManager, groupIdentifier: ^NS.String) -> ^NS.URL,
     defaultManager: proc() -> ^NS.FileManager,
     delegate: proc(self: ^NS.FileManager) -> ^NS.FileManagerDelegate,
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mountedVolumeURLsIncludingResourceValuesForKeys:options:"), auto_cast mountedVolumeURLsIncludingResourceValuesForKeys, "@@:@L") do panic("Failed to register objC method.")
     }
     if vt.unmountVolumeAtURL != nil {
-        unmountVolumeAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, mask: NS.FileManagerUnmountOptions, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        unmountVolumeAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, mask: NS.FileManagerUnmountOptions, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -616,7 +616,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtPath:"), auto_cast enumeratorAtPath, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.enumeratorAtURL != nil {
-        enumeratorAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, keys: ^NS.Array, mask: NS.DirectoryEnumerationOptions, handler: proc "c" (url: ^NS.URL, error: ^NS.Error) -> bool) -> ^NS.DirectoryEnumerator {
+        enumeratorAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, keys: ^NS.Array, mask: NS.DirectoryEnumerationOptions, handler: ^Objc_Block(proc "c" (url: ^NS.URL, error: ^NS.Error) -> bool)) -> ^NS.DirectoryEnumerator {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -746,7 +746,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLForPublishingUbiquitousItemAtURL:expirationDate:error:"), auto_cast _URLForPublishingUbiquitousItemAtURL, "@@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.getFileProviderServicesForItemAtURL != nil {
-        getFileProviderServicesForItemAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, completionHandler: proc "c" (services: ^NS.Dictionary, error: ^NS.Error)) {
+        getFileProviderServicesForItemAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (services: ^NS.Dictionary, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -25,7 +25,7 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     initWithIdentifier: proc(self: ^NS.BackgroundActivityScheduler, identifier: ^NS.String) -> ^NS.BackgroundActivityScheduler,
-    scheduleWithBlock: proc(self: ^NS.BackgroundActivityScheduler, block: proc "c" (completionHandler: NS.BackgroundActivityCompletionHandler)),
+    scheduleWithBlock: proc(self: ^NS.BackgroundActivityScheduler, block: ^Objc_Block(proc "c" (completionHandler: NS.BackgroundActivityCompletionHandler))),
     invalidate: proc(self: ^NS.BackgroundActivityScheduler),
     identifier: proc(self: ^NS.BackgroundActivityScheduler) -> ^NS.String,
     qualityOfService: proc(self: ^NS.BackgroundActivityScheduler) -> NS.QualityOfService,
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdentifier:"), auto_cast initWithIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.scheduleWithBlock != nil {
-        scheduleWithBlock :: proc "c" (self: ^NS.BackgroundActivityScheduler, _: SEL, block: proc "c" (completionHandler: NS.BackgroundActivityCompletionHandler)) {
+        scheduleWithBlock :: proc "c" (self: ^NS.BackgroundActivityScheduler, _: SEL, block: ^Objc_Block(proc "c" (completionHandler: NS.BackgroundActivityCompletionHandler))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

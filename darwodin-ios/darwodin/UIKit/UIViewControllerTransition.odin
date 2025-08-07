@@ -20,7 +20,7 @@ import CA "../QuartzCore"
 ViewControllerTransition :: struct { using _: NS.Object, }
 
 @(objc_type=ViewControllerTransition, objc_name="zoomWithOptions", objc_is_class_method=true)
-ViewControllerTransition_zoomWithOptions :: #force_inline proc "c" (options: ^ZoomTransitionOptions, sourceViewProvider: proc "c" (_arg_0: ^ZoomTransitionSourceViewProviderContext) -> ^View) -> ^ViewControllerTransition {
+ViewControllerTransition_zoomWithOptions :: #force_inline proc "c" (options: ^ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^ZoomTransitionSourceViewProviderContext) -> ^View)) -> ^ViewControllerTransition {
     return msgSend(^ViewControllerTransition, ViewControllerTransition, "zoomWithOptions:sourceViewProvider:", options, sourceViewProvider)
 }
 @(objc_type=ViewControllerTransition, objc_name="coverVerticalTransition", objc_is_class_method=true)

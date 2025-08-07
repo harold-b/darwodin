@@ -20,11 +20,11 @@ TouchedStateInput :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=TouchedStateInput, objc_name="touchedDidChangeHandler")
-TouchedStateInput_touchedDidChangeHandler :: #force_inline proc "c" (self: ^TouchedStateInput) -> proc "c" () {
-    return msgSend(proc "c" (), self, "touchedDidChangeHandler")
+TouchedStateInput_touchedDidChangeHandler :: #force_inline proc "c" (self: ^TouchedStateInput) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "touchedDidChangeHandler")
 }
 @(objc_type=TouchedStateInput, objc_name="setTouchedDidChangeHandler")
-TouchedStateInput_setTouchedDidChangeHandler :: #force_inline proc "c" (self: ^TouchedStateInput, touchedDidChangeHandler: proc "c" ()) {
+TouchedStateInput_setTouchedDidChangeHandler :: #force_inline proc "c" (self: ^TouchedStateInput, touchedDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setTouchedDidChangeHandler:", touchedDidChangeHandler)
 }
 @(objc_type=TouchedStateInput, objc_name="isTouched")

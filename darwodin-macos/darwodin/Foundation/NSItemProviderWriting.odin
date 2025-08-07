@@ -27,7 +27,7 @@ ItemProviderWriting_itemProviderVisibilityForRepresentationWithTypeIdentifier ::
     return msgSend(ItemProviderRepresentationVisibility, self, "itemProviderVisibilityForRepresentationWithTypeIdentifier:", typeIdentifier)
 }
 @(objc_type=ItemProviderWriting, objc_name="loadDataWithTypeIdentifier")
-ItemProviderWriting_loadDataWithTypeIdentifier :: #force_inline proc "c" (self: ^ItemProviderWriting, typeIdentifier: ^String, completionHandler: proc "c" (data: ^Data, error: ^Error)) -> ^Progress {
+ItemProviderWriting_loadDataWithTypeIdentifier :: #force_inline proc "c" (self: ^ItemProviderWriting, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress {
     return msgSend(^Progress, self, "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:", typeIdentifier, completionHandler)
 }
 @(objc_type=ItemProviderWriting, objc_name="writableTypeIdentifiersForItemProviderStatic", objc_is_class_method=true)

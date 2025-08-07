@@ -78,11 +78,11 @@ FindInteraction_setReplacementText :: #force_inline proc "c" (self: ^FindInterac
     msgSend(nil, self, "setReplacementText:", replacementText)
 }
 @(objc_type=FindInteraction, objc_name="optionsMenuProvider")
-FindInteraction_optionsMenuProvider :: #force_inline proc "c" (self: ^FindInteraction) -> proc "c" () -> ^Menu {
-    return msgSend(proc "c" () -> ^Menu, self, "optionsMenuProvider")
+FindInteraction_optionsMenuProvider :: #force_inline proc "c" (self: ^FindInteraction) -> ^Objc_Block(proc "c" () -> ^Menu) {
+    return msgSend(^Objc_Block(proc "c" () -> ^Menu), self, "optionsMenuProvider")
 }
 @(objc_type=FindInteraction, objc_name="setOptionsMenuProvider")
-FindInteraction_setOptionsMenuProvider :: #force_inline proc "c" (self: ^FindInteraction, optionsMenuProvider: proc "c" () -> ^Menu) {
+FindInteraction_setOptionsMenuProvider :: #force_inline proc "c" (self: ^FindInteraction, optionsMenuProvider: ^Objc_Block(proc "c" () -> ^Menu)) {
     msgSend(nil, self, "setOptionsMenuProvider:", optionsMenuProvider)
 }
 @(objc_type=FindInteraction, objc_name="delegate")

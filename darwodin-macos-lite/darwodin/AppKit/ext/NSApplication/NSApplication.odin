@@ -51,7 +51,7 @@ VTable :: struct {
     terminate: proc(self: ^AK.Application, sender: id),
     requestUserAttention: proc(self: ^AK.Application, requestType: AK.RequestUserAttentionType) -> NS.Integer,
     cancelUserAttentionRequest: proc(self: ^AK.Application, request: NS.Integer),
-    enumerateWindowsWithOptions: proc(self: ^AK.Application, options: AK.WindowListOptions, block: proc "c" (window: ^AK.Window, stop: ^bool)),
+    enumerateWindowsWithOptions: proc(self: ^AK.Application, options: AK.WindowListOptions, block: ^Objc_Block(proc "c" (window: ^AK.Window, stop: ^bool))),
     preventWindowOrdering: proc(self: ^AK.Application),
     setWindowsNeedUpdate: proc(self: ^AK.Application, needUpdate: bool),
     updateWindows: proc(self: ^AK.Application),
@@ -141,7 +141,7 @@ VTable :: struct {
     registerUserInterfaceItemSearchHandler: proc(self: ^AK.Application, handler: ^AK.UserInterfaceItemSearching),
     unregisterUserInterfaceItemSearchHandler: proc(self: ^AK.Application, handler: ^AK.UserInterfaceItemSearching),
     searchString: proc(self: ^AK.Application, searchString: ^NS.String, stringToSearch: ^NS.String, searchRange: NS._NSRange, foundRange: ^NS._NSRange) -> bool,
-    restoreWindowWithIdentifier: proc(self: ^AK.Application, identifier: ^NS.String, state: ^NS.Coder, completionHandler: proc "c" (_arg_0: ^AK.Window, _arg_1: ^NS.Error)) -> bool,
+    restoreWindowWithIdentifier: proc(self: ^AK.Application, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^AK.Window, _1: ^NS.Error))) -> bool,
     extendStateRestoration: proc(self: ^AK.Application),
     completeStateRestoration: proc(self: ^AK.Application),
     allowedClassesForRestorableStateKeyPath: proc(keyPath: ^NS.String) -> ^NS.Array,
@@ -430,7 +430,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancelUserAttentionRequest:"), auto_cast cancelUserAttentionRequest, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.enumerateWindowsWithOptions != nil {
-        enumerateWindowsWithOptions :: proc "c" (self: ^AK.Application, _: SEL, options: AK.WindowListOptions, block: proc "c" (window: ^AK.Window, stop: ^bool)) {
+        enumerateWindowsWithOptions :: proc "c" (self: ^AK.Application, _: SEL, options: AK.WindowListOptions, block: ^Objc_Block(proc "c" (window: ^AK.Window, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1330,7 +1330,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchString:inUserInterfaceItemString:searchRange:foundRange:"), auto_cast searchString, "B@:@@{_NSRange=LL}^void") do panic("Failed to register objC method.")
     }
     if vt.restoreWindowWithIdentifier != nil {
-        restoreWindowWithIdentifier :: proc "c" (self: ^AK.Application, _: SEL, identifier: ^NS.String, state: ^NS.Coder, completionHandler: proc "c" (_arg_0: ^AK.Window, _arg_1: ^NS.Error)) -> bool {
+        restoreWindowWithIdentifier :: proc "c" (self: ^AK.Application, _: SEL, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^AK.Window, _1: ^NS.Error))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

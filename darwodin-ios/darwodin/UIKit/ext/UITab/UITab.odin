@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTitle: proc(self: ^UI.Tab, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: proc "c" (_arg_0: ^UI.Tab) -> ^UI.ViewController) -> ^UI.Tab,
+    initWithTitle: proc(self: ^UI.Tab, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> ^UI.Tab,
     init: proc(self: ^UI.Tab) -> ^UI.Tab,
     new: proc() -> ^UI.Tab,
     identifier: proc(self: ^UI.Tab) -> ^NS.String,
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^UI.Tab, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: proc "c" (_arg_0: ^UI.Tab) -> ^UI.ViewController) -> ^UI.Tab {
+        initWithTitle :: proc "c" (self: ^UI.Tab, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> ^UI.Tab {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

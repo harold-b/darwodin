@@ -40,7 +40,7 @@ VTable :: struct {
     colorWithCatalogName: proc(listName: ^NS.String, colorName: ^NS.String) -> ^AK.Color,
     colorNamed_bundle: proc(name: ^NS.String, bundle: ^NS.Bundle) -> ^AK.Color,
     colorNamed_: proc(name: ^NS.String) -> ^AK.Color,
-    colorWithName: proc(colorName: ^NS.String, dynamicProvider: proc "c" (_arg_0: ^AK.Appearance) -> ^AK.Color) -> ^AK.Color,
+    colorWithName: proc(colorName: ^NS.String, dynamicProvider: ^Objc_Block(proc "c" (_: ^AK.Appearance) -> ^AK.Color)) -> ^AK.Color,
     colorWithDeviceWhite: proc(white: CG.Float, alpha: CG.Float) -> ^AK.Color,
     colorWithDeviceRed: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^AK.Color,
     colorWithDeviceHue: proc(hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^AK.Color,
@@ -357,7 +357,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("colorNamed:"), auto_cast colorNamed_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.colorWithName != nil {
-        colorWithName :: proc "c" (self: Class, _: SEL, colorName: ^NS.String, dynamicProvider: proc "c" (_arg_0: ^AK.Appearance) -> ^AK.Color) -> ^AK.Color {
+        colorWithName :: proc "c" (self: Class, _: SEL, colorName: ^NS.String, dynamicProvider: ^Objc_Block(proc "c" (_: ^AK.Appearance) -> ^AK.Color)) -> ^AK.Color {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

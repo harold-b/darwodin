@@ -33,7 +33,7 @@ SliderAccessoryBehavior_behaviorWithTarget :: #force_inline proc "c" (target: id
     return msgSend(^SliderAccessoryBehavior, SliderAccessoryBehavior, "behaviorWithTarget:action:", target, action)
 }
 @(objc_type=SliderAccessoryBehavior, objc_name="behaviorWithHandler", objc_is_class_method=true)
-SliderAccessoryBehavior_behaviorWithHandler :: #force_inline proc "c" (handler: proc "c" (_arg_0: ^SliderAccessory)) -> ^SliderAccessoryBehavior {
+SliderAccessoryBehavior_behaviorWithHandler :: #force_inline proc "c" (handler: ^Objc_Block(proc "c" (_: ^SliderAccessory))) -> ^SliderAccessoryBehavior {
     return msgSend(^SliderAccessoryBehavior, SliderAccessoryBehavior, "behaviorWithHandler:", handler)
 }
 @(objc_type=SliderAccessoryBehavior, objc_name="handleAction")

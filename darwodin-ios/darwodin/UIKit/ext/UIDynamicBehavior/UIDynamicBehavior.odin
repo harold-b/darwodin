@@ -31,8 +31,8 @@ VTable :: struct {
     removeChildBehavior: proc(self: ^UI.DynamicBehavior, behavior: ^UI.DynamicBehavior),
     willMoveToAnimator: proc(self: ^UI.DynamicBehavior, dynamicAnimator: ^UI.DynamicAnimator),
     childBehaviors: proc(self: ^UI.DynamicBehavior) -> ^NS.Array,
-    action: proc(self: ^UI.DynamicBehavior) -> proc "c" (),
-    setAction: proc(self: ^UI.DynamicBehavior, action: proc "c" ()),
+    action: proc(self: ^UI.DynamicBehavior) -> ^Objc_Block(proc "c" ()),
+    setAction: proc(self: ^UI.DynamicBehavior, action: ^Objc_Block(proc "c" ())),
     dynamicAnimator: proc(self: ^UI.DynamicBehavior) -> ^UI.DynamicAnimator,
     load: proc(),
     initialize: proc(),
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("childBehaviors"), auto_cast childBehaviors, "@@:") do panic("Failed to register objC method.")
     }
     if vt.action != nil {
-        action :: proc "c" (self: ^UI.DynamicBehavior, _: SEL) -> proc "c" () {
+        action :: proc "c" (self: ^UI.DynamicBehavior, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setAction != nil {
-        setAction :: proc "c" (self: ^UI.DynamicBehavior, _: SEL, action: proc "c" ()) {
+        setAction :: proc "c" (self: ^UI.DynamicBehavior, _: SEL, action: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

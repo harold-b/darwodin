@@ -50,8 +50,8 @@ VTable :: struct {
     setBackButtonDisplayMode: proc(self: ^UI.NavigationItem, backButtonDisplayMode: UI.NavigationItemBackButtonDisplayMode),
     backAction: proc(self: ^UI.NavigationItem) -> ^UI.Action,
     setBackAction: proc(self: ^UI.NavigationItem, backAction: ^UI.Action),
-    titleMenuProvider: proc(self: ^UI.NavigationItem) -> proc "c" () -> ^UI.Menu,
-    setTitleMenuProvider: proc(self: ^UI.NavigationItem, titleMenuProvider: proc "c" () -> ^UI.Menu),
+    titleMenuProvider: proc(self: ^UI.NavigationItem) -> ^Objc_Block(proc "c" () -> ^UI.Menu),
+    setTitleMenuProvider: proc(self: ^UI.NavigationItem, titleMenuProvider: ^Objc_Block(proc "c" () -> ^UI.Menu)),
     renameDelegate: proc(self: ^UI.NavigationItem) -> ^UI.NavigationItemRenameDelegate,
     setRenameDelegate: proc(self: ^UI.NavigationItem, renameDelegate: ^UI.NavigationItemRenameDelegate),
     documentProperties: proc(self: ^UI.NavigationItem) -> ^UI.DocumentProperties,
@@ -367,7 +367,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackAction:"), auto_cast setBackAction, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.titleMenuProvider != nil {
-        titleMenuProvider :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> proc "c" () -> ^UI.Menu {
+        titleMenuProvider :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^Objc_Block(proc "c" () -> ^UI.Menu) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -377,7 +377,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleMenuProvider"), auto_cast titleMenuProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setTitleMenuProvider != nil {
-        setTitleMenuProvider :: proc "c" (self: ^UI.NavigationItem, _: SEL, titleMenuProvider: proc "c" () -> ^UI.Menu) {
+        setTitleMenuProvider :: proc "c" (self: ^UI.NavigationItem, _: SEL, titleMenuProvider: ^Objc_Block(proc "c" () -> ^UI.Menu)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

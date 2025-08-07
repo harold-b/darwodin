@@ -23,27 +23,27 @@ AccessPoint_init :: proc "c" (self: ^AccessPoint) -> ^AccessPoint {
 
 
 @(objc_type=AccessPoint, objc_name="triggerAccessPointWithHandler")
-AccessPoint_triggerAccessPointWithHandler :: #force_inline proc "c" (self: ^AccessPoint, handler: proc "c" ()) {
+AccessPoint_triggerAccessPointWithHandler :: #force_inline proc "c" (self: ^AccessPoint, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "triggerAccessPointWithHandler:", handler)
 }
 @(objc_type=AccessPoint, objc_name="triggerAccessPointWithState")
-AccessPoint_triggerAccessPointWithState :: #force_inline proc "c" (self: ^AccessPoint, state: GameCenterViewControllerState, handler: proc "c" ()) {
+AccessPoint_triggerAccessPointWithState :: #force_inline proc "c" (self: ^AccessPoint, state: GameCenterViewControllerState, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "triggerAccessPointWithState:handler:", state, handler)
 }
 @(objc_type=AccessPoint, objc_name="triggerAccessPointWithAchievementID")
-AccessPoint_triggerAccessPointWithAchievementID :: #force_inline proc "c" (self: ^AccessPoint, achievementID: ^NS.String, handler: proc "c" ()) {
+AccessPoint_triggerAccessPointWithAchievementID :: #force_inline proc "c" (self: ^AccessPoint, achievementID: ^NS.String, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "triggerAccessPointWithAchievementID:handler:", achievementID, handler)
 }
 @(objc_type=AccessPoint, objc_name="triggerAccessPointWithLeaderboardSetID")
-AccessPoint_triggerAccessPointWithLeaderboardSetID :: #force_inline proc "c" (self: ^AccessPoint, leaderboardSetID: ^NS.String, handler: proc "c" ()) {
+AccessPoint_triggerAccessPointWithLeaderboardSetID :: #force_inline proc "c" (self: ^AccessPoint, leaderboardSetID: ^NS.String, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "triggerAccessPointWithLeaderboardSetID:handler:", leaderboardSetID, handler)
 }
 @(objc_type=AccessPoint, objc_name="triggerAccessPointWithLeaderboardID")
-AccessPoint_triggerAccessPointWithLeaderboardID :: #force_inline proc "c" (self: ^AccessPoint, leaderboardID: ^NS.String, playerScope: LeaderboardPlayerScope, timeScope: LeaderboardTimeScope, handler: proc "c" ()) {
+AccessPoint_triggerAccessPointWithLeaderboardID :: #force_inline proc "c" (self: ^AccessPoint, leaderboardID: ^NS.String, playerScope: LeaderboardPlayerScope, timeScope: LeaderboardTimeScope, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "triggerAccessPointWithLeaderboardID:playerScope:timeScope:handler:", leaderboardID, playerScope, timeScope, handler)
 }
 @(objc_type=AccessPoint, objc_name="triggerAccessPointWithPlayer")
-AccessPoint_triggerAccessPointWithPlayer :: #force_inline proc "c" (self: ^AccessPoint, player: ^Player, handler: proc "c" ()) {
+AccessPoint_triggerAccessPointWithPlayer :: #force_inline proc "c" (self: ^AccessPoint, player: ^Player, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "triggerAccessPointWithPlayer:handler:", player, handler)
 }
 @(objc_type=AccessPoint, objc_name="shared", objc_is_class_method=true)

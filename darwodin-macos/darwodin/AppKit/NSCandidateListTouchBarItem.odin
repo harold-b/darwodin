@@ -78,11 +78,11 @@ CandidateListTouchBarItem_setAllowsTextInputContextCandidates :: #force_inline p
     msgSend(nil, self, "setAllowsTextInputContextCandidates:", allowsTextInputContextCandidates)
 }
 @(objc_type=CandidateListTouchBarItem, objc_name="attributedStringForCandidate")
-CandidateListTouchBarItem_attributedStringForCandidate :: #force_inline proc "c" (self: ^CandidateListTouchBarItem) -> proc "c" () -> ^NS.AttributedString {
-    return msgSend(proc "c" () -> ^NS.AttributedString, self, "attributedStringForCandidate")
+CandidateListTouchBarItem_attributedStringForCandidate :: #force_inline proc "c" (self: ^CandidateListTouchBarItem) -> ^Objc_Block(proc "c" () -> ^NS.AttributedString) {
+    return msgSend(^Objc_Block(proc "c" () -> ^NS.AttributedString), self, "attributedStringForCandidate")
 }
 @(objc_type=CandidateListTouchBarItem, objc_name="setAttributedStringForCandidate")
-CandidateListTouchBarItem_setAttributedStringForCandidate :: #force_inline proc "c" (self: ^CandidateListTouchBarItem, attributedStringForCandidate: proc "c" () -> ^NS.AttributedString) {
+CandidateListTouchBarItem_setAttributedStringForCandidate :: #force_inline proc "c" (self: ^CandidateListTouchBarItem, attributedStringForCandidate: ^Objc_Block(proc "c" () -> ^NS.AttributedString)) {
     msgSend(nil, self, "setAttributedStringForCandidate:", attributedStringForCandidate)
 }
 @(objc_type=CandidateListTouchBarItem, objc_name="candidates")

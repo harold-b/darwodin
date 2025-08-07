@@ -26,7 +26,7 @@ WindowSceneDelegateProtocol_windowScene_didUpdateCoordinateSpace_interfaceOrient
     msgSend(nil, self, "windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:", windowScene, previousCoordinateSpace, previousInterfaceOrientation, previousTraitCollection)
 }
 @(objc_type=WindowSceneDelegateProtocol, objc_name="windowScene_performActionForShortcutItem_completionHandler")
-WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler :: #force_inline proc "c" (self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, shortcutItem: ^ApplicationShortcutItem, completionHandler: proc "c" (succeeded: bool)) {
+WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler :: #force_inline proc "c" (self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) {
     msgSend(nil, self, "windowScene:performActionForShortcutItem:completionHandler:", windowScene, shortcutItem, completionHandler)
 }
 @(objc_type=WindowSceneDelegateProtocol, objc_name="windowScene_userDidAcceptCloudKitShareWithMetadata")

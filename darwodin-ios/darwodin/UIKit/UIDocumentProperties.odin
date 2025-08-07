@@ -44,19 +44,19 @@ DocumentProperties_setMetadata :: #force_inline proc "c" (self: ^DocumentPropert
     msgSend(nil, self, "setMetadata:", metadata)
 }
 @(objc_type=DocumentProperties, objc_name="dragItemsProvider")
-DocumentProperties_dragItemsProvider :: #force_inline proc "c" (self: ^DocumentProperties) -> proc "c" () -> ^NS.Array {
-    return msgSend(proc "c" () -> ^NS.Array, self, "dragItemsProvider")
+DocumentProperties_dragItemsProvider :: #force_inline proc "c" (self: ^DocumentProperties) -> ^Objc_Block(proc "c" () -> ^NS.Array) {
+    return msgSend(^Objc_Block(proc "c" () -> ^NS.Array), self, "dragItemsProvider")
 }
 @(objc_type=DocumentProperties, objc_name="setDragItemsProvider")
-DocumentProperties_setDragItemsProvider :: #force_inline proc "c" (self: ^DocumentProperties, dragItemsProvider: proc "c" () -> ^NS.Array) {
+DocumentProperties_setDragItemsProvider :: #force_inline proc "c" (self: ^DocumentProperties, dragItemsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)) {
     msgSend(nil, self, "setDragItemsProvider:", dragItemsProvider)
 }
 @(objc_type=DocumentProperties, objc_name="activityViewControllerProvider")
-DocumentProperties_activityViewControllerProvider :: #force_inline proc "c" (self: ^DocumentProperties) -> proc "c" () -> ^ActivityViewController {
-    return msgSend(proc "c" () -> ^ActivityViewController, self, "activityViewControllerProvider")
+DocumentProperties_activityViewControllerProvider :: #force_inline proc "c" (self: ^DocumentProperties) -> ^Objc_Block(proc "c" () -> ^ActivityViewController) {
+    return msgSend(^Objc_Block(proc "c" () -> ^ActivityViewController), self, "activityViewControllerProvider")
 }
 @(objc_type=DocumentProperties, objc_name="setActivityViewControllerProvider")
-DocumentProperties_setActivityViewControllerProvider :: #force_inline proc "c" (self: ^DocumentProperties, activityViewControllerProvider: proc "c" () -> ^ActivityViewController) {
+DocumentProperties_setActivityViewControllerProvider :: #force_inline proc "c" (self: ^DocumentProperties, activityViewControllerProvider: ^Objc_Block(proc "c" () -> ^ActivityViewController)) {
     msgSend(nil, self, "setActivityViewControllerProvider:", activityViewControllerProvider)
 }
 @(objc_type=DocumentProperties, objc_name="wantsIconRepresentation")

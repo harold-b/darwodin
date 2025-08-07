@@ -132,11 +132,11 @@ ViewController_didReceiveMemoryWarning :: #force_inline proc "c" (self: ^ViewCon
     msgSend(nil, self, "didReceiveMemoryWarning")
 }
 @(objc_type=ViewController, objc_name="presentViewController")
-ViewController_presentViewController :: #force_inline proc "c" (self: ^ViewController, viewControllerToPresent: ^ViewController, flag: bool, completion: proc "c" ()) {
+ViewController_presentViewController :: #force_inline proc "c" (self: ^ViewController, viewControllerToPresent: ^ViewController, flag: bool, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "presentViewController:animated:completion:", viewControllerToPresent, flag, completion)
 }
 @(objc_type=ViewController, objc_name="dismissViewControllerAnimated")
-ViewController_dismissViewControllerAnimated :: #force_inline proc "c" (self: ^ViewController, flag: bool, completion: proc "c" ()) {
+ViewController_dismissViewControllerAnimated :: #force_inline proc "c" (self: ^ViewController, flag: bool, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "dismissViewControllerAnimated:completion:", flag, completion)
 }
 @(objc_type=ViewController, objc_name="presentModalViewController")
@@ -472,7 +472,7 @@ ViewController_removeFromParentViewController :: #force_inline proc "c" (self: ^
     msgSend(nil, self, "removeFromParentViewController")
 }
 @(objc_type=ViewController, objc_name="transitionFromViewController")
-ViewController_transitionFromViewController :: #force_inline proc "c" (self: ^ViewController, fromViewController: ^ViewController, toViewController: ^ViewController, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+ViewController_transitionFromViewController :: #force_inline proc "c" (self: ^ViewController, fromViewController: ^ViewController, toViewController: ^ViewController, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, self, "transitionFromViewController:toViewController:duration:options:animations:completion:", fromViewController, toViewController, duration, options, animations, completion)
 }
 @(objc_type=ViewController, objc_name="beginAppearanceTransition")

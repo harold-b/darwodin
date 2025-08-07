@@ -22,7 +22,7 @@ IndirectScribbleInteractionDelegate :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_requestElementsInRect_completion")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_requestElementsInRect_completion :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, rect: CG.Rect, completion: proc "c" (elements: ^NS.Array)) {
+IndirectScribbleInteractionDelegate_indirectScribbleInteraction_requestElementsInRect_completion :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, rect: CG.Rect, completion: ^Objc_Block(proc "c" (elements: ^NS.Array))) {
     msgSend(nil, self, "indirectScribbleInteraction:requestElementsInRect:completion:", interaction, rect, completion)
 }
 @(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_isElementFocused")
@@ -34,7 +34,7 @@ IndirectScribbleInteractionDelegate_indirectScribbleInteraction_frameForElement 
     return msgSend(CG.Rect, self, "indirectScribbleInteraction:frameForElement:", interaction, elementIdentifier)
 }
 @(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: proc "c" (focusedInput: ^Responder)) {
+IndirectScribbleInteractionDelegate_indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: ^Objc_Block(proc "c" (focusedInput: ^Responder))) {
     msgSend(nil, self, "indirectScribbleInteraction:focusElementIfNeeded:referencePoint:completion:", interaction, elementIdentifier, focusReferencePoint, completion)
 }
 @(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_shouldDelayFocusForElement")

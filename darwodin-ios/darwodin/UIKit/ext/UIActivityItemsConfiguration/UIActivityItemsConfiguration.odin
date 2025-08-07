@@ -37,14 +37,14 @@ VTable :: struct {
     setLocalObject: proc(self: ^UI.ActivityItemsConfiguration, localObject: id),
     supportedInteractions: proc(self: ^UI.ActivityItemsConfiguration) -> ^NS.Array,
     setSupportedInteractions: proc(self: ^UI.ActivityItemsConfiguration, supportedInteractions: ^NS.Array),
-    metadataProvider: proc(self: ^UI.ActivityItemsConfiguration) -> proc "c" () -> id,
-    setMetadataProvider: proc(self: ^UI.ActivityItemsConfiguration, metadataProvider: proc "c" () -> id),
-    perItemMetadataProvider: proc(self: ^UI.ActivityItemsConfiguration) -> proc "c" () -> id,
-    setPerItemMetadataProvider: proc(self: ^UI.ActivityItemsConfiguration, perItemMetadataProvider: proc "c" () -> id),
-    previewProvider: proc(self: ^UI.ActivityItemsConfiguration) -> proc "c" () -> ^NS.ItemProvider,
-    setPreviewProvider: proc(self: ^UI.ActivityItemsConfiguration, previewProvider: proc "c" () -> ^NS.ItemProvider),
-    applicationActivitiesProvider: proc(self: ^UI.ActivityItemsConfiguration) -> proc "c" () -> ^NS.Array,
-    setApplicationActivitiesProvider: proc(self: ^UI.ActivityItemsConfiguration, applicationActivitiesProvider: proc "c" () -> ^NS.Array),
+    metadataProvider: proc(self: ^UI.ActivityItemsConfiguration) -> ^Objc_Block(proc "c" () -> id),
+    setMetadataProvider: proc(self: ^UI.ActivityItemsConfiguration, metadataProvider: ^Objc_Block(proc "c" () -> id)),
+    perItemMetadataProvider: proc(self: ^UI.ActivityItemsConfiguration) -> ^Objc_Block(proc "c" () -> id),
+    setPerItemMetadataProvider: proc(self: ^UI.ActivityItemsConfiguration, perItemMetadataProvider: ^Objc_Block(proc "c" () -> id)),
+    previewProvider: proc(self: ^UI.ActivityItemsConfiguration) -> ^Objc_Block(proc "c" () -> ^NS.ItemProvider),
+    setPreviewProvider: proc(self: ^UI.ActivityItemsConfiguration, previewProvider: ^Objc_Block(proc "c" () -> ^NS.ItemProvider)),
+    applicationActivitiesProvider: proc(self: ^UI.ActivityItemsConfiguration) -> ^Objc_Block(proc "c" () -> ^NS.Array),
+    setApplicationActivitiesProvider: proc(self: ^UI.ActivityItemsConfiguration, applicationActivitiesProvider: ^Objc_Block(proc "c" () -> ^NS.Array)),
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^NS._NSZone) -> ^UI.ActivityItemsConfiguration,
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSupportedInteractions:"), auto_cast setSupportedInteractions, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.metadataProvider != nil {
-        metadataProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> proc "c" () -> id {
+        metadataProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> ^Objc_Block(proc "c" () -> id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("metadataProvider"), auto_cast metadataProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setMetadataProvider != nil {
-        setMetadataProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, metadataProvider: proc "c" () -> id) {
+        setMetadataProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, metadataProvider: ^Objc_Block(proc "c" () -> id)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMetadataProvider:"), auto_cast setMetadataProvider, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.perItemMetadataProvider != nil {
-        perItemMetadataProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> proc "c" () -> id {
+        perItemMetadataProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> ^Objc_Block(proc "c" () -> id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("perItemMetadataProvider"), auto_cast perItemMetadataProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setPerItemMetadataProvider != nil {
-        setPerItemMetadataProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, perItemMetadataProvider: proc "c" () -> id) {
+        setPerItemMetadataProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, perItemMetadataProvider: ^Objc_Block(proc "c" () -> id)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPerItemMetadataProvider:"), auto_cast setPerItemMetadataProvider, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.previewProvider != nil {
-        previewProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> proc "c" () -> ^NS.ItemProvider {
+        previewProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> ^Objc_Block(proc "c" () -> ^NS.ItemProvider) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("previewProvider"), auto_cast previewProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setPreviewProvider != nil {
-        setPreviewProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, previewProvider: proc "c" () -> ^NS.ItemProvider) {
+        setPreviewProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, previewProvider: ^Objc_Block(proc "c" () -> ^NS.ItemProvider)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreviewProvider:"), auto_cast setPreviewProvider, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.applicationActivitiesProvider != nil {
-        applicationActivitiesProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> proc "c" () -> ^NS.Array {
+        applicationActivitiesProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> ^Objc_Block(proc "c" () -> ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applicationActivitiesProvider"), auto_cast applicationActivitiesProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setApplicationActivitiesProvider != nil {
-        setApplicationActivitiesProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, applicationActivitiesProvider: proc "c" () -> ^NS.Array) {
+        setApplicationActivitiesProvider :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, applicationActivitiesProvider: ^Objc_Block(proc "c" () -> ^NS.Array)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

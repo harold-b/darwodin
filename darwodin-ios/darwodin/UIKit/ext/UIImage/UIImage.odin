@@ -72,9 +72,9 @@ VTable :: struct {
     imageWithTintColor_: proc(self: ^UI.Image, color: ^UI.Color) -> ^UI.Image,
     imageWithTintColor_renderingMode: proc(self: ^UI.Image, color: ^UI.Color, renderingMode: UI.ImageRenderingMode) -> ^UI.Image,
     imageByPreparingForDisplay: proc(self: ^UI.Image) -> ^UI.Image,
-    prepareForDisplayWithCompletionHandler: proc(self: ^UI.Image, completionHandler: proc "c" (_arg_0: ^UI.Image)),
+    prepareForDisplayWithCompletionHandler: proc(self: ^UI.Image, completionHandler: ^Objc_Block(proc "c" (_: ^UI.Image))),
     imageByPreparingThumbnailOfSize: proc(self: ^UI.Image, size: CG.Size) -> ^UI.Image,
-    prepareThumbnailOfSize: proc(self: ^UI.Image, size: CG.Size, completionHandler: proc "c" (_arg_0: ^UI.Image)),
+    prepareThumbnailOfSize: proc(self: ^UI.Image, size: CG.Size, completionHandler: ^Objc_Block(proc "c" (_: ^UI.Image))),
     imageRestrictedToStandardDynamicRange: proc(self: ^UI.Image) -> ^UI.Image,
     size: proc(self: ^UI.Image) -> CG.Size,
     _CIImage: proc(self: ^UI.Image) -> ^UI.CIImage,
@@ -594,7 +594,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageByPreparingForDisplay"), auto_cast imageByPreparingForDisplay, "@@:") do panic("Failed to register objC method.")
     }
     if vt.prepareForDisplayWithCompletionHandler != nil {
-        prepareForDisplayWithCompletionHandler :: proc "c" (self: ^UI.Image, _: SEL, completionHandler: proc "c" (_arg_0: ^UI.Image)) {
+        prepareForDisplayWithCompletionHandler :: proc "c" (self: ^UI.Image, _: SEL, completionHandler: ^Objc_Block(proc "c" (_: ^UI.Image))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -614,7 +614,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageByPreparingThumbnailOfSize:"), auto_cast imageByPreparingThumbnailOfSize, "@@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.prepareThumbnailOfSize != nil {
-        prepareThumbnailOfSize :: proc "c" (self: ^UI.Image, _: SEL, size: CG.Size, completionHandler: proc "c" (_arg_0: ^UI.Image)) {
+        prepareThumbnailOfSize :: proc "c" (self: ^UI.Image, _: SEL, size: CG.Size, completionHandler: ^Objc_Block(proc "c" (_: ^UI.Image))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

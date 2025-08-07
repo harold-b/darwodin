@@ -25,15 +25,15 @@ Right_initWithRequirement :: #force_inline proc "c" (self: ^Right, requirement: 
     return msgSend(^Right, self, "initWithRequirement:", requirement)
 }
 @(objc_type=Right, objc_name="authorizeWithLocalizedReason")
-Right_authorizeWithLocalizedReason :: #force_inline proc "c" (self: ^Right, localizedReason: ^NS.String, handler: proc "c" (error: ^NS.Error)) {
+Right_authorizeWithLocalizedReason :: #force_inline proc "c" (self: ^Right, localizedReason: ^NS.String, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "authorizeWithLocalizedReason:completion:", localizedReason, handler)
 }
 @(objc_type=Right, objc_name="checkCanAuthorizeWithCompletion")
-Right_checkCanAuthorizeWithCompletion :: #force_inline proc "c" (self: ^Right, handler: proc "c" (error: ^NS.Error)) {
+Right_checkCanAuthorizeWithCompletion :: #force_inline proc "c" (self: ^Right, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "checkCanAuthorizeWithCompletion:", handler)
 }
 @(objc_type=Right, objc_name="deauthorizeWithCompletion")
-Right_deauthorizeWithCompletion :: #force_inline proc "c" (self: ^Right, handler: proc "c" ()) {
+Right_deauthorizeWithCompletion :: #force_inline proc "c" (self: ^Right, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "deauthorizeWithCompletion:", handler)
 }
 @(objc_type=Right, objc_name="state")

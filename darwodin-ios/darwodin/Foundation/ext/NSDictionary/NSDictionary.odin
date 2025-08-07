@@ -40,12 +40,12 @@ VTable :: struct {
     keysSortedByValueUsingSelector: proc(self: ^NS.Dictionary, comparator: SEL) -> ^NS.Array,
     getObjects_andKeys_count: proc(self: ^NS.Dictionary, objects: ^^id, keys: ^^id, count: NS.UInteger),
     objectForKeyedSubscript: proc(self: ^NS.Dictionary, key: ^id) -> ^id,
-    enumerateKeysAndObjectsUsingBlock: proc(self: ^NS.Dictionary, block: proc "c" (key: ^id, obj: ^id, stop: ^bool)),
-    enumerateKeysAndObjectsWithOptions: proc(self: ^NS.Dictionary, opts: NS.EnumerationOptions, block: proc "c" (key: ^id, obj: ^id, stop: ^bool)),
+    enumerateKeysAndObjectsUsingBlock: proc(self: ^NS.Dictionary, block: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool))),
+    enumerateKeysAndObjectsWithOptions: proc(self: ^NS.Dictionary, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool))),
     keysSortedByValueUsingComparator: proc(self: ^NS.Dictionary, cmptr: NS.Comparator) -> ^NS.Array,
     keysSortedByValueWithOptions: proc(self: ^NS.Dictionary, opts: NS.SortOptions, cmptr: NS.Comparator) -> ^NS.Array,
-    keysOfEntriesPassingTest: proc(self: ^NS.Dictionary, predicate: proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool) -> ^NS.Set,
-    keysOfEntriesWithOptions: proc(self: ^NS.Dictionary, opts: NS.EnumerationOptions, predicate: proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool) -> ^NS.Set,
+    keysOfEntriesPassingTest: proc(self: ^NS.Dictionary, predicate: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool)) -> ^NS.Set,
+    keysOfEntriesWithOptions: proc(self: ^NS.Dictionary, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool)) -> ^NS.Set,
     allKeys: proc(self: ^NS.Dictionary) -> ^NS.Array,
     allValues: proc(self: ^NS.Dictionary) -> ^NS.Array,
     description: proc(self: ^NS.Dictionary) -> ^NS.String,
@@ -288,7 +288,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectForKeyedSubscript:"), auto_cast objectForKeyedSubscript, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateKeysAndObjectsUsingBlock != nil {
-        enumerateKeysAndObjectsUsingBlock :: proc "c" (self: ^NS.Dictionary, _: SEL, block: proc "c" (key: ^id, obj: ^id, stop: ^bool)) {
+        enumerateKeysAndObjectsUsingBlock :: proc "c" (self: ^NS.Dictionary, _: SEL, block: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -298,7 +298,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateKeysAndObjectsUsingBlock:"), auto_cast enumerateKeysAndObjectsUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.enumerateKeysAndObjectsWithOptions != nil {
-        enumerateKeysAndObjectsWithOptions :: proc "c" (self: ^NS.Dictionary, _: SEL, opts: NS.EnumerationOptions, block: proc "c" (key: ^id, obj: ^id, stop: ^bool)) {
+        enumerateKeysAndObjectsWithOptions :: proc "c" (self: ^NS.Dictionary, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -328,7 +328,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("keysSortedByValueWithOptions:usingComparator:"), auto_cast keysSortedByValueWithOptions, "@@:L?") do panic("Failed to register objC method.")
     }
     if vt.keysOfEntriesPassingTest != nil {
-        keysOfEntriesPassingTest :: proc "c" (self: ^NS.Dictionary, _: SEL, predicate: proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool) -> ^NS.Set {
+        keysOfEntriesPassingTest :: proc "c" (self: ^NS.Dictionary, _: SEL, predicate: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool)) -> ^NS.Set {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -338,7 +338,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("keysOfEntriesPassingTest:"), auto_cast keysOfEntriesPassingTest, "@@:?") do panic("Failed to register objC method.")
     }
     if vt.keysOfEntriesWithOptions != nil {
-        keysOfEntriesWithOptions :: proc "c" (self: ^NS.Dictionary, _: SEL, opts: NS.EnumerationOptions, predicate: proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool) -> ^NS.Set {
+        keysOfEntriesWithOptions :: proc "c" (self: ^NS.Dictionary, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool)) -> ^NS.Set {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

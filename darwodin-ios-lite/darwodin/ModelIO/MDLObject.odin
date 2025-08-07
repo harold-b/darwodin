@@ -48,7 +48,7 @@ Object_objectAtPath :: #force_inline proc "c" (self: ^Object, path: ^NS.String) 
     return msgSend(^Object, self, "objectAtPath:", path)
 }
 @(objc_type=Object, objc_name="enumerateChildObjectsOfClass")
-Object_enumerateChildObjectsOfClass :: #force_inline proc "c" (self: ^Object, objectClass: Class, root: ^Object, block: proc "c" (object: ^Object, stop: ^bool), stopPointer: ^bool) {
+Object_enumerateChildObjectsOfClass :: #force_inline proc "c" (self: ^Object, objectClass: Class, root: ^Object, block: ^Objc_Block(proc "c" (object: ^Object, stop: ^bool)), stopPointer: ^bool) {
     msgSend(nil, self, "enumerateChildObjectsOfClass:root:usingBlock:stopPointer:", objectClass, root, block, stopPointer)
 }
 @(objc_type=Object, objc_name="addChild")

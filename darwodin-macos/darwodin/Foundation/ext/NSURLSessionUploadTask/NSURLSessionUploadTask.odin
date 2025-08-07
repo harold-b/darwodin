@@ -26,7 +26,7 @@ VTable :: struct {
     super: NSURLSessionDataTask.VTable,
     init: proc(self: ^NS.URLSessionUploadTask) -> ^NS.URLSessionUploadTask,
     new: proc() -> ^NS.URLSessionUploadTask,
-    cancelByProducingResumeData: proc(self: ^NS.URLSessionUploadTask, completionHandler: proc "c" (resumeData: ^NS.Data)),
+    cancelByProducingResumeData: proc(self: ^NS.URLSessionUploadTask, completionHandler: ^Objc_Block(proc "c" (resumeData: ^NS.Data))),
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^NS._NSZone) -> ^NS.URLSessionUploadTask,
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.cancelByProducingResumeData != nil {
-        cancelByProducingResumeData :: proc "c" (self: ^NS.URLSessionUploadTask, _: SEL, completionHandler: proc "c" (resumeData: ^NS.Data)) {
+        cancelByProducingResumeData :: proc "c" (self: ^NS.URLSessionUploadTask, _: SEL, completionHandler: ^Objc_Block(proc "c" (resumeData: ^NS.Data))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

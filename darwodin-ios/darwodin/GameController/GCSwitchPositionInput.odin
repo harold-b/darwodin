@@ -20,11 +20,11 @@ SwitchPositionInput :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=SwitchPositionInput, objc_name="positionDidChangeHandler")
-SwitchPositionInput_positionDidChangeHandler :: #force_inline proc "c" (self: ^SwitchPositionInput) -> proc "c" () {
-    return msgSend(proc "c" (), self, "positionDidChangeHandler")
+SwitchPositionInput_positionDidChangeHandler :: #force_inline proc "c" (self: ^SwitchPositionInput) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "positionDidChangeHandler")
 }
 @(objc_type=SwitchPositionInput, objc_name="setPositionDidChangeHandler")
-SwitchPositionInput_setPositionDidChangeHandler :: #force_inline proc "c" (self: ^SwitchPositionInput, positionDidChangeHandler: proc "c" ()) {
+SwitchPositionInput_setPositionDidChangeHandler :: #force_inline proc "c" (self: ^SwitchPositionInput, positionDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPositionDidChangeHandler:", positionDidChangeHandler)
 }
 @(objc_type=SwitchPositionInput, objc_name="position")

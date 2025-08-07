@@ -34,7 +34,7 @@ DocumentViewController_navigationItemDidUpdate :: #force_inline proc "c" (self: 
     msgSend(nil, self, "navigationItemDidUpdate")
 }
 @(objc_type=DocumentViewController, objc_name="openDocumentWithCompletionHandler")
-DocumentViewController_openDocumentWithCompletionHandler :: #force_inline proc "c" (self: ^DocumentViewController, completionHandler: proc "c" (success: bool)) {
+DocumentViewController_openDocumentWithCompletionHandler :: #force_inline proc "c" (self: ^DocumentViewController, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "openDocumentWithCompletionHandler:", completionHandler)
 }
 @(objc_type=DocumentViewController, objc_name="documentDidOpen")

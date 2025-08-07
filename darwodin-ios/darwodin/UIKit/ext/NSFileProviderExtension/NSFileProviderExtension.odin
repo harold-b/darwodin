@@ -30,8 +30,8 @@ VTable :: struct {
     itemForIdentifier: proc(self: ^UI.NSFileProviderExtension, identifier: ^NS.String, error: ^^NS.Error) -> ^UI.NSFileProviderItem,
     _URLForItemWithPersistentIdentifier: proc(self: ^UI.NSFileProviderExtension, identifier: ^NS.String) -> ^NS.URL,
     persistentIdentifierForItemAtURL: proc(self: ^UI.NSFileProviderExtension, url: ^NS.URL) -> ^NS.String,
-    providePlaceholderAtURL: proc(self: ^UI.NSFileProviderExtension, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)),
-    startProvidingItemAtURL: proc(self: ^UI.NSFileProviderExtension, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)),
+    providePlaceholderAtURL: proc(self: ^UI.NSFileProviderExtension, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    startProvidingItemAtURL: proc(self: ^UI.NSFileProviderExtension, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     stopProvidingItemAtURL: proc(self: ^UI.NSFileProviderExtension, url: ^NS.URL),
     itemChangedAtURL: proc(self: ^UI.NSFileProviderExtension, url: ^NS.URL),
     writePlaceholderAtURL: proc(placeholderURL: ^NS.URL, metadata: ^NS.Dictionary, error: ^^NS.Error) -> bool,
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("persistentIdentifierForItemAtURL:"), auto_cast persistentIdentifierForItemAtURL, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.providePlaceholderAtURL != nil {
-        providePlaceholderAtURL :: proc "c" (self: ^UI.NSFileProviderExtension, _: SEL, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)) {
+        providePlaceholderAtURL :: proc "c" (self: ^UI.NSFileProviderExtension, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("providePlaceholderAtURL:completionHandler:"), auto_cast providePlaceholderAtURL, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.startProvidingItemAtURL != nil {
-        startProvidingItemAtURL :: proc "c" (self: ^UI.NSFileProviderExtension, _: SEL, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)) {
+        startProvidingItemAtURL :: proc "c" (self: ^UI.NSFileProviderExtension, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

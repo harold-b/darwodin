@@ -1831,7 +1831,7 @@ foreign lib {
     RunLoopStop :: proc(rl: RunLoopRef) ---
 
     @(link_name="CFRunLoopPerformBlock")
-    RunLoopPerformBlock :: proc(rl: RunLoopRef, mode: TypeRef, block: proc "c" ()) ---
+    RunLoopPerformBlock :: proc(rl: RunLoopRef, mode: TypeRef, block: ^Objc_Block(proc "c" ())) ---
 
     @(link_name="CFRunLoopContainsSource")
     RunLoopContainsSource :: proc(rl: RunLoopRef, source: RunLoopSourceRef, mode: RunLoopMode) -> Boolean ---
@@ -1888,7 +1888,7 @@ foreign lib {
     RunLoopObserverCreate :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, callout: RunLoopObserverCallBack, _context: ^RunLoopObserverContext) -> RunLoopObserverRef ---
 
     @(link_name="CFRunLoopObserverCreateWithHandler")
-    RunLoopObserverCreateWithHandler :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, block: proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity)) -> RunLoopObserverRef ---
+    RunLoopObserverCreateWithHandler :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, block: ^Objc_Block(proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity))) -> RunLoopObserverRef ---
 
     @(link_name="CFRunLoopObserverGetActivities")
     RunLoopObserverGetActivities :: proc(observer: RunLoopObserverRef) -> OptionFlags ---
@@ -1915,7 +1915,7 @@ foreign lib {
     RunLoopTimerCreate :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, callout: RunLoopTimerCallBack, _context: ^RunLoopTimerContext) -> RunLoopTimerRef ---
 
     @(link_name="CFRunLoopTimerCreateWithHandler")
-    RunLoopTimerCreateWithHandler :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, block: proc "c" (timer: RunLoopTimerRef)) -> RunLoopTimerRef ---
+    RunLoopTimerCreateWithHandler :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, block: ^Objc_Block(proc "c" (timer: RunLoopTimerRef))) -> RunLoopTimerRef ---
 
     @(link_name="CFRunLoopTimerGetNextFireDate")
     RunLoopTimerGetNextFireDate :: proc(timer: RunLoopTimerRef) -> CFAbsoluteTime ---
@@ -2095,7 +2095,7 @@ foreign lib {
     dispatch_async_and_wait_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
     @(link_name="dispatch_apply")
-    dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: proc "c" (iteration: cffi.size_t)) ---
+    dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: ^Objc_Block(proc "c" (iteration: cffi.size_t))) ---
 
     @(link_name="dispatch_apply_f")
     dispatch_apply_f :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, _context: rawptr, work: proc "c" (_context: rawptr, iteration: cffi.size_t)) ---
@@ -2302,19 +2302,19 @@ foreign lib {
     dispatch_data_copy_region :: proc(data: dispatch_data_t, location: cffi.size_t, offset_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_read")
-    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: proc "c" (data: dispatch_data_t, error: cffi.int)) ---
+    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" (data: dispatch_data_t, error: cffi.int))) ---
 
     @(link_name="dispatch_write")
-    dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: proc "c" (data: dispatch_data_t, error: cffi.int)) ---
+    dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" (data: dispatch_data_t, error: cffi.int))) ---
 
     @(link_name="dispatch_io_create")
-    dispatch_io_create :: proc(type: dispatch_io_type_t, fd: dispatch_fd_t, queue: dispatch_queue_t, cleanup_handler: proc "c" (error: cffi.int)) -> dispatch_io_t ---
+    dispatch_io_create :: proc(type: dispatch_io_type_t, fd: dispatch_fd_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_create_with_path")
-    dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: mode_t, queue: dispatch_queue_t, cleanup_handler: proc "c" (error: cffi.int)) -> dispatch_io_t ---
+    dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: mode_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_create_with_io")
-    dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: proc "c" (error: cffi.int)) -> dispatch_io_t ---
+    dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_read")
     dispatch_io_read :: proc(channel: dispatch_io_t, offset: cffi.longlong, length: cffi.size_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
@@ -3750,10 +3750,10 @@ SocketCallBack :: proc "c" (s: SocketRef, type: SocketCallBackType, address: Dat
 SocketNativeHandle :: distinct cffi.int
 
 /// os_function_t
-os_function_t :: proc "c" (_arg_0: rawptr)
+os_function_t :: proc "c" (_: rawptr)
 
 /// os_block_t
-os_block_t :: proc "c" ()
+os_block_t :: ^Objc_Block(proc "c" ())
 
 /// os_workgroup_t
 os_workgroup_t :: distinct ^os_workgroup_s
@@ -3774,7 +3774,7 @@ os_workgroup_join_token_t :: distinct ^os_workgroup_join_token_opaque_s
 os_workgroup_index :: distinct cffi.uint32_t
 
 /// os_workgroup_working_arena_destructor_t
-os_workgroup_working_arena_destructor_t :: proc "c" (_arg_0: rawptr)
+os_workgroup_working_arena_destructor_t :: proc "c" (_: rawptr)
 
 /// os_workgroup_mpt_attr_s
 os_workgroup_mpt_attr_s :: distinct os_workgroup_max_parallel_threads_attr_s
@@ -3786,13 +3786,13 @@ os_workgroup_mpt_attr_t :: distinct ^os_workgroup_max_parallel_threads_attr_s
 os_workgroup_parallel_t :: distinct os_workgroup_t
 
 /// dispatch_function_t
-dispatch_function_t :: proc "c" (_arg_0: rawptr)
+dispatch_function_t :: proc "c" (_: rawptr)
 
 /// dispatch_time_t
 dispatch_time_t :: distinct cffi.uint64_t
 
 /// dispatch_block_t
-dispatch_block_t :: proc "c" ()
+dispatch_block_t :: ^Objc_Block(proc "c" ())
 
 /// dispatch_qos_class_t
 dispatch_qos_class_t :: distinct qos_class_t
@@ -3861,7 +3861,7 @@ dispatch_once_t :: distinct cffi.intptr_t
 dispatch_data_t :: distinct ^dispatch_data_s
 
 /// dispatch_data_applier_t
-dispatch_data_applier_t :: proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool
+dispatch_data_applier_t :: ^Objc_Block(proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool)
 
 /// dispatch_fd_t
 dispatch_fd_t :: distinct cffi.int
@@ -3873,7 +3873,7 @@ dispatch_io_t :: distinct ^dispatch_io_s
 dispatch_io_type_t :: distinct cffi.ulong
 
 /// dispatch_io_handler_t
-dispatch_io_handler_t :: proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int)
+dispatch_io_handler_t :: ^Objc_Block(proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int))
 
 /// dispatch_io_close_flags_t
 dispatch_io_close_flags_t :: distinct cffi.ulong
@@ -4604,7 +4604,7 @@ StringTokenizerTokenType :: enum cffi.ulong {
 
 /// __darwin_pthread_handler_rec
 __darwin_pthread_handler_rec :: struct #align (8) {
-    __routine: proc "c" (_arg_0: rawptr),
+    __routine: proc "c" (_: rawptr),
     __arg:     rawptr,
     __next:    ^__darwin_pthread_handler_rec,
 }

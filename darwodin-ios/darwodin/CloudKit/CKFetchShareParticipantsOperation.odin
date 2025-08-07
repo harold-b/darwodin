@@ -33,27 +33,27 @@ FetchShareParticipantsOperation_setUserIdentityLookupInfos :: #force_inline proc
     msgSend(nil, self, "setUserIdentityLookupInfos:", userIdentityLookupInfos)
 }
 @(objc_type=FetchShareParticipantsOperation, objc_name="shareParticipantFetchedBlock")
-FetchShareParticipantsOperation_shareParticipantFetchedBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "shareParticipantFetchedBlock")
+FetchShareParticipantsOperation_shareParticipantFetchedBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "shareParticipantFetchedBlock")
 }
 @(objc_type=FetchShareParticipantsOperation, objc_name="setShareParticipantFetchedBlock")
-FetchShareParticipantsOperation_setShareParticipantFetchedBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation, shareParticipantFetchedBlock: proc "c" ()) {
+FetchShareParticipantsOperation_setShareParticipantFetchedBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation, shareParticipantFetchedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setShareParticipantFetchedBlock:", shareParticipantFetchedBlock)
 }
 @(objc_type=FetchShareParticipantsOperation, objc_name="perShareParticipantCompletionBlock")
-FetchShareParticipantsOperation_perShareParticipantCompletionBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perShareParticipantCompletionBlock")
+FetchShareParticipantsOperation_perShareParticipantCompletionBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perShareParticipantCompletionBlock")
 }
 @(objc_type=FetchShareParticipantsOperation, objc_name="setPerShareParticipantCompletionBlock")
-FetchShareParticipantsOperation_setPerShareParticipantCompletionBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation, perShareParticipantCompletionBlock: proc "c" ()) {
+FetchShareParticipantsOperation_setPerShareParticipantCompletionBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation, perShareParticipantCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerShareParticipantCompletionBlock:", perShareParticipantCompletionBlock)
 }
 @(objc_type=FetchShareParticipantsOperation, objc_name="fetchShareParticipantsCompletionBlock")
-FetchShareParticipantsOperation_fetchShareParticipantsCompletionBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchShareParticipantsCompletionBlock")
+FetchShareParticipantsOperation_fetchShareParticipantsCompletionBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchShareParticipantsCompletionBlock")
 }
 @(objc_type=FetchShareParticipantsOperation, objc_name="setFetchShareParticipantsCompletionBlock")
-FetchShareParticipantsOperation_setFetchShareParticipantsCompletionBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation, fetchShareParticipantsCompletionBlock: proc "c" ()) {
+FetchShareParticipantsOperation_setFetchShareParticipantsCompletionBlock :: #force_inline proc "c" (self: ^FetchShareParticipantsOperation, fetchShareParticipantsCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchShareParticipantsCompletionBlock:", fetchShareParticipantsCompletionBlock)
 }
 @(objc_type=FetchShareParticipantsOperation, objc_name="load", objc_is_class_method=true)

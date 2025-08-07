@@ -46,7 +46,7 @@ PrintPanel_defaultButtonTitle :: #force_inline proc "c" (self: ^PrintPanel) -> ^
     return msgSend(^NS.String, self, "defaultButtonTitle")
 }
 @(objc_type=PrintPanel, objc_name="beginSheetUsingPrintInfo")
-PrintPanel_beginSheetUsingPrintInfo :: #force_inline proc "c" (self: ^PrintPanel, printInfo: ^PrintInfo, parentWindow: ^Window, handler: proc "c" (result: PrintPanelResult)) {
+PrintPanel_beginSheetUsingPrintInfo :: #force_inline proc "c" (self: ^PrintPanel, printInfo: ^PrintInfo, parentWindow: ^Window, handler: ^Objc_Block(proc "c" (result: PrintPanelResult))) {
     msgSend(nil, self, "beginSheetUsingPrintInfo:onWindow:completionHandler:", printInfo, parentWindow, handler)
 }
 @(objc_type=PrintPanel, objc_name="beginSheetWithPrintInfo")

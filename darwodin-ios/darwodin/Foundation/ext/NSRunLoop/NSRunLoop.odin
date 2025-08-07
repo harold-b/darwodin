@@ -36,8 +36,8 @@ VTable :: struct {
     run: proc(self: ^NS.RunLoop),
     runUntilDate: proc(self: ^NS.RunLoop, limitDate: ^NS.Date),
     runMode: proc(self: ^NS.RunLoop, mode: ^NS.String, limitDate: ^NS.Date) -> bool,
-    performInModes: proc(self: ^NS.RunLoop, modes: ^NS.Array, block: proc "c" ()),
-    performBlock: proc(self: ^NS.RunLoop, block: proc "c" ()),
+    performInModes: proc(self: ^NS.RunLoop, modes: ^NS.Array, block: ^Objc_Block(proc "c" ())),
+    performBlock: proc(self: ^NS.RunLoop, block: ^Objc_Block(proc "c" ())),
     performSelector: proc(self: ^NS.RunLoop, aSelector: SEL, target: id, arg: id, order: NS.UInteger, modes: ^NS.Array),
     cancelPerformSelector: proc(self: ^NS.RunLoop, aSelector: SEL, target: id, arg: id),
     cancelPerformSelectorsWithTarget: proc(self: ^NS.RunLoop, target: id),
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("runMode:beforeDate:"), auto_cast runMode, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.performInModes != nil {
-        performInModes :: proc "c" (self: ^NS.RunLoop, _: SEL, modes: ^NS.Array, block: proc "c" ()) {
+        performInModes :: proc "c" (self: ^NS.RunLoop, _: SEL, modes: ^NS.Array, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performInModes:block:"), auto_cast performInModes, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.performBlock != nil {
-        performBlock :: proc "c" (self: ^NS.RunLoop, _: SEL, block: proc "c" ()) {
+        performBlock :: proc "c" (self: ^NS.RunLoop, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

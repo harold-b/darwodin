@@ -29,7 +29,7 @@ VTable :: struct {
     super: UIViewController.VTable,
     initWithNibName: proc(self: ^UI.CloudSharingController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.CloudSharingController,
     initWithCoder: proc(self: ^UI.CloudSharingController, coder: ^NS.Coder) -> ^UI.CloudSharingController,
-    initWithPreparationHandler: proc(self: ^UI.CloudSharingController, preparationHandler: proc "c" (controller: ^UI.CloudSharingController, preparationCompletionHandler: proc "c" (_arg_0: ^UI.CKShare, _arg_1: ^UI.CKContainer, _arg_2: ^NS.Error))) -> ^UI.CloudSharingController,
+    initWithPreparationHandler: proc(self: ^UI.CloudSharingController, preparationHandler: ^Objc_Block(proc "c" (controller: ^UI.CloudSharingController, preparationCompletionHandler: ^Objc_Block(proc "c" (_: ^UI.CKShare, _1: ^UI.CKContainer, _2: ^NS.Error))))) -> ^UI.CloudSharingController,
     initWithShare: proc(self: ^UI.CloudSharingController, share: ^UI.CKShare, container: ^UI.CKContainer) -> ^UI.CloudSharingController,
     activityItemSource: proc(self: ^UI.CloudSharingController) -> ^UI.ActivityItemSource,
     delegate: proc(self: ^UI.CloudSharingController) -> ^UI.CloudSharingControllerDelegate,
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithPreparationHandler != nil {
-        initWithPreparationHandler :: proc "c" (self: ^UI.CloudSharingController, _: SEL, preparationHandler: proc "c" (controller: ^UI.CloudSharingController, preparationCompletionHandler: proc "c" (_arg_0: ^UI.CKShare, _arg_1: ^UI.CKContainer, _arg_2: ^NS.Error))) -> ^UI.CloudSharingController {
+        initWithPreparationHandler :: proc "c" (self: ^UI.CloudSharingController, _: SEL, preparationHandler: ^Objc_Block(proc "c" (controller: ^UI.CloudSharingController, preparationCompletionHandler: ^Objc_Block(proc "c" (_: ^UI.CKShare, _1: ^UI.CKContainer, _2: ^NS.Error))))) -> ^UI.CloudSharingController {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

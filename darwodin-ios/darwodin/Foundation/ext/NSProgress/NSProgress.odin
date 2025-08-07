@@ -30,7 +30,7 @@ VTable :: struct {
     progressWithTotalUnitCount_parent_pendingUnitCount: proc(unitCount: cffi.int64_t, parent: ^NS.Progress, portionOfParentTotalUnitCount: cffi.int64_t) -> ^NS.Progress,
     initWithParent: proc(self: ^NS.Progress, parentProgressOrNil: ^NS.Progress, userInfoOrNil: ^NS.Dictionary) -> ^NS.Progress,
     becomeCurrentWithPendingUnitCount: proc(self: ^NS.Progress, unitCount: cffi.int64_t),
-    performAsCurrentWithPendingUnitCount: proc(self: ^NS.Progress, unitCount: cffi.int64_t, work: proc "c" ()),
+    performAsCurrentWithPendingUnitCount: proc(self: ^NS.Progress, unitCount: cffi.int64_t, work: ^Objc_Block(proc "c" ())),
     resignCurrent: proc(self: ^NS.Progress),
     addChild: proc(self: ^NS.Progress, child: ^NS.Progress, inUnitCount: cffi.int64_t),
     setUserInfoObject: proc(self: ^NS.Progress, objectOrNil: id, key: ^NS.String),
@@ -55,12 +55,12 @@ VTable :: struct {
     setPausable: proc(self: ^NS.Progress, pausable: bool),
     isCancelled: proc(self: ^NS.Progress) -> bool,
     isPaused: proc(self: ^NS.Progress) -> bool,
-    cancellationHandler: proc(self: ^NS.Progress) -> proc "c" (),
-    setCancellationHandler: proc(self: ^NS.Progress, cancellationHandler: proc "c" ()),
-    pausingHandler: proc(self: ^NS.Progress) -> proc "c" (),
-    setPausingHandler: proc(self: ^NS.Progress, pausingHandler: proc "c" ()),
-    resumingHandler: proc(self: ^NS.Progress) -> proc "c" (),
-    setResumingHandler: proc(self: ^NS.Progress, resumingHandler: proc "c" ()),
+    cancellationHandler: proc(self: ^NS.Progress) -> ^Objc_Block(proc "c" ()),
+    setCancellationHandler: proc(self: ^NS.Progress, cancellationHandler: ^Objc_Block(proc "c" ())),
+    pausingHandler: proc(self: ^NS.Progress) -> ^Objc_Block(proc "c" ()),
+    setPausingHandler: proc(self: ^NS.Progress, pausingHandler: ^Objc_Block(proc "c" ())),
+    resumingHandler: proc(self: ^NS.Progress) -> ^Objc_Block(proc "c" ()),
+    setResumingHandler: proc(self: ^NS.Progress, resumingHandler: ^Objc_Block(proc "c" ())),
     isIndeterminate: proc(self: ^NS.Progress) -> bool,
     fractionCompleted: proc(self: ^NS.Progress) -> cffi.double,
     isFinished: proc(self: ^NS.Progress) -> bool,
@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("becomeCurrentWithPendingUnitCount:"), auto_cast becomeCurrentWithPendingUnitCount, "v@:q") do panic("Failed to register objC method.")
     }
     if vt.performAsCurrentWithPendingUnitCount != nil {
-        performAsCurrentWithPendingUnitCount :: proc "c" (self: ^NS.Progress, _: SEL, unitCount: cffi.int64_t, work: proc "c" ()) {
+        performAsCurrentWithPendingUnitCount :: proc "c" (self: ^NS.Progress, _: SEL, unitCount: cffi.int64_t, work: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -429,7 +429,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isPaused"), auto_cast isPaused, "B@:") do panic("Failed to register objC method.")
     }
     if vt.cancellationHandler != nil {
-        cancellationHandler :: proc "c" (self: ^NS.Progress, _: SEL) -> proc "c" () {
+        cancellationHandler :: proc "c" (self: ^NS.Progress, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -439,7 +439,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancellationHandler"), auto_cast cancellationHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setCancellationHandler != nil {
-        setCancellationHandler :: proc "c" (self: ^NS.Progress, _: SEL, cancellationHandler: proc "c" ()) {
+        setCancellationHandler :: proc "c" (self: ^NS.Progress, _: SEL, cancellationHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -449,7 +449,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCancellationHandler:"), auto_cast setCancellationHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.pausingHandler != nil {
-        pausingHandler :: proc "c" (self: ^NS.Progress, _: SEL) -> proc "c" () {
+        pausingHandler :: proc "c" (self: ^NS.Progress, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -459,7 +459,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pausingHandler"), auto_cast pausingHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setPausingHandler != nil {
-        setPausingHandler :: proc "c" (self: ^NS.Progress, _: SEL, pausingHandler: proc "c" ()) {
+        setPausingHandler :: proc "c" (self: ^NS.Progress, _: SEL, pausingHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -469,7 +469,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPausingHandler:"), auto_cast setPausingHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.resumingHandler != nil {
-        resumingHandler :: proc "c" (self: ^NS.Progress, _: SEL) -> proc "c" () {
+        resumingHandler :: proc "c" (self: ^NS.Progress, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -479,7 +479,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resumingHandler"), auto_cast resumingHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setResumingHandler != nil {
-        setResumingHandler :: proc "c" (self: ^NS.Progress, _: SEL, resumingHandler: proc "c" ()) {
+        setResumingHandler :: proc "c" (self: ^NS.Progress, _: SEL, resumingHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

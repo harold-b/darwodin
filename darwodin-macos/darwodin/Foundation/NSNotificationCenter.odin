@@ -47,7 +47,7 @@ NotificationCenter_removeObserver_name_object :: #force_inline proc "c" (self: ^
     msgSend(nil, self, "removeObserver:name:object:", observer, aName, anObject)
 }
 @(objc_type=NotificationCenter, objc_name="addObserverForName")
-NotificationCenter_addObserverForName :: #force_inline proc "c" (self: ^NotificationCenter, name: ^String, obj: id, queue: ^OperationQueue, block: proc "c" (notification: ^Notification)) -> ^ObjectProtocol {
+NotificationCenter_addObserverForName :: #force_inline proc "c" (self: ^NotificationCenter, name: ^String, obj: id, queue: ^OperationQueue, block: ^Objc_Block(proc "c" (notification: ^Notification))) -> ^ObjectProtocol {
     return msgSend(^ObjectProtocol, self, "addObserverForName:object:queue:usingBlock:", name, obj, queue, block)
 }
 @(objc_type=NotificationCenter, objc_name="defaultCenter", objc_is_class_method=true)

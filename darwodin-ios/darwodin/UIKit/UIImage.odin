@@ -208,7 +208,7 @@ Image_imageByPreparingForDisplay :: #force_inline proc "c" (self: ^Image) -> ^Im
     return msgSend(^Image, self, "imageByPreparingForDisplay")
 }
 @(objc_type=Image, objc_name="prepareForDisplayWithCompletionHandler")
-Image_prepareForDisplayWithCompletionHandler :: #force_inline proc "c" (self: ^Image, completionHandler: proc "c" (_arg_0: ^Image)) {
+Image_prepareForDisplayWithCompletionHandler :: #force_inline proc "c" (self: ^Image, completionHandler: ^Objc_Block(proc "c" (_: ^Image))) {
     msgSend(nil, self, "prepareForDisplayWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Image, objc_name="imageByPreparingThumbnailOfSize")
@@ -216,7 +216,7 @@ Image_imageByPreparingThumbnailOfSize :: #force_inline proc "c" (self: ^Image, s
     return msgSend(^Image, self, "imageByPreparingThumbnailOfSize:", size)
 }
 @(objc_type=Image, objc_name="prepareThumbnailOfSize")
-Image_prepareThumbnailOfSize :: #force_inline proc "c" (self: ^Image, size: CG.Size, completionHandler: proc "c" (_arg_0: ^Image)) {
+Image_prepareThumbnailOfSize :: #force_inline proc "c" (self: ^Image, size: CG.Size, completionHandler: ^Objc_Block(proc "c" (_: ^Image))) {
     msgSend(nil, self, "prepareThumbnailOfSize:completionHandler:", size, completionHandler)
 }
 @(objc_type=Image, objc_name="imageRestrictedToStandardDynamicRange")

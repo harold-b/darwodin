@@ -95,51 +95,51 @@ IndexSet_intersectsIndexesInRange :: #force_inline proc "c" (self: ^IndexSet, ra
     return msgSend(bool, self, "intersectsIndexesInRange:", range)
 }
 @(objc_type=IndexSet, objc_name="enumerateIndexesUsingBlock")
-IndexSet_enumerateIndexesUsingBlock :: #force_inline proc "c" (self: ^IndexSet, block: proc "c" (idx: UInteger, stop: ^bool)) {
+IndexSet_enumerateIndexesUsingBlock :: #force_inline proc "c" (self: ^IndexSet, block: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateIndexesUsingBlock:", block)
 }
 @(objc_type=IndexSet, objc_name="enumerateIndexesWithOptions")
-IndexSet_enumerateIndexesWithOptions :: #force_inline proc "c" (self: ^IndexSet, opts: EnumerationOptions, block: proc "c" (idx: UInteger, stop: ^bool)) {
+IndexSet_enumerateIndexesWithOptions :: #force_inline proc "c" (self: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateIndexesWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=IndexSet, objc_name="enumerateIndexesInRange")
-IndexSet_enumerateIndexesInRange :: #force_inline proc "c" (self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, block: proc "c" (idx: UInteger, stop: ^bool)) {
+IndexSet_enumerateIndexesInRange :: #force_inline proc "c" (self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateIndexesInRange:options:usingBlock:", range, opts, block)
 }
 @(objc_type=IndexSet, objc_name="indexPassingTest")
-IndexSet_indexPassingTest :: #force_inline proc "c" (self: ^IndexSet, predicate: proc "c" (idx: UInteger, stop: ^bool) -> bool) -> UInteger {
+IndexSet_indexPassingTest :: #force_inline proc "c" (self: ^IndexSet, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexPassingTest:", predicate)
 }
 @(objc_type=IndexSet, objc_name="indexWithOptions")
-IndexSet_indexWithOptions :: #force_inline proc "c" (self: ^IndexSet, opts: EnumerationOptions, predicate: proc "c" (idx: UInteger, stop: ^bool) -> bool) -> UInteger {
+IndexSet_indexWithOptions :: #force_inline proc "c" (self: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=IndexSet, objc_name="indexInRange")
-IndexSet_indexInRange :: #force_inline proc "c" (self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, predicate: proc "c" (idx: UInteger, stop: ^bool) -> bool) -> UInteger {
+IndexSet_indexInRange :: #force_inline proc "c" (self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexInRange:options:passingTest:", range, opts, predicate)
 }
 @(objc_type=IndexSet, objc_name="indexesPassingTest")
-IndexSet_indexesPassingTest :: #force_inline proc "c" (self: ^IndexSet, predicate: proc "c" (idx: UInteger, stop: ^bool) -> bool) -> ^IndexSet {
+IndexSet_indexesPassingTest :: #force_inline proc "c" (self: ^IndexSet, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesPassingTest:", predicate)
 }
 @(objc_type=IndexSet, objc_name="indexesWithOptions")
-IndexSet_indexesWithOptions :: #force_inline proc "c" (self: ^IndexSet, opts: EnumerationOptions, predicate: proc "c" (idx: UInteger, stop: ^bool) -> bool) -> ^IndexSet {
+IndexSet_indexesWithOptions :: #force_inline proc "c" (self: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=IndexSet, objc_name="indexesInRange")
-IndexSet_indexesInRange :: #force_inline proc "c" (self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, predicate: proc "c" (idx: UInteger, stop: ^bool) -> bool) -> ^IndexSet {
+IndexSet_indexesInRange :: #force_inline proc "c" (self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesInRange:options:passingTest:", range, opts, predicate)
 }
 @(objc_type=IndexSet, objc_name="enumerateRangesUsingBlock")
-IndexSet_enumerateRangesUsingBlock :: #force_inline proc "c" (self: ^IndexSet, block: proc "c" (range: _NSRange, stop: ^bool)) {
+IndexSet_enumerateRangesUsingBlock :: #force_inline proc "c" (self: ^IndexSet, block: ^Objc_Block(proc "c" (range: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateRangesUsingBlock:", block)
 }
 @(objc_type=IndexSet, objc_name="enumerateRangesWithOptions")
-IndexSet_enumerateRangesWithOptions :: #force_inline proc "c" (self: ^IndexSet, opts: EnumerationOptions, block: proc "c" (range: _NSRange, stop: ^bool)) {
+IndexSet_enumerateRangesWithOptions :: #force_inline proc "c" (self: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (range: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateRangesWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=IndexSet, objc_name="enumerateRangesInRange")
-IndexSet_enumerateRangesInRange :: #force_inline proc "c" (self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, block: proc "c" (range: _NSRange, stop: ^bool)) {
+IndexSet_enumerateRangesInRange :: #force_inline proc "c" (self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (range: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateRangesInRange:options:usingBlock:", range, opts, block)
 }
 @(objc_type=IndexSet, objc_name="count")

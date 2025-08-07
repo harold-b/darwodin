@@ -102,11 +102,11 @@ Array_reverseObjectEnumerator :: #force_inline proc "c" (self: ^Array) -> ^Enume
     return msgSend(^Enumerator, self, "reverseObjectEnumerator")
 }
 @(objc_type=Array, objc_name="sortedArrayUsingFunction_context")
-Array_sortedArrayUsingFunction_context :: #force_inline proc "c" (self: ^Array, comparator: proc "c" (_arg_0: ^id, _arg_1: ^id, _arg_2: rawptr) -> Integer, _context: rawptr) -> ^Array {
+Array_sortedArrayUsingFunction_context :: #force_inline proc "c" (self: ^Array, comparator: proc "c" (_: ^id, _1: ^id, _2: rawptr) -> Integer, _context: rawptr) -> ^Array {
     return msgSend(^Array, self, "sortedArrayUsingFunction:context:", comparator, _context)
 }
 @(objc_type=Array, objc_name="sortedArrayUsingFunction_context_hint")
-Array_sortedArrayUsingFunction_context_hint :: #force_inline proc "c" (self: ^Array, comparator: proc "c" (_arg_0: ^id, _arg_1: ^id, _arg_2: rawptr) -> Integer, _context: rawptr, hint: ^Data) -> ^Array {
+Array_sortedArrayUsingFunction_context_hint :: #force_inline proc "c" (self: ^Array, comparator: proc "c" (_: ^id, _1: ^id, _2: rawptr) -> Integer, _context: rawptr, hint: ^Data) -> ^Array {
     return msgSend(^Array, self, "sortedArrayUsingFunction:context:hint:", comparator, _context, hint)
 }
 @(objc_type=Array, objc_name="sortedArrayUsingSelector")
@@ -138,39 +138,39 @@ Array_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^Array, idx: UIn
     return msgSend(^id, self, "objectAtIndexedSubscript:", idx)
 }
 @(objc_type=Array, objc_name="enumerateObjectsUsingBlock")
-Array_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^Array, block: proc "c" (obj: ^id, idx: UInteger, stop: ^bool)) {
+Array_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^Array, block: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsUsingBlock:", block)
 }
 @(objc_type=Array, objc_name="enumerateObjectsWithOptions")
-Array_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^Array, opts: EnumerationOptions, block: proc "c" (obj: ^id, idx: UInteger, stop: ^bool)) {
+Array_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^Array, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=Array, objc_name="enumerateObjectsAtIndexes")
-Array_enumerateObjectsAtIndexes :: #force_inline proc "c" (self: ^Array, s: ^IndexSet, opts: EnumerationOptions, block: proc "c" (obj: ^id, idx: UInteger, stop: ^bool)) {
+Array_enumerateObjectsAtIndexes :: #force_inline proc "c" (self: ^Array, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsAtIndexes:options:usingBlock:", s, opts, block)
 }
 @(objc_type=Array, objc_name="indexOfObjectPassingTest")
-Array_indexOfObjectPassingTest :: #force_inline proc "c" (self: ^Array, predicate: proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool) -> UInteger {
+Array_indexOfObjectPassingTest :: #force_inline proc "c" (self: ^Array, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexOfObjectPassingTest:", predicate)
 }
 @(objc_type=Array, objc_name="indexOfObjectWithOptions")
-Array_indexOfObjectWithOptions :: #force_inline proc "c" (self: ^Array, opts: EnumerationOptions, predicate: proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool) -> UInteger {
+Array_indexOfObjectWithOptions :: #force_inline proc "c" (self: ^Array, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexOfObjectWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=Array, objc_name="indexOfObjectAtIndexes")
-Array_indexOfObjectAtIndexes :: #force_inline proc "c" (self: ^Array, s: ^IndexSet, opts: EnumerationOptions, predicate: proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool) -> UInteger {
+Array_indexOfObjectAtIndexes :: #force_inline proc "c" (self: ^Array, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexOfObjectAtIndexes:options:passingTest:", s, opts, predicate)
 }
 @(objc_type=Array, objc_name="indexesOfObjectsPassingTest")
-Array_indexesOfObjectsPassingTest :: #force_inline proc "c" (self: ^Array, predicate: proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool) -> ^IndexSet {
+Array_indexesOfObjectsPassingTest :: #force_inline proc "c" (self: ^Array, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesOfObjectsPassingTest:", predicate)
 }
 @(objc_type=Array, objc_name="indexesOfObjectsWithOptions")
-Array_indexesOfObjectsWithOptions :: #force_inline proc "c" (self: ^Array, opts: EnumerationOptions, predicate: proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool) -> ^IndexSet {
+Array_indexesOfObjectsWithOptions :: #force_inline proc "c" (self: ^Array, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesOfObjectsWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=Array, objc_name="indexesOfObjectsAtIndexes")
-Array_indexesOfObjectsAtIndexes :: #force_inline proc "c" (self: ^Array, s: ^IndexSet, opts: EnumerationOptions, predicate: proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool) -> ^IndexSet {
+Array_indexesOfObjectsAtIndexes :: #force_inline proc "c" (self: ^Array, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesOfObjectsAtIndexes:options:passingTest:", s, opts, predicate)
 }
 @(objc_type=Array, objc_name="sortedArrayUsingComparator")
@@ -242,7 +242,7 @@ Array_arrayWithContentsOfURL_error :: #force_inline proc "c" (url: ^URL, error: 
     return msgSend(^Array, Array, "arrayWithContentsOfURL:error:", url, error)
 }
 @(objc_type=Array, objc_name="differenceFromArray_withOptions_usingEquivalenceTest")
-Array_differenceFromArray_withOptions_usingEquivalenceTest :: #force_inline proc "c" (self: ^Array, other: ^Array, options: OrderedCollectionDifferenceCalculationOptions, block: proc "c" (obj1: ^id, obj2: ^id) -> bool) -> ^OrderedCollectionDifference {
+Array_differenceFromArray_withOptions_usingEquivalenceTest :: #force_inline proc "c" (self: ^Array, other: ^Array, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: ^id, obj2: ^id) -> bool)) -> ^OrderedCollectionDifference {
     return msgSend(^OrderedCollectionDifference, self, "differenceFromArray:withOptions:usingEquivalenceTest:", other, options, block)
 }
 @(objc_type=Array, objc_name="differenceFromArray_withOptions")

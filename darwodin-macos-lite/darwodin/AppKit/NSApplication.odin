@@ -127,7 +127,7 @@ Application_cancelUserAttentionRequest :: #force_inline proc "c" (self: ^Applica
     msgSend(nil, self, "cancelUserAttentionRequest:", request)
 }
 @(objc_type=Application, objc_name="enumerateWindowsWithOptions")
-Application_enumerateWindowsWithOptions :: #force_inline proc "c" (self: ^Application, options: WindowListOptions, block: proc "c" (window: ^Window, stop: ^bool)) {
+Application_enumerateWindowsWithOptions :: #force_inline proc "c" (self: ^Application, options: WindowListOptions, block: ^Objc_Block(proc "c" (window: ^Window, stop: ^bool))) {
     msgSend(nil, self, "enumerateWindowsWithOptions:usingBlock:", options, block)
 }
 @(objc_type=Application, objc_name="preventWindowOrdering")
@@ -487,7 +487,7 @@ Application_searchString :: #force_inline proc "c" (self: ^Application, searchSt
     return msgSend(bool, self, "searchString:inUserInterfaceItemString:searchRange:foundRange:", searchString, stringToSearch, searchRange, foundRange)
 }
 @(objc_type=Application, objc_name="restoreWindowWithIdentifier")
-Application_restoreWindowWithIdentifier :: #force_inline proc "c" (self: ^Application, identifier: ^NS.String, state: ^NS.Coder, completionHandler: proc "c" (_arg_0: ^Window, _arg_1: ^NS.Error)) -> bool {
+Application_restoreWindowWithIdentifier :: #force_inline proc "c" (self: ^Application, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^Window, _1: ^NS.Error))) -> bool {
     return msgSend(bool, self, "restoreWindowWithIdentifier:state:completionHandler:", identifier, state, completionHandler)
 }
 @(objc_type=Application, objc_name="extendStateRestoration")

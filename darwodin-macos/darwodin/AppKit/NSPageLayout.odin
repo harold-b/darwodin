@@ -38,7 +38,7 @@ PageLayout_removeAccessoryController :: #force_inline proc "c" (self: ^PageLayou
     msgSend(nil, self, "removeAccessoryController:", accessoryController)
 }
 @(objc_type=PageLayout, objc_name="beginSheetUsingPrintInfo")
-PageLayout_beginSheetUsingPrintInfo :: #force_inline proc "c" (self: ^PageLayout, printInfo: ^PrintInfo, parentWindow: ^Window, handler: proc "c" (result: PageLayoutResult)) {
+PageLayout_beginSheetUsingPrintInfo :: #force_inline proc "c" (self: ^PageLayout, printInfo: ^PrintInfo, parentWindow: ^Window, handler: ^Objc_Block(proc "c" (result: PageLayoutResult))) {
     msgSend(nil, self, "beginSheetUsingPrintInfo:onWindow:completionHandler:", printInfo, parentWindow, handler)
 }
 @(objc_type=PageLayout, objc_name="beginSheetWithPrintInfo")

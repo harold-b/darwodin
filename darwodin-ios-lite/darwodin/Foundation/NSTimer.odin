@@ -39,15 +39,15 @@ Timer_scheduledTimerWithTimeInterval_target_selector_userInfo_repeats :: #force_
     return msgSend(^Timer, Timer, "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:", ti, aTarget, aSelector, userInfo, yesOrNo)
 }
 @(objc_type=Timer, objc_name="timerWithTimeInterval_repeats_block", objc_is_class_method=true)
-Timer_timerWithTimeInterval_repeats_block :: #force_inline proc "c" (interval: TimeInterval, repeats: bool, block: proc "c" (timer: ^Timer)) -> ^Timer {
+Timer_timerWithTimeInterval_repeats_block :: #force_inline proc "c" (interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^Timer))) -> ^Timer {
     return msgSend(^Timer, Timer, "timerWithTimeInterval:repeats:block:", interval, repeats, block)
 }
 @(objc_type=Timer, objc_name="scheduledTimerWithTimeInterval_repeats_block", objc_is_class_method=true)
-Timer_scheduledTimerWithTimeInterval_repeats_block :: #force_inline proc "c" (interval: TimeInterval, repeats: bool, block: proc "c" (timer: ^Timer)) -> ^Timer {
+Timer_scheduledTimerWithTimeInterval_repeats_block :: #force_inline proc "c" (interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^Timer))) -> ^Timer {
     return msgSend(^Timer, Timer, "scheduledTimerWithTimeInterval:repeats:block:", interval, repeats, block)
 }
 @(objc_type=Timer, objc_name="initWithFireDate_interval_repeats_block")
-Timer_initWithFireDate_interval_repeats_block :: #force_inline proc "c" (self: ^Timer, date: ^Date, interval: TimeInterval, repeats: bool, block: proc "c" (timer: ^Timer)) -> ^Timer {
+Timer_initWithFireDate_interval_repeats_block :: #force_inline proc "c" (self: ^Timer, date: ^Date, interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^Timer))) -> ^Timer {
     return msgSend(^Timer, self, "initWithFireDate:interval:repeats:block:", date, interval, repeats, block)
 }
 @(objc_type=Timer, objc_name="initWithFireDate_interval_target_selector_userInfo_repeats")

@@ -19,7 +19,7 @@ URLSessionDataDelegate :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=URLSessionDataDelegate, objc_name="URLSession_dataTask_didReceiveResponse_completionHandler")
-URLSessionDataDelegate_URLSession_dataTask_didReceiveResponse_completionHandler :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, response: ^URLResponse, completionHandler: proc "c" (disposition: URLSessionResponseDisposition)) {
+URLSessionDataDelegate_URLSession_dataTask_didReceiveResponse_completionHandler :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, response: ^URLResponse, completionHandler: ^Objc_Block(proc "c" (disposition: URLSessionResponseDisposition))) {
     msgSend(nil, self, "URLSession:dataTask:didReceiveResponse:completionHandler:", session, dataTask, response, completionHandler)
 }
 @(objc_type=URLSessionDataDelegate, objc_name="URLSession_dataTask_didBecomeDownloadTask")
@@ -35,7 +35,7 @@ URLSessionDataDelegate_URLSession_dataTask_didReceiveData :: #force_inline proc 
     msgSend(nil, self, "URLSession:dataTask:didReceiveData:", session, dataTask, data)
 }
 @(objc_type=URLSessionDataDelegate, objc_name="URLSession_dataTask_willCacheResponse_completionHandler")
-URLSessionDataDelegate_URLSession_dataTask_willCacheResponse_completionHandler :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, proposedResponse: ^CachedURLResponse, completionHandler: proc "c" (cachedResponse: ^CachedURLResponse)) {
+URLSessionDataDelegate_URLSession_dataTask_willCacheResponse_completionHandler :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, proposedResponse: ^CachedURLResponse, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^CachedURLResponse))) {
     msgSend(nil, self, "URLSession:dataTask:willCacheResponse:completionHandler:", session, dataTask, proposedResponse, completionHandler)
 }
 @(objc_type=URLSessionDataDelegate, objc_name="URLSession")

@@ -53,7 +53,7 @@ Matrix_sortUsingSelector :: #force_inline proc "c" (self: ^Matrix, comparator: S
     msgSend(nil, self, "sortUsingSelector:", comparator)
 }
 @(objc_type=Matrix, objc_name="sortUsingFunction")
-Matrix_sortUsingFunction :: #force_inline proc "c" (self: ^Matrix, compare: proc "c" (_arg_0: id, _arg_1: id, _arg_2: rawptr) -> NS.Integer, _context: rawptr) {
+Matrix_sortUsingFunction :: #force_inline proc "c" (self: ^Matrix, compare: proc "c" (_: id, _1: id, _2: rawptr) -> NS.Integer, _context: rawptr) {
     msgSend(nil, self, "sortUsingFunction:context:", compare, _context)
 }
 @(objc_type=Matrix, objc_name="setSelectionFrom")

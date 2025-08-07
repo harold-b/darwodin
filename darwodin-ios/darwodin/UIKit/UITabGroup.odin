@@ -30,7 +30,7 @@ TabGroup_tabForIdentifier :: #force_inline proc "c" (self: ^TabGroup, identifier
     return msgSend(^Tab, self, "tabForIdentifier:", identifier)
 }
 @(objc_type=TabGroup, objc_name="initWithTitle")
-TabGroup_initWithTitle :: #force_inline proc "c" (self: ^TabGroup, title: ^NS.String, image: ^Image, identifier: ^NS.String, children: ^NS.Array, viewControllerProvider: proc "c" (_arg_0: ^Tab) -> ^ViewController) -> ^TabGroup {
+TabGroup_initWithTitle :: #force_inline proc "c" (self: ^TabGroup, title: ^NS.String, image: ^Image, identifier: ^NS.String, children: ^NS.Array, viewControllerProvider: ^Objc_Block(proc "c" (_: ^Tab) -> ^ViewController)) -> ^TabGroup {
     return msgSend(^TabGroup, self, "initWithTitle:image:identifier:children:viewControllerProvider:", title, image, identifier, children, viewControllerProvider)
 }
 @(objc_type=TabGroup, objc_name="selectedChild")

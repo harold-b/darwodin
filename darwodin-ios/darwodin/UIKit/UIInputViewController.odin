@@ -40,7 +40,7 @@ InputViewController_handleInputModeListFromView :: #force_inline proc "c" (self:
     msgSend(nil, self, "handleInputModeListFromView:withEvent:", view, event)
 }
 @(objc_type=InputViewController, objc_name="requestSupplementaryLexiconWithCompletion")
-InputViewController_requestSupplementaryLexiconWithCompletion :: #force_inline proc "c" (self: ^InputViewController, completionHandler: proc "c" (_arg_0: ^Lexicon)) {
+InputViewController_requestSupplementaryLexiconWithCompletion :: #force_inline proc "c" (self: ^InputViewController, completionHandler: ^Objc_Block(proc "c" (_: ^Lexicon))) {
     msgSend(nil, self, "requestSupplementaryLexiconWithCompletion:", completionHandler)
 }
 @(objc_type=InputViewController, objc_name="inputView")

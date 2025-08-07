@@ -60,7 +60,7 @@ VTable :: struct {
     deleteItemsAtIndexPaths: proc(self: ^AK.CollectionView, indexPaths: ^NS.Set),
     reloadItemsAtIndexPaths: proc(self: ^AK.CollectionView, indexPaths: ^NS.Set),
     moveItemAtIndexPath: proc(self: ^AK.CollectionView, indexPath: ^NS.IndexPath, newIndexPath: ^NS.IndexPath),
-    performBatchUpdates: proc(self: ^AK.CollectionView, updates: proc "c" (), completionHandler: proc "c" (finished: bool)),
+    performBatchUpdates: proc(self: ^AK.CollectionView, updates: ^Objc_Block(proc "c" ()), completionHandler: ^Objc_Block(proc "c" (finished: bool))),
     toggleSectionCollapse: proc(self: ^AK.CollectionView, sender: id),
     scrollToItemsAtIndexPaths: proc(self: ^AK.CollectionView, indexPaths: ^NS.Set, scrollPosition: AK.CollectionViewScrollPosition),
     setDraggingSourceOperationMask: proc(self: ^AK.CollectionView, dragOperationMask: AK.DragOperation, localDestination: bool),
@@ -487,7 +487,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("moveItemAtIndexPath:toIndexPath:"), auto_cast moveItemAtIndexPath, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.performBatchUpdates != nil {
-        performBatchUpdates :: proc "c" (self: ^AK.CollectionView, _: SEL, updates: proc "c" (), completionHandler: proc "c" (finished: bool)) {
+        performBatchUpdates :: proc "c" (self: ^AK.CollectionView, _: SEL, updates: ^Objc_Block(proc "c" ()), completionHandler: ^Objc_Block(proc "c" (finished: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

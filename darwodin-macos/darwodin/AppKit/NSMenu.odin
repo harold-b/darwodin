@@ -249,11 +249,11 @@ Menu_setUserInterfaceLayoutDirection :: #force_inline proc "c" (self: ^Menu, use
     msgSend(nil, self, "setUserInterfaceLayoutDirection:", userInterfaceLayoutDirection)
 }
 @(objc_type=Menu, objc_name="paletteMenuWithColors_titles_selectionHandler", objc_is_class_method=true)
-Menu_paletteMenuWithColors_titles_selectionHandler :: #force_inline proc "c" (colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: proc "c" (_arg_0: ^Menu)) -> ^Menu {
+Menu_paletteMenuWithColors_titles_selectionHandler :: #force_inline proc "c" (colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> ^Menu {
     return msgSend(^Menu, Menu, "paletteMenuWithColors:titles:selectionHandler:", colors, itemTitles, onSelectionChange)
 }
 @(objc_type=Menu, objc_name="paletteMenuWithColors_titles_templateImage_selectionHandler", objc_is_class_method=true)
-Menu_paletteMenuWithColors_titles_templateImage_selectionHandler :: #force_inline proc "c" (colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: proc "c" (_arg_0: ^Menu)) -> ^Menu {
+Menu_paletteMenuWithColors_titles_templateImage_selectionHandler :: #force_inline proc "c" (colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> ^Menu {
     return msgSend(^Menu, Menu, "paletteMenuWithColors:titles:templateImage:selectionHandler:", colors, itemTitles, image, onSelectionChange)
 }
 @(objc_type=Menu, objc_name="presentationStyle")

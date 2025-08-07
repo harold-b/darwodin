@@ -43,7 +43,7 @@ NSPredicateRule_ruleWithPredicate_retractingFact_grade :: #force_inline proc "c"
     return msgSend(^Rule, NSPredicateRule, "ruleWithPredicate:retractingFact:grade:", predicate, fact, grade)
 }
 @(objc_type=NSPredicateRule, objc_name="ruleWithBlockPredicate", objc_is_class_method=true)
-NSPredicateRule_ruleWithBlockPredicate :: #force_inline proc "c" (predicate: proc "c" (_arg_0: ^RuleSystem) -> bool, action: proc "c" (_arg_0: ^RuleSystem)) -> ^Rule {
+NSPredicateRule_ruleWithBlockPredicate :: #force_inline proc "c" (predicate: ^Objc_Block(proc "c" (_: ^RuleSystem) -> bool), action: ^Objc_Block(proc "c" (_: ^RuleSystem))) -> ^Rule {
     return msgSend(^Rule, NSPredicateRule, "ruleWithBlockPredicate:action:", predicate, action)
 }
 @(objc_type=NSPredicateRule, objc_name="load", objc_is_class_method=true)

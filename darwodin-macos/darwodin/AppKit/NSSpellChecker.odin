@@ -50,11 +50,11 @@ SpellChecker_checkString :: #force_inline proc "c" (self: ^SpellChecker, stringT
     return msgSend(^NS.Array, self, "checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:", stringToCheck, range, checkingTypes, options, tag, orthography, wordCount)
 }
 @(objc_type=SpellChecker, objc_name="requestCheckingOfString")
-SpellChecker_requestCheckingOfString :: #force_inline proc "c" (self: ^SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer)) -> NS.Integer {
+SpellChecker_requestCheckingOfString :: #force_inline proc "c" (self: ^SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer))) -> NS.Integer {
     return msgSend(NS.Integer, self, "requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:", stringToCheck, range, checkingTypes, options, tag, completionHandler)
 }
 @(objc_type=SpellChecker, objc_name="requestCandidatesForSelectedRange")
-SpellChecker_requestCandidatesForSelectedRange :: #force_inline proc "c" (self: ^SpellChecker, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array)) -> NS.Integer {
+SpellChecker_requestCandidatesForSelectedRange :: #force_inline proc "c" (self: ^SpellChecker, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array))) -> NS.Integer {
     return msgSend(NS.Integer, self, "requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:", selectedRange, stringToCheck, checkingTypes, options, tag, completionHandler)
 }
 @(objc_type=SpellChecker, objc_name="menuForResult")
@@ -114,7 +114,7 @@ SpellChecker_recordResponse :: #force_inline proc "c" (self: ^SpellChecker, resp
     msgSend(nil, self, "recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:", response, correction, word, language, tag)
 }
 @(objc_type=SpellChecker, objc_name="showCorrectionIndicatorOfType")
-SpellChecker_showCorrectionIndicatorOfType :: #force_inline proc "c" (self: ^SpellChecker, type: CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^View, completionBlock: proc "c" (acceptedString: ^NS.String)) {
+SpellChecker_showCorrectionIndicatorOfType :: #force_inline proc "c" (self: ^SpellChecker, type: CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^View, completionBlock: ^Objc_Block(proc "c" (acceptedString: ^NS.String))) {
     msgSend(nil, self, "showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:", type, primaryString, alternativeStrings, rectOfTypedString, view, completionBlock)
 }
 @(objc_type=SpellChecker, objc_name="dismissCorrectionIndicatorForView")

@@ -32,15 +32,15 @@ VTable :: struct {
     new: proc() -> ^UI.CollectionViewDiffableDataSource,
     snapshot: proc(self: ^UI.CollectionViewDiffableDataSource) -> ^UI.NSDiffableDataSourceSnapshot,
     applySnapshot_animatingDifferences: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool),
-    applySnapshot_animatingDifferences_completion: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: proc "c" ()),
+    applySnapshot_animatingDifferences_completion: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())),
     applySnapshotUsingReloadData_: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot),
-    applySnapshotUsingReloadData_completion: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, completion: proc "c" ()),
+    applySnapshotUsingReloadData_completion: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, completion: ^Objc_Block(proc "c" ())),
     sectionIdentifierForIndex: proc(self: ^UI.CollectionViewDiffableDataSource, index: NS.Integer) -> ^id,
     indexForSectionIdentifier: proc(self: ^UI.CollectionViewDiffableDataSource, identifier: ^id) -> NS.Integer,
     itemIdentifierForIndexPath: proc(self: ^UI.CollectionViewDiffableDataSource, indexPath: ^NS.IndexPath) -> ^id,
     indexPathForItemIdentifier: proc(self: ^UI.CollectionViewDiffableDataSource, identifier: ^id) -> ^NS.IndexPath,
     applySnapshot_toSection_animatingDifferences: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSectionSnapshot, sectionIdentifier: ^id, animatingDifferences: bool),
-    applySnapshot_toSection_animatingDifferences_completion: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSectionSnapshot, sectionIdentifier: ^id, animatingDifferences: bool, completion: proc "c" ()),
+    applySnapshot_toSection_animatingDifferences_completion: proc(self: ^UI.CollectionViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSectionSnapshot, sectionIdentifier: ^id, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())),
     snapshotForSection: proc(self: ^UI.CollectionViewDiffableDataSource, section: ^id) -> ^UI.NSDiffableDataSourceSectionSnapshot,
     supplementaryViewProvider: proc(self: ^UI.CollectionViewDiffableDataSource) -> UI.CollectionViewDiffableDataSourceSupplementaryViewProvider,
     setSupplementaryViewProvider: proc(self: ^UI.CollectionViewDiffableDataSource, supplementaryViewProvider: UI.CollectionViewDiffableDataSourceSupplementaryViewProvider),
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:"), auto_cast applySnapshot_animatingDifferences, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.applySnapshot_animatingDifferences_completion != nil {
-        applySnapshot_animatingDifferences_completion :: proc "c" (self: ^UI.CollectionViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: proc "c" ()) {
+        applySnapshot_animatingDifferences_completion :: proc "c" (self: ^UI.CollectionViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshotUsingReloadData:"), auto_cast applySnapshotUsingReloadData_, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.applySnapshotUsingReloadData_completion != nil {
-        applySnapshotUsingReloadData_completion :: proc "c" (self: ^UI.CollectionViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSnapshot, completion: proc "c" ()) {
+        applySnapshotUsingReloadData_completion :: proc "c" (self: ^UI.CollectionViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSnapshot, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -216,7 +216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:toSection:animatingDifferences:"), auto_cast applySnapshot_toSection_animatingDifferences, "v@:@^voidB") do panic("Failed to register objC method.")
     }
     if vt.applySnapshot_toSection_animatingDifferences_completion != nil {
-        applySnapshot_toSection_animatingDifferences_completion :: proc "c" (self: ^UI.CollectionViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSectionSnapshot, sectionIdentifier: ^id, animatingDifferences: bool, completion: proc "c" ()) {
+        applySnapshot_toSection_animatingDifferences_completion :: proc "c" (self: ^UI.CollectionViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSectionSnapshot, sectionIdentifier: ^id, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

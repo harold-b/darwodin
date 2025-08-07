@@ -31,11 +31,11 @@ BundleResourceRequest_initWithTags_bundle :: #force_inline proc "c" (self: ^Bund
     return msgSend(^BundleResourceRequest, self, "initWithTags:bundle:", tags, bundle)
 }
 @(objc_type=BundleResourceRequest, objc_name="beginAccessingResourcesWithCompletionHandler")
-BundleResourceRequest_beginAccessingResourcesWithCompletionHandler :: #force_inline proc "c" (self: ^BundleResourceRequest, completionHandler: proc "c" (error: ^Error)) {
+BundleResourceRequest_beginAccessingResourcesWithCompletionHandler :: #force_inline proc "c" (self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) {
     msgSend(nil, self, "beginAccessingResourcesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=BundleResourceRequest, objc_name="conditionallyBeginAccessingResourcesWithCompletionHandler")
-BundleResourceRequest_conditionallyBeginAccessingResourcesWithCompletionHandler :: #force_inline proc "c" (self: ^BundleResourceRequest, completionHandler: proc "c" (resourcesAvailable: bool)) {
+BundleResourceRequest_conditionallyBeginAccessingResourcesWithCompletionHandler :: #force_inline proc "c" (self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (resourcesAvailable: bool))) {
     msgSend(nil, self, "conditionallyBeginAccessingResourcesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=BundleResourceRequest, objc_name="endAccessingResources")

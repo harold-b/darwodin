@@ -20,11 +20,11 @@ LinearInput :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=LinearInput, objc_name="valueDidChangeHandler")
-LinearInput_valueDidChangeHandler :: #force_inline proc "c" (self: ^LinearInput) -> proc "c" () {
-    return msgSend(proc "c" (), self, "valueDidChangeHandler")
+LinearInput_valueDidChangeHandler :: #force_inline proc "c" (self: ^LinearInput) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "valueDidChangeHandler")
 }
 @(objc_type=LinearInput, objc_name="setValueDidChangeHandler")
-LinearInput_setValueDidChangeHandler :: #force_inline proc "c" (self: ^LinearInput, valueDidChangeHandler: proc "c" ()) {
+LinearInput_setValueDidChangeHandler :: #force_inline proc "c" (self: ^LinearInput, valueDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setValueDidChangeHandler:", valueDidChangeHandler)
 }
 @(objc_type=LinearInput, objc_name="value")

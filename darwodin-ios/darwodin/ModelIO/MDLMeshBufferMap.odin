@@ -26,7 +26,7 @@ MeshBufferMap_init :: proc "c" (self: ^MeshBufferMap) -> ^MeshBufferMap {
 
 
 @(objc_type=MeshBufferMap, objc_name="initWithBytes")
-MeshBufferMap_initWithBytes :: #force_inline proc "c" (self: ^MeshBufferMap, bytes: rawptr, deallocator: proc "c" ()) -> ^MeshBufferMap {
+MeshBufferMap_initWithBytes :: #force_inline proc "c" (self: ^MeshBufferMap, bytes: rawptr, deallocator: ^Objc_Block(proc "c" ())) -> ^MeshBufferMap {
     return msgSend(^MeshBufferMap, self, "initWithBytes:deallocator:", bytes, deallocator)
 }
 @(objc_type=MeshBufferMap, objc_name="bytes")

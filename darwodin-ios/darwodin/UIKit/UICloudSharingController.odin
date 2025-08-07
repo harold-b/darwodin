@@ -34,7 +34,7 @@ CloudSharingController_initWithCoder :: #force_inline proc "c" (self: ^CloudShar
     return msgSend(^CloudSharingController, self, "initWithCoder:", coder)
 }
 @(objc_type=CloudSharingController, objc_name="initWithPreparationHandler")
-CloudSharingController_initWithPreparationHandler :: #force_inline proc "c" (self: ^CloudSharingController, preparationHandler: proc "c" (controller: ^CloudSharingController, preparationCompletionHandler: proc "c" (_arg_0: ^CKShare, _arg_1: ^CKContainer, _arg_2: ^NS.Error))) -> ^CloudSharingController {
+CloudSharingController_initWithPreparationHandler :: #force_inline proc "c" (self: ^CloudSharingController, preparationHandler: ^Objc_Block(proc "c" (controller: ^CloudSharingController, preparationCompletionHandler: ^Objc_Block(proc "c" (_: ^CKShare, _1: ^CKContainer, _2: ^NS.Error))))) -> ^CloudSharingController {
     return msgSend(^CloudSharingController, self, "initWithPreparationHandler:", preparationHandler)
 }
 @(objc_type=CloudSharingController, objc_name="initWithShare")

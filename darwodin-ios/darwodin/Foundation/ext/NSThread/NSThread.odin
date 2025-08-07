@@ -24,7 +24,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    detachNewThreadWithBlock: proc(block: proc "c" ()),
+    detachNewThreadWithBlock: proc(block: ^Objc_Block(proc "c" ())),
     detachNewThreadSelector: proc(selector: SEL, target: id, argument: id),
     isMultiThreaded: proc() -> bool,
     sleepUntilDate: proc(date: ^NS.Date),
@@ -34,7 +34,7 @@ VTable :: struct {
     setThreadPriorityStatic: proc(p: cffi.double) -> bool,
     init: proc(self: ^NS.Thread) -> ^NS.Thread,
     initWithTarget: proc(self: ^NS.Thread, target: id, selector: SEL, argument: id) -> ^NS.Thread,
-    initWithBlock: proc(self: ^NS.Thread, block: proc "c" ()) -> ^NS.Thread,
+    initWithBlock: proc(self: ^NS.Thread, block: ^Objc_Block(proc "c" ())) -> ^NS.Thread,
     cancel: proc(self: ^NS.Thread),
     start: proc(self: ^NS.Thread),
     _main: proc(self: ^NS.Thread),
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.detachNewThreadWithBlock != nil {
-        detachNewThreadWithBlock :: proc "c" (self: Class, _: SEL, block: proc "c" ()) {
+        detachNewThreadWithBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTarget:selector:object:"), auto_cast initWithTarget, "@@:@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithBlock != nil {
-        initWithBlock :: proc "c" (self: ^NS.Thread, _: SEL, block: proc "c" ()) -> ^NS.Thread {
+        initWithBlock :: proc "c" (self: ^NS.Thread, _: SEL, block: ^Objc_Block(proc "c" ())) -> ^NS.Thread {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

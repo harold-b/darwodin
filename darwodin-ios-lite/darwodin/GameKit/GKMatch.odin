@@ -35,11 +35,11 @@ Match_disconnect :: #force_inline proc "c" (self: ^Match) {
     msgSend(nil, self, "disconnect")
 }
 @(objc_type=Match, objc_name="chooseBestHostingPlayerWithCompletionHandler")
-Match_chooseBestHostingPlayerWithCompletionHandler :: #force_inline proc "c" (self: ^Match, completionHandler: proc "c" (player: ^Player)) {
+Match_chooseBestHostingPlayerWithCompletionHandler :: #force_inline proc "c" (self: ^Match, completionHandler: ^Objc_Block(proc "c" (player: ^Player))) {
     msgSend(nil, self, "chooseBestHostingPlayerWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Match, objc_name="rematchWithCompletionHandler")
-Match_rematchWithCompletionHandler :: #force_inline proc "c" (self: ^Match, completionHandler: proc "c" (match: ^Match, error: ^NS.Error)) {
+Match_rematchWithCompletionHandler :: #force_inline proc "c" (self: ^Match, completionHandler: ^Objc_Block(proc "c" (match: ^Match, error: ^NS.Error))) {
     msgSend(nil, self, "rematchWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Match, objc_name="voiceChatWithName")
@@ -71,7 +71,7 @@ Match_playerProperties :: #force_inline proc "c" (self: ^Match) -> ^NS.Dictionar
     return msgSend(^NS.Dictionary, self, "playerProperties")
 }
 @(objc_type=Match, objc_name="chooseBestHostPlayerWithCompletionHandler")
-Match_chooseBestHostPlayerWithCompletionHandler :: #force_inline proc "c" (self: ^Match, completionHandler: proc "c" (playerID: ^NS.String)) {
+Match_chooseBestHostPlayerWithCompletionHandler :: #force_inline proc "c" (self: ^Match, completionHandler: ^Objc_Block(proc "c" (playerID: ^NS.String))) {
     msgSend(nil, self, "chooseBestHostPlayerWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Match, objc_name="sendData_toPlayers_withDataMode_error")

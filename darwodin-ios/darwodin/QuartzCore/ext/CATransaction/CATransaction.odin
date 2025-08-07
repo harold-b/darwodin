@@ -35,8 +35,8 @@ VTable :: struct {
     setAnimationTimingFunction: proc(function: ^CA.MediaTimingFunction),
     disableActions: proc() -> bool,
     setDisableActions: proc(flag: bool),
-    completionBlock: proc() -> proc "c" (),
-    setCompletionBlock: proc(block: proc "c" ()),
+    completionBlock: proc() -> ^Objc_Block(proc "c" ()),
+    setCompletionBlock: proc(block: ^Objc_Block(proc "c" ())),
     valueForKey: proc(key: ^NS.String) -> id,
     setValue: proc(anObject: id, key: ^NS.String),
     load: proc(),
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setDisableActions:"), auto_cast setDisableActions, "v#:B") do panic("Failed to register objC method.")
     }
     if vt.completionBlock != nil {
-        completionBlock :: proc "c" (self: Class, _: SEL) -> proc "c" () {
+        completionBlock :: proc "c" (self: Class, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("completionBlock"), auto_cast completionBlock, "?#:") do panic("Failed to register objC method.")
     }
     if vt.setCompletionBlock != nil {
-        setCompletionBlock :: proc "c" (self: Class, _: SEL, block: proc "c" ()) {
+        setCompletionBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

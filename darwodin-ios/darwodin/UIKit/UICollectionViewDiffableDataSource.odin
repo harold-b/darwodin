@@ -42,7 +42,7 @@ CollectionViewDiffableDataSource_applySnapshot_animatingDifferences :: #force_in
     msgSend(nil, self, "applySnapshot:animatingDifferences:", snapshot, animatingDifferences)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="applySnapshot_animatingDifferences_completion")
-CollectionViewDiffableDataSource_applySnapshot_animatingDifferences_completion :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: proc "c" ()) {
+CollectionViewDiffableDataSource_applySnapshot_animatingDifferences_completion :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "applySnapshot:animatingDifferences:completion:", snapshot, animatingDifferences, completion)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="applySnapshotUsingReloadData_")
@@ -50,7 +50,7 @@ CollectionViewDiffableDataSource_applySnapshotUsingReloadData_ :: #force_inline 
     msgSend(nil, self, "applySnapshotUsingReloadData:", snapshot)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="applySnapshotUsingReloadData_completion")
-CollectionViewDiffableDataSource_applySnapshotUsingReloadData_completion :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSnapshot, completion: proc "c" ()) {
+CollectionViewDiffableDataSource_applySnapshotUsingReloadData_completion :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSnapshot, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "applySnapshotUsingReloadData:completion:", snapshot, completion)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="sectionIdentifierForIndex")
@@ -74,7 +74,7 @@ CollectionViewDiffableDataSource_applySnapshot_toSection_animatingDifferences ::
     msgSend(nil, self, "applySnapshot:toSection:animatingDifferences:", snapshot, sectionIdentifier, animatingDifferences)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="applySnapshot_toSection_animatingDifferences_completion")
-CollectionViewDiffableDataSource_applySnapshot_toSection_animatingDifferences_completion :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSectionSnapshot, sectionIdentifier: ^id, animatingDifferences: bool, completion: proc "c" ()) {
+CollectionViewDiffableDataSource_applySnapshot_toSection_animatingDifferences_completion :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSectionSnapshot, sectionIdentifier: ^id, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "applySnapshot:toSection:animatingDifferences:completion:", snapshot, sectionIdentifier, animatingDifferences, completion)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="snapshotForSection")

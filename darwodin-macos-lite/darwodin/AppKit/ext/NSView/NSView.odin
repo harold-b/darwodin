@@ -37,7 +37,7 @@ VTable :: struct {
     viewDidUnhide: proc(self: ^AK.View),
     addSubview_: proc(self: ^AK.View, view: ^AK.View),
     addSubview_positioned_relativeTo: proc(self: ^AK.View, view: ^AK.View, place: AK.WindowOrderingMode, otherView: ^AK.View),
-    sortSubviewsUsingFunction: proc(self: ^AK.View, compare: proc "c" (_arg_0: ^AK.View, _arg_1: ^AK.View, _arg_2: rawptr) -> NS.ComparisonResult, _context: rawptr),
+    sortSubviewsUsingFunction: proc(self: ^AK.View, compare: proc "c" (_: ^AK.View, _1: ^AK.View, _2: rawptr) -> NS.ComparisonResult, _context: rawptr),
     viewWillMoveToWindow: proc(self: ^AK.View, newWindow: ^AK.Window),
     viewDidMoveToWindow: proc(self: ^AK.View),
     viewWillMoveToSuperview: proc(self: ^AK.View, newSuperview: ^AK.View),
@@ -251,7 +251,7 @@ VTable :: struct {
     exitFullScreenModeWithOptions: proc(self: ^AK.View, options: ^NS.Dictionary),
     isInFullScreenMode: proc(self: ^AK.View) -> bool,
     showDefinitionForAttributedString_atPoint: proc(self: ^AK.View, attrString: ^NS.AttributedString, textBaselineOrigin: CG.Point),
-    showDefinitionForAttributedString_range_options_baselineOriginProvider: proc(self: ^AK.View, attrString: ^NS.AttributedString, targetRange: NS._NSRange, options: ^NS.Dictionary, originProvider: proc "c" (adjustedRange: NS._NSRange) -> CG.Point),
+    showDefinitionForAttributedString_range_options_baselineOriginProvider: proc(self: ^AK.View, attrString: ^NS.AttributedString, targetRange: NS._NSRange, options: ^NS.Dictionary, originProvider: ^Objc_Block(proc "c" (adjustedRange: NS._NSRange) -> CG.Point)),
     isDrawingFindIndicator: proc(self: ^AK.View) -> bool,
     addGestureRecognizer: proc(self: ^AK.View, gestureRecognizer: ^AK.GestureRecognizer),
     removeGestureRecognizer: proc(self: ^AK.View, gestureRecognizer: ^AK.GestureRecognizer),
@@ -508,7 +508,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addSubview:positioned:relativeTo:"), auto_cast addSubview_positioned_relativeTo, "v@:@l@") do panic("Failed to register objC method.")
     }
     if vt.sortSubviewsUsingFunction != nil {
-        sortSubviewsUsingFunction :: proc "c" (self: ^AK.View, _: SEL, compare: proc "c" (_arg_0: ^AK.View, _arg_1: ^AK.View, _arg_2: rawptr) -> NS.ComparisonResult, _context: rawptr) {
+        sortSubviewsUsingFunction :: proc "c" (self: ^AK.View, _: SEL, compare: proc "c" (_: ^AK.View, _1: ^AK.View, _2: rawptr) -> NS.ComparisonResult, _context: rawptr) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -2648,7 +2648,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showDefinitionForAttributedString:atPoint:"), auto_cast showDefinitionForAttributedString_atPoint, "v@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.showDefinitionForAttributedString_range_options_baselineOriginProvider != nil {
-        showDefinitionForAttributedString_range_options_baselineOriginProvider :: proc "c" (self: ^AK.View, _: SEL, attrString: ^NS.AttributedString, targetRange: NS._NSRange, options: ^NS.Dictionary, originProvider: proc "c" (adjustedRange: NS._NSRange) -> CG.Point) {
+        showDefinitionForAttributedString_range_options_baselineOriginProvider :: proc "c" (self: ^AK.View, _: SEL, attrString: ^NS.AttributedString, targetRange: NS._NSRange, options: ^NS.Dictionary, originProvider: ^Objc_Block(proc "c" (adjustedRange: NS._NSRange) -> CG.Point)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

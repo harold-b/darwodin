@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    performAsCurrentDrawingAppearance: proc(self: ^AK.Appearance, block: proc "c" ()),
+    performAsCurrentDrawingAppearance: proc(self: ^AK.Appearance, block: ^Objc_Block(proc "c" ())),
     appearanceNamed: proc(name: ^NS.String) -> ^AK.Appearance,
     initWithAppearanceNamed: proc(self: ^AK.Appearance, name: ^NS.String, bundle: ^NS.Bundle) -> ^AK.Appearance,
     initWithCoder: proc(self: ^AK.Appearance, coder: ^NS.Coder) -> ^AK.Appearance,
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.performAsCurrentDrawingAppearance != nil {
-        performAsCurrentDrawingAppearance :: proc "c" (self: ^AK.Appearance, _: SEL, block: proc "c" ()) {
+        performAsCurrentDrawingAppearance :: proc "c" (self: ^AK.Appearance, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

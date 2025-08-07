@@ -34,11 +34,11 @@ CellAccessoryDelete_setBackgroundColor :: #force_inline proc "c" (self: ^CellAcc
     msgSend(nil, self, "setBackgroundColor:", backgroundColor)
 }
 @(objc_type=CellAccessoryDelete, objc_name="actionHandler")
-CellAccessoryDelete_actionHandler :: #force_inline proc "c" (self: ^CellAccessoryDelete) -> proc "c" () {
-    return msgSend(proc "c" (), self, "actionHandler")
+CellAccessoryDelete_actionHandler :: #force_inline proc "c" (self: ^CellAccessoryDelete) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "actionHandler")
 }
 @(objc_type=CellAccessoryDelete, objc_name="setActionHandler")
-CellAccessoryDelete_setActionHandler :: #force_inline proc "c" (self: ^CellAccessoryDelete, actionHandler: proc "c" ()) {
+CellAccessoryDelete_setActionHandler :: #force_inline proc "c" (self: ^CellAccessoryDelete, actionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setActionHandler:", actionHandler)
 }
 @(objc_type=CellAccessoryDelete, objc_name="supportsSecureCoding", objc_is_class_method=true)

@@ -27,8 +27,8 @@ import "../UICellAccessory"
 
 VTable :: struct {
     super: UICellAccessory.VTable,
-    actionHandler: proc(self: ^UI.CellAccessoryDetail) -> proc "c" (),
-    setActionHandler: proc(self: ^UI.CellAccessoryDetail, actionHandler: proc "c" ()),
+    actionHandler: proc(self: ^UI.CellAccessoryDetail) -> ^Objc_Block(proc "c" ()),
+    setActionHandler: proc(self: ^UI.CellAccessoryDetail, actionHandler: ^Objc_Block(proc "c" ())),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UICellAccessory.extend(cls, &vt.super)
 
     if vt.actionHandler != nil {
-        actionHandler :: proc "c" (self: ^UI.CellAccessoryDetail, _: SEL) -> proc "c" () {
+        actionHandler :: proc "c" (self: ^UI.CellAccessoryDetail, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("actionHandler"), auto_cast actionHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setActionHandler != nil {
-        setActionHandler :: proc "c" (self: ^UI.CellAccessoryDetail, _: SEL, actionHandler: proc "c" ()) {
+        setActionHandler :: proc "c" (self: ^UI.CellAccessoryDetail, _: SEL, actionHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

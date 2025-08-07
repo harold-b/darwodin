@@ -17,7 +17,7 @@ import Sec "../Security"
 URLSessionDownloadTask :: struct { using _: URLSessionTask, }
 
 @(objc_type=URLSessionDownloadTask, objc_name="cancelByProducingResumeData")
-URLSessionDownloadTask_cancelByProducingResumeData :: #force_inline proc "c" (self: ^URLSessionDownloadTask, completionHandler: proc "c" (resumeData: ^Data)) {
+URLSessionDownloadTask_cancelByProducingResumeData :: #force_inline proc "c" (self: ^URLSessionDownloadTask, completionHandler: ^Objc_Block(proc "c" (resumeData: ^Data))) {
     msgSend(nil, self, "cancelByProducingResumeData:", completionHandler)
 }
 @(objc_type=URLSessionDownloadTask, objc_name="init")

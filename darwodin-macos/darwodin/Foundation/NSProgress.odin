@@ -47,7 +47,7 @@ Progress_becomeCurrentWithPendingUnitCount :: #force_inline proc "c" (self: ^Pro
     msgSend(nil, self, "becomeCurrentWithPendingUnitCount:", unitCount)
 }
 @(objc_type=Progress, objc_name="performAsCurrentWithPendingUnitCount")
-Progress_performAsCurrentWithPendingUnitCount :: #force_inline proc "c" (self: ^Progress, unitCount: cffi.int64_t, work: proc "c" ()) {
+Progress_performAsCurrentWithPendingUnitCount :: #force_inline proc "c" (self: ^Progress, unitCount: cffi.int64_t, work: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performAsCurrentWithPendingUnitCount:usingBlock:", unitCount, work)
 }
 @(objc_type=Progress, objc_name="resignCurrent")
@@ -147,27 +147,27 @@ Progress_isPaused :: #force_inline proc "c" (self: ^Progress) -> bool {
     return msgSend(bool, self, "isPaused")
 }
 @(objc_type=Progress, objc_name="cancellationHandler")
-Progress_cancellationHandler :: #force_inline proc "c" (self: ^Progress) -> proc "c" () {
-    return msgSend(proc "c" (), self, "cancellationHandler")
+Progress_cancellationHandler :: #force_inline proc "c" (self: ^Progress) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "cancellationHandler")
 }
 @(objc_type=Progress, objc_name="setCancellationHandler")
-Progress_setCancellationHandler :: #force_inline proc "c" (self: ^Progress, cancellationHandler: proc "c" ()) {
+Progress_setCancellationHandler :: #force_inline proc "c" (self: ^Progress, cancellationHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setCancellationHandler:", cancellationHandler)
 }
 @(objc_type=Progress, objc_name="pausingHandler")
-Progress_pausingHandler :: #force_inline proc "c" (self: ^Progress) -> proc "c" () {
-    return msgSend(proc "c" (), self, "pausingHandler")
+Progress_pausingHandler :: #force_inline proc "c" (self: ^Progress) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "pausingHandler")
 }
 @(objc_type=Progress, objc_name="setPausingHandler")
-Progress_setPausingHandler :: #force_inline proc "c" (self: ^Progress, pausingHandler: proc "c" ()) {
+Progress_setPausingHandler :: #force_inline proc "c" (self: ^Progress, pausingHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPausingHandler:", pausingHandler)
 }
 @(objc_type=Progress, objc_name="resumingHandler")
-Progress_resumingHandler :: #force_inline proc "c" (self: ^Progress) -> proc "c" () {
-    return msgSend(proc "c" (), self, "resumingHandler")
+Progress_resumingHandler :: #force_inline proc "c" (self: ^Progress) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "resumingHandler")
 }
 @(objc_type=Progress, objc_name="setResumingHandler")
-Progress_setResumingHandler :: #force_inline proc "c" (self: ^Progress, resumingHandler: proc "c" ()) {
+Progress_setResumingHandler :: #force_inline proc "c" (self: ^Progress, resumingHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setResumingHandler:", resumingHandler)
 }
 @(objc_type=Progress, objc_name="isIndeterminate")

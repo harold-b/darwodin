@@ -17,27 +17,27 @@ import UI "../UIKit"
 RightStore :: struct { using _: NS.Object, }
 
 @(objc_type=RightStore, objc_name="rightForIdentifier")
-RightStore_rightForIdentifier :: #force_inline proc "c" (self: ^RightStore, identifier: ^NS.String, handler: proc "c" (_arg_0: ^PersistedRight, _arg_1: ^NS.Error)) {
+RightStore_rightForIdentifier :: #force_inline proc "c" (self: ^RightStore, identifier: ^NS.String, handler: ^Objc_Block(proc "c" (_: ^PersistedRight, _1: ^NS.Error))) {
     msgSend(nil, self, "rightForIdentifier:completion:", identifier, handler)
 }
 @(objc_type=RightStore, objc_name="saveRight_identifier_completion")
-RightStore_saveRight_identifier_completion :: #force_inline proc "c" (self: ^RightStore, right: ^Right, identifier: ^NS.String, handler: proc "c" (_arg_0: ^PersistedRight, _arg_1: ^NS.Error)) {
+RightStore_saveRight_identifier_completion :: #force_inline proc "c" (self: ^RightStore, right: ^Right, identifier: ^NS.String, handler: ^Objc_Block(proc "c" (_: ^PersistedRight, _1: ^NS.Error))) {
     msgSend(nil, self, "saveRight:identifier:completion:", right, identifier, handler)
 }
 @(objc_type=RightStore, objc_name="saveRight_identifier_secret_completion")
-RightStore_saveRight_identifier_secret_completion :: #force_inline proc "c" (self: ^RightStore, right: ^Right, identifier: ^NS.String, secret: ^NS.Data, handler: proc "c" (_arg_0: ^PersistedRight, _arg_1: ^NS.Error)) {
+RightStore_saveRight_identifier_secret_completion :: #force_inline proc "c" (self: ^RightStore, right: ^Right, identifier: ^NS.String, secret: ^NS.Data, handler: ^Objc_Block(proc "c" (_: ^PersistedRight, _1: ^NS.Error))) {
     msgSend(nil, self, "saveRight:identifier:secret:completion:", right, identifier, secret, handler)
 }
 @(objc_type=RightStore, objc_name="removeRight")
-RightStore_removeRight :: #force_inline proc "c" (self: ^RightStore, right: ^PersistedRight, handler: proc "c" (error: ^NS.Error)) {
+RightStore_removeRight :: #force_inline proc "c" (self: ^RightStore, right: ^PersistedRight, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "removeRight:completion:", right, handler)
 }
 @(objc_type=RightStore, objc_name="removeRightForIdentifier")
-RightStore_removeRightForIdentifier :: #force_inline proc "c" (self: ^RightStore, identifier: ^NS.String, handler: proc "c" (error: ^NS.Error)) {
+RightStore_removeRightForIdentifier :: #force_inline proc "c" (self: ^RightStore, identifier: ^NS.String, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "removeRightForIdentifier:completion:", identifier, handler)
 }
 @(objc_type=RightStore, objc_name="removeAllRightsWithCompletion")
-RightStore_removeAllRightsWithCompletion :: #force_inline proc "c" (self: ^RightStore, handler: proc "c" (error: ^NS.Error)) {
+RightStore_removeAllRightsWithCompletion :: #force_inline proc "c" (self: ^RightStore, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "removeAllRightsWithCompletion:", handler)
 }
 @(objc_type=RightStore, objc_name="new", objc_is_class_method=true)

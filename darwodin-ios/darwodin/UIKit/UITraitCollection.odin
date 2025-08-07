@@ -239,7 +239,7 @@ TraitCollection_systemTraitsAffectingImageLookup :: #force_inline proc "c" () ->
     return msgSend(^NS.Array, TraitCollection, "systemTraitsAffectingImageLookup")
 }
 @(objc_type=TraitCollection, objc_name="performAsCurrentTraitCollection")
-TraitCollection_performAsCurrentTraitCollection :: #force_inline proc "c" (self: ^TraitCollection, actions: proc "c" ()) {
+TraitCollection_performAsCurrentTraitCollection :: #force_inline proc "c" (self: ^TraitCollection, actions: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performAsCurrentTraitCollection:", actions)
 }
 @(objc_type=TraitCollection, objc_name="currentTraitCollection", objc_is_class_method=true)

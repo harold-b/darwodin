@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    showSamplerWithSelectionHandler: proc(self: ^AK.ColorSampler, selectionHandler: proc "c" (selectedColor: ^AK.Color)),
+    showSamplerWithSelectionHandler: proc(self: ^AK.ColorSampler, selectionHandler: ^Objc_Block(proc "c" (selectedColor: ^AK.Color))),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^AK.ColorSampler,
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.showSamplerWithSelectionHandler != nil {
-        showSamplerWithSelectionHandler :: proc "c" (self: ^AK.ColorSampler, _: SEL, selectionHandler: proc "c" (selectedColor: ^AK.Color)) {
+        showSamplerWithSelectionHandler :: proc "c" (self: ^AK.ColorSampler, _: SEL, selectionHandler: ^Objc_Block(proc "c" (selectedColor: ^AK.Color))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

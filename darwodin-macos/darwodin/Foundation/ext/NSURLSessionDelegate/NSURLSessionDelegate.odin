@@ -22,7 +22,7 @@ import NS "../../"
 
 VTable :: struct {
     _URLSession_didBecomeInvalidWithError: proc(self: ^NS.URLSessionDelegate, session: ^NS.URLSession, error: ^NS.Error),
-    _URLSession_didReceiveChallenge_completionHandler: proc(self: ^NS.URLSessionDelegate, session: ^NS.URLSession, challenge: ^NS.URLAuthenticationChallenge, completionHandler: proc "c" (disposition: NS.URLSessionAuthChallengeDisposition, credential: ^NS.URLCredential)),
+    _URLSession_didReceiveChallenge_completionHandler: proc(self: ^NS.URLSessionDelegate, session: ^NS.URLSession, challenge: ^NS.URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" (disposition: NS.URLSessionAuthChallengeDisposition, credential: ^NS.URLCredential))),
     _URLSessionDidFinishEventsForBackgroundURLSession: proc(self: ^NS.URLSessionDelegate, session: ^NS.URLSession),
 }
 
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLSession:didBecomeInvalidWithError:"), auto_cast _URLSession_didBecomeInvalidWithError, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt._URLSession_didReceiveChallenge_completionHandler != nil {
-        _URLSession_didReceiveChallenge_completionHandler :: proc "c" (self: ^NS.URLSessionDelegate, _: SEL, session: ^NS.URLSession, challenge: ^NS.URLAuthenticationChallenge, completionHandler: proc "c" (disposition: NS.URLSessionAuthChallengeDisposition, credential: ^NS.URLCredential)) {
+        _URLSession_didReceiveChallenge_completionHandler :: proc "c" (self: ^NS.URLSessionDelegate, _: SEL, session: ^NS.URLSession, challenge: ^NS.URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" (disposition: NS.URLSessionAuthChallengeDisposition, credential: ^NS.URLCredential))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

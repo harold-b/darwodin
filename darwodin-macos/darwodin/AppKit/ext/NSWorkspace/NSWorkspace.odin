@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     openURL_: proc(self: ^AK.Workspace, url: ^NS.URL) -> bool,
-    openURL_configuration_completionHandler: proc(self: ^AK.Workspace, url: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^AK.RunningApplication, error: ^NS.Error)),
-    openURLs_withApplicationAtURL_configuration_completionHandler: proc(self: ^AK.Workspace, urls: ^NS.Array, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^AK.RunningApplication, error: ^NS.Error)),
-    openApplicationAtURL: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^AK.RunningApplication, error: ^NS.Error)),
+    openURL_configuration_completionHandler: proc(self: ^AK.Workspace, url: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^AK.RunningApplication, error: ^NS.Error))),
+    openURLs_withApplicationAtURL_configuration_completionHandler: proc(self: ^AK.Workspace, urls: ^NS.Array, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^AK.RunningApplication, error: ^NS.Error))),
+    openApplicationAtURL: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^AK.RunningApplication, error: ^NS.Error))),
     selectFile: proc(self: ^AK.Workspace, fullPath: ^NS.String, rootFullPath: ^NS.String) -> bool,
     activateFileViewerSelectingURLs: proc(self: ^AK.Workspace, fileURLs: ^NS.Array),
     showSearchResultsForQueryString: proc(self: ^AK.Workspace, queryString: ^NS.String) -> bool,
@@ -40,8 +40,8 @@ VTable :: struct {
     iconForFiles: proc(self: ^AK.Workspace, fullPaths: ^NS.Array) -> ^NS.Image,
     iconForContentType: proc(self: ^AK.Workspace, contentType: ^AK.UTType) -> ^NS.Image,
     setIcon: proc(self: ^AK.Workspace, image: ^NS.Image, fullPath: ^NS.String, options: AK.WorkspaceIconCreationOptions) -> bool,
-    recycleURLs: proc(self: ^AK.Workspace, URLs: ^NS.Array, handler: proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error)),
-    duplicateURLs: proc(self: ^AK.Workspace, URLs: ^NS.Array, handler: proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error)),
+    recycleURLs: proc(self: ^AK.Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))),
+    duplicateURLs: proc(self: ^AK.Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))),
     getFileSystemInfoForPath: proc(self: ^AK.Workspace, fullPath: ^NS.String, removableFlag: ^bool, writableFlag: ^bool, unmountableFlag: ^bool, description: ^^NS.String, fileSystemType: ^^NS.String) -> bool,
     unmountAndEjectDeviceAtPath: proc(self: ^AK.Workspace, path: ^NS.String) -> bool,
     unmountAndEjectDeviceAtURL: proc(self: ^AK.Workspace, url: ^NS.URL, error: ^^NS.Error) -> bool,
@@ -51,12 +51,12 @@ VTable :: struct {
     _URLsForApplicationsWithBundleIdentifier: proc(self: ^AK.Workspace, bundleIdentifier: ^NS.String) -> ^NS.Array,
     _URLForApplicationToOpenURL: proc(self: ^AK.Workspace, url: ^NS.URL) -> ^NS.URL,
     _URLsForApplicationsToOpenURL: proc(self: ^AK.Workspace, url: ^NS.URL) -> ^NS.Array,
-    setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)),
-    setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, urlScheme: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)),
-    setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)),
+    setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, urlScheme: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     _URLForApplicationToOpenContentType: proc(self: ^AK.Workspace, contentType: ^AK.UTType) -> ^NS.URL,
     _URLsForApplicationsToOpenContentType: proc(self: ^AK.Workspace, contentType: ^AK.UTType) -> ^NS.Array,
-    setDefaultApplicationAtURL_toOpenContentType_completionHandler: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, contentType: ^AK.UTType, completionHandler: proc "c" (error: ^NS.Error)),
+    setDefaultApplicationAtURL_toOpenContentType_completionHandler: proc(self: ^AK.Workspace, applicationURL: ^NS.URL, contentType: ^AK.UTType, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     sharedWorkspace: proc() -> ^AK.Workspace,
     notificationCenter: proc(self: ^AK.Workspace) -> ^NS.NotificationCenter,
     fileLabels: proc(self: ^AK.Workspace) -> ^NS.Array,
@@ -66,7 +66,7 @@ VTable :: struct {
     setDesktopImageURL: proc(self: ^AK.Workspace, url: ^NS.URL, screen: ^AK.Screen, options: ^NS.Dictionary, error: ^^NS.Error) -> bool,
     desktopImageURLForScreen: proc(self: ^AK.Workspace, screen: ^AK.Screen) -> ^NS.URL,
     desktopImageOptionsForScreen: proc(self: ^AK.Workspace, screen: ^AK.Screen) -> ^NS.Dictionary,
-    requestAuthorizationOfType: proc(self: ^AK.Workspace, type: AK.WorkspaceAuthorizationType, completionHandler: proc "c" (authorization: ^AK.WorkspaceAuthorization, error: ^NS.Error)),
+    requestAuthorizationOfType: proc(self: ^AK.Workspace, type: AK.WorkspaceAuthorizationType, completionHandler: ^Objc_Block(proc "c" (authorization: ^AK.WorkspaceAuthorization, error: ^NS.Error))),
     openFile_: proc(self: ^AK.Workspace, fullPath: ^NS.String) -> bool,
     openFile_withApplication: proc(self: ^AK.Workspace, fullPath: ^NS.String, appName: ^NS.String) -> bool,
     openFile_withApplication_andDeactivate: proc(self: ^AK.Workspace, fullPath: ^NS.String, appName: ^NS.String, flag: bool) -> bool,
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openURL:"), auto_cast openURL_, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.openURL_configuration_completionHandler != nil {
-        openURL_configuration_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, url: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^AK.RunningApplication, error: ^NS.Error)) {
+        openURL_configuration_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, url: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^AK.RunningApplication, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openURL:configuration:completionHandler:"), auto_cast openURL_configuration_completionHandler, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.openURLs_withApplicationAtURL_configuration_completionHandler != nil {
-        openURLs_withApplicationAtURL_configuration_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, urls: ^NS.Array, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^AK.RunningApplication, error: ^NS.Error)) {
+        openURLs_withApplicationAtURL_configuration_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, urls: ^NS.Array, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^AK.RunningApplication, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withApplicationAtURL:configuration:completionHandler:"), auto_cast openURLs_withApplicationAtURL_configuration_completionHandler, "v@:@@@?") do panic("Failed to register objC method.")
     }
     if vt.openApplicationAtURL != nil {
-        openApplicationAtURL :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^AK.RunningApplication, error: ^NS.Error)) {
+        openApplicationAtURL :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^AK.RunningApplication, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIcon:forFile:options:"), auto_cast setIcon, "B@:@@L") do panic("Failed to register objC method.")
     }
     if vt.recycleURLs != nil {
-        recycleURLs :: proc "c" (self: ^AK.Workspace, _: SEL, URLs: ^NS.Array, handler: proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error)) {
+        recycleURLs :: proc "c" (self: ^AK.Workspace, _: SEL, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("recycleURLs:completionHandler:"), auto_cast recycleURLs, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.duplicateURLs != nil {
-        duplicateURLs :: proc "c" (self: ^AK.Workspace, _: SEL, URLs: ^NS.Array, handler: proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error)) {
+        duplicateURLs :: proc "c" (self: ^AK.Workspace, _: SEL, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -393,7 +393,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForApplicationsToOpenURL:"), auto_cast _URLsForApplicationsToOpenURL, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler != nil {
-        setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)) {
+        setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -403,7 +403,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:"), auto_cast setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler != nil {
-        setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, urlScheme: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+        setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, urlScheme: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -413,7 +413,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:"), auto_cast setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler != nil {
-        setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)) {
+        setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -443,7 +443,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForApplicationsToOpenContentType:"), auto_cast _URLsForApplicationsToOpenContentType, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.setDefaultApplicationAtURL_toOpenContentType_completionHandler != nil {
-        setDefaultApplicationAtURL_toOpenContentType_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, contentType: ^AK.UTType, completionHandler: proc "c" (error: ^NS.Error)) {
+        setDefaultApplicationAtURL_toOpenContentType_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, contentType: ^AK.UTType, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -543,7 +543,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("desktopImageOptionsForScreen:"), auto_cast desktopImageOptionsForScreen, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.requestAuthorizationOfType != nil {
-        requestAuthorizationOfType :: proc "c" (self: ^AK.Workspace, _: SEL, type: AK.WorkspaceAuthorizationType, completionHandler: proc "c" (authorization: ^AK.WorkspaceAuthorization, error: ^NS.Error)) {
+        requestAuthorizationOfType :: proc "c" (self: ^AK.Workspace, _: SEL, type: AK.WorkspaceAuthorizationType, completionHandler: ^Objc_Block(proc "c" (authorization: ^AK.WorkspaceAuthorization, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -34,15 +34,15 @@ VTable :: struct {
     allTouches: proc(self: ^AK.Event) -> ^NS.Set,
     touchesForView: proc(self: ^AK.Event, view: ^AK.View) -> ^NS.Set,
     coalescedTouchesForTouch: proc(self: ^AK.Event, touch: ^AK.Touch) -> ^NS.Array,
-    trackSwipeEventWithOptions: proc(self: ^AK.Event, options: AK.EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: proc "c" (gestureAmount: CG.Float, phase: AK.EventPhase, isComplete: bool, stop: ^bool)),
+    trackSwipeEventWithOptions: proc(self: ^AK.Event, options: AK.EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: ^Objc_Block(proc "c" (gestureAmount: CG.Float, phase: AK.EventPhase, isComplete: bool, stop: ^bool))),
     startPeriodicEventsAfterDelay: proc(delay: NS.TimeInterval, period: NS.TimeInterval),
     stopPeriodicEvents: proc(),
     mouseEventWithType: proc(type: AK.EventType, location: CG.Point, flags: AK.EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^AK.GraphicsContext, eNum: NS.Integer, cNum: NS.Integer, pressure: cffi.float) -> ^AK.Event,
     keyEventWithType: proc(type: AK.EventType, location: CG.Point, flags: AK.EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^AK.GraphicsContext, keys: ^NS.String, ukeys: ^NS.String, flag: bool, code: cffi.ushort) -> ^AK.Event,
     enterExitEventWithType: proc(type: AK.EventType, location: CG.Point, flags: AK.EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^AK.GraphicsContext, eNum: NS.Integer, tNum: NS.Integer, data: rawptr) -> ^AK.Event,
     otherEventWithType: proc(type: AK.EventType, location: CG.Point, flags: AK.EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^AK.GraphicsContext, subtype: cffi.short, d1: NS.Integer, d2: NS.Integer) -> ^AK.Event,
-    addGlobalMonitorForEventsMatchingMask: proc(mask: AK.EventMask, block: proc "c" (event: ^AK.Event)) -> id,
-    addLocalMonitorForEventsMatchingMask: proc(mask: AK.EventMask, block: proc "c" (event: ^AK.Event) -> ^AK.Event) -> id,
+    addGlobalMonitorForEventsMatchingMask: proc(mask: AK.EventMask, block: ^Objc_Block(proc "c" (event: ^AK.Event))) -> id,
+    addLocalMonitorForEventsMatchingMask: proc(mask: AK.EventMask, block: ^Objc_Block(proc "c" (event: ^AK.Event) -> ^AK.Event)) -> id,
     removeMonitor: proc(eventMonitor: id),
     type: proc(self: ^AK.Event) -> AK.EventType,
     modifierFlags: proc(self: ^AK.Event) -> AK.EventModifierFlags,
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("coalescedTouchesForTouch:"), auto_cast coalescedTouchesForTouch, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.trackSwipeEventWithOptions != nil {
-        trackSwipeEventWithOptions :: proc "c" (self: ^AK.Event, _: SEL, options: AK.EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: proc "c" (gestureAmount: CG.Float, phase: AK.EventPhase, isComplete: bool, stop: ^bool)) {
+        trackSwipeEventWithOptions :: proc "c" (self: ^AK.Event, _: SEL, options: AK.EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: ^Objc_Block(proc "c" (gestureAmount: CG.Float, phase: AK.EventPhase, isComplete: bool, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:"), auto_cast otherEventWithType, "@#:L{CGPoint=dd}Ldl@sll") do panic("Failed to register objC method.")
     }
     if vt.addGlobalMonitorForEventsMatchingMask != nil {
-        addGlobalMonitorForEventsMatchingMask :: proc "c" (self: Class, _: SEL, mask: AK.EventMask, block: proc "c" (event: ^AK.Event)) -> id {
+        addGlobalMonitorForEventsMatchingMask :: proc "c" (self: Class, _: SEL, mask: AK.EventMask, block: ^Objc_Block(proc "c" (event: ^AK.Event))) -> id {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("addGlobalMonitorForEventsMatchingMask:handler:"), auto_cast addGlobalMonitorForEventsMatchingMask, "@#:Q?") do panic("Failed to register objC method.")
     }
     if vt.addLocalMonitorForEventsMatchingMask != nil {
-        addLocalMonitorForEventsMatchingMask :: proc "c" (self: Class, _: SEL, mask: AK.EventMask, block: proc "c" (event: ^AK.Event) -> ^AK.Event) -> id {
+        addLocalMonitorForEventsMatchingMask :: proc "c" (self: Class, _: SEL, mask: AK.EventMask, block: ^Objc_Block(proc "c" (event: ^AK.Event) -> ^AK.Event)) -> id {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

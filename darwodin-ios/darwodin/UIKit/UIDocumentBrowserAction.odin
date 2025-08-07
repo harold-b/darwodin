@@ -24,7 +24,7 @@ DocumentBrowserAction_init :: #force_inline proc "c" (self: ^DocumentBrowserActi
     return msgSend(^DocumentBrowserAction, self, "init")
 }
 @(objc_type=DocumentBrowserAction, objc_name="initWithIdentifier")
-DocumentBrowserAction_initWithIdentifier :: #force_inline proc "c" (self: ^DocumentBrowserAction, identifier: ^NS.String, localizedTitle: ^NS.String, availability: DocumentBrowserActionAvailability, handler: proc "c" (_arg_0: ^NS.Array)) -> ^DocumentBrowserAction {
+DocumentBrowserAction_initWithIdentifier :: #force_inline proc "c" (self: ^DocumentBrowserAction, identifier: ^NS.String, localizedTitle: ^NS.String, availability: DocumentBrowserActionAvailability, handler: ^Objc_Block(proc "c" (_: ^NS.Array))) -> ^DocumentBrowserAction {
     return msgSend(^DocumentBrowserAction, self, "initWithIdentifier:localizedTitle:availability:handler:", identifier, localizedTitle, availability, handler)
 }
 @(objc_type=DocumentBrowserAction, objc_name="identifier")

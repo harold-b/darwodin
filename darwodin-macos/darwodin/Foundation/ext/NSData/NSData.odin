@@ -35,7 +35,7 @@ VTable :: struct {
     writeToFile_options_error: proc(self: ^NS.Data, path: ^NS.String, writeOptionsMask: NS.DataWritingOptions, errorPtr: ^^NS.Error) -> bool,
     writeToURL_options_error: proc(self: ^NS.Data, url: ^NS.URL, writeOptionsMask: NS.DataWritingOptions, errorPtr: ^^NS.Error) -> bool,
     rangeOfData: proc(self: ^NS.Data, dataToFind: ^NS.Data, mask: NS.DataSearchOptions, searchRange: NS._NSRange) -> NS._NSRange,
-    enumerateByteRangesUsingBlock: proc(self: ^NS.Data, block: proc "c" (bytes: rawptr, byteRange: NS._NSRange, stop: ^bool)),
+    enumerateByteRangesUsingBlock: proc(self: ^NS.Data, block: ^Objc_Block(proc "c" (bytes: rawptr, byteRange: NS._NSRange, stop: ^bool))),
     description: proc(self: ^NS.Data) -> ^NS.String,
     data: proc() -> ^NS.Data,
     dataWithBytes: proc(bytes: rawptr, length: NS.UInteger) -> ^NS.Data,
@@ -48,7 +48,7 @@ VTable :: struct {
     initWithBytes: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger) -> ^NS.Data,
     initWithBytesNoCopy_length: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger) -> ^NS.Data,
     initWithBytesNoCopy_length_freeWhenDone: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger, b: bool) -> ^NS.Data,
-    initWithBytesNoCopy_length_deallocator: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger, deallocator: proc "c" (bytes: rawptr, length: NS.UInteger)) -> ^NS.Data,
+    initWithBytesNoCopy_length_deallocator: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: NS.UInteger))) -> ^NS.Data,
     initWithContentsOfFile_options_error: proc(self: ^NS.Data, path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data,
     initWithContentsOfURL_options_error: proc(self: ^NS.Data, url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data,
     initWithContentsOfFile_: proc(self: ^NS.Data, path: ^NS.String) -> ^NS.Data,
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rangeOfData:options:range:"), auto_cast rangeOfData, "{_NSRange=LL}@:@L{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.enumerateByteRangesUsingBlock != nil {
-        enumerateByteRangesUsingBlock :: proc "c" (self: ^NS.Data, _: SEL, block: proc "c" (bytes: rawptr, byteRange: NS._NSRange, stop: ^bool)) {
+        enumerateByteRangesUsingBlock :: proc "c" (self: ^NS.Data, _: SEL, block: ^Objc_Block(proc "c" (bytes: rawptr, byteRange: NS._NSRange, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -348,7 +348,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytesNoCopy:length:freeWhenDone:"), auto_cast initWithBytesNoCopy_length_freeWhenDone, "@@:^voidLB") do panic("Failed to register objC method.")
     }
     if vt.initWithBytesNoCopy_length_deallocator != nil {
-        initWithBytesNoCopy_length_deallocator :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger, deallocator: proc "c" (bytes: rawptr, length: NS.UInteger)) -> ^NS.Data {
+        initWithBytesNoCopy_length_deallocator :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: NS.UInteger))) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

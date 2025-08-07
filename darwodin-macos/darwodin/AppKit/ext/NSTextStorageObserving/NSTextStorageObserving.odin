@@ -25,7 +25,7 @@ import AK "../../"
 
 VTable :: struct {
     processEditingForTextStorage: proc(self: ^AK.TextStorageObserving, textStorage: ^AK.TextStorage, editMask: AK.TextStorageEditActions, newCharRange: NS._NSRange, delta: NS.Integer, invalidatedCharRange: NS._NSRange),
-    performEditingTransactionForTextStorage: proc(self: ^AK.TextStorageObserving, textStorage: ^AK.TextStorage, transaction: proc "c" ()),
+    performEditingTransactionForTextStorage: proc(self: ^AK.TextStorageObserving, textStorage: ^AK.TextStorage, transaction: ^Objc_Block(proc "c" ())),
     textStorage: proc(self: ^AK.TextStorageObserving) -> ^AK.TextStorage,
     setTextStorage: proc(self: ^AK.TextStorageObserving, textStorage: ^AK.TextStorage),
 }
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:"), auto_cast processEditingForTextStorage, "v@:@L{_NSRange=LL}l{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.performEditingTransactionForTextStorage != nil {
-        performEditingTransactionForTextStorage :: proc "c" (self: ^AK.TextStorageObserving, _: SEL, textStorage: ^AK.TextStorage, transaction: proc "c" ()) {
+        performEditingTransactionForTextStorage :: proc "c" (self: ^AK.TextStorageObserving, _: SEL, textStorage: ^AK.TextStorage, transaction: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

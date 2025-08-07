@@ -26,15 +26,15 @@ MaterialPropertyNode_init :: #force_inline proc "c" (self: ^MaterialPropertyNode
     return msgSend(^MaterialPropertyNode, self, "init")
 }
 @(objc_type=MaterialPropertyNode, objc_name="initWithInputs")
-MaterialPropertyNode_initWithInputs :: #force_inline proc "c" (self: ^MaterialPropertyNode, inputs: ^NS.Array, outputs: ^NS.Array, function: proc "c" (_arg_0: ^MaterialPropertyNode)) -> ^MaterialPropertyNode {
+MaterialPropertyNode_initWithInputs :: #force_inline proc "c" (self: ^MaterialPropertyNode, inputs: ^NS.Array, outputs: ^NS.Array, function: ^Objc_Block(proc "c" (_: ^MaterialPropertyNode))) -> ^MaterialPropertyNode {
     return msgSend(^MaterialPropertyNode, self, "initWithInputs:outputs:evaluationFunction:", inputs, outputs, function)
 }
 @(objc_type=MaterialPropertyNode, objc_name="evaluationFunction")
-MaterialPropertyNode_evaluationFunction :: #force_inline proc "c" (self: ^MaterialPropertyNode) -> proc "c" () {
-    return msgSend(proc "c" (), self, "evaluationFunction")
+MaterialPropertyNode_evaluationFunction :: #force_inline proc "c" (self: ^MaterialPropertyNode) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "evaluationFunction")
 }
 @(objc_type=MaterialPropertyNode, objc_name="setEvaluationFunction")
-MaterialPropertyNode_setEvaluationFunction :: #force_inline proc "c" (self: ^MaterialPropertyNode, evaluationFunction: proc "c" ()) {
+MaterialPropertyNode_setEvaluationFunction :: #force_inline proc "c" (self: ^MaterialPropertyNode, evaluationFunction: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setEvaluationFunction:", evaluationFunction)
 }
 @(objc_type=MaterialPropertyNode, objc_name="inputs")

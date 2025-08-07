@@ -38,7 +38,7 @@ Scrubber_reloadData :: #force_inline proc "c" (self: ^Scrubber) {
     msgSend(nil, self, "reloadData")
 }
 @(objc_type=Scrubber, objc_name="performSequentialBatchUpdates")
-Scrubber_performSequentialBatchUpdates :: #force_inline proc "c" (self: ^Scrubber, updateBlock: proc "c" ()) {
+Scrubber_performSequentialBatchUpdates :: #force_inline proc "c" (self: ^Scrubber, updateBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performSequentialBatchUpdates:", updateBlock)
 }
 @(objc_type=Scrubber, objc_name="insertItemsAtIndexes")

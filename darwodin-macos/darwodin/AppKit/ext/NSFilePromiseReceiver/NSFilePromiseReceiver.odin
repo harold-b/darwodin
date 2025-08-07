@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    receivePromisedFilesAtDestination: proc(self: ^AK.FilePromiseReceiver, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error)),
+    receivePromisedFilesAtDestination: proc(self: ^AK.FilePromiseReceiver, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error))),
     readableDraggedTypes: proc() -> ^NS.Array,
     fileTypes: proc(self: ^AK.FilePromiseReceiver) -> ^NS.Array,
     fileNames: proc(self: ^AK.FilePromiseReceiver) -> ^NS.Array,
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.receivePromisedFilesAtDestination != nil {
-        receivePromisedFilesAtDestination :: proc "c" (self: ^AK.FilePromiseReceiver, _: SEL, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error)) {
+        receivePromisedFilesAtDestination :: proc "c" (self: ^AK.FilePromiseReceiver, _: SEL, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

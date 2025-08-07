@@ -102,19 +102,19 @@ Pasteboard_setItems_options :: #force_inline proc "c" (self: ^Pasteboard, items:
     msgSend(nil, self, "setItems:options:", items, options)
 }
 @(objc_type=Pasteboard, objc_name="detectPatternsForPatterns_completionHandler")
-Pasteboard_detectPatternsForPatterns_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, completionHandler: proc "c" (_arg_0: ^NS.Set, _arg_1: ^NS.Error)) {
+Pasteboard_detectPatternsForPatterns_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Set, _1: ^NS.Error))) {
     msgSend(nil, self, "detectPatternsForPatterns:completionHandler:", patterns, completionHandler)
 }
 @(objc_type=Pasteboard, objc_name="detectPatternsForPatterns_inItemSet_completionHandler")
-Pasteboard_detectPatternsForPatterns_inItemSet_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: proc "c" (_arg_0: ^NS.Array, _arg_1: ^NS.Error)) {
+Pasteboard_detectPatternsForPatterns_inItemSet_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) {
     msgSend(nil, self, "detectPatternsForPatterns:inItemSet:completionHandler:", patterns, itemSet, completionHandler)
 }
 @(objc_type=Pasteboard, objc_name="detectValuesForPatterns_completionHandler")
-Pasteboard_detectValuesForPatterns_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, completionHandler: proc "c" (_arg_0: ^NS.Dictionary, _arg_1: ^NS.Error)) {
+Pasteboard_detectValuesForPatterns_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Dictionary, _1: ^NS.Error))) {
     msgSend(nil, self, "detectValuesForPatterns:completionHandler:", patterns, completionHandler)
 }
 @(objc_type=Pasteboard, objc_name="detectValuesForPatterns_inItemSet_completionHandler")
-Pasteboard_detectValuesForPatterns_inItemSet_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: proc "c" (_arg_0: ^NS.Array, _arg_1: ^NS.Error)) {
+Pasteboard_detectValuesForPatterns_inItemSet_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) {
     msgSend(nil, self, "detectValuesForPatterns:inItemSet:completionHandler:", patterns, itemSet, completionHandler)
 }
 @(objc_type=Pasteboard, objc_name="generalPasteboard", objc_is_class_method=true)

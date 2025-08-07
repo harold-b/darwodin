@@ -20,11 +20,11 @@ AxisInput :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=AxisInput, objc_name="valueDidChangeHandler")
-AxisInput_valueDidChangeHandler :: #force_inline proc "c" (self: ^AxisInput) -> proc "c" () {
-    return msgSend(proc "c" (), self, "valueDidChangeHandler")
+AxisInput_valueDidChangeHandler :: #force_inline proc "c" (self: ^AxisInput) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "valueDidChangeHandler")
 }
 @(objc_type=AxisInput, objc_name="setValueDidChangeHandler")
-AxisInput_setValueDidChangeHandler :: #force_inline proc "c" (self: ^AxisInput, valueDidChangeHandler: proc "c" ()) {
+AxisInput_setValueDidChangeHandler :: #force_inline proc "c" (self: ^AxisInput, valueDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setValueDidChangeHandler:", valueDidChangeHandler)
 }
 @(objc_type=AxisInput, objc_name="value")

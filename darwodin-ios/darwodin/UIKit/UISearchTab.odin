@@ -26,7 +26,7 @@ SearchTab_init :: proc "c" (self: ^SearchTab) -> ^SearchTab {
 
 
 @(objc_type=SearchTab, objc_name="initWithViewControllerProvider")
-SearchTab_initWithViewControllerProvider :: #force_inline proc "c" (self: ^SearchTab, viewControllerProvider: proc "c" (_arg_0: ^Tab) -> ^ViewController) -> ^SearchTab {
+SearchTab_initWithViewControllerProvider :: #force_inline proc "c" (self: ^SearchTab, viewControllerProvider: ^Objc_Block(proc "c" (_: ^Tab) -> ^ViewController)) -> ^SearchTab {
     return msgSend(^SearchTab, self, "initWithViewControllerProvider:", viewControllerProvider)
 }
 @(objc_type=SearchTab, objc_name="new", objc_is_class_method=true)

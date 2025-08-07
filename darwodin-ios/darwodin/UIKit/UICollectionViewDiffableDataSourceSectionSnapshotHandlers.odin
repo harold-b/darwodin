@@ -28,43 +28,43 @@ CollectionViewDiffableDataSourceSectionSnapshotHandlers_init :: proc "c" (self: 
 
 
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="shouldExpandItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_shouldExpandItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" () -> bool {
-    return msgSend(proc "c" () -> bool, self, "shouldExpandItemHandler")
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_shouldExpandItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" () -> bool) {
+    return msgSend(^Objc_Block(proc "c" () -> bool), self, "shouldExpandItemHandler")
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="setShouldExpandItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_setShouldExpandItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, shouldExpandItemHandler: proc "c" () -> bool) {
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_setShouldExpandItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, shouldExpandItemHandler: ^Objc_Block(proc "c" () -> bool)) {
     msgSend(nil, self, "setShouldExpandItemHandler:", shouldExpandItemHandler)
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="willExpandItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_willExpandItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" () {
-    return msgSend(proc "c" (), self, "willExpandItemHandler")
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_willExpandItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "willExpandItemHandler")
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="setWillExpandItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_setWillExpandItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, willExpandItemHandler: proc "c" ()) {
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_setWillExpandItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, willExpandItemHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setWillExpandItemHandler:", willExpandItemHandler)
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="shouldCollapseItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_shouldCollapseItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" () -> bool {
-    return msgSend(proc "c" () -> bool, self, "shouldCollapseItemHandler")
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_shouldCollapseItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" () -> bool) {
+    return msgSend(^Objc_Block(proc "c" () -> bool), self, "shouldCollapseItemHandler")
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="setShouldCollapseItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_setShouldCollapseItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, shouldCollapseItemHandler: proc "c" () -> bool) {
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_setShouldCollapseItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, shouldCollapseItemHandler: ^Objc_Block(proc "c" () -> bool)) {
     msgSend(nil, self, "setShouldCollapseItemHandler:", shouldCollapseItemHandler)
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="willCollapseItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_willCollapseItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" () {
-    return msgSend(proc "c" (), self, "willCollapseItemHandler")
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_willCollapseItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "willCollapseItemHandler")
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="setWillCollapseItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_setWillCollapseItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, willCollapseItemHandler: proc "c" ()) {
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_setWillCollapseItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, willCollapseItemHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setWillCollapseItemHandler:", willCollapseItemHandler)
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="snapshotForExpandingParentItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_snapshotForExpandingParentItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" () -> ^NSDiffableDataSourceSectionSnapshot {
-    return msgSend(proc "c" () -> ^NSDiffableDataSourceSectionSnapshot, self, "snapshotForExpandingParentItemHandler")
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_snapshotForExpandingParentItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" () -> ^NSDiffableDataSourceSectionSnapshot) {
+    return msgSend(^Objc_Block(proc "c" () -> ^NSDiffableDataSourceSectionSnapshot), self, "snapshotForExpandingParentItemHandler")
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="setSnapshotForExpandingParentItemHandler")
-CollectionViewDiffableDataSourceSectionSnapshotHandlers_setSnapshotForExpandingParentItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, snapshotForExpandingParentItemHandler: proc "c" () -> ^NSDiffableDataSourceSectionSnapshot) {
+CollectionViewDiffableDataSourceSectionSnapshotHandlers_setSnapshotForExpandingParentItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceSectionSnapshotHandlers, snapshotForExpandingParentItemHandler: ^Objc_Block(proc "c" () -> ^NSDiffableDataSourceSectionSnapshot)) {
     msgSend(nil, self, "setSnapshotForExpandingParentItemHandler:", snapshotForExpandingParentItemHandler)
 }
 @(objc_type=CollectionViewDiffableDataSourceSectionSnapshotHandlers, objc_name="load", objc_is_class_method=true)

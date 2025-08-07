@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     behaviorWithTarget: proc(target: id, action: SEL) -> ^AK.SliderAccessoryBehavior,
-    behaviorWithHandler: proc(handler: proc "c" (_arg_0: ^AK.SliderAccessory)) -> ^AK.SliderAccessoryBehavior,
+    behaviorWithHandler: proc(handler: ^Objc_Block(proc "c" (_: ^AK.SliderAccessory))) -> ^AK.SliderAccessoryBehavior,
     handleAction: proc(self: ^AK.SliderAccessoryBehavior, sender: ^AK.SliderAccessory),
     automaticBehavior: proc() -> ^AK.SliderAccessoryBehavior,
     valueStepBehavior: proc() -> ^AK.SliderAccessoryBehavior,
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("behaviorWithTarget:action:"), auto_cast behaviorWithTarget, "@#:@:") do panic("Failed to register objC method.")
     }
     if vt.behaviorWithHandler != nil {
-        behaviorWithHandler :: proc "c" (self: Class, _: SEL, handler: proc "c" (_arg_0: ^AK.SliderAccessory)) -> ^AK.SliderAccessoryBehavior {
+        behaviorWithHandler :: proc "c" (self: Class, _: SEL, handler: ^Objc_Block(proc "c" (_: ^AK.SliderAccessory))) -> ^AK.SliderAccessoryBehavior {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

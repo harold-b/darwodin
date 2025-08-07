@@ -25,7 +25,7 @@ URLSessionUploadTask_new :: #force_inline proc "c" () -> ^URLSessionUploadTask {
     return msgSend(^URLSessionUploadTask, URLSessionUploadTask, "new")
 }
 @(objc_type=URLSessionUploadTask, objc_name="cancelByProducingResumeData")
-URLSessionUploadTask_cancelByProducingResumeData :: #force_inline proc "c" (self: ^URLSessionUploadTask, completionHandler: proc "c" (resumeData: ^Data)) {
+URLSessionUploadTask_cancelByProducingResumeData :: #force_inline proc "c" (self: ^URLSessionUploadTask, completionHandler: ^Objc_Block(proc "c" (resumeData: ^Data))) {
     msgSend(nil, self, "cancelByProducingResumeData:", completionHandler)
 }
 @(objc_type=URLSessionUploadTask, objc_name="load", objc_is_class_method=true)

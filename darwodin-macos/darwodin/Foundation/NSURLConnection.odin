@@ -71,7 +71,7 @@ URLConnection_sendSynchronousRequest :: #force_inline proc "c" (request: ^URLReq
     return msgSend(^Data, URLConnection, "sendSynchronousRequest:returningResponse:error:", request, response, error)
 }
 @(objc_type=URLConnection, objc_name="sendAsynchronousRequest", objc_is_class_method=true)
-URLConnection_sendAsynchronousRequest :: #force_inline proc "c" (request: ^URLRequest, queue: ^OperationQueue, handler: proc "c" (response: ^URLResponse, data: ^Data, connectionError: ^Error)) {
+URLConnection_sendAsynchronousRequest :: #force_inline proc "c" (request: ^URLRequest, queue: ^OperationQueue, handler: ^Objc_Block(proc "c" (response: ^URLResponse, data: ^Data, connectionError: ^Error))) {
     msgSend(nil, URLConnection, "sendAsynchronousRequest:queue:completionHandler:", request, queue, handler)
 }
 @(objc_type=URLConnection, objc_name="load", objc_is_class_method=true)

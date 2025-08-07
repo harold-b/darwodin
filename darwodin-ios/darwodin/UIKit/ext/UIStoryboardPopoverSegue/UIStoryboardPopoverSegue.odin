@@ -28,7 +28,7 @@ import "../UIStoryboardSegue"
 VTable :: struct {
     super: UIStoryboardSegue.VTable,
     popoverController: proc(self: ^UI.StoryboardPopoverSegue) -> ^UI.PopoverController,
-    segueWithIdentifier: proc(identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController, performHandler: proc "c" ()) -> ^UI.StoryboardSegue,
+    segueWithIdentifier: proc(identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController, performHandler: ^Objc_Block(proc "c" ())) -> ^UI.StoryboardSegue,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^UI.StoryboardPopoverSegue,
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("popoverController"), auto_cast popoverController, "@@:") do panic("Failed to register objC method.")
     }
     if vt.segueWithIdentifier != nil {
-        segueWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController, performHandler: proc "c" ()) -> ^UI.StoryboardSegue {
+        segueWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController, performHandler: ^Objc_Block(proc "c" ())) -> ^UI.StoryboardSegue {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

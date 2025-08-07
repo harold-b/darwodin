@@ -27,7 +27,7 @@ BackgroundActivityScheduler_initWithIdentifier :: #force_inline proc "c" (self: 
     return msgSend(^BackgroundActivityScheduler, self, "initWithIdentifier:", identifier)
 }
 @(objc_type=BackgroundActivityScheduler, objc_name="scheduleWithBlock")
-BackgroundActivityScheduler_scheduleWithBlock :: #force_inline proc "c" (self: ^BackgroundActivityScheduler, block: proc "c" (completionHandler: BackgroundActivityCompletionHandler)) {
+BackgroundActivityScheduler_scheduleWithBlock :: #force_inline proc "c" (self: ^BackgroundActivityScheduler, block: ^Objc_Block(proc "c" (completionHandler: BackgroundActivityCompletionHandler))) {
     msgSend(nil, self, "scheduleWithBlock:", block)
 }
 @(objc_type=BackgroundActivityScheduler, objc_name="invalidate")

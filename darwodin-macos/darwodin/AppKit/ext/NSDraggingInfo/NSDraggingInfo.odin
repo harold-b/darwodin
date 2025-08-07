@@ -26,7 +26,7 @@ import AK "../../"
 VTable :: struct {
     slideDraggedImageTo: proc(self: ^AK.DraggingInfo, screenPoint: CG.Point),
     namesOfPromisedFilesDroppedAtDestination: proc(self: ^AK.DraggingInfo, dropDestination: ^NS.URL) -> ^NS.Array,
-    enumerateDraggingItemsWithOptions: proc(self: ^AK.DraggingInfo, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool)),
+    enumerateDraggingItemsWithOptions: proc(self: ^AK.DraggingInfo, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool))),
     resetSpringLoading: proc(self: ^AK.DraggingInfo),
     draggingDestinationWindow: proc(self: ^AK.DraggingInfo) -> ^AK.Window,
     draggingSourceOperationMask: proc(self: ^AK.DraggingInfo) -> AK.DragOperation,
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("namesOfPromisedFilesDroppedAtDestination:"), auto_cast namesOfPromisedFilesDroppedAtDestination, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.enumerateDraggingItemsWithOptions != nil {
-        enumerateDraggingItemsWithOptions :: proc "c" (self: ^AK.DraggingInfo, _: SEL, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool)) {
+        enumerateDraggingItemsWithOptions :: proc "c" (self: ^AK.DraggingInfo, _: SEL, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,11 +26,11 @@ CellAccessoryDetail_init :: proc "c" (self: ^CellAccessoryDetail) -> ^CellAccess
 
 
 @(objc_type=CellAccessoryDetail, objc_name="actionHandler")
-CellAccessoryDetail_actionHandler :: #force_inline proc "c" (self: ^CellAccessoryDetail) -> proc "c" () {
-    return msgSend(proc "c" (), self, "actionHandler")
+CellAccessoryDetail_actionHandler :: #force_inline proc "c" (self: ^CellAccessoryDetail) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "actionHandler")
 }
 @(objc_type=CellAccessoryDetail, objc_name="setActionHandler")
-CellAccessoryDetail_setActionHandler :: #force_inline proc "c" (self: ^CellAccessoryDetail, actionHandler: proc "c" ()) {
+CellAccessoryDetail_setActionHandler :: #force_inline proc "c" (self: ^CellAccessoryDetail, actionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setActionHandler:", actionHandler)
 }
 @(objc_type=CellAccessoryDetail, objc_name="supportsSecureCoding", objc_is_class_method=true)

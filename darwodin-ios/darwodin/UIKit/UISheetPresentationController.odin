@@ -30,7 +30,7 @@ SheetPresentationController_invalidateDetents :: #force_inline proc "c" (self: ^
     msgSend(nil, self, "invalidateDetents")
 }
 @(objc_type=SheetPresentationController, objc_name="animateChanges")
-SheetPresentationController_animateChanges :: #force_inline proc "c" (self: ^SheetPresentationController, changes: proc "c" ()) {
+SheetPresentationController_animateChanges :: #force_inline proc "c" (self: ^SheetPresentationController, changes: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "animateChanges:", changes)
 }
 @(objc_type=SheetPresentationController, objc_name="delegate")

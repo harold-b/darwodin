@@ -43,10 +43,10 @@ foreign lib {
 MatchProperties :: distinct NS.Dictionary
 
 /// GKChallengeComposeCompletionBlock
-ChallengeComposeCompletionBlock :: proc "c" (composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayerIDs: ^NS.Array)
+ChallengeComposeCompletionBlock :: ^Objc_Block(proc "c" (composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayerIDs: ^NS.Array))
 
 /// GKChallengeComposeHandler
-ChallengeComposeHandler :: proc "c" (composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayers: ^NS.Array)
+ChallengeComposeHandler :: ^Objc_Block(proc "c" (composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayers: ^NS.Array))
 
 /// GKInviteeResponse
 InviteeResponse :: distinct InviteRecipientResponse

@@ -35,11 +35,11 @@ ManagedObjectContext_initWithConcurrencyType :: #force_inline proc "c" (self: ^M
     return msgSend(^ManagedObjectContext, self, "initWithConcurrencyType:", ct)
 }
 @(objc_type=ManagedObjectContext, objc_name="performBlock")
-ManagedObjectContext_performBlock :: #force_inline proc "c" (self: ^ManagedObjectContext, block: proc "c" ()) {
+ManagedObjectContext_performBlock :: #force_inline proc "c" (self: ^ManagedObjectContext, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performBlock:", block)
 }
 @(objc_type=ManagedObjectContext, objc_name="performBlockAndWait")
-ManagedObjectContext_performBlockAndWait :: #force_inline proc "c" (self: ^ManagedObjectContext, block: proc "c" ()) {
+ManagedObjectContext_performBlockAndWait :: #force_inline proc "c" (self: ^ManagedObjectContext, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performBlockAndWait:", block)
 }
 @(objc_type=ManagedObjectContext, objc_name="objectRegisteredForID")

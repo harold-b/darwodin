@@ -174,7 +174,7 @@ ViewController_presentViewController_asPopoverRelativeToRect_ofView_preferredEdg
     msgSend(nil, self, "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:", viewController, positioningRect, positioningView, preferredEdge, behavior, hasFullSizeContent)
 }
 @(objc_type=ViewController, objc_name="transitionFromViewController")
-ViewController_transitionFromViewController :: #force_inline proc "c" (self: ^ViewController, fromViewController: ^ViewController, toViewController: ^ViewController, options: ViewControllerTransitionOptions, completion: proc "c" ()) {
+ViewController_transitionFromViewController :: #force_inline proc "c" (self: ^ViewController, fromViewController: ^ViewController, toViewController: ^ViewController, options: ViewControllerTransitionOptions, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "transitionFromViewController:toViewController:options:completionHandler:", fromViewController, toViewController, options, completion)
 }
 @(objc_type=ViewController, objc_name="addChildViewController")

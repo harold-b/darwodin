@@ -41,15 +41,15 @@ VTable :: struct {
     objectAtIndexedSubscript: proc(self: ^NS.OrderedSet, idx: NS.UInteger) -> ^id,
     objectEnumerator: proc(self: ^NS.OrderedSet) -> ^NS.Enumerator,
     reverseObjectEnumerator: proc(self: ^NS.OrderedSet) -> ^NS.Enumerator,
-    enumerateObjectsUsingBlock: proc(self: ^NS.OrderedSet, block: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool)),
-    enumerateObjectsWithOptions: proc(self: ^NS.OrderedSet, opts: NS.EnumerationOptions, block: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool)),
-    enumerateObjectsAtIndexes: proc(self: ^NS.OrderedSet, s: ^NS.IndexSet, opts: NS.EnumerationOptions, block: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool)),
-    indexOfObjectPassingTest: proc(self: ^NS.OrderedSet, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> NS.UInteger,
-    indexOfObjectWithOptions: proc(self: ^NS.OrderedSet, opts: NS.EnumerationOptions, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> NS.UInteger,
-    indexOfObjectAtIndexes: proc(self: ^NS.OrderedSet, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> NS.UInteger,
-    indexesOfObjectsPassingTest: proc(self: ^NS.OrderedSet, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> ^NS.IndexSet,
-    indexesOfObjectsWithOptions: proc(self: ^NS.OrderedSet, opts: NS.EnumerationOptions, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> ^NS.IndexSet,
-    indexesOfObjectsAtIndexes: proc(self: ^NS.OrderedSet, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> ^NS.IndexSet,
+    enumerateObjectsUsingBlock: proc(self: ^NS.OrderedSet, block: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool))),
+    enumerateObjectsWithOptions: proc(self: ^NS.OrderedSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool))),
+    enumerateObjectsAtIndexes: proc(self: ^NS.OrderedSet, s: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool))),
+    indexOfObjectPassingTest: proc(self: ^NS.OrderedSet, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
+    indexOfObjectWithOptions: proc(self: ^NS.OrderedSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
+    indexOfObjectAtIndexes: proc(self: ^NS.OrderedSet, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
+    indexesOfObjectsPassingTest: proc(self: ^NS.OrderedSet, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
+    indexesOfObjectsWithOptions: proc(self: ^NS.OrderedSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
+    indexesOfObjectsAtIndexes: proc(self: ^NS.OrderedSet, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
     indexOfObject_inSortedRange_options_usingComparator: proc(self: ^NS.OrderedSet, object: ^id, range: NS._NSRange, opts: NS.BinarySearchingOptions, cmp: NS.Comparator) -> NS.UInteger,
     sortedArrayUsingComparator: proc(self: ^NS.OrderedSet, cmptr: NS.Comparator) -> ^NS.Array,
     sortedArrayWithOptions: proc(self: ^NS.OrderedSet, opts: NS.SortOptions, cmptr: NS.Comparator) -> ^NS.Array,
@@ -81,7 +81,7 @@ VTable :: struct {
     initWithArray_range_copyItems: proc(self: ^NS.OrderedSet, set: ^NS.Array, range: NS._NSRange, flag: bool) -> ^NS.OrderedSet,
     initWithSet_: proc(self: ^NS.OrderedSet, set: ^NS.Set) -> ^NS.OrderedSet,
     initWithSet_copyItems: proc(self: ^NS.OrderedSet, set: ^NS.Set, flag: bool) -> ^NS.OrderedSet,
-    differenceFromOrderedSet_withOptions_usingEquivalenceTest: proc(self: ^NS.OrderedSet, other: ^NS.OrderedSet, options: NS.OrderedCollectionDifferenceCalculationOptions, block: proc "c" (obj1: ^id, obj2: ^id) -> bool) -> ^NS.OrderedCollectionDifference,
+    differenceFromOrderedSet_withOptions_usingEquivalenceTest: proc(self: ^NS.OrderedSet, other: ^NS.OrderedSet, options: NS.OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: ^id, obj2: ^id) -> bool)) -> ^NS.OrderedCollectionDifference,
     differenceFromOrderedSet_withOptions: proc(self: ^NS.OrderedSet, other: ^NS.OrderedSet, options: NS.OrderedCollectionDifferenceCalculationOptions) -> ^NS.OrderedCollectionDifference,
     differenceFromOrderedSet_: proc(self: ^NS.OrderedSet, other: ^NS.OrderedSet) -> ^NS.OrderedCollectionDifference,
     orderedSetByApplyingDifference: proc(self: ^NS.OrderedSet, difference: ^NS.OrderedCollectionDifference) -> ^NS.OrderedSet,
@@ -304,7 +304,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reverseObjectEnumerator"), auto_cast reverseObjectEnumerator, "@@:") do panic("Failed to register objC method.")
     }
     if vt.enumerateObjectsUsingBlock != nil {
-        enumerateObjectsUsingBlock :: proc "c" (self: ^NS.OrderedSet, _: SEL, block: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool)) {
+        enumerateObjectsUsingBlock :: proc "c" (self: ^NS.OrderedSet, _: SEL, block: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -314,7 +314,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateObjectsUsingBlock:"), auto_cast enumerateObjectsUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.enumerateObjectsWithOptions != nil {
-        enumerateObjectsWithOptions :: proc "c" (self: ^NS.OrderedSet, _: SEL, opts: NS.EnumerationOptions, block: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool)) {
+        enumerateObjectsWithOptions :: proc "c" (self: ^NS.OrderedSet, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -324,7 +324,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateObjectsWithOptions:usingBlock:"), auto_cast enumerateObjectsWithOptions, "v@:L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateObjectsAtIndexes != nil {
-        enumerateObjectsAtIndexes :: proc "c" (self: ^NS.OrderedSet, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, block: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool)) {
+        enumerateObjectsAtIndexes :: proc "c" (self: ^NS.OrderedSet, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -334,7 +334,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateObjectsAtIndexes:options:usingBlock:"), auto_cast enumerateObjectsAtIndexes, "v@:@L?") do panic("Failed to register objC method.")
     }
     if vt.indexOfObjectPassingTest != nil {
-        indexOfObjectPassingTest :: proc "c" (self: ^NS.OrderedSet, _: SEL, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> NS.UInteger {
+        indexOfObjectPassingTest :: proc "c" (self: ^NS.OrderedSet, _: SEL, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -344,7 +344,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfObjectPassingTest:"), auto_cast indexOfObjectPassingTest, "L@:?") do panic("Failed to register objC method.")
     }
     if vt.indexOfObjectWithOptions != nil {
-        indexOfObjectWithOptions :: proc "c" (self: ^NS.OrderedSet, _: SEL, opts: NS.EnumerationOptions, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> NS.UInteger {
+        indexOfObjectWithOptions :: proc "c" (self: ^NS.OrderedSet, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -354,7 +354,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfObjectWithOptions:passingTest:"), auto_cast indexOfObjectWithOptions, "L@:L?") do panic("Failed to register objC method.")
     }
     if vt.indexOfObjectAtIndexes != nil {
-        indexOfObjectAtIndexes :: proc "c" (self: ^NS.OrderedSet, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> NS.UInteger {
+        indexOfObjectAtIndexes :: proc "c" (self: ^NS.OrderedSet, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -364,7 +364,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfObjectAtIndexes:options:passingTest:"), auto_cast indexOfObjectAtIndexes, "L@:@L?") do panic("Failed to register objC method.")
     }
     if vt.indexesOfObjectsPassingTest != nil {
-        indexesOfObjectsPassingTest :: proc "c" (self: ^NS.OrderedSet, _: SEL, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> ^NS.IndexSet {
+        indexesOfObjectsPassingTest :: proc "c" (self: ^NS.OrderedSet, _: SEL, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -374,7 +374,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexesOfObjectsPassingTest:"), auto_cast indexesOfObjectsPassingTest, "@@:?") do panic("Failed to register objC method.")
     }
     if vt.indexesOfObjectsWithOptions != nil {
-        indexesOfObjectsWithOptions :: proc "c" (self: ^NS.OrderedSet, _: SEL, opts: NS.EnumerationOptions, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> ^NS.IndexSet {
+        indexesOfObjectsWithOptions :: proc "c" (self: ^NS.OrderedSet, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -384,7 +384,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexesOfObjectsWithOptions:passingTest:"), auto_cast indexesOfObjectsWithOptions, "@@:L?") do panic("Failed to register objC method.")
     }
     if vt.indexesOfObjectsAtIndexes != nil {
-        indexesOfObjectsAtIndexes :: proc "c" (self: ^NS.OrderedSet, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool) -> ^NS.IndexSet {
+        indexesOfObjectsAtIndexes :: proc "c" (self: ^NS.OrderedSet, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -704,7 +704,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSet:copyItems:"), auto_cast initWithSet_copyItems, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.differenceFromOrderedSet_withOptions_usingEquivalenceTest != nil {
-        differenceFromOrderedSet_withOptions_usingEquivalenceTest :: proc "c" (self: ^NS.OrderedSet, _: SEL, other: ^NS.OrderedSet, options: NS.OrderedCollectionDifferenceCalculationOptions, block: proc "c" (obj1: ^id, obj2: ^id) -> bool) -> ^NS.OrderedCollectionDifference {
+        differenceFromOrderedSet_withOptions_usingEquivalenceTest :: proc "c" (self: ^NS.OrderedSet, _: SEL, other: ^NS.OrderedSet, options: NS.OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: ^id, obj2: ^id) -> bool)) -> ^NS.OrderedCollectionDifference {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

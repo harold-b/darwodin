@@ -208,7 +208,7 @@ SegmentedControl_setAnimationsEnabled :: #force_inline proc "c" (enabled: bool) 
     msgSend(nil, SegmentedControl, "setAnimationsEnabled:", enabled)
 }
 @(objc_type=SegmentedControl, objc_name="performWithoutAnimation", objc_is_class_method=true)
-SegmentedControl_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: proc "c" ()) {
+SegmentedControl_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: ^Objc_Block(proc "c" ())) {
     msgSend(nil, SegmentedControl, "performWithoutAnimation:", actionsWithoutAnimation)
 }
 @(objc_type=SegmentedControl, objc_name="areAnimationsEnabled", objc_is_class_method=true)
@@ -220,47 +220,47 @@ SegmentedControl_inheritedAnimationDuration :: #force_inline proc "c" () -> NS.T
     return msgSend(NS.TimeInterval, SegmentedControl, "inheritedAnimationDuration")
 }
 @(objc_type=SegmentedControl, objc_name="animateWithDuration_delay_options_animations_completion", objc_is_class_method=true)
-SegmentedControl_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+SegmentedControl_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, SegmentedControl, "animateWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=SegmentedControl, objc_name="animateWithDuration_animations_completion", objc_is_class_method=true)
-SegmentedControl_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+SegmentedControl_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, SegmentedControl, "animateWithDuration:animations:completion:", duration, animations, completion)
 }
 @(objc_type=SegmentedControl, objc_name="animateWithDuration_animations", objc_is_class_method=true)
-SegmentedControl_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" ()) {
+SegmentedControl_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, SegmentedControl, "animateWithDuration:animations:", duration, animations)
 }
 @(objc_type=SegmentedControl, objc_name="animateWithSpringDuration", objc_is_class_method=true)
-SegmentedControl_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+SegmentedControl_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, SegmentedControl, "animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:", duration, bounce, velocity, delay, options, animations, completion)
 }
 @(objc_type=SegmentedControl, objc_name="animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion", objc_is_class_method=true)
-SegmentedControl_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+SegmentedControl_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, SegmentedControl, "animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:", duration, delay, dampingRatio, velocity, options, animations, completion)
 }
 @(objc_type=SegmentedControl, objc_name="transitionWithView", objc_is_class_method=true)
-SegmentedControl_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+SegmentedControl_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, SegmentedControl, "transitionWithView:duration:options:animations:completion:", view, duration, options, animations, completion)
 }
 @(objc_type=SegmentedControl, objc_name="transitionFromView", objc_is_class_method=true)
-SegmentedControl_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: proc "c" (finished: bool)) {
+SegmentedControl_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, SegmentedControl, "transitionFromView:toView:duration:options:completion:", fromView, toView, duration, options, completion)
 }
 @(objc_type=SegmentedControl, objc_name="performSystemAnimation", objc_is_class_method=true)
-SegmentedControl_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: proc "c" (), completion: proc "c" (finished: bool)) {
+SegmentedControl_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, SegmentedControl, "performSystemAnimation:onViews:options:animations:completion:", animation, views, options, parallelAnimations, completion)
 }
 @(objc_type=SegmentedControl, objc_name="modifyAnimationsWithRepeatCount", objc_is_class_method=true)
-SegmentedControl_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: proc "c" ()) {
+SegmentedControl_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, SegmentedControl, "modifyAnimationsWithRepeatCount:autoreverses:animations:", count, autoreverses, animations)
 }
 @(objc_type=SegmentedControl, objc_name="animateKeyframesWithDuration", objc_is_class_method=true)
-SegmentedControl_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+SegmentedControl_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, SegmentedControl, "animateKeyframesWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=SegmentedControl, objc_name="addKeyframeWithRelativeStartTime", objc_is_class_method=true)
-SegmentedControl_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: proc "c" ()) {
+SegmentedControl_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, SegmentedControl, "addKeyframeWithRelativeStartTime:relativeDuration:animations:", frameStartTime, frameDuration, animations)
 }
 @(objc_type=SegmentedControl, objc_name="requiresConstraintBasedLayout", objc_is_class_method=true)

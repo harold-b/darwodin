@@ -34,7 +34,7 @@ PageViewController_initWithCoder :: #force_inline proc "c" (self: ^PageViewContr
     return msgSend(^PageViewController, self, "initWithCoder:", coder)
 }
 @(objc_type=PageViewController, objc_name="setViewControllers")
-PageViewController_setViewControllers :: #force_inline proc "c" (self: ^PageViewController, viewControllers: ^NS.Array, direction: PageViewControllerNavigationDirection, animated: bool, completion: proc "c" (finished: bool)) {
+PageViewController_setViewControllers :: #force_inline proc "c" (self: ^PageViewController, viewControllers: ^NS.Array, direction: PageViewControllerNavigationDirection, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, self, "setViewControllers:direction:animated:completion:", viewControllers, direction, animated, completion)
 }
 @(objc_type=PageViewController, objc_name="delegate")

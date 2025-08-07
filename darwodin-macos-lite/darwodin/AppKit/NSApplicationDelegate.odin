@@ -110,7 +110,7 @@ ApplicationDelegate_application_willContinueUserActivityWithType :: #force_inlin
     return msgSend(bool, self, "application:willContinueUserActivityWithType:", application, userActivityType)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_continueUserActivity_restorationHandler")
-ApplicationDelegate_application_continueUserActivity_restorationHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, userActivity: ^NS.UserActivity, restorationHandler: proc "c" (restorableObjects: ^NS.Array)) -> bool {
+ApplicationDelegate_application_continueUserActivity_restorationHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" (restorableObjects: ^NS.Array))) -> bool {
     return msgSend(bool, self, "application:continueUserActivity:restorationHandler:", application, userActivity, restorationHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_didFailToContinueUserActivityWithType_error")

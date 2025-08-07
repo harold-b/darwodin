@@ -31,7 +31,7 @@ VTable :: struct {
     addButtonWithTitle: proc(self: ^AK.Alert, title: ^NS.String) -> ^AK.Button,
     layout: proc(self: ^AK.Alert),
     runModal: proc(self: ^AK.Alert) -> AK.ModalResponse,
-    beginSheetModalForWindow_completionHandler: proc(self: ^AK.Alert, sheetWindow: ^AK.Window, handler: proc "c" (returnCode: AK.ModalResponse)),
+    beginSheetModalForWindow_completionHandler: proc(self: ^AK.Alert, sheetWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (returnCode: AK.ModalResponse))),
     messageText: proc(self: ^AK.Alert) -> ^NS.String,
     setMessageText: proc(self: ^AK.Alert, messageText: ^NS.String),
     informativeText: proc(self: ^AK.Alert) -> ^NS.String,
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("runModal"), auto_cast runModal, "l@:") do panic("Failed to register objC method.")
     }
     if vt.beginSheetModalForWindow_completionHandler != nil {
-        beginSheetModalForWindow_completionHandler :: proc "c" (self: ^AK.Alert, _: SEL, sheetWindow: ^AK.Window, handler: proc "c" (returnCode: AK.ModalResponse)) {
+        beginSheetModalForWindow_completionHandler :: proc "c" (self: ^AK.Alert, _: SEL, sheetWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (returnCode: AK.ModalResponse))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

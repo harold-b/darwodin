@@ -67,11 +67,11 @@ Transaction_setDisableActions :: #force_inline proc "c" (flag: bool) {
     msgSend(nil, Transaction, "setDisableActions:", flag)
 }
 @(objc_type=Transaction, objc_name="completionBlock", objc_is_class_method=true)
-Transaction_completionBlock :: #force_inline proc "c" () -> proc "c" () {
-    return msgSend(proc "c" (), Transaction, "completionBlock")
+Transaction_completionBlock :: #force_inline proc "c" () -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), Transaction, "completionBlock")
 }
 @(objc_type=Transaction, objc_name="setCompletionBlock", objc_is_class_method=true)
-Transaction_setCompletionBlock :: #force_inline proc "c" (block: proc "c" ()) {
+Transaction_setCompletionBlock :: #force_inline proc "c" (block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, Transaction, "setCompletionBlock:", block)
 }
 @(objc_type=Transaction, objc_name="valueForKey", objc_is_class_method=true)

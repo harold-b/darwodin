@@ -20,7 +20,7 @@ import CA "../QuartzCore"
 StoryboardSegue :: struct { using _: NS.Object, }
 
 @(objc_type=StoryboardSegue, objc_name="segueWithIdentifier", objc_is_class_method=true)
-StoryboardSegue_segueWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, source: ^ViewController, destination: ^ViewController, performHandler: proc "c" ()) -> ^StoryboardSegue {
+StoryboardSegue_segueWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, source: ^ViewController, destination: ^ViewController, performHandler: ^Objc_Block(proc "c" ())) -> ^StoryboardSegue {
     return msgSend(^StoryboardSegue, StoryboardSegue, "segueWithIdentifier:source:destination:performHandler:", identifier, source, destination, performHandler)
 }
 @(objc_type=StoryboardSegue, objc_name="initWithIdentifier")

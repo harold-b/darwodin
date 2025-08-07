@@ -20,11 +20,11 @@ RelativeInput :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=RelativeInput, objc_name="deltaDidChangeHandler")
-RelativeInput_deltaDidChangeHandler :: #force_inline proc "c" (self: ^RelativeInput) -> proc "c" () {
-    return msgSend(proc "c" (), self, "deltaDidChangeHandler")
+RelativeInput_deltaDidChangeHandler :: #force_inline proc "c" (self: ^RelativeInput) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "deltaDidChangeHandler")
 }
 @(objc_type=RelativeInput, objc_name="setDeltaDidChangeHandler")
-RelativeInput_setDeltaDidChangeHandler :: #force_inline proc "c" (self: ^RelativeInput, deltaDidChangeHandler: proc "c" ()) {
+RelativeInput_setDeltaDidChangeHandler :: #force_inline proc "c" (self: ^RelativeInput, deltaDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setDeltaDidChangeHandler:", deltaDidChangeHandler)
 }
 @(objc_type=RelativeInput, objc_name="delta")

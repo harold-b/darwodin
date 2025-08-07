@@ -72,15 +72,15 @@ DocumentController_runModalOpenPanel :: #force_inline proc "c" (self: ^DocumentC
     return msgSend(NS.Integer, self, "runModalOpenPanel:forTypes:", openPanel, types)
 }
 @(objc_type=DocumentController, objc_name="beginOpenPanelWithCompletionHandler")
-DocumentController_beginOpenPanelWithCompletionHandler :: #force_inline proc "c" (self: ^DocumentController, completionHandler: proc "c" (_arg_0: ^NS.Array)) {
+DocumentController_beginOpenPanelWithCompletionHandler :: #force_inline proc "c" (self: ^DocumentController, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array))) {
     msgSend(nil, self, "beginOpenPanelWithCompletionHandler:", completionHandler)
 }
 @(objc_type=DocumentController, objc_name="beginOpenPanel")
-DocumentController_beginOpenPanel :: #force_inline proc "c" (self: ^DocumentController, openPanel: ^OpenPanel, inTypes: ^NS.Array, completionHandler: proc "c" (result: NS.Integer)) {
+DocumentController_beginOpenPanel :: #force_inline proc "c" (self: ^DocumentController, openPanel: ^OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (result: NS.Integer))) {
     msgSend(nil, self, "beginOpenPanel:forTypes:completionHandler:", openPanel, inTypes, completionHandler)
 }
 @(objc_type=DocumentController, objc_name="openDocumentWithContentsOfURL_display_completionHandler")
-DocumentController_openDocumentWithContentsOfURL_display_completionHandler :: #force_inline proc "c" (self: ^DocumentController, url: ^NS.URL, displayDocument: bool, completionHandler: proc "c" (document: ^Document, documentWasAlreadyOpen: bool, error: ^NS.Error)) {
+DocumentController_openDocumentWithContentsOfURL_display_completionHandler :: #force_inline proc "c" (self: ^DocumentController, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) {
     msgSend(nil, self, "openDocumentWithContentsOfURL:display:completionHandler:", url, displayDocument, completionHandler)
 }
 @(objc_type=DocumentController, objc_name="makeDocumentWithContentsOfURL_ofType_error")
@@ -88,7 +88,7 @@ DocumentController_makeDocumentWithContentsOfURL_ofType_error :: #force_inline p
     return msgSend(^Document, self, "makeDocumentWithContentsOfURL:ofType:error:", url, typeName, outError)
 }
 @(objc_type=DocumentController, objc_name="reopenDocumentForURL_withContentsOfURL_display_completionHandler")
-DocumentController_reopenDocumentForURL_withContentsOfURL_display_completionHandler :: #force_inline proc "c" (self: ^DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: proc "c" (document: ^Document, documentWasAlreadyOpen: bool, error: ^NS.Error)) {
+DocumentController_reopenDocumentForURL_withContentsOfURL_display_completionHandler :: #force_inline proc "c" (self: ^DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) {
     msgSend(nil, self, "reopenDocumentForURL:withContentsOfURL:display:completionHandler:", urlOrNil, contentsURL, displayDocument, completionHandler)
 }
 @(objc_type=DocumentController, objc_name="makeDocumentForURL")

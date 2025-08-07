@@ -35,14 +35,14 @@ VTable :: struct {
     invalidateLayoutForRange: proc(self: ^AK.TextLayoutManager, range: ^AK.TextRange),
     textLayoutFragmentForPosition: proc(self: ^AK.TextLayoutManager, position: CG.Point) -> ^AK.TextLayoutFragment,
     textLayoutFragmentForLocation: proc(self: ^AK.TextLayoutManager, location: ^AK.TextLocation) -> ^AK.TextLayoutFragment,
-    enumerateTextLayoutFragmentsFromLocation: proc(self: ^AK.TextLayoutManager, location: ^AK.TextLocation, options: AK.TextLayoutFragmentEnumerationOptions, block: proc "c" (layoutFragment: ^AK.TextLayoutFragment) -> bool) -> ^AK.TextLocation,
-    enumerateRenderingAttributesFromLocation: proc(self: ^AK.TextLayoutManager, location: ^AK.TextLocation, reverse: bool, block: proc "c" (textLayoutManager: ^AK.TextLayoutManager, attributes: ^NS.Dictionary, textRange: ^AK.TextRange) -> bool),
+    enumerateTextLayoutFragmentsFromLocation: proc(self: ^AK.TextLayoutManager, location: ^AK.TextLocation, options: AK.TextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" (layoutFragment: ^AK.TextLayoutFragment) -> bool)) -> ^AK.TextLocation,
+    enumerateRenderingAttributesFromLocation: proc(self: ^AK.TextLayoutManager, location: ^AK.TextLocation, reverse: bool, block: ^Objc_Block(proc "c" (textLayoutManager: ^AK.TextLayoutManager, attributes: ^NS.Dictionary, textRange: ^AK.TextRange) -> bool)),
     setRenderingAttributes: proc(self: ^AK.TextLayoutManager, renderingAttributes: ^NS.Dictionary, textRange: ^AK.TextRange),
     addRenderingAttribute: proc(self: ^AK.TextLayoutManager, renderingAttribute: ^NS.String, value: id, textRange: ^AK.TextRange),
     removeRenderingAttribute: proc(self: ^AK.TextLayoutManager, renderingAttribute: ^NS.String, textRange: ^AK.TextRange),
     invalidateRenderingAttributesForTextRange: proc(self: ^AK.TextLayoutManager, textRange: ^AK.TextRange),
     renderingAttributesForLink: proc(self: ^AK.TextLayoutManager, link: id, location: ^AK.TextLocation) -> ^NS.Dictionary,
-    enumerateTextSegmentsInRange: proc(self: ^AK.TextLayoutManager, textRange: ^AK.TextRange, type: AK.TextLayoutManagerSegmentType, options: AK.TextLayoutManagerSegmentOptions, block: proc "c" (textSegmentRange: ^AK.TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^AK.TextContainer) -> bool),
+    enumerateTextSegmentsInRange: proc(self: ^AK.TextLayoutManager, textRange: ^AK.TextRange, type: AK.TextLayoutManagerSegmentType, options: AK.TextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^AK.TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^AK.TextContainer) -> bool)),
     replaceContentsInRange_withTextElements: proc(self: ^AK.TextLayoutManager, range: ^AK.TextRange, textElements: ^NS.Array),
     replaceContentsInRange_withAttributedString: proc(self: ^AK.TextLayoutManager, range: ^AK.TextRange, attributedString: ^NS.AttributedString),
     delegate: proc(self: ^AK.TextLayoutManager) -> ^AK.TextLayoutManagerDelegate,
@@ -64,8 +64,8 @@ VTable :: struct {
     setTextSelections: proc(self: ^AK.TextLayoutManager, textSelections: ^NS.Array),
     textSelectionNavigation: proc(self: ^AK.TextLayoutManager) -> ^AK.TextSelectionNavigation,
     setTextSelectionNavigation: proc(self: ^AK.TextLayoutManager, textSelectionNavigation: ^AK.TextSelectionNavigation),
-    renderingAttributesValidator: proc(self: ^AK.TextLayoutManager) -> proc "c" (),
-    setRenderingAttributesValidator: proc(self: ^AK.TextLayoutManager, renderingAttributesValidator: proc "c" ()),
+    renderingAttributesValidator: proc(self: ^AK.TextLayoutManager) -> ^Objc_Block(proc "c" ()),
+    setRenderingAttributesValidator: proc(self: ^AK.TextLayoutManager, renderingAttributesValidator: ^Objc_Block(proc "c" ())),
     linkRenderingAttributes: proc() -> ^NS.Dictionary,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutFragmentForLocation:"), auto_cast textLayoutFragmentForLocation, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.enumerateTextLayoutFragmentsFromLocation != nil {
-        enumerateTextLayoutFragmentsFromLocation :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, location: ^AK.TextLocation, options: AK.TextLayoutFragmentEnumerationOptions, block: proc "c" (layoutFragment: ^AK.TextLayoutFragment) -> bool) -> ^AK.TextLocation {
+        enumerateTextLayoutFragmentsFromLocation :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, location: ^AK.TextLocation, options: AK.TextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" (layoutFragment: ^AK.TextLayoutFragment) -> bool)) -> ^AK.TextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateTextLayoutFragmentsFromLocation:options:usingBlock:"), auto_cast enumerateTextLayoutFragmentsFromLocation, "@@:@L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateRenderingAttributesFromLocation != nil {
-        enumerateRenderingAttributesFromLocation :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, location: ^AK.TextLocation, reverse: bool, block: proc "c" (textLayoutManager: ^AK.TextLayoutManager, attributes: ^NS.Dictionary, textRange: ^AK.TextRange) -> bool) {
+        enumerateRenderingAttributesFromLocation :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, location: ^AK.TextLocation, reverse: bool, block: ^Objc_Block(proc "c" (textLayoutManager: ^AK.TextLayoutManager, attributes: ^NS.Dictionary, textRange: ^AK.TextRange) -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -262,7 +262,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("renderingAttributesForLink:atLocation:"), auto_cast renderingAttributesForLink, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.enumerateTextSegmentsInRange != nil {
-        enumerateTextSegmentsInRange :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, textRange: ^AK.TextRange, type: AK.TextLayoutManagerSegmentType, options: AK.TextLayoutManagerSegmentOptions, block: proc "c" (textSegmentRange: ^AK.TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^AK.TextContainer) -> bool) {
+        enumerateTextSegmentsInRange :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, textRange: ^AK.TextRange, type: AK.TextLayoutManagerSegmentType, options: AK.TextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^AK.TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^AK.TextContainer) -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -482,7 +482,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextSelectionNavigation:"), auto_cast setTextSelectionNavigation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.renderingAttributesValidator != nil {
-        renderingAttributesValidator :: proc "c" (self: ^AK.TextLayoutManager, _: SEL) -> proc "c" () {
+        renderingAttributesValidator :: proc "c" (self: ^AK.TextLayoutManager, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -492,7 +492,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("renderingAttributesValidator"), auto_cast renderingAttributesValidator, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setRenderingAttributesValidator != nil {
-        setRenderingAttributesValidator :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, renderingAttributesValidator: proc "c" ()) {
+        setRenderingAttributesValidator :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, renderingAttributesValidator: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

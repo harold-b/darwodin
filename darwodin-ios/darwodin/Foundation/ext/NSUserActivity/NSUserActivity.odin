@@ -30,9 +30,9 @@ VTable :: struct {
     becomeCurrent: proc(self: ^NS.UserActivity),
     resignCurrent: proc(self: ^NS.UserActivity),
     invalidate: proc(self: ^NS.UserActivity),
-    getContinuationStreamsWithCompletionHandler: proc(self: ^NS.UserActivity, completionHandler: proc "c" (inputStream: ^NS.InputStream, outputStream: ^NS.OutputStream, error: ^NS.Error)),
-    deleteSavedUserActivitiesWithPersistentIdentifiers: proc(persistentIdentifiers: ^NS.Array, handler: proc "c" ()),
-    deleteAllSavedUserActivitiesWithCompletionHandler: proc(handler: proc "c" ()),
+    getContinuationStreamsWithCompletionHandler: proc(self: ^NS.UserActivity, completionHandler: ^Objc_Block(proc "c" (inputStream: ^NS.InputStream, outputStream: ^NS.OutputStream, error: ^NS.Error))),
+    deleteSavedUserActivitiesWithPersistentIdentifiers: proc(persistentIdentifiers: ^NS.Array, handler: ^Objc_Block(proc "c" ())),
+    deleteAllSavedUserActivitiesWithCompletionHandler: proc(handler: ^Objc_Block(proc "c" ())),
     activityType: proc(self: ^NS.UserActivity) -> ^NS.String,
     title: proc(self: ^NS.UserActivity) -> ^NS.String,
     setTitle: proc(self: ^NS.UserActivity, title: ^NS.String),
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("invalidate"), auto_cast invalidate, "v@:") do panic("Failed to register objC method.")
     }
     if vt.getContinuationStreamsWithCompletionHandler != nil {
-        getContinuationStreamsWithCompletionHandler :: proc "c" (self: ^NS.UserActivity, _: SEL, completionHandler: proc "c" (inputStream: ^NS.InputStream, outputStream: ^NS.OutputStream, error: ^NS.Error)) {
+        getContinuationStreamsWithCompletionHandler :: proc "c" (self: ^NS.UserActivity, _: SEL, completionHandler: ^Objc_Block(proc "c" (inputStream: ^NS.InputStream, outputStream: ^NS.OutputStream, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -175,7 +175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getContinuationStreamsWithCompletionHandler:"), auto_cast getContinuationStreamsWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.deleteSavedUserActivitiesWithPersistentIdentifiers != nil {
-        deleteSavedUserActivitiesWithPersistentIdentifiers :: proc "c" (self: Class, _: SEL, persistentIdentifiers: ^NS.Array, handler: proc "c" ()) {
+        deleteSavedUserActivitiesWithPersistentIdentifiers :: proc "c" (self: Class, _: SEL, persistentIdentifiers: ^NS.Array, handler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -185,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), auto_cast deleteSavedUserActivitiesWithPersistentIdentifiers, "v#:@?") do panic("Failed to register objC method.")
     }
     if vt.deleteAllSavedUserActivitiesWithCompletionHandler != nil {
-        deleteAllSavedUserActivitiesWithCompletionHandler :: proc "c" (self: Class, _: SEL, handler: proc "c" ()) {
+        deleteAllSavedUserActivitiesWithCompletionHandler :: proc "c" (self: Class, _: SEL, handler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,13 +28,13 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     initWithDuration_timingParameters: proc(self: ^UI.ViewPropertyAnimator, duration: NS.TimeInterval, parameters: ^UI.TimingCurveProvider) -> ^UI.ViewPropertyAnimator,
-    initWithDuration_curve_animations: proc(self: ^UI.ViewPropertyAnimator, duration: NS.TimeInterval, curve: UI.ViewAnimationCurve, animations: proc "c" ()) -> ^UI.ViewPropertyAnimator,
-    initWithDuration_controlPoint1_controlPoint2_animations: proc(self: ^UI.ViewPropertyAnimator, duration: NS.TimeInterval, point1: CG.Point, point2: CG.Point, animations: proc "c" ()) -> ^UI.ViewPropertyAnimator,
-    initWithDuration_dampingRatio_animations: proc(self: ^UI.ViewPropertyAnimator, duration: NS.TimeInterval, ratio: CG.Float, animations: proc "c" ()) -> ^UI.ViewPropertyAnimator,
-    runningPropertyAnimatorWithDuration: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finalPosition: UI.ViewAnimatingPosition)) -> ^UI.ViewPropertyAnimator,
-    addAnimations_delayFactor: proc(self: ^UI.ViewPropertyAnimator, animation: proc "c" (), delayFactor: CG.Float),
-    addAnimations_: proc(self: ^UI.ViewPropertyAnimator, animation: proc "c" ()),
-    addCompletion: proc(self: ^UI.ViewPropertyAnimator, completion: proc "c" (finalPosition: UI.ViewAnimatingPosition)),
+    initWithDuration_curve_animations: proc(self: ^UI.ViewPropertyAnimator, duration: NS.TimeInterval, curve: UI.ViewAnimationCurve, animations: ^Objc_Block(proc "c" ())) -> ^UI.ViewPropertyAnimator,
+    initWithDuration_controlPoint1_controlPoint2_animations: proc(self: ^UI.ViewPropertyAnimator, duration: NS.TimeInterval, point1: CG.Point, point2: CG.Point, animations: ^Objc_Block(proc "c" ())) -> ^UI.ViewPropertyAnimator,
+    initWithDuration_dampingRatio_animations: proc(self: ^UI.ViewPropertyAnimator, duration: NS.TimeInterval, ratio: CG.Float, animations: ^Objc_Block(proc "c" ())) -> ^UI.ViewPropertyAnimator,
+    runningPropertyAnimatorWithDuration: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finalPosition: UI.ViewAnimatingPosition))) -> ^UI.ViewPropertyAnimator,
+    addAnimations_delayFactor: proc(self: ^UI.ViewPropertyAnimator, animation: ^Objc_Block(proc "c" ()), delayFactor: CG.Float),
+    addAnimations_: proc(self: ^UI.ViewPropertyAnimator, animation: ^Objc_Block(proc "c" ())),
+    addCompletion: proc(self: ^UI.ViewPropertyAnimator, completion: ^Objc_Block(proc "c" (finalPosition: UI.ViewAnimatingPosition))),
     continueAnimationWithTimingParameters: proc(self: ^UI.ViewPropertyAnimator, parameters: ^UI.TimingCurveProvider, durationFactor: CG.Float),
     timingParameters: proc(self: ^UI.ViewPropertyAnimator) -> ^UI.TimingCurveProvider,
     duration: proc(self: ^UI.ViewPropertyAnimator) -> NS.TimeInterval,
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDuration:timingParameters:"), auto_cast initWithDuration_timingParameters, "@@:d@") do panic("Failed to register objC method.")
     }
     if vt.initWithDuration_curve_animations != nil {
-        initWithDuration_curve_animations :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, duration: NS.TimeInterval, curve: UI.ViewAnimationCurve, animations: proc "c" ()) -> ^UI.ViewPropertyAnimator {
+        initWithDuration_curve_animations :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, duration: NS.TimeInterval, curve: UI.ViewAnimationCurve, animations: ^Objc_Block(proc "c" ())) -> ^UI.ViewPropertyAnimator {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDuration:curve:animations:"), auto_cast initWithDuration_curve_animations, "@@:dl?") do panic("Failed to register objC method.")
     }
     if vt.initWithDuration_controlPoint1_controlPoint2_animations != nil {
-        initWithDuration_controlPoint1_controlPoint2_animations :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, duration: NS.TimeInterval, point1: CG.Point, point2: CG.Point, animations: proc "c" ()) -> ^UI.ViewPropertyAnimator {
+        initWithDuration_controlPoint1_controlPoint2_animations :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, duration: NS.TimeInterval, point1: CG.Point, point2: CG.Point, animations: ^Objc_Block(proc "c" ())) -> ^UI.ViewPropertyAnimator {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDuration:controlPoint1:controlPoint2:animations:"), auto_cast initWithDuration_controlPoint1_controlPoint2_animations, "@@:d{CGPoint=dd}{CGPoint=dd}?") do panic("Failed to register objC method.")
     }
     if vt.initWithDuration_dampingRatio_animations != nil {
-        initWithDuration_dampingRatio_animations :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, duration: NS.TimeInterval, ratio: CG.Float, animations: proc "c" ()) -> ^UI.ViewPropertyAnimator {
+        initWithDuration_dampingRatio_animations :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, duration: NS.TimeInterval, ratio: CG.Float, animations: ^Objc_Block(proc "c" ())) -> ^UI.ViewPropertyAnimator {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDuration:dampingRatio:animations:"), auto_cast initWithDuration_dampingRatio_animations, "@@:dd?") do panic("Failed to register objC method.")
     }
     if vt.runningPropertyAnimatorWithDuration != nil {
-        runningPropertyAnimatorWithDuration :: proc "c" (self: Class, _: SEL, duration: NS.TimeInterval, delay: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finalPosition: UI.ViewAnimatingPosition)) -> ^UI.ViewPropertyAnimator {
+        runningPropertyAnimatorWithDuration :: proc "c" (self: Class, _: SEL, duration: NS.TimeInterval, delay: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finalPosition: UI.ViewAnimatingPosition))) -> ^UI.ViewPropertyAnimator {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("runningPropertyAnimatorWithDuration:delay:options:animations:completion:"), auto_cast runningPropertyAnimatorWithDuration, "@#:ddL??") do panic("Failed to register objC method.")
     }
     if vt.addAnimations_delayFactor != nil {
-        addAnimations_delayFactor :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, animation: proc "c" (), delayFactor: CG.Float) {
+        addAnimations_delayFactor :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, animation: ^Objc_Block(proc "c" ()), delayFactor: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addAnimations:delayFactor:"), auto_cast addAnimations_delayFactor, "v@:?d") do panic("Failed to register objC method.")
     }
     if vt.addAnimations_ != nil {
-        addAnimations_ :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, animation: proc "c" ()) {
+        addAnimations_ :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, animation: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addAnimations:"), auto_cast addAnimations_, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.addCompletion != nil {
-        addCompletion :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, completion: proc "c" (finalPosition: UI.ViewAnimatingPosition)) {
+        addCompletion :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, completion: ^Objc_Block(proc "c" (finalPosition: UI.ViewAnimatingPosition))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

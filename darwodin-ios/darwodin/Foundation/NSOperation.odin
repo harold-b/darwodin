@@ -83,11 +83,11 @@ Operation_setQueuePriority :: #force_inline proc "c" (self: ^Operation, queuePri
     msgSend(nil, self, "setQueuePriority:", queuePriority)
 }
 @(objc_type=Operation, objc_name="completionBlock")
-Operation_completionBlock :: #force_inline proc "c" (self: ^Operation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "completionBlock")
+Operation_completionBlock :: #force_inline proc "c" (self: ^Operation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "completionBlock")
 }
 @(objc_type=Operation, objc_name="setCompletionBlock")
-Operation_setCompletionBlock :: #force_inline proc "c" (self: ^Operation, completionBlock: proc "c" ()) {
+Operation_setCompletionBlock :: #force_inline proc "c" (self: ^Operation, completionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setCompletionBlock:", completionBlock)
 }
 @(objc_type=Operation, objc_name="threadPriority")

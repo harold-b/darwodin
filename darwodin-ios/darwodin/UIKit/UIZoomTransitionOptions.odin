@@ -28,19 +28,19 @@ ZoomTransitionOptions_init :: proc "c" (self: ^ZoomTransitionOptions) -> ^ZoomTr
 
 
 @(objc_type=ZoomTransitionOptions, objc_name="interactiveDismissShouldBegin")
-ZoomTransitionOptions_interactiveDismissShouldBegin :: #force_inline proc "c" (self: ^ZoomTransitionOptions) -> proc "c" () -> bool {
-    return msgSend(proc "c" () -> bool, self, "interactiveDismissShouldBegin")
+ZoomTransitionOptions_interactiveDismissShouldBegin :: #force_inline proc "c" (self: ^ZoomTransitionOptions) -> ^Objc_Block(proc "c" () -> bool) {
+    return msgSend(^Objc_Block(proc "c" () -> bool), self, "interactiveDismissShouldBegin")
 }
 @(objc_type=ZoomTransitionOptions, objc_name="setInteractiveDismissShouldBegin")
-ZoomTransitionOptions_setInteractiveDismissShouldBegin :: #force_inline proc "c" (self: ^ZoomTransitionOptions, interactiveDismissShouldBegin: proc "c" () -> bool) {
+ZoomTransitionOptions_setInteractiveDismissShouldBegin :: #force_inline proc "c" (self: ^ZoomTransitionOptions, interactiveDismissShouldBegin: ^Objc_Block(proc "c" () -> bool)) {
     msgSend(nil, self, "setInteractiveDismissShouldBegin:", interactiveDismissShouldBegin)
 }
 @(objc_type=ZoomTransitionOptions, objc_name="alignmentRectProvider")
-ZoomTransitionOptions_alignmentRectProvider :: #force_inline proc "c" (self: ^ZoomTransitionOptions) -> proc "c" () -> CG.Rect {
-    return msgSend(proc "c" () -> CG.Rect, self, "alignmentRectProvider")
+ZoomTransitionOptions_alignmentRectProvider :: #force_inline proc "c" (self: ^ZoomTransitionOptions) -> ^Objc_Block(proc "c" () -> CG.Rect) {
+    return msgSend(^Objc_Block(proc "c" () -> CG.Rect), self, "alignmentRectProvider")
 }
 @(objc_type=ZoomTransitionOptions, objc_name="setAlignmentRectProvider")
-ZoomTransitionOptions_setAlignmentRectProvider :: #force_inline proc "c" (self: ^ZoomTransitionOptions, alignmentRectProvider: proc "c" () -> CG.Rect) {
+ZoomTransitionOptions_setAlignmentRectProvider :: #force_inline proc "c" (self: ^ZoomTransitionOptions, alignmentRectProvider: ^Objc_Block(proc "c" () -> CG.Rect)) {
     msgSend(nil, self, "setAlignmentRectProvider:", alignmentRectProvider)
 }
 @(objc_type=ZoomTransitionOptions, objc_name="dimmingColor")

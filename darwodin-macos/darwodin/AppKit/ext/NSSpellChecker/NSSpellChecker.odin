@@ -33,8 +33,8 @@ VTable :: struct {
     countWordsInString: proc(self: ^AK.SpellChecker, stringToCount: ^NS.String, language: ^NS.String) -> NS.Integer,
     checkGrammarOfString: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, details: ^^NS.Array) -> NS._NSRange,
     checkString: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, orthography: ^^NS.Orthography, wordCount: ^NS.Integer) -> ^NS.Array,
-    requestCheckingOfString: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer)) -> NS.Integer,
-    requestCandidatesForSelectedRange: proc(self: ^AK.SpellChecker, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array)) -> NS.Integer,
+    requestCheckingOfString: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer))) -> NS.Integer,
+    requestCandidatesForSelectedRange: proc(self: ^AK.SpellChecker, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array))) -> NS.Integer,
     menuForResult: proc(self: ^AK.SpellChecker, result: ^NS.TextCheckingResult, checkedString: ^NS.String, options: ^NS.Dictionary, location: CG.Point, view: ^AK.View) -> ^AK.Menu,
     userQuotesArrayForLanguage: proc(self: ^AK.SpellChecker, language: ^NS.String) -> ^NS.Array,
     updateSpellingPanelWithMisspelledWord: proc(self: ^AK.SpellChecker, word: ^NS.String),
@@ -49,7 +49,7 @@ VTable :: struct {
     languageForWordRange: proc(self: ^AK.SpellChecker, range: NS._NSRange, string: ^NS.String, orthography: ^NS.Orthography) -> ^NS.String,
     closeSpellDocumentWithTag: proc(self: ^AK.SpellChecker, tag: NS.Integer),
     recordResponse: proc(self: ^AK.SpellChecker, response: AK.CorrectionResponse, correction: ^NS.String, word: ^NS.String, language: ^NS.String, tag: NS.Integer),
-    showCorrectionIndicatorOfType: proc(self: ^AK.SpellChecker, type: AK.CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^AK.View, completionBlock: proc "c" (acceptedString: ^NS.String)),
+    showCorrectionIndicatorOfType: proc(self: ^AK.SpellChecker, type: AK.CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^AK.View, completionBlock: ^Objc_Block(proc "c" (acceptedString: ^NS.String))),
     dismissCorrectionIndicatorForView: proc(self: ^AK.SpellChecker, view: ^AK.View),
     showInlinePredictionForCandidates: proc(self: ^AK.SpellChecker, candidates: ^NS.Array, client: ^AK.TextInputClient),
     preventsAutocorrectionBeforeString: proc(self: ^AK.SpellChecker, string: ^NS.String, language: ^NS.String) -> bool,
@@ -187,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:"), auto_cast checkString, "@@:@{_NSRange=LL}Q@l^void^void") do panic("Failed to register objC method.")
     }
     if vt.requestCheckingOfString != nil {
-        requestCheckingOfString :: proc "c" (self: ^AK.SpellChecker, _: SEL, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer)) -> NS.Integer {
+        requestCheckingOfString :: proc "c" (self: ^AK.SpellChecker, _: SEL, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer))) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -197,7 +197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:"), auto_cast requestCheckingOfString, "l@:@{_NSRange=LL}Q@l?") do panic("Failed to register objC method.")
     }
     if vt.requestCandidatesForSelectedRange != nil {
-        requestCandidatesForSelectedRange :: proc "c" (self: ^AK.SpellChecker, _: SEL, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array)) -> NS.Integer {
+        requestCandidatesForSelectedRange :: proc "c" (self: ^AK.SpellChecker, _: SEL, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array))) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -347,7 +347,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:"), auto_cast recordResponse, "v@:l@@@l") do panic("Failed to register objC method.")
     }
     if vt.showCorrectionIndicatorOfType != nil {
-        showCorrectionIndicatorOfType :: proc "c" (self: ^AK.SpellChecker, _: SEL, type: AK.CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^AK.View, completionBlock: proc "c" (acceptedString: ^NS.String)) {
+        showCorrectionIndicatorOfType :: proc "c" (self: ^AK.SpellChecker, _: SEL, type: AK.CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^AK.View, completionBlock: ^Objc_Block(proc "c" (acceptedString: ^NS.String))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

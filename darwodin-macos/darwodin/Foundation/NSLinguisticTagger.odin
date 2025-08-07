@@ -55,7 +55,7 @@ LinguisticTagger_sentenceRangeForRange :: #force_inline proc "c" (self: ^Linguis
     return msgSend(_NSRange, self, "sentenceRangeForRange:", range)
 }
 @(objc_type=LinguisticTagger, objc_name="enumerateTagsInRange_unit_scheme_options_usingBlock")
-LinguisticTagger_enumerateTagsInRange_unit_scheme_options_usingBlock :: #force_inline proc "c" (self: ^LinguisticTagger, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, block: proc "c" (tag: ^String, tokenRange: _NSRange, stop: ^bool)) {
+LinguisticTagger_enumerateTagsInRange_unit_scheme_options_usingBlock :: #force_inline proc "c" (self: ^LinguisticTagger, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^String, tokenRange: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateTagsInRange:unit:scheme:options:usingBlock:", range, unit, scheme, options, block)
 }
 @(objc_type=LinguisticTagger, objc_name="tagAtIndex_unit_scheme_tokenRange")
@@ -67,7 +67,7 @@ LinguisticTagger_tagsInRange_unit_scheme_options_tokenRanges :: #force_inline pr
     return msgSend(^Array, self, "tagsInRange:unit:scheme:options:tokenRanges:", range, unit, scheme, options, tokenRanges)
 }
 @(objc_type=LinguisticTagger, objc_name="enumerateTagsInRange_scheme_options_usingBlock")
-LinguisticTagger_enumerateTagsInRange_scheme_options_usingBlock :: #force_inline proc "c" (self: ^LinguisticTagger, range: _NSRange, tagScheme: ^String, opts: LinguisticTaggerOptions, block: proc "c" (tag: ^String, tokenRange: _NSRange, sentenceRange: _NSRange, stop: ^bool)) {
+LinguisticTagger_enumerateTagsInRange_scheme_options_usingBlock :: #force_inline proc "c" (self: ^LinguisticTagger, range: _NSRange, tagScheme: ^String, opts: LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^String, tokenRange: _NSRange, sentenceRange: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateTagsInRange:scheme:options:usingBlock:", range, tagScheme, opts, block)
 }
 @(objc_type=LinguisticTagger, objc_name="tagAtIndex_scheme_tokenRange_sentenceRange")
@@ -91,7 +91,7 @@ LinguisticTagger_tagsForString :: #force_inline proc "c" (string: ^String, range
     return msgSend(^Array, LinguisticTagger, "tagsForString:range:unit:scheme:options:orthography:tokenRanges:", string, range, unit, scheme, options, orthography, tokenRanges)
 }
 @(objc_type=LinguisticTagger, objc_name="enumerateTagsForString", objc_is_class_method=true)
-LinguisticTagger_enumerateTagsForString :: #force_inline proc "c" (string: ^String, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, block: proc "c" (tag: ^String, tokenRange: _NSRange, stop: ^bool)) {
+LinguisticTagger_enumerateTagsForString :: #force_inline proc "c" (string: ^String, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, block: ^Objc_Block(proc "c" (tag: ^String, tokenRange: _NSRange, stop: ^bool))) {
     msgSend(nil, LinguisticTagger, "enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:", string, range, unit, scheme, options, orthography, block)
 }
 @(objc_type=LinguisticTagger, objc_name="possibleTagsAtIndex")

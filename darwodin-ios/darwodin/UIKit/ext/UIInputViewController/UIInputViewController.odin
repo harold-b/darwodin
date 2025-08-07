@@ -30,7 +30,7 @@ VTable :: struct {
     dismissKeyboard: proc(self: ^UI.InputViewController),
     advanceToNextInputMode: proc(self: ^UI.InputViewController),
     handleInputModeListFromView: proc(self: ^UI.InputViewController, view: ^UI.View, event: ^UI.Event),
-    requestSupplementaryLexiconWithCompletion: proc(self: ^UI.InputViewController, completionHandler: proc "c" (_arg_0: ^UI.Lexicon)),
+    requestSupplementaryLexiconWithCompletion: proc(self: ^UI.InputViewController, completionHandler: ^Objc_Block(proc "c" (_: ^UI.Lexicon))),
     inputView: proc(self: ^UI.InputViewController) -> ^UI.InputView,
     setInputView: proc(self: ^UI.InputViewController, inputView: ^UI.InputView),
     textDocumentProxy: proc(self: ^UI.InputViewController) -> ^UI.TextDocumentProxy,
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("handleInputModeListFromView:withEvent:"), auto_cast handleInputModeListFromView, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.requestSupplementaryLexiconWithCompletion != nil {
-        requestSupplementaryLexiconWithCompletion :: proc "c" (self: ^UI.InputViewController, _: SEL, completionHandler: proc "c" (_arg_0: ^UI.Lexicon)) {
+        requestSupplementaryLexiconWithCompletion :: proc "c" (self: ^UI.InputViewController, _: SEL, completionHandler: ^Objc_Block(proc "c" (_: ^UI.Lexicon))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

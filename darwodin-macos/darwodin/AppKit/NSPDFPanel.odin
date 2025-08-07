@@ -30,7 +30,7 @@ PDFPanel_panel :: #force_inline proc "c" () -> ^PDFPanel {
     return msgSend(^PDFPanel, PDFPanel, "panel")
 }
 @(objc_type=PDFPanel, objc_name="beginSheetWithPDFInfo")
-PDFPanel_beginSheetWithPDFInfo :: #force_inline proc "c" (self: ^PDFPanel, pdfInfo: ^PDFInfo, docWindow: ^Window, completionHandler: proc "c" (_arg_0: NS.Integer)) {
+PDFPanel_beginSheetWithPDFInfo :: #force_inline proc "c" (self: ^PDFPanel, pdfInfo: ^PDFInfo, docWindow: ^Window, completionHandler: ^Objc_Block(proc "c" (_: NS.Integer))) {
     msgSend(nil, self, "beginSheetWithPDFInfo:modalForWindow:completionHandler:", pdfInfo, docWindow, completionHandler)
 }
 @(objc_type=PDFPanel, objc_name="accessoryController")

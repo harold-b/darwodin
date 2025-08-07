@@ -21,11 +21,11 @@ Protocol :: distinct id
 import NS "../../"
 
 VTable :: struct {
-    _URLSession_dataTask_didReceiveResponse_completionHandler: proc(self: ^NS.URLSessionDataDelegate, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, response: ^NS.URLResponse, completionHandler: proc "c" (disposition: NS.URLSessionResponseDisposition)),
+    _URLSession_dataTask_didReceiveResponse_completionHandler: proc(self: ^NS.URLSessionDataDelegate, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, response: ^NS.URLResponse, completionHandler: ^Objc_Block(proc "c" (disposition: NS.URLSessionResponseDisposition))),
     _URLSession_dataTask_didBecomeDownloadTask: proc(self: ^NS.URLSessionDataDelegate, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, downloadTask: ^NS.URLSessionDownloadTask),
     _URLSession_dataTask_didBecomeStreamTask: proc(self: ^NS.URLSessionDataDelegate, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, streamTask: ^NS.URLSessionStreamTask),
     _URLSession_dataTask_didReceiveData: proc(self: ^NS.URLSessionDataDelegate, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, data: ^NS.Data),
-    _URLSession_dataTask_willCacheResponse_completionHandler: proc(self: ^NS.URLSessionDataDelegate, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, proposedResponse: ^NS.CachedURLResponse, completionHandler: proc "c" (cachedResponse: ^NS.CachedURLResponse)),
+    _URLSession_dataTask_willCacheResponse_completionHandler: proc(self: ^NS.URLSessionDataDelegate, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, proposedResponse: ^NS.CachedURLResponse, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^NS.CachedURLResponse))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt._URLSession_dataTask_didReceiveResponse_completionHandler != nil {
-        _URLSession_dataTask_didReceiveResponse_completionHandler :: proc "c" (self: ^NS.URLSessionDataDelegate, _: SEL, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, response: ^NS.URLResponse, completionHandler: proc "c" (disposition: NS.URLSessionResponseDisposition)) {
+        _URLSession_dataTask_didReceiveResponse_completionHandler :: proc "c" (self: ^NS.URLSessionDataDelegate, _: SEL, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, response: ^NS.URLResponse, completionHandler: ^Objc_Block(proc "c" (disposition: NS.URLSessionResponseDisposition))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLSession:dataTask:didReceiveData:"), auto_cast _URLSession_dataTask_didReceiveData, "v@:@@@") do panic("Failed to register objC method.")
     }
     if vt._URLSession_dataTask_willCacheResponse_completionHandler != nil {
-        _URLSession_dataTask_willCacheResponse_completionHandler :: proc "c" (self: ^NS.URLSessionDataDelegate, _: SEL, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, proposedResponse: ^NS.CachedURLResponse, completionHandler: proc "c" (cachedResponse: ^NS.CachedURLResponse)) {
+        _URLSession_dataTask_willCacheResponse_completionHandler :: proc "c" (self: ^NS.URLSessionDataDelegate, _: SEL, session: ^NS.URLSession, dataTask: ^NS.URLSessionDataTask, proposedResponse: ^NS.CachedURLResponse, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^NS.CachedURLResponse))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

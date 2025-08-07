@@ -32,9 +32,9 @@ VTable :: struct {
     new: proc() -> ^UI.TableViewDiffableDataSource,
     snapshot: proc(self: ^UI.TableViewDiffableDataSource) -> ^UI.NSDiffableDataSourceSnapshot,
     applySnapshot_animatingDifferences: proc(self: ^UI.TableViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool),
-    applySnapshot_animatingDifferences_completion: proc(self: ^UI.TableViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: proc "c" ()),
+    applySnapshot_animatingDifferences_completion: proc(self: ^UI.TableViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())),
     applySnapshotUsingReloadData_: proc(self: ^UI.TableViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot),
-    applySnapshotUsingReloadData_completion: proc(self: ^UI.TableViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, completion: proc "c" ()),
+    applySnapshotUsingReloadData_completion: proc(self: ^UI.TableViewDiffableDataSource, snapshot: ^UI.NSDiffableDataSourceSnapshot, completion: ^Objc_Block(proc "c" ())),
     sectionIdentifierForIndex: proc(self: ^UI.TableViewDiffableDataSource, index: NS.Integer) -> ^id,
     indexForSectionIdentifier: proc(self: ^UI.TableViewDiffableDataSource, identifier: ^id) -> NS.Integer,
     itemIdentifierForIndexPath: proc(self: ^UI.TableViewDiffableDataSource, indexPath: ^NS.IndexPath) -> ^id,
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:"), auto_cast applySnapshot_animatingDifferences, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.applySnapshot_animatingDifferences_completion != nil {
-        applySnapshot_animatingDifferences_completion :: proc "c" (self: ^UI.TableViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: proc "c" ()) {
+        applySnapshot_animatingDifferences_completion :: proc "c" (self: ^UI.TableViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshotUsingReloadData:"), auto_cast applySnapshotUsingReloadData_, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.applySnapshotUsingReloadData_completion != nil {
-        applySnapshotUsingReloadData_completion :: proc "c" (self: ^UI.TableViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSnapshot, completion: proc "c" ()) {
+        applySnapshotUsingReloadData_completion :: proc "c" (self: ^UI.TableViewDiffableDataSource, _: SEL, snapshot: ^UI.NSDiffableDataSourceSnapshot, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

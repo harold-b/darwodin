@@ -46,7 +46,7 @@ Predicate_predicateWithValue :: #force_inline proc "c" (value: bool) -> ^Predica
     return msgSend(^Predicate, Predicate, "predicateWithValue:", value)
 }
 @(objc_type=Predicate, objc_name="predicateWithBlock", objc_is_class_method=true)
-Predicate_predicateWithBlock :: #force_inline proc "c" (block: proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool) -> ^Predicate {
+Predicate_predicateWithBlock :: #force_inline proc "c" (block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool)) -> ^Predicate {
     return msgSend(^Predicate, Predicate, "predicateWithBlock:", block)
 }
 @(objc_type=Predicate, objc_name="predicateWithSubstitutionVariables")

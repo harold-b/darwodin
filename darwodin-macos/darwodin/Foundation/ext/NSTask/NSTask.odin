@@ -50,11 +50,11 @@ VTable :: struct {
     isRunning: proc(self: ^NS.Task) -> bool,
     terminationStatus: proc(self: ^NS.Task) -> cffi.int,
     terminationReason: proc(self: ^NS.Task) -> NS.TaskTerminationReason,
-    terminationHandler: proc(self: ^NS.Task) -> proc "c" (),
-    setTerminationHandler: proc(self: ^NS.Task, terminationHandler: proc "c" ()),
+    terminationHandler: proc(self: ^NS.Task) -> ^Objc_Block(proc "c" ()),
+    setTerminationHandler: proc(self: ^NS.Task, terminationHandler: ^Objc_Block(proc "c" ())),
     qualityOfService: proc(self: ^NS.Task) -> NS.QualityOfService,
     setQualityOfService: proc(self: ^NS.Task, qualityOfService: NS.QualityOfService),
-    launchedTaskWithExecutableURL: proc(url: ^NS.URL, arguments: ^NS.Array, error: ^^NS.Error, terminationHandler: proc "c" (_arg_0: ^NS.Task)) -> ^NS.Task,
+    launchedTaskWithExecutableURL: proc(url: ^NS.URL, arguments: ^NS.Array, error: ^^NS.Error, terminationHandler: ^Objc_Block(proc "c" (_: ^NS.Task))) -> ^NS.Task,
     waitUntilExit: proc(self: ^NS.Task),
     launch: proc(self: ^NS.Task),
     launchedTaskWithLaunchPath: proc(path: ^NS.String, arguments: ^NS.Array) -> ^NS.Task,
@@ -363,7 +363,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("terminationReason"), auto_cast terminationReason, "l@:") do panic("Failed to register objC method.")
     }
     if vt.terminationHandler != nil {
-        terminationHandler :: proc "c" (self: ^NS.Task, _: SEL) -> proc "c" () {
+        terminationHandler :: proc "c" (self: ^NS.Task, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -373,7 +373,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("terminationHandler"), auto_cast terminationHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setTerminationHandler != nil {
-        setTerminationHandler :: proc "c" (self: ^NS.Task, _: SEL, terminationHandler: proc "c" ()) {
+        setTerminationHandler :: proc "c" (self: ^NS.Task, _: SEL, terminationHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -403,7 +403,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setQualityOfService:"), auto_cast setQualityOfService, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.launchedTaskWithExecutableURL != nil {
-        launchedTaskWithExecutableURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, arguments: ^NS.Array, error: ^^NS.Error, terminationHandler: proc "c" (_arg_0: ^NS.Task)) -> ^NS.Task {
+        launchedTaskWithExecutableURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, arguments: ^NS.Array, error: ^^NS.Error, terminationHandler: ^Objc_Block(proc "c" (_: ^NS.Task))) -> ^NS.Task {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -41,15 +41,15 @@ UserActivity_invalidate :: #force_inline proc "c" (self: ^UserActivity) {
     msgSend(nil, self, "invalidate")
 }
 @(objc_type=UserActivity, objc_name="getContinuationStreamsWithCompletionHandler")
-UserActivity_getContinuationStreamsWithCompletionHandler :: #force_inline proc "c" (self: ^UserActivity, completionHandler: proc "c" (inputStream: ^InputStream, outputStream: ^OutputStream, error: ^Error)) {
+UserActivity_getContinuationStreamsWithCompletionHandler :: #force_inline proc "c" (self: ^UserActivity, completionHandler: ^Objc_Block(proc "c" (inputStream: ^InputStream, outputStream: ^OutputStream, error: ^Error))) {
     msgSend(nil, self, "getContinuationStreamsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=UserActivity, objc_name="deleteSavedUserActivitiesWithPersistentIdentifiers", objc_is_class_method=true)
-UserActivity_deleteSavedUserActivitiesWithPersistentIdentifiers :: #force_inline proc "c" (persistentIdentifiers: ^Array, handler: proc "c" ()) {
+UserActivity_deleteSavedUserActivitiesWithPersistentIdentifiers :: #force_inline proc "c" (persistentIdentifiers: ^Array, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, UserActivity, "deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:", persistentIdentifiers, handler)
 }
 @(objc_type=UserActivity, objc_name="deleteAllSavedUserActivitiesWithCompletionHandler", objc_is_class_method=true)
-UserActivity_deleteAllSavedUserActivitiesWithCompletionHandler :: #force_inline proc "c" (handler: proc "c" ()) {
+UserActivity_deleteAllSavedUserActivitiesWithCompletionHandler :: #force_inline proc "c" (handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, UserActivity, "deleteAllSavedUserActivitiesWithCompletionHandler:", handler)
 }
 @(objc_type=UserActivity, objc_name="activityType")

@@ -23,7 +23,7 @@ DropSession :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=DropSession, objc_name="loadObjectsOfClass")
-DropSession_loadObjectsOfClass :: #force_inline proc "c" (self: ^DropSession, aClass: ^Class, completion: proc "c" (objects: ^NS.Array)) -> ^NS.Progress {
+DropSession_loadObjectsOfClass :: #force_inline proc "c" (self: ^DropSession, aClass: ^Class, completion: ^Objc_Block(proc "c" (objects: ^NS.Array))) -> ^NS.Progress {
     return msgSend(^NS.Progress, self, "loadObjectsOfClass:completion:", aClass, completion)
 }
 @(objc_type=DropSession, objc_name="localDragSession")

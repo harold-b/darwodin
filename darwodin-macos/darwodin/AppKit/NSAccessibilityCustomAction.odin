@@ -26,7 +26,7 @@ AccessibilityCustomAction_init :: proc "c" (self: ^AccessibilityCustomAction) ->
 
 
 @(objc_type=AccessibilityCustomAction, objc_name="initWithName_handler")
-AccessibilityCustomAction_initWithName_handler :: #force_inline proc "c" (self: ^AccessibilityCustomAction, name: ^NS.String, handler: proc "c" () -> bool) -> ^AccessibilityCustomAction {
+AccessibilityCustomAction_initWithName_handler :: #force_inline proc "c" (self: ^AccessibilityCustomAction, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> ^AccessibilityCustomAction {
     return msgSend(^AccessibilityCustomAction, self, "initWithName:handler:", name, handler)
 }
 @(objc_type=AccessibilityCustomAction, objc_name="initWithName_target_selector")
@@ -42,11 +42,11 @@ AccessibilityCustomAction_setName :: #force_inline proc "c" (self: ^Accessibilit
     msgSend(nil, self, "setName:", name)
 }
 @(objc_type=AccessibilityCustomAction, objc_name="handler")
-AccessibilityCustomAction_handler :: #force_inline proc "c" (self: ^AccessibilityCustomAction) -> proc "c" () -> bool {
-    return msgSend(proc "c" () -> bool, self, "handler")
+AccessibilityCustomAction_handler :: #force_inline proc "c" (self: ^AccessibilityCustomAction) -> ^Objc_Block(proc "c" () -> bool) {
+    return msgSend(^Objc_Block(proc "c" () -> bool), self, "handler")
 }
 @(objc_type=AccessibilityCustomAction, objc_name="setHandler")
-AccessibilityCustomAction_setHandler :: #force_inline proc "c" (self: ^AccessibilityCustomAction, handler: proc "c" () -> bool) {
+AccessibilityCustomAction_setHandler :: #force_inline proc "c" (self: ^AccessibilityCustomAction, handler: ^Objc_Block(proc "c" () -> bool)) {
     msgSend(nil, self, "setHandler:", handler)
 }
 @(objc_type=AccessibilityCustomAction, objc_name="target")

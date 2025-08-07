@@ -22,7 +22,7 @@ TableViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=TableViewDropPlaceholderContext, objc_name="commitInsertionWithDataSourceUpdates")
-TableViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: #force_inline proc "c" (self: ^TableViewDropPlaceholderContext, dataSourceUpdates: proc "c" (insertionIndexPath: ^NS.IndexPath)) -> bool {
+TableViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: #force_inline proc "c" (self: ^TableViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool {
     return msgSend(bool, self, "commitInsertionWithDataSourceUpdates:", dataSourceUpdates)
 }
 @(objc_type=TableViewDropPlaceholderContext, objc_name="deletePlaceholder")

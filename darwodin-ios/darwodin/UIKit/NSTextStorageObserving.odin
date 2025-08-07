@@ -26,7 +26,7 @@ NSTextStorageObserving_processEditingForTextStorage :: #force_inline proc "c" (s
     msgSend(nil, self, "processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:", textStorage, editMask, newCharRange, delta, invalidatedCharRange)
 }
 @(objc_type=NSTextStorageObserving, objc_name="performEditingTransactionForTextStorage")
-NSTextStorageObserving_performEditingTransactionForTextStorage :: #force_inline proc "c" (self: ^NSTextStorageObserving, textStorage: ^NSTextStorage, transaction: proc "c" ()) {
+NSTextStorageObserving_performEditingTransactionForTextStorage :: #force_inline proc "c" (self: ^NSTextStorageObserving, textStorage: ^NSTextStorage, transaction: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performEditingTransactionForTextStorage:usingBlock:", textStorage, transaction)
 }
 @(objc_type=NSTextStorageObserving, objc_name="textStorage")

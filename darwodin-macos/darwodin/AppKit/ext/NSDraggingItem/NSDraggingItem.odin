@@ -33,8 +33,8 @@ VTable :: struct {
     item: proc(self: ^AK.DraggingItem) -> id,
     draggingFrame: proc(self: ^AK.DraggingItem) -> NS.Rect,
     setDraggingFrame_: proc(self: ^AK.DraggingItem, draggingFrame: NS.Rect),
-    imageComponentsProvider: proc(self: ^AK.DraggingItem) -> proc "c" () -> ^NS.Array,
-    setImageComponentsProvider: proc(self: ^AK.DraggingItem, imageComponentsProvider: proc "c" () -> ^NS.Array),
+    imageComponentsProvider: proc(self: ^AK.DraggingItem) -> ^Objc_Block(proc "c" () -> ^NS.Array),
+    setImageComponentsProvider: proc(self: ^AK.DraggingItem, imageComponentsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)),
     imageComponents: proc(self: ^AK.DraggingItem) -> ^NS.Array,
     load: proc(),
     initialize: proc(),
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingFrame:"), auto_cast setDraggingFrame_, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.imageComponentsProvider != nil {
-        imageComponentsProvider :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> proc "c" () -> ^NS.Array {
+        imageComponentsProvider :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> ^Objc_Block(proc "c" () -> ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageComponentsProvider"), auto_cast imageComponentsProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setImageComponentsProvider != nil {
-        setImageComponentsProvider :: proc "c" (self: ^AK.DraggingItem, _: SEL, imageComponentsProvider: proc "c" () -> ^NS.Array) {
+        setImageComponentsProvider :: proc "c" (self: ^AK.DraggingItem, _: SEL, imageComponentsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

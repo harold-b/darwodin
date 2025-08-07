@@ -24,8 +24,8 @@ Protocol :: distinct id
 import UI "../../"
 
 VTable :: struct {
-    addAnimations: proc(self: ^UI.ContextMenuInteractionAnimating, animations: proc "c" ()),
-    addCompletion: proc(self: ^UI.ContextMenuInteractionAnimating, completion: proc "c" ()),
+    addAnimations: proc(self: ^UI.ContextMenuInteractionAnimating, animations: ^Objc_Block(proc "c" ())),
+    addCompletion: proc(self: ^UI.ContextMenuInteractionAnimating, completion: ^Objc_Block(proc "c" ())),
     previewViewController: proc(self: ^UI.ContextMenuInteractionAnimating) -> ^UI.ViewController,
 }
 
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.addAnimations != nil {
-        addAnimations :: proc "c" (self: ^UI.ContextMenuInteractionAnimating, _: SEL, animations: proc "c" ()) {
+        addAnimations :: proc "c" (self: ^UI.ContextMenuInteractionAnimating, _: SEL, animations: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addAnimations:"), auto_cast addAnimations, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.addCompletion != nil {
-        addCompletion :: proc "c" (self: ^UI.ContextMenuInteractionAnimating, _: SEL, completion: proc "c" ()) {
+        addCompletion :: proc "c" (self: ^UI.ContextMenuInteractionAnimating, _: SEL, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

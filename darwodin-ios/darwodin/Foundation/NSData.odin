@@ -71,7 +71,7 @@ Data_rangeOfData :: #force_inline proc "c" (self: ^Data, dataToFind: ^Data, mask
     return msgSend(_NSRange, self, "rangeOfData:options:range:", dataToFind, mask, searchRange)
 }
 @(objc_type=Data, objc_name="enumerateByteRangesUsingBlock")
-Data_enumerateByteRangesUsingBlock :: #force_inline proc "c" (self: ^Data, block: proc "c" (bytes: rawptr, byteRange: _NSRange, stop: ^bool)) {
+Data_enumerateByteRangesUsingBlock :: #force_inline proc "c" (self: ^Data, block: ^Objc_Block(proc "c" (bytes: rawptr, byteRange: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateByteRangesUsingBlock:", block)
 }
 @(objc_type=Data, objc_name="description")
@@ -123,7 +123,7 @@ Data_initWithBytesNoCopy_length_freeWhenDone :: #force_inline proc "c" (self: ^D
     return msgSend(^Data, self, "initWithBytesNoCopy:length:freeWhenDone:", bytes, length, b)
 }
 @(objc_type=Data, objc_name="initWithBytesNoCopy_length_deallocator")
-Data_initWithBytesNoCopy_length_deallocator :: #force_inline proc "c" (self: ^Data, bytes: rawptr, length: UInteger, deallocator: proc "c" (bytes: rawptr, length: UInteger)) -> ^Data {
+Data_initWithBytesNoCopy_length_deallocator :: #force_inline proc "c" (self: ^Data, bytes: rawptr, length: UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: UInteger))) -> ^Data {
     return msgSend(^Data, self, "initWithBytesNoCopy:length:deallocator:", bytes, length, deallocator)
 }
 @(objc_type=Data, objc_name="initWithContentsOfFile_options_error")

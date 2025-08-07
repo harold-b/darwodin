@@ -22,10 +22,10 @@ EditMenuInteractionAnimating :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=EditMenuInteractionAnimating, objc_name="addAnimations")
-EditMenuInteractionAnimating_addAnimations :: #force_inline proc "c" (self: ^EditMenuInteractionAnimating, animations: proc "c" ()) {
+EditMenuInteractionAnimating_addAnimations :: #force_inline proc "c" (self: ^EditMenuInteractionAnimating, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addAnimations:", animations)
 }
 @(objc_type=EditMenuInteractionAnimating, objc_name="addCompletion")
-EditMenuInteractionAnimating_addCompletion :: #force_inline proc "c" (self: ^EditMenuInteractionAnimating, completion: proc "c" ()) {
+EditMenuInteractionAnimating_addCompletion :: #force_inline proc "c" (self: ^EditMenuInteractionAnimating, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addCompletion:", completion)
 }

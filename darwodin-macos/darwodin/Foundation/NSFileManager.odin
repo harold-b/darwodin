@@ -27,7 +27,7 @@ FileManager_mountedVolumeURLsIncludingResourceValuesForKeys :: #force_inline pro
     return msgSend(^Array, self, "mountedVolumeURLsIncludingResourceValuesForKeys:options:", propertyKeys, options)
 }
 @(objc_type=FileManager, objc_name="unmountVolumeAtURL")
-FileManager_unmountVolumeAtURL :: #force_inline proc "c" (self: ^FileManager, url: ^URL, mask: FileManagerUnmountOptions, completionHandler: proc "c" (errorOrNil: ^Error)) {
+FileManager_unmountVolumeAtURL :: #force_inline proc "c" (self: ^FileManager, url: ^URL, mask: FileManagerUnmountOptions, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) {
     msgSend(nil, self, "unmountVolumeAtURL:options:completionHandler:", url, mask, completionHandler)
 }
 @(objc_type=FileManager, objc_name="contentsOfDirectoryAtURL")
@@ -215,7 +215,7 @@ FileManager_enumeratorAtPath :: #force_inline proc "c" (self: ^FileManager, path
     return msgSend(^DirectoryEnumerator, self, "enumeratorAtPath:", path)
 }
 @(objc_type=FileManager, objc_name="enumeratorAtURL")
-FileManager_enumeratorAtURL :: #force_inline proc "c" (self: ^FileManager, url: ^URL, keys: ^Array, mask: DirectoryEnumerationOptions, handler: proc "c" (url: ^URL, error: ^Error) -> bool) -> ^DirectoryEnumerator {
+FileManager_enumeratorAtURL :: #force_inline proc "c" (self: ^FileManager, url: ^URL, keys: ^Array, mask: DirectoryEnumerationOptions, handler: ^Objc_Block(proc "c" (url: ^URL, error: ^Error) -> bool)) -> ^DirectoryEnumerator {
     return msgSend(^DirectoryEnumerator, self, "enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:", url, keys, mask, handler)
 }
 @(objc_type=FileManager, objc_name="subpathsAtPath")
@@ -267,7 +267,7 @@ FileManager_URLForPublishingUbiquitousItemAtURL :: #force_inline proc "c" (self:
     return msgSend(^URL, self, "URLForPublishingUbiquitousItemAtURL:expirationDate:error:", url, outDate, error)
 }
 @(objc_type=FileManager, objc_name="getFileProviderServicesForItemAtURL")
-FileManager_getFileProviderServicesForItemAtURL :: #force_inline proc "c" (self: ^FileManager, url: ^URL, completionHandler: proc "c" (services: ^Dictionary, error: ^Error)) {
+FileManager_getFileProviderServicesForItemAtURL :: #force_inline proc "c" (self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" (services: ^Dictionary, error: ^Error))) {
     msgSend(nil, self, "getFileProviderServicesForItemAtURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=FileManager, objc_name="containerURLForSecurityApplicationGroupIdentifier")

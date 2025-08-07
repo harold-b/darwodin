@@ -27,23 +27,23 @@ Matchmaker_sharedMatchmaker :: #force_inline proc "c" () -> ^Matchmaker {
     return msgSend(^Matchmaker, Matchmaker, "sharedMatchmaker")
 }
 @(objc_type=Matchmaker, objc_name="matchForInvite")
-Matchmaker_matchForInvite :: #force_inline proc "c" (self: ^Matchmaker, invite: ^Invite, completionHandler: proc "c" (match: ^Match, error: ^NS.Error)) {
+Matchmaker_matchForInvite :: #force_inline proc "c" (self: ^Matchmaker, invite: ^Invite, completionHandler: ^Objc_Block(proc "c" (match: ^Match, error: ^NS.Error))) {
     msgSend(nil, self, "matchForInvite:completionHandler:", invite, completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="findMatchForRequest")
-Matchmaker_findMatchForRequest :: #force_inline proc "c" (self: ^Matchmaker, request: ^MatchRequest, completionHandler: proc "c" (match: ^Match, error: ^NS.Error)) {
+Matchmaker_findMatchForRequest :: #force_inline proc "c" (self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (match: ^Match, error: ^NS.Error))) {
     msgSend(nil, self, "findMatchForRequest:withCompletionHandler:", request, completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="findPlayersForHostedRequest")
-Matchmaker_findPlayersForHostedRequest :: #force_inline proc "c" (self: ^Matchmaker, request: ^MatchRequest, completionHandler: proc "c" (players: ^NS.Array, error: ^NS.Error)) {
+Matchmaker_findPlayersForHostedRequest :: #force_inline proc "c" (self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (players: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "findPlayersForHostedRequest:withCompletionHandler:", request, completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="findMatchedPlayers")
-Matchmaker_findMatchedPlayers :: #force_inline proc "c" (self: ^Matchmaker, request: ^MatchRequest, completionHandler: proc "c" (matchedPlayers: ^MatchedPlayers, error: ^NS.Error)) {
+Matchmaker_findMatchedPlayers :: #force_inline proc "c" (self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (matchedPlayers: ^MatchedPlayers, error: ^NS.Error))) {
     msgSend(nil, self, "findMatchedPlayers:withCompletionHandler:", request, completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="addPlayersToMatch")
-Matchmaker_addPlayersToMatch :: #force_inline proc "c" (self: ^Matchmaker, match: ^Match, matchRequest: ^MatchRequest, completionHandler: proc "c" (error: ^NS.Error)) {
+Matchmaker_addPlayersToMatch :: #force_inline proc "c" (self: ^Matchmaker, match: ^Match, matchRequest: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "addPlayersToMatch:matchRequest:completionHandler:", match, matchRequest, completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="cancel")
@@ -59,19 +59,19 @@ Matchmaker_finishMatchmakingForMatch :: #force_inline proc "c" (self: ^Matchmake
     msgSend(nil, self, "finishMatchmakingForMatch:", match)
 }
 @(objc_type=Matchmaker, objc_name="queryPlayerGroupActivity")
-Matchmaker_queryPlayerGroupActivity :: #force_inline proc "c" (self: ^Matchmaker, playerGroup: NS.UInteger, completionHandler: proc "c" (activity: NS.Integer, error: ^NS.Error)) {
+Matchmaker_queryPlayerGroupActivity :: #force_inline proc "c" (self: ^Matchmaker, playerGroup: NS.UInteger, completionHandler: ^Objc_Block(proc "c" (activity: NS.Integer, error: ^NS.Error))) {
     msgSend(nil, self, "queryPlayerGroupActivity:withCompletionHandler:", playerGroup, completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="queryActivityWithCompletionHandler")
-Matchmaker_queryActivityWithCompletionHandler :: #force_inline proc "c" (self: ^Matchmaker, completionHandler: proc "c" (activity: NS.Integer, error: ^NS.Error)) {
+Matchmaker_queryActivityWithCompletionHandler :: #force_inline proc "c" (self: ^Matchmaker, completionHandler: ^Objc_Block(proc "c" (activity: NS.Integer, error: ^NS.Error))) {
     msgSend(nil, self, "queryActivityWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="queryQueueActivity")
-Matchmaker_queryQueueActivity :: #force_inline proc "c" (self: ^Matchmaker, queueName: ^NS.String, completionHandler: proc "c" (activity: NS.Integer, error: ^NS.Error)) {
+Matchmaker_queryQueueActivity :: #force_inline proc "c" (self: ^Matchmaker, queueName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (activity: NS.Integer, error: ^NS.Error))) {
     msgSend(nil, self, "queryQueueActivity:withCompletionHandler:", queueName, completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="startBrowsingForNearbyPlayersWithHandler")
-Matchmaker_startBrowsingForNearbyPlayersWithHandler :: #force_inline proc "c" (self: ^Matchmaker, reachableHandler: proc "c" (player: ^Player, reachable: bool)) {
+Matchmaker_startBrowsingForNearbyPlayersWithHandler :: #force_inline proc "c" (self: ^Matchmaker, reachableHandler: ^Objc_Block(proc "c" (player: ^Player, reachable: bool))) {
     msgSend(nil, self, "startBrowsingForNearbyPlayersWithHandler:", reachableHandler)
 }
 @(objc_type=Matchmaker, objc_name="stopBrowsingForNearbyPlayers")
@@ -79,7 +79,7 @@ Matchmaker_stopBrowsingForNearbyPlayers :: #force_inline proc "c" (self: ^Matchm
     msgSend(nil, self, "stopBrowsingForNearbyPlayers")
 }
 @(objc_type=Matchmaker, objc_name="startGroupActivityWithPlayerHandler")
-Matchmaker_startGroupActivityWithPlayerHandler :: #force_inline proc "c" (self: ^Matchmaker, handler: proc "c" (player: ^Player)) {
+Matchmaker_startGroupActivityWithPlayerHandler :: #force_inline proc "c" (self: ^Matchmaker, handler: ^Objc_Block(proc "c" (player: ^Player))) {
     msgSend(nil, self, "startGroupActivityWithPlayerHandler:", handler)
 }
 @(objc_type=Matchmaker, objc_name="stopGroupActivity")
@@ -87,15 +87,15 @@ Matchmaker_stopGroupActivity :: #force_inline proc "c" (self: ^Matchmaker) {
     msgSend(nil, self, "stopGroupActivity")
 }
 @(objc_type=Matchmaker, objc_name="inviteHandler")
-Matchmaker_inviteHandler :: #force_inline proc "c" (self: ^Matchmaker) -> proc "c" () {
-    return msgSend(proc "c" (), self, "inviteHandler")
+Matchmaker_inviteHandler :: #force_inline proc "c" (self: ^Matchmaker) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "inviteHandler")
 }
 @(objc_type=Matchmaker, objc_name="setInviteHandler")
-Matchmaker_setInviteHandler :: #force_inline proc "c" (self: ^Matchmaker, inviteHandler: proc "c" ()) {
+Matchmaker_setInviteHandler :: #force_inline proc "c" (self: ^Matchmaker, inviteHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setInviteHandler:", inviteHandler)
 }
 @(objc_type=Matchmaker, objc_name="startBrowsingForNearbyPlayersWithReachableHandler")
-Matchmaker_startBrowsingForNearbyPlayersWithReachableHandler :: #force_inline proc "c" (self: ^Matchmaker, reachableHandler: proc "c" (playerID: ^NS.String, reachable: bool)) {
+Matchmaker_startBrowsingForNearbyPlayersWithReachableHandler :: #force_inline proc "c" (self: ^Matchmaker, reachableHandler: ^Objc_Block(proc "c" (playerID: ^NS.String, reachable: bool))) {
     msgSend(nil, self, "startBrowsingForNearbyPlayersWithReachableHandler:", reachableHandler)
 }
 @(objc_type=Matchmaker, objc_name="cancelInviteToPlayer")
@@ -103,7 +103,7 @@ Matchmaker_cancelInviteToPlayer :: #force_inline proc "c" (self: ^Matchmaker, pl
     msgSend(nil, self, "cancelInviteToPlayer:", playerID)
 }
 @(objc_type=Matchmaker, objc_name="findPlayersForHostedMatchRequest")
-Matchmaker_findPlayersForHostedMatchRequest :: #force_inline proc "c" (self: ^Matchmaker, request: ^MatchRequest, completionHandler: proc "c" (playerIDs: ^NS.Array, error: ^NS.Error)) {
+Matchmaker_findPlayersForHostedMatchRequest :: #force_inline proc "c" (self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (playerIDs: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "findPlayersForHostedMatchRequest:withCompletionHandler:", request, completionHandler)
 }
 @(objc_type=Matchmaker, objc_name="load", objc_is_class_method=true)

@@ -77,7 +77,7 @@ Color_colorNamed_ :: #force_inline proc "c" (name: ^NS.String) -> ^Color {
     return msgSend(^Color, Color, "colorNamed:", name)
 }
 @(objc_type=Color, objc_name="colorWithName", objc_is_class_method=true)
-Color_colorWithName :: #force_inline proc "c" (colorName: ^NS.String, dynamicProvider: proc "c" (_arg_0: ^Appearance) -> ^Color) -> ^Color {
+Color_colorWithName :: #force_inline proc "c" (colorName: ^NS.String, dynamicProvider: ^Objc_Block(proc "c" (_: ^Appearance) -> ^Color)) -> ^Color {
     return msgSend(^Color, Color, "colorWithName:dynamicProvider:", colorName, dynamicProvider)
 }
 @(objc_type=Color, objc_name="colorWithDeviceWhite", objc_is_class_method=true)

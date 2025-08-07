@@ -266,11 +266,11 @@ LayoutManager_getLineFragmentInsertionPointsForCharacterAtIndex :: #force_inline
     return msgSend(NS.UInteger, self, "getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:", charIndex, aFlag, dFlag, positions, charIndexes)
 }
 @(objc_type=LayoutManager, objc_name="enumerateLineFragmentsForGlyphRange")
-LayoutManager_enumerateLineFragmentsForGlyphRange :: #force_inline proc "c" (self: ^LayoutManager, glyphRange: NS._NSRange, block: proc "c" (rect: NS.Rect, usedRect: NS.Rect, textContainer: ^TextContainer, glyphRange: NS._NSRange, stop: ^bool)) {
+LayoutManager_enumerateLineFragmentsForGlyphRange :: #force_inline proc "c" (self: ^LayoutManager, glyphRange: NS._NSRange, block: ^Objc_Block(proc "c" (rect: NS.Rect, usedRect: NS.Rect, textContainer: ^TextContainer, glyphRange: NS._NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateLineFragmentsForGlyphRange:usingBlock:", glyphRange, block)
 }
 @(objc_type=LayoutManager, objc_name="enumerateEnclosingRectsForGlyphRange")
-LayoutManager_enumerateEnclosingRectsForGlyphRange :: #force_inline proc "c" (self: ^LayoutManager, glyphRange: NS._NSRange, selectedRange: NS._NSRange, textContainer: ^TextContainer, block: proc "c" (rect: NS.Rect, stop: ^bool)) {
+LayoutManager_enumerateEnclosingRectsForGlyphRange :: #force_inline proc "c" (self: ^LayoutManager, glyphRange: NS._NSRange, selectedRange: NS._NSRange, textContainer: ^TextContainer, block: ^Objc_Block(proc "c" (rect: NS.Rect, stop: ^bool))) {
     msgSend(nil, self, "enumerateEnclosingRectsForGlyphRange:withinSelectedGlyphRange:inTextContainer:usingBlock:", glyphRange, selectedRange, textContainer, block)
 }
 @(objc_type=LayoutManager, objc_name="drawBackgroundForGlyphRange")

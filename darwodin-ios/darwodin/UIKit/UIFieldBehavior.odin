@@ -72,7 +72,7 @@ FieldBehavior_magneticField :: #force_inline proc "c" () -> ^FieldBehavior {
     return msgSend(^FieldBehavior, FieldBehavior, "magneticField")
 }
 @(objc_type=FieldBehavior, objc_name="fieldWithEvaluationBlock", objc_is_class_method=true)
-FieldBehavior_fieldWithEvaluationBlock :: #force_inline proc "c" (block: proc "c" (field: ^FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector) -> ^FieldBehavior {
+FieldBehavior_fieldWithEvaluationBlock :: #force_inline proc "c" (block: ^Objc_Block(proc "c" (field: ^FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> ^FieldBehavior {
     return msgSend(^FieldBehavior, FieldBehavior, "fieldWithEvaluationBlock:", block)
 }
 @(objc_type=FieldBehavior, objc_name="items")

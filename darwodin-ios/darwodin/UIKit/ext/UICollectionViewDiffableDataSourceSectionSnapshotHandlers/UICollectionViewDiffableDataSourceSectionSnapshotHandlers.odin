@@ -27,16 +27,16 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    shouldExpandItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" () -> bool,
-    setShouldExpandItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, shouldExpandItemHandler: proc "c" () -> bool),
-    willExpandItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" (),
-    setWillExpandItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, willExpandItemHandler: proc "c" ()),
-    shouldCollapseItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" () -> bool,
-    setShouldCollapseItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, shouldCollapseItemHandler: proc "c" () -> bool),
-    willCollapseItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" (),
-    setWillCollapseItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, willCollapseItemHandler: proc "c" ()),
-    snapshotForExpandingParentItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> proc "c" () -> ^UI.NSDiffableDataSourceSectionSnapshot,
-    setSnapshotForExpandingParentItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, snapshotForExpandingParentItemHandler: proc "c" () -> ^UI.NSDiffableDataSourceSectionSnapshot),
+    shouldExpandItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" () -> bool),
+    setShouldExpandItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, shouldExpandItemHandler: ^Objc_Block(proc "c" () -> bool)),
+    willExpandItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" ()),
+    setWillExpandItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, willExpandItemHandler: ^Objc_Block(proc "c" ())),
+    shouldCollapseItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" () -> bool),
+    setShouldCollapseItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, shouldCollapseItemHandler: ^Objc_Block(proc "c" () -> bool)),
+    willCollapseItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" ()),
+    setWillCollapseItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, willCollapseItemHandler: ^Objc_Block(proc "c" ())),
+    snapshotForExpandingParentItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers) -> ^Objc_Block(proc "c" () -> ^UI.NSDiffableDataSourceSectionSnapshot),
+    setSnapshotForExpandingParentItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, snapshotForExpandingParentItemHandler: ^Objc_Block(proc "c" () -> ^UI.NSDiffableDataSourceSectionSnapshot)),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers,
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.shouldExpandItemHandler != nil {
-        shouldExpandItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> proc "c" () -> bool {
+        shouldExpandItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> ^Objc_Block(proc "c" () -> bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldExpandItemHandler"), auto_cast shouldExpandItemHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setShouldExpandItemHandler != nil {
-        setShouldExpandItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, shouldExpandItemHandler: proc "c" () -> bool) {
+        setShouldExpandItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, shouldExpandItemHandler: ^Objc_Block(proc "c" () -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShouldExpandItemHandler:"), auto_cast setShouldExpandItemHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.willExpandItemHandler != nil {
-        willExpandItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> proc "c" () {
+        willExpandItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("willExpandItemHandler"), auto_cast willExpandItemHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setWillExpandItemHandler != nil {
-        setWillExpandItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, willExpandItemHandler: proc "c" ()) {
+        setWillExpandItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, willExpandItemHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWillExpandItemHandler:"), auto_cast setWillExpandItemHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.shouldCollapseItemHandler != nil {
-        shouldCollapseItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> proc "c" () -> bool {
+        shouldCollapseItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> ^Objc_Block(proc "c" () -> bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldCollapseItemHandler"), auto_cast shouldCollapseItemHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setShouldCollapseItemHandler != nil {
-        setShouldCollapseItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, shouldCollapseItemHandler: proc "c" () -> bool) {
+        setShouldCollapseItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, shouldCollapseItemHandler: ^Objc_Block(proc "c" () -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShouldCollapseItemHandler:"), auto_cast setShouldCollapseItemHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.willCollapseItemHandler != nil {
-        willCollapseItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> proc "c" () {
+        willCollapseItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("willCollapseItemHandler"), auto_cast willCollapseItemHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setWillCollapseItemHandler != nil {
-        setWillCollapseItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, willCollapseItemHandler: proc "c" ()) {
+        setWillCollapseItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, willCollapseItemHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWillCollapseItemHandler:"), auto_cast setWillCollapseItemHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.snapshotForExpandingParentItemHandler != nil {
-        snapshotForExpandingParentItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> proc "c" () -> ^UI.NSDiffableDataSourceSectionSnapshot {
+        snapshotForExpandingParentItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL) -> ^Objc_Block(proc "c" () -> ^UI.NSDiffableDataSourceSectionSnapshot) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("snapshotForExpandingParentItemHandler"), auto_cast snapshotForExpandingParentItemHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setSnapshotForExpandingParentItemHandler != nil {
-        setSnapshotForExpandingParentItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, snapshotForExpandingParentItemHandler: proc "c" () -> ^UI.NSDiffableDataSourceSectionSnapshot) {
+        setSnapshotForExpandingParentItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceSectionSnapshotHandlers, _: SEL, snapshotForExpandingParentItemHandler: ^Objc_Block(proc "c" () -> ^UI.NSDiffableDataSourceSectionSnapshot)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

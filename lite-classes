@@ -51,6 +51,7 @@ AppKit:
   - NSHelpManager
   - NSDraggingInfo
   - NSPasteboard
+  - NSSavePanel
 
 UIKit:
   - UIApplication

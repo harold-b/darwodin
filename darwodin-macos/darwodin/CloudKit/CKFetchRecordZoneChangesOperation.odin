@@ -49,51 +49,51 @@ FetchRecordZoneChangesOperation_setFetchAllChanges :: #force_inline proc "c" (se
     msgSend(nil, self, "setFetchAllChanges:", fetchAllChanges)
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="recordChangedBlock")
-FetchRecordZoneChangesOperation_recordChangedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordChangedBlock")
+FetchRecordZoneChangesOperation_recordChangedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordChangedBlock")
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="setRecordChangedBlock")
-FetchRecordZoneChangesOperation_setRecordChangedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordChangedBlock: proc "c" ()) {
+FetchRecordZoneChangesOperation_setRecordChangedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordChangedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordChangedBlock:", recordChangedBlock)
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="recordWasChangedBlock")
-FetchRecordZoneChangesOperation_recordWasChangedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordWasChangedBlock")
+FetchRecordZoneChangesOperation_recordWasChangedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordWasChangedBlock")
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="setRecordWasChangedBlock")
-FetchRecordZoneChangesOperation_setRecordWasChangedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordWasChangedBlock: proc "c" ()) {
+FetchRecordZoneChangesOperation_setRecordWasChangedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordWasChangedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordWasChangedBlock:", recordWasChangedBlock)
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="recordWithIDWasDeletedBlock")
-FetchRecordZoneChangesOperation_recordWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordWithIDWasDeletedBlock")
+FetchRecordZoneChangesOperation_recordWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordWithIDWasDeletedBlock")
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="setRecordWithIDWasDeletedBlock")
-FetchRecordZoneChangesOperation_setRecordWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordWithIDWasDeletedBlock: proc "c" ()) {
+FetchRecordZoneChangesOperation_setRecordWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordWithIDWasDeletedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordWithIDWasDeletedBlock:", recordWithIDWasDeletedBlock)
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="recordZoneChangeTokensUpdatedBlock")
-FetchRecordZoneChangesOperation_recordZoneChangeTokensUpdatedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordZoneChangeTokensUpdatedBlock")
+FetchRecordZoneChangesOperation_recordZoneChangeTokensUpdatedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordZoneChangeTokensUpdatedBlock")
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="setRecordZoneChangeTokensUpdatedBlock")
-FetchRecordZoneChangesOperation_setRecordZoneChangeTokensUpdatedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordZoneChangeTokensUpdatedBlock: proc "c" ()) {
+FetchRecordZoneChangesOperation_setRecordZoneChangeTokensUpdatedBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordZoneChangeTokensUpdatedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordZoneChangeTokensUpdatedBlock:", recordZoneChangeTokensUpdatedBlock)
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="recordZoneFetchCompletionBlock")
-FetchRecordZoneChangesOperation_recordZoneFetchCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordZoneFetchCompletionBlock")
+FetchRecordZoneChangesOperation_recordZoneFetchCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordZoneFetchCompletionBlock")
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="setRecordZoneFetchCompletionBlock")
-FetchRecordZoneChangesOperation_setRecordZoneFetchCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordZoneFetchCompletionBlock: proc "c" ()) {
+FetchRecordZoneChangesOperation_setRecordZoneFetchCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, recordZoneFetchCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordZoneFetchCompletionBlock:", recordZoneFetchCompletionBlock)
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="fetchRecordZoneChangesCompletionBlock")
-FetchRecordZoneChangesOperation_fetchRecordZoneChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchRecordZoneChangesCompletionBlock")
+FetchRecordZoneChangesOperation_fetchRecordZoneChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchRecordZoneChangesCompletionBlock")
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="setFetchRecordZoneChangesCompletionBlock")
-FetchRecordZoneChangesOperation_setFetchRecordZoneChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, fetchRecordZoneChangesCompletionBlock: proc "c" ()) {
+FetchRecordZoneChangesOperation_setFetchRecordZoneChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZoneChangesOperation, fetchRecordZoneChangesCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchRecordZoneChangesCompletionBlock:", fetchRecordZoneChangesCompletionBlock)
 }
 @(objc_type=FetchRecordZoneChangesOperation, objc_name="initWithRecordZoneIDs_optionsByRecordZoneID")

@@ -23,11 +23,11 @@ NotificationBanner_init :: proc "c" (self: ^NotificationBanner) -> ^Notification
 
 
 @(objc_type=NotificationBanner, objc_name="showBannerWithTitle_message_completionHandler", objc_is_class_method=true)
-NotificationBanner_showBannerWithTitle_message_completionHandler :: #force_inline proc "c" (title: ^NS.String, message: ^NS.String, completionHandler: proc "c" ()) {
+NotificationBanner_showBannerWithTitle_message_completionHandler :: #force_inline proc "c" (title: ^NS.String, message: ^NS.String, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, NotificationBanner, "showBannerWithTitle:message:completionHandler:", title, message, completionHandler)
 }
 @(objc_type=NotificationBanner, objc_name="showBannerWithTitle_message_duration_completionHandler", objc_is_class_method=true)
-NotificationBanner_showBannerWithTitle_message_duration_completionHandler :: #force_inline proc "c" (title: ^NS.String, message: ^NS.String, duration: NS.TimeInterval, completionHandler: proc "c" ()) {
+NotificationBanner_showBannerWithTitle_message_duration_completionHandler :: #force_inline proc "c" (title: ^NS.String, message: ^NS.String, duration: NS.TimeInterval, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, NotificationBanner, "showBannerWithTitle:message:duration:completionHandler:", title, message, duration, completionHandler)
 }
 @(objc_type=NotificationBanner, objc_name="load", objc_is_class_method=true)

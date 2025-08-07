@@ -57,19 +57,19 @@ FetchRecordChangesOperation_setDesiredKeys :: #force_inline proc "c" (self: ^Fet
     msgSend(nil, self, "setDesiredKeys:", desiredKeys)
 }
 @(objc_type=FetchRecordChangesOperation, objc_name="recordChangedBlock")
-FetchRecordChangesOperation_recordChangedBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordChangedBlock")
+FetchRecordChangesOperation_recordChangedBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordChangedBlock")
 }
 @(objc_type=FetchRecordChangesOperation, objc_name="setRecordChangedBlock")
-FetchRecordChangesOperation_setRecordChangedBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation, recordChangedBlock: proc "c" ()) {
+FetchRecordChangesOperation_setRecordChangedBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation, recordChangedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordChangedBlock:", recordChangedBlock)
 }
 @(objc_type=FetchRecordChangesOperation, objc_name="recordWithIDWasDeletedBlock")
-FetchRecordChangesOperation_recordWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordWithIDWasDeletedBlock")
+FetchRecordChangesOperation_recordWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordWithIDWasDeletedBlock")
 }
 @(objc_type=FetchRecordChangesOperation, objc_name="setRecordWithIDWasDeletedBlock")
-FetchRecordChangesOperation_setRecordWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation, recordWithIDWasDeletedBlock: proc "c" ()) {
+FetchRecordChangesOperation_setRecordWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation, recordWithIDWasDeletedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordWithIDWasDeletedBlock:", recordWithIDWasDeletedBlock)
 }
 @(objc_type=FetchRecordChangesOperation, objc_name="moreComing")
@@ -77,11 +77,11 @@ FetchRecordChangesOperation_moreComing :: #force_inline proc "c" (self: ^FetchRe
     return msgSend(bool, self, "moreComing")
 }
 @(objc_type=FetchRecordChangesOperation, objc_name="fetchRecordChangesCompletionBlock")
-FetchRecordChangesOperation_fetchRecordChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchRecordChangesCompletionBlock")
+FetchRecordChangesOperation_fetchRecordChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchRecordChangesCompletionBlock")
 }
 @(objc_type=FetchRecordChangesOperation, objc_name="setFetchRecordChangesCompletionBlock")
-FetchRecordChangesOperation_setFetchRecordChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation, fetchRecordChangesCompletionBlock: proc "c" ()) {
+FetchRecordChangesOperation_setFetchRecordChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordChangesOperation, fetchRecordChangesCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchRecordChangesCompletionBlock:", fetchRecordChangesCompletionBlock)
 }
 @(objc_type=FetchRecordChangesOperation, objc_name="load", objc_is_class_method=true)

@@ -22,10 +22,10 @@ DragAnimating :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=DragAnimating, objc_name="addAnimations")
-DragAnimating_addAnimations :: #force_inline proc "c" (self: ^DragAnimating, animations: proc "c" ()) {
+DragAnimating_addAnimations :: #force_inline proc "c" (self: ^DragAnimating, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addAnimations:", animations)
 }
 @(objc_type=DragAnimating, objc_name="addCompletion")
-DragAnimating_addCompletion :: #force_inline proc "c" (self: ^DragAnimating, completion: proc "c" (finalPosition: ViewAnimatingPosition)) {
+DragAnimating_addCompletion :: #force_inline proc "c" (self: ^DragAnimating, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) {
     msgSend(nil, self, "addCompletion:", completion)
 }

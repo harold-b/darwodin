@@ -30,15 +30,15 @@ PrinterPickerController_printerPickerControllerWithInitiallySelectedPrinter :: #
     return msgSend(^PrinterPickerController, PrinterPickerController, "printerPickerControllerWithInitiallySelectedPrinter:", printer)
 }
 @(objc_type=PrinterPickerController, objc_name="presentAnimated")
-PrinterPickerController_presentAnimated :: #force_inline proc "c" (self: ^PrinterPickerController, animated: bool, completion: proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool {
+PrinterPickerController_presentAnimated :: #force_inline proc "c" (self: ^PrinterPickerController, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool {
     return msgSend(bool, self, "presentAnimated:completionHandler:", animated, completion)
 }
 @(objc_type=PrinterPickerController, objc_name="presentFromRect")
-PrinterPickerController_presentFromRect :: #force_inline proc "c" (self: ^PrinterPickerController, rect: CG.Rect, view: ^View, animated: bool, completion: proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool {
+PrinterPickerController_presentFromRect :: #force_inline proc "c" (self: ^PrinterPickerController, rect: CG.Rect, view: ^View, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool {
     return msgSend(bool, self, "presentFromRect:inView:animated:completionHandler:", rect, view, animated, completion)
 }
 @(objc_type=PrinterPickerController, objc_name="presentFromBarButtonItem")
-PrinterPickerController_presentFromBarButtonItem :: #force_inline proc "c" (self: ^PrinterPickerController, item: ^BarButtonItem, animated: bool, completion: proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool {
+PrinterPickerController_presentFromBarButtonItem :: #force_inline proc "c" (self: ^PrinterPickerController, item: ^BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool {
     return msgSend(bool, self, "presentFromBarButtonItem:animated:completionHandler:", item, animated, completion)
 }
 @(objc_type=PrinterPickerController, objc_name="dismissAnimated")

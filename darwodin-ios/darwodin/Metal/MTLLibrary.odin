@@ -29,11 +29,11 @@ Library_newFunctionWithName_constantValues_error :: #force_inline proc "c" (self
     return msgSend(^Function, self, "newFunctionWithName:constantValues:error:", name, constantValues, error)
 }
 @(objc_type=Library, objc_name="newFunctionWithName_constantValues_completionHandler")
-Library_newFunctionWithName_constantValues_completionHandler :: #force_inline proc "c" (self: ^Library, name: ^NS.String, constantValues: ^FunctionConstantValues, completionHandler: proc "c" (function: ^Function, error: ^NS.Error)) {
+Library_newFunctionWithName_constantValues_completionHandler :: #force_inline proc "c" (self: ^Library, name: ^NS.String, constantValues: ^FunctionConstantValues, completionHandler: ^Objc_Block(proc "c" (function: ^Function, error: ^NS.Error))) {
     msgSend(nil, self, "newFunctionWithName:constantValues:completionHandler:", name, constantValues, completionHandler)
 }
 @(objc_type=Library, objc_name="newFunctionWithDescriptor_completionHandler")
-Library_newFunctionWithDescriptor_completionHandler :: #force_inline proc "c" (self: ^Library, descriptor: ^FunctionDescriptor, completionHandler: proc "c" (function: ^Function, error: ^NS.Error)) {
+Library_newFunctionWithDescriptor_completionHandler :: #force_inline proc "c" (self: ^Library, descriptor: ^FunctionDescriptor, completionHandler: ^Objc_Block(proc "c" (function: ^Function, error: ^NS.Error))) {
     msgSend(nil, self, "newFunctionWithDescriptor:completionHandler:", descriptor, completionHandler)
 }
 @(objc_type=Library, objc_name="newFunctionWithDescriptor_error")
@@ -41,7 +41,7 @@ Library_newFunctionWithDescriptor_error :: #force_inline proc "c" (self: ^Librar
     return msgSend(^Function, self, "newFunctionWithDescriptor:error:", descriptor, error)
 }
 @(objc_type=Library, objc_name="newIntersectionFunctionWithDescriptor_completionHandler")
-Library_newIntersectionFunctionWithDescriptor_completionHandler :: #force_inline proc "c" (self: ^Library, descriptor: ^IntersectionFunctionDescriptor, completionHandler: proc "c" (function: ^Function, error: ^NS.Error)) {
+Library_newIntersectionFunctionWithDescriptor_completionHandler :: #force_inline proc "c" (self: ^Library, descriptor: ^IntersectionFunctionDescriptor, completionHandler: ^Objc_Block(proc "c" (function: ^Function, error: ^NS.Error))) {
     msgSend(nil, self, "newIntersectionFunctionWithDescriptor:completionHandler:", descriptor, completionHandler)
 }
 @(objc_type=Library, objc_name="newIntersectionFunctionWithDescriptor_error")

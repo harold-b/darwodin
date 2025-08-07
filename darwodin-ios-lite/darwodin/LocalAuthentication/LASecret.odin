@@ -17,7 +17,7 @@ import UI "../UIKit"
 Secret :: struct { using _: NS.Object, }
 
 @(objc_type=Secret, objc_name="loadDataWithCompletion")
-Secret_loadDataWithCompletion :: #force_inline proc "c" (self: ^Secret, handler: proc "c" (_arg_0: ^NS.Data, _arg_1: ^NS.Error)) {
+Secret_loadDataWithCompletion :: #force_inline proc "c" (self: ^Secret, handler: ^Objc_Block(proc "c" (_: ^NS.Data, _1: ^NS.Error))) {
     msgSend(nil, self, "loadDataWithCompletion:", handler)
 }
 @(objc_type=Secret, objc_name="new", objc_is_class_method=true)

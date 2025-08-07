@@ -17,7 +17,7 @@ import Sec "../Security"
 Thread :: struct { using _: Object, }
 
 @(objc_type=Thread, objc_name="detachNewThreadWithBlock", objc_is_class_method=true)
-Thread_detachNewThreadWithBlock :: #force_inline proc "c" (block: proc "c" ()) {
+Thread_detachNewThreadWithBlock :: #force_inline proc "c" (block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, Thread, "detachNewThreadWithBlock:", block)
 }
 @(objc_type=Thread, objc_name="detachNewThreadSelector", objc_is_class_method=true)
@@ -57,7 +57,7 @@ Thread_initWithTarget :: #force_inline proc "c" (self: ^Thread, target: id, sele
     return msgSend(^Thread, self, "initWithTarget:selector:object:", target, selector, argument)
 }
 @(objc_type=Thread, objc_name="initWithBlock")
-Thread_initWithBlock :: #force_inline proc "c" (self: ^Thread, block: proc "c" ()) -> ^Thread {
+Thread_initWithBlock :: #force_inline proc "c" (self: ^Thread, block: ^Objc_Block(proc "c" ())) -> ^Thread {
     return msgSend(^Thread, self, "initWithBlock:", block)
 }
 @(objc_type=Thread, objc_name="cancel")

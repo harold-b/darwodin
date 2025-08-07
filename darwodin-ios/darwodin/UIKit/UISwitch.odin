@@ -116,7 +116,7 @@ Switch_setAnimationsEnabled :: #force_inline proc "c" (enabled: bool) {
     msgSend(nil, Switch, "setAnimationsEnabled:", enabled)
 }
 @(objc_type=Switch, objc_name="performWithoutAnimation", objc_is_class_method=true)
-Switch_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: proc "c" ()) {
+Switch_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: ^Objc_Block(proc "c" ())) {
     msgSend(nil, Switch, "performWithoutAnimation:", actionsWithoutAnimation)
 }
 @(objc_type=Switch, objc_name="areAnimationsEnabled", objc_is_class_method=true)
@@ -128,47 +128,47 @@ Switch_inheritedAnimationDuration :: #force_inline proc "c" () -> NS.TimeInterva
     return msgSend(NS.TimeInterval, Switch, "inheritedAnimationDuration")
 }
 @(objc_type=Switch, objc_name="animateWithDuration_delay_options_animations_completion", objc_is_class_method=true)
-Switch_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+Switch_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, Switch, "animateWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=Switch, objc_name="animateWithDuration_animations_completion", objc_is_class_method=true)
-Switch_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+Switch_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, Switch, "animateWithDuration:animations:completion:", duration, animations, completion)
 }
 @(objc_type=Switch, objc_name="animateWithDuration_animations", objc_is_class_method=true)
-Switch_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" ()) {
+Switch_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, Switch, "animateWithDuration:animations:", duration, animations)
 }
 @(objc_type=Switch, objc_name="animateWithSpringDuration", objc_is_class_method=true)
-Switch_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+Switch_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, Switch, "animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:", duration, bounce, velocity, delay, options, animations, completion)
 }
 @(objc_type=Switch, objc_name="animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion", objc_is_class_method=true)
-Switch_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+Switch_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, Switch, "animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:", duration, delay, dampingRatio, velocity, options, animations, completion)
 }
 @(objc_type=Switch, objc_name="transitionWithView", objc_is_class_method=true)
-Switch_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+Switch_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, Switch, "transitionWithView:duration:options:animations:completion:", view, duration, options, animations, completion)
 }
 @(objc_type=Switch, objc_name="transitionFromView", objc_is_class_method=true)
-Switch_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: proc "c" (finished: bool)) {
+Switch_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, Switch, "transitionFromView:toView:duration:options:completion:", fromView, toView, duration, options, completion)
 }
 @(objc_type=Switch, objc_name="performSystemAnimation", objc_is_class_method=true)
-Switch_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: proc "c" (), completion: proc "c" (finished: bool)) {
+Switch_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, Switch, "performSystemAnimation:onViews:options:animations:completion:", animation, views, options, parallelAnimations, completion)
 }
 @(objc_type=Switch, objc_name="modifyAnimationsWithRepeatCount", objc_is_class_method=true)
-Switch_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: proc "c" ()) {
+Switch_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, Switch, "modifyAnimationsWithRepeatCount:autoreverses:animations:", count, autoreverses, animations)
 }
 @(objc_type=Switch, objc_name="animateKeyframesWithDuration", objc_is_class_method=true)
-Switch_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+Switch_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, Switch, "animateKeyframesWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=Switch, objc_name="addKeyframeWithRelativeStartTime", objc_is_class_method=true)
-Switch_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: proc "c" ()) {
+Switch_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, Switch, "addKeyframeWithRelativeStartTime:relativeDuration:animations:", frameStartTime, frameDuration, animations)
 }
 @(objc_type=Switch, objc_name="requiresConstraintBasedLayout", objc_is_class_method=true)

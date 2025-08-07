@@ -30,7 +30,7 @@ FontAssetRequest_initWithFontDescriptors :: #force_inline proc "c" (self: ^FontA
     return msgSend(^FontAssetRequest, self, "initWithFontDescriptors:options:", fontDescriptors, options)
 }
 @(objc_type=FontAssetRequest, objc_name="downloadFontAssetsWithCompletionHandler")
-FontAssetRequest_downloadFontAssetsWithCompletionHandler :: #force_inline proc "c" (self: ^FontAssetRequest, completionHandler: proc "c" (error: ^NS.Error) -> bool) {
+FontAssetRequest_downloadFontAssetsWithCompletionHandler :: #force_inline proc "c" (self: ^FontAssetRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error) -> bool)) {
     msgSend(nil, self, "downloadFontAssetsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=FontAssetRequest, objc_name="downloadedFontDescriptors")

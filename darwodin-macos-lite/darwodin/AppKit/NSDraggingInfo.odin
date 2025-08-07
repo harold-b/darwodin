@@ -30,7 +30,7 @@ DraggingInfo_namesOfPromisedFilesDroppedAtDestination :: #force_inline proc "c" 
     return msgSend(^NS.Array, self, "namesOfPromisedFilesDroppedAtDestination:", dropDestination)
 }
 @(objc_type=DraggingInfo, objc_name="enumerateDraggingItemsWithOptions")
-DraggingInfo_enumerateDraggingItemsWithOptions :: #force_inline proc "c" (self: ^DraggingInfo, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: proc "c" (draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool)) {
+DraggingInfo_enumerateDraggingItemsWithOptions :: #force_inline proc "c" (self: ^DraggingInfo, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool))) {
     msgSend(nil, self, "enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:", enumOpts, view, classArray, searchOptions, block)
 }
 @(objc_type=DraggingInfo, objc_name="resetSpringLoading")

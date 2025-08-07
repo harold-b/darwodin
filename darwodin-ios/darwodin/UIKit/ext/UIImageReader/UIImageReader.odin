@@ -30,8 +30,8 @@ VTable :: struct {
     readerWithConfiguration: proc(configuration: ^UI.ImageReaderConfiguration) -> ^UI.ImageReader,
     imageWithContentsOfFileURL_: proc(self: ^UI.ImageReader, url: ^NS.URL) -> ^UI.Image,
     imageWithData_: proc(self: ^UI.ImageReader, data: ^NS.Data) -> ^UI.Image,
-    imageWithContentsOfFileURL_completion: proc(self: ^UI.ImageReader, url: ^NS.URL, completion: proc "c" (_arg_0: ^UI.Image)),
-    imageWithData_completion: proc(self: ^UI.ImageReader, data: ^NS.Data, completion: proc "c" (_arg_0: ^UI.Image)),
+    imageWithContentsOfFileURL_completion: proc(self: ^UI.ImageReader, url: ^NS.URL, completion: ^Objc_Block(proc "c" (_: ^UI.Image))),
+    imageWithData_completion: proc(self: ^UI.ImageReader, data: ^NS.Data, completion: ^Objc_Block(proc "c" (_: ^UI.Image))),
     defaultReader: proc() -> ^UI.ImageReader,
     configuration: proc(self: ^UI.ImageReader) -> ^UI.ImageReaderConfiguration,
     load: proc(),
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageWithData:"), auto_cast imageWithData_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.imageWithContentsOfFileURL_completion != nil {
-        imageWithContentsOfFileURL_completion :: proc "c" (self: ^UI.ImageReader, _: SEL, url: ^NS.URL, completion: proc "c" (_arg_0: ^UI.Image)) {
+        imageWithContentsOfFileURL_completion :: proc "c" (self: ^UI.ImageReader, _: SEL, url: ^NS.URL, completion: ^Objc_Block(proc "c" (_: ^UI.Image))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageWithContentsOfFileURL:completion:"), auto_cast imageWithContentsOfFileURL_completion, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.imageWithData_completion != nil {
-        imageWithData_completion :: proc "c" (self: ^UI.ImageReader, _: SEL, data: ^NS.Data, completion: proc "c" (_arg_0: ^UI.Image)) {
+        imageWithData_completion :: proc "c" (self: ^UI.ImageReader, _: SEL, data: ^NS.Data, completion: ^Objc_Block(proc "c" (_: ^UI.Image))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

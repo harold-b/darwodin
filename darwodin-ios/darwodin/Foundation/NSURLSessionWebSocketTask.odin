@@ -17,15 +17,15 @@ import Sec "../Security"
 URLSessionWebSocketTask :: struct { using _: URLSessionTask, }
 
 @(objc_type=URLSessionWebSocketTask, objc_name="sendMessage")
-URLSessionWebSocketTask_sendMessage :: #force_inline proc "c" (self: ^URLSessionWebSocketTask, message: ^URLSessionWebSocketMessage, completionHandler: proc "c" (error: ^Error)) {
+URLSessionWebSocketTask_sendMessage :: #force_inline proc "c" (self: ^URLSessionWebSocketTask, message: ^URLSessionWebSocketMessage, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) {
     msgSend(nil, self, "sendMessage:completionHandler:", message, completionHandler)
 }
 @(objc_type=URLSessionWebSocketTask, objc_name="receiveMessageWithCompletionHandler")
-URLSessionWebSocketTask_receiveMessageWithCompletionHandler :: #force_inline proc "c" (self: ^URLSessionWebSocketTask, completionHandler: proc "c" (message: ^URLSessionWebSocketMessage, error: ^Error)) {
+URLSessionWebSocketTask_receiveMessageWithCompletionHandler :: #force_inline proc "c" (self: ^URLSessionWebSocketTask, completionHandler: ^Objc_Block(proc "c" (message: ^URLSessionWebSocketMessage, error: ^Error))) {
     msgSend(nil, self, "receiveMessageWithCompletionHandler:", completionHandler)
 }
 @(objc_type=URLSessionWebSocketTask, objc_name="sendPingWithPongReceiveHandler")
-URLSessionWebSocketTask_sendPingWithPongReceiveHandler :: #force_inline proc "c" (self: ^URLSessionWebSocketTask, pongReceiveHandler: proc "c" (error: ^Error)) {
+URLSessionWebSocketTask_sendPingWithPongReceiveHandler :: #force_inline proc "c" (self: ^URLSessionWebSocketTask, pongReceiveHandler: ^Objc_Block(proc "c" (error: ^Error))) {
     msgSend(nil, self, "sendPingWithPongReceiveHandler:", pongReceiveHandler)
 }
 @(objc_type=URLSessionWebSocketTask, objc_name="cancelWithCloseCode")

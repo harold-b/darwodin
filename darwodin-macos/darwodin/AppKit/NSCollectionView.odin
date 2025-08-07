@@ -161,7 +161,7 @@ CollectionView_moveItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionV
     msgSend(nil, self, "moveItemAtIndexPath:toIndexPath:", indexPath, newIndexPath)
 }
 @(objc_type=CollectionView, objc_name="performBatchUpdates")
-CollectionView_performBatchUpdates :: #force_inline proc "c" (self: ^CollectionView, updates: proc "c" (), completionHandler: proc "c" (finished: bool)) {
+CollectionView_performBatchUpdates :: #force_inline proc "c" (self: ^CollectionView, updates: ^Objc_Block(proc "c" ()), completionHandler: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, self, "performBatchUpdates:completionHandler:", updates, completionHandler)
 }
 @(objc_type=CollectionView, objc_name="toggleSectionCollapse")

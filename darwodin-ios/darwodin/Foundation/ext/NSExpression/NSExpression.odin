@@ -39,7 +39,7 @@ VTable :: struct {
     expressionForSubquery: proc(expression: ^NS.Expression, variable: ^NS.String, predicate: ^NS.Predicate) -> ^NS.Expression,
     expressionForFunction_selectorName_arguments: proc(target: ^NS.Expression, name: ^NS.String, parameters: ^NS.Array) -> ^NS.Expression,
     expressionForAnyKey: proc() -> ^NS.Expression,
-    expressionForBlock: proc(block: proc "c" (evaluatedObject: id, expressions: ^NS.Array, _context: ^NS.MutableDictionary) -> id, arguments: ^NS.Array) -> ^NS.Expression,
+    expressionForBlock: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, expressions: ^NS.Array, _context: ^NS.MutableDictionary) -> id), arguments: ^NS.Array) -> ^NS.Expression,
     expressionForConditional: proc(predicate: ^NS.Predicate, trueExpression: ^NS.Expression, falseExpression: ^NS.Expression) -> ^NS.Expression,
     initWithExpressionType: proc(self: ^NS.Expression, type: NS.ExpressionType) -> ^NS.Expression,
     initWithCoder: proc(self: ^NS.Expression, coder: ^NS.Coder) -> ^NS.Expression,
@@ -58,7 +58,7 @@ VTable :: struct {
     rightExpression: proc(self: ^NS.Expression) -> ^NS.Expression,
     trueExpression: proc(self: ^NS.Expression) -> ^NS.Expression,
     falseExpression: proc(self: ^NS.Expression) -> ^NS.Expression,
-    expressionBlock: proc(self: ^NS.Expression) -> proc "c" () -> id,
+    expressionBlock: proc(self: ^NS.Expression) -> ^Objc_Block(proc "c" () -> id),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -249,7 +249,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("expressionForAnyKey"), auto_cast expressionForAnyKey, "@#:") do panic("Failed to register objC method.")
     }
     if vt.expressionForBlock != nil {
-        expressionForBlock :: proc "c" (self: Class, _: SEL, block: proc "c" (evaluatedObject: id, expressions: ^NS.Array, _context: ^NS.MutableDictionary) -> id, arguments: ^NS.Array) -> ^NS.Expression {
+        expressionForBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" (evaluatedObject: id, expressions: ^NS.Array, _context: ^NS.MutableDictionary) -> id), arguments: ^NS.Array) -> ^NS.Expression {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -439,7 +439,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("falseExpression"), auto_cast falseExpression, "@@:") do panic("Failed to register objC method.")
     }
     if vt.expressionBlock != nil {
-        expressionBlock :: proc "c" (self: ^NS.Expression, _: SEL) -> proc "c" () -> id {
+        expressionBlock :: proc "c" (self: ^NS.Expression, _: SEL) -> ^Objc_Block(proc "c" () -> id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

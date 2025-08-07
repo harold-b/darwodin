@@ -49,51 +49,51 @@ FetchDatabaseChangesOperation_setFetchAllChanges :: #force_inline proc "c" (self
     msgSend(nil, self, "setFetchAllChanges:", fetchAllChanges)
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="recordZoneWithIDChangedBlock")
-FetchDatabaseChangesOperation_recordZoneWithIDChangedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordZoneWithIDChangedBlock")
+FetchDatabaseChangesOperation_recordZoneWithIDChangedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordZoneWithIDChangedBlock")
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="setRecordZoneWithIDChangedBlock")
-FetchDatabaseChangesOperation_setRecordZoneWithIDChangedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, recordZoneWithIDChangedBlock: proc "c" ()) {
+FetchDatabaseChangesOperation_setRecordZoneWithIDChangedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, recordZoneWithIDChangedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordZoneWithIDChangedBlock:", recordZoneWithIDChangedBlock)
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="recordZoneWithIDWasDeletedBlock")
-FetchDatabaseChangesOperation_recordZoneWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordZoneWithIDWasDeletedBlock")
+FetchDatabaseChangesOperation_recordZoneWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordZoneWithIDWasDeletedBlock")
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="setRecordZoneWithIDWasDeletedBlock")
-FetchDatabaseChangesOperation_setRecordZoneWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, recordZoneWithIDWasDeletedBlock: proc "c" ()) {
+FetchDatabaseChangesOperation_setRecordZoneWithIDWasDeletedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, recordZoneWithIDWasDeletedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordZoneWithIDWasDeletedBlock:", recordZoneWithIDWasDeletedBlock)
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="recordZoneWithIDWasPurgedBlock")
-FetchDatabaseChangesOperation_recordZoneWithIDWasPurgedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordZoneWithIDWasPurgedBlock")
+FetchDatabaseChangesOperation_recordZoneWithIDWasPurgedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordZoneWithIDWasPurgedBlock")
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="setRecordZoneWithIDWasPurgedBlock")
-FetchDatabaseChangesOperation_setRecordZoneWithIDWasPurgedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, recordZoneWithIDWasPurgedBlock: proc "c" ()) {
+FetchDatabaseChangesOperation_setRecordZoneWithIDWasPurgedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, recordZoneWithIDWasPurgedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordZoneWithIDWasPurgedBlock:", recordZoneWithIDWasPurgedBlock)
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock")
-FetchDatabaseChangesOperation_recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock")
+FetchDatabaseChangesOperation_recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock")
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock")
-FetchDatabaseChangesOperation_setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock: proc "c" ()) {
+FetchDatabaseChangesOperation_setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:", recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock)
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="changeTokenUpdatedBlock")
-FetchDatabaseChangesOperation_changeTokenUpdatedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "changeTokenUpdatedBlock")
+FetchDatabaseChangesOperation_changeTokenUpdatedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "changeTokenUpdatedBlock")
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="setChangeTokenUpdatedBlock")
-FetchDatabaseChangesOperation_setChangeTokenUpdatedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, changeTokenUpdatedBlock: proc "c" ()) {
+FetchDatabaseChangesOperation_setChangeTokenUpdatedBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, changeTokenUpdatedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setChangeTokenUpdatedBlock:", changeTokenUpdatedBlock)
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="fetchDatabaseChangesCompletionBlock")
-FetchDatabaseChangesOperation_fetchDatabaseChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchDatabaseChangesCompletionBlock")
+FetchDatabaseChangesOperation_fetchDatabaseChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchDatabaseChangesCompletionBlock")
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="setFetchDatabaseChangesCompletionBlock")
-FetchDatabaseChangesOperation_setFetchDatabaseChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, fetchDatabaseChangesCompletionBlock: proc "c" ()) {
+FetchDatabaseChangesOperation_setFetchDatabaseChangesCompletionBlock :: #force_inline proc "c" (self: ^FetchDatabaseChangesOperation, fetchDatabaseChangesCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchDatabaseChangesCompletionBlock:", fetchDatabaseChangesCompletionBlock)
 }
 @(objc_type=FetchDatabaseChangesOperation, objc_name="load", objc_is_class_method=true)

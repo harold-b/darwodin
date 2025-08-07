@@ -24,7 +24,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    getFileProviderConnectionWithCompletionHandler: proc(self: ^NS.FileProviderService, completionHandler: proc "c" (connection: ^NS.XPCConnection, error: ^NS.Error)),
+    getFileProviderConnectionWithCompletionHandler: proc(self: ^NS.FileProviderService, completionHandler: ^Objc_Block(proc "c" (connection: ^NS.XPCConnection, error: ^NS.Error))),
     name: proc(self: ^NS.FileProviderService) -> ^NS.String,
     load: proc(),
     initialize: proc(),
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.getFileProviderConnectionWithCompletionHandler != nil {
-        getFileProviderConnectionWithCompletionHandler :: proc "c" (self: ^NS.FileProviderService, _: SEL, completionHandler: proc "c" (connection: ^NS.XPCConnection, error: ^NS.Error)) {
+        getFileProviderConnectionWithCompletionHandler :: proc "c" (self: ^NS.FileProviderService, _: SEL, completionHandler: ^Objc_Block(proc "c" (connection: ^NS.XPCConnection, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

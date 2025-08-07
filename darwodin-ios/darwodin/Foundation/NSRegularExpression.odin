@@ -50,7 +50,7 @@ RegularExpression_numberOfCaptureGroups :: #force_inline proc "c" (self: ^Regula
     return msgSend(UInteger, self, "numberOfCaptureGroups")
 }
 @(objc_type=RegularExpression, objc_name="enumerateMatchesInString")
-RegularExpression_enumerateMatchesInString :: #force_inline proc "c" (self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: proc "c" (result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool)) {
+RegularExpression_enumerateMatchesInString :: #force_inline proc "c" (self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: ^Objc_Block(proc "c" (result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool))) {
     msgSend(nil, self, "enumerateMatchesInString:options:range:usingBlock:", string, options, range, block)
 }
 @(objc_type=RegularExpression, objc_name="matchesInString")

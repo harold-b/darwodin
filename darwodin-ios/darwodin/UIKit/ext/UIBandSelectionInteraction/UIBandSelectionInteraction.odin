@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSelectionHandler: proc(self: ^UI.BandSelectionInteraction, selectionHandler: proc "c" (interaction: ^UI.BandSelectionInteraction)) -> ^UI.BandSelectionInteraction,
+    initWithSelectionHandler: proc(self: ^UI.BandSelectionInteraction, selectionHandler: ^Objc_Block(proc "c" (interaction: ^UI.BandSelectionInteraction))) -> ^UI.BandSelectionInteraction,
     init: proc(self: ^UI.BandSelectionInteraction) -> ^UI.BandSelectionInteraction,
     new: proc() -> ^UI.BandSelectionInteraction,
     isEnabled: proc(self: ^UI.BandSelectionInteraction) -> bool,
@@ -35,8 +35,8 @@ VTable :: struct {
     state: proc(self: ^UI.BandSelectionInteraction) -> UI.BandSelectionInteractionState,
     selectionRect: proc(self: ^UI.BandSelectionInteraction) -> CG.Rect,
     initialModifierFlags: proc(self: ^UI.BandSelectionInteraction) -> UI.KeyModifierFlags,
-    shouldBeginHandler: proc(self: ^UI.BandSelectionInteraction) -> proc "c" () -> bool,
-    setShouldBeginHandler: proc(self: ^UI.BandSelectionInteraction, shouldBeginHandler: proc "c" () -> bool),
+    shouldBeginHandler: proc(self: ^UI.BandSelectionInteraction) -> ^Objc_Block(proc "c" () -> bool),
+    setShouldBeginHandler: proc(self: ^UI.BandSelectionInteraction, shouldBeginHandler: ^Objc_Block(proc "c" () -> bool)),
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^NS._NSZone) -> ^UI.BandSelectionInteraction,
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSelectionHandler != nil {
-        initWithSelectionHandler :: proc "c" (self: ^UI.BandSelectionInteraction, _: SEL, selectionHandler: proc "c" (interaction: ^UI.BandSelectionInteraction)) -> ^UI.BandSelectionInteraction {
+        initWithSelectionHandler :: proc "c" (self: ^UI.BandSelectionInteraction, _: SEL, selectionHandler: ^Objc_Block(proc "c" (interaction: ^UI.BandSelectionInteraction))) -> ^UI.BandSelectionInteraction {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initialModifierFlags"), auto_cast initialModifierFlags, "l@:") do panic("Failed to register objC method.")
     }
     if vt.shouldBeginHandler != nil {
-        shouldBeginHandler :: proc "c" (self: ^UI.BandSelectionInteraction, _: SEL) -> proc "c" () -> bool {
+        shouldBeginHandler :: proc "c" (self: ^UI.BandSelectionInteraction, _: SEL) -> ^Objc_Block(proc "c" () -> bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldBeginHandler"), auto_cast shouldBeginHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setShouldBeginHandler != nil {
-        setShouldBeginHandler :: proc "c" (self: ^UI.BandSelectionInteraction, _: SEL, shouldBeginHandler: proc "c" () -> bool) {
+        setShouldBeginHandler :: proc "c" (self: ^UI.BandSelectionInteraction, _: SEL, shouldBeginHandler: ^Objc_Block(proc "c" () -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

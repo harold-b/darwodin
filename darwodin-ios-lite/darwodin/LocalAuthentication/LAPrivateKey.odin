@@ -17,7 +17,7 @@ import UI "../UIKit"
 PrivateKey :: struct { using _: NS.Object, }
 
 @(objc_type=PrivateKey, objc_name="signData")
-PrivateKey_signData :: #force_inline proc "c" (self: ^PrivateKey, data: ^NS.Data, algorithm: SecKeyAlgorithm, handler: proc "c" (_arg_0: ^NS.Data, _arg_1: ^NS.Error)) {
+PrivateKey_signData :: #force_inline proc "c" (self: ^PrivateKey, data: ^NS.Data, algorithm: SecKeyAlgorithm, handler: ^Objc_Block(proc "c" (_: ^NS.Data, _1: ^NS.Error))) {
     msgSend(nil, self, "signData:secKeyAlgorithm:completion:", data, algorithm, handler)
 }
 @(objc_type=PrivateKey, objc_name="canSignUsingSecKeyAlgorithm")
@@ -25,7 +25,7 @@ PrivateKey_canSignUsingSecKeyAlgorithm :: #force_inline proc "c" (self: ^Private
     return msgSend(bool, self, "canSignUsingSecKeyAlgorithm:", algorithm)
 }
 @(objc_type=PrivateKey, objc_name="decryptData")
-PrivateKey_decryptData :: #force_inline proc "c" (self: ^PrivateKey, data: ^NS.Data, algorithm: SecKeyAlgorithm, handler: proc "c" (_arg_0: ^NS.Data, _arg_1: ^NS.Error)) {
+PrivateKey_decryptData :: #force_inline proc "c" (self: ^PrivateKey, data: ^NS.Data, algorithm: SecKeyAlgorithm, handler: ^Objc_Block(proc "c" (_: ^NS.Data, _1: ^NS.Error))) {
     msgSend(nil, self, "decryptData:secKeyAlgorithm:completion:", data, algorithm, handler)
 }
 @(objc_type=PrivateKey, objc_name="canDecryptUsingSecKeyAlgorithm")
@@ -33,7 +33,7 @@ PrivateKey_canDecryptUsingSecKeyAlgorithm :: #force_inline proc "c" (self: ^Priv
     return msgSend(bool, self, "canDecryptUsingSecKeyAlgorithm:", algorithm)
 }
 @(objc_type=PrivateKey, objc_name="exchangeKeysWithPublicKey")
-PrivateKey_exchangeKeysWithPublicKey :: #force_inline proc "c" (self: ^PrivateKey, publicKey: ^NS.Data, algorithm: SecKeyAlgorithm, parameters: ^NS.Dictionary, handler: proc "c" (_arg_0: ^NS.Data, _arg_1: ^NS.Error)) {
+PrivateKey_exchangeKeysWithPublicKey :: #force_inline proc "c" (self: ^PrivateKey, publicKey: ^NS.Data, algorithm: SecKeyAlgorithm, parameters: ^NS.Dictionary, handler: ^Objc_Block(proc "c" (_: ^NS.Data, _1: ^NS.Error))) {
     msgSend(nil, self, "exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:", publicKey, algorithm, parameters, handler)
 }
 @(objc_type=PrivateKey, objc_name="canExchangeKeysUsingSecKeyAlgorithm")

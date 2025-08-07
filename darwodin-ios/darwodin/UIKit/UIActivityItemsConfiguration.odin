@@ -62,35 +62,35 @@ ActivityItemsConfiguration_setSupportedInteractions :: #force_inline proc "c" (s
     msgSend(nil, self, "setSupportedInteractions:", supportedInteractions)
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="metadataProvider")
-ActivityItemsConfiguration_metadataProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration) -> proc "c" () -> id {
-    return msgSend(proc "c" () -> id, self, "metadataProvider")
+ActivityItemsConfiguration_metadataProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration) -> ^Objc_Block(proc "c" () -> id) {
+    return msgSend(^Objc_Block(proc "c" () -> id), self, "metadataProvider")
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="setMetadataProvider")
-ActivityItemsConfiguration_setMetadataProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration, metadataProvider: proc "c" () -> id) {
+ActivityItemsConfiguration_setMetadataProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration, metadataProvider: ^Objc_Block(proc "c" () -> id)) {
     msgSend(nil, self, "setMetadataProvider:", metadataProvider)
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="perItemMetadataProvider")
-ActivityItemsConfiguration_perItemMetadataProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration) -> proc "c" () -> id {
-    return msgSend(proc "c" () -> id, self, "perItemMetadataProvider")
+ActivityItemsConfiguration_perItemMetadataProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration) -> ^Objc_Block(proc "c" () -> id) {
+    return msgSend(^Objc_Block(proc "c" () -> id), self, "perItemMetadataProvider")
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="setPerItemMetadataProvider")
-ActivityItemsConfiguration_setPerItemMetadataProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration, perItemMetadataProvider: proc "c" () -> id) {
+ActivityItemsConfiguration_setPerItemMetadataProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration, perItemMetadataProvider: ^Objc_Block(proc "c" () -> id)) {
     msgSend(nil, self, "setPerItemMetadataProvider:", perItemMetadataProvider)
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="previewProvider")
-ActivityItemsConfiguration_previewProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration) -> proc "c" () -> ^NS.ItemProvider {
-    return msgSend(proc "c" () -> ^NS.ItemProvider, self, "previewProvider")
+ActivityItemsConfiguration_previewProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration) -> ^Objc_Block(proc "c" () -> ^NS.ItemProvider) {
+    return msgSend(^Objc_Block(proc "c" () -> ^NS.ItemProvider), self, "previewProvider")
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="setPreviewProvider")
-ActivityItemsConfiguration_setPreviewProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration, previewProvider: proc "c" () -> ^NS.ItemProvider) {
+ActivityItemsConfiguration_setPreviewProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration, previewProvider: ^Objc_Block(proc "c" () -> ^NS.ItemProvider)) {
     msgSend(nil, self, "setPreviewProvider:", previewProvider)
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="applicationActivitiesProvider")
-ActivityItemsConfiguration_applicationActivitiesProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration) -> proc "c" () -> ^NS.Array {
-    return msgSend(proc "c" () -> ^NS.Array, self, "applicationActivitiesProvider")
+ActivityItemsConfiguration_applicationActivitiesProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration) -> ^Objc_Block(proc "c" () -> ^NS.Array) {
+    return msgSend(^Objc_Block(proc "c" () -> ^NS.Array), self, "applicationActivitiesProvider")
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="setApplicationActivitiesProvider")
-ActivityItemsConfiguration_setApplicationActivitiesProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration, applicationActivitiesProvider: proc "c" () -> ^NS.Array) {
+ActivityItemsConfiguration_setApplicationActivitiesProvider :: #force_inline proc "c" (self: ^ActivityItemsConfiguration, applicationActivitiesProvider: ^Objc_Block(proc "c" () -> ^NS.Array)) {
     msgSend(nil, self, "setApplicationActivitiesProvider:", applicationActivitiesProvider)
 }
 @(objc_type=ActivityItemsConfiguration, objc_name="load", objc_is_class_method=true)

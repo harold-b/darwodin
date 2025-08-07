@@ -28,7 +28,7 @@ SharingService_sharingServiceNamed :: #force_inline proc "c" (serviceName: ^NS.S
     return msgSend(^SharingService, SharingService, "sharingServiceNamed:", serviceName)
 }
 @(objc_type=SharingService, objc_name="initWithTitle")
-SharingService_initWithTitle :: #force_inline proc "c" (self: ^SharingService, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: proc "c" ()) -> ^SharingService {
+SharingService_initWithTitle :: #force_inline proc "c" (self: ^SharingService, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> ^SharingService {
     return msgSend(^SharingService, self, "initWithTitle:image:alternateImage:handler:", title, image, alternateImage, block)
 }
 @(objc_type=SharingService, objc_name="init")

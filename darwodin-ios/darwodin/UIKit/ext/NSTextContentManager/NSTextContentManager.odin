@@ -31,9 +31,9 @@ VTable :: struct {
     initWithCoder: proc(self: ^UI.NSTextContentManager, coder: ^NS.Coder) -> ^UI.NSTextContentManager,
     addTextLayoutManager: proc(self: ^UI.NSTextContentManager, textLayoutManager: ^UI.NSTextLayoutManager),
     removeTextLayoutManager: proc(self: ^UI.NSTextContentManager, textLayoutManager: ^UI.NSTextLayoutManager),
-    synchronizeTextLayoutManagers: proc(self: ^UI.NSTextContentManager, completionHandler: proc "c" (error: ^NS.Error)),
+    synchronizeTextLayoutManagers: proc(self: ^UI.NSTextContentManager, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     textElementsForRange: proc(self: ^UI.NSTextContentManager, range: ^UI.NSTextRange) -> ^NS.Array,
-    performEditingTransactionUsingBlock: proc(self: ^UI.NSTextContentManager, transaction: proc "c" ()),
+    performEditingTransactionUsingBlock: proc(self: ^UI.NSTextContentManager, transaction: ^Objc_Block(proc "c" ())),
     recordEditActionInRange: proc(self: ^UI.NSTextContentManager, originalTextRange: ^UI.NSTextRange, newTextRange: ^UI.NSTextRange),
     delegate: proc(self: ^UI.NSTextContentManager) -> ^UI.NSTextContentManagerDelegate,
     setDelegate: proc(self: ^UI.NSTextContentManager, delegate: ^UI.NSTextContentManagerDelegate),
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeTextLayoutManager:"), auto_cast removeTextLayoutManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.synchronizeTextLayoutManagers != nil {
-        synchronizeTextLayoutManagers :: proc "c" (self: ^UI.NSTextContentManager, _: SEL, completionHandler: proc "c" (error: ^NS.Error)) {
+        synchronizeTextLayoutManagers :: proc "c" (self: ^UI.NSTextContentManager, _: SEL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -145,7 +145,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textElementsForRange:"), auto_cast textElementsForRange, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.performEditingTransactionUsingBlock != nil {
-        performEditingTransactionUsingBlock :: proc "c" (self: ^UI.NSTextContentManager, _: SEL, transaction: proc "c" ()) {
+        performEditingTransactionUsingBlock :: proc "c" (self: ^UI.NSTextContentManager, _: SEL, transaction: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

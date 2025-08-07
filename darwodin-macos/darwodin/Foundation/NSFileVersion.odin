@@ -35,7 +35,7 @@ FileVersion_unresolvedConflictVersionsOfItemAtURL :: #force_inline proc "c" (url
     return msgSend(^Array, FileVersion, "unresolvedConflictVersionsOfItemAtURL:", url)
 }
 @(objc_type=FileVersion, objc_name="getNonlocalVersionsOfItemAtURL", objc_is_class_method=true)
-FileVersion_getNonlocalVersionsOfItemAtURL :: #force_inline proc "c" (url: ^URL, completionHandler: proc "c" (nonlocalFileVersions: ^Array, error: ^Error)) {
+FileVersion_getNonlocalVersionsOfItemAtURL :: #force_inline proc "c" (url: ^URL, completionHandler: ^Objc_Block(proc "c" (nonlocalFileVersions: ^Array, error: ^Error))) {
     msgSend(nil, FileVersion, "getNonlocalVersionsOfItemAtURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=FileVersion, objc_name="versionOfItemAtURL", objc_is_class_method=true)

@@ -29,12 +29,12 @@ PreviewAction_init :: proc "c" (self: ^PreviewAction) -> ^PreviewAction {
 
 
 @(objc_type=PreviewAction, objc_name="actionWithTitle", objc_is_class_method=true)
-PreviewAction_actionWithTitle :: #force_inline proc "c" (title: ^NS.String, style: PreviewActionStyle, handler: proc "c" (action: ^PreviewAction, previewViewController: ^ViewController)) -> ^PreviewAction {
+PreviewAction_actionWithTitle :: #force_inline proc "c" (title: ^NS.String, style: PreviewActionStyle, handler: ^Objc_Block(proc "c" (action: ^PreviewAction, previewViewController: ^ViewController))) -> ^PreviewAction {
     return msgSend(^PreviewAction, PreviewAction, "actionWithTitle:style:handler:", title, style, handler)
 }
 @(objc_type=PreviewAction, objc_name="handler")
-PreviewAction_handler :: #force_inline proc "c" (self: ^PreviewAction) -> proc "c" () {
-    return msgSend(proc "c" (), self, "handler")
+PreviewAction_handler :: #force_inline proc "c" (self: ^PreviewAction) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "handler")
 }
 @(objc_type=PreviewAction, objc_name="load", objc_is_class_method=true)
 PreviewAction_load :: #force_inline proc "c" () {

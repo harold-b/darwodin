@@ -40,11 +40,11 @@ CellAccessoryPopUpMenu_menu :: #force_inline proc "c" (self: ^CellAccessoryPopUp
     return msgSend(^Menu, self, "menu")
 }
 @(objc_type=CellAccessoryPopUpMenu, objc_name="selectedElementDidChangeHandler")
-CellAccessoryPopUpMenu_selectedElementDidChangeHandler :: #force_inline proc "c" (self: ^CellAccessoryPopUpMenu) -> proc "c" () {
-    return msgSend(proc "c" (), self, "selectedElementDidChangeHandler")
+CellAccessoryPopUpMenu_selectedElementDidChangeHandler :: #force_inline proc "c" (self: ^CellAccessoryPopUpMenu) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "selectedElementDidChangeHandler")
 }
 @(objc_type=CellAccessoryPopUpMenu, objc_name="setSelectedElementDidChangeHandler")
-CellAccessoryPopUpMenu_setSelectedElementDidChangeHandler :: #force_inline proc "c" (self: ^CellAccessoryPopUpMenu, selectedElementDidChangeHandler: proc "c" ()) {
+CellAccessoryPopUpMenu_setSelectedElementDidChangeHandler :: #force_inline proc "c" (self: ^CellAccessoryPopUpMenu, selectedElementDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setSelectedElementDidChangeHandler:", selectedElementDidChangeHandler)
 }
 @(objc_type=CellAccessoryPopUpMenu, objc_name="supportsSecureCoding", objc_is_class_method=true)

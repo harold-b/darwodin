@@ -38,7 +38,7 @@ DocumentMenuViewController_initWithCoder :: #force_inline proc "c" (self: ^Docum
     return msgSend(^DocumentMenuViewController, self, "initWithCoder:", coder)
 }
 @(objc_type=DocumentMenuViewController, objc_name="addOptionWithTitle")
-DocumentMenuViewController_addOptionWithTitle :: #force_inline proc "c" (self: ^DocumentMenuViewController, title: ^NS.String, image: ^Image, order: DocumentMenuOrder, handler: proc "c" ()) {
+DocumentMenuViewController_addOptionWithTitle :: #force_inline proc "c" (self: ^DocumentMenuViewController, title: ^NS.String, image: ^Image, order: DocumentMenuOrder, handler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addOptionWithTitle:image:order:handler:", title, image, order, handler)
 }
 @(objc_type=DocumentMenuViewController, objc_name="delegate")

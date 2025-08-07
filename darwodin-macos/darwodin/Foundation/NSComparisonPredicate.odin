@@ -87,7 +87,7 @@ ComparisonPredicate_predicateWithValue :: #force_inline proc "c" (value: bool) -
     return msgSend(^Predicate, ComparisonPredicate, "predicateWithValue:", value)
 }
 @(objc_type=ComparisonPredicate, objc_name="predicateWithBlock", objc_is_class_method=true)
-ComparisonPredicate_predicateWithBlock :: #force_inline proc "c" (block: proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool) -> ^Predicate {
+ComparisonPredicate_predicateWithBlock :: #force_inline proc "c" (block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool)) -> ^Predicate {
     return msgSend(^Predicate, ComparisonPredicate, "predicateWithBlock:", block)
 }
 @(objc_type=ComparisonPredicate, objc_name="supportsSecureCoding", objc_is_class_method=true)

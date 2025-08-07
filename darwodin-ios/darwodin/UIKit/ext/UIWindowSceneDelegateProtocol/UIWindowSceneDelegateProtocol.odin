@@ -25,7 +25,7 @@ import UI "../../"
 
 VTable :: struct {
     windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene, previousCoordinateSpace: ^UI.CoordinateSpace, previousInterfaceOrientation: UI.InterfaceOrientation, previousTraitCollection: ^UI.TraitCollection),
-    windowScene_performActionForShortcutItem_completionHandler: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: proc "c" (succeeded: bool)),
+    windowScene_performActionForShortcutItem_completionHandler: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))),
     windowScene_userDidAcceptCloudKitShareWithMetadata: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene, cloudKitShareMetadata: ^UI.CKShareMetadata),
     window: proc(self: ^UI.WindowSceneDelegateProtocol) -> ^UI.Window,
     setWindow: proc(self: ^UI.WindowSceneDelegateProtocol, window: ^UI.Window),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:"), auto_cast windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection, "v@:@@l@") do panic("Failed to register objC method.")
     }
     if vt.windowScene_performActionForShortcutItem_completionHandler != nil {
-        windowScene_performActionForShortcutItem_completionHandler :: proc "c" (self: ^UI.WindowSceneDelegateProtocol, _: SEL, windowScene: ^UI.WindowScene, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: proc "c" (succeeded: bool)) {
+        windowScene_performActionForShortcutItem_completionHandler :: proc "c" (self: ^UI.WindowSceneDelegateProtocol, _: SEL, windowScene: ^UI.WindowScene, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -41,11 +41,11 @@ Operation_operationID :: #force_inline proc "c" (self: ^Operation) -> ^NS.String
     return msgSend(^NS.String, self, "operationID")
 }
 @(objc_type=Operation, objc_name="longLivedOperationWasPersistedBlock")
-Operation_longLivedOperationWasPersistedBlock :: #force_inline proc "c" (self: ^Operation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "longLivedOperationWasPersistedBlock")
+Operation_longLivedOperationWasPersistedBlock :: #force_inline proc "c" (self: ^Operation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "longLivedOperationWasPersistedBlock")
 }
 @(objc_type=Operation, objc_name="setLongLivedOperationWasPersistedBlock")
-Operation_setLongLivedOperationWasPersistedBlock :: #force_inline proc "c" (self: ^Operation, longLivedOperationWasPersistedBlock: proc "c" ()) {
+Operation_setLongLivedOperationWasPersistedBlock :: #force_inline proc "c" (self: ^Operation, longLivedOperationWasPersistedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setLongLivedOperationWasPersistedBlock:", longLivedOperationWasPersistedBlock)
 }
 @(objc_type=Operation, objc_name="container")

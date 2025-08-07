@@ -24,7 +24,7 @@ Protocol :: distinct id
 import AK "../../"
 
 VTable :: struct {
-    restoreWindowWithIdentifier: proc(identifier: ^NS.String, state: ^NS.Coder, completionHandler: proc "c" (_arg_0: ^AK.Window, _arg_1: ^NS.Error)),
+    restoreWindowWithIdentifier: proc(identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^AK.Window, _1: ^NS.Error))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.restoreWindowWithIdentifier != nil {
-        restoreWindowWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, state: ^NS.Coder, completionHandler: proc "c" (_arg_0: ^AK.Window, _arg_1: ^NS.Error)) {
+        restoreWindowWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^AK.Window, _1: ^NS.Error))) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

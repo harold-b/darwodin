@@ -24,9 +24,9 @@ Protocol :: distinct id
 import AK "../../"
 
 VTable :: struct {
-    enumerateTextElementsFromLocation: proc(self: ^AK.TextElementProvider, textLocation: ^AK.TextLocation, options: AK.TextContentManagerEnumerationOptions, block: proc "c" (element: ^AK.TextElement) -> bool) -> ^AK.TextLocation,
+    enumerateTextElementsFromLocation: proc(self: ^AK.TextElementProvider, textLocation: ^AK.TextLocation, options: AK.TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^AK.TextElement) -> bool)) -> ^AK.TextLocation,
     replaceContentsInRange: proc(self: ^AK.TextElementProvider, range: ^AK.TextRange, textElements: ^NS.Array),
-    synchronizeToBackingStore: proc(self: ^AK.TextElementProvider, completionHandler: proc "c" (error: ^NS.Error)),
+    synchronizeToBackingStore: proc(self: ^AK.TextElementProvider, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     locationFromLocation: proc(self: ^AK.TextElementProvider, location: ^AK.TextLocation, offset: NS.Integer) -> ^AK.TextLocation,
     offsetFromLocation: proc(self: ^AK.TextElementProvider, from: ^AK.TextLocation, to: ^AK.TextLocation) -> NS.Integer,
     adjustedRangeFromRange: proc(self: ^AK.TextElementProvider, textRange: ^AK.TextRange, forEditingTextSelection: bool) -> ^AK.TextRange,
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.enumerateTextElementsFromLocation != nil {
-        enumerateTextElementsFromLocation :: proc "c" (self: ^AK.TextElementProvider, _: SEL, textLocation: ^AK.TextLocation, options: AK.TextContentManagerEnumerationOptions, block: proc "c" (element: ^AK.TextElement) -> bool) -> ^AK.TextLocation {
+        enumerateTextElementsFromLocation :: proc "c" (self: ^AK.TextElementProvider, _: SEL, textLocation: ^AK.TextLocation, options: AK.TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^AK.TextElement) -> bool)) -> ^AK.TextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("replaceContentsInRange:withTextElements:"), auto_cast replaceContentsInRange, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.synchronizeToBackingStore != nil {
-        synchronizeToBackingStore :: proc "c" (self: ^AK.TextElementProvider, _: SEL, completionHandler: proc "c" (error: ^NS.Error)) {
+        synchronizeToBackingStore :: proc "c" (self: ^AK.TextElementProvider, _: SEL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

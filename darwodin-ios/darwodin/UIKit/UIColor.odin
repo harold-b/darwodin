@@ -189,11 +189,11 @@ Color_colorNamed_inBundle_compatibleWithTraitCollection :: #force_inline proc "c
     return msgSend(^Color, Color, "colorNamed:inBundle:compatibleWithTraitCollection:", name, bundle, traitCollection)
 }
 @(objc_type=Color, objc_name="colorWithDynamicProvider", objc_is_class_method=true)
-Color_colorWithDynamicProvider :: #force_inline proc "c" (dynamicProvider: proc "c" (traitCollection: ^TraitCollection) -> ^Color) -> ^Color {
+Color_colorWithDynamicProvider :: #force_inline proc "c" (dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^TraitCollection) -> ^Color)) -> ^Color {
     return msgSend(^Color, Color, "colorWithDynamicProvider:", dynamicProvider)
 }
 @(objc_type=Color, objc_name="initWithDynamicProvider")
-Color_initWithDynamicProvider :: #force_inline proc "c" (self: ^Color, dynamicProvider: proc "c" (traitCollection: ^TraitCollection) -> ^Color) -> ^Color {
+Color_initWithDynamicProvider :: #force_inline proc "c" (self: ^Color, dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^TraitCollection) -> ^Color)) -> ^Color {
     return msgSend(^Color, self, "initWithDynamicProvider:", dynamicProvider)
 }
 @(objc_type=Color, objc_name="resolvedColorWithTraitCollection")

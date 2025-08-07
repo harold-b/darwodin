@@ -57,7 +57,7 @@ Device_newBufferWithBytes :: #force_inline proc "c" (self: ^Device, pointer: raw
     return msgSend(^Buffer, self, "newBufferWithBytes:length:options:", pointer, length, options)
 }
 @(objc_type=Device, objc_name="newBufferWithBytesNoCopy")
-Device_newBufferWithBytesNoCopy :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions, deallocator: proc "c" (pointer: rawptr, length: NS.UInteger)) -> ^Buffer {
+Device_newBufferWithBytesNoCopy :: #force_inline proc "c" (self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions, deallocator: ^Objc_Block(proc "c" (pointer: rawptr, length: NS.UInteger))) -> ^Buffer {
     return msgSend(^Buffer, self, "newBufferWithBytesNoCopy:length:options:deallocator:", pointer, length, options, deallocator)
 }
 @(objc_type=Device, objc_name="newDepthStencilStateWithDescriptor")

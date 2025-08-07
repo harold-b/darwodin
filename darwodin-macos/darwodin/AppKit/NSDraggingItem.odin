@@ -44,11 +44,11 @@ DraggingItem_setDraggingFrame_ :: #force_inline proc "c" (self: ^DraggingItem, d
     msgSend(nil, self, "setDraggingFrame:", draggingFrame)
 }
 @(objc_type=DraggingItem, objc_name="imageComponentsProvider")
-DraggingItem_imageComponentsProvider :: #force_inline proc "c" (self: ^DraggingItem) -> proc "c" () -> ^NS.Array {
-    return msgSend(proc "c" () -> ^NS.Array, self, "imageComponentsProvider")
+DraggingItem_imageComponentsProvider :: #force_inline proc "c" (self: ^DraggingItem) -> ^Objc_Block(proc "c" () -> ^NS.Array) {
+    return msgSend(^Objc_Block(proc "c" () -> ^NS.Array), self, "imageComponentsProvider")
 }
 @(objc_type=DraggingItem, objc_name="setImageComponentsProvider")
-DraggingItem_setImageComponentsProvider :: #force_inline proc "c" (self: ^DraggingItem, imageComponentsProvider: proc "c" () -> ^NS.Array) {
+DraggingItem_setImageComponentsProvider :: #force_inline proc "c" (self: ^DraggingItem, imageComponentsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)) {
     msgSend(nil, self, "setImageComponentsProvider:", imageComponentsProvider)
 }
 @(objc_type=DraggingItem, objc_name="imageComponents")

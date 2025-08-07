@@ -39,11 +39,11 @@ VoiceChat_isVoIPAllowed :: #force_inline proc "c" () -> bool {
     return msgSend(bool, VoiceChat, "isVoIPAllowed")
 }
 @(objc_type=VoiceChat, objc_name="playerVoiceChatStateDidChangeHandler")
-VoiceChat_playerVoiceChatStateDidChangeHandler :: #force_inline proc "c" (self: ^VoiceChat) -> proc "c" () {
-    return msgSend(proc "c" (), self, "playerVoiceChatStateDidChangeHandler")
+VoiceChat_playerVoiceChatStateDidChangeHandler :: #force_inline proc "c" (self: ^VoiceChat) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "playerVoiceChatStateDidChangeHandler")
 }
 @(objc_type=VoiceChat, objc_name="setPlayerVoiceChatStateDidChangeHandler")
-VoiceChat_setPlayerVoiceChatStateDidChangeHandler :: #force_inline proc "c" (self: ^VoiceChat, playerVoiceChatStateDidChangeHandler: proc "c" ()) {
+VoiceChat_setPlayerVoiceChatStateDidChangeHandler :: #force_inline proc "c" (self: ^VoiceChat, playerVoiceChatStateDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPlayerVoiceChatStateDidChangeHandler:", playerVoiceChatStateDidChangeHandler)
 }
 @(objc_type=VoiceChat, objc_name="name")
@@ -71,11 +71,11 @@ VoiceChat_players :: #force_inline proc "c" (self: ^VoiceChat) -> ^NS.Array {
     return msgSend(^NS.Array, self, "players")
 }
 @(objc_type=VoiceChat, objc_name="playerStateUpdateHandler")
-VoiceChat_playerStateUpdateHandler :: #force_inline proc "c" (self: ^VoiceChat) -> proc "c" () {
-    return msgSend(proc "c" (), self, "playerStateUpdateHandler")
+VoiceChat_playerStateUpdateHandler :: #force_inline proc "c" (self: ^VoiceChat) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "playerStateUpdateHandler")
 }
 @(objc_type=VoiceChat, objc_name="setPlayerStateUpdateHandler")
-VoiceChat_setPlayerStateUpdateHandler :: #force_inline proc "c" (self: ^VoiceChat, playerStateUpdateHandler: proc "c" ()) {
+VoiceChat_setPlayerStateUpdateHandler :: #force_inline proc "c" (self: ^VoiceChat, playerStateUpdateHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPlayerStateUpdateHandler:", playerStateUpdateHandler)
 }
 @(objc_type=VoiceChat, objc_name="setMute")

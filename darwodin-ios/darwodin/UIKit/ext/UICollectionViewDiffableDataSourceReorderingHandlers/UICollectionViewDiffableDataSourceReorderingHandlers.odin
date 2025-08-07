@@ -27,12 +27,12 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    canReorderItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers) -> proc "c" () -> bool,
-    setCanReorderItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, canReorderItemHandler: proc "c" () -> bool),
-    willReorderHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers) -> proc "c" (),
-    setWillReorderHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, willReorderHandler: proc "c" ()),
-    didReorderHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers) -> proc "c" (),
-    setDidReorderHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, didReorderHandler: proc "c" ()),
+    canReorderItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers) -> ^Objc_Block(proc "c" () -> bool),
+    setCanReorderItemHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, canReorderItemHandler: ^Objc_Block(proc "c" () -> bool)),
+    willReorderHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers) -> ^Objc_Block(proc "c" ()),
+    setWillReorderHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, willReorderHandler: ^Objc_Block(proc "c" ())),
+    didReorderHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers) -> ^Objc_Block(proc "c" ()),
+    setDidReorderHandler: proc(self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, didReorderHandler: ^Objc_Block(proc "c" ())),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^UI.CollectionViewDiffableDataSourceReorderingHandlers,
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.canReorderItemHandler != nil {
-        canReorderItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL) -> proc "c" () -> bool {
+        canReorderItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL) -> ^Objc_Block(proc "c" () -> bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canReorderItemHandler"), auto_cast canReorderItemHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setCanReorderItemHandler != nil {
-        setCanReorderItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL, canReorderItemHandler: proc "c" () -> bool) {
+        setCanReorderItemHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL, canReorderItemHandler: ^Objc_Block(proc "c" () -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCanReorderItemHandler:"), auto_cast setCanReorderItemHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.willReorderHandler != nil {
-        willReorderHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL) -> proc "c" () {
+        willReorderHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("willReorderHandler"), auto_cast willReorderHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setWillReorderHandler != nil {
-        setWillReorderHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL, willReorderHandler: proc "c" ()) {
+        setWillReorderHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL, willReorderHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWillReorderHandler:"), auto_cast setWillReorderHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.didReorderHandler != nil {
-        didReorderHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL) -> proc "c" () {
+        didReorderHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didReorderHandler"), auto_cast didReorderHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setDidReorderHandler != nil {
-        setDidReorderHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL, didReorderHandler: proc "c" ()) {
+        setDidReorderHandler :: proc "c" (self: ^UI.CollectionViewDiffableDataSourceReorderingHandlers, _: SEL, didReorderHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -30,7 +30,7 @@ StoryboardPopoverSegue_popoverController :: #force_inline proc "c" (self: ^Story
     return msgSend(^PopoverController, self, "popoverController")
 }
 @(objc_type=StoryboardPopoverSegue, objc_name="segueWithIdentifier", objc_is_class_method=true)
-StoryboardPopoverSegue_segueWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, source: ^ViewController, destination: ^ViewController, performHandler: proc "c" ()) -> ^StoryboardSegue {
+StoryboardPopoverSegue_segueWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, source: ^ViewController, destination: ^ViewController, performHandler: ^Objc_Block(proc "c" ())) -> ^StoryboardSegue {
     return msgSend(^StoryboardSegue, StoryboardPopoverSegue, "segueWithIdentifier:source:destination:performHandler:", identifier, source, destination, performHandler)
 }
 @(objc_type=StoryboardPopoverSegue, objc_name="load", objc_is_class_method=true)

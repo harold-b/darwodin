@@ -29,8 +29,8 @@ VTable :: struct {
     disableUpdates: proc(self: ^NS.MetadataQuery),
     enableUpdates: proc(self: ^NS.MetadataQuery),
     resultAtIndex: proc(self: ^NS.MetadataQuery, idx: NS.UInteger) -> id,
-    enumerateResultsUsingBlock: proc(self: ^NS.MetadataQuery, block: proc "c" (result: id, idx: NS.UInteger, stop: ^bool)),
-    enumerateResultsWithOptions: proc(self: ^NS.MetadataQuery, opts: NS.EnumerationOptions, block: proc "c" (result: id, idx: NS.UInteger, stop: ^bool)),
+    enumerateResultsUsingBlock: proc(self: ^NS.MetadataQuery, block: ^Objc_Block(proc "c" (result: id, idx: NS.UInteger, stop: ^bool))),
+    enumerateResultsWithOptions: proc(self: ^NS.MetadataQuery, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (result: id, idx: NS.UInteger, stop: ^bool))),
     indexOfResult: proc(self: ^NS.MetadataQuery, result: id) -> NS.UInteger,
     valueOfAttribute: proc(self: ^NS.MetadataQuery, attrName: ^NS.String, idx: NS.UInteger) -> id,
     delegate: proc(self: ^NS.MetadataQuery) -> ^NS.MetadataQueryDelegate,
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resultAtIndex:"), auto_cast resultAtIndex, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.enumerateResultsUsingBlock != nil {
-        enumerateResultsUsingBlock :: proc "c" (self: ^NS.MetadataQuery, _: SEL, block: proc "c" (result: id, idx: NS.UInteger, stop: ^bool)) {
+        enumerateResultsUsingBlock :: proc "c" (self: ^NS.MetadataQuery, _: SEL, block: ^Objc_Block(proc "c" (result: id, idx: NS.UInteger, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateResultsUsingBlock:"), auto_cast enumerateResultsUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.enumerateResultsWithOptions != nil {
-        enumerateResultsWithOptions :: proc "c" (self: ^NS.MetadataQuery, _: SEL, opts: NS.EnumerationOptions, block: proc "c" (result: id, idx: NS.UInteger, stop: ^bool)) {
+        enumerateResultsWithOptions :: proc "c" (self: ^NS.MetadataQuery, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (result: id, idx: NS.UInteger, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

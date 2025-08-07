@@ -82,7 +82,7 @@ CollectionViewListCell_setAnimationsEnabled :: #force_inline proc "c" (enabled: 
     msgSend(nil, CollectionViewListCell, "setAnimationsEnabled:", enabled)
 }
 @(objc_type=CollectionViewListCell, objc_name="performWithoutAnimation", objc_is_class_method=true)
-CollectionViewListCell_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: proc "c" ()) {
+CollectionViewListCell_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionViewListCell, "performWithoutAnimation:", actionsWithoutAnimation)
 }
 @(objc_type=CollectionViewListCell, objc_name="areAnimationsEnabled", objc_is_class_method=true)
@@ -94,47 +94,47 @@ CollectionViewListCell_inheritedAnimationDuration :: #force_inline proc "c" () -
     return msgSend(NS.TimeInterval, CollectionViewListCell, "inheritedAnimationDuration")
 }
 @(objc_type=CollectionViewListCell, objc_name="animateWithDuration_delay_options_animations_completion", objc_is_class_method=true)
-CollectionViewListCell_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionViewListCell_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionViewListCell, "animateWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=CollectionViewListCell, objc_name="animateWithDuration_animations_completion", objc_is_class_method=true)
-CollectionViewListCell_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionViewListCell_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionViewListCell, "animateWithDuration:animations:completion:", duration, animations, completion)
 }
 @(objc_type=CollectionViewListCell, objc_name="animateWithDuration_animations", objc_is_class_method=true)
-CollectionViewListCell_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" ()) {
+CollectionViewListCell_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionViewListCell, "animateWithDuration:animations:", duration, animations)
 }
 @(objc_type=CollectionViewListCell, objc_name="animateWithSpringDuration", objc_is_class_method=true)
-CollectionViewListCell_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionViewListCell_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionViewListCell, "animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:", duration, bounce, velocity, delay, options, animations, completion)
 }
 @(objc_type=CollectionViewListCell, objc_name="animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion", objc_is_class_method=true)
-CollectionViewListCell_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionViewListCell_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionViewListCell, "animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:", duration, delay, dampingRatio, velocity, options, animations, completion)
 }
 @(objc_type=CollectionViewListCell, objc_name="transitionWithView", objc_is_class_method=true)
-CollectionViewListCell_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionViewListCell_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionViewListCell, "transitionWithView:duration:options:animations:completion:", view, duration, options, animations, completion)
 }
 @(objc_type=CollectionViewListCell, objc_name="transitionFromView", objc_is_class_method=true)
-CollectionViewListCell_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: proc "c" (finished: bool)) {
+CollectionViewListCell_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionViewListCell, "transitionFromView:toView:duration:options:completion:", fromView, toView, duration, options, completion)
 }
 @(objc_type=CollectionViewListCell, objc_name="performSystemAnimation", objc_is_class_method=true)
-CollectionViewListCell_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionViewListCell_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionViewListCell, "performSystemAnimation:onViews:options:animations:completion:", animation, views, options, parallelAnimations, completion)
 }
 @(objc_type=CollectionViewListCell, objc_name="modifyAnimationsWithRepeatCount", objc_is_class_method=true)
-CollectionViewListCell_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: proc "c" ()) {
+CollectionViewListCell_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionViewListCell, "modifyAnimationsWithRepeatCount:autoreverses:animations:", count, autoreverses, animations)
 }
 @(objc_type=CollectionViewListCell, objc_name="animateKeyframesWithDuration", objc_is_class_method=true)
-CollectionViewListCell_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionViewListCell_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionViewListCell, "animateKeyframesWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=CollectionViewListCell, objc_name="addKeyframeWithRelativeStartTime", objc_is_class_method=true)
-CollectionViewListCell_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: proc "c" ()) {
+CollectionViewListCell_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionViewListCell, "addKeyframeWithRelativeStartTime:relativeDuration:animations:", frameStartTime, frameDuration, animations)
 }
 @(objc_type=CollectionViewListCell, objc_name="requiresConstraintBasedLayout", objc_is_class_method=true)

@@ -30,8 +30,8 @@ VTable :: struct {
     new: proc() -> ^AK.ManagedObjectContext,
     init: proc(self: ^AK.ManagedObjectContext) -> ^AK.ManagedObjectContext,
     initWithConcurrencyType: proc(self: ^AK.ManagedObjectContext, ct: AK.ManagedObjectContextConcurrencyType) -> ^AK.ManagedObjectContext,
-    performBlock: proc(self: ^AK.ManagedObjectContext, block: proc "c" ()),
-    performBlockAndWait: proc(self: ^AK.ManagedObjectContext, block: proc "c" ()),
+    performBlock: proc(self: ^AK.ManagedObjectContext, block: ^Objc_Block(proc "c" ())),
+    performBlockAndWait: proc(self: ^AK.ManagedObjectContext, block: ^Objc_Block(proc "c" ())),
     objectRegisteredForID: proc(self: ^AK.ManagedObjectContext, objectID: ^AK.ManagedObjectID) -> ^AK.ManagedObject,
     objectWithID: proc(self: ^AK.ManagedObjectContext, objectID: ^AK.ManagedObjectID) -> ^AK.ManagedObject,
     existingObjectWithID: proc(self: ^AK.ManagedObjectContext, objectID: ^AK.ManagedObjectID, error: ^^NS.Error) -> ^AK.ManagedObject,
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithConcurrencyType:"), auto_cast initWithConcurrencyType, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.performBlock != nil {
-        performBlock :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL, block: proc "c" ()) {
+        performBlock :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performBlock:"), auto_cast performBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.performBlockAndWait != nil {
-        performBlockAndWait :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL, block: proc "c" ()) {
+        performBlockAndWait :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

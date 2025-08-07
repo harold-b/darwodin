@@ -40,19 +40,19 @@ DevicePhysicalInput_setQueue :: #force_inline proc "c" (self: ^DevicePhysicalInp
     msgSend(nil, self, "setQueue:", queue)
 }
 @(objc_type=DevicePhysicalInput, objc_name="elementValueDidChangeHandler")
-DevicePhysicalInput_elementValueDidChangeHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> proc "c" () {
-    return msgSend(proc "c" (), self, "elementValueDidChangeHandler")
+DevicePhysicalInput_elementValueDidChangeHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "elementValueDidChangeHandler")
 }
 @(objc_type=DevicePhysicalInput, objc_name="setElementValueDidChangeHandler")
-DevicePhysicalInput_setElementValueDidChangeHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput, elementValueDidChangeHandler: proc "c" ()) {
+DevicePhysicalInput_setElementValueDidChangeHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput, elementValueDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setElementValueDidChangeHandler:", elementValueDidChangeHandler)
 }
 @(objc_type=DevicePhysicalInput, objc_name="inputStateAvailableHandler")
-DevicePhysicalInput_inputStateAvailableHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> proc "c" () {
-    return msgSend(proc "c" (), self, "inputStateAvailableHandler")
+DevicePhysicalInput_inputStateAvailableHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "inputStateAvailableHandler")
 }
 @(objc_type=DevicePhysicalInput, objc_name="setInputStateAvailableHandler")
-DevicePhysicalInput_setInputStateAvailableHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput, inputStateAvailableHandler: proc "c" ()) {
+DevicePhysicalInput_setInputStateAvailableHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput, inputStateAvailableHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setInputStateAvailableHandler:", inputStateAvailableHandler)
 }
 @(objc_type=DevicePhysicalInput, objc_name="inputStateQueueDepth")

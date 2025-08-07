@@ -36,7 +36,7 @@ VTable :: struct {
     originalRequest: proc(self: ^NS.URLConnection) -> ^NS.URLRequest,
     currentRequest: proc(self: ^NS.URLConnection) -> ^NS.URLRequest,
     sendSynchronousRequest: proc(request: ^NS.URLRequest, response: ^^NS.URLResponse, error: ^^NS.Error) -> ^NS.Data,
-    sendAsynchronousRequest: proc(request: ^NS.URLRequest, queue: ^NS.OperationQueue, handler: proc "c" (response: ^NS.URLResponse, data: ^NS.Data, connectionError: ^NS.Error)),
+    sendAsynchronousRequest: proc(request: ^NS.URLRequest, queue: ^NS.OperationQueue, handler: ^Objc_Block(proc "c" (response: ^NS.URLResponse, data: ^NS.Data, connectionError: ^NS.Error))),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^NS.URLConnection,
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sendSynchronousRequest:returningResponse:error:"), auto_cast sendSynchronousRequest, "@#:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.sendAsynchronousRequest != nil {
-        sendAsynchronousRequest :: proc "c" (self: Class, _: SEL, request: ^NS.URLRequest, queue: ^NS.OperationQueue, handler: proc "c" (response: ^NS.URLResponse, data: ^NS.Data, connectionError: ^NS.Error)) {
+        sendAsynchronousRequest :: proc "c" (self: Class, _: SEL, request: ^NS.URLRequest, queue: ^NS.OperationQueue, handler: ^Objc_Block(proc "c" (response: ^NS.URLResponse, data: ^NS.Data, connectionError: ^NS.Error))) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

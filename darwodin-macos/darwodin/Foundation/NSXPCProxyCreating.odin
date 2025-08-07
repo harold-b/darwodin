@@ -21,10 +21,10 @@ XPCProxyCreating_remoteObjectProxy :: #force_inline proc "c" (self: ^XPCProxyCre
     return msgSend(id, self, "remoteObjectProxy")
 }
 @(objc_type=XPCProxyCreating, objc_name="remoteObjectProxyWithErrorHandler")
-XPCProxyCreating_remoteObjectProxyWithErrorHandler :: #force_inline proc "c" (self: ^XPCProxyCreating, handler: proc "c" (error: ^Error)) -> id {
+XPCProxyCreating_remoteObjectProxyWithErrorHandler :: #force_inline proc "c" (self: ^XPCProxyCreating, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id {
     return msgSend(id, self, "remoteObjectProxyWithErrorHandler:", handler)
 }
 @(objc_type=XPCProxyCreating, objc_name="synchronousRemoteObjectProxyWithErrorHandler")
-XPCProxyCreating_synchronousRemoteObjectProxyWithErrorHandler :: #force_inline proc "c" (self: ^XPCProxyCreating, handler: proc "c" (error: ^Error)) -> id {
+XPCProxyCreating_synchronousRemoteObjectProxyWithErrorHandler :: #force_inline proc "c" (self: ^XPCProxyCreating, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id {
     return msgSend(id, self, "synchronousRemoteObjectProxyWithErrorHandler:", handler)
 }

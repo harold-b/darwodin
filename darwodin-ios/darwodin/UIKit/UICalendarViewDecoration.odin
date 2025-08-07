@@ -28,7 +28,7 @@ CalendarViewDecoration_initWithImage :: #force_inline proc "c" (self: ^CalendarV
     return msgSend(^CalendarViewDecoration, self, "initWithImage:color:size:", image, color, size)
 }
 @(objc_type=CalendarViewDecoration, objc_name="initWithCustomViewProvider")
-CalendarViewDecoration_initWithCustomViewProvider :: #force_inline proc "c" (self: ^CalendarViewDecoration, customViewProvider: proc "c" () -> ^View) -> ^CalendarViewDecoration {
+CalendarViewDecoration_initWithCustomViewProvider :: #force_inline proc "c" (self: ^CalendarViewDecoration, customViewProvider: ^Objc_Block(proc "c" () -> ^View)) -> ^CalendarViewDecoration {
     return msgSend(^CalendarViewDecoration, self, "initWithCustomViewProvider:", customViewProvider)
 }
 @(objc_type=CalendarViewDecoration, objc_name="decorationWithColor", objc_is_class_method=true)
@@ -44,7 +44,7 @@ CalendarViewDecoration_decorationWithImage_color_size :: #force_inline proc "c" 
     return msgSend(^CalendarViewDecoration, CalendarViewDecoration, "decorationWithImage:color:size:", image, color, size)
 }
 @(objc_type=CalendarViewDecoration, objc_name="decorationWithCustomViewProvider", objc_is_class_method=true)
-CalendarViewDecoration_decorationWithCustomViewProvider :: #force_inline proc "c" (customViewProvider: proc "c" () -> ^View) -> ^CalendarViewDecoration {
+CalendarViewDecoration_decorationWithCustomViewProvider :: #force_inline proc "c" (customViewProvider: ^Objc_Block(proc "c" () -> ^View)) -> ^CalendarViewDecoration {
     return msgSend(^CalendarViewDecoration, CalendarViewDecoration, "decorationWithCustomViewProvider:", customViewProvider)
 }
 @(objc_type=CalendarViewDecoration, objc_name="load", objc_is_class_method=true)

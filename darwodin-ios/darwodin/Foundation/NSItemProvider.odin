@@ -23,11 +23,11 @@ ItemProvider_init :: #force_inline proc "c" (self: ^ItemProvider) -> ^ItemProvid
     return msgSend(^ItemProvider, self, "init")
 }
 @(objc_type=ItemProvider, objc_name="registerDataRepresentationForTypeIdentifier")
-ItemProvider_registerDataRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, visibility: ItemProviderRepresentationVisibility, loadHandler: proc "c" (completionHandler: proc "c" (data: ^Data, error: ^Error)) -> ^Progress) {
+ItemProvider_registerDataRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress)) {
     msgSend(nil, self, "registerDataRepresentationForTypeIdentifier:visibility:loadHandler:", typeIdentifier, visibility, loadHandler)
 }
 @(objc_type=ItemProvider, objc_name="registerFileRepresentationForTypeIdentifier")
-ItemProvider_registerFileRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, fileOptions: ItemProviderFileOptions, visibility: ItemProviderRepresentationVisibility, loadHandler: proc "c" (completionHandler: proc "c" (url: ^URL, coordinated: bool, error: ^Error)) -> ^Progress) {
+ItemProvider_registerFileRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, fileOptions: ItemProviderFileOptions, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (url: ^URL, coordinated: bool, error: ^Error))) -> ^Progress)) {
     msgSend(nil, self, "registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:", typeIdentifier, fileOptions, visibility, loadHandler)
 }
 @(objc_type=ItemProvider, objc_name="registeredTypeIdentifiersWithFileOptions")
@@ -43,15 +43,15 @@ ItemProvider_hasRepresentationConformingToTypeIdentifier :: #force_inline proc "
     return msgSend(bool, self, "hasRepresentationConformingToTypeIdentifier:fileOptions:", typeIdentifier, fileOptions)
 }
 @(objc_type=ItemProvider, objc_name="loadDataRepresentationForTypeIdentifier")
-ItemProvider_loadDataRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, completionHandler: proc "c" (data: ^Data, error: ^Error)) -> ^Progress {
+ItemProvider_loadDataRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress {
     return msgSend(^Progress, self, "loadDataRepresentationForTypeIdentifier:completionHandler:", typeIdentifier, completionHandler)
 }
 @(objc_type=ItemProvider, objc_name="loadFileRepresentationForTypeIdentifier")
-ItemProvider_loadFileRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, completionHandler: proc "c" (url: ^URL, error: ^Error)) -> ^Progress {
+ItemProvider_loadFileRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (url: ^URL, error: ^Error))) -> ^Progress {
     return msgSend(^Progress, self, "loadFileRepresentationForTypeIdentifier:completionHandler:", typeIdentifier, completionHandler)
 }
 @(objc_type=ItemProvider, objc_name="loadInPlaceFileRepresentationForTypeIdentifier")
-ItemProvider_loadInPlaceFileRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, completionHandler: proc "c" (url: ^URL, isInPlace: bool, error: ^Error)) -> ^Progress {
+ItemProvider_loadInPlaceFileRepresentationForTypeIdentifier :: #force_inline proc "c" (self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (url: ^URL, isInPlace: bool, error: ^Error))) -> ^Progress {
     return msgSend(^Progress, self, "loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:", typeIdentifier, completionHandler)
 }
 @(objc_type=ItemProvider, objc_name="initWithObject")
@@ -63,7 +63,7 @@ ItemProvider_registerObject :: #force_inline proc "c" (self: ^ItemProvider, obje
     msgSend(nil, self, "registerObject:visibility:", object, visibility)
 }
 @(objc_type=ItemProvider, objc_name="registerObjectOfClass")
-ItemProvider_registerObjectOfClass :: #force_inline proc "c" (self: ^ItemProvider, aClass: ^Class, visibility: ItemProviderRepresentationVisibility, loadHandler: proc "c" (completionHandler: proc "c" (object: ^ItemProviderWriting, error: ^Error)) -> ^Progress) {
+ItemProvider_registerObjectOfClass :: #force_inline proc "c" (self: ^ItemProvider, aClass: ^Class, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (object: ^ItemProviderWriting, error: ^Error))) -> ^Progress)) {
     msgSend(nil, self, "registerObjectOfClass:visibility:loadHandler:", aClass, visibility, loadHandler)
 }
 @(objc_type=ItemProvider, objc_name="canLoadObjectOfClass")
@@ -71,7 +71,7 @@ ItemProvider_canLoadObjectOfClass :: #force_inline proc "c" (self: ^ItemProvider
     return msgSend(bool, self, "canLoadObjectOfClass:", aClass)
 }
 @(objc_type=ItemProvider, objc_name="loadObjectOfClass")
-ItemProvider_loadObjectOfClass :: #force_inline proc "c" (self: ^ItemProvider, aClass: ^Class, completionHandler: proc "c" (object: ^ItemProviderReading, error: ^Error)) -> ^Progress {
+ItemProvider_loadObjectOfClass :: #force_inline proc "c" (self: ^ItemProvider, aClass: ^Class, completionHandler: ^Objc_Block(proc "c" (object: ^ItemProviderReading, error: ^Error))) -> ^Progress {
     return msgSend(^Progress, self, "loadObjectOfClass:completionHandler:", aClass, completionHandler)
 }
 @(objc_type=ItemProvider, objc_name="initWithItem")

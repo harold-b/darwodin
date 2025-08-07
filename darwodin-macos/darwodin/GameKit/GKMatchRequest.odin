@@ -91,19 +91,19 @@ MatchRequest_setRestrictToAutomatch :: #force_inline proc "c" (self: ^MatchReque
     msgSend(nil, self, "setRestrictToAutomatch:", restrictToAutomatch)
 }
 @(objc_type=MatchRequest, objc_name="recipientResponseHandler")
-MatchRequest_recipientResponseHandler :: #force_inline proc "c" (self: ^MatchRequest) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recipientResponseHandler")
+MatchRequest_recipientResponseHandler :: #force_inline proc "c" (self: ^MatchRequest) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recipientResponseHandler")
 }
 @(objc_type=MatchRequest, objc_name="setRecipientResponseHandler")
-MatchRequest_setRecipientResponseHandler :: #force_inline proc "c" (self: ^MatchRequest, recipientResponseHandler: proc "c" ()) {
+MatchRequest_setRecipientResponseHandler :: #force_inline proc "c" (self: ^MatchRequest, recipientResponseHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecipientResponseHandler:", recipientResponseHandler)
 }
 @(objc_type=MatchRequest, objc_name="inviteeResponseHandler")
-MatchRequest_inviteeResponseHandler :: #force_inline proc "c" (self: ^MatchRequest) -> proc "c" () {
-    return msgSend(proc "c" (), self, "inviteeResponseHandler")
+MatchRequest_inviteeResponseHandler :: #force_inline proc "c" (self: ^MatchRequest) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "inviteeResponseHandler")
 }
 @(objc_type=MatchRequest, objc_name="setInviteeResponseHandler")
-MatchRequest_setInviteeResponseHandler :: #force_inline proc "c" (self: ^MatchRequest, inviteeResponseHandler: proc "c" ()) {
+MatchRequest_setInviteeResponseHandler :: #force_inline proc "c" (self: ^MatchRequest, inviteeResponseHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setInviteeResponseHandler:", inviteeResponseHandler)
 }
 @(objc_type=MatchRequest, objc_name="playersToInvite")

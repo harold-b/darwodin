@@ -26,7 +26,7 @@ ColorSampler_init :: proc "c" (self: ^ColorSampler) -> ^ColorSampler {
 
 
 @(objc_type=ColorSampler, objc_name="showSamplerWithSelectionHandler")
-ColorSampler_showSamplerWithSelectionHandler :: #force_inline proc "c" (self: ^ColorSampler, selectionHandler: proc "c" (selectedColor: ^Color)) {
+ColorSampler_showSamplerWithSelectionHandler :: #force_inline proc "c" (self: ^ColorSampler, selectionHandler: ^Objc_Block(proc "c" (selectedColor: ^Color))) {
     msgSend(nil, self, "showSamplerWithSelectionHandler:", selectionHandler)
 }
 @(objc_type=ColorSampler, objc_name="load", objc_is_class_method=true)

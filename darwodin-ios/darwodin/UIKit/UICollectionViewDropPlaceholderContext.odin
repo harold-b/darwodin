@@ -22,7 +22,7 @@ CollectionViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object
 }
 
 @(objc_type=CollectionViewDropPlaceholderContext, objc_name="commitInsertionWithDataSourceUpdates")
-CollectionViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholderContext, dataSourceUpdates: proc "c" (insertionIndexPath: ^NS.IndexPath)) -> bool {
+CollectionViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool {
     return msgSend(bool, self, "commitInsertionWithDataSourceUpdates:", dataSourceUpdates)
 }
 @(objc_type=CollectionViewDropPlaceholderContext, objc_name="deletePlaceholder")

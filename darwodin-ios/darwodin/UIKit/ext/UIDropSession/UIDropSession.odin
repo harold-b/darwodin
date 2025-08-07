@@ -24,7 +24,7 @@ Protocol :: distinct id
 import UI "../../"
 
 VTable :: struct {
-    loadObjectsOfClass: proc(self: ^UI.DropSession, aClass: ^Class, completion: proc "c" (objects: ^NS.Array)) -> ^NS.Progress,
+    loadObjectsOfClass: proc(self: ^UI.DropSession, aClass: ^Class, completion: ^Objc_Block(proc "c" (objects: ^NS.Array))) -> ^NS.Progress,
     localDragSession: proc(self: ^UI.DropSession) -> ^UI.DragSession,
     progressIndicatorStyle: proc(self: ^UI.DropSession) -> UI.DropSessionProgressIndicatorStyle,
     setProgressIndicatorStyle: proc(self: ^UI.DropSession, progressIndicatorStyle: UI.DropSessionProgressIndicatorStyle),
@@ -35,7 +35,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.loadObjectsOfClass != nil {
-        loadObjectsOfClass :: proc "c" (self: ^UI.DropSession, _: SEL, aClass: ^Class, completion: proc "c" (objects: ^NS.Array)) -> ^NS.Progress {
+        loadObjectsOfClass :: proc "c" (self: ^UI.DropSession, _: SEL, aClass: ^Class, completion: ^Objc_Block(proc "c" (objects: ^NS.Array))) -> ^NS.Progress {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

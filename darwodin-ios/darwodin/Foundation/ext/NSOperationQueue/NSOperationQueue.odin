@@ -26,8 +26,8 @@ VTable :: struct {
     super: NSObject.VTable,
     addOperation: proc(self: ^NS.OperationQueue, op: ^NS.Operation),
     addOperations: proc(self: ^NS.OperationQueue, ops: ^NS.Array, wait: bool),
-    addOperationWithBlock: proc(self: ^NS.OperationQueue, block: proc "c" ()),
-    addBarrierBlock: proc(self: ^NS.OperationQueue, barrier: proc "c" ()),
+    addOperationWithBlock: proc(self: ^NS.OperationQueue, block: ^Objc_Block(proc "c" ())),
+    addBarrierBlock: proc(self: ^NS.OperationQueue, barrier: ^Objc_Block(proc "c" ())),
     cancelAllOperations: proc(self: ^NS.OperationQueue),
     waitUntilAllOperationsAreFinished: proc(self: ^NS.OperationQueue),
     progress: proc(self: ^NS.OperationQueue) -> ^NS.Progress,
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addOperations:waitUntilFinished:"), auto_cast addOperations, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.addOperationWithBlock != nil {
-        addOperationWithBlock :: proc "c" (self: ^NS.OperationQueue, _: SEL, block: proc "c" ()) {
+        addOperationWithBlock :: proc "c" (self: ^NS.OperationQueue, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addOperationWithBlock:"), auto_cast addOperationWithBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.addBarrierBlock != nil {
-        addBarrierBlock :: proc "c" (self: ^NS.OperationQueue, _: SEL, barrier: proc "c" ()) {
+        addBarrierBlock :: proc "c" (self: ^NS.OperationQueue, _: SEL, barrier: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

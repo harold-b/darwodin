@@ -30,15 +30,15 @@ Workspace_openURL_ :: #force_inline proc "c" (self: ^Workspace, url: ^NS.URL) ->
     return msgSend(bool, self, "openURL:", url)
 }
 @(objc_type=Workspace, objc_name="openURL_configuration_completionHandler")
-Workspace_openURL_configuration_completionHandler :: #force_inline proc "c" (self: ^Workspace, url: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^RunningApplication, error: ^NS.Error)) {
+Workspace_openURL_configuration_completionHandler :: #force_inline proc "c" (self: ^Workspace, url: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^RunningApplication, error: ^NS.Error))) {
     msgSend(nil, self, "openURL:configuration:completionHandler:", url, configuration, completionHandler)
 }
 @(objc_type=Workspace, objc_name="openURLs_withApplicationAtURL_configuration_completionHandler")
-Workspace_openURLs_withApplicationAtURL_configuration_completionHandler :: #force_inline proc "c" (self: ^Workspace, urls: ^NS.Array, applicationURL: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^RunningApplication, error: ^NS.Error)) {
+Workspace_openURLs_withApplicationAtURL_configuration_completionHandler :: #force_inline proc "c" (self: ^Workspace, urls: ^NS.Array, applicationURL: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^RunningApplication, error: ^NS.Error))) {
     msgSend(nil, self, "openURLs:withApplicationAtURL:configuration:completionHandler:", urls, applicationURL, configuration, completionHandler)
 }
 @(objc_type=Workspace, objc_name="openApplicationAtURL")
-Workspace_openApplicationAtURL :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: proc "c" (app: ^RunningApplication, error: ^NS.Error)) {
+Workspace_openApplicationAtURL :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^RunningApplication, error: ^NS.Error))) {
     msgSend(nil, self, "openApplicationAtURL:configuration:completionHandler:", applicationURL, configuration, completionHandler)
 }
 @(objc_type=Workspace, objc_name="selectFile")
@@ -78,11 +78,11 @@ Workspace_setIcon :: #force_inline proc "c" (self: ^Workspace, image: ^NS.Image,
     return msgSend(bool, self, "setIcon:forFile:options:", image, fullPath, options)
 }
 @(objc_type=Workspace, objc_name="recycleURLs")
-Workspace_recycleURLs :: #force_inline proc "c" (self: ^Workspace, URLs: ^NS.Array, handler: proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error)) {
+Workspace_recycleURLs :: #force_inline proc "c" (self: ^Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))) {
     msgSend(nil, self, "recycleURLs:completionHandler:", URLs, handler)
 }
 @(objc_type=Workspace, objc_name="duplicateURLs")
-Workspace_duplicateURLs :: #force_inline proc "c" (self: ^Workspace, URLs: ^NS.Array, handler: proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error)) {
+Workspace_duplicateURLs :: #force_inline proc "c" (self: ^Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))) {
     msgSend(nil, self, "duplicateURLs:completionHandler:", URLs, handler)
 }
 @(objc_type=Workspace, objc_name="getFileSystemInfoForPath")
@@ -122,15 +122,15 @@ Workspace_URLsForApplicationsToOpenURL :: #force_inline proc "c" (self: ^Workspa
     return msgSend(^NS.Array, self, "URLsForApplicationsToOpenURL:", url)
 }
 @(objc_type=Workspace, objc_name="setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler")
-Workspace_setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)) {
+Workspace_setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:", applicationURL, url, completionHandler)
 }
 @(objc_type=Workspace, objc_name="setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler")
-Workspace_setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, urlScheme: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+Workspace_setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, urlScheme: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:", applicationURL, urlScheme, completionHandler)
 }
 @(objc_type=Workspace, objc_name="setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler")
-Workspace_setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)) {
+Workspace_setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "setDefaultApplicationAtURL:toOpenFileAtURL:completionHandler:", applicationURL, url, completionHandler)
 }
 @(objc_type=Workspace, objc_name="URLForApplicationToOpenContentType")
@@ -142,7 +142,7 @@ Workspace_URLsForApplicationsToOpenContentType :: #force_inline proc "c" (self: 
     return msgSend(^NS.Array, self, "URLsForApplicationsToOpenContentType:", contentType)
 }
 @(objc_type=Workspace, objc_name="setDefaultApplicationAtURL_toOpenContentType_completionHandler")
-Workspace_setDefaultApplicationAtURL_toOpenContentType_completionHandler :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, contentType: ^UTType, completionHandler: proc "c" (error: ^NS.Error)) {
+Workspace_setDefaultApplicationAtURL_toOpenContentType_completionHandler :: #force_inline proc "c" (self: ^Workspace, applicationURL: ^NS.URL, contentType: ^UTType, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "setDefaultApplicationAtURL:toOpenContentType:completionHandler:", applicationURL, contentType, completionHandler)
 }
 @(objc_type=Workspace, objc_name="sharedWorkspace", objc_is_class_method=true)
@@ -182,7 +182,7 @@ Workspace_desktopImageOptionsForScreen :: #force_inline proc "c" (self: ^Workspa
     return msgSend(^NS.Dictionary, self, "desktopImageOptionsForScreen:", screen)
 }
 @(objc_type=Workspace, objc_name="requestAuthorizationOfType")
-Workspace_requestAuthorizationOfType :: #force_inline proc "c" (self: ^Workspace, type: WorkspaceAuthorizationType, completionHandler: proc "c" (authorization: ^WorkspaceAuthorization, error: ^NS.Error)) {
+Workspace_requestAuthorizationOfType :: #force_inline proc "c" (self: ^Workspace, type: WorkspaceAuthorizationType, completionHandler: ^Objc_Block(proc "c" (authorization: ^WorkspaceAuthorization, error: ^NS.Error))) {
     msgSend(nil, self, "requestAuthorizationOfType:completionHandler:", type, completionHandler)
 }
 @(objc_type=Workspace, objc_name="openFile_")

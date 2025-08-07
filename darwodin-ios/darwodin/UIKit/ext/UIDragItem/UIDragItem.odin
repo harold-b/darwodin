@@ -34,8 +34,8 @@ VTable :: struct {
     itemProvider: proc(self: ^UI.DragItem) -> ^NS.ItemProvider,
     localObject: proc(self: ^UI.DragItem) -> id,
     setLocalObject: proc(self: ^UI.DragItem, localObject: id),
-    previewProvider: proc(self: ^UI.DragItem) -> proc "c" () -> ^UI.DragPreview,
-    setPreviewProvider: proc(self: ^UI.DragItem, previewProvider: proc "c" () -> ^UI.DragPreview),
+    previewProvider: proc(self: ^UI.DragItem) -> ^Objc_Block(proc "c" () -> ^UI.DragPreview),
+    setPreviewProvider: proc(self: ^UI.DragItem, previewProvider: ^Objc_Block(proc "c" () -> ^UI.DragPreview)),
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^NS._NSZone) -> ^UI.DragItem,
@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLocalObject:"), auto_cast setLocalObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.previewProvider != nil {
-        previewProvider :: proc "c" (self: ^UI.DragItem, _: SEL) -> proc "c" () -> ^UI.DragPreview {
+        previewProvider :: proc "c" (self: ^UI.DragItem, _: SEL) -> ^Objc_Block(proc "c" () -> ^UI.DragPreview) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("previewProvider"), auto_cast previewProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setPreviewProvider != nil {
-        setPreviewProvider :: proc "c" (self: ^UI.DragItem, _: SEL, previewProvider: proc "c" () -> ^UI.DragPreview) {
+        setPreviewProvider :: proc "c" (self: ^UI.DragItem, _: SEL, previewProvider: ^Objc_Block(proc "c" () -> ^UI.DragPreview)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,7 +28,7 @@ FilePromiseReceiver_init :: proc "c" (self: ^FilePromiseReceiver) -> ^FilePromis
 
 
 @(objc_type=FilePromiseReceiver, objc_name="receivePromisedFilesAtDestination")
-FilePromiseReceiver_receivePromisedFilesAtDestination :: #force_inline proc "c" (self: ^FilePromiseReceiver, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error)) {
+FilePromiseReceiver_receivePromisedFilesAtDestination :: #force_inline proc "c" (self: ^FilePromiseReceiver, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error))) {
     msgSend(nil, self, "receivePromisedFilesAtDestination:options:operationQueue:reader:", destinationDir, options, operationQueue, reader)
 }
 @(objc_type=FilePromiseReceiver, objc_name="readableDraggedTypes", objc_is_class_method=true)

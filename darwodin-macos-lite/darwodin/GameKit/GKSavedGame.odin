@@ -25,7 +25,7 @@ SavedGame_init :: proc "c" (self: ^SavedGame) -> ^SavedGame {
 
 
 @(objc_type=SavedGame, objc_name="loadDataWithCompletionHandler")
-SavedGame_loadDataWithCompletionHandler :: #force_inline proc "c" (self: ^SavedGame, handler: proc "c" (data: ^NS.Data, error: ^NS.Error)) {
+SavedGame_loadDataWithCompletionHandler :: #force_inline proc "c" (self: ^SavedGame, handler: ^Objc_Block(proc "c" (data: ^NS.Data, error: ^NS.Error))) {
     msgSend(nil, self, "loadDataWithCompletionHandler:", handler)
 }
 @(objc_type=SavedGame, objc_name="name")

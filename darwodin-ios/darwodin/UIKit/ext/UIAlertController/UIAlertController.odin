@@ -29,7 +29,7 @@ VTable :: struct {
     super: UIViewController.VTable,
     alertControllerWithTitle: proc(title: ^NS.String, message: ^NS.String, preferredStyle: UI.AlertControllerStyle) -> ^UI.AlertController,
     addAction: proc(self: ^UI.AlertController, action: ^UI.AlertAction),
-    addTextFieldWithConfigurationHandler: proc(self: ^UI.AlertController, configurationHandler: proc "c" (textField: ^UI.TextField)),
+    addTextFieldWithConfigurationHandler: proc(self: ^UI.AlertController, configurationHandler: ^Objc_Block(proc "c" (textField: ^UI.TextField))),
     actions: proc(self: ^UI.AlertController) -> ^NS.Array,
     preferredAction: proc(self: ^UI.AlertController) -> ^UI.AlertAction,
     setPreferredAction: proc(self: ^UI.AlertController, preferredAction: ^UI.AlertAction),
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addAction:"), auto_cast addAction, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.addTextFieldWithConfigurationHandler != nil {
-        addTextFieldWithConfigurationHandler :: proc "c" (self: ^UI.AlertController, _: SEL, configurationHandler: proc "c" (textField: ^UI.TextField)) {
+        addTextFieldWithConfigurationHandler :: proc "c" (self: ^UI.AlertController, _: SEL, configurationHandler: ^Objc_Block(proc "c" (textField: ^UI.TextField))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

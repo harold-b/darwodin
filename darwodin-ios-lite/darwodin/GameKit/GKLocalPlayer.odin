@@ -23,23 +23,23 @@ LocalPlayer_init :: proc "c" (self: ^LocalPlayer) -> ^LocalPlayer {
 
 
 @(objc_type=LocalPlayer, objc_name="loadRecentPlayersWithCompletionHandler")
-LocalPlayer_loadRecentPlayersWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (recentPlayers: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_loadRecentPlayersWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (recentPlayers: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadRecentPlayersWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="loadChallengableFriendsWithCompletionHandler")
-LocalPlayer_loadChallengableFriendsWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (challengableFriends: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_loadChallengableFriendsWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (challengableFriends: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadChallengableFriendsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="setDefaultLeaderboardIdentifier")
-LocalPlayer_setDefaultLeaderboardIdentifier :: #force_inline proc "c" (self: ^LocalPlayer, leaderboardIdentifier: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+LocalPlayer_setDefaultLeaderboardIdentifier :: #force_inline proc "c" (self: ^LocalPlayer, leaderboardIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "setDefaultLeaderboardIdentifier:completionHandler:", leaderboardIdentifier, completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="loadDefaultLeaderboardIdentifierWithCompletionHandler")
-LocalPlayer_loadDefaultLeaderboardIdentifierWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (leaderboardIdentifier: ^NS.String, error: ^NS.Error)) {
+LocalPlayer_loadDefaultLeaderboardIdentifierWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (leaderboardIdentifier: ^NS.String, error: ^NS.Error))) {
     msgSend(nil, self, "loadDefaultLeaderboardIdentifierWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="fetchItemsForIdentityVerificationSignature")
-LocalPlayer_fetchItemsForIdentityVerificationSignature :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (publicKeyURL: ^NS.URL, signature: ^NS.Data, salt: ^NS.Data, timestamp: cffi.uint64_t, error: ^NS.Error)) {
+LocalPlayer_fetchItemsForIdentityVerificationSignature :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (publicKeyURL: ^NS.URL, signature: ^NS.Data, salt: ^NS.Data, timestamp: cffi.uint64_t, error: ^NS.Error))) {
     msgSend(nil, self, "fetchItemsForIdentityVerificationSignature:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="local", objc_is_class_method=true)
@@ -79,27 +79,27 @@ LocalPlayer_unregisterAllListeners :: #force_inline proc "c" (self: ^LocalPlayer
     msgSend(nil, self, "unregisterAllListeners")
 }
 @(objc_type=LocalPlayer, objc_name="setDefaultLeaderboardCategoryID")
-LocalPlayer_setDefaultLeaderboardCategoryID :: #force_inline proc "c" (self: ^LocalPlayer, categoryID: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+LocalPlayer_setDefaultLeaderboardCategoryID :: #force_inline proc "c" (self: ^LocalPlayer, categoryID: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "setDefaultLeaderboardCategoryID:completionHandler:", categoryID, completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="loadDefaultLeaderboardCategoryIDWithCompletionHandler")
-LocalPlayer_loadDefaultLeaderboardCategoryIDWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (categoryID: ^NS.String, error: ^NS.Error)) {
+LocalPlayer_loadDefaultLeaderboardCategoryIDWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (categoryID: ^NS.String, error: ^NS.Error))) {
     msgSend(nil, self, "loadDefaultLeaderboardCategoryIDWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="authenticateWithCompletionHandler")
-LocalPlayer_authenticateWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (error: ^NS.Error)) {
+LocalPlayer_authenticateWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "authenticateWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="loadFriendPlayersWithCompletionHandler")
-LocalPlayer_loadFriendPlayersWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (friendPlayers: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_loadFriendPlayersWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (friendPlayers: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadFriendPlayersWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="generateIdentityVerificationSignatureWithCompletionHandler")
-LocalPlayer_generateIdentityVerificationSignatureWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (publicKeyUrl: ^NS.URL, signature: ^NS.Data, salt: ^NS.Data, timestamp: cffi.uint64_t, error: ^NS.Error)) {
+LocalPlayer_generateIdentityVerificationSignatureWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (publicKeyUrl: ^NS.URL, signature: ^NS.Data, salt: ^NS.Data, timestamp: cffi.uint64_t, error: ^NS.Error))) {
     msgSend(nil, self, "generateIdentityVerificationSignatureWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="loadFriendsWithCompletionHandler")
-LocalPlayer_loadFriendsWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (friendIDs: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_loadFriendsWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (friendIDs: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadFriendsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="friends")
@@ -107,15 +107,15 @@ LocalPlayer_friends :: #force_inline proc "c" (self: ^LocalPlayer) -> ^NS.Array 
     return msgSend(^NS.Array, self, "friends")
 }
 @(objc_type=LocalPlayer, objc_name="loadFriendsAuthorizationStatus")
-LocalPlayer_loadFriendsAuthorizationStatus :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (authorizationStatus: FriendsAuthorizationStatus, error: ^NS.Error)) {
+LocalPlayer_loadFriendsAuthorizationStatus :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (authorizationStatus: FriendsAuthorizationStatus, error: ^NS.Error))) {
     msgSend(nil, self, "loadFriendsAuthorizationStatus:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="loadFriends")
-LocalPlayer_loadFriends :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: proc "c" (friends: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_loadFriends :: #force_inline proc "c" (self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (friends: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadFriends:", completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="loadFriendsWithIdentifiers")
-LocalPlayer_loadFriendsWithIdentifiers :: #force_inline proc "c" (self: ^LocalPlayer, identifiers: ^NS.Array, completionHandler: proc "c" (friends: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_loadFriendsWithIdentifiers :: #force_inline proc "c" (self: ^LocalPlayer, identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (friends: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadFriendsWithIdentifiers:completionHandler:", identifiers, completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="presentFriendRequestCreatorFromViewController")
@@ -123,11 +123,11 @@ LocalPlayer_presentFriendRequestCreatorFromViewController :: #force_inline proc 
     return msgSend(bool, self, "presentFriendRequestCreatorFromViewController:error:", viewController, error)
 }
 @(objc_type=LocalPlayer, objc_name="authenticateHandler")
-LocalPlayer_authenticateHandler :: #force_inline proc "c" (self: ^LocalPlayer) -> proc "c" () {
-    return msgSend(proc "c" (), self, "authenticateHandler")
+LocalPlayer_authenticateHandler :: #force_inline proc "c" (self: ^LocalPlayer) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "authenticateHandler")
 }
 @(objc_type=LocalPlayer, objc_name="setAuthenticateHandler")
-LocalPlayer_setAuthenticateHandler :: #force_inline proc "c" (self: ^LocalPlayer, authenticateHandler: proc "c" ()) {
+LocalPlayer_setAuthenticateHandler :: #force_inline proc "c" (self: ^LocalPlayer, authenticateHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setAuthenticateHandler:", authenticateHandler)
 }
 @(objc_type=LocalPlayer, objc_name="isPresentingFriendRequestViewController")
@@ -135,19 +135,19 @@ LocalPlayer_isPresentingFriendRequestViewController :: #force_inline proc "c" (s
     return msgSend(bool, self, "isPresentingFriendRequestViewController")
 }
 @(objc_type=LocalPlayer, objc_name="fetchSavedGamesWithCompletionHandler")
-LocalPlayer_fetchSavedGamesWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, handler: proc "c" (savedGames: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_fetchSavedGamesWithCompletionHandler :: #force_inline proc "c" (self: ^LocalPlayer, handler: ^Objc_Block(proc "c" (savedGames: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "fetchSavedGamesWithCompletionHandler:", handler)
 }
 @(objc_type=LocalPlayer, objc_name="saveGameData")
-LocalPlayer_saveGameData :: #force_inline proc "c" (self: ^LocalPlayer, data: ^NS.Data, name: ^NS.String, handler: proc "c" (savedGame: ^SavedGame, error: ^NS.Error)) {
+LocalPlayer_saveGameData :: #force_inline proc "c" (self: ^LocalPlayer, data: ^NS.Data, name: ^NS.String, handler: ^Objc_Block(proc "c" (savedGame: ^SavedGame, error: ^NS.Error))) {
     msgSend(nil, self, "saveGameData:withName:completionHandler:", data, name, handler)
 }
 @(objc_type=LocalPlayer, objc_name="deleteSavedGamesWithName")
-LocalPlayer_deleteSavedGamesWithName :: #force_inline proc "c" (self: ^LocalPlayer, name: ^NS.String, handler: proc "c" (error: ^NS.Error)) {
+LocalPlayer_deleteSavedGamesWithName :: #force_inline proc "c" (self: ^LocalPlayer, name: ^NS.String, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "deleteSavedGamesWithName:completionHandler:", name, handler)
 }
 @(objc_type=LocalPlayer, objc_name="resolveConflictingSavedGames")
-LocalPlayer_resolveConflictingSavedGames :: #force_inline proc "c" (self: ^LocalPlayer, conflictingSavedGames: ^NS.Array, data: ^NS.Data, handler: proc "c" (savedGames: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_resolveConflictingSavedGames :: #force_inline proc "c" (self: ^LocalPlayer, conflictingSavedGames: ^NS.Array, data: ^NS.Data, handler: ^Objc_Block(proc "c" (savedGames: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "resolveConflictingSavedGames:withData:completionHandler:", conflictingSavedGames, data, handler)
 }
 @(objc_type=LocalPlayer, objc_name="anonymousGuestPlayerWithIdentifier", objc_is_class_method=true)
@@ -155,7 +155,7 @@ LocalPlayer_anonymousGuestPlayerWithIdentifier :: #force_inline proc "c" (guestI
     return msgSend(^Player, LocalPlayer, "anonymousGuestPlayerWithIdentifier:", guestIdentifier)
 }
 @(objc_type=LocalPlayer, objc_name="loadPlayersForIdentifiers", objc_is_class_method=true)
-LocalPlayer_loadPlayersForIdentifiers :: #force_inline proc "c" (identifiers: ^NS.Array, completionHandler: proc "c" (players: ^NS.Array, error: ^NS.Error)) {
+LocalPlayer_loadPlayersForIdentifiers :: #force_inline proc "c" (identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (players: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, LocalPlayer, "loadPlayersForIdentifiers:withCompletionHandler:", identifiers, completionHandler)
 }
 @(objc_type=LocalPlayer, objc_name="load", objc_is_class_method=true)

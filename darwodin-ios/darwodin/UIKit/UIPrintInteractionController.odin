@@ -34,19 +34,19 @@ PrintInteractionController_canPrintData :: #force_inline proc "c" (data: ^NS.Dat
     return msgSend(bool, PrintInteractionController, "canPrintData:", data)
 }
 @(objc_type=PrintInteractionController, objc_name="presentAnimated")
-PrintInteractionController_presentAnimated :: #force_inline proc "c" (self: ^PrintInteractionController, animated: bool, completion: proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool {
+PrintInteractionController_presentAnimated :: #force_inline proc "c" (self: ^PrintInteractionController, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool {
     return msgSend(bool, self, "presentAnimated:completionHandler:", animated, completion)
 }
 @(objc_type=PrintInteractionController, objc_name="presentFromRect")
-PrintInteractionController_presentFromRect :: #force_inline proc "c" (self: ^PrintInteractionController, rect: CG.Rect, view: ^View, animated: bool, completion: proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool {
+PrintInteractionController_presentFromRect :: #force_inline proc "c" (self: ^PrintInteractionController, rect: CG.Rect, view: ^View, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool {
     return msgSend(bool, self, "presentFromRect:inView:animated:completionHandler:", rect, view, animated, completion)
 }
 @(objc_type=PrintInteractionController, objc_name="presentFromBarButtonItem")
-PrintInteractionController_presentFromBarButtonItem :: #force_inline proc "c" (self: ^PrintInteractionController, item: ^BarButtonItem, animated: bool, completion: proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool {
+PrintInteractionController_presentFromBarButtonItem :: #force_inline proc "c" (self: ^PrintInteractionController, item: ^BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool {
     return msgSend(bool, self, "presentFromBarButtonItem:animated:completionHandler:", item, animated, completion)
 }
 @(objc_type=PrintInteractionController, objc_name="printToPrinter")
-PrintInteractionController_printToPrinter :: #force_inline proc "c" (self: ^PrintInteractionController, printer: ^Printer, completion: proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool {
+PrintInteractionController_printToPrinter :: #force_inline proc "c" (self: ^PrintInteractionController, printer: ^Printer, completion: ^Objc_Block(proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool {
     return msgSend(bool, self, "printToPrinter:completionHandler:", printer, completion)
 }
 @(objc_type=PrintInteractionController, objc_name="dismissAnimated")

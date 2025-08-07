@@ -32,7 +32,7 @@ VTable :: struct {
     removeAccessoryController: proc(self: ^AK.PrintPanel, accessoryController: ^AK.ViewController),
     setDefaultButtonTitle: proc(self: ^AK.PrintPanel, defaultButtonTitle: ^NS.String),
     defaultButtonTitle: proc(self: ^AK.PrintPanel) -> ^NS.String,
-    beginSheetUsingPrintInfo: proc(self: ^AK.PrintPanel, printInfo: ^AK.PrintInfo, parentWindow: ^AK.Window, handler: proc "c" (result: AK.PrintPanelResult)),
+    beginSheetUsingPrintInfo: proc(self: ^AK.PrintPanel, printInfo: ^AK.PrintInfo, parentWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (result: AK.PrintPanelResult))),
     beginSheetWithPrintInfo: proc(self: ^AK.PrintPanel, printInfo: ^AK.PrintInfo, docWindow: ^AK.Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr),
     runModalWithPrintInfo: proc(self: ^AK.PrintPanel, printInfo: ^AK.PrintInfo) -> NS.Integer,
     runModal: proc(self: ^AK.PrintPanel) -> NS.Integer,
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultButtonTitle"), auto_cast defaultButtonTitle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.beginSheetUsingPrintInfo != nil {
-        beginSheetUsingPrintInfo :: proc "c" (self: ^AK.PrintPanel, _: SEL, printInfo: ^AK.PrintInfo, parentWindow: ^AK.Window, handler: proc "c" (result: AK.PrintPanelResult)) {
+        beginSheetUsingPrintInfo :: proc "c" (self: ^AK.PrintPanel, _: SEL, printInfo: ^AK.PrintInfo, parentWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (result: AK.PrintPanelResult))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -50,11 +50,11 @@ TextInsertionIndicator_setAutomaticModeOptions :: #force_inline proc "c" (self: 
     msgSend(nil, self, "setAutomaticModeOptions:", automaticModeOptions)
 }
 @(objc_type=TextInsertionIndicator, objc_name="effectsViewInserter")
-TextInsertionIndicator_effectsViewInserter :: #force_inline proc "c" (self: ^TextInsertionIndicator) -> proc "c" () {
-    return msgSend(proc "c" (), self, "effectsViewInserter")
+TextInsertionIndicator_effectsViewInserter :: #force_inline proc "c" (self: ^TextInsertionIndicator) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "effectsViewInserter")
 }
 @(objc_type=TextInsertionIndicator, objc_name="setEffectsViewInserter")
-TextInsertionIndicator_setEffectsViewInserter :: #force_inline proc "c" (self: ^TextInsertionIndicator, effectsViewInserter: proc "c" ()) {
+TextInsertionIndicator_setEffectsViewInserter :: #force_inline proc "c" (self: ^TextInsertionIndicator, effectsViewInserter: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setEffectsViewInserter:", effectsViewInserter)
 }
 @(objc_type=TextInsertionIndicator, objc_name="focusView", objc_is_class_method=true)

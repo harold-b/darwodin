@@ -22,6 +22,6 @@ ScreenshotServiceDelegate :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=ScreenshotServiceDelegate, objc_name="screenshotService")
-ScreenshotServiceDelegate_screenshotService :: #force_inline proc "c" (self: ^ScreenshotServiceDelegate, screenshotService: ^ScreenshotService, completionHandler: proc "c" (PDFData: ^NS.Data, indexOfCurrentPage: NS.Integer, rectInCurrentPage: CG.Rect)) {
+ScreenshotServiceDelegate_screenshotService :: #force_inline proc "c" (self: ^ScreenshotServiceDelegate, screenshotService: ^ScreenshotService, completionHandler: ^Objc_Block(proc "c" (PDFData: ^NS.Data, indexOfCurrentPage: NS.Integer, rectInCurrentPage: CG.Rect))) {
     msgSend(nil, self, "screenshotService:generatePDFRepresentationWithCompletion:", screenshotService, completionHandler)
 }

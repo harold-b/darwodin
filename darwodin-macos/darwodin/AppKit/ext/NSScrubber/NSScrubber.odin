@@ -30,7 +30,7 @@ VTable :: struct {
     initWithFrame: proc(self: ^AK.Scrubber, frameRect: NS.Rect) -> ^AK.Scrubber,
     initWithCoder: proc(self: ^AK.Scrubber, coder: ^NS.Coder) -> ^AK.Scrubber,
     reloadData: proc(self: ^AK.Scrubber),
-    performSequentialBatchUpdates: proc(self: ^AK.Scrubber, updateBlock: proc "c" ()),
+    performSequentialBatchUpdates: proc(self: ^AK.Scrubber, updateBlock: ^Objc_Block(proc "c" ())),
     insertItemsAtIndexes: proc(self: ^AK.Scrubber, indexes: ^NS.IndexSet),
     removeItemsAtIndexes: proc(self: ^AK.Scrubber, indexes: ^NS.IndexSet),
     reloadItemsAtIndexes: proc(self: ^AK.Scrubber, indexes: ^NS.IndexSet),
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadData"), auto_cast reloadData, "v@:") do panic("Failed to register objC method.")
     }
     if vt.performSequentialBatchUpdates != nil {
-        performSequentialBatchUpdates :: proc "c" (self: ^AK.Scrubber, _: SEL, updateBlock: proc "c" ()) {
+        performSequentialBatchUpdates :: proc "c" (self: ^AK.Scrubber, _: SEL, updateBlock: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

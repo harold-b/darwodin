@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    zoomWithOptions: proc(options: ^UI.ZoomTransitionOptions, sourceViewProvider: proc "c" (_arg_0: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View) -> ^UI.ViewControllerTransition,
+    zoomWithOptions: proc(options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View)) -> ^UI.ViewControllerTransition,
     coverVerticalTransition: proc() -> ^UI.ViewControllerTransition,
     flipHorizontalTransition: proc() -> ^UI.ViewControllerTransition,
     crossDissolveTransition: proc() -> ^UI.ViewControllerTransition,
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.zoomWithOptions != nil {
-        zoomWithOptions :: proc "c" (self: Class, _: SEL, options: ^UI.ZoomTransitionOptions, sourceViewProvider: proc "c" (_arg_0: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View) -> ^UI.ViewControllerTransition {
+        zoomWithOptions :: proc "c" (self: Class, _: SEL, options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View)) -> ^UI.ViewControllerTransition {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

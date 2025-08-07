@@ -29,11 +29,11 @@ VTable :: struct {
     super: NSObject.VTable,
     init: proc(self: ^UI.CalendarViewDecoration) -> ^UI.CalendarViewDecoration,
     initWithImage: proc(self: ^UI.CalendarViewDecoration, image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration,
-    initWithCustomViewProvider: proc(self: ^UI.CalendarViewDecoration, customViewProvider: proc "c" () -> ^UI.View) -> ^UI.CalendarViewDecoration,
+    initWithCustomViewProvider: proc(self: ^UI.CalendarViewDecoration, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> ^UI.CalendarViewDecoration,
     decorationWithColor: proc(color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration,
     decorationWithImage_: proc(image: ^UI.Image) -> ^UI.CalendarViewDecoration,
     decorationWithImage_color_size: proc(image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration,
-    decorationWithCustomViewProvider: proc(customViewProvider: proc "c" () -> ^UI.View) -> ^UI.CalendarViewDecoration,
+    decorationWithCustomViewProvider: proc(customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> ^UI.CalendarViewDecoration,
     load: proc(),
     initialize: proc(),
     new: proc() -> ^UI.CalendarViewDecoration,
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:color:size:"), auto_cast initWithImage, "@@:@@l") do panic("Failed to register objC method.")
     }
     if vt.initWithCustomViewProvider != nil {
-        initWithCustomViewProvider :: proc "c" (self: ^UI.CalendarViewDecoration, _: SEL, customViewProvider: proc "c" () -> ^UI.View) -> ^UI.CalendarViewDecoration {
+        initWithCustomViewProvider :: proc "c" (self: ^UI.CalendarViewDecoration, _: SEL, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> ^UI.CalendarViewDecoration {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("decorationWithImage:color:size:"), auto_cast decorationWithImage_color_size, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.decorationWithCustomViewProvider != nil {
-        decorationWithCustomViewProvider :: proc "c" (self: Class, _: SEL, customViewProvider: proc "c" () -> ^UI.View) -> ^UI.CalendarViewDecoration {
+        decorationWithCustomViewProvider :: proc "c" (self: Class, _: SEL, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> ^UI.CalendarViewDecoration {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

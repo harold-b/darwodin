@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    rowActionWithStyle: proc(style: UI.TableViewRowActionStyle, title: ^NS.String, handler: proc "c" (action: ^UI.TableViewRowAction, indexPath: ^NS.IndexPath)) -> ^UI.TableViewRowAction,
+    rowActionWithStyle: proc(style: UI.TableViewRowActionStyle, title: ^NS.String, handler: ^Objc_Block(proc "c" (action: ^UI.TableViewRowAction, indexPath: ^NS.IndexPath))) -> ^UI.TableViewRowAction,
     style: proc(self: ^UI.TableViewRowAction) -> UI.TableViewRowActionStyle,
     title: proc(self: ^UI.TableViewRowAction) -> ^NS.String,
     setTitle: proc(self: ^UI.TableViewRowAction, title: ^NS.String),
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.rowActionWithStyle != nil {
-        rowActionWithStyle :: proc "c" (self: Class, _: SEL, style: UI.TableViewRowActionStyle, title: ^NS.String, handler: proc "c" (action: ^UI.TableViewRowAction, indexPath: ^NS.IndexPath)) -> ^UI.TableViewRowAction {
+        rowActionWithStyle :: proc "c" (self: Class, _: SEL, style: UI.TableViewRowActionStyle, title: ^NS.String, handler: ^Objc_Block(proc "c" (action: ^UI.TableViewRowAction, indexPath: ^NS.IndexPath))) -> ^UI.TableViewRowAction {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

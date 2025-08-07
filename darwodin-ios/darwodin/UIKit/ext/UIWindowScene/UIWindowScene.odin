@@ -27,7 +27,7 @@ import "../UIScene"
 
 VTable :: struct {
     super: UIScene.VTable,
-    requestGeometryUpdateWithPreferences: proc(self: ^UI.WindowScene, geometryPreferences: ^UI.WindowSceneGeometryPreferences, errorHandler: proc "c" (error: ^NS.Error)),
+    requestGeometryUpdateWithPreferences: proc(self: ^UI.WindowScene, geometryPreferences: ^UI.WindowSceneGeometryPreferences, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     screen: proc(self: ^UI.WindowScene) -> ^UI.Screen,
     interfaceOrientation: proc(self: ^UI.WindowScene) -> UI.InterfaceOrientation,
     coordinateSpace: proc(self: ^UI.WindowScene) -> ^UI.CoordinateSpace,
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIScene.extend(cls, &vt.super)
 
     if vt.requestGeometryUpdateWithPreferences != nil {
-        requestGeometryUpdateWithPreferences :: proc "c" (self: ^UI.WindowScene, _: SEL, geometryPreferences: ^UI.WindowSceneGeometryPreferences, errorHandler: proc "c" (error: ^NS.Error)) {
+        requestGeometryUpdateWithPreferences :: proc "c" (self: ^UI.WindowScene, _: SEL, geometryPreferences: ^UI.WindowSceneGeometryPreferences, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

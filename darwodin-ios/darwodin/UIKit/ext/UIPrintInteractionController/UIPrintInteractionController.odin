@@ -29,10 +29,10 @@ VTable :: struct {
     super: NSObject.VTable,
     canPrintURL: proc(url: ^NS.URL) -> bool,
     canPrintData: proc(data: ^NS.Data) -> bool,
-    presentAnimated: proc(self: ^UI.PrintInteractionController, animated: bool, completion: proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool,
-    presentFromRect: proc(self: ^UI.PrintInteractionController, rect: CG.Rect, view: ^UI.View, animated: bool, completion: proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool,
-    presentFromBarButtonItem: proc(self: ^UI.PrintInteractionController, item: ^UI.BarButtonItem, animated: bool, completion: proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool,
-    printToPrinter: proc(self: ^UI.PrintInteractionController, printer: ^UI.Printer, completion: proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool,
+    presentAnimated: proc(self: ^UI.PrintInteractionController, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool,
+    presentFromRect: proc(self: ^UI.PrintInteractionController, rect: CG.Rect, view: ^UI.View, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool,
+    presentFromBarButtonItem: proc(self: ^UI.PrintInteractionController, item: ^UI.BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool,
+    printToPrinter: proc(self: ^UI.PrintInteractionController, printer: ^UI.Printer, completion: ^Objc_Block(proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool,
     dismissAnimated: proc(self: ^UI.PrintInteractionController, animated: bool),
     isPrintingAvailable: proc() -> bool,
     printableUTIs: proc() -> ^NS.Set,
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("canPrintData:"), auto_cast canPrintData, "B#:@") do panic("Failed to register objC method.")
     }
     if vt.presentAnimated != nil {
-        presentAnimated :: proc "c" (self: ^UI.PrintInteractionController, _: SEL, animated: bool, completion: proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool {
+        presentAnimated :: proc "c" (self: ^UI.PrintInteractionController, _: SEL, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentAnimated:completionHandler:"), auto_cast presentAnimated, "B@:B?") do panic("Failed to register objC method.")
     }
     if vt.presentFromRect != nil {
-        presentFromRect :: proc "c" (self: ^UI.PrintInteractionController, _: SEL, rect: CG.Rect, view: ^UI.View, animated: bool, completion: proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool {
+        presentFromRect :: proc "c" (self: ^UI.PrintInteractionController, _: SEL, rect: CG.Rect, view: ^UI.View, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentFromRect:inView:animated:completionHandler:"), auto_cast presentFromRect, "B@:{CGRect={CGPoint=dd}{CGSize=dd}}@B?") do panic("Failed to register objC method.")
     }
     if vt.presentFromBarButtonItem != nil {
-        presentFromBarButtonItem :: proc "c" (self: ^UI.PrintInteractionController, _: SEL, item: ^UI.BarButtonItem, animated: bool, completion: proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool {
+        presentFromBarButtonItem :: proc "c" (self: ^UI.PrintInteractionController, _: SEL, item: ^UI.BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentFromBarButtonItem:animated:completionHandler:"), auto_cast presentFromBarButtonItem, "B@:@B?") do panic("Failed to register objC method.")
     }
     if vt.printToPrinter != nil {
-        printToPrinter :: proc "c" (self: ^UI.PrintInteractionController, _: SEL, printer: ^UI.Printer, completion: proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error)) -> bool {
+        printToPrinter :: proc "c" (self: ^UI.PrintInteractionController, _: SEL, printer: ^UI.Printer, completion: ^Objc_Block(proc "c" (printInteractionController: ^UI.PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

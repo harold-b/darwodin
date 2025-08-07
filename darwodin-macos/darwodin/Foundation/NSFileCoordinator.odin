@@ -35,27 +35,27 @@ FileCoordinator_initWithFilePresenter :: #force_inline proc "c" (self: ^FileCoor
     return msgSend(^FileCoordinator, self, "initWithFilePresenter:", filePresenterOrNil)
 }
 @(objc_type=FileCoordinator, objc_name="coordinateAccessWithIntents")
-FileCoordinator_coordinateAccessWithIntents :: #force_inline proc "c" (self: ^FileCoordinator, intents: ^Array, queue: ^OperationQueue, accessor: proc "c" (error: ^Error)) {
+FileCoordinator_coordinateAccessWithIntents :: #force_inline proc "c" (self: ^FileCoordinator, intents: ^Array, queue: ^OperationQueue, accessor: ^Objc_Block(proc "c" (error: ^Error))) {
     msgSend(nil, self, "coordinateAccessWithIntents:queue:byAccessor:", intents, queue, accessor)
 }
 @(objc_type=FileCoordinator, objc_name="coordinateReadingItemAtURL_options_error_byAccessor")
-FileCoordinator_coordinateReadingItemAtURL_options_error_byAccessor :: #force_inline proc "c" (self: ^FileCoordinator, url: ^URL, options: FileCoordinatorReadingOptions, outError: ^^Error, reader: proc "c" (newURL: ^URL)) {
+FileCoordinator_coordinateReadingItemAtURL_options_error_byAccessor :: #force_inline proc "c" (self: ^FileCoordinator, url: ^URL, options: FileCoordinatorReadingOptions, outError: ^^Error, reader: ^Objc_Block(proc "c" (newURL: ^URL))) {
     msgSend(nil, self, "coordinateReadingItemAtURL:options:error:byAccessor:", url, options, outError, reader)
 }
 @(objc_type=FileCoordinator, objc_name="coordinateWritingItemAtURL_options_error_byAccessor")
-FileCoordinator_coordinateWritingItemAtURL_options_error_byAccessor :: #force_inline proc "c" (self: ^FileCoordinator, url: ^URL, options: FileCoordinatorWritingOptions, outError: ^^Error, writer: proc "c" (newURL: ^URL)) {
+FileCoordinator_coordinateWritingItemAtURL_options_error_byAccessor :: #force_inline proc "c" (self: ^FileCoordinator, url: ^URL, options: FileCoordinatorWritingOptions, outError: ^^Error, writer: ^Objc_Block(proc "c" (newURL: ^URL))) {
     msgSend(nil, self, "coordinateWritingItemAtURL:options:error:byAccessor:", url, options, outError, writer)
 }
 @(objc_type=FileCoordinator, objc_name="coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor")
-FileCoordinator_coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: #force_inline proc "c" (self: ^FileCoordinator, readingURL: ^URL, readingOptions: FileCoordinatorReadingOptions, writingURL: ^URL, writingOptions: FileCoordinatorWritingOptions, outError: ^^Error, readerWriter: proc "c" (newReadingURL: ^URL, newWritingURL: ^URL)) {
+FileCoordinator_coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: #force_inline proc "c" (self: ^FileCoordinator, readingURL: ^URL, readingOptions: FileCoordinatorReadingOptions, writingURL: ^URL, writingOptions: FileCoordinatorWritingOptions, outError: ^^Error, readerWriter: ^Objc_Block(proc "c" (newReadingURL: ^URL, newWritingURL: ^URL))) {
     msgSend(nil, self, "coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:", readingURL, readingOptions, writingURL, writingOptions, outError, readerWriter)
 }
 @(objc_type=FileCoordinator, objc_name="coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor")
-FileCoordinator_coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: #force_inline proc "c" (self: ^FileCoordinator, url1: ^URL, options1: FileCoordinatorWritingOptions, url2: ^URL, options2: FileCoordinatorWritingOptions, outError: ^^Error, writer: proc "c" (newURL1: ^URL, newURL2: ^URL)) {
+FileCoordinator_coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: #force_inline proc "c" (self: ^FileCoordinator, url1: ^URL, options1: FileCoordinatorWritingOptions, url2: ^URL, options2: FileCoordinatorWritingOptions, outError: ^^Error, writer: ^Objc_Block(proc "c" (newURL1: ^URL, newURL2: ^URL))) {
     msgSend(nil, self, "coordinateWritingItemAtURL:options:writingItemAtURL:options:error:byAccessor:", url1, options1, url2, options2, outError, writer)
 }
 @(objc_type=FileCoordinator, objc_name="prepareForReadingItemsAtURLs")
-FileCoordinator_prepareForReadingItemsAtURLs :: #force_inline proc "c" (self: ^FileCoordinator, readingURLs: ^Array, readingOptions: FileCoordinatorReadingOptions, writingURLs: ^Array, writingOptions: FileCoordinatorWritingOptions, outError: ^^Error, batchAccessor: proc "c" (completionHandler: proc "c" ())) {
+FileCoordinator_prepareForReadingItemsAtURLs :: #force_inline proc "c" (self: ^FileCoordinator, readingURLs: ^Array, readingOptions: FileCoordinatorReadingOptions, writingURLs: ^Array, writingOptions: FileCoordinatorWritingOptions, outError: ^^Error, batchAccessor: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" ())))) {
     msgSend(nil, self, "prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:", readingURLs, readingOptions, writingURLs, writingOptions, outError, batchAccessor)
 }
 @(objc_type=FileCoordinator, objc_name="itemAtURL_willMoveToURL")

@@ -30,11 +30,11 @@ SpringLoadedInteraction_init :: #force_inline proc "c" (self: ^SpringLoadedInter
     return msgSend(^SpringLoadedInteraction, self, "init")
 }
 @(objc_type=SpringLoadedInteraction, objc_name="initWithInteractionBehavior")
-SpringLoadedInteraction_initWithInteractionBehavior :: #force_inline proc "c" (self: ^SpringLoadedInteraction, interactionBehavior: ^SpringLoadedInteractionBehavior, interactionEffect: ^SpringLoadedInteractionEffect, handler: proc "c" (interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext)) -> ^SpringLoadedInteraction {
+SpringLoadedInteraction_initWithInteractionBehavior :: #force_inline proc "c" (self: ^SpringLoadedInteraction, interactionBehavior: ^SpringLoadedInteractionBehavior, interactionEffect: ^SpringLoadedInteractionEffect, handler: ^Objc_Block(proc "c" (interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext))) -> ^SpringLoadedInteraction {
     return msgSend(^SpringLoadedInteraction, self, "initWithInteractionBehavior:interactionEffect:activationHandler:", interactionBehavior, interactionEffect, handler)
 }
 @(objc_type=SpringLoadedInteraction, objc_name="initWithActivationHandler")
-SpringLoadedInteraction_initWithActivationHandler :: #force_inline proc "c" (self: ^SpringLoadedInteraction, handler: proc "c" (interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext)) -> ^SpringLoadedInteraction {
+SpringLoadedInteraction_initWithActivationHandler :: #force_inline proc "c" (self: ^SpringLoadedInteraction, handler: ^Objc_Block(proc "c" (interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext))) -> ^SpringLoadedInteraction {
     return msgSend(^SpringLoadedInteraction, self, "initWithActivationHandler:", handler)
 }
 @(objc_type=SpringLoadedInteraction, objc_name="interactionBehavior")

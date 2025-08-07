@@ -30,8 +30,8 @@ VTable :: struct {
     initWithInsertionIndexPath: proc(self: ^UI.TableViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String, rowHeight: CG.Float) -> ^UI.TableViewPlaceholder,
     init: proc(self: ^UI.TableViewPlaceholder) -> ^UI.TableViewPlaceholder,
     new: proc() -> ^UI.TableViewPlaceholder,
-    cellUpdateHandler: proc(self: ^UI.TableViewPlaceholder) -> proc "c" (),
-    setCellUpdateHandler: proc(self: ^UI.TableViewPlaceholder, cellUpdateHandler: proc "c" ()),
+    cellUpdateHandler: proc(self: ^UI.TableViewPlaceholder) -> ^Objc_Block(proc "c" ()),
+    setCellUpdateHandler: proc(self: ^UI.TableViewPlaceholder, cellUpdateHandler: ^Objc_Block(proc "c" ())),
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^NS._NSZone) -> ^UI.TableViewPlaceholder,
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.cellUpdateHandler != nil {
-        cellUpdateHandler :: proc "c" (self: ^UI.TableViewPlaceholder, _: SEL) -> proc "c" () {
+        cellUpdateHandler :: proc "c" (self: ^UI.TableViewPlaceholder, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cellUpdateHandler"), auto_cast cellUpdateHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setCellUpdateHandler != nil {
-        setCellUpdateHandler :: proc "c" (self: ^UI.TableViewPlaceholder, _: SEL, cellUpdateHandler: proc "c" ()) {
+        setCellUpdateHandler :: proc "c" (self: ^UI.TableViewPlaceholder, _: SEL, cellUpdateHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

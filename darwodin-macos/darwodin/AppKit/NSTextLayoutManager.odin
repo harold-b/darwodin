@@ -55,11 +55,11 @@ TextLayoutManager_textLayoutFragmentForLocation :: #force_inline proc "c" (self:
     return msgSend(^TextLayoutFragment, self, "textLayoutFragmentForLocation:", location)
 }
 @(objc_type=TextLayoutManager, objc_name="enumerateTextLayoutFragmentsFromLocation")
-TextLayoutManager_enumerateTextLayoutFragmentsFromLocation :: #force_inline proc "c" (self: ^TextLayoutManager, location: ^TextLocation, options: TextLayoutFragmentEnumerationOptions, block: proc "c" (layoutFragment: ^TextLayoutFragment) -> bool) -> ^TextLocation {
+TextLayoutManager_enumerateTextLayoutFragmentsFromLocation :: #force_inline proc "c" (self: ^TextLayoutManager, location: ^TextLocation, options: TextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" (layoutFragment: ^TextLayoutFragment) -> bool)) -> ^TextLocation {
     return msgSend(^TextLocation, self, "enumerateTextLayoutFragmentsFromLocation:options:usingBlock:", location, options, block)
 }
 @(objc_type=TextLayoutManager, objc_name="enumerateRenderingAttributesFromLocation")
-TextLayoutManager_enumerateRenderingAttributesFromLocation :: #force_inline proc "c" (self: ^TextLayoutManager, location: ^TextLocation, reverse: bool, block: proc "c" (textLayoutManager: ^TextLayoutManager, attributes: ^NS.Dictionary, textRange: ^TextRange) -> bool) {
+TextLayoutManager_enumerateRenderingAttributesFromLocation :: #force_inline proc "c" (self: ^TextLayoutManager, location: ^TextLocation, reverse: bool, block: ^Objc_Block(proc "c" (textLayoutManager: ^TextLayoutManager, attributes: ^NS.Dictionary, textRange: ^TextRange) -> bool)) {
     msgSend(nil, self, "enumerateRenderingAttributesFromLocation:reverse:usingBlock:", location, reverse, block)
 }
 @(objc_type=TextLayoutManager, objc_name="setRenderingAttributes")
@@ -83,7 +83,7 @@ TextLayoutManager_renderingAttributesForLink :: #force_inline proc "c" (self: ^T
     return msgSend(^NS.Dictionary, self, "renderingAttributesForLink:atLocation:", link, location)
 }
 @(objc_type=TextLayoutManager, objc_name="enumerateTextSegmentsInRange")
-TextLayoutManager_enumerateTextSegmentsInRange :: #force_inline proc "c" (self: ^TextLayoutManager, textRange: ^TextRange, type: TextLayoutManagerSegmentType, options: TextLayoutManagerSegmentOptions, block: proc "c" (textSegmentRange: ^TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^TextContainer) -> bool) {
+TextLayoutManager_enumerateTextSegmentsInRange :: #force_inline proc "c" (self: ^TextLayoutManager, textRange: ^TextRange, type: TextLayoutManagerSegmentType, options: TextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^TextContainer) -> bool)) {
     msgSend(nil, self, "enumerateTextSegmentsInRange:type:options:usingBlock:", textRange, type, options, block)
 }
 @(objc_type=TextLayoutManager, objc_name="replaceContentsInRange_withTextElements")
@@ -171,11 +171,11 @@ TextLayoutManager_setTextSelectionNavigation :: #force_inline proc "c" (self: ^T
     msgSend(nil, self, "setTextSelectionNavigation:", textSelectionNavigation)
 }
 @(objc_type=TextLayoutManager, objc_name="renderingAttributesValidator")
-TextLayoutManager_renderingAttributesValidator :: #force_inline proc "c" (self: ^TextLayoutManager) -> proc "c" () {
-    return msgSend(proc "c" (), self, "renderingAttributesValidator")
+TextLayoutManager_renderingAttributesValidator :: #force_inline proc "c" (self: ^TextLayoutManager) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "renderingAttributesValidator")
 }
 @(objc_type=TextLayoutManager, objc_name="setRenderingAttributesValidator")
-TextLayoutManager_setRenderingAttributesValidator :: #force_inline proc "c" (self: ^TextLayoutManager, renderingAttributesValidator: proc "c" ()) {
+TextLayoutManager_setRenderingAttributesValidator :: #force_inline proc "c" (self: ^TextLayoutManager, renderingAttributesValidator: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRenderingAttributesValidator:", renderingAttributesValidator)
 }
 @(objc_type=TextLayoutManager, objc_name="linkRenderingAttributes", objc_is_class_method=true)

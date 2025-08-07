@@ -26,11 +26,11 @@ CollectionViewDropPlaceholder_init :: proc "c" (self: ^CollectionViewDropPlaceho
 
 
 @(objc_type=CollectionViewDropPlaceholder, objc_name="previewParametersProvider")
-CollectionViewDropPlaceholder_previewParametersProvider :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholder) -> proc "c" () -> ^DragPreviewParameters {
-    return msgSend(proc "c" () -> ^DragPreviewParameters, self, "previewParametersProvider")
+CollectionViewDropPlaceholder_previewParametersProvider :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholder) -> ^Objc_Block(proc "c" () -> ^DragPreviewParameters) {
+    return msgSend(^Objc_Block(proc "c" () -> ^DragPreviewParameters), self, "previewParametersProvider")
 }
 @(objc_type=CollectionViewDropPlaceholder, objc_name="setPreviewParametersProvider")
-CollectionViewDropPlaceholder_setPreviewParametersProvider :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholder, previewParametersProvider: proc "c" () -> ^DragPreviewParameters) {
+CollectionViewDropPlaceholder_setPreviewParametersProvider :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholder, previewParametersProvider: ^Objc_Block(proc "c" () -> ^DragPreviewParameters)) {
     msgSend(nil, self, "setPreviewParametersProvider:", previewParametersProvider)
 }
 @(objc_type=CollectionViewDropPlaceholder, objc_name="new", objc_is_class_method=true)

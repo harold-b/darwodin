@@ -42,11 +42,11 @@ SavePanel_cancel :: #force_inline proc "c" (self: ^SavePanel, sender: id) {
     msgSend(nil, self, "cancel:", sender)
 }
 @(objc_type=SavePanel, objc_name="beginSheetModalForWindow")
-SavePanel_beginSheetModalForWindow :: #force_inline proc "c" (self: ^SavePanel, window: ^Window, handler: proc "c" (result: ModalResponse)) {
+SavePanel_beginSheetModalForWindow :: #force_inline proc "c" (self: ^SavePanel, window: ^Window, handler: ^Objc_Block(proc "c" (result: ModalResponse))) {
     msgSend(nil, self, "beginSheetModalForWindow:completionHandler:", window, handler)
 }
 @(objc_type=SavePanel, objc_name="beginWithCompletionHandler")
-SavePanel_beginWithCompletionHandler :: #force_inline proc "c" (self: ^SavePanel, handler: proc "c" (result: ModalResponse)) {
+SavePanel_beginWithCompletionHandler :: #force_inline proc "c" (self: ^SavePanel, handler: ^Objc_Block(proc "c" (result: ModalResponse))) {
     msgSend(nil, self, "beginWithCompletionHandler:", handler)
 }
 @(objc_type=SavePanel, objc_name="runModal")

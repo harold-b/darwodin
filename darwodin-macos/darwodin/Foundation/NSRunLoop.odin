@@ -75,11 +75,11 @@ RunLoop_configureAsServer :: #force_inline proc "c" (self: ^RunLoop) {
     msgSend(nil, self, "configureAsServer")
 }
 @(objc_type=RunLoop, objc_name="performInModes")
-RunLoop_performInModes :: #force_inline proc "c" (self: ^RunLoop, modes: ^Array, block: proc "c" ()) {
+RunLoop_performInModes :: #force_inline proc "c" (self: ^RunLoop, modes: ^Array, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performInModes:block:", modes, block)
 }
 @(objc_type=RunLoop, objc_name="performBlock")
-RunLoop_performBlock :: #force_inline proc "c" (self: ^RunLoop, block: proc "c" ()) {
+RunLoop_performBlock :: #force_inline proc "c" (self: ^RunLoop, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performBlock:", block)
 }
 @(objc_type=RunLoop, objc_name="performSelector")

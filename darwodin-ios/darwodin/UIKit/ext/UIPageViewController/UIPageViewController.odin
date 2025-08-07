@@ -29,7 +29,7 @@ VTable :: struct {
     super: UIViewController.VTable,
     initWithTransitionStyle: proc(self: ^UI.PageViewController, style: UI.PageViewControllerTransitionStyle, navigationOrientation: UI.PageViewControllerNavigationOrientation, options: ^NS.Dictionary) -> ^UI.PageViewController,
     initWithCoder: proc(self: ^UI.PageViewController, coder: ^NS.Coder) -> ^UI.PageViewController,
-    setViewControllers: proc(self: ^UI.PageViewController, viewControllers: ^NS.Array, direction: UI.PageViewControllerNavigationDirection, animated: bool, completion: proc "c" (finished: bool)),
+    setViewControllers: proc(self: ^UI.PageViewController, viewControllers: ^NS.Array, direction: UI.PageViewControllerNavigationDirection, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))),
     delegate: proc(self: ^UI.PageViewController) -> ^UI.PageViewControllerDelegate,
     setDelegate: proc(self: ^UI.PageViewController, delegate: ^UI.PageViewControllerDelegate),
     dataSource: proc(self: ^UI.PageViewController) -> ^UI.PageViewControllerDataSource,
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.setViewControllers != nil {
-        setViewControllers :: proc "c" (self: ^UI.PageViewController, _: SEL, viewControllers: ^NS.Array, direction: UI.PageViewControllerNavigationDirection, animated: bool, completion: proc "c" (finished: bool)) {
+        setViewControllers :: proc "c" (self: ^UI.PageViewController, _: SEL, viewControllers: ^NS.Array, direction: UI.PageViewControllerNavigationDirection, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

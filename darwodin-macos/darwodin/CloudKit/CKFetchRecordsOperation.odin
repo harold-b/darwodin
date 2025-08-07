@@ -45,27 +45,27 @@ FetchRecordsOperation_setDesiredKeys :: #force_inline proc "c" (self: ^FetchReco
     msgSend(nil, self, "setDesiredKeys:", desiredKeys)
 }
 @(objc_type=FetchRecordsOperation, objc_name="perRecordProgressBlock")
-FetchRecordsOperation_perRecordProgressBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordProgressBlock")
+FetchRecordsOperation_perRecordProgressBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordProgressBlock")
 }
 @(objc_type=FetchRecordsOperation, objc_name="setPerRecordProgressBlock")
-FetchRecordsOperation_setPerRecordProgressBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation, perRecordProgressBlock: proc "c" ()) {
+FetchRecordsOperation_setPerRecordProgressBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation, perRecordProgressBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordProgressBlock:", perRecordProgressBlock)
 }
 @(objc_type=FetchRecordsOperation, objc_name="perRecordCompletionBlock")
-FetchRecordsOperation_perRecordCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordCompletionBlock")
+FetchRecordsOperation_perRecordCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordCompletionBlock")
 }
 @(objc_type=FetchRecordsOperation, objc_name="setPerRecordCompletionBlock")
-FetchRecordsOperation_setPerRecordCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation, perRecordCompletionBlock: proc "c" ()) {
+FetchRecordsOperation_setPerRecordCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation, perRecordCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordCompletionBlock:", perRecordCompletionBlock)
 }
 @(objc_type=FetchRecordsOperation, objc_name="fetchRecordsCompletionBlock")
-FetchRecordsOperation_fetchRecordsCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchRecordsCompletionBlock")
+FetchRecordsOperation_fetchRecordsCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchRecordsCompletionBlock")
 }
 @(objc_type=FetchRecordsOperation, objc_name="setFetchRecordsCompletionBlock")
-FetchRecordsOperation_setFetchRecordsCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation, fetchRecordsCompletionBlock: proc "c" ()) {
+FetchRecordsOperation_setFetchRecordsCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordsOperation, fetchRecordsCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchRecordsCompletionBlock:", fetchRecordsCompletionBlock)
 }
 @(objc_type=FetchRecordsOperation, objc_name="load", objc_is_class_method=true)

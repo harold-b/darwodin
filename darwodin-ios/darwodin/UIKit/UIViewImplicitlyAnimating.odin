@@ -22,15 +22,15 @@ ViewImplicitlyAnimating :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=ViewImplicitlyAnimating, objc_name="addAnimations_delayFactor")
-ViewImplicitlyAnimating_addAnimations_delayFactor :: #force_inline proc "c" (self: ^ViewImplicitlyAnimating, animation: proc "c" (), delayFactor: CG.Float) {
+ViewImplicitlyAnimating_addAnimations_delayFactor :: #force_inline proc "c" (self: ^ViewImplicitlyAnimating, animation: ^Objc_Block(proc "c" ()), delayFactor: CG.Float) {
     msgSend(nil, self, "addAnimations:delayFactor:", animation, delayFactor)
 }
 @(objc_type=ViewImplicitlyAnimating, objc_name="addAnimations_")
-ViewImplicitlyAnimating_addAnimations_ :: #force_inline proc "c" (self: ^ViewImplicitlyAnimating, animation: proc "c" ()) {
+ViewImplicitlyAnimating_addAnimations_ :: #force_inline proc "c" (self: ^ViewImplicitlyAnimating, animation: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addAnimations:", animation)
 }
 @(objc_type=ViewImplicitlyAnimating, objc_name="addCompletion")
-ViewImplicitlyAnimating_addCompletion :: #force_inline proc "c" (self: ^ViewImplicitlyAnimating, completion: proc "c" (finalPosition: ViewAnimatingPosition)) {
+ViewImplicitlyAnimating_addCompletion :: #force_inline proc "c" (self: ^ViewImplicitlyAnimating, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) {
     msgSend(nil, self, "addCompletion:", completion)
 }
 @(objc_type=ViewImplicitlyAnimating, objc_name="continueAnimationWithTimingParameters")

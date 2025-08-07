@@ -27,9 +27,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    addCoordinatedAnimations: proc(self: ^UI.FocusAnimationCoordinator, animations: proc "c" (), completion: proc "c" ()),
-    addCoordinatedFocusingAnimations: proc(self: ^UI.FocusAnimationCoordinator, animations: proc "c" (animationContext: ^UI.FocusAnimationContext), completion: proc "c" ()),
-    addCoordinatedUnfocusingAnimations: proc(self: ^UI.FocusAnimationCoordinator, animations: proc "c" (animationContext: ^UI.FocusAnimationContext), completion: proc "c" ()),
+    addCoordinatedAnimations: proc(self: ^UI.FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())),
+    addCoordinatedFocusingAnimations: proc(self: ^UI.FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" (animationContext: ^UI.FocusAnimationContext)), completion: ^Objc_Block(proc "c" ())),
+    addCoordinatedUnfocusingAnimations: proc(self: ^UI.FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" (animationContext: ^UI.FocusAnimationContext)), completion: ^Objc_Block(proc "c" ())),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^UI.FocusAnimationCoordinator,
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.addCoordinatedAnimations != nil {
-        addCoordinatedAnimations :: proc "c" (self: ^UI.FocusAnimationCoordinator, _: SEL, animations: proc "c" (), completion: proc "c" ()) {
+        addCoordinatedAnimations :: proc "c" (self: ^UI.FocusAnimationCoordinator, _: SEL, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addCoordinatedAnimations:completion:"), auto_cast addCoordinatedAnimations, "v@:??") do panic("Failed to register objC method.")
     }
     if vt.addCoordinatedFocusingAnimations != nil {
-        addCoordinatedFocusingAnimations :: proc "c" (self: ^UI.FocusAnimationCoordinator, _: SEL, animations: proc "c" (animationContext: ^UI.FocusAnimationContext), completion: proc "c" ()) {
+        addCoordinatedFocusingAnimations :: proc "c" (self: ^UI.FocusAnimationCoordinator, _: SEL, animations: ^Objc_Block(proc "c" (animationContext: ^UI.FocusAnimationContext)), completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addCoordinatedFocusingAnimations:completion:"), auto_cast addCoordinatedFocusingAnimations, "v@:??") do panic("Failed to register objC method.")
     }
     if vt.addCoordinatedUnfocusingAnimations != nil {
-        addCoordinatedUnfocusingAnimations :: proc "c" (self: ^UI.FocusAnimationCoordinator, _: SEL, animations: proc "c" (animationContext: ^UI.FocusAnimationContext), completion: proc "c" ()) {
+        addCoordinatedUnfocusingAnimations :: proc "c" (self: ^UI.FocusAnimationCoordinator, _: SEL, animations: ^Objc_Block(proc "c" (animationContext: ^UI.FocusAnimationContext)), completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

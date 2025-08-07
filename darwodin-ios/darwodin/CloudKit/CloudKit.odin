@@ -63,13 +63,13 @@ SubscriptionID :: distinct ^NS.String
 OperationID :: distinct ^NS.String
 
 /// CKApplicationPermissionBlock
-ApplicationPermissionBlock :: proc "c" (applicationPermissionStatus: ApplicationPermissionStatus, error: ^NS.Error)
+ApplicationPermissionBlock :: ^Objc_Block(proc "c" (applicationPermissionStatus: ApplicationPermissionStatus, error: ^NS.Error))
 
 /// CKSharePreparationCompletionHandler
-SharePreparationCompletionHandler :: proc "c" (_arg_0: ^Share, _arg_1: ^NS.Error)
+SharePreparationCompletionHandler :: ^Objc_Block(proc "c" (_: ^Share, _1: ^NS.Error))
 
 /// CKSharePreparationHandler
-SharePreparationHandler :: proc "c" (_arg_0: SharePreparationCompletionHandler)
+SharePreparationHandler :: ^Objc_Block(proc "c" (_: SharePreparationCompletionHandler))
 
 /// CKReferenceAction
 ReferenceAction :: enum cffi.ulong {

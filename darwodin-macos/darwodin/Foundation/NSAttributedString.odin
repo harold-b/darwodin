@@ -67,11 +67,11 @@ AttributedString_initWithAttributedString :: #force_inline proc "c" (self: ^Attr
     return msgSend(^AttributedString, self, "initWithAttributedString:", attrStr)
 }
 @(objc_type=AttributedString, objc_name="enumerateAttributesInRange")
-AttributedString_enumerateAttributesInRange :: #force_inline proc "c" (self: ^AttributedString, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: proc "c" (attrs: ^Dictionary, range: _NSRange, stop: ^bool)) {
+AttributedString_enumerateAttributesInRange :: #force_inline proc "c" (self: ^AttributedString, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (attrs: ^Dictionary, range: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateAttributesInRange:options:usingBlock:", enumerationRange, opts, block)
 }
 @(objc_type=AttributedString, objc_name="enumerateAttribute")
-AttributedString_enumerateAttribute :: #force_inline proc "c" (self: ^AttributedString, attrName: ^String, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: proc "c" (value: id, range: _NSRange, stop: ^bool)) {
+AttributedString_enumerateAttribute :: #force_inline proc "c" (self: ^AttributedString, attrName: ^String, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (value: id, range: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateAttribute:inRange:options:usingBlock:", attrName, enumerationRange, opts, block)
 }
 @(objc_type=AttributedString, objc_name="length")

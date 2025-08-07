@@ -36,7 +36,7 @@ UpdateLink_updateLinkForView_ :: #force_inline proc "c" (view: ^View) -> ^Update
     return msgSend(^UpdateLink, UpdateLink, "updateLinkForView:", view)
 }
 @(objc_type=UpdateLink, objc_name="addActionToPhase_handler")
-UpdateLink_addActionToPhase_handler :: #force_inline proc "c" (self: ^UpdateLink, phase: ^UpdateActionPhase, handler: proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo)) {
+UpdateLink_addActionToPhase_handler :: #force_inline proc "c" (self: ^UpdateLink, phase: ^UpdateActionPhase, handler: ^Objc_Block(proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo))) {
     msgSend(nil, self, "addActionToPhase:handler:", phase, handler)
 }
 @(objc_type=UpdateLink, objc_name="addActionToPhase_target_selector")
@@ -88,7 +88,7 @@ UpdateLink_setPreferredFrameRateRange :: #force_inline proc "c" (self: ^UpdateLi
     msgSend(nil, self, "setPreferredFrameRateRange:", preferredFrameRateRange)
 }
 @(objc_type=UpdateLink, objc_name="addActionWithHandler")
-UpdateLink_addActionWithHandler :: #force_inline proc "c" (self: ^UpdateLink, handler: proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo)) {
+UpdateLink_addActionWithHandler :: #force_inline proc "c" (self: ^UpdateLink, handler: ^Objc_Block(proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo))) {
     msgSend(nil, self, "addActionWithHandler:", handler)
 }
 @(objc_type=UpdateLink, objc_name="addActionWithTarget")
@@ -96,7 +96,7 @@ UpdateLink_addActionWithTarget :: #force_inline proc "c" (self: ^UpdateLink, tar
     msgSend(nil, self, "addActionWithTarget:selector:", target, selector)
 }
 @(objc_type=UpdateLink, objc_name="updateLinkForWindowScene_actionHandler", objc_is_class_method=true)
-UpdateLink_updateLinkForWindowScene_actionHandler :: #force_inline proc "c" (windowScene: ^WindowScene, handler: proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo)) -> ^UpdateLink {
+UpdateLink_updateLinkForWindowScene_actionHandler :: #force_inline proc "c" (windowScene: ^WindowScene, handler: ^Objc_Block(proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo))) -> ^UpdateLink {
     return msgSend(^UpdateLink, UpdateLink, "updateLinkForWindowScene:actionHandler:", windowScene, handler)
 }
 @(objc_type=UpdateLink, objc_name="updateLinkForWindowScene_actionTarget_selector", objc_is_class_method=true)
@@ -104,7 +104,7 @@ UpdateLink_updateLinkForWindowScene_actionTarget_selector :: #force_inline proc 
     return msgSend(^UpdateLink, UpdateLink, "updateLinkForWindowScene:actionTarget:selector:", windowScene, target, selector)
 }
 @(objc_type=UpdateLink, objc_name="updateLinkForView_actionHandler", objc_is_class_method=true)
-UpdateLink_updateLinkForView_actionHandler :: #force_inline proc "c" (view: ^View, handler: proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo)) -> ^UpdateLink {
+UpdateLink_updateLinkForView_actionHandler :: #force_inline proc "c" (view: ^View, handler: ^Objc_Block(proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo))) -> ^UpdateLink {
     return msgSend(^UpdateLink, UpdateLink, "updateLinkForView:actionHandler:", view, handler)
 }
 @(objc_type=UpdateLink, objc_name="updateLinkForView_actionTarget_selector", objc_is_class_method=true)

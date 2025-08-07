@@ -87,7 +87,7 @@ URLCache_storeCachedResponse_forDataTask :: #force_inline proc "c" (self: ^URLCa
     msgSend(nil, self, "storeCachedResponse:forDataTask:", cachedResponse, dataTask)
 }
 @(objc_type=URLCache, objc_name="getCachedResponseForDataTask")
-URLCache_getCachedResponseForDataTask :: #force_inline proc "c" (self: ^URLCache, dataTask: ^URLSessionDataTask, completionHandler: proc "c" (cachedResponse: ^CachedURLResponse)) {
+URLCache_getCachedResponseForDataTask :: #force_inline proc "c" (self: ^URLCache, dataTask: ^URLSessionDataTask, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^CachedURLResponse))) {
     msgSend(nil, self, "getCachedResponseForDataTask:completionHandler:", dataTask, completionHandler)
 }
 @(objc_type=URLCache, objc_name="removeCachedResponseForDataTask")

@@ -16,3 +16,7 @@ import Sec "../Security"
 @(objc_class="NSFastEnumeration")
 FastEnumeration :: struct { using _: intrinsics.objc_object, }
 
+@(objc_type=FastEnumeration, objc_name="countByEnumeratingWithState")
+FastEnumeration_countByEnumeratingWithState :: #force_inline proc "c" (self: ^FastEnumeration, state: ^FastEnumerationState, buffer: ^id, len: UInteger) -> UInteger {
+    return msgSend(UInteger, self, "countByEnumeratingWithState:objects:count:", state, buffer, len)
+}

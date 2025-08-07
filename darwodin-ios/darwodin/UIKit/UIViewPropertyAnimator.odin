@@ -33,31 +33,31 @@ ViewPropertyAnimator_initWithDuration_timingParameters :: #force_inline proc "c"
     return msgSend(^ViewPropertyAnimator, self, "initWithDuration:timingParameters:", duration, parameters)
 }
 @(objc_type=ViewPropertyAnimator, objc_name="initWithDuration_curve_animations")
-ViewPropertyAnimator_initWithDuration_curve_animations :: #force_inline proc "c" (self: ^ViewPropertyAnimator, duration: NS.TimeInterval, curve: ViewAnimationCurve, animations: proc "c" ()) -> ^ViewPropertyAnimator {
+ViewPropertyAnimator_initWithDuration_curve_animations :: #force_inline proc "c" (self: ^ViewPropertyAnimator, duration: NS.TimeInterval, curve: ViewAnimationCurve, animations: ^Objc_Block(proc "c" ())) -> ^ViewPropertyAnimator {
     return msgSend(^ViewPropertyAnimator, self, "initWithDuration:curve:animations:", duration, curve, animations)
 }
 @(objc_type=ViewPropertyAnimator, objc_name="initWithDuration_controlPoint1_controlPoint2_animations")
-ViewPropertyAnimator_initWithDuration_controlPoint1_controlPoint2_animations :: #force_inline proc "c" (self: ^ViewPropertyAnimator, duration: NS.TimeInterval, point1: CG.Point, point2: CG.Point, animations: proc "c" ()) -> ^ViewPropertyAnimator {
+ViewPropertyAnimator_initWithDuration_controlPoint1_controlPoint2_animations :: #force_inline proc "c" (self: ^ViewPropertyAnimator, duration: NS.TimeInterval, point1: CG.Point, point2: CG.Point, animations: ^Objc_Block(proc "c" ())) -> ^ViewPropertyAnimator {
     return msgSend(^ViewPropertyAnimator, self, "initWithDuration:controlPoint1:controlPoint2:animations:", duration, point1, point2, animations)
 }
 @(objc_type=ViewPropertyAnimator, objc_name="initWithDuration_dampingRatio_animations")
-ViewPropertyAnimator_initWithDuration_dampingRatio_animations :: #force_inline proc "c" (self: ^ViewPropertyAnimator, duration: NS.TimeInterval, ratio: CG.Float, animations: proc "c" ()) -> ^ViewPropertyAnimator {
+ViewPropertyAnimator_initWithDuration_dampingRatio_animations :: #force_inline proc "c" (self: ^ViewPropertyAnimator, duration: NS.TimeInterval, ratio: CG.Float, animations: ^Objc_Block(proc "c" ())) -> ^ViewPropertyAnimator {
     return msgSend(^ViewPropertyAnimator, self, "initWithDuration:dampingRatio:animations:", duration, ratio, animations)
 }
 @(objc_type=ViewPropertyAnimator, objc_name="runningPropertyAnimatorWithDuration", objc_is_class_method=true)
-ViewPropertyAnimator_runningPropertyAnimatorWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finalPosition: ViewAnimatingPosition)) -> ^ViewPropertyAnimator {
+ViewPropertyAnimator_runningPropertyAnimatorWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) -> ^ViewPropertyAnimator {
     return msgSend(^ViewPropertyAnimator, ViewPropertyAnimator, "runningPropertyAnimatorWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=ViewPropertyAnimator, objc_name="addAnimations_delayFactor")
-ViewPropertyAnimator_addAnimations_delayFactor :: #force_inline proc "c" (self: ^ViewPropertyAnimator, animation: proc "c" (), delayFactor: CG.Float) {
+ViewPropertyAnimator_addAnimations_delayFactor :: #force_inline proc "c" (self: ^ViewPropertyAnimator, animation: ^Objc_Block(proc "c" ()), delayFactor: CG.Float) {
     msgSend(nil, self, "addAnimations:delayFactor:", animation, delayFactor)
 }
 @(objc_type=ViewPropertyAnimator, objc_name="addAnimations_")
-ViewPropertyAnimator_addAnimations_ :: #force_inline proc "c" (self: ^ViewPropertyAnimator, animation: proc "c" ()) {
+ViewPropertyAnimator_addAnimations_ :: #force_inline proc "c" (self: ^ViewPropertyAnimator, animation: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addAnimations:", animation)
 }
 @(objc_type=ViewPropertyAnimator, objc_name="addCompletion")
-ViewPropertyAnimator_addCompletion :: #force_inline proc "c" (self: ^ViewPropertyAnimator, completion: proc "c" (finalPosition: ViewAnimatingPosition)) {
+ViewPropertyAnimator_addCompletion :: #force_inline proc "c" (self: ^ViewPropertyAnimator, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) {
     msgSend(nil, self, "addCompletion:", completion)
 }
 @(objc_type=ViewPropertyAnimator, objc_name="continueAnimationWithTimingParameters")

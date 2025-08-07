@@ -947,10 +947,10 @@ foreign lib {
     SecTrustCopyCertificateChain :: proc(trust: SecTrustRef) -> CF.ArrayRef ---
 
     @(link_name="SecAddSharedWebCredential")
-    SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: proc "c" (error: CF.ErrorRef)) ---
+    SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: ^Objc_Block(proc "c" (error: CF.ErrorRef))) ---
 
     @(link_name="SecRequestSharedWebCredential")
-    SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: proc "c" (credentials: CF.ArrayRef, error: CF.ErrorRef)) ---
+    SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: ^Objc_Block(proc "c" (credentials: CF.ArrayRef, error: CF.ErrorRef))) ---
 
     @(link_name="SecCreateSharedWebCredentialPassword")
     SecCreateSharedWebCredentialPassword :: proc() -> CF.StringRef ---
@@ -1015,10 +1015,10 @@ SecRandomRef :: distinct ^__SecRandom
 SecTrustRef :: distinct ^__SecTrust
 
 /// SecTrustCallback
-SecTrustCallback :: proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType)
+SecTrustCallback :: ^Objc_Block(proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType))
 
 /// SecTrustWithErrorCallback
-SecTrustWithErrorCallback :: proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef)
+SecTrustWithErrorCallback :: ^Objc_Block(proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef))
 
 /// SSLCipherSuite
 SSLCipherSuite :: distinct cffi.uint16_t

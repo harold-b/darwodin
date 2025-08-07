@@ -41,27 +41,27 @@ ModifyRecordZonesOperation_setRecordZoneIDsToDelete :: #force_inline proc "c" (s
     msgSend(nil, self, "setRecordZoneIDsToDelete:", recordZoneIDsToDelete)
 }
 @(objc_type=ModifyRecordZonesOperation, objc_name="perRecordZoneSaveBlock")
-ModifyRecordZonesOperation_perRecordZoneSaveBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordZoneSaveBlock")
+ModifyRecordZonesOperation_perRecordZoneSaveBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordZoneSaveBlock")
 }
 @(objc_type=ModifyRecordZonesOperation, objc_name="setPerRecordZoneSaveBlock")
-ModifyRecordZonesOperation_setPerRecordZoneSaveBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation, perRecordZoneSaveBlock: proc "c" ()) {
+ModifyRecordZonesOperation_setPerRecordZoneSaveBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation, perRecordZoneSaveBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordZoneSaveBlock:", perRecordZoneSaveBlock)
 }
 @(objc_type=ModifyRecordZonesOperation, objc_name="perRecordZoneDeleteBlock")
-ModifyRecordZonesOperation_perRecordZoneDeleteBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordZoneDeleteBlock")
+ModifyRecordZonesOperation_perRecordZoneDeleteBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordZoneDeleteBlock")
 }
 @(objc_type=ModifyRecordZonesOperation, objc_name="setPerRecordZoneDeleteBlock")
-ModifyRecordZonesOperation_setPerRecordZoneDeleteBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation, perRecordZoneDeleteBlock: proc "c" ()) {
+ModifyRecordZonesOperation_setPerRecordZoneDeleteBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation, perRecordZoneDeleteBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordZoneDeleteBlock:", perRecordZoneDeleteBlock)
 }
 @(objc_type=ModifyRecordZonesOperation, objc_name="modifyRecordZonesCompletionBlock")
-ModifyRecordZonesOperation_modifyRecordZonesCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "modifyRecordZonesCompletionBlock")
+ModifyRecordZonesOperation_modifyRecordZonesCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "modifyRecordZonesCompletionBlock")
 }
 @(objc_type=ModifyRecordZonesOperation, objc_name="setModifyRecordZonesCompletionBlock")
-ModifyRecordZonesOperation_setModifyRecordZonesCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation, modifyRecordZonesCompletionBlock: proc "c" ()) {
+ModifyRecordZonesOperation_setModifyRecordZonesCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordZonesOperation, modifyRecordZonesCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setModifyRecordZonesCompletionBlock:", modifyRecordZonesCompletionBlock)
 }
 @(objc_type=ModifyRecordZonesOperation, objc_name="load", objc_is_class_method=true)

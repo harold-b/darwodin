@@ -26,11 +26,11 @@ Achievement_init :: proc "c" (self: ^Achievement) -> ^Achievement {
 
 
 @(objc_type=Achievement, objc_name="loadAchievementsWithCompletionHandler", objc_is_class_method=true)
-Achievement_loadAchievementsWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (achievements: ^NS.Array, error: ^NS.Error)) {
+Achievement_loadAchievementsWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (achievements: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, Achievement, "loadAchievementsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Achievement, objc_name="resetAchievementsWithCompletionHandler", objc_is_class_method=true)
-Achievement_resetAchievementsWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (error: ^NS.Error)) {
+Achievement_resetAchievementsWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, Achievement, "resetAchievementsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Achievement, objc_name="initWithIdentifier_")
@@ -42,7 +42,7 @@ Achievement_initWithIdentifier_player :: #force_inline proc "c" (self: ^Achievem
     return msgSend(^Achievement, self, "initWithIdentifier:player:", identifier, player)
 }
 @(objc_type=Achievement, objc_name="reportAchievements_withCompletionHandler", objc_is_class_method=true)
-Achievement_reportAchievements_withCompletionHandler :: #force_inline proc "c" (achievements: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+Achievement_reportAchievements_withCompletionHandler :: #force_inline proc "c" (achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, Achievement, "reportAchievements:withCompletionHandler:", achievements, completionHandler)
 }
 @(objc_type=Achievement, objc_name="identifier")
@@ -82,7 +82,7 @@ Achievement_player :: #force_inline proc "c" (self: ^Achievement) -> ^Player {
     return msgSend(^Player, self, "player")
 }
 @(objc_type=Achievement, objc_name="reportAchievementWithCompletionHandler")
-Achievement_reportAchievementWithCompletionHandler :: #force_inline proc "c" (self: ^Achievement, completionHandler: proc "c" (error: ^NS.Error)) {
+Achievement_reportAchievementWithCompletionHandler :: #force_inline proc "c" (self: ^Achievement, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "reportAchievementWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Achievement, objc_name="isHidden")
@@ -98,11 +98,11 @@ Achievement_playerID :: #force_inline proc "c" (self: ^Achievement) -> ^NS.Strin
     return msgSend(^NS.String, self, "playerID")
 }
 @(objc_type=Achievement, objc_name="selectChallengeablePlayers")
-Achievement_selectChallengeablePlayers :: #force_inline proc "c" (self: ^Achievement, players: ^NS.Array, completionHandler: proc "c" (challengeablePlayers: ^NS.Array, error: ^NS.Error)) {
+Achievement_selectChallengeablePlayers :: #force_inline proc "c" (self: ^Achievement, players: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (challengeablePlayers: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "selectChallengeablePlayers:withCompletionHandler:", players, completionHandler)
 }
 @(objc_type=Achievement, objc_name="reportAchievements_withEligibleChallenges_withCompletionHandler", objc_is_class_method=true)
-Achievement_reportAchievements_withEligibleChallenges_withCompletionHandler :: #force_inline proc "c" (achievements: ^NS.Array, challenges: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+Achievement_reportAchievements_withEligibleChallenges_withCompletionHandler :: #force_inline proc "c" (achievements: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, Achievement, "reportAchievements:withEligibleChallenges:withCompletionHandler:", achievements, challenges, completionHandler)
 }
 @(objc_type=Achievement, objc_name="issueChallengeToPlayers")
@@ -110,7 +110,7 @@ Achievement_issueChallengeToPlayers :: #force_inline proc "c" (self: ^Achievemen
     msgSend(nil, self, "issueChallengeToPlayers:message:", playerIDs, message)
 }
 @(objc_type=Achievement, objc_name="selectChallengeablePlayerIDs")
-Achievement_selectChallengeablePlayerIDs :: #force_inline proc "c" (self: ^Achievement, playerIDs: ^NS.Array, completionHandler: proc "c" (challengeablePlayerIDs: ^NS.Array, error: ^NS.Error)) {
+Achievement_selectChallengeablePlayerIDs :: #force_inline proc "c" (self: ^Achievement, playerIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (challengeablePlayerIDs: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "selectChallengeablePlayerIDs:withCompletionHandler:", playerIDs, completionHandler)
 }
 @(objc_type=Achievement, objc_name="challengeComposeControllerWithMessage_players_completionHandler")

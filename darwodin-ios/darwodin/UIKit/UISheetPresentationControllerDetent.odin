@@ -36,7 +36,7 @@ SheetPresentationControllerDetent_largeDetent :: #force_inline proc "c" () -> ^S
     return msgSend(^SheetPresentationControllerDetent, SheetPresentationControllerDetent, "largeDetent")
 }
 @(objc_type=SheetPresentationControllerDetent, objc_name="customDetentWithIdentifier", objc_is_class_method=true)
-SheetPresentationControllerDetent_customDetentWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, resolver: proc "c" (_context: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float) -> ^SheetPresentationControllerDetent {
+SheetPresentationControllerDetent_customDetentWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, resolver: ^Objc_Block(proc "c" (_context: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float)) -> ^SheetPresentationControllerDetent {
     return msgSend(^SheetPresentationControllerDetent, SheetPresentationControllerDetent, "customDetentWithIdentifier:resolver:", identifier, resolver)
 }
 @(objc_type=SheetPresentationControllerDetent, objc_name="resolvedValueInContext")

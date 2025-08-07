@@ -67,7 +67,7 @@ UndoManager_prepareWithInvocationTarget :: #force_inline proc "c" (self: ^UndoMa
     return msgSend(id, self, "prepareWithInvocationTarget:", target)
 }
 @(objc_type=UndoManager, objc_name="registerUndoWithTarget_handler")
-UndoManager_registerUndoWithTarget_handler :: #force_inline proc "c" (self: ^UndoManager, target: id, undoHandler: proc "c" (target: id)) {
+UndoManager_registerUndoWithTarget_handler :: #force_inline proc "c" (self: ^UndoManager, target: id, undoHandler: ^Objc_Block(proc "c" (target: id))) {
     msgSend(nil, self, "registerUndoWithTarget:handler:", target, undoHandler)
 }
 @(objc_type=UndoManager, objc_name="setActionIsDiscardable")

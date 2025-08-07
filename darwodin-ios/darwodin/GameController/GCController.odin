@@ -34,7 +34,7 @@ Controller_controllers :: #force_inline proc "c" () -> ^NS.Array {
     return msgSend(^NS.Array, Controller, "controllers")
 }
 @(objc_type=Controller, objc_name="startWirelessControllerDiscoveryWithCompletionHandler", objc_is_class_method=true)
-Controller_startWirelessControllerDiscoveryWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" ()) {
+Controller_startWirelessControllerDiscoveryWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, Controller, "startWirelessControllerDiscoveryWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Controller, objc_name="stopWirelessControllerDiscovery", objc_is_class_method=true)
@@ -50,11 +50,11 @@ Controller_controllerWithExtendedGamepad :: #force_inline proc "c" () -> ^Contro
     return msgSend(^Controller, Controller, "controllerWithExtendedGamepad")
 }
 @(objc_type=Controller, objc_name="controllerPausedHandler")
-Controller_controllerPausedHandler :: #force_inline proc "c" (self: ^Controller) -> proc "c" () {
-    return msgSend(proc "c" (), self, "controllerPausedHandler")
+Controller_controllerPausedHandler :: #force_inline proc "c" (self: ^Controller) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "controllerPausedHandler")
 }
 @(objc_type=Controller, objc_name="setControllerPausedHandler")
-Controller_setControllerPausedHandler :: #force_inline proc "c" (self: ^Controller, controllerPausedHandler: proc "c" ()) {
+Controller_setControllerPausedHandler :: #force_inline proc "c" (self: ^Controller, controllerPausedHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setControllerPausedHandler:", controllerPausedHandler)
 }
 @(objc_type=Controller, objc_name="current", objc_is_class_method=true)

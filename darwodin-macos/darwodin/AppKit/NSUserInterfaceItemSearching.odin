@@ -22,7 +22,7 @@ UserInterfaceItemSearching :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=UserInterfaceItemSearching, objc_name="searchForItemsWithSearchString")
-UserInterfaceItemSearching_searchForItemsWithSearchString :: #force_inline proc "c" (self: ^UserInterfaceItemSearching, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: proc "c" (items: ^NS.Array)) {
+UserInterfaceItemSearching_searchForItemsWithSearchString :: #force_inline proc "c" (self: ^UserInterfaceItemSearching, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" (items: ^NS.Array))) {
     msgSend(nil, self, "searchForItemsWithSearchString:resultLimit:matchedItemHandler:", searchString, resultLimit, handleMatchedItems)
 }
 @(objc_type=UserInterfaceItemSearching, objc_name="localizedTitlesForItem")

@@ -42,7 +42,7 @@ TableViewDiffableDataSource_applySnapshot_animatingDifferences :: #force_inline 
     msgSend(nil, self, "applySnapshot:animatingDifferences:", snapshot, animatingDifferences)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="applySnapshot_animatingDifferences_completion")
-TableViewDiffableDataSource_applySnapshot_animatingDifferences_completion :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: proc "c" ()) {
+TableViewDiffableDataSource_applySnapshot_animatingDifferences_completion :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "applySnapshot:animatingDifferences:completion:", snapshot, animatingDifferences, completion)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="applySnapshotUsingReloadData_")
@@ -50,7 +50,7 @@ TableViewDiffableDataSource_applySnapshotUsingReloadData_ :: #force_inline proc 
     msgSend(nil, self, "applySnapshotUsingReloadData:", snapshot)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="applySnapshotUsingReloadData_completion")
-TableViewDiffableDataSource_applySnapshotUsingReloadData_completion :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSnapshot, completion: proc "c" ()) {
+TableViewDiffableDataSource_applySnapshotUsingReloadData_completion :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, snapshot: ^NSDiffableDataSourceSnapshot, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "applySnapshotUsingReloadData:completion:", snapshot, completion)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="sectionIdentifierForIndex")

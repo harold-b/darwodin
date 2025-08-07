@@ -26,11 +26,11 @@ TableViewDropPlaceholder_init :: proc "c" (self: ^TableViewDropPlaceholder) -> ^
 
 
 @(objc_type=TableViewDropPlaceholder, objc_name="previewParametersProvider")
-TableViewDropPlaceholder_previewParametersProvider :: #force_inline proc "c" (self: ^TableViewDropPlaceholder) -> proc "c" () -> ^DragPreviewParameters {
-    return msgSend(proc "c" () -> ^DragPreviewParameters, self, "previewParametersProvider")
+TableViewDropPlaceholder_previewParametersProvider :: #force_inline proc "c" (self: ^TableViewDropPlaceholder) -> ^Objc_Block(proc "c" () -> ^DragPreviewParameters) {
+    return msgSend(^Objc_Block(proc "c" () -> ^DragPreviewParameters), self, "previewParametersProvider")
 }
 @(objc_type=TableViewDropPlaceholder, objc_name="setPreviewParametersProvider")
-TableViewDropPlaceholder_setPreviewParametersProvider :: #force_inline proc "c" (self: ^TableViewDropPlaceholder, previewParametersProvider: proc "c" () -> ^DragPreviewParameters) {
+TableViewDropPlaceholder_setPreviewParametersProvider :: #force_inline proc "c" (self: ^TableViewDropPlaceholder, previewParametersProvider: ^Objc_Block(proc "c" () -> ^DragPreviewParameters)) {
     msgSend(nil, self, "setPreviewParametersProvider:", previewParametersProvider)
 }
 @(objc_type=TableViewDropPlaceholder, objc_name="new", objc_is_class_method=true)

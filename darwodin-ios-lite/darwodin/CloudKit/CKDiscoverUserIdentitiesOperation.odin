@@ -33,19 +33,19 @@ DiscoverUserIdentitiesOperation_setUserIdentityLookupInfos :: #force_inline proc
     msgSend(nil, self, "setUserIdentityLookupInfos:", userIdentityLookupInfos)
 }
 @(objc_type=DiscoverUserIdentitiesOperation, objc_name="userIdentityDiscoveredBlock")
-DiscoverUserIdentitiesOperation_userIdentityDiscoveredBlock :: #force_inline proc "c" (self: ^DiscoverUserIdentitiesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "userIdentityDiscoveredBlock")
+DiscoverUserIdentitiesOperation_userIdentityDiscoveredBlock :: #force_inline proc "c" (self: ^DiscoverUserIdentitiesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "userIdentityDiscoveredBlock")
 }
 @(objc_type=DiscoverUserIdentitiesOperation, objc_name="setUserIdentityDiscoveredBlock")
-DiscoverUserIdentitiesOperation_setUserIdentityDiscoveredBlock :: #force_inline proc "c" (self: ^DiscoverUserIdentitiesOperation, userIdentityDiscoveredBlock: proc "c" ()) {
+DiscoverUserIdentitiesOperation_setUserIdentityDiscoveredBlock :: #force_inline proc "c" (self: ^DiscoverUserIdentitiesOperation, userIdentityDiscoveredBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setUserIdentityDiscoveredBlock:", userIdentityDiscoveredBlock)
 }
 @(objc_type=DiscoverUserIdentitiesOperation, objc_name="discoverUserIdentitiesCompletionBlock")
-DiscoverUserIdentitiesOperation_discoverUserIdentitiesCompletionBlock :: #force_inline proc "c" (self: ^DiscoverUserIdentitiesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "discoverUserIdentitiesCompletionBlock")
+DiscoverUserIdentitiesOperation_discoverUserIdentitiesCompletionBlock :: #force_inline proc "c" (self: ^DiscoverUserIdentitiesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "discoverUserIdentitiesCompletionBlock")
 }
 @(objc_type=DiscoverUserIdentitiesOperation, objc_name="setDiscoverUserIdentitiesCompletionBlock")
-DiscoverUserIdentitiesOperation_setDiscoverUserIdentitiesCompletionBlock :: #force_inline proc "c" (self: ^DiscoverUserIdentitiesOperation, discoverUserIdentitiesCompletionBlock: proc "c" ()) {
+DiscoverUserIdentitiesOperation_setDiscoverUserIdentitiesCompletionBlock :: #force_inline proc "c" (self: ^DiscoverUserIdentitiesOperation, discoverUserIdentitiesCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setDiscoverUserIdentitiesCompletionBlock:", discoverUserIdentitiesCompletionBlock)
 }
 @(objc_type=DiscoverUserIdentitiesOperation, objc_name="load", objc_is_class_method=true)

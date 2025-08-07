@@ -90,19 +90,19 @@ Set_setByAddingObjectsFromArray :: #force_inline proc "c" (self: ^Set, other: ^A
     return msgSend(^Set, self, "setByAddingObjectsFromArray:", other)
 }
 @(objc_type=Set, objc_name="enumerateObjectsUsingBlock")
-Set_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^Set, block: proc "c" (obj: ^id, stop: ^bool)) {
+Set_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^Set, block: ^Objc_Block(proc "c" (obj: ^id, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsUsingBlock:", block)
 }
 @(objc_type=Set, objc_name="enumerateObjectsWithOptions")
-Set_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^Set, opts: EnumerationOptions, block: proc "c" (obj: ^id, stop: ^bool)) {
+Set_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^Set, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=Set, objc_name="objectsPassingTest")
-Set_objectsPassingTest :: #force_inline proc "c" (self: ^Set, predicate: proc "c" (obj: ^id, stop: ^bool) -> bool) -> ^Set {
+Set_objectsPassingTest :: #force_inline proc "c" (self: ^Set, predicate: ^Objc_Block(proc "c" (obj: ^id, stop: ^bool) -> bool)) -> ^Set {
     return msgSend(^Set, self, "objectsPassingTest:", predicate)
 }
 @(objc_type=Set, objc_name="objectsWithOptions")
-Set_objectsWithOptions :: #force_inline proc "c" (self: ^Set, opts: EnumerationOptions, predicate: proc "c" (obj: ^id, stop: ^bool) -> bool) -> ^Set {
+Set_objectsWithOptions :: #force_inline proc "c" (self: ^Set, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, stop: ^bool) -> bool)) -> ^Set {
     return msgSend(^Set, self, "objectsWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=Set, objc_name="allObjects")

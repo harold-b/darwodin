@@ -33,51 +33,51 @@ Database_databaseScope :: #force_inline proc "c" (self: ^Database) -> DatabaseSc
     return msgSend(DatabaseScope, self, "databaseScope")
 }
 @(objc_type=Database, objc_name="fetchRecordWithID")
-Database_fetchRecordWithID :: #force_inline proc "c" (self: ^Database, recordID: ^RecordID, completionHandler: proc "c" (record: ^Record, error: ^NS.Error)) {
+Database_fetchRecordWithID :: #force_inline proc "c" (self: ^Database, recordID: ^RecordID, completionHandler: ^Objc_Block(proc "c" (record: ^Record, error: ^NS.Error))) {
     msgSend(nil, self, "fetchRecordWithID:completionHandler:", recordID, completionHandler)
 }
 @(objc_type=Database, objc_name="saveRecord")
-Database_saveRecord :: #force_inline proc "c" (self: ^Database, record: ^Record, completionHandler: proc "c" (record: ^Record, error: ^NS.Error)) {
+Database_saveRecord :: #force_inline proc "c" (self: ^Database, record: ^Record, completionHandler: ^Objc_Block(proc "c" (record: ^Record, error: ^NS.Error))) {
     msgSend(nil, self, "saveRecord:completionHandler:", record, completionHandler)
 }
 @(objc_type=Database, objc_name="deleteRecordWithID")
-Database_deleteRecordWithID :: #force_inline proc "c" (self: ^Database, recordID: ^RecordID, completionHandler: proc "c" (recordID: ^RecordID, error: ^NS.Error)) {
+Database_deleteRecordWithID :: #force_inline proc "c" (self: ^Database, recordID: ^RecordID, completionHandler: ^Objc_Block(proc "c" (recordID: ^RecordID, error: ^NS.Error))) {
     msgSend(nil, self, "deleteRecordWithID:completionHandler:", recordID, completionHandler)
 }
 @(objc_type=Database, objc_name="performQuery")
-Database_performQuery :: #force_inline proc "c" (self: ^Database, query: ^Query, zoneID: ^RecordZoneID, completionHandler: proc "c" (results: ^NS.Array, error: ^NS.Error)) {
+Database_performQuery :: #force_inline proc "c" (self: ^Database, query: ^Query, zoneID: ^RecordZoneID, completionHandler: ^Objc_Block(proc "c" (results: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "performQuery:inZoneWithID:completionHandler:", query, zoneID, completionHandler)
 }
 @(objc_type=Database, objc_name="fetchAllRecordZonesWithCompletionHandler")
-Database_fetchAllRecordZonesWithCompletionHandler :: #force_inline proc "c" (self: ^Database, completionHandler: proc "c" (zones: ^NS.Array, error: ^NS.Error)) {
+Database_fetchAllRecordZonesWithCompletionHandler :: #force_inline proc "c" (self: ^Database, completionHandler: ^Objc_Block(proc "c" (zones: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "fetchAllRecordZonesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Database, objc_name="fetchRecordZoneWithID")
-Database_fetchRecordZoneWithID :: #force_inline proc "c" (self: ^Database, zoneID: ^RecordZoneID, completionHandler: proc "c" (zone: ^RecordZone, error: ^NS.Error)) {
+Database_fetchRecordZoneWithID :: #force_inline proc "c" (self: ^Database, zoneID: ^RecordZoneID, completionHandler: ^Objc_Block(proc "c" (zone: ^RecordZone, error: ^NS.Error))) {
     msgSend(nil, self, "fetchRecordZoneWithID:completionHandler:", zoneID, completionHandler)
 }
 @(objc_type=Database, objc_name="saveRecordZone")
-Database_saveRecordZone :: #force_inline proc "c" (self: ^Database, zone: ^RecordZone, completionHandler: proc "c" (zone: ^RecordZone, error: ^NS.Error)) {
+Database_saveRecordZone :: #force_inline proc "c" (self: ^Database, zone: ^RecordZone, completionHandler: ^Objc_Block(proc "c" (zone: ^RecordZone, error: ^NS.Error))) {
     msgSend(nil, self, "saveRecordZone:completionHandler:", zone, completionHandler)
 }
 @(objc_type=Database, objc_name="deleteRecordZoneWithID")
-Database_deleteRecordZoneWithID :: #force_inline proc "c" (self: ^Database, zoneID: ^RecordZoneID, completionHandler: proc "c" (zoneID: ^RecordZoneID, error: ^NS.Error)) {
+Database_deleteRecordZoneWithID :: #force_inline proc "c" (self: ^Database, zoneID: ^RecordZoneID, completionHandler: ^Objc_Block(proc "c" (zoneID: ^RecordZoneID, error: ^NS.Error))) {
     msgSend(nil, self, "deleteRecordZoneWithID:completionHandler:", zoneID, completionHandler)
 }
 @(objc_type=Database, objc_name="fetchSubscriptionWithID")
-Database_fetchSubscriptionWithID :: #force_inline proc "c" (self: ^Database, subscriptionID: ^NS.String, completionHandler: proc "c" (subscription: ^Subscription, error: ^NS.Error)) {
+Database_fetchSubscriptionWithID :: #force_inline proc "c" (self: ^Database, subscriptionID: ^NS.String, completionHandler: ^Objc_Block(proc "c" (subscription: ^Subscription, error: ^NS.Error))) {
     msgSend(nil, self, "fetchSubscriptionWithID:completionHandler:", subscriptionID, completionHandler)
 }
 @(objc_type=Database, objc_name="fetchAllSubscriptionsWithCompletionHandler")
-Database_fetchAllSubscriptionsWithCompletionHandler :: #force_inline proc "c" (self: ^Database, completionHandler: proc "c" (subscriptions: ^NS.Array, error: ^NS.Error)) {
+Database_fetchAllSubscriptionsWithCompletionHandler :: #force_inline proc "c" (self: ^Database, completionHandler: ^Objc_Block(proc "c" (subscriptions: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "fetchAllSubscriptionsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Database, objc_name="saveSubscription")
-Database_saveSubscription :: #force_inline proc "c" (self: ^Database, subscription: ^Subscription, completionHandler: proc "c" (subscription: ^Subscription, error: ^NS.Error)) {
+Database_saveSubscription :: #force_inline proc "c" (self: ^Database, subscription: ^Subscription, completionHandler: ^Objc_Block(proc "c" (subscription: ^Subscription, error: ^NS.Error))) {
     msgSend(nil, self, "saveSubscription:completionHandler:", subscription, completionHandler)
 }
 @(objc_type=Database, objc_name="deleteSubscriptionWithID")
-Database_deleteSubscriptionWithID :: #force_inline proc "c" (self: ^Database, subscriptionID: ^NS.String, completionHandler: proc "c" (subscriptionID: ^NS.String, error: ^NS.Error)) {
+Database_deleteSubscriptionWithID :: #force_inline proc "c" (self: ^Database, subscriptionID: ^NS.String, completionHandler: ^Objc_Block(proc "c" (subscriptionID: ^NS.String, error: ^NS.Error))) {
     msgSend(nil, self, "deleteSubscriptionWithID:completionHandler:", subscriptionID, completionHandler)
 }
 @(objc_type=Database, objc_name="load", objc_is_class_method=true)

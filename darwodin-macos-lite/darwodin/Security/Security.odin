@@ -1684,10 +1684,10 @@ foreign lib {
     SecTrustCopyAnchorCertificates :: proc(anchors: ^CF.ArrayRef) -> CF.OSStatus ---
 
     @(link_name="SecAddSharedWebCredential")
-    SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: proc "c" (error: CF.ErrorRef)) ---
+    SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: ^Objc_Block(proc "c" (error: CF.ErrorRef))) ---
 
     @(link_name="SecRequestSharedWebCredential")
-    SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: proc "c" (credentials: CF.ArrayRef, error: CF.ErrorRef)) ---
+    SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: ^Objc_Block(proc "c" (credentials: CF.ArrayRef, error: CF.ErrorRef))) ---
 
     @(link_name="SecCreateSharedWebCredentialPassword")
     SecCreateSharedWebCredentialPassword :: proc() -> CF.StringRef ---
@@ -3216,7 +3216,7 @@ CSSM_X509_SIGNED_CRL_PTR :: distinct ^cssm_x509_signed_crl
 SecAccessOwnerType :: distinct CF.UInt32
 
 /// SecKeyGeneratePairBlock
-SecKeyGeneratePairBlock :: proc "c" (publicKey: SecKeyRef, privateKey: SecKeyRef, error: CF.ErrorRef)
+SecKeyGeneratePairBlock :: ^Objc_Block(proc "c" (publicKey: SecKeyRef, privateKey: SecKeyRef, error: CF.ErrorRef))
 
 /// SecKeyAlgorithm
 SecKeyAlgorithm :: distinct CF.StringRef
@@ -3357,10 +3357,10 @@ SecKeychainCallback :: proc "c" (keychainEvent: SecKeychainEvent, info: ^SecKeyc
 SecTrustRef :: distinct ^__SecTrust
 
 /// SecTrustCallback
-SecTrustCallback :: proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType)
+SecTrustCallback :: ^Objc_Block(proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType))
 
 /// SecTrustWithErrorCallback
-SecTrustWithErrorCallback :: proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef)
+SecTrustWithErrorCallback :: ^Objc_Block(proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef))
 
 /// SecTrustUserSetting
 SecTrustUserSetting :: distinct SecTrustResultType
@@ -3381,7 +3381,7 @@ AuthorizationRights :: distinct AuthorizationItemSet
 AuthorizationEnvironment :: distinct AuthorizationItemSet
 
 /// AuthorizationAsyncCallback
-AuthorizationAsyncCallback :: proc "c" (err: CF.OSStatus, blockAuthorizedRights: ^AuthorizationRights)
+AuthorizationAsyncCallback :: ^Objc_Block(proc "c" (err: CF.OSStatus, blockAuthorizedRights: ^AuthorizationRights))
 
 /// SecuritySessionId
 SecuritySessionId :: distinct CF.UInt32
@@ -3561,7 +3561,7 @@ SecTransformRef :: distinct CF.TypeRef
 SecGroupTransformRef :: distinct CF.TypeRef
 
 /// SecMessageBlock
-SecMessageBlock :: proc "c" (message: CF.TypeRef, error: CF.ErrorRef, isFinal: CF.Boolean)
+SecMessageBlock :: ^Objc_Block(proc "c" (message: CF.TypeRef, error: CF.ErrorRef, isFinal: CF.Boolean))
 
 /// SecTransformAttributeRef
 SecTransformAttributeRef :: distinct CF.TypeRef
@@ -3570,16 +3570,16 @@ SecTransformAttributeRef :: distinct CF.TypeRef
 SecTransformStringOrAttributeRef :: distinct CF.TypeRef
 
 /// SecTransformActionBlock
-SecTransformActionBlock :: proc "c" () -> CF.TypeRef
+SecTransformActionBlock :: ^Objc_Block(proc "c" () -> CF.TypeRef)
 
 /// SecTransformAttributeActionBlock
-SecTransformAttributeActionBlock :: proc "c" (attribute: SecTransformAttributeRef, value: CF.TypeRef) -> CF.TypeRef
+SecTransformAttributeActionBlock :: ^Objc_Block(proc "c" (attribute: SecTransformAttributeRef, value: CF.TypeRef) -> CF.TypeRef)
 
 /// SecTransformDataBlock
-SecTransformDataBlock :: proc "c" (data: CF.TypeRef) -> CF.TypeRef
+SecTransformDataBlock :: ^Objc_Block(proc "c" (data: CF.TypeRef) -> CF.TypeRef)
 
 /// SecTransformInstanceBlock
-SecTransformInstanceBlock :: proc "c" () -> CF.ErrorRef
+SecTransformInstanceBlock :: ^Objc_Block(proc "c" () -> CF.ErrorRef)
 
 /// SecTransformImplementationRef
 SecTransformImplementationRef :: distinct ^OpaqueSecTransformImplementation

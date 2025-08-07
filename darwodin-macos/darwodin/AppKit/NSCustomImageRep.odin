@@ -26,7 +26,7 @@ CustomImageRep_init :: proc "c" (self: ^CustomImageRep) -> ^CustomImageRep {
 
 
 @(objc_type=CustomImageRep, objc_name="initWithSize")
-CustomImageRep_initWithSize :: #force_inline proc "c" (self: ^CustomImageRep, size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: proc "c" (dstRect: NS.Rect) -> bool) -> ^CustomImageRep {
+CustomImageRep_initWithSize :: #force_inline proc "c" (self: ^CustomImageRep, size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" (dstRect: NS.Rect) -> bool)) -> ^CustomImageRep {
     return msgSend(^CustomImageRep, self, "initWithSize:flipped:drawingHandler:", size, drawingHandlerShouldBeCalledWithFlippedContext, drawingHandler)
 }
 @(objc_type=CustomImageRep, objc_name="initWithDrawSelector")
@@ -34,8 +34,8 @@ CustomImageRep_initWithDrawSelector :: #force_inline proc "c" (self: ^CustomImag
     return msgSend(^CustomImageRep, self, "initWithDrawSelector:delegate:", selector, delegate)
 }
 @(objc_type=CustomImageRep, objc_name="drawingHandler")
-CustomImageRep_drawingHandler :: #force_inline proc "c" (self: ^CustomImageRep) -> proc "c" () -> bool {
-    return msgSend(proc "c" () -> bool, self, "drawingHandler")
+CustomImageRep_drawingHandler :: #force_inline proc "c" (self: ^CustomImageRep) -> ^Objc_Block(proc "c" () -> bool) {
+    return msgSend(^Objc_Block(proc "c" () -> bool), self, "drawingHandler")
 }
 @(objc_type=CustomImageRep, objc_name="drawSelector")
 CustomImageRep_drawSelector :: #force_inline proc "c" (self: ^CustomImageRep) -> SEL {

@@ -55,7 +55,7 @@ VTable :: struct {
     nextWeekendStartDate: proc(self: ^NS.Calendar, datep: ^^NS.Date, tip: ^NS.TimeInterval, options: NS.CalendarOptions, date: ^NS.Date) -> bool,
     components_fromDateComponents_toDateComponents_options: proc(self: ^NS.Calendar, unitFlags: NS.CalendarUnit, startingDateComp: ^NS.DateComponents, resultDateComp: ^NS.DateComponents, options: NS.CalendarOptions) -> ^NS.DateComponents,
     dateByAddingUnit: proc(self: ^NS.Calendar, unit: NS.CalendarUnit, value: NS.Integer, date: ^NS.Date, options: NS.CalendarOptions) -> ^NS.Date,
-    enumerateDatesStartingAfterDate: proc(self: ^NS.Calendar, start: ^NS.Date, comps: ^NS.DateComponents, opts: NS.CalendarOptions, block: proc "c" (date: ^NS.Date, exactMatch: bool, stop: ^bool)),
+    enumerateDatesStartingAfterDate: proc(self: ^NS.Calendar, start: ^NS.Date, comps: ^NS.DateComponents, opts: NS.CalendarOptions, block: ^Objc_Block(proc "c" (date: ^NS.Date, exactMatch: bool, stop: ^bool))),
     nextDateAfterDate_matchingComponents_options: proc(self: ^NS.Calendar, date: ^NS.Date, comps: ^NS.DateComponents, options: NS.CalendarOptions) -> ^NS.Date,
     nextDateAfterDate_matchingUnit_value_options: proc(self: ^NS.Calendar, date: ^NS.Date, unit: NS.CalendarUnit, value: NS.Integer, options: NS.CalendarOptions) -> ^NS.Date,
     nextDateAfterDate_matchingHour_minute_second_options: proc(self: ^NS.Calendar, date: ^NS.Date, hourValue: NS.Integer, minuteValue: NS.Integer, secondValue: NS.Integer, options: NS.CalendarOptions) -> ^NS.Date,
@@ -443,7 +443,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dateByAddingUnit:value:toDate:options:"), auto_cast dateByAddingUnit, "@@:Ll@L") do panic("Failed to register objC method.")
     }
     if vt.enumerateDatesStartingAfterDate != nil {
-        enumerateDatesStartingAfterDate :: proc "c" (self: ^NS.Calendar, _: SEL, start: ^NS.Date, comps: ^NS.DateComponents, opts: NS.CalendarOptions, block: proc "c" (date: ^NS.Date, exactMatch: bool, stop: ^bool)) {
+        enumerateDatesStartingAfterDate :: proc "c" (self: ^NS.Calendar, _: SEL, start: ^NS.Date, comps: ^NS.DateComponents, opts: NS.CalendarOptions, block: ^Objc_Block(proc "c" (date: ^NS.Date, exactMatch: bool, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

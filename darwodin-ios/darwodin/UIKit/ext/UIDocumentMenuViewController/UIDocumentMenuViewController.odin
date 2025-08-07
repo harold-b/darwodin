@@ -30,7 +30,7 @@ VTable :: struct {
     initWithDocumentTypes: proc(self: ^UI.DocumentMenuViewController, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> ^UI.DocumentMenuViewController,
     initWithURL: proc(self: ^UI.DocumentMenuViewController, url: ^NS.URL, mode: UI.DocumentPickerMode) -> ^UI.DocumentMenuViewController,
     initWithCoder: proc(self: ^UI.DocumentMenuViewController, coder: ^NS.Coder) -> ^UI.DocumentMenuViewController,
-    addOptionWithTitle: proc(self: ^UI.DocumentMenuViewController, title: ^NS.String, image: ^UI.Image, order: UI.DocumentMenuOrder, handler: proc "c" ()),
+    addOptionWithTitle: proc(self: ^UI.DocumentMenuViewController, title: ^NS.String, image: ^UI.Image, order: UI.DocumentMenuOrder, handler: ^Objc_Block(proc "c" ())),
     delegate: proc(self: ^UI.DocumentMenuViewController) -> ^UI.DocumentMenuDelegate,
     setDelegate: proc(self: ^UI.DocumentMenuViewController, delegate: ^UI.DocumentMenuDelegate),
     attemptRotationToDeviceOrientation: proc(),
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.addOptionWithTitle != nil {
-        addOptionWithTitle :: proc "c" (self: ^UI.DocumentMenuViewController, _: SEL, title: ^NS.String, image: ^UI.Image, order: UI.DocumentMenuOrder, handler: proc "c" ()) {
+        addOptionWithTitle :: proc "c" (self: ^UI.DocumentMenuViewController, _: SEL, title: ^NS.String, image: ^UI.Image, order: UI.DocumentMenuOrder, handler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

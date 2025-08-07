@@ -34,11 +34,11 @@ CellAccessoryInsert_setBackgroundColor :: #force_inline proc "c" (self: ^CellAcc
     msgSend(nil, self, "setBackgroundColor:", backgroundColor)
 }
 @(objc_type=CellAccessoryInsert, objc_name="actionHandler")
-CellAccessoryInsert_actionHandler :: #force_inline proc "c" (self: ^CellAccessoryInsert) -> proc "c" () {
-    return msgSend(proc "c" (), self, "actionHandler")
+CellAccessoryInsert_actionHandler :: #force_inline proc "c" (self: ^CellAccessoryInsert) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "actionHandler")
 }
 @(objc_type=CellAccessoryInsert, objc_name="setActionHandler")
-CellAccessoryInsert_setActionHandler :: #force_inline proc "c" (self: ^CellAccessoryInsert, actionHandler: proc "c" ()) {
+CellAccessoryInsert_setActionHandler :: #force_inline proc "c" (self: ^CellAccessoryInsert, actionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setActionHandler:", actionHandler)
 }
 @(objc_type=CellAccessoryInsert, objc_name="supportsSecureCoding", objc_is_class_method=true)

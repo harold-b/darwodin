@@ -189,11 +189,11 @@ String_paragraphRangeForRange :: #force_inline proc "c" (self: ^String, range: _
     return msgSend(_NSRange, self, "paragraphRangeForRange:", range)
 }
 @(objc_type=String, objc_name="enumerateSubstringsInRange")
-String_enumerateSubstringsInRange :: #force_inline proc "c" (self: ^String, range: _NSRange, opts: StringEnumerationOptions, block: proc "c" (substring: ^String, substringRange: _NSRange, enclosingRange: _NSRange, stop: ^bool)) {
+String_enumerateSubstringsInRange :: #force_inline proc "c" (self: ^String, range: _NSRange, opts: StringEnumerationOptions, block: ^Objc_Block(proc "c" (substring: ^String, substringRange: _NSRange, enclosingRange: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateSubstringsInRange:options:usingBlock:", range, opts, block)
 }
 @(objc_type=String, objc_name="enumerateLinesUsingBlock")
-String_enumerateLinesUsingBlock :: #force_inline proc "c" (self: ^String, block: proc "c" (line: ^String, stop: ^bool)) {
+String_enumerateLinesUsingBlock :: #force_inline proc "c" (self: ^String, block: ^Objc_Block(proc "c" (line: ^String, stop: ^bool))) {
     msgSend(nil, self, "enumerateLinesUsingBlock:", block)
 }
 @(objc_type=String, objc_name="dataUsingEncoding_allowLossyConversion")
@@ -281,7 +281,7 @@ String_initWithCharactersNoCopy_length_freeWhenDone :: #force_inline proc "c" (s
     return msgSend(^String, self, "initWithCharactersNoCopy:length:freeWhenDone:", characters, length, freeBuffer)
 }
 @(objc_type=String, objc_name="initWithCharactersNoCopy_length_deallocator")
-String_initWithCharactersNoCopy_length_deallocator :: #force_inline proc "c" (self: ^String, chars: ^unichar, len: UInteger, deallocator: proc "c" (_arg_0: ^unichar, _arg_1: UInteger)) -> ^String {
+String_initWithCharactersNoCopy_length_deallocator :: #force_inline proc "c" (self: ^String, chars: ^unichar, len: UInteger, deallocator: ^Objc_Block(proc "c" (_: ^unichar, _1: UInteger))) -> ^String {
     return msgSend(^String, self, "initWithCharactersNoCopy:length:deallocator:", chars, len, deallocator)
 }
 @(objc_type=String, objc_name="initWithCharacters")
@@ -341,7 +341,7 @@ String_initWithBytesNoCopy_length_encoding_freeWhenDone :: #force_inline proc "c
     return msgSend(^String, self, "initWithBytesNoCopy:length:encoding:freeWhenDone:", bytes, len, encoding, freeBuffer)
 }
 @(objc_type=String, objc_name="initWithBytesNoCopy_length_encoding_deallocator")
-String_initWithBytesNoCopy_length_encoding_deallocator :: #force_inline proc "c" (self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, deallocator: proc "c" (_arg_0: rawptr, _arg_1: UInteger)) -> ^String {
+String_initWithBytesNoCopy_length_encoding_deallocator :: #force_inline proc "c" (self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: UInteger))) -> ^String {
     return msgSend(^String, self, "initWithBytesNoCopy:length:encoding:deallocator:", bytes, len, encoding, deallocator)
 }
 @(objc_type=String, objc_name="string", objc_is_class_method=true)
@@ -685,7 +685,7 @@ String_linguisticTagsInRange :: #force_inline proc "c" (self: ^String, range: _N
     return msgSend(^Array, self, "linguisticTagsInRange:scheme:options:orthography:tokenRanges:", range, scheme, options, orthography, tokenRanges)
 }
 @(objc_type=String, objc_name="enumerateLinguisticTagsInRange")
-String_enumerateLinguisticTagsInRange :: #force_inline proc "c" (self: ^String, range: _NSRange, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, block: proc "c" (tag: ^String, tokenRange: _NSRange, sentenceRange: _NSRange, stop: ^bool)) {
+String_enumerateLinguisticTagsInRange :: #force_inline proc "c" (self: ^String, range: _NSRange, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, block: ^Objc_Block(proc "c" (tag: ^String, tokenRange: _NSRange, sentenceRange: _NSRange, stop: ^bool))) {
     msgSend(nil, self, "enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:", range, scheme, options, orthography, block)
 }
 @(objc_type=String, objc_name="supportsSecureCoding", objc_is_class_method=true)

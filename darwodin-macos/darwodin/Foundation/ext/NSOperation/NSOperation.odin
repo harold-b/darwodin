@@ -39,8 +39,8 @@ VTable :: struct {
     dependencies: proc(self: ^NS.Operation) -> ^NS.Array,
     queuePriority: proc(self: ^NS.Operation) -> NS.OperationQueuePriority,
     setQueuePriority: proc(self: ^NS.Operation, queuePriority: NS.OperationQueuePriority),
-    completionBlock: proc(self: ^NS.Operation) -> proc "c" (),
-    setCompletionBlock: proc(self: ^NS.Operation, completionBlock: proc "c" ()),
+    completionBlock: proc(self: ^NS.Operation) -> ^Objc_Block(proc "c" ()),
+    setCompletionBlock: proc(self: ^NS.Operation, completionBlock: ^Objc_Block(proc "c" ())),
     threadPriority: proc(self: ^NS.Operation) -> cffi.double,
     setThreadPriority: proc(self: ^NS.Operation, threadPriority: cffi.double),
     qualityOfService: proc(self: ^NS.Operation) -> NS.QualityOfService,
@@ -238,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setQueuePriority:"), auto_cast setQueuePriority, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.completionBlock != nil {
-        completionBlock :: proc "c" (self: ^NS.Operation, _: SEL) -> proc "c" () {
+        completionBlock :: proc "c" (self: ^NS.Operation, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -248,7 +248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("completionBlock"), auto_cast completionBlock, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setCompletionBlock != nil {
-        setCompletionBlock :: proc "c" (self: ^NS.Operation, _: SEL, completionBlock: proc "c" ()) {
+        setCompletionBlock :: proc "c" (self: ^NS.Operation, _: SEL, completionBlock: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

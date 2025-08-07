@@ -27,8 +27,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    runAnimationGroup_completionHandler: proc(changes: proc "c" (_context: ^AK.AnimationContext), completionHandler: proc "c" ()),
-    runAnimationGroup_: proc(changes: proc "c" (_context: ^AK.AnimationContext)),
+    runAnimationGroup_completionHandler: proc(changes: ^Objc_Block(proc "c" (_context: ^AK.AnimationContext)), completionHandler: ^Objc_Block(proc "c" ())),
+    runAnimationGroup_: proc(changes: ^Objc_Block(proc "c" (_context: ^AK.AnimationContext))),
     beginGrouping: proc(),
     endGrouping: proc(),
     currentContext: proc() -> ^AK.AnimationContext,
@@ -36,8 +36,8 @@ VTable :: struct {
     setDuration: proc(self: ^AK.AnimationContext, duration: NS.TimeInterval),
     timingFunction: proc(self: ^AK.AnimationContext) -> ^CA.MediaTimingFunction,
     setTimingFunction: proc(self: ^AK.AnimationContext, timingFunction: ^CA.MediaTimingFunction),
-    completionHandler: proc(self: ^AK.AnimationContext) -> proc "c" (),
-    setCompletionHandler: proc(self: ^AK.AnimationContext, completionHandler: proc "c" ()),
+    completionHandler: proc(self: ^AK.AnimationContext) -> ^Objc_Block(proc "c" ()),
+    setCompletionHandler: proc(self: ^AK.AnimationContext, completionHandler: ^Objc_Block(proc "c" ())),
     allowsImplicitAnimation: proc(self: ^AK.AnimationContext) -> bool,
     setAllowsImplicitAnimation: proc(self: ^AK.AnimationContext, allowsImplicitAnimation: bool),
     load: proc(),
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.runAnimationGroup_completionHandler != nil {
-        runAnimationGroup_completionHandler :: proc "c" (self: Class, _: SEL, changes: proc "c" (_context: ^AK.AnimationContext), completionHandler: proc "c" ()) {
+        runAnimationGroup_completionHandler :: proc "c" (self: Class, _: SEL, changes: ^Objc_Block(proc "c" (_context: ^AK.AnimationContext)), completionHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("runAnimationGroup:completionHandler:"), auto_cast runAnimationGroup_completionHandler, "v#:??") do panic("Failed to register objC method.")
     }
     if vt.runAnimationGroup_ != nil {
-        runAnimationGroup_ :: proc "c" (self: Class, _: SEL, changes: proc "c" (_context: ^AK.AnimationContext)) {
+        runAnimationGroup_ :: proc "c" (self: Class, _: SEL, changes: ^Objc_Block(proc "c" (_context: ^AK.AnimationContext))) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTimingFunction:"), auto_cast setTimingFunction, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.completionHandler != nil {
-        completionHandler :: proc "c" (self: ^AK.AnimationContext, _: SEL) -> proc "c" () {
+        completionHandler :: proc "c" (self: ^AK.AnimationContext, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("completionHandler"), auto_cast completionHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setCompletionHandler != nil {
-        setCompletionHandler :: proc "c" (self: ^AK.AnimationContext, _: SEL, completionHandler: proc "c" ()) {
+        setCompletionHandler :: proc "c" (self: ^AK.AnimationContext, _: SEL, completionHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

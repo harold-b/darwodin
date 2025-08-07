@@ -55,11 +55,11 @@ Player_isInvitable :: #force_inline proc "c" (self: ^Player) -> bool {
     return msgSend(bool, self, "isInvitable")
 }
 @(objc_type=Player, objc_name="loadPhotoForSize")
-Player_loadPhotoForSize :: #force_inline proc "c" (self: ^Player, size: PhotoSize, completionHandler: proc "c" (photo: ^UI.Image, error: ^NS.Error)) {
+Player_loadPhotoForSize :: #force_inline proc "c" (self: ^Player, size: PhotoSize, completionHandler: ^Objc_Block(proc "c" (photo: ^UI.Image, error: ^NS.Error))) {
     msgSend(nil, self, "loadPhotoForSize:withCompletionHandler:", size, completionHandler)
 }
 @(objc_type=Player, objc_name="loadPlayersForIdentifiers", objc_is_class_method=true)
-Player_loadPlayersForIdentifiers :: #force_inline proc "c" (identifiers: ^NS.Array, completionHandler: proc "c" (players: ^NS.Array, error: ^NS.Error)) {
+Player_loadPlayersForIdentifiers :: #force_inline proc "c" (identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (players: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, Player, "loadPlayersForIdentifiers:withCompletionHandler:", identifiers, completionHandler)
 }
 @(objc_type=Player, objc_name="isFriend")

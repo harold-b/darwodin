@@ -26,7 +26,7 @@ DraggingSession_init :: proc "c" (self: ^DraggingSession) -> ^DraggingSession {
 
 
 @(objc_type=DraggingSession, objc_name="enumerateDraggingItemsWithOptions")
-DraggingSession_enumerateDraggingItemsWithOptions :: #force_inline proc "c" (self: ^DraggingSession, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: proc "c" (draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool)) {
+DraggingSession_enumerateDraggingItemsWithOptions :: #force_inline proc "c" (self: ^DraggingSession, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool))) {
     msgSend(nil, self, "enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:", enumOpts, view, classArray, searchOptions, block)
 }
 @(objc_type=DraggingSession, objc_name="draggingFormation")

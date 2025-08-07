@@ -27,7 +27,7 @@ VTable :: struct {
     currentVersionOfItemAtURL: proc(url: ^NS.URL) -> ^NS.FileVersion,
     otherVersionsOfItemAtURL: proc(url: ^NS.URL) -> ^NS.Array,
     unresolvedConflictVersionsOfItemAtURL: proc(url: ^NS.URL) -> ^NS.Array,
-    getNonlocalVersionsOfItemAtURL: proc(url: ^NS.URL, completionHandler: proc "c" (nonlocalFileVersions: ^NS.Array, error: ^NS.Error)),
+    getNonlocalVersionsOfItemAtURL: proc(url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (nonlocalFileVersions: ^NS.Array, error: ^NS.Error))),
     versionOfItemAtURL: proc(url: ^NS.URL, persistentIdentifier: id) -> ^NS.FileVersion,
     addVersionOfItemAtURL: proc(url: ^NS.URL, contentsURL: ^NS.URL, options: NS.FileVersionAddingOptions, outError: ^^NS.Error) -> ^NS.FileVersion,
     temporaryDirectoryURLForNewVersionOfItemAtURL: proc(url: ^NS.URL) -> ^NS.URL,
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("unresolvedConflictVersionsOfItemAtURL:"), auto_cast unresolvedConflictVersionsOfItemAtURL, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.getNonlocalVersionsOfItemAtURL != nil {
-        getNonlocalVersionsOfItemAtURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, completionHandler: proc "c" (nonlocalFileVersions: ^NS.Array, error: ^NS.Error)) {
+        getNonlocalVersionsOfItemAtURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (nonlocalFileVersions: ^NS.Array, error: ^NS.Error))) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -34,7 +34,7 @@ AlertController_addAction :: #force_inline proc "c" (self: ^AlertController, act
     msgSend(nil, self, "addAction:", action)
 }
 @(objc_type=AlertController, objc_name="addTextFieldWithConfigurationHandler")
-AlertController_addTextFieldWithConfigurationHandler :: #force_inline proc "c" (self: ^AlertController, configurationHandler: proc "c" (textField: ^TextField)) {
+AlertController_addTextFieldWithConfigurationHandler :: #force_inline proc "c" (self: ^AlertController, configurationHandler: ^Objc_Block(proc "c" (textField: ^TextField))) {
     msgSend(nil, self, "addTextFieldWithConfigurationHandler:", configurationHandler)
 }
 @(objc_type=AlertController, objc_name="actions")

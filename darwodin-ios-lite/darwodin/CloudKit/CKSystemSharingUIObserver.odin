@@ -29,19 +29,19 @@ SystemSharingUIObserver_initWithContainer :: #force_inline proc "c" (self: ^Syst
     return msgSend(^SystemSharingUIObserver, self, "initWithContainer:", container)
 }
 @(objc_type=SystemSharingUIObserver, objc_name="systemSharingUIDidSaveShareBlock")
-SystemSharingUIObserver_systemSharingUIDidSaveShareBlock :: #force_inline proc "c" (self: ^SystemSharingUIObserver) -> proc "c" () {
-    return msgSend(proc "c" (), self, "systemSharingUIDidSaveShareBlock")
+SystemSharingUIObserver_systemSharingUIDidSaveShareBlock :: #force_inline proc "c" (self: ^SystemSharingUIObserver) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "systemSharingUIDidSaveShareBlock")
 }
 @(objc_type=SystemSharingUIObserver, objc_name="setSystemSharingUIDidSaveShareBlock")
-SystemSharingUIObserver_setSystemSharingUIDidSaveShareBlock :: #force_inline proc "c" (self: ^SystemSharingUIObserver, systemSharingUIDidSaveShareBlock: proc "c" ()) {
+SystemSharingUIObserver_setSystemSharingUIDidSaveShareBlock :: #force_inline proc "c" (self: ^SystemSharingUIObserver, systemSharingUIDidSaveShareBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setSystemSharingUIDidSaveShareBlock:", systemSharingUIDidSaveShareBlock)
 }
 @(objc_type=SystemSharingUIObserver, objc_name="systemSharingUIDidStopSharingBlock")
-SystemSharingUIObserver_systemSharingUIDidStopSharingBlock :: #force_inline proc "c" (self: ^SystemSharingUIObserver) -> proc "c" () {
-    return msgSend(proc "c" (), self, "systemSharingUIDidStopSharingBlock")
+SystemSharingUIObserver_systemSharingUIDidStopSharingBlock :: #force_inline proc "c" (self: ^SystemSharingUIObserver) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "systemSharingUIDidStopSharingBlock")
 }
 @(objc_type=SystemSharingUIObserver, objc_name="setSystemSharingUIDidStopSharingBlock")
-SystemSharingUIObserver_setSystemSharingUIDidStopSharingBlock :: #force_inline proc "c" (self: ^SystemSharingUIObserver, systemSharingUIDidStopSharingBlock: proc "c" ()) {
+SystemSharingUIObserver_setSystemSharingUIDidStopSharingBlock :: #force_inline proc "c" (self: ^SystemSharingUIObserver, systemSharingUIDidStopSharingBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setSystemSharingUIDidStopSharingBlock:", systemSharingUIDidStopSharingBlock)
 }
 @(objc_type=SystemSharingUIObserver, objc_name="load", objc_is_class_method=true)

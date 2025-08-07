@@ -30,9 +30,9 @@ VTable :: struct {
     initForOpeningFilesWithContentTypes: proc(self: ^UI.DocumentBrowserViewController, allowedContentTypes: ^NS.Array) -> ^UI.DocumentBrowserViewController,
     initForOpeningContentTypes: proc(self: ^UI.DocumentBrowserViewController, contentTypes: ^NS.Array) -> ^UI.DocumentBrowserViewController,
     initWithNibName: proc(self: ^UI.DocumentBrowserViewController, nibName: ^NS.String, bundle: ^NS.Bundle) -> ^UI.DocumentBrowserViewController,
-    revealDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, url: ^NS.URL, importIfNeeded: bool, completion: proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error)),
-    importDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: UI.DocumentBrowserImportMode, completion: proc "c" (_arg_0: ^NS.URL, _arg_1: ^NS.Error)),
-    renameDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: proc "c" (finalURL: ^NS.URL, error: ^NS.Error)),
+    revealDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, url: ^NS.URL, importIfNeeded: bool, completion: ^Objc_Block(proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error))),
+    importDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: UI.DocumentBrowserImportMode, completion: ^Objc_Block(proc "c" (_: ^NS.URL, _1: ^NS.Error))),
+    renameDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (finalURL: ^NS.URL, error: ^NS.Error))),
     transitionControllerForDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL) -> ^UI.DocumentBrowserTransitionController,
     transitionControllerForDocumentURL: proc(self: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL) -> ^UI.DocumentBrowserTransitionController,
     delegate: proc(self: ^UI.DocumentBrowserViewController) -> ^UI.DocumentBrowserViewControllerDelegate,
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.revealDocumentAtURL != nil {
-        revealDocumentAtURL :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, url: ^NS.URL, importIfNeeded: bool, completion: proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error)) {
+        revealDocumentAtURL :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, url: ^NS.URL, importIfNeeded: bool, completion: ^Objc_Block(proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("revealDocumentAtURL:importIfNeeded:completion:"), auto_cast revealDocumentAtURL, "v@:@B?") do panic("Failed to register objC method.")
     }
     if vt.importDocumentAtURL != nil {
-        importDocumentAtURL :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: UI.DocumentBrowserImportMode, completion: proc "c" (_arg_0: ^NS.URL, _arg_1: ^NS.Error)) {
+        importDocumentAtURL :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: UI.DocumentBrowserImportMode, completion: ^Objc_Block(proc "c" (_: ^NS.URL, _1: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:"), auto_cast importDocumentAtURL, "v@:@@L?") do panic("Failed to register objC method.")
     }
     if vt.renameDocumentAtURL != nil {
-        renameDocumentAtURL :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: proc "c" (finalURL: ^NS.URL, error: ^NS.Error)) {
+        renameDocumentAtURL :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (finalURL: ^NS.URL, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -35,7 +35,7 @@ VTable :: struct {
     removeAllActionsWithTarget: proc(self: ^NS.UndoManager, target: id),
     registerUndoWithTarget_selector_object: proc(self: ^NS.UndoManager, target: id, selector: SEL, object: id),
     prepareWithInvocationTarget: proc(self: ^NS.UndoManager, target: id) -> id,
-    registerUndoWithTarget_handler: proc(self: ^NS.UndoManager, target: id, undoHandler: proc "c" (target: id)),
+    registerUndoWithTarget_handler: proc(self: ^NS.UndoManager, target: id, undoHandler: ^Objc_Block(proc "c" (target: id))),
     setActionIsDiscardable: proc(self: ^NS.UndoManager, discardable: bool),
     setActionName: proc(self: ^NS.UndoManager, actionName: ^NS.String),
     undoActionUserInfoValueForKey: proc(self: ^NS.UndoManager, key: ^NS.String) -> id,
@@ -212,7 +212,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("prepareWithInvocationTarget:"), auto_cast prepareWithInvocationTarget, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.registerUndoWithTarget_handler != nil {
-        registerUndoWithTarget_handler :: proc "c" (self: ^NS.UndoManager, _: SEL, target: id, undoHandler: proc "c" (target: id)) {
+        registerUndoWithTarget_handler :: proc "c" (self: ^NS.UndoManager, _: SEL, target: id, undoHandler: ^Objc_Block(proc "c" (target: id))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

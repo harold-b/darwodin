@@ -24,7 +24,7 @@ Protocol :: distinct id
 import UI "../../"
 
 VTable :: struct {
-    commitInsertionWithDataSourceUpdates: proc(self: ^UI.CollectionViewDropPlaceholderContext, dataSourceUpdates: proc "c" (insertionIndexPath: ^NS.IndexPath)) -> bool,
+    commitInsertionWithDataSourceUpdates: proc(self: ^UI.CollectionViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool,
     deletePlaceholder: proc(self: ^UI.CollectionViewDropPlaceholderContext) -> bool,
     setNeedsCellUpdate: proc(self: ^UI.CollectionViewDropPlaceholderContext),
     dragItem: proc(self: ^UI.CollectionViewDropPlaceholderContext) -> ^UI.DragItem,
@@ -35,7 +35,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.commitInsertionWithDataSourceUpdates != nil {
-        commitInsertionWithDataSourceUpdates :: proc "c" (self: ^UI.CollectionViewDropPlaceholderContext, _: SEL, dataSourceUpdates: proc "c" (insertionIndexPath: ^NS.IndexPath)) -> bool {
+        commitInsertionWithDataSourceUpdates :: proc "c" (self: ^UI.CollectionViewDropPlaceholderContext, _: SEL, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

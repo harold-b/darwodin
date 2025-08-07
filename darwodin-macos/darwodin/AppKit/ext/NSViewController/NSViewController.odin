@@ -63,7 +63,7 @@ VTable :: struct {
     presentViewControllerAsModalWindow: proc(self: ^AK.ViewController, viewController: ^AK.ViewController),
     presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior: proc(self: ^AK.ViewController, viewController: ^AK.ViewController, positioningRect: NS.Rect, positioningView: ^AK.View, preferredEdge: NS.RectEdge, behavior: AK.PopoverBehavior),
     presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent: proc(self: ^AK.ViewController, viewController: ^AK.ViewController, positioningRect: NS.Rect, positioningView: ^AK.View, preferredEdge: NS.RectEdge, behavior: AK.PopoverBehavior, hasFullSizeContent: bool),
-    transitionFromViewController: proc(self: ^AK.ViewController, fromViewController: ^AK.ViewController, toViewController: ^AK.ViewController, options: AK.ViewControllerTransitionOptions, completion: proc "c" ()),
+    transitionFromViewController: proc(self: ^AK.ViewController, fromViewController: ^AK.ViewController, toViewController: ^AK.ViewController, options: AK.ViewControllerTransitionOptions, completion: ^Objc_Block(proc "c" ())),
     addChildViewController: proc(self: ^AK.ViewController, childViewController: ^AK.ViewController),
     removeFromParentViewController: proc(self: ^AK.ViewController),
     insertChildViewController: proc(self: ^AK.ViewController, childViewController: ^AK.ViewController, index: NS.Integer),
@@ -487,7 +487,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"), auto_cast presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent, "v@:@{CGRect={CGPoint=dd}{CGSize=dd}}@LlB") do panic("Failed to register objC method.")
     }
     if vt.transitionFromViewController != nil {
-        transitionFromViewController :: proc "c" (self: ^AK.ViewController, _: SEL, fromViewController: ^AK.ViewController, toViewController: ^AK.ViewController, options: AK.ViewControllerTransitionOptions, completion: proc "c" ()) {
+        transitionFromViewController :: proc "c" (self: ^AK.ViewController, _: SEL, fromViewController: ^AK.ViewController, toViewController: ^AK.ViewController, options: AK.ViewControllerTransitionOptions, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

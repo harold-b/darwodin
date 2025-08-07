@@ -31,8 +31,8 @@ VTable :: struct {
     validateVisibleColumns: proc(self: ^AK.SavePanel),
     ok: proc(self: ^AK.SavePanel, sender: id),
     cancel: proc(self: ^AK.SavePanel, sender: id),
-    beginSheetModalForWindow: proc(self: ^AK.SavePanel, window: ^AK.Window, handler: proc "c" (result: AK.ModalResponse)),
-    beginWithCompletionHandler: proc(self: ^AK.SavePanel, handler: proc "c" (result: AK.ModalResponse)),
+    beginSheetModalForWindow: proc(self: ^AK.SavePanel, window: ^AK.Window, handler: ^Objc_Block(proc "c" (result: AK.ModalResponse))),
+    beginWithCompletionHandler: proc(self: ^AK.SavePanel, handler: ^Objc_Block(proc "c" (result: AK.ModalResponse))),
     runModal: proc(self: ^AK.SavePanel) -> AK.ModalResponse,
     _URL: proc(self: ^AK.SavePanel) -> ^NS.URL,
     identifier: proc(self: ^AK.SavePanel) -> ^NS.String,
@@ -186,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancel:"), auto_cast cancel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.beginSheetModalForWindow != nil {
-        beginSheetModalForWindow :: proc "c" (self: ^AK.SavePanel, _: SEL, window: ^AK.Window, handler: proc "c" (result: AK.ModalResponse)) {
+        beginSheetModalForWindow :: proc "c" (self: ^AK.SavePanel, _: SEL, window: ^AK.Window, handler: ^Objc_Block(proc "c" (result: AK.ModalResponse))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -196,7 +196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginSheetModalForWindow:completionHandler:"), auto_cast beginSheetModalForWindow, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.beginWithCompletionHandler != nil {
-        beginWithCompletionHandler :: proc "c" (self: ^AK.SavePanel, _: SEL, handler: proc "c" (result: AK.ModalResponse)) {
+        beginWithCompletionHandler :: proc "c" (self: ^AK.SavePanel, _: SEL, handler: ^Objc_Block(proc "c" (result: AK.ModalResponse))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

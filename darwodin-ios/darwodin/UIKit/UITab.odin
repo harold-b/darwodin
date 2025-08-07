@@ -20,7 +20,7 @@ import CA "../QuartzCore"
 Tab :: struct { using _: NS.Object, }
 
 @(objc_type=Tab, objc_name="initWithTitle")
-Tab_initWithTitle :: #force_inline proc "c" (self: ^Tab, title: ^NS.String, image: ^Image, identifier: ^NS.String, viewControllerProvider: proc "c" (_arg_0: ^Tab) -> ^ViewController) -> ^Tab {
+Tab_initWithTitle :: #force_inline proc "c" (self: ^Tab, title: ^NS.String, image: ^Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^Tab) -> ^ViewController)) -> ^Tab {
     return msgSend(^Tab, self, "initWithTitle:image:identifier:viewControllerProvider:", title, image, identifier, viewControllerProvider)
 }
 @(objc_type=Tab, objc_name="init")

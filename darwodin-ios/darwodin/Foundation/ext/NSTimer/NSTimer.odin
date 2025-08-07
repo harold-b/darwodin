@@ -28,9 +28,9 @@ VTable :: struct {
     scheduledTimerWithTimeInterval_invocation_repeats: proc(ti: NS.TimeInterval, invocation: ^NS.Invocation, yesOrNo: bool) -> ^NS.Timer,
     timerWithTimeInterval_target_selector_userInfo_repeats: proc(ti: NS.TimeInterval, aTarget: id, aSelector: SEL, userInfo: id, yesOrNo: bool) -> ^NS.Timer,
     scheduledTimerWithTimeInterval_target_selector_userInfo_repeats: proc(ti: NS.TimeInterval, aTarget: id, aSelector: SEL, userInfo: id, yesOrNo: bool) -> ^NS.Timer,
-    timerWithTimeInterval_repeats_block: proc(interval: NS.TimeInterval, repeats: bool, block: proc "c" (timer: ^NS.Timer)) -> ^NS.Timer,
-    scheduledTimerWithTimeInterval_repeats_block: proc(interval: NS.TimeInterval, repeats: bool, block: proc "c" (timer: ^NS.Timer)) -> ^NS.Timer,
-    initWithFireDate_interval_repeats_block: proc(self: ^NS.Timer, date: ^NS.Date, interval: NS.TimeInterval, repeats: bool, block: proc "c" (timer: ^NS.Timer)) -> ^NS.Timer,
+    timerWithTimeInterval_repeats_block: proc(interval: NS.TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^NS.Timer))) -> ^NS.Timer,
+    scheduledTimerWithTimeInterval_repeats_block: proc(interval: NS.TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^NS.Timer))) -> ^NS.Timer,
+    initWithFireDate_interval_repeats_block: proc(self: ^NS.Timer, date: ^NS.Date, interval: NS.TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^NS.Timer))) -> ^NS.Timer,
     initWithFireDate_interval_target_selector_userInfo_repeats: proc(self: ^NS.Timer, date: ^NS.Date, ti: NS.TimeInterval, t: id, s: SEL, ui: id, rep: bool) -> ^NS.Timer,
     fire: proc(self: ^NS.Timer),
     invalidate: proc(self: ^NS.Timer),
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:"), auto_cast scheduledTimerWithTimeInterval_target_selector_userInfo_repeats, "@#:d@:@B") do panic("Failed to register objC method.")
     }
     if vt.timerWithTimeInterval_repeats_block != nil {
-        timerWithTimeInterval_repeats_block :: proc "c" (self: Class, _: SEL, interval: NS.TimeInterval, repeats: bool, block: proc "c" (timer: ^NS.Timer)) -> ^NS.Timer {
+        timerWithTimeInterval_repeats_block :: proc "c" (self: Class, _: SEL, interval: NS.TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^NS.Timer))) -> ^NS.Timer {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("timerWithTimeInterval:repeats:block:"), auto_cast timerWithTimeInterval_repeats_block, "@#:dB?") do panic("Failed to register objC method.")
     }
     if vt.scheduledTimerWithTimeInterval_repeats_block != nil {
-        scheduledTimerWithTimeInterval_repeats_block :: proc "c" (self: Class, _: SEL, interval: NS.TimeInterval, repeats: bool, block: proc "c" (timer: ^NS.Timer)) -> ^NS.Timer {
+        scheduledTimerWithTimeInterval_repeats_block :: proc "c" (self: Class, _: SEL, interval: NS.TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^NS.Timer))) -> ^NS.Timer {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("scheduledTimerWithTimeInterval:repeats:block:"), auto_cast scheduledTimerWithTimeInterval_repeats_block, "@#:dB?") do panic("Failed to register objC method.")
     }
     if vt.initWithFireDate_interval_repeats_block != nil {
-        initWithFireDate_interval_repeats_block :: proc "c" (self: ^NS.Timer, _: SEL, date: ^NS.Date, interval: NS.TimeInterval, repeats: bool, block: proc "c" (timer: ^NS.Timer)) -> ^NS.Timer {
+        initWithFireDate_interval_repeats_block :: proc "c" (self: ^NS.Timer, _: SEL, date: ^NS.Date, interval: NS.TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^NS.Timer))) -> ^NS.Timer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

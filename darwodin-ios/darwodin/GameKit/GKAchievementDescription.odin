@@ -26,7 +26,7 @@ AchievementDescription_init :: proc "c" (self: ^AchievementDescription) -> ^Achi
 
 
 @(objc_type=AchievementDescription, objc_name="loadAchievementDescriptionsWithCompletionHandler", objc_is_class_method=true)
-AchievementDescription_loadAchievementDescriptionsWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (descriptions: ^NS.Array, error: ^NS.Error)) {
+AchievementDescription_loadAchievementDescriptionsWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (descriptions: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, AchievementDescription, "loadAchievementDescriptionsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=AchievementDescription, objc_name="identifier")
@@ -66,7 +66,7 @@ AchievementDescription_rarityPercent :: #force_inline proc "c" (self: ^Achieveme
     return msgSend(^NS.Number, self, "rarityPercent")
 }
 @(objc_type=AchievementDescription, objc_name="loadImageWithCompletionHandler")
-AchievementDescription_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^AchievementDescription, completionHandler: proc "c" (image: ^UI.Image, error: ^NS.Error)) {
+AchievementDescription_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" (image: ^UI.Image, error: ^NS.Error))) {
     msgSend(nil, self, "loadImageWithCompletionHandler:", completionHandler)
 }
 @(objc_type=AchievementDescription, objc_name="incompleteAchievementImage", objc_is_class_method=true)

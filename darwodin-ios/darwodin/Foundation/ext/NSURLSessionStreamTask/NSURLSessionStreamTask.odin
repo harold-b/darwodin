@@ -24,8 +24,8 @@ import "../NSURLSessionTask"
 
 VTable :: struct {
     super: NSURLSessionTask.VTable,
-    readDataOfMinLength: proc(self: ^NS.URLSessionStreamTask, minBytes: NS.UInteger, maxBytes: NS.UInteger, timeout: NS.TimeInterval, completionHandler: proc "c" (data: ^NS.Data, atEOF: bool, error: ^NS.Error)),
-    writeData: proc(self: ^NS.URLSessionStreamTask, data: ^NS.Data, timeout: NS.TimeInterval, completionHandler: proc "c" (error: ^NS.Error)),
+    readDataOfMinLength: proc(self: ^NS.URLSessionStreamTask, minBytes: NS.UInteger, maxBytes: NS.UInteger, timeout: NS.TimeInterval, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, atEOF: bool, error: ^NS.Error))),
+    writeData: proc(self: ^NS.URLSessionStreamTask, data: ^NS.Data, timeout: NS.TimeInterval, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     captureStreams: proc(self: ^NS.URLSessionStreamTask),
     closeWrite: proc(self: ^NS.URLSessionStreamTask),
     closeRead: proc(self: ^NS.URLSessionStreamTask),
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSURLSessionTask.extend(cls, &vt.super)
 
     if vt.readDataOfMinLength != nil {
-        readDataOfMinLength :: proc "c" (self: ^NS.URLSessionStreamTask, _: SEL, minBytes: NS.UInteger, maxBytes: NS.UInteger, timeout: NS.TimeInterval, completionHandler: proc "c" (data: ^NS.Data, atEOF: bool, error: ^NS.Error)) {
+        readDataOfMinLength :: proc "c" (self: ^NS.URLSessionStreamTask, _: SEL, minBytes: NS.UInteger, maxBytes: NS.UInteger, timeout: NS.TimeInterval, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, atEOF: bool, error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("readDataOfMinLength:maxLength:timeout:completionHandler:"), auto_cast readDataOfMinLength, "v@:LLd?") do panic("Failed to register objC method.")
     }
     if vt.writeData != nil {
-        writeData :: proc "c" (self: ^NS.URLSessionStreamTask, _: SEL, data: ^NS.Data, timeout: NS.TimeInterval, completionHandler: proc "c" (error: ^NS.Error)) {
+        writeData :: proc "c" (self: ^NS.URLSessionStreamTask, _: SEL, data: ^NS.Data, timeout: NS.TimeInterval, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

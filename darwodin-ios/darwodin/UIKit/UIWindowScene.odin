@@ -26,7 +26,7 @@ WindowScene_init :: proc "c" (self: ^WindowScene) -> ^WindowScene {
 
 
 @(objc_type=WindowScene, objc_name="requestGeometryUpdateWithPreferences")
-WindowScene_requestGeometryUpdateWithPreferences :: #force_inline proc "c" (self: ^WindowScene, geometryPreferences: ^WindowSceneGeometryPreferences, errorHandler: proc "c" (error: ^NS.Error)) {
+WindowScene_requestGeometryUpdateWithPreferences :: #force_inline proc "c" (self: ^WindowScene, geometryPreferences: ^WindowSceneGeometryPreferences, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "requestGeometryUpdateWithPreferences:errorHandler:", geometryPreferences, errorHandler)
 }
 @(objc_type=WindowScene, objc_name="screen")

@@ -74,7 +74,7 @@ VTable :: struct {
     rowForView: proc(self: ^AK.TableView, view: ^AK.View) -> NS.Integer,
     columnForView: proc(self: ^AK.TableView, view: ^AK.View) -> NS.Integer,
     makeViewWithIdentifier: proc(self: ^AK.TableView, identifier: ^NS.String, owner: id) -> ^AK.View,
-    enumerateAvailableRowViewsUsingBlock: proc(self: ^AK.TableView, handler: proc "c" (rowView: ^AK.TableRowView, row: NS.Integer)),
+    enumerateAvailableRowViewsUsingBlock: proc(self: ^AK.TableView, handler: ^Objc_Block(proc "c" (rowView: ^AK.TableRowView, row: NS.Integer))),
     beginUpdates: proc(self: ^AK.TableView),
     endUpdates: proc(self: ^AK.TableView),
     insertRowsAtIndexes: proc(self: ^AK.TableView, indexes: ^NS.IndexSet, animationOptions: AK.TableViewAnimationOptions),
@@ -710,7 +710,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeViewWithIdentifier:owner:"), auto_cast makeViewWithIdentifier, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.enumerateAvailableRowViewsUsingBlock != nil {
-        enumerateAvailableRowViewsUsingBlock :: proc "c" (self: ^AK.TableView, _: SEL, handler: proc "c" (rowView: ^AK.TableRowView, row: NS.Integer)) {
+        enumerateAvailableRowViewsUsingBlock :: proc "c" (self: ^AK.TableView, _: SEL, handler: ^Objc_Block(proc "c" (rowView: ^AK.TableRowView, row: NS.Integer))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

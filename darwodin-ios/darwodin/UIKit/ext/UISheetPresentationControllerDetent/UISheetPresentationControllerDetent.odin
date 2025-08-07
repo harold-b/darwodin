@@ -31,7 +31,7 @@ VTable :: struct {
     new: proc() -> ^UI.SheetPresentationControllerDetent,
     mediumDetent: proc() -> ^UI.SheetPresentationControllerDetent,
     largeDetent: proc() -> ^UI.SheetPresentationControllerDetent,
-    customDetentWithIdentifier: proc(identifier: ^NS.String, resolver: proc "c" (_context: ^UI.SheetPresentationControllerDetentResolutionContext) -> CG.Float) -> ^UI.SheetPresentationControllerDetent,
+    customDetentWithIdentifier: proc(identifier: ^NS.String, resolver: ^Objc_Block(proc "c" (_context: ^UI.SheetPresentationControllerDetentResolutionContext) -> CG.Float)) -> ^UI.SheetPresentationControllerDetent,
     resolvedValueInContext: proc(self: ^UI.SheetPresentationControllerDetent, _context: ^UI.SheetPresentationControllerDetentResolutionContext) -> CG.Float,
     identifier: proc(self: ^UI.SheetPresentationControllerDetent) -> ^NS.String,
     load: proc(),
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("largeDetent"), auto_cast largeDetent, "@#:") do panic("Failed to register objC method.")
     }
     if vt.customDetentWithIdentifier != nil {
-        customDetentWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, resolver: proc "c" (_context: ^UI.SheetPresentationControllerDetentResolutionContext) -> CG.Float) -> ^UI.SheetPresentationControllerDetent {
+        customDetentWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, resolver: ^Objc_Block(proc "c" (_context: ^UI.SheetPresentationControllerDetentResolutionContext) -> CG.Float)) -> ^UI.SheetPresentationControllerDetent {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

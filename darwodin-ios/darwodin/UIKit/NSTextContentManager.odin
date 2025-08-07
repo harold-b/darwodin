@@ -39,7 +39,7 @@ NSTextContentManager_removeTextLayoutManager :: #force_inline proc "c" (self: ^N
     msgSend(nil, self, "removeTextLayoutManager:", textLayoutManager)
 }
 @(objc_type=NSTextContentManager, objc_name="synchronizeTextLayoutManagers")
-NSTextContentManager_synchronizeTextLayoutManagers :: #force_inline proc "c" (self: ^NSTextContentManager, completionHandler: proc "c" (error: ^NS.Error)) {
+NSTextContentManager_synchronizeTextLayoutManagers :: #force_inline proc "c" (self: ^NSTextContentManager, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "synchronizeTextLayoutManagers:", completionHandler)
 }
 @(objc_type=NSTextContentManager, objc_name="textElementsForRange")
@@ -47,7 +47,7 @@ NSTextContentManager_textElementsForRange :: #force_inline proc "c" (self: ^NSTe
     return msgSend(^NS.Array, self, "textElementsForRange:", range)
 }
 @(objc_type=NSTextContentManager, objc_name="performEditingTransactionUsingBlock")
-NSTextContentManager_performEditingTransactionUsingBlock :: #force_inline proc "c" (self: ^NSTextContentManager, transaction: proc "c" ()) {
+NSTextContentManager_performEditingTransactionUsingBlock :: #force_inline proc "c" (self: ^NSTextContentManager, transaction: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performEditingTransactionUsingBlock:", transaction)
 }
 @(objc_type=NSTextContentManager, objc_name="recordEditActionInRange")

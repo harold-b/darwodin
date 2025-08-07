@@ -22,10 +22,10 @@ TabBarControllerSidebarAnimating :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=TabBarControllerSidebarAnimating, objc_name="addAnimations")
-TabBarControllerSidebarAnimating_addAnimations :: #force_inline proc "c" (self: ^TabBarControllerSidebarAnimating, animations: proc "c" ()) {
+TabBarControllerSidebarAnimating_addAnimations :: #force_inline proc "c" (self: ^TabBarControllerSidebarAnimating, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addAnimations:", animations)
 }
 @(objc_type=TabBarControllerSidebarAnimating, objc_name="addCompletion")
-TabBarControllerSidebarAnimating_addCompletion :: #force_inline proc "c" (self: ^TabBarControllerSidebarAnimating, completion: proc "c" ()) {
+TabBarControllerSidebarAnimating_addCompletion :: #force_inline proc "c" (self: ^TabBarControllerSidebarAnimating, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addCompletion:", completion)
 }

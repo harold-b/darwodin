@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    enumerateDraggingItemsWithOptions: proc(self: ^AK.DraggingSession, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool)),
+    enumerateDraggingItemsWithOptions: proc(self: ^AK.DraggingSession, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool))),
     draggingFormation: proc(self: ^AK.DraggingSession) -> AK.DraggingFormation,
     setDraggingFormation: proc(self: ^AK.DraggingSession, draggingFormation: AK.DraggingFormation),
     animatesToStartingPositionsOnCancelOrFail: proc(self: ^AK.DraggingSession) -> bool,
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.enumerateDraggingItemsWithOptions != nil {
-        enumerateDraggingItemsWithOptions :: proc "c" (self: ^AK.DraggingSession, _: SEL, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool)) {
+        enumerateDraggingItemsWithOptions :: proc "c" (self: ^AK.DraggingSession, _: SEL, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -37,11 +37,11 @@ XPCConnection_initWithListenerEndpoint :: #force_inline proc "c" (self: ^XPCConn
     return msgSend(^XPCConnection, self, "initWithListenerEndpoint:", endpoint)
 }
 @(objc_type=XPCConnection, objc_name="remoteObjectProxyWithErrorHandler")
-XPCConnection_remoteObjectProxyWithErrorHandler :: #force_inline proc "c" (self: ^XPCConnection, handler: proc "c" (error: ^Error)) -> id {
+XPCConnection_remoteObjectProxyWithErrorHandler :: #force_inline proc "c" (self: ^XPCConnection, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id {
     return msgSend(id, self, "remoteObjectProxyWithErrorHandler:", handler)
 }
 @(objc_type=XPCConnection, objc_name="synchronousRemoteObjectProxyWithErrorHandler")
-XPCConnection_synchronousRemoteObjectProxyWithErrorHandler :: #force_inline proc "c" (self: ^XPCConnection, handler: proc "c" (error: ^Error)) -> id {
+XPCConnection_synchronousRemoteObjectProxyWithErrorHandler :: #force_inline proc "c" (self: ^XPCConnection, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id {
     return msgSend(id, self, "synchronousRemoteObjectProxyWithErrorHandler:", handler)
 }
 @(objc_type=XPCConnection, objc_name="resume")
@@ -65,7 +65,7 @@ XPCConnection_currentConnection :: #force_inline proc "c" () -> ^XPCConnection {
     return msgSend(^XPCConnection, XPCConnection, "currentConnection")
 }
 @(objc_type=XPCConnection, objc_name="scheduleSendBarrierBlock")
-XPCConnection_scheduleSendBarrierBlock :: #force_inline proc "c" (self: ^XPCConnection, block: proc "c" ()) {
+XPCConnection_scheduleSendBarrierBlock :: #force_inline proc "c" (self: ^XPCConnection, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "scheduleSendBarrierBlock:", block)
 }
 @(objc_type=XPCConnection, objc_name="setCodeSigningRequirement")
@@ -109,19 +109,19 @@ XPCConnection_remoteObjectProxy :: #force_inline proc "c" (self: ^XPCConnection)
     return msgSend(id, self, "remoteObjectProxy")
 }
 @(objc_type=XPCConnection, objc_name="interruptionHandler")
-XPCConnection_interruptionHandler :: #force_inline proc "c" (self: ^XPCConnection) -> proc "c" () {
-    return msgSend(proc "c" (), self, "interruptionHandler")
+XPCConnection_interruptionHandler :: #force_inline proc "c" (self: ^XPCConnection) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "interruptionHandler")
 }
 @(objc_type=XPCConnection, objc_name="setInterruptionHandler")
-XPCConnection_setInterruptionHandler :: #force_inline proc "c" (self: ^XPCConnection, interruptionHandler: proc "c" ()) {
+XPCConnection_setInterruptionHandler :: #force_inline proc "c" (self: ^XPCConnection, interruptionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setInterruptionHandler:", interruptionHandler)
 }
 @(objc_type=XPCConnection, objc_name="invalidationHandler")
-XPCConnection_invalidationHandler :: #force_inline proc "c" (self: ^XPCConnection) -> proc "c" () {
-    return msgSend(proc "c" (), self, "invalidationHandler")
+XPCConnection_invalidationHandler :: #force_inline proc "c" (self: ^XPCConnection) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "invalidationHandler")
 }
 @(objc_type=XPCConnection, objc_name="setInvalidationHandler")
-XPCConnection_setInvalidationHandler :: #force_inline proc "c" (self: ^XPCConnection, invalidationHandler: proc "c" ()) {
+XPCConnection_setInvalidationHandler :: #force_inline proc "c" (self: ^XPCConnection, invalidationHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setInvalidationHandler:", invalidationHandler)
 }
 @(objc_type=XPCConnection, objc_name="auditSessionIdentifier")

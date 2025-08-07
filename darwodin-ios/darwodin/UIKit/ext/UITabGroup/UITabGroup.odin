@@ -28,7 +28,7 @@ import "../UITab"
 VTable :: struct {
     super: UITab.VTable,
     tabForIdentifier: proc(self: ^UI.TabGroup, identifier: ^NS.String) -> ^UI.Tab,
-    initWithTitle: proc(self: ^UI.TabGroup, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, children: ^NS.Array, viewControllerProvider: proc "c" (_arg_0: ^UI.Tab) -> ^UI.ViewController) -> ^UI.TabGroup,
+    initWithTitle: proc(self: ^UI.TabGroup, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, children: ^NS.Array, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> ^UI.TabGroup,
     selectedChild: proc(self: ^UI.TabGroup) -> ^UI.Tab,
     setSelectedChild: proc(self: ^UI.TabGroup, selectedChild: ^UI.Tab),
     defaultChildIdentifier: proc(self: ^UI.TabGroup) -> ^NS.String,
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tabForIdentifier:"), auto_cast tabForIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^UI.TabGroup, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, children: ^NS.Array, viewControllerProvider: proc "c" (_arg_0: ^UI.Tab) -> ^UI.ViewController) -> ^UI.TabGroup {
+        initWithTitle :: proc "c" (self: ^UI.TabGroup, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, children: ^NS.Array, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> ^UI.TabGroup {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

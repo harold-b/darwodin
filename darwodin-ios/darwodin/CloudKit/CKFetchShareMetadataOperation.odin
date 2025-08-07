@@ -49,19 +49,19 @@ FetchShareMetadataOperation_setRootRecordDesiredKeys :: #force_inline proc "c" (
     msgSend(nil, self, "setRootRecordDesiredKeys:", rootRecordDesiredKeys)
 }
 @(objc_type=FetchShareMetadataOperation, objc_name="perShareMetadataBlock")
-FetchShareMetadataOperation_perShareMetadataBlock :: #force_inline proc "c" (self: ^FetchShareMetadataOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perShareMetadataBlock")
+FetchShareMetadataOperation_perShareMetadataBlock :: #force_inline proc "c" (self: ^FetchShareMetadataOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perShareMetadataBlock")
 }
 @(objc_type=FetchShareMetadataOperation, objc_name="setPerShareMetadataBlock")
-FetchShareMetadataOperation_setPerShareMetadataBlock :: #force_inline proc "c" (self: ^FetchShareMetadataOperation, perShareMetadataBlock: proc "c" ()) {
+FetchShareMetadataOperation_setPerShareMetadataBlock :: #force_inline proc "c" (self: ^FetchShareMetadataOperation, perShareMetadataBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerShareMetadataBlock:", perShareMetadataBlock)
 }
 @(objc_type=FetchShareMetadataOperation, objc_name="fetchShareMetadataCompletionBlock")
-FetchShareMetadataOperation_fetchShareMetadataCompletionBlock :: #force_inline proc "c" (self: ^FetchShareMetadataOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchShareMetadataCompletionBlock")
+FetchShareMetadataOperation_fetchShareMetadataCompletionBlock :: #force_inline proc "c" (self: ^FetchShareMetadataOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchShareMetadataCompletionBlock")
 }
 @(objc_type=FetchShareMetadataOperation, objc_name="setFetchShareMetadataCompletionBlock")
-FetchShareMetadataOperation_setFetchShareMetadataCompletionBlock :: #force_inline proc "c" (self: ^FetchShareMetadataOperation, fetchShareMetadataCompletionBlock: proc "c" ()) {
+FetchShareMetadataOperation_setFetchShareMetadataCompletionBlock :: #force_inline proc "c" (self: ^FetchShareMetadataOperation, fetchShareMetadataCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchShareMetadataCompletionBlock:", fetchShareMetadataCompletionBlock)
 }
 @(objc_type=FetchShareMetadataOperation, objc_name="load", objc_is_class_method=true)

@@ -38,11 +38,11 @@ NSFileProviderExtension_persistentIdentifierForItemAtURL :: #force_inline proc "
     return msgSend(^NS.String, self, "persistentIdentifierForItemAtURL:", url)
 }
 @(objc_type=NSFileProviderExtension, objc_name="providePlaceholderAtURL")
-NSFileProviderExtension_providePlaceholderAtURL :: #force_inline proc "c" (self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)) {
+NSFileProviderExtension_providePlaceholderAtURL :: #force_inline proc "c" (self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "providePlaceholderAtURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=NSFileProviderExtension, objc_name="startProvidingItemAtURL")
-NSFileProviderExtension_startProvidingItemAtURL :: #force_inline proc "c" (self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: proc "c" (error: ^NS.Error)) {
+NSFileProviderExtension_startProvidingItemAtURL :: #force_inline proc "c" (self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "startProvidingItemAtURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=NSFileProviderExtension, objc_name="stopProvidingItemAtURL")

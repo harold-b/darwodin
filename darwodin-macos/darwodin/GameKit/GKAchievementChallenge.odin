@@ -27,7 +27,7 @@ AchievementChallenge_achievement :: #force_inline proc "c" (self: ^AchievementCh
     return msgSend(^Achievement, self, "achievement")
 }
 @(objc_type=AchievementChallenge, objc_name="loadReceivedChallengesWithCompletionHandler", objc_is_class_method=true)
-AchievementChallenge_loadReceivedChallengesWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (challenges: ^NS.Array, error: ^NS.Error)) {
+AchievementChallenge_loadReceivedChallengesWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (challenges: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, AchievementChallenge, "loadReceivedChallengesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=AchievementChallenge, objc_name="supportsSecureCoding", objc_is_class_method=true)

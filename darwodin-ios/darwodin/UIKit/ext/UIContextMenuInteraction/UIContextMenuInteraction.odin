@@ -31,7 +31,7 @@ VTable :: struct {
     init: proc(self: ^UI.ContextMenuInteraction) -> ^UI.ContextMenuInteraction,
     new: proc() -> ^UI.ContextMenuInteraction,
     locationInView: proc(self: ^UI.ContextMenuInteraction, view: ^UI.View) -> CG.Point,
-    updateVisibleMenuWithBlock: proc(self: ^UI.ContextMenuInteraction, block: proc "c" (visibleMenu: ^UI.Menu) -> ^UI.Menu),
+    updateVisibleMenuWithBlock: proc(self: ^UI.ContextMenuInteraction, block: ^Objc_Block(proc "c" (visibleMenu: ^UI.Menu) -> ^UI.Menu)),
     dismissMenu: proc(self: ^UI.ContextMenuInteraction),
     delegate: proc(self: ^UI.ContextMenuInteraction) -> ^UI.ContextMenuInteractionDelegate,
     menuAppearance: proc(self: ^UI.ContextMenuInteraction) -> UI.ContextMenuInteractionAppearance,
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("locationInView:"), auto_cast locationInView, "{CGPoint=dd}@:@") do panic("Failed to register objC method.")
     }
     if vt.updateVisibleMenuWithBlock != nil {
-        updateVisibleMenuWithBlock :: proc "c" (self: ^UI.ContextMenuInteraction, _: SEL, block: proc "c" (visibleMenu: ^UI.Menu) -> ^UI.Menu) {
+        updateVisibleMenuWithBlock :: proc "c" (self: ^UI.ContextMenuInteraction, _: SEL, block: ^Objc_Block(proc "c" (visibleMenu: ^UI.Menu) -> ^UI.Menu)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -55,11 +55,11 @@ NSTextLayoutManager_textLayoutFragmentForLocation :: #force_inline proc "c" (sel
     return msgSend(^NSTextLayoutFragment, self, "textLayoutFragmentForLocation:", location)
 }
 @(objc_type=NSTextLayoutManager, objc_name="enumerateTextLayoutFragmentsFromLocation")
-NSTextLayoutManager_enumerateTextLayoutFragmentsFromLocation :: #force_inline proc "c" (self: ^NSTextLayoutManager, location: ^NSTextLocation, options: NSTextLayoutFragmentEnumerationOptions, block: proc "c" (layoutFragment: ^NSTextLayoutFragment) -> bool) -> ^NSTextLocation {
+NSTextLayoutManager_enumerateTextLayoutFragmentsFromLocation :: #force_inline proc "c" (self: ^NSTextLayoutManager, location: ^NSTextLocation, options: NSTextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" (layoutFragment: ^NSTextLayoutFragment) -> bool)) -> ^NSTextLocation {
     return msgSend(^NSTextLocation, self, "enumerateTextLayoutFragmentsFromLocation:options:usingBlock:", location, options, block)
 }
 @(objc_type=NSTextLayoutManager, objc_name="enumerateRenderingAttributesFromLocation")
-NSTextLayoutManager_enumerateRenderingAttributesFromLocation :: #force_inline proc "c" (self: ^NSTextLayoutManager, location: ^NSTextLocation, reverse: bool, block: proc "c" (textLayoutManager: ^NSTextLayoutManager, attributes: ^NS.Dictionary, textRange: ^NSTextRange) -> bool) {
+NSTextLayoutManager_enumerateRenderingAttributesFromLocation :: #force_inline proc "c" (self: ^NSTextLayoutManager, location: ^NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" (textLayoutManager: ^NSTextLayoutManager, attributes: ^NS.Dictionary, textRange: ^NSTextRange) -> bool)) {
     msgSend(nil, self, "enumerateRenderingAttributesFromLocation:reverse:usingBlock:", location, reverse, block)
 }
 @(objc_type=NSTextLayoutManager, objc_name="setRenderingAttributes")
@@ -83,7 +83,7 @@ NSTextLayoutManager_renderingAttributesForLink :: #force_inline proc "c" (self: 
     return msgSend(^NS.Dictionary, self, "renderingAttributesForLink:atLocation:", link, location)
 }
 @(objc_type=NSTextLayoutManager, objc_name="enumerateTextSegmentsInRange")
-NSTextLayoutManager_enumerateTextSegmentsInRange :: #force_inline proc "c" (self: ^NSTextLayoutManager, textRange: ^NSTextRange, type: NSTextLayoutManagerSegmentType, options: NSTextLayoutManagerSegmentOptions, block: proc "c" (textSegmentRange: ^NSTextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^NSTextContainer) -> bool) {
+NSTextLayoutManager_enumerateTextSegmentsInRange :: #force_inline proc "c" (self: ^NSTextLayoutManager, textRange: ^NSTextRange, type: NSTextLayoutManagerSegmentType, options: NSTextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^NSTextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^NSTextContainer) -> bool)) {
     msgSend(nil, self, "enumerateTextSegmentsInRange:type:options:usingBlock:", textRange, type, options, block)
 }
 @(objc_type=NSTextLayoutManager, objc_name="replaceContentsInRange_withTextElements")
@@ -171,11 +171,11 @@ NSTextLayoutManager_setTextSelectionNavigation :: #force_inline proc "c" (self: 
     msgSend(nil, self, "setTextSelectionNavigation:", textSelectionNavigation)
 }
 @(objc_type=NSTextLayoutManager, objc_name="renderingAttributesValidator")
-NSTextLayoutManager_renderingAttributesValidator :: #force_inline proc "c" (self: ^NSTextLayoutManager) -> proc "c" () {
-    return msgSend(proc "c" (), self, "renderingAttributesValidator")
+NSTextLayoutManager_renderingAttributesValidator :: #force_inline proc "c" (self: ^NSTextLayoutManager) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "renderingAttributesValidator")
 }
 @(objc_type=NSTextLayoutManager, objc_name="setRenderingAttributesValidator")
-NSTextLayoutManager_setRenderingAttributesValidator :: #force_inline proc "c" (self: ^NSTextLayoutManager, renderingAttributesValidator: proc "c" ()) {
+NSTextLayoutManager_setRenderingAttributesValidator :: #force_inline proc "c" (self: ^NSTextLayoutManager, renderingAttributesValidator: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRenderingAttributesValidator:", renderingAttributesValidator)
 }
 @(objc_type=NSTextLayoutManager, objc_name="linkRenderingAttributes", objc_is_class_method=true)

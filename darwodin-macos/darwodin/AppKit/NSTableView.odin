@@ -219,7 +219,7 @@ TableView_makeViewWithIdentifier :: #force_inline proc "c" (self: ^TableView, id
     return msgSend(^View, self, "makeViewWithIdentifier:owner:", identifier, owner)
 }
 @(objc_type=TableView, objc_name="enumerateAvailableRowViewsUsingBlock")
-TableView_enumerateAvailableRowViewsUsingBlock :: #force_inline proc "c" (self: ^TableView, handler: proc "c" (rowView: ^TableRowView, row: NS.Integer)) {
+TableView_enumerateAvailableRowViewsUsingBlock :: #force_inline proc "c" (self: ^TableView, handler: ^Objc_Block(proc "c" (rowView: ^TableRowView, row: NS.Integer))) {
     msgSend(nil, self, "enumerateAvailableRowViewsUsingBlock:", handler)
 }
 @(objc_type=TableView, objc_name="beginUpdates")

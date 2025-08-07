@@ -33,19 +33,19 @@ URLSession_invalidateAndCancel :: #force_inline proc "c" (self: ^URLSession) {
     msgSend(nil, self, "invalidateAndCancel")
 }
 @(objc_type=URLSession, objc_name="resetWithCompletionHandler")
-URLSession_resetWithCompletionHandler :: #force_inline proc "c" (self: ^URLSession, completionHandler: proc "c" ()) {
+URLSession_resetWithCompletionHandler :: #force_inline proc "c" (self: ^URLSession, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "resetWithCompletionHandler:", completionHandler)
 }
 @(objc_type=URLSession, objc_name="flushWithCompletionHandler")
-URLSession_flushWithCompletionHandler :: #force_inline proc "c" (self: ^URLSession, completionHandler: proc "c" ()) {
+URLSession_flushWithCompletionHandler :: #force_inline proc "c" (self: ^URLSession, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "flushWithCompletionHandler:", completionHandler)
 }
 @(objc_type=URLSession, objc_name="getTasksWithCompletionHandler")
-URLSession_getTasksWithCompletionHandler :: #force_inline proc "c" (self: ^URLSession, completionHandler: proc "c" (dataTasks: ^Array, uploadTasks: ^Array, downloadTasks: ^Array)) {
+URLSession_getTasksWithCompletionHandler :: #force_inline proc "c" (self: ^URLSession, completionHandler: ^Objc_Block(proc "c" (dataTasks: ^Array, uploadTasks: ^Array, downloadTasks: ^Array))) {
     msgSend(nil, self, "getTasksWithCompletionHandler:", completionHandler)
 }
 @(objc_type=URLSession, objc_name="getAllTasksWithCompletionHandler")
-URLSession_getAllTasksWithCompletionHandler :: #force_inline proc "c" (self: ^URLSession, completionHandler: proc "c" (tasks: ^Array)) {
+URLSession_getAllTasksWithCompletionHandler :: #force_inline proc "c" (self: ^URLSession, completionHandler: ^Objc_Block(proc "c" (tasks: ^Array))) {
     msgSend(nil, self, "getAllTasksWithCompletionHandler:", completionHandler)
 }
 @(objc_type=URLSession, objc_name="dataTaskWithRequest_")
@@ -137,35 +137,35 @@ URLSession_setSessionDescription :: #force_inline proc "c" (self: ^URLSession, s
     msgSend(nil, self, "setSessionDescription:", sessionDescription)
 }
 @(objc_type=URLSession, objc_name="dataTaskWithRequest_completionHandler")
-URLSession_dataTaskWithRequest_completionHandler :: #force_inline proc "c" (self: ^URLSession, request: ^URLRequest, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionDataTask {
+URLSession_dataTaskWithRequest_completionHandler :: #force_inline proc "c" (self: ^URLSession, request: ^URLRequest, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionDataTask {
     return msgSend(^URLSessionDataTask, self, "dataTaskWithRequest:completionHandler:", request, completionHandler)
 }
 @(objc_type=URLSession, objc_name="dataTaskWithURL_completionHandler")
-URLSession_dataTaskWithURL_completionHandler :: #force_inline proc "c" (self: ^URLSession, url: ^URL, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionDataTask {
+URLSession_dataTaskWithURL_completionHandler :: #force_inline proc "c" (self: ^URLSession, url: ^URL, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionDataTask {
     return msgSend(^URLSessionDataTask, self, "dataTaskWithURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=URLSession, objc_name="uploadTaskWithRequest_fromFile_completionHandler")
-URLSession_uploadTaskWithRequest_fromFile_completionHandler :: #force_inline proc "c" (self: ^URLSession, request: ^URLRequest, fileURL: ^URL, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask {
+URLSession_uploadTaskWithRequest_fromFile_completionHandler :: #force_inline proc "c" (self: ^URLSession, request: ^URLRequest, fileURL: ^URL, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionUploadTask {
     return msgSend(^URLSessionUploadTask, self, "uploadTaskWithRequest:fromFile:completionHandler:", request, fileURL, completionHandler)
 }
 @(objc_type=URLSession, objc_name="uploadTaskWithRequest_fromData_completionHandler")
-URLSession_uploadTaskWithRequest_fromData_completionHandler :: #force_inline proc "c" (self: ^URLSession, request: ^URLRequest, bodyData: ^Data, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask {
+URLSession_uploadTaskWithRequest_fromData_completionHandler :: #force_inline proc "c" (self: ^URLSession, request: ^URLRequest, bodyData: ^Data, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionUploadTask {
     return msgSend(^URLSessionUploadTask, self, "uploadTaskWithRequest:fromData:completionHandler:", request, bodyData, completionHandler)
 }
 @(objc_type=URLSession, objc_name="uploadTaskWithResumeData_completionHandler")
-URLSession_uploadTaskWithResumeData_completionHandler :: #force_inline proc "c" (self: ^URLSession, resumeData: ^Data, completionHandler: proc "c" (data: ^Data, response: ^URLResponse, error: ^Error)) -> ^URLSessionUploadTask {
+URLSession_uploadTaskWithResumeData_completionHandler :: #force_inline proc "c" (self: ^URLSession, resumeData: ^Data, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionUploadTask {
     return msgSend(^URLSessionUploadTask, self, "uploadTaskWithResumeData:completionHandler:", resumeData, completionHandler)
 }
 @(objc_type=URLSession, objc_name="downloadTaskWithRequest_completionHandler")
-URLSession_downloadTaskWithRequest_completionHandler :: #force_inline proc "c" (self: ^URLSession, request: ^URLRequest, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask {
+URLSession_downloadTaskWithRequest_completionHandler :: #force_inline proc "c" (self: ^URLSession, request: ^URLRequest, completionHandler: ^Objc_Block(proc "c" (location: ^URL, response: ^URLResponse, error: ^Error))) -> ^URLSessionDownloadTask {
     return msgSend(^URLSessionDownloadTask, self, "downloadTaskWithRequest:completionHandler:", request, completionHandler)
 }
 @(objc_type=URLSession, objc_name="downloadTaskWithURL_completionHandler")
-URLSession_downloadTaskWithURL_completionHandler :: #force_inline proc "c" (self: ^URLSession, url: ^URL, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask {
+URLSession_downloadTaskWithURL_completionHandler :: #force_inline proc "c" (self: ^URLSession, url: ^URL, completionHandler: ^Objc_Block(proc "c" (location: ^URL, response: ^URLResponse, error: ^Error))) -> ^URLSessionDownloadTask {
     return msgSend(^URLSessionDownloadTask, self, "downloadTaskWithURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=URLSession, objc_name="downloadTaskWithResumeData_completionHandler")
-URLSession_downloadTaskWithResumeData_completionHandler :: #force_inline proc "c" (self: ^URLSession, resumeData: ^Data, completionHandler: proc "c" (location: ^URL, response: ^URLResponse, error: ^Error)) -> ^URLSessionDownloadTask {
+URLSession_downloadTaskWithResumeData_completionHandler :: #force_inline proc "c" (self: ^URLSession, resumeData: ^Data, completionHandler: ^Objc_Block(proc "c" (location: ^URL, response: ^URLResponse, error: ^Error))) -> ^URLSessionDownloadTask {
     return msgSend(^URLSessionDownloadTask, self, "downloadTaskWithResumeData:completionHandler:", resumeData, completionHandler)
 }
 @(objc_type=URLSession, objc_name="load", objc_is_class_method=true)

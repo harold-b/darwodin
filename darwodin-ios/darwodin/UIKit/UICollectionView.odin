@@ -84,7 +84,7 @@ CollectionView_setCollectionViewLayout_animated :: #force_inline proc "c" (self:
     msgSend(nil, self, "setCollectionViewLayout:animated:", layout, animated)
 }
 @(objc_type=CollectionView, objc_name="setCollectionViewLayout_animated_completion")
-CollectionView_setCollectionViewLayout_animated_completion :: #force_inline proc "c" (self: ^CollectionView, layout: ^CollectionViewLayout, animated: bool, completion: proc "c" (finished: bool)) {
+CollectionView_setCollectionViewLayout_animated_completion :: #force_inline proc "c" (self: ^CollectionView, layout: ^CollectionViewLayout, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, self, "setCollectionViewLayout:animated:completion:", layout, animated, completion)
 }
 @(objc_type=CollectionView, objc_name="startInteractiveTransitionToCollectionViewLayout")
@@ -180,7 +180,7 @@ CollectionView_reconfigureItemsAtIndexPaths :: #force_inline proc "c" (self: ^Co
     msgSend(nil, self, "reconfigureItemsAtIndexPaths:", indexPaths)
 }
 @(objc_type=CollectionView, objc_name="performBatchUpdates")
-CollectionView_performBatchUpdates :: #force_inline proc "c" (self: ^CollectionView, updates: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionView_performBatchUpdates :: #force_inline proc "c" (self: ^CollectionView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, self, "performBatchUpdates:completion:", updates, completion)
 }
 @(objc_type=CollectionView, objc_name="beginInteractiveMovementForItemAtIndexPath")
@@ -408,7 +408,7 @@ CollectionView_setAnimationsEnabled :: #force_inline proc "c" (enabled: bool) {
     msgSend(nil, CollectionView, "setAnimationsEnabled:", enabled)
 }
 @(objc_type=CollectionView, objc_name="performWithoutAnimation", objc_is_class_method=true)
-CollectionView_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: proc "c" ()) {
+CollectionView_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionView, "performWithoutAnimation:", actionsWithoutAnimation)
 }
 @(objc_type=CollectionView, objc_name="areAnimationsEnabled", objc_is_class_method=true)
@@ -420,47 +420,47 @@ CollectionView_inheritedAnimationDuration :: #force_inline proc "c" () -> NS.Tim
     return msgSend(NS.TimeInterval, CollectionView, "inheritedAnimationDuration")
 }
 @(objc_type=CollectionView, objc_name="animateWithDuration_delay_options_animations_completion", objc_is_class_method=true)
-CollectionView_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionView_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionView, "animateWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=CollectionView, objc_name="animateWithDuration_animations_completion", objc_is_class_method=true)
-CollectionView_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionView_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionView, "animateWithDuration:animations:completion:", duration, animations, completion)
 }
 @(objc_type=CollectionView, objc_name="animateWithDuration_animations", objc_is_class_method=true)
-CollectionView_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" ()) {
+CollectionView_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionView, "animateWithDuration:animations:", duration, animations)
 }
 @(objc_type=CollectionView, objc_name="animateWithSpringDuration", objc_is_class_method=true)
-CollectionView_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionView_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionView, "animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:", duration, bounce, velocity, delay, options, animations, completion)
 }
 @(objc_type=CollectionView, objc_name="animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion", objc_is_class_method=true)
-CollectionView_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionView_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionView, "animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:", duration, delay, dampingRatio, velocity, options, animations, completion)
 }
 @(objc_type=CollectionView, objc_name="transitionWithView", objc_is_class_method=true)
-CollectionView_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionView_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionView, "transitionWithView:duration:options:animations:completion:", view, duration, options, animations, completion)
 }
 @(objc_type=CollectionView, objc_name="transitionFromView", objc_is_class_method=true)
-CollectionView_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: proc "c" (finished: bool)) {
+CollectionView_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionView, "transitionFromView:toView:duration:options:completion:", fromView, toView, duration, options, completion)
 }
 @(objc_type=CollectionView, objc_name="performSystemAnimation", objc_is_class_method=true)
-CollectionView_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionView_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionView, "performSystemAnimation:onViews:options:animations:completion:", animation, views, options, parallelAnimations, completion)
 }
 @(objc_type=CollectionView, objc_name="modifyAnimationsWithRepeatCount", objc_is_class_method=true)
-CollectionView_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: proc "c" ()) {
+CollectionView_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionView, "modifyAnimationsWithRepeatCount:autoreverses:animations:", count, autoreverses, animations)
 }
 @(objc_type=CollectionView, objc_name="animateKeyframesWithDuration", objc_is_class_method=true)
-CollectionView_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+CollectionView_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, CollectionView, "animateKeyframesWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=CollectionView, objc_name="addKeyframeWithRelativeStartTime", objc_is_class_method=true)
-CollectionView_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: proc "c" ()) {
+CollectionView_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, CollectionView, "addKeyframeWithRelativeStartTime:relativeDuration:animations:", frameStartTime, frameDuration, animations)
 }
 @(objc_type=CollectionView, objc_name="requiresConstraintBasedLayout", objc_is_class_method=true)

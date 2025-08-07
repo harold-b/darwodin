@@ -46,7 +46,7 @@ VTable :: struct {
     application_willEncodeRestorableState: proc(self: ^AK.ApplicationDelegate, app: ^AK.Application, coder: ^NS.Coder),
     application_didDecodeRestorableState: proc(self: ^AK.ApplicationDelegate, app: ^AK.Application, coder: ^NS.Coder),
     application_willContinueUserActivityWithType: proc(self: ^AK.ApplicationDelegate, application: ^AK.Application, userActivityType: ^NS.String) -> bool,
-    application_continueUserActivity_restorationHandler: proc(self: ^AK.ApplicationDelegate, application: ^AK.Application, userActivity: ^NS.UserActivity, restorationHandler: proc "c" (restorableObjects: ^NS.Array)) -> bool,
+    application_continueUserActivity_restorationHandler: proc(self: ^AK.ApplicationDelegate, application: ^AK.Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" (restorableObjects: ^NS.Array))) -> bool,
     application_didFailToContinueUserActivityWithType_error: proc(self: ^AK.ApplicationDelegate, application: ^AK.Application, userActivityType: ^NS.String, error: ^NS.Error),
     application_didUpdateUserActivity: proc(self: ^AK.ApplicationDelegate, application: ^AK.Application, userActivity: ^NS.UserActivity),
     application_userDidAcceptCloudKitShareWithMetadata: proc(self: ^AK.ApplicationDelegate, application: ^AK.Application, metadata: ^AK.CKShareMetadata),
@@ -296,7 +296,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("application:willContinueUserActivityWithType:"), auto_cast application_willContinueUserActivityWithType, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.application_continueUserActivity_restorationHandler != nil {
-        application_continueUserActivity_restorationHandler :: proc "c" (self: ^AK.ApplicationDelegate, _: SEL, application: ^AK.Application, userActivity: ^NS.UserActivity, restorationHandler: proc "c" (restorableObjects: ^NS.Array)) -> bool {
+        application_continueUserActivity_restorationHandler :: proc "c" (self: ^AK.ApplicationDelegate, _: SEL, application: ^AK.Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" (restorableObjects: ^NS.Array))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

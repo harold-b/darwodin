@@ -22,7 +22,7 @@ TextElementProvider :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=TextElementProvider, objc_name="enumerateTextElementsFromLocation")
-TextElementProvider_enumerateTextElementsFromLocation :: #force_inline proc "c" (self: ^TextElementProvider, textLocation: ^TextLocation, options: TextContentManagerEnumerationOptions, block: proc "c" (element: ^TextElement) -> bool) -> ^TextLocation {
+TextElementProvider_enumerateTextElementsFromLocation :: #force_inline proc "c" (self: ^TextElementProvider, textLocation: ^TextLocation, options: TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^TextElement) -> bool)) -> ^TextLocation {
     return msgSend(^TextLocation, self, "enumerateTextElementsFromLocation:options:usingBlock:", textLocation, options, block)
 }
 @(objc_type=TextElementProvider, objc_name="replaceContentsInRange")
@@ -30,7 +30,7 @@ TextElementProvider_replaceContentsInRange :: #force_inline proc "c" (self: ^Tex
     msgSend(nil, self, "replaceContentsInRange:withTextElements:", range, textElements)
 }
 @(objc_type=TextElementProvider, objc_name="synchronizeToBackingStore")
-TextElementProvider_synchronizeToBackingStore :: #force_inline proc "c" (self: ^TextElementProvider, completionHandler: proc "c" (error: ^NS.Error)) {
+TextElementProvider_synchronizeToBackingStore :: #force_inline proc "c" (self: ^TextElementProvider, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "synchronizeToBackingStore:", completionHandler)
 }
 @(objc_type=TextElementProvider, objc_name="locationFromLocation")

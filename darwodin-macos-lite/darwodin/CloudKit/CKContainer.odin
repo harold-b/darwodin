@@ -57,7 +57,7 @@ Container_sharedCloudDatabase :: #force_inline proc "c" (self: ^Container) -> ^D
     return msgSend(^Database, self, "sharedCloudDatabase")
 }
 @(objc_type=Container, objc_name="accountStatusWithCompletionHandler")
-Container_accountStatusWithCompletionHandler :: #force_inline proc "c" (self: ^Container, completionHandler: proc "c" (accountStatus: AccountStatus, error: ^NS.Error)) {
+Container_accountStatusWithCompletionHandler :: #force_inline proc "c" (self: ^Container, completionHandler: ^Objc_Block(proc "c" (accountStatus: AccountStatus, error: ^NS.Error))) {
     msgSend(nil, self, "accountStatusWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Container, objc_name="statusForApplicationPermission")
@@ -69,51 +69,51 @@ Container_requestApplicationPermission :: #force_inline proc "c" (self: ^Contain
     msgSend(nil, self, "requestApplicationPermission:completionHandler:", applicationPermission, completionHandler)
 }
 @(objc_type=Container, objc_name="fetchUserRecordIDWithCompletionHandler")
-Container_fetchUserRecordIDWithCompletionHandler :: #force_inline proc "c" (self: ^Container, completionHandler: proc "c" (recordID: ^RecordID, error: ^NS.Error)) {
+Container_fetchUserRecordIDWithCompletionHandler :: #force_inline proc "c" (self: ^Container, completionHandler: ^Objc_Block(proc "c" (recordID: ^RecordID, error: ^NS.Error))) {
     msgSend(nil, self, "fetchUserRecordIDWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Container, objc_name="discoverAllIdentitiesWithCompletionHandler")
-Container_discoverAllIdentitiesWithCompletionHandler :: #force_inline proc "c" (self: ^Container, completionHandler: proc "c" (userIdentities: ^NS.Array, error: ^NS.Error)) {
+Container_discoverAllIdentitiesWithCompletionHandler :: #force_inline proc "c" (self: ^Container, completionHandler: ^Objc_Block(proc "c" (userIdentities: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "discoverAllIdentitiesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Container, objc_name="discoverUserIdentityWithEmailAddress")
-Container_discoverUserIdentityWithEmailAddress :: #force_inline proc "c" (self: ^Container, email: ^NS.String, completionHandler: proc "c" (userInfo: ^UserIdentity, error: ^NS.Error)) {
+Container_discoverUserIdentityWithEmailAddress :: #force_inline proc "c" (self: ^Container, email: ^NS.String, completionHandler: ^Objc_Block(proc "c" (userInfo: ^UserIdentity, error: ^NS.Error))) {
     msgSend(nil, self, "discoverUserIdentityWithEmailAddress:completionHandler:", email, completionHandler)
 }
 @(objc_type=Container, objc_name="discoverUserIdentityWithPhoneNumber")
-Container_discoverUserIdentityWithPhoneNumber :: #force_inline proc "c" (self: ^Container, phoneNumber: ^NS.String, completionHandler: proc "c" (userInfo: ^UserIdentity, error: ^NS.Error)) {
+Container_discoverUserIdentityWithPhoneNumber :: #force_inline proc "c" (self: ^Container, phoneNumber: ^NS.String, completionHandler: ^Objc_Block(proc "c" (userInfo: ^UserIdentity, error: ^NS.Error))) {
     msgSend(nil, self, "discoverUserIdentityWithPhoneNumber:completionHandler:", phoneNumber, completionHandler)
 }
 @(objc_type=Container, objc_name="discoverUserIdentityWithUserRecordID")
-Container_discoverUserIdentityWithUserRecordID :: #force_inline proc "c" (self: ^Container, userRecordID: ^RecordID, completionHandler: proc "c" (userInfo: ^UserIdentity, error: ^NS.Error)) {
+Container_discoverUserIdentityWithUserRecordID :: #force_inline proc "c" (self: ^Container, userRecordID: ^RecordID, completionHandler: ^Objc_Block(proc "c" (userInfo: ^UserIdentity, error: ^NS.Error))) {
     msgSend(nil, self, "discoverUserIdentityWithUserRecordID:completionHandler:", userRecordID, completionHandler)
 }
 @(objc_type=Container, objc_name="fetchShareParticipantWithEmailAddress")
-Container_fetchShareParticipantWithEmailAddress :: #force_inline proc "c" (self: ^Container, emailAddress: ^NS.String, completionHandler: proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error)) {
+Container_fetchShareParticipantWithEmailAddress :: #force_inline proc "c" (self: ^Container, emailAddress: ^NS.String, completionHandler: ^Objc_Block(proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error))) {
     msgSend(nil, self, "fetchShareParticipantWithEmailAddress:completionHandler:", emailAddress, completionHandler)
 }
 @(objc_type=Container, objc_name="fetchShareParticipantWithPhoneNumber")
-Container_fetchShareParticipantWithPhoneNumber :: #force_inline proc "c" (self: ^Container, phoneNumber: ^NS.String, completionHandler: proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error)) {
+Container_fetchShareParticipantWithPhoneNumber :: #force_inline proc "c" (self: ^Container, phoneNumber: ^NS.String, completionHandler: ^Objc_Block(proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error))) {
     msgSend(nil, self, "fetchShareParticipantWithPhoneNumber:completionHandler:", phoneNumber, completionHandler)
 }
 @(objc_type=Container, objc_name="fetchShareParticipantWithUserRecordID")
-Container_fetchShareParticipantWithUserRecordID :: #force_inline proc "c" (self: ^Container, userRecordID: ^RecordID, completionHandler: proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error)) {
+Container_fetchShareParticipantWithUserRecordID :: #force_inline proc "c" (self: ^Container, userRecordID: ^RecordID, completionHandler: ^Objc_Block(proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error))) {
     msgSend(nil, self, "fetchShareParticipantWithUserRecordID:completionHandler:", userRecordID, completionHandler)
 }
 @(objc_type=Container, objc_name="fetchShareMetadataWithURL")
-Container_fetchShareMetadataWithURL :: #force_inline proc "c" (self: ^Container, url: ^NS.URL, completionHandler: proc "c" (metadata: ^ShareMetadata, error: ^NS.Error)) {
+Container_fetchShareMetadataWithURL :: #force_inline proc "c" (self: ^Container, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (metadata: ^ShareMetadata, error: ^NS.Error))) {
     msgSend(nil, self, "fetchShareMetadataWithURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=Container, objc_name="acceptShareMetadata")
-Container_acceptShareMetadata :: #force_inline proc "c" (self: ^Container, metadata: ^ShareMetadata, completionHandler: proc "c" (acceptedShare: ^Share, error: ^NS.Error)) {
+Container_acceptShareMetadata :: #force_inline proc "c" (self: ^Container, metadata: ^ShareMetadata, completionHandler: ^Objc_Block(proc "c" (acceptedShare: ^Share, error: ^NS.Error))) {
     msgSend(nil, self, "acceptShareMetadata:completionHandler:", metadata, completionHandler)
 }
 @(objc_type=Container, objc_name="fetchAllLongLivedOperationIDsWithCompletionHandler")
-Container_fetchAllLongLivedOperationIDsWithCompletionHandler :: #force_inline proc "c" (self: ^Container, completionHandler: proc "c" (outstandingOperationIDs: ^NS.Array, error: ^NS.Error)) {
+Container_fetchAllLongLivedOperationIDsWithCompletionHandler :: #force_inline proc "c" (self: ^Container, completionHandler: ^Objc_Block(proc "c" (outstandingOperationIDs: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "fetchAllLongLivedOperationIDsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Container, objc_name="fetchLongLivedOperationWithID")
-Container_fetchLongLivedOperationWithID :: #force_inline proc "c" (self: ^Container, operationID: ^NS.String, completionHandler: proc "c" (outstandingOperation: ^Operation, error: ^NS.Error)) {
+Container_fetchLongLivedOperationWithID :: #force_inline proc "c" (self: ^Container, operationID: ^NS.String, completionHandler: ^Objc_Block(proc "c" (outstandingOperation: ^Operation, error: ^NS.Error))) {
     msgSend(nil, self, "fetchLongLivedOperationWithID:completionHandler:", operationID, completionHandler)
 }
 @(objc_type=Container, objc_name="load", objc_is_class_method=true)

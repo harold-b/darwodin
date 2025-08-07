@@ -33,19 +33,19 @@ AcceptSharesOperation_setShareMetadatas :: #force_inline proc "c" (self: ^Accept
     msgSend(nil, self, "setShareMetadatas:", shareMetadatas)
 }
 @(objc_type=AcceptSharesOperation, objc_name="perShareCompletionBlock")
-AcceptSharesOperation_perShareCompletionBlock :: #force_inline proc "c" (self: ^AcceptSharesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perShareCompletionBlock")
+AcceptSharesOperation_perShareCompletionBlock :: #force_inline proc "c" (self: ^AcceptSharesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perShareCompletionBlock")
 }
 @(objc_type=AcceptSharesOperation, objc_name="setPerShareCompletionBlock")
-AcceptSharesOperation_setPerShareCompletionBlock :: #force_inline proc "c" (self: ^AcceptSharesOperation, perShareCompletionBlock: proc "c" ()) {
+AcceptSharesOperation_setPerShareCompletionBlock :: #force_inline proc "c" (self: ^AcceptSharesOperation, perShareCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerShareCompletionBlock:", perShareCompletionBlock)
 }
 @(objc_type=AcceptSharesOperation, objc_name="acceptSharesCompletionBlock")
-AcceptSharesOperation_acceptSharesCompletionBlock :: #force_inline proc "c" (self: ^AcceptSharesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "acceptSharesCompletionBlock")
+AcceptSharesOperation_acceptSharesCompletionBlock :: #force_inline proc "c" (self: ^AcceptSharesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "acceptSharesCompletionBlock")
 }
 @(objc_type=AcceptSharesOperation, objc_name="setAcceptSharesCompletionBlock")
-AcceptSharesOperation_setAcceptSharesCompletionBlock :: #force_inline proc "c" (self: ^AcceptSharesOperation, acceptSharesCompletionBlock: proc "c" ()) {
+AcceptSharesOperation_setAcceptSharesCompletionBlock :: #force_inline proc "c" (self: ^AcceptSharesOperation, acceptSharesCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setAcceptSharesCompletionBlock:", acceptSharesCompletionBlock)
 }
 @(objc_type=AcceptSharesOperation, objc_name="load", objc_is_class_method=true)

@@ -33,11 +33,11 @@ FetchWebAuthTokenOperation_setAPIToken :: #force_inline proc "c" (self: ^FetchWe
     msgSend(nil, self, "setAPIToken:", APIToken)
 }
 @(objc_type=FetchWebAuthTokenOperation, objc_name="fetchWebAuthTokenCompletionBlock")
-FetchWebAuthTokenOperation_fetchWebAuthTokenCompletionBlock :: #force_inline proc "c" (self: ^FetchWebAuthTokenOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchWebAuthTokenCompletionBlock")
+FetchWebAuthTokenOperation_fetchWebAuthTokenCompletionBlock :: #force_inline proc "c" (self: ^FetchWebAuthTokenOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchWebAuthTokenCompletionBlock")
 }
 @(objc_type=FetchWebAuthTokenOperation, objc_name="setFetchWebAuthTokenCompletionBlock")
-FetchWebAuthTokenOperation_setFetchWebAuthTokenCompletionBlock :: #force_inline proc "c" (self: ^FetchWebAuthTokenOperation, fetchWebAuthTokenCompletionBlock: proc "c" ()) {
+FetchWebAuthTokenOperation_setFetchWebAuthTokenCompletionBlock :: #force_inline proc "c" (self: ^FetchWebAuthTokenOperation, fetchWebAuthTokenCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchWebAuthTokenCompletionBlock:", fetchWebAuthTokenCompletionBlock)
 }
 @(objc_type=FetchWebAuthTokenOperation, objc_name="load", objc_is_class_method=true)

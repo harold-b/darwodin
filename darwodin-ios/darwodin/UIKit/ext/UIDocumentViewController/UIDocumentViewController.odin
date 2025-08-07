@@ -29,7 +29,7 @@ VTable :: struct {
     super: UIViewController.VTable,
     initWithDocument: proc(self: ^UI.DocumentViewController, document: ^UI.Document) -> ^UI.DocumentViewController,
     navigationItemDidUpdate: proc(self: ^UI.DocumentViewController),
-    openDocumentWithCompletionHandler: proc(self: ^UI.DocumentViewController, completionHandler: proc "c" (success: bool)),
+    openDocumentWithCompletionHandler: proc(self: ^UI.DocumentViewController, completionHandler: ^Objc_Block(proc "c" (success: bool))),
     documentDidOpen: proc(self: ^UI.DocumentViewController),
     document: proc(self: ^UI.DocumentViewController) -> ^UI.Document,
     setDocument: proc(self: ^UI.DocumentViewController, document: ^UI.Document),
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("navigationItemDidUpdate"), auto_cast navigationItemDidUpdate, "v@:") do panic("Failed to register objC method.")
     }
     if vt.openDocumentWithCompletionHandler != nil {
-        openDocumentWithCompletionHandler :: proc "c" (self: ^UI.DocumentViewController, _: SEL, completionHandler: proc "c" (success: bool)) {
+        openDocumentWithCompletionHandler :: proc "c" (self: ^UI.DocumentViewController, _: SEL, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

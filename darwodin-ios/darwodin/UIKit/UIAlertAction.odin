@@ -28,7 +28,7 @@ AlertAction_init :: proc "c" (self: ^AlertAction) -> ^AlertAction {
 
 
 @(objc_type=AlertAction, objc_name="actionWithTitle", objc_is_class_method=true)
-AlertAction_actionWithTitle :: #force_inline proc "c" (title: ^NS.String, style: AlertActionStyle, handler: proc "c" (action: ^AlertAction)) -> ^AlertAction {
+AlertAction_actionWithTitle :: #force_inline proc "c" (title: ^NS.String, style: AlertActionStyle, handler: ^Objc_Block(proc "c" (action: ^AlertAction))) -> ^AlertAction {
     return msgSend(^AlertAction, AlertAction, "actionWithTitle:style:handler:", title, style, handler)
 }
 @(objc_type=AlertAction, objc_name="title")

@@ -26,7 +26,7 @@ Challenge_init :: proc "c" (self: ^Challenge) -> ^Challenge {
 
 
 @(objc_type=Challenge, objc_name="loadReceivedChallengesWithCompletionHandler", objc_is_class_method=true)
-Challenge_loadReceivedChallengesWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (challenges: ^NS.Array, error: ^NS.Error)) {
+Challenge_loadReceivedChallengesWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (challenges: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, Challenge, "loadReceivedChallengesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Challenge, objc_name="decline")

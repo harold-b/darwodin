@@ -145,19 +145,19 @@ FileHandle_waitForDataInBackgroundAndNotify :: #force_inline proc "c" (self: ^Fi
     msgSend(nil, self, "waitForDataInBackgroundAndNotify")
 }
 @(objc_type=FileHandle, objc_name="readabilityHandler")
-FileHandle_readabilityHandler :: #force_inline proc "c" (self: ^FileHandle) -> proc "c" () {
-    return msgSend(proc "c" (), self, "readabilityHandler")
+FileHandle_readabilityHandler :: #force_inline proc "c" (self: ^FileHandle) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "readabilityHandler")
 }
 @(objc_type=FileHandle, objc_name="setReadabilityHandler")
-FileHandle_setReadabilityHandler :: #force_inline proc "c" (self: ^FileHandle, readabilityHandler: proc "c" ()) {
+FileHandle_setReadabilityHandler :: #force_inline proc "c" (self: ^FileHandle, readabilityHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setReadabilityHandler:", readabilityHandler)
 }
 @(objc_type=FileHandle, objc_name="writeabilityHandler")
-FileHandle_writeabilityHandler :: #force_inline proc "c" (self: ^FileHandle) -> proc "c" () {
-    return msgSend(proc "c" (), self, "writeabilityHandler")
+FileHandle_writeabilityHandler :: #force_inline proc "c" (self: ^FileHandle) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "writeabilityHandler")
 }
 @(objc_type=FileHandle, objc_name="setWriteabilityHandler")
-FileHandle_setWriteabilityHandler :: #force_inline proc "c" (self: ^FileHandle, writeabilityHandler: proc "c" ()) {
+FileHandle_setWriteabilityHandler :: #force_inline proc "c" (self: ^FileHandle, writeabilityHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setWriteabilityHandler:", writeabilityHandler)
 }
 @(objc_type=FileHandle, objc_name="initWithFileDescriptor_")

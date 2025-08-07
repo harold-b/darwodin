@@ -27,8 +27,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    actionWithTitle: proc(title: ^NS.String, style: UI.PreviewActionStyle, handler: proc "c" (action: ^UI.PreviewAction, previewViewController: ^UI.ViewController)) -> ^UI.PreviewAction,
-    handler: proc(self: ^UI.PreviewAction) -> proc "c" (),
+    actionWithTitle: proc(title: ^NS.String, style: UI.PreviewActionStyle, handler: ^Objc_Block(proc "c" (action: ^UI.PreviewAction, previewViewController: ^UI.ViewController))) -> ^UI.PreviewAction,
+    handler: proc(self: ^UI.PreviewAction) -> ^Objc_Block(proc "c" ()),
     load: proc(),
     initialize: proc(),
     new: proc() -> ^UI.PreviewAction,
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.actionWithTitle != nil {
-        actionWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, style: UI.PreviewActionStyle, handler: proc "c" (action: ^UI.PreviewAction, previewViewController: ^UI.ViewController)) -> ^UI.PreviewAction {
+        actionWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, style: UI.PreviewActionStyle, handler: ^Objc_Block(proc "c" (action: ^UI.PreviewAction, previewViewController: ^UI.ViewController))) -> ^UI.PreviewAction {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("actionWithTitle:style:handler:"), auto_cast actionWithTitle, "@#:@l?") do panic("Failed to register objC method.")
     }
     if vt.handler != nil {
-        handler :: proc "c" (self: ^UI.PreviewAction, _: SEL) -> proc "c" () {
+        handler :: proc "c" (self: ^UI.PreviewAction, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

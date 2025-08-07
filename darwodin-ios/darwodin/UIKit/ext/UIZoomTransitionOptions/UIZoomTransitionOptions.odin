@@ -27,10 +27,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    interactiveDismissShouldBegin: proc(self: ^UI.ZoomTransitionOptions) -> proc "c" () -> bool,
-    setInteractiveDismissShouldBegin: proc(self: ^UI.ZoomTransitionOptions, interactiveDismissShouldBegin: proc "c" () -> bool),
-    alignmentRectProvider: proc(self: ^UI.ZoomTransitionOptions) -> proc "c" () -> CG.Rect,
-    setAlignmentRectProvider: proc(self: ^UI.ZoomTransitionOptions, alignmentRectProvider: proc "c" () -> CG.Rect),
+    interactiveDismissShouldBegin: proc(self: ^UI.ZoomTransitionOptions) -> ^Objc_Block(proc "c" () -> bool),
+    setInteractiveDismissShouldBegin: proc(self: ^UI.ZoomTransitionOptions, interactiveDismissShouldBegin: ^Objc_Block(proc "c" () -> bool)),
+    alignmentRectProvider: proc(self: ^UI.ZoomTransitionOptions) -> ^Objc_Block(proc "c" () -> CG.Rect),
+    setAlignmentRectProvider: proc(self: ^UI.ZoomTransitionOptions, alignmentRectProvider: ^Objc_Block(proc "c" () -> CG.Rect)),
     dimmingColor: proc(self: ^UI.ZoomTransitionOptions) -> ^UI.Color,
     setDimmingColor: proc(self: ^UI.ZoomTransitionOptions, dimmingColor: ^UI.Color),
     dimmingVisualEffect: proc(self: ^UI.ZoomTransitionOptions) -> ^UI.BlurEffect,
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.interactiveDismissShouldBegin != nil {
-        interactiveDismissShouldBegin :: proc "c" (self: ^UI.ZoomTransitionOptions, _: SEL) -> proc "c" () -> bool {
+        interactiveDismissShouldBegin :: proc "c" (self: ^UI.ZoomTransitionOptions, _: SEL) -> ^Objc_Block(proc "c" () -> bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("interactiveDismissShouldBegin"), auto_cast interactiveDismissShouldBegin, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setInteractiveDismissShouldBegin != nil {
-        setInteractiveDismissShouldBegin :: proc "c" (self: ^UI.ZoomTransitionOptions, _: SEL, interactiveDismissShouldBegin: proc "c" () -> bool) {
+        setInteractiveDismissShouldBegin :: proc "c" (self: ^UI.ZoomTransitionOptions, _: SEL, interactiveDismissShouldBegin: ^Objc_Block(proc "c" () -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInteractiveDismissShouldBegin:"), auto_cast setInteractiveDismissShouldBegin, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.alignmentRectProvider != nil {
-        alignmentRectProvider :: proc "c" (self: ^UI.ZoomTransitionOptions, _: SEL) -> proc "c" () -> CG.Rect {
+        alignmentRectProvider :: proc "c" (self: ^UI.ZoomTransitionOptions, _: SEL) -> ^Objc_Block(proc "c" () -> CG.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignmentRectProvider"), auto_cast alignmentRectProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setAlignmentRectProvider != nil {
-        setAlignmentRectProvider :: proc "c" (self: ^UI.ZoomTransitionOptions, _: SEL, alignmentRectProvider: proc "c" () -> CG.Rect) {
+        setAlignmentRectProvider :: proc "c" (self: ^UI.ZoomTransitionOptions, _: SEL, alignmentRectProvider: ^Objc_Block(proc "c" () -> CG.Rect)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

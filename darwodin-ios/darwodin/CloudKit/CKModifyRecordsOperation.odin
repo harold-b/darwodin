@@ -65,43 +65,43 @@ ModifyRecordsOperation_setAtomic :: #force_inline proc "c" (self: ^ModifyRecords
     msgSend(nil, self, "setAtomic:", atomic)
 }
 @(objc_type=ModifyRecordsOperation, objc_name="perRecordProgressBlock")
-ModifyRecordsOperation_perRecordProgressBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordProgressBlock")
+ModifyRecordsOperation_perRecordProgressBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordProgressBlock")
 }
 @(objc_type=ModifyRecordsOperation, objc_name="setPerRecordProgressBlock")
-ModifyRecordsOperation_setPerRecordProgressBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, perRecordProgressBlock: proc "c" ()) {
+ModifyRecordsOperation_setPerRecordProgressBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, perRecordProgressBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordProgressBlock:", perRecordProgressBlock)
 }
 @(objc_type=ModifyRecordsOperation, objc_name="perRecordCompletionBlock")
-ModifyRecordsOperation_perRecordCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordCompletionBlock")
+ModifyRecordsOperation_perRecordCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordCompletionBlock")
 }
 @(objc_type=ModifyRecordsOperation, objc_name="setPerRecordCompletionBlock")
-ModifyRecordsOperation_setPerRecordCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, perRecordCompletionBlock: proc "c" ()) {
+ModifyRecordsOperation_setPerRecordCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, perRecordCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordCompletionBlock:", perRecordCompletionBlock)
 }
 @(objc_type=ModifyRecordsOperation, objc_name="perRecordSaveBlock")
-ModifyRecordsOperation_perRecordSaveBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordSaveBlock")
+ModifyRecordsOperation_perRecordSaveBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordSaveBlock")
 }
 @(objc_type=ModifyRecordsOperation, objc_name="setPerRecordSaveBlock")
-ModifyRecordsOperation_setPerRecordSaveBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, perRecordSaveBlock: proc "c" ()) {
+ModifyRecordsOperation_setPerRecordSaveBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, perRecordSaveBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordSaveBlock:", perRecordSaveBlock)
 }
 @(objc_type=ModifyRecordsOperation, objc_name="perRecordDeleteBlock")
-ModifyRecordsOperation_perRecordDeleteBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordDeleteBlock")
+ModifyRecordsOperation_perRecordDeleteBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordDeleteBlock")
 }
 @(objc_type=ModifyRecordsOperation, objc_name="setPerRecordDeleteBlock")
-ModifyRecordsOperation_setPerRecordDeleteBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, perRecordDeleteBlock: proc "c" ()) {
+ModifyRecordsOperation_setPerRecordDeleteBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, perRecordDeleteBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordDeleteBlock:", perRecordDeleteBlock)
 }
 @(objc_type=ModifyRecordsOperation, objc_name="modifyRecordsCompletionBlock")
-ModifyRecordsOperation_modifyRecordsCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "modifyRecordsCompletionBlock")
+ModifyRecordsOperation_modifyRecordsCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "modifyRecordsCompletionBlock")
 }
 @(objc_type=ModifyRecordsOperation, objc_name="setModifyRecordsCompletionBlock")
-ModifyRecordsOperation_setModifyRecordsCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, modifyRecordsCompletionBlock: proc "c" ()) {
+ModifyRecordsOperation_setModifyRecordsCompletionBlock :: #force_inline proc "c" (self: ^ModifyRecordsOperation, modifyRecordsCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setModifyRecordsCompletionBlock:", modifyRecordsCompletionBlock)
 }
 @(objc_type=ModifyRecordsOperation, objc_name="load", objc_is_class_method=true)

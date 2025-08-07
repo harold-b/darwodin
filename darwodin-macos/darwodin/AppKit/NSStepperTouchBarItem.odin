@@ -30,7 +30,7 @@ StepperTouchBarItem_stepperTouchBarItemWithIdentifier_formatter :: #force_inline
     return msgSend(^StepperTouchBarItem, StepperTouchBarItem, "stepperTouchBarItemWithIdentifier:formatter:", identifier, formatter)
 }
 @(objc_type=StepperTouchBarItem, objc_name="stepperTouchBarItemWithIdentifier_drawingHandler", objc_is_class_method=true)
-StepperTouchBarItem_stepperTouchBarItemWithIdentifier_drawingHandler :: #force_inline proc "c" (identifier: ^NS.String, drawingHandler: proc "c" (rect: NS.Rect, value: cffi.double)) -> ^StepperTouchBarItem {
+StepperTouchBarItem_stepperTouchBarItemWithIdentifier_drawingHandler :: #force_inline proc "c" (identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> ^StepperTouchBarItem {
     return msgSend(^StepperTouchBarItem, StepperTouchBarItem, "stepperTouchBarItemWithIdentifier:drawingHandler:", identifier, drawingHandler)
 }
 @(objc_type=StepperTouchBarItem, objc_name="maxValue")

@@ -28,7 +28,7 @@ Appearance_init :: proc "c" (self: ^Appearance) -> ^Appearance {
 
 
 @(objc_type=Appearance, objc_name="performAsCurrentDrawingAppearance")
-Appearance_performAsCurrentDrawingAppearance :: #force_inline proc "c" (self: ^Appearance, block: proc "c" ()) {
+Appearance_performAsCurrentDrawingAppearance :: #force_inline proc "c" (self: ^Appearance, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performAsCurrentDrawingAppearance:", block)
 }
 @(objc_type=Appearance, objc_name="appearanceNamed", objc_is_class_method=true)

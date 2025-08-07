@@ -26,7 +26,7 @@ import UI "../../"
 VTable :: struct {
     documentBrowser_didPickDocumentURLs: proc(self: ^UI.DocumentBrowserViewControllerDelegate, controller: ^UI.DocumentBrowserViewController, documentURLs: ^NS.Array),
     documentBrowser_didPickDocumentsAtURLs: proc(self: ^UI.DocumentBrowserViewControllerDelegate, controller: ^UI.DocumentBrowserViewController, documentURLs: ^NS.Array),
-    documentBrowser_didRequestDocumentCreationWithHandler: proc(self: ^UI.DocumentBrowserViewControllerDelegate, controller: ^UI.DocumentBrowserViewController, importHandler: proc "c" (urlToImport: ^NS.URL, importMode: UI.DocumentBrowserImportMode)),
+    documentBrowser_didRequestDocumentCreationWithHandler: proc(self: ^UI.DocumentBrowserViewControllerDelegate, controller: ^UI.DocumentBrowserViewController, importHandler: ^Objc_Block(proc "c" (urlToImport: ^NS.URL, importMode: UI.DocumentBrowserImportMode))),
     documentBrowser_didImportDocumentAtURL_toDestinationURL: proc(self: ^UI.DocumentBrowserViewControllerDelegate, controller: ^UI.DocumentBrowserViewController, sourceURL: ^NS.URL, destinationURL: ^NS.URL),
     documentBrowser_failedToImportDocumentAtURL_error: proc(self: ^UI.DocumentBrowserViewControllerDelegate, controller: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL, error: ^NS.Error),
     documentBrowser_applicationActivitiesForDocumentURLs: proc(self: ^UI.DocumentBrowserViewControllerDelegate, controller: ^UI.DocumentBrowserViewController, documentURLs: ^NS.Array) -> ^NS.Array,
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentBrowser:didPickDocumentsAtURLs:"), auto_cast documentBrowser_didPickDocumentsAtURLs, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.documentBrowser_didRequestDocumentCreationWithHandler != nil {
-        documentBrowser_didRequestDocumentCreationWithHandler :: proc "c" (self: ^UI.DocumentBrowserViewControllerDelegate, _: SEL, controller: ^UI.DocumentBrowserViewController, importHandler: proc "c" (urlToImport: ^NS.URL, importMode: UI.DocumentBrowserImportMode)) {
+        documentBrowser_didRequestDocumentCreationWithHandler :: proc "c" (self: ^UI.DocumentBrowserViewControllerDelegate, _: SEL, controller: ^UI.DocumentBrowserViewController, importHandler: ^Objc_Block(proc "c" (urlToImport: ^NS.URL, importMode: UI.DocumentBrowserImportMode))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

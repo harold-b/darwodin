@@ -33,11 +33,11 @@ Document_initWithFileURL :: #force_inline proc "c" (self: ^Document, url: ^NS.UR
     return msgSend(^Document, self, "initWithFileURL:", url)
 }
 @(objc_type=Document, objc_name="openWithCompletionHandler")
-Document_openWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (success: bool)) {
+Document_openWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "openWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="closeWithCompletionHandler")
-Document_closeWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (success: bool)) {
+Document_closeWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "closeWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="loadFromContents")
@@ -69,11 +69,11 @@ Document_updateChangeCountWithToken :: #force_inline proc "c" (self: ^Document, 
     msgSend(nil, self, "updateChangeCountWithToken:forSaveOperation:", changeCountToken, saveOperation)
 }
 @(objc_type=Document, objc_name="saveToURL")
-Document_saveToURL :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, saveOperation: DocumentSaveOperation, completionHandler: proc "c" (success: bool)) {
+Document_saveToURL :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, saveOperation: DocumentSaveOperation, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "saveToURL:forSaveOperation:completionHandler:", url, saveOperation, completionHandler)
 }
 @(objc_type=Document, objc_name="autosaveWithCompletionHandler")
-Document_autosaveWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (success: bool)) {
+Document_autosaveWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "autosaveWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="fileNameExtensionForType")
@@ -97,7 +97,7 @@ Document_readFromURL :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, o
     return msgSend(bool, self, "readFromURL:error:", url, outError)
 }
 @(objc_type=Document, objc_name="performAsynchronousFileAccessUsingBlock")
-Document_performAsynchronousFileAccessUsingBlock :: #force_inline proc "c" (self: ^Document, block: proc "c" ()) {
+Document_performAsynchronousFileAccessUsingBlock :: #force_inline proc "c" (self: ^Document, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performAsynchronousFileAccessUsingBlock:", block)
 }
 @(objc_type=Document, objc_name="handleError")
@@ -113,7 +113,7 @@ Document_userInteractionNoLongerPermittedForError :: #force_inline proc "c" (sel
     msgSend(nil, self, "userInteractionNoLongerPermittedForError:", error)
 }
 @(objc_type=Document, objc_name="revertToContentsOfURL")
-Document_revertToContentsOfURL :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, completionHandler: proc "c" (success: bool)) {
+Document_revertToContentsOfURL :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "revertToContentsOfURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=Document, objc_name="fileURL")

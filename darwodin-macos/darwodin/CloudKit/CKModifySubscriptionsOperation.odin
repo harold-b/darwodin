@@ -41,27 +41,27 @@ ModifySubscriptionsOperation_setSubscriptionIDsToDelete :: #force_inline proc "c
     msgSend(nil, self, "setSubscriptionIDsToDelete:", subscriptionIDsToDelete)
 }
 @(objc_type=ModifySubscriptionsOperation, objc_name="perSubscriptionSaveBlock")
-ModifySubscriptionsOperation_perSubscriptionSaveBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perSubscriptionSaveBlock")
+ModifySubscriptionsOperation_perSubscriptionSaveBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perSubscriptionSaveBlock")
 }
 @(objc_type=ModifySubscriptionsOperation, objc_name="setPerSubscriptionSaveBlock")
-ModifySubscriptionsOperation_setPerSubscriptionSaveBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation, perSubscriptionSaveBlock: proc "c" ()) {
+ModifySubscriptionsOperation_setPerSubscriptionSaveBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation, perSubscriptionSaveBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerSubscriptionSaveBlock:", perSubscriptionSaveBlock)
 }
 @(objc_type=ModifySubscriptionsOperation, objc_name="perSubscriptionDeleteBlock")
-ModifySubscriptionsOperation_perSubscriptionDeleteBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perSubscriptionDeleteBlock")
+ModifySubscriptionsOperation_perSubscriptionDeleteBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perSubscriptionDeleteBlock")
 }
 @(objc_type=ModifySubscriptionsOperation, objc_name="setPerSubscriptionDeleteBlock")
-ModifySubscriptionsOperation_setPerSubscriptionDeleteBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation, perSubscriptionDeleteBlock: proc "c" ()) {
+ModifySubscriptionsOperation_setPerSubscriptionDeleteBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation, perSubscriptionDeleteBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerSubscriptionDeleteBlock:", perSubscriptionDeleteBlock)
 }
 @(objc_type=ModifySubscriptionsOperation, objc_name="modifySubscriptionsCompletionBlock")
-ModifySubscriptionsOperation_modifySubscriptionsCompletionBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "modifySubscriptionsCompletionBlock")
+ModifySubscriptionsOperation_modifySubscriptionsCompletionBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "modifySubscriptionsCompletionBlock")
 }
 @(objc_type=ModifySubscriptionsOperation, objc_name="setModifySubscriptionsCompletionBlock")
-ModifySubscriptionsOperation_setModifySubscriptionsCompletionBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation, modifySubscriptionsCompletionBlock: proc "c" ()) {
+ModifySubscriptionsOperation_setModifySubscriptionsCompletionBlock :: #force_inline proc "c" (self: ^ModifySubscriptionsOperation, modifySubscriptionsCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setModifySubscriptionsCompletionBlock:", modifySubscriptionsCompletionBlock)
 }
 @(objc_type=ModifySubscriptionsOperation, objc_name="load", objc_is_class_method=true)

@@ -67,8 +67,8 @@ VTable :: struct {
     _CIColor: proc(self: ^UI.Color) -> ^UI.CIColor,
     colorNamed_: proc(name: ^NS.String) -> ^UI.Color,
     colorNamed_inBundle_compatibleWithTraitCollection: proc(name: ^NS.String, bundle: ^NS.Bundle, traitCollection: ^UI.TraitCollection) -> ^UI.Color,
-    colorWithDynamicProvider: proc(dynamicProvider: proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color) -> ^UI.Color,
-    initWithDynamicProvider: proc(self: ^UI.Color, dynamicProvider: proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color) -> ^UI.Color,
+    colorWithDynamicProvider: proc(dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color)) -> ^UI.Color,
+    initWithDynamicProvider: proc(self: ^UI.Color, dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color)) -> ^UI.Color,
     resolvedColorWithTraitCollection: proc(self: ^UI.Color, traitCollection: ^UI.TraitCollection) -> ^UI.Color,
     colorWithProminence: proc(self: ^UI.Color, prominence: UI.ColorProminence) -> ^UI.Color,
     prominence: proc(self: ^UI.Color) -> UI.ColorProminence,
@@ -553,7 +553,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("colorNamed:inBundle:compatibleWithTraitCollection:"), auto_cast colorNamed_inBundle_compatibleWithTraitCollection, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.colorWithDynamicProvider != nil {
-        colorWithDynamicProvider :: proc "c" (self: Class, _: SEL, dynamicProvider: proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color) -> ^UI.Color {
+        colorWithDynamicProvider :: proc "c" (self: Class, _: SEL, dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color)) -> ^UI.Color {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -563,7 +563,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("colorWithDynamicProvider:"), auto_cast colorWithDynamicProvider, "@#:?") do panic("Failed to register objC method.")
     }
     if vt.initWithDynamicProvider != nil {
-        initWithDynamicProvider :: proc "c" (self: ^UI.Color, _: SEL, dynamicProvider: proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color) -> ^UI.Color {
+        initWithDynamicProvider :: proc "c" (self: ^UI.Color, _: SEL, dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color)) -> ^UI.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

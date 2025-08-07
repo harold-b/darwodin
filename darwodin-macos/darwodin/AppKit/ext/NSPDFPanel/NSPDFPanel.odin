@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     panel: proc() -> ^AK.PDFPanel,
-    beginSheetWithPDFInfo: proc(self: ^AK.PDFPanel, pdfInfo: ^AK.PDFInfo, docWindow: ^AK.Window, completionHandler: proc "c" (_arg_0: NS.Integer)),
+    beginSheetWithPDFInfo: proc(self: ^AK.PDFPanel, pdfInfo: ^AK.PDFInfo, docWindow: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (_: NS.Integer))),
     accessoryController: proc(self: ^AK.PDFPanel) -> ^AK.ViewController,
     setAccessoryController: proc(self: ^AK.PDFPanel, accessoryController: ^AK.ViewController),
     options: proc(self: ^AK.PDFPanel) -> AK.PDFPanelOptions,
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("panel"), auto_cast panel, "@#:") do panic("Failed to register objC method.")
     }
     if vt.beginSheetWithPDFInfo != nil {
-        beginSheetWithPDFInfo :: proc "c" (self: ^AK.PDFPanel, _: SEL, pdfInfo: ^AK.PDFInfo, docWindow: ^AK.Window, completionHandler: proc "c" (_arg_0: NS.Integer)) {
+        beginSheetWithPDFInfo :: proc "c" (self: ^AK.PDFPanel, _: SEL, pdfInfo: ^AK.PDFInfo, docWindow: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (_: NS.Integer))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

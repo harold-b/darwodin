@@ -40,8 +40,8 @@ VTable :: struct {
     isCandidateListVisible: proc(self: ^AK.CandidateListTouchBarItem) -> bool,
     allowsTextInputContextCandidates: proc(self: ^AK.CandidateListTouchBarItem) -> bool,
     setAllowsTextInputContextCandidates: proc(self: ^AK.CandidateListTouchBarItem, allowsTextInputContextCandidates: bool),
-    attributedStringForCandidate: proc(self: ^AK.CandidateListTouchBarItem) -> proc "c" () -> ^NS.AttributedString,
-    setAttributedStringForCandidate: proc(self: ^AK.CandidateListTouchBarItem, attributedStringForCandidate: proc "c" () -> ^NS.AttributedString),
+    attributedStringForCandidate: proc(self: ^AK.CandidateListTouchBarItem) -> ^Objc_Block(proc "c" () -> ^NS.AttributedString),
+    setAttributedStringForCandidate: proc(self: ^AK.CandidateListTouchBarItem, attributedStringForCandidate: ^Objc_Block(proc "c" () -> ^NS.AttributedString)),
     candidates: proc(self: ^AK.CandidateListTouchBarItem) -> ^NS.Array,
     customizationLabel: proc(self: ^AK.CandidateListTouchBarItem) -> ^NS.String,
     setCustomizationLabel: proc(self: ^AK.CandidateListTouchBarItem, customizationLabel: ^NS.String),
@@ -219,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsTextInputContextCandidates:"), auto_cast setAllowsTextInputContextCandidates, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.attributedStringForCandidate != nil {
-        attributedStringForCandidate :: proc "c" (self: ^AK.CandidateListTouchBarItem, _: SEL) -> proc "c" () -> ^NS.AttributedString {
+        attributedStringForCandidate :: proc "c" (self: ^AK.CandidateListTouchBarItem, _: SEL) -> ^Objc_Block(proc "c" () -> ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -229,7 +229,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedStringForCandidate"), auto_cast attributedStringForCandidate, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributedStringForCandidate != nil {
-        setAttributedStringForCandidate :: proc "c" (self: ^AK.CandidateListTouchBarItem, _: SEL, attributedStringForCandidate: proc "c" () -> ^NS.AttributedString) {
+        setAttributedStringForCandidate :: proc "c" (self: ^AK.CandidateListTouchBarItem, _: SEL, attributedStringForCandidate: ^Objc_Block(proc "c" () -> ^NS.AttributedString)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

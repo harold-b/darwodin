@@ -54,10 +54,10 @@ VTable :: struct {
     acceptConnectionInBackgroundAndNotify: proc(self: ^NS.FileHandle),
     waitForDataInBackgroundAndNotifyForModes: proc(self: ^NS.FileHandle, modes: ^NS.Array),
     waitForDataInBackgroundAndNotify: proc(self: ^NS.FileHandle),
-    readabilityHandler: proc(self: ^NS.FileHandle) -> proc "c" (),
-    setReadabilityHandler: proc(self: ^NS.FileHandle, readabilityHandler: proc "c" ()),
-    writeabilityHandler: proc(self: ^NS.FileHandle) -> proc "c" (),
-    setWriteabilityHandler: proc(self: ^NS.FileHandle, writeabilityHandler: proc "c" ()),
+    readabilityHandler: proc(self: ^NS.FileHandle) -> ^Objc_Block(proc "c" ()),
+    setReadabilityHandler: proc(self: ^NS.FileHandle, readabilityHandler: ^Objc_Block(proc "c" ())),
+    writeabilityHandler: proc(self: ^NS.FileHandle) -> ^Objc_Block(proc "c" ()),
+    setWriteabilityHandler: proc(self: ^NS.FileHandle, writeabilityHandler: ^Objc_Block(proc "c" ())),
     initWithFileDescriptor_: proc(self: ^NS.FileHandle, fd: cffi.int) -> ^NS.FileHandle,
     fileDescriptor: proc(self: ^NS.FileHandle) -> cffi.int,
     readDataToEndOfFile: proc(self: ^NS.FileHandle) -> ^NS.Data,
@@ -411,7 +411,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("waitForDataInBackgroundAndNotify"), auto_cast waitForDataInBackgroundAndNotify, "v@:") do panic("Failed to register objC method.")
     }
     if vt.readabilityHandler != nil {
-        readabilityHandler :: proc "c" (self: ^NS.FileHandle, _: SEL) -> proc "c" () {
+        readabilityHandler :: proc "c" (self: ^NS.FileHandle, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -421,7 +421,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("readabilityHandler"), auto_cast readabilityHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setReadabilityHandler != nil {
-        setReadabilityHandler :: proc "c" (self: ^NS.FileHandle, _: SEL, readabilityHandler: proc "c" ()) {
+        setReadabilityHandler :: proc "c" (self: ^NS.FileHandle, _: SEL, readabilityHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -431,7 +431,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setReadabilityHandler:"), auto_cast setReadabilityHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.writeabilityHandler != nil {
-        writeabilityHandler :: proc "c" (self: ^NS.FileHandle, _: SEL) -> proc "c" () {
+        writeabilityHandler :: proc "c" (self: ^NS.FileHandle, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -441,7 +441,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writeabilityHandler"), auto_cast writeabilityHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setWriteabilityHandler != nil {
-        setWriteabilityHandler :: proc "c" (self: ^NS.FileHandle, _: SEL, writeabilityHandler: proc "c" ()) {
+        setWriteabilityHandler :: proc "c" (self: ^NS.FileHandle, _: SEL, writeabilityHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

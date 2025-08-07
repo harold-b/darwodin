@@ -326,11 +326,11 @@ Window_removeFrameUsingName :: #force_inline proc "c" (name: ^NS.String) {
     msgSend(nil, Window, "removeFrameUsingName:", name)
 }
 @(objc_type=Window, objc_name="beginSheet")
-Window_beginSheet :: #force_inline proc "c" (self: ^Window, sheetWindow: ^Window, handler: proc "c" (returnCode: ModalResponse)) {
+Window_beginSheet :: #force_inline proc "c" (self: ^Window, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" (returnCode: ModalResponse))) {
     msgSend(nil, self, "beginSheet:completionHandler:", sheetWindow, handler)
 }
 @(objc_type=Window, objc_name="beginCriticalSheet")
-Window_beginCriticalSheet :: #force_inline proc "c" (self: ^Window, sheetWindow: ^Window, handler: proc "c" (returnCode: ModalResponse)) {
+Window_beginCriticalSheet :: #force_inline proc "c" (self: ^Window, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" (returnCode: ModalResponse))) {
     msgSend(nil, self, "beginCriticalSheet:completionHandler:", sheetWindow, handler)
 }
 @(objc_type=Window, objc_name="endSheet_")
@@ -442,15 +442,15 @@ Window_addTabbedWindow :: #force_inline proc "c" (self: ^Window, window: ^Window
     msgSend(nil, self, "addTabbedWindow:ordered:", window, ordered)
 }
 @(objc_type=Window, objc_name="transferWindowSharingToWindow")
-Window_transferWindowSharingToWindow :: #force_inline proc "c" (self: ^Window, window: ^Window, completionHandler: proc "c" (error: ^NS.Error)) {
+Window_transferWindowSharingToWindow :: #force_inline proc "c" (self: ^Window, window: ^Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "transferWindowSharingToWindow:completionHandler:", window, completionHandler)
 }
 @(objc_type=Window, objc_name="requestSharingOfWindow")
-Window_requestSharingOfWindow :: #force_inline proc "c" (self: ^Window, window: ^Window, completionHandler: proc "c" (error: ^NS.Error)) {
+Window_requestSharingOfWindow :: #force_inline proc "c" (self: ^Window, window: ^Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "requestSharingOfWindow:completionHandler:", window, completionHandler)
 }
 @(objc_type=Window, objc_name="requestSharingOfWindowUsingPreview")
-Window_requestSharingOfWindowUsingPreview :: #force_inline proc "c" (self: ^Window, image: ^NS.Image, title: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+Window_requestSharingOfWindowUsingPreview :: #force_inline proc "c" (self: ^Window, image: ^NS.Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "requestSharingOfWindowUsingPreview:title:completionHandler:", image, title, completionHandler)
 }
 @(objc_type=Window, objc_name="defaultDepthLimit", objc_is_class_method=true)
@@ -1098,7 +1098,7 @@ Window_windowTitlebarLayoutDirection :: #force_inline proc "c" (self: ^Window) -
     return msgSend(UserInterfaceLayoutDirection, self, "windowTitlebarLayoutDirection")
 }
 @(objc_type=Window, objc_name="trackEventsMatchingMask")
-Window_trackEventsMatchingMask :: #force_inline proc "c" (self: ^Window, mask: EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: proc "c" (event: ^Event, stop: ^bool)) {
+Window_trackEventsMatchingMask :: #force_inline proc "c" (self: ^Window, mask: EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: ^Objc_Block(proc "c" (event: ^Event, stop: ^bool))) {
     msgSend(nil, self, "trackEventsMatchingMask:timeout:mode:handler:", mask, timeout, mode, trackingHandler)
 }
 @(objc_type=Window, objc_name="nextEventMatchingMask_")

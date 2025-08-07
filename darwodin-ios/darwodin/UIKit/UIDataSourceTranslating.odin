@@ -38,6 +38,6 @@ DataSourceTranslating_dataSourceIndexPathForPresentationIndexPath :: #force_inli
     return msgSend(^NS.IndexPath, self, "dataSourceIndexPathForPresentationIndexPath:", presentationIndexPath)
 }
 @(objc_type=DataSourceTranslating, objc_name="performUsingPresentationValues")
-DataSourceTranslating_performUsingPresentationValues :: #force_inline proc "c" (self: ^DataSourceTranslating, actionsToTranslate: proc "c" ()) {
+DataSourceTranslating_performUsingPresentationValues :: #force_inline proc "c" (self: ^DataSourceTranslating, actionsToTranslate: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performUsingPresentationValues:", actionsToTranslate)
 }

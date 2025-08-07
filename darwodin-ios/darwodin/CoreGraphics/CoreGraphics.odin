@@ -1656,7 +1656,7 @@ foreign lib {
 }
 
 /// CGFloat
-Float :: cffi.double
+Float :: distinct cffi.double
 
 /// IOSurfaceRef
 IOSurfaceRef :: distinct ^__IOSurface
@@ -1728,7 +1728,7 @@ PathRef :: distinct ^Path
 PathApplierFunction :: proc "c" (info: rawptr, element: ^PathElement)
 
 /// CGPathApplyBlock
-PathApplyBlock :: proc "c" (element: ^PathElement)
+PathApplyBlock :: ^Objc_Block(proc "c" (element: ^PathElement))
 
 /// CGPDFDocumentRef
 PDFDocumentRef :: distinct ^PDFDocument
@@ -1761,13 +1761,13 @@ PDFStreamRef :: distinct ^PDFStream
 PDFStringRef :: distinct ^PDFString
 
 /// CGPDFArrayApplierBlock
-PDFArrayApplierBlock :: proc "c" (index: cffi.size_t, value: PDFObjectRef, info: rawptr) -> cffi.bool
+PDFArrayApplierBlock :: ^Objc_Block(proc "c" (index: cffi.size_t, value: PDFObjectRef, info: rawptr) -> cffi.bool)
 
 /// CGPDFDictionaryApplierFunction
 PDFDictionaryApplierFunction :: proc "c" (key: cstring, value: PDFObjectRef, info: rawptr)
 
 /// CGPDFDictionaryApplierBlock
-PDFDictionaryApplierBlock :: proc "c" (key: cstring, value: PDFObjectRef, info: rawptr) -> cffi.bool
+PDFDictionaryApplierBlock :: ^Objc_Block(proc "c" (key: cstring, value: PDFObjectRef, info: rawptr) -> cffi.bool)
 
 /// CGShadingRef
 ShadingRef :: distinct ^Shading

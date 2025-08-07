@@ -23,7 +23,7 @@ import NS "../../"
 VTable :: struct {
     itemProviderVisibilityForRepresentationWithTypeIdentifierStatic: proc(typeIdentifier: ^NS.String) -> NS.ItemProviderRepresentationVisibility,
     itemProviderVisibilityForRepresentationWithTypeIdentifier: proc(self: ^NS.ItemProviderWriting, typeIdentifier: ^NS.String) -> NS.ItemProviderRepresentationVisibility,
-    loadDataWithTypeIdentifier: proc(self: ^NS.ItemProviderWriting, typeIdentifier: ^NS.String, completionHandler: proc "c" (data: ^NS.Data, error: ^NS.Error)) -> ^NS.Progress,
+    loadDataWithTypeIdentifier: proc(self: ^NS.ItemProviderWriting, typeIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, error: ^NS.Error))) -> ^NS.Progress,
     writableTypeIdentifiersForItemProviderStatic: proc() -> ^NS.Array,
     writableTypeIdentifiersForItemProvider: proc(self: ^NS.ItemProviderWriting) -> ^NS.Array,
 }
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemProviderVisibilityForRepresentationWithTypeIdentifier:"), auto_cast itemProviderVisibilityForRepresentationWithTypeIdentifier, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.loadDataWithTypeIdentifier != nil {
-        loadDataWithTypeIdentifier :: proc "c" (self: ^NS.ItemProviderWriting, _: SEL, typeIdentifier: ^NS.String, completionHandler: proc "c" (data: ^NS.Data, error: ^NS.Error)) -> ^NS.Progress {
+        loadDataWithTypeIdentifier :: proc "c" (self: ^NS.ItemProviderWriting, _: SEL, typeIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, error: ^NS.Error))) -> ^NS.Progress {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

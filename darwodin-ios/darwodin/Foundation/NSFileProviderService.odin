@@ -23,7 +23,7 @@ FileProviderService_init :: proc "c" (self: ^FileProviderService) -> ^FileProvid
 
 
 @(objc_type=FileProviderService, objc_name="getFileProviderConnectionWithCompletionHandler")
-FileProviderService_getFileProviderConnectionWithCompletionHandler :: #force_inline proc "c" (self: ^FileProviderService, completionHandler: proc "c" (connection: ^XPCConnection, error: ^Error)) {
+FileProviderService_getFileProviderConnectionWithCompletionHandler :: #force_inline proc "c" (self: ^FileProviderService, completionHandler: ^Objc_Block(proc "c" (connection: ^XPCConnection, error: ^Error))) {
     msgSend(nil, self, "getFileProviderConnectionWithCompletionHandler:", completionHandler)
 }
 @(objc_type=FileProviderService, objc_name="name")

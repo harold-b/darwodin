@@ -40,7 +40,7 @@ VTable :: struct {
     springField: proc() -> ^UI.FieldBehavior,
     electricField: proc() -> ^UI.FieldBehavior,
     magneticField: proc() -> ^UI.FieldBehavior,
-    fieldWithEvaluationBlock: proc(block: proc "c" (field: ^UI.FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector) -> ^UI.FieldBehavior,
+    fieldWithEvaluationBlock: proc(block: ^Objc_Block(proc "c" (field: ^UI.FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> ^UI.FieldBehavior,
     items: proc(self: ^UI.FieldBehavior) -> ^NS.Array,
     position: proc(self: ^UI.FieldBehavior) -> CG.Point,
     setPosition: proc(self: ^UI.FieldBehavior, position: CG.Point),
@@ -227,7 +227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("magneticField"), auto_cast magneticField, "@#:") do panic("Failed to register objC method.")
     }
     if vt.fieldWithEvaluationBlock != nil {
-        fieldWithEvaluationBlock :: proc "c" (self: Class, _: SEL, block: proc "c" (field: ^UI.FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector) -> ^UI.FieldBehavior {
+        fieldWithEvaluationBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" (field: ^UI.FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> ^UI.FieldBehavior {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -32,8 +32,8 @@ VTable :: struct {
     init: proc(self: ^UI.CellAccessoryPopUpMenu) -> ^UI.CellAccessoryPopUpMenu,
     new: proc() -> ^UI.CellAccessoryPopUpMenu,
     menu: proc(self: ^UI.CellAccessoryPopUpMenu) -> ^UI.Menu,
-    selectedElementDidChangeHandler: proc(self: ^UI.CellAccessoryPopUpMenu) -> proc "c" (),
-    setSelectedElementDidChangeHandler: proc(self: ^UI.CellAccessoryPopUpMenu, selectedElementDidChangeHandler: proc "c" ()),
+    selectedElementDidChangeHandler: proc(self: ^UI.CellAccessoryPopUpMenu) -> ^Objc_Block(proc "c" ()),
+    setSelectedElementDidChangeHandler: proc(self: ^UI.CellAccessoryPopUpMenu, selectedElementDidChangeHandler: ^Objc_Block(proc "c" ())),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menu"), auto_cast menu, "@@:") do panic("Failed to register objC method.")
     }
     if vt.selectedElementDidChangeHandler != nil {
-        selectedElementDidChangeHandler :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL) -> proc "c" () {
+        selectedElementDidChangeHandler :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedElementDidChangeHandler"), auto_cast selectedElementDidChangeHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedElementDidChangeHandler != nil {
-        setSelectedElementDidChangeHandler :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL, selectedElementDidChangeHandler: proc "c" ()) {
+        setSelectedElementDidChangeHandler :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL, selectedElementDidChangeHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

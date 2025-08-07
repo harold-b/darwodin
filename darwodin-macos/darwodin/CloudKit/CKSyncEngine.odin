@@ -29,23 +29,23 @@ SyncEngine_new :: #force_inline proc "c" () -> ^SyncEngine {
     return msgSend(^SyncEngine, SyncEngine, "new")
 }
 @(objc_type=SyncEngine, objc_name="fetchChangesWithCompletionHandler")
-SyncEngine_fetchChangesWithCompletionHandler :: #force_inline proc "c" (self: ^SyncEngine, completionHandler: proc "c" (error: ^NS.Error)) {
+SyncEngine_fetchChangesWithCompletionHandler :: #force_inline proc "c" (self: ^SyncEngine, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "fetchChangesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=SyncEngine, objc_name="fetchChangesWithOptions")
-SyncEngine_fetchChangesWithOptions :: #force_inline proc "c" (self: ^SyncEngine, options: ^SyncEngineFetchChangesOptions, completionHandler: proc "c" (error: ^NS.Error)) {
+SyncEngine_fetchChangesWithOptions :: #force_inline proc "c" (self: ^SyncEngine, options: ^SyncEngineFetchChangesOptions, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "fetchChangesWithOptions:completionHandler:", options, completionHandler)
 }
 @(objc_type=SyncEngine, objc_name="sendChangesWithCompletionHandler")
-SyncEngine_sendChangesWithCompletionHandler :: #force_inline proc "c" (self: ^SyncEngine, completionHandler: proc "c" (error: ^NS.Error)) {
+SyncEngine_sendChangesWithCompletionHandler :: #force_inline proc "c" (self: ^SyncEngine, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "sendChangesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=SyncEngine, objc_name="sendChangesWithOptions")
-SyncEngine_sendChangesWithOptions :: #force_inline proc "c" (self: ^SyncEngine, options: ^SyncEngineSendChangesOptions, completionHandler: proc "c" (error: ^NS.Error)) {
+SyncEngine_sendChangesWithOptions :: #force_inline proc "c" (self: ^SyncEngine, options: ^SyncEngineSendChangesOptions, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "sendChangesWithOptions:completionHandler:", options, completionHandler)
 }
 @(objc_type=SyncEngine, objc_name="cancelOperationsWithCompletionHandler")
-SyncEngine_cancelOperationsWithCompletionHandler :: #force_inline proc "c" (self: ^SyncEngine, completionHandler: proc "c" ()) {
+SyncEngine_cancelOperationsWithCompletionHandler :: #force_inline proc "c" (self: ^SyncEngine, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "cancelOperationsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=SyncEngine, objc_name="database")

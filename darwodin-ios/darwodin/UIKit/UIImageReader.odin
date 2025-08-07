@@ -38,11 +38,11 @@ ImageReader_imageWithData_ :: #force_inline proc "c" (self: ^ImageReader, data: 
     return msgSend(^Image, self, "imageWithData:", data)
 }
 @(objc_type=ImageReader, objc_name="imageWithContentsOfFileURL_completion")
-ImageReader_imageWithContentsOfFileURL_completion :: #force_inline proc "c" (self: ^ImageReader, url: ^NS.URL, completion: proc "c" (_arg_0: ^Image)) {
+ImageReader_imageWithContentsOfFileURL_completion :: #force_inline proc "c" (self: ^ImageReader, url: ^NS.URL, completion: ^Objc_Block(proc "c" (_: ^Image))) {
     msgSend(nil, self, "imageWithContentsOfFileURL:completion:", url, completion)
 }
 @(objc_type=ImageReader, objc_name="imageWithData_completion")
-ImageReader_imageWithData_completion :: #force_inline proc "c" (self: ^ImageReader, data: ^NS.Data, completion: proc "c" (_arg_0: ^Image)) {
+ImageReader_imageWithData_completion :: #force_inline proc "c" (self: ^ImageReader, data: ^NS.Data, completion: ^Objc_Block(proc "c" (_: ^Image))) {
     msgSend(nil, self, "imageWithData:completion:", data, completion)
 }
 @(objc_type=ImageReader, objc_name="defaultReader", objc_is_class_method=true)

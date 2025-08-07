@@ -48,11 +48,11 @@ DragItem_setLocalObject :: #force_inline proc "c" (self: ^DragItem, localObject:
     msgSend(nil, self, "setLocalObject:", localObject)
 }
 @(objc_type=DragItem, objc_name="previewProvider")
-DragItem_previewProvider :: #force_inline proc "c" (self: ^DragItem) -> proc "c" () -> ^DragPreview {
-    return msgSend(proc "c" () -> ^DragPreview, self, "previewProvider")
+DragItem_previewProvider :: #force_inline proc "c" (self: ^DragItem) -> ^Objc_Block(proc "c" () -> ^DragPreview) {
+    return msgSend(^Objc_Block(proc "c" () -> ^DragPreview), self, "previewProvider")
 }
 @(objc_type=DragItem, objc_name="setPreviewProvider")
-DragItem_setPreviewProvider :: #force_inline proc "c" (self: ^DragItem, previewProvider: proc "c" () -> ^DragPreview) {
+DragItem_setPreviewProvider :: #force_inline proc "c" (self: ^DragItem, previewProvider: ^Objc_Block(proc "c" () -> ^DragPreview)) {
     msgSend(nil, self, "setPreviewProvider:", previewProvider)
 }
 @(objc_type=DragItem, objc_name="load", objc_is_class_method=true)

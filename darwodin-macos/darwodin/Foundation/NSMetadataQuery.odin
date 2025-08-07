@@ -43,11 +43,11 @@ MetadataQuery_resultAtIndex :: #force_inline proc "c" (self: ^MetadataQuery, idx
     return msgSend(id, self, "resultAtIndex:", idx)
 }
 @(objc_type=MetadataQuery, objc_name="enumerateResultsUsingBlock")
-MetadataQuery_enumerateResultsUsingBlock :: #force_inline proc "c" (self: ^MetadataQuery, block: proc "c" (result: id, idx: UInteger, stop: ^bool)) {
+MetadataQuery_enumerateResultsUsingBlock :: #force_inline proc "c" (self: ^MetadataQuery, block: ^Objc_Block(proc "c" (result: id, idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateResultsUsingBlock:", block)
 }
 @(objc_type=MetadataQuery, objc_name="enumerateResultsWithOptions")
-MetadataQuery_enumerateResultsWithOptions :: #force_inline proc "c" (self: ^MetadataQuery, opts: EnumerationOptions, block: proc "c" (result: id, idx: UInteger, stop: ^bool)) {
+MetadataQuery_enumerateResultsWithOptions :: #force_inline proc "c" (self: ^MetadataQuery, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (result: id, idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateResultsWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=MetadataQuery, objc_name="indexOfResult")

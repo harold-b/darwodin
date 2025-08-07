@@ -24,10 +24,10 @@ Protocol :: distinct id
 import UI "../../"
 
 VTable :: struct {
-    indirectScribbleInteraction_requestElementsInRect_completion: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, rect: CG.Rect, completion: proc "c" (elements: ^NS.Array)),
+    indirectScribbleInteraction_requestElementsInRect_completion: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, rect: CG.Rect, completion: ^Objc_Block(proc "c" (elements: ^NS.Array))),
     indirectScribbleInteraction_isElementFocused: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id) -> bool,
     indirectScribbleInteraction_frameForElement: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id) -> CG.Rect,
-    indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: proc "c" (focusedInput: ^UI.Responder)),
+    indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: ^Objc_Block(proc "c" (focusedInput: ^UI.Responder))),
     indirectScribbleInteraction_shouldDelayFocusForElement: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id) -> bool,
     indirectScribbleInteraction_willBeginWritingInElement: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id),
     indirectScribbleInteraction_didFinishWritingInElement: proc(self: ^UI.IndirectScribbleInteractionDelegate, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id),
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.indirectScribbleInteraction_requestElementsInRect_completion != nil {
-        indirectScribbleInteraction_requestElementsInRect_completion :: proc "c" (self: ^UI.IndirectScribbleInteractionDelegate, _: SEL, interaction: ^UI.IndirectScribbleInteraction, rect: CG.Rect, completion: proc "c" (elements: ^NS.Array)) {
+        indirectScribbleInteraction_requestElementsInRect_completion :: proc "c" (self: ^UI.IndirectScribbleInteractionDelegate, _: SEL, interaction: ^UI.IndirectScribbleInteraction, rect: CG.Rect, completion: ^Objc_Block(proc "c" (elements: ^NS.Array))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indirectScribbleInteraction:frameForElement:"), auto_cast indirectScribbleInteraction_frameForElement, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@^void") do panic("Failed to register objC method.")
     }
     if vt.indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion != nil {
-        indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion :: proc "c" (self: ^UI.IndirectScribbleInteractionDelegate, _: SEL, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: proc "c" (focusedInput: ^UI.Responder)) {
+        indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion :: proc "c" (self: ^UI.IndirectScribbleInteractionDelegate, _: SEL, interaction: ^UI.IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: ^Objc_Block(proc "c" (focusedInput: ^UI.Responder))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

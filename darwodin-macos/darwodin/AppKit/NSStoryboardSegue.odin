@@ -26,7 +26,7 @@ StoryboardSegue_init :: proc "c" (self: ^StoryboardSegue) -> ^StoryboardSegue {
 
 
 @(objc_type=StoryboardSegue, objc_name="segueWithIdentifier", objc_is_class_method=true)
-StoryboardSegue_segueWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: proc "c" ()) -> ^StoryboardSegue {
+StoryboardSegue_segueWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: ^Objc_Block(proc "c" ())) -> ^StoryboardSegue {
     return msgSend(^StoryboardSegue, StoryboardSegue, "segueWithIdentifier:source:destination:performHandler:", identifier, sourceController, destinationController, performHandler)
 }
 @(objc_type=StoryboardSegue, objc_name="initWithIdentifier")

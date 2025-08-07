@@ -86,11 +86,11 @@ Dictionary_objectForKeyedSubscript :: #force_inline proc "c" (self: ^Dictionary,
     return msgSend(^id, self, "objectForKeyedSubscript:", key)
 }
 @(objc_type=Dictionary, objc_name="enumerateKeysAndObjectsUsingBlock")
-Dictionary_enumerateKeysAndObjectsUsingBlock :: #force_inline proc "c" (self: ^Dictionary, block: proc "c" (key: ^id, obj: ^id, stop: ^bool)) {
+Dictionary_enumerateKeysAndObjectsUsingBlock :: #force_inline proc "c" (self: ^Dictionary, block: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool))) {
     msgSend(nil, self, "enumerateKeysAndObjectsUsingBlock:", block)
 }
 @(objc_type=Dictionary, objc_name="enumerateKeysAndObjectsWithOptions")
-Dictionary_enumerateKeysAndObjectsWithOptions :: #force_inline proc "c" (self: ^Dictionary, opts: EnumerationOptions, block: proc "c" (key: ^id, obj: ^id, stop: ^bool)) {
+Dictionary_enumerateKeysAndObjectsWithOptions :: #force_inline proc "c" (self: ^Dictionary, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool))) {
     msgSend(nil, self, "enumerateKeysAndObjectsWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=Dictionary, objc_name="keysSortedByValueUsingComparator")
@@ -102,11 +102,11 @@ Dictionary_keysSortedByValueWithOptions :: #force_inline proc "c" (self: ^Dictio
     return msgSend(^Array, self, "keysSortedByValueWithOptions:usingComparator:", opts, cmptr)
 }
 @(objc_type=Dictionary, objc_name="keysOfEntriesPassingTest")
-Dictionary_keysOfEntriesPassingTest :: #force_inline proc "c" (self: ^Dictionary, predicate: proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool) -> ^Set {
+Dictionary_keysOfEntriesPassingTest :: #force_inline proc "c" (self: ^Dictionary, predicate: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool)) -> ^Set {
     return msgSend(^Set, self, "keysOfEntriesPassingTest:", predicate)
 }
 @(objc_type=Dictionary, objc_name="keysOfEntriesWithOptions")
-Dictionary_keysOfEntriesWithOptions :: #force_inline proc "c" (self: ^Dictionary, opts: EnumerationOptions, predicate: proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool) -> ^Set {
+Dictionary_keysOfEntriesWithOptions :: #force_inline proc "c" (self: ^Dictionary, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool)) -> ^Set {
     return msgSend(^Set, self, "keysOfEntriesWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=Dictionary, objc_name="allKeys")

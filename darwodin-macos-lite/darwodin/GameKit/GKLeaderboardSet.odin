@@ -26,11 +26,11 @@ LeaderboardSet_init :: proc "c" (self: ^LeaderboardSet) -> ^LeaderboardSet {
 
 
 @(objc_type=LeaderboardSet, objc_name="loadLeaderboardSetsWithCompletionHandler", objc_is_class_method=true)
-LeaderboardSet_loadLeaderboardSetsWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (leaderboardSets: ^NS.Array, error: ^NS.Error)) {
+LeaderboardSet_loadLeaderboardSetsWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (leaderboardSets: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, LeaderboardSet, "loadLeaderboardSetsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LeaderboardSet, objc_name="loadLeaderboardsWithHandler")
-LeaderboardSet_loadLeaderboardsWithHandler :: #force_inline proc "c" (self: ^LeaderboardSet, handler: proc "c" (leaderboards: ^NS.Array, error: ^NS.Error)) {
+LeaderboardSet_loadLeaderboardsWithHandler :: #force_inline proc "c" (self: ^LeaderboardSet, handler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadLeaderboardsWithHandler:", handler)
 }
 @(objc_type=LeaderboardSet, objc_name="title")
@@ -50,11 +50,11 @@ LeaderboardSet_setIdentifier :: #force_inline proc "c" (self: ^LeaderboardSet, i
     msgSend(nil, self, "setIdentifier:", identifier)
 }
 @(objc_type=LeaderboardSet, objc_name="loadLeaderboardsWithCompletionHandler")
-LeaderboardSet_loadLeaderboardsWithCompletionHandler :: #force_inline proc "c" (self: ^LeaderboardSet, completionHandler: proc "c" (leaderboards: ^NS.Array, error: ^NS.Error)) {
+LeaderboardSet_loadLeaderboardsWithCompletionHandler :: #force_inline proc "c" (self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadLeaderboardsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LeaderboardSet, objc_name="loadImageWithCompletionHandler")
-LeaderboardSet_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^LeaderboardSet, completionHandler: proc "c" (image: ^NS.Image, error: ^NS.Error)) {
+LeaderboardSet_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) {
     msgSend(nil, self, "loadImageWithCompletionHandler:", completionHandler)
 }
 @(objc_type=LeaderboardSet, objc_name="supportsSecureCoding", objc_is_class_method=true)

@@ -23,7 +23,7 @@ ExtensionContext_init :: proc "c" (self: ^ExtensionContext) -> ^ExtensionContext
 
 
 @(objc_type=ExtensionContext, objc_name="completeRequestReturningItems")
-ExtensionContext_completeRequestReturningItems :: #force_inline proc "c" (self: ^ExtensionContext, items: ^Array, completionHandler: proc "c" (expired: bool)) {
+ExtensionContext_completeRequestReturningItems :: #force_inline proc "c" (self: ^ExtensionContext, items: ^Array, completionHandler: ^Objc_Block(proc "c" (expired: bool))) {
     msgSend(nil, self, "completeRequestReturningItems:completionHandler:", items, completionHandler)
 }
 @(objc_type=ExtensionContext, objc_name="cancelRequestWithError")
@@ -31,7 +31,7 @@ ExtensionContext_cancelRequestWithError :: #force_inline proc "c" (self: ^Extens
     msgSend(nil, self, "cancelRequestWithError:", error)
 }
 @(objc_type=ExtensionContext, objc_name="openURL")
-ExtensionContext_openURL :: #force_inline proc "c" (self: ^ExtensionContext, _URL: ^URL, completionHandler: proc "c" (success: bool)) {
+ExtensionContext_openURL :: #force_inline proc "c" (self: ^ExtensionContext, _URL: ^URL, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "openURL:completionHandler:", _URL, completionHandler)
 }
 @(objc_type=ExtensionContext, objc_name="inputItems")

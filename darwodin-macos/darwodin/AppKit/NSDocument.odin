@@ -45,23 +45,23 @@ Document_initForURL :: #force_inline proc "c" (self: ^Document, urlOrNil: ^NS.UR
     return msgSend(^Document, self, "initForURL:withContentsOfURL:ofType:error:", urlOrNil, contentsURL, typeName, outError)
 }
 @(objc_type=Document, objc_name="performActivityWithSynchronousWaiting")
-Document_performActivityWithSynchronousWaiting :: #force_inline proc "c" (self: ^Document, waitSynchronously: bool, block: proc "c" (activityCompletionHandler: proc "c" ())) {
+Document_performActivityWithSynchronousWaiting :: #force_inline proc "c" (self: ^Document, waitSynchronously: bool, block: ^Objc_Block(proc "c" (activityCompletionHandler: ^Objc_Block(proc "c" ())))) {
     msgSend(nil, self, "performActivityWithSynchronousWaiting:usingBlock:", waitSynchronously, block)
 }
 @(objc_type=Document, objc_name="continueActivityUsingBlock")
-Document_continueActivityUsingBlock :: #force_inline proc "c" (self: ^Document, block: proc "c" ()) {
+Document_continueActivityUsingBlock :: #force_inline proc "c" (self: ^Document, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "continueActivityUsingBlock:", block)
 }
 @(objc_type=Document, objc_name="continueAsynchronousWorkOnMainThreadUsingBlock")
-Document_continueAsynchronousWorkOnMainThreadUsingBlock :: #force_inline proc "c" (self: ^Document, block: proc "c" ()) {
+Document_continueAsynchronousWorkOnMainThreadUsingBlock :: #force_inline proc "c" (self: ^Document, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "continueAsynchronousWorkOnMainThreadUsingBlock:", block)
 }
 @(objc_type=Document, objc_name="performSynchronousFileAccessUsingBlock")
-Document_performSynchronousFileAccessUsingBlock :: #force_inline proc "c" (self: ^Document, block: proc "c" ()) {
+Document_performSynchronousFileAccessUsingBlock :: #force_inline proc "c" (self: ^Document, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performSynchronousFileAccessUsingBlock:", block)
 }
 @(objc_type=Document, objc_name="performAsynchronousFileAccessUsingBlock")
-Document_performAsynchronousFileAccessUsingBlock :: #force_inline proc "c" (self: ^Document, block: proc "c" (fileAccessCompletionHandler: proc "c" ())) {
+Document_performAsynchronousFileAccessUsingBlock :: #force_inline proc "c" (self: ^Document, block: ^Objc_Block(proc "c" (fileAccessCompletionHandler: ^Objc_Block(proc "c" ())))) {
     msgSend(nil, self, "performAsynchronousFileAccessUsingBlock:", block)
 }
 @(objc_type=Document, objc_name="revertDocumentToSaved")
@@ -141,7 +141,7 @@ Document_saveToURL_ofType_forSaveOperation_delegate_didSaveSelector_contextInfo 
     msgSend(nil, self, "saveToURL:ofType:forSaveOperation:delegate:didSaveSelector:contextInfo:", url, typeName, saveOperation, delegate, didSaveSelector, contextInfo)
 }
 @(objc_type=Document, objc_name="saveToURL_ofType_forSaveOperation_completionHandler")
-Document_saveToURL_ofType_forSaveOperation_completionHandler :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: SaveOperationType, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+Document_saveToURL_ofType_forSaveOperation_completionHandler :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: SaveOperationType, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
     msgSend(nil, self, "saveToURL:ofType:forSaveOperation:completionHandler:", url, typeName, saveOperation, completionHandler)
 }
 @(objc_type=Document, objc_name="canAsynchronouslyWriteToURL")
@@ -161,7 +161,7 @@ Document_autosaveDocumentWithDelegate :: #force_inline proc "c" (self: ^Document
     msgSend(nil, self, "autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:", delegate, didAutosaveSelector, contextInfo)
 }
 @(objc_type=Document, objc_name="autosaveWithImplicitCancellability")
-Document_autosaveWithImplicitCancellability :: #force_inline proc "c" (self: ^Document, autosavingIsImplicitlyCancellable: bool, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+Document_autosaveWithImplicitCancellability :: #force_inline proc "c" (self: ^Document, autosavingIsImplicitlyCancellable: bool, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
     msgSend(nil, self, "autosaveWithImplicitCancellability:completionHandler:", autosavingIsImplicitlyCancellable, completionHandler)
 }
 @(objc_type=Document, objc_name="browseDocumentVersions")
@@ -169,7 +169,7 @@ Document_browseDocumentVersions :: #force_inline proc "c" (self: ^Document, send
     msgSend(nil, self, "browseDocumentVersions:", sender)
 }
 @(objc_type=Document, objc_name="stopBrowsingVersionsWithCompletionHandler")
-Document_stopBrowsingVersionsWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" ()) {
+Document_stopBrowsingVersionsWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "stopBrowsingVersionsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="canCloseDocumentWithDelegate")
@@ -205,11 +205,11 @@ Document_moveDocument :: #force_inline proc "c" (self: ^Document, sender: id) {
     msgSend(nil, self, "moveDocument:", sender)
 }
 @(objc_type=Document, objc_name="moveDocumentWithCompletionHandler")
-Document_moveDocumentWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (didMove: bool)) {
+Document_moveDocumentWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (didMove: bool))) {
     msgSend(nil, self, "moveDocumentWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="moveToURL")
-Document_moveToURL :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, completionHandler: proc "c" (_arg_0: ^NS.Error)) {
+Document_moveToURL :: #force_inline proc "c" (self: ^Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) {
     msgSend(nil, self, "moveToURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=Document, objc_name="lockDocument")
@@ -221,19 +221,19 @@ Document_unlockDocument :: #force_inline proc "c" (self: ^Document, sender: id) 
     msgSend(nil, self, "unlockDocument:", sender)
 }
 @(objc_type=Document, objc_name="lockDocumentWithCompletionHandler")
-Document_lockDocumentWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (didLock: bool)) {
+Document_lockDocumentWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (didLock: bool))) {
     msgSend(nil, self, "lockDocumentWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="lockWithCompletionHandler")
-Document_lockWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (_arg_0: ^NS.Error)) {
+Document_lockWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) {
     msgSend(nil, self, "lockWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="unlockDocumentWithCompletionHandler")
-Document_unlockDocumentWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (didUnlock: bool)) {
+Document_unlockDocumentWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (didUnlock: bool))) {
     msgSend(nil, self, "unlockDocumentWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="unlockWithCompletionHandler")
-Document_unlockWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (_arg_0: ^NS.Error)) {
+Document_unlockWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) {
     msgSend(nil, self, "unlockWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="runPageLayout")
@@ -273,7 +273,7 @@ Document_saveDocumentToPDF :: #force_inline proc "c" (self: ^Document, sender: i
     msgSend(nil, self, "saveDocumentToPDF:", sender)
 }
 @(objc_type=Document, objc_name="shareDocumentWithSharingService")
-Document_shareDocumentWithSharingService :: #force_inline proc "c" (self: ^Document, sharingService: ^SharingService, completionHandler: proc "c" (success: bool)) {
+Document_shareDocumentWithSharingService :: #force_inline proc "c" (self: ^Document, sharingService: ^SharingService, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "shareDocumentWithSharingService:completionHandler:", sharingService, completionHandler)
 }
 @(objc_type=Document, objc_name="prepareSharingServicePicker")
@@ -365,19 +365,19 @@ Document_validateUserInterfaceItem :: #force_inline proc "c" (self: ^Document, i
     return msgSend(bool, self, "validateUserInterfaceItem:", item)
 }
 @(objc_type=Document, objc_name="relinquishPresentedItemToReader")
-Document_relinquishPresentedItemToReader :: #force_inline proc "c" (self: ^Document, reader: proc "c" (reacquirer: proc "c" ())) {
+Document_relinquishPresentedItemToReader :: #force_inline proc "c" (self: ^Document, reader: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) {
     msgSend(nil, self, "relinquishPresentedItemToReader:", reader)
 }
 @(objc_type=Document, objc_name="relinquishPresentedItemToWriter")
-Document_relinquishPresentedItemToWriter :: #force_inline proc "c" (self: ^Document, writer: proc "c" (reacquirer: proc "c" ())) {
+Document_relinquishPresentedItemToWriter :: #force_inline proc "c" (self: ^Document, writer: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) {
     msgSend(nil, self, "relinquishPresentedItemToWriter:", writer)
 }
 @(objc_type=Document, objc_name="savePresentedItemChangesWithCompletionHandler")
-Document_savePresentedItemChangesWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+Document_savePresentedItemChangesWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
     msgSend(nil, self, "savePresentedItemChangesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="accommodatePresentedItemDeletionWithCompletionHandler")
-Document_accommodatePresentedItemDeletionWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+Document_accommodatePresentedItemDeletionWithCompletionHandler :: #force_inline proc "c" (self: ^Document, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
     msgSend(nil, self, "accommodatePresentedItemDeletionWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Document, objc_name="presentedItemDidMoveToURL")
@@ -709,7 +709,7 @@ Document_objectSpecifier :: #force_inline proc "c" (self: ^Document) -> ^NS.Scri
     return msgSend(^NS.ScriptObjectSpecifier, self, "objectSpecifier")
 }
 @(objc_type=Document, objc_name="restoreDocumentWindowWithIdentifier")
-Document_restoreDocumentWindowWithIdentifier :: #force_inline proc "c" (self: ^Document, identifier: ^NS.String, state: ^NS.Coder, completionHandler: proc "c" (_arg_0: ^Window, _arg_1: ^NS.Error)) {
+Document_restoreDocumentWindowWithIdentifier :: #force_inline proc "c" (self: ^Document, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^Window, _1: ^NS.Error))) {
     msgSend(nil, self, "restoreDocumentWindowWithIdentifier:state:completionHandler:", identifier, state, completionHandler)
 }
 @(objc_type=Document, objc_name="encodeRestorableStateWithCoder_")

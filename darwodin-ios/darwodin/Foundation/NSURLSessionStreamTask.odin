@@ -17,11 +17,11 @@ import Sec "../Security"
 URLSessionStreamTask :: struct { using _: URLSessionTask, }
 
 @(objc_type=URLSessionStreamTask, objc_name="readDataOfMinLength")
-URLSessionStreamTask_readDataOfMinLength :: #force_inline proc "c" (self: ^URLSessionStreamTask, minBytes: UInteger, maxBytes: UInteger, timeout: TimeInterval, completionHandler: proc "c" (data: ^Data, atEOF: bool, error: ^Error)) {
+URLSessionStreamTask_readDataOfMinLength :: #force_inline proc "c" (self: ^URLSessionStreamTask, minBytes: UInteger, maxBytes: UInteger, timeout: TimeInterval, completionHandler: ^Objc_Block(proc "c" (data: ^Data, atEOF: bool, error: ^Error))) {
     msgSend(nil, self, "readDataOfMinLength:maxLength:timeout:completionHandler:", minBytes, maxBytes, timeout, completionHandler)
 }
 @(objc_type=URLSessionStreamTask, objc_name="writeData")
-URLSessionStreamTask_writeData :: #force_inline proc "c" (self: ^URLSessionStreamTask, data: ^Data, timeout: TimeInterval, completionHandler: proc "c" (error: ^Error)) {
+URLSessionStreamTask_writeData :: #force_inline proc "c" (self: ^URLSessionStreamTask, data: ^Data, timeout: TimeInterval, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) {
     msgSend(nil, self, "writeData:timeout:completionHandler:", data, timeout, completionHandler)
 }
 @(objc_type=URLSessionStreamTask, objc_name="captureStreams")

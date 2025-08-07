@@ -22,10 +22,10 @@ PointerInteractionAnimating :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=PointerInteractionAnimating, objc_name="addAnimations")
-PointerInteractionAnimating_addAnimations :: #force_inline proc "c" (self: ^PointerInteractionAnimating, animations: proc "c" ()) {
+PointerInteractionAnimating_addAnimations :: #force_inline proc "c" (self: ^PointerInteractionAnimating, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addAnimations:", animations)
 }
 @(objc_type=PointerInteractionAnimating, objc_name="addCompletion")
-PointerInteractionAnimating_addCompletion :: #force_inline proc "c" (self: ^PointerInteractionAnimating, completion: proc "c" (finished: bool)) {
+PointerInteractionAnimating_addCompletion :: #force_inline proc "c" (self: ^PointerInteractionAnimating, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, self, "addCompletion:", completion)
 }

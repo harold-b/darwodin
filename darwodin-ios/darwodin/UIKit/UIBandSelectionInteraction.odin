@@ -22,7 +22,7 @@ BandSelectionInteraction :: struct { using _: NS.Object,
 }
 
 @(objc_type=BandSelectionInteraction, objc_name="initWithSelectionHandler")
-BandSelectionInteraction_initWithSelectionHandler :: #force_inline proc "c" (self: ^BandSelectionInteraction, selectionHandler: proc "c" (interaction: ^BandSelectionInteraction)) -> ^BandSelectionInteraction {
+BandSelectionInteraction_initWithSelectionHandler :: #force_inline proc "c" (self: ^BandSelectionInteraction, selectionHandler: ^Objc_Block(proc "c" (interaction: ^BandSelectionInteraction))) -> ^BandSelectionInteraction {
     return msgSend(^BandSelectionInteraction, self, "initWithSelectionHandler:", selectionHandler)
 }
 @(objc_type=BandSelectionInteraction, objc_name="init")
@@ -54,11 +54,11 @@ BandSelectionInteraction_initialModifierFlags :: #force_inline proc "c" (self: ^
     return msgSend(KeyModifierFlags, self, "initialModifierFlags")
 }
 @(objc_type=BandSelectionInteraction, objc_name="shouldBeginHandler")
-BandSelectionInteraction_shouldBeginHandler :: #force_inline proc "c" (self: ^BandSelectionInteraction) -> proc "c" () -> bool {
-    return msgSend(proc "c" () -> bool, self, "shouldBeginHandler")
+BandSelectionInteraction_shouldBeginHandler :: #force_inline proc "c" (self: ^BandSelectionInteraction) -> ^Objc_Block(proc "c" () -> bool) {
+    return msgSend(^Objc_Block(proc "c" () -> bool), self, "shouldBeginHandler")
 }
 @(objc_type=BandSelectionInteraction, objc_name="setShouldBeginHandler")
-BandSelectionInteraction_setShouldBeginHandler :: #force_inline proc "c" (self: ^BandSelectionInteraction, shouldBeginHandler: proc "c" () -> bool) {
+BandSelectionInteraction_setShouldBeginHandler :: #force_inline proc "c" (self: ^BandSelectionInteraction, shouldBeginHandler: ^Objc_Block(proc "c" () -> bool)) {
     msgSend(nil, self, "setShouldBeginHandler:", shouldBeginHandler)
 }
 @(objc_type=BandSelectionInteraction, objc_name="load", objc_is_class_method=true)

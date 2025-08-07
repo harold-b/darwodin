@@ -49,7 +49,7 @@ ScrollView_flashScrollIndicators :: #force_inline proc "c" (self: ^ScrollView) {
     msgSend(nil, self, "flashScrollIndicators")
 }
 @(objc_type=ScrollView, objc_name="withScrollIndicatorsShownForContentOffsetChanges")
-ScrollView_withScrollIndicatorsShownForContentOffsetChanges :: #force_inline proc "c" (self: ^ScrollView, changes: proc "c" ()) {
+ScrollView_withScrollIndicatorsShownForContentOffsetChanges :: #force_inline proc "c" (self: ^ScrollView, changes: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "withScrollIndicatorsShownForContentOffsetChanges:", changes)
 }
 @(objc_type=ScrollView, objc_name="touchesShouldBegin")
@@ -417,7 +417,7 @@ ScrollView_setAnimationsEnabled :: #force_inline proc "c" (enabled: bool) {
     msgSend(nil, ScrollView, "setAnimationsEnabled:", enabled)
 }
 @(objc_type=ScrollView, objc_name="performWithoutAnimation", objc_is_class_method=true)
-ScrollView_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: proc "c" ()) {
+ScrollView_performWithoutAnimation :: #force_inline proc "c" (actionsWithoutAnimation: ^Objc_Block(proc "c" ())) {
     msgSend(nil, ScrollView, "performWithoutAnimation:", actionsWithoutAnimation)
 }
 @(objc_type=ScrollView, objc_name="areAnimationsEnabled", objc_is_class_method=true)
@@ -429,47 +429,47 @@ ScrollView_inheritedAnimationDuration :: #force_inline proc "c" () -> NS.TimeInt
     return msgSend(NS.TimeInterval, ScrollView, "inheritedAnimationDuration")
 }
 @(objc_type=ScrollView, objc_name="animateWithDuration_delay_options_animations_completion", objc_is_class_method=true)
-ScrollView_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+ScrollView_animateWithDuration_delay_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, ScrollView, "animateWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=ScrollView, objc_name="animateWithDuration_animations_completion", objc_is_class_method=true)
-ScrollView_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+ScrollView_animateWithDuration_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, ScrollView, "animateWithDuration:animations:completion:", duration, animations, completion)
 }
 @(objc_type=ScrollView, objc_name="animateWithDuration_animations", objc_is_class_method=true)
-ScrollView_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: proc "c" ()) {
+ScrollView_animateWithDuration_animations :: #force_inline proc "c" (duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, ScrollView, "animateWithDuration:animations:", duration, animations)
 }
 @(objc_type=ScrollView, objc_name="animateWithSpringDuration", objc_is_class_method=true)
-ScrollView_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+ScrollView_animateWithSpringDuration :: #force_inline proc "c" (duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, ScrollView, "animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:", duration, bounce, velocity, delay, options, animations, completion)
 }
 @(objc_type=ScrollView, objc_name="animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion", objc_is_class_method=true)
-ScrollView_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+ScrollView_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, ScrollView, "animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:", duration, delay, dampingRatio, velocity, options, animations, completion)
 }
 @(objc_type=ScrollView, objc_name="transitionWithView", objc_is_class_method=true)
-ScrollView_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+ScrollView_transitionWithView :: #force_inline proc "c" (view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, ScrollView, "transitionWithView:duration:options:animations:completion:", view, duration, options, animations, completion)
 }
 @(objc_type=ScrollView, objc_name="transitionFromView", objc_is_class_method=true)
-ScrollView_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: proc "c" (finished: bool)) {
+ScrollView_transitionFromView :: #force_inline proc "c" (fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, ScrollView, "transitionFromView:toView:duration:options:completion:", fromView, toView, duration, options, completion)
 }
 @(objc_type=ScrollView, objc_name="performSystemAnimation", objc_is_class_method=true)
-ScrollView_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: proc "c" (), completion: proc "c" (finished: bool)) {
+ScrollView_performSystemAnimation :: #force_inline proc "c" (animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, ScrollView, "performSystemAnimation:onViews:options:animations:completion:", animation, views, options, parallelAnimations, completion)
 }
 @(objc_type=ScrollView, objc_name="modifyAnimationsWithRepeatCount", objc_is_class_method=true)
-ScrollView_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: proc "c" ()) {
+ScrollView_modifyAnimationsWithRepeatCount :: #force_inline proc "c" (count: CG.Float, autoreverses: bool, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, ScrollView, "modifyAnimationsWithRepeatCount:autoreverses:animations:", count, autoreverses, animations)
 }
 @(objc_type=ScrollView, objc_name="animateKeyframesWithDuration", objc_is_class_method=true)
-ScrollView_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+ScrollView_animateKeyframesWithDuration :: #force_inline proc "c" (duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
     msgSend(nil, ScrollView, "animateKeyframesWithDuration:delay:options:animations:completion:", duration, delay, options, animations, completion)
 }
 @(objc_type=ScrollView, objc_name="addKeyframeWithRelativeStartTime", objc_is_class_method=true)
-ScrollView_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: proc "c" ()) {
+ScrollView_addKeyframeWithRelativeStartTime :: #force_inline proc "c" (frameStartTime: cffi.double, frameDuration: cffi.double, animations: ^Objc_Block(proc "c" ())) {
     msgSend(nil, ScrollView, "addKeyframeWithRelativeStartTime:relativeDuration:animations:", frameStartTime, frameDuration, animations)
 }
 @(objc_type=ScrollView, objc_name="requiresConstraintBasedLayout", objc_is_class_method=true)

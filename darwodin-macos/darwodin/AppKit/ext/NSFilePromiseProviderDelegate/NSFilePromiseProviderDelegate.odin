@@ -25,7 +25,7 @@ import AK "../../"
 
 VTable :: struct {
     filePromiseProvider_fileNameForType: proc(self: ^AK.FilePromiseProviderDelegate, filePromiseProvider: ^AK.FilePromiseProvider, fileType: ^NS.String) -> ^NS.String,
-    filePromiseProvider_writePromiseToURL_completionHandler: proc(self: ^AK.FilePromiseProviderDelegate, filePromiseProvider: ^AK.FilePromiseProvider, url: ^NS.URL, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
+    filePromiseProvider_writePromiseToURL_completionHandler: proc(self: ^AK.FilePromiseProviderDelegate, filePromiseProvider: ^AK.FilePromiseProvider, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
     operationQueueForFilePromiseProvider: proc(self: ^AK.FilePromiseProviderDelegate, filePromiseProvider: ^AK.FilePromiseProvider) -> ^NS.OperationQueue,
 }
 
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("filePromiseProvider:fileNameForType:"), auto_cast filePromiseProvider_fileNameForType, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.filePromiseProvider_writePromiseToURL_completionHandler != nil {
-        filePromiseProvider_writePromiseToURL_completionHandler :: proc "c" (self: ^AK.FilePromiseProviderDelegate, _: SEL, filePromiseProvider: ^AK.FilePromiseProvider, url: ^NS.URL, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        filePromiseProvider_writePromiseToURL_completionHandler :: proc "c" (self: ^AK.FilePromiseProviderDelegate, _: SEL, filePromiseProvider: ^AK.FilePromiseProvider, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

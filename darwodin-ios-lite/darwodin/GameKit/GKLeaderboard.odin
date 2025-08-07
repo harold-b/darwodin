@@ -17,27 +17,27 @@ import UI "../UIKit"
 Leaderboard :: struct { using _: NS.Object, }
 
 @(objc_type=Leaderboard, objc_name="loadLeaderboardsWithIDs", objc_is_class_method=true)
-Leaderboard_loadLeaderboardsWithIDs :: #force_inline proc "c" (leaderboardIDs: ^NS.Array, completionHandler: proc "c" (leaderboards: ^NS.Array, error: ^NS.Error)) {
+Leaderboard_loadLeaderboardsWithIDs :: #force_inline proc "c" (leaderboardIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, Leaderboard, "loadLeaderboardsWithIDs:completionHandler:", leaderboardIDs, completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="loadPreviousOccurrenceWithCompletionHandler")
-Leaderboard_loadPreviousOccurrenceWithCompletionHandler :: #force_inline proc "c" (self: ^Leaderboard, completionHandler: proc "c" (leaderboard: ^Leaderboard, error: ^NS.Error)) {
+Leaderboard_loadPreviousOccurrenceWithCompletionHandler :: #force_inline proc "c" (self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (leaderboard: ^Leaderboard, error: ^NS.Error))) {
     msgSend(nil, self, "loadPreviousOccurrenceWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="submitScore_context_player_leaderboardIDs_completionHandler", objc_is_class_method=true)
-Leaderboard_submitScore_context_player_leaderboardIDs_completionHandler :: #force_inline proc "c" (score: NS.Integer, _context: NS.UInteger, player: ^Player, leaderboardIDs: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+Leaderboard_submitScore_context_player_leaderboardIDs_completionHandler :: #force_inline proc "c" (score: NS.Integer, _context: NS.UInteger, player: ^Player, leaderboardIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, Leaderboard, "submitScore:context:player:leaderboardIDs:completionHandler:", score, _context, player, leaderboardIDs, completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="submitScore_context_player_completionHandler")
-Leaderboard_submitScore_context_player_completionHandler :: #force_inline proc "c" (self: ^Leaderboard, score: NS.Integer, _context: NS.UInteger, player: ^Player, completionHandler: proc "c" (error: ^NS.Error)) {
+Leaderboard_submitScore_context_player_completionHandler :: #force_inline proc "c" (self: ^Leaderboard, score: NS.Integer, _context: NS.UInteger, player: ^Player, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "submitScore:context:player:completionHandler:", score, _context, player, completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="loadEntriesForPlayerScope")
-Leaderboard_loadEntriesForPlayerScope :: #force_inline proc "c" (self: ^Leaderboard, playerScope: LeaderboardPlayerScope, timeScope: LeaderboardTimeScope, range: NS._NSRange, completionHandler: proc "c" (localPlayerEntry: ^LeaderboardEntry, entries: ^NS.Array, totalPlayerCount: NS.Integer, error: ^NS.Error)) {
+Leaderboard_loadEntriesForPlayerScope :: #force_inline proc "c" (self: ^Leaderboard, playerScope: LeaderboardPlayerScope, timeScope: LeaderboardTimeScope, range: NS._NSRange, completionHandler: ^Objc_Block(proc "c" (localPlayerEntry: ^LeaderboardEntry, entries: ^NS.Array, totalPlayerCount: NS.Integer, error: ^NS.Error))) {
     msgSend(nil, self, "loadEntriesForPlayerScope:timeScope:range:completionHandler:", playerScope, timeScope, range, completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="loadEntriesForPlayers")
-Leaderboard_loadEntriesForPlayers :: #force_inline proc "c" (self: ^Leaderboard, players: ^NS.Array, timeScope: LeaderboardTimeScope, completionHandler: proc "c" (localPlayerEntry: ^LeaderboardEntry, entries: ^NS.Array, error: ^NS.Error)) {
+Leaderboard_loadEntriesForPlayers :: #force_inline proc "c" (self: ^Leaderboard, players: ^NS.Array, timeScope: LeaderboardTimeScope, completionHandler: ^Objc_Block(proc "c" (localPlayerEntry: ^LeaderboardEntry, entries: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadEntriesForPlayers:timeScope:completionHandler:", players, timeScope, completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="title")
@@ -73,11 +73,11 @@ Leaderboard_initWithPlayerIDs :: #force_inline proc "c" (self: ^Leaderboard, pla
     return msgSend(^Leaderboard, self, "initWithPlayerIDs:", playerIDs)
 }
 @(objc_type=Leaderboard, objc_name="loadCategoriesWithCompletionHandler", objc_is_class_method=true)
-Leaderboard_loadCategoriesWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (categories: ^NS.Array, titles: ^NS.Array, error: ^NS.Error)) {
+Leaderboard_loadCategoriesWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (categories: ^NS.Array, titles: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, Leaderboard, "loadCategoriesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="setDefaultLeaderboard", objc_is_class_method=true)
-Leaderboard_setDefaultLeaderboard :: #force_inline proc "c" (leaderboardIdentifier: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+Leaderboard_setDefaultLeaderboard :: #force_inline proc "c" (leaderboardIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, Leaderboard, "setDefaultLeaderboard:withCompletionHandler:", leaderboardIdentifier, completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="init")
@@ -89,11 +89,11 @@ Leaderboard_initWithPlayers :: #force_inline proc "c" (self: ^Leaderboard, playe
     return msgSend(^Leaderboard, self, "initWithPlayers:", players)
 }
 @(objc_type=Leaderboard, objc_name="loadScoresWithCompletionHandler")
-Leaderboard_loadScoresWithCompletionHandler :: #force_inline proc "c" (self: ^Leaderboard, completionHandler: proc "c" (scores: ^NS.Array, error: ^NS.Error)) {
+Leaderboard_loadScoresWithCompletionHandler :: #force_inline proc "c" (self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (scores: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, self, "loadScoresWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="loadLeaderboardsWithCompletionHandler", objc_is_class_method=true)
-Leaderboard_loadLeaderboardsWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (leaderboards: ^NS.Array, error: ^NS.Error)) {
+Leaderboard_loadLeaderboardsWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, Leaderboard, "loadLeaderboardsWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="category")
@@ -153,7 +153,7 @@ Leaderboard_isLoading :: #force_inline proc "c" (self: ^Leaderboard) -> bool {
     return msgSend(bool, self, "isLoading")
 }
 @(objc_type=Leaderboard, objc_name="loadImageWithCompletionHandler")
-Leaderboard_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^Leaderboard, completionHandler: proc "c" (image: ^UI.Image, error: ^NS.Error)) {
+Leaderboard_loadImageWithCompletionHandler :: #force_inline proc "c" (self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (image: ^UI.Image, error: ^NS.Error))) {
     msgSend(nil, self, "loadImageWithCompletionHandler:", completionHandler)
 }
 @(objc_type=Leaderboard, objc_name="load", objc_is_class_method=true)

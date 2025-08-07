@@ -71,7 +71,7 @@ HTTPCookieStorage_storeCookies :: #force_inline proc "c" (self: ^HTTPCookieStora
     msgSend(nil, self, "storeCookies:forTask:", cookies, task)
 }
 @(objc_type=HTTPCookieStorage, objc_name="getCookiesForTask")
-HTTPCookieStorage_getCookiesForTask :: #force_inline proc "c" (self: ^HTTPCookieStorage, task: ^URLSessionTask, completionHandler: proc "c" (cookies: ^Array)) {
+HTTPCookieStorage_getCookiesForTask :: #force_inline proc "c" (self: ^HTTPCookieStorage, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" (cookies: ^Array))) {
     msgSend(nil, self, "getCookiesForTask:completionHandler:", task, completionHandler)
 }
 @(objc_type=HTTPCookieStorage, objc_name="load", objc_is_class_method=true)

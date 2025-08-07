@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    segueWithIdentifier: proc(identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: proc "c" ()) -> ^AK.StoryboardSegue,
+    segueWithIdentifier: proc(identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: ^Objc_Block(proc "c" ())) -> ^AK.StoryboardSegue,
     initWithIdentifier: proc(self: ^AK.StoryboardSegue, identifier: ^NS.String, sourceController: id, destinationController: id) -> ^AK.StoryboardSegue,
     perform: proc(self: ^AK.StoryboardSegue),
     identifier: proc(self: ^AK.StoryboardSegue) -> ^NS.String,
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.segueWithIdentifier != nil {
-        segueWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: proc "c" ()) -> ^AK.StoryboardSegue {
+        segueWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: ^Objc_Block(proc "c" ())) -> ^AK.StoryboardSegue {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

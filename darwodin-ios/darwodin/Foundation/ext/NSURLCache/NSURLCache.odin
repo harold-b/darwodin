@@ -40,7 +40,7 @@ VTable :: struct {
     currentMemoryUsage: proc(self: ^NS.URLCache) -> NS.UInteger,
     currentDiskUsage: proc(self: ^NS.URLCache) -> NS.UInteger,
     storeCachedResponse_forDataTask: proc(self: ^NS.URLCache, cachedResponse: ^NS.CachedURLResponse, dataTask: ^NS.URLSessionDataTask),
-    getCachedResponseForDataTask: proc(self: ^NS.URLCache, dataTask: ^NS.URLSessionDataTask, completionHandler: proc "c" (cachedResponse: ^NS.CachedURLResponse)),
+    getCachedResponseForDataTask: proc(self: ^NS.URLCache, dataTask: ^NS.URLSessionDataTask, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^NS.CachedURLResponse))),
     removeCachedResponseForDataTask: proc(self: ^NS.URLCache, dataTask: ^NS.URLSessionDataTask),
     load: proc(),
     initialize: proc(),
@@ -241,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("storeCachedResponse:forDataTask:"), auto_cast storeCachedResponse_forDataTask, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.getCachedResponseForDataTask != nil {
-        getCachedResponseForDataTask :: proc "c" (self: ^NS.URLCache, _: SEL, dataTask: ^NS.URLSessionDataTask, completionHandler: proc "c" (cachedResponse: ^NS.CachedURLResponse)) {
+        getCachedResponseForDataTask :: proc "c" (self: ^NS.URLCache, _: SEL, dataTask: ^NS.URLSessionDataTask, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^NS.CachedURLResponse))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

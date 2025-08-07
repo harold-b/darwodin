@@ -100,8 +100,8 @@ VTable :: struct {
     setFrameUsingName_: proc(self: ^AK.Window, name: ^NS.String) -> bool,
     setFrameAutosaveName: proc(self: ^AK.Window, name: ^NS.String) -> bool,
     removeFrameUsingName: proc(name: ^NS.String),
-    beginSheet: proc(self: ^AK.Window, sheetWindow: ^AK.Window, handler: proc "c" (returnCode: AK.ModalResponse)),
-    beginCriticalSheet: proc(self: ^AK.Window, sheetWindow: ^AK.Window, handler: proc "c" (returnCode: AK.ModalResponse)),
+    beginSheet: proc(self: ^AK.Window, sheetWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (returnCode: AK.ModalResponse))),
+    beginCriticalSheet: proc(self: ^AK.Window, sheetWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (returnCode: AK.ModalResponse))),
     endSheet_: proc(self: ^AK.Window, sheetWindow: ^AK.Window),
     endSheet_returnCode: proc(self: ^AK.Window, sheetWindow: ^AK.Window, returnCode: AK.ModalResponse),
     standardWindowButton_forStyleMask: proc(b: AK.WindowButton, styleMask: AK.WindowStyleMask) -> ^AK.Button,
@@ -129,9 +129,9 @@ VTable :: struct {
     toggleTabBar: proc(self: ^AK.Window, sender: id),
     toggleTabOverview: proc(self: ^AK.Window, sender: id),
     addTabbedWindow: proc(self: ^AK.Window, window: ^AK.Window, ordered: AK.WindowOrderingMode),
-    transferWindowSharingToWindow: proc(self: ^AK.Window, window: ^AK.Window, completionHandler: proc "c" (error: ^NS.Error)),
-    requestSharingOfWindow: proc(self: ^AK.Window, window: ^AK.Window, completionHandler: proc "c" (error: ^NS.Error)),
-    requestSharingOfWindowUsingPreview: proc(self: ^AK.Window, image: ^NS.Image, title: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)),
+    transferWindowSharingToWindow: proc(self: ^AK.Window, window: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    requestSharingOfWindow: proc(self: ^AK.Window, window: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    requestSharingOfWindowUsingPreview: proc(self: ^AK.Window, image: ^NS.Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     defaultDepthLimit: proc() -> AK.WindowDepth,
     title: proc(self: ^AK.Window) -> ^NS.String,
     setTitle: proc(self: ^AK.Window, title: ^NS.String),
@@ -293,7 +293,7 @@ VTable :: struct {
     tabGroup: proc(self: ^AK.Window) -> ^AK.WindowTabGroup,
     hasActiveWindowSharingSession: proc(self: ^AK.Window) -> bool,
     windowTitlebarLayoutDirection: proc(self: ^AK.Window) -> AK.UserInterfaceLayoutDirection,
-    trackEventsMatchingMask: proc(self: ^AK.Window, mask: AK.EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: proc "c" (event: ^AK.Event, stop: ^bool)),
+    trackEventsMatchingMask: proc(self: ^AK.Window, mask: AK.EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: ^Objc_Block(proc "c" (event: ^AK.Event, stop: ^bool))),
     nextEventMatchingMask_: proc(self: ^AK.Window, mask: AK.EventMask) -> ^AK.Event,
     nextEventMatchingMask_untilDate_inMode_dequeue: proc(self: ^AK.Window, mask: AK.EventMask, expiration: ^NS.Date, mode: ^NS.String, deqFlag: bool) -> ^AK.Event,
     discardEventsMatchingMask: proc(self: ^AK.Window, mask: AK.EventMask, lastEvent: ^AK.Event),
@@ -1148,7 +1148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("removeFrameUsingName:"), auto_cast removeFrameUsingName, "v#:@") do panic("Failed to register objC method.")
     }
     if vt.beginSheet != nil {
-        beginSheet :: proc "c" (self: ^AK.Window, _: SEL, sheetWindow: ^AK.Window, handler: proc "c" (returnCode: AK.ModalResponse)) {
+        beginSheet :: proc "c" (self: ^AK.Window, _: SEL, sheetWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (returnCode: AK.ModalResponse))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1158,7 +1158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginSheet:completionHandler:"), auto_cast beginSheet, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.beginCriticalSheet != nil {
-        beginCriticalSheet :: proc "c" (self: ^AK.Window, _: SEL, sheetWindow: ^AK.Window, handler: proc "c" (returnCode: AK.ModalResponse)) {
+        beginCriticalSheet :: proc "c" (self: ^AK.Window, _: SEL, sheetWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (returnCode: AK.ModalResponse))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1438,7 +1438,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addTabbedWindow:ordered:"), auto_cast addTabbedWindow, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.transferWindowSharingToWindow != nil {
-        transferWindowSharingToWindow :: proc "c" (self: ^AK.Window, _: SEL, window: ^AK.Window, completionHandler: proc "c" (error: ^NS.Error)) {
+        transferWindowSharingToWindow :: proc "c" (self: ^AK.Window, _: SEL, window: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1448,7 +1448,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("transferWindowSharingToWindow:completionHandler:"), auto_cast transferWindowSharingToWindow, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.requestSharingOfWindow != nil {
-        requestSharingOfWindow :: proc "c" (self: ^AK.Window, _: SEL, window: ^AK.Window, completionHandler: proc "c" (error: ^NS.Error)) {
+        requestSharingOfWindow :: proc "c" (self: ^AK.Window, _: SEL, window: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1458,7 +1458,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("requestSharingOfWindow:completionHandler:"), auto_cast requestSharingOfWindow, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.requestSharingOfWindowUsingPreview != nil {
-        requestSharingOfWindowUsingPreview :: proc "c" (self: ^AK.Window, _: SEL, image: ^NS.Image, title: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+        requestSharingOfWindowUsingPreview :: proc "c" (self: ^AK.Window, _: SEL, image: ^NS.Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -3078,7 +3078,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("windowTitlebarLayoutDirection"), auto_cast windowTitlebarLayoutDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.trackEventsMatchingMask != nil {
-        trackEventsMatchingMask :: proc "c" (self: ^AK.Window, _: SEL, mask: AK.EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: proc "c" (event: ^AK.Event, stop: ^bool)) {
+        trackEventsMatchingMask :: proc "c" (self: ^AK.Window, _: SEL, mask: AK.EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: ^Objc_Block(proc "c" (event: ^AK.Event, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

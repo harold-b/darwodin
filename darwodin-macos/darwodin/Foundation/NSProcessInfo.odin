@@ -123,11 +123,11 @@ ProcessInfo_endActivity :: #force_inline proc "c" (self: ^ProcessInfo, activity:
     msgSend(nil, self, "endActivity:", activity)
 }
 @(objc_type=ProcessInfo, objc_name="performActivityWithOptions")
-ProcessInfo_performActivityWithOptions :: #force_inline proc "c" (self: ^ProcessInfo, options: ActivityOptions, reason: ^String, block: proc "c" ()) {
+ProcessInfo_performActivityWithOptions :: #force_inline proc "c" (self: ^ProcessInfo, options: ActivityOptions, reason: ^String, block: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "performActivityWithOptions:reason:usingBlock:", options, reason, block)
 }
 @(objc_type=ProcessInfo, objc_name="performExpiringActivityWithReason")
-ProcessInfo_performExpiringActivityWithReason :: #force_inline proc "c" (self: ^ProcessInfo, reason: ^String, block: proc "c" (expired: bool)) {
+ProcessInfo_performExpiringActivityWithReason :: #force_inline proc "c" (self: ^ProcessInfo, reason: ^String, block: ^Objc_Block(proc "c" (expired: bool))) {
     msgSend(nil, self, "performExpiringActivityWithReason:usingBlock:", reason, block)
 }
 @(objc_type=ProcessInfo, objc_name="userName")

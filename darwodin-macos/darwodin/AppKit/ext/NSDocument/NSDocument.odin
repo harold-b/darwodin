@@ -32,11 +32,11 @@ VTable :: struct {
     canConcurrentlyReadDocumentsOfType: proc(typeName: ^NS.String) -> bool,
     initWithContentsOfURL_ofType_error: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
     initForURL: proc(self: ^AK.Document, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
-    performActivityWithSynchronousWaiting: proc(self: ^AK.Document, waitSynchronously: bool, block: proc "c" (activityCompletionHandler: proc "c" ())),
-    continueActivityUsingBlock: proc(self: ^AK.Document, block: proc "c" ()),
-    continueAsynchronousWorkOnMainThreadUsingBlock: proc(self: ^AK.Document, block: proc "c" ()),
-    performSynchronousFileAccessUsingBlock: proc(self: ^AK.Document, block: proc "c" ()),
-    performAsynchronousFileAccessUsingBlock: proc(self: ^AK.Document, block: proc "c" (fileAccessCompletionHandler: proc "c" ())),
+    performActivityWithSynchronousWaiting: proc(self: ^AK.Document, waitSynchronously: bool, block: ^Objc_Block(proc "c" (activityCompletionHandler: ^Objc_Block(proc "c" ())))),
+    continueActivityUsingBlock: proc(self: ^AK.Document, block: ^Objc_Block(proc "c" ())),
+    continueAsynchronousWorkOnMainThreadUsingBlock: proc(self: ^AK.Document, block: ^Objc_Block(proc "c" ())),
+    performSynchronousFileAccessUsingBlock: proc(self: ^AK.Document, block: ^Objc_Block(proc "c" ())),
+    performAsynchronousFileAccessUsingBlock: proc(self: ^AK.Document, block: ^Objc_Block(proc "c" (fileAccessCompletionHandler: ^Objc_Block(proc "c" ())))),
     revertDocumentToSaved: proc(self: ^AK.Document, sender: id),
     revertToContentsOfURL: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> bool,
     readFromURL_ofType_error: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> bool,
@@ -56,14 +56,14 @@ VTable :: struct {
     runModalSavePanelForSaveOperation: proc(self: ^AK.Document, saveOperation: AK.SaveOperationType, delegate: id, didSaveSelector: SEL, contextInfo: rawptr),
     prepareSavePanel: proc(self: ^AK.Document, savePanel: ^AK.SavePanel) -> bool,
     saveToURL_ofType_forSaveOperation_delegate_didSaveSelector_contextInfo: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: AK.SaveOperationType, delegate: id, didSaveSelector: SEL, contextInfo: rawptr),
-    saveToURL_ofType_forSaveOperation_completionHandler: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: AK.SaveOperationType, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
+    saveToURL_ofType_forSaveOperation_completionHandler: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: AK.SaveOperationType, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
     canAsynchronouslyWriteToURL: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: AK.SaveOperationType) -> bool,
     checkAutosavingSafetyAndReturnError: proc(self: ^AK.Document, outError: ^^NS.Error) -> bool,
     scheduleAutosaving: proc(self: ^AK.Document),
     autosaveDocumentWithDelegate: proc(self: ^AK.Document, delegate: id, didAutosaveSelector: SEL, contextInfo: rawptr),
-    autosaveWithImplicitCancellability: proc(self: ^AK.Document, autosavingIsImplicitlyCancellable: bool, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
+    autosaveWithImplicitCancellability: proc(self: ^AK.Document, autosavingIsImplicitlyCancellable: bool, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
     browseDocumentVersions: proc(self: ^AK.Document, sender: id),
-    stopBrowsingVersionsWithCompletionHandler: proc(self: ^AK.Document, completionHandler: proc "c" ()),
+    stopBrowsingVersionsWithCompletionHandler: proc(self: ^AK.Document, completionHandler: ^Objc_Block(proc "c" ())),
     canCloseDocumentWithDelegate: proc(self: ^AK.Document, delegate: id, shouldCloseSelector: SEL, contextInfo: rawptr),
     close: proc(self: ^AK.Document),
     duplicateDocument: proc(self: ^AK.Document, sender: id),
@@ -72,14 +72,14 @@ VTable :: struct {
     renameDocument: proc(self: ^AK.Document, sender: id),
     moveDocumentToUbiquityContainer: proc(self: ^AK.Document, sender: id),
     moveDocument: proc(self: ^AK.Document, sender: id),
-    moveDocumentWithCompletionHandler: proc(self: ^AK.Document, completionHandler: proc "c" (didMove: bool)),
-    moveToURL: proc(self: ^AK.Document, url: ^NS.URL, completionHandler: proc "c" (_arg_0: ^NS.Error)),
+    moveDocumentWithCompletionHandler: proc(self: ^AK.Document, completionHandler: ^Objc_Block(proc "c" (didMove: bool))),
+    moveToURL: proc(self: ^AK.Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))),
     lockDocument: proc(self: ^AK.Document, sender: id),
     unlockDocument: proc(self: ^AK.Document, sender: id),
-    lockDocumentWithCompletionHandler: proc(self: ^AK.Document, completionHandler: proc "c" (didLock: bool)),
-    lockWithCompletionHandler: proc(self: ^AK.Document, completionHandler: proc "c" (_arg_0: ^NS.Error)),
-    unlockDocumentWithCompletionHandler: proc(self: ^AK.Document, completionHandler: proc "c" (didUnlock: bool)),
-    unlockWithCompletionHandler: proc(self: ^AK.Document, completionHandler: proc "c" (_arg_0: ^NS.Error)),
+    lockDocumentWithCompletionHandler: proc(self: ^AK.Document, completionHandler: ^Objc_Block(proc "c" (didLock: bool))),
+    lockWithCompletionHandler: proc(self: ^AK.Document, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))),
+    unlockDocumentWithCompletionHandler: proc(self: ^AK.Document, completionHandler: ^Objc_Block(proc "c" (didUnlock: bool))),
+    unlockWithCompletionHandler: proc(self: ^AK.Document, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))),
     runPageLayout: proc(self: ^AK.Document, sender: id),
     runModalPageLayoutWithPrintInfo_delegate_didRunSelector_contextInfo: proc(self: ^AK.Document, printInfo: ^AK.PrintInfo, delegate: id, didRunSelector: SEL, contextInfo: rawptr),
     preparePageLayout: proc(self: ^AK.Document, pageLayout: ^AK.PageLayout) -> bool,
@@ -89,7 +89,7 @@ VTable :: struct {
     printOperationWithSettings: proc(self: ^AK.Document, printSettings: ^NS.Dictionary, outError: ^^NS.Error) -> ^AK.PrintOperation,
     runModalPrintOperation: proc(self: ^AK.Document, printOperation: ^AK.PrintOperation, delegate: id, didRunSelector: SEL, contextInfo: rawptr),
     saveDocumentToPDF: proc(self: ^AK.Document, sender: id),
-    shareDocumentWithSharingService: proc(self: ^AK.Document, sharingService: ^AK.SharingService, completionHandler: proc "c" (success: bool)),
+    shareDocumentWithSharingService: proc(self: ^AK.Document, sharingService: ^AK.SharingService, completionHandler: ^Objc_Block(proc "c" (success: bool))),
     prepareSharingServicePicker: proc(self: ^AK.Document, sharingServicePicker: ^AK.SharingServicePicker),
     updateChangeCount: proc(self: ^AK.Document, change: AK.DocumentChangeType),
     changeCountTokenForSaveOperation: proc(self: ^AK.Document, saveOperation: AK.SaveOperationType) -> id,
@@ -112,10 +112,10 @@ VTable :: struct {
     writableTypesForSaveOperation: proc(self: ^AK.Document, saveOperation: AK.SaveOperationType) -> ^NS.Array,
     fileNameExtensionForType: proc(self: ^AK.Document, typeName: ^NS.String, saveOperation: AK.SaveOperationType) -> ^NS.String,
     validateUserInterfaceItem: proc(self: ^AK.Document, item: ^AK.ValidatedUserInterfaceItem) -> bool,
-    relinquishPresentedItemToReader: proc(self: ^AK.Document, reader: proc "c" (reacquirer: proc "c" ())),
-    relinquishPresentedItemToWriter: proc(self: ^AK.Document, writer: proc "c" (reacquirer: proc "c" ())),
-    savePresentedItemChangesWithCompletionHandler: proc(self: ^AK.Document, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
-    accommodatePresentedItemDeletionWithCompletionHandler: proc(self: ^AK.Document, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
+    relinquishPresentedItemToReader: proc(self: ^AK.Document, reader: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))),
+    relinquishPresentedItemToWriter: proc(self: ^AK.Document, writer: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))),
+    savePresentedItemChangesWithCompletionHandler: proc(self: ^AK.Document, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
+    accommodatePresentedItemDeletionWithCompletionHandler: proc(self: ^AK.Document, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
     presentedItemDidMoveToURL: proc(self: ^AK.Document, newURL: ^NS.URL),
     presentedItemDidChange: proc(self: ^AK.Document),
     presentedItemDidChangeUbiquityAttributes: proc(self: ^AK.Document, attributes: ^NS.Set),
@@ -198,7 +198,7 @@ VTable :: struct {
     lastComponentOfFileName: proc(self: ^AK.Document) -> ^NS.String,
     setLastComponentOfFileName: proc(self: ^AK.Document, lastComponentOfFileName: ^NS.String),
     objectSpecifier: proc(self: ^AK.Document) -> ^NS.ScriptObjectSpecifier,
-    restoreDocumentWindowWithIdentifier: proc(self: ^AK.Document, identifier: ^NS.String, state: ^NS.Coder, completionHandler: proc "c" (_arg_0: ^AK.Window, _arg_1: ^NS.Error)),
+    restoreDocumentWindowWithIdentifier: proc(self: ^AK.Document, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^AK.Window, _1: ^NS.Error))),
     encodeRestorableStateWithCoder_: proc(self: ^AK.Document, coder: ^NS.Coder),
     encodeRestorableStateWithCoder_backgroundQueue: proc(self: ^AK.Document, coder: ^NS.Coder, queue: ^NS.OperationQueue),
     restoreStateWithCoder: proc(self: ^AK.Document, coder: ^NS.Coder),
@@ -299,7 +299,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initForURL:withContentsOfURL:ofType:error:"), auto_cast initForURL, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.performActivityWithSynchronousWaiting != nil {
-        performActivityWithSynchronousWaiting :: proc "c" (self: ^AK.Document, _: SEL, waitSynchronously: bool, block: proc "c" (activityCompletionHandler: proc "c" ())) {
+        performActivityWithSynchronousWaiting :: proc "c" (self: ^AK.Document, _: SEL, waitSynchronously: bool, block: ^Objc_Block(proc "c" (activityCompletionHandler: ^Objc_Block(proc "c" ())))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -309,7 +309,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performActivityWithSynchronousWaiting:usingBlock:"), auto_cast performActivityWithSynchronousWaiting, "v@:B?") do panic("Failed to register objC method.")
     }
     if vt.continueActivityUsingBlock != nil {
-        continueActivityUsingBlock :: proc "c" (self: ^AK.Document, _: SEL, block: proc "c" ()) {
+        continueActivityUsingBlock :: proc "c" (self: ^AK.Document, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -319,7 +319,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("continueActivityUsingBlock:"), auto_cast continueActivityUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.continueAsynchronousWorkOnMainThreadUsingBlock != nil {
-        continueAsynchronousWorkOnMainThreadUsingBlock :: proc "c" (self: ^AK.Document, _: SEL, block: proc "c" ()) {
+        continueAsynchronousWorkOnMainThreadUsingBlock :: proc "c" (self: ^AK.Document, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -329,7 +329,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("continueAsynchronousWorkOnMainThreadUsingBlock:"), auto_cast continueAsynchronousWorkOnMainThreadUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.performSynchronousFileAccessUsingBlock != nil {
-        performSynchronousFileAccessUsingBlock :: proc "c" (self: ^AK.Document, _: SEL, block: proc "c" ()) {
+        performSynchronousFileAccessUsingBlock :: proc "c" (self: ^AK.Document, _: SEL, block: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -339,7 +339,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performSynchronousFileAccessUsingBlock:"), auto_cast performSynchronousFileAccessUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.performAsynchronousFileAccessUsingBlock != nil {
-        performAsynchronousFileAccessUsingBlock :: proc "c" (self: ^AK.Document, _: SEL, block: proc "c" (fileAccessCompletionHandler: proc "c" ())) {
+        performAsynchronousFileAccessUsingBlock :: proc "c" (self: ^AK.Document, _: SEL, block: ^Objc_Block(proc "c" (fileAccessCompletionHandler: ^Objc_Block(proc "c" ())))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -539,7 +539,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("saveToURL:ofType:forSaveOperation:delegate:didSaveSelector:contextInfo:"), auto_cast saveToURL_ofType_forSaveOperation_delegate_didSaveSelector_contextInfo, "v@:@@L@:^void") do panic("Failed to register objC method.")
     }
     if vt.saveToURL_ofType_forSaveOperation_completionHandler != nil {
-        saveToURL_ofType_forSaveOperation_completionHandler :: proc "c" (self: ^AK.Document, _: SEL, url: ^NS.URL, typeName: ^NS.String, saveOperation: AK.SaveOperationType, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        saveToURL_ofType_forSaveOperation_completionHandler :: proc "c" (self: ^AK.Document, _: SEL, url: ^NS.URL, typeName: ^NS.String, saveOperation: AK.SaveOperationType, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -589,7 +589,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:"), auto_cast autosaveDocumentWithDelegate, "v@:@:^void") do panic("Failed to register objC method.")
     }
     if vt.autosaveWithImplicitCancellability != nil {
-        autosaveWithImplicitCancellability :: proc "c" (self: ^AK.Document, _: SEL, autosavingIsImplicitlyCancellable: bool, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        autosaveWithImplicitCancellability :: proc "c" (self: ^AK.Document, _: SEL, autosavingIsImplicitlyCancellable: bool, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -609,7 +609,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("browseDocumentVersions:"), auto_cast browseDocumentVersions, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.stopBrowsingVersionsWithCompletionHandler != nil {
-        stopBrowsingVersionsWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: proc "c" ()) {
+        stopBrowsingVersionsWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -699,7 +699,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("moveDocument:"), auto_cast moveDocument, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.moveDocumentWithCompletionHandler != nil {
-        moveDocumentWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: proc "c" (didMove: bool)) {
+        moveDocumentWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (didMove: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -709,7 +709,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("moveDocumentWithCompletionHandler:"), auto_cast moveDocumentWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.moveToURL != nil {
-        moveToURL :: proc "c" (self: ^AK.Document, _: SEL, url: ^NS.URL, completionHandler: proc "c" (_arg_0: ^NS.Error)) {
+        moveToURL :: proc "c" (self: ^AK.Document, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -739,7 +739,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("unlockDocument:"), auto_cast unlockDocument, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.lockDocumentWithCompletionHandler != nil {
-        lockDocumentWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: proc "c" (didLock: bool)) {
+        lockDocumentWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (didLock: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -749,7 +749,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lockDocumentWithCompletionHandler:"), auto_cast lockDocumentWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.lockWithCompletionHandler != nil {
-        lockWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: proc "c" (_arg_0: ^NS.Error)) {
+        lockWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -759,7 +759,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lockWithCompletionHandler:"), auto_cast lockWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.unlockDocumentWithCompletionHandler != nil {
-        unlockDocumentWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: proc "c" (didUnlock: bool)) {
+        unlockDocumentWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (didUnlock: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -769,7 +769,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("unlockDocumentWithCompletionHandler:"), auto_cast unlockDocumentWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.unlockWithCompletionHandler != nil {
-        unlockWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: proc "c" (_arg_0: ^NS.Error)) {
+        unlockWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -869,7 +869,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("saveDocumentToPDF:"), auto_cast saveDocumentToPDF, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.shareDocumentWithSharingService != nil {
-        shareDocumentWithSharingService :: proc "c" (self: ^AK.Document, _: SEL, sharingService: ^AK.SharingService, completionHandler: proc "c" (success: bool)) {
+        shareDocumentWithSharingService :: proc "c" (self: ^AK.Document, _: SEL, sharingService: ^AK.SharingService, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1099,7 +1099,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("validateUserInterfaceItem:"), auto_cast validateUserInterfaceItem, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.relinquishPresentedItemToReader != nil {
-        relinquishPresentedItemToReader :: proc "c" (self: ^AK.Document, _: SEL, reader: proc "c" (reacquirer: proc "c" ())) {
+        relinquishPresentedItemToReader :: proc "c" (self: ^AK.Document, _: SEL, reader: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1109,7 +1109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("relinquishPresentedItemToReader:"), auto_cast relinquishPresentedItemToReader, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.relinquishPresentedItemToWriter != nil {
-        relinquishPresentedItemToWriter :: proc "c" (self: ^AK.Document, _: SEL, writer: proc "c" (reacquirer: proc "c" ())) {
+        relinquishPresentedItemToWriter :: proc "c" (self: ^AK.Document, _: SEL, writer: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1119,7 +1119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("relinquishPresentedItemToWriter:"), auto_cast relinquishPresentedItemToWriter, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.savePresentedItemChangesWithCompletionHandler != nil {
-        savePresentedItemChangesWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        savePresentedItemChangesWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1129,7 +1129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("savePresentedItemChangesWithCompletionHandler:"), auto_cast savePresentedItemChangesWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.accommodatePresentedItemDeletionWithCompletionHandler != nil {
-        accommodatePresentedItemDeletionWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        accommodatePresentedItemDeletionWithCompletionHandler :: proc "c" (self: ^AK.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1959,7 +1959,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectSpecifier"), auto_cast objectSpecifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.restoreDocumentWindowWithIdentifier != nil {
-        restoreDocumentWindowWithIdentifier :: proc "c" (self: ^AK.Document, _: SEL, identifier: ^NS.String, state: ^NS.Coder, completionHandler: proc "c" (_arg_0: ^AK.Window, _arg_1: ^NS.Error)) {
+        restoreDocumentWindowWithIdentifier :: proc "c" (self: ^AK.Document, _: SEL, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^AK.Window, _1: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

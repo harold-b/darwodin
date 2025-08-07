@@ -32,16 +32,16 @@ VTable :: struct {
     stringEditedInRange: proc(self: ^NS.LinguisticTagger, newRange: NS._NSRange, delta: NS.Integer),
     tokenRangeAtIndex: proc(self: ^NS.LinguisticTagger, charIndex: NS.UInteger, unit: NS.LinguisticTaggerUnit) -> NS._NSRange,
     sentenceRangeForRange: proc(self: ^NS.LinguisticTagger, range: NS._NSRange) -> NS._NSRange,
-    enumerateTagsInRange_unit_scheme_options_usingBlock: proc(self: ^NS.LinguisticTagger, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, block: proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool)),
+    enumerateTagsInRange_unit_scheme_options_usingBlock: proc(self: ^NS.LinguisticTagger, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool))),
     tagAtIndex_unit_scheme_tokenRange: proc(self: ^NS.LinguisticTagger, charIndex: NS.UInteger, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, tokenRange: ^NS._NSRange) -> ^NS.String,
     tagsInRange_unit_scheme_options_tokenRanges: proc(self: ^NS.LinguisticTagger, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, tokenRanges: ^^NS.Array) -> ^NS.Array,
-    enumerateTagsInRange_scheme_options_usingBlock: proc(self: ^NS.LinguisticTagger, range: NS._NSRange, tagScheme: ^NS.String, opts: NS.LinguisticTaggerOptions, block: proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool)),
+    enumerateTagsInRange_scheme_options_usingBlock: proc(self: ^NS.LinguisticTagger, range: NS._NSRange, tagScheme: ^NS.String, opts: NS.LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool))),
     tagAtIndex_scheme_tokenRange_sentenceRange: proc(self: ^NS.LinguisticTagger, charIndex: NS.UInteger, scheme: ^NS.String, tokenRange: ^NS._NSRange, sentenceRange: ^NS._NSRange) -> ^NS.String,
     tagsInRange_scheme_options_tokenRanges: proc(self: ^NS.LinguisticTagger, range: NS._NSRange, tagScheme: ^NS.String, opts: NS.LinguisticTaggerOptions, tokenRanges: ^^NS.Array) -> ^NS.Array,
     dominantLanguageForString: proc(string: ^NS.String) -> ^NS.String,
     tagForString: proc(string: ^NS.String, charIndex: NS.UInteger, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, orthography: ^NS.Orthography, tokenRange: ^NS._NSRange) -> ^NS.String,
     tagsForString: proc(string: ^NS.String, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, tokenRanges: ^^NS.Array) -> ^NS.Array,
-    enumerateTagsForString: proc(string: ^NS.String, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool)),
+    enumerateTagsForString: proc(string: ^NS.String, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool))),
     possibleTagsAtIndex: proc(self: ^NS.LinguisticTagger, charIndex: NS.UInteger, tagScheme: ^NS.String, tokenRange: ^NS._NSRange, sentenceRange: ^NS._NSRange, scores: ^^NS.Array) -> ^NS.Array,
     tagSchemes: proc(self: ^NS.LinguisticTagger) -> ^NS.Array,
     string: proc(self: ^NS.LinguisticTagger) -> ^NS.String,
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sentenceRangeForRange:"), auto_cast sentenceRangeForRange, "{_NSRange=LL}@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.enumerateTagsInRange_unit_scheme_options_usingBlock != nil {
-        enumerateTagsInRange_unit_scheme_options_usingBlock :: proc "c" (self: ^NS.LinguisticTagger, _: SEL, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, block: proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool)) {
+        enumerateTagsInRange_unit_scheme_options_usingBlock :: proc "c" (self: ^NS.LinguisticTagger, _: SEL, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tagsInRange:unit:scheme:options:tokenRanges:"), auto_cast tagsInRange_unit_scheme_options_tokenRanges, "@@:{_NSRange=LL}l@L^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateTagsInRange_scheme_options_usingBlock != nil {
-        enumerateTagsInRange_scheme_options_usingBlock :: proc "c" (self: ^NS.LinguisticTagger, _: SEL, range: NS._NSRange, tagScheme: ^NS.String, opts: NS.LinguisticTaggerOptions, block: proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool)) {
+        enumerateTagsInRange_scheme_options_usingBlock :: proc "c" (self: ^NS.LinguisticTagger, _: SEL, range: NS._NSRange, tagScheme: ^NS.String, opts: NS.LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("tagsForString:range:unit:scheme:options:orthography:tokenRanges:"), auto_cast tagsForString, "@#:@{_NSRange=LL}l@L@^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateTagsForString != nil {
-        enumerateTagsForString :: proc "c" (self: Class, _: SEL, string: ^NS.String, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool)) {
+        enumerateTagsForString :: proc "c" (self: Class, _: SEL, string: ^NS.String, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool))) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -37,19 +37,19 @@ FetchSubscriptionsOperation_setSubscriptionIDs :: #force_inline proc "c" (self: 
     msgSend(nil, self, "setSubscriptionIDs:", subscriptionIDs)
 }
 @(objc_type=FetchSubscriptionsOperation, objc_name="perSubscriptionCompletionBlock")
-FetchSubscriptionsOperation_perSubscriptionCompletionBlock :: #force_inline proc "c" (self: ^FetchSubscriptionsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perSubscriptionCompletionBlock")
+FetchSubscriptionsOperation_perSubscriptionCompletionBlock :: #force_inline proc "c" (self: ^FetchSubscriptionsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perSubscriptionCompletionBlock")
 }
 @(objc_type=FetchSubscriptionsOperation, objc_name="setPerSubscriptionCompletionBlock")
-FetchSubscriptionsOperation_setPerSubscriptionCompletionBlock :: #force_inline proc "c" (self: ^FetchSubscriptionsOperation, perSubscriptionCompletionBlock: proc "c" ()) {
+FetchSubscriptionsOperation_setPerSubscriptionCompletionBlock :: #force_inline proc "c" (self: ^FetchSubscriptionsOperation, perSubscriptionCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerSubscriptionCompletionBlock:", perSubscriptionCompletionBlock)
 }
 @(objc_type=FetchSubscriptionsOperation, objc_name="fetchSubscriptionCompletionBlock")
-FetchSubscriptionsOperation_fetchSubscriptionCompletionBlock :: #force_inline proc "c" (self: ^FetchSubscriptionsOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchSubscriptionCompletionBlock")
+FetchSubscriptionsOperation_fetchSubscriptionCompletionBlock :: #force_inline proc "c" (self: ^FetchSubscriptionsOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchSubscriptionCompletionBlock")
 }
 @(objc_type=FetchSubscriptionsOperation, objc_name="setFetchSubscriptionCompletionBlock")
-FetchSubscriptionsOperation_setFetchSubscriptionCompletionBlock :: #force_inline proc "c" (self: ^FetchSubscriptionsOperation, fetchSubscriptionCompletionBlock: proc "c" ()) {
+FetchSubscriptionsOperation_setFetchSubscriptionCompletionBlock :: #force_inline proc "c" (self: ^FetchSubscriptionsOperation, fetchSubscriptionCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchSubscriptionCompletionBlock:", fetchSubscriptionCompletionBlock)
 }
 @(objc_type=FetchSubscriptionsOperation, objc_name="load", objc_is_class_method=true)

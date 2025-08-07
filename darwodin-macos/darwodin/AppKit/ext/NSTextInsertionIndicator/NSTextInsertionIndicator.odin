@@ -33,8 +33,8 @@ VTable :: struct {
     setColor: proc(self: ^AK.TextInsertionIndicator, color: ^AK.Color),
     automaticModeOptions: proc(self: ^AK.TextInsertionIndicator) -> AK.TextInsertionIndicatorAutomaticModeOptions,
     setAutomaticModeOptions: proc(self: ^AK.TextInsertionIndicator, automaticModeOptions: AK.TextInsertionIndicatorAutomaticModeOptions),
-    effectsViewInserter: proc(self: ^AK.TextInsertionIndicator) -> proc "c" (),
-    setEffectsViewInserter: proc(self: ^AK.TextInsertionIndicator, effectsViewInserter: proc "c" ()),
+    effectsViewInserter: proc(self: ^AK.TextInsertionIndicator) -> ^Objc_Block(proc "c" ()),
+    setEffectsViewInserter: proc(self: ^AK.TextInsertionIndicator, effectsViewInserter: ^Objc_Block(proc "c" ())),
     focusView: proc() -> ^AK.View,
     defaultMenu: proc() -> ^AK.Menu,
     isCompatibleWithResponsiveScrolling: proc() -> bool,
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticModeOptions:"), auto_cast setAutomaticModeOptions, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.effectsViewInserter != nil {
-        effectsViewInserter :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL) -> proc "c" () {
+        effectsViewInserter :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectsViewInserter"), auto_cast effectsViewInserter, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setEffectsViewInserter != nil {
-        setEffectsViewInserter :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL, effectsViewInserter: proc "c" ()) {
+        setEffectsViewInserter :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL, effectsViewInserter: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

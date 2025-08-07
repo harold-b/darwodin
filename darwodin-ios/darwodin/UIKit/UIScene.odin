@@ -32,7 +32,7 @@ Scene_initWithSession :: #force_inline proc "c" (self: ^Scene, session: ^SceneSe
     return msgSend(^Scene, self, "initWithSession:connectionOptions:", session, connectionOptions)
 }
 @(objc_type=Scene, objc_name="openURL")
-Scene_openURL :: #force_inline proc "c" (self: ^Scene, url: ^NS.URL, options: ^SceneOpenExternalURLOptions, completion: proc "c" (success: bool)) {
+Scene_openURL :: #force_inline proc "c" (self: ^Scene, url: ^NS.URL, options: ^SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "openURL:options:completionHandler:", url, options, completion)
 }
 @(objc_type=Scene, objc_name="session")
@@ -88,7 +88,7 @@ Scene_completeStateRestoration :: #force_inline proc "c" (self: ^Scene) {
     msgSend(nil, self, "completeStateRestoration")
 }
 @(objc_type=Scene, objc_name="getDefaultAudioSessionWithCompletionHandler")
-Scene_getDefaultAudioSessionWithCompletionHandler :: #force_inline proc "c" (self: ^Scene, handler: proc "c" (_arg_0: ^AVAudioSession)) {
+Scene_getDefaultAudioSessionWithCompletionHandler :: #force_inline proc "c" (self: ^Scene, handler: ^Objc_Block(proc "c" (_: ^AVAudioSession))) {
     msgSend(nil, self, "getDefaultAudioSessionWithCompletionHandler:", handler)
 }
 @(objc_type=Scene, objc_name="systemProtectionManager")

@@ -30,7 +30,7 @@ VTable :: struct {
     postNotificationName_object_userInfo: proc(self: ^NS.NotificationCenter, aName: ^NS.String, anObject: id, aUserInfo: ^NS.Dictionary),
     removeObserver_: proc(self: ^NS.NotificationCenter, observer: id),
     removeObserver_name_object: proc(self: ^NS.NotificationCenter, observer: id, aName: ^NS.String, anObject: id),
-    addObserverForName: proc(self: ^NS.NotificationCenter, name: ^NS.String, obj: id, queue: ^NS.OperationQueue, block: proc "c" (notification: ^NS.Notification)) -> ^NS.ObjectProtocol,
+    addObserverForName: proc(self: ^NS.NotificationCenter, name: ^NS.String, obj: id, queue: ^NS.OperationQueue, block: ^Objc_Block(proc "c" (notification: ^NS.Notification))) -> ^NS.ObjectProtocol,
     defaultCenter: proc() -> ^NS.NotificationCenter,
     load: proc(),
     initialize: proc(),
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeObserver:name:object:"), auto_cast removeObserver_name_object, "v@:@@@") do panic("Failed to register objC method.")
     }
     if vt.addObserverForName != nil {
-        addObserverForName :: proc "c" (self: ^NS.NotificationCenter, _: SEL, name: ^NS.String, obj: id, queue: ^NS.OperationQueue, block: proc "c" (notification: ^NS.Notification)) -> ^NS.ObjectProtocol {
+        addObserverForName :: proc "c" (self: ^NS.NotificationCenter, _: SEL, name: ^NS.String, obj: id, queue: ^NS.OperationQueue, block: ^Objc_Block(proc "c" (notification: ^NS.Notification))) -> ^NS.ObjectProtocol {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -29,8 +29,8 @@ VTable :: struct {
     super: UICellAccessory.VTable,
     backgroundColor: proc(self: ^UI.CellAccessoryInsert) -> ^UI.Color,
     setBackgroundColor: proc(self: ^UI.CellAccessoryInsert, backgroundColor: ^UI.Color),
-    actionHandler: proc(self: ^UI.CellAccessoryInsert) -> proc "c" (),
-    setActionHandler: proc(self: ^UI.CellAccessoryInsert, actionHandler: proc "c" ()),
+    actionHandler: proc(self: ^UI.CellAccessoryInsert) -> ^Objc_Block(proc "c" ()),
+    setActionHandler: proc(self: ^UI.CellAccessoryInsert, actionHandler: ^Objc_Block(proc "c" ())),
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.actionHandler != nil {
-        actionHandler :: proc "c" (self: ^UI.CellAccessoryInsert, _: SEL) -> proc "c" () {
+        actionHandler :: proc "c" (self: ^UI.CellAccessoryInsert, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("actionHandler"), auto_cast actionHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setActionHandler != nil {
-        setActionHandler :: proc "c" (self: ^UI.CellAccessoryInsert, _: SEL, actionHandler: proc "c" ()) {
+        setActionHandler :: proc "c" (self: ^UI.CellAccessoryInsert, _: SEL, actionHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

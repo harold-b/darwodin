@@ -120,11 +120,11 @@ NavigationItem_setBackAction :: #force_inline proc "c" (self: ^NavigationItem, b
     msgSend(nil, self, "setBackAction:", backAction)
 }
 @(objc_type=NavigationItem, objc_name="titleMenuProvider")
-NavigationItem_titleMenuProvider :: #force_inline proc "c" (self: ^NavigationItem) -> proc "c" () -> ^Menu {
-    return msgSend(proc "c" () -> ^Menu, self, "titleMenuProvider")
+NavigationItem_titleMenuProvider :: #force_inline proc "c" (self: ^NavigationItem) -> ^Objc_Block(proc "c" () -> ^Menu) {
+    return msgSend(^Objc_Block(proc "c" () -> ^Menu), self, "titleMenuProvider")
 }
 @(objc_type=NavigationItem, objc_name="setTitleMenuProvider")
-NavigationItem_setTitleMenuProvider :: #force_inline proc "c" (self: ^NavigationItem, titleMenuProvider: proc "c" () -> ^Menu) {
+NavigationItem_setTitleMenuProvider :: #force_inline proc "c" (self: ^NavigationItem, titleMenuProvider: ^Objc_Block(proc "c" () -> ^Menu)) {
     msgSend(nil, self, "setTitleMenuProvider:", titleMenuProvider)
 }
 @(objc_type=NavigationItem, objc_name="renameDelegate")

@@ -20,11 +20,11 @@ PressedStateInput :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=PressedStateInput, objc_name="pressedDidChangeHandler")
-PressedStateInput_pressedDidChangeHandler :: #force_inline proc "c" (self: ^PressedStateInput) -> proc "c" () {
-    return msgSend(proc "c" (), self, "pressedDidChangeHandler")
+PressedStateInput_pressedDidChangeHandler :: #force_inline proc "c" (self: ^PressedStateInput) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "pressedDidChangeHandler")
 }
 @(objc_type=PressedStateInput, objc_name="setPressedDidChangeHandler")
-PressedStateInput_setPressedDidChangeHandler :: #force_inline proc "c" (self: ^PressedStateInput, pressedDidChangeHandler: proc "c" ()) {
+PressedStateInput_setPressedDidChangeHandler :: #force_inline proc "c" (self: ^PressedStateInput, pressedDidChangeHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPressedDidChangeHandler:", pressedDidChangeHandler)
 }
 @(objc_type=PressedStateInput, objc_name="isPressed")

@@ -26,7 +26,7 @@ FilePromiseProviderDelegate_filePromiseProvider_fileNameForType :: #force_inline
     return msgSend(^NS.String, self, "filePromiseProvider:fileNameForType:", filePromiseProvider, fileType)
 }
 @(objc_type=FilePromiseProviderDelegate, objc_name="filePromiseProvider_writePromiseToURL_completionHandler")
-FilePromiseProviderDelegate_filePromiseProvider_writePromiseToURL_completionHandler :: #force_inline proc "c" (self: ^FilePromiseProviderDelegate, filePromiseProvider: ^FilePromiseProvider, url: ^NS.URL, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+FilePromiseProviderDelegate_filePromiseProvider_writePromiseToURL_completionHandler :: #force_inline proc "c" (self: ^FilePromiseProviderDelegate, filePromiseProvider: ^FilePromiseProvider, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
     msgSend(nil, self, "filePromiseProvider:writePromiseToURL:completionHandler:", filePromiseProvider, url, completionHandler)
 }
 @(objc_type=FilePromiseProviderDelegate, objc_name="operationQueueForFilePromiseProvider")

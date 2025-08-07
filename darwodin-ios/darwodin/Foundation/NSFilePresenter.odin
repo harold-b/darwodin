@@ -19,23 +19,23 @@ FilePresenter :: struct { using _: intrinsics.objc_object,
 }
 
 @(objc_type=FilePresenter, objc_name="relinquishPresentedItemToReader")
-FilePresenter_relinquishPresentedItemToReader :: #force_inline proc "c" (self: ^FilePresenter, reader: proc "c" (reacquirer: proc "c" ())) {
+FilePresenter_relinquishPresentedItemToReader :: #force_inline proc "c" (self: ^FilePresenter, reader: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) {
     msgSend(nil, self, "relinquishPresentedItemToReader:", reader)
 }
 @(objc_type=FilePresenter, objc_name="relinquishPresentedItemToWriter")
-FilePresenter_relinquishPresentedItemToWriter :: #force_inline proc "c" (self: ^FilePresenter, writer: proc "c" (reacquirer: proc "c" ())) {
+FilePresenter_relinquishPresentedItemToWriter :: #force_inline proc "c" (self: ^FilePresenter, writer: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) {
     msgSend(nil, self, "relinquishPresentedItemToWriter:", writer)
 }
 @(objc_type=FilePresenter, objc_name="savePresentedItemChangesWithCompletionHandler")
-FilePresenter_savePresentedItemChangesWithCompletionHandler :: #force_inline proc "c" (self: ^FilePresenter, completionHandler: proc "c" (errorOrNil: ^Error)) {
+FilePresenter_savePresentedItemChangesWithCompletionHandler :: #force_inline proc "c" (self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) {
     msgSend(nil, self, "savePresentedItemChangesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=FilePresenter, objc_name="accommodatePresentedItemDeletionWithCompletionHandler")
-FilePresenter_accommodatePresentedItemDeletionWithCompletionHandler :: #force_inline proc "c" (self: ^FilePresenter, completionHandler: proc "c" (errorOrNil: ^Error)) {
+FilePresenter_accommodatePresentedItemDeletionWithCompletionHandler :: #force_inline proc "c" (self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) {
     msgSend(nil, self, "accommodatePresentedItemDeletionWithCompletionHandler:", completionHandler)
 }
 @(objc_type=FilePresenter, objc_name="accommodatePresentedItemEvictionWithCompletionHandler")
-FilePresenter_accommodatePresentedItemEvictionWithCompletionHandler :: #force_inline proc "c" (self: ^FilePresenter, completionHandler: proc "c" (errorOrNil: ^Error)) {
+FilePresenter_accommodatePresentedItemEvictionWithCompletionHandler :: #force_inline proc "c" (self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) {
     msgSend(nil, self, "accommodatePresentedItemEvictionWithCompletionHandler:", completionHandler)
 }
 @(objc_type=FilePresenter, objc_name="presentedItemDidMoveToURL")
@@ -63,7 +63,7 @@ FilePresenter_presentedItemDidResolveConflictVersion :: #force_inline proc "c" (
     msgSend(nil, self, "presentedItemDidResolveConflictVersion:", version)
 }
 @(objc_type=FilePresenter, objc_name="accommodatePresentedSubitemDeletionAtURL")
-FilePresenter_accommodatePresentedSubitemDeletionAtURL :: #force_inline proc "c" (self: ^FilePresenter, url: ^URL, completionHandler: proc "c" (errorOrNil: ^Error)) {
+FilePresenter_accommodatePresentedSubitemDeletionAtURL :: #force_inline proc "c" (self: ^FilePresenter, url: ^URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) {
     msgSend(nil, self, "accommodatePresentedSubitemDeletionAtURL:completionHandler:", url, completionHandler)
 }
 @(objc_type=FilePresenter, objc_name="presentedSubitemDidAppearAtURL")

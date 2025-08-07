@@ -36,7 +36,7 @@ MenuBuilder_replaceMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuild
     msgSend(nil, self, "replaceMenuForIdentifier:withMenu:", replacedIdentifier, replacementMenu)
 }
 @(objc_type=MenuBuilder, objc_name="replaceChildrenOfMenuForIdentifier")
-MenuBuilder_replaceChildrenOfMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, parentIdentifier: ^NS.String, childrenBlock: proc "c" (_arg_0: ^NS.Array) -> ^NS.Array) {
+MenuBuilder_replaceChildrenOfMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" (_: ^NS.Array) -> ^NS.Array)) {
     msgSend(nil, self, "replaceChildrenOfMenuForIdentifier:fromChildrenBlock:", parentIdentifier, childrenBlock)
 }
 @(objc_type=MenuBuilder, objc_name="insertSiblingMenu_beforeMenuForIdentifier")

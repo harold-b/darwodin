@@ -30,7 +30,7 @@ VTable :: struct {
     initWithTextCursorView: proc(self: ^UI.TextCursorDropPositionAnimator, cursorView: ^UI.View, textInput: ^UI.View) -> ^UI.TextCursorDropPositionAnimator,
     setCursorVisible: proc(self: ^UI.TextCursorDropPositionAnimator, visible: bool, animated: bool),
     placeCursorAtPosition: proc(self: ^UI.TextCursorDropPositionAnimator, position: ^UI.TextPosition, animated: bool),
-    animateAlongsideChanges: proc(self: ^UI.TextCursorDropPositionAnimator, animation: proc "c" (), completion: proc "c" ()),
+    animateAlongsideChanges: proc(self: ^UI.TextCursorDropPositionAnimator, animation: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())),
     init: proc(self: ^UI.TextCursorDropPositionAnimator) -> ^UI.TextCursorDropPositionAnimator,
     cursorView: proc(self: ^UI.TextCursorDropPositionAnimator) -> ^UI.View,
     textInput: proc(self: ^UI.TextCursorDropPositionAnimator) -> ^UI.View,
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("placeCursorAtPosition:animated:"), auto_cast placeCursorAtPosition, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.animateAlongsideChanges != nil {
-        animateAlongsideChanges :: proc "c" (self: ^UI.TextCursorDropPositionAnimator, _: SEL, animation: proc "c" (), completion: proc "c" ()) {
+        animateAlongsideChanges :: proc "c" (self: ^UI.TextCursorDropPositionAnimator, _: SEL, animation: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

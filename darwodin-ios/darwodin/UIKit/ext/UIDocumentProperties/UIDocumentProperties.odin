@@ -33,10 +33,10 @@ VTable :: struct {
     initWithMetadata: proc(self: ^UI.DocumentProperties, metadata: ^UI.LPLinkMetadata) -> ^UI.DocumentProperties,
     metadata: proc(self: ^UI.DocumentProperties) -> ^UI.LPLinkMetadata,
     setMetadata: proc(self: ^UI.DocumentProperties, metadata: ^UI.LPLinkMetadata),
-    dragItemsProvider: proc(self: ^UI.DocumentProperties) -> proc "c" () -> ^NS.Array,
-    setDragItemsProvider: proc(self: ^UI.DocumentProperties, dragItemsProvider: proc "c" () -> ^NS.Array),
-    activityViewControllerProvider: proc(self: ^UI.DocumentProperties) -> proc "c" () -> ^UI.ActivityViewController,
-    setActivityViewControllerProvider: proc(self: ^UI.DocumentProperties, activityViewControllerProvider: proc "c" () -> ^UI.ActivityViewController),
+    dragItemsProvider: proc(self: ^UI.DocumentProperties) -> ^Objc_Block(proc "c" () -> ^NS.Array),
+    setDragItemsProvider: proc(self: ^UI.DocumentProperties, dragItemsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)),
+    activityViewControllerProvider: proc(self: ^UI.DocumentProperties) -> ^Objc_Block(proc "c" () -> ^UI.ActivityViewController),
+    setActivityViewControllerProvider: proc(self: ^UI.DocumentProperties, activityViewControllerProvider: ^Objc_Block(proc "c" () -> ^UI.ActivityViewController)),
     wantsIconRepresentation: proc(self: ^UI.DocumentProperties) -> bool,
     setWantsIconRepresentation: proc(self: ^UI.DocumentProperties, wantsIconRepresentation: bool),
     load: proc(),
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMetadata:"), auto_cast setMetadata, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.dragItemsProvider != nil {
-        dragItemsProvider :: proc "c" (self: ^UI.DocumentProperties, _: SEL) -> proc "c" () -> ^NS.Array {
+        dragItemsProvider :: proc "c" (self: ^UI.DocumentProperties, _: SEL) -> ^Objc_Block(proc "c" () -> ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dragItemsProvider"), auto_cast dragItemsProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setDragItemsProvider != nil {
-        setDragItemsProvider :: proc "c" (self: ^UI.DocumentProperties, _: SEL, dragItemsProvider: proc "c" () -> ^NS.Array) {
+        setDragItemsProvider :: proc "c" (self: ^UI.DocumentProperties, _: SEL, dragItemsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDragItemsProvider:"), auto_cast setDragItemsProvider, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.activityViewControllerProvider != nil {
-        activityViewControllerProvider :: proc "c" (self: ^UI.DocumentProperties, _: SEL) -> proc "c" () -> ^UI.ActivityViewController {
+        activityViewControllerProvider :: proc "c" (self: ^UI.DocumentProperties, _: SEL) -> ^Objc_Block(proc "c" () -> ^UI.ActivityViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activityViewControllerProvider"), auto_cast activityViewControllerProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setActivityViewControllerProvider != nil {
-        setActivityViewControllerProvider :: proc "c" (self: ^UI.DocumentProperties, _: SEL, activityViewControllerProvider: proc "c" () -> ^UI.ActivityViewController) {
+        setActivityViewControllerProvider :: proc "c" (self: ^UI.DocumentProperties, _: SEL, activityViewControllerProvider: ^Objc_Block(proc "c" () -> ^UI.ActivityViewController)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

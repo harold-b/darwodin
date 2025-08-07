@@ -42,7 +42,7 @@ Application_canOpenURL :: #force_inline proc "c" (self: ^Application, url: ^NS.U
     return msgSend(bool, self, "canOpenURL:", url)
 }
 @(objc_type=Application, objc_name="openURL_options_completionHandler")
-Application_openURL_options_completionHandler :: #force_inline proc "c" (self: ^Application, url: ^NS.URL, options: ^NS.Dictionary, completion: proc "c" (success: bool)) {
+Application_openURL_options_completionHandler :: #force_inline proc "c" (self: ^Application, url: ^NS.URL, options: ^NS.Dictionary, completion: ^Objc_Block(proc "c" (success: bool))) {
     msgSend(nil, self, "openURL:options:completionHandler:", url, options, completion)
 }
 @(objc_type=Application, objc_name="sendEvent")
@@ -58,11 +58,11 @@ Application_supportedInterfaceOrientationsForWindow :: #force_inline proc "c" (s
     return msgSend(InterfaceOrientationMask, self, "supportedInterfaceOrientationsForWindow:", window)
 }
 @(objc_type=Application, objc_name="beginBackgroundTaskWithExpirationHandler")
-Application_beginBackgroundTaskWithExpirationHandler :: #force_inline proc "c" (self: ^Application, handler: proc "c" ()) -> BackgroundTaskIdentifier {
+Application_beginBackgroundTaskWithExpirationHandler :: #force_inline proc "c" (self: ^Application, handler: ^Objc_Block(proc "c" ())) -> BackgroundTaskIdentifier {
     return msgSend(BackgroundTaskIdentifier, self, "beginBackgroundTaskWithExpirationHandler:", handler)
 }
 @(objc_type=Application, objc_name="beginBackgroundTaskWithName")
-Application_beginBackgroundTaskWithName :: #force_inline proc "c" (self: ^Application, taskName: ^NS.String, handler: proc "c" ()) -> BackgroundTaskIdentifier {
+Application_beginBackgroundTaskWithName :: #force_inline proc "c" (self: ^Application, taskName: ^NS.String, handler: ^Objc_Block(proc "c" ())) -> BackgroundTaskIdentifier {
     return msgSend(BackgroundTaskIdentifier, self, "beginBackgroundTaskWithName:expirationHandler:", taskName, handler)
 }
 @(objc_type=Application, objc_name="endBackgroundTask")
@@ -74,15 +74,15 @@ Application_setMinimumBackgroundFetchInterval :: #force_inline proc "c" (self: ^
     msgSend(nil, self, "setMinimumBackgroundFetchInterval:", minimumBackgroundFetchInterval)
 }
 @(objc_type=Application, objc_name="activateSceneSessionForRequest")
-Application_activateSceneSessionForRequest :: #force_inline proc "c" (self: ^Application, request: ^SceneSessionActivationRequest, errorHandler: proc "c" (error: ^NS.Error)) {
+Application_activateSceneSessionForRequest :: #force_inline proc "c" (self: ^Application, request: ^SceneSessionActivationRequest, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "activateSceneSessionForRequest:errorHandler:", request, errorHandler)
 }
 @(objc_type=Application, objc_name="requestSceneSessionActivation")
-Application_requestSceneSessionActivation :: #force_inline proc "c" (self: ^Application, sceneSession: ^SceneSession, userActivity: ^NS.UserActivity, options: ^SceneActivationRequestOptions, errorHandler: proc "c" (error: ^NS.Error)) {
+Application_requestSceneSessionActivation :: #force_inline proc "c" (self: ^Application, sceneSession: ^SceneSession, userActivity: ^NS.UserActivity, options: ^SceneActivationRequestOptions, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "requestSceneSessionActivation:userActivity:options:errorHandler:", sceneSession, userActivity, options, errorHandler)
 }
 @(objc_type=Application, objc_name="requestSceneSessionDestruction")
-Application_requestSceneSessionDestruction :: #force_inline proc "c" (self: ^Application, sceneSession: ^SceneSession, options: ^SceneDestructionRequestOptions, errorHandler: proc "c" (error: ^NS.Error)) {
+Application_requestSceneSessionDestruction :: #force_inline proc "c" (self: ^Application, sceneSession: ^SceneSession, options: ^SceneDestructionRequestOptions, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "requestSceneSessionDestruction:options:errorHandler:", sceneSession, options, errorHandler)
 }
 @(objc_type=Application, objc_name="requestSceneSessionRefresh")
@@ -274,7 +274,7 @@ Application_setShortcutItems :: #force_inline proc "c" (self: ^Application, shor
     msgSend(nil, self, "setShortcutItems:", shortcutItems)
 }
 @(objc_type=Application, objc_name="setAlternateIconName")
-Application_setAlternateIconName :: #force_inline proc "c" (self: ^Application, alternateIconName: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+Application_setAlternateIconName :: #force_inline proc "c" (self: ^Application, alternateIconName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "setAlternateIconName:completionHandler:", alternateIconName, completionHandler)
 }
 @(objc_type=Application, objc_name="supportsAlternateIcons")
@@ -318,7 +318,7 @@ Application_setStatusBarHidden_withAnimation :: #force_inline proc "c" (self: ^A
     msgSend(nil, self, "setStatusBarHidden:withAnimation:", hidden, animation)
 }
 @(objc_type=Application, objc_name="setKeepAliveTimeout")
-Application_setKeepAliveTimeout :: #force_inline proc "c" (self: ^Application, timeout: NS.TimeInterval, keepAliveHandler: proc "c" ()) -> bool {
+Application_setKeepAliveTimeout :: #force_inline proc "c" (self: ^Application, timeout: NS.TimeInterval, keepAliveHandler: ^Objc_Block(proc "c" ())) -> bool {
     return msgSend(bool, self, "setKeepAliveTimeout:handler:", timeout, keepAliveHandler)
 }
 @(objc_type=Application, objc_name="clearKeepAliveTimeout")

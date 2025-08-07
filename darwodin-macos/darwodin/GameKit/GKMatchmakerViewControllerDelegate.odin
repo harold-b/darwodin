@@ -39,7 +39,7 @@ MatchmakerViewControllerDelegate_matchmakerViewController_hostedPlayerDidAccept 
     msgSend(nil, self, "matchmakerViewController:hostedPlayerDidAccept:", viewController, player)
 }
 @(objc_type=MatchmakerViewControllerDelegate, objc_name="matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler")
-MatchmakerViewControllerDelegate_matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler :: #force_inline proc "c" (self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, recipient: ^Player, completionHandler: proc "c" (recipientProperties: ^MatchProperties)) {
+MatchmakerViewControllerDelegate_matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler :: #force_inline proc "c" (self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, recipient: ^Player, completionHandler: ^Objc_Block(proc "c" (recipientProperties: ^MatchProperties))) {
     msgSend(nil, self, "matchmakerViewController:getMatchPropertiesForRecipient:withCompletionHandler:", viewController, recipient, completionHandler)
 }
 @(objc_type=MatchmakerViewControllerDelegate, objc_name="matchmakerViewController_didFindPlayers")

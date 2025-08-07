@@ -32,10 +32,10 @@ VTable :: struct {
     setDefaultCredential_forProtectionSpace: proc(self: ^NS.URLCredentialStorage, credential: ^NS.URLCredential, space: ^NS.URLProtectionSpace),
     sharedCredentialStorage: proc() -> ^NS.URLCredentialStorage,
     allCredentials: proc(self: ^NS.URLCredentialStorage) -> ^NS.Dictionary,
-    getCredentialsForProtectionSpace: proc(self: ^NS.URLCredentialStorage, protectionSpace: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: proc "c" (credentials: ^NS.Dictionary)),
+    getCredentialsForProtectionSpace: proc(self: ^NS.URLCredentialStorage, protectionSpace: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credentials: ^NS.Dictionary))),
     setCredential_forProtectionSpace_task: proc(self: ^NS.URLCredentialStorage, credential: ^NS.URLCredential, protectionSpace: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask),
     removeCredential_forProtectionSpace_options_task: proc(self: ^NS.URLCredentialStorage, credential: ^NS.URLCredential, protectionSpace: ^NS.URLProtectionSpace, options: ^NS.Dictionary, task: ^NS.URLSessionTask),
-    getDefaultCredentialForProtectionSpace: proc(self: ^NS.URLCredentialStorage, space: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: proc "c" (credential: ^NS.URLCredential)),
+    getDefaultCredentialForProtectionSpace: proc(self: ^NS.URLCredentialStorage, space: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credential: ^NS.URLCredential))),
     setDefaultCredential_forProtectionSpace_task: proc(self: ^NS.URLCredentialStorage, credential: ^NS.URLCredential, protectionSpace: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask),
     load: proc(),
     initialize: proc(),
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allCredentials"), auto_cast allCredentials, "@@:") do panic("Failed to register objC method.")
     }
     if vt.getCredentialsForProtectionSpace != nil {
-        getCredentialsForProtectionSpace :: proc "c" (self: ^NS.URLCredentialStorage, _: SEL, protectionSpace: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: proc "c" (credentials: ^NS.Dictionary)) {
+        getCredentialsForProtectionSpace :: proc "c" (self: ^NS.URLCredentialStorage, _: SEL, protectionSpace: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credentials: ^NS.Dictionary))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeCredential:forProtectionSpace:options:task:"), auto_cast removeCredential_forProtectionSpace_options_task, "v@:@@@@") do panic("Failed to register objC method.")
     }
     if vt.getDefaultCredentialForProtectionSpace != nil {
-        getDefaultCredentialForProtectionSpace :: proc "c" (self: ^NS.URLCredentialStorage, _: SEL, space: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: proc "c" (credential: ^NS.URLCredential)) {
+        getDefaultCredentialForProtectionSpace :: proc "c" (self: ^NS.URLCredentialStorage, _: SEL, space: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credential: ^NS.URLCredential))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

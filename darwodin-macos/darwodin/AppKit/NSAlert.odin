@@ -42,7 +42,7 @@ Alert_runModal :: #force_inline proc "c" (self: ^Alert) -> ModalResponse {
     return msgSend(ModalResponse, self, "runModal")
 }
 @(objc_type=Alert, objc_name="beginSheetModalForWindow_completionHandler")
-Alert_beginSheetModalForWindow_completionHandler :: #force_inline proc "c" (self: ^Alert, sheetWindow: ^Window, handler: proc "c" (returnCode: ModalResponse)) {
+Alert_beginSheetModalForWindow_completionHandler :: #force_inline proc "c" (self: ^Alert, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" (returnCode: ModalResponse))) {
     msgSend(nil, self, "beginSheetModalForWindow:completionHandler:", sheetWindow, handler)
 }
 @(objc_type=Alert, objc_name="messageText")

@@ -102,39 +102,39 @@ ApplicationDelegate_application_didReceiveLocalNotification :: #force_inline pro
     msgSend(nil, self, "application:didReceiveLocalNotification:", application, notification)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_handleActionWithIdentifier_forLocalNotification_completionHandler")
-ApplicationDelegate_application_handleActionWithIdentifier_forLocalNotification_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, notification: ^LocalNotification, completionHandler: proc "c" ()) {
+ApplicationDelegate_application_handleActionWithIdentifier_forLocalNotification_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, notification: ^LocalNotification, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "application:handleActionWithIdentifier:forLocalNotification:completionHandler:", application, identifier, notification, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_handleActionWithIdentifier_forRemoteNotification_withResponseInfo_completionHandler")
-ApplicationDelegate_application_handleActionWithIdentifier_forRemoteNotification_withResponseInfo_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, userInfo: ^NS.Dictionary, responseInfo: ^NS.Dictionary, completionHandler: proc "c" ()) {
+ApplicationDelegate_application_handleActionWithIdentifier_forRemoteNotification_withResponseInfo_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, userInfo: ^NS.Dictionary, responseInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:", application, identifier, userInfo, responseInfo, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_handleActionWithIdentifier_forRemoteNotification_completionHandler")
-ApplicationDelegate_application_handleActionWithIdentifier_forRemoteNotification_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, userInfo: ^NS.Dictionary, completionHandler: proc "c" ()) {
+ApplicationDelegate_application_handleActionWithIdentifier_forRemoteNotification_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "application:handleActionWithIdentifier:forRemoteNotification:completionHandler:", application, identifier, userInfo, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_handleActionWithIdentifier_forLocalNotification_withResponseInfo_completionHandler")
-ApplicationDelegate_application_handleActionWithIdentifier_forLocalNotification_withResponseInfo_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, notification: ^LocalNotification, responseInfo: ^NS.Dictionary, completionHandler: proc "c" ()) {
+ApplicationDelegate_application_handleActionWithIdentifier_forLocalNotification_withResponseInfo_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, notification: ^LocalNotification, responseInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:", application, identifier, notification, responseInfo, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_didReceiveRemoteNotification_fetchCompletionHandler")
-ApplicationDelegate_application_didReceiveRemoteNotification_fetchCompletionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, userInfo: ^NS.Dictionary, completionHandler: proc "c" (result: BackgroundFetchResult)) {
+ApplicationDelegate_application_didReceiveRemoteNotification_fetchCompletionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" (result: BackgroundFetchResult))) {
     msgSend(nil, self, "application:didReceiveRemoteNotification:fetchCompletionHandler:", application, userInfo, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_performFetchWithCompletionHandler")
-ApplicationDelegate_application_performFetchWithCompletionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, completionHandler: proc "c" (result: BackgroundFetchResult)) {
+ApplicationDelegate_application_performFetchWithCompletionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, completionHandler: ^Objc_Block(proc "c" (result: BackgroundFetchResult))) {
     msgSend(nil, self, "application:performFetchWithCompletionHandler:", application, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_performActionForShortcutItem_completionHandler")
-ApplicationDelegate_application_performActionForShortcutItem_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, shortcutItem: ^ApplicationShortcutItem, completionHandler: proc "c" (succeeded: bool)) {
+ApplicationDelegate_application_performActionForShortcutItem_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) {
     msgSend(nil, self, "application:performActionForShortcutItem:completionHandler:", application, shortcutItem, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_handleEventsForBackgroundURLSession_completionHandler")
-ApplicationDelegate_application_handleEventsForBackgroundURLSession_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, completionHandler: proc "c" ()) {
+ApplicationDelegate_application_handleEventsForBackgroundURLSession_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "application:handleEventsForBackgroundURLSession:completionHandler:", application, identifier, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_handleWatchKitExtensionRequest_reply")
-ApplicationDelegate_application_handleWatchKitExtensionRequest_reply :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, userInfo: ^NS.Dictionary, reply: proc "c" (replyInfo: ^NS.Dictionary)) {
+ApplicationDelegate_application_handleWatchKitExtensionRequest_reply :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, userInfo: ^NS.Dictionary, reply: ^Objc_Block(proc "c" (replyInfo: ^NS.Dictionary))) {
     msgSend(nil, self, "application:handleWatchKitExtensionRequest:reply:", application, userInfo, reply)
 }
 @(objc_type=ApplicationDelegate, objc_name="applicationShouldRequestHealthAuthorization")
@@ -146,7 +146,7 @@ ApplicationDelegate_application_handlerForIntent :: #force_inline proc "c" (self
     return msgSend(id, self, "application:handlerForIntent:", application, intent)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_handleIntent_completionHandler")
-ApplicationDelegate_application_handleIntent_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, intent: ^INIntent, completionHandler: proc "c" (intentResponse: ^INIntentResponse)) {
+ApplicationDelegate_application_handleIntent_completionHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, intent: ^INIntent, completionHandler: ^Objc_Block(proc "c" (intentResponse: ^INIntentResponse))) {
     msgSend(nil, self, "application:handleIntent:completionHandler:", application, intent, completionHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="applicationDidEnterBackground")
@@ -206,7 +206,7 @@ ApplicationDelegate_application_willContinueUserActivityWithType :: #force_inlin
     return msgSend(bool, self, "application:willContinueUserActivityWithType:", application, userActivityType)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_continueUserActivity_restorationHandler")
-ApplicationDelegate_application_continueUserActivity_restorationHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, userActivity: ^NS.UserActivity, restorationHandler: proc "c" (restorableObjects: ^NS.Array)) -> bool {
+ApplicationDelegate_application_continueUserActivity_restorationHandler :: #force_inline proc "c" (self: ^ApplicationDelegate, application: ^Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" (restorableObjects: ^NS.Array))) -> bool {
     return msgSend(bool, self, "application:continueUserActivity:restorationHandler:", application, userActivity, restorationHandler)
 }
 @(objc_type=ApplicationDelegate, objc_name="application_didFailToContinueUserActivityWithType_error")

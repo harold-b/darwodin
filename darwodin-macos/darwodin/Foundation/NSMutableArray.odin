@@ -101,7 +101,7 @@ MutableArray_setArray :: #force_inline proc "c" (self: ^MutableArray, otherArray
     msgSend(nil, self, "setArray:", otherArray)
 }
 @(objc_type=MutableArray, objc_name="sortUsingFunction")
-MutableArray_sortUsingFunction :: #force_inline proc "c" (self: ^MutableArray, compare: proc "c" (_arg_0: ^id, _arg_1: ^id, _arg_2: rawptr) -> Integer, _context: rawptr) {
+MutableArray_sortUsingFunction :: #force_inline proc "c" (self: ^MutableArray, compare: proc "c" (_: ^id, _1: ^id, _2: rawptr) -> Integer, _context: rawptr) {
     msgSend(nil, self, "sortUsingFunction:context:", compare, _context)
 }
 @(objc_type=MutableArray, objc_name="sortUsingSelector")

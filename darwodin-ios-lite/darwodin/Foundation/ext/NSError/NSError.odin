@@ -26,8 +26,8 @@ VTable :: struct {
     super: NSObject.VTable,
     initWithDomain: proc(self: ^NS.Error, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> ^NS.Error,
     errorWithDomain: proc(domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> ^NS.Error,
-    setUserInfoValueProviderForDomain: proc(errorDomain: ^NS.String, provider: proc "c" (err: ^NS.Error, userInfoKey: ^NS.String) -> id),
-    userInfoValueProviderForDomain: proc(err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> proc "c" (err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> id,
+    setUserInfoValueProviderForDomain: proc(errorDomain: ^NS.String, provider: ^Objc_Block(proc "c" (err: ^NS.Error, userInfoKey: ^NS.String) -> id)),
+    userInfoValueProviderForDomain: proc(err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> ^Objc_Block(proc "c" (err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> id),
     domain: proc(self: ^NS.Error) -> ^NS.String,
     code: proc(self: ^NS.Error) -> NS.Integer,
     userInfo: proc(self: ^NS.Error) -> ^NS.Dictionary,
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("errorWithDomain:code:userInfo:"), auto_cast errorWithDomain, "@#:@l@") do panic("Failed to register objC method.")
     }
     if vt.setUserInfoValueProviderForDomain != nil {
-        setUserInfoValueProviderForDomain :: proc "c" (self: Class, _: SEL, errorDomain: ^NS.String, provider: proc "c" (err: ^NS.Error, userInfoKey: ^NS.String) -> id) {
+        setUserInfoValueProviderForDomain :: proc "c" (self: Class, _: SEL, errorDomain: ^NS.String, provider: ^Objc_Block(proc "c" (err: ^NS.Error, userInfoKey: ^NS.String) -> id)) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setUserInfoValueProviderForDomain:provider:"), auto_cast setUserInfoValueProviderForDomain, "v#:@?") do panic("Failed to register objC method.")
     }
     if vt.userInfoValueProviderForDomain != nil {
-        userInfoValueProviderForDomain :: proc "c" (self: Class, _: SEL, err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> proc "c" (err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> id {
+        userInfoValueProviderForDomain :: proc "c" (self: Class, _: SEL, err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> ^Objc_Block(proc "c" (err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> id) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

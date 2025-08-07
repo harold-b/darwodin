@@ -34,7 +34,7 @@ VirtualController_initWithConfiguration :: #force_inline proc "c" (self: ^Virtua
     return msgSend(^VirtualController, self, "initWithConfiguration:", configuration)
 }
 @(objc_type=VirtualController, objc_name="connectWithReplyHandler")
-VirtualController_connectWithReplyHandler :: #force_inline proc "c" (self: ^VirtualController, reply: proc "c" (error: ^NS.Error)) {
+VirtualController_connectWithReplyHandler :: #force_inline proc "c" (self: ^VirtualController, reply: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "connectWithReplyHandler:", reply)
 }
 @(objc_type=VirtualController, objc_name="disconnect")
@@ -42,7 +42,7 @@ VirtualController_disconnect :: #force_inline proc "c" (self: ^VirtualController
     msgSend(nil, self, "disconnect")
 }
 @(objc_type=VirtualController, objc_name="updateConfigurationForElement")
-VirtualController_updateConfigurationForElement :: #force_inline proc "c" (self: ^VirtualController, element: ^NS.String, config: proc "c" (oldConfiguration: ^VirtualControllerElementConfiguration) -> ^VirtualControllerElementConfiguration) {
+VirtualController_updateConfigurationForElement :: #force_inline proc "c" (self: ^VirtualController, element: ^NS.String, config: ^Objc_Block(proc "c" (oldConfiguration: ^VirtualControllerElementConfiguration) -> ^VirtualControllerElementConfiguration)) {
     msgSend(nil, self, "updateConfigurationForElement:configuration:", element, config)
 }
 @(objc_type=VirtualController, objc_name="setValue")

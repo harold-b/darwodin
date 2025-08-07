@@ -27,83 +27,83 @@ TurnBasedMatch_setLocalizableMessageWithKey :: #force_inline proc "c" (self: ^Tu
     msgSend(nil, self, "setLocalizableMessageWithKey:arguments:", key, arguments)
 }
 @(objc_type=TurnBasedMatch, objc_name="findMatchForRequest", objc_is_class_method=true)
-TurnBasedMatch_findMatchForRequest :: #force_inline proc "c" (request: ^MatchRequest, completionHandler: proc "c" (match: ^TurnBasedMatch, error: ^NS.Error)) {
+TurnBasedMatch_findMatchForRequest :: #force_inline proc "c" (request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (match: ^TurnBasedMatch, error: ^NS.Error))) {
     msgSend(nil, TurnBasedMatch, "findMatchForRequest:withCompletionHandler:", request, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="loadMatchesWithCompletionHandler", objc_is_class_method=true)
-TurnBasedMatch_loadMatchesWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (matches: ^NS.Array, error: ^NS.Error)) {
+TurnBasedMatch_loadMatchesWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (matches: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, TurnBasedMatch, "loadMatchesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="loadMatchWithID", objc_is_class_method=true)
-TurnBasedMatch_loadMatchWithID :: #force_inline proc "c" (matchID: ^NS.String, completionHandler: proc "c" (match: ^TurnBasedMatch, error: ^NS.Error)) {
+TurnBasedMatch_loadMatchWithID :: #force_inline proc "c" (matchID: ^NS.String, completionHandler: ^Objc_Block(proc "c" (match: ^TurnBasedMatch, error: ^NS.Error))) {
     msgSend(nil, TurnBasedMatch, "loadMatchWithID:withCompletionHandler:", matchID, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="rematchWithCompletionHandler")
-TurnBasedMatch_rematchWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: proc "c" (match: ^TurnBasedMatch, error: ^NS.Error)) {
+TurnBasedMatch_rematchWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (match: ^TurnBasedMatch, error: ^NS.Error))) {
     msgSend(nil, self, "rematchWithCompletionHandler:", completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="acceptInviteWithCompletionHandler")
-TurnBasedMatch_acceptInviteWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: proc "c" (match: ^TurnBasedMatch, error: ^NS.Error)) {
+TurnBasedMatch_acceptInviteWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (match: ^TurnBasedMatch, error: ^NS.Error))) {
     msgSend(nil, self, "acceptInviteWithCompletionHandler:", completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="declineInviteWithCompletionHandler")
-TurnBasedMatch_declineInviteWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_declineInviteWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "declineInviteWithCompletionHandler:", completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="removeWithCompletionHandler")
-TurnBasedMatch_removeWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_removeWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "removeWithCompletionHandler:", completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="loadMatchDataWithCompletionHandler")
-TurnBasedMatch_loadMatchDataWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: proc "c" (matchData: ^NS.Data, error: ^NS.Error)) {
+TurnBasedMatch_loadMatchDataWithCompletionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (matchData: ^NS.Data, error: ^NS.Error))) {
     msgSend(nil, self, "loadMatchDataWithCompletionHandler:", completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="endTurnWithNextParticipants")
-TurnBasedMatch_endTurnWithNextParticipants :: #force_inline proc "c" (self: ^TurnBasedMatch, nextParticipants: ^NS.Array, timeout: NS.TimeInterval, matchData: ^NS.Data, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_endTurnWithNextParticipants :: #force_inline proc "c" (self: ^TurnBasedMatch, nextParticipants: ^NS.Array, timeout: NS.TimeInterval, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:", nextParticipants, timeout, matchData, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler")
-TurnBasedMatch_participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, nextParticipants: ^NS.Array, timeout: NS.TimeInterval, matchData: ^NS.Data, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, nextParticipants: ^NS.Array, timeout: NS.TimeInterval, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:", matchOutcome, nextParticipants, timeout, matchData, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="participantQuitOutOfTurnWithOutcome")
-TurnBasedMatch_participantQuitOutOfTurnWithOutcome :: #force_inline proc "c" (self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_participantQuitOutOfTurnWithOutcome :: #force_inline proc "c" (self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "participantQuitOutOfTurnWithOutcome:withCompletionHandler:", matchOutcome, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="endMatchInTurnWithMatchData_completionHandler")
-TurnBasedMatch_endMatchInTurnWithMatchData_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_endMatchInTurnWithMatchData_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "endMatchInTurnWithMatchData:completionHandler:", matchData, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="endMatchInTurnWithMatchData_scores_achievements_completionHandler")
-TurnBasedMatch_endMatchInTurnWithMatchData_scores_achievements_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, scores: ^NS.Array, achievements: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_endMatchInTurnWithMatchData_scores_achievements_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, scores: ^NS.Array, achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "endMatchInTurnWithMatchData:scores:achievements:completionHandler:", matchData, scores, achievements, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler")
-TurnBasedMatch_endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, scores: ^NS.Array, achievements: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, scores: ^NS.Array, achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:", matchData, scores, achievements, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="saveCurrentTurnWithMatchData")
-TurnBasedMatch_saveCurrentTurnWithMatchData :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_saveCurrentTurnWithMatchData :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "saveCurrentTurnWithMatchData:completionHandler:", matchData, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="saveMergedMatchData")
-TurnBasedMatch_saveMergedMatchData :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, exchanges: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_saveMergedMatchData :: #force_inline proc "c" (self: ^TurnBasedMatch, matchData: ^NS.Data, exchanges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "saveMergedMatchData:withResolvedExchanges:completionHandler:", matchData, exchanges, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="sendExchangeToParticipants")
-TurnBasedMatch_sendExchangeToParticipants :: #force_inline proc "c" (self: ^TurnBasedMatch, participants: ^NS.Array, data: ^NS.Data, key: ^NS.String, arguments: ^NS.Array, timeout: NS.TimeInterval, completionHandler: proc "c" (exchange: ^TurnBasedExchange, error: ^NS.Error)) {
+TurnBasedMatch_sendExchangeToParticipants :: #force_inline proc "c" (self: ^TurnBasedMatch, participants: ^NS.Array, data: ^NS.Data, key: ^NS.String, arguments: ^NS.Array, timeout: NS.TimeInterval, completionHandler: ^Objc_Block(proc "c" (exchange: ^TurnBasedExchange, error: ^NS.Error))) {
     msgSend(nil, self, "sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:", participants, data, key, arguments, timeout, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="sendReminderToParticipants")
-TurnBasedMatch_sendReminderToParticipants :: #force_inline proc "c" (self: ^TurnBasedMatch, participants: ^NS.Array, key: ^NS.String, arguments: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_sendReminderToParticipants :: #force_inline proc "c" (self: ^TurnBasedMatch, participants: ^NS.Array, key: ^NS.String, arguments: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:", participants, key, arguments, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="endTurnWithNextParticipant")
-TurnBasedMatch_endTurnWithNextParticipant :: #force_inline proc "c" (self: ^TurnBasedMatch, nextParticipant: ^TurnBasedParticipant, matchData: ^NS.Data, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_endTurnWithNextParticipant :: #force_inline proc "c" (self: ^TurnBasedMatch, nextParticipant: ^TurnBasedParticipant, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "endTurnWithNextParticipant:matchData:completionHandler:", nextParticipant, matchData, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler")
-TurnBasedMatch_participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, nextParticipant: ^TurnBasedParticipant, matchData: ^NS.Data, completionHandler: proc "c" (error: ^NS.Error)) {
+TurnBasedMatch_participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler :: #force_inline proc "c" (self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, nextParticipant: ^TurnBasedParticipant, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "participantQuitInTurnWithOutcome:nextParticipant:matchData:completionHandler:", matchOutcome, nextParticipant, matchData, completionHandler)
 }
 @(objc_type=TurnBasedMatch, objc_name="matchID")

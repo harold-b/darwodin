@@ -45,7 +45,7 @@ VTable :: struct {
     replaceObjectsInRange_withObjectsFromArray_range: proc(self: ^NS.MutableArray, range: NS._NSRange, otherArray: ^NS.Array, otherRange: NS._NSRange),
     replaceObjectsInRange_withObjectsFromArray: proc(self: ^NS.MutableArray, range: NS._NSRange, otherArray: ^NS.Array),
     setArray: proc(self: ^NS.MutableArray, otherArray: ^NS.Array),
-    sortUsingFunction: proc(self: ^NS.MutableArray, compare: proc "c" (_arg_0: ^id, _arg_1: ^id, _arg_2: rawptr) -> NS.Integer, _context: rawptr),
+    sortUsingFunction: proc(self: ^NS.MutableArray, compare: proc "c" (_: ^id, _1: ^id, _2: rawptr) -> NS.Integer, _context: rawptr),
     sortUsingSelector: proc(self: ^NS.MutableArray, comparator: SEL),
     insertObjects: proc(self: ^NS.MutableArray, objects: ^NS.Array, indexes: ^NS.IndexSet),
     removeObjectsAtIndexes: proc(self: ^NS.MutableArray, indexes: ^NS.IndexSet),
@@ -317,7 +317,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setArray:"), auto_cast setArray, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.sortUsingFunction != nil {
-        sortUsingFunction :: proc "c" (self: ^NS.MutableArray, _: SEL, compare: proc "c" (_arg_0: ^id, _arg_1: ^id, _arg_2: rawptr) -> NS.Integer, _context: rawptr) {
+        sortUsingFunction :: proc "c" (self: ^NS.MutableArray, _: SEL, compare: proc "c" (_: ^id, _1: ^id, _2: rawptr) -> NS.Integer, _context: rawptr) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

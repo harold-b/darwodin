@@ -30,7 +30,7 @@ Printer_printerWithURL :: #force_inline proc "c" (url: ^NS.URL) -> ^Printer {
     return msgSend(^Printer, Printer, "printerWithURL:", url)
 }
 @(objc_type=Printer, objc_name="contactPrinter")
-Printer_contactPrinter :: #force_inline proc "c" (self: ^Printer, completionHandler: proc "c" (available: bool)) {
+Printer_contactPrinter :: #force_inline proc "c" (self: ^Printer, completionHandler: ^Objc_Block(proc "c" (available: bool))) {
     msgSend(nil, self, "contactPrinter:", completionHandler)
 }
 @(objc_type=Printer, objc_name="URL")

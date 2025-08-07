@@ -34,11 +34,11 @@ CellAccessoryOutlineDisclosure_setStyle :: #force_inline proc "c" (self: ^CellAc
     msgSend(nil, self, "setStyle:", style)
 }
 @(objc_type=CellAccessoryOutlineDisclosure, objc_name="actionHandler")
-CellAccessoryOutlineDisclosure_actionHandler :: #force_inline proc "c" (self: ^CellAccessoryOutlineDisclosure) -> proc "c" () {
-    return msgSend(proc "c" (), self, "actionHandler")
+CellAccessoryOutlineDisclosure_actionHandler :: #force_inline proc "c" (self: ^CellAccessoryOutlineDisclosure) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "actionHandler")
 }
 @(objc_type=CellAccessoryOutlineDisclosure, objc_name="setActionHandler")
-CellAccessoryOutlineDisclosure_setActionHandler :: #force_inline proc "c" (self: ^CellAccessoryOutlineDisclosure, actionHandler: proc "c" ()) {
+CellAccessoryOutlineDisclosure_setActionHandler :: #force_inline proc "c" (self: ^CellAccessoryOutlineDisclosure, actionHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setActionHandler:", actionHandler)
 }
 @(objc_type=CellAccessoryOutlineDisclosure, objc_name="supportsSecureCoding", objc_is_class_method=true)

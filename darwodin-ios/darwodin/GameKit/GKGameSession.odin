@@ -23,35 +23,35 @@ GameSession_init :: proc "c" (self: ^GameSession) -> ^GameSession {
 
 
 @(objc_type=GameSession, objc_name="createSessionInContainer", objc_is_class_method=true)
-GameSession_createSessionInContainer :: #force_inline proc "c" (containerName: ^NS.String, title: ^NS.String, maxPlayers: NS.Integer, completionHandler: proc "c" (session: ^GameSession, error: ^NS.Error)) {
+GameSession_createSessionInContainer :: #force_inline proc "c" (containerName: ^NS.String, title: ^NS.String, maxPlayers: NS.Integer, completionHandler: ^Objc_Block(proc "c" (session: ^GameSession, error: ^NS.Error))) {
     msgSend(nil, GameSession, "createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:", containerName, title, maxPlayers, completionHandler)
 }
 @(objc_type=GameSession, objc_name="loadSessionsInContainer", objc_is_class_method=true)
-GameSession_loadSessionsInContainer :: #force_inline proc "c" (containerName: ^NS.String, completionHandler: proc "c" (sessions: ^NS.Array, error: ^NS.Error)) {
+GameSession_loadSessionsInContainer :: #force_inline proc "c" (containerName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (sessions: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, GameSession, "loadSessionsInContainer:completionHandler:", containerName, completionHandler)
 }
 @(objc_type=GameSession, objc_name="loadSessionWithIdentifier", objc_is_class_method=true)
-GameSession_loadSessionWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, completionHandler: proc "c" (session: ^GameSession, error: ^NS.Error)) {
+GameSession_loadSessionWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (session: ^GameSession, error: ^NS.Error))) {
     msgSend(nil, GameSession, "loadSessionWithIdentifier:completionHandler:", identifier, completionHandler)
 }
 @(objc_type=GameSession, objc_name="removeSessionWithIdentifier", objc_is_class_method=true)
-GameSession_removeSessionWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, completionHandler: proc "c" (error: ^NS.Error)) {
+GameSession_removeSessionWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, GameSession, "removeSessionWithIdentifier:completionHandler:", identifier, completionHandler)
 }
 @(objc_type=GameSession, objc_name="getShareURLWithCompletionHandler")
-GameSession_getShareURLWithCompletionHandler :: #force_inline proc "c" (self: ^GameSession, completionHandler: proc "c" (url: ^NS.URL, error: ^NS.Error)) {
+GameSession_getShareURLWithCompletionHandler :: #force_inline proc "c" (self: ^GameSession, completionHandler: ^Objc_Block(proc "c" (url: ^NS.URL, error: ^NS.Error))) {
     msgSend(nil, self, "getShareURLWithCompletionHandler:", completionHandler)
 }
 @(objc_type=GameSession, objc_name="loadDataWithCompletionHandler")
-GameSession_loadDataWithCompletionHandler :: #force_inline proc "c" (self: ^GameSession, completionHandler: proc "c" (data: ^NS.Data, error: ^NS.Error)) {
+GameSession_loadDataWithCompletionHandler :: #force_inline proc "c" (self: ^GameSession, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, error: ^NS.Error))) {
     msgSend(nil, self, "loadDataWithCompletionHandler:", completionHandler)
 }
 @(objc_type=GameSession, objc_name="saveData")
-GameSession_saveData :: #force_inline proc "c" (self: ^GameSession, data: ^NS.Data, completionHandler: proc "c" (conflictingData: ^NS.Data, error: ^NS.Error)) {
+GameSession_saveData :: #force_inline proc "c" (self: ^GameSession, data: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (conflictingData: ^NS.Data, error: ^NS.Error))) {
     msgSend(nil, self, "saveData:completionHandler:", data, completionHandler)
 }
 @(objc_type=GameSession, objc_name="setConnectionState")
-GameSession_setConnectionState :: #force_inline proc "c" (self: ^GameSession, state: ConnectionState, completionHandler: proc "c" (error: ^NS.Error)) {
+GameSession_setConnectionState :: #force_inline proc "c" (self: ^GameSession, state: ConnectionState, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "setConnectionState:completionHandler:", state, completionHandler)
 }
 @(objc_type=GameSession, objc_name="playersWithConnectionState")
@@ -59,15 +59,15 @@ GameSession_playersWithConnectionState :: #force_inline proc "c" (self: ^GameSes
     return msgSend(^NS.Array, self, "playersWithConnectionState:", state)
 }
 @(objc_type=GameSession, objc_name="sendData")
-GameSession_sendData :: #force_inline proc "c" (self: ^GameSession, data: ^NS.Data, transport: TransportType, completionHandler: proc "c" (error: ^NS.Error)) {
+GameSession_sendData :: #force_inline proc "c" (self: ^GameSession, data: ^NS.Data, transport: TransportType, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "sendData:withTransportType:completionHandler:", data, transport, completionHandler)
 }
 @(objc_type=GameSession, objc_name="sendMessageWithLocalizedFormatKey")
-GameSession_sendMessageWithLocalizedFormatKey :: #force_inline proc "c" (self: ^GameSession, key: ^NS.String, arguments: ^NS.Array, data: ^NS.Data, players: ^NS.Array, badgePlayers: bool, completionHandler: proc "c" (error: ^NS.Error)) {
+GameSession_sendMessageWithLocalizedFormatKey :: #force_inline proc "c" (self: ^GameSession, key: ^NS.String, arguments: ^NS.Array, data: ^NS.Data, players: ^NS.Array, badgePlayers: bool, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:", key, arguments, data, players, badgePlayers, completionHandler)
 }
 @(objc_type=GameSession, objc_name="clearBadgeForPlayers")
-GameSession_clearBadgeForPlayers :: #force_inline proc "c" (self: ^GameSession, players: ^NS.Array, completionHandler: proc "c" (error: ^NS.Error)) {
+GameSession_clearBadgeForPlayers :: #force_inline proc "c" (self: ^GameSession, players: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
     msgSend(nil, self, "clearBadgeForPlayers:completionHandler:", players, completionHandler)
 }
 @(objc_type=GameSession, objc_name="identifier")

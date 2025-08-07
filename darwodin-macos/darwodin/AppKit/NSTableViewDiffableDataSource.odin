@@ -42,7 +42,7 @@ TableViewDiffableDataSource_applySnapshot_animatingDifferences :: #force_inline 
     msgSend(nil, self, "applySnapshot:animatingDifferences:", snapshot, animatingDifferences)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="applySnapshot_animatingDifferences_completion")
-TableViewDiffableDataSource_applySnapshot_animatingDifferences_completion :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, snapshot: ^DiffableDataSourceSnapshot, animatingDifferences: bool, completion: proc "c" ()) {
+TableViewDiffableDataSource_applySnapshot_animatingDifferences_completion :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, snapshot: ^DiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "applySnapshot:animatingDifferences:completion:", snapshot, animatingDifferences, completion)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="itemIdentifierForRow")

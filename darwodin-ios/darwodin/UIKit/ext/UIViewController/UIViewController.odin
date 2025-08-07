@@ -52,8 +52,8 @@ VTable :: struct {
     viewWillLayoutSubviews: proc(self: ^UI.ViewController),
     viewDidLayoutSubviews: proc(self: ^UI.ViewController),
     didReceiveMemoryWarning: proc(self: ^UI.ViewController),
-    presentViewController: proc(self: ^UI.ViewController, viewControllerToPresent: ^UI.ViewController, flag: bool, completion: proc "c" ()),
-    dismissViewControllerAnimated: proc(self: ^UI.ViewController, flag: bool, completion: proc "c" ()),
+    presentViewController: proc(self: ^UI.ViewController, viewControllerToPresent: ^UI.ViewController, flag: bool, completion: ^Objc_Block(proc "c" ())),
+    dismissViewControllerAnimated: proc(self: ^UI.ViewController, flag: bool, completion: ^Objc_Block(proc "c" ())),
     presentModalViewController: proc(self: ^UI.ViewController, modalViewController: ^UI.ViewController, animated: bool),
     dismissModalViewControllerAnimated: proc(self: ^UI.ViewController, animated: bool),
     setContentScrollView: proc(self: ^UI.ViewController, scrollView: ^UI.ScrollView, edge: UI.NSDirectionalRectEdge),
@@ -137,7 +137,7 @@ VTable :: struct {
     searchDisplayController: proc(self: ^UI.ViewController) -> ^UI.SearchDisplayController,
     addChildViewController: proc(self: ^UI.ViewController, childController: ^UI.ViewController),
     removeFromParentViewController: proc(self: ^UI.ViewController),
-    transitionFromViewController: proc(self: ^UI.ViewController, fromViewController: ^UI.ViewController, toViewController: ^UI.ViewController, duration: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)),
+    transitionFromViewController: proc(self: ^UI.ViewController, fromViewController: ^UI.ViewController, toViewController: ^UI.ViewController, duration: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))),
     beginAppearanceTransition: proc(self: ^UI.ViewController, isAppearing: bool, animated: bool),
     endAppearanceTransition: proc(self: ^UI.ViewController),
     setOverrideTraitCollection: proc(self: ^UI.ViewController, collection: ^UI.TraitCollection, childViewController: ^UI.ViewController),
@@ -513,7 +513,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didReceiveMemoryWarning"), auto_cast didReceiveMemoryWarning, "v@:") do panic("Failed to register objC method.")
     }
     if vt.presentViewController != nil {
-        presentViewController :: proc "c" (self: ^UI.ViewController, _: SEL, viewControllerToPresent: ^UI.ViewController, flag: bool, completion: proc "c" ()) {
+        presentViewController :: proc "c" (self: ^UI.ViewController, _: SEL, viewControllerToPresent: ^UI.ViewController, flag: bool, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -523,7 +523,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentViewController:animated:completion:"), auto_cast presentViewController, "v@:@B?") do panic("Failed to register objC method.")
     }
     if vt.dismissViewControllerAnimated != nil {
-        dismissViewControllerAnimated :: proc "c" (self: ^UI.ViewController, _: SEL, flag: bool, completion: proc "c" ()) {
+        dismissViewControllerAnimated :: proc "c" (self: ^UI.ViewController, _: SEL, flag: bool, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1363,7 +1363,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeFromParentViewController"), auto_cast removeFromParentViewController, "v@:") do panic("Failed to register objC method.")
     }
     if vt.transitionFromViewController != nil {
-        transitionFromViewController :: proc "c" (self: ^UI.ViewController, _: SEL, fromViewController: ^UI.ViewController, toViewController: ^UI.ViewController, duration: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: proc "c" (), completion: proc "c" (finished: bool)) {
+        transitionFromViewController :: proc "c" (self: ^UI.ViewController, _: SEL, fromViewController: ^UI.ViewController, toViewController: ^UI.ViewController, duration: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

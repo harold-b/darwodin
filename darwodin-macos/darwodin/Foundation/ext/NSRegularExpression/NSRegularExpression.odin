@@ -30,7 +30,7 @@ VTable :: struct {
     pattern: proc(self: ^NS.RegularExpression) -> ^NS.String,
     options: proc(self: ^NS.RegularExpression) -> NS.RegularExpressionOptions,
     numberOfCaptureGroups: proc(self: ^NS.RegularExpression) -> NS.UInteger,
-    enumerateMatchesInString: proc(self: ^NS.RegularExpression, string: ^NS.String, options: NS.MatchingOptions, range: NS._NSRange, block: proc "c" (result: ^NS.TextCheckingResult, flags: NS.MatchingFlags, stop: ^bool)),
+    enumerateMatchesInString: proc(self: ^NS.RegularExpression, string: ^NS.String, options: NS.MatchingOptions, range: NS._NSRange, block: ^Objc_Block(proc "c" (result: ^NS.TextCheckingResult, flags: NS.MatchingFlags, stop: ^bool))),
     matchesInString: proc(self: ^NS.RegularExpression, string: ^NS.String, options: NS.MatchingOptions, range: NS._NSRange) -> ^NS.Array,
     numberOfMatchesInString: proc(self: ^NS.RegularExpression, string: ^NS.String, options: NS.MatchingOptions, range: NS._NSRange) -> NS.UInteger,
     firstMatchInString: proc(self: ^NS.RegularExpression, string: ^NS.String, options: NS.MatchingOptions, range: NS._NSRange) -> ^NS.TextCheckingResult,
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfCaptureGroups"), auto_cast numberOfCaptureGroups, "L@:") do panic("Failed to register objC method.")
     }
     if vt.enumerateMatchesInString != nil {
-        enumerateMatchesInString :: proc "c" (self: ^NS.RegularExpression, _: SEL, string: ^NS.String, options: NS.MatchingOptions, range: NS._NSRange, block: proc "c" (result: ^NS.TextCheckingResult, flags: NS.MatchingFlags, stop: ^bool)) {
+        enumerateMatchesInString :: proc "c" (self: ^NS.RegularExpression, _: SEL, string: ^NS.String, options: NS.MatchingOptions, range: NS._NSRange, block: ^Objc_Block(proc "c" (result: ^NS.TextCheckingResult, flags: NS.MatchingFlags, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

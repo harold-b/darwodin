@@ -32,7 +32,7 @@ TextCursorDropPositionAnimator_placeCursorAtPosition :: #force_inline proc "c" (
     msgSend(nil, self, "placeCursorAtPosition:animated:", position, animated)
 }
 @(objc_type=TextCursorDropPositionAnimator, objc_name="animateAlongsideChanges")
-TextCursorDropPositionAnimator_animateAlongsideChanges :: #force_inline proc "c" (self: ^TextCursorDropPositionAnimator, animation: proc "c" (), completion: proc "c" ()) {
+TextCursorDropPositionAnimator_animateAlongsideChanges :: #force_inline proc "c" (self: ^TextCursorDropPositionAnimator, animation: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "animateAlongsideChanges:completion:", animation, completion)
 }
 @(objc_type=TextCursorDropPositionAnimator, objc_name="init")

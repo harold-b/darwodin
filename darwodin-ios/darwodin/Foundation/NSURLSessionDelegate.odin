@@ -23,7 +23,7 @@ URLSessionDelegate_URLSession_didBecomeInvalidWithError :: #force_inline proc "c
     msgSend(nil, self, "URLSession:didBecomeInvalidWithError:", session, error)
 }
 @(objc_type=URLSessionDelegate, objc_name="URLSession_didReceiveChallenge_completionHandler")
-URLSessionDelegate_URLSession_didReceiveChallenge_completionHandler :: #force_inline proc "c" (self: ^URLSessionDelegate, session: ^URLSession, challenge: ^URLAuthenticationChallenge, completionHandler: proc "c" (disposition: URLSessionAuthChallengeDisposition, credential: ^URLCredential)) {
+URLSessionDelegate_URLSession_didReceiveChallenge_completionHandler :: #force_inline proc "c" (self: ^URLSessionDelegate, session: ^URLSession, challenge: ^URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" (disposition: URLSessionAuthChallengeDisposition, credential: ^URLCredential))) {
     msgSend(nil, self, "URLSession:didReceiveChallenge:completionHandler:", session, challenge, completionHandler)
 }
 @(objc_type=URLSessionDelegate, objc_name="URLSessionDidFinishEventsForBackgroundURLSession")

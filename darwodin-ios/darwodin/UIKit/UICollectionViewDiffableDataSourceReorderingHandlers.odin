@@ -28,27 +28,27 @@ CollectionViewDiffableDataSourceReorderingHandlers_init :: proc "c" (self: ^Coll
 
 
 @(objc_type=CollectionViewDiffableDataSourceReorderingHandlers, objc_name="canReorderItemHandler")
-CollectionViewDiffableDataSourceReorderingHandlers_canReorderItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers) -> proc "c" () -> bool {
-    return msgSend(proc "c" () -> bool, self, "canReorderItemHandler")
+CollectionViewDiffableDataSourceReorderingHandlers_canReorderItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers) -> ^Objc_Block(proc "c" () -> bool) {
+    return msgSend(^Objc_Block(proc "c" () -> bool), self, "canReorderItemHandler")
 }
 @(objc_type=CollectionViewDiffableDataSourceReorderingHandlers, objc_name="setCanReorderItemHandler")
-CollectionViewDiffableDataSourceReorderingHandlers_setCanReorderItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers, canReorderItemHandler: proc "c" () -> bool) {
+CollectionViewDiffableDataSourceReorderingHandlers_setCanReorderItemHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers, canReorderItemHandler: ^Objc_Block(proc "c" () -> bool)) {
     msgSend(nil, self, "setCanReorderItemHandler:", canReorderItemHandler)
 }
 @(objc_type=CollectionViewDiffableDataSourceReorderingHandlers, objc_name="willReorderHandler")
-CollectionViewDiffableDataSourceReorderingHandlers_willReorderHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers) -> proc "c" () {
-    return msgSend(proc "c" (), self, "willReorderHandler")
+CollectionViewDiffableDataSourceReorderingHandlers_willReorderHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "willReorderHandler")
 }
 @(objc_type=CollectionViewDiffableDataSourceReorderingHandlers, objc_name="setWillReorderHandler")
-CollectionViewDiffableDataSourceReorderingHandlers_setWillReorderHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers, willReorderHandler: proc "c" ()) {
+CollectionViewDiffableDataSourceReorderingHandlers_setWillReorderHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers, willReorderHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setWillReorderHandler:", willReorderHandler)
 }
 @(objc_type=CollectionViewDiffableDataSourceReorderingHandlers, objc_name="didReorderHandler")
-CollectionViewDiffableDataSourceReorderingHandlers_didReorderHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers) -> proc "c" () {
-    return msgSend(proc "c" (), self, "didReorderHandler")
+CollectionViewDiffableDataSourceReorderingHandlers_didReorderHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "didReorderHandler")
 }
 @(objc_type=CollectionViewDiffableDataSourceReorderingHandlers, objc_name="setDidReorderHandler")
-CollectionViewDiffableDataSourceReorderingHandlers_setDidReorderHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers, didReorderHandler: proc "c" ()) {
+CollectionViewDiffableDataSourceReorderingHandlers_setDidReorderHandler :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSourceReorderingHandlers, didReorderHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setDidReorderHandler:", didReorderHandler)
 }
 @(objc_type=CollectionViewDiffableDataSourceReorderingHandlers, objc_name="load", objc_is_class_method=true)

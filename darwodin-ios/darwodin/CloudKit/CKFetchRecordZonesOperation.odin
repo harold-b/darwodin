@@ -37,19 +37,19 @@ FetchRecordZonesOperation_setRecordZoneIDs :: #force_inline proc "c" (self: ^Fet
     msgSend(nil, self, "setRecordZoneIDs:", recordZoneIDs)
 }
 @(objc_type=FetchRecordZonesOperation, objc_name="perRecordZoneCompletionBlock")
-FetchRecordZonesOperation_perRecordZoneCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZonesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "perRecordZoneCompletionBlock")
+FetchRecordZonesOperation_perRecordZoneCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZonesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "perRecordZoneCompletionBlock")
 }
 @(objc_type=FetchRecordZonesOperation, objc_name="setPerRecordZoneCompletionBlock")
-FetchRecordZonesOperation_setPerRecordZoneCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZonesOperation, perRecordZoneCompletionBlock: proc "c" ()) {
+FetchRecordZonesOperation_setPerRecordZoneCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZonesOperation, perRecordZoneCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setPerRecordZoneCompletionBlock:", perRecordZoneCompletionBlock)
 }
 @(objc_type=FetchRecordZonesOperation, objc_name="fetchRecordZonesCompletionBlock")
-FetchRecordZonesOperation_fetchRecordZonesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZonesOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "fetchRecordZonesCompletionBlock")
+FetchRecordZonesOperation_fetchRecordZonesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZonesOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "fetchRecordZonesCompletionBlock")
 }
 @(objc_type=FetchRecordZonesOperation, objc_name="setFetchRecordZonesCompletionBlock")
-FetchRecordZonesOperation_setFetchRecordZonesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZonesOperation, fetchRecordZonesCompletionBlock: proc "c" ()) {
+FetchRecordZonesOperation_setFetchRecordZonesCompletionBlock :: #force_inline proc "c" (self: ^FetchRecordZonesOperation, fetchRecordZonesCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setFetchRecordZonesCompletionBlock:", fetchRecordZonesCompletionBlock)
 }
 @(objc_type=FetchRecordZonesOperation, objc_name="load", objc_is_class_method=true)

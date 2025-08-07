@@ -69,27 +69,27 @@ QueryOperation_setDesiredKeys :: #force_inline proc "c" (self: ^QueryOperation, 
     msgSend(nil, self, "setDesiredKeys:", desiredKeys)
 }
 @(objc_type=QueryOperation, objc_name="recordFetchedBlock")
-QueryOperation_recordFetchedBlock :: #force_inline proc "c" (self: ^QueryOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordFetchedBlock")
+QueryOperation_recordFetchedBlock :: #force_inline proc "c" (self: ^QueryOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordFetchedBlock")
 }
 @(objc_type=QueryOperation, objc_name="setRecordFetchedBlock")
-QueryOperation_setRecordFetchedBlock :: #force_inline proc "c" (self: ^QueryOperation, recordFetchedBlock: proc "c" ()) {
+QueryOperation_setRecordFetchedBlock :: #force_inline proc "c" (self: ^QueryOperation, recordFetchedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordFetchedBlock:", recordFetchedBlock)
 }
 @(objc_type=QueryOperation, objc_name="recordMatchedBlock")
-QueryOperation_recordMatchedBlock :: #force_inline proc "c" (self: ^QueryOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "recordMatchedBlock")
+QueryOperation_recordMatchedBlock :: #force_inline proc "c" (self: ^QueryOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "recordMatchedBlock")
 }
 @(objc_type=QueryOperation, objc_name="setRecordMatchedBlock")
-QueryOperation_setRecordMatchedBlock :: #force_inline proc "c" (self: ^QueryOperation, recordMatchedBlock: proc "c" ()) {
+QueryOperation_setRecordMatchedBlock :: #force_inline proc "c" (self: ^QueryOperation, recordMatchedBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setRecordMatchedBlock:", recordMatchedBlock)
 }
 @(objc_type=QueryOperation, objc_name="queryCompletionBlock")
-QueryOperation_queryCompletionBlock :: #force_inline proc "c" (self: ^QueryOperation) -> proc "c" () {
-    return msgSend(proc "c" (), self, "queryCompletionBlock")
+QueryOperation_queryCompletionBlock :: #force_inline proc "c" (self: ^QueryOperation) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "queryCompletionBlock")
 }
 @(objc_type=QueryOperation, objc_name="setQueryCompletionBlock")
-QueryOperation_setQueryCompletionBlock :: #force_inline proc "c" (self: ^QueryOperation, queryCompletionBlock: proc "c" ()) {
+QueryOperation_setQueryCompletionBlock :: #force_inline proc "c" (self: ^QueryOperation, queryCompletionBlock: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setQueryCompletionBlock:", queryCompletionBlock)
 }
 @(objc_type=QueryOperation, objc_name="load", objc_is_class_method=true)

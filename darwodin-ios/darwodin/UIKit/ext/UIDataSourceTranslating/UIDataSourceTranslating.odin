@@ -28,7 +28,7 @@ VTable :: struct {
     dataSourceSectionIndexForPresentationSectionIndex: proc(self: ^UI.DataSourceTranslating, presentationSectionIndex: NS.Integer) -> NS.Integer,
     presentationIndexPathForDataSourceIndexPath: proc(self: ^UI.DataSourceTranslating, dataSourceIndexPath: ^NS.IndexPath) -> ^NS.IndexPath,
     dataSourceIndexPathForPresentationIndexPath: proc(self: ^UI.DataSourceTranslating, presentationIndexPath: ^NS.IndexPath) -> ^NS.IndexPath,
-    performUsingPresentationValues: proc(self: ^UI.DataSourceTranslating, actionsToTranslate: proc "c" ()),
+    performUsingPresentationValues: proc(self: ^UI.DataSourceTranslating, actionsToTranslate: ^Objc_Block(proc "c" ())),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dataSourceIndexPathForPresentationIndexPath:"), auto_cast dataSourceIndexPathForPresentationIndexPath, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.performUsingPresentationValues != nil {
-        performUsingPresentationValues :: proc "c" (self: ^UI.DataSourceTranslating, _: SEL, actionsToTranslate: proc "c" ()) {
+        performUsingPresentationValues :: proc "c" (self: ^UI.DataSourceTranslating, _: SEL, actionsToTranslate: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

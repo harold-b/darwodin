@@ -32,11 +32,11 @@ CollectionViewPlaceholder_new :: #force_inline proc "c" () -> ^CollectionViewPla
     return msgSend(^CollectionViewPlaceholder, CollectionViewPlaceholder, "new")
 }
 @(objc_type=CollectionViewPlaceholder, objc_name="cellUpdateHandler")
-CollectionViewPlaceholder_cellUpdateHandler :: #force_inline proc "c" (self: ^CollectionViewPlaceholder) -> proc "c" () {
-    return msgSend(proc "c" (), self, "cellUpdateHandler")
+CollectionViewPlaceholder_cellUpdateHandler :: #force_inline proc "c" (self: ^CollectionViewPlaceholder) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "cellUpdateHandler")
 }
 @(objc_type=CollectionViewPlaceholder, objc_name="setCellUpdateHandler")
-CollectionViewPlaceholder_setCellUpdateHandler :: #force_inline proc "c" (self: ^CollectionViewPlaceholder, cellUpdateHandler: proc "c" ()) {
+CollectionViewPlaceholder_setCellUpdateHandler :: #force_inline proc "c" (self: ^CollectionViewPlaceholder, cellUpdateHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setCellUpdateHandler:", cellUpdateHandler)
 }
 @(objc_type=CollectionViewPlaceholder, objc_name="load", objc_is_class_method=true)

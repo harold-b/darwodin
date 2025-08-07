@@ -27,8 +27,8 @@ import "../UICollectionViewPlaceholder"
 
 VTable :: struct {
     super: UICollectionViewPlaceholder.VTable,
-    previewParametersProvider: proc(self: ^UI.CollectionViewDropPlaceholder) -> proc "c" () -> ^UI.DragPreviewParameters,
-    setPreviewParametersProvider: proc(self: ^UI.CollectionViewDropPlaceholder, previewParametersProvider: proc "c" () -> ^UI.DragPreviewParameters),
+    previewParametersProvider: proc(self: ^UI.CollectionViewDropPlaceholder) -> ^Objc_Block(proc "c" () -> ^UI.DragPreviewParameters),
+    setPreviewParametersProvider: proc(self: ^UI.CollectionViewDropPlaceholder, previewParametersProvider: ^Objc_Block(proc "c" () -> ^UI.DragPreviewParameters)),
     new: proc() -> ^UI.CollectionViewDropPlaceholder,
     load: proc(),
     initialize: proc(),
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UICollectionViewPlaceholder.extend(cls, &vt.super)
 
     if vt.previewParametersProvider != nil {
-        previewParametersProvider :: proc "c" (self: ^UI.CollectionViewDropPlaceholder, _: SEL) -> proc "c" () -> ^UI.DragPreviewParameters {
+        previewParametersProvider :: proc "c" (self: ^UI.CollectionViewDropPlaceholder, _: SEL) -> ^Objc_Block(proc "c" () -> ^UI.DragPreviewParameters) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("previewParametersProvider"), auto_cast previewParametersProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setPreviewParametersProvider != nil {
-        setPreviewParametersProvider :: proc "c" (self: ^UI.CollectionViewDropPlaceholder, _: SEL, previewParametersProvider: proc "c" () -> ^UI.DragPreviewParameters) {
+        setPreviewParametersProvider :: proc "c" (self: ^UI.CollectionViewDropPlaceholder, _: SEL, previewParametersProvider: ^Objc_Block(proc "c" () -> ^UI.DragPreviewParameters)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

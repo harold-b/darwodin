@@ -21,18 +21,18 @@ Protocol :: distinct id
 import NS "../../"
 
 VTable :: struct {
-    relinquishPresentedItemToReader: proc(self: ^NS.FilePresenter, reader: proc "c" (reacquirer: proc "c" ())),
-    relinquishPresentedItemToWriter: proc(self: ^NS.FilePresenter, writer: proc "c" (reacquirer: proc "c" ())),
-    savePresentedItemChangesWithCompletionHandler: proc(self: ^NS.FilePresenter, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
-    accommodatePresentedItemDeletionWithCompletionHandler: proc(self: ^NS.FilePresenter, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
-    accommodatePresentedItemEvictionWithCompletionHandler: proc(self: ^NS.FilePresenter, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
+    relinquishPresentedItemToReader: proc(self: ^NS.FilePresenter, reader: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))),
+    relinquishPresentedItemToWriter: proc(self: ^NS.FilePresenter, writer: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))),
+    savePresentedItemChangesWithCompletionHandler: proc(self: ^NS.FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
+    accommodatePresentedItemDeletionWithCompletionHandler: proc(self: ^NS.FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
+    accommodatePresentedItemEvictionWithCompletionHandler: proc(self: ^NS.FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
     presentedItemDidMoveToURL: proc(self: ^NS.FilePresenter, newURL: ^NS.URL),
     presentedItemDidChange: proc(self: ^NS.FilePresenter),
     presentedItemDidChangeUbiquityAttributes: proc(self: ^NS.FilePresenter, attributes: ^NS.Set),
     presentedItemDidGainVersion: proc(self: ^NS.FilePresenter, version: ^NS.FileVersion),
     presentedItemDidLoseVersion: proc(self: ^NS.FilePresenter, version: ^NS.FileVersion),
     presentedItemDidResolveConflictVersion: proc(self: ^NS.FilePresenter, version: ^NS.FileVersion),
-    accommodatePresentedSubitemDeletionAtURL: proc(self: ^NS.FilePresenter, url: ^NS.URL, completionHandler: proc "c" (errorOrNil: ^NS.Error)),
+    accommodatePresentedSubitemDeletionAtURL: proc(self: ^NS.FilePresenter, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
     presentedSubitemDidAppearAtURL: proc(self: ^NS.FilePresenter, url: ^NS.URL),
     presentedSubitemAtURL_didMoveToURL: proc(self: ^NS.FilePresenter, oldURL: ^NS.URL, newURL: ^NS.URL),
     presentedSubitemDidChangeAtURL: proc(self: ^NS.FilePresenter, url: ^NS.URL),
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.relinquishPresentedItemToReader != nil {
-        relinquishPresentedItemToReader :: proc "c" (self: ^NS.FilePresenter, _: SEL, reader: proc "c" (reacquirer: proc "c" ())) {
+        relinquishPresentedItemToReader :: proc "c" (self: ^NS.FilePresenter, _: SEL, reader: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("relinquishPresentedItemToReader:"), auto_cast relinquishPresentedItemToReader, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.relinquishPresentedItemToWriter != nil {
-        relinquishPresentedItemToWriter :: proc "c" (self: ^NS.FilePresenter, _: SEL, writer: proc "c" (reacquirer: proc "c" ())) {
+        relinquishPresentedItemToWriter :: proc "c" (self: ^NS.FilePresenter, _: SEL, writer: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("relinquishPresentedItemToWriter:"), auto_cast relinquishPresentedItemToWriter, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.savePresentedItemChangesWithCompletionHandler != nil {
-        savePresentedItemChangesWithCompletionHandler :: proc "c" (self: ^NS.FilePresenter, _: SEL, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        savePresentedItemChangesWithCompletionHandler :: proc "c" (self: ^NS.FilePresenter, _: SEL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("savePresentedItemChangesWithCompletionHandler:"), auto_cast savePresentedItemChangesWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.accommodatePresentedItemDeletionWithCompletionHandler != nil {
-        accommodatePresentedItemDeletionWithCompletionHandler :: proc "c" (self: ^NS.FilePresenter, _: SEL, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        accommodatePresentedItemDeletionWithCompletionHandler :: proc "c" (self: ^NS.FilePresenter, _: SEL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accommodatePresentedItemDeletionWithCompletionHandler:"), auto_cast accommodatePresentedItemDeletionWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.accommodatePresentedItemEvictionWithCompletionHandler != nil {
-        accommodatePresentedItemEvictionWithCompletionHandler :: proc "c" (self: ^NS.FilePresenter, _: SEL, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        accommodatePresentedItemEvictionWithCompletionHandler :: proc "c" (self: ^NS.FilePresenter, _: SEL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentedItemDidResolveConflictVersion:"), auto_cast presentedItemDidResolveConflictVersion, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.accommodatePresentedSubitemDeletionAtURL != nil {
-        accommodatePresentedSubitemDeletionAtURL :: proc "c" (self: ^NS.FilePresenter, _: SEL, url: ^NS.URL, completionHandler: proc "c" (errorOrNil: ^NS.Error)) {
+        accommodatePresentedSubitemDeletionAtURL :: proc "c" (self: ^NS.FilePresenter, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

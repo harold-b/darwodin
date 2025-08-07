@@ -24,9 +24,9 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    completeRequestReturningItems: proc(self: ^NS.ExtensionContext, items: ^NS.Array, completionHandler: proc "c" (expired: bool)),
+    completeRequestReturningItems: proc(self: ^NS.ExtensionContext, items: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (expired: bool))),
     cancelRequestWithError: proc(self: ^NS.ExtensionContext, error: ^NS.Error),
-    openURL: proc(self: ^NS.ExtensionContext, _URL: ^NS.URL, completionHandler: proc "c" (success: bool)),
+    openURL: proc(self: ^NS.ExtensionContext, _URL: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (success: bool))),
     inputItems: proc(self: ^NS.ExtensionContext) -> ^NS.Array,
     load: proc(),
     initialize: proc(),
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.completeRequestReturningItems != nil {
-        completeRequestReturningItems :: proc "c" (self: ^NS.ExtensionContext, _: SEL, items: ^NS.Array, completionHandler: proc "c" (expired: bool)) {
+        completeRequestReturningItems :: proc "c" (self: ^NS.ExtensionContext, _: SEL, items: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (expired: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancelRequestWithError:"), auto_cast cancelRequestWithError, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.openURL != nil {
-        openURL :: proc "c" (self: ^NS.ExtensionContext, _: SEL, _URL: ^NS.URL, completionHandler: proc "c" (success: bool)) {
+        openURL :: proc "c" (self: ^NS.ExtensionContext, _: SEL, _URL: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

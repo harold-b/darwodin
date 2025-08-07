@@ -86,7 +86,7 @@ Expression_expressionForAnyKey :: #force_inline proc "c" () -> ^Expression {
     return msgSend(^Expression, Expression, "expressionForAnyKey")
 }
 @(objc_type=Expression, objc_name="expressionForBlock", objc_is_class_method=true)
-Expression_expressionForBlock :: #force_inline proc "c" (block: proc "c" (evaluatedObject: id, expressions: ^Array, _context: ^MutableDictionary) -> id, arguments: ^Array) -> ^Expression {
+Expression_expressionForBlock :: #force_inline proc "c" (block: ^Objc_Block(proc "c" (evaluatedObject: id, expressions: ^Array, _context: ^MutableDictionary) -> id), arguments: ^Array) -> ^Expression {
     return msgSend(^Expression, Expression, "expressionForBlock:arguments:", block, arguments)
 }
 @(objc_type=Expression, objc_name="expressionForConditional", objc_is_class_method=true)
@@ -162,8 +162,8 @@ Expression_falseExpression :: #force_inline proc "c" (self: ^Expression) -> ^Exp
     return msgSend(^Expression, self, "falseExpression")
 }
 @(objc_type=Expression, objc_name="expressionBlock")
-Expression_expressionBlock :: #force_inline proc "c" (self: ^Expression) -> proc "c" () -> id {
-    return msgSend(proc "c" () -> id, self, "expressionBlock")
+Expression_expressionBlock :: #force_inline proc "c" (self: ^Expression) -> ^Objc_Block(proc "c" () -> id) {
+    return msgSend(^Objc_Block(proc "c" () -> id), self, "expressionBlock")
 }
 @(objc_type=Expression, objc_name="supportsSecureCoding", objc_is_class_method=true)
 Expression_supportsSecureCoding :: #force_inline proc "c" () -> bool {

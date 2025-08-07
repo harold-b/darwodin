@@ -88,8 +88,8 @@ VTable :: struct {
     fractionOfDistanceThroughGlyphForPoint: proc(self: ^AK.LayoutManager, point: CG.Point, container: ^AK.TextContainer) -> CG.Float,
     characterIndexForPoint: proc(self: ^AK.LayoutManager, point: CG.Point, container: ^AK.TextContainer, partialFraction: ^CG.Float) -> NS.UInteger,
     getLineFragmentInsertionPointsForCharacterAtIndex: proc(self: ^AK.LayoutManager, charIndex: NS.UInteger, aFlag: bool, dFlag: bool, positions: ^CG.Float, charIndexes: ^NS.UInteger) -> NS.UInteger,
-    enumerateLineFragmentsForGlyphRange: proc(self: ^AK.LayoutManager, glyphRange: NS._NSRange, block: proc "c" (rect: NS.Rect, usedRect: NS.Rect, textContainer: ^AK.TextContainer, glyphRange: NS._NSRange, stop: ^bool)),
-    enumerateEnclosingRectsForGlyphRange: proc(self: ^AK.LayoutManager, glyphRange: NS._NSRange, selectedRange: NS._NSRange, textContainer: ^AK.TextContainer, block: proc "c" (rect: NS.Rect, stop: ^bool)),
+    enumerateLineFragmentsForGlyphRange: proc(self: ^AK.LayoutManager, glyphRange: NS._NSRange, block: ^Objc_Block(proc "c" (rect: NS.Rect, usedRect: NS.Rect, textContainer: ^AK.TextContainer, glyphRange: NS._NSRange, stop: ^bool))),
+    enumerateEnclosingRectsForGlyphRange: proc(self: ^AK.LayoutManager, glyphRange: NS._NSRange, selectedRange: NS._NSRange, textContainer: ^AK.TextContainer, block: ^Objc_Block(proc "c" (rect: NS.Rect, stop: ^bool))),
     drawBackgroundForGlyphRange: proc(self: ^AK.LayoutManager, glyphsToShow: NS._NSRange, origin: CG.Point),
     drawGlyphsForGlyphRange: proc(self: ^AK.LayoutManager, glyphsToShow: NS._NSRange, origin: CG.Point),
     showCGGlyphs_positions_count_font_textMatrix_attributes_inContext: proc(self: ^AK.LayoutManager, glyphs: ^CG.Glyph, positions: ^CG.Point, glyphCount: NS.Integer, font: ^AK.Font, textMatrix: CG.AffineTransform, attributes: ^NS.Dictionary, CGContext: CG.ContextRef),
@@ -832,7 +832,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:"), auto_cast getLineFragmentInsertionPointsForCharacterAtIndex, "L@:LBB^void^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateLineFragmentsForGlyphRange != nil {
-        enumerateLineFragmentsForGlyphRange :: proc "c" (self: ^AK.LayoutManager, _: SEL, glyphRange: NS._NSRange, block: proc "c" (rect: NS.Rect, usedRect: NS.Rect, textContainer: ^AK.TextContainer, glyphRange: NS._NSRange, stop: ^bool)) {
+        enumerateLineFragmentsForGlyphRange :: proc "c" (self: ^AK.LayoutManager, _: SEL, glyphRange: NS._NSRange, block: ^Objc_Block(proc "c" (rect: NS.Rect, usedRect: NS.Rect, textContainer: ^AK.TextContainer, glyphRange: NS._NSRange, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -842,7 +842,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateLineFragmentsForGlyphRange:usingBlock:"), auto_cast enumerateLineFragmentsForGlyphRange, "v@:{_NSRange=LL}?") do panic("Failed to register objC method.")
     }
     if vt.enumerateEnclosingRectsForGlyphRange != nil {
-        enumerateEnclosingRectsForGlyphRange :: proc "c" (self: ^AK.LayoutManager, _: SEL, glyphRange: NS._NSRange, selectedRange: NS._NSRange, textContainer: ^AK.TextContainer, block: proc "c" (rect: NS.Rect, stop: ^bool)) {
+        enumerateEnclosingRectsForGlyphRange :: proc "c" (self: ^AK.LayoutManager, _: SEL, glyphRange: NS._NSRange, selectedRange: NS._NSRange, textContainer: ^AK.TextContainer, block: ^Objc_Block(proc "c" (rect: NS.Rect, stop: ^bool))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -34,12 +34,12 @@ Error_errorWithDomain :: #force_inline proc "c" (domain: ^String, code: Integer,
     return msgSend(^Error, Error, "errorWithDomain:code:userInfo:", domain, code, dict)
 }
 @(objc_type=Error, objc_name="setUserInfoValueProviderForDomain", objc_is_class_method=true)
-Error_setUserInfoValueProviderForDomain :: #force_inline proc "c" (errorDomain: ^String, provider: proc "c" (err: ^Error, userInfoKey: ^String) -> id) {
+Error_setUserInfoValueProviderForDomain :: #force_inline proc "c" (errorDomain: ^String, provider: ^Objc_Block(proc "c" (err: ^Error, userInfoKey: ^String) -> id)) {
     msgSend(nil, Error, "setUserInfoValueProviderForDomain:provider:", errorDomain, provider)
 }
 @(objc_type=Error, objc_name="userInfoValueProviderForDomain", objc_is_class_method=true)
-Error_userInfoValueProviderForDomain :: #force_inline proc "c" (err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> proc "c" (err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> id {
-    return msgSend(proc "c" (err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> id, Error, "userInfoValueProviderForDomain:", err, userInfoKey, errorDomain)
+Error_userInfoValueProviderForDomain :: #force_inline proc "c" (err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> ^Objc_Block(proc "c" (err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> id) {
+    return msgSend(^Objc_Block(proc "c" (err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> id), Error, "userInfoValueProviderForDomain:", err, userInfoKey, errorDomain)
 }
 @(objc_type=Error, objc_name="domain")
 Error_domain :: #force_inline proc "c" (self: ^Error) -> ^String {

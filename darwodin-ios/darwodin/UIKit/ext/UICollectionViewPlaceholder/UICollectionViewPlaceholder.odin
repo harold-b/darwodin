@@ -30,8 +30,8 @@ VTable :: struct {
     initWithInsertionIndexPath: proc(self: ^UI.CollectionViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String) -> ^UI.CollectionViewPlaceholder,
     init: proc(self: ^UI.CollectionViewPlaceholder) -> ^UI.CollectionViewPlaceholder,
     new: proc() -> ^UI.CollectionViewPlaceholder,
-    cellUpdateHandler: proc(self: ^UI.CollectionViewPlaceholder) -> proc "c" (),
-    setCellUpdateHandler: proc(self: ^UI.CollectionViewPlaceholder, cellUpdateHandler: proc "c" ()),
+    cellUpdateHandler: proc(self: ^UI.CollectionViewPlaceholder) -> ^Objc_Block(proc "c" ()),
+    setCellUpdateHandler: proc(self: ^UI.CollectionViewPlaceholder, cellUpdateHandler: ^Objc_Block(proc "c" ())),
     load: proc(),
     initialize: proc(),
     allocWithZone: proc(zone: ^NS._NSZone) -> ^UI.CollectionViewPlaceholder,
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.cellUpdateHandler != nil {
-        cellUpdateHandler :: proc "c" (self: ^UI.CollectionViewPlaceholder, _: SEL) -> proc "c" () {
+        cellUpdateHandler :: proc "c" (self: ^UI.CollectionViewPlaceholder, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cellUpdateHandler"), auto_cast cellUpdateHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setCellUpdateHandler != nil {
-        setCellUpdateHandler :: proc "c" (self: ^UI.CollectionViewPlaceholder, _: SEL, cellUpdateHandler: proc "c" ()) {
+        setCellUpdateHandler :: proc "c" (self: ^UI.CollectionViewPlaceholder, _: SEL, cellUpdateHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

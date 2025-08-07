@@ -37,7 +37,7 @@ OrderedCollectionDifference_initWithInsertIndexes_insertedObjects_removeIndexes_
     return msgSend(^OrderedCollectionDifference, self, "initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:", inserts, insertedObjects, removes, removedObjects)
 }
 @(objc_type=OrderedCollectionDifference, objc_name="differenceByTransformingChangesWithBlock")
-OrderedCollectionDifference_differenceByTransformingChangesWithBlock :: #force_inline proc "c" (self: ^OrderedCollectionDifference, block: proc "c" (_arg_0: ^OrderedCollectionChange) -> ^OrderedCollectionChange) -> ^OrderedCollectionDifference {
+OrderedCollectionDifference_differenceByTransformingChangesWithBlock :: #force_inline proc "c" (self: ^OrderedCollectionDifference, block: ^Objc_Block(proc "c" (_: ^OrderedCollectionChange) -> ^OrderedCollectionChange)) -> ^OrderedCollectionDifference {
     return msgSend(^OrderedCollectionDifference, self, "differenceByTransformingChangesWithBlock:", block)
 }
 @(objc_type=OrderedCollectionDifference, objc_name="inverseDifference")

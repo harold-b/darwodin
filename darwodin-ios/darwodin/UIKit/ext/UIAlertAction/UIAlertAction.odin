@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    actionWithTitle: proc(title: ^NS.String, style: UI.AlertActionStyle, handler: proc "c" (action: ^UI.AlertAction)) -> ^UI.AlertAction,
+    actionWithTitle: proc(title: ^NS.String, style: UI.AlertActionStyle, handler: ^Objc_Block(proc "c" (action: ^UI.AlertAction))) -> ^UI.AlertAction,
     title: proc(self: ^UI.AlertAction) -> ^NS.String,
     style: proc(self: ^UI.AlertAction) -> UI.AlertActionStyle,
     isEnabled: proc(self: ^UI.AlertAction) -> bool,
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.actionWithTitle != nil {
-        actionWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, style: UI.AlertActionStyle, handler: proc "c" (action: ^UI.AlertAction)) -> ^UI.AlertAction {
+        actionWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, style: UI.AlertActionStyle, handler: ^Objc_Block(proc "c" (action: ^UI.AlertAction))) -> ^UI.AlertAction {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

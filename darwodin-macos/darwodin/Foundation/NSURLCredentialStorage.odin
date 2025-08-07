@@ -55,7 +55,7 @@ URLCredentialStorage_allCredentials :: #force_inline proc "c" (self: ^URLCredent
     return msgSend(^Dictionary, self, "allCredentials")
 }
 @(objc_type=URLCredentialStorage, objc_name="getCredentialsForProtectionSpace")
-URLCredentialStorage_getCredentialsForProtectionSpace :: #force_inline proc "c" (self: ^URLCredentialStorage, protectionSpace: ^URLProtectionSpace, task: ^URLSessionTask, completionHandler: proc "c" (credentials: ^Dictionary)) {
+URLCredentialStorage_getCredentialsForProtectionSpace :: #force_inline proc "c" (self: ^URLCredentialStorage, protectionSpace: ^URLProtectionSpace, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credentials: ^Dictionary))) {
     msgSend(nil, self, "getCredentialsForProtectionSpace:task:completionHandler:", protectionSpace, task, completionHandler)
 }
 @(objc_type=URLCredentialStorage, objc_name="setCredential_forProtectionSpace_task")
@@ -67,7 +67,7 @@ URLCredentialStorage_removeCredential_forProtectionSpace_options_task :: #force_
     msgSend(nil, self, "removeCredential:forProtectionSpace:options:task:", credential, protectionSpace, options, task)
 }
 @(objc_type=URLCredentialStorage, objc_name="getDefaultCredentialForProtectionSpace")
-URLCredentialStorage_getDefaultCredentialForProtectionSpace :: #force_inline proc "c" (self: ^URLCredentialStorage, space: ^URLProtectionSpace, task: ^URLSessionTask, completionHandler: proc "c" (credential: ^URLCredential)) {
+URLCredentialStorage_getDefaultCredentialForProtectionSpace :: #force_inline proc "c" (self: ^URLCredentialStorage, space: ^URLProtectionSpace, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credential: ^URLCredential))) {
     msgSend(nil, self, "getDefaultCredentialForProtectionSpace:task:completionHandler:", space, task, completionHandler)
 }
 @(objc_type=URLCredentialStorage, objc_name="setDefaultCredential_forProtectionSpace_task")

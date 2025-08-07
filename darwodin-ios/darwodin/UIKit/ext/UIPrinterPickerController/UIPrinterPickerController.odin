@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     printerPickerControllerWithInitiallySelectedPrinter: proc(printer: ^UI.Printer) -> ^UI.PrinterPickerController,
-    presentAnimated: proc(self: ^UI.PrinterPickerController, animated: bool, completion: proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool,
-    presentFromRect: proc(self: ^UI.PrinterPickerController, rect: CG.Rect, view: ^UI.View, animated: bool, completion: proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool,
-    presentFromBarButtonItem: proc(self: ^UI.PrinterPickerController, item: ^UI.BarButtonItem, animated: bool, completion: proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool,
+    presentAnimated: proc(self: ^UI.PrinterPickerController, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool,
+    presentFromRect: proc(self: ^UI.PrinterPickerController, rect: CG.Rect, view: ^UI.View, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool,
+    presentFromBarButtonItem: proc(self: ^UI.PrinterPickerController, item: ^UI.BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool,
     dismissAnimated: proc(self: ^UI.PrinterPickerController, animated: bool),
     selectedPrinter: proc(self: ^UI.PrinterPickerController) -> ^UI.Printer,
     delegate: proc(self: ^UI.PrinterPickerController) -> ^UI.PrinterPickerControllerDelegate,
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("printerPickerControllerWithInitiallySelectedPrinter:"), auto_cast printerPickerControllerWithInitiallySelectedPrinter, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.presentAnimated != nil {
-        presentAnimated :: proc "c" (self: ^UI.PrinterPickerController, _: SEL, animated: bool, completion: proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool {
+        presentAnimated :: proc "c" (self: ^UI.PrinterPickerController, _: SEL, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentAnimated:completionHandler:"), auto_cast presentAnimated, "B@:B?") do panic("Failed to register objC method.")
     }
     if vt.presentFromRect != nil {
-        presentFromRect :: proc "c" (self: ^UI.PrinterPickerController, _: SEL, rect: CG.Rect, view: ^UI.View, animated: bool, completion: proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool {
+        presentFromRect :: proc "c" (self: ^UI.PrinterPickerController, _: SEL, rect: CG.Rect, view: ^UI.View, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentFromRect:inView:animated:completionHandler:"), auto_cast presentFromRect, "B@:{CGRect={CGPoint=dd}{CGSize=dd}}@B?") do panic("Failed to register objC method.")
     }
     if vt.presentFromBarButtonItem != nil {
-        presentFromBarButtonItem :: proc "c" (self: ^UI.PrinterPickerController, _: SEL, item: ^UI.BarButtonItem, animated: bool, completion: proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error)) -> bool {
+        presentFromBarButtonItem :: proc "c" (self: ^UI.PrinterPickerController, _: SEL, item: ^UI.BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^UI.PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

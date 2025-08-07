@@ -32,11 +32,11 @@ TableViewPlaceholder_new :: #force_inline proc "c" () -> ^TableViewPlaceholder {
     return msgSend(^TableViewPlaceholder, TableViewPlaceholder, "new")
 }
 @(objc_type=TableViewPlaceholder, objc_name="cellUpdateHandler")
-TableViewPlaceholder_cellUpdateHandler :: #force_inline proc "c" (self: ^TableViewPlaceholder) -> proc "c" () {
-    return msgSend(proc "c" (), self, "cellUpdateHandler")
+TableViewPlaceholder_cellUpdateHandler :: #force_inline proc "c" (self: ^TableViewPlaceholder) -> ^Objc_Block(proc "c" ()) {
+    return msgSend(^Objc_Block(proc "c" ()), self, "cellUpdateHandler")
 }
 @(objc_type=TableViewPlaceholder, objc_name="setCellUpdateHandler")
-TableViewPlaceholder_setCellUpdateHandler :: #force_inline proc "c" (self: ^TableViewPlaceholder, cellUpdateHandler: proc "c" ()) {
+TableViewPlaceholder_setCellUpdateHandler :: #force_inline proc "c" (self: ^TableViewPlaceholder, cellUpdateHandler: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "setCellUpdateHandler:", cellUpdateHandler)
 }
 @(objc_type=TableViewPlaceholder, objc_name="load", objc_is_class_method=true)

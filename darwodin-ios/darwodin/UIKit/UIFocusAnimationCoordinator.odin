@@ -26,15 +26,15 @@ FocusAnimationCoordinator_init :: proc "c" (self: ^FocusAnimationCoordinator) ->
 
 
 @(objc_type=FocusAnimationCoordinator, objc_name="addCoordinatedAnimations")
-FocusAnimationCoordinator_addCoordinatedAnimations :: #force_inline proc "c" (self: ^FocusAnimationCoordinator, animations: proc "c" (), completion: proc "c" ()) {
+FocusAnimationCoordinator_addCoordinatedAnimations :: #force_inline proc "c" (self: ^FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addCoordinatedAnimations:completion:", animations, completion)
 }
 @(objc_type=FocusAnimationCoordinator, objc_name="addCoordinatedFocusingAnimations")
-FocusAnimationCoordinator_addCoordinatedFocusingAnimations :: #force_inline proc "c" (self: ^FocusAnimationCoordinator, animations: proc "c" (animationContext: ^FocusAnimationContext), completion: proc "c" ()) {
+FocusAnimationCoordinator_addCoordinatedFocusingAnimations :: #force_inline proc "c" (self: ^FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" (animationContext: ^FocusAnimationContext)), completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addCoordinatedFocusingAnimations:completion:", animations, completion)
 }
 @(objc_type=FocusAnimationCoordinator, objc_name="addCoordinatedUnfocusingAnimations")
-FocusAnimationCoordinator_addCoordinatedUnfocusingAnimations :: #force_inline proc "c" (self: ^FocusAnimationCoordinator, animations: proc "c" (animationContext: ^FocusAnimationContext), completion: proc "c" ()) {
+FocusAnimationCoordinator_addCoordinatedUnfocusingAnimations :: #force_inline proc "c" (self: ^FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" (animationContext: ^FocusAnimationContext)), completion: ^Objc_Block(proc "c" ())) {
     msgSend(nil, self, "addCoordinatedUnfocusingAnimations:completion:", animations, completion)
 }
 @(objc_type=FocusAnimationCoordinator, objc_name="load", objc_is_class_method=true)

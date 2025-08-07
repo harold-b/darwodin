@@ -144,7 +144,7 @@ Calendar_dateByAddingUnit :: #force_inline proc "c" (self: ^Calendar, unit: Cale
     return msgSend(^Date, self, "dateByAddingUnit:value:toDate:options:", unit, value, date, options)
 }
 @(objc_type=Calendar, objc_name="enumerateDatesStartingAfterDate")
-Calendar_enumerateDatesStartingAfterDate :: #force_inline proc "c" (self: ^Calendar, start: ^Date, comps: ^DateComponents, opts: CalendarOptions, block: proc "c" (date: ^Date, exactMatch: bool, stop: ^bool)) {
+Calendar_enumerateDatesStartingAfterDate :: #force_inline proc "c" (self: ^Calendar, start: ^Date, comps: ^DateComponents, opts: CalendarOptions, block: ^Objc_Block(proc "c" (date: ^Date, exactMatch: bool, stop: ^bool))) {
     msgSend(nil, self, "enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:", start, comps, opts, block)
 }
 @(objc_type=Calendar, objc_name="nextDateAfterDate_matchingComponents_options")

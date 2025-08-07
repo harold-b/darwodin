@@ -36,7 +36,7 @@ VTable :: struct {
     predicateWithFormat_arguments: proc(predicateFormat: ^NS.String, argList: cffi.va_list) -> ^NS.Predicate,
     predicateFromMetadataQueryString: proc(queryString: ^NS.String) -> ^NS.Predicate,
     predicateWithValue: proc(value: bool) -> ^NS.Predicate,
-    predicateWithBlock: proc(block: proc "c" (evaluatedObject: id, bindings: ^NS.Dictionary) -> bool) -> ^NS.Predicate,
+    predicateWithBlock: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^NS.Dictionary) -> bool)) -> ^NS.Predicate,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
     initialize: proc(),
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("predicateWithValue:"), auto_cast predicateWithValue, "@#:B") do panic("Failed to register objC method.")
     }
     if vt.predicateWithBlock != nil {
-        predicateWithBlock :: proc "c" (self: Class, _: SEL, block: proc "c" (evaluatedObject: id, bindings: ^NS.Dictionary) -> bool) -> ^NS.Predicate {
+        predicateWithBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^NS.Dictionary) -> bool)) -> ^NS.Predicate {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

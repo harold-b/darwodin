@@ -31,7 +31,7 @@ ScoreChallenge_leaderboardEntry :: #force_inline proc "c" (self: ^ScoreChallenge
     return msgSend(^LeaderboardEntry, self, "leaderboardEntry")
 }
 @(objc_type=ScoreChallenge, objc_name="loadReceivedChallengesWithCompletionHandler", objc_is_class_method=true)
-ScoreChallenge_loadReceivedChallengesWithCompletionHandler :: #force_inline proc "c" (completionHandler: proc "c" (challenges: ^NS.Array, error: ^NS.Error)) {
+ScoreChallenge_loadReceivedChallengesWithCompletionHandler :: #force_inline proc "c" (completionHandler: ^Objc_Block(proc "c" (challenges: ^NS.Array, error: ^NS.Error))) {
     msgSend(nil, ScoreChallenge, "loadReceivedChallengesWithCompletionHandler:", completionHandler)
 }
 @(objc_type=ScoreChallenge, objc_name="supportsSecureCoding", objc_is_class_method=true)
