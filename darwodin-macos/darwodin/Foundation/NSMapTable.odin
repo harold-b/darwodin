@@ -71,15 +71,15 @@ MapTable_weakToWeakObjectsMapTable :: #force_inline proc "c" () -> ^MapTable {
     return msgSend(^MapTable, MapTable, "weakToWeakObjectsMapTable")
 }
 @(objc_type=MapTable, objc_name="objectForKey")
-MapTable_objectForKey :: #force_inline proc "c" (self: ^MapTable, aKey: ^id) -> ^id {
-    return msgSend(^id, self, "objectForKey:", aKey)
+MapTable_objectForKey :: #force_inline proc "c" (self: ^MapTable, aKey: id) -> id {
+    return msgSend(id, self, "objectForKey:", aKey)
 }
 @(objc_type=MapTable, objc_name="removeObjectForKey")
-MapTable_removeObjectForKey :: #force_inline proc "c" (self: ^MapTable, aKey: ^id) {
+MapTable_removeObjectForKey :: #force_inline proc "c" (self: ^MapTable, aKey: id) {
     msgSend(nil, self, "removeObjectForKey:", aKey)
 }
 @(objc_type=MapTable, objc_name="setObject")
-MapTable_setObject :: #force_inline proc "c" (self: ^MapTable, anObject: ^id, aKey: ^id) {
+MapTable_setObject :: #force_inline proc "c" (self: ^MapTable, anObject: id, aKey: id) {
     msgSend(nil, self, "setObject:forKey:", anObject, aKey)
 }
 @(objc_type=MapTable, objc_name="keyEnumerator")

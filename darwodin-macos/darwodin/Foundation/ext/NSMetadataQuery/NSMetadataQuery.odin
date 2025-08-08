@@ -236,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).sortDescriptors(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("sortDescriptors"), auto_cast sortDescriptors, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sortDescriptors"), auto_cast sortDescriptors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSortDescriptors != nil {
         setSortDescriptors :: proc "c" (self: ^NS.MetadataQuery, _: SEL, sortDescriptors: ^NS.Array) {
@@ -246,7 +246,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setSortDescriptors(self, sortDescriptors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSortDescriptors:"), auto_cast setSortDescriptors, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSortDescriptors:"), auto_cast setSortDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.valueListAttributes != nil {
         valueListAttributes :: proc "c" (self: ^NS.MetadataQuery, _: SEL) -> ^NS.Array {
@@ -256,7 +256,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).valueListAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("valueListAttributes"), auto_cast valueListAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("valueListAttributes"), auto_cast valueListAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setValueListAttributes != nil {
         setValueListAttributes :: proc "c" (self: ^NS.MetadataQuery, _: SEL, valueListAttributes: ^NS.Array) {
@@ -266,7 +266,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setValueListAttributes(self, valueListAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setValueListAttributes:"), auto_cast setValueListAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setValueListAttributes:"), auto_cast setValueListAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.groupingAttributes != nil {
         groupingAttributes :: proc "c" (self: ^NS.MetadataQuery, _: SEL) -> ^NS.Array {
@@ -276,7 +276,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).groupingAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("groupingAttributes"), auto_cast groupingAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("groupingAttributes"), auto_cast groupingAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setGroupingAttributes != nil {
         setGroupingAttributes :: proc "c" (self: ^NS.MetadataQuery, _: SEL, groupingAttributes: ^NS.Array) {
@@ -286,7 +286,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setGroupingAttributes(self, groupingAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setGroupingAttributes:"), auto_cast setGroupingAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setGroupingAttributes:"), auto_cast setGroupingAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.notificationBatchingInterval != nil {
         notificationBatchingInterval :: proc "c" (self: ^NS.MetadataQuery, _: SEL) -> NS.TimeInterval {
@@ -426,7 +426,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).valueLists(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("valueLists"), auto_cast valueLists, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("valueLists"), auto_cast valueLists, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.groupedResults != nil {
         groupedResults :: proc "c" (self: ^NS.MetadataQuery, _: SEL) -> ^NS.Array {
@@ -436,7 +436,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).groupedResults(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("groupedResults"), auto_cast groupedResults, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("groupedResults"), auto_cast groupedResults, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -706,7 +706,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -736,7 +736,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

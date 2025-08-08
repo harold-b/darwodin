@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).writeObjects(self, objects)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("writeObjects:"), auto_cast writeObjects, "B@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writeObjects:"), auto_cast writeObjects, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.readObjectsForClasses != nil {
         readObjectsForClasses :: proc "c" (self: ^AK.Pasteboard, _: SEL, classArray: ^NS.Array, options: ^NS.Dictionary) -> ^NS.Array {
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).readObjectsForClasses(self, classArray, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("readObjectsForClasses:options:"), auto_cast readObjectsForClasses, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readObjectsForClasses:options:"), auto_cast readObjectsForClasses, "@@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.indexOfPasteboardItem != nil {
         indexOfPasteboardItem :: proc "c" (self: ^AK.Pasteboard, _: SEL, pasteboardItem: ^AK.PasteboardItem) -> NS.UInteger {
@@ -187,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).canReadItemWithDataConformingToTypes(self, types)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("canReadItemWithDataConformingToTypes:"), auto_cast canReadItemWithDataConformingToTypes, "B@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("canReadItemWithDataConformingToTypes:"), auto_cast canReadItemWithDataConformingToTypes, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.canReadObjectForClasses != nil {
         canReadObjectForClasses :: proc "c" (self: ^AK.Pasteboard, _: SEL, classArray: ^NS.Array, options: ^NS.Dictionary) -> bool {
@@ -197,7 +197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).canReadObjectForClasses(self, classArray, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("canReadObjectForClasses:options:"), auto_cast canReadObjectForClasses, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("canReadObjectForClasses:options:"), auto_cast canReadObjectForClasses, "B@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.declareTypes != nil {
         declareTypes :: proc "c" (self: ^AK.Pasteboard, _: SEL, newTypes: ^NS.Array, newOwner: id) -> NS.Integer {
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).declareTypes(self, newTypes, newOwner)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("declareTypes:owner:"), auto_cast declareTypes, "l@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("declareTypes:owner:"), auto_cast declareTypes, "l@:^void@") do panic("Failed to register objC method.")
     }
     if vt.addTypes != nil {
         addTypes :: proc "c" (self: ^AK.Pasteboard, _: SEL, newTypes: ^NS.Array, newOwner: id) -> NS.Integer {
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).addTypes(self, newTypes, newOwner)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addTypes:owner:"), auto_cast addTypes, "l@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addTypes:owner:"), auto_cast addTypes, "l@:^void@") do panic("Failed to register objC method.")
     }
     if vt.availableTypeFromArray != nil {
         availableTypeFromArray :: proc "c" (self: ^AK.Pasteboard, _: SEL, types: ^NS.Array) -> ^NS.String {
@@ -227,7 +227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableTypeFromArray(self, types)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("availableTypeFromArray:"), auto_cast availableTypeFromArray, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("availableTypeFromArray:"), auto_cast availableTypeFromArray, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.setData != nil {
         setData :: proc "c" (self: ^AK.Pasteboard, _: SEL, data: ^NS.Data, dataType: ^NS.String) -> bool {
@@ -327,7 +327,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).pasteboardItems(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteboardItems"), auto_cast pasteboardItems, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteboardItems"), auto_cast pasteboardItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.types != nil {
         types :: proc "c" (self: ^AK.Pasteboard, _: SEL) -> ^NS.Array {
@@ -337,7 +337,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).types(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("types"), auto_cast types, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("types"), auto_cast types, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.typesFilterableTo != nil {
         typesFilterableTo :: proc "c" (self: Class, _: SEL, type: ^NS.String) -> ^NS.Array {
@@ -347,7 +347,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).typesFilterableTo( type)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("typesFilterableTo:"), auto_cast typesFilterableTo, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("typesFilterableTo:"), auto_cast typesFilterableTo, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.pasteboardByFilteringFile != nil {
         pasteboardByFilteringFile :: proc "c" (self: Class, _: SEL, filename: ^NS.String) -> ^AK.Pasteboard {
@@ -687,7 +687,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -717,7 +717,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -25,15 +25,15 @@ ComponentSystem_init :: proc "c" (self: ^ComponentSystem) -> ^ComponentSystem {
 
 
 @(objc_type=ComponentSystem, objc_name="objectAtIndexedSubscript")
-ComponentSystem_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^ComponentSystem, idx: NS.UInteger) -> ^Component {
-    return msgSend(^Component, self, "objectAtIndexedSubscript:", idx)
+ComponentSystem_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^ComponentSystem, idx: NS.UInteger) -> id {
+    return msgSend(id, self, "objectAtIndexedSubscript:", idx)
 }
 @(objc_type=ComponentSystem, objc_name="initWithComponentClass")
 ComponentSystem_initWithComponentClass :: #force_inline proc "c" (self: ^ComponentSystem, cls: Class) -> ^ComponentSystem {
     return msgSend(^ComponentSystem, self, "initWithComponentClass:", cls)
 }
 @(objc_type=ComponentSystem, objc_name="addComponent")
-ComponentSystem_addComponent :: #force_inline proc "c" (self: ^ComponentSystem, component: ^Component) {
+ComponentSystem_addComponent :: #force_inline proc "c" (self: ^ComponentSystem, component: id) {
     msgSend(nil, self, "addComponent:", component)
 }
 @(objc_type=ComponentSystem, objc_name="addComponentWithEntity")
@@ -45,7 +45,7 @@ ComponentSystem_removeComponentWithEntity :: #force_inline proc "c" (self: ^Comp
     msgSend(nil, self, "removeComponentWithEntity:", entity)
 }
 @(objc_type=ComponentSystem, objc_name="removeComponent")
-ComponentSystem_removeComponent :: #force_inline proc "c" (self: ^ComponentSystem, component: ^Component) {
+ComponentSystem_removeComponent :: #force_inline proc "c" (self: ^ComponentSystem, component: id) {
     msgSend(nil, self, "removeComponent:", component)
 }
 @(objc_type=ComponentSystem, objc_name="updateWithDeltaTime")

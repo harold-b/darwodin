@@ -41,6 +41,18 @@ Structs:
     CGPDFContentStream: CG.PDFContentStream
     CGPDFOperatorTable: CG.PDFOperatorTable
     CGPDFScanner: CG.PDFScanner
+    CGDisplayMode: CG.DisplayMode
+    CGDeviceColor: CG.DeviceColor
+    _CGDisplayConfigRef: CG._CGDisplayConfigRef
+    CGDisplayStream: CG.DisplayStream
+    CGDisplayStreamUpdate: CG.DisplayStreamUpdate
+    CGScreenUpdateMoveDelta: CG.ScreenUpdateMoveDelta
+    __CGEvent: CG.__CGEvent
+    __CGEventTapProxy: CG.__CGEventTapProxy
+    __CGEventTapInformation: CG.__CGEventTapInformation
+    __CGEventSource: CG.__CGEventSource
+    CGPSConverter: CG.PSConverter
+    CGPSConverterCallbacks: CG.PSConverterCallbacks
 
 Typedefs:
     CGFloat: CG.Float
@@ -97,6 +109,48 @@ Typedefs:
     CGPDFOperatorTableRef: CG.PDFOperatorTableRef
     CGPDFScannerRef: CG.PDFScannerRef
     CGPDFOperatorCallback: CG.PDFOperatorCallback
+    CGWindowID: CG.WindowID
+    CGWindowLevel: CG.WindowLevel
+    CGDirectDisplayID: CG.DirectDisplayID
+    CGOpenGLDisplayMask: CG.OpenGLDisplayMask
+    CGRefreshRate: CG.RefreshRate
+    CGDisplayModeRef: CG.DisplayModeRef
+    CGGammaValue: CG.GammaValue
+    CGDisplayCount: CG.DisplayCount
+    CGDisplayErr: CG.DisplayErr
+    CGDisplayConfigRef: CG.DisplayConfigRef
+    CGDisplayReconfigurationCallBack: CG.DisplayReconfigurationCallBack
+    CGDisplayFadeReservationToken: CG.DisplayFadeReservationToken
+    CGDisplayBlendFraction: CG.DisplayBlendFraction
+    CGDisplayFadeInterval: CG.DisplayFadeInterval
+    CGDisplayReservationInterval: CG.DisplayReservationInterval
+    CGDisplayStreamRef: CG.DisplayStreamRef
+    CGDisplayStreamUpdateRef: CG.DisplayStreamUpdateRef
+    CGDisplayStreamFrameAvailableHandler: CG.DisplayStreamFrameAvailableHandler
+    CGEventErr: CG.EventErr
+    CGButtonCount: CG.ButtonCount
+    CGWheelCount: CG.WheelCount
+    CGCharCode: CG.CharCode
+    CGKeyCode: CG.KeyCode
+    CGScreenRefreshCallback: CG.ScreenRefreshCallback
+    CGScreenUpdateMoveCallback: CG.ScreenUpdateMoveCallback
+    CGRectCount: CG.RectCount
+    CGEventRef: CG.EventRef
+    CGEventTimestamp: CG.EventTimestamp
+    CGEventMask: CG.EventMask
+    CGEventTapProxy: CG.EventTapProxy
+    CGEventTapCallBack: CG.EventTapCallBack
+    CGEventTapInformation: CG.EventTapInformation
+    CGEventSourceRef: CG.EventSourceRef
+    CGEventSourceKeyboardType: CG.EventSourceKeyboardType
+    CGPSConverterRef: CG.PSConverterRef
+    CGPSConverterBeginDocumentCallback: CG.PSConverterBeginDocumentCallback
+    CGPSConverterEndDocumentCallback: CG.PSConverterEndDocumentCallback
+    CGPSConverterBeginPageCallback: CG.PSConverterBeginPageCallback
+    CGPSConverterEndPageCallback: CG.PSConverterEndPageCallback
+    CGPSConverterProgressCallback: CG.PSConverterProgressCallback
+    CGPSConverterMessageCallback: CG.PSConverterMessageCallback
+    CGPSConverterReleaseInfoCallback: CG.PSConverterReleaseInfoCallback
 
 Enums:
     CGRectEdge: CG.RectEdge
@@ -126,6 +180,32 @@ Enums:
     CGColorConversionInfoTransformType: CG.ColorConversionInfoTransformType
     CGError: CG.Error
     CGPDFTagType: CG.PDFTagType
+    CGWindowSharingType: CG.WindowSharingType
+    CGWindowBackingType: CG.WindowBackingType
+    CGWindowListOption: CG.WindowListOption
+    CGWindowImageOption: CG.WindowImageOption
+    CGWindowLevelKey: CG.WindowLevelKey
+    CGCaptureOptions: CG.CaptureOptions
+    CGConfigureOption: CG.ConfigureOption
+    CGDisplayChangeSummaryFlags: CG.DisplayChangeSummaryFlags
+    CGDisplayStreamUpdateRectType: CG.DisplayStreamUpdateRectType
+    CGDisplayStreamFrameStatus: CG.DisplayStreamFrameStatus
+    CGScreenUpdateOperation: CG.ScreenUpdateOperation
+    CGEventFilterMask: CG.EventFilterMask
+    CGEventSuppressionState: CG.EventSuppressionState
+    CGMouseButton: CG.MouseButton
+    CGScrollEventUnit: CG.ScrollEventUnit
+    CGMomentumScrollPhase: CG.MomentumScrollPhase
+    CGScrollPhase: CG.ScrollPhase
+    CGGesturePhase: CG.GesturePhase
+    CGEventFlags: CG.EventFlags
+    CGEventType: CG.EventType
+    CGEventField: CG.EventField
+    CGEventMouseSubtype: CG.EventMouseSubtype
+    CGEventTapLocation: CG.EventTapLocation
+    CGEventTapPlacement: CG.EventTapPlacement
+    CGEventTapOptions: CG.EventTapOptions
+    CGEventSourceStateID: CG.EventSourceStateID
 
 ObjCClasses:
 
@@ -640,6 +720,201 @@ Functions:
     ::CGPDFOperatorTableRetain: CG.PDFOperatorTableRetain
     ::CGPDFOperatorTableRelease: CG.PDFOperatorTableRelease
     ::CGPDFOperatorTableSetCallback: CG.PDFOperatorTableSetCallback
+    ::CGWindowListCopyWindowInfo: CG.WindowListCopyWindowInfo
+    ::CGWindowListCreate: CG.WindowListCreate
+    ::CGWindowListCreateDescriptionFromArray: CG.WindowListCreateDescriptionFromArray
+    ::CGWindowListCreateImage: CG.WindowListCreateImage
+    ::CGWindowListCreateImageFromArray: CG.WindowListCreateImageFromArray
+    ::CGPreflightScreenCaptureAccess: CG.PreflightScreenCaptureAccess
+    ::CGRequestScreenCaptureAccess: CG.RequestScreenCaptureAccess
+    ::CGWindowLevelForKey: CG.WindowLevelForKey
+    ::CGMainDisplayID: CG.MainDisplayID
+    ::CGGetDisplaysWithPoint: CG.GetDisplaysWithPoint
+    ::CGGetDisplaysWithRect: CG.GetDisplaysWithRect
+    ::CGGetDisplaysWithOpenGLDisplayMask: CG.GetDisplaysWithOpenGLDisplayMask
+    ::CGGetActiveDisplayList: CG.GetActiveDisplayList
+    ::CGGetOnlineDisplayList: CG.GetOnlineDisplayList
+    ::CGDisplayIDToOpenGLDisplayMask: CG.DisplayIDToOpenGLDisplayMask
+    ::CGOpenGLDisplayMaskToDisplayID: CG.OpenGLDisplayMaskToDisplayID
+    ::CGDisplayBounds: CG.DisplayBounds
+    ::CGDisplayPixelsWide: CG.DisplayPixelsWide
+    ::CGDisplayPixelsHigh: CG.DisplayPixelsHigh
+    ::CGDisplayCopyAllDisplayModes: CG.DisplayCopyAllDisplayModes
+    ::CGDisplayCopyDisplayMode: CG.DisplayCopyDisplayMode
+    ::CGDisplaySetDisplayMode: CG.DisplaySetDisplayMode
+    ::CGDisplayModeGetWidth: CG.DisplayModeGetWidth
+    ::CGDisplayModeGetHeight: CG.DisplayModeGetHeight
+    ::CGDisplayModeCopyPixelEncoding: CG.DisplayModeCopyPixelEncoding
+    ::CGDisplayModeGetRefreshRate: CG.DisplayModeGetRefreshRate
+    ::CGDisplayModeGetIOFlags: CG.DisplayModeGetIOFlags
+    ::CGDisplayModeGetIODisplayModeID: CG.DisplayModeGetIODisplayModeID
+    ::CGDisplayModeIsUsableForDesktopGUI: CG.DisplayModeIsUsableForDesktopGUI
+    ::CGDisplayModeGetTypeID: CG.DisplayModeGetTypeID
+    ::CGDisplayModeRetain: CG.DisplayModeRetain
+    ::CGDisplayModeRelease: CG.DisplayModeRelease
+    ::CGDisplayModeGetPixelWidth: CG.DisplayModeGetPixelWidth
+    ::CGDisplayModeGetPixelHeight: CG.DisplayModeGetPixelHeight
+    ::CGSetDisplayTransferByFormula: CG.SetDisplayTransferByFormula
+    ::CGGetDisplayTransferByFormula: CG.GetDisplayTransferByFormula
+    ::CGDisplayGammaTableCapacity: CG.DisplayGammaTableCapacity
+    ::CGSetDisplayTransferByTable: CG.SetDisplayTransferByTable
+    ::CGGetDisplayTransferByTable: CG.GetDisplayTransferByTable
+    ::CGSetDisplayTransferByByteTable: CG.SetDisplayTransferByByteTable
+    ::CGDisplayRestoreColorSyncSettings: CG.DisplayRestoreColorSyncSettings
+    ::CGDisplayIsCaptured: CG.DisplayIsCaptured
+    ::CGDisplayCapture: CG.DisplayCapture
+    ::CGDisplayCaptureWithOptions: CG.DisplayCaptureWithOptions
+    ::CGDisplayRelease: CG.DisplayRelease
+    ::CGCaptureAllDisplays: CG.CaptureAllDisplays
+    ::CGCaptureAllDisplaysWithOptions: CG.CaptureAllDisplaysWithOptions
+    ::CGReleaseAllDisplays: CG.ReleaseAllDisplays
+    ::CGShieldingWindowID: CG.ShieldingWindowID
+    ::CGShieldingWindowLevel: CG.ShieldingWindowLevel
+    ::CGDisplayCreateImage: CG.DisplayCreateImage
+    ::CGDisplayCreateImageForRect: CG.DisplayCreateImageForRect
+    ::CGDisplayHideCursor: CG.DisplayHideCursor
+    ::CGDisplayShowCursor: CG.DisplayShowCursor
+    ::CGDisplayMoveCursorToPoint: CG.DisplayMoveCursorToPoint
+    ::CGGetLastMouseDelta: CG.GetLastMouseDelta
+    ::CGDisplayGetDrawingContext: CG.DisplayGetDrawingContext
+    ::CGDisplayAvailableModes: CG.DisplayAvailableModes
+    ::CGDisplayBestModeForParameters: CG.DisplayBestModeForParameters
+    ::CGDisplayBestModeForParametersAndRefreshRate: CG.DisplayBestModeForParametersAndRefreshRate
+    ::CGDisplayCurrentMode: CG.DisplayCurrentMode
+    ::CGDisplaySwitchToMode: CG.DisplaySwitchToMode
+    ::CGBeginDisplayConfiguration: CG.BeginDisplayConfiguration
+    ::CGConfigureDisplayOrigin: CG.ConfigureDisplayOrigin
+    ::CGConfigureDisplayWithDisplayMode: CG.ConfigureDisplayWithDisplayMode
+    ::CGConfigureDisplayStereoOperation: CG.ConfigureDisplayStereoOperation
+    ::CGConfigureDisplayMirrorOfDisplay: CG.ConfigureDisplayMirrorOfDisplay
+    ::CGCancelDisplayConfiguration: CG.CancelDisplayConfiguration
+    ::CGCompleteDisplayConfiguration: CG.CompleteDisplayConfiguration
+    ::CGRestorePermanentDisplayConfiguration: CG.RestorePermanentDisplayConfiguration
+    ::CGDisplayRegisterReconfigurationCallback: CG.DisplayRegisterReconfigurationCallback
+    ::CGDisplayRemoveReconfigurationCallback: CG.DisplayRemoveReconfigurationCallback
+    ::CGDisplaySetStereoOperation: CG.DisplaySetStereoOperation
+    ::CGDisplayIsActive: CG.DisplayIsActive
+    ::CGDisplayIsAsleep: CG.DisplayIsAsleep
+    ::CGDisplayIsOnline: CG.DisplayIsOnline
+    ::CGDisplayIsMain: CG.DisplayIsMain
+    ::CGDisplayIsBuiltin: CG.DisplayIsBuiltin
+    ::CGDisplayIsInMirrorSet: CG.DisplayIsInMirrorSet
+    ::CGDisplayIsAlwaysInMirrorSet: CG.DisplayIsAlwaysInMirrorSet
+    ::CGDisplayIsInHWMirrorSet: CG.DisplayIsInHWMirrorSet
+    ::CGDisplayMirrorsDisplay: CG.DisplayMirrorsDisplay
+    ::CGDisplayUsesOpenGLAcceleration: CG.DisplayUsesOpenGLAcceleration
+    ::CGDisplayIsStereo: CG.DisplayIsStereo
+    ::CGDisplayPrimaryDisplay: CG.DisplayPrimaryDisplay
+    ::CGDisplayUnitNumber: CG.DisplayUnitNumber
+    ::CGDisplayVendorNumber: CG.DisplayVendorNumber
+    ::CGDisplayModelNumber: CG.DisplayModelNumber
+    ::CGDisplaySerialNumber: CG.DisplaySerialNumber
+    ::CGDisplayIOServicePort: CG.DisplayIOServicePort
+    ::CGDisplayScreenSize: CG.DisplayScreenSize
+    ::CGDisplayRotation: CG.DisplayRotation
+    ::CGDisplayCopyColorSpace: CG.DisplayCopyColorSpace
+    ::CGConfigureDisplayMode: CG.ConfigureDisplayMode
+    ::CGConfigureDisplayFadeEffect: CG.ConfigureDisplayFadeEffect
+    ::CGAcquireDisplayFadeReservation: CG.AcquireDisplayFadeReservation
+    ::CGReleaseDisplayFadeReservation: CG.ReleaseDisplayFadeReservation
+    ::CGDisplayFade: CG.DisplayFade
+    ::CGDisplayFadeOperationInProgress: CG.DisplayFadeOperationInProgress
+    ::CGDisplayStreamUpdateGetTypeID: CG.DisplayStreamUpdateGetTypeID
+    ::CGDisplayStreamUpdateGetRects: CG.DisplayStreamUpdateGetRects
+    ::CGDisplayStreamUpdateCreateMergedUpdate: CG.DisplayStreamUpdateCreateMergedUpdate
+    ::CGDisplayStreamUpdateGetMovedRectsDelta: CG.DisplayStreamUpdateGetMovedRectsDelta
+    ::CGDisplayStreamUpdateGetDropCount: CG.DisplayStreamUpdateGetDropCount
+    ::CGDisplayStreamGetTypeID: CG.DisplayStreamGetTypeID
+    ::CGDisplayStreamCreate: CG.DisplayStreamCreate
+    ::CGDisplayStreamCreateWithDispatchQueue: CG.DisplayStreamCreateWithDispatchQueue
+    ::CGDisplayStreamStart: CG.DisplayStreamStart
+    ::CGDisplayStreamStop: CG.DisplayStreamStop
+    ::CGDisplayStreamGetRunLoopSource: CG.DisplayStreamGetRunLoopSource
+    ::CGRegisterScreenRefreshCallback: CG.RegisterScreenRefreshCallback
+    ::CGUnregisterScreenRefreshCallback: CG.UnregisterScreenRefreshCallback
+    ::CGWaitForScreenRefreshRects: CG.WaitForScreenRefreshRects
+    ::CGScreenRegisterMoveCallback: CG.ScreenRegisterMoveCallback
+    ::CGScreenUnregisterMoveCallback: CG.ScreenUnregisterMoveCallback
+    ::CGWaitForScreenUpdateRects: CG.WaitForScreenUpdateRects
+    ::CGReleaseScreenRefreshRects: CG.ReleaseScreenRefreshRects
+    ::CGCursorIsVisible: CG.CursorIsVisible
+    ::CGCursorIsDrawnInFramebuffer: CG.CursorIsDrawnInFramebuffer
+    ::CGWarpMouseCursorPosition: CG.WarpMouseCursorPosition
+    ::CGAssociateMouseAndMouseCursorPosition: CG.AssociateMouseAndMouseCursorPosition
+    ::CGWindowServerCreateServerPort: CG.WindowServerCreateServerPort
+    ::CGEnableEventStateCombining: CG.EnableEventStateCombining
+    ::CGInhibitLocalEvents: CG.InhibitLocalEvents
+    ::CGPostMouseEvent: CG.PostMouseEvent
+    ::CGPostScrollWheelEvent: CG.PostScrollWheelEvent
+    ::CGPostKeyboardEvent: CG.PostKeyboardEvent
+    ::CGSetLocalEventsFilterDuringSuppressionState: CG.SetLocalEventsFilterDuringSuppressionState
+    ::CGSetLocalEventsSuppressionInterval: CG.SetLocalEventsSuppressionInterval
+    ::CGWindowServerCFMachPort: CG.WindowServerCFMachPort
+    ::CGEventGetTypeID: CG.EventGetTypeID
+    ::CGEventCreate: CG.EventCreate
+    ::CGEventCreateData: CG.EventCreateData
+    ::CGEventCreateFromData: CG.EventCreateFromData
+    ::CGEventCreateMouseEvent: CG.EventCreateMouseEvent
+    ::CGEventCreateKeyboardEvent: CG.EventCreateKeyboardEvent
+    ::CGEventCreateScrollWheelEvent: CG.EventCreateScrollWheelEvent
+    ::CGEventCreateScrollWheelEvent2: CG.EventCreateScrollWheelEvent2
+    ::CGEventCreateCopy: CG.EventCreateCopy
+    ::CGEventCreateSourceFromEvent: CG.EventCreateSourceFromEvent
+    ::CGEventSetSource: CG.EventSetSource
+    ::CGEventGetType: CG.EventGetType
+    ::CGEventSetType: CG.EventSetType
+    ::CGEventGetTimestamp: CG.EventGetTimestamp
+    ::CGEventSetTimestamp: CG.EventSetTimestamp
+    ::CGEventGetLocation: CG.EventGetLocation
+    ::CGEventGetUnflippedLocation: CG.EventGetUnflippedLocation
+    ::CGEventSetLocation: CG.EventSetLocation
+    ::CGEventGetFlags: CG.EventGetFlags
+    ::CGEventSetFlags: CG.EventSetFlags
+    ::CGEventKeyboardGetUnicodeString: CG.EventKeyboardGetUnicodeString
+    ::CGEventKeyboardSetUnicodeString: CG.EventKeyboardSetUnicodeString
+    ::CGEventGetIntegerValueField: CG.EventGetIntegerValueField
+    ::CGEventSetIntegerValueField: CG.EventSetIntegerValueField
+    ::CGEventGetDoubleValueField: CG.EventGetDoubleValueField
+    ::CGEventSetDoubleValueField: CG.EventSetDoubleValueField
+    ::CGEventTapCreate: CG.EventTapCreate
+    ::CGEventTapCreateForPSN: CG.EventTapCreateForPSN
+    ::CGEventTapCreateForPid: CG.EventTapCreateForPid
+    ::CGEventTapEnable: CG.EventTapEnable
+    ::CGEventTapIsEnabled: CG.EventTapIsEnabled
+    ::CGEventTapPostEvent: CG.EventTapPostEvent
+    ::CGEventPost: CG.EventPost
+    ::CGEventPostToPSN: CG.EventPostToPSN
+    ::CGEventPostToPid: CG.EventPostToPid
+    ::CGGetEventTapList: CG.GetEventTapList
+    ::CGPreflightListenEventAccess: CG.PreflightListenEventAccess
+    ::CGRequestListenEventAccess: CG.RequestListenEventAccess
+    ::CGPreflightPostEventAccess: CG.PreflightPostEventAccess
+    ::CGRequestPostEventAccess: CG.RequestPostEventAccess
+    ::CGEventSourceGetTypeID: CG.EventSourceGetTypeID
+    ::CGEventSourceCreate: CG.EventSourceCreate
+    ::CGEventSourceGetKeyboardType: CG.EventSourceGetKeyboardType
+    ::CGEventSourceSetKeyboardType: CG.EventSourceSetKeyboardType
+    ::CGEventSourceGetPixelsPerLine: CG.EventSourceGetPixelsPerLine
+    ::CGEventSourceSetPixelsPerLine: CG.EventSourceSetPixelsPerLine
+    ::CGEventSourceGetSourceStateID: CG.EventSourceGetSourceStateID
+    ::CGEventSourceButtonState: CG.EventSourceButtonState
+    ::CGEventSourceKeyState: CG.EventSourceKeyState
+    ::CGEventSourceFlagsState: CG.EventSourceFlagsState
+    ::CGEventSourceSecondsSinceLastEventType: CG.EventSourceSecondsSinceLastEventType
+    ::CGEventSourceCounterForEventType: CG.EventSourceCounterForEventType
+    ::CGEventSourceSetUserData: CG.EventSourceSetUserData
+    ::CGEventSourceGetUserData: CG.EventSourceGetUserData
+    ::CGEventSourceSetLocalEventsFilterDuringSuppressionState: CG.EventSourceSetLocalEventsFilterDuringSuppressionState
+    ::CGEventSourceGetLocalEventsFilterDuringSuppressionState: CG.EventSourceGetLocalEventsFilterDuringSuppressionState
+    ::CGEventSourceSetLocalEventsSuppressionInterval: CG.EventSourceSetLocalEventsSuppressionInterval
+    ::CGEventSourceGetLocalEventsSuppressionInterval: CG.EventSourceGetLocalEventsSuppressionInterval
+    ::CGPSConverterCreate: CG.PSConverterCreate
+    ::CGPSConverterConvert: CG.PSConverterConvert
+    ::CGPSConverterAbort: CG.PSConverterAbort
+    ::CGPSConverterIsConverting: CG.PSConverterIsConverting
+    ::CGPSConverterGetTypeID: CG.PSConverterGetTypeID
+    ::CGSessionCopyCurrentDictionary: CG.SessionCopyCurrentDictionary
+    ::CGDirectDisplayCopyCurrentMetalDevice: CG.DirectDisplayCopyCurrentMetalDevice
 
 ExternVars:
     ::CGPointZero: CG.PointZero
@@ -739,6 +1014,31 @@ ExternVars:
     ::kCGPDFTagPropertyAlternativeText: CG.PDFTagPropertyAlternativeText
     ::kCGPDFTagPropertyTitleText: CG.PDFTagPropertyTitleText
     ::kCGPDFTagPropertyLanguageText: CG.PDFTagPropertyLanguageText
+    ::kCGWindowNumber: CG.WindowNumber
+    ::kCGWindowStoreType: CG.WindowStoreType
+    ::kCGWindowLayer: CG.WindowLayer
+    ::kCGWindowBounds: CG.WindowBounds
+    ::kCGWindowSharingState: CG.WindowSharingState
+    ::kCGWindowAlpha: CG.WindowAlpha
+    ::kCGWindowOwnerPID: CG.WindowOwnerPID
+    ::kCGWindowMemoryUsage: CG.WindowMemoryUsage
+    ::kCGWindowWorkspace: CG.WindowWorkspace
+    ::kCGWindowOwnerName: CG.WindowOwnerName
+    ::kCGWindowName: CG.WindowName
+    ::kCGWindowIsOnscreen: CG.WindowIsOnscreen
+    ::kCGWindowBackingLocationVideoMemory: CG.WindowBackingLocationVideoMemory
+    ::kCGDisplayShowDuplicateLowResolutionModes: CG.DisplayShowDuplicateLowResolutionModes
+    ::kCGDisplayStreamSourceRect: CG.DisplayStreamSourceRect
+    ::kCGDisplayStreamDestinationRect: CG.DisplayStreamDestinationRect
+    ::kCGDisplayStreamPreserveAspectRatio: CG.DisplayStreamPreserveAspectRatio
+    ::kCGDisplayStreamColorSpace: CG.DisplayStreamColorSpace
+    ::kCGDisplayStreamMinimumFrameTime: CG.DisplayStreamMinimumFrameTime
+    ::kCGDisplayStreamShowCursor: CG.DisplayStreamShowCursor
+    ::kCGDisplayStreamQueueDepth: CG.DisplayStreamQueueDepth
+    ::kCGDisplayStreamYCbCrMatrix: CG.DisplayStreamYCbCrMatrix
+    ::kCGDisplayStreamYCbCrMatrix_ITU_R_709_2: CG.DisplayStreamYCbCrMatrix_ITU_R_709_2
+    ::kCGDisplayStreamYCbCrMatrix_ITU_R_601_4: CG.DisplayStreamYCbCrMatrix_ITU_R_601_4
+    ::kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995: CG.DisplayStreamYCbCrMatrix_SMPTE_240M_1995
 
 ConstVars:
     ::kCGFontIndexMax: CG.FontIndexMax

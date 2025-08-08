@@ -17,11 +17,11 @@ import Sec "../Security"
 MutableSet :: struct { using _: Set, }
 
 @(objc_type=MutableSet, objc_name="addObject")
-MutableSet_addObject :: #force_inline proc "c" (self: ^MutableSet, object: ^id) {
+MutableSet_addObject :: #force_inline proc "c" (self: ^MutableSet, object: id) {
     msgSend(nil, self, "addObject:", object)
 }
 @(objc_type=MutableSet, objc_name="removeObject")
-MutableSet_removeObject :: #force_inline proc "c" (self: ^MutableSet, object: ^id) {
+MutableSet_removeObject :: #force_inline proc "c" (self: ^MutableSet, object: id) {
     msgSend(nil, self, "removeObject:", object)
 }
 @(objc_type=MutableSet, objc_name="initWithCoder")
@@ -73,15 +73,15 @@ MutableSet_set :: #force_inline proc "c" () -> ^Set {
     return msgSend(^Set, MutableSet, "set")
 }
 @(objc_type=MutableSet, objc_name="setWithObject", objc_is_class_method=true)
-MutableSet_setWithObject :: #force_inline proc "c" (object: ^id) -> ^Set {
+MutableSet_setWithObject :: #force_inline proc "c" (object: id) -> ^Set {
     return msgSend(^Set, MutableSet, "setWithObject:", object)
 }
 @(objc_type=MutableSet, objc_name="setWithObjects_count", objc_is_class_method=true)
-MutableSet_setWithObjects_count :: #force_inline proc "c" (objects: ^^id, cnt: UInteger) -> ^Set {
+MutableSet_setWithObjects_count :: #force_inline proc "c" (objects: ^id, cnt: UInteger) -> ^Set {
     return msgSend(^Set, MutableSet, "setWithObjects:count:", objects, cnt)
 }
 @(objc_type=MutableSet, objc_name="setWithObjects_", objc_is_class_method=true)
-MutableSet_setWithObjects_ :: #force_inline proc "c" (firstObj: ^id) -> ^Set {
+MutableSet_setWithObjects_ :: #force_inline proc "c" (firstObj: id) -> ^Set {
     return msgSend(^Set, MutableSet, "setWithObjects:", firstObj)
 }
 @(objc_type=MutableSet, objc_name="setWithSet", objc_is_class_method=true)

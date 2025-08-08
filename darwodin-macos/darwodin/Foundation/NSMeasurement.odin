@@ -24,7 +24,7 @@ Measurement_init :: #force_inline proc "c" (self: ^Measurement) -> ^Measurement 
     return msgSend(^Measurement, self, "init")
 }
 @(objc_type=Measurement, objc_name="initWithDoubleValue")
-Measurement_initWithDoubleValue :: #force_inline proc "c" (self: ^Measurement, doubleValue: cffi.double, unit: ^Unit) -> ^Measurement {
+Measurement_initWithDoubleValue :: #force_inline proc "c" (self: ^Measurement, doubleValue: cffi.double, unit: id) -> ^Measurement {
     return msgSend(^Measurement, self, "initWithDoubleValue:unit:", doubleValue, unit)
 }
 @(objc_type=Measurement, objc_name="canBeConvertedToUnit")
@@ -44,8 +44,8 @@ Measurement_measurementBySubtractingMeasurement :: #force_inline proc "c" (self:
     return msgSend(^Measurement, self, "measurementBySubtractingMeasurement:", measurement)
 }
 @(objc_type=Measurement, objc_name="unit")
-Measurement_unit :: #force_inline proc "c" (self: ^Measurement) -> ^Unit {
-    return msgSend(^Unit, self, "unit")
+Measurement_unit :: #force_inline proc "c" (self: ^Measurement) -> id {
+    return msgSend(id, self, "unit")
 }
 @(objc_type=Measurement, objc_name="doubleValue")
 Measurement_doubleValue :: #force_inline proc "c" (self: ^Measurement) -> cffi.double {

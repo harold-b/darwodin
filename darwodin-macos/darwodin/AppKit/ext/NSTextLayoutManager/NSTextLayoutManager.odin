@@ -219,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setRenderingAttributes(self, renderingAttributes, textRange)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setRenderingAttributes:forTextRange:"), auto_cast setRenderingAttributes, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRenderingAttributes:forTextRange:"), auto_cast setRenderingAttributes, "v@:^void@") do panic("Failed to register objC method.")
     }
     if vt.addRenderingAttribute != nil {
         addRenderingAttribute :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, renderingAttribute: ^NS.String, value: id, textRange: ^AK.TextRange) {
@@ -259,7 +259,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).renderingAttributesForLink(self, link, location)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("renderingAttributesForLink:atLocation:"), auto_cast renderingAttributesForLink, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("renderingAttributesForLink:atLocation:"), auto_cast renderingAttributesForLink, "^void@:@@") do panic("Failed to register objC method.")
     }
     if vt.enumerateTextSegmentsInRange != nil {
         enumerateTextSegmentsInRange :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, textRange: ^AK.TextRange, type: AK.TextLayoutManagerSegmentType, options: AK.TextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^AK.TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^AK.TextContainer) -> bool)) {
@@ -279,7 +279,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).replaceContentsInRange_withTextElements(self, range, textElements)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceContentsInRange:withTextElements:"), auto_cast replaceContentsInRange_withTextElements, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceContentsInRange:withTextElements:"), auto_cast replaceContentsInRange_withTextElements, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.replaceContentsInRange_withAttributedString != nil {
         replaceContentsInRange_withAttributedString :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, range: ^AK.TextRange, attributedString: ^NS.AttributedString) {
@@ -449,7 +449,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textSelections(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textSelections"), auto_cast textSelections, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textSelections"), auto_cast textSelections, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextSelections != nil {
         setTextSelections :: proc "c" (self: ^AK.TextLayoutManager, _: SEL, textSelections: ^NS.Array) {
@@ -459,7 +459,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextSelections(self, textSelections)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextSelections:"), auto_cast setTextSelections, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextSelections:"), auto_cast setTextSelections, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.textSelectionNavigation != nil {
         textSelectionNavigation :: proc "c" (self: ^AK.TextLayoutManager, _: SEL) -> ^AK.TextSelectionNavigation {
@@ -509,7 +509,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).linkRenderingAttributes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("linkRenderingAttributes"), auto_cast linkRenderingAttributes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("linkRenderingAttributes"), auto_cast linkRenderingAttributes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -789,7 +789,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -819,7 +819,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

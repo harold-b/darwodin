@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fontCollectionWithDescriptors( queryDescriptors)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("fontCollectionWithDescriptors:"), auto_cast fontCollectionWithDescriptors, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fontCollectionWithDescriptors:"), auto_cast fontCollectionWithDescriptors, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.fontCollectionWithLocale != nil {
         fontCollectionWithLocale :: proc "c" (self: Class, _: SEL, locale: ^NS.Locale) -> ^AK.MutableFontCollection {
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).addQueryForDescriptors(self, descriptors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addQueryForDescriptors:"), auto_cast addQueryForDescriptors, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addQueryForDescriptors:"), auto_cast addQueryForDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.removeQueryForDescriptors != nil {
         removeQueryForDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL, descriptors: ^NS.Array) {
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).removeQueryForDescriptors(self, descriptors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("removeQueryForDescriptors:"), auto_cast removeQueryForDescriptors, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeQueryForDescriptors:"), auto_cast removeQueryForDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.fontCollectionWithAllAvailableDescriptors != nil {
         fontCollectionWithAllAvailableDescriptors :: proc "c" (self: Class, _: SEL) -> ^AK.MutableFontCollection {
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).queryDescriptors(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("queryDescriptors"), auto_cast queryDescriptors, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("queryDescriptors"), auto_cast queryDescriptors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setQueryDescriptors != nil {
         setQueryDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL, queryDescriptors: ^NS.Array) {
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setQueryDescriptors(self, queryDescriptors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setQueryDescriptors:"), auto_cast setQueryDescriptors, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setQueryDescriptors:"), auto_cast setQueryDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.exclusionDescriptors != nil {
         exclusionDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL) -> ^NS.Array {
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).exclusionDescriptors(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("exclusionDescriptors"), auto_cast exclusionDescriptors, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("exclusionDescriptors"), auto_cast exclusionDescriptors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setExclusionDescriptors != nil {
         setExclusionDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL, exclusionDescriptors: ^NS.Array) {
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setExclusionDescriptors(self, exclusionDescriptors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setExclusionDescriptors:"), auto_cast setExclusionDescriptors, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setExclusionDescriptors:"), auto_cast setExclusionDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.showFontCollection != nil {
         showFontCollection :: proc "c" (self: Class, _: SEL, collection: ^AK.FontCollection, name: ^NS.String, visibility: AK.FontCollectionVisibility, error: ^^NS.Error) -> bool {
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allFontCollectionNames()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allFontCollectionNames"), auto_cast allFontCollectionNames, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allFontCollectionNames"), auto_cast allFontCollectionNames, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -503,7 +503,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -533,7 +533,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

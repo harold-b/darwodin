@@ -345,7 +345,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).progressMarks(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("progressMarks"), auto_cast progressMarks, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("progressMarks"), auto_cast progressMarks, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setProgressMarks != nil {
         setProgressMarks :: proc "c" (self: ^AK.Animation, _: SEL, progressMarks: ^NS.Array) {
@@ -355,7 +355,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setProgressMarks(self, progressMarks)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setProgressMarks:"), auto_cast setProgressMarks, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setProgressMarks:"), auto_cast setProgressMarks, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.runLoopModesForAnimating != nil {
         runLoopModesForAnimating :: proc "c" (self: ^AK.Animation, _: SEL) -> ^NS.Array {
@@ -365,7 +365,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).runLoopModesForAnimating(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("runLoopModesForAnimating"), auto_cast runLoopModesForAnimating, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("runLoopModesForAnimating"), auto_cast runLoopModesForAnimating, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -635,7 +635,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -665,7 +665,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

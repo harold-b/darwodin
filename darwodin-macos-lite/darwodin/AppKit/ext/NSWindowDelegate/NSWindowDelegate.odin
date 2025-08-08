@@ -201,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).customWindowsToEnterFullScreenForWindow_(self, window)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("customWindowsToEnterFullScreenForWindow:"), auto_cast customWindowsToEnterFullScreenForWindow_, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("customWindowsToEnterFullScreenForWindow:"), auto_cast customWindowsToEnterFullScreenForWindow_, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.window_startCustomAnimationToEnterFullScreenWithDuration != nil {
         window_startCustomAnimationToEnterFullScreenWithDuration :: proc "c" (self: ^AK.WindowDelegate, _: SEL, window: ^AK.Window, duration: NS.TimeInterval) {
@@ -231,7 +231,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).customWindowsToExitFullScreenForWindow(self, window)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("customWindowsToExitFullScreenForWindow:"), auto_cast customWindowsToExitFullScreenForWindow, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("customWindowsToExitFullScreenForWindow:"), auto_cast customWindowsToExitFullScreenForWindow, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.window_startCustomAnimationToExitFullScreenWithDuration != nil {
         window_startCustomAnimationToExitFullScreenWithDuration :: proc "c" (self: ^AK.WindowDelegate, _: SEL, window: ^AK.Window, duration: NS.TimeInterval) {
@@ -251,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).customWindowsToEnterFullScreenForWindow_onScreen(self, window, screen)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("customWindowsToEnterFullScreenForWindow:onScreen:"), auto_cast customWindowsToEnterFullScreenForWindow_onScreen, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("customWindowsToEnterFullScreenForWindow:onScreen:"), auto_cast customWindowsToEnterFullScreenForWindow_onScreen, "^void@:@@") do panic("Failed to register objC method.")
     }
     if vt.window_startCustomAnimationToEnterFullScreenOnScreen_withDuration != nil {
         window_startCustomAnimationToEnterFullScreenOnScreen_withDuration :: proc "c" (self: ^AK.WindowDelegate, _: SEL, window: ^AK.Window, screen: ^AK.Screen, duration: NS.TimeInterval) {
@@ -311,7 +311,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).previewRepresentableActivityItemsForWindow(self, window)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("previewRepresentableActivityItemsForWindow:"), auto_cast previewRepresentableActivityItemsForWindow, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("previewRepresentableActivityItemsForWindow:"), auto_cast previewRepresentableActivityItemsForWindow, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.windowForSharingRequestFromWindow != nil {
         windowForSharingRequestFromWindow :: proc "c" (self: ^AK.WindowDelegate, _: SEL, window: ^AK.Window) -> ^AK.Window {

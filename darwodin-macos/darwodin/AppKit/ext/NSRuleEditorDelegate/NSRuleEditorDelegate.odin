@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).ruleEditor_predicatePartsForCriterion_withDisplayValue_inRow(self, editor, criterion, value, row)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:"), auto_cast ruleEditor_predicatePartsForCriterion_withDisplayValue_inRow, "@@:@@@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:"), auto_cast ruleEditor_predicatePartsForCriterion_withDisplayValue_inRow, "^void@:@@@l") do panic("Failed to register objC method.")
     }
     if vt.ruleEditorRowsDidChange != nil {
         ruleEditorRowsDidChange :: proc "c" (self: ^AK.RuleEditorDelegate, _: SEL, notification: ^NS.Notification) {

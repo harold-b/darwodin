@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).touchesMatchingPhase(self, phase, view)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesMatchingPhase:inView:"), auto_cast touchesMatchingPhase, "@@:L@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesMatchingPhase:inView:"), auto_cast touchesMatchingPhase, "^void@:L@") do panic("Failed to register objC method.")
     }
     if vt.allTouches != nil {
         allTouches :: proc "c" (self: ^AK.Event, _: SEL) -> ^NS.Set {
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allTouches(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allTouches"), auto_cast allTouches, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allTouches"), auto_cast allTouches, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.touchesForView != nil {
         touchesForView :: proc "c" (self: ^AK.Event, _: SEL, view: ^AK.View) -> ^NS.Set {
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).touchesForView(self, view)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesForView:"), auto_cast touchesForView, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchesForView:"), auto_cast touchesForView, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.coalescedTouchesForTouch != nil {
         coalescedTouchesForTouch :: proc "c" (self: ^AK.Event, _: SEL, touch: ^AK.Touch) -> ^NS.Array {
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).coalescedTouchesForTouch(self, touch)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("coalescedTouchesForTouch:"), auto_cast coalescedTouchesForTouch, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("coalescedTouchesForTouch:"), auto_cast coalescedTouchesForTouch, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.trackSwipeEventWithOptions != nil {
         trackSwipeEventWithOptions :: proc "c" (self: ^AK.Event, _: SEL, options: AK.EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: ^Objc_Block(proc "c" (gestureAmount: CG.Float, phase: AK.EventPhase, isComplete: bool, stop: ^bool))) {
@@ -1240,7 +1240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1270,7 +1270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

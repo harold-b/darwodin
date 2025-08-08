@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).shouldReplaceCharactersInRanges(self, ranges, strings)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldReplaceCharactersInRanges:withStrings:"), auto_cast shouldReplaceCharactersInRanges, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldReplaceCharactersInRanges:withStrings:"), auto_cast shouldReplaceCharactersInRanges, "B@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.replaceCharactersInRange != nil {
         replaceCharactersInRange :: proc "c" (self: ^AK.TextFinderClient, _: SEL, range: NS._NSRange, string: ^NS.String) {
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).rectsForCharacterRange(self, range)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("rectsForCharacterRange:"), auto_cast rectsForCharacterRange, "@@:{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rectsForCharacterRange:"), auto_cast rectsForCharacterRange, "^void@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.drawCharactersInRange != nil {
         drawCharactersInRange :: proc "c" (self: ^AK.TextFinderClient, _: SEL, range: NS._NSRange, view: ^AK.View) {
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).selectedRanges(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRanges"), auto_cast selectedRanges, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRanges"), auto_cast selectedRanges, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedRanges != nil {
         setSelectedRanges :: proc "c" (self: ^AK.TextFinderClient, _: SEL, selectedRanges: ^NS.Array) {
@@ -205,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setSelectedRanges(self, selectedRanges)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:"), auto_cast setSelectedRanges, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:"), auto_cast setSelectedRanges, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.visibleCharacterRanges != nil {
         visibleCharacterRanges :: proc "c" (self: ^AK.TextFinderClient, _: SEL) -> ^NS.Array {
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).visibleCharacterRanges(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("visibleCharacterRanges"), auto_cast visibleCharacterRanges, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("visibleCharacterRanges"), auto_cast visibleCharacterRanges, "^void@:") do panic("Failed to register objC method.")
     }
 }
 

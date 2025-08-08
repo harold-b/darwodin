@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).mountedVolumeURLsIncludingResourceValuesForKeys(self, propertyKeys, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("mountedVolumeURLsIncludingResourceValuesForKeys:options:"), auto_cast mountedVolumeURLsIncludingResourceValuesForKeys, "@@:@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mountedVolumeURLsIncludingResourceValuesForKeys:options:"), auto_cast mountedVolumeURLsIncludingResourceValuesForKeys, "^void@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.unmountVolumeAtURL != nil {
         unmountVolumeAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, mask: NS.FileManagerUnmountOptions, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).contentsOfDirectoryAtURL(self, url, keys, mask, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:"), auto_cast contentsOfDirectoryAtURL, "@@:@@L^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:"), auto_cast contentsOfDirectoryAtURL, "^void@:@^voidL^void") do panic("Failed to register objC method.")
     }
     if vt._URLsForDirectory != nil {
         _URLsForDirectory :: proc "c" (self: ^NS.FileManager, _: SEL, directory: NS.SearchPathDirectory, domainMask: NS.SearchPathDomainMask) -> ^NS.Array {
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._URLsForDirectory(self, directory, domainMask)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForDirectory:inDomains:"), auto_cast _URLsForDirectory, "@@:LL") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForDirectory:inDomains:"), auto_cast _URLsForDirectory, "^void@:LL") do panic("Failed to register objC method.")
     }
     if vt._URLForDirectory != nil {
         _URLForDirectory :: proc "c" (self: ^NS.FileManager, _: SEL, directory: NS.SearchPathDirectory, domain: NS.SearchPathDomainMask, url: ^NS.URL, shouldCreate: bool, error: ^^NS.Error) -> ^NS.URL {
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).createDirectoryAtURL(self, url, createIntermediates, attributes, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("createDirectoryAtURL:withIntermediateDirectories:attributes:error:"), auto_cast createDirectoryAtURL, "B@:@B@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("createDirectoryAtURL:withIntermediateDirectories:attributes:error:"), auto_cast createDirectoryAtURL, "B@:@B^void^void") do panic("Failed to register objC method.")
     }
     if vt.createSymbolicLinkAtURL != nil {
         createSymbolicLinkAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, destURL: ^NS.URL, error: ^^NS.Error) -> bool {
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setAttributes(self, attributes, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributes:ofItemAtPath:error:"), auto_cast setAttributes, "B@:@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributes:ofItemAtPath:error:"), auto_cast setAttributes, "B@:^void@^void") do panic("Failed to register objC method.")
     }
     if vt.createDirectoryAtPath_withIntermediateDirectories_attributes_error != nil {
         createDirectoryAtPath_withIntermediateDirectories_attributes_error :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, createIntermediates: bool, attributes: ^NS.Dictionary, error: ^^NS.Error) -> bool {
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).createDirectoryAtPath_withIntermediateDirectories_attributes_error(self, path, createIntermediates, attributes, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("createDirectoryAtPath:withIntermediateDirectories:attributes:error:"), auto_cast createDirectoryAtPath_withIntermediateDirectories_attributes_error, "B@:@B@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("createDirectoryAtPath:withIntermediateDirectories:attributes:error:"), auto_cast createDirectoryAtPath_withIntermediateDirectories_attributes_error, "B@:@B^void^void") do panic("Failed to register objC method.")
     }
     if vt.contentsOfDirectoryAtPath != nil {
         contentsOfDirectoryAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, error: ^^NS.Error) -> ^NS.Array {
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).contentsOfDirectoryAtPath(self, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsOfDirectoryAtPath:error:"), auto_cast contentsOfDirectoryAtPath, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsOfDirectoryAtPath:error:"), auto_cast contentsOfDirectoryAtPath, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.subpathsOfDirectoryAtPath != nil {
         subpathsOfDirectoryAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, error: ^^NS.Error) -> ^NS.Array {
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).subpathsOfDirectoryAtPath(self, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("subpathsOfDirectoryAtPath:error:"), auto_cast subpathsOfDirectoryAtPath, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subpathsOfDirectoryAtPath:error:"), auto_cast subpathsOfDirectoryAtPath, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.attributesOfItemAtPath != nil {
         attributesOfItemAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, error: ^^NS.Error) -> ^NS.Dictionary {
@@ -273,7 +273,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).attributesOfItemAtPath(self, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesOfItemAtPath:error:"), auto_cast attributesOfItemAtPath, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesOfItemAtPath:error:"), auto_cast attributesOfItemAtPath, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.attributesOfFileSystemForPath != nil {
         attributesOfFileSystemForPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, error: ^^NS.Error) -> ^NS.Dictionary {
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).attributesOfFileSystemForPath(self, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesOfFileSystemForPath:error:"), auto_cast attributesOfFileSystemForPath, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesOfFileSystemForPath:error:"), auto_cast attributesOfFileSystemForPath, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.createSymbolicLinkAtPath_withDestinationPath_error != nil {
         createSymbolicLinkAtPath_withDestinationPath_error :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, destPath: ^NS.String, error: ^^NS.Error) -> bool {
@@ -603,7 +603,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).componentsToDisplayForPath(self, path)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("componentsToDisplayForPath:"), auto_cast componentsToDisplayForPath, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("componentsToDisplayForPath:"), auto_cast componentsToDisplayForPath, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.enumeratorAtPath != nil {
         enumeratorAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String) -> ^NS.DirectoryEnumerator {
@@ -613,7 +613,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).enumeratorAtPath(self, path)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtPath:"), auto_cast enumeratorAtPath, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtPath:"), auto_cast enumeratorAtPath, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.enumeratorAtURL != nil {
         enumeratorAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, keys: ^NS.Array, mask: NS.DirectoryEnumerationOptions, handler: ^Objc_Block(proc "c" (url: ^NS.URL, error: ^NS.Error) -> bool)) -> ^NS.DirectoryEnumerator {
@@ -623,7 +623,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).enumeratorAtURL(self, url, keys, mask, handler)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:"), auto_cast enumeratorAtURL, "@@:@@L?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:"), auto_cast enumeratorAtURL, "^void@:@^voidL?") do panic("Failed to register objC method.")
     }
     if vt.subpathsAtPath != nil {
         subpathsAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String) -> ^NS.Array {
@@ -633,7 +633,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).subpathsAtPath(self, path)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("subpathsAtPath:"), auto_cast subpathsAtPath, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subpathsAtPath:"), auto_cast subpathsAtPath, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.contentsAtPath != nil {
         contentsAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String) -> ^NS.Data {
@@ -653,7 +653,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).createFileAtPath(self, path, data, attr)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("createFileAtPath:contents:attributes:"), auto_cast createFileAtPath, "B@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("createFileAtPath:contents:attributes:"), auto_cast createFileAtPath, "B@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.fileSystemRepresentationWithPath != nil {
         fileSystemRepresentationWithPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String) -> cstring {
@@ -1113,7 +1113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1143,7 +1143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

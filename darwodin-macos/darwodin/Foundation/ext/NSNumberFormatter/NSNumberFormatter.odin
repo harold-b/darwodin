@@ -410,7 +410,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForNegativeValues(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNegativeValues"), auto_cast textAttributesForNegativeValues, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNegativeValues"), auto_cast textAttributesForNegativeValues, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForNegativeValues != nil {
         setTextAttributesForNegativeValues :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForNegativeValues: ^NS.Dictionary) {
@@ -420,7 +420,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForNegativeValues(self, textAttributesForNegativeValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNegativeValues:"), auto_cast setTextAttributesForNegativeValues, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNegativeValues:"), auto_cast setTextAttributesForNegativeValues, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.positiveFormat != nil {
         positiveFormat :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -450,7 +450,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForPositiveValues(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForPositiveValues"), auto_cast textAttributesForPositiveValues, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForPositiveValues"), auto_cast textAttributesForPositiveValues, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForPositiveValues != nil {
         setTextAttributesForPositiveValues :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForPositiveValues: ^NS.Dictionary) {
@@ -460,7 +460,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForPositiveValues(self, textAttributesForPositiveValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForPositiveValues:"), auto_cast setTextAttributesForPositiveValues, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForPositiveValues:"), auto_cast setTextAttributesForPositiveValues, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.allowsFloats != nil {
         allowsFloats :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> bool {
@@ -610,7 +610,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForZero(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForZero"), auto_cast textAttributesForZero, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForZero"), auto_cast textAttributesForZero, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForZero != nil {
         setTextAttributesForZero :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForZero: ^NS.Dictionary) {
@@ -620,7 +620,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForZero(self, textAttributesForZero)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForZero:"), auto_cast setTextAttributesForZero, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForZero:"), auto_cast setTextAttributesForZero, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.nilSymbol != nil {
         nilSymbol :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -650,7 +650,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForNil(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNil"), auto_cast textAttributesForNil, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNil"), auto_cast textAttributesForNil, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForNil != nil {
         setTextAttributesForNil :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForNil: ^NS.Dictionary) {
@@ -660,7 +660,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForNil(self, textAttributesForNil)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNil:"), auto_cast setTextAttributesForNil, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNil:"), auto_cast setTextAttributesForNil, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.notANumberSymbol != nil {
         notANumberSymbol :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -690,7 +690,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForNotANumber(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNotANumber"), auto_cast textAttributesForNotANumber, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNotANumber"), auto_cast textAttributesForNotANumber, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForNotANumber != nil {
         setTextAttributesForNotANumber :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForNotANumber: ^NS.Dictionary) {
@@ -700,7 +700,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForNotANumber(self, textAttributesForNotANumber)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNotANumber:"), auto_cast setTextAttributesForNotANumber, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNotANumber:"), auto_cast setTextAttributesForNotANumber, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.positiveInfinitySymbol != nil {
         positiveInfinitySymbol :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -730,7 +730,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForPositiveInfinity(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForPositiveInfinity"), auto_cast textAttributesForPositiveInfinity, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForPositiveInfinity"), auto_cast textAttributesForPositiveInfinity, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForPositiveInfinity != nil {
         setTextAttributesForPositiveInfinity :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForPositiveInfinity: ^NS.Dictionary) {
@@ -740,7 +740,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForPositiveInfinity(self, textAttributesForPositiveInfinity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForPositiveInfinity:"), auto_cast setTextAttributesForPositiveInfinity, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForPositiveInfinity:"), auto_cast setTextAttributesForPositiveInfinity, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.negativeInfinitySymbol != nil {
         negativeInfinitySymbol :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -770,7 +770,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForNegativeInfinity(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNegativeInfinity"), auto_cast textAttributesForNegativeInfinity, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNegativeInfinity"), auto_cast textAttributesForNegativeInfinity, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForNegativeInfinity != nil {
         setTextAttributesForNegativeInfinity :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForNegativeInfinity: ^NS.Dictionary) {
@@ -780,7 +780,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForNegativeInfinity(self, textAttributesForNegativeInfinity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNegativeInfinity:"), auto_cast setTextAttributesForNegativeInfinity, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNegativeInfinity:"), auto_cast setTextAttributesForNegativeInfinity, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.positivePrefix != nil {
         positivePrefix :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -1850,7 +1850,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1880,7 +1880,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).validAttributesForMarkedText(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("validAttributesForMarkedText"), auto_cast validAttributesForMarkedText, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("validAttributesForMarkedText"), auto_cast validAttributesForMarkedText, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.firstRectForCharacterRange != nil {
         firstRectForCharacterRange :: proc "c" (self: ^AK.TextInputClient, _: SEL, range: NS._NSRange, actualRange: ^NS._NSRange) -> NS.Rect {

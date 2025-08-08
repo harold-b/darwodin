@@ -33,10 +33,10 @@ VTable :: struct {
     snapshot: proc(self: ^AK.TableViewDiffableDataSource) -> ^AK.DiffableDataSourceSnapshot,
     applySnapshot_animatingDifferences: proc(self: ^AK.TableViewDiffableDataSource, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool),
     applySnapshot_animatingDifferences_completion: proc(self: ^AK.TableViewDiffableDataSource, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())),
-    itemIdentifierForRow: proc(self: ^AK.TableViewDiffableDataSource, row: NS.Integer) -> ^id,
-    rowForItemIdentifier: proc(self: ^AK.TableViewDiffableDataSource, identifier: ^id) -> NS.Integer,
-    sectionIdentifierForRow: proc(self: ^AK.TableViewDiffableDataSource, row: NS.Integer) -> ^id,
-    rowForSectionIdentifier: proc(self: ^AK.TableViewDiffableDataSource, identifier: ^id) -> NS.Integer,
+    itemIdentifierForRow: proc(self: ^AK.TableViewDiffableDataSource, row: NS.Integer) -> id,
+    rowForItemIdentifier: proc(self: ^AK.TableViewDiffableDataSource, identifier: id) -> NS.Integer,
+    sectionIdentifierForRow: proc(self: ^AK.TableViewDiffableDataSource, row: NS.Integer) -> id,
+    rowForSectionIdentifier: proc(self: ^AK.TableViewDiffableDataSource, identifier: id) -> NS.Integer,
     rowViewProvider: proc(self: ^AK.TableViewDiffableDataSource) -> AK.TableViewDiffableDataSourceRowProvider,
     setRowViewProvider: proc(self: ^AK.TableViewDiffableDataSource, rowViewProvider: AK.TableViewDiffableDataSourceRowProvider),
     sectionHeaderViewProvider: proc(self: ^AK.TableViewDiffableDataSource) -> AK.TableViewDiffableDataSourceSectionHeaderViewProvider,
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithTableView(self, tableView, cellProvider)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTableView:cellProvider:"), auto_cast initWithTableView, "@@:@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTableView:cellProvider:"), auto_cast initWithTableView, "^void@:@?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
         init :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL) -> ^AK.TableViewDiffableDataSource {
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).init(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
         new :: proc "c" (self: Class, _: SEL) -> ^AK.TableViewDiffableDataSource {
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).new()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.snapshot != nil {
         snapshot :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL) -> ^AK.DiffableDataSourceSnapshot {
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).snapshot(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("snapshot"), auto_cast snapshot, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("snapshot"), auto_cast snapshot, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.applySnapshot_animatingDifferences != nil {
         applySnapshot_animatingDifferences :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool) {
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).applySnapshot_animatingDifferences(self, snapshot, animatingDifferences)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:"), auto_cast applySnapshot_animatingDifferences, "v@:@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:"), auto_cast applySnapshot_animatingDifferences, "v@:^voidB") do panic("Failed to register objC method.")
     }
     if vt.applySnapshot_animatingDifferences_completion != nil {
         applySnapshot_animatingDifferences_completion :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
@@ -143,47 +143,47 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).applySnapshot_animatingDifferences_completion(self, snapshot, animatingDifferences, completion)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:completion:"), auto_cast applySnapshot_animatingDifferences_completion, "v@:@B?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:completion:"), auto_cast applySnapshot_animatingDifferences_completion, "v@:^voidB?") do panic("Failed to register objC method.")
     }
     if vt.itemIdentifierForRow != nil {
-        itemIdentifierForRow :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, row: NS.Integer) -> ^id {
+        itemIdentifierForRow :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, row: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).itemIdentifierForRow(self, row)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifierForRow:"), auto_cast itemIdentifierForRow, "^void@:l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifierForRow:"), auto_cast itemIdentifierForRow, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.rowForItemIdentifier != nil {
-        rowForItemIdentifier :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, identifier: ^id) -> NS.Integer {
+        rowForItemIdentifier :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, identifier: id) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).rowForItemIdentifier(self, identifier)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("rowForItemIdentifier:"), auto_cast rowForItemIdentifier, "l@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rowForItemIdentifier:"), auto_cast rowForItemIdentifier, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.sectionIdentifierForRow != nil {
-        sectionIdentifierForRow :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, row: NS.Integer) -> ^id {
+        sectionIdentifierForRow :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, row: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).sectionIdentifierForRow(self, row)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("sectionIdentifierForRow:"), auto_cast sectionIdentifierForRow, "^void@:l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sectionIdentifierForRow:"), auto_cast sectionIdentifierForRow, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.rowForSectionIdentifier != nil {
-        rowForSectionIdentifier :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, identifier: ^id) -> NS.Integer {
+        rowForSectionIdentifier :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, identifier: id) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).rowForSectionIdentifier(self, identifier)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("rowForSectionIdentifier:"), auto_cast rowForSectionIdentifier, "l@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rowForSectionIdentifier:"), auto_cast rowForSectionIdentifier, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.rowViewProvider != nil {
         rowViewProvider :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL) -> AK.TableViewDiffableDataSourceRowProvider {
@@ -503,7 +503,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -533,7 +533,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

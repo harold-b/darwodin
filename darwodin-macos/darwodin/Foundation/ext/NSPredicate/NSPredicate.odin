@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).predicateWithSubstitutionVariables(self, variables)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("predicateWithSubstitutionVariables:"), auto_cast predicateWithSubstitutionVariables, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("predicateWithSubstitutionVariables:"), auto_cast predicateWithSubstitutionVariables, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.evaluateWithObject_ != nil {
         evaluateWithObject_ :: proc "c" (self: ^NS.Predicate, _: SEL, object: id) -> bool {
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).evaluateWithObject_substitutionVariables(self, object, bindings)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("evaluateWithObject:substitutionVariables:"), auto_cast evaluateWithObject_substitutionVariables, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("evaluateWithObject:substitutionVariables:"), auto_cast evaluateWithObject_substitutionVariables, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.allowEvaluation != nil {
         allowEvaluation :: proc "c" (self: ^NS.Predicate, _: SEL) {
@@ -464,7 +464,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -494,7 +494,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).compressWithPrioritizedCompressionOptions(self, prioritizedOptions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("compressWithPrioritizedCompressionOptions:"), auto_cast compressWithPrioritizedCompressionOptions, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("compressWithPrioritizedCompressionOptions:"), auto_cast compressWithPrioritizedCompressionOptions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.minimumSizeWithPrioritizedCompressionOptions != nil {
         minimumSizeWithPrioritizedCompressionOptions :: proc "c" (self: ^AK.UserInterfaceCompression, _: SEL, prioritizedOptions: ^NS.Array) -> NS.Size {
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).minimumSizeWithPrioritizedCompressionOptions(self, prioritizedOptions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("minimumSizeWithPrioritizedCompressionOptions:"), auto_cast minimumSizeWithPrioritizedCompressionOptions, "{CGSize=dd}@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("minimumSizeWithPrioritizedCompressionOptions:"), auto_cast minimumSizeWithPrioritizedCompressionOptions, "{CGSize=dd}@:^void") do panic("Failed to register objC method.")
     }
     if vt.activeCompressionOptions != nil {
         activeCompressionOptions :: proc "c" (self: ^AK.UserInterfaceCompression, _: SEL) -> ^AK.UserInterfaceCompressionOptions {

@@ -1003,7 +1003,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).completionsForPartialWordRange(self, charRange, index)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("completionsForPartialWordRange:indexOfSelectedItem:"), auto_cast completionsForPartialWordRange, "@@:{_NSRange=LL}^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("completionsForPartialWordRange:indexOfSelectedItem:"), auto_cast completionsForPartialWordRange, "^void@:{_NSRange=LL}^void") do panic("Failed to register objC method.")
     }
     if vt.insertCompletion != nil {
         insertCompletion :: proc "c" (self: ^AK.TextView, _: SEL, word: ^NS.String, charRange: NS._NSRange, movement: NS.Integer, flag: bool) {
@@ -1043,7 +1043,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).writeSelectionToPasteboard_types(self, pboard, types)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("writeSelectionToPasteboard:types:"), auto_cast writeSelectionToPasteboard_types, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writeSelectionToPasteboard:types:"), auto_cast writeSelectionToPasteboard_types, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.preferredPasteboardTypeFromArray != nil {
         preferredPasteboardTypeFromArray :: proc "c" (self: ^AK.TextView, _: SEL, availableTypes: ^NS.Array, allowedTypes: ^NS.Array) -> ^NS.String {
@@ -1053,7 +1053,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).preferredPasteboardTypeFromArray(self, availableTypes, allowedTypes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredPasteboardTypeFromArray:restrictedToTypesFromArray:"), auto_cast preferredPasteboardTypeFromArray, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredPasteboardTypeFromArray:restrictedToTypesFromArray:"), auto_cast preferredPasteboardTypeFromArray, "@@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.readSelectionFromPasteboard_type != nil {
         readSelectionFromPasteboard_type :: proc "c" (self: ^AK.TextView, _: SEL, pboard: ^AK.Pasteboard, type: ^NS.String) -> bool {
@@ -1123,7 +1123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).writablePasteboardTypes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("writablePasteboardTypes"), auto_cast writablePasteboardTypes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writablePasteboardTypes"), auto_cast writablePasteboardTypes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.readablePasteboardTypes != nil {
         readablePasteboardTypes :: proc "c" (self: ^AK.TextView, _: SEL) -> ^NS.Array {
@@ -1133,7 +1133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).readablePasteboardTypes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("readablePasteboardTypes"), auto_cast readablePasteboardTypes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readablePasteboardTypes"), auto_cast readablePasteboardTypes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.dragSelectionWithEvent != nil {
         dragSelectionWithEvent :: proc "c" (self: ^AK.TextView, _: SEL, event: ^AK.Event, mouseOffset: NS.Size, slideBack: bool) -> bool {
@@ -1183,7 +1183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).acceptableDragTypes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptableDragTypes"), auto_cast acceptableDragTypes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptableDragTypes"), auto_cast acceptableDragTypes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedRanges_affinity_stillSelecting != nil {
         setSelectedRanges_affinity_stillSelecting :: proc "c" (self: ^AK.TextView, _: SEL, ranges: ^NS.Array, affinity: AK.SelectionAffinity, stillSelectingFlag: bool) {
@@ -1193,7 +1193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setSelectedRanges_affinity_stillSelecting(self, ranges, affinity, stillSelectingFlag)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:affinity:stillSelecting:"), auto_cast setSelectedRanges_affinity_stillSelecting, "v@:@LB") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:affinity:stillSelecting:"), auto_cast setSelectedRanges_affinity_stillSelecting, "v@:^voidLB") do panic("Failed to register objC method.")
     }
     if vt.setSelectedRange_affinity_stillSelecting != nil {
         setSelectedRange_affinity_stillSelecting :: proc "c" (self: ^AK.TextView, _: SEL, charRange: NS._NSRange, affinity: AK.SelectionAffinity, stillSelectingFlag: bool) {
@@ -1253,7 +1253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shouldChangeTextInRanges(self, affectedRanges, replacementStrings)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldChangeTextInRanges:replacementStrings:"), auto_cast shouldChangeTextInRanges, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shouldChangeTextInRanges:replacementStrings:"), auto_cast shouldChangeTextInRanges, "B@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.shouldChangeTextInRange != nil {
         shouldChangeTextInRange :: proc "c" (self: ^AK.TextView, _: SEL, affectedCharRange: NS._NSRange, replacementString: ^NS.String) -> bool {
@@ -1313,7 +1313,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).selectedRanges(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRanges"), auto_cast selectedRanges, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRanges"), auto_cast selectedRanges, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedRanges_ != nil {
         setSelectedRanges_ :: proc "c" (self: ^AK.TextView, _: SEL, selectedRanges: ^NS.Array) {
@@ -1323,7 +1323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setSelectedRanges_(self, selectedRanges)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:"), auto_cast setSelectedRanges_, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:"), auto_cast setSelectedRanges_, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.selectionAffinity != nil {
         selectionAffinity :: proc "c" (self: ^AK.TextView, _: SEL) -> AK.SelectionAffinity {
@@ -1363,7 +1363,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).selectedTextAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedTextAttributes"), auto_cast selectedTextAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedTextAttributes"), auto_cast selectedTextAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedTextAttributes != nil {
         setSelectedTextAttributes :: proc "c" (self: ^AK.TextView, _: SEL, selectedTextAttributes: ^NS.Dictionary) {
@@ -1373,7 +1373,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setSelectedTextAttributes(self, selectedTextAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedTextAttributes:"), auto_cast setSelectedTextAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedTextAttributes:"), auto_cast setSelectedTextAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.insertionPointColor != nil {
         insertionPointColor :: proc "c" (self: ^AK.TextView, _: SEL) -> ^AK.Color {
@@ -1403,7 +1403,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).markedTextAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextAttributes"), auto_cast markedTextAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextAttributes"), auto_cast markedTextAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setMarkedTextAttributes != nil {
         setMarkedTextAttributes :: proc "c" (self: ^AK.TextView, _: SEL, markedTextAttributes: ^NS.Dictionary) {
@@ -1413,7 +1413,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setMarkedTextAttributes(self, markedTextAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setMarkedTextAttributes:"), auto_cast setMarkedTextAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMarkedTextAttributes:"), auto_cast setMarkedTextAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.linkTextAttributes != nil {
         linkTextAttributes :: proc "c" (self: ^AK.TextView, _: SEL) -> ^NS.Dictionary {
@@ -1423,7 +1423,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).linkTextAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("linkTextAttributes"), auto_cast linkTextAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("linkTextAttributes"), auto_cast linkTextAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setLinkTextAttributes != nil {
         setLinkTextAttributes :: proc "c" (self: ^AK.TextView, _: SEL, linkTextAttributes: ^NS.Dictionary) {
@@ -1433,7 +1433,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setLinkTextAttributes(self, linkTextAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setLinkTextAttributes:"), auto_cast setLinkTextAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLinkTextAttributes:"), auto_cast setLinkTextAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.displaysLinkToolTips != nil {
         displaysLinkToolTips :: proc "c" (self: ^AK.TextView, _: SEL) -> bool {
@@ -1573,7 +1573,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).typingAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("typingAttributes"), auto_cast typingAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("typingAttributes"), auto_cast typingAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTypingAttributes != nil {
         setTypingAttributes :: proc "c" (self: ^AK.TextView, _: SEL, typingAttributes: ^NS.Dictionary) {
@@ -1583,7 +1583,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTypingAttributes(self, typingAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTypingAttributes:"), auto_cast setTypingAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTypingAttributes:"), auto_cast setTypingAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.rangesForUserTextChange != nil {
         rangesForUserTextChange :: proc "c" (self: ^AK.TextView, _: SEL) -> ^NS.Array {
@@ -1593,7 +1593,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).rangesForUserTextChange(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserTextChange"), auto_cast rangesForUserTextChange, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserTextChange"), auto_cast rangesForUserTextChange, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.rangesForUserCharacterAttributeChange != nil {
         rangesForUserCharacterAttributeChange :: proc "c" (self: ^AK.TextView, _: SEL) -> ^NS.Array {
@@ -1603,7 +1603,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).rangesForUserCharacterAttributeChange(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserCharacterAttributeChange"), auto_cast rangesForUserCharacterAttributeChange, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserCharacterAttributeChange"), auto_cast rangesForUserCharacterAttributeChange, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.rangesForUserParagraphAttributeChange != nil {
         rangesForUserParagraphAttributeChange :: proc "c" (self: ^AK.TextView, _: SEL) -> ^NS.Array {
@@ -1613,7 +1613,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).rangesForUserParagraphAttributeChange(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserParagraphAttributeChange"), auto_cast rangesForUserParagraphAttributeChange, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rangesForUserParagraphAttributeChange"), auto_cast rangesForUserParagraphAttributeChange, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.rangeForUserTextChange != nil {
         rangeForUserTextChange :: proc "c" (self: ^AK.TextView, _: SEL) -> NS._NSRange {
@@ -1963,7 +1963,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedInputSourceLocales(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedInputSourceLocales"), auto_cast allowedInputSourceLocales, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedInputSourceLocales"), auto_cast allowedInputSourceLocales, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowedInputSourceLocales != nil {
         setAllowedInputSourceLocales :: proc "c" (self: ^AK.TextView, _: SEL, allowedInputSourceLocales: ^NS.Array) {
@@ -1973,7 +1973,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setAllowedInputSourceLocales(self, allowedInputSourceLocales)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedInputSourceLocales:"), auto_cast setAllowedInputSourceLocales, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedInputSourceLocales:"), auto_cast setAllowedInputSourceLocales, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.isWritingToolsActive != nil {
         isWritingToolsActive :: proc "c" (self: ^AK.TextView, _: SEL) -> bool {
@@ -2163,7 +2163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).checkTextInRange(self, range, checkingTypes, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInRange:types:options:"), auto_cast checkTextInRange, "v@:{_NSRange=LL}Q@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInRange:types:options:"), auto_cast checkTextInRange, "v@:{_NSRange=LL}Q^void") do panic("Failed to register objC method.")
     }
     if vt.handleTextCheckingResults != nil {
         handleTextCheckingResults :: proc "c" (self: ^AK.TextView, _: SEL, results: ^NS.Array, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, orthography: ^NS.Orthography, wordCount: NS.Integer) {
@@ -2173,7 +2173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).handleTextCheckingResults(self, results, range, checkingTypes, options, orthography, wordCount)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("handleTextCheckingResults:forRange:types:options:orthography:wordCount:"), auto_cast handleTextCheckingResults, "v@:@{_NSRange=LL}Q@@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("handleTextCheckingResults:forRange:types:options:orthography:wordCount:"), auto_cast handleTextCheckingResults, "v@:^void{_NSRange=LL}Q^void@l") do panic("Failed to register objC method.")
     }
     if vt.orderFrontSubstitutionsPanel != nil {
         orderFrontSubstitutionsPanel :: proc "c" (self: ^AK.TextView, _: SEL, sender: id) {
@@ -2483,7 +2483,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).quickLookPreviewableItemsInRanges(self, ranges)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("quickLookPreviewableItemsInRanges:"), auto_cast quickLookPreviewableItemsInRanges, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("quickLookPreviewableItemsInRanges:"), auto_cast quickLookPreviewableItemsInRanges, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.updateQuickLookPreviewPanel != nil {
         updateQuickLookPreviewPanel :: proc "c" (self: ^AK.TextView, _: SEL) {
@@ -2663,7 +2663,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textHighlightAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textHighlightAttributes"), auto_cast textHighlightAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textHighlightAttributes"), auto_cast textHighlightAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextHighlightAttributes != nil {
         setTextHighlightAttributes :: proc "c" (self: ^AK.TextView, _: SEL, textHighlightAttributes: ^NS.Dictionary) {
@@ -2673,7 +2673,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextHighlightAttributes(self, textHighlightAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextHighlightAttributes:"), auto_cast setTextHighlightAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextHighlightAttributes:"), auto_cast setTextHighlightAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.toggleBaseWritingDirection != nil {
         toggleBaseWritingDirection :: proc "c" (self: ^AK.TextView, _: SEL, sender: id) {
@@ -2753,7 +2753,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.restorableStateKeyPaths != nil {
         restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -2763,7 +2763,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).restorableStateKeyPaths()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -3033,7 +3033,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -3063,7 +3063,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).arguments(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("arguments"), auto_cast arguments, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("arguments"), auto_cast arguments, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setArguments != nil {
         setArguments :: proc "c" (self: ^NS.Task, _: SEL, arguments: ^NS.Array) {
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setArguments(self, arguments)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setArguments:"), auto_cast setArguments, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setArguments:"), auto_cast setArguments, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.environment != nil {
         environment :: proc "c" (self: ^NS.Task, _: SEL) -> ^NS.Dictionary {
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).environment(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("environment"), auto_cast environment, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("environment"), auto_cast environment, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setEnvironment != nil {
         setEnvironment :: proc "c" (self: ^NS.Task, _: SEL, environment: ^NS.Dictionary) {
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setEnvironment(self, environment)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setEnvironment:"), auto_cast setEnvironment, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setEnvironment:"), auto_cast setEnvironment, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.currentDirectoryURL != nil {
         currentDirectoryURL :: proc "c" (self: ^NS.Task, _: SEL) -> ^NS.URL {
@@ -410,7 +410,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).launchedTaskWithExecutableURL( url, arguments, error, terminationHandler)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("launchedTaskWithExecutableURL:arguments:error:terminationHandler:"), auto_cast launchedTaskWithExecutableURL, "@#:@@^void?") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("launchedTaskWithExecutableURL:arguments:error:terminationHandler:"), auto_cast launchedTaskWithExecutableURL, "@#:@^void^void?") do panic("Failed to register objC method.")
     }
     if vt.waitUntilExit != nil {
         waitUntilExit :: proc "c" (self: ^NS.Task, _: SEL) {
@@ -440,7 +440,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).launchedTaskWithLaunchPath( path, arguments)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("launchedTaskWithLaunchPath:arguments:"), auto_cast launchedTaskWithLaunchPath, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("launchedTaskWithLaunchPath:arguments:"), auto_cast launchedTaskWithLaunchPath, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.launchPath != nil {
         launchPath :: proc "c" (self: ^NS.Task, _: SEL) -> ^NS.String {
@@ -750,7 +750,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -780,7 +780,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

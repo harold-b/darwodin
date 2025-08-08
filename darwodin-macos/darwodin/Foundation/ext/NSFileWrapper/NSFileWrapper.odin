@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initDirectoryWithFileWrappers(self, childrenByPreferredName)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initDirectoryWithFileWrappers:"), auto_cast initDirectoryWithFileWrappers, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initDirectoryWithFileWrappers:"), auto_cast initDirectoryWithFileWrappers, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initRegularFileWithContents != nil {
         initRegularFileWithContents :: proc "c" (self: ^NS.FileWrapper, _: SEL, contents: ^NS.Data) -> ^NS.FileWrapper {
@@ -307,7 +307,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fileAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fileAttributes"), auto_cast fileAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileAttributes"), auto_cast fileAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setFileAttributes != nil {
         setFileAttributes :: proc "c" (self: ^NS.FileWrapper, _: SEL, fileAttributes: ^NS.Dictionary) {
@@ -317,7 +317,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setFileAttributes(self, fileAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setFileAttributes:"), auto_cast setFileAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setFileAttributes:"), auto_cast setFileAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.serializedRepresentation != nil {
         serializedRepresentation :: proc "c" (self: ^NS.FileWrapper, _: SEL) -> ^NS.Data {
@@ -337,7 +337,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fileWrappers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fileWrappers"), auto_cast fileWrappers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileWrappers"), auto_cast fileWrappers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.regularFileContents != nil {
         regularFileContents :: proc "c" (self: ^NS.FileWrapper, _: SEL) -> ^NS.Data {
@@ -717,7 +717,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -747,7 +747,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

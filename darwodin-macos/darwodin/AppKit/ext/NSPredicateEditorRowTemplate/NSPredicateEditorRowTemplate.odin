@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).predicateWithSubpredicates(self, subpredicates)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("predicateWithSubpredicates:"), auto_cast predicateWithSubpredicates, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("predicateWithSubpredicates:"), auto_cast predicateWithSubpredicates, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.displayableSubpredicatesOfPredicate != nil {
         displayableSubpredicatesOfPredicate :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, predicate: ^NS.Predicate) -> ^NS.Array {
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).displayableSubpredicatesOfPredicate(self, predicate)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("displayableSubpredicatesOfPredicate:"), auto_cast displayableSubpredicatesOfPredicate, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("displayableSubpredicatesOfPredicate:"), auto_cast displayableSubpredicatesOfPredicate, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithLeftExpressions_rightExpressions_modifier_operators_options != nil {
         initWithLeftExpressions_rightExpressions_modifier_operators_options :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, leftExpressions: ^NS.Array, rightExpressions: ^NS.Array, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> ^AK.PredicateEditorRowTemplate {
@@ -134,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithLeftExpressions_rightExpressions_modifier_operators_options(self, leftExpressions, rightExpressions, modifier, operators, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLeftExpressions:rightExpressions:modifier:operators:options:"), auto_cast initWithLeftExpressions_rightExpressions_modifier_operators_options, "@@:@@L@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLeftExpressions:rightExpressions:modifier:operators:options:"), auto_cast initWithLeftExpressions_rightExpressions_modifier_operators_options, "@@:^void^voidL^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options != nil {
         initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, leftExpressions: ^NS.Array, attributeType: AK.AttributeType, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> ^AK.PredicateEditorRowTemplate {
@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options(self, leftExpressions, attributeType, modifier, operators, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:"), auto_cast initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options, "@@:@LL@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:"), auto_cast initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options, "@@:^voidLL^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithCompoundTypes != nil {
         initWithCompoundTypes :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, compoundTypes: ^NS.Array) -> ^AK.PredicateEditorRowTemplate {
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithCompoundTypes(self, compoundTypes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCompoundTypes:"), auto_cast initWithCompoundTypes, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCompoundTypes:"), auto_cast initWithCompoundTypes, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.templatesWithAttributeKeyPaths != nil {
         templatesWithAttributeKeyPaths :: proc "c" (self: Class, _: SEL, keyPaths: ^NS.Array, entityDescription: ^AK.EntityDescription) -> ^NS.Array {
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).templatesWithAttributeKeyPaths( keyPaths, entityDescription)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("templatesWithAttributeKeyPaths:inEntityDescription:"), auto_cast templatesWithAttributeKeyPaths, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("templatesWithAttributeKeyPaths:inEntityDescription:"), auto_cast templatesWithAttributeKeyPaths, "^void#:^void@") do panic("Failed to register objC method.")
     }
     if vt.templateViews != nil {
         templateViews :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL) -> ^NS.Array {
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).templateViews(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("templateViews"), auto_cast templateViews, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("templateViews"), auto_cast templateViews, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.leftExpressions != nil {
         leftExpressions :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL) -> ^NS.Array {
@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).leftExpressions(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("leftExpressions"), auto_cast leftExpressions, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("leftExpressions"), auto_cast leftExpressions, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.rightExpressions != nil {
         rightExpressions :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL) -> ^NS.Array {
@@ -194,7 +194,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).rightExpressions(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("rightExpressions"), auto_cast rightExpressions, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rightExpressions"), auto_cast rightExpressions, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.rightExpressionAttributeType != nil {
         rightExpressionAttributeType :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL) -> AK.AttributeType {
@@ -224,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).operators(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("operators"), auto_cast operators, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("operators"), auto_cast operators, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.options != nil {
         options :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL) -> NS.UInteger {
@@ -244,7 +244,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).compoundTypes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("compoundTypes"), auto_cast compoundTypes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("compoundTypes"), auto_cast compoundTypes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -514,7 +514,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -544,7 +544,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

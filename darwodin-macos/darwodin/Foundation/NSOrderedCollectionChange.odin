@@ -17,11 +17,11 @@ import Sec "../Security"
 OrderedCollectionChange :: struct { using _: Object, }
 
 @(objc_type=OrderedCollectionChange, objc_name="changeWithObject_type_index", objc_is_class_method=true)
-OrderedCollectionChange_changeWithObject_type_index :: #force_inline proc "c" (anObject: ^id, type: CollectionChangeType, index: UInteger) -> ^OrderedCollectionChange {
+OrderedCollectionChange_changeWithObject_type_index :: #force_inline proc "c" (anObject: id, type: CollectionChangeType, index: UInteger) -> ^OrderedCollectionChange {
     return msgSend(^OrderedCollectionChange, OrderedCollectionChange, "changeWithObject:type:index:", anObject, type, index)
 }
 @(objc_type=OrderedCollectionChange, objc_name="changeWithObject_type_index_associatedIndex", objc_is_class_method=true)
-OrderedCollectionChange_changeWithObject_type_index_associatedIndex :: #force_inline proc "c" (anObject: ^id, type: CollectionChangeType, index: UInteger, associatedIndex: UInteger) -> ^OrderedCollectionChange {
+OrderedCollectionChange_changeWithObject_type_index_associatedIndex :: #force_inline proc "c" (anObject: id, type: CollectionChangeType, index: UInteger, associatedIndex: UInteger) -> ^OrderedCollectionChange {
     return msgSend(^OrderedCollectionChange, OrderedCollectionChange, "changeWithObject:type:index:associatedIndex:", anObject, type, index, associatedIndex)
 }
 @(objc_type=OrderedCollectionChange, objc_name="init")
@@ -29,16 +29,16 @@ OrderedCollectionChange_init :: #force_inline proc "c" (self: ^OrderedCollection
     return msgSend(id, self, "init")
 }
 @(objc_type=OrderedCollectionChange, objc_name="initWithObject_type_index")
-OrderedCollectionChange_initWithObject_type_index :: #force_inline proc "c" (self: ^OrderedCollectionChange, anObject: ^id, type: CollectionChangeType, index: UInteger) -> ^OrderedCollectionChange {
+OrderedCollectionChange_initWithObject_type_index :: #force_inline proc "c" (self: ^OrderedCollectionChange, anObject: id, type: CollectionChangeType, index: UInteger) -> ^OrderedCollectionChange {
     return msgSend(^OrderedCollectionChange, self, "initWithObject:type:index:", anObject, type, index)
 }
 @(objc_type=OrderedCollectionChange, objc_name="initWithObject_type_index_associatedIndex")
-OrderedCollectionChange_initWithObject_type_index_associatedIndex :: #force_inline proc "c" (self: ^OrderedCollectionChange, anObject: ^id, type: CollectionChangeType, index: UInteger, associatedIndex: UInteger) -> ^OrderedCollectionChange {
+OrderedCollectionChange_initWithObject_type_index_associatedIndex :: #force_inline proc "c" (self: ^OrderedCollectionChange, anObject: id, type: CollectionChangeType, index: UInteger, associatedIndex: UInteger) -> ^OrderedCollectionChange {
     return msgSend(^OrderedCollectionChange, self, "initWithObject:type:index:associatedIndex:", anObject, type, index, associatedIndex)
 }
 @(objc_type=OrderedCollectionChange, objc_name="object")
-OrderedCollectionChange_object :: #force_inline proc "c" (self: ^OrderedCollectionChange) -> ^id {
-    return msgSend(^id, self, "object")
+OrderedCollectionChange_object :: #force_inline proc "c" (self: ^OrderedCollectionChange) -> id {
+    return msgSend(id, self, "object")
 }
 @(objc_type=OrderedCollectionChange, objc_name="changeType")
 OrderedCollectionChange_changeType :: #force_inline proc "c" (self: ^OrderedCollectionChange) -> CollectionChangeType {

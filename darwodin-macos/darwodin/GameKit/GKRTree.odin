@@ -31,11 +31,11 @@ RTree_initWithMaxNumberOfChildren :: #force_inline proc "c" (self: ^RTree, maxNu
     return msgSend(^RTree, self, "initWithMaxNumberOfChildren:", maxNumberOfChildren)
 }
 @(objc_type=RTree, objc_name="addElement")
-RTree_addElement :: #force_inline proc "c" (self: ^RTree, element: ^NS.Object, boundingRectMin: vector_float2, boundingRectMax: vector_float2, splitStrategy: RTreeSplitStrategy) {
+RTree_addElement :: #force_inline proc "c" (self: ^RTree, element: id, boundingRectMin: vector_float2, boundingRectMax: vector_float2, splitStrategy: RTreeSplitStrategy) {
     msgSend(nil, self, "addElement:boundingRectMin:boundingRectMax:splitStrategy:", element, boundingRectMin, boundingRectMax, splitStrategy)
 }
 @(objc_type=RTree, objc_name="removeElement")
-RTree_removeElement :: #force_inline proc "c" (self: ^RTree, element: ^NS.Object, boundingRectMin: vector_float2, boundingRectMax: vector_float2) {
+RTree_removeElement :: #force_inline proc "c" (self: ^RTree, element: id, boundingRectMin: vector_float2, boundingRectMax: vector_float2) {
     msgSend(nil, self, "removeElement:boundingRectMin:boundingRectMax:", element, boundingRectMin, boundingRectMax)
 }
 @(objc_type=RTree, objc_name="elementsInBoundingRectMin")

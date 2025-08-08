@@ -994,7 +994,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).alternatingContentBackgroundColors()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("alternatingContentBackgroundColors"), auto_cast alternatingContentBackgroundColors, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("alternatingContentBackgroundColors"), auto_cast alternatingContentBackgroundColors, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.findHighlightColor != nil {
         findHighlightColor :: proc "c" (self: Class, _: SEL) -> ^AK.Color {
@@ -1594,7 +1594,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).colorUsingColorSpaceName_device(self, name, deviceDescription)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("colorUsingColorSpaceName:device:"), auto_cast colorUsingColorSpaceName_device, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("colorUsingColorSpaceName:device:"), auto_cast colorUsingColorSpaceName_device, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.colorUsingColorSpaceName_ != nil {
         colorUsingColorSpaceName_ :: proc "c" (self: ^AK.Color, _: SEL, name: ^NS.String) -> ^AK.Color {
@@ -1734,7 +1734,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).controlAlternatingRowBackgroundColors()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("controlAlternatingRowBackgroundColors"), auto_cast controlAlternatingRowBackgroundColors, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("controlAlternatingRowBackgroundColors"), auto_cast controlAlternatingRowBackgroundColors, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.colorSpaceName != nil {
         colorSpaceName :: proc "c" (self: ^AK.Color, _: SEL) -> ^NS.String {
@@ -1774,7 +1774,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).readableTypesForPasteboard( pasteboard)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypesForPasteboard:"), auto_cast readableTypesForPasteboard, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypesForPasteboard:"), auto_cast readableTypesForPasteboard, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.readingOptionsForType != nil {
         readingOptionsForType :: proc "c" (self: Class, _: SEL, type: ^NS.String, pasteboard: ^AK.Pasteboard) -> AK.PasteboardReadingOptions {
@@ -2054,7 +2054,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -2084,7 +2084,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

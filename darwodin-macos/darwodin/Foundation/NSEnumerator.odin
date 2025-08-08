@@ -25,8 +25,8 @@ Enumerator_init :: proc "c" (self: ^Enumerator) -> ^Enumerator {
 
 
 @(objc_type=Enumerator, objc_name="nextObject")
-Enumerator_nextObject :: #force_inline proc "c" (self: ^Enumerator) -> ^id {
-    return msgSend(^id, self, "nextObject")
+Enumerator_nextObject :: #force_inline proc "c" (self: ^Enumerator) -> id {
+    return msgSend(id, self, "nextObject")
 }
 @(objc_type=Enumerator, objc_name="allObjects")
 Enumerator_allObjects :: #force_inline proc "c" (self: ^Enumerator) -> ^Array {

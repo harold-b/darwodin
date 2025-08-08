@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).application_openURLs(self, application, urls)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:openURLs:"), auto_cast application_openURLs, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:openURLs:"), auto_cast application_openURLs, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.application_openFile != nil {
         application_openFile :: proc "c" (self: ^AK.ApplicationDelegate, _: SEL, sender: ^AK.Application, filename: ^NS.String) -> bool {
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).application_openFiles(self, sender, filenames)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:openFiles:"), auto_cast application_openFiles, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:openFiles:"), auto_cast application_openFiles, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.application_openTempFile != nil {
         application_openTempFile :: proc "c" (self: ^AK.ApplicationDelegate, _: SEL, sender: ^AK.Application, filename: ^NS.String) -> bool {
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).application_printFiles_withSettings_showPrintPanels(self, application, fileNames, printSettings, showPrintPanels)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:printFiles:withSettings:showPrintPanels:"), auto_cast application_printFiles_withSettings_showPrintPanels, "L@:@@@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:printFiles:withSettings:showPrintPanels:"), auto_cast application_printFiles_withSettings_showPrintPanels, "L@:@^void^voidB") do panic("Failed to register objC method.")
     }
     if vt.applicationShouldTerminateAfterLastWindowClosed != nil {
         applicationShouldTerminateAfterLastWindowClosed :: proc "c" (self: ^AK.ApplicationDelegate, _: SEL, sender: ^AK.Application) -> bool {
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).application_didReceiveRemoteNotification(self, application, userInfo)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:didReceiveRemoteNotification:"), auto_cast application_didReceiveRemoteNotification, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:didReceiveRemoteNotification:"), auto_cast application_didReceiveRemoteNotification, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.applicationSupportsSecureRestorableState != nil {
         applicationSupportsSecureRestorableState :: proc "c" (self: ^AK.ApplicationDelegate, _: SEL, app: ^AK.Application) -> bool {

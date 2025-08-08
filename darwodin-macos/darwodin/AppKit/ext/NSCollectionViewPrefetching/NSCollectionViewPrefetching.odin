@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).collectionView_prefetchItemsAtIndexPaths(self, collectionView, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:prefetchItemsAtIndexPaths:"), auto_cast collectionView_prefetchItemsAtIndexPaths, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:prefetchItemsAtIndexPaths:"), auto_cast collectionView_prefetchItemsAtIndexPaths, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.collectionView_cancelPrefetchingForItemsAtIndexPaths != nil {
         collectionView_cancelPrefetchingForItemsAtIndexPaths :: proc "c" (self: ^AK.CollectionViewPrefetching, _: SEL, collectionView: ^AK.CollectionView, indexPaths: ^NS.Array) {
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).collectionView_cancelPrefetchingForItemsAtIndexPaths(self, collectionView, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:cancelPrefetchingForItemsAtIndexPaths:"), auto_cast collectionView_cancelPrefetchingForItemsAtIndexPaths, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:cancelPrefetchingForItemsAtIndexPaths:"), auto_cast collectionView_cancelPrefetchingForItemsAtIndexPaths, "v@:@^void") do panic("Failed to register objC method.")
     }
 }
 

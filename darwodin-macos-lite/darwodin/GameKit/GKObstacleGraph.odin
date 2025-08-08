@@ -39,15 +39,15 @@ ObstacleGraph_initWithObstacles_bufferRadius_nodeClass :: #force_inline proc "c"
     return msgSend(^ObstacleGraph, self, "initWithObstacles:bufferRadius:nodeClass:", obstacles, bufferRadius, nodeClass)
 }
 @(objc_type=ObstacleGraph, objc_name="connectNodeUsingObstacles_")
-ObstacleGraph_connectNodeUsingObstacles_ :: #force_inline proc "c" (self: ^ObstacleGraph, node: ^GraphNode2D) {
+ObstacleGraph_connectNodeUsingObstacles_ :: #force_inline proc "c" (self: ^ObstacleGraph, node: id) {
     msgSend(nil, self, "connectNodeUsingObstacles:", node)
 }
 @(objc_type=ObstacleGraph, objc_name="connectNodeUsingObstacles_ignoringObstacles")
-ObstacleGraph_connectNodeUsingObstacles_ignoringObstacles :: #force_inline proc "c" (self: ^ObstacleGraph, node: ^GraphNode2D, obstaclesToIgnore: ^NS.Array) {
+ObstacleGraph_connectNodeUsingObstacles_ignoringObstacles :: #force_inline proc "c" (self: ^ObstacleGraph, node: id, obstaclesToIgnore: ^NS.Array) {
     msgSend(nil, self, "connectNodeUsingObstacles:ignoringObstacles:", node, obstaclesToIgnore)
 }
 @(objc_type=ObstacleGraph, objc_name="connectNodeUsingObstacles_ignoringBufferRadiusOfObstacles")
-ObstacleGraph_connectNodeUsingObstacles_ignoringBufferRadiusOfObstacles :: #force_inline proc "c" (self: ^ObstacleGraph, node: ^GraphNode2D, obstaclesBufferRadiusToIgnore: ^NS.Array) {
+ObstacleGraph_connectNodeUsingObstacles_ignoringBufferRadiusOfObstacles :: #force_inline proc "c" (self: ^ObstacleGraph, node: id, obstaclesBufferRadiusToIgnore: ^NS.Array) {
     msgSend(nil, self, "connectNodeUsingObstacles:ignoringBufferRadiusOfObstacles:", node, obstaclesBufferRadiusToIgnore)
 }
 @(objc_type=ObstacleGraph, objc_name="addObstacles")
@@ -67,15 +67,15 @@ ObstacleGraph_nodesForObstacle :: #force_inline proc "c" (self: ^ObstacleGraph, 
     return msgSend(^NS.Array, self, "nodesForObstacle:", obstacle)
 }
 @(objc_type=ObstacleGraph, objc_name="lockConnectionFromNode")
-ObstacleGraph_lockConnectionFromNode :: #force_inline proc "c" (self: ^ObstacleGraph, startNode: ^GraphNode2D, endNode: ^GraphNode2D) {
+ObstacleGraph_lockConnectionFromNode :: #force_inline proc "c" (self: ^ObstacleGraph, startNode: id, endNode: id) {
     msgSend(nil, self, "lockConnectionFromNode:toNode:", startNode, endNode)
 }
 @(objc_type=ObstacleGraph, objc_name="unlockConnectionFromNode")
-ObstacleGraph_unlockConnectionFromNode :: #force_inline proc "c" (self: ^ObstacleGraph, startNode: ^GraphNode2D, endNode: ^GraphNode2D) {
+ObstacleGraph_unlockConnectionFromNode :: #force_inline proc "c" (self: ^ObstacleGraph, startNode: id, endNode: id) {
     msgSend(nil, self, "unlockConnectionFromNode:toNode:", startNode, endNode)
 }
 @(objc_type=ObstacleGraph, objc_name="isConnectionLockedFromNode")
-ObstacleGraph_isConnectionLockedFromNode :: #force_inline proc "c" (self: ^ObstacleGraph, startNode: ^GraphNode2D, endNode: ^GraphNode2D) -> bool {
+ObstacleGraph_isConnectionLockedFromNode :: #force_inline proc "c" (self: ^ObstacleGraph, startNode: id, endNode: id) -> bool {
     return msgSend(bool, self, "isConnectionLockedFromNode:toNode:", startNode, endNode)
 }
 @(objc_type=ObstacleGraph, objc_name="classForGenericArgumentAtIndex")

@@ -505,7 +505,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).componentsFromLocaleIdentifier( string)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("componentsFromLocaleIdentifier:"), auto_cast componentsFromLocaleIdentifier, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("componentsFromLocaleIdentifier:"), auto_cast componentsFromLocaleIdentifier, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.localeIdentifierFromComponents != nil {
         localeIdentifierFromComponents :: proc "c" (self: Class, _: SEL, dict: ^NS.Dictionary) -> ^NS.String {
@@ -515,7 +515,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).localeIdentifierFromComponents( dict)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("localeIdentifierFromComponents:"), auto_cast localeIdentifierFromComponents, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localeIdentifierFromComponents:"), auto_cast localeIdentifierFromComponents, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.canonicalLocaleIdentifierFromString != nil {
         canonicalLocaleIdentifierFromString :: proc "c" (self: Class, _: SEL, string: ^NS.String) -> ^NS.String {
@@ -585,7 +585,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableLocaleIdentifiers()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("availableLocaleIdentifiers"), auto_cast availableLocaleIdentifiers, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("availableLocaleIdentifiers"), auto_cast availableLocaleIdentifiers, "^void#:") do panic("Failed to register objC method.")
     }
     if vt._ISOLanguageCodes != nil {
         _ISOLanguageCodes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -595,7 +595,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._ISOLanguageCodes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("ISOLanguageCodes"), auto_cast _ISOLanguageCodes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("ISOLanguageCodes"), auto_cast _ISOLanguageCodes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt._ISOCountryCodes != nil {
         _ISOCountryCodes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -605,7 +605,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._ISOCountryCodes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("ISOCountryCodes"), auto_cast _ISOCountryCodes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("ISOCountryCodes"), auto_cast _ISOCountryCodes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt._ISOCurrencyCodes != nil {
         _ISOCurrencyCodes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -615,7 +615,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._ISOCurrencyCodes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("ISOCurrencyCodes"), auto_cast _ISOCurrencyCodes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("ISOCurrencyCodes"), auto_cast _ISOCurrencyCodes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.commonISOCurrencyCodes != nil {
         commonISOCurrencyCodes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -625,7 +625,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).commonISOCurrencyCodes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("commonISOCurrencyCodes"), auto_cast commonISOCurrencyCodes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("commonISOCurrencyCodes"), auto_cast commonISOCurrencyCodes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.preferredLanguages != nil {
         preferredLanguages :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -635,7 +635,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).preferredLanguages()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("preferredLanguages"), auto_cast preferredLanguages, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("preferredLanguages"), auto_cast preferredLanguages, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -915,7 +915,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -945,7 +945,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

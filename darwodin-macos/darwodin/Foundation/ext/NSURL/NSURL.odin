@@ -405,7 +405,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).resourceValuesForKeys_error(self, keys, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("resourceValuesForKeys:error:"), auto_cast resourceValuesForKeys_error, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resourceValuesForKeys:error:"), auto_cast resourceValuesForKeys_error, "^void@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.setResourceValue != nil {
         setResourceValue :: proc "c" (self: ^NS.URL, _: SEL, value: id, key: ^NS.String, error: ^^NS.Error) -> bool {
@@ -425,7 +425,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setResourceValues(self, keyedValues, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setResourceValues:error:"), auto_cast setResourceValues, "B@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setResourceValues:error:"), auto_cast setResourceValues, "B@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.removeCachedResourceValueForKey != nil {
         removeCachedResourceValueForKey :: proc "c" (self: ^NS.URL, _: SEL, key: ^NS.String) {
@@ -465,7 +465,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).bookmarkDataWithOptions(self, options, keys, relativeURL, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"), auto_cast bookmarkDataWithOptions, "@@:L@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"), auto_cast bookmarkDataWithOptions, "@@:L^void@^void") do panic("Failed to register objC method.")
     }
     if vt.initByResolvingBookmarkData != nil {
         initByResolvingBookmarkData :: proc "c" (self: ^NS.URL, _: SEL, bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> ^NS.URL {
@@ -495,7 +495,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).resourceValuesForKeys_fromBookmarkData( keys, bookmarkData)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("resourceValuesForKeys:fromBookmarkData:"), auto_cast resourceValuesForKeys_fromBookmarkData, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("resourceValuesForKeys:fromBookmarkData:"), auto_cast resourceValuesForKeys_fromBookmarkData, "^void#:^void@") do panic("Failed to register objC method.")
     }
     if vt.writeBookmarkData != nil {
         writeBookmarkData :: proc "c" (self: Class, _: SEL, bookmarkData: ^NS.Data, bookmarkFileURL: ^NS.URL, options: NS.URLBookmarkFileCreationOptions, error: ^^NS.Error) -> bool {
@@ -775,7 +775,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).promisedItemResourceValuesForKeys(self, keys, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("promisedItemResourceValuesForKeys:error:"), auto_cast promisedItemResourceValuesForKeys, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("promisedItemResourceValuesForKeys:error:"), auto_cast promisedItemResourceValuesForKeys, "^void@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.checkPromisedItemIsReachableAndReturnError != nil {
         checkPromisedItemIsReachableAndReturnError :: proc "c" (self: ^NS.URL, _: SEL, error: ^^NS.Error) -> bool {
@@ -795,7 +795,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fileURLWithPathComponents( components)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("fileURLWithPathComponents:"), auto_cast fileURLWithPathComponents, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fileURLWithPathComponents:"), auto_cast fileURLWithPathComponents, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt._URLByAppendingPathComponent_ != nil {
         _URLByAppendingPathComponent_ :: proc "c" (self: ^NS.URL, _: SEL, pathComponent: ^NS.String) -> ^NS.URL {
@@ -845,7 +845,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).pathComponents(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pathComponents"), auto_cast pathComponents, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pathComponents"), auto_cast pathComponents, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.lastPathComponent != nil {
         lastPathComponent :: proc "c" (self: ^NS.URL, _: SEL) -> ^NS.String {
@@ -1245,7 +1245,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1275,7 +1275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

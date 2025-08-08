@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).writableTypesForPasteboard(self, pasteboard)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("writableTypesForPasteboard:"), auto_cast writableTypesForPasteboard, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writableTypesForPasteboard:"), auto_cast writableTypesForPasteboard, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.writingOptionsForType != nil {
         writingOptionsForType :: proc "c" (self: ^AK.PasteboardWriting, _: SEL, type: ^NS.String, pasteboard: ^AK.Pasteboard) -> AK.PasteboardWritingOptions {

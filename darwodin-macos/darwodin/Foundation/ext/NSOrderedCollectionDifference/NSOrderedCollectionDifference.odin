@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithChanges(self, changes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithChanges:"), auto_cast initWithChanges, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithChanges:"), auto_cast initWithChanges, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges != nil {
         initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL, inserts: ^NS.IndexSet, insertedObjects: ^NS.Array, removes: ^NS.IndexSet, removedObjects: ^NS.Array, changes: ^NS.Array) -> ^NS.OrderedCollectionDifference {
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges(self, inserts, insertedObjects, removes, removedObjects, changes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:"), auto_cast initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges, "@@:@@@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:"), auto_cast initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges, "^void@:@^void@^void^void") do panic("Failed to register objC method.")
     }
     if vt.initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects != nil {
         initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL, inserts: ^NS.IndexSet, insertedObjects: ^NS.Array, removes: ^NS.IndexSet, removedObjects: ^NS.Array) -> ^NS.OrderedCollectionDifference {
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects(self, inserts, insertedObjects, removes, removedObjects)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:"), auto_cast initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects, "@@:@@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:"), auto_cast initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects, "^void@:@^void@^void") do panic("Failed to register objC method.")
     }
     if vt.differenceByTransformingChangesWithBlock != nil {
         differenceByTransformingChangesWithBlock :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL, block: ^Objc_Block(proc "c" (_: ^NS.OrderedCollectionChange) -> ^NS.OrderedCollectionChange)) -> ^NS.OrderedCollectionDifference {
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).differenceByTransformingChangesWithBlock(self, block)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("differenceByTransformingChangesWithBlock:"), auto_cast differenceByTransformingChangesWithBlock, "@@:?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("differenceByTransformingChangesWithBlock:"), auto_cast differenceByTransformingChangesWithBlock, "^void@:?") do panic("Failed to register objC method.")
     }
     if vt.inverseDifference != nil {
         inverseDifference :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL) -> ^NS.OrderedCollectionDifference {
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).inverseDifference(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("inverseDifference"), auto_cast inverseDifference, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("inverseDifference"), auto_cast inverseDifference, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.insertions != nil {
         insertions :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL) -> ^NS.Array {
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).insertions(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("insertions"), auto_cast insertions, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertions"), auto_cast insertions, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.removals != nil {
         removals :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL) -> ^NS.Array {
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).removals(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("removals"), auto_cast removals, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removals"), auto_cast removals, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.hasChanges != nil {
         hasChanges :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL) -> bool {
@@ -420,7 +420,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -450,7 +450,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

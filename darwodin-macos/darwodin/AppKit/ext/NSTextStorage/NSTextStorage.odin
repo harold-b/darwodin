@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).layoutManagers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManagers"), auto_cast layoutManagers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManagers"), auto_cast layoutManagers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.editedMask != nil {
         editedMask :: proc "c" (self: ^AK.TextStorage, _: SEL) -> AK.TextStorageEditActions {
@@ -269,7 +269,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).attributeRuns(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("attributeRuns"), auto_cast attributeRuns, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributeRuns"), auto_cast attributeRuns, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributeRuns != nil {
         setAttributeRuns :: proc "c" (self: ^AK.TextStorage, _: SEL, attributeRuns: ^NS.Array) {
@@ -279,7 +279,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setAttributeRuns(self, attributeRuns)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributeRuns:"), auto_cast setAttributeRuns, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributeRuns:"), auto_cast setAttributeRuns, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.paragraphs != nil {
         paragraphs :: proc "c" (self: ^AK.TextStorage, _: SEL) -> ^NS.Array {
@@ -289,7 +289,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).paragraphs(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphs"), auto_cast paragraphs, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphs"), auto_cast paragraphs, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setParagraphs != nil {
         setParagraphs :: proc "c" (self: ^AK.TextStorage, _: SEL, paragraphs: ^NS.Array) {
@@ -299,7 +299,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setParagraphs(self, paragraphs)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setParagraphs:"), auto_cast setParagraphs, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setParagraphs:"), auto_cast setParagraphs, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.words != nil {
         words :: proc "c" (self: ^AK.TextStorage, _: SEL) -> ^NS.Array {
@@ -309,7 +309,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).words(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("words"), auto_cast words, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("words"), auto_cast words, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setWords != nil {
         setWords :: proc "c" (self: ^AK.TextStorage, _: SEL, words: ^NS.Array) {
@@ -319,7 +319,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setWords(self, words)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setWords:"), auto_cast setWords, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWords:"), auto_cast setWords, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.characters != nil {
         characters :: proc "c" (self: ^AK.TextStorage, _: SEL) -> ^NS.Array {
@@ -329,7 +329,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).characters(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("characters"), auto_cast characters, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("characters"), auto_cast characters, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setCharacters != nil {
         setCharacters :: proc "c" (self: ^AK.TextStorage, _: SEL, characters: ^NS.Array) {
@@ -339,7 +339,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setCharacters(self, characters)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setCharacters:"), auto_cast setCharacters, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCharacters:"), auto_cast setCharacters, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.font != nil {
         font :: proc "c" (self: ^AK.TextStorage, _: SEL) -> ^AK.Font {
@@ -419,7 +419,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).localizedAttributedStringWithFormat_context( format, _context)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:context:"), auto_cast localizedAttributedStringWithFormat_context, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:context:"), auto_cast localizedAttributedStringWithFormat_context, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.localizedAttributedStringWithFormat_options_context != nil {
         localizedAttributedStringWithFormat_options_context :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, _context: ^NS.Dictionary) -> ^NS.AttributedString {
@@ -429,7 +429,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).localizedAttributedStringWithFormat_options_context( format, options, _context)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:options:context:"), auto_cast localizedAttributedStringWithFormat_options_context, "@#:@L@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:options:context:"), auto_cast localizedAttributedStringWithFormat_options_context, "@#:@L^void") do panic("Failed to register objC method.")
     }
     if vt.textTypes != nil {
         textTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -439,7 +439,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("textTypes"), auto_cast textTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("textTypes"), auto_cast textTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.textUnfilteredTypes != nil {
         textUnfilteredTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -449,7 +449,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textUnfilteredTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("textUnfilteredTypes"), auto_cast textUnfilteredTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("textUnfilteredTypes"), auto_cast textUnfilteredTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.textFileTypes != nil {
         textFileTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -509,7 +509,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).attributedStringWithAttachment_attributes( attachment, attributes)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAttachment:attributes:"), auto_cast attributedStringWithAttachment_attributes, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAttachment:attributes:"), auto_cast attributedStringWithAttachment_attributes, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.attributedStringWithAdaptiveImageGlyph != nil {
         attributedStringWithAdaptiveImageGlyph :: proc "c" (self: Class, _: SEL, adaptiveImageGlyph: ^AK.AdaptiveImageGlyph, attributes: ^NS.Dictionary) -> ^NS.AttributedString {
@@ -519,7 +519,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).attributedStringWithAdaptiveImageGlyph( adaptiveImageGlyph, attributes)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAdaptiveImageGlyph:attributes:"), auto_cast attributedStringWithAdaptiveImageGlyph, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("attributedStringWithAdaptiveImageGlyph:attributes:"), auto_cast attributedStringWithAdaptiveImageGlyph, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -789,7 +789,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -819,7 +819,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

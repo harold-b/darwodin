@@ -437,7 +437,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).dragImageForRowsWithIndexes(self, dragRows, tableColumns, dragEvent, dragImageOffset)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dragImageForRowsWithIndexes:tableColumns:event:offset:"), auto_cast dragImageForRowsWithIndexes, "@@:@@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragImageForRowsWithIndexes:tableColumns:event:offset:"), auto_cast dragImageForRowsWithIndexes, "@@:@^void@^void") do panic("Failed to register objC method.")
     }
     if vt.setDraggingSourceOperationMask != nil {
         setDraggingSourceOperationMask :: proc "c" (self: ^AK.TableView, _: SEL, mask: AK.DragOperation, isLocal: bool) {
@@ -1117,7 +1117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).tableColumns(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableColumns"), auto_cast tableColumns, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableColumns"), auto_cast tableColumns, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.numberOfColumns != nil {
         numberOfColumns :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
@@ -1207,7 +1207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).sortDescriptors(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("sortDescriptors"), auto_cast sortDescriptors, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sortDescriptors"), auto_cast sortDescriptors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSortDescriptors != nil {
         setSortDescriptors :: proc "c" (self: ^AK.TableView, _: SEL, sortDescriptors: ^NS.Array) {
@@ -1217,7 +1217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setSortDescriptors(self, sortDescriptors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSortDescriptors:"), auto_cast setSortDescriptors, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSortDescriptors:"), auto_cast setSortDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.highlightedTableColumn != nil {
         highlightedTableColumn :: proc "c" (self: ^AK.TableView, _: SEL) -> ^AK.TableColumn {
@@ -1567,7 +1567,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).registeredNibsByIdentifier(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("registeredNibsByIdentifier"), auto_cast registeredNibsByIdentifier, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registeredNibsByIdentifier"), auto_cast registeredNibsByIdentifier, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.usesStaticContents != nil {
         usesStaticContents :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
@@ -1917,7 +1917,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.restorableStateKeyPaths != nil {
         restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -1927,7 +1927,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).restorableStateKeyPaths()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -2197,7 +2197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -2227,7 +2227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

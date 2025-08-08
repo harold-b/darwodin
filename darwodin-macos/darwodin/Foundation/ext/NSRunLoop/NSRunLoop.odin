@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).performInModes(self, modes, block)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("performInModes:block:"), auto_cast performInModes, "v@:@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performInModes:block:"), auto_cast performInModes, "v@:^void?") do panic("Failed to register objC method.")
     }
     if vt.performBlock != nil {
         performBlock :: proc "c" (self: ^NS.RunLoop, _: SEL, block: ^Objc_Block(proc "c" ())) {
@@ -240,7 +240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).performSelector(self, aSelector, target, arg, order, modes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:target:argument:order:modes:"), auto_cast performSelector, "v@::@@L@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:target:argument:order:modes:"), auto_cast performSelector, "v@::@@L^void") do panic("Failed to register objC method.")
     }
     if vt.cancelPerformSelector != nil {
         cancelPerformSelector :: proc "c" (self: ^NS.RunLoop, _: SEL, aSelector: SEL, target: id, arg: id) {
@@ -530,7 +530,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -560,7 +560,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).spellServer_suggestGuessesForWord_inLanguage(self, sender, word, language)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("spellServer:suggestGuessesForWord:inLanguage:"), auto_cast spellServer_suggestGuessesForWord_inLanguage, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("spellServer:suggestGuessesForWord:inLanguage:"), auto_cast spellServer_suggestGuessesForWord_inLanguage, "^void@:@@@") do panic("Failed to register objC method.")
     }
     if vt.spellServer_didLearnWord_inLanguage != nil {
         spellServer_didLearnWord_inLanguage :: proc "c" (self: ^NS.SpellServerDelegate, _: SEL, sender: ^NS.SpellServer, word: ^NS.String, language: ^NS.String) {
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).spellServer_suggestCompletionsForPartialWordRange_inString_language(self, sender, range, string, language)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("spellServer:suggestCompletionsForPartialWordRange:inString:language:"), auto_cast spellServer_suggestCompletionsForPartialWordRange_inString_language, "@@:@{_NSRange=LL}@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("spellServer:suggestCompletionsForPartialWordRange:inString:language:"), auto_cast spellServer_suggestCompletionsForPartialWordRange_inString_language, "^void@:@{_NSRange=LL}@@") do panic("Failed to register objC method.")
     }
     if vt.spellServer_checkGrammarInString_language_details != nil {
         spellServer_checkGrammarInString_language_details :: proc "c" (self: ^NS.SpellServerDelegate, _: SEL, sender: ^NS.SpellServer, stringToCheck: ^NS.String, language: ^NS.String, details: ^^NS.Array) -> NS._NSRange {
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).spellServer_checkString_offset_types_options_orthography_wordCount(self, sender, stringToCheck, offset, checkingTypes, options, orthography, wordCount)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("spellServer:checkString:offset:types:options:orthography:wordCount:"), auto_cast spellServer_checkString_offset_types_options_orthography_wordCount, "@@:@@LQ@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("spellServer:checkString:offset:types:options:orthography:wordCount:"), auto_cast spellServer_checkString_offset_types_options_orthography_wordCount, "^void@:@@LQ^void@^void") do panic("Failed to register objC method.")
     }
     if vt.spellServer_recordResponse_toCorrection_forWord_language != nil {
         spellServer_recordResponse_toCorrection_forWord_language :: proc "c" (self: ^NS.SpellServerDelegate, _: SEL, sender: ^NS.SpellServer, response: NS.UInteger, correction: ^NS.String, word: ^NS.String, language: ^NS.String) {

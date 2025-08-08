@@ -35,9 +35,9 @@ VTable :: struct {
     weakToStrongObjectsMapTable: proc() -> ^NS.MapTable,
     strongToWeakObjectsMapTable: proc() -> ^NS.MapTable,
     weakToWeakObjectsMapTable: proc() -> ^NS.MapTable,
-    objectForKey: proc(self: ^NS.MapTable, aKey: ^id) -> ^id,
-    removeObjectForKey: proc(self: ^NS.MapTable, aKey: ^id),
-    setObject: proc(self: ^NS.MapTable, anObject: ^id, aKey: ^id),
+    objectForKey: proc(self: ^NS.MapTable, aKey: id) -> id,
+    removeObjectForKey: proc(self: ^NS.MapTable, aKey: id),
+    setObject: proc(self: ^NS.MapTable, anObject: id, aKey: id),
     keyEnumerator: proc(self: ^NS.MapTable) -> ^NS.Enumerator,
     objectEnumerator: proc(self: ^NS.MapTable) -> ^NS.Enumerator,
     removeAllObjects: proc(self: ^NS.MapTable),
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithKeyOptions(self, keyOptions, valueOptions, initialCapacity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKeyOptions:valueOptions:capacity:"), auto_cast initWithKeyOptions, "@@:LLL") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKeyOptions:valueOptions:capacity:"), auto_cast initWithKeyOptions, "^void@:LLL") do panic("Failed to register objC method.")
     }
     if vt.initWithKeyPointerFunctions != nil {
         initWithKeyPointerFunctions :: proc "c" (self: ^NS.MapTable, _: SEL, keyFunctions: ^NS.PointerFunctions, valueFunctions: ^NS.PointerFunctions, initialCapacity: NS.UInteger) -> ^NS.MapTable {
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithKeyPointerFunctions(self, keyFunctions, valueFunctions, initialCapacity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKeyPointerFunctions:valuePointerFunctions:capacity:"), auto_cast initWithKeyPointerFunctions, "@@:@@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKeyPointerFunctions:valuePointerFunctions:capacity:"), auto_cast initWithKeyPointerFunctions, "^void@:@@L") do panic("Failed to register objC method.")
     }
     if vt.mapTableWithKeyOptions != nil {
         mapTableWithKeyOptions :: proc "c" (self: Class, _: SEL, keyOptions: NS.PointerFunctionsOptions, valueOptions: NS.PointerFunctionsOptions) -> ^NS.MapTable {
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).mapTableWithKeyOptions( keyOptions, valueOptions)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("mapTableWithKeyOptions:valueOptions:"), auto_cast mapTableWithKeyOptions, "@#:LL") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("mapTableWithKeyOptions:valueOptions:"), auto_cast mapTableWithKeyOptions, "^void#:LL") do panic("Failed to register objC method.")
     }
     if vt.mapTableWithStrongToStrongObjects != nil {
         mapTableWithStrongToStrongObjects :: proc "c" (self: Class, _: SEL) -> id {
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).strongToStrongObjectsMapTable()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("strongToStrongObjectsMapTable"), auto_cast strongToStrongObjectsMapTable, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("strongToStrongObjectsMapTable"), auto_cast strongToStrongObjectsMapTable, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.weakToStrongObjectsMapTable != nil {
         weakToStrongObjectsMapTable :: proc "c" (self: Class, _: SEL) -> ^NS.MapTable {
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).weakToStrongObjectsMapTable()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("weakToStrongObjectsMapTable"), auto_cast weakToStrongObjectsMapTable, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("weakToStrongObjectsMapTable"), auto_cast weakToStrongObjectsMapTable, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.strongToWeakObjectsMapTable != nil {
         strongToWeakObjectsMapTable :: proc "c" (self: Class, _: SEL) -> ^NS.MapTable {
@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).strongToWeakObjectsMapTable()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("strongToWeakObjectsMapTable"), auto_cast strongToWeakObjectsMapTable, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("strongToWeakObjectsMapTable"), auto_cast strongToWeakObjectsMapTable, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.weakToWeakObjectsMapTable != nil {
         weakToWeakObjectsMapTable :: proc "c" (self: Class, _: SEL) -> ^NS.MapTable {
@@ -194,37 +194,37 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).weakToWeakObjectsMapTable()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("weakToWeakObjectsMapTable"), auto_cast weakToWeakObjectsMapTable, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("weakToWeakObjectsMapTable"), auto_cast weakToWeakObjectsMapTable, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.objectForKey != nil {
-        objectForKey :: proc "c" (self: ^NS.MapTable, _: SEL, aKey: ^id) -> ^id {
+        objectForKey :: proc "c" (self: ^NS.MapTable, _: SEL, aKey: id) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).objectForKey(self, aKey)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("objectForKey:"), auto_cast objectForKey, "^void@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("objectForKey:"), auto_cast objectForKey, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.removeObjectForKey != nil {
-        removeObjectForKey :: proc "c" (self: ^NS.MapTable, _: SEL, aKey: ^id) {
+        removeObjectForKey :: proc "c" (self: ^NS.MapTable, _: SEL, aKey: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^VTable)vt_ctx.super_vt).removeObjectForKey(self, aKey)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("removeObjectForKey:"), auto_cast removeObjectForKey, "v@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeObjectForKey:"), auto_cast removeObjectForKey, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.setObject != nil {
-        setObject :: proc "c" (self: ^NS.MapTable, _: SEL, anObject: ^id, aKey: ^id) {
+        setObject :: proc "c" (self: ^NS.MapTable, _: SEL, anObject: id, aKey: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^VTable)vt_ctx.super_vt).setObject(self, anObject, aKey)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setObject:forKey:"), auto_cast setObject, "v@:^void^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setObject:forKey:"), auto_cast setObject, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.keyEnumerator != nil {
         keyEnumerator :: proc "c" (self: ^NS.MapTable, _: SEL) -> ^NS.Enumerator {
@@ -234,7 +234,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyEnumerator(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("keyEnumerator"), auto_cast keyEnumerator, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("keyEnumerator"), auto_cast keyEnumerator, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.objectEnumerator != nil {
         objectEnumerator :: proc "c" (self: ^NS.MapTable, _: SEL) -> ^NS.Enumerator {
@@ -244,7 +244,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).objectEnumerator(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("objectEnumerator"), auto_cast objectEnumerator, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("objectEnumerator"), auto_cast objectEnumerator, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.removeAllObjects != nil {
         removeAllObjects :: proc "c" (self: ^NS.MapTable, _: SEL) {
@@ -264,7 +264,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).dictionaryRepresentation(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryRepresentation"), auto_cast dictionaryRepresentation, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryRepresentation"), auto_cast dictionaryRepresentation, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.keyPointerFunctions != nil {
         keyPointerFunctions :: proc "c" (self: ^NS.MapTable, _: SEL) -> ^NS.PointerFunctions {
@@ -574,7 +574,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -604,7 +604,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

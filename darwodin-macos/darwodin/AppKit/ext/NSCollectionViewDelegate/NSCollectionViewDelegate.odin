@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_canDragItemsAtIndexPaths_withEvent(self, collectionView, indexPaths, event)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:canDragItemsAtIndexPaths:withEvent:"), auto_cast collectionView_canDragItemsAtIndexPaths_withEvent, "B@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:canDragItemsAtIndexPaths:withEvent:"), auto_cast collectionView_canDragItemsAtIndexPaths_withEvent, "B@:@^void@") do panic("Failed to register objC method.")
     }
     if vt.collectionView_canDragItemsAtIndexes_withEvent != nil {
         collectionView_canDragItemsAtIndexes_withEvent :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexes: ^NS.IndexSet, event: ^AK.Event) -> bool {
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_writeItemsAtIndexPaths_toPasteboard(self, collectionView, indexPaths, pasteboard)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:writeItemsAtIndexPaths:toPasteboard:"), auto_cast collectionView_writeItemsAtIndexPaths_toPasteboard, "B@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:writeItemsAtIndexPaths:toPasteboard:"), auto_cast collectionView_writeItemsAtIndexPaths_toPasteboard, "B@:@^void@") do panic("Failed to register objC method.")
     }
     if vt.collectionView_writeItemsAtIndexes_toPasteboard != nil {
         collectionView_writeItemsAtIndexes_toPasteboard :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexes: ^NS.IndexSet, pasteboard: ^AK.Pasteboard) -> bool {
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexPaths(self, collectionView, dropURL, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexPaths:"), auto_cast collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexPaths, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexPaths:"), auto_cast collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexPaths, "^void@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexes != nil {
         collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexes :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, dropURL: ^NS.URL, indexes: ^NS.IndexSet) -> ^NS.Array {
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexes(self, collectionView, dropURL, indexes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexes:"), auto_cast collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexes, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:namesOfPromisedFilesDroppedAtDestination:forDraggedItemsAtIndexes:"), auto_cast collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexes, "^void@:@@@") do panic("Failed to register objC method.")
     }
     if vt.collectionView_draggingImageForItemsAtIndexPaths_withEvent_offset != nil {
         collectionView_draggingImageForItemsAtIndexPaths_withEvent_offset :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexPaths: ^NS.Set, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_draggingImageForItemsAtIndexPaths_withEvent_offset(self, collectionView, indexPaths, event, dragImageOffset)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:draggingImageForItemsAtIndexPaths:withEvent:offset:"), auto_cast collectionView_draggingImageForItemsAtIndexPaths_withEvent_offset, "@@:@@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:draggingImageForItemsAtIndexPaths:withEvent:offset:"), auto_cast collectionView_draggingImageForItemsAtIndexPaths_withEvent_offset, "@@:@^void@^void") do panic("Failed to register objC method.")
     }
     if vt.collectionView_draggingImageForItemsAtIndexes_withEvent_offset != nil {
         collectionView_draggingImageForItemsAtIndexes_withEvent_offset :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexes: ^NS.IndexSet, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).collectionView_draggingSession_willBeginAtPoint_forItemsAtIndexPaths(self, collectionView, session, screenPoint, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexPaths:"), auto_cast collectionView_draggingSession_willBeginAtPoint_forItemsAtIndexPaths, "v@:@@{CGPoint=dd}@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexPaths:"), auto_cast collectionView_draggingSession_willBeginAtPoint_forItemsAtIndexPaths, "v@:@@{CGPoint=dd}^void") do panic("Failed to register objC method.")
     }
     if vt.collectionView_draggingSession_willBeginAtPoint_forItemsAtIndexes != nil {
         collectionView_draggingSession_willBeginAtPoint_forItemsAtIndexes :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, session: ^AK.DraggingSession, screenPoint: CG.Point, indexes: ^NS.IndexSet) {
@@ -247,7 +247,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_shouldChangeItemsAtIndexPaths_toHighlightState(self, collectionView, indexPaths, highlightState)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:shouldChangeItemsAtIndexPaths:toHighlightState:"), auto_cast collectionView_shouldChangeItemsAtIndexPaths_toHighlightState, "@@:@@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:shouldChangeItemsAtIndexPaths:toHighlightState:"), auto_cast collectionView_shouldChangeItemsAtIndexPaths_toHighlightState, "^void@:@^voidl") do panic("Failed to register objC method.")
     }
     if vt.collectionView_didChangeItemsAtIndexPaths_toHighlightState != nil {
         collectionView_didChangeItemsAtIndexPaths_toHighlightState :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexPaths: ^NS.Set, highlightState: AK.CollectionViewItemHighlightState) {
@@ -257,7 +257,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).collectionView_didChangeItemsAtIndexPaths_toHighlightState(self, collectionView, indexPaths, highlightState)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:didChangeItemsAtIndexPaths:toHighlightState:"), auto_cast collectionView_didChangeItemsAtIndexPaths_toHighlightState, "v@:@@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:didChangeItemsAtIndexPaths:toHighlightState:"), auto_cast collectionView_didChangeItemsAtIndexPaths_toHighlightState, "v@:@^voidl") do panic("Failed to register objC method.")
     }
     if vt.collectionView_shouldSelectItemsAtIndexPaths != nil {
         collectionView_shouldSelectItemsAtIndexPaths :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexPaths: ^NS.Set) -> ^NS.Set {
@@ -267,7 +267,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_shouldSelectItemsAtIndexPaths(self, collectionView, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:shouldSelectItemsAtIndexPaths:"), auto_cast collectionView_shouldSelectItemsAtIndexPaths, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:shouldSelectItemsAtIndexPaths:"), auto_cast collectionView_shouldSelectItemsAtIndexPaths, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.collectionView_shouldDeselectItemsAtIndexPaths != nil {
         collectionView_shouldDeselectItemsAtIndexPaths :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexPaths: ^NS.Set) -> ^NS.Set {
@@ -277,7 +277,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_shouldDeselectItemsAtIndexPaths(self, collectionView, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:shouldDeselectItemsAtIndexPaths:"), auto_cast collectionView_shouldDeselectItemsAtIndexPaths, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:shouldDeselectItemsAtIndexPaths:"), auto_cast collectionView_shouldDeselectItemsAtIndexPaths, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.collectionView_didSelectItemsAtIndexPaths != nil {
         collectionView_didSelectItemsAtIndexPaths :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexPaths: ^NS.Set) {
@@ -287,7 +287,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).collectionView_didSelectItemsAtIndexPaths(self, collectionView, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:didSelectItemsAtIndexPaths:"), auto_cast collectionView_didSelectItemsAtIndexPaths, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:didSelectItemsAtIndexPaths:"), auto_cast collectionView_didSelectItemsAtIndexPaths, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.collectionView_didDeselectItemsAtIndexPaths != nil {
         collectionView_didDeselectItemsAtIndexPaths :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, indexPaths: ^NS.Set) {
@@ -297,7 +297,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).collectionView_didDeselectItemsAtIndexPaths(self, collectionView, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:didDeselectItemsAtIndexPaths:"), auto_cast collectionView_didDeselectItemsAtIndexPaths, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:didDeselectItemsAtIndexPaths:"), auto_cast collectionView_didDeselectItemsAtIndexPaths, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.collectionView_willDisplayItem_forRepresentedObjectAtIndexPath != nil {
         collectionView_willDisplayItem_forRepresentedObjectAtIndexPath :: proc "c" (self: ^AK.CollectionViewDelegate, _: SEL, collectionView: ^AK.CollectionView, item: ^AK.CollectionViewItem, indexPath: ^NS.IndexPath) {

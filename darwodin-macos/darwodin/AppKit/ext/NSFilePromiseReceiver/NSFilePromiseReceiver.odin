@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).readableDraggedTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("readableDraggedTypes"), auto_cast readableDraggedTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("readableDraggedTypes"), auto_cast readableDraggedTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.fileTypes != nil {
         fileTypes :: proc "c" (self: ^AK.FilePromiseReceiver, _: SEL) -> ^NS.Array {
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fileTypes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fileTypes"), auto_cast fileTypes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileTypes"), auto_cast fileTypes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.fileNames != nil {
         fileNames :: proc "c" (self: ^AK.FilePromiseReceiver, _: SEL) -> ^NS.Array {
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fileNames(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fileNames"), auto_cast fileNames, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileNames"), auto_cast fileNames, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.readableTypesForPasteboard != nil {
         readableTypesForPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^AK.Pasteboard) -> ^NS.Array {
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).readableTypesForPasteboard( pasteboard)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypesForPasteboard:"), auto_cast readableTypesForPasteboard, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypesForPasteboard:"), auto_cast readableTypesForPasteboard, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.readingOptionsForType != nil {
         readingOptionsForType :: proc "c" (self: Class, _: SEL, type: ^NS.String, pasteboard: ^AK.Pasteboard) -> AK.PasteboardReadingOptions {
@@ -404,7 +404,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -434,7 +434,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

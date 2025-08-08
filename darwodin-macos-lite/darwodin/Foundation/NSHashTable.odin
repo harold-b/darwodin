@@ -47,19 +47,19 @@ HashTable_weakObjectsHashTable :: #force_inline proc "c" () -> ^HashTable {
     return msgSend(^HashTable, HashTable, "weakObjectsHashTable")
 }
 @(objc_type=HashTable, objc_name="member")
-HashTable_member :: #force_inline proc "c" (self: ^HashTable, object: ^id) -> ^id {
-    return msgSend(^id, self, "member:", object)
+HashTable_member :: #force_inline proc "c" (self: ^HashTable, object: id) -> id {
+    return msgSend(id, self, "member:", object)
 }
 @(objc_type=HashTable, objc_name="objectEnumerator")
 HashTable_objectEnumerator :: #force_inline proc "c" (self: ^HashTable) -> ^Enumerator {
     return msgSend(^Enumerator, self, "objectEnumerator")
 }
 @(objc_type=HashTable, objc_name="addObject")
-HashTable_addObject :: #force_inline proc "c" (self: ^HashTable, object: ^id) {
+HashTable_addObject :: #force_inline proc "c" (self: ^HashTable, object: id) {
     msgSend(nil, self, "addObject:", object)
 }
 @(objc_type=HashTable, objc_name="removeObject")
-HashTable_removeObject :: #force_inline proc "c" (self: ^HashTable, object: ^id) {
+HashTable_removeObject :: #force_inline proc "c" (self: ^HashTable, object: id) {
     msgSend(nil, self, "removeObject:", object)
 }
 @(objc_type=HashTable, objc_name="removeAllObjects")
@@ -67,7 +67,7 @@ HashTable_removeAllObjects :: #force_inline proc "c" (self: ^HashTable) {
     msgSend(nil, self, "removeAllObjects")
 }
 @(objc_type=HashTable, objc_name="containsObject")
-HashTable_containsObject :: #force_inline proc "c" (self: ^HashTable, anObject: ^id) -> bool {
+HashTable_containsObject :: #force_inline proc "c" (self: ^HashTable, anObject: id) -> bool {
     return msgSend(bool, self, "containsObject:", anObject)
 }
 @(objc_type=HashTable, objc_name="intersectsHashTable")
@@ -107,8 +107,8 @@ HashTable_allObjects :: #force_inline proc "c" (self: ^HashTable) -> ^Array {
     return msgSend(^Array, self, "allObjects")
 }
 @(objc_type=HashTable, objc_name="anyObject")
-HashTable_anyObject :: #force_inline proc "c" (self: ^HashTable) -> ^id {
-    return msgSend(^id, self, "anyObject")
+HashTable_anyObject :: #force_inline proc "c" (self: ^HashTable) -> id {
+    return msgSend(id, self, "anyObject")
 }
 @(objc_type=HashTable, objc_name="setRepresentation")
 HashTable_setRepresentation :: #force_inline proc "c" (self: ^HashTable) -> ^Set {

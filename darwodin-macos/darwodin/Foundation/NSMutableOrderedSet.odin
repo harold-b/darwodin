@@ -17,7 +17,7 @@ import Sec "../Security"
 MutableOrderedSet :: struct { using _: OrderedSet, }
 
 @(objc_type=MutableOrderedSet, objc_name="insertObject")
-MutableOrderedSet_insertObject :: #force_inline proc "c" (self: ^MutableOrderedSet, object: ^id, idx: UInteger) {
+MutableOrderedSet_insertObject :: #force_inline proc "c" (self: ^MutableOrderedSet, object: id, idx: UInteger) {
     msgSend(nil, self, "insertObject:atIndex:", object, idx)
 }
 @(objc_type=MutableOrderedSet, objc_name="removeObjectAtIndex")
@@ -25,7 +25,7 @@ MutableOrderedSet_removeObjectAtIndex :: #force_inline proc "c" (self: ^MutableO
     msgSend(nil, self, "removeObjectAtIndex:", idx)
 }
 @(objc_type=MutableOrderedSet, objc_name="replaceObjectAtIndex")
-MutableOrderedSet_replaceObjectAtIndex :: #force_inline proc "c" (self: ^MutableOrderedSet, idx: UInteger, object: ^id) {
+MutableOrderedSet_replaceObjectAtIndex :: #force_inline proc "c" (self: ^MutableOrderedSet, idx: UInteger, object: id) {
     msgSend(nil, self, "replaceObjectAtIndex:withObject:", idx, object)
 }
 @(objc_type=MutableOrderedSet, objc_name="initWithCoder")
@@ -41,11 +41,11 @@ MutableOrderedSet_initWithCapacity :: #force_inline proc "c" (self: ^MutableOrde
     return msgSend(^MutableOrderedSet, self, "initWithCapacity:", numItems)
 }
 @(objc_type=MutableOrderedSet, objc_name="addObject")
-MutableOrderedSet_addObject :: #force_inline proc "c" (self: ^MutableOrderedSet, object: ^id) {
+MutableOrderedSet_addObject :: #force_inline proc "c" (self: ^MutableOrderedSet, object: id) {
     msgSend(nil, self, "addObject:", object)
 }
 @(objc_type=MutableOrderedSet, objc_name="addObjects")
-MutableOrderedSet_addObjects :: #force_inline proc "c" (self: ^MutableOrderedSet, objects: ^^id, count: UInteger) {
+MutableOrderedSet_addObjects :: #force_inline proc "c" (self: ^MutableOrderedSet, objects: ^id, count: UInteger) {
     msgSend(nil, self, "addObjects:count:", objects, count)
 }
 @(objc_type=MutableOrderedSet, objc_name="addObjectsFromArray")
@@ -65,15 +65,15 @@ MutableOrderedSet_insertObjects :: #force_inline proc "c" (self: ^MutableOrdered
     msgSend(nil, self, "insertObjects:atIndexes:", objects, indexes)
 }
 @(objc_type=MutableOrderedSet, objc_name="setObject_atIndex")
-MutableOrderedSet_setObject_atIndex :: #force_inline proc "c" (self: ^MutableOrderedSet, obj: ^id, idx: UInteger) {
+MutableOrderedSet_setObject_atIndex :: #force_inline proc "c" (self: ^MutableOrderedSet, obj: id, idx: UInteger) {
     msgSend(nil, self, "setObject:atIndex:", obj, idx)
 }
 @(objc_type=MutableOrderedSet, objc_name="setObject_atIndexedSubscript")
-MutableOrderedSet_setObject_atIndexedSubscript :: #force_inline proc "c" (self: ^MutableOrderedSet, obj: ^id, idx: UInteger) {
+MutableOrderedSet_setObject_atIndexedSubscript :: #force_inline proc "c" (self: ^MutableOrderedSet, obj: id, idx: UInteger) {
     msgSend(nil, self, "setObject:atIndexedSubscript:", obj, idx)
 }
 @(objc_type=MutableOrderedSet, objc_name="replaceObjectsInRange")
-MutableOrderedSet_replaceObjectsInRange :: #force_inline proc "c" (self: ^MutableOrderedSet, range: _NSRange, objects: ^^id, count: UInteger) {
+MutableOrderedSet_replaceObjectsInRange :: #force_inline proc "c" (self: ^MutableOrderedSet, range: _NSRange, objects: ^id, count: UInteger) {
     msgSend(nil, self, "replaceObjectsInRange:withObjects:count:", range, objects, count)
 }
 @(objc_type=MutableOrderedSet, objc_name="replaceObjectsAtIndexes")
@@ -93,7 +93,7 @@ MutableOrderedSet_removeAllObjects :: #force_inline proc "c" (self: ^MutableOrde
     msgSend(nil, self, "removeAllObjects")
 }
 @(objc_type=MutableOrderedSet, objc_name="removeObject")
-MutableOrderedSet_removeObject :: #force_inline proc "c" (self: ^MutableOrderedSet, object: ^id) {
+MutableOrderedSet_removeObject :: #force_inline proc "c" (self: ^MutableOrderedSet, object: id) {
     msgSend(nil, self, "removeObject:", object)
 }
 @(objc_type=MutableOrderedSet, objc_name="removeObjectsInArray")
@@ -157,15 +157,15 @@ MutableOrderedSet_orderedSet :: #force_inline proc "c" () -> ^OrderedSet {
     return msgSend(^OrderedSet, MutableOrderedSet, "orderedSet")
 }
 @(objc_type=MutableOrderedSet, objc_name="orderedSetWithObject", objc_is_class_method=true)
-MutableOrderedSet_orderedSetWithObject :: #force_inline proc "c" (object: ^id) -> ^OrderedSet {
+MutableOrderedSet_orderedSetWithObject :: #force_inline proc "c" (object: id) -> ^OrderedSet {
     return msgSend(^OrderedSet, MutableOrderedSet, "orderedSetWithObject:", object)
 }
 @(objc_type=MutableOrderedSet, objc_name="orderedSetWithObjects_count", objc_is_class_method=true)
-MutableOrderedSet_orderedSetWithObjects_count :: #force_inline proc "c" (objects: ^^id, cnt: UInteger) -> ^OrderedSet {
+MutableOrderedSet_orderedSetWithObjects_count :: #force_inline proc "c" (objects: ^id, cnt: UInteger) -> ^OrderedSet {
     return msgSend(^OrderedSet, MutableOrderedSet, "orderedSetWithObjects:count:", objects, cnt)
 }
 @(objc_type=MutableOrderedSet, objc_name="orderedSetWithObjects_", objc_is_class_method=true)
-MutableOrderedSet_orderedSetWithObjects_ :: #force_inline proc "c" (firstObj: ^id) -> ^OrderedSet {
+MutableOrderedSet_orderedSetWithObjects_ :: #force_inline proc "c" (firstObj: id) -> ^OrderedSet {
     return msgSend(^OrderedSet, MutableOrderedSet, "orderedSetWithObjects:", firstObj)
 }
 @(objc_type=MutableOrderedSet, objc_name="orderedSetWithOrderedSet_", objc_is_class_method=true)

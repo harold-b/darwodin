@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).readableTypeIdentifiersForItemProvider()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypeIdentifiersForItemProvider"), auto_cast readableTypeIdentifiersForItemProvider, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypeIdentifiersForItemProvider"), auto_cast readableTypeIdentifiersForItemProvider, "^void#:") do panic("Failed to register objC method.")
     }
 }
 

@@ -309,7 +309,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).tableView_rowActionsForRow_edge(self, tableView, row, edge)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:rowActionsForRow:edge:"), auto_cast tableView_rowActionsForRow_edge, "@@:@ll") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:rowActionsForRow:edge:"), auto_cast tableView_rowActionsForRow_edge, "^void@:@ll") do panic("Failed to register objC method.")
     }
     if vt.tableView_userCanChangeVisibilityOfTableColumn != nil {
         tableView_userCanChangeVisibilityOfTableColumn :: proc "c" (self: ^AK.TableViewDelegate, _: SEL, tableView: ^AK.TableView, column: ^AK.TableColumn) -> bool {
@@ -329,7 +329,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tableView_userDidChangeVisibilityOfTableColumns(self, tableView, columns)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:userDidChangeVisibilityOfTableColumns:"), auto_cast tableView_userDidChangeVisibilityOfTableColumns, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:userDidChangeVisibilityOfTableColumns:"), auto_cast tableView_userDidChangeVisibilityOfTableColumns, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.tableViewSelectionDidChange != nil {
         tableViewSelectionDidChange :: proc "c" (self: ^AK.TableViewDelegate, _: SEL, notification: ^NS.Notification) {

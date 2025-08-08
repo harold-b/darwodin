@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action( identifier, labels, selectionMode, target, action)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), auto_cast pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action, "@#:@@l@:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), auto_cast pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action, "@#:@^voidl@:") do panic("Failed to register objC method.")
     }
     if vt.pickerTouchBarItemWithIdentifier_images_selectionMode_target_action != nil {
         pickerTouchBarItemWithIdentifier_images_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, images: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> ^AK.PickerTouchBarItem {
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).pickerTouchBarItemWithIdentifier_images_selectionMode_target_action( identifier, images, selectionMode, target, action)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:"), auto_cast pickerTouchBarItemWithIdentifier_images_selectionMode_target_action, "@#:@@l@:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:"), auto_cast pickerTouchBarItemWithIdentifier_images_selectionMode_target_action, "@#:@^voidl@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
         setImage :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, image: ^NS.Image, index: NS.Integer) {
@@ -668,7 +668,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -698,7 +698,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

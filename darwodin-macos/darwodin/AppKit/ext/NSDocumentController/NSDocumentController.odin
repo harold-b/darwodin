@@ -237,7 +237,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._URLsFromRunningOpenPanel(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsFromRunningOpenPanel"), auto_cast _URLsFromRunningOpenPanel, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsFromRunningOpenPanel"), auto_cast _URLsFromRunningOpenPanel, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.runModalOpenPanel != nil {
         runModalOpenPanel :: proc "c" (self: ^AK.DocumentController, _: SEL, openPanel: ^AK.OpenPanel, types: ^NS.Array) -> NS.Integer {
@@ -247,7 +247,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).runModalOpenPanel(self, openPanel, types)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("runModalOpenPanel:forTypes:"), auto_cast runModalOpenPanel, "l@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("runModalOpenPanel:forTypes:"), auto_cast runModalOpenPanel, "l@:@^void") do panic("Failed to register objC method.")
     }
     if vt.beginOpenPanelWithCompletionHandler != nil {
         beginOpenPanelWithCompletionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array))) {
@@ -267,7 +267,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).beginOpenPanel(self, openPanel, inTypes, completionHandler)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("beginOpenPanel:forTypes:completionHandler:"), auto_cast beginOpenPanel, "v@:@@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("beginOpenPanel:forTypes:completionHandler:"), auto_cast beginOpenPanel, "v@:@^void?") do panic("Failed to register objC method.")
     }
     if vt.openDocumentWithContentsOfURL_display_completionHandler != nil {
         openDocumentWithContentsOfURL_display_completionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) {
@@ -477,7 +477,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).documents(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("documents"), auto_cast documents, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("documents"), auto_cast documents, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.currentDocument != nil {
         currentDocument :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^AK.Document {
@@ -557,7 +557,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).recentDocumentURLs(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("recentDocumentURLs"), auto_cast recentDocumentURLs, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("recentDocumentURLs"), auto_cast recentDocumentURLs, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.defaultType != nil {
         defaultType :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^NS.String {
@@ -577,7 +577,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).documentClassNames(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("documentClassNames"), auto_cast documentClassNames, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("documentClassNames"), auto_cast documentClassNames, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.openDocumentWithContentsOfURL_display_error != nil {
         openDocumentWithContentsOfURL_display_error :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, outError: ^^NS.Error) -> id {
@@ -987,7 +987,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1017,7 +1017,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

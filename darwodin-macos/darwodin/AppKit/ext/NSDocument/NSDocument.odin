@@ -466,7 +466,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fileAttributesToWriteToURL(self, url, typeName, saveOperation, absoluteOriginalContentsURL, outError)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:"), auto_cast fileAttributesToWriteToURL, "@@:@@L@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:"), auto_cast fileAttributesToWriteToURL, "^void@:@@L@^void") do panic("Failed to register objC method.")
     }
     if vt.saveDocument != nil {
         saveDocument :: proc "c" (self: ^AK.Document, _: SEL, sender: id) {
@@ -836,7 +836,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).printDocumentWithSettings(self, printSettings, showPrintPanel, delegate, didPrintSelector, contextInfo)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:"), auto_cast printDocumentWithSettings, "v@:@B@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:"), auto_cast printDocumentWithSettings, "v@:^voidB@:^void") do panic("Failed to register objC method.")
     }
     if vt.printOperationWithSettings != nil {
         printOperationWithSettings :: proc "c" (self: ^AK.Document, _: SEL, printSettings: ^NS.Dictionary, outError: ^^NS.Error) -> ^AK.PrintOperation {
@@ -846,7 +846,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).printOperationWithSettings(self, printSettings, outError)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("printOperationWithSettings:error:"), auto_cast printOperationWithSettings, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("printOperationWithSettings:error:"), auto_cast printOperationWithSettings, "@@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.runModalPrintOperation != nil {
         runModalPrintOperation :: proc "c" (self: ^AK.Document, _: SEL, printOperation: ^AK.PrintOperation, delegate: id, didRunSelector: SEL, contextInfo: rawptr) {
@@ -1076,7 +1076,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).writableTypesForSaveOperation(self, saveOperation)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("writableTypesForSaveOperation:"), auto_cast writableTypesForSaveOperation, "@@:L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writableTypesForSaveOperation:"), auto_cast writableTypesForSaveOperation, "^void@:L") do panic("Failed to register objC method.")
     }
     if vt.fileNameExtensionForType != nil {
         fileNameExtensionForType :: proc "c" (self: ^AK.Document, _: SEL, typeName: ^NS.String, saveOperation: AK.SaveOperationType) -> ^NS.String {
@@ -1166,7 +1166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).presentedItemDidChangeUbiquityAttributes(self, attributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("presentedItemDidChangeUbiquityAttributes:"), auto_cast presentedItemDidChangeUbiquityAttributes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("presentedItemDidChangeUbiquityAttributes:"), auto_cast presentedItemDidChangeUbiquityAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.presentedItemDidGainVersion != nil {
         presentedItemDidGainVersion :: proc "c" (self: ^AK.Document, _: SEL, version: ^NS.FileVersion) {
@@ -1486,7 +1486,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).previewRepresentableActivityItems(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("previewRepresentableActivityItems"), auto_cast previewRepresentableActivityItems, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("previewRepresentableActivityItems"), auto_cast previewRepresentableActivityItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setPreviewRepresentableActivityItems != nil {
         setPreviewRepresentableActivityItems :: proc "c" (self: ^AK.Document, _: SEL, previewRepresentableActivityItems: ^NS.Array) {
@@ -1496,7 +1496,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setPreviewRepresentableActivityItems(self, previewRepresentableActivityItems)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreviewRepresentableActivityItems:"), auto_cast setPreviewRepresentableActivityItems, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreviewRepresentableActivityItems:"), auto_cast setPreviewRepresentableActivityItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.isDocumentEdited != nil {
         isDocumentEdited :: proc "c" (self: ^AK.Document, _: SEL) -> bool {
@@ -1576,7 +1576,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).windowControllers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("windowControllers"), auto_cast windowControllers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("windowControllers"), auto_cast windowControllers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.displayName != nil {
         displayName :: proc "c" (self: ^AK.Document, _: SEL) -> ^NS.String {
@@ -1606,7 +1606,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).readableTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypes"), auto_cast readableTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypes"), auto_cast readableTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.writableTypes != nil {
         writableTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -1616,7 +1616,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).writableTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("writableTypes"), auto_cast writableTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("writableTypes"), auto_cast writableTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.usesUbiquitousStorage != nil {
         usesUbiquitousStorage :: proc "c" (self: Class, _: SEL) -> bool {
@@ -1646,7 +1646,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).observedPresentedItemUbiquityAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("observedPresentedItemUbiquityAttributes"), auto_cast observedPresentedItemUbiquityAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("observedPresentedItemUbiquityAttributes"), auto_cast observedPresentedItemUbiquityAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.saveToURL_ofType_forSaveOperation_error != nil {
         saveToURL_ofType_forSaveOperation_error :: proc "c" (self: ^AK.Document, _: SEL, url: ^NS.URL, typeName: ^NS.String, saveOperation: AK.SaveOperationType, outError: ^^NS.Error) -> bool {
@@ -2016,7 +2016,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.restorableStateKeyPaths != nil {
         restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -2026,7 +2026,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).restorableStateKeyPaths()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -2296,7 +2296,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -2326,7 +2326,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

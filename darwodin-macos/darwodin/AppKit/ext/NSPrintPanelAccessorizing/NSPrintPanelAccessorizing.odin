@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).localizedSummaryItems(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedSummaryItems"), auto_cast localizedSummaryItems, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedSummaryItems"), auto_cast localizedSummaryItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.keyPathsForValuesAffectingPreview != nil {
         keyPathsForValuesAffectingPreview :: proc "c" (self: ^AK.PrintPanelAccessorizing, _: SEL) -> ^NS.Set {
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).keyPathsForValuesAffectingPreview(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("keyPathsForValuesAffectingPreview"), auto_cast keyPathsForValuesAffectingPreview, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("keyPathsForValuesAffectingPreview"), auto_cast keyPathsForValuesAffectingPreview, "^void@:") do panic("Failed to register objC method.")
     }
 }
 

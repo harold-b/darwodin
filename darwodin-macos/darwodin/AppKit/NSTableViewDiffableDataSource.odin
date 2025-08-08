@@ -46,19 +46,19 @@ TableViewDiffableDataSource_applySnapshot_animatingDifferences_completion :: #fo
     msgSend(nil, self, "applySnapshot:animatingDifferences:completion:", snapshot, animatingDifferences, completion)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="itemIdentifierForRow")
-TableViewDiffableDataSource_itemIdentifierForRow :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, row: NS.Integer) -> ^id {
-    return msgSend(^id, self, "itemIdentifierForRow:", row)
+TableViewDiffableDataSource_itemIdentifierForRow :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, row: NS.Integer) -> id {
+    return msgSend(id, self, "itemIdentifierForRow:", row)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="rowForItemIdentifier")
-TableViewDiffableDataSource_rowForItemIdentifier :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, identifier: ^id) -> NS.Integer {
+TableViewDiffableDataSource_rowForItemIdentifier :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, identifier: id) -> NS.Integer {
     return msgSend(NS.Integer, self, "rowForItemIdentifier:", identifier)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="sectionIdentifierForRow")
-TableViewDiffableDataSource_sectionIdentifierForRow :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, row: NS.Integer) -> ^id {
-    return msgSend(^id, self, "sectionIdentifierForRow:", row)
+TableViewDiffableDataSource_sectionIdentifierForRow :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, row: NS.Integer) -> id {
+    return msgSend(id, self, "sectionIdentifierForRow:", row)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="rowForSectionIdentifier")
-TableViewDiffableDataSource_rowForSectionIdentifier :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, identifier: ^id) -> NS.Integer {
+TableViewDiffableDataSource_rowForSectionIdentifier :: #force_inline proc "c" (self: ^TableViewDiffableDataSource, identifier: id) -> NS.Integer {
     return msgSend(NS.Integer, self, "rowForSectionIdentifier:", identifier)
 }
 @(objc_type=TableViewDiffableDataSource, objc_name="rowViewProvider")

@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).gridViewWithViews( rows)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("gridViewWithViews:"), auto_cast gridViewWithViews, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("gridViewWithViews:"), auto_cast gridViewWithViews, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.rowAtIndex != nil {
         rowAtIndex :: proc "c" (self: ^AK.GridView, _: SEL, index: NS.Integer) -> ^AK.GridRow {
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).addRowWithViews(self, views)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addRowWithViews:"), auto_cast addRowWithViews, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addRowWithViews:"), auto_cast addRowWithViews, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.insertRowAtIndex != nil {
         insertRowAtIndex :: proc "c" (self: ^AK.GridView, _: SEL, index: NS.Integer, views: ^NS.Array) -> ^AK.GridRow {
@@ -227,7 +227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).insertRowAtIndex(self, index, views)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("insertRowAtIndex:withViews:"), auto_cast insertRowAtIndex, "@@:l@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertRowAtIndex:withViews:"), auto_cast insertRowAtIndex, "@@:l^void") do panic("Failed to register objC method.")
     }
     if vt.moveRowAtIndex != nil {
         moveRowAtIndex :: proc "c" (self: ^AK.GridView, _: SEL, fromIndex: NS.Integer, toIndex: NS.Integer) {
@@ -257,7 +257,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).addColumnWithViews(self, views)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addColumnWithViews:"), auto_cast addColumnWithViews, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addColumnWithViews:"), auto_cast addColumnWithViews, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.insertColumnAtIndex != nil {
         insertColumnAtIndex :: proc "c" (self: ^AK.GridView, _: SEL, index: NS.Integer, views: ^NS.Array) -> ^AK.GridColumn {
@@ -267,7 +267,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).insertColumnAtIndex(self, index, views)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("insertColumnAtIndex:withViews:"), auto_cast insertColumnAtIndex, "@@:l@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertColumnAtIndex:withViews:"), auto_cast insertColumnAtIndex, "@@:l^void") do panic("Failed to register objC method.")
     }
     if vt.moveColumnAtIndex != nil {
         moveColumnAtIndex :: proc "c" (self: ^AK.GridView, _: SEL, fromIndex: NS.Integer, toIndex: NS.Integer) {
@@ -487,7 +487,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.restorableStateKeyPaths != nil {
         restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -497,7 +497,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).restorableStateKeyPaths()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -767,7 +767,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -797,7 +797,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

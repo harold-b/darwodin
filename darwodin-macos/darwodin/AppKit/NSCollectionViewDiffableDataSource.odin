@@ -42,11 +42,11 @@ CollectionViewDiffableDataSource_applySnapshot :: #force_inline proc "c" (self: 
     msgSend(nil, self, "applySnapshot:animatingDifferences:", snapshot, animatingDifferences)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="itemIdentifierForIndexPath")
-CollectionViewDiffableDataSource_itemIdentifierForIndexPath :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, indexPath: ^NS.IndexPath) -> ^id {
-    return msgSend(^id, self, "itemIdentifierForIndexPath:", indexPath)
+CollectionViewDiffableDataSource_itemIdentifierForIndexPath :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, indexPath: ^NS.IndexPath) -> id {
+    return msgSend(id, self, "itemIdentifierForIndexPath:", indexPath)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="indexPathForItemIdentifier")
-CollectionViewDiffableDataSource_indexPathForItemIdentifier :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, identifier: ^id) -> ^NS.IndexPath {
+CollectionViewDiffableDataSource_indexPathForItemIdentifier :: #force_inline proc "c" (self: ^CollectionViewDiffableDataSource, identifier: id) -> ^NS.IndexPath {
     return msgSend(^NS.IndexPath, self, "indexPathForItemIdentifier:", identifier)
 }
 @(objc_type=CollectionViewDiffableDataSource, objc_name="supplementaryViewProvider")

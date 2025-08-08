@@ -637,7 +637,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).windows(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("windows"), auto_cast windows, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("windows"), auto_cast windows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.mainMenu != nil {
         mainMenu :: proc "c" (self: ^AK.Application, _: SEL) -> ^AK.Menu {
@@ -987,7 +987,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).registerServicesMenuSendTypes(self, sendTypes, returnTypes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("registerServicesMenuSendTypes:returnTypes:"), auto_cast registerServicesMenuSendTypes, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registerServicesMenuSendTypes:returnTypes:"), auto_cast registerServicesMenuSendTypes, "v@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.servicesMenu != nil {
         servicesMenu :: proc "c" (self: ^AK.Application, _: SEL) -> ^AK.Menu {
@@ -1047,7 +1047,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).orderFrontStandardAboutPanelWithOptions(self, optionsDictionary)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("orderFrontStandardAboutPanelWithOptions:"), auto_cast orderFrontStandardAboutPanelWithOptions, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("orderFrontStandardAboutPanelWithOptions:"), auto_cast orderFrontStandardAboutPanelWithOptions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.userInterfaceLayoutDirection != nil {
         userInterfaceLayoutDirection :: proc "c" (self: ^AK.Application, _: SEL) -> AK.UserInterfaceLayoutDirection {
@@ -1157,7 +1157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).application(self, sender, filenames)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:printFiles:"), auto_cast application, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:printFiles:"), auto_cast application, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.beginSheet != nil {
         beginSheet :: proc "c" (self: ^AK.Application, _: SEL, sheet: ^AK.Window, docWindow: ^AK.Window, modalDelegate: id, didEndSelector: SEL, contextInfo: rawptr) {
@@ -1287,7 +1287,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).orderedDocuments(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("orderedDocuments"), auto_cast orderedDocuments, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("orderedDocuments"), auto_cast orderedDocuments, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.orderedWindows != nil {
         orderedWindows :: proc "c" (self: ^AK.Application, _: SEL) -> ^NS.Array {
@@ -1297,7 +1297,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).orderedWindows(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("orderedWindows"), auto_cast orderedWindows, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("orderedWindows"), auto_cast orderedWindows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.registerUserInterfaceItemSearchHandler != nil {
         registerUserInterfaceItemSearchHandler :: proc "c" (self: ^AK.Application, _: SEL, handler: ^AK.UserInterfaceItemSearching) {
@@ -1367,7 +1367,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.restorableStateKeyPaths != nil {
         restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -1377,7 +1377,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).restorableStateKeyPaths()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -1647,7 +1647,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1677,7 +1677,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

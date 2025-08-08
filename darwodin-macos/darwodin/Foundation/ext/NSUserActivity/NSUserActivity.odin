@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).deleteSavedUserActivitiesWithPersistentIdentifiers( persistentIdentifiers, handler)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), auto_cast deleteSavedUserActivitiesWithPersistentIdentifiers, "v#:@?") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), auto_cast deleteSavedUserActivitiesWithPersistentIdentifiers, "v#:^void?") do panic("Failed to register objC method.")
     }
     if vt.deleteAllSavedUserActivitiesWithCompletionHandler != nil {
         deleteAllSavedUserActivitiesWithCompletionHandler :: proc "c" (self: Class, _: SEL, handler: ^Objc_Block(proc "c" ())) {
@@ -254,7 +254,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).requiredUserInfoKeys(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("requiredUserInfoKeys"), auto_cast requiredUserInfoKeys, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("requiredUserInfoKeys"), auto_cast requiredUserInfoKeys, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setRequiredUserInfoKeys != nil {
         setRequiredUserInfoKeys :: proc "c" (self: ^NS.UserActivity, _: SEL, requiredUserInfoKeys: ^NS.Set) {
@@ -264,7 +264,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setRequiredUserInfoKeys(self, requiredUserInfoKeys)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setRequiredUserInfoKeys:"), auto_cast setRequiredUserInfoKeys, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRequiredUserInfoKeys:"), auto_cast setRequiredUserInfoKeys, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.needsSave != nil {
         needsSave :: proc "c" (self: ^NS.UserActivity, _: SEL) -> bool {
@@ -354,7 +354,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keywords(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("keywords"), auto_cast keywords, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("keywords"), auto_cast keywords, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setKeywords != nil {
         setKeywords :: proc "c" (self: ^NS.UserActivity, _: SEL, keywords: ^NS.Set) {
@@ -364,7 +364,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setKeywords(self, keywords)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setKeywords:"), auto_cast setKeywords, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setKeywords:"), auto_cast setKeywords, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.supportsContinuationStreams != nil {
         supportsContinuationStreams :: proc "c" (self: ^NS.UserActivity, _: SEL) -> bool {
@@ -794,7 +794,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -824,7 +824,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

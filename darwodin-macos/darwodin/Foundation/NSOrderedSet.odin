@@ -22,11 +22,11 @@ OrderedSet :: struct { using _: Object,
 }
 
 @(objc_type=OrderedSet, objc_name="objectAtIndex")
-OrderedSet_objectAtIndex :: #force_inline proc "c" (self: ^OrderedSet, idx: UInteger) -> ^id {
-    return msgSend(^id, self, "objectAtIndex:", idx)
+OrderedSet_objectAtIndex :: #force_inline proc "c" (self: ^OrderedSet, idx: UInteger) -> id {
+    return msgSend(id, self, "objectAtIndex:", idx)
 }
 @(objc_type=OrderedSet, objc_name="indexOfObject_")
-OrderedSet_indexOfObject_ :: #force_inline proc "c" (self: ^OrderedSet, object: ^id) -> UInteger {
+OrderedSet_indexOfObject_ :: #force_inline proc "c" (self: ^OrderedSet, object: id) -> UInteger {
     return msgSend(UInteger, self, "indexOfObject:", object)
 }
 @(objc_type=OrderedSet, objc_name="init")
@@ -34,7 +34,7 @@ OrderedSet_init :: #force_inline proc "c" (self: ^OrderedSet) -> ^OrderedSet {
     return msgSend(^OrderedSet, self, "init")
 }
 @(objc_type=OrderedSet, objc_name="initWithObjects_count")
-OrderedSet_initWithObjects_count :: #force_inline proc "c" (self: ^OrderedSet, objects: ^^id, cnt: UInteger) -> ^OrderedSet {
+OrderedSet_initWithObjects_count :: #force_inline proc "c" (self: ^OrderedSet, objects: ^id, cnt: UInteger) -> ^OrderedSet {
     return msgSend(^OrderedSet, self, "initWithObjects:count:", objects, cnt)
 }
 @(objc_type=OrderedSet, objc_name="initWithCoder")
@@ -46,7 +46,7 @@ OrderedSet_count :: #force_inline proc "c" (self: ^OrderedSet) -> UInteger {
     return msgSend(UInteger, self, "count")
 }
 @(objc_type=OrderedSet, objc_name="getObjects")
-OrderedSet_getObjects :: #force_inline proc "c" (self: ^OrderedSet, objects: ^^id, range: _NSRange) {
+OrderedSet_getObjects :: #force_inline proc "c" (self: ^OrderedSet, objects: ^id, range: _NSRange) {
     msgSend(nil, self, "getObjects:range:", objects, range)
 }
 @(objc_type=OrderedSet, objc_name="objectsAtIndexes")
@@ -58,7 +58,7 @@ OrderedSet_isEqualToOrderedSet :: #force_inline proc "c" (self: ^OrderedSet, oth
     return msgSend(bool, self, "isEqualToOrderedSet:", other)
 }
 @(objc_type=OrderedSet, objc_name="containsObject")
-OrderedSet_containsObject :: #force_inline proc "c" (self: ^OrderedSet, object: ^id) -> bool {
+OrderedSet_containsObject :: #force_inline proc "c" (self: ^OrderedSet, object: id) -> bool {
     return msgSend(bool, self, "containsObject:", object)
 }
 @(objc_type=OrderedSet, objc_name="intersectsOrderedSet")
@@ -78,8 +78,8 @@ OrderedSet_isSubsetOfSet :: #force_inline proc "c" (self: ^OrderedSet, set: ^Set
     return msgSend(bool, self, "isSubsetOfSet:", set)
 }
 @(objc_type=OrderedSet, objc_name="objectAtIndexedSubscript")
-OrderedSet_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^OrderedSet, idx: UInteger) -> ^id {
-    return msgSend(^id, self, "objectAtIndexedSubscript:", idx)
+OrderedSet_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^OrderedSet, idx: UInteger) -> id {
+    return msgSend(id, self, "objectAtIndexedSubscript:", idx)
 }
 @(objc_type=OrderedSet, objc_name="objectEnumerator")
 OrderedSet_objectEnumerator :: #force_inline proc "c" (self: ^OrderedSet) -> ^Enumerator {
@@ -90,43 +90,43 @@ OrderedSet_reverseObjectEnumerator :: #force_inline proc "c" (self: ^OrderedSet)
     return msgSend(^Enumerator, self, "reverseObjectEnumerator")
 }
 @(objc_type=OrderedSet, objc_name="enumerateObjectsUsingBlock")
-OrderedSet_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^OrderedSet, block: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool))) {
+OrderedSet_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^OrderedSet, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsUsingBlock:", block)
 }
 @(objc_type=OrderedSet, objc_name="enumerateObjectsWithOptions")
-OrderedSet_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool))) {
+OrderedSet_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=OrderedSet, objc_name="enumerateObjectsAtIndexes")
-OrderedSet_enumerateObjectsAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool))) {
+OrderedSet_enumerateObjectsAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsAtIndexes:options:usingBlock:", s, opts, block)
 }
 @(objc_type=OrderedSet, objc_name="indexOfObjectPassingTest")
-OrderedSet_indexOfObjectPassingTest :: #force_inline proc "c" (self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
+OrderedSet_indexOfObjectPassingTest :: #force_inline proc "c" (self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexOfObjectPassingTest:", predicate)
 }
 @(objc_type=OrderedSet, objc_name="indexOfObjectWithOptions")
-OrderedSet_indexOfObjectWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
+OrderedSet_indexOfObjectWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexOfObjectWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=OrderedSet, objc_name="indexOfObjectAtIndexes")
-OrderedSet_indexOfObjectAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
+OrderedSet_indexOfObjectAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
     return msgSend(UInteger, self, "indexOfObjectAtIndexes:options:passingTest:", s, opts, predicate)
 }
 @(objc_type=OrderedSet, objc_name="indexesOfObjectsPassingTest")
-OrderedSet_indexesOfObjectsPassingTest :: #force_inline proc "c" (self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
+OrderedSet_indexesOfObjectsPassingTest :: #force_inline proc "c" (self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesOfObjectsPassingTest:", predicate)
 }
 @(objc_type=OrderedSet, objc_name="indexesOfObjectsWithOptions")
-OrderedSet_indexesOfObjectsWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
+OrderedSet_indexesOfObjectsWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesOfObjectsWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=OrderedSet, objc_name="indexesOfObjectsAtIndexes")
-OrderedSet_indexesOfObjectsAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
+OrderedSet_indexesOfObjectsAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
     return msgSend(^IndexSet, self, "indexesOfObjectsAtIndexes:options:passingTest:", s, opts, predicate)
 }
 @(objc_type=OrderedSet, objc_name="indexOfObject_inSortedRange_options_usingComparator")
-OrderedSet_indexOfObject_inSortedRange_options_usingComparator :: #force_inline proc "c" (self: ^OrderedSet, object: ^id, range: _NSRange, opts: BinarySearchingOptions, cmp: Comparator) -> UInteger {
+OrderedSet_indexOfObject_inSortedRange_options_usingComparator :: #force_inline proc "c" (self: ^OrderedSet, object: id, range: _NSRange, opts: BinarySearchingOptions, cmp: Comparator) -> UInteger {
     return msgSend(UInteger, self, "indexOfObject:inSortedRange:options:usingComparator:", object, range, opts, cmp)
 }
 @(objc_type=OrderedSet, objc_name="sortedArrayUsingComparator")
@@ -146,12 +146,12 @@ OrderedSet_descriptionWithLocale_indent :: #force_inline proc "c" (self: ^Ordere
     return msgSend(^String, self, "descriptionWithLocale:indent:", locale, level)
 }
 @(objc_type=OrderedSet, objc_name="firstObject")
-OrderedSet_firstObject :: #force_inline proc "c" (self: ^OrderedSet) -> ^id {
-    return msgSend(^id, self, "firstObject")
+OrderedSet_firstObject :: #force_inline proc "c" (self: ^OrderedSet) -> id {
+    return msgSend(id, self, "firstObject")
 }
 @(objc_type=OrderedSet, objc_name="lastObject")
-OrderedSet_lastObject :: #force_inline proc "c" (self: ^OrderedSet) -> ^id {
-    return msgSend(^id, self, "lastObject")
+OrderedSet_lastObject :: #force_inline proc "c" (self: ^OrderedSet) -> id {
+    return msgSend(id, self, "lastObject")
 }
 @(objc_type=OrderedSet, objc_name="reversedOrderedSet")
 OrderedSet_reversedOrderedSet :: #force_inline proc "c" (self: ^OrderedSet) -> ^OrderedSet {
@@ -174,15 +174,15 @@ OrderedSet_orderedSet :: #force_inline proc "c" () -> ^OrderedSet {
     return msgSend(^OrderedSet, OrderedSet, "orderedSet")
 }
 @(objc_type=OrderedSet, objc_name="orderedSetWithObject", objc_is_class_method=true)
-OrderedSet_orderedSetWithObject :: #force_inline proc "c" (object: ^id) -> ^OrderedSet {
+OrderedSet_orderedSetWithObject :: #force_inline proc "c" (object: id) -> ^OrderedSet {
     return msgSend(^OrderedSet, OrderedSet, "orderedSetWithObject:", object)
 }
 @(objc_type=OrderedSet, objc_name="orderedSetWithObjects_count", objc_is_class_method=true)
-OrderedSet_orderedSetWithObjects_count :: #force_inline proc "c" (objects: ^^id, cnt: UInteger) -> ^OrderedSet {
+OrderedSet_orderedSetWithObjects_count :: #force_inline proc "c" (objects: ^id, cnt: UInteger) -> ^OrderedSet {
     return msgSend(^OrderedSet, OrderedSet, "orderedSetWithObjects:count:", objects, cnt)
 }
 @(objc_type=OrderedSet, objc_name="orderedSetWithObjects_", objc_is_class_method=true)
-OrderedSet_orderedSetWithObjects_ :: #force_inline proc "c" (firstObj: ^id) -> ^OrderedSet {
+OrderedSet_orderedSetWithObjects_ :: #force_inline proc "c" (firstObj: id) -> ^OrderedSet {
     return msgSend(^OrderedSet, OrderedSet, "orderedSetWithObjects:", firstObj)
 }
 @(objc_type=OrderedSet, objc_name="orderedSetWithOrderedSet_", objc_is_class_method=true)
@@ -210,11 +210,11 @@ OrderedSet_orderedSetWithSet_copyItems :: #force_inline proc "c" (set: ^Set, fla
     return msgSend(^OrderedSet, OrderedSet, "orderedSetWithSet:copyItems:", set, flag)
 }
 @(objc_type=OrderedSet, objc_name="initWithObject")
-OrderedSet_initWithObject :: #force_inline proc "c" (self: ^OrderedSet, object: ^id) -> ^OrderedSet {
+OrderedSet_initWithObject :: #force_inline proc "c" (self: ^OrderedSet, object: id) -> ^OrderedSet {
     return msgSend(^OrderedSet, self, "initWithObject:", object)
 }
 @(objc_type=OrderedSet, objc_name="initWithObjects_")
-OrderedSet_initWithObjects_ :: #force_inline proc "c" (self: ^OrderedSet, firstObj: ^id) -> ^OrderedSet {
+OrderedSet_initWithObjects_ :: #force_inline proc "c" (self: ^OrderedSet, firstObj: id) -> ^OrderedSet {
     return msgSend(^OrderedSet, self, "initWithObjects:", firstObj)
 }
 @(objc_type=OrderedSet, objc_name="initWithOrderedSet_")
@@ -250,7 +250,7 @@ OrderedSet_initWithSet_copyItems :: #force_inline proc "c" (self: ^OrderedSet, s
     return msgSend(^OrderedSet, self, "initWithSet:copyItems:", set, flag)
 }
 @(objc_type=OrderedSet, objc_name="differenceFromOrderedSet_withOptions_usingEquivalenceTest")
-OrderedSet_differenceFromOrderedSet_withOptions_usingEquivalenceTest :: #force_inline proc "c" (self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: ^id, obj2: ^id) -> bool)) -> ^OrderedCollectionDifference {
+OrderedSet_differenceFromOrderedSet_withOptions_usingEquivalenceTest :: #force_inline proc "c" (self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> bool)) -> ^OrderedCollectionDifference {
     return msgSend(^OrderedCollectionDifference, self, "differenceFromOrderedSet:withOptions:usingEquivalenceTest:", other, options, block)
 }
 @(objc_type=OrderedSet, objc_name="differenceFromOrderedSet_withOptions")

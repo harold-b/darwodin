@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).enqueueNotification_postingStyle_coalesceMask_forModes(self, notification, postingStyle, coalesceMask, modes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("enqueueNotification:postingStyle:coalesceMask:forModes:"), auto_cast enqueueNotification_postingStyle_coalesceMask_forModes, "v@:@LL@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enqueueNotification:postingStyle:coalesceMask:forModes:"), auto_cast enqueueNotification_postingStyle_coalesceMask_forModes, "v@:@LL^void") do panic("Failed to register objC method.")
     }
     if vt.dequeueNotificationsMatching != nil {
         dequeueNotificationsMatching :: proc "c" (self: ^NS.NotificationQueue, _: SEL, notification: ^NS.Notification, coalesceMask: NS.UInteger) {
@@ -387,7 +387,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -417,7 +417,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

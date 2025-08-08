@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tableView_sortDescriptorsDidChange(self, tableView, oldDescriptors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:sortDescriptorsDidChange:"), auto_cast tableView_sortDescriptorsDidChange, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:sortDescriptorsDidChange:"), auto_cast tableView_sortDescriptorsDidChange, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.tableView_pasteboardWriterForRow != nil {
         tableView_pasteboardWriterForRow :: proc "c" (self: ^AK.TableViewDataSource, _: SEL, tableView: ^AK.TableView, row: NS.Integer) -> ^AK.PasteboardWriting {
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).tableView_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes(self, tableView, dropDestination, indexSet)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:"), auto_cast tableView_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:"), auto_cast tableView_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes, "^void@:@@@") do panic("Failed to register objC method.")
     }
 }
 

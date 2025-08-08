@@ -289,7 +289,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).observeValueForKeyPath(self, keyPath, object, change, _context)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("observeValueForKeyPath:ofObject:change:context:"), auto_cast observeValueForKeyPath, "v@:@@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("observeValueForKeyPath:ofObject:change:context:"), auto_cast observeValueForKeyPath, "v@:@@^void^void") do panic("Failed to register objC method.")
     }
     if vt.processPendingChanges != nil {
         processPendingChanges :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL) {
@@ -419,7 +419,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).obtainPermanentIDsForObjects(self, objects, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("obtainPermanentIDsForObjects:error:"), auto_cast obtainPermanentIDsForObjects, "B@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("obtainPermanentIDsForObjects:error:"), auto_cast obtainPermanentIDsForObjects, "B@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.mergeChangesFromContextDidSaveNotification != nil {
         mergeChangesFromContextDidSaveNotification :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL, notification: ^NS.Notification) {
@@ -439,7 +439,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).mergeChangesFromRemoteContextSave( changeNotificationData, contexts)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("mergeChangesFromRemoteContextSave:intoContexts:"), auto_cast mergeChangesFromRemoteContextSave, "v#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("mergeChangesFromRemoteContextSave:intoContexts:"), auto_cast mergeChangesFromRemoteContextSave, "v#:@^void") do panic("Failed to register objC method.")
     }
     if vt.setQueryGenerationFromToken != nil {
         setQueryGenerationFromToken :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL, generation: ^AK.QueryGenerationToken, error: ^^NS.Error) -> bool {
@@ -569,7 +569,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).insertedObjects(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("insertedObjects"), auto_cast insertedObjects, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertedObjects"), auto_cast insertedObjects, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.updatedObjects != nil {
         updatedObjects :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL) -> ^NS.Set {
@@ -579,7 +579,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).updatedObjects(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("updatedObjects"), auto_cast updatedObjects, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updatedObjects"), auto_cast updatedObjects, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.deletedObjects != nil {
         deletedObjects :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL) -> ^NS.Set {
@@ -589,7 +589,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).deletedObjects(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("deletedObjects"), auto_cast deletedObjects, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("deletedObjects"), auto_cast deletedObjects, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.registeredObjects != nil {
         registeredObjects :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL) -> ^NS.Set {
@@ -599,7 +599,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).registeredObjects(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("registeredObjects"), auto_cast registeredObjects, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registeredObjects"), auto_cast registeredObjects, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.propagatesDeletesAtEndOfEvent != nil {
         propagatesDeletesAtEndOfEvent :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL) -> bool {
@@ -1009,7 +1009,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1039,7 +1039,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -11,18 +11,7 @@
                 "-debug"
                 // , "-l" 
             ],
-            "problemMatcher": {
-                "owner": "odin",
-                "fileLocation": ["absolute"],
-                "pattern": {
-                    "regexp": "^(.+)\\(([0-9]+)\\:([0-9]+)\\) (.+)\\:(.+)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            }
+            "problemMatcher": "$odin"
         },
 
         {
@@ -33,18 +22,7 @@
                 "-debug"
                 , "-l" 
             ],
-            "problemMatcher": {
-                "owner": "odin",
-                "fileLocation": ["absolute"],
-                "pattern": {
-                    "regexp": "^(.+)\\(([0-9]+)\\:([0-9]+)\\) (.+)\\:(.+)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            }
+            "problemMatcher": "$odin"
         },
 
         {

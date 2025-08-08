@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithDominantScript(self, script, _map)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDominantScript:languageMap:"), auto_cast initWithDominantScript, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDominantScript:languageMap:"), auto_cast initWithDominantScript, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
         initWithCoder :: proc "c" (self: ^NS.Orthography, _: SEL, coder: ^NS.Coder) -> ^NS.Orthography {
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).languageMap(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("languageMap"), auto_cast languageMap, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("languageMap"), auto_cast languageMap, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.languagesForScript != nil {
         languagesForScript :: proc "c" (self: ^NS.Orthography, _: SEL, script: ^NS.String) -> ^NS.Array {
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).languagesForScript(self, script)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("languagesForScript:"), auto_cast languagesForScript, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("languagesForScript:"), auto_cast languagesForScript, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.dominantLanguageForScript != nil {
         dominantLanguageForScript :: proc "c" (self: ^NS.Orthography, _: SEL, script: ^NS.String) -> ^NS.String {
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allScripts(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allScripts"), auto_cast allScripts, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allScripts"), auto_cast allScripts, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.allLanguages != nil {
         allLanguages :: proc "c" (self: ^NS.Orthography, _: SEL) -> ^NS.Array {
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allLanguages(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allLanguages"), auto_cast allLanguages, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allLanguages"), auto_cast allLanguages, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.orthographyWithDominantScript != nil {
         orthographyWithDominantScript :: proc "c" (self: Class, _: SEL, script: ^NS.String, _map: ^NS.Dictionary) -> ^NS.Orthography {
@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).orthographyWithDominantScript( script, _map)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("orthographyWithDominantScript:languageMap:"), auto_cast orthographyWithDominantScript, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("orthographyWithDominantScript:languageMap:"), auto_cast orthographyWithDominantScript, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -464,7 +464,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -494,7 +494,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

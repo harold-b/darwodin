@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).localizedTitlesForItem(self, item)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedTitlesForItem:"), auto_cast localizedTitlesForItem, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedTitlesForItem:"), auto_cast localizedTitlesForItem, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.performActionForItem != nil {
         performActionForItem :: proc "c" (self: ^AK.UserInterfaceItemSearching, _: SEL, item: id) {

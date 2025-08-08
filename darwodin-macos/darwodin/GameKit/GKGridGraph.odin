@@ -39,8 +39,8 @@ GridGraph_initFromGridStartingAt_width_height_diagonalsAllowed_nodeClass :: #for
     return msgSend(^GridGraph, self, "initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:", position, width, height, diagonalsAllowed, nodeClass)
 }
 @(objc_type=GridGraph, objc_name="nodeAtGridPosition")
-GridGraph_nodeAtGridPosition :: #force_inline proc "c" (self: ^GridGraph, position: [2]cffi.int) -> ^GridGraphNode {
-    return msgSend(^GridGraphNode, self, "nodeAtGridPosition:", position)
+GridGraph_nodeAtGridPosition :: #force_inline proc "c" (self: ^GridGraph, position: [2]cffi.int) -> id {
+    return msgSend(id, self, "nodeAtGridPosition:", position)
 }
 @(objc_type=GridGraph, objc_name="connectNodeToAdjacentNodes")
 GridGraph_connectNodeToAdjacentNodes :: #force_inline proc "c" (self: ^GridGraph, node: ^GridGraphNode) {

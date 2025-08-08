@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityRows(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityRows"), auto_cast accessibilityRows, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityRows"), auto_cast accessibilityRows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilitySelectedRows != nil {
         accessibilitySelectedRows :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilitySelectedRows(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilitySelectedRows"), auto_cast accessibilitySelectedRows, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilitySelectedRows"), auto_cast accessibilitySelectedRows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilitySelectedRows != nil {
         setAccessibilitySelectedRows :: proc "c" (self: ^AK.AccessibilityTable, _: SEL, selectedRows: ^NS.Array) {
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAccessibilitySelectedRows(self, selectedRows)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilitySelectedRows:"), auto_cast setAccessibilitySelectedRows, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilitySelectedRows:"), auto_cast setAccessibilitySelectedRows, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityVisibleRows != nil {
         accessibilityVisibleRows :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityVisibleRows(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityVisibleRows"), auto_cast accessibilityVisibleRows, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityVisibleRows"), auto_cast accessibilityVisibleRows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityColumns != nil {
         accessibilityColumns :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {

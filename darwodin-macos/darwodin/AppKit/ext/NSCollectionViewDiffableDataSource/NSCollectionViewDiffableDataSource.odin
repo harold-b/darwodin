@@ -32,8 +32,8 @@ VTable :: struct {
     new: proc() -> ^AK.CollectionViewDiffableDataSource,
     snapshot: proc(self: ^AK.CollectionViewDiffableDataSource) -> ^AK.DiffableDataSourceSnapshot,
     applySnapshot: proc(self: ^AK.CollectionViewDiffableDataSource, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool),
-    itemIdentifierForIndexPath: proc(self: ^AK.CollectionViewDiffableDataSource, indexPath: ^NS.IndexPath) -> ^id,
-    indexPathForItemIdentifier: proc(self: ^AK.CollectionViewDiffableDataSource, identifier: ^id) -> ^NS.IndexPath,
+    itemIdentifierForIndexPath: proc(self: ^AK.CollectionViewDiffableDataSource, indexPath: ^NS.IndexPath) -> id,
+    indexPathForItemIdentifier: proc(self: ^AK.CollectionViewDiffableDataSource, identifier: id) -> ^NS.IndexPath,
     supplementaryViewProvider: proc(self: ^AK.CollectionViewDiffableDataSource) -> AK.CollectionViewDiffableDataSourceSupplementaryViewProvider,
     setSupplementaryViewProvider: proc(self: ^AK.CollectionViewDiffableDataSource, supplementaryViewProvider: AK.CollectionViewDiffableDataSourceSupplementaryViewProvider),
     load: proc(),
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithCollectionView(self, collectionView, itemProvider)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCollectionView:itemProvider:"), auto_cast initWithCollectionView, "@@:@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCollectionView:itemProvider:"), auto_cast initWithCollectionView, "^void@:@?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
         init :: proc "c" (self: ^AK.CollectionViewDiffableDataSource, _: SEL) -> ^AK.CollectionViewDiffableDataSource {
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).init(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
         new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionViewDiffableDataSource {
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).new()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.snapshot != nil {
         snapshot :: proc "c" (self: ^AK.CollectionViewDiffableDataSource, _: SEL) -> ^AK.DiffableDataSourceSnapshot {
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).snapshot(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("snapshot"), auto_cast snapshot, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("snapshot"), auto_cast snapshot, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.applySnapshot != nil {
         applySnapshot :: proc "c" (self: ^AK.CollectionViewDiffableDataSource, _: SEL, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool) {
@@ -126,27 +126,27 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).applySnapshot(self, snapshot, animatingDifferences)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:"), auto_cast applySnapshot, "v@:@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:"), auto_cast applySnapshot, "v@:^voidB") do panic("Failed to register objC method.")
     }
     if vt.itemIdentifierForIndexPath != nil {
-        itemIdentifierForIndexPath :: proc "c" (self: ^AK.CollectionViewDiffableDataSource, _: SEL, indexPath: ^NS.IndexPath) -> ^id {
+        itemIdentifierForIndexPath :: proc "c" (self: ^AK.CollectionViewDiffableDataSource, _: SEL, indexPath: ^NS.IndexPath) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).itemIdentifierForIndexPath(self, indexPath)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifierForIndexPath:"), auto_cast itemIdentifierForIndexPath, "^void@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifierForIndexPath:"), auto_cast itemIdentifierForIndexPath, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.indexPathForItemIdentifier != nil {
-        indexPathForItemIdentifier :: proc "c" (self: ^AK.CollectionViewDiffableDataSource, _: SEL, identifier: ^id) -> ^NS.IndexPath {
+        indexPathForItemIdentifier :: proc "c" (self: ^AK.CollectionViewDiffableDataSource, _: SEL, identifier: id) -> ^NS.IndexPath {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).indexPathForItemIdentifier(self, identifier)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathForItemIdentifier:"), auto_cast indexPathForItemIdentifier, "@@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathForItemIdentifier:"), auto_cast indexPathForItemIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.supplementaryViewProvider != nil {
         supplementaryViewProvider :: proc "c" (self: ^AK.CollectionViewDiffableDataSource, _: SEL) -> AK.CollectionViewDiffableDataSourceSupplementaryViewProvider {
@@ -426,7 +426,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -456,7 +456,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

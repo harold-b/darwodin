@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).grammarDetails(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("grammarDetails"), auto_cast grammarDetails, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("grammarDetails"), auto_cast grammarDetails, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.date != nil {
         date :: proc "c" (self: ^NS.TextCheckingResult, _: SEL) -> ^NS.Date {
@@ -206,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).components(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("components"), auto_cast components, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("components"), auto_cast components, "^void@:") do panic("Failed to register objC method.")
     }
     if vt._URL != nil {
         _URL :: proc "c" (self: ^NS.TextCheckingResult, _: SEL) -> ^NS.URL {
@@ -236,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).alternativeStrings(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("alternativeStrings"), auto_cast alternativeStrings, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alternativeStrings"), auto_cast alternativeStrings, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.regularExpression != nil {
         regularExpression :: proc "c" (self: ^NS.TextCheckingResult, _: SEL) -> ^NS.RegularExpression {
@@ -276,7 +276,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).addressComponents(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addressComponents"), auto_cast addressComponents, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addressComponents"), auto_cast addressComponents, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.orthographyCheckingResultWithRange != nil {
         orthographyCheckingResultWithRange :: proc "c" (self: Class, _: SEL, range: NS._NSRange, orthography: ^NS.Orthography) -> ^NS.TextCheckingResult {
@@ -306,7 +306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).grammarCheckingResultWithRange( range, details)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("grammarCheckingResultWithRange:details:"), auto_cast grammarCheckingResultWithRange, "@#:{_NSRange=LL}@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("grammarCheckingResultWithRange:details:"), auto_cast grammarCheckingResultWithRange, "@#:{_NSRange=LL}^void") do panic("Failed to register objC method.")
     }
     if vt.dateCheckingResultWithRange_date != nil {
         dateCheckingResultWithRange_date :: proc "c" (self: Class, _: SEL, range: NS._NSRange, date: ^NS.Date) -> ^NS.TextCheckingResult {
@@ -336,7 +336,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).addressCheckingResultWithRange( range, components)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("addressCheckingResultWithRange:components:"), auto_cast addressCheckingResultWithRange, "@#:{_NSRange=LL}@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("addressCheckingResultWithRange:components:"), auto_cast addressCheckingResultWithRange, "@#:{_NSRange=LL}^void") do panic("Failed to register objC method.")
     }
     if vt.linkCheckingResultWithRange != nil {
         linkCheckingResultWithRange :: proc "c" (self: Class, _: SEL, range: NS._NSRange, url: ^NS.URL) -> ^NS.TextCheckingResult {
@@ -396,7 +396,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).correctionCheckingResultWithRange_replacementString_alternativeStrings( range, replacementString, alternativeStrings)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("correctionCheckingResultWithRange:replacementString:alternativeStrings:"), auto_cast correctionCheckingResultWithRange_replacementString_alternativeStrings, "@#:{_NSRange=LL}@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("correctionCheckingResultWithRange:replacementString:alternativeStrings:"), auto_cast correctionCheckingResultWithRange_replacementString_alternativeStrings, "@#:{_NSRange=LL}@^void") do panic("Failed to register objC method.")
     }
     if vt.regularExpressionCheckingResultWithRanges != nil {
         regularExpressionCheckingResultWithRanges :: proc "c" (self: Class, _: SEL, ranges: ^NS._NSRange, count: NS.UInteger, regularExpression: ^NS.RegularExpression) -> ^NS.TextCheckingResult {
@@ -426,7 +426,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).transitInformationCheckingResultWithRange( range, components)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("transitInformationCheckingResultWithRange:components:"), auto_cast transitInformationCheckingResultWithRange, "@#:{_NSRange=LL}@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("transitInformationCheckingResultWithRange:components:"), auto_cast transitInformationCheckingResultWithRange, "@#:{_NSRange=LL}^void") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -706,7 +706,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -736,7 +736,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

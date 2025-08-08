@@ -770,7 +770,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).componentsSeparatedByString(self, separator)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("componentsSeparatedByString:"), auto_cast componentsSeparatedByString, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("componentsSeparatedByString:"), auto_cast componentsSeparatedByString, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.componentsSeparatedByCharactersInSet != nil {
         componentsSeparatedByCharactersInSet :: proc "c" (self: ^NS.String, _: SEL, separator: ^NS.CharacterSet) -> ^NS.Array {
@@ -780,7 +780,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).componentsSeparatedByCharactersInSet(self, separator)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("componentsSeparatedByCharactersInSet:"), auto_cast componentsSeparatedByCharactersInSet, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("componentsSeparatedByCharactersInSet:"), auto_cast componentsSeparatedByCharactersInSet, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.stringByTrimmingCharactersInSet != nil {
         stringByTrimmingCharactersInSet :: proc "c" (self: ^NS.String, _: SEL, set: ^NS.CharacterSet) -> ^NS.String {
@@ -1460,7 +1460,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).stringEncodingForData( data, opts, string, usedLossyConversion)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), auto_cast stringEncodingForData, "L#:@@^void^void") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), auto_cast stringEncodingForData, "L#:@^void^void^void") do panic("Failed to register objC method.")
     }
     if vt.propertyList != nil {
         propertyList :: proc "c" (self: ^NS.String, _: SEL) -> id {
@@ -1680,7 +1680,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).pathWithComponents( components)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("pathWithComponents:"), auto_cast pathWithComponents, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("pathWithComponents:"), auto_cast pathWithComponents, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.stringByAppendingPathComponent != nil {
         stringByAppendingPathComponent :: proc "c" (self: ^NS.String, _: SEL, str: ^NS.String) -> ^NS.String {
@@ -1710,7 +1710,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).stringsByAppendingPaths(self, paths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("stringsByAppendingPaths:"), auto_cast stringsByAppendingPaths, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("stringsByAppendingPaths:"), auto_cast stringsByAppendingPaths, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.completePathIntoString != nil {
         completePathIntoString :: proc "c" (self: ^NS.String, _: SEL, outputName: ^^NS.String, flag: bool, outputArray: ^^NS.Array, filterTypes: ^NS.Array) -> NS.UInteger {
@@ -1720,7 +1720,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).completePathIntoString(self, outputName, flag, outputArray, filterTypes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:"), auto_cast completePathIntoString, "L@:^voidB^void@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:"), auto_cast completePathIntoString, "L@:^voidB^void^void") do panic("Failed to register objC method.")
     }
     if vt.getFileSystemRepresentation != nil {
         getFileSystemRepresentation :: proc "c" (self: ^NS.String, _: SEL, cname: cstring, max: NS.UInteger) -> bool {
@@ -1740,7 +1740,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).pathComponents(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pathComponents"), auto_cast pathComponents, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pathComponents"), auto_cast pathComponents, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.isAbsolutePath != nil {
         isAbsolutePath :: proc "c" (self: ^NS.String, _: SEL) -> bool {
@@ -1890,7 +1890,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).linguisticTagsInRange(self, range, scheme, options, orthography, tokenRanges)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("linguisticTagsInRange:scheme:options:orthography:tokenRanges:"), auto_cast linguisticTagsInRange, "@@:{_NSRange=LL}@L@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("linguisticTagsInRange:scheme:options:orthography:tokenRanges:"), auto_cast linguisticTagsInRange, "^void@:{_NSRange=LL}@L@^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateLinguisticTagsInRange != nil {
         enumerateLinguisticTagsInRange :: proc "c" (self: ^NS.String, _: SEL, range: NS._NSRange, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool))) {
@@ -2180,7 +2180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -2210,7 +2210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

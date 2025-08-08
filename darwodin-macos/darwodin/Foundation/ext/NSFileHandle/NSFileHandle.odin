@@ -338,7 +338,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).readInBackgroundAndNotifyForModes(self, modes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("readInBackgroundAndNotifyForModes:"), auto_cast readInBackgroundAndNotifyForModes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readInBackgroundAndNotifyForModes:"), auto_cast readInBackgroundAndNotifyForModes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.readInBackgroundAndNotify != nil {
         readInBackgroundAndNotify :: proc "c" (self: ^NS.FileHandle, _: SEL) {
@@ -358,7 +358,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).readToEndOfFileInBackgroundAndNotifyForModes(self, modes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("readToEndOfFileInBackgroundAndNotifyForModes:"), auto_cast readToEndOfFileInBackgroundAndNotifyForModes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("readToEndOfFileInBackgroundAndNotifyForModes:"), auto_cast readToEndOfFileInBackgroundAndNotifyForModes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.readToEndOfFileInBackgroundAndNotify != nil {
         readToEndOfFileInBackgroundAndNotify :: proc "c" (self: ^NS.FileHandle, _: SEL) {
@@ -378,7 +378,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).acceptConnectionInBackgroundAndNotifyForModes(self, modes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptConnectionInBackgroundAndNotifyForModes:"), auto_cast acceptConnectionInBackgroundAndNotifyForModes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("acceptConnectionInBackgroundAndNotifyForModes:"), auto_cast acceptConnectionInBackgroundAndNotifyForModes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.acceptConnectionInBackgroundAndNotify != nil {
         acceptConnectionInBackgroundAndNotify :: proc "c" (self: ^NS.FileHandle, _: SEL) {
@@ -398,7 +398,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).waitForDataInBackgroundAndNotifyForModes(self, modes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("waitForDataInBackgroundAndNotifyForModes:"), auto_cast waitForDataInBackgroundAndNotifyForModes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("waitForDataInBackgroundAndNotifyForModes:"), auto_cast waitForDataInBackgroundAndNotifyForModes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.waitForDataInBackgroundAndNotify != nil {
         waitForDataInBackgroundAndNotify :: proc "c" (self: ^NS.FileHandle, _: SEL) {
@@ -838,7 +838,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -868,7 +868,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

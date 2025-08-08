@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).netService_didNotPublish(self, sender, errorDict)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("netService:didNotPublish:"), auto_cast netService_didNotPublish, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("netService:didNotPublish:"), auto_cast netService_didNotPublish, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.netServiceWillResolve != nil {
         netServiceWillResolve :: proc "c" (self: ^NS.NetServiceDelegate, _: SEL, sender: ^NS.NetService) {
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).netService_didNotResolve(self, sender, errorDict)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("netService:didNotResolve:"), auto_cast netService_didNotResolve, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("netService:didNotResolve:"), auto_cast netService_didNotResolve, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.netServiceDidStop != nil {
         netServiceDidStop :: proc "c" (self: ^NS.NetServiceDelegate, _: SEL, sender: ^NS.NetService) {

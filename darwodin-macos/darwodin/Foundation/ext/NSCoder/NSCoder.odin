@@ -616,7 +616,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).decodeObjectOfClasses(self, classes, key)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeObjectOfClasses:forKey:"), auto_cast decodeObjectOfClasses, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeObjectOfClasses:forKey:"), auto_cast decodeObjectOfClasses, "@@:^void@") do panic("Failed to register objC method.")
     }
     if vt.decodeTopLevelObjectOfClasses != nil {
         decodeTopLevelObjectOfClasses :: proc "c" (self: ^NS.Coder, _: SEL, classes: ^NS.Set, key: ^NS.String, error: ^^NS.Error) -> id {
@@ -626,7 +626,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).decodeTopLevelObjectOfClasses(self, classes, key, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeTopLevelObjectOfClasses:forKey:error:"), auto_cast decodeTopLevelObjectOfClasses, "@@:@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeTopLevelObjectOfClasses:forKey:error:"), auto_cast decodeTopLevelObjectOfClasses, "@@:^void@^void") do panic("Failed to register objC method.")
     }
     if vt.decodeArrayOfObjectsOfClasses != nil {
         decodeArrayOfObjectsOfClasses :: proc "c" (self: ^NS.Coder, _: SEL, classes: ^NS.Set, key: ^NS.String) -> ^NS.Array {
@@ -636,7 +636,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).decodeArrayOfObjectsOfClasses(self, classes, key)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeArrayOfObjectsOfClasses:forKey:"), auto_cast decodeArrayOfObjectsOfClasses, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeArrayOfObjectsOfClasses:forKey:"), auto_cast decodeArrayOfObjectsOfClasses, "@@:^void@") do panic("Failed to register objC method.")
     }
     if vt.decodeDictionaryWithKeysOfClasses != nil {
         decodeDictionaryWithKeysOfClasses :: proc "c" (self: ^NS.Coder, _: SEL, keyClasses: ^NS.Set, objectClasses: ^NS.Set, key: ^NS.String) -> ^NS.Dictionary {
@@ -646,7 +646,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).decodeDictionaryWithKeysOfClasses(self, keyClasses, objectClasses, key)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:"), auto_cast decodeDictionaryWithKeysOfClasses, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:"), auto_cast decodeDictionaryWithKeysOfClasses, "@@:^void^void@") do panic("Failed to register objC method.")
     }
     if vt.decodePropertyListForKey != nil {
         decodePropertyListForKey :: proc "c" (self: ^NS.Coder, _: SEL, key: ^NS.String) -> id {
@@ -706,7 +706,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedClasses(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedClasses"), auto_cast allowedClasses, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedClasses"), auto_cast allowedClasses, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.decodingFailurePolicy != nil {
         decodingFailurePolicy :: proc "c" (self: ^NS.Coder, _: SEL) -> NS.DecodingFailurePolicy {
@@ -1146,7 +1146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1176,7 +1176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

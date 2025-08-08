@@ -25,12 +25,12 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     init: proc(self: ^NS.Measurement) -> ^NS.Measurement,
-    initWithDoubleValue: proc(self: ^NS.Measurement, doubleValue: cffi.double, unit: ^NS.Unit) -> ^NS.Measurement,
+    initWithDoubleValue: proc(self: ^NS.Measurement, doubleValue: cffi.double, unit: id) -> ^NS.Measurement,
     canBeConvertedToUnit: proc(self: ^NS.Measurement, unit: ^NS.Unit) -> bool,
     measurementByConvertingToUnit: proc(self: ^NS.Measurement, unit: ^NS.Unit) -> ^NS.Measurement,
     measurementByAddingMeasurement: proc(self: ^NS.Measurement, measurement: ^NS.Measurement) -> ^NS.Measurement,
     measurementBySubtractingMeasurement: proc(self: ^NS.Measurement, measurement: ^NS.Measurement) -> ^NS.Measurement,
-    unit: proc(self: ^NS.Measurement) -> ^NS.Unit,
+    unit: proc(self: ^NS.Measurement) -> id,
     doubleValue: proc(self: ^NS.Measurement) -> cffi.double,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
@@ -81,17 +81,17 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).init(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.initWithDoubleValue != nil {
-        initWithDoubleValue :: proc "c" (self: ^NS.Measurement, _: SEL, doubleValue: cffi.double, unit: ^NS.Unit) -> ^NS.Measurement {
+        initWithDoubleValue :: proc "c" (self: ^NS.Measurement, _: SEL, doubleValue: cffi.double, unit: id) -> ^NS.Measurement {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).initWithDoubleValue(self, doubleValue, unit)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDoubleValue:unit:"), auto_cast initWithDoubleValue, "@@:d@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDoubleValue:unit:"), auto_cast initWithDoubleValue, "^void@:d@") do panic("Failed to register objC method.")
     }
     if vt.canBeConvertedToUnit != nil {
         canBeConvertedToUnit :: proc "c" (self: ^NS.Measurement, _: SEL, unit: ^NS.Unit) -> bool {
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).measurementByAddingMeasurement(self, measurement)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("measurementByAddingMeasurement:"), auto_cast measurementByAddingMeasurement, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("measurementByAddingMeasurement:"), auto_cast measurementByAddingMeasurement, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.measurementBySubtractingMeasurement != nil {
         measurementBySubtractingMeasurement :: proc "c" (self: ^NS.Measurement, _: SEL, measurement: ^NS.Measurement) -> ^NS.Measurement {
@@ -131,10 +131,10 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).measurementBySubtractingMeasurement(self, measurement)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("measurementBySubtractingMeasurement:"), auto_cast measurementBySubtractingMeasurement, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("measurementBySubtractingMeasurement:"), auto_cast measurementBySubtractingMeasurement, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.unit != nil {
-        unit :: proc "c" (self: ^NS.Measurement, _: SEL) -> ^NS.Unit {
+        unit :: proc "c" (self: ^NS.Measurement, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -431,7 +431,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -461,7 +461,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

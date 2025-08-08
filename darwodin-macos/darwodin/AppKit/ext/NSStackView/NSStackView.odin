@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).stackViewWithViews( views)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("stackViewWithViews:"), auto_cast stackViewWithViews, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("stackViewWithViews:"), auto_cast stackViewWithViews, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.setCustomSpacing != nil {
         setCustomSpacing :: proc "c" (self: ^AK.StackView, _: SEL, spacing: CG.Float, view: ^AK.View) {
@@ -382,7 +382,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).arrangedSubviews(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("arrangedSubviews"), auto_cast arrangedSubviews, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("arrangedSubviews"), auto_cast arrangedSubviews, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.detachedViews != nil {
         detachedViews :: proc "c" (self: ^AK.StackView, _: SEL) -> ^NS.Array {
@@ -392,7 +392,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).detachedViews(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("detachedViews"), auto_cast detachedViews, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("detachedViews"), auto_cast detachedViews, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.addView != nil {
         addView :: proc "c" (self: ^AK.StackView, _: SEL, view: ^AK.View, gravity: AK.StackViewGravity) {
@@ -432,7 +432,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).viewsInGravity(self, gravity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("viewsInGravity:"), auto_cast viewsInGravity, "@@:l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("viewsInGravity:"), auto_cast viewsInGravity, "^void@:l") do panic("Failed to register objC method.")
     }
     if vt.setViews != nil {
         setViews :: proc "c" (self: ^AK.StackView, _: SEL, views: ^NS.Array, gravity: AK.StackViewGravity) {
@@ -442,7 +442,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setViews(self, views, gravity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setViews:inGravity:"), auto_cast setViews, "v@:@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setViews:inGravity:"), auto_cast setViews, "v@:^voidl") do panic("Failed to register objC method.")
     }
     if vt.views != nil {
         views :: proc "c" (self: ^AK.StackView, _: SEL) -> ^NS.Array {
@@ -452,7 +452,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).views(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("views"), auto_cast views, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("views"), auto_cast views, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.hasEqualSpacing != nil {
         hasEqualSpacing :: proc "c" (self: ^AK.StackView, _: SEL) -> bool {
@@ -542,7 +542,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedClassesForRestorableStateKeyPath( keyPath)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("allowedClassesForRestorableStateKeyPath:"), auto_cast allowedClassesForRestorableStateKeyPath, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.restorableStateKeyPaths != nil {
         restorableStateKeyPaths :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -552,7 +552,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).restorableStateKeyPaths()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("restorableStateKeyPaths"), auto_cast restorableStateKeyPaths, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -822,7 +822,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -852,7 +852,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

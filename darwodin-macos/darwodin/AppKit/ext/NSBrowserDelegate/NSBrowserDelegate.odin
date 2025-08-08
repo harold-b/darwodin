@@ -292,7 +292,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn(self, browser, dropDestination, rowIndexes, column)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:"), auto_cast browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn, "@@:@@@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:"), auto_cast browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn, "^void@:@@@l") do panic("Failed to register objC method.")
     }
     if vt.browser_canDragRowsWithIndexes_inColumn_withEvent != nil {
         browser_canDragRowsWithIndexes_inColumn_withEvent :: proc "c" (self: ^AK.BrowserDelegate, _: SEL, browser: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event) -> bool {

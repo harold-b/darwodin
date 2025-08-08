@@ -22,8 +22,8 @@ Set :: struct { using _: Object,
 }
 
 @(objc_type=Set, objc_name="member")
-Set_member :: #force_inline proc "c" (self: ^Set, object: ^id) -> ^id {
-    return msgSend(^id, self, "member:", object)
+Set_member :: #force_inline proc "c" (self: ^Set, object: id) -> id {
+    return msgSend(id, self, "member:", object)
 }
 @(objc_type=Set, objc_name="objectEnumerator")
 Set_objectEnumerator :: #force_inline proc "c" (self: ^Set) -> ^Enumerator {
@@ -34,7 +34,7 @@ Set_init :: #force_inline proc "c" (self: ^Set) -> ^Set {
     return msgSend(^Set, self, "init")
 }
 @(objc_type=Set, objc_name="initWithObjects_count")
-Set_initWithObjects_count :: #force_inline proc "c" (self: ^Set, objects: ^^id, cnt: UInteger) -> ^Set {
+Set_initWithObjects_count :: #force_inline proc "c" (self: ^Set, objects: ^id, cnt: UInteger) -> ^Set {
     return msgSend(^Set, self, "initWithObjects:count:", objects, cnt)
 }
 @(objc_type=Set, objc_name="initWithCoder")
@@ -46,11 +46,11 @@ Set_count :: #force_inline proc "c" (self: ^Set) -> UInteger {
     return msgSend(UInteger, self, "count")
 }
 @(objc_type=Set, objc_name="anyObject")
-Set_anyObject :: #force_inline proc "c" (self: ^Set) -> ^id {
-    return msgSend(^id, self, "anyObject")
+Set_anyObject :: #force_inline proc "c" (self: ^Set) -> id {
+    return msgSend(id, self, "anyObject")
 }
 @(objc_type=Set, objc_name="containsObject")
-Set_containsObject :: #force_inline proc "c" (self: ^Set, anObject: ^id) -> bool {
+Set_containsObject :: #force_inline proc "c" (self: ^Set, anObject: id) -> bool {
     return msgSend(bool, self, "containsObject:", anObject)
 }
 @(objc_type=Set, objc_name="descriptionWithLocale")
@@ -78,7 +78,7 @@ Set_makeObjectsPerformSelector_withObject :: #force_inline proc "c" (self: ^Set,
     msgSend(nil, self, "makeObjectsPerformSelector:withObject:", aSelector, argument)
 }
 @(objc_type=Set, objc_name="setByAddingObject")
-Set_setByAddingObject :: #force_inline proc "c" (self: ^Set, anObject: ^id) -> ^Set {
+Set_setByAddingObject :: #force_inline proc "c" (self: ^Set, anObject: id) -> ^Set {
     return msgSend(^Set, self, "setByAddingObject:", anObject)
 }
 @(objc_type=Set, objc_name="setByAddingObjectsFromSet")
@@ -90,19 +90,19 @@ Set_setByAddingObjectsFromArray :: #force_inline proc "c" (self: ^Set, other: ^A
     return msgSend(^Set, self, "setByAddingObjectsFromArray:", other)
 }
 @(objc_type=Set, objc_name="enumerateObjectsUsingBlock")
-Set_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^Set, block: ^Objc_Block(proc "c" (obj: ^id, stop: ^bool))) {
+Set_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^Set, block: ^Objc_Block(proc "c" (obj: id, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsUsingBlock:", block)
 }
 @(objc_type=Set, objc_name="enumerateObjectsWithOptions")
-Set_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^Set, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: ^id, stop: ^bool))) {
+Set_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^Set, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, stop: ^bool))) {
     msgSend(nil, self, "enumerateObjectsWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=Set, objc_name="objectsPassingTest")
-Set_objectsPassingTest :: #force_inline proc "c" (self: ^Set, predicate: ^Objc_Block(proc "c" (obj: ^id, stop: ^bool) -> bool)) -> ^Set {
+Set_objectsPassingTest :: #force_inline proc "c" (self: ^Set, predicate: ^Objc_Block(proc "c" (obj: id, stop: ^bool) -> bool)) -> ^Set {
     return msgSend(^Set, self, "objectsPassingTest:", predicate)
 }
 @(objc_type=Set, objc_name="objectsWithOptions")
-Set_objectsWithOptions :: #force_inline proc "c" (self: ^Set, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: ^id, stop: ^bool) -> bool)) -> ^Set {
+Set_objectsWithOptions :: #force_inline proc "c" (self: ^Set, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, stop: ^bool) -> bool)) -> ^Set {
     return msgSend(^Set, self, "objectsWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=Set, objc_name="allObjects")
@@ -118,15 +118,15 @@ Set_set :: #force_inline proc "c" () -> ^Set {
     return msgSend(^Set, Set, "set")
 }
 @(objc_type=Set, objc_name="setWithObject", objc_is_class_method=true)
-Set_setWithObject :: #force_inline proc "c" (object: ^id) -> ^Set {
+Set_setWithObject :: #force_inline proc "c" (object: id) -> ^Set {
     return msgSend(^Set, Set, "setWithObject:", object)
 }
 @(objc_type=Set, objc_name="setWithObjects_count", objc_is_class_method=true)
-Set_setWithObjects_count :: #force_inline proc "c" (objects: ^^id, cnt: UInteger) -> ^Set {
+Set_setWithObjects_count :: #force_inline proc "c" (objects: ^id, cnt: UInteger) -> ^Set {
     return msgSend(^Set, Set, "setWithObjects:count:", objects, cnt)
 }
 @(objc_type=Set, objc_name="setWithObjects_", objc_is_class_method=true)
-Set_setWithObjects_ :: #force_inline proc "c" (firstObj: ^id) -> ^Set {
+Set_setWithObjects_ :: #force_inline proc "c" (firstObj: id) -> ^Set {
     return msgSend(^Set, Set, "setWithObjects:", firstObj)
 }
 @(objc_type=Set, objc_name="setWithSet", objc_is_class_method=true)
@@ -138,7 +138,7 @@ Set_setWithArray :: #force_inline proc "c" (array: ^Array) -> ^Set {
     return msgSend(^Set, Set, "setWithArray:", array)
 }
 @(objc_type=Set, objc_name="initWithObjects_")
-Set_initWithObjects_ :: #force_inline proc "c" (self: ^Set, firstObj: ^id) -> ^Set {
+Set_initWithObjects_ :: #force_inline proc "c" (self: ^Set, firstObj: id) -> ^Set {
     return msgSend(^Set, self, "initWithObjects:", firstObj)
 }
 @(objc_type=Set, objc_name="initWithSet_")

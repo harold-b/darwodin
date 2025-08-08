@@ -28,12 +28,12 @@ PhysicalInputElementCollection_init :: #force_inline proc "c" (self: ^PhysicalIn
     return msgSend(^PhysicalInputElementCollection, self, "init")
 }
 @(objc_type=PhysicalInputElementCollection, objc_name="elementForAlias")
-PhysicalInputElementCollection_elementForAlias :: #force_inline proc "c" (self: ^PhysicalInputElementCollection, alias: ^NS.String) -> ^PhysicalInputElement {
-    return msgSend(^PhysicalInputElement, self, "elementForAlias:", alias)
+PhysicalInputElementCollection_elementForAlias :: #force_inline proc "c" (self: ^PhysicalInputElementCollection, alias: id) -> id {
+    return msgSend(id, self, "elementForAlias:", alias)
 }
 @(objc_type=PhysicalInputElementCollection, objc_name="objectForKeyedSubscript")
-PhysicalInputElementCollection_objectForKeyedSubscript :: #force_inline proc "c" (self: ^PhysicalInputElementCollection, key: ^NS.String) -> ^PhysicalInputElement {
-    return msgSend(^PhysicalInputElement, self, "objectForKeyedSubscript:", key)
+PhysicalInputElementCollection_objectForKeyedSubscript :: #force_inline proc "c" (self: ^PhysicalInputElementCollection, key: id) -> id {
+    return msgSend(id, self, "objectForKeyedSubscript:", key)
 }
 @(objc_type=PhysicalInputElementCollection, objc_name="elementEnumerator")
 PhysicalInputElementCollection_elementEnumerator :: #force_inline proc "c" (self: ^PhysicalInputElementCollection) -> ^NS.Enumerator {

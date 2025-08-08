@@ -23,19 +23,19 @@ Cache_init :: proc "c" (self: ^Cache) -> ^Cache {
 
 
 @(objc_type=Cache, objc_name="objectForKey")
-Cache_objectForKey :: #force_inline proc "c" (self: ^Cache, key: ^id) -> ^id {
-    return msgSend(^id, self, "objectForKey:", key)
+Cache_objectForKey :: #force_inline proc "c" (self: ^Cache, key: id) -> id {
+    return msgSend(id, self, "objectForKey:", key)
 }
 @(objc_type=Cache, objc_name="setObject_forKey")
-Cache_setObject_forKey :: #force_inline proc "c" (self: ^Cache, obj: ^id, key: ^id) {
+Cache_setObject_forKey :: #force_inline proc "c" (self: ^Cache, obj: id, key: id) {
     msgSend(nil, self, "setObject:forKey:", obj, key)
 }
 @(objc_type=Cache, objc_name="setObject_forKey_cost")
-Cache_setObject_forKey_cost :: #force_inline proc "c" (self: ^Cache, obj: ^id, key: ^id, g: UInteger) {
+Cache_setObject_forKey_cost :: #force_inline proc "c" (self: ^Cache, obj: id, key: id, g: UInteger) {
     msgSend(nil, self, "setObject:forKey:cost:", obj, key, g)
 }
 @(objc_type=Cache, objc_name="removeObjectForKey")
-Cache_removeObjectForKey :: #force_inline proc "c" (self: ^Cache, key: ^id) {
+Cache_removeObjectForKey :: #force_inline proc "c" (self: ^Cache, key: id) {
     msgSend(nil, self, "removeObjectForKey:", key)
 }
 @(objc_type=Cache, objc_name="removeAllObjects")

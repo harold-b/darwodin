@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithParentElement(self, parent, textList, contents, markerAttributes, children)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithParentElement:textList:contents:markerAttributes:childElements:"), auto_cast initWithParentElement, "@@:@@@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithParentElement:textList:contents:markerAttributes:childElements:"), auto_cast initWithParentElement, "@@:@@@^void^void") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedString != nil {
         initWithAttributedString :: proc "c" (self: ^AK.TextListElement, _: SEL, attributedString: ^NS.AttributedString) -> ^AK.TextListElement {
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textListElementWithContents( contents, markerAttributes, textList, children)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("textListElementWithContents:markerAttributes:textList:childElements:"), auto_cast textListElementWithContents, "@#:@@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("textListElementWithContents:markerAttributes:textList:childElements:"), auto_cast textListElementWithContents, "@#:@^void@^void") do panic("Failed to register objC method.")
     }
     if vt.textListElementWithChildElements != nil {
         textListElementWithChildElements :: proc "c" (self: Class, _: SEL, children: ^NS.Array, textList: ^AK.TextList, nestingLevel: NS.Integer) -> ^AK.TextListElement {
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textListElementWithChildElements( children, textList, nestingLevel)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("textListElementWithChildElements:textList:nestingLevel:"), auto_cast textListElementWithChildElements, "@#:@@l") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("textListElementWithChildElements:textList:nestingLevel:"), auto_cast textListElementWithChildElements, "@#:^void@l") do panic("Failed to register objC method.")
     }
     if vt.textList != nil {
         textList :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^AK.TextList {
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).markerAttributes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("markerAttributes"), auto_cast markerAttributes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("markerAttributes"), auto_cast markerAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.attributedString != nil {
         attributedString :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^NS.AttributedString {
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).childElements(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("childElements"), auto_cast childElements, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("childElements"), auto_cast childElements, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.parentElement != nil {
         parentElement :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^AK.TextListElement {
@@ -448,7 +448,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -478,7 +478,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

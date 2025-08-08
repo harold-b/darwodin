@@ -27,15 +27,15 @@ VTable :: struct {
     initWithCapacity: proc(self: ^NS.CountedSet, numItems: NS.UInteger) -> ^NS.CountedSet,
     initWithArray: proc(self: ^NS.CountedSet, array: ^NS.Array) -> ^NS.CountedSet,
     initWithSet: proc(self: ^NS.CountedSet, set: ^NS.Set) -> ^NS.CountedSet,
-    countForObject: proc(self: ^NS.CountedSet, object: ^id) -> NS.UInteger,
+    countForObject: proc(self: ^NS.CountedSet, object: id) -> NS.UInteger,
     objectEnumerator: proc(self: ^NS.CountedSet) -> ^NS.Enumerator,
-    addObject: proc(self: ^NS.CountedSet, object: ^id),
-    removeObject: proc(self: ^NS.CountedSet, object: ^id),
+    addObject: proc(self: ^NS.CountedSet, object: id),
+    removeObject: proc(self: ^NS.CountedSet, object: id),
     setWithCapacity: proc(numItems: NS.UInteger) -> ^NS.MutableSet,
     set: proc() -> ^NS.Set,
-    setWithObject: proc(object: ^id) -> ^NS.Set,
-    setWithObjects_count: proc(objects: ^^id, cnt: NS.UInteger) -> ^NS.Set,
-    setWithObjects_: proc(firstObj: ^id) -> ^NS.Set,
+    setWithObject: proc(object: id) -> ^NS.Set,
+    setWithObjects_count: proc(objects: ^id, cnt: NS.UInteger) -> ^NS.Set,
+    setWithObjects_: proc(firstObj: id) -> ^NS.Set,
     setWithSet: proc(set: ^NS.Set) -> ^NS.Set,
     setWithArray: proc(array: ^NS.Array) -> ^NS.Set,
     supportsSecureCoding: proc() -> bool,
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithCapacity(self, numItems)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCapacity:"), auto_cast initWithCapacity, "@@:L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCapacity:"), auto_cast initWithCapacity, "^void@:L") do panic("Failed to register objC method.")
     }
     if vt.initWithArray != nil {
         initWithArray :: proc "c" (self: ^NS.CountedSet, _: SEL, array: ^NS.Array) -> ^NS.CountedSet {
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithArray(self, array)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithArray:"), auto_cast initWithArray, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithArray:"), auto_cast initWithArray, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithSet != nil {
         initWithSet :: proc "c" (self: ^NS.CountedSet, _: SEL, set: ^NS.Set) -> ^NS.CountedSet {
@@ -107,17 +107,17 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithSet(self, set)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSet:"), auto_cast initWithSet, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSet:"), auto_cast initWithSet, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.countForObject != nil {
-        countForObject :: proc "c" (self: ^NS.CountedSet, _: SEL, object: ^id) -> NS.UInteger {
+        countForObject :: proc "c" (self: ^NS.CountedSet, _: SEL, object: id) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).countForObject(self, object)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("countForObject:"), auto_cast countForObject, "L@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("countForObject:"), auto_cast countForObject, "L@:@") do panic("Failed to register objC method.")
     }
     if vt.objectEnumerator != nil {
         objectEnumerator :: proc "c" (self: ^NS.CountedSet, _: SEL) -> ^NS.Enumerator {
@@ -127,27 +127,27 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).objectEnumerator(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("objectEnumerator"), auto_cast objectEnumerator, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("objectEnumerator"), auto_cast objectEnumerator, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.addObject != nil {
-        addObject :: proc "c" (self: ^NS.CountedSet, _: SEL, object: ^id) {
+        addObject :: proc "c" (self: ^NS.CountedSet, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^VTable)vt_ctx.super_vt).addObject(self, object)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addObject:"), auto_cast addObject, "v@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addObject:"), auto_cast addObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeObject != nil {
-        removeObject :: proc "c" (self: ^NS.CountedSet, _: SEL, object: ^id) {
+        removeObject :: proc "c" (self: ^NS.CountedSet, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^VTable)vt_ctx.super_vt).removeObject(self, object)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("removeObject:"), auto_cast removeObject, "v@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeObject:"), auto_cast removeObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.setWithCapacity != nil {
         setWithCapacity :: proc "c" (self: Class, _: SEL, numItems: NS.UInteger) -> ^NS.MutableSet {
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setWithCapacity( numItems)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithCapacity:"), auto_cast setWithCapacity, "@#:L") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithCapacity:"), auto_cast setWithCapacity, "^void#:L") do panic("Failed to register objC method.")
     }
     if vt.set != nil {
         set :: proc "c" (self: Class, _: SEL) -> ^NS.Set {
@@ -167,37 +167,37 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).set()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("set"), auto_cast set, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("set"), auto_cast set, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.setWithObject != nil {
-        setWithObject :: proc "c" (self: Class, _: SEL, object: ^id) -> ^NS.Set {
+        setWithObject :: proc "c" (self: Class, _: SEL, object: id) -> ^NS.Set {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).setWithObject( object)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObject:"), auto_cast setWithObject, "@#:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObject:"), auto_cast setWithObject, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.setWithObjects_count != nil {
-        setWithObjects_count :: proc "c" (self: Class, _: SEL, objects: ^^id, cnt: NS.UInteger) -> ^NS.Set {
+        setWithObjects_count :: proc "c" (self: Class, _: SEL, objects: ^id, cnt: NS.UInteger) -> ^NS.Set {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).setWithObjects_count( objects, cnt)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObjects:count:"), auto_cast setWithObjects_count, "@#:^voidL") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObjects:count:"), auto_cast setWithObjects_count, "^void#:^voidL") do panic("Failed to register objC method.")
     }
     if vt.setWithObjects_ != nil {
-        setWithObjects_ :: proc "c" (self: Class, _: SEL, firstObj: ^id) -> ^NS.Set {
+        setWithObjects_ :: proc "c" (self: Class, _: SEL, firstObj: id) -> ^NS.Set {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).setWithObjects_( firstObj)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObjects:"), auto_cast setWithObjects_, "@#:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithObjects:"), auto_cast setWithObjects_, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.setWithSet != nil {
         setWithSet :: proc "c" (self: Class, _: SEL, set: ^NS.Set) -> ^NS.Set {
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setWithSet( set)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithSet:"), auto_cast setWithSet, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithSet:"), auto_cast setWithSet, "^void#:^void") do panic("Failed to register objC method.")
     }
     if vt.setWithArray != nil {
         setWithArray :: proc "c" (self: Class, _: SEL, array: ^NS.Array) -> ^NS.Set {
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setWithArray( array)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithArray:"), auto_cast setWithArray, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setWithArray:"), auto_cast setWithArray, "^void#:^void") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -497,7 +497,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -527,7 +527,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

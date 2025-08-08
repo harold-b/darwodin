@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraintsWithVisualFormat( format, opts, metrics, views)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("constraintsWithVisualFormat:options:metrics:views:"), auto_cast constraintsWithVisualFormat, "@#:@L@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("constraintsWithVisualFormat:options:metrics:views:"), auto_cast constraintsWithVisualFormat, "^void#:@L^void^void") do panic("Failed to register objC method.")
     }
     if vt.constraintWithItem != nil {
         constraintWithItem :: proc "c" (self: Class, _: SEL, view1: id, attr1: AK.LayoutAttribute, relation: AK.LayoutRelation, view2: id, attr2: AK.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> ^AK.LayoutConstraint {
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).activateConstraints( constraints)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("activateConstraints:"), auto_cast activateConstraints, "v#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("activateConstraints:"), auto_cast activateConstraints, "v#:^void") do panic("Failed to register objC method.")
     }
     if vt.deactivateConstraints != nil {
         deactivateConstraints :: proc "c" (self: Class, _: SEL, constraints: ^NS.Array) {
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).deactivateConstraints( constraints)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("deactivateConstraints:"), auto_cast deactivateConstraints, "v#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("deactivateConstraints:"), auto_cast deactivateConstraints, "v#:^void") do panic("Failed to register objC method.")
     }
     if vt.priority != nil {
         priority :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> AK.LayoutPriority {
@@ -580,7 +580,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -610,7 +610,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

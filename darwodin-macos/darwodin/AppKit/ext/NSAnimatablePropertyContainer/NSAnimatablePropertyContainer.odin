@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).animations(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("animations"), auto_cast animations, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("animations"), auto_cast animations, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAnimations != nil {
         setAnimations :: proc "c" (self: ^AK.AnimatablePropertyContainer, _: SEL, animations: ^NS.Dictionary) {
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAnimations(self, animations)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAnimations:"), auto_cast setAnimations, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAnimations:"), auto_cast setAnimations, "v@:^void") do panic("Failed to register objC method.")
     }
 }
 

@@ -178,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).dictionaryFromTXTRecordData( txtData)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("dictionaryFromTXTRecordData:"), auto_cast dictionaryFromTXTRecordData, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dictionaryFromTXTRecordData:"), auto_cast dictionaryFromTXTRecordData, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.dataFromTXTRecordDictionary != nil {
         dataFromTXTRecordDictionary :: proc "c" (self: Class, _: SEL, txtDictionary: ^NS.Dictionary) -> ^NS.Data {
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).dataFromTXTRecordDictionary( txtDictionary)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("dataFromTXTRecordDictionary:"), auto_cast dataFromTXTRecordDictionary, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("dataFromTXTRecordDictionary:"), auto_cast dataFromTXTRecordDictionary, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.resolveWithTimeout != nil {
         resolveWithTimeout :: proc "c" (self: ^NS.NetService, _: SEL, timeout: NS.TimeInterval) {
@@ -338,7 +338,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).addresses(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addresses"), auto_cast addresses, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addresses"), auto_cast addresses, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.port != nil {
         port :: proc "c" (self: ^NS.NetService, _: SEL) -> NS.Integer {
@@ -618,7 +618,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -648,7 +648,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

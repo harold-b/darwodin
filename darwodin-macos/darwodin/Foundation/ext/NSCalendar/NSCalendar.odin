@@ -632,7 +632,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).eraSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("eraSymbols"), auto_cast eraSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("eraSymbols"), auto_cast eraSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.longEraSymbols != nil {
         longEraSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -642,7 +642,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).longEraSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("longEraSymbols"), auto_cast longEraSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("longEraSymbols"), auto_cast longEraSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.monthSymbols != nil {
         monthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -652,7 +652,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).monthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("monthSymbols"), auto_cast monthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("monthSymbols"), auto_cast monthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortMonthSymbols != nil {
         shortMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -662,7 +662,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortMonthSymbols"), auto_cast shortMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortMonthSymbols"), auto_cast shortMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.veryShortMonthSymbols != nil {
         veryShortMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -672,7 +672,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).veryShortMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortMonthSymbols"), auto_cast veryShortMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortMonthSymbols"), auto_cast veryShortMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.standaloneMonthSymbols != nil {
         standaloneMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -682,7 +682,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).standaloneMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneMonthSymbols"), auto_cast standaloneMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneMonthSymbols"), auto_cast standaloneMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortStandaloneMonthSymbols != nil {
         shortStandaloneMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -692,7 +692,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortStandaloneMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneMonthSymbols"), auto_cast shortStandaloneMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneMonthSymbols"), auto_cast shortStandaloneMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.veryShortStandaloneMonthSymbols != nil {
         veryShortStandaloneMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -702,7 +702,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).veryShortStandaloneMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortStandaloneMonthSymbols"), auto_cast veryShortStandaloneMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortStandaloneMonthSymbols"), auto_cast veryShortStandaloneMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.weekdaySymbols != nil {
         weekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -712,7 +712,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).weekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("weekdaySymbols"), auto_cast weekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("weekdaySymbols"), auto_cast weekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortWeekdaySymbols != nil {
         shortWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -722,7 +722,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortWeekdaySymbols"), auto_cast shortWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortWeekdaySymbols"), auto_cast shortWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.veryShortWeekdaySymbols != nil {
         veryShortWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -732,7 +732,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).veryShortWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortWeekdaySymbols"), auto_cast veryShortWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortWeekdaySymbols"), auto_cast veryShortWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.standaloneWeekdaySymbols != nil {
         standaloneWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -742,7 +742,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).standaloneWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneWeekdaySymbols"), auto_cast standaloneWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneWeekdaySymbols"), auto_cast standaloneWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortStandaloneWeekdaySymbols != nil {
         shortStandaloneWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -752,7 +752,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortStandaloneWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneWeekdaySymbols"), auto_cast shortStandaloneWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneWeekdaySymbols"), auto_cast shortStandaloneWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.veryShortStandaloneWeekdaySymbols != nil {
         veryShortStandaloneWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -762,7 +762,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).veryShortStandaloneWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortStandaloneWeekdaySymbols"), auto_cast veryShortStandaloneWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortStandaloneWeekdaySymbols"), auto_cast veryShortStandaloneWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.quarterSymbols != nil {
         quarterSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -772,7 +772,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).quarterSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("quarterSymbols"), auto_cast quarterSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("quarterSymbols"), auto_cast quarterSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortQuarterSymbols != nil {
         shortQuarterSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -782,7 +782,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortQuarterSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortQuarterSymbols"), auto_cast shortQuarterSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortQuarterSymbols"), auto_cast shortQuarterSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.standaloneQuarterSymbols != nil {
         standaloneQuarterSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -792,7 +792,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).standaloneQuarterSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneQuarterSymbols"), auto_cast standaloneQuarterSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneQuarterSymbols"), auto_cast standaloneQuarterSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortStandaloneQuarterSymbols != nil {
         shortStandaloneQuarterSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -802,7 +802,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortStandaloneQuarterSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneQuarterSymbols"), auto_cast shortStandaloneQuarterSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneQuarterSymbols"), auto_cast shortStandaloneQuarterSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt._AMSymbol != nil {
         _AMSymbol :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.String {
@@ -1102,7 +1102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1132,7 +1132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

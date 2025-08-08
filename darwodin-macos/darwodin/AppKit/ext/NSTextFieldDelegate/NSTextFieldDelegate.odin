@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textField_textView_candidates_forSelectedRange(self, textField, textView, candidates, selectedRange)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textField:textView:candidates:forSelectedRange:"), auto_cast textField_textView_candidates_forSelectedRange, "@@:@@@{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textField:textView:candidates:forSelectedRange:"), auto_cast textField_textView_candidates_forSelectedRange, "^void@:@@^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.textField_textView_shouldSelectCandidateAtIndex != nil {
         textField_textView_shouldSelectCandidateAtIndex :: proc "c" (self: ^AK.TextFieldDelegate, _: SEL, textField: ^AK.TextField, textView: ^AK.TextView, index: NS.UInteger) -> bool {

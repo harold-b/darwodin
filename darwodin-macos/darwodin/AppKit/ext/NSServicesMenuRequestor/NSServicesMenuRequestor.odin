@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).writeSelectionToPasteboard(self, pboard, types)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("writeSelectionToPasteboard:types:"), auto_cast writeSelectionToPasteboard, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writeSelectionToPasteboard:types:"), auto_cast writeSelectionToPasteboard, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.readSelectionFromPasteboard != nil {
         readSelectionFromPasteboard :: proc "c" (self: ^AK.ServicesMenuRequestor, _: SEL, pboard: ^AK.Pasteboard) -> bool {

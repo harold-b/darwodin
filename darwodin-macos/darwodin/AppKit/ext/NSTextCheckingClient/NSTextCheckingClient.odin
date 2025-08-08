@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAnnotations(self, annotations, range)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAnnotations:range:"), auto_cast setAnnotations, "v@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAnnotations:range:"), auto_cast setAnnotations, "v@:^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.addAnnotations != nil {
         addAnnotations :: proc "c" (self: ^AK.TextCheckingClient, _: SEL, annotations: ^NS.Dictionary, range: NS._NSRange) {
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).addAnnotations(self, annotations, range)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addAnnotations:range:"), auto_cast addAnnotations, "v@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addAnnotations:range:"), auto_cast addAnnotations, "v@:^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.removeAnnotation != nil {
         removeAnnotation :: proc "c" (self: ^AK.TextCheckingClient, _: SEL, annotationName: ^NS.String, range: NS._NSRange) {

@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).openURLs_withApplicationAtURL_configuration_completionHandler(self, urls, applicationURL, configuration, completionHandler)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withApplicationAtURL:configuration:completionHandler:"), auto_cast openURLs_withApplicationAtURL_configuration_completionHandler, "v@:@@@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withApplicationAtURL:configuration:completionHandler:"), auto_cast openURLs_withApplicationAtURL_configuration_completionHandler, "v@:^void@@?") do panic("Failed to register objC method.")
     }
     if vt.openApplicationAtURL != nil {
         openApplicationAtURL :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, configuration: ^AK.WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^AK.RunningApplication, error: ^NS.Error))) {
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).activateFileViewerSelectingURLs(self, fileURLs)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("activateFileViewerSelectingURLs:"), auto_cast activateFileViewerSelectingURLs, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("activateFileViewerSelectingURLs:"), auto_cast activateFileViewerSelectingURLs, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.showSearchResultsForQueryString != nil {
         showSearchResultsForQueryString :: proc "c" (self: ^AK.Workspace, _: SEL, queryString: ^NS.String) -> bool {
@@ -260,7 +260,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).iconForFiles(self, fullPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("iconForFiles:"), auto_cast iconForFiles, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("iconForFiles:"), auto_cast iconForFiles, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.iconForContentType != nil {
         iconForContentType :: proc "c" (self: ^AK.Workspace, _: SEL, contentType: ^AK.UTType) -> ^NS.Image {
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).recycleURLs(self, URLs, handler)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("recycleURLs:completionHandler:"), auto_cast recycleURLs, "v@:@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("recycleURLs:completionHandler:"), auto_cast recycleURLs, "v@:^void?") do panic("Failed to register objC method.")
     }
     if vt.duplicateURLs != nil {
         duplicateURLs :: proc "c" (self: ^AK.Workspace, _: SEL, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))) {
@@ -300,7 +300,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).duplicateURLs(self, URLs, handler)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("duplicateURLs:completionHandler:"), auto_cast duplicateURLs, "v@:@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("duplicateURLs:completionHandler:"), auto_cast duplicateURLs, "v@:^void?") do panic("Failed to register objC method.")
     }
     if vt.getFileSystemInfoForPath != nil {
         getFileSystemInfoForPath :: proc "c" (self: ^AK.Workspace, _: SEL, fullPath: ^NS.String, removableFlag: ^bool, writableFlag: ^bool, unmountableFlag: ^bool, description: ^^NS.String, fileSystemType: ^^NS.String) -> bool {
@@ -370,7 +370,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._URLsForApplicationsWithBundleIdentifier(self, bundleIdentifier)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForApplicationsWithBundleIdentifier:"), auto_cast _URLsForApplicationsWithBundleIdentifier, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForApplicationsWithBundleIdentifier:"), auto_cast _URLsForApplicationsWithBundleIdentifier, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt._URLForApplicationToOpenURL != nil {
         _URLForApplicationToOpenURL :: proc "c" (self: ^AK.Workspace, _: SEL, url: ^NS.URL) -> ^NS.URL {
@@ -390,7 +390,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._URLsForApplicationsToOpenURL(self, url)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForApplicationsToOpenURL:"), auto_cast _URLsForApplicationsToOpenURL, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForApplicationsToOpenURL:"), auto_cast _URLsForApplicationsToOpenURL, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler != nil {
         setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
@@ -440,7 +440,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._URLsForApplicationsToOpenContentType(self, contentType)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForApplicationsToOpenContentType:"), auto_cast _URLsForApplicationsToOpenContentType, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForApplicationsToOpenContentType:"), auto_cast _URLsForApplicationsToOpenContentType, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.setDefaultApplicationAtURL_toOpenContentType_completionHandler != nil {
         setDefaultApplicationAtURL_toOpenContentType_completionHandler :: proc "c" (self: ^AK.Workspace, _: SEL, applicationURL: ^NS.URL, contentType: ^AK.UTType, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
@@ -480,7 +480,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fileLabels(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fileLabels"), auto_cast fileLabels, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileLabels"), auto_cast fileLabels, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.fileLabelColors != nil {
         fileLabelColors :: proc "c" (self: ^AK.Workspace, _: SEL) -> ^NS.Array {
@@ -490,7 +490,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).fileLabelColors(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("fileLabelColors"), auto_cast fileLabelColors, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fileLabelColors"), auto_cast fileLabelColors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.frontmostApplication != nil {
         frontmostApplication :: proc "c" (self: ^AK.Workspace, _: SEL) -> ^AK.RunningApplication {
@@ -520,7 +520,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setDesktopImageURL(self, url, screen, options, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setDesktopImageURL:forScreen:options:error:"), auto_cast setDesktopImageURL, "B@:@@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDesktopImageURL:forScreen:options:error:"), auto_cast setDesktopImageURL, "B@:@@^void^void") do panic("Failed to register objC method.")
     }
     if vt.desktopImageURLForScreen != nil {
         desktopImageURLForScreen :: proc "c" (self: ^AK.Workspace, _: SEL, screen: ^AK.Screen) -> ^NS.URL {
@@ -540,7 +540,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).desktopImageOptionsForScreen(self, screen)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("desktopImageOptionsForScreen:"), auto_cast desktopImageOptionsForScreen, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("desktopImageOptionsForScreen:"), auto_cast desktopImageOptionsForScreen, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.requestAuthorizationOfType != nil {
         requestAuthorizationOfType :: proc "c" (self: ^AK.Workspace, _: SEL, type: AK.WorkspaceAuthorizationType, completionHandler: ^Objc_Block(proc "c" (authorization: ^AK.WorkspaceAuthorization, error: ^NS.Error))) {
@@ -600,7 +600,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).launchApplicationAtURL(self, url, options, configuration, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("launchApplicationAtURL:options:configuration:error:"), auto_cast launchApplicationAtURL, "@@:@L@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("launchApplicationAtURL:options:configuration:error:"), auto_cast launchApplicationAtURL, "@@:@L^void^void") do panic("Failed to register objC method.")
     }
     if vt.openURL_options_configuration_error != nil {
         openURL_options_configuration_error :: proc "c" (self: ^AK.Workspace, _: SEL, url: ^NS.URL, options: AK.WorkspaceLaunchOptions, configuration: ^NS.Dictionary, error: ^^NS.Error) -> ^AK.RunningApplication {
@@ -610,7 +610,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).openURL_options_configuration_error(self, url, options, configuration, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("openURL:options:configuration:error:"), auto_cast openURL_options_configuration_error, "@@:@L@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openURL:options:configuration:error:"), auto_cast openURL_options_configuration_error, "@@:@L^void^void") do panic("Failed to register objC method.")
     }
     if vt.openURLs_withApplicationAtURL_options_configuration_error != nil {
         openURLs_withApplicationAtURL_options_configuration_error :: proc "c" (self: ^AK.Workspace, _: SEL, urls: ^NS.Array, applicationURL: ^NS.URL, options: AK.WorkspaceLaunchOptions, configuration: ^NS.Dictionary, error: ^^NS.Error) -> ^AK.RunningApplication {
@@ -620,7 +620,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).openURLs_withApplicationAtURL_options_configuration_error(self, urls, applicationURL, options, configuration, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withApplicationAtURL:options:configuration:error:"), auto_cast openURLs_withApplicationAtURL_options_configuration_error, "@@:@@L@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withApplicationAtURL:options:configuration:error:"), auto_cast openURLs_withApplicationAtURL_options_configuration_error, "@@:^void@L^void^void") do panic("Failed to register objC method.")
     }
     if vt.launchApplication_showIcon_autolaunch != nil {
         launchApplication_showIcon_autolaunch :: proc "c" (self: ^AK.Workspace, _: SEL, appName: ^NS.String, showIcon: bool, autolaunch: bool) -> bool {
@@ -670,7 +670,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers(self, urls, bundleIdentifier, options, descriptor, identifiers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withAppBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifiers:"), auto_cast openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers, "B@:@@L@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("openURLs:withAppBundleIdentifier:options:additionalEventParamDescriptor:launchIdentifiers:"), auto_cast openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers, "B@:^void@L@^void") do panic("Failed to register objC method.")
     }
     if vt.openTempFile != nil {
         openTempFile :: proc "c" (self: ^AK.Workspace, _: SEL, fullPath: ^NS.String) -> bool {
@@ -970,7 +970,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).runningApplications(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("runningApplications"), auto_cast runningApplications, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("runningApplications"), auto_cast runningApplications, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -1240,7 +1240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1270,7 +1270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

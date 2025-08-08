@@ -224,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedExternalEntityURLs(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedExternalEntityURLs"), auto_cast allowedExternalEntityURLs, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedExternalEntityURLs"), auto_cast allowedExternalEntityURLs, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowedExternalEntityURLs != nil {
         setAllowedExternalEntityURLs :: proc "c" (self: ^NS.XMLParser, _: SEL, allowedExternalEntityURLs: ^NS.Set) {
@@ -234,7 +234,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setAllowedExternalEntityURLs(self, allowedExternalEntityURLs)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedExternalEntityURLs:"), auto_cast setAllowedExternalEntityURLs, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedExternalEntityURLs:"), auto_cast setAllowedExternalEntityURLs, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.parserError != nil {
         parserError :: proc "c" (self: ^NS.XMLParser, _: SEL) -> ^NS.Error {
@@ -574,7 +574,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -604,7 +604,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

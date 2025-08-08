@@ -47,7 +47,7 @@ MeshGraph_removeObstacles :: #force_inline proc "c" (self: ^MeshGraph, obstacles
     msgSend(nil, self, "removeObstacles:", obstacles)
 }
 @(objc_type=MeshGraph, objc_name="connectNodeUsingObstacles")
-MeshGraph_connectNodeUsingObstacles :: #force_inline proc "c" (self: ^MeshGraph, node: ^GraphNode2D) {
+MeshGraph_connectNodeUsingObstacles :: #force_inline proc "c" (self: ^MeshGraph, node: id) {
     msgSend(nil, self, "connectNodeUsingObstacles:", node)
 }
 @(objc_type=MeshGraph, objc_name="triangulate")

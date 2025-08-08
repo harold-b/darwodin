@@ -71,6 +71,10 @@ for f in ${frameworks[@]}; do
 
         args+=(--odin-external-type ../exports/${appkit}.exports.yml)
     fi
+
+    # Test generics
+    # args+=(--odin-objc-generics)
+
     # echo "${out_path}"
     csgen ${cgen_args[@]} ${args[@]} --odin-out "${out_path}" "$framework_cfg"
 done

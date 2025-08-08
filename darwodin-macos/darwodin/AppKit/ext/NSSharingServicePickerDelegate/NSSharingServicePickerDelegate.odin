@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).sharingServicePicker_sharingServicesForItems_proposedSharingServices(self, sharingServicePicker, items, proposedServices)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("sharingServicePicker:sharingServicesForItems:proposedSharingServices:"), auto_cast sharingServicePicker_sharingServicesForItems_proposedSharingServices, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sharingServicePicker:sharingServicesForItems:proposedSharingServices:"), auto_cast sharingServicePicker_sharingServicesForItems_proposedSharingServices, "^void@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.sharingServicePicker_delegateForSharingService != nil {
         sharingServicePicker_delegateForSharingService :: proc "c" (self: ^AK.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^AK.SharingServicePicker, sharingService: ^AK.SharingService) -> ^AK.SharingServiceDelegate {
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).sharingServicePickerCollaborationModeRestrictions(self, sharingServicePicker)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("sharingServicePickerCollaborationModeRestrictions:"), auto_cast sharingServicePickerCollaborationModeRestrictions, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sharingServicePickerCollaborationModeRestrictions:"), auto_cast sharingServicePickerCollaborationModeRestrictions, "^void@:@") do panic("Failed to register objC method.")
     }
 }
 

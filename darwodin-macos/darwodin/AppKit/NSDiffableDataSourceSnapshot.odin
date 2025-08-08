@@ -28,23 +28,23 @@ DiffableDataSourceSnapshot_init :: proc "c" (self: ^DiffableDataSourceSnapshot) 
 
 
 @(objc_type=DiffableDataSourceSnapshot, objc_name="numberOfItemsInSection")
-DiffableDataSourceSnapshot_numberOfItemsInSection :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifier: ^id) -> NS.Integer {
+DiffableDataSourceSnapshot_numberOfItemsInSection :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifier: id) -> NS.Integer {
     return msgSend(NS.Integer, self, "numberOfItemsInSection:", sectionIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="itemIdentifiersInSectionWithIdentifier")
-DiffableDataSourceSnapshot_itemIdentifiersInSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifier: ^id) -> ^NS.Array {
+DiffableDataSourceSnapshot_itemIdentifiersInSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifier: id) -> ^NS.Array {
     return msgSend(^NS.Array, self, "itemIdentifiersInSectionWithIdentifier:", sectionIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="sectionIdentifierForSectionContainingItemIdentifier")
-DiffableDataSourceSnapshot_sectionIdentifierForSectionContainingItemIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, itemIdentifier: ^id) -> ^id {
-    return msgSend(^id, self, "sectionIdentifierForSectionContainingItemIdentifier:", itemIdentifier)
+DiffableDataSourceSnapshot_sectionIdentifierForSectionContainingItemIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, itemIdentifier: id) -> id {
+    return msgSend(id, self, "sectionIdentifierForSectionContainingItemIdentifier:", itemIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="indexOfItemIdentifier")
-DiffableDataSourceSnapshot_indexOfItemIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, itemIdentifier: ^id) -> NS.Integer {
+DiffableDataSourceSnapshot_indexOfItemIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, itemIdentifier: id) -> NS.Integer {
     return msgSend(NS.Integer, self, "indexOfItemIdentifier:", itemIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="indexOfSectionIdentifier")
-DiffableDataSourceSnapshot_indexOfSectionIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifier: ^id) -> NS.Integer {
+DiffableDataSourceSnapshot_indexOfSectionIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifier: id) -> NS.Integer {
     return msgSend(NS.Integer, self, "indexOfSectionIdentifier:", sectionIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="appendItemsWithIdentifiers_")
@@ -52,15 +52,15 @@ DiffableDataSourceSnapshot_appendItemsWithIdentifiers_ :: #force_inline proc "c"
     msgSend(nil, self, "appendItemsWithIdentifiers:", identifiers)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="appendItemsWithIdentifiers_intoSectionWithIdentifier")
-DiffableDataSourceSnapshot_appendItemsWithIdentifiers_intoSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, identifiers: ^NS.Array, sectionIdentifier: ^id) {
+DiffableDataSourceSnapshot_appendItemsWithIdentifiers_intoSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, identifiers: ^NS.Array, sectionIdentifier: id) {
     msgSend(nil, self, "appendItemsWithIdentifiers:intoSectionWithIdentifier:", identifiers, sectionIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="insertItemsWithIdentifiers_beforeItemWithIdentifier")
-DiffableDataSourceSnapshot_insertItemsWithIdentifiers_beforeItemWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, identifiers: ^NS.Array, itemIdentifier: ^id) {
+DiffableDataSourceSnapshot_insertItemsWithIdentifiers_beforeItemWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, identifiers: ^NS.Array, itemIdentifier: id) {
     msgSend(nil, self, "insertItemsWithIdentifiers:beforeItemWithIdentifier:", identifiers, itemIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="insertItemsWithIdentifiers_afterItemWithIdentifier")
-DiffableDataSourceSnapshot_insertItemsWithIdentifiers_afterItemWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, identifiers: ^NS.Array, itemIdentifier: ^id) {
+DiffableDataSourceSnapshot_insertItemsWithIdentifiers_afterItemWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, identifiers: ^NS.Array, itemIdentifier: id) {
     msgSend(nil, self, "insertItemsWithIdentifiers:afterItemWithIdentifier:", identifiers, itemIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="deleteItemsWithIdentifiers")
@@ -72,11 +72,11 @@ DiffableDataSourceSnapshot_deleteAllItems :: #force_inline proc "c" (self: ^Diff
     msgSend(nil, self, "deleteAllItems")
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="moveItemWithIdentifier_beforeItemWithIdentifier")
-DiffableDataSourceSnapshot_moveItemWithIdentifier_beforeItemWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, fromIdentifier: ^id, toIdentifier: ^id) {
+DiffableDataSourceSnapshot_moveItemWithIdentifier_beforeItemWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, fromIdentifier: id, toIdentifier: id) {
     msgSend(nil, self, "moveItemWithIdentifier:beforeItemWithIdentifier:", fromIdentifier, toIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="moveItemWithIdentifier_afterItemWithIdentifier")
-DiffableDataSourceSnapshot_moveItemWithIdentifier_afterItemWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, fromIdentifier: ^id, toIdentifier: ^id) {
+DiffableDataSourceSnapshot_moveItemWithIdentifier_afterItemWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, fromIdentifier: id, toIdentifier: id) {
     msgSend(nil, self, "moveItemWithIdentifier:afterItemWithIdentifier:", fromIdentifier, toIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="reloadItemsWithIdentifiers")
@@ -88,11 +88,11 @@ DiffableDataSourceSnapshot_appendSectionsWithIdentifiers :: #force_inline proc "
     msgSend(nil, self, "appendSectionsWithIdentifiers:", sectionIdentifiers)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="insertSectionsWithIdentifiers_beforeSectionWithIdentifier")
-DiffableDataSourceSnapshot_insertSectionsWithIdentifiers_beforeSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifiers: ^NS.Array, toSectionIdentifier: ^id) {
+DiffableDataSourceSnapshot_insertSectionsWithIdentifiers_beforeSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifiers: ^NS.Array, toSectionIdentifier: id) {
     msgSend(nil, self, "insertSectionsWithIdentifiers:beforeSectionWithIdentifier:", sectionIdentifiers, toSectionIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="insertSectionsWithIdentifiers_afterSectionWithIdentifier")
-DiffableDataSourceSnapshot_insertSectionsWithIdentifiers_afterSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifiers: ^NS.Array, toSectionIdentifier: ^id) {
+DiffableDataSourceSnapshot_insertSectionsWithIdentifiers_afterSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, sectionIdentifiers: ^NS.Array, toSectionIdentifier: id) {
     msgSend(nil, self, "insertSectionsWithIdentifiers:afterSectionWithIdentifier:", sectionIdentifiers, toSectionIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="deleteSectionsWithIdentifiers")
@@ -100,11 +100,11 @@ DiffableDataSourceSnapshot_deleteSectionsWithIdentifiers :: #force_inline proc "
     msgSend(nil, self, "deleteSectionsWithIdentifiers:", sectionIdentifiers)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="moveSectionWithIdentifier_beforeSectionWithIdentifier")
-DiffableDataSourceSnapshot_moveSectionWithIdentifier_beforeSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, fromSectionIdentifier: ^id, toSectionIdentifier: ^id) {
+DiffableDataSourceSnapshot_moveSectionWithIdentifier_beforeSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, fromSectionIdentifier: id, toSectionIdentifier: id) {
     msgSend(nil, self, "moveSectionWithIdentifier:beforeSectionWithIdentifier:", fromSectionIdentifier, toSectionIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="moveSectionWithIdentifier_afterSectionWithIdentifier")
-DiffableDataSourceSnapshot_moveSectionWithIdentifier_afterSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, fromSectionIdentifier: ^id, toSectionIdentifier: ^id) {
+DiffableDataSourceSnapshot_moveSectionWithIdentifier_afterSectionWithIdentifier :: #force_inline proc "c" (self: ^DiffableDataSourceSnapshot, fromSectionIdentifier: id, toSectionIdentifier: id) {
     msgSend(nil, self, "moveSectionWithIdentifier:afterSectionWithIdentifier:", fromSectionIdentifier, toSectionIdentifier)
 }
 @(objc_type=DiffableDataSourceSnapshot, objc_name="reloadSectionsWithIdentifiers")

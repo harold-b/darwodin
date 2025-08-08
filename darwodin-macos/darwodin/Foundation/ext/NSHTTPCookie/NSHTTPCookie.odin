@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithProperties(self, properties)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithProperties:"), auto_cast initWithProperties, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithProperties:"), auto_cast initWithProperties, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.cookieWithProperties != nil {
         cookieWithProperties :: proc "c" (self: Class, _: SEL, properties: ^NS.Dictionary) -> ^NS.HTTPCookie {
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).cookieWithProperties( properties)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("cookieWithProperties:"), auto_cast cookieWithProperties, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cookieWithProperties:"), auto_cast cookieWithProperties, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.requestHeaderFieldsWithCookies != nil {
         requestHeaderFieldsWithCookies :: proc "c" (self: Class, _: SEL, cookies: ^NS.Array) -> ^NS.Dictionary {
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).requestHeaderFieldsWithCookies( cookies)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("requestHeaderFieldsWithCookies:"), auto_cast requestHeaderFieldsWithCookies, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("requestHeaderFieldsWithCookies:"), auto_cast requestHeaderFieldsWithCookies, "^void#:^void") do panic("Failed to register objC method.")
     }
     if vt.cookiesWithResponseHeaderFields != nil {
         cookiesWithResponseHeaderFields :: proc "c" (self: Class, _: SEL, headerFields: ^NS.Dictionary, _URL: ^NS.URL) -> ^NS.Array {
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).cookiesWithResponseHeaderFields( headerFields, _URL)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("cookiesWithResponseHeaderFields:forURL:"), auto_cast cookiesWithResponseHeaderFields, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("cookiesWithResponseHeaderFields:forURL:"), auto_cast cookiesWithResponseHeaderFields, "^void#:^void@") do panic("Failed to register objC method.")
     }
     if vt.properties != nil {
         properties :: proc "c" (self: ^NS.HTTPCookie, _: SEL) -> ^NS.Dictionary {
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).properties(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("properties"), auto_cast properties, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("properties"), auto_cast properties, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.version != nil {
         version :: proc "c" (self: ^NS.HTTPCookie, _: SEL) -> NS.UInteger {
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).portList(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("portList"), auto_cast portList, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("portList"), auto_cast portList, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.sameSitePolicy != nil {
         sameSitePolicy :: proc "c" (self: ^NS.HTTPCookie, _: SEL) -> ^NS.String {
@@ -530,7 +530,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -560,7 +560,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

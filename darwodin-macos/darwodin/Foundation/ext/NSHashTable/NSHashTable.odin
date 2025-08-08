@@ -29,12 +29,12 @@ VTable :: struct {
     hashTableWithOptions: proc(options: NS.PointerFunctionsOptions) -> ^NS.HashTable,
     hashTableWithWeakObjects: proc() -> id,
     weakObjectsHashTable: proc() -> ^NS.HashTable,
-    member: proc(self: ^NS.HashTable, object: ^id) -> ^id,
+    member: proc(self: ^NS.HashTable, object: id) -> id,
     objectEnumerator: proc(self: ^NS.HashTable) -> ^NS.Enumerator,
-    addObject: proc(self: ^NS.HashTable, object: ^id),
-    removeObject: proc(self: ^NS.HashTable, object: ^id),
+    addObject: proc(self: ^NS.HashTable, object: id),
+    removeObject: proc(self: ^NS.HashTable, object: id),
     removeAllObjects: proc(self: ^NS.HashTable),
-    containsObject: proc(self: ^NS.HashTable, anObject: ^id) -> bool,
+    containsObject: proc(self: ^NS.HashTable, anObject: id) -> bool,
     intersectsHashTable: proc(self: ^NS.HashTable, other: ^NS.HashTable) -> bool,
     isEqualToHashTable: proc(self: ^NS.HashTable, other: ^NS.HashTable) -> bool,
     isSubsetOfHashTable: proc(self: ^NS.HashTable, other: ^NS.HashTable) -> bool,
@@ -44,7 +44,7 @@ VTable :: struct {
     pointerFunctions: proc(self: ^NS.HashTable) -> ^NS.PointerFunctions,
     count: proc(self: ^NS.HashTable) -> NS.UInteger,
     allObjects: proc(self: ^NS.HashTable) -> ^NS.Array,
-    anyObject: proc(self: ^NS.HashTable) -> ^id,
+    anyObject: proc(self: ^NS.HashTable) -> id,
     setRepresentation: proc(self: ^NS.HashTable) -> ^NS.Set,
     supportsSecureCoding: proc() -> bool,
     load: proc(),
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithOptions(self, options, initialCapacity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithOptions:capacity:"), auto_cast initWithOptions, "@@:LL") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithOptions:capacity:"), auto_cast initWithOptions, "^void@:LL") do panic("Failed to register objC method.")
     }
     if vt.initWithPointerFunctions != nil {
         initWithPointerFunctions :: proc "c" (self: ^NS.HashTable, _: SEL, functions: ^NS.PointerFunctions, initialCapacity: NS.UInteger) -> ^NS.HashTable {
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithPointerFunctions(self, functions, initialCapacity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPointerFunctions:capacity:"), auto_cast initWithPointerFunctions, "@@:@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPointerFunctions:capacity:"), auto_cast initWithPointerFunctions, "^void@:@L") do panic("Failed to register objC method.")
     }
     if vt.hashTableWithOptions != nil {
         hashTableWithOptions :: proc "c" (self: Class, _: SEL, options: NS.PointerFunctionsOptions) -> ^NS.HashTable {
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).hashTableWithOptions( options)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("hashTableWithOptions:"), auto_cast hashTableWithOptions, "@#:L") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("hashTableWithOptions:"), auto_cast hashTableWithOptions, "^void#:L") do panic("Failed to register objC method.")
     }
     if vt.hashTableWithWeakObjects != nil {
         hashTableWithWeakObjects :: proc "c" (self: Class, _: SEL) -> id {
@@ -135,17 +135,17 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).weakObjectsHashTable()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("weakObjectsHashTable"), auto_cast weakObjectsHashTable, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("weakObjectsHashTable"), auto_cast weakObjectsHashTable, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.member != nil {
-        member :: proc "c" (self: ^NS.HashTable, _: SEL, object: ^id) -> ^id {
+        member :: proc "c" (self: ^NS.HashTable, _: SEL, object: id) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).member(self, object)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("member:"), auto_cast member, "^void@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("member:"), auto_cast member, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.objectEnumerator != nil {
         objectEnumerator :: proc "c" (self: ^NS.HashTable, _: SEL) -> ^NS.Enumerator {
@@ -155,27 +155,27 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).objectEnumerator(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("objectEnumerator"), auto_cast objectEnumerator, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("objectEnumerator"), auto_cast objectEnumerator, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.addObject != nil {
-        addObject :: proc "c" (self: ^NS.HashTable, _: SEL, object: ^id) {
+        addObject :: proc "c" (self: ^NS.HashTable, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^VTable)vt_ctx.super_vt).addObject(self, object)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addObject:"), auto_cast addObject, "v@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addObject:"), auto_cast addObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeObject != nil {
-        removeObject :: proc "c" (self: ^NS.HashTable, _: SEL, object: ^id) {
+        removeObject :: proc "c" (self: ^NS.HashTable, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^VTable)vt_ctx.super_vt).removeObject(self, object)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("removeObject:"), auto_cast removeObject, "v@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeObject:"), auto_cast removeObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeAllObjects != nil {
         removeAllObjects :: proc "c" (self: ^NS.HashTable, _: SEL) {
@@ -188,14 +188,14 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllObjects"), auto_cast removeAllObjects, "v@:") do panic("Failed to register objC method.")
     }
     if vt.containsObject != nil {
-        containsObject :: proc "c" (self: ^NS.HashTable, _: SEL, anObject: ^id) -> bool {
+        containsObject :: proc "c" (self: ^NS.HashTable, _: SEL, anObject: id) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).containsObject(self, anObject)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("containsObject:"), auto_cast containsObject, "B@:^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("containsObject:"), auto_cast containsObject, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.intersectsHashTable != nil {
         intersectsHashTable :: proc "c" (self: ^NS.HashTable, _: SEL, other: ^NS.HashTable) -> bool {
@@ -205,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).intersectsHashTable(self, other)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("intersectsHashTable:"), auto_cast intersectsHashTable, "B@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("intersectsHashTable:"), auto_cast intersectsHashTable, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.isEqualToHashTable != nil {
         isEqualToHashTable :: proc "c" (self: ^NS.HashTable, _: SEL, other: ^NS.HashTable) -> bool {
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).isEqualToHashTable(self, other)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("isEqualToHashTable:"), auto_cast isEqualToHashTable, "B@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isEqualToHashTable:"), auto_cast isEqualToHashTable, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.isSubsetOfHashTable != nil {
         isSubsetOfHashTable :: proc "c" (self: ^NS.HashTable, _: SEL, other: ^NS.HashTable) -> bool {
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).isSubsetOfHashTable(self, other)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("isSubsetOfHashTable:"), auto_cast isSubsetOfHashTable, "B@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isSubsetOfHashTable:"), auto_cast isSubsetOfHashTable, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.intersectHashTable != nil {
         intersectHashTable :: proc "c" (self: ^NS.HashTable, _: SEL, other: ^NS.HashTable) {
@@ -235,7 +235,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).intersectHashTable(self, other)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("intersectHashTable:"), auto_cast intersectHashTable, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("intersectHashTable:"), auto_cast intersectHashTable, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.unionHashTable != nil {
         unionHashTable :: proc "c" (self: ^NS.HashTable, _: SEL, other: ^NS.HashTable) {
@@ -245,7 +245,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).unionHashTable(self, other)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("unionHashTable:"), auto_cast unionHashTable, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("unionHashTable:"), auto_cast unionHashTable, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.minusHashTable != nil {
         minusHashTable :: proc "c" (self: ^NS.HashTable, _: SEL, other: ^NS.HashTable) {
@@ -255,7 +255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).minusHashTable(self, other)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("minusHashTable:"), auto_cast minusHashTable, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("minusHashTable:"), auto_cast minusHashTable, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.pointerFunctions != nil {
         pointerFunctions :: proc "c" (self: ^NS.HashTable, _: SEL) -> ^NS.PointerFunctions {
@@ -285,17 +285,17 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allObjects(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allObjects"), auto_cast allObjects, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allObjects"), auto_cast allObjects, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.anyObject != nil {
-        anyObject :: proc "c" (self: ^NS.HashTable, _: SEL) -> ^id {
+        anyObject :: proc "c" (self: ^NS.HashTable, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).anyObject(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("anyObject"), auto_cast anyObject, "^void@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("anyObject"), auto_cast anyObject, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setRepresentation != nil {
         setRepresentation :: proc "c" (self: ^NS.HashTable, _: SEL) -> ^NS.Set {
@@ -305,7 +305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setRepresentation(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setRepresentation"), auto_cast setRepresentation, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRepresentation"), auto_cast setRepresentation, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.supportsSecureCoding != nil {
         supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
@@ -585,7 +585,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -615,7 +615,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

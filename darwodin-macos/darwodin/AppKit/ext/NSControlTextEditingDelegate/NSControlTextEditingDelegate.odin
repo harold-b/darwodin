@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).control_textView_completions_forPartialWordRange_indexOfSelectedItem(self, control, textView, words, charRange, index)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("control:textView:completions:forPartialWordRange:indexOfSelectedItem:"), auto_cast control_textView_completions_forPartialWordRange_indexOfSelectedItem, "@@:@@@{_NSRange=LL}^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("control:textView:completions:forPartialWordRange:indexOfSelectedItem:"), auto_cast control_textView_completions_forPartialWordRange_indexOfSelectedItem, "^void@:@@^void{_NSRange=LL}^void") do panic("Failed to register objC method.")
     }
 }
 

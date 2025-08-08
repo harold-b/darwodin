@@ -178,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allowedColorSpaces(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedColorSpaces"), auto_cast allowedColorSpaces, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowedColorSpaces"), auto_cast allowedColorSpaces, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowedColorSpaces != nil {
         setAllowedColorSpaces :: proc "c" (self: ^AK.ColorPickerTouchBarItem, _: SEL, allowedColorSpaces: ^NS.Array) {
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setAllowedColorSpaces(self, allowedColorSpaces)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedColorSpaces:"), auto_cast setAllowedColorSpaces, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedColorSpaces:"), auto_cast setAllowedColorSpaces, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.colorList != nil {
         colorList :: proc "c" (self: ^AK.ColorPickerTouchBarItem, _: SEL) -> ^AK.ColorList {
@@ -558,7 +558,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -588,7 +588,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

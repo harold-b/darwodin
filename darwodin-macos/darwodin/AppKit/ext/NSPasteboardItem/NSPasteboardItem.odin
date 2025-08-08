@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableTypeFromArray(self, types)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("availableTypeFromArray:"), auto_cast availableTypeFromArray, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("availableTypeFromArray:"), auto_cast availableTypeFromArray, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.setDataProvider != nil {
         setDataProvider :: proc "c" (self: ^AK.PasteboardItem, _: SEL, dataProvider: ^AK.PasteboardItemDataProvider, types: ^NS.Array) -> bool {
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setDataProvider(self, dataProvider, types)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setDataProvider:forTypes:"), auto_cast setDataProvider, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDataProvider:forTypes:"), auto_cast setDataProvider, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.setData != nil {
         setData :: proc "c" (self: ^AK.PasteboardItem, _: SEL, data: ^NS.Data, type: ^NS.String) -> bool {
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).types(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("types"), auto_cast types, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("types"), auto_cast types, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.readableTypesForPasteboard != nil {
         readableTypesForPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^AK.Pasteboard) -> ^NS.Array {
@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).readableTypesForPasteboard( pasteboard)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypesForPasteboard:"), auto_cast readableTypesForPasteboard, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("readableTypesForPasteboard:"), auto_cast readableTypesForPasteboard, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.readingOptionsForType != nil {
         readingOptionsForType :: proc "c" (self: Class, _: SEL, type: ^NS.String, pasteboard: ^AK.Pasteboard) -> AK.PasteboardReadingOptions {
@@ -459,7 +459,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -489,7 +489,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

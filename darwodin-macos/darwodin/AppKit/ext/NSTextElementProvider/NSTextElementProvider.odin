@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).replaceContentsInRange(self, range, textElements)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceContentsInRange:withTextElements:"), auto_cast replaceContentsInRange, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceContentsInRange:withTextElements:"), auto_cast replaceContentsInRange, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.synchronizeToBackingStore != nil {
         synchronizeToBackingStore :: proc "c" (self: ^AK.TextElementProvider, _: SEL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {

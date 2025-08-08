@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).sortWithSortDescriptors(self, sortDescriptors, recursively)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("sortWithSortDescriptors:recursively:"), auto_cast sortWithSortDescriptors, "v@:@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sortWithSortDescriptors:recursively:"), auto_cast sortWithSortDescriptors, "v@:^voidB") do panic("Failed to register objC method.")
     }
     if vt.representedObject != nil {
         representedObject :: proc "c" (self: ^AK.TreeNode, _: SEL) -> id {
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).childNodes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("childNodes"), auto_cast childNodes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("childNodes"), auto_cast childNodes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.mutableChildNodes != nil {
         mutableChildNodes :: proc "c" (self: ^AK.TreeNode, _: SEL) -> ^NS.MutableArray {
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).mutableChildNodes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("mutableChildNodes"), auto_cast mutableChildNodes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mutableChildNodes"), auto_cast mutableChildNodes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.parentNode != nil {
         parentNode :: proc "c" (self: ^AK.TreeNode, _: SEL) -> ^AK.TreeNode {
@@ -448,7 +448,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -478,7 +478,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

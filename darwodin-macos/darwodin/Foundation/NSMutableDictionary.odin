@@ -17,11 +17,11 @@ import Sec "../Security"
 MutableDictionary :: struct { using _: Dictionary, }
 
 @(objc_type=MutableDictionary, objc_name="removeObjectForKey")
-MutableDictionary_removeObjectForKey :: #force_inline proc "c" (self: ^MutableDictionary, aKey: ^id) {
+MutableDictionary_removeObjectForKey :: #force_inline proc "c" (self: ^MutableDictionary, aKey: id) {
     msgSend(nil, self, "removeObjectForKey:", aKey)
 }
 @(objc_type=MutableDictionary, objc_name="setObject_forKey")
-MutableDictionary_setObject_forKey :: #force_inline proc "c" (self: ^MutableDictionary, anObject: ^id, aKey: ^Copying) {
+MutableDictionary_setObject_forKey :: #force_inline proc "c" (self: ^MutableDictionary, anObject: id, aKey: ^Copying) {
     msgSend(nil, self, "setObject:forKey:", anObject, aKey)
 }
 @(objc_type=MutableDictionary, objc_name="init")
@@ -53,7 +53,7 @@ MutableDictionary_setDictionary :: #force_inline proc "c" (self: ^MutableDiction
     msgSend(nil, self, "setDictionary:", otherDictionary)
 }
 @(objc_type=MutableDictionary, objc_name="setObject_forKeyedSubscript")
-MutableDictionary_setObject_forKeyedSubscript :: #force_inline proc "c" (self: ^MutableDictionary, obj: ^id, key: ^Copying) {
+MutableDictionary_setObject_forKeyedSubscript :: #force_inline proc "c" (self: ^MutableDictionary, obj: id, key: ^Copying) {
     msgSend(nil, self, "setObject:forKeyedSubscript:", obj, key)
 }
 @(objc_type=MutableDictionary, objc_name="dictionaryWithCapacity", objc_is_class_method=true)
@@ -81,7 +81,7 @@ MutableDictionary_dictionaryWithSharedKeySet :: #force_inline proc "c" (keyset: 
     return msgSend(^MutableDictionary, MutableDictionary, "dictionaryWithSharedKeySet:", keyset)
 }
 @(objc_type=MutableDictionary, objc_name="setValue")
-MutableDictionary_setValue :: #force_inline proc "c" (self: ^MutableDictionary, value: ^id, key: ^String) {
+MutableDictionary_setValue :: #force_inline proc "c" (self: ^MutableDictionary, value: id, key: ^String) {
     msgSend(nil, self, "setValue:forKey:", value, key)
 }
 @(objc_type=MutableDictionary, objc_name="dictionary", objc_is_class_method=true)
@@ -89,11 +89,11 @@ MutableDictionary_dictionary :: #force_inline proc "c" () -> ^Dictionary {
     return msgSend(^Dictionary, MutableDictionary, "dictionary")
 }
 @(objc_type=MutableDictionary, objc_name="dictionaryWithObject", objc_is_class_method=true)
-MutableDictionary_dictionaryWithObject :: #force_inline proc "c" (object: ^id, key: ^Copying) -> ^Dictionary {
+MutableDictionary_dictionaryWithObject :: #force_inline proc "c" (object: id, key: ^Copying) -> ^Dictionary {
     return msgSend(^Dictionary, MutableDictionary, "dictionaryWithObject:forKey:", object, key)
 }
 @(objc_type=MutableDictionary, objc_name="dictionaryWithObjects_forKeys_count", objc_is_class_method=true)
-MutableDictionary_dictionaryWithObjects_forKeys_count :: #force_inline proc "c" (objects: ^^id, keys: ^^Copying, cnt: UInteger) -> ^Dictionary {
+MutableDictionary_dictionaryWithObjects_forKeys_count :: #force_inline proc "c" (objects: ^id, keys: ^^Copying, cnt: UInteger) -> ^Dictionary {
     return msgSend(^Dictionary, MutableDictionary, "dictionaryWithObjects:forKeys:count:", objects, keys, cnt)
 }
 @(objc_type=MutableDictionary, objc_name="dictionaryWithObjectsAndKeys", objc_is_class_method=true)

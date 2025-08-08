@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).coordinateAccessWithIntents(self, intents, queue, accessor)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("coordinateAccessWithIntents:queue:byAccessor:"), auto_cast coordinateAccessWithIntents, "v@:@@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("coordinateAccessWithIntents:queue:byAccessor:"), auto_cast coordinateAccessWithIntents, "v@:^void@?") do panic("Failed to register objC method.")
     }
     if vt.coordinateReadingItemAtURL_options_error_byAccessor != nil {
         coordinateReadingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorReadingOptions, outError: ^^NS.Error, reader: ^Objc_Block(proc "c" (newURL: ^NS.URL))) {
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).prepareForReadingItemsAtURLs(self, readingURLs, readingOptions, writingURLs, writingOptions, outError, batchAccessor)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:"), auto_cast prepareForReadingItemsAtURLs, "v@:@L@L^void?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:"), auto_cast prepareForReadingItemsAtURLs, "v@:^voidL^voidL^void?") do panic("Failed to register objC method.")
     }
     if vt.itemAtURL_willMoveToURL != nil {
         itemAtURL_willMoveToURL :: proc "c" (self: ^NS.FileCoordinator, _: SEL, oldURL: ^NS.URL, newURL: ^NS.URL) {
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).itemAtURL_didChangeUbiquityAttributes(self, url, attributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("itemAtURL:didChangeUbiquityAttributes:"), auto_cast itemAtURL_didChangeUbiquityAttributes, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("itemAtURL:didChangeUbiquityAttributes:"), auto_cast itemAtURL_didChangeUbiquityAttributes, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.cancel != nil {
         cancel :: proc "c" (self: ^NS.FileCoordinator, _: SEL) {
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).filePresenters()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("filePresenters"), auto_cast filePresenters, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("filePresenters"), auto_cast filePresenters, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.purposeIdentifier != nil {
         purposeIdentifier :: proc "c" (self: ^NS.FileCoordinator, _: SEL) -> ^NS.String {
@@ -508,7 +508,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -538,7 +538,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

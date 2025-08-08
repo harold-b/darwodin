@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_writablePasteboardTypesForCell_atIndex(self, view, cell, charIndex)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:writablePasteboardTypesForCell:atIndex:"), auto_cast textView_writablePasteboardTypesForCell_atIndex, "@@:@@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:writablePasteboardTypesForCell:atIndex:"), auto_cast textView_writablePasteboardTypesForCell_atIndex, "^void@:@@L") do panic("Failed to register objC method.")
     }
     if vt.textView_writeCell_atIndex_toPasteboard_type != nil {
         textView_writeCell_atIndex_toPasteboard_type :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, view: ^AK.TextView, cell: ^AK.TextAttachmentCellProtocol, charIndex: NS.UInteger, pboard: ^AK.Pasteboard, type: ^NS.String) -> bool {
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_willChangeSelectionFromCharacterRanges_toCharacterRanges(self, textView, oldSelectedCharRanges, newSelectedCharRanges)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:willChangeSelectionFromCharacterRanges:toCharacterRanges:"), auto_cast textView_willChangeSelectionFromCharacterRanges_toCharacterRanges, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:willChangeSelectionFromCharacterRanges:toCharacterRanges:"), auto_cast textView_willChangeSelectionFromCharacterRanges_toCharacterRanges, "^void@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.textView_shouldChangeTextInRanges_replacementStrings != nil {
         textView_shouldChangeTextInRanges_replacementStrings :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, textView: ^AK.TextView, affectedRanges: ^NS.Array, replacementStrings: ^NS.Array) -> bool {
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_shouldChangeTextInRanges_replacementStrings(self, textView, affectedRanges, replacementStrings)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldChangeTextInRanges:replacementStrings:"), auto_cast textView_shouldChangeTextInRanges_replacementStrings, "B@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldChangeTextInRanges:replacementStrings:"), auto_cast textView_shouldChangeTextInRanges_replacementStrings, "B@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.textView_shouldChangeTypingAttributes_toAttributes != nil {
         textView_shouldChangeTypingAttributes_toAttributes :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, textView: ^AK.TextView, oldTypingAttributes: ^NS.Dictionary, newTypingAttributes: ^NS.Dictionary) -> ^NS.Dictionary {
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_shouldChangeTypingAttributes_toAttributes(self, textView, oldTypingAttributes, newTypingAttributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldChangeTypingAttributes:toAttributes:"), auto_cast textView_shouldChangeTypingAttributes_toAttributes, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldChangeTypingAttributes:toAttributes:"), auto_cast textView_shouldChangeTypingAttributes_toAttributes, "^void@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.textViewDidChangeSelection != nil {
         textViewDidChangeSelection :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, notification: ^NS.Notification) {
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_completions_forPartialWordRange_indexOfSelectedItem(self, textView, words, charRange, index)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:completions:forPartialWordRange:indexOfSelectedItem:"), auto_cast textView_completions_forPartialWordRange_indexOfSelectedItem, "@@:@@{_NSRange=LL}^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:completions:forPartialWordRange:indexOfSelectedItem:"), auto_cast textView_completions_forPartialWordRange_indexOfSelectedItem, "^void@:@^void{_NSRange=LL}^void") do panic("Failed to register objC method.")
     }
     if vt.textView_shouldChangeTextInRange_replacementString != nil {
         textView_shouldChangeTextInRange_replacementString :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, textView: ^AK.TextView, affectedCharRange: NS._NSRange, replacementString: ^NS.String) -> bool {
@@ -252,7 +252,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_willCheckTextInRange_options_types(self, view, range, options, checkingTypes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:willCheckTextInRange:options:types:"), auto_cast textView_willCheckTextInRange_options_types, "@@:@{_NSRange=LL}@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:willCheckTextInRange:options:types:"), auto_cast textView_willCheckTextInRange_options_types, "^void@:@{_NSRange=LL}^void^void") do panic("Failed to register objC method.")
     }
     if vt.textView_didCheckTextInRange_types_options_results_orthography_wordCount != nil {
         textView_didCheckTextInRange_types_options_results_orthography_wordCount :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, view: ^AK.TextView, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer) -> ^NS.Array {
@@ -262,7 +262,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_didCheckTextInRange_types_options_results_orthography_wordCount(self, view, range, checkingTypes, options, results, orthography, wordCount)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:didCheckTextInRange:types:options:results:orthography:wordCount:"), auto_cast textView_didCheckTextInRange_types_options_results_orthography_wordCount, "@@:@{_NSRange=LL}Q@@@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:didCheckTextInRange:types:options:results:orthography:wordCount:"), auto_cast textView_didCheckTextInRange_types_options_results_orthography_wordCount, "^void@:@{_NSRange=LL}Q^void^void@l") do panic("Failed to register objC method.")
     }
     if vt.textView_URLForContentsOfTextAttachment_atIndex != nil {
         textView_URLForContentsOfTextAttachment_atIndex :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, textView: ^AK.TextView, textAttachment: ^AK.TextAttachment, charIndex: NS.UInteger) -> ^NS.URL {
@@ -302,7 +302,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_shouldUpdateTouchBarItemIdentifiers(self, textView, identifiers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldUpdateTouchBarItemIdentifiers:"), auto_cast textView_shouldUpdateTouchBarItemIdentifiers, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldUpdateTouchBarItemIdentifiers:"), auto_cast textView_shouldUpdateTouchBarItemIdentifiers, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.textView_candidatesForSelectedRange != nil {
         textView_candidatesForSelectedRange :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, textView: ^AK.TextView, selectedRange: NS._NSRange) -> ^NS.Array {
@@ -322,7 +322,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_candidates_forSelectedRange(self, textView, candidates, selectedRange)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:candidates:forSelectedRange:"), auto_cast textView_candidates_forSelectedRange, "@@:@@{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:candidates:forSelectedRange:"), auto_cast textView_candidates_forSelectedRange, "^void@:@^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.textView_shouldSelectCandidateAtIndex != nil {
         textView_shouldSelectCandidateAtIndex :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, textView: ^AK.TextView, index: NS.UInteger) -> bool {
@@ -362,7 +362,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_writingToolsIgnoredRangesInEnclosingRange(self, textView, enclosingRange)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:writingToolsIgnoredRangesInEnclosingRange:"), auto_cast textView_writingToolsIgnoredRangesInEnclosingRange, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:writingToolsIgnoredRangesInEnclosingRange:"), auto_cast textView_writingToolsIgnoredRangesInEnclosingRange, "^void@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.textView_clickedOnLink != nil {
         textView_clickedOnLink :: proc "c" (self: ^AK.TextViewDelegate, _: SEL, textView: ^AK.TextView, link: id) -> bool {

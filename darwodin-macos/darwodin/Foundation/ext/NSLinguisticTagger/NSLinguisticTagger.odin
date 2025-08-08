@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).initWithTagSchemes(self, tagSchemes, opts)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTagSchemes:options:"), auto_cast initWithTagSchemes, "@@:@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTagSchemes:options:"), auto_cast initWithTagSchemes, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.availableTagSchemesForUnit != nil {
         availableTagSchemesForUnit :: proc "c" (self: Class, _: SEL, unit: NS.LinguisticTaggerUnit, language: ^NS.String) -> ^NS.Array {
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableTagSchemesForUnit( unit, language)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("availableTagSchemesForUnit:language:"), auto_cast availableTagSchemesForUnit, "@#:l@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("availableTagSchemesForUnit:language:"), auto_cast availableTagSchemesForUnit, "^void#:l@") do panic("Failed to register objC method.")
     }
     if vt.availableTagSchemesForLanguage != nil {
         availableTagSchemesForLanguage :: proc "c" (self: Class, _: SEL, language: ^NS.String) -> ^NS.Array {
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableTagSchemesForLanguage( language)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("availableTagSchemesForLanguage:"), auto_cast availableTagSchemesForLanguage, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("availableTagSchemesForLanguage:"), auto_cast availableTagSchemesForLanguage, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.setOrthography != nil {
         setOrthography :: proc "c" (self: ^NS.LinguisticTagger, _: SEL, orthography: ^NS.Orthography, range: NS._NSRange) {
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).tagsInRange_unit_scheme_options_tokenRanges(self, range, unit, scheme, options, tokenRanges)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tagsInRange:unit:scheme:options:tokenRanges:"), auto_cast tagsInRange_unit_scheme_options_tokenRanges, "@@:{_NSRange=LL}l@L^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tagsInRange:unit:scheme:options:tokenRanges:"), auto_cast tagsInRange_unit_scheme_options_tokenRanges, "^void@:{_NSRange=LL}l@L^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateTagsInRange_scheme_options_usingBlock != nil {
         enumerateTagsInRange_scheme_options_usingBlock :: proc "c" (self: ^NS.LinguisticTagger, _: SEL, range: NS._NSRange, tagScheme: ^NS.String, opts: NS.LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool))) {
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).tagsInRange_scheme_options_tokenRanges(self, range, tagScheme, opts, tokenRanges)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tagsInRange:scheme:options:tokenRanges:"), auto_cast tagsInRange_scheme_options_tokenRanges, "@@:{_NSRange=LL}@L^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tagsInRange:scheme:options:tokenRanges:"), auto_cast tagsInRange_scheme_options_tokenRanges, "^void@:{_NSRange=LL}@L^void") do panic("Failed to register objC method.")
     }
     if vt.dominantLanguageForString != nil {
         dominantLanguageForString :: proc "c" (self: Class, _: SEL, string: ^NS.String) -> ^NS.String {
@@ -255,7 +255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).tagsForString( string, range, unit, scheme, options, orthography, tokenRanges)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("tagsForString:range:unit:scheme:options:orthography:tokenRanges:"), auto_cast tagsForString, "@#:@{_NSRange=LL}l@L@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("tagsForString:range:unit:scheme:options:orthography:tokenRanges:"), auto_cast tagsForString, "^void#:@{_NSRange=LL}l@L@^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateTagsForString != nil {
         enumerateTagsForString :: proc "c" (self: Class, _: SEL, string: ^NS.String, range: NS._NSRange, unit: NS.LinguisticTaggerUnit, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, stop: ^bool))) {
@@ -275,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).possibleTagsAtIndex(self, charIndex, tagScheme, tokenRange, sentenceRange, scores)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("possibleTagsAtIndex:scheme:tokenRange:sentenceRange:scores:"), auto_cast possibleTagsAtIndex, "@@:L@^void^void^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("possibleTagsAtIndex:scheme:tokenRange:sentenceRange:scores:"), auto_cast possibleTagsAtIndex, "^void@:L@^void^void^void") do panic("Failed to register objC method.")
     }
     if vt.tagSchemes != nil {
         tagSchemes :: proc "c" (self: ^NS.LinguisticTagger, _: SEL) -> ^NS.Array {
@@ -285,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).tagSchemes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tagSchemes"), auto_cast tagSchemes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tagSchemes"), auto_cast tagSchemes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.string != nil {
         string :: proc "c" (self: ^NS.LinguisticTagger, _: SEL) -> ^NS.String {
@@ -585,7 +585,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -615,7 +615,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).scheduledNotifications(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("scheduledNotifications"), auto_cast scheduledNotifications, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scheduledNotifications"), auto_cast scheduledNotifications, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setScheduledNotifications != nil {
         setScheduledNotifications :: proc "c" (self: ^NS.UserNotificationCenter, _: SEL, scheduledNotifications: ^NS.Array) {
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setScheduledNotifications(self, scheduledNotifications)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setScheduledNotifications:"), auto_cast setScheduledNotifications, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setScheduledNotifications:"), auto_cast setScheduledNotifications, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.deliveredNotifications != nil {
         deliveredNotifications :: proc "c" (self: ^NS.UserNotificationCenter, _: SEL) -> ^NS.Array {
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).deliveredNotifications(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("deliveredNotifications"), auto_cast deliveredNotifications, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("deliveredNotifications"), auto_cast deliveredNotifications, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -453,7 +453,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -483,7 +483,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

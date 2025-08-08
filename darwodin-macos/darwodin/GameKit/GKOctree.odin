@@ -31,11 +31,11 @@ Octree_initWithBoundingBox :: #force_inline proc "c" (self: ^Octree, box: Box, m
     return msgSend(^Octree, self, "initWithBoundingBox:minimumCellSize:", box, minCellSize)
 }
 @(objc_type=Octree, objc_name="addElement_withPoint")
-Octree_addElement_withPoint :: #force_inline proc "c" (self: ^Octree, element: ^NS.Object, point: vector_float3) -> ^OctreeNode {
+Octree_addElement_withPoint :: #force_inline proc "c" (self: ^Octree, element: id, point: vector_float3) -> ^OctreeNode {
     return msgSend(^OctreeNode, self, "addElement:withPoint:", element, point)
 }
 @(objc_type=Octree, objc_name="addElement_withBox")
-Octree_addElement_withBox :: #force_inline proc "c" (self: ^Octree, element: ^NS.Object, box: Box) -> ^OctreeNode {
+Octree_addElement_withBox :: #force_inline proc "c" (self: ^Octree, element: id, box: Box) -> ^OctreeNode {
     return msgSend(^OctreeNode, self, "addElement:withBox:", element, box)
 }
 @(objc_type=Octree, objc_name="elementsAtPoint")
@@ -47,11 +47,11 @@ Octree_elementsInBox :: #force_inline proc "c" (self: ^Octree, box: Box) -> ^NS.
     return msgSend(^NS.Array, self, "elementsInBox:", box)
 }
 @(objc_type=Octree, objc_name="removeElement_")
-Octree_removeElement_ :: #force_inline proc "c" (self: ^Octree, element: ^NS.Object) -> bool {
+Octree_removeElement_ :: #force_inline proc "c" (self: ^Octree, element: id) -> bool {
     return msgSend(bool, self, "removeElement:", element)
 }
 @(objc_type=Octree, objc_name="removeElement_withNode")
-Octree_removeElement_withNode :: #force_inline proc "c" (self: ^Octree, element: ^NS.Object, node: ^OctreeNode) -> bool {
+Octree_removeElement_withNode :: #force_inline proc "c" (self: ^Octree, element: id, node: ^OctreeNode) -> bool {
     return msgSend(bool, self, "removeElement:withNode:", element, node)
 }
 @(objc_type=Octree, objc_name="load", objc_is_class_method=true)

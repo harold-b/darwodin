@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).toolbarDefaultItemIdentifiers(self, toolbar)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("toolbarDefaultItemIdentifiers:"), auto_cast toolbarDefaultItemIdentifiers, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toolbarDefaultItemIdentifiers:"), auto_cast toolbarDefaultItemIdentifiers, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.toolbarAllowedItemIdentifiers != nil {
         toolbarAllowedItemIdentifiers :: proc "c" (self: ^AK.ToolbarDelegate, _: SEL, toolbar: ^AK.Toolbar) -> ^NS.Array {
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).toolbarAllowedItemIdentifiers(self, toolbar)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("toolbarAllowedItemIdentifiers:"), auto_cast toolbarAllowedItemIdentifiers, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toolbarAllowedItemIdentifiers:"), auto_cast toolbarAllowedItemIdentifiers, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.toolbarSelectableItemIdentifiers != nil {
         toolbarSelectableItemIdentifiers :: proc "c" (self: ^AK.ToolbarDelegate, _: SEL, toolbar: ^AK.Toolbar) -> ^NS.Array {
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).toolbarSelectableItemIdentifiers(self, toolbar)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("toolbarSelectableItemIdentifiers:"), auto_cast toolbarSelectableItemIdentifiers, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toolbarSelectableItemIdentifiers:"), auto_cast toolbarSelectableItemIdentifiers, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.toolbarImmovableItemIdentifiers != nil {
         toolbarImmovableItemIdentifiers :: proc "c" (self: ^AK.ToolbarDelegate, _: SEL, toolbar: ^AK.Toolbar) -> ^NS.Set {
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).toolbarImmovableItemIdentifiers(self, toolbar)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("toolbarImmovableItemIdentifiers:"), auto_cast toolbarImmovableItemIdentifiers, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toolbarImmovableItemIdentifiers:"), auto_cast toolbarImmovableItemIdentifiers, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.toolbar_itemIdentifier_canBeInsertedAtIndex != nil {
         toolbar_itemIdentifier_canBeInsertedAtIndex :: proc "c" (self: ^AK.ToolbarDelegate, _: SEL, toolbar: ^AK.Toolbar, itemIdentifier: ^NS.String, index: NS.Integer) -> bool {

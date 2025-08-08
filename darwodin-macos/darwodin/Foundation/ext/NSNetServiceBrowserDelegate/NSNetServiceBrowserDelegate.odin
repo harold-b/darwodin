@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).netServiceBrowser_didNotSearch(self, browser, errorDict)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("netServiceBrowser:didNotSearch:"), auto_cast netServiceBrowser_didNotSearch, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("netServiceBrowser:didNotSearch:"), auto_cast netServiceBrowser_didNotSearch, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.netServiceBrowser_didFindDomain_moreComing != nil {
         netServiceBrowser_didFindDomain_moreComing :: proc "c" (self: ^NS.NetServiceBrowserDelegate, _: SEL, browser: ^NS.NetServiceBrowser, domainString: ^NS.String, moreComing: bool) {

@@ -134,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyTimes(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("keyTimes"), auto_cast keyTimes, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("keyTimes"), auto_cast keyTimes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setKeyTimes != nil {
         setKeyTimes :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL, keyTimes: ^NS.Array) {
@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setKeyTimes(self, keyTimes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setKeyTimes:"), auto_cast setKeyTimes, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setKeyTimes:"), auto_cast setKeyTimes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.timingFunctions != nil {
         timingFunctions :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL) -> ^NS.Array {
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).timingFunctions(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("timingFunctions"), auto_cast timingFunctions, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("timingFunctions"), auto_cast timingFunctions, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTimingFunctions != nil {
         setTimingFunctions :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL, timingFunctions: ^NS.Array) {
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTimingFunctions(self, timingFunctions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTimingFunctions:"), auto_cast setTimingFunctions, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTimingFunctions:"), auto_cast setTimingFunctions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.calculationMode != nil {
         calculationMode :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL) -> ^NS.String {
@@ -194,7 +194,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).tensionValues(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tensionValues"), auto_cast tensionValues, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tensionValues"), auto_cast tensionValues, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTensionValues != nil {
         setTensionValues :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL, tensionValues: ^NS.Array) {
@@ -204,7 +204,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTensionValues(self, tensionValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTensionValues:"), auto_cast setTensionValues, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTensionValues:"), auto_cast setTensionValues, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.continuityValues != nil {
         continuityValues :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL) -> ^NS.Array {
@@ -214,7 +214,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).continuityValues(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("continuityValues"), auto_cast continuityValues, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("continuityValues"), auto_cast continuityValues, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setContinuityValues != nil {
         setContinuityValues :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL, continuityValues: ^NS.Array) {
@@ -224,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setContinuityValues(self, continuityValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setContinuityValues:"), auto_cast setContinuityValues, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setContinuityValues:"), auto_cast setContinuityValues, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.biasValues != nil {
         biasValues :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL) -> ^NS.Array {
@@ -234,7 +234,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).biasValues(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("biasValues"), auto_cast biasValues, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("biasValues"), auto_cast biasValues, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setBiasValues != nil {
         setBiasValues :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL, biasValues: ^NS.Array) {
@@ -244,7 +244,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setBiasValues(self, biasValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setBiasValues:"), auto_cast setBiasValues, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBiasValues:"), auto_cast setBiasValues, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.rotationMode != nil {
         rotationMode :: proc "c" (self: ^CA.KeyframeAnimation, _: SEL) -> ^NS.String {
@@ -574,7 +574,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -604,7 +604,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

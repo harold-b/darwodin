@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).groupItemWithIdentifier_items( identifier, items)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("groupItemWithIdentifier:items:"), auto_cast groupItemWithIdentifier_items, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("groupItemWithIdentifier:items:"), auto_cast groupItemWithIdentifier_items, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.groupItemWithIdentifier_items_allowedCompressionOptions != nil {
         groupItemWithIdentifier_items_allowedCompressionOptions :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, items: ^NS.Array, allowedCompressionOptions: ^AK.UserInterfaceCompressionOptions) -> ^AK.GroupTouchBarItem {
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).groupItemWithIdentifier_items_allowedCompressionOptions( identifier, items, allowedCompressionOptions)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("groupItemWithIdentifier:items:allowedCompressionOptions:"), auto_cast groupItemWithIdentifier_items_allowedCompressionOptions, "@#:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("groupItemWithIdentifier:items:allowedCompressionOptions:"), auto_cast groupItemWithIdentifier_items_allowedCompressionOptions, "@#:@^void@") do panic("Failed to register objC method.")
     }
     if vt.alertStyleGroupItemWithIdentifier != nil {
         alertStyleGroupItemWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> ^AK.GroupTouchBarItem {
@@ -234,7 +234,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).prioritizedCompressionOptions(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("prioritizedCompressionOptions"), auto_cast prioritizedCompressionOptions, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prioritizedCompressionOptions"), auto_cast prioritizedCompressionOptions, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setPrioritizedCompressionOptions != nil {
         setPrioritizedCompressionOptions :: proc "c" (self: ^AK.GroupTouchBarItem, _: SEL, prioritizedCompressionOptions: ^NS.Array) {
@@ -244,7 +244,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setPrioritizedCompressionOptions(self, prioritizedCompressionOptions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setPrioritizedCompressionOptions:"), auto_cast setPrioritizedCompressionOptions, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPrioritizedCompressionOptions:"), auto_cast setPrioritizedCompressionOptions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -514,7 +514,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -544,7 +544,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

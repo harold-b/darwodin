@@ -581,7 +581,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).performSelector_withObject_afterDelay_inModes(self, aSelector, anArgument, delay, modes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:withObject:afterDelay:inModes:"), auto_cast performSelector_withObject_afterDelay_inModes, "v@::@d@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:withObject:afterDelay:inModes:"), auto_cast performSelector_withObject_afterDelay_inModes, "v@::@d^void") do panic("Failed to register objC method.")
     }
     if vt.performSelector_withObject_afterDelay != nil {
         performSelector_withObject_afterDelay :: proc "c" (self: ^NS.Object, _: SEL, aSelector: SEL, anArgument: id, delay: NS.TimeInterval) {
@@ -831,7 +831,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).dictionaryWithValuesForKeys(self, keys)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryWithValuesForKeys:"), auto_cast dictionaryWithValuesForKeys, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryWithValuesForKeys:"), auto_cast dictionaryWithValuesForKeys, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.setValuesForKeysWithDictionary != nil {
         setValuesForKeysWithDictionary :: proc "c" (self: ^NS.Object, _: SEL, keyedValues: ^NS.Dictionary) {
@@ -841,7 +841,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setValuesForKeysWithDictionary(self, keyedValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setValuesForKeysWithDictionary:"), auto_cast setValuesForKeysWithDictionary, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setValuesForKeysWithDictionary:"), auto_cast setValuesForKeysWithDictionary, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessInstanceVariablesDirectly != nil {
         accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
@@ -961,7 +961,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).observeValueForKeyPath(self, keyPath, object, change, _context)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("observeValueForKeyPath:ofObject:change:context:"), auto_cast observeValueForKeyPath, "v@:@@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("observeValueForKeyPath:ofObject:change:context:"), auto_cast observeValueForKeyPath, "v@:@@^void^void") do panic("Failed to register objC method.")
     }
     if vt.addObserver != nil {
         addObserver :: proc "c" (self: ^NS.Object, _: SEL, observer: ^NS.Object, keyPath: ^NS.String, options: NS.KeyValueObservingOptions, _context: rawptr) {
@@ -1061,7 +1061,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1131,7 +1131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedArchiver != nil {
         classForKeyedArchiver :: proc "c" (self: ^NS.Object, _: SEL) -> Class {
@@ -1161,7 +1161,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).performSelectorOnMainThread_withObject_waitUntilDone_modes(self, aSelector, arg, wait, array)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelectorOnMainThread:withObject:waitUntilDone:modes:"), auto_cast performSelectorOnMainThread_withObject_waitUntilDone_modes, "v@::@B@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelectorOnMainThread:withObject:waitUntilDone:modes:"), auto_cast performSelectorOnMainThread_withObject_waitUntilDone_modes, "v@::@B^void") do panic("Failed to register objC method.")
     }
     if vt.performSelectorOnMainThread_withObject_waitUntilDone != nil {
         performSelectorOnMainThread_withObject_waitUntilDone :: proc "c" (self: ^NS.Object, _: SEL, aSelector: SEL, arg: id, wait: bool) {
@@ -1181,7 +1181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).performSelector_onThread_withObject_waitUntilDone_modes(self, aSelector, thr, arg, wait, array)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:onThread:withObject:waitUntilDone:modes:"), auto_cast performSelector_onThread_withObject_waitUntilDone_modes, "v@::@@B@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:onThread:withObject:waitUntilDone:modes:"), auto_cast performSelector_onThread_withObject_waitUntilDone_modes, "v@::@@B^void") do panic("Failed to register objC method.")
     }
     if vt.performSelector_onThread_withObject_waitUntilDone != nil {
         performSelector_onThread_withObject_waitUntilDone :: proc "c" (self: ^NS.Object, _: SEL, aSelector: SEL, thr: ^NS.Thread, arg: id, wait: bool) {
@@ -1271,7 +1271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).attributeKeys(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("attributeKeys"), auto_cast attributeKeys, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributeKeys"), auto_cast attributeKeys, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.toOneRelationshipKeys != nil {
         toOneRelationshipKeys :: proc "c" (self: ^NS.Object, _: SEL) -> ^NS.Array {
@@ -1281,7 +1281,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).toOneRelationshipKeys(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("toOneRelationshipKeys"), auto_cast toOneRelationshipKeys, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toOneRelationshipKeys"), auto_cast toOneRelationshipKeys, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.toManyRelationshipKeys != nil {
         toManyRelationshipKeys :: proc "c" (self: ^NS.Object, _: SEL) -> ^NS.Array {
@@ -1291,7 +1291,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).toManyRelationshipKeys(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("toManyRelationshipKeys"), auto_cast toManyRelationshipKeys, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toManyRelationshipKeys"), auto_cast toManyRelationshipKeys, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.scriptingValueForSpecifier != nil {
         scriptingValueForSpecifier :: proc "c" (self: ^NS.Object, _: SEL, objectSpecifier: ^NS.ScriptObjectSpecifier) -> id {
@@ -1311,7 +1311,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).copyScriptingValue(self, value, key, properties)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("copyScriptingValue:forKey:withProperties:"), auto_cast copyScriptingValue, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("copyScriptingValue:forKey:withProperties:"), auto_cast copyScriptingValue, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.newScriptingObjectOfClass != nil {
         newScriptingObjectOfClass :: proc "c" (self: ^NS.Object, _: SEL, objectClass: Class, key: ^NS.String, contentsValue: id, properties: ^NS.Dictionary) -> id {
@@ -1321,7 +1321,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).newScriptingObjectOfClass(self, objectClass, key, contentsValue, properties)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:"), auto_cast newScriptingObjectOfClass, "@@:#@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:"), auto_cast newScriptingObjectOfClass, "@@:#@@^void") do panic("Failed to register objC method.")
     }
     if vt.scriptingProperties != nil {
         scriptingProperties :: proc "c" (self: ^NS.Object, _: SEL) -> ^NS.Dictionary {
@@ -1331,7 +1331,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).scriptingProperties(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("scriptingProperties"), auto_cast scriptingProperties, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scriptingProperties"), auto_cast scriptingProperties, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setScriptingProperties != nil {
         setScriptingProperties :: proc "c" (self: ^NS.Object, _: SEL, scriptingProperties: ^NS.Dictionary) {
@@ -1341,7 +1341,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setScriptingProperties(self, scriptingProperties)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setScriptingProperties:"), auto_cast setScriptingProperties, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setScriptingProperties:"), auto_cast setScriptingProperties, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.classCode != nil {
         classCode :: proc "c" (self: ^NS.Object, _: SEL) -> CF.FourCharCode {
@@ -1451,7 +1451,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).indicesOfObjectsByEvaluatingObjectSpecifier(self, specifier)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("indicesOfObjectsByEvaluatingObjectSpecifier:"), auto_cast indicesOfObjectsByEvaluatingObjectSpecifier, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("indicesOfObjectsByEvaluatingObjectSpecifier:"), auto_cast indicesOfObjectsByEvaluatingObjectSpecifier, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.objectSpecifier != nil {
         objectSpecifier :: proc "c" (self: ^NS.Object, _: SEL) -> ^NS.ScriptObjectSpecifier {

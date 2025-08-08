@@ -498,7 +498,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).itemArray(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("itemArray"), auto_cast itemArray, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("itemArray"), auto_cast itemArray, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setItemArray != nil {
         setItemArray :: proc "c" (self: ^AK.Menu, _: SEL, itemArray: ^NS.Array) {
@@ -508,7 +508,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setItemArray(self, itemArray)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setItemArray:"), auto_cast setItemArray, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setItemArray:"), auto_cast setItemArray, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.numberOfItems != nil {
         numberOfItems :: proc "c" (self: ^AK.Menu, _: SEL) -> NS.Integer {
@@ -698,7 +698,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).paletteMenuWithColors_titles_selectionHandler( colors, itemTitles, onSelectionChange)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:selectionHandler:"), auto_cast paletteMenuWithColors_titles_selectionHandler, "@#:@@?") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:selectionHandler:"), auto_cast paletteMenuWithColors_titles_selectionHandler, "@#:^void^void?") do panic("Failed to register objC method.")
     }
     if vt.paletteMenuWithColors_titles_templateImage_selectionHandler != nil {
         paletteMenuWithColors_titles_templateImage_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> ^AK.Menu {
@@ -708,7 +708,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).paletteMenuWithColors_titles_templateImage_selectionHandler( colors, itemTitles, image, onSelectionChange)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:templateImage:selectionHandler:"), auto_cast paletteMenuWithColors_titles_templateImage_selectionHandler, "@#:@@@?") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:templateImage:selectionHandler:"), auto_cast paletteMenuWithColors_titles_templateImage_selectionHandler, "@#:^void^void@?") do panic("Failed to register objC method.")
     }
     if vt.presentationStyle != nil {
         presentationStyle :: proc "c" (self: ^AK.Menu, _: SEL) -> AK.MenuPresentationStyle {
@@ -758,7 +758,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).selectedItems(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedItems"), auto_cast selectedItems, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedItems"), auto_cast selectedItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedItems != nil {
         setSelectedItems :: proc "c" (self: ^AK.Menu, _: SEL, selectedItems: ^NS.Array) {
@@ -768,7 +768,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setSelectedItems(self, selectedItems)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedItems:"), auto_cast setSelectedItems, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedItems:"), auto_cast setSelectedItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.submenuAction != nil {
         submenuAction :: proc "c" (self: ^AK.Menu, _: SEL, sender: id) {
@@ -1218,7 +1218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1248,7 +1248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

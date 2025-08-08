@@ -604,7 +604,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).queryItems(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("queryItems"), auto_cast queryItems, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("queryItems"), auto_cast queryItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setQueryItems != nil {
         setQueryItems :: proc "c" (self: ^NS.URLComponents, _: SEL, queryItems: ^NS.Array) {
@@ -614,7 +614,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setQueryItems(self, queryItems)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setQueryItems:"), auto_cast setQueryItems, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setQueryItems:"), auto_cast setQueryItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.percentEncodedQueryItems != nil {
         percentEncodedQueryItems :: proc "c" (self: ^NS.URLComponents, _: SEL) -> ^NS.Array {
@@ -624,7 +624,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).percentEncodedQueryItems(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("percentEncodedQueryItems"), auto_cast percentEncodedQueryItems, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("percentEncodedQueryItems"), auto_cast percentEncodedQueryItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setPercentEncodedQueryItems != nil {
         setPercentEncodedQueryItems :: proc "c" (self: ^NS.URLComponents, _: SEL, percentEncodedQueryItems: ^NS.Array) {
@@ -634,7 +634,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setPercentEncodedQueryItems(self, percentEncodedQueryItems)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setPercentEncodedQueryItems:"), auto_cast setPercentEncodedQueryItems, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPercentEncodedQueryItems:"), auto_cast setPercentEncodedQueryItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -904,7 +904,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -934,7 +934,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

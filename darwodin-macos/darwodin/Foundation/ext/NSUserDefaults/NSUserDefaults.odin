@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).dictionaryForKey(self, defaultName)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryForKey:"), auto_cast dictionaryForKey, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryForKey:"), auto_cast dictionaryForKey, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.dataForKey != nil {
         dataForKey :: proc "c" (self: ^NS.UserDefaults, _: SEL, defaultName: ^NS.String) -> ^NS.Data {
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).stringArrayForKey(self, defaultName)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("stringArrayForKey:"), auto_cast stringArrayForKey, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("stringArrayForKey:"), auto_cast stringArrayForKey, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.integerForKey != nil {
         integerForKey :: proc "c" (self: ^NS.UserDefaults, _: SEL, defaultName: ^NS.String) -> NS.Integer {
@@ -330,7 +330,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).registerDefaults(self, registrationDictionary)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("registerDefaults:"), auto_cast registerDefaults, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registerDefaults:"), auto_cast registerDefaults, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.addSuiteNamed != nil {
         addSuiteNamed :: proc "c" (self: ^NS.UserDefaults, _: SEL, suiteName: ^NS.String) {
@@ -360,7 +360,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).dictionaryRepresentation(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryRepresentation"), auto_cast dictionaryRepresentation, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryRepresentation"), auto_cast dictionaryRepresentation, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.volatileDomainForName != nil {
         volatileDomainForName :: proc "c" (self: ^NS.UserDefaults, _: SEL, domainName: ^NS.String) -> ^NS.Dictionary {
@@ -370,7 +370,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).volatileDomainForName(self, domainName)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("volatileDomainForName:"), auto_cast volatileDomainForName, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("volatileDomainForName:"), auto_cast volatileDomainForName, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.setVolatileDomain != nil {
         setVolatileDomain :: proc "c" (self: ^NS.UserDefaults, _: SEL, domain: ^NS.Dictionary, domainName: ^NS.String) {
@@ -380,7 +380,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setVolatileDomain(self, domain, domainName)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setVolatileDomain:forName:"), auto_cast setVolatileDomain, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setVolatileDomain:forName:"), auto_cast setVolatileDomain, "v@:^void@") do panic("Failed to register objC method.")
     }
     if vt.removeVolatileDomainForName != nil {
         removeVolatileDomainForName :: proc "c" (self: ^NS.UserDefaults, _: SEL, domainName: ^NS.String) {
@@ -410,7 +410,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).persistentDomainForName(self, domainName)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("persistentDomainForName:"), auto_cast persistentDomainForName, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("persistentDomainForName:"), auto_cast persistentDomainForName, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.setPersistentDomain != nil {
         setPersistentDomain :: proc "c" (self: ^NS.UserDefaults, _: SEL, domain: ^NS.Dictionary, domainName: ^NS.String) {
@@ -420,7 +420,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setPersistentDomain(self, domain, domainName)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setPersistentDomain:forName:"), auto_cast setPersistentDomain, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPersistentDomain:forName:"), auto_cast setPersistentDomain, "v@:^void@") do panic("Failed to register objC method.")
     }
     if vt.removePersistentDomainForName != nil {
         removePersistentDomainForName :: proc "c" (self: ^NS.UserDefaults, _: SEL, domainName: ^NS.String) {
@@ -480,7 +480,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).volatileDomainNames(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("volatileDomainNames"), auto_cast volatileDomainNames, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("volatileDomainNames"), auto_cast volatileDomainNames, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -750,7 +750,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -780,7 +780,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

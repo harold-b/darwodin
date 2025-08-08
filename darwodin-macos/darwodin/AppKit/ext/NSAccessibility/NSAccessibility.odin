@@ -1312,7 +1312,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityChildrenInNavigationOrder(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityChildrenInNavigationOrder"), auto_cast accessibilityChildrenInNavigationOrder, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityChildrenInNavigationOrder"), auto_cast accessibilityChildrenInNavigationOrder, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilityChildrenInNavigationOrder != nil {
         setAccessibilityChildrenInNavigationOrder :: proc "c" (self: ^AK.Accessibility, _: SEL, accessibilityChildrenInNavigationOrder: ^NS.Array) {
@@ -1322,7 +1322,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAccessibilityChildrenInNavigationOrder(self, accessibilityChildrenInNavigationOrder)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityChildrenInNavigationOrder:"), auto_cast setAccessibilityChildrenInNavigationOrder, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityChildrenInNavigationOrder:"), auto_cast setAccessibilityChildrenInNavigationOrder, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityClearButton != nil {
         accessibilityClearButton :: proc "c" (self: ^AK.Accessibility, _: SEL) -> id {
@@ -1492,7 +1492,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityCustomRotors(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityCustomRotors"), auto_cast accessibilityCustomRotors, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityCustomRotors"), auto_cast accessibilityCustomRotors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilityCustomRotors != nil {
         setAccessibilityCustomRotors :: proc "c" (self: ^AK.Accessibility, _: SEL, accessibilityCustomRotors: ^NS.Array) {
@@ -1502,7 +1502,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAccessibilityCustomRotors(self, accessibilityCustomRotors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityCustomRotors:"), auto_cast setAccessibilityCustomRotors, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityCustomRotors:"), auto_cast setAccessibilityCustomRotors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityUserInputLabels != nil {
         accessibilityUserInputLabels :: proc "c" (self: ^AK.Accessibility, _: SEL) -> ^NS.Array {
@@ -1512,7 +1512,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityUserInputLabels(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityUserInputLabels"), auto_cast accessibilityUserInputLabels, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityUserInputLabels"), auto_cast accessibilityUserInputLabels, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilityUserInputLabels != nil {
         setAccessibilityUserInputLabels :: proc "c" (self: ^AK.Accessibility, _: SEL, accessibilityUserInputLabels: ^NS.Array) {
@@ -1522,7 +1522,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAccessibilityUserInputLabels(self, accessibilityUserInputLabels)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityUserInputLabels:"), auto_cast setAccessibilityUserInputLabels, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityUserInputLabels:"), auto_cast setAccessibilityUserInputLabels, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityAttributedUserInputLabels != nil {
         accessibilityAttributedUserInputLabels :: proc "c" (self: ^AK.Accessibility, _: SEL) -> ^NS.Array {
@@ -1532,7 +1532,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityAttributedUserInputLabels(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityAttributedUserInputLabels"), auto_cast accessibilityAttributedUserInputLabels, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityAttributedUserInputLabels"), auto_cast accessibilityAttributedUserInputLabels, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilityAttributedUserInputLabels != nil {
         setAccessibilityAttributedUserInputLabels :: proc "c" (self: ^AK.Accessibility, _: SEL, accessibilityAttributedUserInputLabels: ^NS.Array) {
@@ -1542,7 +1542,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAccessibilityAttributedUserInputLabels(self, accessibilityAttributedUserInputLabels)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityAttributedUserInputLabels:"), auto_cast setAccessibilityAttributedUserInputLabels, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityAttributedUserInputLabels:"), auto_cast setAccessibilityAttributedUserInputLabels, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityApplicationFocusedUIElement != nil {
         accessibilityApplicationFocusedUIElement :: proc "c" (self: ^AK.Accessibility, _: SEL) -> id {
@@ -2152,7 +2152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityAllowedValues(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityAllowedValues"), auto_cast accessibilityAllowedValues, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityAllowedValues"), auto_cast accessibilityAllowedValues, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilityAllowedValues != nil {
         setAccessibilityAllowedValues :: proc "c" (self: ^AK.Accessibility, _: SEL, accessibilityAllowedValues: ^NS.Array) {
@@ -2162,7 +2162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAccessibilityAllowedValues(self, accessibilityAllowedValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityAllowedValues:"), auto_cast setAccessibilityAllowedValues, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityAllowedValues:"), auto_cast setAccessibilityAllowedValues, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityLabelUIElements != nil {
         accessibilityLabelUIElements :: proc "c" (self: ^AK.Accessibility, _: SEL) -> ^NS.Array {
@@ -2772,7 +2772,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilitySelectedTextRanges(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilitySelectedTextRanges"), auto_cast accessibilitySelectedTextRanges, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilitySelectedTextRanges"), auto_cast accessibilitySelectedTextRanges, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilitySelectedTextRanges != nil {
         setAccessibilitySelectedTextRanges :: proc "c" (self: ^AK.Accessibility, _: SEL, accessibilitySelectedTextRanges: ^NS.Array) {
@@ -2782,7 +2782,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAccessibilitySelectedTextRanges(self, accessibilitySelectedTextRanges)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilitySelectedTextRanges:"), auto_cast setAccessibilitySelectedTextRanges, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilitySelectedTextRanges:"), auto_cast setAccessibilitySelectedTextRanges, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityToolbarButton != nil {
         accessibilityToolbarButton :: proc "c" (self: ^AK.Accessibility, _: SEL) -> id {
@@ -3032,7 +3032,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityCustomActions(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityCustomActions"), auto_cast accessibilityCustomActions, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityCustomActions"), auto_cast accessibilityCustomActions, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilityCustomActions != nil {
         setAccessibilityCustomActions :: proc "c" (self: ^AK.Accessibility, _: SEL, accessibilityCustomActions: ^NS.Array) {
@@ -3042,7 +3042,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setAccessibilityCustomActions(self, accessibilityCustomActions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityCustomActions:"), auto_cast setAccessibilityCustomActions, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilityCustomActions:"), auto_cast setAccessibilityCustomActions, "v@:^void") do panic("Failed to register objC method.")
     }
 }
 

@@ -24,12 +24,12 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    changeWithObject_type_index: proc(anObject: ^id, type: NS.CollectionChangeType, index: NS.UInteger) -> ^NS.OrderedCollectionChange,
-    changeWithObject_type_index_associatedIndex: proc(anObject: ^id, type: NS.CollectionChangeType, index: NS.UInteger, associatedIndex: NS.UInteger) -> ^NS.OrderedCollectionChange,
+    changeWithObject_type_index: proc(anObject: id, type: NS.CollectionChangeType, index: NS.UInteger) -> ^NS.OrderedCollectionChange,
+    changeWithObject_type_index_associatedIndex: proc(anObject: id, type: NS.CollectionChangeType, index: NS.UInteger, associatedIndex: NS.UInteger) -> ^NS.OrderedCollectionChange,
     init: proc(self: ^NS.OrderedCollectionChange) -> id,
-    initWithObject_type_index: proc(self: ^NS.OrderedCollectionChange, anObject: ^id, type: NS.CollectionChangeType, index: NS.UInteger) -> ^NS.OrderedCollectionChange,
-    initWithObject_type_index_associatedIndex: proc(self: ^NS.OrderedCollectionChange, anObject: ^id, type: NS.CollectionChangeType, index: NS.UInteger, associatedIndex: NS.UInteger) -> ^NS.OrderedCollectionChange,
-    object: proc(self: ^NS.OrderedCollectionChange) -> ^id,
+    initWithObject_type_index: proc(self: ^NS.OrderedCollectionChange, anObject: id, type: NS.CollectionChangeType, index: NS.UInteger) -> ^NS.OrderedCollectionChange,
+    initWithObject_type_index_associatedIndex: proc(self: ^NS.OrderedCollectionChange, anObject: id, type: NS.CollectionChangeType, index: NS.UInteger, associatedIndex: NS.UInteger) -> ^NS.OrderedCollectionChange,
+    object: proc(self: ^NS.OrderedCollectionChange) -> id,
     changeType: proc(self: ^NS.OrderedCollectionChange) -> NS.CollectionChangeType,
     index: proc(self: ^NS.OrderedCollectionChange) -> NS.UInteger,
     associatedIndex: proc(self: ^NS.OrderedCollectionChange) -> NS.UInteger,
@@ -74,24 +74,24 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.changeWithObject_type_index != nil {
-        changeWithObject_type_index :: proc "c" (self: Class, _: SEL, anObject: ^id, type: NS.CollectionChangeType, index: NS.UInteger) -> ^NS.OrderedCollectionChange {
+        changeWithObject_type_index :: proc "c" (self: Class, _: SEL, anObject: id, type: NS.CollectionChangeType, index: NS.UInteger) -> ^NS.OrderedCollectionChange {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).changeWithObject_type_index( anObject, type, index)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("changeWithObject:type:index:"), auto_cast changeWithObject_type_index, "@#:^voidlL") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("changeWithObject:type:index:"), auto_cast changeWithObject_type_index, "^void#:@lL") do panic("Failed to register objC method.")
     }
     if vt.changeWithObject_type_index_associatedIndex != nil {
-        changeWithObject_type_index_associatedIndex :: proc "c" (self: Class, _: SEL, anObject: ^id, type: NS.CollectionChangeType, index: NS.UInteger, associatedIndex: NS.UInteger) -> ^NS.OrderedCollectionChange {
+        changeWithObject_type_index_associatedIndex :: proc "c" (self: Class, _: SEL, anObject: id, type: NS.CollectionChangeType, index: NS.UInteger, associatedIndex: NS.UInteger) -> ^NS.OrderedCollectionChange {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).changeWithObject_type_index_associatedIndex( anObject, type, index, associatedIndex)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("changeWithObject:type:index:associatedIndex:"), auto_cast changeWithObject_type_index_associatedIndex, "@#:^voidlLL") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("changeWithObject:type:index:associatedIndex:"), auto_cast changeWithObject_type_index_associatedIndex, "^void#:@lLL") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
         init :: proc "c" (self: ^NS.OrderedCollectionChange, _: SEL) -> id {
@@ -104,34 +104,34 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithObject_type_index != nil {
-        initWithObject_type_index :: proc "c" (self: ^NS.OrderedCollectionChange, _: SEL, anObject: ^id, type: NS.CollectionChangeType, index: NS.UInteger) -> ^NS.OrderedCollectionChange {
+        initWithObject_type_index :: proc "c" (self: ^NS.OrderedCollectionChange, _: SEL, anObject: id, type: NS.CollectionChangeType, index: NS.UInteger) -> ^NS.OrderedCollectionChange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).initWithObject_type_index(self, anObject, type, index)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithObject:type:index:"), auto_cast initWithObject_type_index, "@@:^voidlL") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithObject:type:index:"), auto_cast initWithObject_type_index, "^void@:@lL") do panic("Failed to register objC method.")
     }
     if vt.initWithObject_type_index_associatedIndex != nil {
-        initWithObject_type_index_associatedIndex :: proc "c" (self: ^NS.OrderedCollectionChange, _: SEL, anObject: ^id, type: NS.CollectionChangeType, index: NS.UInteger, associatedIndex: NS.UInteger) -> ^NS.OrderedCollectionChange {
+        initWithObject_type_index_associatedIndex :: proc "c" (self: ^NS.OrderedCollectionChange, _: SEL, anObject: id, type: NS.CollectionChangeType, index: NS.UInteger, associatedIndex: NS.UInteger) -> ^NS.OrderedCollectionChange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).initWithObject_type_index_associatedIndex(self, anObject, type, index, associatedIndex)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithObject:type:index:associatedIndex:"), auto_cast initWithObject_type_index_associatedIndex, "@@:^voidlLL") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithObject:type:index:associatedIndex:"), auto_cast initWithObject_type_index_associatedIndex, "^void@:@lLL") do panic("Failed to register objC method.")
     }
     if vt.object != nil {
-        object :: proc "c" (self: ^NS.OrderedCollectionChange, _: SEL) -> ^id {
+        object :: proc "c" (self: ^NS.OrderedCollectionChange, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).object(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("object"), auto_cast object, "^void@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("object"), auto_cast object, "@@:") do panic("Failed to register objC method.")
     }
     if vt.changeType != nil {
         changeType :: proc "c" (self: ^NS.OrderedCollectionChange, _: SEL) -> NS.CollectionChangeType {
@@ -431,7 +431,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -461,7 +461,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

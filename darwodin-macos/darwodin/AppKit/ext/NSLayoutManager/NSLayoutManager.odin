@@ -879,7 +879,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).showCGGlyphs_positions_count_font_textMatrix_attributes_inContext(self, glyphs, positions, glyphCount, font, textMatrix, attributes, CGContext)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:"), auto_cast showCGGlyphs_positions_count_font_textMatrix_attributes_inContext, "v@:^void^voidl@{CGAffineTransform=dddddd}@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:"), auto_cast showCGGlyphs_positions_count_font_textMatrix_attributes_inContext, "v@:^void^voidl@{CGAffineTransform=dddddd}^void^void") do panic("Failed to register objC method.")
     }
     if vt.fillBackgroundRectArray != nil {
         fillBackgroundRectArray :: proc "c" (self: ^AK.LayoutManager, _: SEL, rectArray: ^NS.Rect, rectCount: NS.UInteger, charRange: NS._NSRange, color: ^AK.Color) {
@@ -1009,7 +1009,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).temporaryAttributesAtCharacterIndex_effectiveRange(self, charIndex, effectiveCharRange)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("temporaryAttributesAtCharacterIndex:effectiveRange:"), auto_cast temporaryAttributesAtCharacterIndex_effectiveRange, "@@:L^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("temporaryAttributesAtCharacterIndex:effectiveRange:"), auto_cast temporaryAttributesAtCharacterIndex_effectiveRange, "^void@:L^void") do panic("Failed to register objC method.")
     }
     if vt.setTemporaryAttributes != nil {
         setTemporaryAttributes :: proc "c" (self: ^AK.LayoutManager, _: SEL, attrs: ^NS.Dictionary, charRange: NS._NSRange) {
@@ -1019,7 +1019,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTemporaryAttributes(self, attrs, charRange)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTemporaryAttributes:forCharacterRange:"), auto_cast setTemporaryAttributes, "v@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTemporaryAttributes:forCharacterRange:"), auto_cast setTemporaryAttributes, "v@:^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.addTemporaryAttributes != nil {
         addTemporaryAttributes :: proc "c" (self: ^AK.LayoutManager, _: SEL, attrs: ^NS.Dictionary, charRange: NS._NSRange) {
@@ -1029,7 +1029,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).addTemporaryAttributes(self, attrs, charRange)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addTemporaryAttributes:forCharacterRange:"), auto_cast addTemporaryAttributes, "v@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addTemporaryAttributes:forCharacterRange:"), auto_cast addTemporaryAttributes, "v@:^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.removeTemporaryAttribute != nil {
         removeTemporaryAttribute :: proc "c" (self: ^AK.LayoutManager, _: SEL, attrName: ^NS.String, charRange: NS._NSRange) {
@@ -1069,7 +1069,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).temporaryAttributesAtCharacterIndex_longestEffectiveRange_inRange(self, location, range, rangeLimit)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("temporaryAttributesAtCharacterIndex:longestEffectiveRange:inRange:"), auto_cast temporaryAttributesAtCharacterIndex_longestEffectiveRange_inRange, "@@:L^void{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("temporaryAttributesAtCharacterIndex:longestEffectiveRange:inRange:"), auto_cast temporaryAttributesAtCharacterIndex_longestEffectiveRange_inRange, "^void@:L^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.addTemporaryAttribute != nil {
         addTemporaryAttribute :: proc "c" (self: ^AK.LayoutManager, _: SEL, attrName: ^NS.String, value: id, charRange: NS._NSRange) {
@@ -1129,7 +1129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textContainers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textContainers"), auto_cast textContainers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textContainers"), auto_cast textContainers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
         delegate :: proc "c" (self: ^AK.LayoutManager, _: SEL) -> ^AK.LayoutManagerDelegate {
@@ -1409,7 +1409,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).rulerMarkersForTextView(self, view, style, ruler)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("rulerMarkersForTextView:paragraphStyle:ruler:"), auto_cast rulerMarkersForTextView, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rulerMarkersForTextView:paragraphStyle:ruler:"), auto_cast rulerMarkersForTextView, "^void@:@@@") do panic("Failed to register objC method.")
     }
     if vt.rulerAccessoryViewForTextView != nil {
         rulerAccessoryViewForTextView :: proc "c" (self: ^AK.LayoutManager, _: SEL, view: ^AK.TextView, style: ^AK.ParagraphStyle, ruler: ^AK.RulerView, isEnabled: bool) -> ^AK.View {
@@ -1659,7 +1659,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).showCGGlyphs_positions_count_font_matrix_attributes_inContext(self, glyphs, positions, glyphCount, font, textMatrix, attributes, graphicsContext)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("showCGGlyphs:positions:count:font:matrix:attributes:inContext:"), auto_cast showCGGlyphs_positions_count_font_matrix_attributes_inContext, "v@:^void^voidL@@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showCGGlyphs:positions:count:font:matrix:attributes:inContext:"), auto_cast showCGGlyphs_positions_count_font_matrix_attributes_inContext, "v@:^void^voidL@@^void@") do panic("Failed to register objC method.")
     }
     if vt.usesScreenFonts != nil {
         usesScreenFonts :: proc "c" (self: ^AK.LayoutManager, _: SEL) -> bool {
@@ -1999,7 +1999,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -2029,7 +2029,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

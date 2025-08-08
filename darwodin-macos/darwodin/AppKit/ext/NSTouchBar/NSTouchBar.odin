@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).customizationAllowedItemIdentifiers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("customizationAllowedItemIdentifiers"), auto_cast customizationAllowedItemIdentifiers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("customizationAllowedItemIdentifiers"), auto_cast customizationAllowedItemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setCustomizationAllowedItemIdentifiers != nil {
         setCustomizationAllowedItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL, customizationAllowedItemIdentifiers: ^NS.Array) {
@@ -161,7 +161,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setCustomizationAllowedItemIdentifiers(self, customizationAllowedItemIdentifiers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setCustomizationAllowedItemIdentifiers:"), auto_cast setCustomizationAllowedItemIdentifiers, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCustomizationAllowedItemIdentifiers:"), auto_cast setCustomizationAllowedItemIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.customizationRequiredItemIdentifiers != nil {
         customizationRequiredItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.Array {
@@ -171,7 +171,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).customizationRequiredItemIdentifiers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("customizationRequiredItemIdentifiers"), auto_cast customizationRequiredItemIdentifiers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("customizationRequiredItemIdentifiers"), auto_cast customizationRequiredItemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setCustomizationRequiredItemIdentifiers != nil {
         setCustomizationRequiredItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL, customizationRequiredItemIdentifiers: ^NS.Array) {
@@ -181,7 +181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setCustomizationRequiredItemIdentifiers(self, customizationRequiredItemIdentifiers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setCustomizationRequiredItemIdentifiers:"), auto_cast setCustomizationRequiredItemIdentifiers, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCustomizationRequiredItemIdentifiers:"), auto_cast setCustomizationRequiredItemIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.defaultItemIdentifiers != nil {
         defaultItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.Array {
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).defaultItemIdentifiers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("defaultItemIdentifiers"), auto_cast defaultItemIdentifiers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("defaultItemIdentifiers"), auto_cast defaultItemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setDefaultItemIdentifiers != nil {
         setDefaultItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL, defaultItemIdentifiers: ^NS.Array) {
@@ -201,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setDefaultItemIdentifiers(self, defaultItemIdentifiers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setDefaultItemIdentifiers:"), auto_cast setDefaultItemIdentifiers, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDefaultItemIdentifiers:"), auto_cast setDefaultItemIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.itemIdentifiers != nil {
         itemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.Array {
@@ -211,7 +211,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).itemIdentifiers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifiers"), auto_cast itemIdentifiers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifiers"), auto_cast itemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.principalItemIdentifier != nil {
         principalItemIdentifier :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.String {
@@ -261,7 +261,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).templateItems(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("templateItems"), auto_cast templateItems, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("templateItems"), auto_cast templateItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTemplateItems != nil {
         setTemplateItems :: proc "c" (self: ^AK.TouchBar, _: SEL, templateItems: ^NS.Set) {
@@ -271,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTemplateItems(self, templateItems)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTemplateItems:"), auto_cast setTemplateItems, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTemplateItems:"), auto_cast setTemplateItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
         delegate :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^AK.TouchBarDelegate {
@@ -591,7 +591,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -621,7 +621,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

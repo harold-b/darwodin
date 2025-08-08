@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageRepsWithData( data)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithData:"), auto_cast imageRepsWithData, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithData:"), auto_cast imageRepsWithData, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepWithData != nil {
         imageRepWithData :: proc "c" (self: Class, _: SEL, data: ^NS.Data) -> ^AK.BitmapImageRep {
@@ -261,7 +261,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._TIFFRepresentationOfImageRepsInArray_( array)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("TIFFRepresentationOfImageRepsInArray:"), auto_cast _TIFFRepresentationOfImageRepsInArray_, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("TIFFRepresentationOfImageRepsInArray:"), auto_cast _TIFFRepresentationOfImageRepsInArray_, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt._TIFFRepresentationOfImageRepsInArray_usingCompression_factor != nil {
         _TIFFRepresentationOfImageRepsInArray_usingCompression_factor :: proc "c" (self: Class, _: SEL, array: ^NS.Array, comp: AK.TIFFCompression, factor: cffi.float) -> ^NS.Data {
@@ -271,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._TIFFRepresentationOfImageRepsInArray_usingCompression_factor( array, comp, factor)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("TIFFRepresentationOfImageRepsInArray:usingCompression:factor:"), auto_cast _TIFFRepresentationOfImageRepsInArray_usingCompression_factor, "@#:@Lf") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("TIFFRepresentationOfImageRepsInArray:usingCompression:factor:"), auto_cast _TIFFRepresentationOfImageRepsInArray_usingCompression_factor, "@#:^voidLf") do panic("Failed to register objC method.")
     }
     if vt.getTIFFCompressionTypes != nil {
         getTIFFCompressionTypes :: proc "c" (self: Class, _: SEL, list: ^^AK.TIFFCompression, numTypes: ^NS.Integer) {
@@ -511,7 +511,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).representationOfImageRepsInArray( imageReps, storageType, properties)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("representationOfImageRepsInArray:usingType:properties:"), auto_cast representationOfImageRepsInArray, "@#:@L@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("representationOfImageRepsInArray:usingType:properties:"), auto_cast representationOfImageRepsInArray, "@#:^voidL^void") do panic("Failed to register objC method.")
     }
     if vt.representationUsingType != nil {
         representationUsingType :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, storageType: AK.BitmapImageFileType, properties: ^NS.Dictionary) -> ^NS.Data {
@@ -521,7 +521,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).representationUsingType(self, storageType, properties)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("representationUsingType:properties:"), auto_cast representationUsingType, "@@:L@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("representationUsingType:properties:"), auto_cast representationUsingType, "@@:L^void") do panic("Failed to register objC method.")
     }
     if vt.setProperty != nil {
         setProperty :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, property: ^NS.String, value: id) {
@@ -631,7 +631,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageUnfilteredFileTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageUnfilteredFileTypes"), auto_cast imageUnfilteredFileTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageUnfilteredFileTypes"), auto_cast imageUnfilteredFileTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.imageUnfilteredPasteboardTypes != nil {
         imageUnfilteredPasteboardTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -641,7 +641,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageUnfilteredPasteboardTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageUnfilteredPasteboardTypes"), auto_cast imageUnfilteredPasteboardTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageUnfilteredPasteboardTypes"), auto_cast imageUnfilteredPasteboardTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.imageFileTypes != nil {
         imageFileTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -651,7 +651,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageFileTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageFileTypes"), auto_cast imageFileTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageFileTypes"), auto_cast imageFileTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.imagePasteboardTypes != nil {
         imagePasteboardTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -661,7 +661,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imagePasteboardTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imagePasteboardTypes"), auto_cast imagePasteboardTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imagePasteboardTypes"), auto_cast imagePasteboardTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.canInitWithPasteboard != nil {
         canInitWithPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^AK.Pasteboard) -> bool {
@@ -681,7 +681,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageRepsWithContentsOfFile( filename)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithContentsOfFile:"), auto_cast imageRepsWithContentsOfFile, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithContentsOfFile:"), auto_cast imageRepsWithContentsOfFile, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepWithContentsOfFile != nil {
         imageRepWithContentsOfFile :: proc "c" (self: Class, _: SEL, filename: ^NS.String) -> ^AK.ImageRep {
@@ -701,7 +701,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageRepsWithContentsOfURL( url)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithContentsOfURL:"), auto_cast imageRepsWithContentsOfURL, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithContentsOfURL:"), auto_cast imageRepsWithContentsOfURL, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepWithContentsOfURL != nil {
         imageRepWithContentsOfURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> ^AK.ImageRep {
@@ -721,7 +721,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageRepsWithPasteboard( pasteboard)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithPasteboard:"), auto_cast imageRepsWithPasteboard, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithPasteboard:"), auto_cast imageRepsWithPasteboard, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepWithPasteboard != nil {
         imageRepWithPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^AK.Pasteboard) -> ^AK.ImageRep {
@@ -741,7 +741,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).registeredImageRepClasses()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("registeredImageRepClasses"), auto_cast registeredImageRepClasses, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("registeredImageRepClasses"), auto_cast registeredImageRepClasses, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.imageUnfilteredTypes != nil {
         imageUnfilteredTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -751,7 +751,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageUnfilteredTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageUnfilteredTypes"), auto_cast imageUnfilteredTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageUnfilteredTypes"), auto_cast imageUnfilteredTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.imageTypes != nil {
         imageTypes :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
@@ -761,7 +761,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).imageTypes()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("imageTypes"), auto_cast imageTypes, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("imageTypes"), auto_cast imageTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -1031,7 +1031,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1061,7 +1061,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -219,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableMembersOfFontFamily(self, fam)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("availableMembersOfFontFamily:"), auto_cast availableMembersOfFontFamily, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("availableMembersOfFontFamily:"), auto_cast availableMembersOfFontFamily, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.convertFont_ != nil {
         convertFont_ :: proc "c" (self: ^AK.FontManager, _: SEL, fontObj: ^AK.Font) -> ^AK.Font {
@@ -319,7 +319,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setSelectedAttributes(self, attributes, flag)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedAttributes:isMultiple:"), auto_cast setSelectedAttributes, "v@:@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedAttributes:isMultiple:"), auto_cast setSelectedAttributes, "v@:^voidB") do panic("Failed to register objC method.")
     }
     if vt.convertAttributes != nil {
         convertAttributes :: proc "c" (self: ^AK.FontManager, _: SEL, attributes: ^NS.Dictionary) -> ^NS.Dictionary {
@@ -329,7 +329,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).convertAttributes(self, attributes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("convertAttributes:"), auto_cast convertAttributes, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("convertAttributes:"), auto_cast convertAttributes, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.availableFontNamesMatchingFontDescriptor != nil {
         availableFontNamesMatchingFontDescriptor :: proc "c" (self: ^AK.FontManager, _: SEL, descriptor: ^AK.FontDescriptor) -> ^NS.Array {
@@ -439,7 +439,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableFonts(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("availableFonts"), auto_cast availableFonts, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("availableFonts"), auto_cast availableFonts, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.availableFontFamilies != nil {
         availableFontFamilies :: proc "c" (self: ^AK.FontManager, _: SEL) -> ^NS.Array {
@@ -449,7 +449,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableFontFamilies(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("availableFontFamilies"), auto_cast availableFontFamilies, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("availableFontFamilies"), auto_cast availableFontFamilies, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.isEnabled != nil {
         isEnabled :: proc "c" (self: ^AK.FontManager, _: SEL) -> bool {
@@ -569,7 +569,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).availableFontNamesWithTraits(self, someTraits)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("availableFontNamesWithTraits:"), auto_cast availableFontNamesWithTraits, "@@:L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("availableFontNamesWithTraits:"), auto_cast availableFontNamesWithTraits, "^void@:L") do panic("Failed to register objC method.")
     }
     if vt.addFontTrait != nil {
         addFontTrait :: proc "c" (self: ^AK.FontManager, _: SEL, sender: id) {
@@ -899,7 +899,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -929,7 +929,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

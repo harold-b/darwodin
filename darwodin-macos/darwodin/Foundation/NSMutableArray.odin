@@ -17,11 +17,11 @@ import Sec "../Security"
 MutableArray :: struct { using _: Array, }
 
 @(objc_type=MutableArray, objc_name="addObject")
-MutableArray_addObject :: #force_inline proc "c" (self: ^MutableArray, anObject: ^id) {
+MutableArray_addObject :: #force_inline proc "c" (self: ^MutableArray, anObject: id) {
     msgSend(nil, self, "addObject:", anObject)
 }
 @(objc_type=MutableArray, objc_name="insertObject")
-MutableArray_insertObject :: #force_inline proc "c" (self: ^MutableArray, anObject: ^id, index: UInteger) {
+MutableArray_insertObject :: #force_inline proc "c" (self: ^MutableArray, anObject: id, index: UInteger) {
     msgSend(nil, self, "insertObject:atIndex:", anObject, index)
 }
 @(objc_type=MutableArray, objc_name="removeLastObject")
@@ -33,7 +33,7 @@ MutableArray_removeObjectAtIndex :: #force_inline proc "c" (self: ^MutableArray,
     msgSend(nil, self, "removeObjectAtIndex:", index)
 }
 @(objc_type=MutableArray, objc_name="replaceObjectAtIndex")
-MutableArray_replaceObjectAtIndex :: #force_inline proc "c" (self: ^MutableArray, index: UInteger, anObject: ^id) {
+MutableArray_replaceObjectAtIndex :: #force_inline proc "c" (self: ^MutableArray, index: UInteger, anObject: id) {
     msgSend(nil, self, "replaceObjectAtIndex:withObject:", index, anObject)
 }
 @(objc_type=MutableArray, objc_name="init")
@@ -61,19 +61,19 @@ MutableArray_removeAllObjects :: #force_inline proc "c" (self: ^MutableArray) {
     msgSend(nil, self, "removeAllObjects")
 }
 @(objc_type=MutableArray, objc_name="removeObject_inRange")
-MutableArray_removeObject_inRange :: #force_inline proc "c" (self: ^MutableArray, anObject: ^id, range: _NSRange) {
+MutableArray_removeObject_inRange :: #force_inline proc "c" (self: ^MutableArray, anObject: id, range: _NSRange) {
     msgSend(nil, self, "removeObject:inRange:", anObject, range)
 }
 @(objc_type=MutableArray, objc_name="removeObject_")
-MutableArray_removeObject_ :: #force_inline proc "c" (self: ^MutableArray, anObject: ^id) {
+MutableArray_removeObject_ :: #force_inline proc "c" (self: ^MutableArray, anObject: id) {
     msgSend(nil, self, "removeObject:", anObject)
 }
 @(objc_type=MutableArray, objc_name="removeObjectIdenticalTo_inRange")
-MutableArray_removeObjectIdenticalTo_inRange :: #force_inline proc "c" (self: ^MutableArray, anObject: ^id, range: _NSRange) {
+MutableArray_removeObjectIdenticalTo_inRange :: #force_inline proc "c" (self: ^MutableArray, anObject: id, range: _NSRange) {
     msgSend(nil, self, "removeObjectIdenticalTo:inRange:", anObject, range)
 }
 @(objc_type=MutableArray, objc_name="removeObjectIdenticalTo_")
-MutableArray_removeObjectIdenticalTo_ :: #force_inline proc "c" (self: ^MutableArray, anObject: ^id) {
+MutableArray_removeObjectIdenticalTo_ :: #force_inline proc "c" (self: ^MutableArray, anObject: id) {
     msgSend(nil, self, "removeObjectIdenticalTo:", anObject)
 }
 @(objc_type=MutableArray, objc_name="removeObjectsFromIndices")
@@ -101,7 +101,7 @@ MutableArray_setArray :: #force_inline proc "c" (self: ^MutableArray, otherArray
     msgSend(nil, self, "setArray:", otherArray)
 }
 @(objc_type=MutableArray, objc_name="sortUsingFunction")
-MutableArray_sortUsingFunction :: #force_inline proc "c" (self: ^MutableArray, compare: proc "c" (_: ^id, _1: ^id, _2: rawptr) -> Integer, _context: rawptr) {
+MutableArray_sortUsingFunction :: #force_inline proc "c" (self: ^MutableArray, compare: proc "c" (_: id, _1: id, _2: rawptr) -> Integer, _context: rawptr) {
     msgSend(nil, self, "sortUsingFunction:context:", compare, _context)
 }
 @(objc_type=MutableArray, objc_name="sortUsingSelector")
@@ -121,7 +121,7 @@ MutableArray_replaceObjectsAtIndexes :: #force_inline proc "c" (self: ^MutableAr
     msgSend(nil, self, "replaceObjectsAtIndexes:withObjects:", indexes, objects)
 }
 @(objc_type=MutableArray, objc_name="setObject")
-MutableArray_setObject :: #force_inline proc "c" (self: ^MutableArray, obj: ^id, idx: UInteger) {
+MutableArray_setObject :: #force_inline proc "c" (self: ^MutableArray, obj: id, idx: UInteger) {
     msgSend(nil, self, "setObject:atIndexedSubscript:", obj, idx)
 }
 @(objc_type=MutableArray, objc_name="sortUsingComparator")
@@ -169,15 +169,15 @@ MutableArray_array :: #force_inline proc "c" () -> ^Array {
     return msgSend(^Array, MutableArray, "array")
 }
 @(objc_type=MutableArray, objc_name="arrayWithObject", objc_is_class_method=true)
-MutableArray_arrayWithObject :: #force_inline proc "c" (anObject: ^id) -> ^Array {
+MutableArray_arrayWithObject :: #force_inline proc "c" (anObject: id) -> ^Array {
     return msgSend(^Array, MutableArray, "arrayWithObject:", anObject)
 }
 @(objc_type=MutableArray, objc_name="arrayWithObjects_count", objc_is_class_method=true)
-MutableArray_arrayWithObjects_count :: #force_inline proc "c" (objects: ^^id, cnt: UInteger) -> ^Array {
+MutableArray_arrayWithObjects_count :: #force_inline proc "c" (objects: ^id, cnt: UInteger) -> ^Array {
     return msgSend(^Array, MutableArray, "arrayWithObjects:count:", objects, cnt)
 }
 @(objc_type=MutableArray, objc_name="arrayWithObjects_", objc_is_class_method=true)
-MutableArray_arrayWithObjects_ :: #force_inline proc "c" (firstObj: ^id) -> ^Array {
+MutableArray_arrayWithObjects_ :: #force_inline proc "c" (firstObj: id) -> ^Array {
     return msgSend(^Array, MutableArray, "arrayWithObjects:", firstObj)
 }
 @(objc_type=MutableArray, objc_name="arrayWithArray", objc_is_class_method=true)

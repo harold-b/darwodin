@@ -688,7 +688,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).animationKeys(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("animationKeys"), auto_cast animationKeys, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("animationKeys"), auto_cast animationKeys, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.animationForKey != nil {
         animationForKey :: proc "c" (self: ^CA.Layer, _: SEL, key: ^NS.String) -> ^CA.Animation {
@@ -918,7 +918,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).sublayers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("sublayers"), auto_cast sublayers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sublayers"), auto_cast sublayers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSublayers != nil {
         setSublayers :: proc "c" (self: ^CA.Layer, _: SEL, sublayers: ^NS.Array) {
@@ -928,7 +928,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setSublayers(self, sublayers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSublayers:"), auto_cast setSublayers, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSublayers:"), auto_cast setSublayers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.sublayerTransform != nil {
         sublayerTransform :: proc "c" (self: ^CA.Layer, _: SEL) -> CA.Transform3D {
@@ -1738,7 +1738,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).actions(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("actions"), auto_cast actions, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("actions"), auto_cast actions, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setActions != nil {
         setActions :: proc "c" (self: ^CA.Layer, _: SEL, actions: ^NS.Dictionary) {
@@ -1748,7 +1748,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setActions(self, actions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setActions:"), auto_cast setActions, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setActions:"), auto_cast setActions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.name != nil {
         name :: proc "c" (self: ^CA.Layer, _: SEL) -> ^NS.String {
@@ -1828,7 +1828,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraints(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("constraints"), auto_cast constraints, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraints"), auto_cast constraints, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setConstraints != nil {
         setConstraints :: proc "c" (self: ^CA.Layer, _: SEL, constraints: ^NS.Array) {
@@ -1838,7 +1838,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setConstraints(self, constraints)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setConstraints:"), auto_cast setConstraints, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setConstraints:"), auto_cast setConstraints, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.layerWithRemoteClientId != nil {
         layerWithRemoteClientId :: proc "c" (self: Class, _: SEL, client_id: cffi.uint32_t) -> ^CA.Layer {
@@ -2158,7 +2158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -2188,7 +2188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

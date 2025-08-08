@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraintEqualToAnchor_(self, anchor)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintEqualToAnchor:"), auto_cast constraintEqualToAnchor_, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintEqualToAnchor:"), auto_cast constraintEqualToAnchor_, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.constraintGreaterThanOrEqualToAnchor_ != nil {
         constraintGreaterThanOrEqualToAnchor_ :: proc "c" (self: ^AK.LayoutAnchor, _: SEL, anchor: ^AK.LayoutAnchor) -> ^AK.LayoutConstraint {
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraintGreaterThanOrEqualToAnchor_(self, anchor)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintGreaterThanOrEqualToAnchor:"), auto_cast constraintGreaterThanOrEqualToAnchor_, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintGreaterThanOrEqualToAnchor:"), auto_cast constraintGreaterThanOrEqualToAnchor_, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.constraintLessThanOrEqualToAnchor_ != nil {
         constraintLessThanOrEqualToAnchor_ :: proc "c" (self: ^AK.LayoutAnchor, _: SEL, anchor: ^AK.LayoutAnchor) -> ^AK.LayoutConstraint {
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraintLessThanOrEqualToAnchor_(self, anchor)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintLessThanOrEqualToAnchor:"), auto_cast constraintLessThanOrEqualToAnchor_, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintLessThanOrEqualToAnchor:"), auto_cast constraintLessThanOrEqualToAnchor_, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.constraintEqualToAnchor_constant != nil {
         constraintEqualToAnchor_constant :: proc "c" (self: ^AK.LayoutAnchor, _: SEL, anchor: ^AK.LayoutAnchor, c: CG.Float) -> ^AK.LayoutConstraint {
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraintEqualToAnchor_constant(self, anchor, c)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintEqualToAnchor:constant:"), auto_cast constraintEqualToAnchor_constant, "@@:@d") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintEqualToAnchor:constant:"), auto_cast constraintEqualToAnchor_constant, "@@:^voidd") do panic("Failed to register objC method.")
     }
     if vt.constraintGreaterThanOrEqualToAnchor_constant != nil {
         constraintGreaterThanOrEqualToAnchor_constant :: proc "c" (self: ^AK.LayoutAnchor, _: SEL, anchor: ^AK.LayoutAnchor, c: CG.Float) -> ^AK.LayoutConstraint {
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraintGreaterThanOrEqualToAnchor_constant(self, anchor, c)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintGreaterThanOrEqualToAnchor:constant:"), auto_cast constraintGreaterThanOrEqualToAnchor_constant, "@@:@d") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintGreaterThanOrEqualToAnchor:constant:"), auto_cast constraintGreaterThanOrEqualToAnchor_constant, "@@:^voidd") do panic("Failed to register objC method.")
     }
     if vt.constraintLessThanOrEqualToAnchor_constant != nil {
         constraintLessThanOrEqualToAnchor_constant :: proc "c" (self: ^AK.LayoutAnchor, _: SEL, anchor: ^AK.LayoutAnchor, c: CG.Float) -> ^AK.LayoutConstraint {
@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraintLessThanOrEqualToAnchor_constant(self, anchor, c)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintLessThanOrEqualToAnchor:constant:"), auto_cast constraintLessThanOrEqualToAnchor_constant, "@@:@d") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintLessThanOrEqualToAnchor:constant:"), auto_cast constraintLessThanOrEqualToAnchor_constant, "@@:^voidd") do panic("Failed to register objC method.")
     }
     if vt.name != nil {
         name :: proc "c" (self: ^AK.LayoutAnchor, _: SEL) -> ^NS.String {
@@ -178,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).constraintsAffectingLayout(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintsAffectingLayout"), auto_cast constraintsAffectingLayout, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraintsAffectingLayout"), auto_cast constraintsAffectingLayout, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -448,7 +448,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -478,7 +478,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

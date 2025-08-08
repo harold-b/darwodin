@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).insertChildren(self, children, index)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("insertChildren:atIndex:"), auto_cast insertChildren, "v@:@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertChildren:atIndex:"), auto_cast insertChildren, "v@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.removeChildAtIndex != nil {
         removeChildAtIndex :: proc "c" (self: ^NS.XMLDocument, _: SEL, index: NS.UInteger) {
@@ -230,7 +230,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setChildren(self, children)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setChildren:"), auto_cast setChildren, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setChildren:"), auto_cast setChildren, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.addChild != nil {
         addChild :: proc "c" (self: ^NS.XMLDocument, _: SEL, child: ^NS.XMLNode) {
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).objectByApplyingXSLT(self, xslt, arguments, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("objectByApplyingXSLT:arguments:error:"), auto_cast objectByApplyingXSLT, "@@:@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("objectByApplyingXSLT:arguments:error:"), auto_cast objectByApplyingXSLT, "@@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.objectByApplyingXSLTString != nil {
         objectByApplyingXSLTString :: proc "c" (self: ^NS.XMLDocument, _: SEL, xslt: ^NS.String, arguments: ^NS.Dictionary, error: ^^NS.Error) -> id {
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).objectByApplyingXSLTString(self, xslt, arguments, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("objectByApplyingXSLTString:arguments:error:"), auto_cast objectByApplyingXSLTString, "@@:@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("objectByApplyingXSLTString:arguments:error:"), auto_cast objectByApplyingXSLTString, "@@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.objectByApplyingXSLTAtURL != nil {
         objectByApplyingXSLTAtURL :: proc "c" (self: ^NS.XMLDocument, _: SEL, xsltURL: ^NS.URL, argument: ^NS.Dictionary, error: ^^NS.Error) -> id {
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).objectByApplyingXSLTAtURL(self, xsltURL, argument, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("objectByApplyingXSLTAtURL:arguments:error:"), auto_cast objectByApplyingXSLTAtURL, "@@:@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("objectByApplyingXSLTAtURL:arguments:error:"), auto_cast objectByApplyingXSLTAtURL, "@@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.validateAndReturnError != nil {
         validateAndReturnError :: proc "c" (self: ^NS.XMLDocument, _: SEL, error: ^^NS.Error) -> bool {
@@ -490,7 +490,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).elementWithName_children_attributes( name, children, attributes)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("elementWithName:children:attributes:"), auto_cast elementWithName_children_attributes, "@#:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("elementWithName:children:attributes:"), auto_cast elementWithName_children_attributes, "@#:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.attributeWithName_stringValue != nil {
         attributeWithName_stringValue :: proc "c" (self: Class, _: SEL, name: ^NS.String, stringValue: ^NS.String) -> id {
@@ -860,7 +860,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -890,7 +890,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

@@ -31,11 +31,11 @@ Quadtree_initWithBoundingQuad :: #force_inline proc "c" (self: ^Quadtree, quad: 
     return msgSend(^Quadtree, self, "initWithBoundingQuad:minimumCellSize:", quad, minCellSize)
 }
 @(objc_type=Quadtree, objc_name="addElement_withPoint")
-Quadtree_addElement_withPoint :: #force_inline proc "c" (self: ^Quadtree, element: ^NS.Object, point: vector_float2) -> ^QuadtreeNode {
+Quadtree_addElement_withPoint :: #force_inline proc "c" (self: ^Quadtree, element: id, point: vector_float2) -> ^QuadtreeNode {
     return msgSend(^QuadtreeNode, self, "addElement:withPoint:", element, point)
 }
 @(objc_type=Quadtree, objc_name="addElement_withQuad")
-Quadtree_addElement_withQuad :: #force_inline proc "c" (self: ^Quadtree, element: ^NS.Object, quad: Quad) -> ^QuadtreeNode {
+Quadtree_addElement_withQuad :: #force_inline proc "c" (self: ^Quadtree, element: id, quad: Quad) -> ^QuadtreeNode {
     return msgSend(^QuadtreeNode, self, "addElement:withQuad:", element, quad)
 }
 @(objc_type=Quadtree, objc_name="elementsAtPoint")
@@ -47,11 +47,11 @@ Quadtree_elementsInQuad :: #force_inline proc "c" (self: ^Quadtree, quad: Quad) 
     return msgSend(^NS.Array, self, "elementsInQuad:", quad)
 }
 @(objc_type=Quadtree, objc_name="removeElement_")
-Quadtree_removeElement_ :: #force_inline proc "c" (self: ^Quadtree, element: ^NS.Object) -> bool {
+Quadtree_removeElement_ :: #force_inline proc "c" (self: ^Quadtree, element: id) -> bool {
     return msgSend(bool, self, "removeElement:", element)
 }
 @(objc_type=Quadtree, objc_name="removeElement_withNode")
-Quadtree_removeElement_withNode :: #force_inline proc "c" (self: ^Quadtree, data: ^NS.Object, node: ^QuadtreeNode) -> bool {
+Quadtree_removeElement_withNode :: #force_inline proc "c" (self: ^Quadtree, data: id, node: ^QuadtreeNode) -> bool {
     return msgSend(bool, self, "removeElement:withNode:", data, node)
 }
 @(objc_type=Quadtree, objc_name="load", objc_is_class_method=true)

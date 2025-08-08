@@ -22,8 +22,8 @@ Dictionary :: struct { using _: Object,
 }
 
 @(objc_type=Dictionary, objc_name="objectForKey")
-Dictionary_objectForKey :: #force_inline proc "c" (self: ^Dictionary, aKey: ^id) -> ^id {
-    return msgSend(^id, self, "objectForKey:", aKey)
+Dictionary_objectForKey :: #force_inline proc "c" (self: ^Dictionary, aKey: id) -> id {
+    return msgSend(id, self, "objectForKey:", aKey)
 }
 @(objc_type=Dictionary, objc_name="keyEnumerator")
 Dictionary_keyEnumerator :: #force_inline proc "c" (self: ^Dictionary) -> ^Enumerator {
@@ -34,7 +34,7 @@ Dictionary_init :: #force_inline proc "c" (self: ^Dictionary) -> ^Dictionary {
     return msgSend(^Dictionary, self, "init")
 }
 @(objc_type=Dictionary, objc_name="initWithObjects_forKeys_count")
-Dictionary_initWithObjects_forKeys_count :: #force_inline proc "c" (self: ^Dictionary, objects: ^^id, keys: ^^Copying, cnt: UInteger) -> ^Dictionary {
+Dictionary_initWithObjects_forKeys_count :: #force_inline proc "c" (self: ^Dictionary, objects: ^id, keys: ^^Copying, cnt: UInteger) -> ^Dictionary {
     return msgSend(^Dictionary, self, "initWithObjects:forKeys:count:", objects, keys, cnt)
 }
 @(objc_type=Dictionary, objc_name="initWithCoder")
@@ -46,7 +46,7 @@ Dictionary_count :: #force_inline proc "c" (self: ^Dictionary) -> UInteger {
     return msgSend(UInteger, self, "count")
 }
 @(objc_type=Dictionary, objc_name="allKeysForObject")
-Dictionary_allKeysForObject :: #force_inline proc "c" (self: ^Dictionary, anObject: ^id) -> ^Array {
+Dictionary_allKeysForObject :: #force_inline proc "c" (self: ^Dictionary, anObject: id) -> ^Array {
     return msgSend(^Array, self, "allKeysForObject:", anObject)
 }
 @(objc_type=Dictionary, objc_name="descriptionWithLocale_")
@@ -66,7 +66,7 @@ Dictionary_objectEnumerator :: #force_inline proc "c" (self: ^Dictionary) -> ^En
     return msgSend(^Enumerator, self, "objectEnumerator")
 }
 @(objc_type=Dictionary, objc_name="objectsForKeys")
-Dictionary_objectsForKeys :: #force_inline proc "c" (self: ^Dictionary, keys: ^Array, marker: ^id) -> ^Array {
+Dictionary_objectsForKeys :: #force_inline proc "c" (self: ^Dictionary, keys: ^Array, marker: id) -> ^Array {
     return msgSend(^Array, self, "objectsForKeys:notFoundMarker:", keys, marker)
 }
 @(objc_type=Dictionary, objc_name="writeToURL_error")
@@ -78,19 +78,19 @@ Dictionary_keysSortedByValueUsingSelector :: #force_inline proc "c" (self: ^Dict
     return msgSend(^Array, self, "keysSortedByValueUsingSelector:", comparator)
 }
 @(objc_type=Dictionary, objc_name="getObjects_andKeys_count")
-Dictionary_getObjects_andKeys_count :: #force_inline proc "c" (self: ^Dictionary, objects: ^^id, keys: ^^id, count: UInteger) {
+Dictionary_getObjects_andKeys_count :: #force_inline proc "c" (self: ^Dictionary, objects: ^id, keys: ^id, count: UInteger) {
     msgSend(nil, self, "getObjects:andKeys:count:", objects, keys, count)
 }
 @(objc_type=Dictionary, objc_name="objectForKeyedSubscript")
-Dictionary_objectForKeyedSubscript :: #force_inline proc "c" (self: ^Dictionary, key: ^id) -> ^id {
-    return msgSend(^id, self, "objectForKeyedSubscript:", key)
+Dictionary_objectForKeyedSubscript :: #force_inline proc "c" (self: ^Dictionary, key: id) -> id {
+    return msgSend(id, self, "objectForKeyedSubscript:", key)
 }
 @(objc_type=Dictionary, objc_name="enumerateKeysAndObjectsUsingBlock")
-Dictionary_enumerateKeysAndObjectsUsingBlock :: #force_inline proc "c" (self: ^Dictionary, block: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool))) {
+Dictionary_enumerateKeysAndObjectsUsingBlock :: #force_inline proc "c" (self: ^Dictionary, block: ^Objc_Block(proc "c" (key: id, obj: id, stop: ^bool))) {
     msgSend(nil, self, "enumerateKeysAndObjectsUsingBlock:", block)
 }
 @(objc_type=Dictionary, objc_name="enumerateKeysAndObjectsWithOptions")
-Dictionary_enumerateKeysAndObjectsWithOptions :: #force_inline proc "c" (self: ^Dictionary, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool))) {
+Dictionary_enumerateKeysAndObjectsWithOptions :: #force_inline proc "c" (self: ^Dictionary, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (key: id, obj: id, stop: ^bool))) {
     msgSend(nil, self, "enumerateKeysAndObjectsWithOptions:usingBlock:", opts, block)
 }
 @(objc_type=Dictionary, objc_name="keysSortedByValueUsingComparator")
@@ -102,11 +102,11 @@ Dictionary_keysSortedByValueWithOptions :: #force_inline proc "c" (self: ^Dictio
     return msgSend(^Array, self, "keysSortedByValueWithOptions:usingComparator:", opts, cmptr)
 }
 @(objc_type=Dictionary, objc_name="keysOfEntriesPassingTest")
-Dictionary_keysOfEntriesPassingTest :: #force_inline proc "c" (self: ^Dictionary, predicate: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool)) -> ^Set {
+Dictionary_keysOfEntriesPassingTest :: #force_inline proc "c" (self: ^Dictionary, predicate: ^Objc_Block(proc "c" (key: id, obj: id, stop: ^bool) -> bool)) -> ^Set {
     return msgSend(^Set, self, "keysOfEntriesPassingTest:", predicate)
 }
 @(objc_type=Dictionary, objc_name="keysOfEntriesWithOptions")
-Dictionary_keysOfEntriesWithOptions :: #force_inline proc "c" (self: ^Dictionary, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (key: ^id, obj: ^id, stop: ^bool) -> bool)) -> ^Set {
+Dictionary_keysOfEntriesWithOptions :: #force_inline proc "c" (self: ^Dictionary, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (key: id, obj: id, stop: ^bool) -> bool)) -> ^Set {
     return msgSend(^Set, self, "keysOfEntriesWithOptions:passingTest:", opts, predicate)
 }
 @(objc_type=Dictionary, objc_name="allKeys")
@@ -126,7 +126,7 @@ Dictionary_descriptionInStringsFileFormat :: #force_inline proc "c" (self: ^Dict
     return msgSend(^String, self, "descriptionInStringsFileFormat")
 }
 @(objc_type=Dictionary, objc_name="getObjects_andKeys")
-Dictionary_getObjects_andKeys :: #force_inline proc "c" (self: ^Dictionary, objects: ^^id, keys: ^^id) {
+Dictionary_getObjects_andKeys :: #force_inline proc "c" (self: ^Dictionary, objects: ^id, keys: ^id) {
     msgSend(nil, self, "getObjects:andKeys:", objects, keys)
 }
 @(objc_type=Dictionary, objc_name="dictionaryWithContentsOfFile", objc_is_class_method=true)
@@ -158,11 +158,11 @@ Dictionary_dictionary :: #force_inline proc "c" () -> ^Dictionary {
     return msgSend(^Dictionary, Dictionary, "dictionary")
 }
 @(objc_type=Dictionary, objc_name="dictionaryWithObject", objc_is_class_method=true)
-Dictionary_dictionaryWithObject :: #force_inline proc "c" (object: ^id, key: ^Copying) -> ^Dictionary {
+Dictionary_dictionaryWithObject :: #force_inline proc "c" (object: id, key: ^Copying) -> ^Dictionary {
     return msgSend(^Dictionary, Dictionary, "dictionaryWithObject:forKey:", object, key)
 }
 @(objc_type=Dictionary, objc_name="dictionaryWithObjects_forKeys_count", objc_is_class_method=true)
-Dictionary_dictionaryWithObjects_forKeys_count :: #force_inline proc "c" (objects: ^^id, keys: ^^Copying, cnt: UInteger) -> ^Dictionary {
+Dictionary_dictionaryWithObjects_forKeys_count :: #force_inline proc "c" (objects: ^id, keys: ^^Copying, cnt: UInteger) -> ^Dictionary {
     return msgSend(^Dictionary, Dictionary, "dictionaryWithObjects:forKeys:count:", objects, keys, cnt)
 }
 @(objc_type=Dictionary, objc_name="dictionaryWithObjectsAndKeys", objc_is_class_method=true)
@@ -206,7 +206,7 @@ Dictionary_sharedKeySetForKeys :: #force_inline proc "c" (keys: ^Array) -> id {
     return msgSend(id, Dictionary, "sharedKeySetForKeys:", keys)
 }
 @(objc_type=Dictionary, objc_name="countByEnumeratingWithState")
-Dictionary_countByEnumeratingWithState :: #force_inline proc "c" (self: ^Dictionary, state: ^FastEnumerationState, buffer: ^^id, len: UInteger) -> UInteger {
+Dictionary_countByEnumeratingWithState :: #force_inline proc "c" (self: ^Dictionary, state: ^FastEnumerationState, buffer: ^id, len: UInteger) -> UInteger {
     return msgSend(UInteger, self, "countByEnumeratingWithState:objects:count:", state, buffer, len)
 }
 @(objc_type=Dictionary, objc_name="fileSize")
@@ -274,8 +274,8 @@ Dictionary_fileGroupOwnerAccountID :: #force_inline proc "c" (self: ^Dictionary)
     return msgSend(^Number, self, "fileGroupOwnerAccountID")
 }
 @(objc_type=Dictionary, objc_name="valueForKey")
-Dictionary_valueForKey :: #force_inline proc "c" (self: ^Dictionary, key: ^String) -> ^id {
-    return msgSend(^id, self, "valueForKey:", key)
+Dictionary_valueForKey :: #force_inline proc "c" (self: ^Dictionary, key: ^String) -> id {
+    return msgSend(id, self, "valueForKey:", key)
 }
 @(objc_type=Dictionary, objc_name="supportsSecureCoding", objc_is_class_method=true)
 Dictionary_supportsSecureCoding :: #force_inline proc "c" () -> bool {

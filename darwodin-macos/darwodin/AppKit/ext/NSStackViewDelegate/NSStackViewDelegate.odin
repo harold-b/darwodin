@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).stackView_willDetachViews(self, stackView, views)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("stackView:willDetachViews:"), auto_cast stackView_willDetachViews, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("stackView:willDetachViews:"), auto_cast stackView_willDetachViews, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.stackView_didReattachViews != nil {
         stackView_didReattachViews :: proc "c" (self: ^AK.StackViewDelegate, _: SEL, stackView: ^AK.StackView, views: ^NS.Array) {
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).stackView_didReattachViews(self, stackView, views)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("stackView:didReattachViews:"), auto_cast stackView_didReattachViews, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("stackView:didReattachViews:"), auto_cast stackView_didReattachViews, "v@:@^void") do panic("Failed to register objC method.")
     }
 }
 

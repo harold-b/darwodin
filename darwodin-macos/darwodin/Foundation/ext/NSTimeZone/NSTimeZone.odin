@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).abbreviationDictionary()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("abbreviationDictionary"), auto_cast abbreviationDictionary, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("abbreviationDictionary"), auto_cast abbreviationDictionary, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.isEqualToTimeZone != nil {
         isEqualToTimeZone :: proc "c" (self: ^NS.TimeZone, _: SEL, aTimeZone: ^NS.TimeZone) -> bool {
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).knownTimeZoneNames()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("knownTimeZoneNames"), auto_cast knownTimeZoneNames, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("knownTimeZoneNames"), auto_cast knownTimeZoneNames, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.setAbbreviationDictionary != nil {
         setAbbreviationDictionary :: proc "c" (self: Class, _: SEL, abbreviationDictionary: ^NS.Dictionary) {
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setAbbreviationDictionary( abbreviationDictionary)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setAbbreviationDictionary:"), auto_cast setAbbreviationDictionary, "v#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("setAbbreviationDictionary:"), auto_cast setAbbreviationDictionary, "v#:^void") do panic("Failed to register objC method.")
     }
     if vt.timeZoneDataVersion != nil {
         timeZoneDataVersion :: proc "c" (self: Class, _: SEL) -> ^NS.String {
@@ -673,7 +673,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -703,7 +703,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

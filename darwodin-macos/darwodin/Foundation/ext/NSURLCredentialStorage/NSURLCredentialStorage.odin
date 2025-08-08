@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).credentialsForProtectionSpace(self, space)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("credentialsForProtectionSpace:"), auto_cast credentialsForProtectionSpace, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("credentialsForProtectionSpace:"), auto_cast credentialsForProtectionSpace, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.setCredential_forProtectionSpace != nil {
         setCredential_forProtectionSpace :: proc "c" (self: ^NS.URLCredentialStorage, _: SEL, credential: ^NS.URLCredential, space: ^NS.URLProtectionSpace) {
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).removeCredential_forProtectionSpace_options(self, credential, space, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("removeCredential:forProtectionSpace:options:"), auto_cast removeCredential_forProtectionSpace_options, "v@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeCredential:forProtectionSpace:options:"), auto_cast removeCredential_forProtectionSpace_options, "v@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.defaultCredentialForProtectionSpace != nil {
         defaultCredentialForProtectionSpace :: proc "c" (self: ^NS.URLCredentialStorage, _: SEL, space: ^NS.URLProtectionSpace) -> ^NS.URLCredential {
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).allCredentials(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("allCredentials"), auto_cast allCredentials, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allCredentials"), auto_cast allCredentials, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.getCredentialsForProtectionSpace != nil {
         getCredentialsForProtectionSpace :: proc "c" (self: ^NS.URLCredentialStorage, _: SEL, protectionSpace: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credentials: ^NS.Dictionary))) {
@@ -185,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).removeCredential_forProtectionSpace_options_task(self, credential, protectionSpace, options, task)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("removeCredential:forProtectionSpace:options:task:"), auto_cast removeCredential_forProtectionSpace_options_task, "v@:@@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeCredential:forProtectionSpace:options:task:"), auto_cast removeCredential_forProtectionSpace_options_task, "v@:@@^void@") do panic("Failed to register objC method.")
     }
     if vt.getDefaultCredentialForProtectionSpace != nil {
         getDefaultCredentialForProtectionSpace :: proc "c" (self: ^NS.URLCredentialStorage, _: SEL, space: ^NS.URLProtectionSpace, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credential: ^NS.URLCredential))) {
@@ -475,7 +475,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -505,7 +505,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

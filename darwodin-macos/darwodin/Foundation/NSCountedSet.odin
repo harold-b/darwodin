@@ -35,7 +35,7 @@ CountedSet_initWithSet :: #force_inline proc "c" (self: ^CountedSet, set: ^Set) 
     return msgSend(^CountedSet, self, "initWithSet:", set)
 }
 @(objc_type=CountedSet, objc_name="countForObject")
-CountedSet_countForObject :: #force_inline proc "c" (self: ^CountedSet, object: ^id) -> UInteger {
+CountedSet_countForObject :: #force_inline proc "c" (self: ^CountedSet, object: id) -> UInteger {
     return msgSend(UInteger, self, "countForObject:", object)
 }
 @(objc_type=CountedSet, objc_name="objectEnumerator")
@@ -43,11 +43,11 @@ CountedSet_objectEnumerator :: #force_inline proc "c" (self: ^CountedSet) -> ^En
     return msgSend(^Enumerator, self, "objectEnumerator")
 }
 @(objc_type=CountedSet, objc_name="addObject")
-CountedSet_addObject :: #force_inline proc "c" (self: ^CountedSet, object: ^id) {
+CountedSet_addObject :: #force_inline proc "c" (self: ^CountedSet, object: id) {
     msgSend(nil, self, "addObject:", object)
 }
 @(objc_type=CountedSet, objc_name="removeObject")
-CountedSet_removeObject :: #force_inline proc "c" (self: ^CountedSet, object: ^id) {
+CountedSet_removeObject :: #force_inline proc "c" (self: ^CountedSet, object: id) {
     msgSend(nil, self, "removeObject:", object)
 }
 @(objc_type=CountedSet, objc_name="setWithCapacity", objc_is_class_method=true)
@@ -59,15 +59,15 @@ CountedSet_set :: #force_inline proc "c" () -> ^Set {
     return msgSend(^Set, CountedSet, "set")
 }
 @(objc_type=CountedSet, objc_name="setWithObject", objc_is_class_method=true)
-CountedSet_setWithObject :: #force_inline proc "c" (object: ^id) -> ^Set {
+CountedSet_setWithObject :: #force_inline proc "c" (object: id) -> ^Set {
     return msgSend(^Set, CountedSet, "setWithObject:", object)
 }
 @(objc_type=CountedSet, objc_name="setWithObjects_count", objc_is_class_method=true)
-CountedSet_setWithObjects_count :: #force_inline proc "c" (objects: ^^id, cnt: UInteger) -> ^Set {
+CountedSet_setWithObjects_count :: #force_inline proc "c" (objects: ^id, cnt: UInteger) -> ^Set {
     return msgSend(^Set, CountedSet, "setWithObjects:count:", objects, cnt)
 }
 @(objc_type=CountedSet, objc_name="setWithObjects_", objc_is_class_method=true)
-CountedSet_setWithObjects_ :: #force_inline proc "c" (firstObj: ^id) -> ^Set {
+CountedSet_setWithObjects_ :: #force_inline proc "c" (firstObj: id) -> ^Set {
     return msgSend(^Set, CountedSet, "setWithObjects:", firstObj)
 }
 @(objc_type=CountedSet, objc_name="setWithSet", objc_is_class_method=true)

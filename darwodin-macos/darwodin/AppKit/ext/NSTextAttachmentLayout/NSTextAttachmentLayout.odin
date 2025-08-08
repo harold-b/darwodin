@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).imageForBounds(self, bounds, attributes, location, textContainer)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("imageForBounds:attributes:location:textContainer:"), auto_cast imageForBounds, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("imageForBounds:attributes:location:textContainer:"), auto_cast imageForBounds, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}^void@@") do panic("Failed to register objC method.")
     }
     if vt.attachmentBoundsForAttributes != nil {
         attachmentBoundsForAttributes :: proc "c" (self: ^AK.TextAttachmentLayout, _: SEL, attributes: ^NS.Dictionary, location: ^AK.TextLocation, textContainer: ^AK.TextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect {
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).attachmentBoundsForAttributes(self, attributes, location, textContainer, proposedLineFragment, position)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), auto_cast attachmentBoundsForAttributes, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@@@{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), auto_cast attachmentBoundsForAttributes, "{CGRect={CGPoint=dd}{CGSize=dd}}@:^void@@{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.viewProviderForParentView != nil {
         viewProviderForParentView :: proc "c" (self: ^AK.TextAttachmentLayout, _: SEL, parentView: ^AK.View, location: ^AK.TextLocation, textContainer: ^AK.TextContainer) -> ^AK.TextAttachmentViewProvider {

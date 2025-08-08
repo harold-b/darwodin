@@ -135,7 +135,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).parser_didStartElement_namespaceURI_qualifiedName_attributes(self, parser, elementName, namespaceURI, qName, attributeDict)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("parser:didStartElement:namespaceURI:qualifiedName:attributes:"), auto_cast parser_didStartElement_namespaceURI_qualifiedName_attributes, "v@:@@@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("parser:didStartElement:namespaceURI:qualifiedName:attributes:"), auto_cast parser_didStartElement_namespaceURI_qualifiedName_attributes, "v@:@@@@^void") do panic("Failed to register objC method.")
     }
     if vt.parser_didEndElement_namespaceURI_qualifiedName != nil {
         parser_didEndElement_namespaceURI_qualifiedName :: proc "c" (self: ^NS.XMLParserDelegate, _: SEL, parser: ^NS.XMLParser, elementName: ^NS.String, namespaceURI: ^NS.String, qName: ^NS.String) {

@@ -333,7 +333,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).items(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("items"), auto_cast items, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("items"), auto_cast items, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.visibleItems != nil {
         visibleItems :: proc "c" (self: ^AK.Toolbar, _: SEL) -> ^NS.Array {
@@ -343,7 +343,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).visibleItems(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("visibleItems"), auto_cast visibleItems, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("visibleItems"), auto_cast visibleItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.itemIdentifiers != nil {
         itemIdentifiers :: proc "c" (self: ^AK.Toolbar, _: SEL) -> ^NS.Array {
@@ -353,7 +353,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).itemIdentifiers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifiers"), auto_cast itemIdentifiers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifiers"), auto_cast itemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setItemIdentifiers != nil {
         setItemIdentifiers :: proc "c" (self: ^AK.Toolbar, _: SEL, itemIdentifiers: ^NS.Array) {
@@ -363,7 +363,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setItemIdentifiers(self, itemIdentifiers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setItemIdentifiers:"), auto_cast setItemIdentifiers, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setItemIdentifiers:"), auto_cast setItemIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.centeredItemIdentifiers != nil {
         centeredItemIdentifiers :: proc "c" (self: ^AK.Toolbar, _: SEL) -> ^NS.Set {
@@ -373,7 +373,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).centeredItemIdentifiers(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("centeredItemIdentifiers"), auto_cast centeredItemIdentifiers, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("centeredItemIdentifiers"), auto_cast centeredItemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setCenteredItemIdentifiers != nil {
         setCenteredItemIdentifiers :: proc "c" (self: ^AK.Toolbar, _: SEL, centeredItemIdentifiers: ^NS.Set) {
@@ -383,7 +383,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setCenteredItemIdentifiers(self, centeredItemIdentifiers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setCenteredItemIdentifiers:"), auto_cast setCenteredItemIdentifiers, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCenteredItemIdentifiers:"), auto_cast setCenteredItemIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.autosavesConfiguration != nil {
         autosavesConfiguration :: proc "c" (self: ^AK.Toolbar, _: SEL) -> bool {
@@ -433,7 +433,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setConfigurationFromDictionary(self, configDict)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setConfigurationFromDictionary:"), auto_cast setConfigurationFromDictionary, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setConfigurationFromDictionary:"), auto_cast setConfigurationFromDictionary, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.sizeMode != nil {
         sizeMode :: proc "c" (self: ^AK.Toolbar, _: SEL) -> AK.ToolbarSizeMode {
@@ -563,7 +563,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).configurationDictionary(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("configurationDictionary"), auto_cast configurationDictionary, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("configurationDictionary"), auto_cast configurationDictionary, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.load != nil {
         load :: proc "c" (self: Class, _: SEL) {
@@ -833,7 +833,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -863,7 +863,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedUnarchiver != nil {
         classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {

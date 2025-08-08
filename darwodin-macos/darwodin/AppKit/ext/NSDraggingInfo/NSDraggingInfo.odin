@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).namesOfPromisedFilesDroppedAtDestination(self, dropDestination)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("namesOfPromisedFilesDroppedAtDestination:"), auto_cast namesOfPromisedFilesDroppedAtDestination, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("namesOfPromisedFilesDroppedAtDestination:"), auto_cast namesOfPromisedFilesDroppedAtDestination, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.enumerateDraggingItemsWithOptions != nil {
         enumerateDraggingItemsWithOptions :: proc "c" (self: ^AK.DraggingInfo, _: SEL, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool))) {
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).enumerateDraggingItemsWithOptions(self, enumOpts, view, classArray, searchOptions, block)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:"), auto_cast enumerateDraggingItemsWithOptions, "v@:L@@@?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:"), auto_cast enumerateDraggingItemsWithOptions, "v@:L@^void^void?") do panic("Failed to register objC method.")
     }
     if vt.resetSpringLoading != nil {
         resetSpringLoading :: proc "c" (self: ^AK.DraggingInfo, _: SEL) {

@@ -377,7 +377,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).outlineView_userDidChangeVisibilityOfTableColumns(self, outlineView, columns)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:userDidChangeVisibilityOfTableColumns:"), auto_cast outlineView_userDidChangeVisibilityOfTableColumns, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:userDidChangeVisibilityOfTableColumns:"), auto_cast outlineView_userDidChangeVisibilityOfTableColumns, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.outlineViewSelectionDidChange != nil {
         outlineViewSelectionDidChange :: proc "c" (self: ^AK.OutlineViewDelegate, _: SEL, notification: ^NS.Notification) {

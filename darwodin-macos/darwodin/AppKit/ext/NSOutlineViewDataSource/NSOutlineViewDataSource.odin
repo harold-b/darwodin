@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).outlineView_sortDescriptorsDidChange(self, outlineView, oldDescriptors)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:sortDescriptorsDidChange:"), auto_cast outlineView_sortDescriptorsDidChange, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:sortDescriptorsDidChange:"), auto_cast outlineView_sortDescriptorsDidChange, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.outlineView_pasteboardWriterForItem != nil {
         outlineView_pasteboardWriterForItem :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, item: id) -> ^AK.PasteboardWriting {
@@ -204,7 +204,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems(self, outlineView, dropDestination, items)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:"), auto_cast outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:"), auto_cast outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems, "^void@:@@@") do panic("Failed to register objC method.")
     }
 }
 
