@@ -1525,10 +1525,10 @@ RunLoopMode :: distinct ^String
 Comparator :: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> ComparisonResult)
 
 /// NSZone
-Zone :: distinct _NSZone
+Zone :: _NSZone
 
 /// NSRange
-Range :: distinct _NSRange
+Range :: _NSRange
 
 /// unichar
 unichar :: distinct cffi.ushort
