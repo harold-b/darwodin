@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+frameworks=()
+use_ios=
+lite=
+cgen_args=()
+
+while true; do
+  case $1 in
+    -ios)
+      use_ios=1
+    ;;
+    -l)
+      lite=1
+    ;;
+    -lite)
+      lite=1
+    ;;
+    *)
+      frameworks+=($1)
+    ;;
+  esac
+  shift || break
+done
+
+if [[ 0 -eq ${#frameworks[@]} ]]; then
+  echo "Error: No frameworks specified."
+  exit 1
+fi
+
+source ./config
+
+out_folder=$(darwodin_get_output_folder "${use_ios}" "${lite}")
+appkit=AppKit
+
+if [[ ${lite} -eq 1 ]]; then
+  cgen_args+=(--odin-elaborated-objc-classes ../lite-classes)
+fi
+
+if [[ ${use_ios} -eq 1 ]]; then
+  appkit=UIKit
+fi
+
+cgen_args+=()
+
+out_path=../${out_folder}
+for f in ${frameworks[@]}; do
+    f=$(darwodin_filter_framework $f $use_ios)
+    echo "$f"
+
+    framework_lower="$(echo $f | tr '[:upper:]' '[:lower:]')"
+    framework_cfg="configs/${framework_lower}.yml"
+
+    args=()
+    if [[ ${use_ios} -eq 1 ]]; then
+      args=(--def definitions/ios/${framework_lower}.json)
+    fi
+
+    # Implicitly add AppKit/UIKit dependency (external types) for higher-level frameowrks.
+    if [ ${framework_lower} != "corefoundation" ] &&
+       [ ${framework_lower} != "coregraphics" ] &&
+       [ ${framework_lower} != "coretext" ] &&
+       [ ${framework_lower} != "security" ] &&
+       [ ${framework_lower} != "fsevents" ] &&
+       [ ${framework_lower} != "foundation" ] &&
+       [ ${framework_lower} != "quartzcore" ] &&
+       [ ${framework_lower} != "appkit" ] &&
+       [ ${framework_lower} != "uikit" ]; then
+
+        args+=(--odin-external-type ../exports/${appkit}.exports.yml)
+    fi
+
+    # Test generics
+    # args+=(--odin-objc-generics)
+
+    # echo "${out_path}"
+    csgen ${cgen_args[@]} ${args[@]} --odin-out "${out_path}" "$framework_cfg"
+done
+
+
+# Copy Objective-C sources
+# # if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
+#   if [[ ! -h "${out_folder}/darwodin/ObjectiveC" ]]; then
+#     # ln -s "$(pwd)/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
+#     cp -r "ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
+#   fi
+# fi

@@ -1,0 +1,196 @@
+PackageName: "GameKit"
+ImportName: "GK"
+
+Structs:
+    GKBox: GK.Box
+    GKQuad: GK.Quad
+    GKTriangle: GK.Triangle
+
+Typedefs:
+    GKMatchProperties: GK.MatchProperties
+    GKChallengeComposeCompletionBlock: GK.ChallengeComposeCompletionBlock
+    GKChallengeComposeHandler: GK.ChallengeComposeHandler
+    GKInviteeResponse: GK.InviteeResponse
+
+Enums:
+    GKMeshGraphTriangulationMode: GK.MeshGraphTriangulationMode
+    GKRTreeSplitStrategy: GK.RTreeSplitStrategy
+    GKErrorCode: GK.ErrorCode
+    GKPhotoSize: GK.PhotoSize
+    GKLeaderboardTimeScope: GK.LeaderboardTimeScope
+    GKLeaderboardPlayerScope: GK.LeaderboardPlayerScope
+    GKLeaderboardType: GK.LeaderboardType
+    GKGameCenterViewControllerState: GK.GameCenterViewControllerState
+    GKAccessPointLocation: GK.AccessPointLocation
+    GKChallengeState: GK.ChallengeState
+    GKConnectionState: GK.ConnectionState
+    GKTransportType: GK.TransportType
+    GKGameSessionErrorCode: GK.GameSessionErrorCode
+    GKTurnBasedMatchStatus: GK.TurnBasedMatchStatus
+    GKTurnBasedParticipantStatus: GK.TurnBasedParticipantStatus
+    GKTurnBasedMatchOutcome: GK.TurnBasedMatchOutcome
+    GKTurnBasedExchangeStatus: GK.TurnBasedExchangeStatus
+    GKInviteRecipientResponse: GK.InviteRecipientResponse
+    GKMatchType: GK.MatchType
+    GKFriendsAuthorizationStatus: GK.FriendsAuthorizationStatus
+    GKMatchSendDataMode: GK.MatchSendDataMode
+    GKPlayerConnectionState: GK.PlayerConnectionState
+    GKMatchmakingMode: GK.MatchmakingMode
+    GKSendDataMode: GK.SendDataMode
+    GKSessionMode: GK.SessionMode
+    GKPeerConnectionState: GK.PeerConnectionState
+    GKVoiceChatServiceError: GK.VoiceChatServiceError
+    GKSessionError: GK.SessionError
+    GKVoiceChatPlayerState: GK.VoiceChatPlayerState
+
+ObjCClasses:
+    GKEntity: GK.Entity
+    GKComponent: GK.Component
+    GKComponentSystem: GK.ComponentSystem
+    GKObstacle: GK.Obstacle
+    GKCircleObstacle: GK.CircleObstacle
+    GKPolygonObstacle: GK.PolygonObstacle
+    GKSphereObstacle: GK.SphereObstacle
+    GKGoal: GK.Goal
+    GKBehavior: GK.Behavior
+    GKAgent: GK.Agent
+    GKPath: GK.Path
+    GKAgent2D: GK.Agent2D
+    GKAgent3D: GK.Agent3D
+    GKCompositeBehavior: GK.CompositeBehavior
+    GKGraphNode: GK.GraphNode
+    GKGraphNode2D: GK.GraphNode2D
+    GKGridGraphNode: GK.GridGraphNode
+    GKGraph: GK.Graph
+    GKGridGraph: GK.GridGraph
+    GKObstacleGraph: GK.ObstacleGraph
+    GKGraphNode3D: GK.GraphNode3D
+    GKRandomSource: GK.RandomSource
+    GKARC4RandomSource: GK.ARC4RandomSource
+    GKLinearCongruentialRandomSource: GK.LinearCongruentialRandomSource
+    GKMersenneTwisterRandomSource: GK.MersenneTwisterRandomSource
+    GKMeshGraph: GK.MeshGraph
+    GKMinmaxStrategist: GK.MinmaxStrategist
+    GKMonteCarloStrategist: GK.MonteCarloStrategist
+    GKDecisionNode: GK.DecisionNode
+    GKDecisionTree: GK.DecisionTree
+    GKNoiseSource: GK.NoiseSource
+    GKCoherentNoiseSource: GK.CoherentNoiseSource
+    GKPerlinNoiseSource: GK.PerlinNoiseSource
+    GKBillowNoiseSource: GK.BillowNoiseSource
+    GKRidgedNoiseSource: GK.RidgedNoiseSource
+    GKVoronoiNoiseSource: GK.VoronoiNoiseSource
+    GKConstantNoiseSource: GK.ConstantNoiseSource
+    GKCylindersNoiseSource: GK.CylindersNoiseSource
+    GKSpheresNoiseSource: GK.SpheresNoiseSource
+    GKCheckerboardNoiseSource: GK.CheckerboardNoiseSource
+    GKNoise: GK.Noise
+    GKNoiseMap: GK.NoiseMap
+    GKOctreeNode: GK.OctreeNode
+    GKOctree: GK.Octree
+    GKQuadtreeNode: GK.QuadtreeNode
+    GKQuadtree: GK.Quadtree
+    GKRandomDistribution: GK.RandomDistribution
+    GKGaussianDistribution: GK.GaussianDistribution
+    GKShuffledDistribution: GK.ShuffledDistribution
+    GKRTree: GK.RTree
+    GKRule: GK.Rule
+    GKRuleSystem: GK.RuleSystem
+    GKNSPredicateRule: GK.NSPredicateRule
+    GKStateMachine: GK.StateMachine
+    GKState: GK.State
+    GKScene: GK.Scene
+    GKSKNodeComponent: GK.SKNodeComponent
+    GKSCNNodeComponent: GK.SCNNodeComponent
+    GKBasePlayer: GK.BasePlayer
+    GKPlayerInternal: GK.PlayerInternal
+    GKGame: GK.Game
+    GKLocalPlayer: GK.LocalPlayer
+    GKPlayer: GK.Player
+    GKScore: GK.Score
+    GKLeaderboardEntry: GK.LeaderboardEntry
+    GKLeaderboard: GK.Leaderboard
+    GKAchievement: GK.Achievement
+    GKDialogController: GK.DialogController
+    GKGameCenterViewController: GK.GameCenterViewController
+    GKAccessPoint: GK.AccessPoint
+    GKAchievementDescription: GK.AchievementDescription
+    GKAchievementViewController: GK.AchievementViewController
+    GKLeaderboardScore: GK.LeaderboardScore
+    GKChallenge: GK.Challenge
+    GKScoreChallenge: GK.ScoreChallenge
+    GKAchievementChallenge: GK.AchievementChallenge
+    GKChallengeEventHandler: GK.ChallengeEventHandler
+    GKChallengesViewController: GK.ChallengesViewController
+    GKCloudPlayer: GK.CloudPlayer
+    GKFriendRequestComposeViewController: GK.FriendRequestComposeViewController
+    GKGameSession: GK.GameSession
+    GKLeaderboardSet: GK.LeaderboardSet
+    GKLeaderboardViewController: GK.LeaderboardViewController
+    GKMatchRequest: GK.MatchRequest
+    GKTurnBasedMatch: GK.TurnBasedMatch
+    GKTurnBasedExchange: GK.TurnBasedExchange
+    GKTurnBasedExchangeReply: GK.TurnBasedExchangeReply
+    GKTurnBasedParticipant: GK.TurnBasedParticipant
+    GKTurnBasedEventHandler: GK.TurnBasedEventHandler
+    GKMatch: GK.Match
+    GKInvite: GK.Invite
+    GKMatchedPlayers: GK.MatchedPlayers
+    GKMatchmaker: GK.Matchmaker
+    GKSavedGame: GK.SavedGame
+    GKVoiceChat: GK.VoiceChat
+    GKThreadsafeDictionary: GK.ThreadsafeDictionary
+    GKMatchmakerViewController: GK.MatchmakerViewController
+    GKNotificationBanner: GK.NotificationBanner
+    GKSession: GK.Session
+    GKVoiceChatService: GK.VoiceChatService
+    GKTurnBasedMatchmakerViewController: GK.TurnBasedMatchmakerViewController
+
+ObjCProtocols:
+    GKAgentDelegate: GK.AgentDelegate
+    GKGameModelUpdate: GK.GameModelUpdate
+    GKGameModelPlayer: GK.GameModelPlayer
+    GKGameModel: GK.GameModel
+    GKRandom: GK.Random
+    GKStrategist: GK.Strategist
+    GKSceneRootNodeType: GK.SceneRootNodeType
+    GKGameCenterControllerDelegate: GK.GameCenterControllerDelegate
+    GKViewController: GK.ViewController
+    GKAchievementViewControllerDelegate: GK.AchievementViewControllerDelegate
+    GKChallengeEventHandlerDelegate: GK.ChallengeEventHandlerDelegate
+    GKChallengesViewControllerDelegate: GK.ChallengesViewControllerDelegate
+    GKChallengeListener: GK.ChallengeListener
+    GKFriendRequestComposeViewControllerDelegate: GK.FriendRequestComposeViewControllerDelegate
+    GKGameSessionEventListener: GK.GameSessionEventListener
+    GKLeaderboardViewControllerDelegate: GK.LeaderboardViewControllerDelegate
+    GKTurnBasedEventListener: GK.TurnBasedEventListener
+    GKTurnBasedEventHandlerDelegate: GK.TurnBasedEventHandlerDelegate
+    GKInviteEventListener: GK.InviteEventListener
+    GKSavedGameListener: GK.SavedGameListener
+    GKLocalPlayerListener: GK.LocalPlayerListener
+    GKMatchDelegate: GK.MatchDelegate
+    GKMatchmakerViewControllerDelegate: GK.MatchmakerViewControllerDelegate
+    GKSessionDelegate: GK.SessionDelegate
+    GKVoiceChatClient: GK.VoiceChatClient
+    GKTurnBasedMatchmakerViewControllerDelegate: GK.TurnBasedMatchmakerViewControllerDelegate
+
+
+Functions:
+
+ExternVars:
+    ::GKErrorDomain: GK.ErrorDomain
+    ::GKPlayerIDNoLongerAvailable: GK.PlayerIDNoLongerAvailable
+    ::GKPlayerDidChangeNotificationName: GK.PlayerDidChangeNotificationName
+    ::GKGameSessionErrorDomain: GK.GameSessionErrorDomain
+    ::GKTurnTimeoutDefault: GK.TurnTimeoutDefault
+    ::GKTurnTimeoutNone: GK.TurnTimeoutNone
+    ::GKExchangeTimeoutDefault: GK.ExchangeTimeoutDefault
+    ::GKExchangeTimeoutNone: GK.ExchangeTimeoutNone
+    ::GKPlayerAuthenticationDidChangeNotificationName: GK.PlayerAuthenticationDidChangeNotificationName
+    ::GKVoiceChatServiceErrorDomain: GK.VoiceChatServiceErrorDomain
+    ::GKSessionErrorDomain: GK.SessionErrorDomain
+
+ConstVars:
+    ::GKGameModelMaxScore: GK.GameModelMaxScore
+    ::GKGameModelMinScore: GK.GameModelMinScore
+

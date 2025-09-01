@@ -1,0 +1,4 @@
+Typedefs:
+  OS_object: CF.OS_object
+  OS_os_workgroup: CF.OS_os_workgroup
+  Boolean: CF.Boolean

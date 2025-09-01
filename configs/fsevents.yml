@@ -1,0 +1,166 @@
+---
+
+Defs: ../definitions/macos/fsevents.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^(_*FS|_*ConstFS|HFS|OpaqueFS).*
+    - ^(Text|OpaqueText|UTC|_*DADisk|AliasRecord|AliasHandle|CatPositionRec|Findr|Fndr|GetVol|QElem).*
+    - ^ResID
+    - ^ResAttributes
+    - ^ResFileAttributes
+    - ^ResourceCount
+    - ^ResourceIndex
+    - ^ResFileRefNum
+    - ^AliasPtr
+    - ^IOCompletionUPP
+    - ^IOCompletionProcPtr
+    - ^ParmBlkPtr
+
+  ExportMethods:
+    - ^::FS.+
+
+  ExportVars:
+    - ^::k?FS.+
+    - ^::k?Text.+
+
+  IgnoreTypes  :
+    - FSEventStreamCreateFlags
+    - FSEventStreamEventFlags
+
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+  #   - off_t
+  #   - boolean_t
+
+  Packages:
+    - Name  : FSEvents
+      Export: FS
+      DarwinLinkLibs: [system:CoreServices.framework]
+      RequiredLink: true
+      Filter: .*
+
+      Imports:
+      - |
+        // FSEventStreamCreateFlags
+        EventStreamCreateFlags :: enum CF.UInt32 {
+
+          None = 0x00000000,
+          UseCFTypes      = 0x00000001,
+          NoDefer         = 0x00000002,
+          WatchRoot       = 0x00000004,
+          IgnoreSelf      = 0x00000008, // __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_6_0)
+          FileEvents      = 0x00000010, // __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)
+          MarkSelf        = 0x00000020, // __OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)
+          UseExtendedData = 0x00000040, // __OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)
+          FullHistory     = 0x00000080, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
+          CreateWithDocID = 0x00000100, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
+        }
+
+        // FSEventStreamEventFlags
+        EventStreamEventFlags :: enum CF.UInt32 {
+
+          None            = 0x00000000,
+          MustScanSubDirs = 0x00000001,
+          UserDropped     = 0x00000002,
+          KernelDropped   = 0x00000004,
+          EventIdsWrapped = 0x00000008,
+          HistoryDone     = 0x00000010,
+          RootChanged     = 0x00000020,
+          Mount           = 0x00000040,
+          Unmount         = 0x00000080,
+
+          ItemCreated        = 0x00000100, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemRemoved        = 0x00000200, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemInodeMetaMod   = 0x00000400, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemRenamed        = 0x00000800, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemModified       = 0x00001000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemFinderInfoMod  = 0x00002000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemChangeOwner    = 0x00004000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemXattrMod       = 0x00008000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemIsFile         = 0x00010000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemIsDir          = 0x00020000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          ItemIsSymlink      = 0x00040000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+          OwnEvent           = 0x00080000, /*__OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)*/   
+          ItemIsHardlink     = 0x00100000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
+          ItemIsLastHardlink = 0x00200000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
+          ItemCloned         = 0x00400000, /*__OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)*/ 
+        }
+
+
+      TypeMap:
+        FSEventStreamCreateFlags: EventStreamCreateFlags
+        FSEventStreamEventFlags: EventStreamEventFlags
+        Boolean: CF.Boolean
+
+
+  # Symbol Transformers
+  EnumTransforms:
+  - Type: ^(FS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: kFS
+
+  - Type: .*
+    Transforms:
+    - Kind  : RemoveTypeWordsFromElements
+    - Kind  : RemovePartialTypeNamePrefix
+    - Kind  : RemoveUnderscorePrefix
+    - Kind  : UnderscoreNumbers
+
+  TypeTransforms:
+    - Type: ^(FS).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: Flag$ # Transforms for bit_set types
+      Transforms:
+      - Kind  : AppendSuffix
+        Source: s
+    - Type: Mask$
+      Transforms:
+      - Kind  : None
+
+  BitSetMap:
+    - Type: Flags?$
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: s
+    - Type: Mask$
+      Transforms:
+        - Kind  : AppendSuffix
+          Source: Flag
+
+  ProcTransforms:
+  - Type: ^(_*FS).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+
+  VarTransforms:
+    - Type: ^(_*k?FS).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

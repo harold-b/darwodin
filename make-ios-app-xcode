@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+app_name=OdinMetalApp
+bin_dir=.bin
+app_bundle_dir="${bin_dir}/${app_name}.app"
+ios_src_dir=./samples/ios_app
+
+xcode_proj=OdinMetalApp.xcodeproj
+xcode_scheme=OdinMetalApp
+dd_path=${bin_dir}/dd
+
+cp "${bin_dir}/main.o" "${ios_src_dir}/"
+
+rm -rf "${app_bundle_dir}"
+# pushd ${ios_src_dir}
+xcodebuild -derivedDataPath "$(pwd)/${dd_path}" CONFIGURATION_BUILD_DIR="$(pwd)/${bin_dir}" \
+  -project "${ios_src_dir}/${xcode_proj}" -scheme $xcode_scheme \
+  -sdk iphonesimulator17.0 -destination "name=iPhone 15 Pro" build
+
+# -derivedDataPath
+# -resultBundlePath
+# iphonesimulator17.0
+# -showsdks                                                display a compact list of the installed SDKs
+    # -showdestinations  
+    # "iPhone 15 Pro"

@@ -1,0 +1,167 @@
+PackageName: "CloudKit"
+ImportName: "CK"
+
+Structs:
+
+Typedefs:
+    CKRecordType: CK.RecordType
+    CKRecordFieldKey: CK.RecordFieldKey
+    CKSubscriptionID: CK.SubscriptionID
+    CKOperationID: CK.OperationID
+    CKApplicationPermissionBlock: CK.ApplicationPermissionBlock
+    CKSharePreparationCompletionHandler: CK.SharePreparationCompletionHandler
+    CKSharePreparationHandler: CK.SharePreparationHandler
+
+Enums:
+    CKReferenceAction: CK.ReferenceAction
+    CKSubscriptionType: CK.SubscriptionType
+    CKQuerySubscriptionOptions: CK.QuerySubscriptionOptions
+    CKDatabaseScope: CK.DatabaseScope
+    CKAccountStatus: CK.AccountStatus
+    CKApplicationPermissions: CK.ApplicationPermissions
+    CKApplicationPermissionStatus: CK.ApplicationPermissionStatus
+    CKErrorCode: CK.ErrorCode
+    CKNotificationType: CK.NotificationType
+    CKQueryNotificationReason: CK.QueryNotificationReason
+    CKRecordZoneCapabilities: CK.RecordZoneCapabilities
+    CKShareParticipantAcceptanceStatus: CK.ShareParticipantAcceptanceStatus
+    CKShareParticipantPermission: CK.ShareParticipantPermission
+    CKShareParticipantRole: CK.ShareParticipantRole
+    CKShareParticipantType: CK.ShareParticipantType
+    CKRecordSavePolicy: CK.RecordSavePolicy
+    CKOperationGroupTransferSize: CK.OperationGroupTransferSize
+    CKSharingParticipantAccessOption: CK.SharingParticipantAccessOptions
+    CKSharingParticipantPermissionOption: CK.SharingParticipantPermissionOptions
+    CKSyncEnginePendingRecordZoneChangeType: CK.SyncEnginePendingRecordZoneChangeType
+    CKSyncEnginePendingDatabaseChangeType: CK.SyncEnginePendingDatabaseChangeType
+    CKSyncEngineSyncReason: CK.SyncEngineSyncReason
+    CKSyncEngineEventType: CK.SyncEngineEventType
+    CKSyncEngineAccountChangeType: CK.SyncEngineAccountChangeType
+    CKSyncEngineZoneDeletionReason: CK.SyncEngineZoneDeletionReason
+
+ObjCClasses:
+    CKAsset: CK.Asset
+    CKRecord: CK.Record
+    CKRecordID: CK.RecordID
+    CKReference: CK.Reference
+    CKRecordZoneID: CK.RecordZoneID
+    CKNotificationInfo: CK.NotificationInfo
+    CKSubscription: CK.Subscription
+    CKQuerySubscription: CK.QuerySubscription
+    CKRecordZoneSubscription: CK.RecordZoneSubscription
+    CKDatabaseSubscription: CK.DatabaseSubscription
+    CKDatabaseOperation: CK.DatabaseOperation
+    CKRecordZone: CK.RecordZone
+    CKQuery: CK.Query
+    CKDatabase: CK.Database
+    CKContainer: CK.Container
+    CKOperationConfiguration: CK.OperationConfiguration
+    CKOperationGroup: CK.OperationGroup
+    CKOperation: CK.Operation
+    CKUserIdentity: CK.UserIdentity
+    CKShareParticipant: CK.ShareParticipant
+    CKShare: CK.Share
+    CKShareMetadata: CK.ShareMetadata
+    CKLocationSortDescriptor: CK.LocationSortDescriptor
+    CKNotificationID: CK.NotificationID
+    CKNotification: CK.Notification
+    CKQueryNotification: CK.QueryNotification
+    CKRecordZoneNotification: CK.RecordZoneNotification
+    CKDatabaseNotification: CK.DatabaseNotification
+    CKServerChangeToken: CK.ServerChangeToken
+    CKUserIdentityLookupInfo: CK.UserIdentityLookupInfo
+    CKAcceptSharesOperation: CK.AcceptSharesOperation
+    CKDiscoverAllUserIdentitiesOperation: CK.DiscoverAllUserIdentitiesOperation
+    CKDiscoverUserIdentitiesOperation: CK.DiscoverUserIdentitiesOperation
+    CKFetchDatabaseChangesOperation: CK.FetchDatabaseChangesOperation
+    CKFetchNotificationChangesOperation: CK.FetchNotificationChangesOperation
+    CKFetchRecordChangesOperation: CK.FetchRecordChangesOperation
+    CKFetchRecordsOperation: CK.FetchRecordsOperation
+    CKFetchRecordZoneChangesConfiguration: CK.FetchRecordZoneChangesConfiguration
+    CKFetchRecordZoneChangesOptions: CK.FetchRecordZoneChangesOptions
+    CKFetchRecordZoneChangesOperation: CK.FetchRecordZoneChangesOperation
+    CKFetchRecordZonesOperation: CK.FetchRecordZonesOperation
+    CKFetchShareMetadataOptions: CK.FetchShareMetadataOptions
+    CKFetchShareMetadataOperation: CK.FetchShareMetadataOperation
+    CKFetchShareParticipantsOperation: CK.FetchShareParticipantsOperation
+    CKFetchSubscriptionsOperation: CK.FetchSubscriptionsOperation
+    CKFetchWebAuthTokenOperation: CK.FetchWebAuthTokenOperation
+    CKMarkNotificationsReadOperation: CK.MarkNotificationsReadOperation
+    CKModifyBadgeOperation: CK.ModifyBadgeOperation
+    CKModifyRecordsOperation: CK.ModifyRecordsOperation
+    CKModifyRecordZonesOperation: CK.ModifyRecordZonesOperation
+    CKModifySubscriptionsOperation: CK.ModifySubscriptionsOperation
+    CKQueryCursor: CK.QueryCursor
+    CKQueryOperation: CK.QueryOperation
+    CKAllowedSharingOptions: CK.AllowedSharingOptions
+    CKSystemSharingUIObserver: CK.SystemSharingUIObserver
+    CKSyncEnginePendingRecordZoneChange: CK.SyncEnginePendingRecordZoneChange
+    CKSyncEnginePendingDatabaseChange: CK.SyncEnginePendingDatabaseChange
+    CKSyncEngineState: CK.SyncEngineState
+    CKSyncEngineStateSerialization: CK.SyncEngineStateSerialization
+    CKSyncEnginePendingZoneSave: CK.SyncEnginePendingZoneSave
+    CKSyncEnginePendingZoneDelete: CK.SyncEnginePendingZoneDelete
+    CKSyncEngineRecordZoneChangeBatch: CK.SyncEngineRecordZoneChangeBatch
+    CKSyncEngineConfiguration: CK.SyncEngineConfiguration
+    CKSyncEngineEvent: CK.SyncEngineEvent
+    CKSyncEngineFetchChangesContext: CK.SyncEngineFetchChangesContext
+    CKSyncEngineFetchChangesOptions: CK.SyncEngineFetchChangesOptions
+    CKSyncEngineFetchChangesScope: CK.SyncEngineFetchChangesScope
+    CKSyncEngineSendChangesContext: CK.SyncEngineSendChangesContext
+    CKSyncEngineSendChangesOptions: CK.SyncEngineSendChangesOptions
+    CKSyncEngineSendChangesScope: CK.SyncEngineSendChangesScope
+    CKSyncEngine: CK.SyncEngine
+    CKSyncEngineAccountChangeEvent: CK.SyncEngineAccountChangeEvent
+    CKSyncEngineDidFetchChangesEvent: CK.SyncEngineDidFetchChangesEvent
+    CKSyncEngineDidFetchRecordZoneChangesEvent: CK.SyncEngineDidFetchRecordZoneChangesEvent
+    CKSyncEngineDidSendChangesEvent: CK.SyncEngineDidSendChangesEvent
+    CKSyncEngineFailedRecordSave: CK.SyncEngineFailedRecordSave
+    CKSyncEngineFailedZoneSave: CK.SyncEngineFailedZoneSave
+    CKSyncEngineFetchedDatabaseChangesEvent: CK.SyncEngineFetchedDatabaseChangesEvent
+    CKSyncEngineFetchedRecordDeletion: CK.SyncEngineFetchedRecordDeletion
+    CKSyncEngineFetchedRecordZoneChangesEvent: CK.SyncEngineFetchedRecordZoneChangesEvent
+    CKSyncEngineFetchedZoneDeletion: CK.SyncEngineFetchedZoneDeletion
+    CKSyncEngineSentDatabaseChangesEvent: CK.SyncEngineSentDatabaseChangesEvent
+    CKSyncEngineSentRecordZoneChangesEvent: CK.SyncEngineSentRecordZoneChangesEvent
+    CKSyncEngineStateUpdateEvent: CK.SyncEngineStateUpdateEvent
+    CKSyncEngineWillFetchChangesEvent: CK.SyncEngineWillFetchChangesEvent
+    CKSyncEngineWillFetchRecordZoneChangesEvent: CK.SyncEngineWillFetchRecordZoneChangesEvent
+    CKSyncEngineWillSendChangesEvent: CK.SyncEngineWillSendChangesEvent
+
+ObjCProtocols:
+    CKRecordValue: CK.RecordValue
+    CKRecordKeyValueSetting: CK.RecordKeyValueSetting
+    CKSyncEngineDelegate: CK.SyncEngineDelegate
+
+
+Functions:
+
+ExternVars:
+    ::CKRecordTypeUserRecord: CK.RecordTypeUserRecord
+    ::CKRecordRecordIDKey: CK.RecordRecordIDKey
+    ::CKRecordCreatorUserRecordIDKey: CK.RecordCreatorUserRecordIDKey
+    ::CKRecordCreationDateKey: CK.RecordCreationDateKey
+    ::CKRecordLastModifiedUserRecordIDKey: CK.RecordLastModifiedUserRecordIDKey
+    ::CKRecordModificationDateKey: CK.RecordModificationDateKey
+    ::CKRecordParentKey: CK.RecordParentKey
+    ::CKRecordShareKey: CK.RecordShareKey
+    ::CKCurrentUserDefaultName: CK.CurrentUserDefaultName
+    ::CKOwnerDefaultName: CK.OwnerDefaultName
+    ::CKAccountChangedNotification: CK.AccountChangedNotification
+    ::CKErrorDomain: CK.ErrorDomain
+    ::CKPartialErrorsByItemIDKey: CK.PartialErrorsByItemIDKey
+    ::CKRecordChangedErrorAncestorRecordKey: CK.RecordChangedErrorAncestorRecordKey
+    ::CKRecordChangedErrorServerRecordKey: CK.RecordChangedErrorServerRecordKey
+    ::CKRecordChangedErrorClientRecordKey: CK.RecordChangedErrorClientRecordKey
+    ::CKErrorUserDidResetEncryptedDataKey: CK.ErrorUserDidResetEncryptedDataKey
+    ::CKErrorRetryAfterKey: CK.ErrorRetryAfterKey
+    ::CKRecordZoneDefaultName: CK.RecordZoneDefaultName
+    ::CKRecordTypeShare: CK.RecordTypeShare
+    ::CKRecordNameZoneWideShare: CK.RecordNameZoneWideShare
+    ::CKShareTitleKey: CK.ShareTitleKey
+    ::CKShareThumbnailImageDataKey: CK.ShareThumbnailImageDataKey
+    ::CKShareTypeKey: CK.ShareTypeKey
+    ::CKQueryOperationMaximumResults: CK.QueryOperationMaximumResults
+
+ConstVars:
+

@@ -1,0 +1,25 @@
+PackageName: "MetalFX"
+ImportName: "MTLFX"
+
+Structs:
+
+Typedefs:
+
+Enums:
+    MTLFXSpatialScalerColorProcessingMode: MTLFX.SpatialScalerColorProcessingMode
+
+ObjCClasses:
+    MTLFXTemporalScalerDescriptor: MTLFX.TemporalScalerDescriptor
+    MTLFXSpatialScalerDescriptor: MTLFX.SpatialScalerDescriptor
+
+ObjCProtocols:
+    MTLFXTemporalScaler: MTLFX.TemporalScaler
+    MTLFXSpatialScaler: MTLFX.SpatialScaler
+
+
+Functions:
+
+ExternVars:
+
+ConstVars:
+

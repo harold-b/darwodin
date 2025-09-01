@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+use_ios=
+lite=
+
+while true; do
+  case $1 in
+    -ios)
+      use_ios=1
+    ;;
+    -l)
+      lite=1
+    ;;
+    -lite)
+      lite=1
+    ;;
+  esac
+  shift || break
+done
+
+source ./config
+
+frameworks=(
+    ${darwodin_base_frameworks[@]}
+)
+
+
+ios_args=()
+if [[ ${use_ios} -eq 1 ]]; then
+    ios_args+=(-ios)
+fi
+# frameworks+=(${darwodin_ios_frameworks[@]})
+# frameworks+=(${darwodin_macos_frameworks[@]})
+
+if [[ ${lite} -eq 1 ]]; then
+    lite_arg="-l"
+fi
+
+./bind ${frameworks[@]} ${lite_arg} ${ios_args[@]}
+
+
+# Copy Objective-C package
+out_dir=$(darwodin_get_output_folder "${use_ios}" "${lite}")
+rsync -rah ./ObjectiveC "$out_dir/darwodin/"
+
+
+# Create dummy packaged for frameworks not in the target sdk
+excluded_frameworks=
+
+if [[ ${use_ios} -ne 1 ]]; then
+    excluded_frameworks=(${darwodin_ios_frameworks[@]})
+    excluded_frameworks+=(UIKit)
+else
+    excluded_frameworks=(${darwodin_macos_frameworks[@]})
+    excluded_frameworks+=(AppKit)
+fi
+
+for f in ${excluded_frameworks[@]}; do
+  mkdir -p "${out_dir}/darwodin/$f/"
+  echo "package darwodin_$f" > "${out_dir}/darwodin/$f/${f}.odin"
+done
