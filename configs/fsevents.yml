@@ -65,54 +65,57 @@ Odin:
       Imports:
       - |
         // FSEventStreamCreateFlags
-        EventStreamCreateFlags :: enum CF.UInt32 {
+        EventStreamCreateFlag :: enum CF.UInt32 {
 
-          None = 0x00000000,
-          UseCFTypes      = 0x00000001,
-          NoDefer         = 0x00000002,
-          WatchRoot       = 0x00000004,
-          IgnoreSelf      = 0x00000008, // __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_6_0)
-          FileEvents      = 0x00000010, // __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)
-          MarkSelf        = 0x00000020, // __OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)
-          UseExtendedData = 0x00000040, // __OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)
-          FullHistory     = 0x00000080, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
-          CreateWithDocID = 0x00000100, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
+            // None = 0x00000000,
+            UseCFTypes      = 0,  // 0x00000001,
+            NoDefer         = 1,  // 0x00000002,
+            WatchRoot       = 2,  // 0x00000004,
+            IgnoreSelf      = 3,  // 0x00000008, // __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_6_0)
+            FileEvents      = 4,  // 0x00000010, // __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)
+            MarkSelf        = 5,  // 0x00000020, // __OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)
+            UseExtendedData = 6,  // 0x00000040, // __OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)
+            FullHistory     = 7,  // 0x00000080, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
+            CreateWithDocID = 8,  // 0x00000100, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
         }
+
+        EventStreamCreateFlags :: bit_set[EventStreamCreateFlag; CF.UInt32]
 
         // FSEventStreamEventFlags
-        EventStreamEventFlags :: enum CF.UInt32 {
+        EventStreamEventFlag :: enum CF.UInt32 {
 
-          None            = 0x00000000,
-          MustScanSubDirs = 0x00000001,
-          UserDropped     = 0x00000002,
-          KernelDropped   = 0x00000004,
-          EventIdsWrapped = 0x00000008,
-          HistoryDone     = 0x00000010,
-          RootChanged     = 0x00000020,
-          Mount           = 0x00000040,
-          Unmount         = 0x00000080,
+            // None               = 0x00000000,
+            MustScanSubDirs    =  0,   // 0x00000001,
+            UserDropped        =  1,   // 0x00000002,
+            KernelDropped      =  2,   // 0x00000004,
+            EventIdsWrapped    =  3,   // 0x00000008,
+            HistoryDone        =  4,   // 0x00000010,
+            RootChanged        =  5,   // 0x00000020,
+            Mount              =  6,   // 0x00000040,
+            Unmount            =  7,   // 0x00000080,
 
-          ItemCreated        = 0x00000100, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemRemoved        = 0x00000200, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemInodeMetaMod   = 0x00000400, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemRenamed        = 0x00000800, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemModified       = 0x00001000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemFinderInfoMod  = 0x00002000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemChangeOwner    = 0x00004000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemXattrMod       = 0x00008000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemIsFile         = 0x00010000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemIsDir          = 0x00020000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          ItemIsSymlink      = 0x00040000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-          OwnEvent           = 0x00080000, /*__OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)*/   
-          ItemIsHardlink     = 0x00100000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
-          ItemIsLastHardlink = 0x00200000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
-          ItemCloned         = 0x00400000, /*__OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)*/ 
+            ItemCreated        =  8,   // 0x00000100, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemRemoved        =  9,   // 0x00000200, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemInodeMetaMod   =  10,  // 0x00000400, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemRenamed        =  11,  // 0x00000800, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemModified       =  12,  // 0x00001000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemFinderInfoMod  =  13,  // 0x00002000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemChangeOwner    =  14,  // 0x00004000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemXattrMod       =  15,  // 0x00008000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemIsFile         =  16,  // 0x00010000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemIsDir          =  17,  // 0x00020000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            ItemIsSymlink      =  18,  // 0x00040000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+            OwnEvent           =  19,  // 0x00080000, /*__OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)*/   
+            ItemIsHardlink     =  20,  // 0x00100000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
+            ItemIsLastHardlink =  21,  // 0x00200000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
+            ItemCloned         =  22,  // 0x00400000, /*__OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)*/ 
         }
 
+        EventStreamEventFlags :: bit_set[EventStreamEventFlag; CF.UInt32]
 
       TypeMap:
         FSEventStreamCreateFlags: EventStreamCreateFlags
-        FSEventStreamEventFlags: EventStreamEventFlags
+        FSEventStreamEventFlags:  EventStreamEventFlags
         Boolean: CF.Boolean
 
 

@@ -19,49 +19,54 @@ Protocol :: distinct id
 @require foreign import lib "system:CoreServices.framework"
 
 // FSEventStreamCreateFlags
-EventStreamCreateFlags :: enum CF.UInt32 {
+EventStreamCreateFlag :: enum CF.UInt32 {
 
-  None = 0x00000000,
-  UseCFTypes      = 0x00000001,
-  NoDefer         = 0x00000002,
-  WatchRoot       = 0x00000004,
-  IgnoreSelf      = 0x00000008, // __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_6_0)
-  FileEvents      = 0x00000010, // __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)
-  MarkSelf        = 0x00000020, // __OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)
-  UseExtendedData = 0x00000040, // __OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)
-  FullHistory     = 0x00000080, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
-  CreateWithDocID = 0x00000100, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
+    // None = 0x00000000,
+    UseCFTypes      = 0,  // 0x00000001,
+    NoDefer         = 1,  // 0x00000002,
+    WatchRoot       = 2,  // 0x00000004,
+    IgnoreSelf      = 3,  // 0x00000008, // __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_6_0)
+    FileEvents      = 4,  // 0x00000010, // __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)
+    MarkSelf        = 5,  // 0x00000020, // __OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)
+    UseExtendedData = 6,  // 0x00000040, // __OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)
+    FullHistory     = 7,  // 0x00000080, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
+    CreateWithDocID = 8,  // 0x00000100, // __OSX_AVAILABLE_STARTING(__MAC_10_15, __IPHONE_13_0) 
 }
+
+EventStreamCreateFlags :: bit_set[EventStreamCreateFlag; CF.UInt32]
 
 // FSEventStreamEventFlags
-EventStreamEventFlags :: enum CF.UInt32 {
+EventStreamEventFlag :: enum CF.UInt32 {
 
-  None            = 0x00000000,
-  MustScanSubDirs = 0x00000001,
-  UserDropped     = 0x00000002,
-  KernelDropped   = 0x00000004,
-  EventIdsWrapped = 0x00000008,
-  HistoryDone     = 0x00000010,
-  RootChanged     = 0x00000020,
-  Mount           = 0x00000040,
-  Unmount         = 0x00000080,
+    // None               = 0x00000000,
+    MustScanSubDirs    =  0,   // 0x00000001,
+    UserDropped        =  1,   // 0x00000002,
+    KernelDropped      =  2,   // 0x00000004,
+    EventIdsWrapped    =  3,   // 0x00000008,
+    HistoryDone        =  4,   // 0x00000010,
+    RootChanged        =  5,   // 0x00000020,
+    Mount              =  6,   // 0x00000040,
+    Unmount            =  7,   // 0x00000080,
 
-  ItemCreated        = 0x00000100, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemRemoved        = 0x00000200, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemInodeMetaMod   = 0x00000400, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemRenamed        = 0x00000800, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemModified       = 0x00001000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemFinderInfoMod  = 0x00002000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemChangeOwner    = 0x00004000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemXattrMod       = 0x00008000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemIsFile         = 0x00010000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemIsDir          = 0x00020000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  ItemIsSymlink      = 0x00040000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
-  OwnEvent           = 0x00080000, /*__OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)*/   
-  ItemIsHardlink     = 0x00100000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
-  ItemIsLastHardlink = 0x00200000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
-  ItemCloned         = 0x00400000, /*__OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)*/ 
+    ItemCreated        =  8,   // 0x00000100, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemRemoved        =  9,   // 0x00000200, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemInodeMetaMod   =  10,  // 0x00000400, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemRenamed        =  11,  // 0x00000800, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemModified       =  12,  // 0x00001000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemFinderInfoMod  =  13,  // 0x00002000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemChangeOwner    =  14,  // 0x00004000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemXattrMod       =  15,  // 0x00008000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemIsFile         =  16,  // 0x00010000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemIsDir          =  17,  // 0x00020000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    ItemIsSymlink      =  18,  // 0x00040000, /*__OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_6_0)*/   
+    OwnEvent           =  19,  // 0x00080000, /*__OSX_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)*/   
+    ItemIsHardlink     =  20,  // 0x00100000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
+    ItemIsLastHardlink =  21,  // 0x00200000, /*__OSX_AVAILABLE_STARTING(__MAC_10_10, __IPHONE_9_0)*/  
+    ItemCloned         =  22,  // 0x00400000, /*__OSX_AVAILABLE_STARTING(__MAC_10_13, __IPHONE_11_0)*/ 
 }
+
+EventStreamEventFlags :: bit_set[EventStreamEventFlag; CF.UInt32]
+
 
 
 kTextUnsupportedEncodingErr             :: -8738
@@ -1130,14 +1135,14 @@ Ref :: struct #align (1) {
 /// UTCDateTime
 UTCDateTime :: struct #align (2) #max_field_align(2) {
     highSeconds: CF.UInt16,
-    lowSeconds: CF.UInt32,
-    fraction: CF.UInt16,
+    lowSeconds:  CF.UInt32,
+    fraction:    CF.UInt16,
 }
 #assert(size_of(UTCDateTime) == 8)
 
 /// TextEncodingRun
 TextEncodingRun :: struct #align (2) {
-    offset: CF.ByteOffset,
+    offset:       CF.ByteOffset,
     textEncoding: TextEncoding,
 }
 #assert(size_of(TextEncodingRun) == 12)
@@ -1155,7 +1160,7 @@ __DADisk :: struct {}
 
 /// HFSUniStr255
 HFSUniStr255 :: struct #align (2) {
-    length: cffi.ushort,
+    length:  cffi.ushort,
     unicode: [255]cffi.ushort,
 }
 #assert(size_of(HFSUniStr255) == 512)
@@ -1166,7 +1171,7 @@ __FSFileSecurity :: struct {}
 /// CatPositionRec
 CatPositionRec :: struct #align (2) {
     initialize: CF.SInt32,
-    priv: [6]CF.SInt16,
+    priv:       [6]CF.SInt16,
 }
 #assert(size_of(CatPositionRec) == 16)
 
@@ -1178,88 +1183,88 @@ Spec :: struct #align (1) {
 
 /// FSPermissionInfo
 PermissionInfo :: struct #align (2) #max_field_align(2) {
-    userID: CF.UInt32,
-    groupID: CF.UInt32,
-    reserved1: CF.UInt8,
+    userID:     CF.UInt32,
+    groupID:    CF.UInt32,
+    reserved1:  CF.UInt8,
     userAccess: CF.UInt8,
-    mode: CF.UInt16,
-    fileSec: FileSecurityRef,
+    mode:       CF.UInt16,
+    fileSec:    FileSecurityRef,
 }
 #assert(size_of(PermissionInfo) == 20)
 
 /// FSCatalogInfo
 CatalogInfo :: struct #align (2) #max_field_align(2) {
-    nodeFlags: CF.UInt16,
-    volume: VolumeRefNum,
-    parentDirID: CF.UInt32,
-    nodeID: CF.UInt32,
-    sharingFlags: CF.UInt8,
-    userPrivileges: CF.UInt8,
-    reserved1: CF.UInt8,
-    reserved2: CF.UInt8,
-    createDate: UTCDateTime,
-    contentModDate: UTCDateTime,
+    nodeFlags:        CF.UInt16,
+    volume:           VolumeRefNum,
+    parentDirID:      CF.UInt32,
+    nodeID:           CF.UInt32,
+    sharingFlags:     CF.UInt8,
+    userPrivileges:   CF.UInt8,
+    reserved1:        CF.UInt8,
+    reserved2:        CF.UInt8,
+    createDate:       UTCDateTime,
+    contentModDate:   UTCDateTime,
     attributeModDate: UTCDateTime,
-    accessDate: UTCDateTime,
-    backupDate: UTCDateTime,
-    permissions: PermissionInfo,
-    finderInfo: [16]CF.UInt8,
-    extFinderInfo: [16]CF.UInt8,
-    dataLogicalSize: CF.UInt64,
+    accessDate:       UTCDateTime,
+    backupDate:       UTCDateTime,
+    permissions:      PermissionInfo,
+    finderInfo:       [16]CF.UInt8,
+    extFinderInfo:    [16]CF.UInt8,
+    dataLogicalSize:  CF.UInt64,
     dataPhysicalSize: CF.UInt64,
-    rsrcLogicalSize: CF.UInt64,
+    rsrcLogicalSize:  CF.UInt64,
     rsrcPhysicalSize: CF.UInt64,
-    valence: CF.UInt32,
+    valence:          CF.UInt32,
     textEncodingHint: TextEncoding,
 }
 #assert(size_of(CatalogInfo) == 148)
 
 /// FSRefParam
 RefParam :: struct #align (2) #max_field_align(2) {
-    qLink: QElemPtr,
-    qType: CF.SInt16,
-    ioTrap: CF.SInt16,
-    ioCmdAddr: CF.Ptr,
-    ioCompletion: IOCompletionUPP,
-    ioResult: CF.OSErr,
-    ioNamePtr: CF.ConstStringPtr,
-    ioVRefNum: VolumeRefNum,
-    reserved1: CF.SInt16,
-    reserved2: CF.UInt8,
-    reserved3: CF.UInt8,
-    ref: ^Ref,
-    whichInfo: CatalogInfoBitmap,
-    catInfo: ^CatalogInfo,
-    nameLength: CF.UniCharCount,
-    name: ^CF.UniChar,
-    ioDirID: CF.UInt32,
-    spec: SpecPtr,
-    parentRef: ^Ref,
-    newRef: ^Ref,
+    qLink:            QElemPtr,
+    qType:            CF.SInt16,
+    ioTrap:           CF.SInt16,
+    ioCmdAddr:        CF.Ptr,
+    ioCompletion:     IOCompletionUPP,
+    ioResult:         CF.OSErr,
+    ioNamePtr:        CF.ConstStringPtr,
+    ioVRefNum:        VolumeRefNum,
+    reserved1:        CF.SInt16,
+    reserved2:        CF.UInt8,
+    reserved3:        CF.UInt8,
+    ref:              ^Ref,
+    whichInfo:        CatalogInfoBitmap,
+    catInfo:          ^CatalogInfo,
+    nameLength:       CF.UniCharCount,
+    name:             ^CF.UniChar,
+    ioDirID:          CF.UInt32,
+    spec:             SpecPtr,
+    parentRef:        ^Ref,
+    newRef:           ^Ref,
     textEncodingHint: TextEncoding,
-    outName: ^HFSUniStr255,
+    outName:          ^HFSUniStr255,
 }
 #assert(size_of(RefParam) == 120)
 
 /// FSRefForkIOParam
 RefForkIOParam :: struct #align (2) #max_field_align(2) {
-    qLink: QElemPtr,
-    qType: CF.SInt16,
-    ioTrap: CF.SInt16,
-    ioCmdAddr: CF.Ptr,
-    ioCompletion: IOCompletionUPP,
-    ioResult: CF.OSErr,
-    parentRef: ^Ref,
-    nameLength: CF.UniCharCount,
-    name: ^CF.UniChar,
-    whichInfo: CatalogInfoBitmap,
-    catInfo: ^CatalogInfo,
+    qLink:          QElemPtr,
+    qType:          CF.SInt16,
+    ioTrap:         CF.SInt16,
+    ioCmdAddr:      CF.Ptr,
+    ioCompletion:   IOCompletionUPP,
+    ioResult:       CF.OSErr,
+    parentRef:      ^Ref,
+    nameLength:     CF.UniCharCount,
+    name:           ^CF.UniChar,
+    whichInfo:      CatalogInfoBitmap,
+    catInfo:        ^CatalogInfo,
     forkNameLength: CF.UniCharCount,
-    forkName: ^CF.UniChar,
-    permissions: CF.SInt8,
-    reserved1: CF.UInt8,
-    forkRefNum: IORefNum,
-    newRef: ^Ref,
+    forkName:       ^CF.UniChar,
+    permissions:    CF.SInt8,
+    reserved1:      CF.UInt8,
+    forkRefNum:     IORefNum,
+    newRef:         ^Ref,
 }
 #assert(size_of(RefForkIOParam) == 96)
 
@@ -1268,171 +1273,171 @@ OpaqueFSIterator :: struct {}
 
 /// FSSearchParams
 SearchParams :: struct #align (2) {
-    searchTime: CF.Duration,
-    searchBits: CF.OptionBits,
+    searchTime:       CF.Duration,
+    searchBits:       CF.OptionBits,
     searchNameLength: CF.UniCharCount,
-    searchName: ^CF.UniChar,
-    searchInfo1: ^CatalogInfo,
-    searchInfo2: ^CatalogInfo,
+    searchName:       ^CF.UniChar,
+    searchInfo1:      ^CatalogInfo,
+    searchInfo2:      ^CatalogInfo,
 }
 #assert(size_of(SearchParams) == 40)
 
 /// FSCatalogBulkParam
 CatalogBulkParam :: struct #align (2) #max_field_align(2) {
-    qLink: QElemPtr,
-    qType: CF.SInt16,
-    ioTrap: CF.SInt16,
-    ioCmdAddr: CF.Ptr,
-    ioCompletion: IOCompletionUPP,
-    ioResult: CF.OSErr,
+    qLink:            QElemPtr,
+    qType:            CF.SInt16,
+    ioTrap:           CF.SInt16,
+    ioCmdAddr:        CF.Ptr,
+    ioCompletion:     IOCompletionUPP,
+    ioResult:         CF.OSErr,
     containerChanged: CF.Boolean,
-    reserved: CF.UInt8,
-    iteratorFlags: IteratorFlags,
-    iterator: Iterator,
-    container: ^Ref,
-    maximumItems: CF.ItemCount,
-    actualItems: CF.ItemCount,
-    whichInfo: CatalogInfoBitmap,
-    catalogInfo: ^CatalogInfo,
-    refs: ^Ref,
-    specs: SpecPtr,
-    names: ^HFSUniStr255,
-    searchParams: ^SearchParams,
+    reserved:         CF.UInt8,
+    iteratorFlags:    IteratorFlags,
+    iterator:         Iterator,
+    container:        ^Ref,
+    maximumItems:     CF.ItemCount,
+    actualItems:      CF.ItemCount,
+    whichInfo:        CatalogInfoBitmap,
+    catalogInfo:      ^CatalogInfo,
+    refs:             ^Ref,
+    specs:            SpecPtr,
+    names:            ^HFSUniStr255,
+    searchParams:     ^SearchParams,
 }
 #assert(size_of(CatalogBulkParam) == 112)
 
 /// FSForkIOParam
 ForkIOParam :: struct #align (2) #max_field_align(2) {
-    qLink: QElemPtr,
-    qType: CF.SInt16,
-    ioTrap: CF.SInt16,
-    ioCmdAddr: CF.Ptr,
-    ioCompletion: IOCompletionUPP,
-    ioResult: CF.OSErr,
-    reserved1: rawptr,
-    reserved2: CF.SInt16,
-    forkRefNum: IORefNum,
-    reserved3: CF.UInt8,
-    permissions: CF.SInt8,
-    ref: ^Ref,
-    buffer: CF.Ptr,
-    requestCount: CF.UInt32,
-    actualCount: CF.UInt32,
-    positionMode: CF.UInt16,
-    positionOffset: CF.SInt64,
-    allocationFlags: AllocationFlags,
+    qLink:            QElemPtr,
+    qType:            CF.SInt16,
+    ioTrap:           CF.SInt16,
+    ioCmdAddr:        CF.Ptr,
+    ioCompletion:     IOCompletionUPP,
+    ioResult:         CF.OSErr,
+    reserved1:        rawptr,
+    reserved2:        CF.SInt16,
+    forkRefNum:       IORefNum,
+    reserved3:        CF.UInt8,
+    permissions:      CF.SInt8,
+    ref:              ^Ref,
+    buffer:           CF.Ptr,
+    requestCount:     CF.UInt32,
+    actualCount:      CF.UInt32,
+    positionMode:     CF.UInt16,
+    positionOffset:   CF.SInt64,
+    allocationFlags:  AllocationFlags,
     allocationAmount: CF.UInt64,
-    forkNameLength: CF.UniCharCount,
-    forkName: ^CF.UniChar,
-    forkIterator: CatPositionRec,
-    outForkName: ^HFSUniStr255,
+    forkNameLength:   CF.UniCharCount,
+    forkName:         ^CF.UniChar,
+    forkIterator:     CatPositionRec,
+    outForkName:      ^HFSUniStr255,
 }
 #assert(size_of(ForkIOParam) == 130)
 
 /// FSForkInfo
 ForkInfo :: struct #align (2) {
-    flags: ForkInfoFlags,
-    permissions: CF.SInt8,
-    volume: VolumeRefNum,
-    reserved2: CF.UInt32,
-    nodeID: CF.UInt32,
-    forkID: CF.UInt32,
+    flags:           ForkInfoFlags,
+    permissions:     CF.SInt8,
+    volume:          VolumeRefNum,
+    reserved2:       CF.UInt32,
+    nodeID:          CF.UInt32,
+    forkID:          CF.UInt32,
     currentPosition: CF.UInt64,
-    logicalEOF: CF.UInt64,
-    physicalEOF: CF.UInt64,
-    process: CF.UInt64,
+    logicalEOF:      CF.UInt64,
+    physicalEOF:     CF.UInt64,
+    process:         CF.UInt64,
 }
 #assert(size_of(ForkInfo) == 48)
 
 /// FSForkCBInfoParam
 ForkCBInfoParam :: struct #align (2) #max_field_align(2) {
-    qLink: QElemPtr,
-    qType: CF.SInt16,
-    ioTrap: CF.SInt16,
-    ioCmdAddr: CF.Ptr,
-    ioCompletion: IOCompletionUPP,
-    ioResult: CF.OSErr,
+    qLink:         QElemPtr,
+    qType:         CF.SInt16,
+    ioTrap:        CF.SInt16,
+    ioCmdAddr:     CF.Ptr,
+    ioCompletion:  IOCompletionUPP,
+    ioResult:      CF.OSErr,
     desiredRefNum: IORefNum,
-    volumeRefNum: VolumeRefNum,
-    iterator: IORefNum,
-    actualRefNum: VolumeRefNum,
-    ref: ^Ref,
-    forkInfo: ^ForkInfo,
-    forkName: ^HFSUniStr255,
+    volumeRefNum:  VolumeRefNum,
+    iterator:      IORefNum,
+    actualRefNum:  VolumeRefNum,
+    ref:           ^Ref,
+    forkInfo:      ^ForkInfo,
+    forkName:      ^HFSUniStr255,
 }
 #assert(size_of(ForkCBInfoParam) == 66)
 
 /// FSRangeLockParam
 RangeLockParam :: struct #align (2) #max_field_align(2) {
-    qLink: QElemPtr,
-    qType: CF.SInt16,
-    ioTrap: CF.SInt16,
-    ioCmdAddr: CF.Ptr,
-    ioCompletion: IOCompletionUPP,
-    ioResult: CF.OSErr,
-    forkRefNum: IORefNum,
-    requestCount: CF.UInt64,
-    positionMode: CF.UInt16,
+    qLink:          QElemPtr,
+    qType:          CF.SInt16,
+    ioTrap:         CF.SInt16,
+    ioCmdAddr:      CF.Ptr,
+    ioCompletion:   IOCompletionUPP,
+    ioResult:       CF.OSErr,
+    forkRefNum:     IORefNum,
+    requestCount:   CF.UInt64,
+    positionMode:   CF.UInt16,
     positionOffset: CF.SInt64,
-    rangeStart: CF.UInt64,
+    rangeStart:     CF.UInt64,
 }
 #assert(size_of(RangeLockParam) == 60)
 
 /// FSVolumeInfo
 VolumeInfo :: struct #align (2) {
-    createDate: UTCDateTime,
-    modifyDate: UTCDateTime,
-    backupDate: UTCDateTime,
-    checkedDate: UTCDateTime,
-    fileCount: CF.UInt32,
-    folderCount: CF.UInt32,
-    totalBytes: CF.UInt64,
-    freeBytes: CF.UInt64,
-    blockSize: CF.UInt32,
-    totalBlocks: CF.UInt32,
-    freeBlocks: CF.UInt32,
+    createDate:     UTCDateTime,
+    modifyDate:     UTCDateTime,
+    backupDate:     UTCDateTime,
+    checkedDate:    UTCDateTime,
+    fileCount:      CF.UInt32,
+    folderCount:    CF.UInt32,
+    totalBytes:     CF.UInt64,
+    freeBytes:      CF.UInt64,
+    blockSize:      CF.UInt32,
+    totalBlocks:    CF.UInt32,
+    freeBlocks:     CF.UInt32,
     nextAllocation: CF.UInt32,
-    rsrcClumpSize: CF.UInt32,
-    dataClumpSize: CF.UInt32,
-    nextCatalogID: CF.UInt32,
-    finderInfo: [32]CF.UInt8,
-    flags: CF.UInt16,
-    filesystemID: CF.UInt16,
-    signature: CF.UInt16,
-    driveNumber: CF.UInt16,
-    driverRefNum: IORefNum,
+    rsrcClumpSize:  CF.UInt32,
+    dataClumpSize:  CF.UInt32,
+    nextCatalogID:  CF.UInt32,
+    finderInfo:     [32]CF.UInt8,
+    flags:          CF.UInt16,
+    filesystemID:   CF.UInt16,
+    signature:      CF.UInt16,
+    driveNumber:    CF.UInt16,
+    driverRefNum:   IORefNum,
 }
 #assert(size_of(VolumeInfo) == 128)
 
 /// FSVolumeInfoParam
 VolumeInfoParam :: struct #align (2) #max_field_align(2) {
-    qLink: QElemPtr,
-    qType: CF.SInt16,
-    ioTrap: CF.SInt16,
-    ioCmdAddr: CF.Ptr,
+    qLink:        QElemPtr,
+    qType:        CF.SInt16,
+    ioTrap:       CF.SInt16,
+    ioCmdAddr:    CF.Ptr,
     ioCompletion: IOCompletionUPP,
-    ioResult: CF.OSErr,
-    ioNamePtr: CF.StringPtr,
-    ioVRefNum: VolumeRefNum,
-    volumeIndex: CF.UInt32,
-    whichInfo: VolumeInfoBitmap,
-    volumeInfo: ^VolumeInfo,
-    volumeName: ^HFSUniStr255,
-    ref: ^Ref,
+    ioResult:     CF.OSErr,
+    ioNamePtr:    CF.StringPtr,
+    ioVRefNum:    VolumeRefNum,
+    volumeIndex:  CF.UInt32,
+    whichInfo:    VolumeInfoBitmap,
+    volumeInfo:   ^VolumeInfo,
+    volumeName:   ^HFSUniStr255,
+    ref:          ^Ref,
 }
 #assert(size_of(VolumeInfoParam) == 72)
 
 /// GetVolParmsInfoBuffer
 GetVolParmsInfoBuffer :: struct #align (2) #max_field_align(2) {
-    vMVersion: CF.SInt16,
-    vMAttrib: CF.SInt32,
-    vMLocalHand: CF.Handle,
-    vMServerAdr: CF.SInt32,
-    vMVolumeGrade: CF.SInt32,
-    vMForeignPrivID: CF.SInt16,
+    vMVersion:            CF.SInt16,
+    vMAttrib:             CF.SInt32,
+    vMLocalHand:          CF.Handle,
+    vMServerAdr:          CF.SInt32,
+    vMVolumeGrade:        CF.SInt32,
+    vMForeignPrivID:      CF.SInt16,
     vMExtendedAttributes: CF.SInt32,
-    vMDeviceID: rawptr,
-    vMMaxNameLength: CF.UniCharCount,
+    vMDeviceID:           rawptr,
+    vMMaxNameLength:      CF.UniCharCount,
 }
 #assert(size_of(GetVolParmsInfoBuffer) == 44)
 
@@ -1444,10 +1449,10 @@ __FSFileOperation :: struct {}
 
 /// FSFileOperationClientContext
 FileOperationClientContext :: struct #align (2) {
-    version: CF.Index,
-    info: rawptr,
-    retain: CF.AllocatorRetainCallBack,
-    release: CF.AllocatorReleaseCallBack,
+    version:         CF.Index,
+    info:            rawptr,
+    retain:          CF.AllocatorRetainCallBack,
+    release:         CF.AllocatorReleaseCallBack,
     copyDescription: CF.AllocatorCopyDescriptionCallBack,
 }
 #assert(size_of(FileOperationClientContext) == 40)
@@ -1460,19 +1465,19 @@ AliasRecord :: struct #align (1) {
 
 /// FSAliasInfo
 AliasInfo :: struct #align (2) {
-    volumeCreateDate: UTCDateTime,
-    targetCreateDate: UTCDateTime,
-    fileType: CF.OSType,
-    fileCreator: CF.OSType,
-    parentDirID: CF.UInt32,
-    nodeID: CF.UInt32,
-    filesystemID: CF.UInt16,
-    signature: CF.UInt16,
-    volumeIsBootVolume: CF.Boolean,
-    volumeIsAutomounted: CF.Boolean,
-    volumeIsEjectable: CF.Boolean,
+    volumeCreateDate:           UTCDateTime,
+    targetCreateDate:           UTCDateTime,
+    fileType:                   CF.OSType,
+    fileCreator:                CF.OSType,
+    parentDirID:                CF.UInt32,
+    nodeID:                     CF.UInt32,
+    filesystemID:               CF.UInt16,
+    signature:                  CF.UInt16,
+    volumeIsBootVolume:         CF.Boolean,
+    volumeIsAutomounted:        CF.Boolean,
+    volumeIsEjectable:          CF.Boolean,
     volumeHasPersistentFileIDs: CF.Boolean,
-    isDirectory: CF.Boolean,
+    isDirectory:                CF.Boolean,
 }
 #assert(size_of(AliasInfo) == 42)
 
@@ -1484,19 +1489,19 @@ OpaqueTextToUnicodeInfo :: struct {}
 
 /// HFSExtentKey
 HFSExtentKey :: struct #align (2) #max_field_align(2) {
-    keyLength: cffi.uchar,
-    forkType: cffi.uchar,
-    fileID: cffi.uint,
+    keyLength:  cffi.uchar,
+    forkType:   cffi.uchar,
+    fileID:     cffi.uint,
     startBlock: cffi.ushort,
 }
 #assert(size_of(HFSExtentKey) == 8)
 
 /// HFSPlusExtentKey
 HFSPlusExtentKey :: struct #align (2) {
-    keyLength: cffi.ushort,
-    forkType: cffi.uchar,
-    pad: cffi.uchar,
-    fileID: cffi.uint,
+    keyLength:  cffi.ushort,
+    forkType:   cffi.uchar,
+    pad:        cffi.uchar,
+    fileID:     cffi.uint,
     startBlock: cffi.uint,
 }
 #assert(size_of(HFSPlusExtentKey) == 12)
@@ -1517,31 +1522,31 @@ HFSPlusExtentDescriptor :: struct #align (2) {
 
 /// FndrFileInfo
 FndrFileInfo :: struct #align (2) {
-    fdType: cffi.uint,
+    fdType:    cffi.uint,
     fdCreator: cffi.uint,
-    fdFlags: cffi.ushort,
+    fdFlags:   cffi.ushort,
     fdLocation : struct  {
-        v: cffi.int16_t,
-        h: cffi.int16_t,
+        v:         cffi.int16_t,
+        h:         cffi.int16_t,
     },
-    opaque: cffi.int16_t,
+    opaque:    cffi.int16_t,
 }
 #assert(size_of(FndrFileInfo) == 16)
 
 /// FndrDirInfo
 FndrDirInfo :: struct #align (2) {
     frRect : struct  {
-        top: cffi.int16_t,
-        left: cffi.int16_t,
-        bottom: cffi.int16_t,
-        right: cffi.int16_t,
+        top:     cffi.int16_t,
+        left:    cffi.int16_t,
+        bottom:  cffi.int16_t,
+        right:   cffi.int16_t,
     },
     frFlags: cffi.ushort,
     frLocation : struct  {
-        v: cffi.ushort,
-        h: cffi.ushort,
+        v:       cffi.ushort,
+        h:       cffi.ushort,
     },
-    opaque: cffi.int16_t,
+    opaque:  cffi.int16_t,
 }
 #assert(size_of(FndrDirInfo) == 16)
 
@@ -1553,20 +1558,20 @@ FndrOpaqueInfo :: struct #align (2) {
 
 /// FndrExtendedDirInfo
 FndrExtendedDirInfo :: struct #align (2) {
-    document_id: cffi.uint,
-    date_added: cffi.uint,
-    extended_flags: cffi.ushort,
-    reserved3: cffi.ushort,
+    document_id:       cffi.uint,
+    date_added:        cffi.uint,
+    extended_flags:    cffi.ushort,
+    reserved3:         cffi.ushort,
     write_gen_counter: cffi.uint,
 }
 #assert(size_of(FndrExtendedDirInfo) == 16)
 
 /// FndrExtendedFileInfo
 FndrExtendedFileInfo :: struct #align (2) {
-    document_id: cffi.uint,
-    date_added: cffi.uint,
-    extended_flags: cffi.ushort,
-    reserved2: cffi.ushort,
+    document_id:       cffi.uint,
+    date_added:        cffi.uint,
+    extended_flags:    cffi.ushort,
+    reserved2:         cffi.ushort,
     write_gen_counter: cffi.uint,
 }
 #assert(size_of(FndrExtendedFileInfo) == 16)
@@ -1574,23 +1579,23 @@ FndrExtendedFileInfo :: struct #align (2) {
 /// HFSPlusForkData
 HFSPlusForkData :: struct #align (2) {
     logicalSize: cffi.ulonglong,
-    clumpSize: cffi.uint,
+    clumpSize:   cffi.uint,
     totalBlocks: cffi.uint,
-    extents: HFSPlusExtentRecord,
+    extents:     HFSPlusExtentRecord,
 }
 #assert(size_of(HFSPlusForkData) == 80)
 
 /// HFSPlusBSDInfo
 HFSPlusBSDInfo :: struct #align (2) {
-    ownerID: cffi.uint,
-    groupID: cffi.uint,
+    ownerID:    cffi.uint,
+    groupID:    cffi.uint,
     adminFlags: cffi.uchar,
     ownerFlags: cffi.uchar,
-    fileMode: cffi.ushort,
+    fileMode:   cffi.ushort,
     special : struct #raw_union  {
-        iNodeNum: cffi.uint,
-        linkCount: cffi.uint,
-        rawDevice: cffi.uint,
+        iNodeNum:   cffi.uint,
+        linkCount:  cffi.uint,
+        rawDevice:  cffi.uint,
     },
 }
 #assert(size_of(HFSPlusBSDInfo) == 16)
@@ -1598,247 +1603,247 @@ HFSPlusBSDInfo :: struct #align (2) {
 /// HFSCatalogKey
 HFSCatalogKey :: struct #align (2) #max_field_align(2) {
     keyLength: cffi.uchar,
-    reserved: cffi.uchar,
-    parentID: cffi.uint,
-    nodeName: [32]cffi.uchar,
+    reserved:  cffi.uchar,
+    parentID:  cffi.uint,
+    nodeName:  [32]cffi.uchar,
 }
 #assert(size_of(HFSCatalogKey) == 38)
 
 /// HFSPlusCatalogKey
 HFSPlusCatalogKey :: struct #align (2) #max_field_align(2) {
     keyLength: cffi.ushort,
-    parentID: cffi.uint,
-    nodeName: HFSUniStr255,
+    parentID:  cffi.uint,
+    nodeName:  HFSUniStr255,
 }
 #assert(size_of(HFSPlusCatalogKey) == 518)
 
 /// HFSCatalogFolder
 HFSCatalogFolder :: struct #align (2) #max_field_align(2) {
     recordType: cffi.int16_t,
-    flags: cffi.ushort,
-    valence: cffi.ushort,
-    folderID: cffi.uint,
+    flags:      cffi.ushort,
+    valence:    cffi.ushort,
+    folderID:   cffi.uint,
     createDate: cffi.uint,
     modifyDate: cffi.uint,
     backupDate: cffi.uint,
-    userInfo: FndrDirInfo,
+    userInfo:   FndrDirInfo,
     finderInfo: FndrOpaqueInfo,
-    reserved: [4]cffi.uint,
+    reserved:   [4]cffi.uint,
 }
 #assert(size_of(HFSCatalogFolder) == 70)
 
 /// HFSPlusCatalogFolder
 HFSPlusCatalogFolder :: struct #align (2) {
-    recordType: cffi.int16_t,
-    flags: cffi.ushort,
-    valence: cffi.uint,
-    folderID: cffi.uint,
-    createDate: cffi.uint,
-    contentModDate: cffi.uint,
+    recordType:       cffi.int16_t,
+    flags:            cffi.ushort,
+    valence:          cffi.uint,
+    folderID:         cffi.uint,
+    createDate:       cffi.uint,
+    contentModDate:   cffi.uint,
     attributeModDate: cffi.uint,
-    accessDate: cffi.uint,
-    backupDate: cffi.uint,
-    bsdInfo: HFSPlusBSDInfo,
-    userInfo: FndrDirInfo,
-    finderInfo: FndrOpaqueInfo,
-    textEncoding: cffi.uint,
-    folderCount: cffi.uint,
+    accessDate:       cffi.uint,
+    backupDate:       cffi.uint,
+    bsdInfo:          HFSPlusBSDInfo,
+    userInfo:         FndrDirInfo,
+    finderInfo:       FndrOpaqueInfo,
+    textEncoding:     cffi.uint,
+    folderCount:      cffi.uint,
 }
 #assert(size_of(HFSPlusCatalogFolder) == 88)
 
 /// HFSCatalogFile
 HFSCatalogFile :: struct #align (2) #max_field_align(2) {
-    recordType: cffi.int16_t,
-    flags: cffi.uchar,
-    fileType: cffi.int8_t,
-    userInfo: FndrFileInfo,
-    fileID: cffi.uint,
-    dataStartBlock: cffi.ushort,
-    dataLogicalSize: cffi.int32_t,
+    recordType:       cffi.int16_t,
+    flags:            cffi.uchar,
+    fileType:         cffi.int8_t,
+    userInfo:         FndrFileInfo,
+    fileID:           cffi.uint,
+    dataStartBlock:   cffi.ushort,
+    dataLogicalSize:  cffi.int32_t,
     dataPhysicalSize: cffi.int32_t,
-    rsrcStartBlock: cffi.ushort,
-    rsrcLogicalSize: cffi.int32_t,
+    rsrcStartBlock:   cffi.ushort,
+    rsrcLogicalSize:  cffi.int32_t,
     rsrcPhysicalSize: cffi.int32_t,
-    createDate: cffi.uint,
-    modifyDate: cffi.uint,
-    backupDate: cffi.uint,
-    finderInfo: FndrOpaqueInfo,
-    clumpSize: cffi.ushort,
-    dataExtents: HFSExtentRecord,
-    rsrcExtents: HFSExtentRecord,
-    reserved: cffi.uint,
+    createDate:       cffi.uint,
+    modifyDate:       cffi.uint,
+    backupDate:       cffi.uint,
+    finderInfo:       FndrOpaqueInfo,
+    clumpSize:        cffi.ushort,
+    dataExtents:      HFSExtentRecord,
+    rsrcExtents:      HFSExtentRecord,
+    reserved:         cffi.uint,
 }
 #assert(size_of(HFSCatalogFile) == 102)
 
 /// HFSPlusCatalogFile
 HFSPlusCatalogFile :: struct #align (2) {
-    recordType: cffi.int16_t,
-    flags: cffi.ushort,
-    reserved1: cffi.uint,
-    fileID: cffi.uint,
-    createDate: cffi.uint,
-    contentModDate: cffi.uint,
+    recordType:       cffi.int16_t,
+    flags:            cffi.ushort,
+    reserved1:        cffi.uint,
+    fileID:           cffi.uint,
+    createDate:       cffi.uint,
+    contentModDate:   cffi.uint,
     attributeModDate: cffi.uint,
-    accessDate: cffi.uint,
-    backupDate: cffi.uint,
-    bsdInfo: HFSPlusBSDInfo,
-    userInfo: FndrFileInfo,
-    finderInfo: FndrOpaqueInfo,
-    textEncoding: cffi.uint,
-    reserved2: cffi.uint,
-    dataFork: HFSPlusForkData,
-    resourceFork: HFSPlusForkData,
+    accessDate:       cffi.uint,
+    backupDate:       cffi.uint,
+    bsdInfo:          HFSPlusBSDInfo,
+    userInfo:         FndrFileInfo,
+    finderInfo:       FndrOpaqueInfo,
+    textEncoding:     cffi.uint,
+    reserved2:        cffi.uint,
+    dataFork:         HFSPlusForkData,
+    resourceFork:     HFSPlusForkData,
 }
 #assert(size_of(HFSPlusCatalogFile) == 248)
 
 /// HFSCatalogThread
 HFSCatalogThread :: struct #align (2) #max_field_align(2) {
     recordType: cffi.int16_t,
-    reserved: [2]cffi.int32_t,
-    parentID: cffi.uint,
-    nodeName: [32]cffi.uchar,
+    reserved:   [2]cffi.int32_t,
+    parentID:   cffi.uint,
+    nodeName:   [32]cffi.uchar,
 }
 #assert(size_of(HFSCatalogThread) == 46)
 
 /// HFSPlusCatalogThread
 HFSPlusCatalogThread :: struct #align (2) {
     recordType: cffi.int16_t,
-    reserved: cffi.int16_t,
-    parentID: cffi.uint,
-    nodeName: HFSUniStr255,
+    reserved:   cffi.int16_t,
+    parentID:   cffi.uint,
+    nodeName:   HFSUniStr255,
 }
 #assert(size_of(HFSPlusCatalogThread) == 520)
 
 /// HFSPlusAttrForkData
 HFSPlusAttrForkData :: struct #align (2) {
     recordType: cffi.uint,
-    reserved: cffi.uint,
-    theFork: HFSPlusForkData,
+    reserved:   cffi.uint,
+    theFork:    HFSPlusForkData,
 }
 #assert(size_of(HFSPlusAttrForkData) == 88)
 
 /// HFSPlusAttrExtents
 HFSPlusAttrExtents :: struct #align (2) {
     recordType: cffi.uint,
-    reserved: cffi.uint,
-    extents: HFSPlusExtentRecord,
+    reserved:   cffi.uint,
+    extents:    HFSPlusExtentRecord,
 }
 #assert(size_of(HFSPlusAttrExtents) == 72)
 
 /// HFSPlusAttrData
 HFSPlusAttrData :: struct #align (2) {
     recordType: cffi.uint,
-    reserved: [2]cffi.uint,
-    attrSize: cffi.uint,
-    attrData: [2]cffi.uchar,
+    reserved:   [2]cffi.uint,
+    attrSize:   cffi.uint,
+    attrData:   [2]cffi.uchar,
 }
 #assert(size_of(HFSPlusAttrData) == 18)
 
 /// HFSPlusAttrInlineData
 HFSPlusAttrInlineData :: struct #align (2) {
-    recordType: cffi.uint,
-    reserved: cffi.uint,
+    recordType:  cffi.uint,
+    reserved:    cffi.uint,
     logicalSize: cffi.uint,
-    userData: [2]cffi.uchar,
+    userData:    [2]cffi.uchar,
 }
 #assert(size_of(HFSPlusAttrInlineData) == 14)
 
 /// HFSPlusAttrKey
 HFSPlusAttrKey :: struct #align (2) {
-    keyLength: cffi.ushort,
-    pad: cffi.ushort,
-    fileID: cffi.uint,
-    startBlock: cffi.uint,
+    keyLength:   cffi.ushort,
+    pad:         cffi.ushort,
+    fileID:      cffi.uint,
+    startBlock:  cffi.uint,
     attrNameLen: cffi.ushort,
-    attrName: [127]cffi.ushort,
+    attrName:    [127]cffi.ushort,
 }
 #assert(size_of(HFSPlusAttrKey) == 268)
 
 /// HFSMasterDirectoryBlock
 HFSMasterDirectoryBlock :: struct #align (2) #max_field_align(2) {
-    drSigWord: cffi.ushort,
-    drCrDate: cffi.uint,
-    drLsMod: cffi.uint,
-    drAtrb: cffi.ushort,
-    drNmFls: cffi.ushort,
-    drVBMSt: cffi.ushort,
-    drAllocPtr: cffi.ushort,
-    drNmAlBlks: cffi.ushort,
-    drAlBlkSiz: cffi.uint,
-    drClpSiz: cffi.uint,
-    drAlBlSt: cffi.ushort,
-    drNxtCNID: cffi.uint,
-    drFreeBks: cffi.ushort,
-    drVN: [28]cffi.uchar,
-    drVolBkUp: cffi.uint,
-    drVSeqNum: cffi.ushort,
-    drWrCnt: cffi.uint,
-    drXTClpSiz: cffi.uint,
-    drCTClpSiz: cffi.uint,
-    drNmRtDirs: cffi.ushort,
-    drFilCnt: cffi.uint,
-    drDirCnt: cffi.uint,
-    drFndrInfo: [8]cffi.uint,
+    drSigWord:      cffi.ushort,
+    drCrDate:       cffi.uint,
+    drLsMod:        cffi.uint,
+    drAtrb:         cffi.ushort,
+    drNmFls:        cffi.ushort,
+    drVBMSt:        cffi.ushort,
+    drAllocPtr:     cffi.ushort,
+    drNmAlBlks:     cffi.ushort,
+    drAlBlkSiz:     cffi.uint,
+    drClpSiz:       cffi.uint,
+    drAlBlSt:       cffi.ushort,
+    drNxtCNID:      cffi.uint,
+    drFreeBks:      cffi.ushort,
+    drVN:           [28]cffi.uchar,
+    drVolBkUp:      cffi.uint,
+    drVSeqNum:      cffi.ushort,
+    drWrCnt:        cffi.uint,
+    drXTClpSiz:     cffi.uint,
+    drCTClpSiz:     cffi.uint,
+    drNmRtDirs:     cffi.ushort,
+    drFilCnt:       cffi.uint,
+    drDirCnt:       cffi.uint,
+    drFndrInfo:     [8]cffi.uint,
     drEmbedSigWord: cffi.ushort,
-    drEmbedExtent: HFSExtentDescriptor,
-    drXTFlSize: cffi.uint,
-    drXTExtRec: HFSExtentRecord,
-    drCTFlSize: cffi.uint,
-    drCTExtRec: HFSExtentRecord,
+    drEmbedExtent:  HFSExtentDescriptor,
+    drXTFlSize:     cffi.uint,
+    drXTExtRec:     HFSExtentRecord,
+    drCTFlSize:     cffi.uint,
+    drCTExtRec:     HFSExtentRecord,
 }
 #assert(size_of(HFSMasterDirectoryBlock) == 162)
 
 /// HFSPlusVolumeHeader
 HFSPlusVolumeHeader :: struct #align (2) {
-    signature: cffi.ushort,
-    version: cffi.ushort,
-    attributes: cffi.uint,
+    signature:          cffi.ushort,
+    version:            cffi.ushort,
+    attributes:         cffi.uint,
     lastMountedVersion: cffi.uint,
-    journalInfoBlock: cffi.uint,
-    createDate: cffi.uint,
-    modifyDate: cffi.uint,
-    backupDate: cffi.uint,
-    checkedDate: cffi.uint,
-    fileCount: cffi.uint,
-    folderCount: cffi.uint,
-    blockSize: cffi.uint,
-    totalBlocks: cffi.uint,
-    freeBlocks: cffi.uint,
-    nextAllocation: cffi.uint,
-    rsrcClumpSize: cffi.uint,
-    dataClumpSize: cffi.uint,
-    nextCatalogID: cffi.uint,
-    writeCount: cffi.uint,
-    encodingsBitmap: cffi.ulonglong,
-    finderInfo: [32]cffi.uchar,
-    allocationFile: HFSPlusForkData,
-    extentsFile: HFSPlusForkData,
-    catalogFile: HFSPlusForkData,
-    attributesFile: HFSPlusForkData,
-    startupFile: HFSPlusForkData,
+    journalInfoBlock:   cffi.uint,
+    createDate:         cffi.uint,
+    modifyDate:         cffi.uint,
+    backupDate:         cffi.uint,
+    checkedDate:        cffi.uint,
+    fileCount:          cffi.uint,
+    folderCount:        cffi.uint,
+    blockSize:          cffi.uint,
+    totalBlocks:        cffi.uint,
+    freeBlocks:         cffi.uint,
+    nextAllocation:     cffi.uint,
+    rsrcClumpSize:      cffi.uint,
+    dataClumpSize:      cffi.uint,
+    nextCatalogID:      cffi.uint,
+    writeCount:         cffi.uint,
+    encodingsBitmap:    cffi.ulonglong,
+    finderInfo:         [32]cffi.uchar,
+    allocationFile:     HFSPlusForkData,
+    extentsFile:        HFSPlusForkData,
+    catalogFile:        HFSPlusForkData,
+    attributesFile:     HFSPlusForkData,
+    startupFile:        HFSPlusForkData,
 }
 #assert(size_of(HFSPlusVolumeHeader) == 512)
 
 /// TextChunk
 TextChunk :: struct #align (2) {
-    ckID: CF.UInt32,
+    ckID:   CF.UInt32,
     ckSize: CF.SInt32,
-    text: [1]cffi.char,
+    text:   [1]cffi.char,
 }
 #assert(size_of(TextChunk) == 10)
 
 /// TextEncodingRec
 TextEncodingRec :: struct #align (4) {
-    base: CF.UInt32,
+    base:    CF.UInt32,
     variant: CF.UInt32,
-    format: CF.UInt32,
+    format:  CF.UInt32,
 }
 #assert(size_of(TextEncodingRec) == 12)
 
 /// TextRange
 TextRange :: struct #align (2) {
-    fStart: CF.SInt32,
-    fEnd: CF.SInt32,
+    fStart:       CF.SInt32,
+    fEnd:         CF.SInt32,
     fHiliteStyle: CF.SInt16,
 }
 #assert(size_of(TextRange) == 10)
@@ -1846,7 +1851,7 @@ TextRange :: struct #align (2) {
 /// TextRangeArray
 TextRangeArray :: struct #align (2) {
     fNumOfRanges: CF.SInt16,
-    fRange: [1]TextRange,
+    fRange:       [1]TextRange,
 }
 #assert(size_of(TextRangeArray) == 12)
 
@@ -1855,20 +1860,20 @@ __FSEventStream :: struct {}
 
 /// FSEventStreamContext
 EventStreamContext :: struct #align (2) {
-    version: CF.Index,
-    info: rawptr,
-    retain: CF.AllocatorRetainCallBack,
-    release: CF.AllocatorReleaseCallBack,
+    version:         CF.Index,
+    info:            rawptr,
+    retain:          CF.AllocatorRetainCallBack,
+    release:         CF.AllocatorReleaseCallBack,
     copyDescription: CF.AllocatorCopyDescriptionCallBack,
 }
 #assert(size_of(EventStreamContext) == 40)
 
 /// HFSPlusAttrRecord
 HFSPlusAttrRecord :: struct #raw_union #align (4) {
-    recordType: cffi.uint,
-    inlineData: HFSPlusAttrInlineData,
-    attrData: HFSPlusAttrData,
-    forkData: HFSPlusAttrForkData,
+    recordType:      cffi.uint,
+    inlineData:      HFSPlusAttrInlineData,
+    attrData:        HFSPlusAttrData,
+    forkData:        HFSPlusAttrForkData,
     overflowExtents: HFSPlusAttrExtents,
 }
 #assert(size_of(HFSPlusAttrRecord) == 88)
