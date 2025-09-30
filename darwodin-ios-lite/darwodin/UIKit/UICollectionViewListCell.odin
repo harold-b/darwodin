@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICollectionViewListCell
 ///
-@(objc_class="UICollectionViewListCell")
+@(objc_class="UICollectionViewListCell", objc_superclass=CollectionViewCell)
 CollectionViewListCell :: struct { using _: CollectionViewCell, }
 

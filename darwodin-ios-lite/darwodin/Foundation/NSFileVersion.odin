@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSFileVersion
 ///
-@(objc_class="NSFileVersion")
+@(objc_class="NSFileVersion", objc_superclass=Object)
 FileVersion :: struct { using _: Object, }
 

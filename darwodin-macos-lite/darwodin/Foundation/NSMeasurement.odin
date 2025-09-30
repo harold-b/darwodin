@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSMeasurement
 ///
-@(objc_class="NSMeasurement")
+@(objc_class="NSMeasurement", objc_superclass=Object)
 Measurement :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

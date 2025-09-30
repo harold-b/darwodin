@@ -21,19 +21,18 @@ CandidateListTouchBarItemDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CandidateListTouchBarItemDelegate, objc_name="candidateListTouchBarItem_beginSelectingCandidateAtIndex")
-CandidateListTouchBarItemDelegate_candidateListTouchBarItem_beginSelectingCandidateAtIndex :: #force_inline proc "c" (self: ^CandidateListTouchBarItemDelegate, anItem: ^CandidateListTouchBarItem, index: NS.Integer) {
-    msgSend(nil, self, "candidateListTouchBarItem:beginSelectingCandidateAtIndex:", anItem, index)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CandidateListTouchBarItemDelegate, objc_selector="candidateListTouchBarItem:beginSelectingCandidateAtIndex:", objc_name="candidateListTouchBarItem_beginSelectingCandidateAtIndex")
+    CandidateListTouchBarItemDelegate_candidateListTouchBarItem_beginSelectingCandidateAtIndex :: proc(self: ^CandidateListTouchBarItemDelegate, anItem: ^CandidateListTouchBarItem, index: NS.Integer) ---
+
+    @(objc_type=CandidateListTouchBarItemDelegate, objc_selector="candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:", objc_name="candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex")
+    CandidateListTouchBarItemDelegate_candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex :: proc(self: ^CandidateListTouchBarItemDelegate, anItem: ^CandidateListTouchBarItem, previousIndex: NS.Integer, index: NS.Integer) ---
+
+    @(objc_type=CandidateListTouchBarItemDelegate, objc_selector="candidateListTouchBarItem:endSelectingCandidateAtIndex:", objc_name="candidateListTouchBarItem_endSelectingCandidateAtIndex")
+    CandidateListTouchBarItemDelegate_candidateListTouchBarItem_endSelectingCandidateAtIndex :: proc(self: ^CandidateListTouchBarItemDelegate, anItem: ^CandidateListTouchBarItem, index: NS.Integer) ---
+
+    @(objc_type=CandidateListTouchBarItemDelegate, objc_selector="candidateListTouchBarItem:changedCandidateListVisibility:", objc_name="candidateListTouchBarItem_changedCandidateListVisibility")
+    CandidateListTouchBarItemDelegate_candidateListTouchBarItem_changedCandidateListVisibility :: proc(self: ^CandidateListTouchBarItemDelegate, anItem: ^CandidateListTouchBarItem, isVisible: bool) ---
 }
-@(objc_type=CandidateListTouchBarItemDelegate, objc_name="candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex")
-CandidateListTouchBarItemDelegate_candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex :: #force_inline proc "c" (self: ^CandidateListTouchBarItemDelegate, anItem: ^CandidateListTouchBarItem, previousIndex: NS.Integer, index: NS.Integer) {
-    msgSend(nil, self, "candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:", anItem, previousIndex, index)
-}
-@(objc_type=CandidateListTouchBarItemDelegate, objc_name="candidateListTouchBarItem_endSelectingCandidateAtIndex")
-CandidateListTouchBarItemDelegate_candidateListTouchBarItem_endSelectingCandidateAtIndex :: #force_inline proc "c" (self: ^CandidateListTouchBarItemDelegate, anItem: ^CandidateListTouchBarItem, index: NS.Integer) {
-    msgSend(nil, self, "candidateListTouchBarItem:endSelectingCandidateAtIndex:", anItem, index)
-}
-@(objc_type=CandidateListTouchBarItemDelegate, objc_name="candidateListTouchBarItem_changedCandidateListVisibility")
-CandidateListTouchBarItemDelegate_candidateListTouchBarItem_changedCandidateListVisibility :: #force_inline proc "c" (self: ^CandidateListTouchBarItemDelegate, anItem: ^CandidateListTouchBarItem, isVisible: bool) {
-    msgSend(nil, self, "candidateListTouchBarItem:changedCandidateListVisibility:", anItem, isVisible)
-}
+

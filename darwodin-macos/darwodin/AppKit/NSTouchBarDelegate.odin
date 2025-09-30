@@ -21,7 +21,8 @@ TouchBarDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TouchBarDelegate, objc_name="touchBar")
-TouchBarDelegate_touchBar :: #force_inline proc "c" (self: ^TouchBarDelegate, touchBar: ^TouchBar, identifier: ^NS.String) -> ^TouchBarItem {
-    return msgSend(^TouchBarItem, self, "touchBar:makeItemForIdentifier:", touchBar, identifier)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TouchBarDelegate, objc_selector="touchBar:makeItemForIdentifier:", objc_name="touchBar")
+    TouchBarDelegate_touchBar :: proc(self: ^TouchBarDelegate, touchBar: ^TouchBar, identifier: ^NS.String) -> ^TouchBarItem ---
 }

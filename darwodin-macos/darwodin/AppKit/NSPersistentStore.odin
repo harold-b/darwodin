@@ -19,14 +19,5 @@ import CA "../QuartzCore"
 @(objc_class="NSPersistentStore")
 PersistentStore :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=PersistentStore, objc_name="alloc", objc_is_class_method=true)
-PersistentStore_alloc :: proc "c" () -> ^PersistentStore {
-    return msgSend(^PersistentStore, PersistentStore, "alloc")
-}
-
-@(objc_type=PersistentStore, objc_name="init")
-PersistentStore_init :: proc "c" (self: ^PersistentStore) -> ^PersistentStore {
-    return msgSend(^PersistentStore, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

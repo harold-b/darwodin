@@ -21,11 +21,11 @@ EditorRegistration :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=EditorRegistration, objc_name="objectDidBeginEditing")
-EditorRegistration_objectDidBeginEditing :: #force_inline proc "c" (self: ^EditorRegistration, editor: ^Editor) {
-    msgSend(nil, self, "objectDidBeginEditing:", editor)
-}
-@(objc_type=EditorRegistration, objc_name="objectDidEndEditing")
-EditorRegistration_objectDidEndEditing :: #force_inline proc "c" (self: ^EditorRegistration, editor: ^Editor) {
-    msgSend(nil, self, "objectDidEndEditing:", editor)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=EditorRegistration, objc_selector="objectDidBeginEditing:", objc_name="objectDidBeginEditing")
+    EditorRegistration_objectDidBeginEditing :: proc(self: ^EditorRegistration, editor: ^Editor) ---
+
+    @(objc_type=EditorRegistration, objc_selector="objectDidEndEditing:", objc_name="objectDidEndEditing")
+    EditorRegistration_objectDidEndEditing :: proc(self: ^EditorRegistration, editor: ^Editor) ---
 }

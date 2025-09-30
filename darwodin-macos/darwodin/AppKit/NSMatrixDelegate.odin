@@ -21,3 +21,5 @@ MatrixDelegate :: struct { using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 
+@(default_calling_convention="c")
+foreign lib {}

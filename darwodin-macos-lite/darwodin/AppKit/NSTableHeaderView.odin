@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTableHeaderView
 ///
-@(objc_class="NSTableHeaderView")
+@(objc_class="NSTableHeaderView", objc_superclass=View)
 TableHeaderView :: struct { using _: View, 
     using _: ViewToolTipOwner,
 }

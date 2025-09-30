@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSCollectionViewCompositionalLayout
 ///
-@(objc_class="NSCollectionViewCompositionalLayout")
+@(objc_class="NSCollectionViewCompositionalLayout", objc_superclass=CollectionViewLayout)
 CollectionViewCompositionalLayout :: struct { using _: CollectionViewLayout, }
 

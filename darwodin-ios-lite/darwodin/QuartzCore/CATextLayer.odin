@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CATextLayer
 ///
-@(objc_class="CATextLayer")
+@(objc_class="CATextLayer", objc_superclass=Layer)
 TextLayer :: struct { using _: Layer, }
 

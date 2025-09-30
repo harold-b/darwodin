@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITabBarItemStateAppearance
 ///
-@(objc_class="UITabBarItemStateAppearance")
+@(objc_class="UITabBarItemStateAppearance", objc_superclass=NS.Object)
 TabBarItemStateAppearance :: struct { using _: NS.Object, }
 

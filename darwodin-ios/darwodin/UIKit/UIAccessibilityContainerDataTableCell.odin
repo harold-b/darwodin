@@ -21,11 +21,11 @@ AccessibilityContainerDataTableCell :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AccessibilityContainerDataTableCell, objc_name="accessibilityRowRange")
-AccessibilityContainerDataTableCell_accessibilityRowRange :: #force_inline proc "c" (self: ^AccessibilityContainerDataTableCell) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityRowRange")
-}
-@(objc_type=AccessibilityContainerDataTableCell, objc_name="accessibilityColumnRange")
-AccessibilityContainerDataTableCell_accessibilityColumnRange :: #force_inline proc "c" (self: ^AccessibilityContainerDataTableCell) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityColumnRange")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityContainerDataTableCell, objc_selector="accessibilityRowRange", objc_name="accessibilityRowRange")
+    AccessibilityContainerDataTableCell_accessibilityRowRange :: proc(self: ^AccessibilityContainerDataTableCell) -> NS._NSRange ---
+
+    @(objc_type=AccessibilityContainerDataTableCell, objc_selector="accessibilityColumnRange", objc_name="accessibilityColumnRange")
+    AccessibilityContainerDataTableCell_accessibilityColumnRange :: proc(self: ^AccessibilityContainerDataTableCell) -> NS._NSRange ---
 }

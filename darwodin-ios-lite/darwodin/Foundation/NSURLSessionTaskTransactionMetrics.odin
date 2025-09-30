@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSURLSessionTaskTransactionMetrics
 ///
-@(objc_class="NSURLSessionTaskTransactionMetrics")
+@(objc_class="NSURLSessionTaskTransactionMetrics", objc_superclass=Object)
 URLSessionTaskTransactionMetrics :: struct { using _: Object, }
 

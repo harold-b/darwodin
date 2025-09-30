@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSGroupTouchBarItem
 ///
-@(objc_class="NSGroupTouchBarItem")
+@(objc_class="NSGroupTouchBarItem", objc_superclass=TouchBarItem)
 GroupTouchBarItem :: struct { using _: TouchBarItem, }
 

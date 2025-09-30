@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSAccessibilityCustomRotorItemResult
 ///
-@(objc_class="NSAccessibilityCustomRotorItemResult")
+@(objc_class="NSAccessibilityCustomRotorItemResult", objc_superclass=NS.Object)
 AccessibilityCustomRotorItemResult :: struct { using _: NS.Object, }
 

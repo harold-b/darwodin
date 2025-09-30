@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITableViewCell
 ///
-@(objc_class="UITableViewCell")
+@(objc_class="UITableViewCell", objc_superclass=View)
 TableViewCell :: struct { using _: View, 
     using _: NS.Coding,
     using _: GestureRecognizerDelegate,

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSXMLDocument
 ///
-@(objc_class="NSXMLDocument")
+@(objc_class="NSXMLDocument", objc_superclass=XMLNode)
 XMLDocument :: struct { using _: XMLNode, }
 

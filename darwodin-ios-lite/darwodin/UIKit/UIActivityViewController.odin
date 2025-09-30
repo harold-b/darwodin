@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIActivityViewController
 ///
-@(objc_class="UIActivityViewController")
+@(objc_class="UIActivityViewController", objc_superclass=ViewController)
 ActivityViewController :: struct { using _: ViewController, }
 

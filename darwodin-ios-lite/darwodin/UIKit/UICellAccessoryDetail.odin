@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICellAccessoryDetail
 ///
-@(objc_class="UICellAccessoryDetail")
+@(objc_class="UICellAccessoryDetail", objc_superclass=CellAccessory)
 CellAccessoryDetail :: struct { using _: CellAccessory, }
 

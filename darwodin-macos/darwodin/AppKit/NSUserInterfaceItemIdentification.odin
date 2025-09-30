@@ -19,11 +19,11 @@ import CA "../QuartzCore"
 @(objc_class="NSUserInterfaceItemIdentification")
 UserInterfaceItemIdentification :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=UserInterfaceItemIdentification, objc_name="identifier")
-UserInterfaceItemIdentification_identifier :: #force_inline proc "c" (self: ^UserInterfaceItemIdentification) -> ^NS.String {
-    return msgSend(^NS.String, self, "identifier")
-}
-@(objc_type=UserInterfaceItemIdentification, objc_name="setIdentifier")
-UserInterfaceItemIdentification_setIdentifier :: #force_inline proc "c" (self: ^UserInterfaceItemIdentification, identifier: ^NS.String) {
-    msgSend(nil, self, "setIdentifier:", identifier)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=UserInterfaceItemIdentification, objc_selector="identifier", objc_name="identifier")
+    UserInterfaceItemIdentification_identifier :: proc(self: ^UserInterfaceItemIdentification) -> ^NS.String ---
+
+    @(objc_type=UserInterfaceItemIdentification, objc_selector="setIdentifier:", objc_name="setIdentifier")
+    UserInterfaceItemIdentification_setIdentifier :: proc(self: ^UserInterfaceItemIdentification, identifier: ^NS.String) ---
 }

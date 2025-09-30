@@ -21,14 +21,15 @@ ViewControllerPreviewingDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewControllerPreviewingDelegate, objc_name="previewingContext_viewControllerForLocation")
-ViewControllerPreviewingDelegate_previewingContext_viewControllerForLocation :: #force_inline proc "c" (self: ^ViewControllerPreviewingDelegate, previewingContext: ^ViewControllerPreviewing, location: CG.Point) -> ^ViewController {
-    return msgSend(^ViewController, self, "previewingContext:viewControllerForLocation:", previewingContext, location)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewControllerPreviewingDelegate, objc_selector="previewingContext:viewControllerForLocation:", objc_name="previewingContext_viewControllerForLocation")
+    ViewControllerPreviewingDelegate_previewingContext_viewControllerForLocation :: proc(self: ^ViewControllerPreviewingDelegate, previewingContext: ^ViewControllerPreviewing, location: CG.Point) -> ^ViewController ---
+
+    @(objc_type=ViewControllerPreviewingDelegate, objc_selector="previewingContext:commitViewController:", objc_name="previewingContext_commitViewController")
+    ViewControllerPreviewingDelegate_previewingContext_commitViewController :: proc(self: ^ViewControllerPreviewingDelegate, previewingContext: ^ViewControllerPreviewing, viewControllerToCommit: ^ViewController) ---
 }
-@(objc_type=ViewControllerPreviewingDelegate, objc_name="previewingContext_commitViewController")
-ViewControllerPreviewingDelegate_previewingContext_commitViewController :: #force_inline proc "c" (self: ^ViewControllerPreviewingDelegate, previewingContext: ^ViewControllerPreviewing, viewControllerToCommit: ^ViewController) {
-    msgSend(nil, self, "previewingContext:commitViewController:", previewingContext, viewControllerToCommit)
-}
+
 @(objc_type=ViewControllerPreviewingDelegate, objc_name="previewingContext")
 ViewControllerPreviewingDelegate_previewingContext :: proc {
     ViewControllerPreviewingDelegate_previewingContext_viewControllerForLocation,

@@ -21,19 +21,18 @@ PointerInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PointerInteractionDelegate, objc_name="pointerInteraction_regionForRequest_defaultRegion")
-PointerInteractionDelegate_pointerInteraction_regionForRequest_defaultRegion :: #force_inline proc "c" (self: ^PointerInteractionDelegate, interaction: ^PointerInteraction, request: ^PointerRegionRequest, defaultRegion: ^PointerRegion) -> ^PointerRegion {
-    return msgSend(^PointerRegion, self, "pointerInteraction:regionForRequest:defaultRegion:", interaction, request, defaultRegion)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PointerInteractionDelegate, objc_selector="pointerInteraction:regionForRequest:defaultRegion:", objc_name="pointerInteraction_regionForRequest_defaultRegion")
+    PointerInteractionDelegate_pointerInteraction_regionForRequest_defaultRegion :: proc(self: ^PointerInteractionDelegate, interaction: ^PointerInteraction, request: ^PointerRegionRequest, defaultRegion: ^PointerRegion) -> ^PointerRegion ---
+
+    @(objc_type=PointerInteractionDelegate, objc_selector="pointerInteraction:styleForRegion:", objc_name="pointerInteraction_styleForRegion")
+    PointerInteractionDelegate_pointerInteraction_styleForRegion :: proc(self: ^PointerInteractionDelegate, interaction: ^PointerInteraction, region: ^PointerRegion) -> ^PointerStyle ---
+
+    @(objc_type=PointerInteractionDelegate, objc_selector="pointerInteraction:willEnterRegion:animator:", objc_name="pointerInteraction_willEnterRegion_animator")
+    PointerInteractionDelegate_pointerInteraction_willEnterRegion_animator :: proc(self: ^PointerInteractionDelegate, interaction: ^PointerInteraction, region: ^PointerRegion, animator: ^PointerInteractionAnimating) ---
+
+    @(objc_type=PointerInteractionDelegate, objc_selector="pointerInteraction:willExitRegion:animator:", objc_name="pointerInteraction_willExitRegion_animator")
+    PointerInteractionDelegate_pointerInteraction_willExitRegion_animator :: proc(self: ^PointerInteractionDelegate, interaction: ^PointerInteraction, region: ^PointerRegion, animator: ^PointerInteractionAnimating) ---
 }
-@(objc_type=PointerInteractionDelegate, objc_name="pointerInteraction_styleForRegion")
-PointerInteractionDelegate_pointerInteraction_styleForRegion :: #force_inline proc "c" (self: ^PointerInteractionDelegate, interaction: ^PointerInteraction, region: ^PointerRegion) -> ^PointerStyle {
-    return msgSend(^PointerStyle, self, "pointerInteraction:styleForRegion:", interaction, region)
-}
-@(objc_type=PointerInteractionDelegate, objc_name="pointerInteraction_willEnterRegion_animator")
-PointerInteractionDelegate_pointerInteraction_willEnterRegion_animator :: #force_inline proc "c" (self: ^PointerInteractionDelegate, interaction: ^PointerInteraction, region: ^PointerRegion, animator: ^PointerInteractionAnimating) {
-    msgSend(nil, self, "pointerInteraction:willEnterRegion:animator:", interaction, region, animator)
-}
-@(objc_type=PointerInteractionDelegate, objc_name="pointerInteraction_willExitRegion_animator")
-PointerInteractionDelegate_pointerInteraction_willExitRegion_animator :: #force_inline proc "c" (self: ^PointerInteractionDelegate, interaction: ^PointerInteraction, region: ^PointerRegion, animator: ^PointerInteractionAnimating) {
-    msgSend(nil, self, "pointerInteraction:willExitRegion:animator:", interaction, region, animator)
-}
+

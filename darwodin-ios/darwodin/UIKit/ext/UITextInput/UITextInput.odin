@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -250,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).selectionRectsForRange(self, range)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("selectionRectsForRange:"), auto_cast selectionRectsForRange, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectionRectsForRange:"), auto_cast selectionRectsForRange, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.closestPositionToPoint_ != nil {
         closestPositionToPoint_ :: proc "c" (self: ^UI.TextInput, _: SEL, point: CG.Point) -> ^UI.TextPosition {
@@ -300,7 +301,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textStylingAtPosition(self, position, direction)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textStylingAtPosition:inDirection:"), auto_cast textStylingAtPosition, "@@:@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textStylingAtPosition:inDirection:"), auto_cast textStylingAtPosition, "^void@:@l") do panic("Failed to register objC method.")
     }
     if vt.positionWithinRange_atCharacterOffset != nil {
         positionWithinRange_atCharacterOffset :: proc "c" (self: ^UI.TextInput, _: SEL, range: ^UI.TextRange, offset: NS.Integer) -> ^UI.TextPosition {
@@ -330,7 +331,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).insertDictationResult(self, dictationResult)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("insertDictationResult:"), auto_cast insertDictationResult, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertDictationResult:"), auto_cast insertDictationResult, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.dictationRecordingDidEnd != nil {
         dictationRecordingDidEnd :: proc "c" (self: ^UI.TextInput, _: SEL) {
@@ -380,7 +381,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).insertText(self, text, alternatives, style)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("insertText:alternatives:style:"), auto_cast insertText, "v@:@@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertText:alternatives:style:"), auto_cast insertText, "v@:@^voidl") do panic("Failed to register objC method.")
     }
     if vt.setAttributedMarkedText != nil {
         setAttributedMarkedText :: proc "c" (self: ^UI.TextInput, _: SEL, markedText: ^NS.AttributedString, selectedRange: NS._NSRange) {
@@ -460,7 +461,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).editMenuForTextRange(self, textRange, suggestedActions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("editMenuForTextRange:suggestedActions:"), auto_cast editMenuForTextRange, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("editMenuForTextRange:suggestedActions:"), auto_cast editMenuForTextRange, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.willPresentEditMenuWithAnimator != nil {
         willPresentEditMenuWithAnimator :: proc "c" (self: ^UI.TextInput, _: SEL, animator: ^UI.EditMenuInteractionAnimating) {
@@ -580,7 +581,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).markedTextStyle(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextStyle"), auto_cast markedTextStyle, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextStyle"), auto_cast markedTextStyle, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setMarkedTextStyle != nil {
         setMarkedTextStyle :: proc "c" (self: ^UI.TextInput, _: SEL, markedTextStyle: ^NS.Dictionary) {
@@ -590,7 +591,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setMarkedTextStyle(self, markedTextStyle)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setMarkedTextStyle:"), auto_cast setMarkedTextStyle, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMarkedTextStyle:"), auto_cast setMarkedTextStyle, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.beginningOfDocument != nil {
         beginningOfDocument :: proc "c" (self: ^UI.TextInput, _: SEL) -> ^UI.TextPosition {

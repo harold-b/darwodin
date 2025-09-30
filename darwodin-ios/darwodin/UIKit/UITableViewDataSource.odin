@@ -21,47 +21,39 @@ TableViewDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TableViewDataSource, objc_name="tableView_numberOfRowsInSection")
-TableViewDataSource_tableView_numberOfRowsInSection :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, section: NS.Integer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "tableView:numberOfRowsInSection:", tableView, section)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TableViewDataSource, objc_selector="tableView:numberOfRowsInSection:", objc_name="tableView_numberOfRowsInSection")
+    TableViewDataSource_tableView_numberOfRowsInSection :: proc(self: ^TableViewDataSource, tableView: ^TableView, section: NS.Integer) -> NS.Integer ---
+
+    @(objc_type=TableViewDataSource, objc_selector="tableView:cellForRowAtIndexPath:", objc_name="tableView_cellForRowAtIndexPath")
+    TableViewDataSource_tableView_cellForRowAtIndexPath :: proc(self: ^TableViewDataSource, tableView: ^TableView, indexPath: ^NS.IndexPath) -> ^TableViewCell ---
+
+    @(objc_type=TableViewDataSource, objc_selector="numberOfSectionsInTableView:", objc_name="numberOfSectionsInTableView")
+    TableViewDataSource_numberOfSectionsInTableView :: proc(self: ^TableViewDataSource, tableView: ^TableView) -> NS.Integer ---
+
+    @(objc_type=TableViewDataSource, objc_selector="tableView:titleForHeaderInSection:", objc_name="tableView_titleForHeaderInSection")
+    TableViewDataSource_tableView_titleForHeaderInSection :: proc(self: ^TableViewDataSource, tableView: ^TableView, section: NS.Integer) -> ^NS.String ---
+
+    @(objc_type=TableViewDataSource, objc_selector="tableView:titleForFooterInSection:", objc_name="tableView_titleForFooterInSection")
+    TableViewDataSource_tableView_titleForFooterInSection :: proc(self: ^TableViewDataSource, tableView: ^TableView, section: NS.Integer) -> ^NS.String ---
+
+    @(objc_type=TableViewDataSource, objc_selector="tableView:canEditRowAtIndexPath:", objc_name="tableView_canEditRowAtIndexPath")
+    TableViewDataSource_tableView_canEditRowAtIndexPath :: proc(self: ^TableViewDataSource, tableView: ^TableView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=TableViewDataSource, objc_selector="tableView:canMoveRowAtIndexPath:", objc_name="tableView_canMoveRowAtIndexPath")
+    TableViewDataSource_tableView_canMoveRowAtIndexPath :: proc(self: ^TableViewDataSource, tableView: ^TableView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=TableViewDataSource, objc_selector="sectionIndexTitlesForTableView:", objc_name="sectionIndexTitlesForTableView")
+    TableViewDataSource_sectionIndexTitlesForTableView :: proc(self: ^TableViewDataSource, tableView: ^TableView) -> ^NS.Array ---
+
+    @(objc_type=TableViewDataSource, objc_selector="tableView:sectionForSectionIndexTitle:atIndex:", objc_name="tableView_sectionForSectionIndexTitle_atIndex")
+    TableViewDataSource_tableView_sectionForSectionIndexTitle_atIndex :: proc(self: ^TableViewDataSource, tableView: ^TableView, title: ^NS.String, index: NS.Integer) -> NS.Integer ---
+
+    @(objc_type=TableViewDataSource, objc_selector="tableView:commitEditingStyle:forRowAtIndexPath:", objc_name="tableView_commitEditingStyle_forRowAtIndexPath")
+    TableViewDataSource_tableView_commitEditingStyle_forRowAtIndexPath :: proc(self: ^TableViewDataSource, tableView: ^TableView, editingStyle: TableViewCellEditingStyle, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=TableViewDataSource, objc_selector="tableView:moveRowAtIndexPath:toIndexPath:", objc_name="tableView_moveRowAtIndexPath_toIndexPath")
+    TableViewDataSource_tableView_moveRowAtIndexPath_toIndexPath :: proc(self: ^TableViewDataSource, tableView: ^TableView, sourceIndexPath: ^NS.IndexPath, destinationIndexPath: ^NS.IndexPath) ---
 }
-@(objc_type=TableViewDataSource, objc_name="tableView_cellForRowAtIndexPath")
-TableViewDataSource_tableView_cellForRowAtIndexPath :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, indexPath: ^NS.IndexPath) -> ^TableViewCell {
-    return msgSend(^TableViewCell, self, "tableView:cellForRowAtIndexPath:", tableView, indexPath)
-}
-@(objc_type=TableViewDataSource, objc_name="numberOfSectionsInTableView")
-TableViewDataSource_numberOfSectionsInTableView :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView) -> NS.Integer {
-    return msgSend(NS.Integer, self, "numberOfSectionsInTableView:", tableView)
-}
-@(objc_type=TableViewDataSource, objc_name="tableView_titleForHeaderInSection")
-TableViewDataSource_tableView_titleForHeaderInSection :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, section: NS.Integer) -> ^NS.String {
-    return msgSend(^NS.String, self, "tableView:titleForHeaderInSection:", tableView, section)
-}
-@(objc_type=TableViewDataSource, objc_name="tableView_titleForFooterInSection")
-TableViewDataSource_tableView_titleForFooterInSection :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, section: NS.Integer) -> ^NS.String {
-    return msgSend(^NS.String, self, "tableView:titleForFooterInSection:", tableView, section)
-}
-@(objc_type=TableViewDataSource, objc_name="tableView_canEditRowAtIndexPath")
-TableViewDataSource_tableView_canEditRowAtIndexPath :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "tableView:canEditRowAtIndexPath:", tableView, indexPath)
-}
-@(objc_type=TableViewDataSource, objc_name="tableView_canMoveRowAtIndexPath")
-TableViewDataSource_tableView_canMoveRowAtIndexPath :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "tableView:canMoveRowAtIndexPath:", tableView, indexPath)
-}
-@(objc_type=TableViewDataSource, objc_name="sectionIndexTitlesForTableView")
-TableViewDataSource_sectionIndexTitlesForTableView :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "sectionIndexTitlesForTableView:", tableView)
-}
-@(objc_type=TableViewDataSource, objc_name="tableView_sectionForSectionIndexTitle_atIndex")
-TableViewDataSource_tableView_sectionForSectionIndexTitle_atIndex :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, title: ^NS.String, index: NS.Integer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "tableView:sectionForSectionIndexTitle:atIndex:", tableView, title, index)
-}
-@(objc_type=TableViewDataSource, objc_name="tableView_commitEditingStyle_forRowAtIndexPath")
-TableViewDataSource_tableView_commitEditingStyle_forRowAtIndexPath :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, editingStyle: TableViewCellEditingStyle, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "tableView:commitEditingStyle:forRowAtIndexPath:", tableView, editingStyle, indexPath)
-}
-@(objc_type=TableViewDataSource, objc_name="tableView_moveRowAtIndexPath_toIndexPath")
-TableViewDataSource_tableView_moveRowAtIndexPath_toIndexPath :: #force_inline proc "c" (self: ^TableViewDataSource, tableView: ^TableView, sourceIndexPath: ^NS.IndexPath, destinationIndexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "tableView:moveRowAtIndexPath:toIndexPath:", tableView, sourceIndexPath, destinationIndexPath)
-}
+

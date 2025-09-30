@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSXMLParser
 ///
-@(objc_class="NSXMLParser")
+@(objc_class="NSXMLParser", objc_superclass=Object)
 XMLParser :: struct { using _: Object, }
 

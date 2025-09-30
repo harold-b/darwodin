@@ -21,19 +21,18 @@ CloudSharingServiceDelegate :: struct { using _: intrinsics.objc_object,
     using _: SharingServiceDelegate,
 }
 
-@(objc_type=CloudSharingServiceDelegate, objc_name="sharingService_didCompleteForItems_error")
-CloudSharingServiceDelegate_sharingService_didCompleteForItems_error :: #force_inline proc "c" (self: ^CloudSharingServiceDelegate, sharingService: ^SharingService, items: ^NS.Array, error: ^NS.Error) {
-    msgSend(nil, self, "sharingService:didCompleteForItems:error:", sharingService, items, error)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CloudSharingServiceDelegate, objc_selector="sharingService:didCompleteForItems:error:", objc_name="sharingService_didCompleteForItems_error")
+    CloudSharingServiceDelegate_sharingService_didCompleteForItems_error :: proc(self: ^CloudSharingServiceDelegate, sharingService: ^SharingService, items: ^NS.Array, error: ^NS.Error) ---
+
+    @(objc_type=CloudSharingServiceDelegate, objc_selector="optionsForSharingService:shareProvider:", objc_name="optionsForSharingService")
+    CloudSharingServiceDelegate_optionsForSharingService :: proc(self: ^CloudSharingServiceDelegate, cloudKitSharingService: ^SharingService, provider: ^NS.ItemProvider) -> CloudKitSharingServiceOptions ---
+
+    @(objc_type=CloudSharingServiceDelegate, objc_selector="sharingService:didSaveShare:", objc_name="sharingService_didSaveShare")
+    CloudSharingServiceDelegate_sharingService_didSaveShare :: proc(self: ^CloudSharingServiceDelegate, sharingService: ^SharingService, share: ^CKShare) ---
+
+    @(objc_type=CloudSharingServiceDelegate, objc_selector="sharingService:didStopSharing:", objc_name="sharingService_didStopSharing")
+    CloudSharingServiceDelegate_sharingService_didStopSharing :: proc(self: ^CloudSharingServiceDelegate, sharingService: ^SharingService, share: ^CKShare) ---
 }
-@(objc_type=CloudSharingServiceDelegate, objc_name="optionsForSharingService")
-CloudSharingServiceDelegate_optionsForSharingService :: #force_inline proc "c" (self: ^CloudSharingServiceDelegate, cloudKitSharingService: ^SharingService, provider: ^NS.ItemProvider) -> CloudKitSharingServiceOptions {
-    return msgSend(CloudKitSharingServiceOptions, self, "optionsForSharingService:shareProvider:", cloudKitSharingService, provider)
-}
-@(objc_type=CloudSharingServiceDelegate, objc_name="sharingService_didSaveShare")
-CloudSharingServiceDelegate_sharingService_didSaveShare :: #force_inline proc "c" (self: ^CloudSharingServiceDelegate, sharingService: ^SharingService, share: ^CKShare) {
-    msgSend(nil, self, "sharingService:didSaveShare:", sharingService, share)
-}
-@(objc_type=CloudSharingServiceDelegate, objc_name="sharingService_didStopSharing")
-CloudSharingServiceDelegate_sharingService_didStopSharing :: #force_inline proc "c" (self: ^CloudSharingServiceDelegate, sharingService: ^SharingService, share: ^CKShare) {
-    msgSend(nil, self, "sharingService:didStopSharing:", sharingService, share)
-}
+

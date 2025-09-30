@@ -15,7 +15,8 @@ import CG "../CoreGraphics"
 @(objc_class="CTAdaptiveImageProviding")
 AdaptiveImageProviding :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=AdaptiveImageProviding, objc_name="imageForProposedSize")
-AdaptiveImageProviding_imageForProposedSize :: #force_inline proc "c" (self: ^AdaptiveImageProviding, proposedSize: CG.Size, scaleFactor: CG.Float, outImageOffset: ^CG.Point, outImageSize: ^CG.Size) -> CG.ImageRef {
-    return msgSend(CG.ImageRef, self, "imageForProposedSize:scaleFactor:imageOffset:imageSize:", proposedSize, scaleFactor, outImageOffset, outImageSize)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AdaptiveImageProviding, objc_selector="imageForProposedSize:scaleFactor:imageOffset:imageSize:", objc_name="imageForProposedSize")
+    AdaptiveImageProviding_imageForProposedSize :: proc(self: ^AdaptiveImageProviding, proposedSize: CG.Size, scaleFactor: CG.Float, outImageOffset: ^CG.Point, outImageSize: ^CG.Size) -> CG.ImageRef ---
 }

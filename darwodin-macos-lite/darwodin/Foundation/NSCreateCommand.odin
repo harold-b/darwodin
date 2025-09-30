@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSCreateCommand
 ///
-@(objc_class="NSCreateCommand")
+@(objc_class="NSCreateCommand", objc_superclass=ScriptCommand)
 CreateCommand :: struct { using _: ScriptCommand, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITabSidebarScrollTarget
 ///
-@(objc_class="UITabSidebarScrollTarget")
+@(objc_class="UITabSidebarScrollTarget", objc_superclass=NS.Object)
 TabSidebarScrollTarget :: struct { using _: NS.Object, }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIFocusEffect
 ///
-@(objc_class="UIFocusEffect")
+@(objc_class="UIFocusEffect", objc_superclass=NS.Object)
 FocusEffect :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

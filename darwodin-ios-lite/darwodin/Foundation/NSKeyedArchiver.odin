@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSKeyedArchiver
 ///
-@(objc_class="NSKeyedArchiver")
+@(objc_class="NSKeyedArchiver", objc_superclass=Coder)
 KeyedArchiver :: struct { using _: Coder, }
 

@@ -16,14 +16,5 @@ import Sec "../Security"
 @(objc_class="NSURLProtocolInternal")
 URLProtocolInternal :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=URLProtocolInternal, objc_name="alloc", objc_is_class_method=true)
-URLProtocolInternal_alloc :: proc "c" () -> ^URLProtocolInternal {
-    return msgSend(^URLProtocolInternal, URLProtocolInternal, "alloc")
-}
-
-@(objc_type=URLProtocolInternal, objc_name="init")
-URLProtocolInternal_init :: proc "c" (self: ^URLProtocolInternal) -> ^URLProtocolInternal {
-    return msgSend(^URLProtocolInternal, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

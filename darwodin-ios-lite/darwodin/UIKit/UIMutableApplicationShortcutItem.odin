@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIMutableApplicationShortcutItem
 ///
-@(objc_class="UIMutableApplicationShortcutItem")
+@(objc_class="UIMutableApplicationShortcutItem", objc_superclass=ApplicationShortcutItem)
 MutableApplicationShortcutItem :: struct { using _: ApplicationShortcutItem, }
 

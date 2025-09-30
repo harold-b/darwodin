@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPredicateEditor
 ///
-@(objc_class="NSPredicateEditor")
+@(objc_class="NSPredicateEditor", objc_superclass=RuleEditor)
 PredicateEditor :: struct { using _: RuleEditor, }
 

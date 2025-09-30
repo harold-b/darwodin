@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSFileCoordinator
 ///
-@(objc_class="NSFileCoordinator")
+@(objc_class="NSFileCoordinator", objc_superclass=Object)
 FileCoordinator :: struct { using _: Object, }
 

@@ -12,27 +12,28 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import NS "../../"
 
 VTable :: struct {
     load: proc(),
     initialize: proc(),
-    init: proc(self: ^NS.Object) -> ^NS.Object,
-    new: proc() -> ^NS.Object,
-    allocWithZone: proc(zone: ^NS._NSZone) -> ^NS.Object,
-    alloc: proc() -> ^NS.Object,
+    init: proc(self: ^NS.Object) -> instancetype,
+    new: proc() -> instancetype,
+    allocWithZone: proc(zone: ^NS._NSZone) -> instancetype,
+    alloc: proc() -> instancetype,
     dealloc: proc(self: ^NS.Object),
     finalize: proc(self: ^NS.Object),
-    copy: proc(self: ^NS.Object) -> id,
-    mutableCopy: proc(self: ^NS.Object) -> id,
-    copyWithZone: proc(zone: ^NS._NSZone) -> id,
-    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> id,
+    copy: proc(self: ^NS.Object) -> instancetype,
+    mutableCopy: proc(self: ^NS.Object) -> instancetype,
+    copyWithZone: proc(zone: ^NS._NSZone) -> instancetype,
+    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> instancetype,
     instancesRespondToSelector: proc(aSelector: SEL) -> bool,
     conformsToProtocol: proc(protocol: ^NS.Protocol) -> bool,
     methodForSelector: proc(self: ^NS.Object, aSelector: SEL) -> NS.IMP,
@@ -145,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("initialize"), auto_cast initialize, "v#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.Object, _: SEL) -> ^NS.Object {
+        init :: proc "c" (self: ^NS.Object, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -155,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^NS.Object {
+        new :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.allocWithZone != nil {
-        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> ^NS.Object {
+        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -175,7 +176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("allocWithZone:"), auto_cast allocWithZone, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.alloc != nil {
-        alloc :: proc "c" (self: Class, _: SEL) -> ^NS.Object {
+        alloc :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -205,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("finalize"), auto_cast finalize, "v@:") do panic("Failed to register objC method.")
     }
     if vt.copy != nil {
-        copy :: proc "c" (self: ^NS.Object, _: SEL) -> id {
+        copy :: proc "c" (self: ^NS.Object, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -215,7 +216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("copy"), auto_cast copy, "@@:") do panic("Failed to register objC method.")
     }
     if vt.mutableCopy != nil {
-        mutableCopy :: proc "c" (self: ^NS.Object, _: SEL) -> id {
+        mutableCopy :: proc "c" (self: ^NS.Object, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -225,7 +226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mutableCopy"), auto_cast mutableCopy, "@@:") do panic("Failed to register objC method.")
     }
     if vt.copyWithZone != nil {
-        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
+        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -235,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("copyWithZone:"), auto_cast copyWithZone, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.mutableCopyWithZone != nil {
-        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
+        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -522,7 +523,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).performSelector_withObject_afterDelay_inModes(self, aSelector, anArgument, delay, modes)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:withObject:afterDelay:inModes:"), auto_cast performSelector_withObject_afterDelay_inModes, "v@::@d@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:withObject:afterDelay:inModes:"), auto_cast performSelector_withObject_afterDelay_inModes, "v@::@d^void") do panic("Failed to register objC method.")
     }
     if vt.performSelector_withObject_afterDelay != nil {
         performSelector_withObject_afterDelay :: proc "c" (self: ^NS.Object, _: SEL, aSelector: SEL, anArgument: id, delay: NS.TimeInterval) {
@@ -732,7 +733,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).dictionaryWithValuesForKeys(self, keys)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryWithValuesForKeys:"), auto_cast dictionaryWithValuesForKeys, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dictionaryWithValuesForKeys:"), auto_cast dictionaryWithValuesForKeys, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.setValuesForKeysWithDictionary != nil {
         setValuesForKeysWithDictionary :: proc "c" (self: ^NS.Object, _: SEL, keyedValues: ^NS.Dictionary) {
@@ -742,7 +743,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setValuesForKeysWithDictionary(self, keyedValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setValuesForKeysWithDictionary:"), auto_cast setValuesForKeysWithDictionary, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setValuesForKeysWithDictionary:"), auto_cast setValuesForKeysWithDictionary, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessInstanceVariablesDirectly != nil {
         accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
@@ -862,7 +863,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).observeValueForKeyPath(self, keyPath, object, change, _context)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("observeValueForKeyPath:ofObject:change:context:"), auto_cast observeValueForKeyPath, "v@:@@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("observeValueForKeyPath:ofObject:change:context:"), auto_cast observeValueForKeyPath, "v@:@@^void^void") do panic("Failed to register objC method.")
     }
     if vt.addObserver != nil {
         addObserver :: proc "c" (self: ^NS.Object, _: SEL, observer: ^NS.Object, keyPath: ^NS.String, options: NS.KeyValueObservingOptions, _context: rawptr) {
@@ -962,7 +963,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyNotifiesObserversForKey != nil {
         automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
@@ -1022,7 +1023,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.classForKeyedArchiver != nil {
         classForKeyedArchiver :: proc "c" (self: ^NS.Object, _: SEL) -> Class {
@@ -1052,7 +1053,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).performSelectorOnMainThread_withObject_waitUntilDone_modes(self, aSelector, arg, wait, array)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelectorOnMainThread:withObject:waitUntilDone:modes:"), auto_cast performSelectorOnMainThread_withObject_waitUntilDone_modes, "v@::@B@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelectorOnMainThread:withObject:waitUntilDone:modes:"), auto_cast performSelectorOnMainThread_withObject_waitUntilDone_modes, "v@::@B^void") do panic("Failed to register objC method.")
     }
     if vt.performSelectorOnMainThread_withObject_waitUntilDone != nil {
         performSelectorOnMainThread_withObject_waitUntilDone :: proc "c" (self: ^NS.Object, _: SEL, aSelector: SEL, arg: id, wait: bool) {
@@ -1072,7 +1073,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).performSelector_onThread_withObject_waitUntilDone_modes(self, aSelector, thr, arg, wait, array)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:onThread:withObject:waitUntilDone:modes:"), auto_cast performSelector_onThread_withObject_waitUntilDone_modes, "v@::@@B@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performSelector:onThread:withObject:waitUntilDone:modes:"), auto_cast performSelector_onThread_withObject_waitUntilDone_modes, "v@::@@B^void") do panic("Failed to register objC method.")
     }
     if vt.performSelector_onThread_withObject_waitUntilDone != nil {
         performSelector_onThread_withObject_waitUntilDone :: proc "c" (self: ^NS.Object, _: SEL, aSelector: SEL, thr: ^NS.Thread, arg: id, wait: bool) {

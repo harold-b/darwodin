@@ -21,11 +21,11 @@ FontChanging :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=FontChanging, objc_name="changeFont")
-FontChanging_changeFont :: #force_inline proc "c" (self: ^FontChanging, sender: ^FontManager) {
-    msgSend(nil, self, "changeFont:", sender)
-}
-@(objc_type=FontChanging, objc_name="validModesForFontPanel")
-FontChanging_validModesForFontPanel :: #force_inline proc "c" (self: ^FontChanging, fontPanel: ^FontPanel) -> FontPanelModeMask {
-    return msgSend(FontPanelModeMask, self, "validModesForFontPanel:", fontPanel)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=FontChanging, objc_selector="changeFont:", objc_name="changeFont")
+    FontChanging_changeFont :: proc(self: ^FontChanging, sender: ^FontManager) ---
+
+    @(objc_type=FontChanging, objc_selector="validModesForFontPanel:", objc_name="validModesForFontPanel")
+    FontChanging_validModesForFontPanel :: proc(self: ^FontChanging, fontPanel: ^FontPanel) -> FontPanelModeMask ---
 }

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIToolTipInteraction
 ///
-@(objc_class="UIToolTipInteraction")
+@(objc_class="UIToolTipInteraction", objc_superclass=NS.Object)
 ToolTipInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

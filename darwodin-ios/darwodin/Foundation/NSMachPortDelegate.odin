@@ -18,7 +18,8 @@ MachPortDelegate :: struct { using _: intrinsics.objc_object,
     using _: PortDelegate,
 }
 
-@(objc_type=MachPortDelegate, objc_name="handleMachMessage")
-MachPortDelegate_handleMachMessage :: #force_inline proc "c" (self: ^MachPortDelegate, msg: rawptr) {
-    msgSend(nil, self, "handleMachMessage:", msg)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MachPortDelegate, objc_selector="handleMachMessage:", objc_name="handleMachMessage")
+    MachPortDelegate_handleMachMessage :: proc(self: ^MachPortDelegate, msg: rawptr) ---
 }

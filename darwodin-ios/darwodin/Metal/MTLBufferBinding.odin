@@ -20,23 +20,20 @@ BufferBinding :: struct { using _: intrinsics.objc_object,
     using _: Binding,
 }
 
-@(objc_type=BufferBinding, objc_name="bufferAlignment")
-BufferBinding_bufferAlignment :: #force_inline proc "c" (self: ^BufferBinding) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "bufferAlignment")
-}
-@(objc_type=BufferBinding, objc_name="bufferDataSize")
-BufferBinding_bufferDataSize :: #force_inline proc "c" (self: ^BufferBinding) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "bufferDataSize")
-}
-@(objc_type=BufferBinding, objc_name="bufferDataType")
-BufferBinding_bufferDataType :: #force_inline proc "c" (self: ^BufferBinding) -> DataType {
-    return msgSend(DataType, self, "bufferDataType")
-}
-@(objc_type=BufferBinding, objc_name="bufferStructType")
-BufferBinding_bufferStructType :: #force_inline proc "c" (self: ^BufferBinding) -> ^StructType {
-    return msgSend(^StructType, self, "bufferStructType")
-}
-@(objc_type=BufferBinding, objc_name="bufferPointerType")
-BufferBinding_bufferPointerType :: #force_inline proc "c" (self: ^BufferBinding) -> ^PointerType {
-    return msgSend(^PointerType, self, "bufferPointerType")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=BufferBinding, objc_selector="bufferAlignment", objc_name="bufferAlignment")
+    BufferBinding_bufferAlignment :: proc(self: ^BufferBinding) -> NS.UInteger ---
+
+    @(objc_type=BufferBinding, objc_selector="bufferDataSize", objc_name="bufferDataSize")
+    BufferBinding_bufferDataSize :: proc(self: ^BufferBinding) -> NS.UInteger ---
+
+    @(objc_type=BufferBinding, objc_selector="bufferDataType", objc_name="bufferDataType")
+    BufferBinding_bufferDataType :: proc(self: ^BufferBinding) -> DataType ---
+
+    @(objc_type=BufferBinding, objc_selector="bufferStructType", objc_name="bufferStructType")
+    BufferBinding_bufferStructType :: proc(self: ^BufferBinding) -> ^StructType ---
+
+    @(objc_type=BufferBinding, objc_selector="bufferPointerType", objc_name="bufferPointerType")
+    BufferBinding_bufferPointerType :: proc(self: ^BufferBinding) -> ^PointerType ---
 }

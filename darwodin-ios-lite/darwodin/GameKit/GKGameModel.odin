@@ -19,39 +19,32 @@ GameModel :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
-@(objc_type=GameModel, objc_name="setGameModel")
-GameModel_setGameModel :: #force_inline proc "c" (self: ^GameModel, gameModel: ^GameModel) {
-    msgSend(nil, self, "setGameModel:", gameModel)
-}
-@(objc_type=GameModel, objc_name="gameModelUpdatesForPlayer")
-GameModel_gameModelUpdatesForPlayer :: #force_inline proc "c" (self: ^GameModel, player: ^GameModelPlayer) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "gameModelUpdatesForPlayer:", player)
-}
-@(objc_type=GameModel, objc_name="applyGameModelUpdate")
-GameModel_applyGameModelUpdate :: #force_inline proc "c" (self: ^GameModel, gameModelUpdate: ^GameModelUpdate) {
-    msgSend(nil, self, "applyGameModelUpdate:", gameModelUpdate)
-}
-@(objc_type=GameModel, objc_name="scoreForPlayer")
-GameModel_scoreForPlayer :: #force_inline proc "c" (self: ^GameModel, player: ^GameModelPlayer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "scoreForPlayer:", player)
-}
-@(objc_type=GameModel, objc_name="isWinForPlayer")
-GameModel_isWinForPlayer :: #force_inline proc "c" (self: ^GameModel, player: ^GameModelPlayer) -> bool {
-    return msgSend(bool, self, "isWinForPlayer:", player)
-}
-@(objc_type=GameModel, objc_name="isLossForPlayer")
-GameModel_isLossForPlayer :: #force_inline proc "c" (self: ^GameModel, player: ^GameModelPlayer) -> bool {
-    return msgSend(bool, self, "isLossForPlayer:", player)
-}
-@(objc_type=GameModel, objc_name="unapplyGameModelUpdate")
-GameModel_unapplyGameModelUpdate :: #force_inline proc "c" (self: ^GameModel, gameModelUpdate: ^GameModelUpdate) {
-    msgSend(nil, self, "unapplyGameModelUpdate:", gameModelUpdate)
-}
-@(objc_type=GameModel, objc_name="players")
-GameModel_players :: #force_inline proc "c" (self: ^GameModel) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "players")
-}
-@(objc_type=GameModel, objc_name="activePlayer")
-GameModel_activePlayer :: #force_inline proc "c" (self: ^GameModel) -> ^GameModelPlayer {
-    return msgSend(^GameModelPlayer, self, "activePlayer")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=GameModel, objc_selector="setGameModel:", objc_name="setGameModel")
+    GameModel_setGameModel :: proc(self: ^GameModel, gameModel: ^GameModel) ---
+
+    @(objc_type=GameModel, objc_selector="gameModelUpdatesForPlayer:", objc_name="gameModelUpdatesForPlayer")
+    GameModel_gameModelUpdatesForPlayer :: proc(self: ^GameModel, player: ^GameModelPlayer) -> ^NS.Array ---
+
+    @(objc_type=GameModel, objc_selector="applyGameModelUpdate:", objc_name="applyGameModelUpdate")
+    GameModel_applyGameModelUpdate :: proc(self: ^GameModel, gameModelUpdate: ^GameModelUpdate) ---
+
+    @(objc_type=GameModel, objc_selector="scoreForPlayer:", objc_name="scoreForPlayer")
+    GameModel_scoreForPlayer :: proc(self: ^GameModel, player: ^GameModelPlayer) -> NS.Integer ---
+
+    @(objc_type=GameModel, objc_selector="isWinForPlayer:", objc_name="isWinForPlayer")
+    GameModel_isWinForPlayer :: proc(self: ^GameModel, player: ^GameModelPlayer) -> bool ---
+
+    @(objc_type=GameModel, objc_selector="isLossForPlayer:", objc_name="isLossForPlayer")
+    GameModel_isLossForPlayer :: proc(self: ^GameModel, player: ^GameModelPlayer) -> bool ---
+
+    @(objc_type=GameModel, objc_selector="unapplyGameModelUpdate:", objc_name="unapplyGameModelUpdate")
+    GameModel_unapplyGameModelUpdate :: proc(self: ^GameModel, gameModelUpdate: ^GameModelUpdate) ---
+
+    @(objc_type=GameModel, objc_selector="players", objc_name="players")
+    GameModel_players :: proc(self: ^GameModel) -> ^NS.Array ---
+
+    @(objc_type=GameModel, objc_selector="activePlayer", objc_name="activePlayer")
+    GameModel_activePlayer :: proc(self: ^GameModel) -> ^GameModelPlayer ---
 }

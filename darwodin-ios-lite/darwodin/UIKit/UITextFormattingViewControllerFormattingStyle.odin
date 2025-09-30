@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITextFormattingViewControllerFormattingStyle
 ///
-@(objc_class="UITextFormattingViewControllerFormattingStyle")
+@(objc_class="UITextFormattingViewControllerFormattingStyle", objc_superclass=NS.Object)
 TextFormattingViewControllerFormattingStyle :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

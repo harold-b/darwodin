@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSNib
 ///
-@(objc_class="NSNib")
+@(objc_class="NSNib", objc_superclass=NS.Object)
 Nib :: struct { using _: NS.Object, 
     using _: NS.Coding,
 }

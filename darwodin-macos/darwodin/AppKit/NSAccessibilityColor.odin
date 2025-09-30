@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 @(objc_class="NSAccessibilityColor")
 AccessibilityColor :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=AccessibilityColor, objc_name="accessibilityName")
-AccessibilityColor_accessibilityName :: #force_inline proc "c" (self: ^AccessibilityColor) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityName")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityColor, objc_selector="accessibilityName", objc_name="accessibilityName")
+    AccessibilityColor_accessibilityName :: proc(self: ^AccessibilityColor) -> ^NS.String ---
 }

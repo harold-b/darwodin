@@ -21,31 +21,26 @@ DynamicItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DynamicItem, objc_name="center")
-DynamicItem_center :: #force_inline proc "c" (self: ^DynamicItem) -> CG.Point {
-    return msgSend(CG.Point, self, "center")
-}
-@(objc_type=DynamicItem, objc_name="setCenter")
-DynamicItem_setCenter :: #force_inline proc "c" (self: ^DynamicItem, center: CG.Point) {
-    msgSend(nil, self, "setCenter:", center)
-}
-@(objc_type=DynamicItem, objc_name="bounds")
-DynamicItem_bounds :: #force_inline proc "c" (self: ^DynamicItem) -> CG.Rect {
-    return msgSend(CG.Rect, self, "bounds")
-}
-@(objc_type=DynamicItem, objc_name="transform")
-DynamicItem_transform :: #force_inline proc "c" (self: ^DynamicItem) -> CG.AffineTransform {
-    return msgSend(CG.AffineTransform, self, "transform")
-}
-@(objc_type=DynamicItem, objc_name="setTransform")
-DynamicItem_setTransform :: #force_inline proc "c" (self: ^DynamicItem, transform: CG.AffineTransform) {
-    msgSend(nil, self, "setTransform:", transform)
-}
-@(objc_type=DynamicItem, objc_name="collisionBoundsType")
-DynamicItem_collisionBoundsType :: #force_inline proc "c" (self: ^DynamicItem) -> DynamicItemCollisionBoundsType {
-    return msgSend(DynamicItemCollisionBoundsType, self, "collisionBoundsType")
-}
-@(objc_type=DynamicItem, objc_name="collisionBoundingPath")
-DynamicItem_collisionBoundingPath :: #force_inline proc "c" (self: ^DynamicItem) -> ^BezierPath {
-    return msgSend(^BezierPath, self, "collisionBoundingPath")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DynamicItem, objc_selector="center", objc_name="center")
+    DynamicItem_center :: proc(self: ^DynamicItem) -> CG.Point ---
+
+    @(objc_type=DynamicItem, objc_selector="setCenter:", objc_name="setCenter")
+    DynamicItem_setCenter :: proc(self: ^DynamicItem, center: CG.Point) ---
+
+    @(objc_type=DynamicItem, objc_selector="bounds", objc_name="bounds")
+    DynamicItem_bounds :: proc(self: ^DynamicItem) -> CG.Rect ---
+
+    @(objc_type=DynamicItem, objc_selector="transform", objc_name="transform")
+    DynamicItem_transform :: proc(self: ^DynamicItem) -> CG.AffineTransform ---
+
+    @(objc_type=DynamicItem, objc_selector="setTransform:", objc_name="setTransform")
+    DynamicItem_setTransform :: proc(self: ^DynamicItem, transform: CG.AffineTransform) ---
+
+    @(objc_type=DynamicItem, objc_selector="collisionBoundsType", objc_name="collisionBoundsType")
+    DynamicItem_collisionBoundsType :: proc(self: ^DynamicItem) -> DynamicItemCollisionBoundsType ---
+
+    @(objc_type=DynamicItem, objc_selector="collisionBoundingPath", objc_name="collisionBoundingPath")
+    DynamicItem_collisionBoundingPath :: proc(self: ^DynamicItem) -> ^BezierPath ---
 }

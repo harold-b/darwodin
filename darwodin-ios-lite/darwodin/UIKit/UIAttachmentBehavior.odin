@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIAttachmentBehavior
 ///
-@(objc_class="UIAttachmentBehavior")
+@(objc_class="UIAttachmentBehavior", objc_superclass=DynamicBehavior)
 AttachmentBehavior :: struct { using _: DynamicBehavior, }
 

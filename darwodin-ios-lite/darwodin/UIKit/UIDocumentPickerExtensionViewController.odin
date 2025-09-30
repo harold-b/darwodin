@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDocumentPickerExtensionViewController
 ///
-@(objc_class="UIDocumentPickerExtensionViewController")
+@(objc_class="UIDocumentPickerExtensionViewController", objc_superclass=ViewController)
 DocumentPickerExtensionViewController :: struct { using _: ViewController, }
 

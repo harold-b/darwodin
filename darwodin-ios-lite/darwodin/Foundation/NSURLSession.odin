@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSURLSession
 ///
-@(objc_class="NSURLSession")
+@(objc_class="NSURLSession", objc_superclass=Object)
 URLSession :: struct { using _: Object, }
 

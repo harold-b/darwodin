@@ -20,11 +20,11 @@ ThreadgroupBinding :: struct { using _: intrinsics.objc_object,
     using _: Binding,
 }
 
-@(objc_type=ThreadgroupBinding, objc_name="threadgroupMemoryAlignment")
-ThreadgroupBinding_threadgroupMemoryAlignment :: #force_inline proc "c" (self: ^ThreadgroupBinding) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "threadgroupMemoryAlignment")
-}
-@(objc_type=ThreadgroupBinding, objc_name="threadgroupMemoryDataSize")
-ThreadgroupBinding_threadgroupMemoryDataSize :: #force_inline proc "c" (self: ^ThreadgroupBinding) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "threadgroupMemoryDataSize")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ThreadgroupBinding, objc_selector="threadgroupMemoryAlignment", objc_name="threadgroupMemoryAlignment")
+    ThreadgroupBinding_threadgroupMemoryAlignment :: proc(self: ^ThreadgroupBinding) -> NS.UInteger ---
+
+    @(objc_type=ThreadgroupBinding, objc_selector="threadgroupMemoryDataSize", objc_name="threadgroupMemoryDataSize")
+    ThreadgroupBinding_threadgroupMemoryDataSize :: proc(self: ^ThreadgroupBinding) -> NS.UInteger ---
 }

@@ -20,19 +20,17 @@ TextureBinding :: struct { using _: intrinsics.objc_object,
     using _: Binding,
 }
 
-@(objc_type=TextureBinding, objc_name="textureType")
-TextureBinding_textureType :: #force_inline proc "c" (self: ^TextureBinding) -> TextureType {
-    return msgSend(TextureType, self, "textureType")
-}
-@(objc_type=TextureBinding, objc_name="textureDataType")
-TextureBinding_textureDataType :: #force_inline proc "c" (self: ^TextureBinding) -> DataType {
-    return msgSend(DataType, self, "textureDataType")
-}
-@(objc_type=TextureBinding, objc_name="isDepthTexture")
-TextureBinding_isDepthTexture :: #force_inline proc "c" (self: ^TextureBinding) -> bool {
-    return msgSend(bool, self, "isDepthTexture")
-}
-@(objc_type=TextureBinding, objc_name="arrayLength")
-TextureBinding_arrayLength :: #force_inline proc "c" (self: ^TextureBinding) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "arrayLength")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextureBinding, objc_selector="textureType", objc_name="textureType")
+    TextureBinding_textureType :: proc(self: ^TextureBinding) -> TextureType ---
+
+    @(objc_type=TextureBinding, objc_selector="textureDataType", objc_name="textureDataType")
+    TextureBinding_textureDataType :: proc(self: ^TextureBinding) -> DataType ---
+
+    @(objc_type=TextureBinding, objc_selector="isDepthTexture", objc_name="isDepthTexture")
+    TextureBinding_isDepthTexture :: proc(self: ^TextureBinding) -> bool ---
+
+    @(objc_type=TextureBinding, objc_selector="arrayLength", objc_name="arrayLength")
+    TextureBinding_arrayLength :: proc(self: ^TextureBinding) -> NS.UInteger ---
 }

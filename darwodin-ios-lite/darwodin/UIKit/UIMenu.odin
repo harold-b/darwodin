@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIMenu
 ///
-@(objc_class="UIMenu")
+@(objc_class="UIMenu", objc_superclass=MenuElement)
 Menu :: struct { using _: MenuElement, }
 

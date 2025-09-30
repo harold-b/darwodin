@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPointerLockState
 ///
-@(objc_class="UIPointerLockState")
+@(objc_class="UIPointerLockState", objc_superclass=NS.Object)
 PointerLockState :: struct { using _: NS.Object, }
 

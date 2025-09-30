@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSDecimalNumber
 ///
-@(objc_class="NSDecimalNumber")
+@(objc_class="NSDecimalNumber", objc_superclass=Number)
 DecimalNumber :: struct { using _: Number, }
 

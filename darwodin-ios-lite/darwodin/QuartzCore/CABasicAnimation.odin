@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CABasicAnimation
 ///
-@(objc_class="CABasicAnimation")
+@(objc_class="CABasicAnimation", objc_superclass=PropertyAnimation)
 BasicAnimation :: struct { using _: PropertyAnimation, }
 

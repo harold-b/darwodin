@@ -12,27 +12,28 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import NS "../../"
 
 VTable :: struct {
     load: proc(),
     initialize: proc(),
-    init: proc(self: ^NS.Object) -> ^NS.Object,
-    new: proc() -> ^NS.Object,
-    allocWithZone: proc(zone: ^NS._NSZone) -> ^NS.Object,
-    alloc: proc() -> ^NS.Object,
+    init: proc(self: ^NS.Object) -> instancetype,
+    new: proc() -> instancetype,
+    allocWithZone: proc(zone: ^NS._NSZone) -> instancetype,
+    alloc: proc() -> instancetype,
     dealloc: proc(self: ^NS.Object),
     finalize: proc(self: ^NS.Object),
-    copy: proc(self: ^NS.Object) -> id,
-    mutableCopy: proc(self: ^NS.Object) -> id,
-    copyWithZone: proc(zone: ^NS._NSZone) -> id,
-    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> id,
+    copy: proc(self: ^NS.Object) -> instancetype,
+    mutableCopy: proc(self: ^NS.Object) -> instancetype,
+    copyWithZone: proc(zone: ^NS._NSZone) -> instancetype,
+    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> instancetype,
     instancesRespondToSelector: proc(aSelector: SEL) -> bool,
     conformsToProtocol: proc(protocol: ^NS.Protocol) -> bool,
     methodForSelector: proc(self: ^NS.Object, aSelector: SEL) -> NS.IMP,
@@ -194,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("initialize"), auto_cast initialize, "v#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.Object, _: SEL) -> ^NS.Object {
+        init :: proc "c" (self: ^NS.Object, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -204,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^NS.Object {
+        new :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -214,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.allocWithZone != nil {
-        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> ^NS.Object {
+        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -224,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("allocWithZone:"), auto_cast allocWithZone, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.alloc != nil {
-        alloc :: proc "c" (self: Class, _: SEL) -> ^NS.Object {
+        alloc :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -254,7 +255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("finalize"), auto_cast finalize, "v@:") do panic("Failed to register objC method.")
     }
     if vt.copy != nil {
-        copy :: proc "c" (self: ^NS.Object, _: SEL) -> id {
+        copy :: proc "c" (self: ^NS.Object, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -264,7 +265,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("copy"), auto_cast copy, "@@:") do panic("Failed to register objC method.")
     }
     if vt.mutableCopy != nil {
-        mutableCopy :: proc "c" (self: ^NS.Object, _: SEL) -> id {
+        mutableCopy :: proc "c" (self: ^NS.Object, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -274,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mutableCopy"), auto_cast mutableCopy, "@@:") do panic("Failed to register objC method.")
     }
     if vt.copyWithZone != nil {
-        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
+        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -284,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("copyWithZone:"), auto_cast copyWithZone, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.mutableCopyWithZone != nil {
-        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
+        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

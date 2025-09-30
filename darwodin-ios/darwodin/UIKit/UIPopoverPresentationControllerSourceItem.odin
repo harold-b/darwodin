@@ -21,7 +21,8 @@ PopoverPresentationControllerSourceItem :: struct { using _: intrinsics.objc_obj
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PopoverPresentationControllerSourceItem, objc_name="frameInView")
-PopoverPresentationControllerSourceItem_frameInView :: #force_inline proc "c" (self: ^PopoverPresentationControllerSourceItem, referenceView: ^View) -> CG.Rect {
-    return msgSend(CG.Rect, self, "frameInView:", referenceView)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PopoverPresentationControllerSourceItem, objc_selector="frameInView:", objc_name="frameInView")
+    PopoverPresentationControllerSourceItem_frameInView :: proc(self: ^PopoverPresentationControllerSourceItem, referenceView: ^View) -> CG.Rect ---
 }

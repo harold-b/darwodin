@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIAccessibilityElement
 ///
-@(objc_class="UIAccessibilityElement")
+@(objc_class="UIAccessibilityElement", objc_superclass=Responder)
 AccessibilityElement :: struct { using _: Responder, 
     using _: AccessibilityIdentification,
 }

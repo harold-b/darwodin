@@ -21,26 +21,24 @@ SpeechSynthesizerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SpeechSynthesizerDelegate, objc_name="speechSynthesizer_didFinishSpeaking")
-SpeechSynthesizerDelegate_speechSynthesizer_didFinishSpeaking :: #force_inline proc "c" (self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, finishedSpeaking: bool) {
-    msgSend(nil, self, "speechSynthesizer:didFinishSpeaking:", sender, finishedSpeaking)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpeechSynthesizerDelegate, objc_selector="speechSynthesizer:didFinishSpeaking:", objc_name="speechSynthesizer_didFinishSpeaking")
+    SpeechSynthesizerDelegate_speechSynthesizer_didFinishSpeaking :: proc(self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, finishedSpeaking: bool) ---
+
+    @(objc_type=SpeechSynthesizerDelegate, objc_selector="speechSynthesizer:willSpeakWord:ofString:", objc_name="speechSynthesizer_willSpeakWord_ofString")
+    SpeechSynthesizerDelegate_speechSynthesizer_willSpeakWord_ofString :: proc(self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, characterRange: NS._NSRange, string: ^NS.String) ---
+
+    @(objc_type=SpeechSynthesizerDelegate, objc_selector="speechSynthesizer:willSpeakPhoneme:", objc_name="speechSynthesizer_willSpeakPhoneme")
+    SpeechSynthesizerDelegate_speechSynthesizer_willSpeakPhoneme :: proc(self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, phonemeOpcode: cffi.short) ---
+
+    @(objc_type=SpeechSynthesizerDelegate, objc_selector="speechSynthesizer:didEncounterErrorAtIndex:ofString:message:", objc_name="speechSynthesizer_didEncounterErrorAtIndex_ofString_message")
+    SpeechSynthesizerDelegate_speechSynthesizer_didEncounterErrorAtIndex_ofString_message :: proc(self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, characterIndex: NS.UInteger, string: ^NS.String, message: ^NS.String) ---
+
+    @(objc_type=SpeechSynthesizerDelegate, objc_selector="speechSynthesizer:didEncounterSyncMessage:", objc_name="speechSynthesizer_didEncounterSyncMessage")
+    SpeechSynthesizerDelegate_speechSynthesizer_didEncounterSyncMessage :: proc(self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, message: ^NS.String) ---
 }
-@(objc_type=SpeechSynthesizerDelegate, objc_name="speechSynthesizer_willSpeakWord_ofString")
-SpeechSynthesizerDelegate_speechSynthesizer_willSpeakWord_ofString :: #force_inline proc "c" (self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, characterRange: NS._NSRange, string: ^NS.String) {
-    msgSend(nil, self, "speechSynthesizer:willSpeakWord:ofString:", sender, characterRange, string)
-}
-@(objc_type=SpeechSynthesizerDelegate, objc_name="speechSynthesizer_willSpeakPhoneme")
-SpeechSynthesizerDelegate_speechSynthesizer_willSpeakPhoneme :: #force_inline proc "c" (self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, phonemeOpcode: cffi.short) {
-    msgSend(nil, self, "speechSynthesizer:willSpeakPhoneme:", sender, phonemeOpcode)
-}
-@(objc_type=SpeechSynthesizerDelegate, objc_name="speechSynthesizer_didEncounterErrorAtIndex_ofString_message")
-SpeechSynthesizerDelegate_speechSynthesizer_didEncounterErrorAtIndex_ofString_message :: #force_inline proc "c" (self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, characterIndex: NS.UInteger, string: ^NS.String, message: ^NS.String) {
-    msgSend(nil, self, "speechSynthesizer:didEncounterErrorAtIndex:ofString:message:", sender, characterIndex, string, message)
-}
-@(objc_type=SpeechSynthesizerDelegate, objc_name="speechSynthesizer_didEncounterSyncMessage")
-SpeechSynthesizerDelegate_speechSynthesizer_didEncounterSyncMessage :: #force_inline proc "c" (self: ^SpeechSynthesizerDelegate, sender: ^SpeechSynthesizer, message: ^NS.String) {
-    msgSend(nil, self, "speechSynthesizer:didEncounterSyncMessage:", sender, message)
-}
+
 @(objc_type=SpeechSynthesizerDelegate, objc_name="speechSynthesizer")
 SpeechSynthesizerDelegate_speechSynthesizer :: proc {
     SpeechSynthesizerDelegate_speechSynthesizer_didFinishSpeaking,

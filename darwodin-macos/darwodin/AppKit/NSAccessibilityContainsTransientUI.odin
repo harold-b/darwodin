@@ -21,15 +21,14 @@ AccessibilityContainsTransientUI :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
-@(objc_type=AccessibilityContainsTransientUI, objc_name="accessibilityPerformShowAlternateUI")
-AccessibilityContainsTransientUI_accessibilityPerformShowAlternateUI :: #force_inline proc "c" (self: ^AccessibilityContainsTransientUI) -> bool {
-    return msgSend(bool, self, "accessibilityPerformShowAlternateUI")
-}
-@(objc_type=AccessibilityContainsTransientUI, objc_name="accessibilityPerformShowDefaultUI")
-AccessibilityContainsTransientUI_accessibilityPerformShowDefaultUI :: #force_inline proc "c" (self: ^AccessibilityContainsTransientUI) -> bool {
-    return msgSend(bool, self, "accessibilityPerformShowDefaultUI")
-}
-@(objc_type=AccessibilityContainsTransientUI, objc_name="isAccessibilityAlternateUIVisible")
-AccessibilityContainsTransientUI_isAccessibilityAlternateUIVisible :: #force_inline proc "c" (self: ^AccessibilityContainsTransientUI) -> bool {
-    return msgSend(bool, self, "isAccessibilityAlternateUIVisible")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityContainsTransientUI, objc_selector="accessibilityPerformShowAlternateUI", objc_name="accessibilityPerformShowAlternateUI")
+    AccessibilityContainsTransientUI_accessibilityPerformShowAlternateUI :: proc(self: ^AccessibilityContainsTransientUI) -> bool ---
+
+    @(objc_type=AccessibilityContainsTransientUI, objc_selector="accessibilityPerformShowDefaultUI", objc_name="accessibilityPerformShowDefaultUI")
+    AccessibilityContainsTransientUI_accessibilityPerformShowDefaultUI :: proc(self: ^AccessibilityContainsTransientUI) -> bool ---
+
+    @(objc_type=AccessibilityContainsTransientUI, objc_selector="isAccessibilityAlternateUIVisible", objc_name="isAccessibilityAlternateUIVisible")
+    AccessibilityContainsTransientUI_isAccessibilityAlternateUIVisible :: proc(self: ^AccessibilityContainsTransientUI) -> bool ---
 }

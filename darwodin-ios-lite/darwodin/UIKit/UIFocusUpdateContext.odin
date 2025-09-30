@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIFocusUpdateContext
 ///
-@(objc_class="UIFocusUpdateContext")
+@(objc_class="UIFocusUpdateContext", objc_superclass=NS.Object)
 FocusUpdateContext :: struct { using _: NS.Object, }
 

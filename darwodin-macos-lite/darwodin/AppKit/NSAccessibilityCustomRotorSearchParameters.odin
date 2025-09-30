@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSAccessibilityCustomRotorSearchParameters
 ///
-@(objc_class="NSAccessibilityCustomRotorSearchParameters")
+@(objc_class="NSAccessibilityCustomRotorSearchParameters", objc_superclass=NS.Object)
 AccessibilityCustomRotorSearchParameters :: struct { using _: NS.Object, }
 

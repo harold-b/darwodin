@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSURLCredential
 ///
-@(objc_class="NSURLCredential")
+@(objc_class="NSURLCredential", objc_superclass=Object)
 URLCredential :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,

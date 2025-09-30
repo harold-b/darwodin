@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICellAccessoryLabel
 ///
-@(objc_class="UICellAccessoryLabel")
+@(objc_class="UICellAccessoryLabel", objc_superclass=CellAccessory)
 CellAccessoryLabel :: struct { using _: CellAccessory, }
 

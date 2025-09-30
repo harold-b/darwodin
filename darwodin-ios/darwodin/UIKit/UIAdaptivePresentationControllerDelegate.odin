@@ -21,42 +21,36 @@ AdaptivePresentationControllerDelegate :: struct { using _: intrinsics.objc_obje
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="adaptivePresentationStyleForPresentationController_")
-AdaptivePresentationControllerDelegate_adaptivePresentationStyleForPresentationController_ :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, controller: ^PresentationController) -> ModalPresentationStyle {
-    return msgSend(ModalPresentationStyle, self, "adaptivePresentationStyleForPresentationController:", controller)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="adaptivePresentationStyleForPresentationController:", objc_name="adaptivePresentationStyleForPresentationController_")
+    AdaptivePresentationControllerDelegate_adaptivePresentationStyleForPresentationController_ :: proc(self: ^AdaptivePresentationControllerDelegate, controller: ^PresentationController) -> ModalPresentationStyle ---
+
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="adaptivePresentationStyleForPresentationController:traitCollection:", objc_name="adaptivePresentationStyleForPresentationController_traitCollection")
+    AdaptivePresentationControllerDelegate_adaptivePresentationStyleForPresentationController_traitCollection :: proc(self: ^AdaptivePresentationControllerDelegate, controller: ^PresentationController, traitCollection: ^TraitCollection) -> ModalPresentationStyle ---
+
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="presentationController:prepareAdaptivePresentationController:", objc_name="presentationController_prepareAdaptivePresentationController")
+    AdaptivePresentationControllerDelegate_presentationController_prepareAdaptivePresentationController :: proc(self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController, adaptivePresentationController: ^PresentationController) ---
+
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="presentationController:viewControllerForAdaptivePresentationStyle:", objc_name="presentationController_viewControllerForAdaptivePresentationStyle")
+    AdaptivePresentationControllerDelegate_presentationController_viewControllerForAdaptivePresentationStyle :: proc(self: ^AdaptivePresentationControllerDelegate, controller: ^PresentationController, style: ModalPresentationStyle) -> ^ViewController ---
+
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:", objc_name="presentationController_willPresentWithAdaptiveStyle_transitionCoordinator")
+    AdaptivePresentationControllerDelegate_presentationController_willPresentWithAdaptiveStyle_transitionCoordinator :: proc(self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController, style: ModalPresentationStyle, transitionCoordinator: ^ViewControllerTransitionCoordinator) ---
+
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="presentationControllerShouldDismiss:", objc_name="presentationControllerShouldDismiss")
+    AdaptivePresentationControllerDelegate_presentationControllerShouldDismiss :: proc(self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController) -> bool ---
+
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="presentationControllerWillDismiss:", objc_name="presentationControllerWillDismiss")
+    AdaptivePresentationControllerDelegate_presentationControllerWillDismiss :: proc(self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController) ---
+
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="presentationControllerDidDismiss:", objc_name="presentationControllerDidDismiss")
+    AdaptivePresentationControllerDelegate_presentationControllerDidDismiss :: proc(self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController) ---
+
+    @(objc_type=AdaptivePresentationControllerDelegate, objc_selector="presentationControllerDidAttemptToDismiss:", objc_name="presentationControllerDidAttemptToDismiss")
+    AdaptivePresentationControllerDelegate_presentationControllerDidAttemptToDismiss :: proc(self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController) ---
 }
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="adaptivePresentationStyleForPresentationController_traitCollection")
-AdaptivePresentationControllerDelegate_adaptivePresentationStyleForPresentationController_traitCollection :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, controller: ^PresentationController, traitCollection: ^TraitCollection) -> ModalPresentationStyle {
-    return msgSend(ModalPresentationStyle, self, "adaptivePresentationStyleForPresentationController:traitCollection:", controller, traitCollection)
-}
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="presentationController_prepareAdaptivePresentationController")
-AdaptivePresentationControllerDelegate_presentationController_prepareAdaptivePresentationController :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController, adaptivePresentationController: ^PresentationController) {
-    msgSend(nil, self, "presentationController:prepareAdaptivePresentationController:", presentationController, adaptivePresentationController)
-}
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="presentationController_viewControllerForAdaptivePresentationStyle")
-AdaptivePresentationControllerDelegate_presentationController_viewControllerForAdaptivePresentationStyle :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, controller: ^PresentationController, style: ModalPresentationStyle) -> ^ViewController {
-    return msgSend(^ViewController, self, "presentationController:viewControllerForAdaptivePresentationStyle:", controller, style)
-}
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="presentationController_willPresentWithAdaptiveStyle_transitionCoordinator")
-AdaptivePresentationControllerDelegate_presentationController_willPresentWithAdaptiveStyle_transitionCoordinator :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController, style: ModalPresentationStyle, transitionCoordinator: ^ViewControllerTransitionCoordinator) {
-    msgSend(nil, self, "presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:", presentationController, style, transitionCoordinator)
-}
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="presentationControllerShouldDismiss")
-AdaptivePresentationControllerDelegate_presentationControllerShouldDismiss :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController) -> bool {
-    return msgSend(bool, self, "presentationControllerShouldDismiss:", presentationController)
-}
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="presentationControllerWillDismiss")
-AdaptivePresentationControllerDelegate_presentationControllerWillDismiss :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController) {
-    msgSend(nil, self, "presentationControllerWillDismiss:", presentationController)
-}
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="presentationControllerDidDismiss")
-AdaptivePresentationControllerDelegate_presentationControllerDidDismiss :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController) {
-    msgSend(nil, self, "presentationControllerDidDismiss:", presentationController)
-}
-@(objc_type=AdaptivePresentationControllerDelegate, objc_name="presentationControllerDidAttemptToDismiss")
-AdaptivePresentationControllerDelegate_presentationControllerDidAttemptToDismiss :: #force_inline proc "c" (self: ^AdaptivePresentationControllerDelegate, presentationController: ^PresentationController) {
-    msgSend(nil, self, "presentationControllerDidAttemptToDismiss:", presentationController)
-}
+
 @(objc_type=AdaptivePresentationControllerDelegate, objc_name="adaptivePresentationStyleForPresentationController")
 AdaptivePresentationControllerDelegate_adaptivePresentationStyleForPresentationController :: proc {
     AdaptivePresentationControllerDelegate_adaptivePresentationStyleForPresentationController_,

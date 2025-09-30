@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTableViewRowAction
 ///
-@(objc_class="NSTableViewRowAction")
+@(objc_class="NSTableViewRowAction", objc_superclass=NS.Object)
 TableViewRowAction :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

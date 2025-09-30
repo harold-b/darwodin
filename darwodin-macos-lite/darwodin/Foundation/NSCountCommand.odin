@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSCountCommand
 ///
-@(objc_class="NSCountCommand")
+@(objc_class="NSCountCommand", objc_superclass=ScriptCommand)
 CountCommand :: struct { using _: ScriptCommand, }
 

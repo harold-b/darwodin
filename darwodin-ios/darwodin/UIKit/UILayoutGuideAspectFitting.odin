@@ -21,11 +21,11 @@ LayoutGuideAspectFitting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=LayoutGuideAspectFitting, objc_name="aspectRatio")
-LayoutGuideAspectFitting_aspectRatio :: #force_inline proc "c" (self: ^LayoutGuideAspectFitting) -> CG.Float {
-    return msgSend(CG.Float, self, "aspectRatio")
-}
-@(objc_type=LayoutGuideAspectFitting, objc_name="setAspectRatio")
-LayoutGuideAspectFitting_setAspectRatio :: #force_inline proc "c" (self: ^LayoutGuideAspectFitting, aspectRatio: CG.Float) {
-    msgSend(nil, self, "setAspectRatio:", aspectRatio)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LayoutGuideAspectFitting, objc_selector="aspectRatio", objc_name="aspectRatio")
+    LayoutGuideAspectFitting_aspectRatio :: proc(self: ^LayoutGuideAspectFitting) -> CG.Float ---
+
+    @(objc_type=LayoutGuideAspectFitting, objc_selector="setAspectRatio:", objc_name="setAspectRatio")
+    LayoutGuideAspectFitting_setAspectRatio :: proc(self: ^LayoutGuideAspectFitting, aspectRatio: CG.Float) ---
 }

@@ -21,11 +21,11 @@ FontPickerViewControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=FontPickerViewControllerDelegate, objc_name="fontPickerViewControllerDidCancel")
-FontPickerViewControllerDelegate_fontPickerViewControllerDidCancel :: #force_inline proc "c" (self: ^FontPickerViewControllerDelegate, viewController: ^FontPickerViewController) {
-    msgSend(nil, self, "fontPickerViewControllerDidCancel:", viewController)
-}
-@(objc_type=FontPickerViewControllerDelegate, objc_name="fontPickerViewControllerDidPickFont")
-FontPickerViewControllerDelegate_fontPickerViewControllerDidPickFont :: #force_inline proc "c" (self: ^FontPickerViewControllerDelegate, viewController: ^FontPickerViewController) {
-    msgSend(nil, self, "fontPickerViewControllerDidPickFont:", viewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=FontPickerViewControllerDelegate, objc_selector="fontPickerViewControllerDidCancel:", objc_name="fontPickerViewControllerDidCancel")
+    FontPickerViewControllerDelegate_fontPickerViewControllerDidCancel :: proc(self: ^FontPickerViewControllerDelegate, viewController: ^FontPickerViewController) ---
+
+    @(objc_type=FontPickerViewControllerDelegate, objc_selector="fontPickerViewControllerDidPickFont:", objc_name="fontPickerViewControllerDidPickFont")
+    FontPickerViewControllerDelegate_fontPickerViewControllerDidPickFont :: proc(self: ^FontPickerViewControllerDelegate, viewController: ^FontPickerViewController) ---
 }

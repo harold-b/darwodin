@@ -21,19 +21,18 @@ CalendarSelectionMultiDateDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CalendarSelectionMultiDateDelegate, objc_name="multiDateSelection_didSelectDate")
-CalendarSelectionMultiDateDelegate_multiDateSelection_didSelectDate :: #force_inline proc "c" (self: ^CalendarSelectionMultiDateDelegate, selection: ^CalendarSelectionMultiDate, dateComponents: ^NS.DateComponents) {
-    msgSend(nil, self, "multiDateSelection:didSelectDate:", selection, dateComponents)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CalendarSelectionMultiDateDelegate, objc_selector="multiDateSelection:didSelectDate:", objc_name="multiDateSelection_didSelectDate")
+    CalendarSelectionMultiDateDelegate_multiDateSelection_didSelectDate :: proc(self: ^CalendarSelectionMultiDateDelegate, selection: ^CalendarSelectionMultiDate, dateComponents: ^NS.DateComponents) ---
+
+    @(objc_type=CalendarSelectionMultiDateDelegate, objc_selector="multiDateSelection:didDeselectDate:", objc_name="multiDateSelection_didDeselectDate")
+    CalendarSelectionMultiDateDelegate_multiDateSelection_didDeselectDate :: proc(self: ^CalendarSelectionMultiDateDelegate, selection: ^CalendarSelectionMultiDate, dateComponents: ^NS.DateComponents) ---
+
+    @(objc_type=CalendarSelectionMultiDateDelegate, objc_selector="multiDateSelection:canSelectDate:", objc_name="multiDateSelection_canSelectDate")
+    CalendarSelectionMultiDateDelegate_multiDateSelection_canSelectDate :: proc(self: ^CalendarSelectionMultiDateDelegate, selection: ^CalendarSelectionMultiDate, dateComponents: ^NS.DateComponents) -> bool ---
+
+    @(objc_type=CalendarSelectionMultiDateDelegate, objc_selector="multiDateSelection:canDeselectDate:", objc_name="multiDateSelection_canDeselectDate")
+    CalendarSelectionMultiDateDelegate_multiDateSelection_canDeselectDate :: proc(self: ^CalendarSelectionMultiDateDelegate, selection: ^CalendarSelectionMultiDate, dateComponents: ^NS.DateComponents) -> bool ---
 }
-@(objc_type=CalendarSelectionMultiDateDelegate, objc_name="multiDateSelection_didDeselectDate")
-CalendarSelectionMultiDateDelegate_multiDateSelection_didDeselectDate :: #force_inline proc "c" (self: ^CalendarSelectionMultiDateDelegate, selection: ^CalendarSelectionMultiDate, dateComponents: ^NS.DateComponents) {
-    msgSend(nil, self, "multiDateSelection:didDeselectDate:", selection, dateComponents)
-}
-@(objc_type=CalendarSelectionMultiDateDelegate, objc_name="multiDateSelection_canSelectDate")
-CalendarSelectionMultiDateDelegate_multiDateSelection_canSelectDate :: #force_inline proc "c" (self: ^CalendarSelectionMultiDateDelegate, selection: ^CalendarSelectionMultiDate, dateComponents: ^NS.DateComponents) -> bool {
-    return msgSend(bool, self, "multiDateSelection:canSelectDate:", selection, dateComponents)
-}
-@(objc_type=CalendarSelectionMultiDateDelegate, objc_name="multiDateSelection_canDeselectDate")
-CalendarSelectionMultiDateDelegate_multiDateSelection_canDeselectDate :: #force_inline proc "c" (self: ^CalendarSelectionMultiDateDelegate, selection: ^CalendarSelectionMultiDate, dateComponents: ^NS.DateComponents) -> bool {
-    return msgSend(bool, self, "multiDateSelection:canDeselectDate:", selection, dateComponents)
-}
+

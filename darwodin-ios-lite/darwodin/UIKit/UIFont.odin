@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIFont
 ///
-@(objc_class="UIFont")
+@(objc_class="UIFont", objc_superclass=NS.Object)
 Font :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

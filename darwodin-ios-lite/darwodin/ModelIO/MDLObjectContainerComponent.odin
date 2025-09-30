@@ -22,23 +22,20 @@ ObjectContainerComponent :: struct { using _: intrinsics.objc_object,
     using _: NS.FastEnumeration,
 }
 
-@(objc_type=ObjectContainerComponent, objc_name="addObject")
-ObjectContainerComponent_addObject :: #force_inline proc "c" (self: ^ObjectContainerComponent, object: ^Object) {
-    msgSend(nil, self, "addObject:", object)
-}
-@(objc_type=ObjectContainerComponent, objc_name="removeObject")
-ObjectContainerComponent_removeObject :: #force_inline proc "c" (self: ^ObjectContainerComponent, object: ^Object) {
-    msgSend(nil, self, "removeObject:", object)
-}
-@(objc_type=ObjectContainerComponent, objc_name="objectAtIndexedSubscript")
-ObjectContainerComponent_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^ObjectContainerComponent, index: NS.UInteger) -> ^Object {
-    return msgSend(^Object, self, "objectAtIndexedSubscript:", index)
-}
-@(objc_type=ObjectContainerComponent, objc_name="count")
-ObjectContainerComponent_count :: #force_inline proc "c" (self: ^ObjectContainerComponent) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "count")
-}
-@(objc_type=ObjectContainerComponent, objc_name="objects")
-ObjectContainerComponent_objects :: #force_inline proc "c" (self: ^ObjectContainerComponent) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "objects")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ObjectContainerComponent, objc_selector="addObject:", objc_name="addObject")
+    ObjectContainerComponent_addObject :: proc(self: ^ObjectContainerComponent, object: ^Object) ---
+
+    @(objc_type=ObjectContainerComponent, objc_selector="removeObject:", objc_name="removeObject")
+    ObjectContainerComponent_removeObject :: proc(self: ^ObjectContainerComponent, object: ^Object) ---
+
+    @(objc_type=ObjectContainerComponent, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
+    ObjectContainerComponent_objectAtIndexedSubscript :: proc(self: ^ObjectContainerComponent, index: NS.UInteger) -> ^Object ---
+
+    @(objc_type=ObjectContainerComponent, objc_selector="count", objc_name="count")
+    ObjectContainerComponent_count :: proc(self: ^ObjectContainerComponent) -> NS.UInteger ---
+
+    @(objc_type=ObjectContainerComponent, objc_selector="objects", objc_name="objects")
+    ObjectContainerComponent_objects :: proc(self: ^ObjectContainerComponent) -> ^NS.Array ---
 }

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIBarAppearance
 ///
-@(objc_class="UIBarAppearance")
+@(objc_class="UIBarAppearance", objc_superclass=NS.Object)
 BarAppearance :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

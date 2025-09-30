@@ -21,11 +21,11 @@ DocumentMenuDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DocumentMenuDelegate, objc_name="documentMenu")
-DocumentMenuDelegate_documentMenu :: #force_inline proc "c" (self: ^DocumentMenuDelegate, documentMenu: ^DocumentMenuViewController, documentPicker: ^DocumentPickerViewController) {
-    msgSend(nil, self, "documentMenu:didPickDocumentPicker:", documentMenu, documentPicker)
-}
-@(objc_type=DocumentMenuDelegate, objc_name="documentMenuWasCancelled")
-DocumentMenuDelegate_documentMenuWasCancelled :: #force_inline proc "c" (self: ^DocumentMenuDelegate, documentMenu: ^DocumentMenuViewController) {
-    msgSend(nil, self, "documentMenuWasCancelled:", documentMenu)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DocumentMenuDelegate, objc_selector="documentMenu:didPickDocumentPicker:", objc_name="documentMenu")
+    DocumentMenuDelegate_documentMenu :: proc(self: ^DocumentMenuDelegate, documentMenu: ^DocumentMenuViewController, documentPicker: ^DocumentPickerViewController) ---
+
+    @(objc_type=DocumentMenuDelegate, objc_selector="documentMenuWasCancelled:", objc_name="documentMenuWasCancelled")
+    DocumentMenuDelegate_documentMenuWasCancelled :: proc(self: ^DocumentMenuDelegate, documentMenu: ^DocumentMenuViewController) ---
 }

@@ -22,19 +22,17 @@ TextDroppable :: struct { using _: intrinsics.objc_object,
     using _: TextPasteConfigurationSupporting,
 }
 
-@(objc_type=TextDroppable, objc_name="textDropDelegate")
-TextDroppable_textDropDelegate :: #force_inline proc "c" (self: ^TextDroppable) -> ^TextDropDelegate {
-    return msgSend(^TextDropDelegate, self, "textDropDelegate")
-}
-@(objc_type=TextDroppable, objc_name="setTextDropDelegate")
-TextDroppable_setTextDropDelegate :: #force_inline proc "c" (self: ^TextDroppable, textDropDelegate: ^TextDropDelegate) {
-    msgSend(nil, self, "setTextDropDelegate:", textDropDelegate)
-}
-@(objc_type=TextDroppable, objc_name="textDropInteraction")
-TextDroppable_textDropInteraction :: #force_inline proc "c" (self: ^TextDroppable) -> ^DropInteraction {
-    return msgSend(^DropInteraction, self, "textDropInteraction")
-}
-@(objc_type=TextDroppable, objc_name="isTextDropActive")
-TextDroppable_isTextDropActive :: #force_inline proc "c" (self: ^TextDroppable) -> bool {
-    return msgSend(bool, self, "isTextDropActive")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextDroppable, objc_selector="textDropDelegate", objc_name="textDropDelegate")
+    TextDroppable_textDropDelegate :: proc(self: ^TextDroppable) -> ^TextDropDelegate ---
+
+    @(objc_type=TextDroppable, objc_selector="setTextDropDelegate:", objc_name="setTextDropDelegate")
+    TextDroppable_setTextDropDelegate :: proc(self: ^TextDroppable, textDropDelegate: ^TextDropDelegate) ---
+
+    @(objc_type=TextDroppable, objc_selector="textDropInteraction", objc_name="textDropInteraction")
+    TextDroppable_textDropInteraction :: proc(self: ^TextDroppable) -> ^DropInteraction ---
+
+    @(objc_type=TextDroppable, objc_selector="isTextDropActive", objc_name="isTextDropActive")
+    TextDroppable_isTextDropActive :: proc(self: ^TextDroppable) -> bool ---
 }

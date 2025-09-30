@@ -21,254 +21,195 @@ TextInput :: struct { using _: intrinsics.objc_object,
     using _: KeyInput,
 }
 
-@(objc_type=TextInput, objc_name="textInRange")
-TextInput_textInRange :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange) -> ^NS.String {
-    return msgSend(^NS.String, self, "textInRange:", range)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextInput, objc_selector="textInRange:", objc_name="textInRange")
+    TextInput_textInRange :: proc(self: ^TextInput, range: ^TextRange) -> ^NS.String ---
+
+    @(objc_type=TextInput, objc_selector="replaceRange:withText:", objc_name="replaceRange_withText")
+    TextInput_replaceRange_withText :: proc(self: ^TextInput, range: ^TextRange, text: ^NS.String) ---
+
+    @(objc_type=TextInput, objc_selector="setMarkedText:selectedRange:", objc_name="setMarkedText")
+    TextInput_setMarkedText :: proc(self: ^TextInput, markedText: ^NS.String, selectedRange: NS._NSRange) ---
+
+    @(objc_type=TextInput, objc_selector="unmarkText", objc_name="unmarkText")
+    TextInput_unmarkText :: proc(self: ^TextInput) ---
+
+    @(objc_type=TextInput, objc_selector="textRangeFromPosition:toPosition:", objc_name="textRangeFromPosition")
+    TextInput_textRangeFromPosition :: proc(self: ^TextInput, fromPosition: ^TextPosition, toPosition: ^TextPosition) -> ^TextRange ---
+
+    @(objc_type=TextInput, objc_selector="positionFromPosition:offset:", objc_name="positionFromPosition_offset")
+    TextInput_positionFromPosition_offset :: proc(self: ^TextInput, position: ^TextPosition, offset: NS.Integer) -> ^TextPosition ---
+
+    @(objc_type=TextInput, objc_selector="positionFromPosition:inDirection:offset:", objc_name="positionFromPosition_inDirection_offset")
+    TextInput_positionFromPosition_inDirection_offset :: proc(self: ^TextInput, position: ^TextPosition, direction: TextLayoutDirection, offset: NS.Integer) -> ^TextPosition ---
+
+    @(objc_type=TextInput, objc_selector="comparePosition:toPosition:", objc_name="comparePosition")
+    TextInput_comparePosition :: proc(self: ^TextInput, position: ^TextPosition, other: ^TextPosition) -> NS.ComparisonResult ---
+
+    @(objc_type=TextInput, objc_selector="offsetFromPosition:toPosition:", objc_name="offsetFromPosition")
+    TextInput_offsetFromPosition :: proc(self: ^TextInput, from: ^TextPosition, toPosition: ^TextPosition) -> NS.Integer ---
+
+    @(objc_type=TextInput, objc_selector="positionWithinRange:farthestInDirection:", objc_name="positionWithinRange_farthestInDirection")
+    TextInput_positionWithinRange_farthestInDirection :: proc(self: ^TextInput, range: ^TextRange, direction: TextLayoutDirection) -> ^TextPosition ---
+
+    @(objc_type=TextInput, objc_selector="characterRangeByExtendingPosition:inDirection:", objc_name="characterRangeByExtendingPosition")
+    TextInput_characterRangeByExtendingPosition :: proc(self: ^TextInput, position: ^TextPosition, direction: TextLayoutDirection) -> ^TextRange ---
+
+    @(objc_type=TextInput, objc_selector="baseWritingDirectionForPosition:inDirection:", objc_name="baseWritingDirectionForPosition")
+    TextInput_baseWritingDirectionForPosition :: proc(self: ^TextInput, position: ^TextPosition, direction: TextStorageDirection) -> NSWritingDirection ---
+
+    @(objc_type=TextInput, objc_selector="setBaseWritingDirection:forRange:", objc_name="setBaseWritingDirection")
+    TextInput_setBaseWritingDirection :: proc(self: ^TextInput, writingDirection: NSWritingDirection, range: ^TextRange) ---
+
+    @(objc_type=TextInput, objc_selector="firstRectForRange:", objc_name="firstRectForRange")
+    TextInput_firstRectForRange :: proc(self: ^TextInput, range: ^TextRange) -> CG.Rect ---
+
+    @(objc_type=TextInput, objc_selector="caretRectForPosition:", objc_name="caretRectForPosition")
+    TextInput_caretRectForPosition :: proc(self: ^TextInput, position: ^TextPosition) -> CG.Rect ---
+
+    @(objc_type=TextInput, objc_selector="selectionRectsForRange:", objc_name="selectionRectsForRange")
+    TextInput_selectionRectsForRange :: proc(self: ^TextInput, range: ^TextRange) -> ^NS.Array ---
+
+    @(objc_type=TextInput, objc_selector="closestPositionToPoint:", objc_name="closestPositionToPoint_")
+    TextInput_closestPositionToPoint_ :: proc(self: ^TextInput, point: CG.Point) -> ^TextPosition ---
+
+    @(objc_type=TextInput, objc_selector="closestPositionToPoint:withinRange:", objc_name="closestPositionToPoint_withinRange")
+    TextInput_closestPositionToPoint_withinRange :: proc(self: ^TextInput, point: CG.Point, range: ^TextRange) -> ^TextPosition ---
+
+    @(objc_type=TextInput, objc_selector="characterRangeAtPoint:", objc_name="characterRangeAtPoint")
+    TextInput_characterRangeAtPoint :: proc(self: ^TextInput, point: CG.Point) -> ^TextRange ---
+
+    @(objc_type=TextInput, objc_selector="shouldChangeTextInRange:replacementText:", objc_name="shouldChangeTextInRange")
+    TextInput_shouldChangeTextInRange :: proc(self: ^TextInput, range: ^TextRange, text: ^NS.String) -> bool ---
+
+    @(objc_type=TextInput, objc_selector="textStylingAtPosition:inDirection:", objc_name="textStylingAtPosition")
+    TextInput_textStylingAtPosition :: proc(self: ^TextInput, position: ^TextPosition, direction: TextStorageDirection) -> ^NS.Dictionary ---
+
+    @(objc_type=TextInput, objc_selector="positionWithinRange:atCharacterOffset:", objc_name="positionWithinRange_atCharacterOffset")
+    TextInput_positionWithinRange_atCharacterOffset :: proc(self: ^TextInput, range: ^TextRange, offset: NS.Integer) -> ^TextPosition ---
+
+    @(objc_type=TextInput, objc_selector="characterOffsetOfPosition:withinRange:", objc_name="characterOffsetOfPosition")
+    TextInput_characterOffsetOfPosition :: proc(self: ^TextInput, position: ^TextPosition, range: ^TextRange) -> NS.Integer ---
+
+    @(objc_type=TextInput, objc_selector="insertDictationResult:", objc_name="insertDictationResult")
+    TextInput_insertDictationResult :: proc(self: ^TextInput, dictationResult: ^NS.Array) ---
+
+    @(objc_type=TextInput, objc_selector="dictationRecordingDidEnd", objc_name="dictationRecordingDidEnd")
+    TextInput_dictationRecordingDidEnd :: proc(self: ^TextInput) ---
+
+    @(objc_type=TextInput, objc_selector="dictationRecognitionFailed", objc_name="dictationRecognitionFailed")
+    TextInput_dictationRecognitionFailed :: proc(self: ^TextInput) ---
+
+    @(objc_type=TextInput, objc_selector="frameForDictationResultPlaceholder:", objc_name="frameForDictationResultPlaceholder")
+    TextInput_frameForDictationResultPlaceholder :: proc(self: ^TextInput, placeholder: id) -> CG.Rect ---
+
+    @(objc_type=TextInput, objc_selector="removeDictationResultPlaceholder:willInsertResult:", objc_name="removeDictationResultPlaceholder")
+    TextInput_removeDictationResultPlaceholder :: proc(self: ^TextInput, placeholder: id, willInsertResult: bool) ---
+
+    @(objc_type=TextInput, objc_selector="insertText:alternatives:style:", objc_name="insertText")
+    TextInput_insertText :: proc(self: ^TextInput, text: ^NS.String, alternatives: ^NS.Array, style: TextAlternativeStyle) ---
+
+    @(objc_type=TextInput, objc_selector="setAttributedMarkedText:selectedRange:", objc_name="setAttributedMarkedText")
+    TextInput_setAttributedMarkedText :: proc(self: ^TextInput, markedText: ^NS.AttributedString, selectedRange: NS._NSRange) ---
+
+    @(objc_type=TextInput, objc_selector="insertTextPlaceholderWithSize:", objc_name="insertTextPlaceholderWithSize")
+    TextInput_insertTextPlaceholderWithSize :: proc(self: ^TextInput, size: CG.Size) -> ^TextPlaceholder ---
+
+    @(objc_type=TextInput, objc_selector="removeTextPlaceholder:", objc_name="removeTextPlaceholder")
+    TextInput_removeTextPlaceholder :: proc(self: ^TextInput, textPlaceholder: ^TextPlaceholder) ---
+
+    @(objc_type=TextInput, objc_selector="beginFloatingCursorAtPoint:", objc_name="beginFloatingCursorAtPoint")
+    TextInput_beginFloatingCursorAtPoint :: proc(self: ^TextInput, point: CG.Point) ---
+
+    @(objc_type=TextInput, objc_selector="updateFloatingCursorAtPoint:", objc_name="updateFloatingCursorAtPoint")
+    TextInput_updateFloatingCursorAtPoint :: proc(self: ^TextInput, point: CG.Point) ---
+
+    @(objc_type=TextInput, objc_selector="endFloatingCursor", objc_name="endFloatingCursor")
+    TextInput_endFloatingCursor :: proc(self: ^TextInput) ---
+
+    @(objc_type=TextInput, objc_selector="caretTransformForPosition:", objc_name="caretTransformForPosition")
+    TextInput_caretTransformForPosition :: proc(self: ^TextInput, position: ^TextPosition) -> CG.AffineTransform ---
+
+    @(objc_type=TextInput, objc_selector="editMenuForTextRange:suggestedActions:", objc_name="editMenuForTextRange")
+    TextInput_editMenuForTextRange :: proc(self: ^TextInput, textRange: ^TextRange, suggestedActions: ^NS.Array) -> ^Menu ---
+
+    @(objc_type=TextInput, objc_selector="willPresentEditMenuWithAnimator:", objc_name="willPresentEditMenuWithAnimator")
+    TextInput_willPresentEditMenuWithAnimator :: proc(self: ^TextInput, animator: ^EditMenuInteractionAnimating) ---
+
+    @(objc_type=TextInput, objc_selector="willDismissEditMenuWithAnimator:", objc_name="willDismissEditMenuWithAnimator")
+    TextInput_willDismissEditMenuWithAnimator :: proc(self: ^TextInput, animator: ^EditMenuInteractionAnimating) ---
+
+    @(objc_type=TextInput, objc_selector="insertAdaptiveImageGlyph:replacementRange:", objc_name="insertAdaptiveImageGlyph")
+    TextInput_insertAdaptiveImageGlyph :: proc(self: ^TextInput, adaptiveImageGlyph: ^NSAdaptiveImageGlyph, replacementRange: ^TextRange) ---
+
+    @(objc_type=TextInput, objc_selector="insertAttributedText:", objc_name="insertAttributedText")
+    TextInput_insertAttributedText :: proc(self: ^TextInput, string: ^NS.AttributedString) ---
+
+    @(objc_type=TextInput, objc_selector="attributedTextInRange:", objc_name="attributedTextInRange")
+    TextInput_attributedTextInRange :: proc(self: ^TextInput, range: ^TextRange) -> ^NS.AttributedString ---
+
+    @(objc_type=TextInput, objc_selector="replaceRange:withAttributedText:", objc_name="replaceRange_withAttributedText")
+    TextInput_replaceRange_withAttributedText :: proc(self: ^TextInput, range: ^TextRange, attributedText: ^NS.AttributedString) ---
+
+    @(objc_type=TextInput, objc_selector="willPresentWritingTools", objc_name="willPresentWritingTools")
+    TextInput_willPresentWritingTools :: proc(self: ^TextInput) ---
+
+    @(objc_type=TextInput, objc_selector="didDismissWritingTools", objc_name="didDismissWritingTools")
+    TextInput_didDismissWritingTools :: proc(self: ^TextInput) ---
+
+    @(objc_type=TextInput, objc_selector="selectedTextRange", objc_name="selectedTextRange")
+    TextInput_selectedTextRange :: proc(self: ^TextInput) -> ^TextRange ---
+
+    @(objc_type=TextInput, objc_selector="setSelectedTextRange:", objc_name="setSelectedTextRange")
+    TextInput_setSelectedTextRange :: proc(self: ^TextInput, selectedTextRange: ^TextRange) ---
+
+    @(objc_type=TextInput, objc_selector="markedTextRange", objc_name="markedTextRange")
+    TextInput_markedTextRange :: proc(self: ^TextInput) -> ^TextRange ---
+
+    @(objc_type=TextInput, objc_selector="markedTextStyle", objc_name="markedTextStyle")
+    TextInput_markedTextStyle :: proc(self: ^TextInput) -> ^NS.Dictionary ---
+
+    @(objc_type=TextInput, objc_selector="setMarkedTextStyle:", objc_name="setMarkedTextStyle")
+    TextInput_setMarkedTextStyle :: proc(self: ^TextInput, markedTextStyle: ^NS.Dictionary) ---
+
+    @(objc_type=TextInput, objc_selector="beginningOfDocument", objc_name="beginningOfDocument")
+    TextInput_beginningOfDocument :: proc(self: ^TextInput) -> ^TextPosition ---
+
+    @(objc_type=TextInput, objc_selector="endOfDocument", objc_name="endOfDocument")
+    TextInput_endOfDocument :: proc(self: ^TextInput) -> ^TextPosition ---
+
+    @(objc_type=TextInput, objc_selector="inputDelegate", objc_name="inputDelegate")
+    TextInput_inputDelegate :: proc(self: ^TextInput) -> ^TextInputDelegate ---
+
+    @(objc_type=TextInput, objc_selector="setInputDelegate:", objc_name="setInputDelegate")
+    TextInput_setInputDelegate :: proc(self: ^TextInput, inputDelegate: ^TextInputDelegate) ---
+
+    @(objc_type=TextInput, objc_selector="tokenizer", objc_name="tokenizer")
+    TextInput_tokenizer :: proc(self: ^TextInput) -> ^TextInputTokenizer ---
+
+    @(objc_type=TextInput, objc_selector="textInputView", objc_name="textInputView")
+    TextInput_textInputView :: proc(self: ^TextInput) -> ^View ---
+
+    @(objc_type=TextInput, objc_selector="selectionAffinity", objc_name="selectionAffinity")
+    TextInput_selectionAffinity :: proc(self: ^TextInput) -> TextStorageDirection ---
+
+    @(objc_type=TextInput, objc_selector="setSelectionAffinity:", objc_name="setSelectionAffinity")
+    TextInput_setSelectionAffinity :: proc(self: ^TextInput, selectionAffinity: TextStorageDirection) ---
+
+    @(objc_type=TextInput, objc_selector="insertDictationResultPlaceholder", objc_name="insertDictationResultPlaceholder")
+    TextInput_insertDictationResultPlaceholder :: proc(self: ^TextInput) -> id ---
+
+    @(objc_type=TextInput, objc_selector="supportsAdaptiveImageGlyph", objc_name="supportsAdaptiveImageGlyph")
+    TextInput_supportsAdaptiveImageGlyph :: proc(self: ^TextInput) -> bool ---
+
+    @(objc_type=TextInput, objc_selector="setSupportsAdaptiveImageGlyph:", objc_name="setSupportsAdaptiveImageGlyph")
+    TextInput_setSupportsAdaptiveImageGlyph :: proc(self: ^TextInput, supportsAdaptiveImageGlyph: bool) ---
+
+    @(objc_type=TextInput, objc_selector="isEditable", objc_name="isEditable")
+    TextInput_isEditable :: proc(self: ^TextInput) -> bool ---
 }
-@(objc_type=TextInput, objc_name="replaceRange_withText")
-TextInput_replaceRange_withText :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange, text: ^NS.String) {
-    msgSend(nil, self, "replaceRange:withText:", range, text)
-}
-@(objc_type=TextInput, objc_name="setMarkedText")
-TextInput_setMarkedText :: #force_inline proc "c" (self: ^TextInput, markedText: ^NS.String, selectedRange: NS._NSRange) {
-    msgSend(nil, self, "setMarkedText:selectedRange:", markedText, selectedRange)
-}
-@(objc_type=TextInput, objc_name="unmarkText")
-TextInput_unmarkText :: #force_inline proc "c" (self: ^TextInput) {
-    msgSend(nil, self, "unmarkText")
-}
-@(objc_type=TextInput, objc_name="textRangeFromPosition")
-TextInput_textRangeFromPosition :: #force_inline proc "c" (self: ^TextInput, fromPosition: ^TextPosition, toPosition: ^TextPosition) -> ^TextRange {
-    return msgSend(^TextRange, self, "textRangeFromPosition:toPosition:", fromPosition, toPosition)
-}
-@(objc_type=TextInput, objc_name="positionFromPosition_offset")
-TextInput_positionFromPosition_offset :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition, offset: NS.Integer) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "positionFromPosition:offset:", position, offset)
-}
-@(objc_type=TextInput, objc_name="positionFromPosition_inDirection_offset")
-TextInput_positionFromPosition_inDirection_offset :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition, direction: TextLayoutDirection, offset: NS.Integer) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "positionFromPosition:inDirection:offset:", position, direction, offset)
-}
-@(objc_type=TextInput, objc_name="comparePosition")
-TextInput_comparePosition :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition, other: ^TextPosition) -> NS.ComparisonResult {
-    return msgSend(NS.ComparisonResult, self, "comparePosition:toPosition:", position, other)
-}
-@(objc_type=TextInput, objc_name="offsetFromPosition")
-TextInput_offsetFromPosition :: #force_inline proc "c" (self: ^TextInput, from: ^TextPosition, toPosition: ^TextPosition) -> NS.Integer {
-    return msgSend(NS.Integer, self, "offsetFromPosition:toPosition:", from, toPosition)
-}
-@(objc_type=TextInput, objc_name="positionWithinRange_farthestInDirection")
-TextInput_positionWithinRange_farthestInDirection :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange, direction: TextLayoutDirection) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "positionWithinRange:farthestInDirection:", range, direction)
-}
-@(objc_type=TextInput, objc_name="characterRangeByExtendingPosition")
-TextInput_characterRangeByExtendingPosition :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition, direction: TextLayoutDirection) -> ^TextRange {
-    return msgSend(^TextRange, self, "characterRangeByExtendingPosition:inDirection:", position, direction)
-}
-@(objc_type=TextInput, objc_name="baseWritingDirectionForPosition")
-TextInput_baseWritingDirectionForPosition :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition, direction: TextStorageDirection) -> NSWritingDirection {
-    return msgSend(NSWritingDirection, self, "baseWritingDirectionForPosition:inDirection:", position, direction)
-}
-@(objc_type=TextInput, objc_name="setBaseWritingDirection")
-TextInput_setBaseWritingDirection :: #force_inline proc "c" (self: ^TextInput, writingDirection: NSWritingDirection, range: ^TextRange) {
-    msgSend(nil, self, "setBaseWritingDirection:forRange:", writingDirection, range)
-}
-@(objc_type=TextInput, objc_name="firstRectForRange")
-TextInput_firstRectForRange :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange) -> CG.Rect {
-    return msgSend(CG.Rect, self, "firstRectForRange:", range)
-}
-@(objc_type=TextInput, objc_name="caretRectForPosition")
-TextInput_caretRectForPosition :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition) -> CG.Rect {
-    return msgSend(CG.Rect, self, "caretRectForPosition:", position)
-}
-@(objc_type=TextInput, objc_name="selectionRectsForRange")
-TextInput_selectionRectsForRange :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "selectionRectsForRange:", range)
-}
-@(objc_type=TextInput, objc_name="closestPositionToPoint_")
-TextInput_closestPositionToPoint_ :: #force_inline proc "c" (self: ^TextInput, point: CG.Point) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "closestPositionToPoint:", point)
-}
-@(objc_type=TextInput, objc_name="closestPositionToPoint_withinRange")
-TextInput_closestPositionToPoint_withinRange :: #force_inline proc "c" (self: ^TextInput, point: CG.Point, range: ^TextRange) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "closestPositionToPoint:withinRange:", point, range)
-}
-@(objc_type=TextInput, objc_name="characterRangeAtPoint")
-TextInput_characterRangeAtPoint :: #force_inline proc "c" (self: ^TextInput, point: CG.Point) -> ^TextRange {
-    return msgSend(^TextRange, self, "characterRangeAtPoint:", point)
-}
-@(objc_type=TextInput, objc_name="shouldChangeTextInRange")
-TextInput_shouldChangeTextInRange :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange, text: ^NS.String) -> bool {
-    return msgSend(bool, self, "shouldChangeTextInRange:replacementText:", range, text)
-}
-@(objc_type=TextInput, objc_name="textStylingAtPosition")
-TextInput_textStylingAtPosition :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition, direction: TextStorageDirection) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "textStylingAtPosition:inDirection:", position, direction)
-}
-@(objc_type=TextInput, objc_name="positionWithinRange_atCharacterOffset")
-TextInput_positionWithinRange_atCharacterOffset :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange, offset: NS.Integer) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "positionWithinRange:atCharacterOffset:", range, offset)
-}
-@(objc_type=TextInput, objc_name="characterOffsetOfPosition")
-TextInput_characterOffsetOfPosition :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition, range: ^TextRange) -> NS.Integer {
-    return msgSend(NS.Integer, self, "characterOffsetOfPosition:withinRange:", position, range)
-}
-@(objc_type=TextInput, objc_name="insertDictationResult")
-TextInput_insertDictationResult :: #force_inline proc "c" (self: ^TextInput, dictationResult: ^NS.Array) {
-    msgSend(nil, self, "insertDictationResult:", dictationResult)
-}
-@(objc_type=TextInput, objc_name="dictationRecordingDidEnd")
-TextInput_dictationRecordingDidEnd :: #force_inline proc "c" (self: ^TextInput) {
-    msgSend(nil, self, "dictationRecordingDidEnd")
-}
-@(objc_type=TextInput, objc_name="dictationRecognitionFailed")
-TextInput_dictationRecognitionFailed :: #force_inline proc "c" (self: ^TextInput) {
-    msgSend(nil, self, "dictationRecognitionFailed")
-}
-@(objc_type=TextInput, objc_name="frameForDictationResultPlaceholder")
-TextInput_frameForDictationResultPlaceholder :: #force_inline proc "c" (self: ^TextInput, placeholder: id) -> CG.Rect {
-    return msgSend(CG.Rect, self, "frameForDictationResultPlaceholder:", placeholder)
-}
-@(objc_type=TextInput, objc_name="removeDictationResultPlaceholder")
-TextInput_removeDictationResultPlaceholder :: #force_inline proc "c" (self: ^TextInput, placeholder: id, willInsertResult: bool) {
-    msgSend(nil, self, "removeDictationResultPlaceholder:willInsertResult:", placeholder, willInsertResult)
-}
-@(objc_type=TextInput, objc_name="insertText")
-TextInput_insertText :: #force_inline proc "c" (self: ^TextInput, text: ^NS.String, alternatives: ^NS.Array, style: TextAlternativeStyle) {
-    msgSend(nil, self, "insertText:alternatives:style:", text, alternatives, style)
-}
-@(objc_type=TextInput, objc_name="setAttributedMarkedText")
-TextInput_setAttributedMarkedText :: #force_inline proc "c" (self: ^TextInput, markedText: ^NS.AttributedString, selectedRange: NS._NSRange) {
-    msgSend(nil, self, "setAttributedMarkedText:selectedRange:", markedText, selectedRange)
-}
-@(objc_type=TextInput, objc_name="insertTextPlaceholderWithSize")
-TextInput_insertTextPlaceholderWithSize :: #force_inline proc "c" (self: ^TextInput, size: CG.Size) -> ^TextPlaceholder {
-    return msgSend(^TextPlaceholder, self, "insertTextPlaceholderWithSize:", size)
-}
-@(objc_type=TextInput, objc_name="removeTextPlaceholder")
-TextInput_removeTextPlaceholder :: #force_inline proc "c" (self: ^TextInput, textPlaceholder: ^TextPlaceholder) {
-    msgSend(nil, self, "removeTextPlaceholder:", textPlaceholder)
-}
-@(objc_type=TextInput, objc_name="beginFloatingCursorAtPoint")
-TextInput_beginFloatingCursorAtPoint :: #force_inline proc "c" (self: ^TextInput, point: CG.Point) {
-    msgSend(nil, self, "beginFloatingCursorAtPoint:", point)
-}
-@(objc_type=TextInput, objc_name="updateFloatingCursorAtPoint")
-TextInput_updateFloatingCursorAtPoint :: #force_inline proc "c" (self: ^TextInput, point: CG.Point) {
-    msgSend(nil, self, "updateFloatingCursorAtPoint:", point)
-}
-@(objc_type=TextInput, objc_name="endFloatingCursor")
-TextInput_endFloatingCursor :: #force_inline proc "c" (self: ^TextInput) {
-    msgSend(nil, self, "endFloatingCursor")
-}
-@(objc_type=TextInput, objc_name="caretTransformForPosition")
-TextInput_caretTransformForPosition :: #force_inline proc "c" (self: ^TextInput, position: ^TextPosition) -> CG.AffineTransform {
-    return msgSend(CG.AffineTransform, self, "caretTransformForPosition:", position)
-}
-@(objc_type=TextInput, objc_name="editMenuForTextRange")
-TextInput_editMenuForTextRange :: #force_inline proc "c" (self: ^TextInput, textRange: ^TextRange, suggestedActions: ^NS.Array) -> ^Menu {
-    return msgSend(^Menu, self, "editMenuForTextRange:suggestedActions:", textRange, suggestedActions)
-}
-@(objc_type=TextInput, objc_name="willPresentEditMenuWithAnimator")
-TextInput_willPresentEditMenuWithAnimator :: #force_inline proc "c" (self: ^TextInput, animator: ^EditMenuInteractionAnimating) {
-    msgSend(nil, self, "willPresentEditMenuWithAnimator:", animator)
-}
-@(objc_type=TextInput, objc_name="willDismissEditMenuWithAnimator")
-TextInput_willDismissEditMenuWithAnimator :: #force_inline proc "c" (self: ^TextInput, animator: ^EditMenuInteractionAnimating) {
-    msgSend(nil, self, "willDismissEditMenuWithAnimator:", animator)
-}
-@(objc_type=TextInput, objc_name="insertAdaptiveImageGlyph")
-TextInput_insertAdaptiveImageGlyph :: #force_inline proc "c" (self: ^TextInput, adaptiveImageGlyph: ^NSAdaptiveImageGlyph, replacementRange: ^TextRange) {
-    msgSend(nil, self, "insertAdaptiveImageGlyph:replacementRange:", adaptiveImageGlyph, replacementRange)
-}
-@(objc_type=TextInput, objc_name="insertAttributedText")
-TextInput_insertAttributedText :: #force_inline proc "c" (self: ^TextInput, string: ^NS.AttributedString) {
-    msgSend(nil, self, "insertAttributedText:", string)
-}
-@(objc_type=TextInput, objc_name="attributedTextInRange")
-TextInput_attributedTextInRange :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "attributedTextInRange:", range)
-}
-@(objc_type=TextInput, objc_name="replaceRange_withAttributedText")
-TextInput_replaceRange_withAttributedText :: #force_inline proc "c" (self: ^TextInput, range: ^TextRange, attributedText: ^NS.AttributedString) {
-    msgSend(nil, self, "replaceRange:withAttributedText:", range, attributedText)
-}
-@(objc_type=TextInput, objc_name="willPresentWritingTools")
-TextInput_willPresentWritingTools :: #force_inline proc "c" (self: ^TextInput) {
-    msgSend(nil, self, "willPresentWritingTools")
-}
-@(objc_type=TextInput, objc_name="didDismissWritingTools")
-TextInput_didDismissWritingTools :: #force_inline proc "c" (self: ^TextInput) {
-    msgSend(nil, self, "didDismissWritingTools")
-}
-@(objc_type=TextInput, objc_name="selectedTextRange")
-TextInput_selectedTextRange :: #force_inline proc "c" (self: ^TextInput) -> ^TextRange {
-    return msgSend(^TextRange, self, "selectedTextRange")
-}
-@(objc_type=TextInput, objc_name="setSelectedTextRange")
-TextInput_setSelectedTextRange :: #force_inline proc "c" (self: ^TextInput, selectedTextRange: ^TextRange) {
-    msgSend(nil, self, "setSelectedTextRange:", selectedTextRange)
-}
-@(objc_type=TextInput, objc_name="markedTextRange")
-TextInput_markedTextRange :: #force_inline proc "c" (self: ^TextInput) -> ^TextRange {
-    return msgSend(^TextRange, self, "markedTextRange")
-}
-@(objc_type=TextInput, objc_name="markedTextStyle")
-TextInput_markedTextStyle :: #force_inline proc "c" (self: ^TextInput) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "markedTextStyle")
-}
-@(objc_type=TextInput, objc_name="setMarkedTextStyle")
-TextInput_setMarkedTextStyle :: #force_inline proc "c" (self: ^TextInput, markedTextStyle: ^NS.Dictionary) {
-    msgSend(nil, self, "setMarkedTextStyle:", markedTextStyle)
-}
-@(objc_type=TextInput, objc_name="beginningOfDocument")
-TextInput_beginningOfDocument :: #force_inline proc "c" (self: ^TextInput) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "beginningOfDocument")
-}
-@(objc_type=TextInput, objc_name="endOfDocument")
-TextInput_endOfDocument :: #force_inline proc "c" (self: ^TextInput) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "endOfDocument")
-}
-@(objc_type=TextInput, objc_name="inputDelegate")
-TextInput_inputDelegate :: #force_inline proc "c" (self: ^TextInput) -> ^TextInputDelegate {
-    return msgSend(^TextInputDelegate, self, "inputDelegate")
-}
-@(objc_type=TextInput, objc_name="setInputDelegate")
-TextInput_setInputDelegate :: #force_inline proc "c" (self: ^TextInput, inputDelegate: ^TextInputDelegate) {
-    msgSend(nil, self, "setInputDelegate:", inputDelegate)
-}
-@(objc_type=TextInput, objc_name="tokenizer")
-TextInput_tokenizer :: #force_inline proc "c" (self: ^TextInput) -> ^TextInputTokenizer {
-    return msgSend(^TextInputTokenizer, self, "tokenizer")
-}
-@(objc_type=TextInput, objc_name="textInputView")
-TextInput_textInputView :: #force_inline proc "c" (self: ^TextInput) -> ^View {
-    return msgSend(^View, self, "textInputView")
-}
-@(objc_type=TextInput, objc_name="selectionAffinity")
-TextInput_selectionAffinity :: #force_inline proc "c" (self: ^TextInput) -> TextStorageDirection {
-    return msgSend(TextStorageDirection, self, "selectionAffinity")
-}
-@(objc_type=TextInput, objc_name="setSelectionAffinity")
-TextInput_setSelectionAffinity :: #force_inline proc "c" (self: ^TextInput, selectionAffinity: TextStorageDirection) {
-    msgSend(nil, self, "setSelectionAffinity:", selectionAffinity)
-}
-@(objc_type=TextInput, objc_name="insertDictationResultPlaceholder")
-TextInput_insertDictationResultPlaceholder :: #force_inline proc "c" (self: ^TextInput) -> id {
-    return msgSend(id, self, "insertDictationResultPlaceholder")
-}
-@(objc_type=TextInput, objc_name="supportsAdaptiveImageGlyph")
-TextInput_supportsAdaptiveImageGlyph :: #force_inline proc "c" (self: ^TextInput) -> bool {
-    return msgSend(bool, self, "supportsAdaptiveImageGlyph")
-}
-@(objc_type=TextInput, objc_name="setSupportsAdaptiveImageGlyph")
-TextInput_setSupportsAdaptiveImageGlyph :: #force_inline proc "c" (self: ^TextInput, supportsAdaptiveImageGlyph: bool) {
-    msgSend(nil, self, "setSupportsAdaptiveImageGlyph:", supportsAdaptiveImageGlyph)
-}
-@(objc_type=TextInput, objc_name="isEditable")
-TextInput_isEditable :: #force_inline proc "c" (self: ^TextInput) -> bool {
-    return msgSend(bool, self, "isEditable")
-}
+
 @(objc_type=TextInput, objc_name="positionFromPosition")
 TextInput_positionFromPosition :: proc {
     TextInput_positionFromPosition_offset,

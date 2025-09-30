@@ -18,11 +18,11 @@ AgentDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AgentDelegate, objc_name="agentWillUpdate")
-AgentDelegate_agentWillUpdate :: #force_inline proc "c" (self: ^AgentDelegate, agent: ^Agent) {
-    msgSend(nil, self, "agentWillUpdate:", agent)
-}
-@(objc_type=AgentDelegate, objc_name="agentDidUpdate")
-AgentDelegate_agentDidUpdate :: #force_inline proc "c" (self: ^AgentDelegate, agent: ^Agent) {
-    msgSend(nil, self, "agentDidUpdate:", agent)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AgentDelegate, objc_selector="agentWillUpdate:", objc_name="agentWillUpdate")
+    AgentDelegate_agentWillUpdate :: proc(self: ^AgentDelegate, agent: ^Agent) ---
+
+    @(objc_type=AgentDelegate, objc_selector="agentDidUpdate:", objc_name="agentDidUpdate")
+    AgentDelegate_agentDidUpdate :: proc(self: ^AgentDelegate, agent: ^Agent) ---
 }

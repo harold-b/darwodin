@@ -21,83 +21,65 @@ SpatialScaler :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SpatialScaler, objc_name="encodeToCommandBuffer")
-SpatialScaler_encodeToCommandBuffer :: #force_inline proc "c" (self: ^SpatialScaler, commandBuffer: ^MTL.CommandBuffer) {
-    msgSend(nil, self, "encodeToCommandBuffer:", commandBuffer)
-}
-@(objc_type=SpatialScaler, objc_name="colorTextureUsage")
-SpatialScaler_colorTextureUsage :: #force_inline proc "c" (self: ^SpatialScaler) -> MTL.TextureUsage {
-    return msgSend(MTL.TextureUsage, self, "colorTextureUsage")
-}
-@(objc_type=SpatialScaler, objc_name="outputTextureUsage")
-SpatialScaler_outputTextureUsage :: #force_inline proc "c" (self: ^SpatialScaler) -> MTL.TextureUsage {
-    return msgSend(MTL.TextureUsage, self, "outputTextureUsage")
-}
-@(objc_type=SpatialScaler, objc_name="inputContentWidth")
-SpatialScaler_inputContentWidth :: #force_inline proc "c" (self: ^SpatialScaler) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "inputContentWidth")
-}
-@(objc_type=SpatialScaler, objc_name="setInputContentWidth")
-SpatialScaler_setInputContentWidth :: #force_inline proc "c" (self: ^SpatialScaler, inputContentWidth: NS.UInteger) {
-    msgSend(nil, self, "setInputContentWidth:", inputContentWidth)
-}
-@(objc_type=SpatialScaler, objc_name="inputContentHeight")
-SpatialScaler_inputContentHeight :: #force_inline proc "c" (self: ^SpatialScaler) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "inputContentHeight")
-}
-@(objc_type=SpatialScaler, objc_name="setInputContentHeight")
-SpatialScaler_setInputContentHeight :: #force_inline proc "c" (self: ^SpatialScaler, inputContentHeight: NS.UInteger) {
-    msgSend(nil, self, "setInputContentHeight:", inputContentHeight)
-}
-@(objc_type=SpatialScaler, objc_name="colorTexture")
-SpatialScaler_colorTexture :: #force_inline proc "c" (self: ^SpatialScaler) -> ^MTL.Texture {
-    return msgSend(^MTL.Texture, self, "colorTexture")
-}
-@(objc_type=SpatialScaler, objc_name="setColorTexture")
-SpatialScaler_setColorTexture :: #force_inline proc "c" (self: ^SpatialScaler, colorTexture: ^MTL.Texture) {
-    msgSend(nil, self, "setColorTexture:", colorTexture)
-}
-@(objc_type=SpatialScaler, objc_name="outputTexture")
-SpatialScaler_outputTexture :: #force_inline proc "c" (self: ^SpatialScaler) -> ^MTL.Texture {
-    return msgSend(^MTL.Texture, self, "outputTexture")
-}
-@(objc_type=SpatialScaler, objc_name="setOutputTexture")
-SpatialScaler_setOutputTexture :: #force_inline proc "c" (self: ^SpatialScaler, outputTexture: ^MTL.Texture) {
-    msgSend(nil, self, "setOutputTexture:", outputTexture)
-}
-@(objc_type=SpatialScaler, objc_name="colorTextureFormat")
-SpatialScaler_colorTextureFormat :: #force_inline proc "c" (self: ^SpatialScaler) -> MTL.PixelFormat {
-    return msgSend(MTL.PixelFormat, self, "colorTextureFormat")
-}
-@(objc_type=SpatialScaler, objc_name="outputTextureFormat")
-SpatialScaler_outputTextureFormat :: #force_inline proc "c" (self: ^SpatialScaler) -> MTL.PixelFormat {
-    return msgSend(MTL.PixelFormat, self, "outputTextureFormat")
-}
-@(objc_type=SpatialScaler, objc_name="inputWidth")
-SpatialScaler_inputWidth :: #force_inline proc "c" (self: ^SpatialScaler) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "inputWidth")
-}
-@(objc_type=SpatialScaler, objc_name="inputHeight")
-SpatialScaler_inputHeight :: #force_inline proc "c" (self: ^SpatialScaler) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "inputHeight")
-}
-@(objc_type=SpatialScaler, objc_name="outputWidth")
-SpatialScaler_outputWidth :: #force_inline proc "c" (self: ^SpatialScaler) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "outputWidth")
-}
-@(objc_type=SpatialScaler, objc_name="outputHeight")
-SpatialScaler_outputHeight :: #force_inline proc "c" (self: ^SpatialScaler) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "outputHeight")
-}
-@(objc_type=SpatialScaler, objc_name="colorProcessingMode")
-SpatialScaler_colorProcessingMode :: #force_inline proc "c" (self: ^SpatialScaler) -> SpatialScalerColorProcessingMode {
-    return msgSend(SpatialScalerColorProcessingMode, self, "colorProcessingMode")
-}
-@(objc_type=SpatialScaler, objc_name="fence")
-SpatialScaler_fence :: #force_inline proc "c" (self: ^SpatialScaler) -> ^MTL.Fence {
-    return msgSend(^MTL.Fence, self, "fence")
-}
-@(objc_type=SpatialScaler, objc_name="setFence")
-SpatialScaler_setFence :: #force_inline proc "c" (self: ^SpatialScaler, fence: ^MTL.Fence) {
-    msgSend(nil, self, "setFence:", fence)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpatialScaler, objc_selector="encodeToCommandBuffer:", objc_name="encodeToCommandBuffer")
+    SpatialScaler_encodeToCommandBuffer :: proc(self: ^SpatialScaler, commandBuffer: ^MTL.CommandBuffer) ---
+
+    @(objc_type=SpatialScaler, objc_selector="colorTextureUsage", objc_name="colorTextureUsage")
+    SpatialScaler_colorTextureUsage :: proc(self: ^SpatialScaler) -> MTL.TextureUsage ---
+
+    @(objc_type=SpatialScaler, objc_selector="outputTextureUsage", objc_name="outputTextureUsage")
+    SpatialScaler_outputTextureUsage :: proc(self: ^SpatialScaler) -> MTL.TextureUsage ---
+
+    @(objc_type=SpatialScaler, objc_selector="inputContentWidth", objc_name="inputContentWidth")
+    SpatialScaler_inputContentWidth :: proc(self: ^SpatialScaler) -> NS.UInteger ---
+
+    @(objc_type=SpatialScaler, objc_selector="setInputContentWidth:", objc_name="setInputContentWidth")
+    SpatialScaler_setInputContentWidth :: proc(self: ^SpatialScaler, inputContentWidth: NS.UInteger) ---
+
+    @(objc_type=SpatialScaler, objc_selector="inputContentHeight", objc_name="inputContentHeight")
+    SpatialScaler_inputContentHeight :: proc(self: ^SpatialScaler) -> NS.UInteger ---
+
+    @(objc_type=SpatialScaler, objc_selector="setInputContentHeight:", objc_name="setInputContentHeight")
+    SpatialScaler_setInputContentHeight :: proc(self: ^SpatialScaler, inputContentHeight: NS.UInteger) ---
+
+    @(objc_type=SpatialScaler, objc_selector="colorTexture", objc_name="colorTexture")
+    SpatialScaler_colorTexture :: proc(self: ^SpatialScaler) -> ^MTL.Texture ---
+
+    @(objc_type=SpatialScaler, objc_selector="setColorTexture:", objc_name="setColorTexture")
+    SpatialScaler_setColorTexture :: proc(self: ^SpatialScaler, colorTexture: ^MTL.Texture) ---
+
+    @(objc_type=SpatialScaler, objc_selector="outputTexture", objc_name="outputTexture")
+    SpatialScaler_outputTexture :: proc(self: ^SpatialScaler) -> ^MTL.Texture ---
+
+    @(objc_type=SpatialScaler, objc_selector="setOutputTexture:", objc_name="setOutputTexture")
+    SpatialScaler_setOutputTexture :: proc(self: ^SpatialScaler, outputTexture: ^MTL.Texture) ---
+
+    @(objc_type=SpatialScaler, objc_selector="colorTextureFormat", objc_name="colorTextureFormat")
+    SpatialScaler_colorTextureFormat :: proc(self: ^SpatialScaler) -> MTL.PixelFormat ---
+
+    @(objc_type=SpatialScaler, objc_selector="outputTextureFormat", objc_name="outputTextureFormat")
+    SpatialScaler_outputTextureFormat :: proc(self: ^SpatialScaler) -> MTL.PixelFormat ---
+
+    @(objc_type=SpatialScaler, objc_selector="inputWidth", objc_name="inputWidth")
+    SpatialScaler_inputWidth :: proc(self: ^SpatialScaler) -> NS.UInteger ---
+
+    @(objc_type=SpatialScaler, objc_selector="inputHeight", objc_name="inputHeight")
+    SpatialScaler_inputHeight :: proc(self: ^SpatialScaler) -> NS.UInteger ---
+
+    @(objc_type=SpatialScaler, objc_selector="outputWidth", objc_name="outputWidth")
+    SpatialScaler_outputWidth :: proc(self: ^SpatialScaler) -> NS.UInteger ---
+
+    @(objc_type=SpatialScaler, objc_selector="outputHeight", objc_name="outputHeight")
+    SpatialScaler_outputHeight :: proc(self: ^SpatialScaler) -> NS.UInteger ---
+
+    @(objc_type=SpatialScaler, objc_selector="colorProcessingMode", objc_name="colorProcessingMode")
+    SpatialScaler_colorProcessingMode :: proc(self: ^SpatialScaler) -> SpatialScalerColorProcessingMode ---
+
+    @(objc_type=SpatialScaler, objc_selector="fence", objc_name="fence")
+    SpatialScaler_fence :: proc(self: ^SpatialScaler) -> ^MTL.Fence ---
+
+    @(objc_type=SpatialScaler, objc_selector="setFence:", objc_name="setFence")
+    SpatialScaler_setFence :: proc(self: ^SpatialScaler, fence: ^MTL.Fence) ---
 }

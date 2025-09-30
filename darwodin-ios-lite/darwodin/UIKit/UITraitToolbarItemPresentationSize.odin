@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitToolbarItemPresentationSize
 ///
-@(objc_class="UITraitToolbarItemPresentationSize")
+@(objc_class="UITraitToolbarItemPresentationSize", objc_superclass=NS.Object)
 TraitToolbarItemPresentationSize :: struct { using _: NS.Object, 
     using _: NSIntegerTraitDefinition,
 }

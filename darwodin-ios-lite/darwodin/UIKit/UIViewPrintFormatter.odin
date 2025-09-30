@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIViewPrintFormatter
 ///
-@(objc_class="UIViewPrintFormatter")
+@(objc_class="UIViewPrintFormatter", objc_superclass=PrintFormatter)
 ViewPrintFormatter :: struct { using _: PrintFormatter, }
 

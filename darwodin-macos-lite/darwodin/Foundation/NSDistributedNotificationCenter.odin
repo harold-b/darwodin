@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSDistributedNotificationCenter
 ///
-@(objc_class="NSDistributedNotificationCenter")
+@(objc_class="NSDistributedNotificationCenter", objc_superclass=NotificationCenter)
 DistributedNotificationCenter :: struct { using _: NotificationCenter, }
 

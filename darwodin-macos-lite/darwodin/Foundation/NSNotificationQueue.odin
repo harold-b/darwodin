@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSNotificationQueue
 ///
-@(objc_class="NSNotificationQueue")
+@(objc_class="NSNotificationQueue", objc_superclass=Object)
 NotificationQueue :: struct { using _: Object, }
 

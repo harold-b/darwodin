@@ -21,11 +21,11 @@ MeshBufferZone :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=MeshBufferZone, objc_name="capacity")
-MeshBufferZone_capacity :: #force_inline proc "c" (self: ^MeshBufferZone) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "capacity")
-}
-@(objc_type=MeshBufferZone, objc_name="allocator")
-MeshBufferZone_allocator :: #force_inline proc "c" (self: ^MeshBufferZone) -> ^MeshBufferAllocator {
-    return msgSend(^MeshBufferAllocator, self, "allocator")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MeshBufferZone, objc_selector="capacity", objc_name="capacity")
+    MeshBufferZone_capacity :: proc(self: ^MeshBufferZone) -> NS.UInteger ---
+
+    @(objc_type=MeshBufferZone, objc_selector="allocator", objc_name="allocator")
+    MeshBufferZone_allocator :: proc(self: ^MeshBufferZone) -> ^MeshBufferAllocator ---
 }

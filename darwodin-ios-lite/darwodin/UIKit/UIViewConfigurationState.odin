@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIViewConfigurationState
 ///
-@(objc_class="UIViewConfigurationState")
+@(objc_class="UIViewConfigurationState", objc_superclass=NS.Object)
 ViewConfigurationState :: struct { using _: NS.Object, 
     using _: ConfigurationState,
 }

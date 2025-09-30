@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPointerEffect
 ///
-@(objc_class="UIPointerEffect")
+@(objc_class="UIPointerEffect", objc_superclass=NS.Object)
 PointerEffect :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: HoverEffect,

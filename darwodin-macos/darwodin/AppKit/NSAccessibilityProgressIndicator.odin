@@ -21,7 +21,8 @@ AccessibilityProgressIndicator :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 
-@(objc_type=AccessibilityProgressIndicator, objc_name="accessibilityValue")
-AccessibilityProgressIndicator_accessibilityValue :: #force_inline proc "c" (self: ^AccessibilityProgressIndicator) -> ^NS.Number {
-    return msgSend(^NS.Number, self, "accessibilityValue")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityProgressIndicator, objc_selector="accessibilityValue", objc_name="accessibilityValue")
+    AccessibilityProgressIndicator_accessibilityValue :: proc(self: ^AccessibilityProgressIndicator) -> ^NS.Number ---
 }

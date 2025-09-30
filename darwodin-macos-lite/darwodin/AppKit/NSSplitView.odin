@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSplitView
 ///
-@(objc_class="NSSplitView")
+@(objc_class="NSSplitView", objc_superclass=View)
 SplitView :: struct { using _: View, }
 

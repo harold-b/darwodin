@@ -21,15 +21,14 @@ TextCursorView :: struct { using _: intrinsics.objc_object,
     using _: CoordinateSpace,
 }
 
-@(objc_type=TextCursorView, objc_name="resetBlinkAnimation")
-TextCursorView_resetBlinkAnimation :: #force_inline proc "c" (self: ^TextCursorView) {
-    msgSend(nil, self, "resetBlinkAnimation")
-}
-@(objc_type=TextCursorView, objc_name="isBlinking")
-TextCursorView_isBlinking :: #force_inline proc "c" (self: ^TextCursorView) -> bool {
-    return msgSend(bool, self, "isBlinking")
-}
-@(objc_type=TextCursorView, objc_name="setBlinking")
-TextCursorView_setBlinking :: #force_inline proc "c" (self: ^TextCursorView, blinking: bool) {
-    msgSend(nil, self, "setBlinking:", blinking)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextCursorView, objc_selector="resetBlinkAnimation", objc_name="resetBlinkAnimation")
+    TextCursorView_resetBlinkAnimation :: proc(self: ^TextCursorView) ---
+
+    @(objc_type=TextCursorView, objc_selector="isBlinking", objc_name="isBlinking")
+    TextCursorView_isBlinking :: proc(self: ^TextCursorView) -> bool ---
+
+    @(objc_type=TextCursorView, objc_selector="setBlinking:", objc_name="setBlinking")
+    TextCursorView_setBlinking :: proc(self: ^TextCursorView, blinking: bool) ---
 }

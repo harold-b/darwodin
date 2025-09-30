@@ -22,27 +22,23 @@ MeshBuffer :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
-@(objc_type=MeshBuffer, objc_name="fillData")
-MeshBuffer_fillData :: #force_inline proc "c" (self: ^MeshBuffer, data: ^NS.Data, offset: NS.UInteger) {
-    msgSend(nil, self, "fillData:offset:", data, offset)
-}
-@(objc_type=MeshBuffer, objc_name="map")
-MeshBuffer_map :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MeshBufferMap {
-    return msgSend(^MeshBufferMap, self, "map")
-}
-@(objc_type=MeshBuffer, objc_name="length")
-MeshBuffer_length :: #force_inline proc "c" (self: ^MeshBuffer) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "length")
-}
-@(objc_type=MeshBuffer, objc_name="allocator")
-MeshBuffer_allocator :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MeshBufferAllocator {
-    return msgSend(^MeshBufferAllocator, self, "allocator")
-}
-@(objc_type=MeshBuffer, objc_name="zone")
-MeshBuffer_zone :: #force_inline proc "c" (self: ^MeshBuffer) -> ^MeshBufferZone {
-    return msgSend(^MeshBufferZone, self, "zone")
-}
-@(objc_type=MeshBuffer, objc_name="type")
-MeshBuffer_type :: #force_inline proc "c" (self: ^MeshBuffer) -> MeshBufferType {
-    return msgSend(MeshBufferType, self, "type")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MeshBuffer, objc_selector="fillData:offset:", objc_name="fillData")
+    MeshBuffer_fillData :: proc(self: ^MeshBuffer, data: ^NS.Data, offset: NS.UInteger) ---
+
+    @(objc_type=MeshBuffer, objc_selector="map", objc_name="map")
+    MeshBuffer_map :: proc(self: ^MeshBuffer) -> ^MeshBufferMap ---
+
+    @(objc_type=MeshBuffer, objc_selector="length", objc_name="length")
+    MeshBuffer_length :: proc(self: ^MeshBuffer) -> NS.UInteger ---
+
+    @(objc_type=MeshBuffer, objc_selector="allocator", objc_name="allocator")
+    MeshBuffer_allocator :: proc(self: ^MeshBuffer) -> ^MeshBufferAllocator ---
+
+    @(objc_type=MeshBuffer, objc_selector="zone", objc_name="zone")
+    MeshBuffer_zone :: proc(self: ^MeshBuffer) -> ^MeshBufferZone ---
+
+    @(objc_type=MeshBuffer, objc_selector="type", objc_name="type")
+    MeshBuffer_type :: proc(self: ^MeshBuffer) -> MeshBufferType ---
 }

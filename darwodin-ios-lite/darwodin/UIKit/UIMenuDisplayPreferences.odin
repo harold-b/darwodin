@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIMenuDisplayPreferences
 ///
-@(objc_class="UIMenuDisplayPreferences")
+@(objc_class="UIMenuDisplayPreferences", objc_superclass=NS.Object)
 MenuDisplayPreferences :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

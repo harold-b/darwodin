@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSHTTPCookieStorage
 ///
-@(objc_class="NSHTTPCookieStorage")
+@(objc_class="NSHTTPCookieStorage", objc_superclass=Object)
 HTTPCookieStorage :: struct { using _: Object, }
 

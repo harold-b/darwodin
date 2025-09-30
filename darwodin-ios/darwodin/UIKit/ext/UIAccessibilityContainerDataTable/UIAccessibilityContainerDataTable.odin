@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -73,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityHeaderElementsForRow(self, row)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityHeaderElementsForRow:"), auto_cast accessibilityHeaderElementsForRow, "@@:L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityHeaderElementsForRow:"), auto_cast accessibilityHeaderElementsForRow, "^void@:L") do panic("Failed to register objC method.")
     }
     if vt.accessibilityHeaderElementsForColumn != nil {
         accessibilityHeaderElementsForColumn :: proc "c" (self: ^UI.AccessibilityContainerDataTable, _: SEL, column: NS.UInteger) -> ^NS.Array {
@@ -83,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).accessibilityHeaderElementsForColumn(self, column)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityHeaderElementsForColumn:"), auto_cast accessibilityHeaderElementsForColumn, "@@:L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityHeaderElementsForColumn:"), auto_cast accessibilityHeaderElementsForColumn, "^void@:L") do panic("Failed to register objC method.")
     }
 }
 

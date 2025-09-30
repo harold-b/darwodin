@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITargetedDragPreview
 ///
-@(objc_class="UITargetedDragPreview")
+@(objc_class="UITargetedDragPreview", objc_superclass=TargetedPreview)
 TargetedDragPreview :: struct { using _: TargetedPreview, }
 

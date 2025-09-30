@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSCollectionViewDiffableDataSource
 ///
-@(objc_class="NSCollectionViewDiffableDataSource")
+@(objc_class="NSCollectionViewDiffableDataSource", objc_superclass=NS.Object)
 CollectionViewDiffableDataSource :: struct { using _: NS.Object, 
     using _: CollectionViewDataSource,
 }

@@ -19,47 +19,38 @@ DevicePhysicalInput :: struct { using _: intrinsics.objc_object,
     using _: DevicePhysicalInputState,
 }
 
-@(objc_type=DevicePhysicalInput, objc_name="capture")
-DevicePhysicalInput_capture :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> ^DevicePhysicalInputState {
-    return msgSend(^DevicePhysicalInputState, self, "capture")
-}
-@(objc_type=DevicePhysicalInput, objc_name="nextInputState")
-DevicePhysicalInput_nextInputState :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> ^id {
-    return msgSend(^id, self, "nextInputState")
-}
-@(objc_type=DevicePhysicalInput, objc_name="device")
-DevicePhysicalInput_device :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=DevicePhysicalInput, objc_name="queue")
-DevicePhysicalInput_queue :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> ^NS.Object {
-    return msgSend(^NS.Object, self, "queue")
-}
-@(objc_type=DevicePhysicalInput, objc_name="setQueue")
-DevicePhysicalInput_setQueue :: #force_inline proc "c" (self: ^DevicePhysicalInput, queue: ^NS.Object) {
-    msgSend(nil, self, "setQueue:", queue)
-}
-@(objc_type=DevicePhysicalInput, objc_name="elementValueDidChangeHandler")
-DevicePhysicalInput_elementValueDidChangeHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> ^Objc_Block(proc "c" ()) {
-    return msgSend(^Objc_Block(proc "c" ()), self, "elementValueDidChangeHandler")
-}
-@(objc_type=DevicePhysicalInput, objc_name="setElementValueDidChangeHandler")
-DevicePhysicalInput_setElementValueDidChangeHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput, elementValueDidChangeHandler: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "setElementValueDidChangeHandler:", elementValueDidChangeHandler)
-}
-@(objc_type=DevicePhysicalInput, objc_name="inputStateAvailableHandler")
-DevicePhysicalInput_inputStateAvailableHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> ^Objc_Block(proc "c" ()) {
-    return msgSend(^Objc_Block(proc "c" ()), self, "inputStateAvailableHandler")
-}
-@(objc_type=DevicePhysicalInput, objc_name="setInputStateAvailableHandler")
-DevicePhysicalInput_setInputStateAvailableHandler :: #force_inline proc "c" (self: ^DevicePhysicalInput, inputStateAvailableHandler: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "setInputStateAvailableHandler:", inputStateAvailableHandler)
-}
-@(objc_type=DevicePhysicalInput, objc_name="inputStateQueueDepth")
-DevicePhysicalInput_inputStateQueueDepth :: #force_inline proc "c" (self: ^DevicePhysicalInput) -> NS.Integer {
-    return msgSend(NS.Integer, self, "inputStateQueueDepth")
-}
-@(objc_type=DevicePhysicalInput, objc_name="setInputStateQueueDepth")
-DevicePhysicalInput_setInputStateQueueDepth :: #force_inline proc "c" (self: ^DevicePhysicalInput, inputStateQueueDepth: NS.Integer) {
-    msgSend(nil, self, "setInputStateQueueDepth:", inputStateQueueDepth)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DevicePhysicalInput, objc_selector="capture", objc_name="capture")
+    DevicePhysicalInput_capture :: proc(self: ^DevicePhysicalInput) -> ^DevicePhysicalInputState ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="nextInputState", objc_name="nextInputState")
+    DevicePhysicalInput_nextInputState :: proc(self: ^DevicePhysicalInput) -> ^id ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="device", objc_name="device")
+    DevicePhysicalInput_device :: proc(self: ^DevicePhysicalInput) -> ^Device ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="queue", objc_name="queue")
+    DevicePhysicalInput_queue :: proc(self: ^DevicePhysicalInput) -> ^NS.Object ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="setQueue:", objc_name="setQueue")
+    DevicePhysicalInput_setQueue :: proc(self: ^DevicePhysicalInput, queue: ^NS.Object) ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="elementValueDidChangeHandler", objc_name="elementValueDidChangeHandler")
+    DevicePhysicalInput_elementValueDidChangeHandler :: proc(self: ^DevicePhysicalInput) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="setElementValueDidChangeHandler:", objc_name="setElementValueDidChangeHandler")
+    DevicePhysicalInput_setElementValueDidChangeHandler :: proc(self: ^DevicePhysicalInput, elementValueDidChangeHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="inputStateAvailableHandler", objc_name="inputStateAvailableHandler")
+    DevicePhysicalInput_inputStateAvailableHandler :: proc(self: ^DevicePhysicalInput) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="setInputStateAvailableHandler:", objc_name="setInputStateAvailableHandler")
+    DevicePhysicalInput_setInputStateAvailableHandler :: proc(self: ^DevicePhysicalInput, inputStateAvailableHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="inputStateQueueDepth", objc_name="inputStateQueueDepth")
+    DevicePhysicalInput_inputStateQueueDepth :: proc(self: ^DevicePhysicalInput) -> NS.Integer ---
+
+    @(objc_type=DevicePhysicalInput, objc_selector="setInputStateQueueDepth:", objc_name="setInputStateQueueDepth")
+    DevicePhysicalInput_setInputStateQueueDepth :: proc(self: ^DevicePhysicalInput, inputStateQueueDepth: NS.Integer) ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSStoryboardSegue
 ///
-@(objc_class="NSStoryboardSegue")
+@(objc_class="NSStoryboardSegue", objc_superclass=NS.Object)
 StoryboardSegue :: struct { using _: NS.Object, }
 

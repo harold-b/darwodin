@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSWorkspace
 ///
-@(objc_class="NSWorkspace")
+@(objc_class="NSWorkspace", objc_superclass=NS.Object)
 Workspace :: struct { using _: NS.Object, }
 

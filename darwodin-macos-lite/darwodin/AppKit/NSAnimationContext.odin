@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSAnimationContext
 ///
-@(objc_class="NSAnimationContext")
+@(objc_class="NSAnimationContext", objc_superclass=NS.Object)
 AnimationContext :: struct { using _: NS.Object, }
 

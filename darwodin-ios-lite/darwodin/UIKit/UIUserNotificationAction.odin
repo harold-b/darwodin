@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIUserNotificationAction
 ///
-@(objc_class="UIUserNotificationAction")
+@(objc_class="UIUserNotificationAction", objc_superclass=NS.Object)
 UserNotificationAction :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.MutableCopying,

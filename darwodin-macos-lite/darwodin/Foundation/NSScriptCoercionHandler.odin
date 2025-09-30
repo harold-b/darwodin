@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSScriptCoercionHandler
 ///
-@(objc_class="NSScriptCoercionHandler")
+@(objc_class="NSScriptCoercionHandler", objc_superclass=Object)
 ScriptCoercionHandler :: struct { using _: Object, }
 

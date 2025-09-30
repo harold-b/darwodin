@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSDockTile
 ///
-@(objc_class="NSDockTile")
+@(objc_class="NSDockTile", objc_superclass=NS.Object)
 DockTile :: struct { using _: NS.Object, }
 

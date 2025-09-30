@@ -21,7 +21,8 @@ TextFormattingCoordinatorDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextFormattingCoordinatorDelegate, objc_name="updateTextAttributesWithConversionHandler")
-TextFormattingCoordinatorDelegate_updateTextAttributesWithConversionHandler :: #force_inline proc "c" (self: ^TextFormattingCoordinatorDelegate, conversionHandler: TextAttributesConversionHandler) {
-    msgSend(nil, self, "updateTextAttributesWithConversionHandler:", conversionHandler)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextFormattingCoordinatorDelegate, objc_selector="updateTextAttributesWithConversionHandler:", objc_name="updateTextAttributesWithConversionHandler")
+    TextFormattingCoordinatorDelegate_updateTextAttributesWithConversionHandler :: proc(self: ^TextFormattingCoordinatorDelegate, conversionHandler: TextAttributesConversionHandler) ---
 }

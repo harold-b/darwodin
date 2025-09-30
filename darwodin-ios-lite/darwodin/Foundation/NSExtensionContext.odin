@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSExtensionContext
 ///
-@(objc_class="NSExtensionContext")
+@(objc_class="NSExtensionContext", objc_superclass=Object)
 ExtensionContext :: struct { using _: Object, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSColorSampler
 ///
-@(objc_class="NSColorSampler")
+@(objc_class="NSColorSampler", objc_superclass=NS.Object)
 ColorSampler :: struct { using _: NS.Object, }
 

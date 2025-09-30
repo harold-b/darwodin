@@ -19,14 +19,5 @@ import CA "../QuartzCore"
 @(objc_class="NSFileProviderDomain")
 NSFileProviderDomain :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=NSFileProviderDomain, objc_name="alloc", objc_is_class_method=true)
-NSFileProviderDomain_alloc :: proc "c" () -> ^NSFileProviderDomain {
-    return msgSend(^NSFileProviderDomain, NSFileProviderDomain, "alloc")
-}
-
-@(objc_type=NSFileProviderDomain, objc_name="init")
-NSFileProviderDomain_init :: proc "c" (self: ^NSFileProviderDomain) -> ^NSFileProviderDomain {
-    return msgSend(^NSFileProviderDomain, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

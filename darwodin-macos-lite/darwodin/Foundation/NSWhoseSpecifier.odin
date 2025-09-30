@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSWhoseSpecifier
 ///
-@(objc_class="NSWhoseSpecifier")
+@(objc_class="NSWhoseSpecifier", objc_superclass=ScriptObjectSpecifier)
 WhoseSpecifier :: struct { using _: ScriptObjectSpecifier, }
 

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSLogicalTest
 ///
-@(objc_class="NSLogicalTest")
+@(objc_class="NSLogicalTest", objc_superclass=ScriptWhoseTest)
 LogicalTest :: struct { using _: ScriptWhoseTest, }
 

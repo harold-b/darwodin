@@ -19,14 +19,5 @@ import CA "../QuartzCore"
 @(objc_class="NSQueryGenerationToken")
 QueryGenerationToken :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=QueryGenerationToken, objc_name="alloc", objc_is_class_method=true)
-QueryGenerationToken_alloc :: proc "c" () -> ^QueryGenerationToken {
-    return msgSend(^QueryGenerationToken, QueryGenerationToken, "alloc")
-}
-
-@(objc_type=QueryGenerationToken, objc_name="init")
-QueryGenerationToken_init :: proc "c" (self: ^QueryGenerationToken) -> ^QueryGenerationToken {
-    return msgSend(^QueryGenerationToken, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

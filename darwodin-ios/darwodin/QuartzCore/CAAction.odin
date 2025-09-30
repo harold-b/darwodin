@@ -16,7 +16,8 @@ import NS "../Foundation"
 @(objc_class="CAAction")
 Action :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=Action, objc_name="runActionForKey")
-Action_runActionForKey :: #force_inline proc "c" (self: ^Action, event: ^NS.String, anObject: id, dict: ^NS.Dictionary) {
-    msgSend(nil, self, "runActionForKey:object:arguments:", event, anObject, dict)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Action, objc_selector="runActionForKey:object:arguments:", objc_name="runActionForKey")
+    Action_runActionForKey :: proc(self: ^Action, event: ^NS.String, anObject: id, dict: ^NS.Dictionary) ---
 }

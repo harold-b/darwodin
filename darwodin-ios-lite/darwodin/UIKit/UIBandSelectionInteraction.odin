@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIBandSelectionInteraction
 ///
-@(objc_class="UIBandSelectionInteraction")
+@(objc_class="UIBandSelectionInteraction", objc_superclass=NS.Object)
 BandSelectionInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

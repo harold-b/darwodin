@@ -16,168 +16,34 @@ import CA "../QuartzCore"
 ///
 /// UICollectionViewCompositionalLayoutConfiguration
 ///
-@(objc_class="UICollectionViewCompositionalLayoutConfiguration")
+@(objc_class="UICollectionViewCompositionalLayoutConfiguration", objc_superclass=NS.Object)
 CollectionViewCompositionalLayoutConfiguration :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="init")
-CollectionViewCompositionalLayoutConfiguration_init :: proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration) -> ^CollectionViewCompositionalLayoutConfiguration {
-    return msgSend(^CollectionViewCompositionalLayoutConfiguration, self, "init")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_selector="scrollDirection", objc_name="scrollDirection")
+    CollectionViewCompositionalLayoutConfiguration_scrollDirection :: proc(self: ^CollectionViewCompositionalLayoutConfiguration) -> CollectionViewScrollDirection ---
 
+    @(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_selector="setScrollDirection:", objc_name="setScrollDirection")
+    CollectionViewCompositionalLayoutConfiguration_setScrollDirection :: proc(self: ^CollectionViewCompositionalLayoutConfiguration, scrollDirection: CollectionViewScrollDirection) ---
 
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="scrollDirection")
-CollectionViewCompositionalLayoutConfiguration_scrollDirection :: #force_inline proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration) -> CollectionViewScrollDirection {
-    return msgSend(CollectionViewScrollDirection, self, "scrollDirection")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="setScrollDirection")
-CollectionViewCompositionalLayoutConfiguration_setScrollDirection :: #force_inline proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration, scrollDirection: CollectionViewScrollDirection) {
-    msgSend(nil, self, "setScrollDirection:", scrollDirection)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="interSectionSpacing")
-CollectionViewCompositionalLayoutConfiguration_interSectionSpacing :: #force_inline proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration) -> CG.Float {
-    return msgSend(CG.Float, self, "interSectionSpacing")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="setInterSectionSpacing")
-CollectionViewCompositionalLayoutConfiguration_setInterSectionSpacing :: #force_inline proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration, interSectionSpacing: CG.Float) {
-    msgSend(nil, self, "setInterSectionSpacing:", interSectionSpacing)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="boundarySupplementaryItems")
-CollectionViewCompositionalLayoutConfiguration_boundarySupplementaryItems :: #force_inline proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "boundarySupplementaryItems")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="setBoundarySupplementaryItems")
-CollectionViewCompositionalLayoutConfiguration_setBoundarySupplementaryItems :: #force_inline proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration, boundarySupplementaryItems: ^NS.Array) {
-    msgSend(nil, self, "setBoundarySupplementaryItems:", boundarySupplementaryItems)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="contentInsetsReference")
-CollectionViewCompositionalLayoutConfiguration_contentInsetsReference :: #force_inline proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration) -> ContentInsetsReference {
-    return msgSend(ContentInsetsReference, self, "contentInsetsReference")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="setContentInsetsReference")
-CollectionViewCompositionalLayoutConfiguration_setContentInsetsReference :: #force_inline proc "c" (self: ^CollectionViewCompositionalLayoutConfiguration, contentInsetsReference: ContentInsetsReference) {
-    msgSend(nil, self, "setContentInsetsReference:", contentInsetsReference)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="load", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_load :: #force_inline proc "c" () {
-    msgSend(nil, CollectionViewCompositionalLayoutConfiguration, "load")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="initialize", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_initialize :: #force_inline proc "c" () {
-    msgSend(nil, CollectionViewCompositionalLayoutConfiguration, "initialize")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="new", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_new :: #force_inline proc "c" () -> ^CollectionViewCompositionalLayoutConfiguration {
-    return msgSend(^CollectionViewCompositionalLayoutConfiguration, CollectionViewCompositionalLayoutConfiguration, "new")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="allocWithZone", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^CollectionViewCompositionalLayoutConfiguration {
-    return msgSend(^CollectionViewCompositionalLayoutConfiguration, CollectionViewCompositionalLayoutConfiguration, "allocWithZone:", zone)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="alloc", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_alloc :: #force_inline proc "c" () -> ^CollectionViewCompositionalLayoutConfiguration {
-    return msgSend(^CollectionViewCompositionalLayoutConfiguration, CollectionViewCompositionalLayoutConfiguration, "alloc")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="copyWithZone", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, CollectionViewCompositionalLayoutConfiguration, "copyWithZone:", zone)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, CollectionViewCompositionalLayoutConfiguration, "mutableCopyWithZone:", zone)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, CollectionViewCompositionalLayoutConfiguration, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="conformsToProtocol", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, CollectionViewCompositionalLayoutConfiguration, "conformsToProtocol:", protocol)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, CollectionViewCompositionalLayoutConfiguration, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, CollectionViewCompositionalLayoutConfiguration, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="isSubclassOfClass", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, CollectionViewCompositionalLayoutConfiguration, "isSubclassOfClass:", aClass)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="resolveClassMethod", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, CollectionViewCompositionalLayoutConfiguration, "resolveClassMethod:", sel)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, CollectionViewCompositionalLayoutConfiguration, "resolveInstanceMethod:", sel)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="hash", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, CollectionViewCompositionalLayoutConfiguration, "hash")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="superclass", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionViewCompositionalLayoutConfiguration, "superclass")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="class", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionViewCompositionalLayoutConfiguration, "class")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="description", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, CollectionViewCompositionalLayoutConfiguration, "description")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="debugDescription", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, CollectionViewCompositionalLayoutConfiguration, "debugDescription")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="version", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, CollectionViewCompositionalLayoutConfiguration, "version")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="setVersion", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, CollectionViewCompositionalLayoutConfiguration, "setVersion:", aVersion)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, CollectionViewCompositionalLayoutConfiguration, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, CollectionViewCompositionalLayoutConfiguration, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, CollectionViewCompositionalLayoutConfiguration, "accessInstanceVariablesDirectly")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="useStoredAccessor", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, CollectionViewCompositionalLayoutConfiguration, "useStoredAccessor")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, CollectionViewCompositionalLayoutConfiguration, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, CollectionViewCompositionalLayoutConfiguration, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, CollectionViewCompositionalLayoutConfiguration, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-CollectionViewCompositionalLayoutConfiguration_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionViewCompositionalLayoutConfiguration, "classForKeyedUnarchiver")
-}
-@(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_name="cancelPreviousPerformRequestsWithTarget")
-CollectionViewCompositionalLayoutConfiguration_cancelPreviousPerformRequestsWithTarget :: proc {
-    CollectionViewCompositionalLayoutConfiguration_cancelPreviousPerformRequestsWithTarget_selector_object,
-    CollectionViewCompositionalLayoutConfiguration_cancelPreviousPerformRequestsWithTarget_,
-}
+    @(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_selector="interSectionSpacing", objc_name="interSectionSpacing")
+    CollectionViewCompositionalLayoutConfiguration_interSectionSpacing :: proc(self: ^CollectionViewCompositionalLayoutConfiguration) -> CG.Float ---
 
+    @(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_selector="setInterSectionSpacing:", objc_name="setInterSectionSpacing")
+    CollectionViewCompositionalLayoutConfiguration_setInterSectionSpacing :: proc(self: ^CollectionViewCompositionalLayoutConfiguration, interSectionSpacing: CG.Float) ---
+
+    @(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_selector="boundarySupplementaryItems", objc_name="boundarySupplementaryItems")
+    CollectionViewCompositionalLayoutConfiguration_boundarySupplementaryItems :: proc(self: ^CollectionViewCompositionalLayoutConfiguration) -> ^NS.Array ---
+
+    @(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_selector="setBoundarySupplementaryItems:", objc_name="setBoundarySupplementaryItems")
+    CollectionViewCompositionalLayoutConfiguration_setBoundarySupplementaryItems :: proc(self: ^CollectionViewCompositionalLayoutConfiguration, boundarySupplementaryItems: ^NS.Array) ---
+
+    @(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_selector="contentInsetsReference", objc_name="contentInsetsReference")
+    CollectionViewCompositionalLayoutConfiguration_contentInsetsReference :: proc(self: ^CollectionViewCompositionalLayoutConfiguration) -> ContentInsetsReference ---
+
+    @(objc_type=CollectionViewCompositionalLayoutConfiguration, objc_selector="setContentInsetsReference:", objc_name="setContentInsetsReference")
+    CollectionViewCompositionalLayoutConfiguration_setContentInsetsReference :: proc(self: ^CollectionViewCompositionalLayoutConfiguration, contentInsetsReference: ContentInsetsReference) ---
+}

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSQuitCommand
 ///
-@(objc_class="NSQuitCommand")
+@(objc_class="NSQuitCommand", objc_superclass=ScriptCommand)
 QuitCommand :: struct { using _: ScriptCommand, }
 

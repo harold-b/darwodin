@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMutableAttributedString
 ///
-@(objc_class="NSMutableAttributedString")
+@(objc_class="NSMutableAttributedString", objc_superclass=AttributedString)
 MutableAttributedString :: struct { using _: AttributedString, }
 

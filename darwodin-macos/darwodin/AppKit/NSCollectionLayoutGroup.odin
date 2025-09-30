@@ -16,203 +16,53 @@ import CA "../QuartzCore"
 ///
 /// NSCollectionLayoutGroup
 ///
-@(objc_class="NSCollectionLayoutGroup")
+@(objc_class="NSCollectionLayoutGroup", objc_superclass=CollectionLayoutItem)
 CollectionLayoutGroup :: struct { using _: CollectionLayoutItem, 
     using _: NS.Copying,
 }
 
-@(objc_type=CollectionLayoutGroup, objc_name="horizontalGroupWithLayoutSize_subitem_count", objc_is_class_method=true)
-CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitem_count :: #force_inline proc "c" (layoutSize: ^CollectionLayoutSize, subitem: ^CollectionLayoutItem, count: NS.Integer) -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, CollectionLayoutGroup, "horizontalGroupWithLayoutSize:subitem:count:", layoutSize, subitem, count)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionLayoutGroup, objc_selector="horizontalGroupWithLayoutSize:subitem:count:", objc_name="horizontalGroupWithLayoutSize_subitem_count", objc_is_class_method=true)
+    CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^CollectionLayoutSize, subitem: ^CollectionLayoutItem, count: NS.Integer) -> ^CollectionLayoutGroup ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="horizontalGroupWithLayoutSize:subitems:", objc_name="horizontalGroupWithLayoutSize_subitems", objc_is_class_method=true)
+    CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitems :: proc(layoutSize: ^CollectionLayoutSize, subitems: ^NS.Array) -> ^CollectionLayoutGroup ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="verticalGroupWithLayoutSize:subitem:count:", objc_name="verticalGroupWithLayoutSize_subitem_count", objc_is_class_method=true)
+    CollectionLayoutGroup_verticalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^CollectionLayoutSize, subitem: ^CollectionLayoutItem, count: NS.Integer) -> ^CollectionLayoutGroup ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="verticalGroupWithLayoutSize:subitems:", objc_name="verticalGroupWithLayoutSize_subitems", objc_is_class_method=true)
+    CollectionLayoutGroup_verticalGroupWithLayoutSize_subitems :: proc(layoutSize: ^CollectionLayoutSize, subitems: ^NS.Array) -> ^CollectionLayoutGroup ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="customGroupWithLayoutSize:itemProvider:", objc_name="customGroupWithLayoutSize", objc_is_class_method=true)
+    CollectionLayoutGroup_customGroupWithLayoutSize :: proc(layoutSize: ^CollectionLayoutSize, itemProvider: CollectionLayoutGroupCustomItemProvider) -> ^CollectionLayoutGroup ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="init", objc_name="init")
+    CollectionLayoutGroup_init :: proc(self: ^CollectionLayoutGroup) -> ^CollectionLayoutGroup ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    CollectionLayoutGroup_new :: proc() -> ^CollectionLayoutGroup ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="visualDescription", objc_name="visualDescription")
+    CollectionLayoutGroup_visualDescription :: proc(self: ^CollectionLayoutGroup) -> ^NS.String ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="supplementaryItems", objc_name="supplementaryItems")
+    CollectionLayoutGroup_supplementaryItems :: proc(self: ^CollectionLayoutGroup) -> ^NS.Array ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="setSupplementaryItems:", objc_name="setSupplementaryItems")
+    CollectionLayoutGroup_setSupplementaryItems :: proc(self: ^CollectionLayoutGroup, supplementaryItems: ^NS.Array) ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="interItemSpacing", objc_name="interItemSpacing")
+    CollectionLayoutGroup_interItemSpacing :: proc(self: ^CollectionLayoutGroup) -> ^CollectionLayoutSpacing ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="setInterItemSpacing:", objc_name="setInterItemSpacing")
+    CollectionLayoutGroup_setInterItemSpacing :: proc(self: ^CollectionLayoutGroup, interItemSpacing: ^CollectionLayoutSpacing) ---
+
+    @(objc_type=CollectionLayoutGroup, objc_selector="subitems", objc_name="subitems")
+    CollectionLayoutGroup_subitems :: proc(self: ^CollectionLayoutGroup) -> ^NS.Array ---
 }
-@(objc_type=CollectionLayoutGroup, objc_name="horizontalGroupWithLayoutSize_subitems", objc_is_class_method=true)
-CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitems :: #force_inline proc "c" (layoutSize: ^CollectionLayoutSize, subitems: ^NS.Array) -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, CollectionLayoutGroup, "horizontalGroupWithLayoutSize:subitems:", layoutSize, subitems)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="verticalGroupWithLayoutSize_subitem_count", objc_is_class_method=true)
-CollectionLayoutGroup_verticalGroupWithLayoutSize_subitem_count :: #force_inline proc "c" (layoutSize: ^CollectionLayoutSize, subitem: ^CollectionLayoutItem, count: NS.Integer) -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, CollectionLayoutGroup, "verticalGroupWithLayoutSize:subitem:count:", layoutSize, subitem, count)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="verticalGroupWithLayoutSize_subitems", objc_is_class_method=true)
-CollectionLayoutGroup_verticalGroupWithLayoutSize_subitems :: #force_inline proc "c" (layoutSize: ^CollectionLayoutSize, subitems: ^NS.Array) -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, CollectionLayoutGroup, "verticalGroupWithLayoutSize:subitems:", layoutSize, subitems)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="customGroupWithLayoutSize", objc_is_class_method=true)
-CollectionLayoutGroup_customGroupWithLayoutSize :: #force_inline proc "c" (layoutSize: ^CollectionLayoutSize, itemProvider: CollectionLayoutGroupCustomItemProvider) -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, CollectionLayoutGroup, "customGroupWithLayoutSize:itemProvider:", layoutSize, itemProvider)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="init")
-CollectionLayoutGroup_init :: #force_inline proc "c" (self: ^CollectionLayoutGroup) -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, self, "init")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="new", objc_is_class_method=true)
-CollectionLayoutGroup_new :: #force_inline proc "c" () -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, CollectionLayoutGroup, "new")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="visualDescription")
-CollectionLayoutGroup_visualDescription :: #force_inline proc "c" (self: ^CollectionLayoutGroup) -> ^NS.String {
-    return msgSend(^NS.String, self, "visualDescription")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="supplementaryItems")
-CollectionLayoutGroup_supplementaryItems :: #force_inline proc "c" (self: ^CollectionLayoutGroup) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "supplementaryItems")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="setSupplementaryItems")
-CollectionLayoutGroup_setSupplementaryItems :: #force_inline proc "c" (self: ^CollectionLayoutGroup, supplementaryItems: ^NS.Array) {
-    msgSend(nil, self, "setSupplementaryItems:", supplementaryItems)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="interItemSpacing")
-CollectionLayoutGroup_interItemSpacing :: #force_inline proc "c" (self: ^CollectionLayoutGroup) -> ^CollectionLayoutSpacing {
-    return msgSend(^CollectionLayoutSpacing, self, "interItemSpacing")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="setInterItemSpacing")
-CollectionLayoutGroup_setInterItemSpacing :: #force_inline proc "c" (self: ^CollectionLayoutGroup, interItemSpacing: ^CollectionLayoutSpacing) {
-    msgSend(nil, self, "setInterItemSpacing:", interItemSpacing)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="subitems")
-CollectionLayoutGroup_subitems :: #force_inline proc "c" (self: ^CollectionLayoutGroup) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "subitems")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="itemWithLayoutSize_", objc_is_class_method=true)
-CollectionLayoutGroup_itemWithLayoutSize_ :: #force_inline proc "c" (layoutSize: ^CollectionLayoutSize) -> ^CollectionLayoutItem {
-    return msgSend(^CollectionLayoutItem, CollectionLayoutGroup, "itemWithLayoutSize:", layoutSize)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="itemWithLayoutSize_supplementaryItems", objc_is_class_method=true)
-CollectionLayoutGroup_itemWithLayoutSize_supplementaryItems :: #force_inline proc "c" (layoutSize: ^CollectionLayoutSize, supplementaryItems: ^NS.Array) -> ^CollectionLayoutItem {
-    return msgSend(^CollectionLayoutItem, CollectionLayoutGroup, "itemWithLayoutSize:supplementaryItems:", layoutSize, supplementaryItems)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="load", objc_is_class_method=true)
-CollectionLayoutGroup_load :: #force_inline proc "c" () {
-    msgSend(nil, CollectionLayoutGroup, "load")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="initialize", objc_is_class_method=true)
-CollectionLayoutGroup_initialize :: #force_inline proc "c" () {
-    msgSend(nil, CollectionLayoutGroup, "initialize")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="allocWithZone", objc_is_class_method=true)
-CollectionLayoutGroup_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, CollectionLayoutGroup, "allocWithZone:", zone)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="alloc", objc_is_class_method=true)
-CollectionLayoutGroup_alloc :: #force_inline proc "c" () -> ^CollectionLayoutGroup {
-    return msgSend(^CollectionLayoutGroup, CollectionLayoutGroup, "alloc")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="copyWithZone", objc_is_class_method=true)
-CollectionLayoutGroup_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, CollectionLayoutGroup, "copyWithZone:", zone)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-CollectionLayoutGroup_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, CollectionLayoutGroup, "mutableCopyWithZone:", zone)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-CollectionLayoutGroup_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, CollectionLayoutGroup, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="conformsToProtocol", objc_is_class_method=true)
-CollectionLayoutGroup_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, CollectionLayoutGroup, "conformsToProtocol:", protocol)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-CollectionLayoutGroup_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, CollectionLayoutGroup, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-CollectionLayoutGroup_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, CollectionLayoutGroup, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="isSubclassOfClass", objc_is_class_method=true)
-CollectionLayoutGroup_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, CollectionLayoutGroup, "isSubclassOfClass:", aClass)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="resolveClassMethod", objc_is_class_method=true)
-CollectionLayoutGroup_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, CollectionLayoutGroup, "resolveClassMethod:", sel)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-CollectionLayoutGroup_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, CollectionLayoutGroup, "resolveInstanceMethod:", sel)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="hash", objc_is_class_method=true)
-CollectionLayoutGroup_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, CollectionLayoutGroup, "hash")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="superclass", objc_is_class_method=true)
-CollectionLayoutGroup_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionLayoutGroup, "superclass")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="class", objc_is_class_method=true)
-CollectionLayoutGroup_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionLayoutGroup, "class")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="description", objc_is_class_method=true)
-CollectionLayoutGroup_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, CollectionLayoutGroup, "description")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="debugDescription", objc_is_class_method=true)
-CollectionLayoutGroup_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, CollectionLayoutGroup, "debugDescription")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="version", objc_is_class_method=true)
-CollectionLayoutGroup_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, CollectionLayoutGroup, "version")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="setVersion", objc_is_class_method=true)
-CollectionLayoutGroup_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, CollectionLayoutGroup, "setVersion:", aVersion)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="poseAsClass", objc_is_class_method=true)
-CollectionLayoutGroup_poseAsClass :: #force_inline proc "c" (aClass: Class) {
-    msgSend(nil, CollectionLayoutGroup, "poseAsClass:", aClass)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-CollectionLayoutGroup_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, CollectionLayoutGroup, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-CollectionLayoutGroup_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, CollectionLayoutGroup, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-CollectionLayoutGroup_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, CollectionLayoutGroup, "accessInstanceVariablesDirectly")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="useStoredAccessor", objc_is_class_method=true)
-CollectionLayoutGroup_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, CollectionLayoutGroup, "useStoredAccessor")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-CollectionLayoutGroup_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, CollectionLayoutGroup, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-CollectionLayoutGroup_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, CollectionLayoutGroup, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="setKeys", objc_is_class_method=true)
-CollectionLayoutGroup_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {
-    msgSend(nil, CollectionLayoutGroup, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-CollectionLayoutGroup_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, CollectionLayoutGroup, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-CollectionLayoutGroup_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionLayoutGroup, "classForKeyedUnarchiver")
-}
-@(objc_type=CollectionLayoutGroup, objc_name="exposeBinding", objc_is_class_method=true)
-CollectionLayoutGroup_exposeBinding :: #force_inline proc "c" (binding: ^NS.String) {
-    msgSend(nil, CollectionLayoutGroup, "exposeBinding:", binding)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="setDefaultPlaceholder", objc_is_class_method=true)
-CollectionLayoutGroup_setDefaultPlaceholder :: #force_inline proc "c" (placeholder: id, marker: id, binding: ^NS.String) {
-    msgSend(nil, CollectionLayoutGroup, "setDefaultPlaceholder:forMarker:withBinding:", placeholder, marker, binding)
-}
-@(objc_type=CollectionLayoutGroup, objc_name="defaultPlaceholderForMarker", objc_is_class_method=true)
-CollectionLayoutGroup_defaultPlaceholderForMarker :: #force_inline proc "c" (marker: id, binding: ^NS.String) -> id {
-    return msgSend(id, CollectionLayoutGroup, "defaultPlaceholderForMarker:withBinding:", marker, binding)
-}
+
 @(objc_type=CollectionLayoutGroup, objc_name="horizontalGroupWithLayoutSize")
 CollectionLayoutGroup_horizontalGroupWithLayoutSize :: proc {
     CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitem_count,
@@ -223,17 +73,5 @@ CollectionLayoutGroup_horizontalGroupWithLayoutSize :: proc {
 CollectionLayoutGroup_verticalGroupWithLayoutSize :: proc {
     CollectionLayoutGroup_verticalGroupWithLayoutSize_subitem_count,
     CollectionLayoutGroup_verticalGroupWithLayoutSize_subitems,
-}
-
-@(objc_type=CollectionLayoutGroup, objc_name="itemWithLayoutSize")
-CollectionLayoutGroup_itemWithLayoutSize :: proc {
-    CollectionLayoutGroup_itemWithLayoutSize_,
-    CollectionLayoutGroup_itemWithLayoutSize_supplementaryItems,
-}
-
-@(objc_type=CollectionLayoutGroup, objc_name="cancelPreviousPerformRequestsWithTarget")
-CollectionLayoutGroup_cancelPreviousPerformRequestsWithTarget :: proc {
-    CollectionLayoutGroup_cancelPreviousPerformRequestsWithTarget_selector_object,
-    CollectionLayoutGroup_cancelPreviousPerformRequestsWithTarget_,
 }
 

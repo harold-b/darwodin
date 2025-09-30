@@ -21,31 +21,26 @@ TextElementProvider :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextElementProvider, objc_name="enumerateTextElementsFromLocation")
-TextElementProvider_enumerateTextElementsFromLocation :: #force_inline proc "c" (self: ^TextElementProvider, textLocation: ^TextLocation, options: TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^TextElement) -> bool)) -> ^TextLocation {
-    return msgSend(^TextLocation, self, "enumerateTextElementsFromLocation:options:usingBlock:", textLocation, options, block)
-}
-@(objc_type=TextElementProvider, objc_name="replaceContentsInRange")
-TextElementProvider_replaceContentsInRange :: #force_inline proc "c" (self: ^TextElementProvider, range: ^TextRange, textElements: ^NS.Array) {
-    msgSend(nil, self, "replaceContentsInRange:withTextElements:", range, textElements)
-}
-@(objc_type=TextElementProvider, objc_name="synchronizeToBackingStore")
-TextElementProvider_synchronizeToBackingStore :: #force_inline proc "c" (self: ^TextElementProvider, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
-    msgSend(nil, self, "synchronizeToBackingStore:", completionHandler)
-}
-@(objc_type=TextElementProvider, objc_name="locationFromLocation")
-TextElementProvider_locationFromLocation :: #force_inline proc "c" (self: ^TextElementProvider, location: ^TextLocation, offset: NS.Integer) -> ^TextLocation {
-    return msgSend(^TextLocation, self, "locationFromLocation:withOffset:", location, offset)
-}
-@(objc_type=TextElementProvider, objc_name="offsetFromLocation")
-TextElementProvider_offsetFromLocation :: #force_inline proc "c" (self: ^TextElementProvider, from: ^TextLocation, to: ^TextLocation) -> NS.Integer {
-    return msgSend(NS.Integer, self, "offsetFromLocation:toLocation:", from, to)
-}
-@(objc_type=TextElementProvider, objc_name="adjustedRangeFromRange")
-TextElementProvider_adjustedRangeFromRange :: #force_inline proc "c" (self: ^TextElementProvider, textRange: ^TextRange, forEditingTextSelection: bool) -> ^TextRange {
-    return msgSend(^TextRange, self, "adjustedRangeFromRange:forEditingTextSelection:", textRange, forEditingTextSelection)
-}
-@(objc_type=TextElementProvider, objc_name="documentRange")
-TextElementProvider_documentRange :: #force_inline proc "c" (self: ^TextElementProvider) -> ^TextRange {
-    return msgSend(^TextRange, self, "documentRange")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextElementProvider, objc_selector="enumerateTextElementsFromLocation:options:usingBlock:", objc_name="enumerateTextElementsFromLocation")
+    TextElementProvider_enumerateTextElementsFromLocation :: proc(self: ^TextElementProvider, textLocation: ^TextLocation, options: TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^TextElement) -> bool)) -> ^TextLocation ---
+
+    @(objc_type=TextElementProvider, objc_selector="replaceContentsInRange:withTextElements:", objc_name="replaceContentsInRange")
+    TextElementProvider_replaceContentsInRange :: proc(self: ^TextElementProvider, range: ^TextRange, textElements: ^NS.Array) ---
+
+    @(objc_type=TextElementProvider, objc_selector="synchronizeToBackingStore:", objc_name="synchronizeToBackingStore")
+    TextElementProvider_synchronizeToBackingStore :: proc(self: ^TextElementProvider, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+
+    @(objc_type=TextElementProvider, objc_selector="locationFromLocation:withOffset:", objc_name="locationFromLocation")
+    TextElementProvider_locationFromLocation :: proc(self: ^TextElementProvider, location: ^TextLocation, offset: NS.Integer) -> ^TextLocation ---
+
+    @(objc_type=TextElementProvider, objc_selector="offsetFromLocation:toLocation:", objc_name="offsetFromLocation")
+    TextElementProvider_offsetFromLocation :: proc(self: ^TextElementProvider, from: ^TextLocation, to: ^TextLocation) -> NS.Integer ---
+
+    @(objc_type=TextElementProvider, objc_selector="adjustedRangeFromRange:forEditingTextSelection:", objc_name="adjustedRangeFromRange")
+    TextElementProvider_adjustedRangeFromRange :: proc(self: ^TextElementProvider, textRange: ^TextRange, forEditingTextSelection: bool) -> ^TextRange ---
+
+    @(objc_type=TextElementProvider, objc_selector="documentRange", objc_name="documentRange")
+    TextElementProvider_documentRange :: proc(self: ^TextElementProvider) -> ^TextRange ---
 }

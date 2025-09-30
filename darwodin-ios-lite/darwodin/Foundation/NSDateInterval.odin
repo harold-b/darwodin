@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSDateInterval
 ///
-@(objc_class="NSDateInterval")
+@(objc_class="NSDateInterval", objc_superclass=Object)
 DateInterval :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

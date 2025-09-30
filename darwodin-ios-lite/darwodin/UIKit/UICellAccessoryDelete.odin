@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICellAccessoryDelete
 ///
-@(objc_class="UICellAccessoryDelete")
+@(objc_class="UICellAccessoryDelete", objc_superclass=CellAccessory)
 CellAccessoryDelete :: struct { using _: CellAccessory, }
 

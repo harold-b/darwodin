@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSText
 ///
-@(objc_class="NSText")
+@(objc_class="NSText", objc_superclass=View)
 Text :: struct { using _: View, 
     using _: ChangeSpelling,
     using _: IgnoreMisspelledWords,

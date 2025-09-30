@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UISceneConfiguration
 ///
-@(objc_class="UISceneConfiguration")
+@(objc_class="UISceneConfiguration", objc_superclass=NS.Object)
 SceneConfiguration :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

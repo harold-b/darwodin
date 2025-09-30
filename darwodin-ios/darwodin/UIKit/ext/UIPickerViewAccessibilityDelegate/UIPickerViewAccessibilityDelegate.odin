@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -64,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).pickerView_accessibilityUserInputLabelsForComponent(self, pickerView, component)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pickerView:accessibilityUserInputLabelsForComponent:"), auto_cast pickerView_accessibilityUserInputLabelsForComponent, "@@:@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pickerView:accessibilityUserInputLabelsForComponent:"), auto_cast pickerView_accessibilityUserInputLabelsForComponent, "^void@:@l") do panic("Failed to register objC method.")
     }
     if vt.pickerView_accessibilityAttributedLabelForComponent != nil {
         pickerView_accessibilityAttributedLabelForComponent :: proc "c" (self: ^UI.PickerViewAccessibilityDelegate, _: SEL, pickerView: ^UI.PickerView, component: NS.Integer) -> ^NS.AttributedString {
@@ -94,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).pickerView_accessibilityAttributedUserInputLabelsForComponent(self, pickerView, component)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pickerView:accessibilityAttributedUserInputLabelsForComponent:"), auto_cast pickerView_accessibilityAttributedUserInputLabelsForComponent, "@@:@l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pickerView:accessibilityAttributedUserInputLabelsForComponent:"), auto_cast pickerView_accessibilityAttributedUserInputLabelsForComponent, "^void@:@l") do panic("Failed to register objC method.")
     }
 }
 

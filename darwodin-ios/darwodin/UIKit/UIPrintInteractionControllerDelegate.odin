@@ -21,43 +21,36 @@ PrintInteractionControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionControllerParentViewController")
-PrintInteractionControllerDelegate_printInteractionControllerParentViewController :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) -> ^ViewController {
-    return msgSend(^ViewController, self, "printInteractionControllerParentViewController:", printInteractionController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionControllerParentViewController:", objc_name="printInteractionControllerParentViewController")
+    PrintInteractionControllerDelegate_printInteractionControllerParentViewController :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) -> ^ViewController ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionController:choosePaper:", objc_name="printInteractionController_choosePaper")
+    PrintInteractionControllerDelegate_printInteractionController_choosePaper :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController, paperList: ^NS.Array) -> ^PrintPaper ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionControllerWillPresentPrinterOptions:", objc_name="printInteractionControllerWillPresentPrinterOptions")
+    PrintInteractionControllerDelegate_printInteractionControllerWillPresentPrinterOptions :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionControllerDidPresentPrinterOptions:", objc_name="printInteractionControllerDidPresentPrinterOptions")
+    PrintInteractionControllerDelegate_printInteractionControllerDidPresentPrinterOptions :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionControllerWillDismissPrinterOptions:", objc_name="printInteractionControllerWillDismissPrinterOptions")
+    PrintInteractionControllerDelegate_printInteractionControllerWillDismissPrinterOptions :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionControllerDidDismissPrinterOptions:", objc_name="printInteractionControllerDidDismissPrinterOptions")
+    PrintInteractionControllerDelegate_printInteractionControllerDidDismissPrinterOptions :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionControllerWillStartJob:", objc_name="printInteractionControllerWillStartJob")
+    PrintInteractionControllerDelegate_printInteractionControllerWillStartJob :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionControllerDidFinishJob:", objc_name="printInteractionControllerDidFinishJob")
+    PrintInteractionControllerDelegate_printInteractionControllerDidFinishJob :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionController:cutLengthForPaper:", objc_name="printInteractionController_cutLengthForPaper")
+    PrintInteractionControllerDelegate_printInteractionController_cutLengthForPaper :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController, paper: ^PrintPaper) -> CG.Float ---
+
+    @(objc_type=PrintInteractionControllerDelegate, objc_selector="printInteractionController:chooseCutterBehavior:", objc_name="printInteractionController_chooseCutterBehavior")
+    PrintInteractionControllerDelegate_printInteractionController_chooseCutterBehavior :: proc(self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController, availableBehaviors: ^NS.Array) -> PrinterCutterBehavior ---
 }
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionController_choosePaper")
-PrintInteractionControllerDelegate_printInteractionController_choosePaper :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController, paperList: ^NS.Array) -> ^PrintPaper {
-    return msgSend(^PrintPaper, self, "printInteractionController:choosePaper:", printInteractionController, paperList)
-}
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionControllerWillPresentPrinterOptions")
-PrintInteractionControllerDelegate_printInteractionControllerWillPresentPrinterOptions :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) {
-    msgSend(nil, self, "printInteractionControllerWillPresentPrinterOptions:", printInteractionController)
-}
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionControllerDidPresentPrinterOptions")
-PrintInteractionControllerDelegate_printInteractionControllerDidPresentPrinterOptions :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) {
-    msgSend(nil, self, "printInteractionControllerDidPresentPrinterOptions:", printInteractionController)
-}
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionControllerWillDismissPrinterOptions")
-PrintInteractionControllerDelegate_printInteractionControllerWillDismissPrinterOptions :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) {
-    msgSend(nil, self, "printInteractionControllerWillDismissPrinterOptions:", printInteractionController)
-}
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionControllerDidDismissPrinterOptions")
-PrintInteractionControllerDelegate_printInteractionControllerDidDismissPrinterOptions :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) {
-    msgSend(nil, self, "printInteractionControllerDidDismissPrinterOptions:", printInteractionController)
-}
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionControllerWillStartJob")
-PrintInteractionControllerDelegate_printInteractionControllerWillStartJob :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) {
-    msgSend(nil, self, "printInteractionControllerWillStartJob:", printInteractionController)
-}
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionControllerDidFinishJob")
-PrintInteractionControllerDelegate_printInteractionControllerDidFinishJob :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController) {
-    msgSend(nil, self, "printInteractionControllerDidFinishJob:", printInteractionController)
-}
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionController_cutLengthForPaper")
-PrintInteractionControllerDelegate_printInteractionController_cutLengthForPaper :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController, paper: ^PrintPaper) -> CG.Float {
-    return msgSend(CG.Float, self, "printInteractionController:cutLengthForPaper:", printInteractionController, paper)
-}
-@(objc_type=PrintInteractionControllerDelegate, objc_name="printInteractionController_chooseCutterBehavior")
-PrintInteractionControllerDelegate_printInteractionController_chooseCutterBehavior :: #force_inline proc "c" (self: ^PrintInteractionControllerDelegate, printInteractionController: ^PrintInteractionController, availableBehaviors: ^NS.Array) -> PrinterCutterBehavior {
-    return msgSend(PrinterCutterBehavior, self, "printInteractionController:chooseCutterBehavior:", printInteractionController, availableBehaviors)
-}
+

@@ -21,7 +21,8 @@ SearchTextFieldPasteItem :: struct { using _: intrinsics.objc_object,
     using _: TextPasteItem,
 }
 
-@(objc_type=SearchTextFieldPasteItem, objc_name="setSearchTokenResult")
-SearchTextFieldPasteItem_setSearchTokenResult :: #force_inline proc "c" (self: ^SearchTextFieldPasteItem, token: ^SearchToken) {
-    msgSend(nil, self, "setSearchTokenResult:", token)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SearchTextFieldPasteItem, objc_selector="setSearchTokenResult:", objc_name="setSearchTokenResult")
+    SearchTextFieldPasteItem_setSearchTokenResult :: proc(self: ^SearchTextFieldPasteItem, token: ^SearchToken) ---
 }

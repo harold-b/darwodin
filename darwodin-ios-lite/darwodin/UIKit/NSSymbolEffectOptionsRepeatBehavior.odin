@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSSymbolEffectOptionsRepeatBehavior
 ///
-@(objc_class="NSSymbolEffectOptionsRepeatBehavior")
+@(objc_class="NSSymbolEffectOptionsRepeatBehavior", objc_superclass=NS.Object)
 NSSymbolEffectOptionsRepeatBehavior :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

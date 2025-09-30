@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 @(objc_class="UIViewControllerRestoration")
 ViewControllerRestoration :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=ViewControllerRestoration, objc_name="viewControllerWithRestorationIdentifierPath", objc_is_class_method=true)
-ViewControllerRestoration_viewControllerWithRestorationIdentifierPath :: #force_inline proc "c" (identifierComponents: ^NS.Array, coder: ^NS.Coder) -> ^ViewController {
-    return msgSend(^ViewController, ViewControllerRestoration, "viewControllerWithRestorationIdentifierPath:coder:", identifierComponents, coder)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewControllerRestoration, objc_selector="viewControllerWithRestorationIdentifierPath:coder:", objc_name="viewControllerWithRestorationIdentifierPath", objc_is_class_method=true)
+    ViewControllerRestoration_viewControllerWithRestorationIdentifierPath :: proc(identifierComponents: ^NS.Array, coder: ^NS.Coder) -> ^ViewController ---
 }

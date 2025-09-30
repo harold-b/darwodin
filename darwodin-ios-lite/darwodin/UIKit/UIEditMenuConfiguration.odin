@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIEditMenuConfiguration
 ///
-@(objc_class="UIEditMenuConfiguration")
+@(objc_class="UIEditMenuConfiguration", objc_superclass=NS.Object)
 EditMenuConfiguration :: struct { using _: NS.Object, }
 

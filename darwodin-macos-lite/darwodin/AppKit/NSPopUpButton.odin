@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPopUpButton
 ///
-@(objc_class="NSPopUpButton")
+@(objc_class="NSPopUpButton", objc_superclass=Button)
 PopUpButton :: struct { using _: Button, }
 

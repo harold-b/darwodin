@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 @(objc_class="NSChangeSpelling")
 ChangeSpelling :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=ChangeSpelling, objc_name="changeSpelling")
-ChangeSpelling_changeSpelling :: #force_inline proc "c" (self: ^ChangeSpelling, sender: id) {
-    msgSend(nil, self, "changeSpelling:", sender)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ChangeSpelling, objc_selector="changeSpelling:", objc_name="changeSpelling")
+    ChangeSpelling_changeSpelling :: proc(self: ^ChangeSpelling, sender: id) ---
 }

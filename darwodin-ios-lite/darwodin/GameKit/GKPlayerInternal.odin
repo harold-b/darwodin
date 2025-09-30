@@ -16,14 +16,5 @@ import UI "../UIKit"
 @(objc_class="GKPlayerInternal")
 PlayerInternal :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=PlayerInternal, objc_name="alloc", objc_is_class_method=true)
-PlayerInternal_alloc :: proc "c" () -> ^PlayerInternal {
-    return msgSend(^PlayerInternal, PlayerInternal, "alloc")
-}
-
-@(objc_type=PlayerInternal, objc_name="init")
-PlayerInternal_init :: proc "c" (self: ^PlayerInternal) -> ^PlayerInternal {
-    return msgSend(^PlayerInternal, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSHTTPCookie
 ///
-@(objc_class="NSHTTPCookie")
+@(objc_class="NSHTTPCookie", objc_superclass=Object)
 HTTPCookie :: struct { using _: Object, }
 

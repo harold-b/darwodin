@@ -21,7 +21,8 @@ CollectionLayoutEnvironment :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CollectionLayoutEnvironment, objc_name="container")
-CollectionLayoutEnvironment_container :: #force_inline proc "c" (self: ^CollectionLayoutEnvironment) -> ^CollectionLayoutContainer {
-    return msgSend(^CollectionLayoutContainer, self, "container")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionLayoutEnvironment, objc_selector="container", objc_name="container")
+    CollectionLayoutEnvironment_container :: proc(self: ^CollectionLayoutEnvironment) -> ^CollectionLayoutContainer ---
 }

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSLinguisticTagger
 ///
-@(objc_class="NSLinguisticTagger")
+@(objc_class="NSLinguisticTagger", objc_superclass=Object)
 LinguisticTagger :: struct { using _: Object, }
 

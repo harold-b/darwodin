@@ -18,590 +18,447 @@ Object :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=Object, objc_name="load", objc_is_class_method=true)
-Object_load :: #force_inline proc "c" () {
-    msgSend(nil, Object, "load")
-}
-@(objc_type=Object, objc_name="initialize", objc_is_class_method=true)
-Object_initialize :: #force_inline proc "c" () {
-    msgSend(nil, Object, "initialize")
-}
-@(objc_type=Object, objc_name="init")
-Object_init :: #force_inline proc "c" (self: ^Object) -> ^Object {
-    return msgSend(^Object, self, "init")
-}
-@(objc_type=Object, objc_name="new", objc_is_class_method=true)
-Object_new :: #force_inline proc "c" () -> ^Object {
-    return msgSend(^Object, Object, "new")
-}
-@(objc_type=Object, objc_name="allocWithZone", objc_is_class_method=true)
-Object_allocWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> ^Object {
-    return msgSend(^Object, Object, "allocWithZone:", zone)
-}
-@(objc_type=Object, objc_name="alloc", objc_is_class_method=true)
-Object_alloc :: #force_inline proc "c" () -> ^Object {
-    return msgSend(^Object, Object, "alloc")
-}
-@(objc_type=Object, objc_name="dealloc")
-Object_dealloc :: #force_inline proc "c" (self: ^Object) {
-    msgSend(nil, self, "dealloc")
-}
-@(objc_type=Object, objc_name="finalize")
-Object_finalize :: #force_inline proc "c" (self: ^Object) {
-    msgSend(nil, self, "finalize")
-}
-@(objc_type=Object, objc_name="copy")
-Object_copy :: #force_inline proc "c" (self: ^Object) -> id {
-    return msgSend(id, self, "copy")
-}
-@(objc_type=Object, objc_name="mutableCopy")
-Object_mutableCopy :: #force_inline proc "c" (self: ^Object) -> id {
-    return msgSend(id, self, "mutableCopy")
-}
-@(objc_type=Object, objc_name="copyWithZone", objc_is_class_method=true)
-Object_copyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
-    return msgSend(id, Object, "copyWithZone:", zone)
-}
-@(objc_type=Object, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-Object_mutableCopyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
-    return msgSend(id, Object, "mutableCopyWithZone:", zone)
-}
-@(objc_type=Object, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Object_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, Object, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=Object, objc_name="conformsToProtocol", objc_is_class_method=true)
-Object_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, Object, "conformsToProtocol:", protocol)
-}
-@(objc_type=Object, objc_name="methodForSelector")
-Object_methodForSelector :: #force_inline proc "c" (self: ^Object, aSelector: SEL) -> IMP {
-    return msgSend(IMP, self, "methodForSelector:", aSelector)
-}
-@(objc_type=Object, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Object_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, Object, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=Object, objc_name="doesNotRecognizeSelector")
-Object_doesNotRecognizeSelector :: #force_inline proc "c" (self: ^Object, aSelector: SEL) {
-    msgSend(nil, self, "doesNotRecognizeSelector:", aSelector)
-}
-@(objc_type=Object, objc_name="forwardingTargetForSelector")
-Object_forwardingTargetForSelector :: #force_inline proc "c" (self: ^Object, aSelector: SEL) -> id {
-    return msgSend(id, self, "forwardingTargetForSelector:", aSelector)
-}
-@(objc_type=Object, objc_name="forwardInvocation")
-Object_forwardInvocation :: #force_inline proc "c" (self: ^Object, anInvocation: ^Invocation) {
-    msgSend(nil, self, "forwardInvocation:", anInvocation)
-}
-@(objc_type=Object, objc_name="methodSignatureForSelector")
-Object_methodSignatureForSelector :: #force_inline proc "c" (self: ^Object, aSelector: SEL) -> ^MethodSignature {
-    return msgSend(^MethodSignature, self, "methodSignatureForSelector:", aSelector)
-}
-@(objc_type=Object, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-Object_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^MethodSignature {
-    return msgSend(^MethodSignature, Object, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=Object, objc_name="allowsWeakReference")
-Object_allowsWeakReference :: #force_inline proc "c" (self: ^Object) -> bool {
-    return msgSend(bool, self, "allowsWeakReference")
-}
-@(objc_type=Object, objc_name="retainWeakReference")
-Object_retainWeakReference :: #force_inline proc "c" (self: ^Object) -> bool {
-    return msgSend(bool, self, "retainWeakReference")
-}
-@(objc_type=Object, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Object_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, Object, "isSubclassOfClass:", aClass)
-}
-@(objc_type=Object, objc_name="resolveClassMethod", objc_is_class_method=true)
-Object_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, Object, "resolveClassMethod:", sel)
-}
-@(objc_type=Object, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Object_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, Object, "resolveInstanceMethod:", sel)
-}
-@(objc_type=Object, objc_name="hash", objc_is_class_method=true)
-Object_hash :: #force_inline proc "c" () -> UInteger {
-    return msgSend(UInteger, Object, "hash")
-}
-@(objc_type=Object, objc_name="superclass", objc_is_class_method=true)
-Object_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Object, "superclass")
-}
-@(objc_type=Object, objc_name="class", objc_is_class_method=true)
-Object_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Object, "class")
-}
-@(objc_type=Object, objc_name="description", objc_is_class_method=true)
-Object_description :: #force_inline proc "c" () -> ^String {
-    return msgSend(^String, Object, "description")
-}
-@(objc_type=Object, objc_name="debugDescription", objc_is_class_method=true)
-Object_debugDescription :: #force_inline proc "c" () -> ^String {
-    return msgSend(^String, Object, "debugDescription")
-}
-@(objc_type=Object, objc_name="version", objc_is_class_method=true)
-Object_version :: #force_inline proc "c" () -> Integer {
-    return msgSend(Integer, Object, "version")
-}
-@(objc_type=Object, objc_name="setVersion", objc_is_class_method=true)
-Object_setVersion :: #force_inline proc "c" (aVersion: Integer) {
-    msgSend(nil, Object, "setVersion:", aVersion)
-}
-@(objc_type=Object, objc_name="replacementObjectForCoder")
-Object_replacementObjectForCoder :: #force_inline proc "c" (self: ^Object, coder: ^Coder) -> id {
-    return msgSend(id, self, "replacementObjectForCoder:", coder)
-}
-@(objc_type=Object, objc_name="awakeAfterUsingCoder")
-Object_awakeAfterUsingCoder :: #force_inline proc "c" (self: ^Object, coder: ^Coder) -> id {
-    return msgSend(id, self, "awakeAfterUsingCoder:", coder)
-}
-@(objc_type=Object, objc_name="classForCoder")
-Object_classForCoder :: #force_inline proc "c" (self: ^Object) -> Class {
-    return msgSend(Class, self, "classForCoder")
-}
-@(objc_type=Object, objc_name="poseAsClass", objc_is_class_method=true)
-Object_poseAsClass :: #force_inline proc "c" (aClass: Class) {
-    msgSend(nil, Object, "poseAsClass:", aClass)
-}
-@(objc_type=Object, objc_name="autoContentAccessingProxy")
-Object_autoContentAccessingProxy :: #force_inline proc "c" (self: ^Object) -> id {
-    return msgSend(id, self, "autoContentAccessingProxy")
-}
-@(objc_type=Object, objc_name="attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo")
-Object_attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo :: #force_inline proc "c" (self: ^Object, error: ^Error, recoveryOptionIndex: UInteger, delegate: id, didRecoverSelector: SEL, contextInfo: rawptr) {
-    msgSend(nil, self, "attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:", error, recoveryOptionIndex, delegate, didRecoverSelector, contextInfo)
-}
-@(objc_type=Object, objc_name="attemptRecoveryFromError_optionIndex")
-Object_attemptRecoveryFromError_optionIndex :: #force_inline proc "c" (self: ^Object, error: ^Error, recoveryOptionIndex: UInteger) -> bool {
-    return msgSend(bool, self, "attemptRecoveryFromError:optionIndex:", error, recoveryOptionIndex)
-}
-@(objc_type=Object, objc_name="performSelector_withObject_afterDelay_inModes")
-Object_performSelector_withObject_afterDelay_inModes :: #force_inline proc "c" (self: ^Object, aSelector: SEL, anArgument: id, delay: TimeInterval, modes: ^Array) {
-    msgSend(nil, self, "performSelector:withObject:afterDelay:inModes:", aSelector, anArgument, delay, modes)
-}
-@(objc_type=Object, objc_name="performSelector_withObject_afterDelay")
-Object_performSelector_withObject_afterDelay :: #force_inline proc "c" (self: ^Object, aSelector: SEL, anArgument: id, delay: TimeInterval) {
-    msgSend(nil, self, "performSelector:withObject:afterDelay:", aSelector, anArgument, delay)
-}
-@(objc_type=Object, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-Object_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, Object, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=Object, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-Object_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, Object, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=Object, objc_name="URL_resourceDataDidBecomeAvailable")
-Object_URL_resourceDataDidBecomeAvailable :: #force_inline proc "c" (self: ^Object, sender: ^URL, newBytes: ^Data) {
-    msgSend(nil, self, "URL:resourceDataDidBecomeAvailable:", sender, newBytes)
-}
-@(objc_type=Object, objc_name="URLResourceDidFinishLoading")
-Object_URLResourceDidFinishLoading :: #force_inline proc "c" (self: ^Object, sender: ^URL) {
-    msgSend(nil, self, "URLResourceDidFinishLoading:", sender)
-}
-@(objc_type=Object, objc_name="URLResourceDidCancelLoading")
-Object_URLResourceDidCancelLoading :: #force_inline proc "c" (self: ^Object, sender: ^URL) {
-    msgSend(nil, self, "URLResourceDidCancelLoading:", sender)
-}
-@(objc_type=Object, objc_name="URL_resourceDidFailLoadingWithReason")
-Object_URL_resourceDidFailLoadingWithReason :: #force_inline proc "c" (self: ^Object, sender: ^URL, reason: ^String) {
-    msgSend(nil, self, "URL:resourceDidFailLoadingWithReason:", sender, reason)
-}
-@(objc_type=Object, objc_name="fileManager_shouldProceedAfterError")
-Object_fileManager_shouldProceedAfterError :: #force_inline proc "c" (self: ^Object, fm: ^FileManager, errorInfo: ^Dictionary) -> bool {
-    return msgSend(bool, self, "fileManager:shouldProceedAfterError:", fm, errorInfo)
-}
-@(objc_type=Object, objc_name="fileManager_willProcessPath")
-Object_fileManager_willProcessPath :: #force_inline proc "c" (self: ^Object, fm: ^FileManager, path: ^String) {
-    msgSend(nil, self, "fileManager:willProcessPath:", fm, path)
-}
-@(objc_type=Object, objc_name="valueForKey")
-Object_valueForKey :: #force_inline proc "c" (self: ^Object, key: ^String) -> id {
-    return msgSend(id, self, "valueForKey:", key)
-}
-@(objc_type=Object, objc_name="setValue_forKey")
-Object_setValue_forKey :: #force_inline proc "c" (self: ^Object, value: id, key: ^String) {
-    msgSend(nil, self, "setValue:forKey:", value, key)
-}
-@(objc_type=Object, objc_name="validateValue_forKey_error")
-Object_validateValue_forKey_error :: #force_inline proc "c" (self: ^Object, ioValue: ^id, inKey: ^String, outError: ^^Error) -> bool {
-    return msgSend(bool, self, "validateValue:forKey:error:", ioValue, inKey, outError)
-}
-@(objc_type=Object, objc_name="mutableArrayValueForKey")
-Object_mutableArrayValueForKey :: #force_inline proc "c" (self: ^Object, key: ^String) -> ^MutableArray {
-    return msgSend(^MutableArray, self, "mutableArrayValueForKey:", key)
-}
-@(objc_type=Object, objc_name="mutableOrderedSetValueForKey")
-Object_mutableOrderedSetValueForKey :: #force_inline proc "c" (self: ^Object, key: ^String) -> ^MutableOrderedSet {
-    return msgSend(^MutableOrderedSet, self, "mutableOrderedSetValueForKey:", key)
-}
-@(objc_type=Object, objc_name="mutableSetValueForKey")
-Object_mutableSetValueForKey :: #force_inline proc "c" (self: ^Object, key: ^String) -> ^MutableSet {
-    return msgSend(^MutableSet, self, "mutableSetValueForKey:", key)
-}
-@(objc_type=Object, objc_name="valueForKeyPath")
-Object_valueForKeyPath :: #force_inline proc "c" (self: ^Object, keyPath: ^String) -> id {
-    return msgSend(id, self, "valueForKeyPath:", keyPath)
-}
-@(objc_type=Object, objc_name="setValue_forKeyPath")
-Object_setValue_forKeyPath :: #force_inline proc "c" (self: ^Object, value: id, keyPath: ^String) {
-    msgSend(nil, self, "setValue:forKeyPath:", value, keyPath)
-}
-@(objc_type=Object, objc_name="validateValue_forKeyPath_error")
-Object_validateValue_forKeyPath_error :: #force_inline proc "c" (self: ^Object, ioValue: ^id, inKeyPath: ^String, outError: ^^Error) -> bool {
-    return msgSend(bool, self, "validateValue:forKeyPath:error:", ioValue, inKeyPath, outError)
-}
-@(objc_type=Object, objc_name="mutableArrayValueForKeyPath")
-Object_mutableArrayValueForKeyPath :: #force_inline proc "c" (self: ^Object, keyPath: ^String) -> ^MutableArray {
-    return msgSend(^MutableArray, self, "mutableArrayValueForKeyPath:", keyPath)
-}
-@(objc_type=Object, objc_name="mutableOrderedSetValueForKeyPath")
-Object_mutableOrderedSetValueForKeyPath :: #force_inline proc "c" (self: ^Object, keyPath: ^String) -> ^MutableOrderedSet {
-    return msgSend(^MutableOrderedSet, self, "mutableOrderedSetValueForKeyPath:", keyPath)
-}
-@(objc_type=Object, objc_name="mutableSetValueForKeyPath")
-Object_mutableSetValueForKeyPath :: #force_inline proc "c" (self: ^Object, keyPath: ^String) -> ^MutableSet {
-    return msgSend(^MutableSet, self, "mutableSetValueForKeyPath:", keyPath)
-}
-@(objc_type=Object, objc_name="valueForUndefinedKey")
-Object_valueForUndefinedKey :: #force_inline proc "c" (self: ^Object, key: ^String) -> id {
-    return msgSend(id, self, "valueForUndefinedKey:", key)
-}
-@(objc_type=Object, objc_name="setValue_forUndefinedKey")
-Object_setValue_forUndefinedKey :: #force_inline proc "c" (self: ^Object, value: id, key: ^String) {
-    msgSend(nil, self, "setValue:forUndefinedKey:", value, key)
-}
-@(objc_type=Object, objc_name="setNilValueForKey")
-Object_setNilValueForKey :: #force_inline proc "c" (self: ^Object, key: ^String) {
-    msgSend(nil, self, "setNilValueForKey:", key)
-}
-@(objc_type=Object, objc_name="dictionaryWithValuesForKeys")
-Object_dictionaryWithValuesForKeys :: #force_inline proc "c" (self: ^Object, keys: ^Array) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "dictionaryWithValuesForKeys:", keys)
-}
-@(objc_type=Object, objc_name="setValuesForKeysWithDictionary")
-Object_setValuesForKeysWithDictionary :: #force_inline proc "c" (self: ^Object, keyedValues: ^Dictionary) {
-    msgSend(nil, self, "setValuesForKeysWithDictionary:", keyedValues)
-}
-@(objc_type=Object, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Object_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, Object, "accessInstanceVariablesDirectly")
-}
-@(objc_type=Object, objc_name="useStoredAccessor", objc_is_class_method=true)
-Object_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, Object, "useStoredAccessor")
-}
-@(objc_type=Object, objc_name="storedValueForKey")
-Object_storedValueForKey :: #force_inline proc "c" (self: ^Object, key: ^String) -> id {
-    return msgSend(id, self, "storedValueForKey:", key)
-}
-@(objc_type=Object, objc_name="takeStoredValue")
-Object_takeStoredValue :: #force_inline proc "c" (self: ^Object, value: id, key: ^String) {
-    msgSend(nil, self, "takeStoredValue:forKey:", value, key)
-}
-@(objc_type=Object, objc_name="takeValue_forKey")
-Object_takeValue_forKey :: #force_inline proc "c" (self: ^Object, value: id, key: ^String) {
-    msgSend(nil, self, "takeValue:forKey:", value, key)
-}
-@(objc_type=Object, objc_name="takeValue_forKeyPath")
-Object_takeValue_forKeyPath :: #force_inline proc "c" (self: ^Object, value: id, keyPath: ^String) {
-    msgSend(nil, self, "takeValue:forKeyPath:", value, keyPath)
-}
-@(objc_type=Object, objc_name="handleQueryWithUnboundKey")
-Object_handleQueryWithUnboundKey :: #force_inline proc "c" (self: ^Object, key: ^String) -> id {
-    return msgSend(id, self, "handleQueryWithUnboundKey:", key)
-}
-@(objc_type=Object, objc_name="handleTakeValue")
-Object_handleTakeValue :: #force_inline proc "c" (self: ^Object, value: id, key: ^String) {
-    msgSend(nil, self, "handleTakeValue:forUnboundKey:", value, key)
-}
-@(objc_type=Object, objc_name="unableToSetNilForKey")
-Object_unableToSetNilForKey :: #force_inline proc "c" (self: ^Object, key: ^String) {
-    msgSend(nil, self, "unableToSetNilForKey:", key)
-}
-@(objc_type=Object, objc_name="valuesForKeys")
-Object_valuesForKeys :: #force_inline proc "c" (self: ^Object, keys: ^Array) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "valuesForKeys:", keys)
-}
-@(objc_type=Object, objc_name="takeValuesFromDictionary")
-Object_takeValuesFromDictionary :: #force_inline proc "c" (self: ^Object, properties: ^Dictionary) {
-    msgSend(nil, self, "takeValuesFromDictionary:", properties)
-}
-@(objc_type=Object, objc_name="observeValueForKeyPath")
-Object_observeValueForKeyPath :: #force_inline proc "c" (self: ^Object, keyPath: ^String, object: id, change: ^Dictionary, _context: rawptr) {
-    msgSend(nil, self, "observeValueForKeyPath:ofObject:change:context:", keyPath, object, change, _context)
-}
-@(objc_type=Object, objc_name="addObserver")
-Object_addObserver :: #force_inline proc "c" (self: ^Object, observer: ^Object, keyPath: ^String, options: KeyValueObservingOptions, _context: rawptr) {
-    msgSend(nil, self, "addObserver:forKeyPath:options:context:", observer, keyPath, options, _context)
-}
-@(objc_type=Object, objc_name="removeObserver_forKeyPath_context")
-Object_removeObserver_forKeyPath_context :: #force_inline proc "c" (self: ^Object, observer: ^Object, keyPath: ^String, _context: rawptr) {
-    msgSend(nil, self, "removeObserver:forKeyPath:context:", observer, keyPath, _context)
-}
-@(objc_type=Object, objc_name="removeObserver_forKeyPath")
-Object_removeObserver_forKeyPath :: #force_inline proc "c" (self: ^Object, observer: ^Object, keyPath: ^String) {
-    msgSend(nil, self, "removeObserver:forKeyPath:", observer, keyPath)
-}
-@(objc_type=Object, objc_name="willChangeValueForKey_")
-Object_willChangeValueForKey_ :: #force_inline proc "c" (self: ^Object, key: ^String) {
-    msgSend(nil, self, "willChangeValueForKey:", key)
-}
-@(objc_type=Object, objc_name="didChangeValueForKey_")
-Object_didChangeValueForKey_ :: #force_inline proc "c" (self: ^Object, key: ^String) {
-    msgSend(nil, self, "didChangeValueForKey:", key)
-}
-@(objc_type=Object, objc_name="willChange")
-Object_willChange :: #force_inline proc "c" (self: ^Object, changeKind: KeyValueChange, indexes: ^IndexSet, key: ^String) {
-    msgSend(nil, self, "willChange:valuesAtIndexes:forKey:", changeKind, indexes, key)
-}
-@(objc_type=Object, objc_name="didChange")
-Object_didChange :: #force_inline proc "c" (self: ^Object, changeKind: KeyValueChange, indexes: ^IndexSet, key: ^String) {
-    msgSend(nil, self, "didChange:valuesAtIndexes:forKey:", changeKind, indexes, key)
-}
-@(objc_type=Object, objc_name="willChangeValueForKey_withSetMutation_usingObjects")
-Object_willChangeValueForKey_withSetMutation_usingObjects :: #force_inline proc "c" (self: ^Object, key: ^String, mutationKind: KeyValueSetMutationKind, objects: ^Set) {
-    msgSend(nil, self, "willChangeValueForKey:withSetMutation:usingObjects:", key, mutationKind, objects)
-}
-@(objc_type=Object, objc_name="didChangeValueForKey_withSetMutation_usingObjects")
-Object_didChangeValueForKey_withSetMutation_usingObjects :: #force_inline proc "c" (self: ^Object, key: ^String, mutationKind: KeyValueSetMutationKind, objects: ^Set) {
-    msgSend(nil, self, "didChangeValueForKey:withSetMutation:usingObjects:", key, mutationKind, objects)
-}
-@(objc_type=Object, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-Object_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^String) -> ^Set {
-    return msgSend(^Set, Object, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=Object, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Object_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^String) -> bool {
-    return msgSend(bool, Object, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=Object, objc_name="observationInfo")
-Object_observationInfo :: #force_inline proc "c" (self: ^Object) -> rawptr {
-    return msgSend(rawptr, self, "observationInfo")
-}
-@(objc_type=Object, objc_name="setObservationInfo")
-Object_setObservationInfo :: #force_inline proc "c" (self: ^Object, observationInfo: rawptr) {
-    msgSend(nil, self, "setObservationInfo:", observationInfo)
-}
-@(objc_type=Object, objc_name="setKeys", objc_is_class_method=true)
-Object_setKeys :: #force_inline proc "c" (keys: ^Array, dependentKey: ^String) {
-    msgSend(nil, Object, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
-}
-@(objc_type=Object, objc_name="setSharedObservers")
-Object_setSharedObservers :: #force_inline proc "c" (self: ^Object, sharedObservers: ^KeyValueSharedObserversSnapshot) {
-    msgSend(nil, self, "setSharedObservers:", sharedObservers)
-}
-@(objc_type=Object, objc_name="replacementObjectForKeyedArchiver")
-Object_replacementObjectForKeyedArchiver :: #force_inline proc "c" (self: ^Object, archiver: ^KeyedArchiver) -> id {
-    return msgSend(id, self, "replacementObjectForKeyedArchiver:", archiver)
-}
-@(objc_type=Object, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-Object_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^Array {
-    return msgSend(^Array, Object, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=Object, objc_name="classForKeyedArchiver")
-Object_classForKeyedArchiver :: #force_inline proc "c" (self: ^Object) -> Class {
-    return msgSend(Class, self, "classForKeyedArchiver")
-}
-@(objc_type=Object, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-Object_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Object, "classForKeyedUnarchiver")
-}
-@(objc_type=Object, objc_name="performSelectorOnMainThread_withObject_waitUntilDone_modes")
-Object_performSelectorOnMainThread_withObject_waitUntilDone_modes :: #force_inline proc "c" (self: ^Object, aSelector: SEL, arg: id, wait: bool, array: ^Array) {
-    msgSend(nil, self, "performSelectorOnMainThread:withObject:waitUntilDone:modes:", aSelector, arg, wait, array)
-}
-@(objc_type=Object, objc_name="performSelectorOnMainThread_withObject_waitUntilDone")
-Object_performSelectorOnMainThread_withObject_waitUntilDone :: #force_inline proc "c" (self: ^Object, aSelector: SEL, arg: id, wait: bool) {
-    msgSend(nil, self, "performSelectorOnMainThread:withObject:waitUntilDone:", aSelector, arg, wait)
-}
-@(objc_type=Object, objc_name="performSelector_onThread_withObject_waitUntilDone_modes")
-Object_performSelector_onThread_withObject_waitUntilDone_modes :: #force_inline proc "c" (self: ^Object, aSelector: SEL, thr: ^Thread, arg: id, wait: bool, array: ^Array) {
-    msgSend(nil, self, "performSelector:onThread:withObject:waitUntilDone:modes:", aSelector, thr, arg, wait, array)
-}
-@(objc_type=Object, objc_name="performSelector_onThread_withObject_waitUntilDone")
-Object_performSelector_onThread_withObject_waitUntilDone :: #force_inline proc "c" (self: ^Object, aSelector: SEL, thr: ^Thread, arg: id, wait: bool) {
-    msgSend(nil, self, "performSelector:onThread:withObject:waitUntilDone:", aSelector, thr, arg, wait)
-}
-@(objc_type=Object, objc_name="performSelectorInBackground")
-Object_performSelectorInBackground :: #force_inline proc "c" (self: ^Object, aSelector: SEL, arg: id) {
-    msgSend(nil, self, "performSelectorInBackground:withObject:", aSelector, arg)
-}
-@(objc_type=Object, objc_name="replacementObjectForArchiver")
-Object_replacementObjectForArchiver :: #force_inline proc "c" (self: ^Object, archiver: ^Archiver) -> id {
-    return msgSend(id, self, "replacementObjectForArchiver:", archiver)
-}
-@(objc_type=Object, objc_name="classForArchiver")
-Object_classForArchiver :: #force_inline proc "c" (self: ^Object) -> Class {
-    return msgSend(Class, self, "classForArchiver")
-}
-@(objc_type=Object, objc_name="replacementObjectForPortCoder")
-Object_replacementObjectForPortCoder :: #force_inline proc "c" (self: ^Object, coder: ^PortCoder) -> id {
-    return msgSend(id, self, "replacementObjectForPortCoder:", coder)
-}
-@(objc_type=Object, objc_name="classForPortCoder")
-Object_classForPortCoder :: #force_inline proc "c" (self: ^Object) -> Class {
-    return msgSend(Class, self, "classForPortCoder")
-}
-@(objc_type=Object, objc_name="inverseForRelationshipKey")
-Object_inverseForRelationshipKey :: #force_inline proc "c" (self: ^Object, relationshipKey: ^String) -> ^String {
-    return msgSend(^String, self, "inverseForRelationshipKey:", relationshipKey)
-}
-@(objc_type=Object, objc_name="classDescription")
-Object_classDescription :: #force_inline proc "c" (self: ^Object) -> ^ClassDescription {
-    return msgSend(^ClassDescription, self, "classDescription")
-}
-@(objc_type=Object, objc_name="attributeKeys")
-Object_attributeKeys :: #force_inline proc "c" (self: ^Object) -> ^Array {
-    return msgSend(^Array, self, "attributeKeys")
-}
-@(objc_type=Object, objc_name="toOneRelationshipKeys")
-Object_toOneRelationshipKeys :: #force_inline proc "c" (self: ^Object) -> ^Array {
-    return msgSend(^Array, self, "toOneRelationshipKeys")
-}
-@(objc_type=Object, objc_name="toManyRelationshipKeys")
-Object_toManyRelationshipKeys :: #force_inline proc "c" (self: ^Object) -> ^Array {
-    return msgSend(^Array, self, "toManyRelationshipKeys")
-}
-@(objc_type=Object, objc_name="scriptingValueForSpecifier")
-Object_scriptingValueForSpecifier :: #force_inline proc "c" (self: ^Object, objectSpecifier: ^ScriptObjectSpecifier) -> id {
-    return msgSend(id, self, "scriptingValueForSpecifier:", objectSpecifier)
-}
-@(objc_type=Object, objc_name="copyScriptingValue")
-Object_copyScriptingValue :: #force_inline proc "c" (self: ^Object, value: id, key: ^String, properties: ^Dictionary) -> id {
-    return msgSend(id, self, "copyScriptingValue:forKey:withProperties:", value, key, properties)
-}
-@(objc_type=Object, objc_name="newScriptingObjectOfClass")
-Object_newScriptingObjectOfClass :: #force_inline proc "c" (self: ^Object, objectClass: Class, key: ^String, contentsValue: id, properties: ^Dictionary) -> id {
-    return msgSend(id, self, "newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:", objectClass, key, contentsValue, properties)
-}
-@(objc_type=Object, objc_name="scriptingProperties")
-Object_scriptingProperties :: #force_inline proc "c" (self: ^Object) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "scriptingProperties")
-}
-@(objc_type=Object, objc_name="setScriptingProperties")
-Object_setScriptingProperties :: #force_inline proc "c" (self: ^Object, scriptingProperties: ^Dictionary) {
-    msgSend(nil, self, "setScriptingProperties:", scriptingProperties)
-}
-@(objc_type=Object, objc_name="classCode")
-Object_classCode :: #force_inline proc "c" (self: ^Object) -> CF.FourCharCode {
-    return msgSend(CF.FourCharCode, self, "classCode")
-}
-@(objc_type=Object, objc_name="className")
-Object_className :: #force_inline proc "c" (self: ^Object) -> ^String {
-    return msgSend(^String, self, "className")
-}
-@(objc_type=Object, objc_name="valueAtIndex")
-Object_valueAtIndex :: #force_inline proc "c" (self: ^Object, index: UInteger, key: ^String) -> id {
-    return msgSend(id, self, "valueAtIndex:inPropertyWithKey:", index, key)
-}
-@(objc_type=Object, objc_name="valueWithName")
-Object_valueWithName :: #force_inline proc "c" (self: ^Object, name: ^String, key: ^String) -> id {
-    return msgSend(id, self, "valueWithName:inPropertyWithKey:", name, key)
-}
-@(objc_type=Object, objc_name="valueWithUniqueID")
-Object_valueWithUniqueID :: #force_inline proc "c" (self: ^Object, uniqueID: id, key: ^String) -> id {
-    return msgSend(id, self, "valueWithUniqueID:inPropertyWithKey:", uniqueID, key)
-}
-@(objc_type=Object, objc_name="insertValue_atIndex_inPropertyWithKey")
-Object_insertValue_atIndex_inPropertyWithKey :: #force_inline proc "c" (self: ^Object, value: id, index: UInteger, key: ^String) {
-    msgSend(nil, self, "insertValue:atIndex:inPropertyWithKey:", value, index, key)
-}
-@(objc_type=Object, objc_name="removeValueAtIndex")
-Object_removeValueAtIndex :: #force_inline proc "c" (self: ^Object, index: UInteger, key: ^String) {
-    msgSend(nil, self, "removeValueAtIndex:fromPropertyWithKey:", index, key)
-}
-@(objc_type=Object, objc_name="replaceValueAtIndex")
-Object_replaceValueAtIndex :: #force_inline proc "c" (self: ^Object, index: UInteger, key: ^String, value: id) {
-    msgSend(nil, self, "replaceValueAtIndex:inPropertyWithKey:withValue:", index, key, value)
-}
-@(objc_type=Object, objc_name="insertValue_inPropertyWithKey")
-Object_insertValue_inPropertyWithKey :: #force_inline proc "c" (self: ^Object, value: id, key: ^String) {
-    msgSend(nil, self, "insertValue:inPropertyWithKey:", value, key)
-}
-@(objc_type=Object, objc_name="coerceValue")
-Object_coerceValue :: #force_inline proc "c" (self: ^Object, value: id, key: ^String) -> id {
-    return msgSend(id, self, "coerceValue:forKey:", value, key)
-}
-@(objc_type=Object, objc_name="indicesOfObjectsByEvaluatingObjectSpecifier")
-Object_indicesOfObjectsByEvaluatingObjectSpecifier :: #force_inline proc "c" (self: ^Object, specifier: ^ScriptObjectSpecifier) -> ^Array {
-    return msgSend(^Array, self, "indicesOfObjectsByEvaluatingObjectSpecifier:", specifier)
-}
-@(objc_type=Object, objc_name="objectSpecifier")
-Object_objectSpecifier :: #force_inline proc "c" (self: ^Object) -> ^ScriptObjectSpecifier {
-    return msgSend(^ScriptObjectSpecifier, self, "objectSpecifier")
-}
-@(objc_type=Object, objc_name="isEqualTo")
-Object_isEqualTo :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "isEqualTo:", object)
-}
-@(objc_type=Object, objc_name="isLessThanOrEqualTo")
-Object_isLessThanOrEqualTo :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "isLessThanOrEqualTo:", object)
-}
-@(objc_type=Object, objc_name="isLessThan")
-Object_isLessThan :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "isLessThan:", object)
-}
-@(objc_type=Object, objc_name="isGreaterThanOrEqualTo")
-Object_isGreaterThanOrEqualTo :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "isGreaterThanOrEqualTo:", object)
-}
-@(objc_type=Object, objc_name="isGreaterThan")
-Object_isGreaterThan :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "isGreaterThan:", object)
-}
-@(objc_type=Object, objc_name="isNotEqualTo")
-Object_isNotEqualTo :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "isNotEqualTo:", object)
-}
-@(objc_type=Object, objc_name="doesContain")
-Object_doesContain :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "doesContain:", object)
-}
-@(objc_type=Object, objc_name="isLike")
-Object_isLike :: #force_inline proc "c" (self: ^Object, object: ^String) -> bool {
-    return msgSend(bool, self, "isLike:", object)
-}
-@(objc_type=Object, objc_name="isCaseInsensitiveLike")
-Object_isCaseInsensitiveLike :: #force_inline proc "c" (self: ^Object, object: ^String) -> bool {
-    return msgSend(bool, self, "isCaseInsensitiveLike:", object)
-}
-@(objc_type=Object, objc_name="scriptingIsEqualTo")
-Object_scriptingIsEqualTo :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "scriptingIsEqualTo:", object)
-}
-@(objc_type=Object, objc_name="scriptingIsLessThanOrEqualTo")
-Object_scriptingIsLessThanOrEqualTo :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "scriptingIsLessThanOrEqualTo:", object)
-}
-@(objc_type=Object, objc_name="scriptingIsLessThan")
-Object_scriptingIsLessThan :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "scriptingIsLessThan:", object)
-}
-@(objc_type=Object, objc_name="scriptingIsGreaterThanOrEqualTo")
-Object_scriptingIsGreaterThanOrEqualTo :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "scriptingIsGreaterThanOrEqualTo:", object)
-}
-@(objc_type=Object, objc_name="scriptingIsGreaterThan")
-Object_scriptingIsGreaterThan :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "scriptingIsGreaterThan:", object)
-}
-@(objc_type=Object, objc_name="scriptingBeginsWith")
-Object_scriptingBeginsWith :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "scriptingBeginsWith:", object)
-}
-@(objc_type=Object, objc_name="scriptingEndsWith")
-Object_scriptingEndsWith :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "scriptingEndsWith:", object)
-}
-@(objc_type=Object, objc_name="scriptingContains")
-Object_scriptingContains :: #force_inline proc "c" (self: ^Object, object: id) -> bool {
-    return msgSend(bool, self, "scriptingContains:", object)
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Object, objc_selector="load", objc_name="load", objc_is_class_method=true)
+    Object_load :: proc() ---
+
+    @(objc_type=Object, objc_selector="initialize", objc_name="initialize", objc_is_class_method=true)
+    Object_initialize :: proc() ---
+
+    @(objc_type=Object, objc_selector="init", objc_name="init")
+    Object_init :: proc(self: ^Object) -> instancetype ---
+
+    @(objc_type=Object, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    Object_new :: proc() -> instancetype ---
+
+    @(objc_type=Object, objc_selector="allocWithZone:", objc_name="allocWithZone", objc_is_class_method=true)
+    Object_allocWithZone :: proc(zone: ^_NSZone) -> instancetype ---
+
+    @(objc_type=Object, objc_selector="alloc", objc_name="alloc", objc_is_class_method=true)
+    Object_alloc :: proc() -> instancetype ---
+
+    @(objc_type=Object, objc_selector="dealloc", objc_name="dealloc")
+    Object_dealloc :: proc(self: ^Object) ---
+
+    @(objc_type=Object, objc_selector="finalize", objc_name="finalize")
+    Object_finalize :: proc(self: ^Object) ---
+
+    @(objc_type=Object, objc_selector="copy", objc_name="copy")
+    Object_copy :: proc(self: ^Object) -> instancetype ---
+
+    @(objc_type=Object, objc_selector="mutableCopy", objc_name="mutableCopy")
+    Object_mutableCopy :: proc(self: ^Object) -> instancetype ---
+
+    @(objc_type=Object, objc_selector="copyWithZone:", objc_name="copyWithZone", objc_is_class_method=true)
+    Object_copyWithZone :: proc(zone: ^_NSZone) -> instancetype ---
+
+    @(objc_type=Object, objc_selector="mutableCopyWithZone:", objc_name="mutableCopyWithZone", objc_is_class_method=true)
+    Object_mutableCopyWithZone :: proc(zone: ^_NSZone) -> instancetype ---
+
+    @(objc_type=Object, objc_selector="instancesRespondToSelector:", objc_name="instancesRespondToSelector", objc_is_class_method=true)
+    Object_instancesRespondToSelector :: proc(aSelector: SEL) -> bool ---
+
+    @(objc_type=Object, objc_selector="conformsToProtocol:", objc_name="conformsToProtocol", objc_is_class_method=true)
+    Object_conformsToProtocol :: proc(protocol: ^Protocol) -> bool ---
+
+    @(objc_type=Object, objc_selector="methodForSelector:", objc_name="methodForSelector")
+    Object_methodForSelector :: proc(self: ^Object, aSelector: SEL) -> IMP ---
+
+    @(objc_type=Object, objc_selector="instanceMethodForSelector:", objc_name="instanceMethodForSelector", objc_is_class_method=true)
+    Object_instanceMethodForSelector :: proc(aSelector: SEL) -> IMP ---
+
+    @(objc_type=Object, objc_selector="doesNotRecognizeSelector:", objc_name="doesNotRecognizeSelector")
+    Object_doesNotRecognizeSelector :: proc(self: ^Object, aSelector: SEL) ---
+
+    @(objc_type=Object, objc_selector="forwardingTargetForSelector:", objc_name="forwardingTargetForSelector")
+    Object_forwardingTargetForSelector :: proc(self: ^Object, aSelector: SEL) -> id ---
+
+    @(objc_type=Object, objc_selector="forwardInvocation:", objc_name="forwardInvocation")
+    Object_forwardInvocation :: proc(self: ^Object, anInvocation: ^Invocation) ---
+
+    @(objc_type=Object, objc_selector="methodSignatureForSelector:", objc_name="methodSignatureForSelector")
+    Object_methodSignatureForSelector :: proc(self: ^Object, aSelector: SEL) -> ^MethodSignature ---
+
+    @(objc_type=Object, objc_selector="instanceMethodSignatureForSelector:", objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
+    Object_instanceMethodSignatureForSelector :: proc(aSelector: SEL) -> ^MethodSignature ---
+
+    @(objc_type=Object, objc_selector="allowsWeakReference", objc_name="allowsWeakReference")
+    Object_allowsWeakReference :: proc(self: ^Object) -> bool ---
+
+    @(objc_type=Object, objc_selector="retainWeakReference", objc_name="retainWeakReference")
+    Object_retainWeakReference :: proc(self: ^Object) -> bool ---
+
+    @(objc_type=Object, objc_selector="isSubclassOfClass:", objc_name="isSubclassOfClass", objc_is_class_method=true)
+    Object_isSubclassOfClass :: proc(aClass: Class) -> bool ---
+
+    @(objc_type=Object, objc_selector="resolveClassMethod:", objc_name="resolveClassMethod", objc_is_class_method=true)
+    Object_resolveClassMethod :: proc(sel: SEL) -> bool ---
+
+    @(objc_type=Object, objc_selector="resolveInstanceMethod:", objc_name="resolveInstanceMethod", objc_is_class_method=true)
+    Object_resolveInstanceMethod :: proc(sel: SEL) -> bool ---
+
+    @(objc_type=Object, objc_selector="hash", objc_name="hash", objc_is_class_method=true)
+    Object_hash :: proc() -> UInteger ---
+
+    @(objc_type=Object, objc_selector="superclass", objc_name="superclass", objc_is_class_method=true)
+    Object_superclass :: proc() -> Class ---
+
+    @(objc_type=Object, objc_selector="class", objc_name="class", objc_is_class_method=true)
+    Object_class :: proc() -> Class ---
+
+    @(objc_type=Object, objc_selector="description", objc_name="description", objc_is_class_method=true)
+    Object_description :: proc() -> ^String ---
+
+    @(objc_type=Object, objc_selector="debugDescription", objc_name="debugDescription", objc_is_class_method=true)
+    Object_debugDescription :: proc() -> ^String ---
+
+    @(objc_type=Object, objc_selector="version", objc_name="version", objc_is_class_method=true)
+    Object_version :: proc() -> Integer ---
+
+    @(objc_type=Object, objc_selector="setVersion:", objc_name="setVersion", objc_is_class_method=true)
+    Object_setVersion :: proc(aVersion: Integer) ---
+
+    @(objc_type=Object, objc_selector="replacementObjectForCoder:", objc_name="replacementObjectForCoder")
+    Object_replacementObjectForCoder :: proc(self: ^Object, coder: ^Coder) -> id ---
+
+    @(objc_type=Object, objc_selector="awakeAfterUsingCoder:", objc_name="awakeAfterUsingCoder")
+    Object_awakeAfterUsingCoder :: proc(self: ^Object, coder: ^Coder) -> id ---
+
+    @(objc_type=Object, objc_selector="classForCoder", objc_name="classForCoder")
+    Object_classForCoder :: proc(self: ^Object) -> Class ---
+
+    @(objc_type=Object, objc_selector="poseAsClass:", objc_name="poseAsClass", objc_is_class_method=true)
+    Object_poseAsClass :: proc(aClass: Class) ---
+
+    @(objc_type=Object, objc_selector="autoContentAccessingProxy", objc_name="autoContentAccessingProxy")
+    Object_autoContentAccessingProxy :: proc(self: ^Object) -> id ---
+
+    @(objc_type=Object, objc_selector="attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:", objc_name="attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo")
+    Object_attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo :: proc(self: ^Object, error: ^Error, recoveryOptionIndex: UInteger, delegate: id, didRecoverSelector: SEL, contextInfo: rawptr) ---
+
+    @(objc_type=Object, objc_selector="attemptRecoveryFromError:optionIndex:", objc_name="attemptRecoveryFromError_optionIndex")
+    Object_attemptRecoveryFromError_optionIndex :: proc(self: ^Object, error: ^Error, recoveryOptionIndex: UInteger) -> bool ---
+
+    @(objc_type=Object, objc_selector="performSelector:withObject:afterDelay:inModes:", objc_name="performSelector_withObject_afterDelay_inModes")
+    Object_performSelector_withObject_afterDelay_inModes :: proc(self: ^Object, aSelector: SEL, anArgument: id, delay: TimeInterval, modes: ^Array) ---
+
+    @(objc_type=Object, objc_selector="performSelector:withObject:afterDelay:", objc_name="performSelector_withObject_afterDelay")
+    Object_performSelector_withObject_afterDelay :: proc(self: ^Object, aSelector: SEL, anArgument: id, delay: TimeInterval) ---
+
+    @(objc_type=Object, objc_selector="cancelPreviousPerformRequestsWithTarget:selector:object:", objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
+    Object_cancelPreviousPerformRequestsWithTarget_selector_object :: proc(aTarget: id, aSelector: SEL, anArgument: id) ---
+
+    @(objc_type=Object, objc_selector="cancelPreviousPerformRequestsWithTarget:", objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
+    Object_cancelPreviousPerformRequestsWithTarget_ :: proc(aTarget: id) ---
+
+    @(objc_type=Object, objc_selector="URL:resourceDataDidBecomeAvailable:", objc_name="URL_resourceDataDidBecomeAvailable")
+    Object_URL_resourceDataDidBecomeAvailable :: proc(self: ^Object, sender: ^URL, newBytes: ^Data) ---
+
+    @(objc_type=Object, objc_selector="URLResourceDidFinishLoading:", objc_name="URLResourceDidFinishLoading")
+    Object_URLResourceDidFinishLoading :: proc(self: ^Object, sender: ^URL) ---
+
+    @(objc_type=Object, objc_selector="URLResourceDidCancelLoading:", objc_name="URLResourceDidCancelLoading")
+    Object_URLResourceDidCancelLoading :: proc(self: ^Object, sender: ^URL) ---
+
+    @(objc_type=Object, objc_selector="URL:resourceDidFailLoadingWithReason:", objc_name="URL_resourceDidFailLoadingWithReason")
+    Object_URL_resourceDidFailLoadingWithReason :: proc(self: ^Object, sender: ^URL, reason: ^String) ---
+
+    @(objc_type=Object, objc_selector="fileManager:shouldProceedAfterError:", objc_name="fileManager_shouldProceedAfterError")
+    Object_fileManager_shouldProceedAfterError :: proc(self: ^Object, fm: ^FileManager, errorInfo: ^Dictionary) -> bool ---
+
+    @(objc_type=Object, objc_selector="fileManager:willProcessPath:", objc_name="fileManager_willProcessPath")
+    Object_fileManager_willProcessPath :: proc(self: ^Object, fm: ^FileManager, path: ^String) ---
+
+    @(objc_type=Object, objc_selector="valueForKey:", objc_name="valueForKey")
+    Object_valueForKey :: proc(self: ^Object, key: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="setValue:forKey:", objc_name="setValue_forKey")
+    Object_setValue_forKey :: proc(self: ^Object, value: id, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="validateValue:forKey:error:", objc_name="validateValue_forKey_error")
+    Object_validateValue_forKey_error :: proc(self: ^Object, ioValue: ^id, inKey: ^String, outError: ^^Error) -> bool ---
+
+    @(objc_type=Object, objc_selector="mutableArrayValueForKey:", objc_name="mutableArrayValueForKey")
+    Object_mutableArrayValueForKey :: proc(self: ^Object, key: ^String) -> ^MutableArray ---
+
+    @(objc_type=Object, objc_selector="mutableOrderedSetValueForKey:", objc_name="mutableOrderedSetValueForKey")
+    Object_mutableOrderedSetValueForKey :: proc(self: ^Object, key: ^String) -> ^MutableOrderedSet ---
+
+    @(objc_type=Object, objc_selector="mutableSetValueForKey:", objc_name="mutableSetValueForKey")
+    Object_mutableSetValueForKey :: proc(self: ^Object, key: ^String) -> ^MutableSet ---
+
+    @(objc_type=Object, objc_selector="valueForKeyPath:", objc_name="valueForKeyPath")
+    Object_valueForKeyPath :: proc(self: ^Object, keyPath: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="setValue:forKeyPath:", objc_name="setValue_forKeyPath")
+    Object_setValue_forKeyPath :: proc(self: ^Object, value: id, keyPath: ^String) ---
+
+    @(objc_type=Object, objc_selector="validateValue:forKeyPath:error:", objc_name="validateValue_forKeyPath_error")
+    Object_validateValue_forKeyPath_error :: proc(self: ^Object, ioValue: ^id, inKeyPath: ^String, outError: ^^Error) -> bool ---
+
+    @(objc_type=Object, objc_selector="mutableArrayValueForKeyPath:", objc_name="mutableArrayValueForKeyPath")
+    Object_mutableArrayValueForKeyPath :: proc(self: ^Object, keyPath: ^String) -> ^MutableArray ---
+
+    @(objc_type=Object, objc_selector="mutableOrderedSetValueForKeyPath:", objc_name="mutableOrderedSetValueForKeyPath")
+    Object_mutableOrderedSetValueForKeyPath :: proc(self: ^Object, keyPath: ^String) -> ^MutableOrderedSet ---
+
+    @(objc_type=Object, objc_selector="mutableSetValueForKeyPath:", objc_name="mutableSetValueForKeyPath")
+    Object_mutableSetValueForKeyPath :: proc(self: ^Object, keyPath: ^String) -> ^MutableSet ---
+
+    @(objc_type=Object, objc_selector="valueForUndefinedKey:", objc_name="valueForUndefinedKey")
+    Object_valueForUndefinedKey :: proc(self: ^Object, key: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="setValue:forUndefinedKey:", objc_name="setValue_forUndefinedKey")
+    Object_setValue_forUndefinedKey :: proc(self: ^Object, value: id, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="setNilValueForKey:", objc_name="setNilValueForKey")
+    Object_setNilValueForKey :: proc(self: ^Object, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="dictionaryWithValuesForKeys:", objc_name="dictionaryWithValuesForKeys")
+    Object_dictionaryWithValuesForKeys :: proc(self: ^Object, keys: ^Array) -> ^Dictionary ---
+
+    @(objc_type=Object, objc_selector="setValuesForKeysWithDictionary:", objc_name="setValuesForKeysWithDictionary")
+    Object_setValuesForKeysWithDictionary :: proc(self: ^Object, keyedValues: ^Dictionary) ---
+
+    @(objc_type=Object, objc_selector="accessInstanceVariablesDirectly", objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
+    Object_accessInstanceVariablesDirectly :: proc() -> bool ---
+
+    @(objc_type=Object, objc_selector="useStoredAccessor", objc_name="useStoredAccessor", objc_is_class_method=true)
+    Object_useStoredAccessor :: proc() -> bool ---
+
+    @(objc_type=Object, objc_selector="storedValueForKey:", objc_name="storedValueForKey")
+    Object_storedValueForKey :: proc(self: ^Object, key: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="takeStoredValue:forKey:", objc_name="takeStoredValue")
+    Object_takeStoredValue :: proc(self: ^Object, value: id, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="takeValue:forKey:", objc_name="takeValue_forKey")
+    Object_takeValue_forKey :: proc(self: ^Object, value: id, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="takeValue:forKeyPath:", objc_name="takeValue_forKeyPath")
+    Object_takeValue_forKeyPath :: proc(self: ^Object, value: id, keyPath: ^String) ---
+
+    @(objc_type=Object, objc_selector="handleQueryWithUnboundKey:", objc_name="handleQueryWithUnboundKey")
+    Object_handleQueryWithUnboundKey :: proc(self: ^Object, key: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="handleTakeValue:forUnboundKey:", objc_name="handleTakeValue")
+    Object_handleTakeValue :: proc(self: ^Object, value: id, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="unableToSetNilForKey:", objc_name="unableToSetNilForKey")
+    Object_unableToSetNilForKey :: proc(self: ^Object, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="valuesForKeys:", objc_name="valuesForKeys")
+    Object_valuesForKeys :: proc(self: ^Object, keys: ^Array) -> ^Dictionary ---
+
+    @(objc_type=Object, objc_selector="takeValuesFromDictionary:", objc_name="takeValuesFromDictionary")
+    Object_takeValuesFromDictionary :: proc(self: ^Object, properties: ^Dictionary) ---
+
+    @(objc_type=Object, objc_selector="observeValueForKeyPath:ofObject:change:context:", objc_name="observeValueForKeyPath")
+    Object_observeValueForKeyPath :: proc(self: ^Object, keyPath: ^String, object: id, change: ^Dictionary, _context: rawptr) ---
+
+    @(objc_type=Object, objc_selector="addObserver:forKeyPath:options:context:", objc_name="addObserver")
+    Object_addObserver :: proc(self: ^Object, observer: ^Object, keyPath: ^String, options: KeyValueObservingOptions, _context: rawptr) ---
+
+    @(objc_type=Object, objc_selector="removeObserver:forKeyPath:context:", objc_name="removeObserver_forKeyPath_context")
+    Object_removeObserver_forKeyPath_context :: proc(self: ^Object, observer: ^Object, keyPath: ^String, _context: rawptr) ---
+
+    @(objc_type=Object, objc_selector="removeObserver:forKeyPath:", objc_name="removeObserver_forKeyPath")
+    Object_removeObserver_forKeyPath :: proc(self: ^Object, observer: ^Object, keyPath: ^String) ---
+
+    @(objc_type=Object, objc_selector="willChangeValueForKey:", objc_name="willChangeValueForKey_")
+    Object_willChangeValueForKey_ :: proc(self: ^Object, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="didChangeValueForKey:", objc_name="didChangeValueForKey_")
+    Object_didChangeValueForKey_ :: proc(self: ^Object, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="willChange:valuesAtIndexes:forKey:", objc_name="willChange")
+    Object_willChange :: proc(self: ^Object, changeKind: KeyValueChange, indexes: ^IndexSet, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="didChange:valuesAtIndexes:forKey:", objc_name="didChange")
+    Object_didChange :: proc(self: ^Object, changeKind: KeyValueChange, indexes: ^IndexSet, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="willChangeValueForKey:withSetMutation:usingObjects:", objc_name="willChangeValueForKey_withSetMutation_usingObjects")
+    Object_willChangeValueForKey_withSetMutation_usingObjects :: proc(self: ^Object, key: ^String, mutationKind: KeyValueSetMutationKind, objects: ^Set) ---
+
+    @(objc_type=Object, objc_selector="didChangeValueForKey:withSetMutation:usingObjects:", objc_name="didChangeValueForKey_withSetMutation_usingObjects")
+    Object_didChangeValueForKey_withSetMutation_usingObjects :: proc(self: ^Object, key: ^String, mutationKind: KeyValueSetMutationKind, objects: ^Set) ---
+
+    @(objc_type=Object, objc_selector="keyPathsForValuesAffectingValueForKey:", objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
+    Object_keyPathsForValuesAffectingValueForKey :: proc(key: ^String) -> ^Set ---
+
+    @(objc_type=Object, objc_selector="automaticallyNotifiesObserversForKey:", objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
+    Object_automaticallyNotifiesObserversForKey :: proc(key: ^String) -> bool ---
+
+    @(objc_type=Object, objc_selector="observationInfo", objc_name="observationInfo")
+    Object_observationInfo :: proc(self: ^Object) -> rawptr ---
+
+    @(objc_type=Object, objc_selector="setObservationInfo:", objc_name="setObservationInfo")
+    Object_setObservationInfo :: proc(self: ^Object, observationInfo: rawptr) ---
+
+    @(objc_type=Object, objc_selector="setKeys:triggerChangeNotificationsForDependentKey:", objc_name="setKeys", objc_is_class_method=true)
+    Object_setKeys :: proc(keys: ^Array, dependentKey: ^String) ---
+
+    @(objc_type=Object, objc_selector="setSharedObservers:", objc_name="setSharedObservers")
+    Object_setSharedObservers :: proc(self: ^Object, sharedObservers: ^KeyValueSharedObserversSnapshot) ---
+
+    @(objc_type=Object, objc_selector="replacementObjectForKeyedArchiver:", objc_name="replacementObjectForKeyedArchiver")
+    Object_replacementObjectForKeyedArchiver :: proc(self: ^Object, archiver: ^KeyedArchiver) -> id ---
+
+    @(objc_type=Object, objc_selector="classFallbacksForKeyedArchiver", objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
+    Object_classFallbacksForKeyedArchiver :: proc() -> ^Array ---
+
+    @(objc_type=Object, objc_selector="classForKeyedArchiver", objc_name="classForKeyedArchiver")
+    Object_classForKeyedArchiver :: proc(self: ^Object) -> Class ---
+
+    @(objc_type=Object, objc_selector="classForKeyedUnarchiver", objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
+    Object_classForKeyedUnarchiver :: proc() -> Class ---
+
+    @(objc_type=Object, objc_selector="performSelectorOnMainThread:withObject:waitUntilDone:modes:", objc_name="performSelectorOnMainThread_withObject_waitUntilDone_modes")
+    Object_performSelectorOnMainThread_withObject_waitUntilDone_modes :: proc(self: ^Object, aSelector: SEL, arg: id, wait: bool, array: ^Array) ---
+
+    @(objc_type=Object, objc_selector="performSelectorOnMainThread:withObject:waitUntilDone:", objc_name="performSelectorOnMainThread_withObject_waitUntilDone")
+    Object_performSelectorOnMainThread_withObject_waitUntilDone :: proc(self: ^Object, aSelector: SEL, arg: id, wait: bool) ---
+
+    @(objc_type=Object, objc_selector="performSelector:onThread:withObject:waitUntilDone:modes:", objc_name="performSelector_onThread_withObject_waitUntilDone_modes")
+    Object_performSelector_onThread_withObject_waitUntilDone_modes :: proc(self: ^Object, aSelector: SEL, thr: ^Thread, arg: id, wait: bool, array: ^Array) ---
+
+    @(objc_type=Object, objc_selector="performSelector:onThread:withObject:waitUntilDone:", objc_name="performSelector_onThread_withObject_waitUntilDone")
+    Object_performSelector_onThread_withObject_waitUntilDone :: proc(self: ^Object, aSelector: SEL, thr: ^Thread, arg: id, wait: bool) ---
+
+    @(objc_type=Object, objc_selector="performSelectorInBackground:withObject:", objc_name="performSelectorInBackground")
+    Object_performSelectorInBackground :: proc(self: ^Object, aSelector: SEL, arg: id) ---
+
+    @(objc_type=Object, objc_selector="replacementObjectForArchiver:", objc_name="replacementObjectForArchiver")
+    Object_replacementObjectForArchiver :: proc(self: ^Object, archiver: ^Archiver) -> id ---
+
+    @(objc_type=Object, objc_selector="classForArchiver", objc_name="classForArchiver")
+    Object_classForArchiver :: proc(self: ^Object) -> Class ---
+
+    @(objc_type=Object, objc_selector="replacementObjectForPortCoder:", objc_name="replacementObjectForPortCoder")
+    Object_replacementObjectForPortCoder :: proc(self: ^Object, coder: ^PortCoder) -> id ---
+
+    @(objc_type=Object, objc_selector="classForPortCoder", objc_name="classForPortCoder")
+    Object_classForPortCoder :: proc(self: ^Object) -> Class ---
+
+    @(objc_type=Object, objc_selector="inverseForRelationshipKey:", objc_name="inverseForRelationshipKey")
+    Object_inverseForRelationshipKey :: proc(self: ^Object, relationshipKey: ^String) -> ^String ---
+
+    @(objc_type=Object, objc_selector="classDescription", objc_name="classDescription")
+    Object_classDescription :: proc(self: ^Object) -> ^ClassDescription ---
+
+    @(objc_type=Object, objc_selector="attributeKeys", objc_name="attributeKeys")
+    Object_attributeKeys :: proc(self: ^Object) -> ^Array ---
+
+    @(objc_type=Object, objc_selector="toOneRelationshipKeys", objc_name="toOneRelationshipKeys")
+    Object_toOneRelationshipKeys :: proc(self: ^Object) -> ^Array ---
+
+    @(objc_type=Object, objc_selector="toManyRelationshipKeys", objc_name="toManyRelationshipKeys")
+    Object_toManyRelationshipKeys :: proc(self: ^Object) -> ^Array ---
+
+    @(objc_type=Object, objc_selector="scriptingValueForSpecifier:", objc_name="scriptingValueForSpecifier")
+    Object_scriptingValueForSpecifier :: proc(self: ^Object, objectSpecifier: ^ScriptObjectSpecifier) -> id ---
+
+    @(objc_type=Object, objc_selector="copyScriptingValue:forKey:withProperties:", objc_name="copyScriptingValue")
+    Object_copyScriptingValue :: proc(self: ^Object, value: id, key: ^String, properties: ^Dictionary) -> id ---
+
+    @(objc_type=Object, objc_selector="newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:", objc_name="newScriptingObjectOfClass")
+    Object_newScriptingObjectOfClass :: proc(self: ^Object, objectClass: Class, key: ^String, contentsValue: id, properties: ^Dictionary) -> id ---
+
+    @(objc_type=Object, objc_selector="scriptingProperties", objc_name="scriptingProperties")
+    Object_scriptingProperties :: proc(self: ^Object) -> ^Dictionary ---
+
+    @(objc_type=Object, objc_selector="setScriptingProperties:", objc_name="setScriptingProperties")
+    Object_setScriptingProperties :: proc(self: ^Object, scriptingProperties: ^Dictionary) ---
+
+    @(objc_type=Object, objc_selector="classCode", objc_name="classCode")
+    Object_classCode :: proc(self: ^Object) -> CF.FourCharCode ---
+
+    @(objc_type=Object, objc_selector="className", objc_name="className")
+    Object_className :: proc(self: ^Object) -> ^String ---
+
+    @(objc_type=Object, objc_selector="valueAtIndex:inPropertyWithKey:", objc_name="valueAtIndex")
+    Object_valueAtIndex :: proc(self: ^Object, index: UInteger, key: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="valueWithName:inPropertyWithKey:", objc_name="valueWithName")
+    Object_valueWithName :: proc(self: ^Object, name: ^String, key: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="valueWithUniqueID:inPropertyWithKey:", objc_name="valueWithUniqueID")
+    Object_valueWithUniqueID :: proc(self: ^Object, uniqueID: id, key: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="insertValue:atIndex:inPropertyWithKey:", objc_name="insertValue_atIndex_inPropertyWithKey")
+    Object_insertValue_atIndex_inPropertyWithKey :: proc(self: ^Object, value: id, index: UInteger, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="removeValueAtIndex:fromPropertyWithKey:", objc_name="removeValueAtIndex")
+    Object_removeValueAtIndex :: proc(self: ^Object, index: UInteger, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="replaceValueAtIndex:inPropertyWithKey:withValue:", objc_name="replaceValueAtIndex")
+    Object_replaceValueAtIndex :: proc(self: ^Object, index: UInteger, key: ^String, value: id) ---
+
+    @(objc_type=Object, objc_selector="insertValue:inPropertyWithKey:", objc_name="insertValue_inPropertyWithKey")
+    Object_insertValue_inPropertyWithKey :: proc(self: ^Object, value: id, key: ^String) ---
+
+    @(objc_type=Object, objc_selector="coerceValue:forKey:", objc_name="coerceValue")
+    Object_coerceValue :: proc(self: ^Object, value: id, key: ^String) -> id ---
+
+    @(objc_type=Object, objc_selector="indicesOfObjectsByEvaluatingObjectSpecifier:", objc_name="indicesOfObjectsByEvaluatingObjectSpecifier")
+    Object_indicesOfObjectsByEvaluatingObjectSpecifier :: proc(self: ^Object, specifier: ^ScriptObjectSpecifier) -> ^Array ---
+
+    @(objc_type=Object, objc_selector="objectSpecifier", objc_name="objectSpecifier")
+    Object_objectSpecifier :: proc(self: ^Object) -> ^ScriptObjectSpecifier ---
+
+    @(objc_type=Object, objc_selector="isEqualTo:", objc_name="isEqualTo")
+    Object_isEqualTo :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="isLessThanOrEqualTo:", objc_name="isLessThanOrEqualTo")
+    Object_isLessThanOrEqualTo :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="isLessThan:", objc_name="isLessThan")
+    Object_isLessThan :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="isGreaterThanOrEqualTo:", objc_name="isGreaterThanOrEqualTo")
+    Object_isGreaterThanOrEqualTo :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="isGreaterThan:", objc_name="isGreaterThan")
+    Object_isGreaterThan :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="isNotEqualTo:", objc_name="isNotEqualTo")
+    Object_isNotEqualTo :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="doesContain:", objc_name="doesContain")
+    Object_doesContain :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="isLike:", objc_name="isLike")
+    Object_isLike :: proc(self: ^Object, object: ^String) -> bool ---
+
+    @(objc_type=Object, objc_selector="isCaseInsensitiveLike:", objc_name="isCaseInsensitiveLike")
+    Object_isCaseInsensitiveLike :: proc(self: ^Object, object: ^String) -> bool ---
+
+    @(objc_type=Object, objc_selector="scriptingIsEqualTo:", objc_name="scriptingIsEqualTo")
+    Object_scriptingIsEqualTo :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="scriptingIsLessThanOrEqualTo:", objc_name="scriptingIsLessThanOrEqualTo")
+    Object_scriptingIsLessThanOrEqualTo :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="scriptingIsLessThan:", objc_name="scriptingIsLessThan")
+    Object_scriptingIsLessThan :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="scriptingIsGreaterThanOrEqualTo:", objc_name="scriptingIsGreaterThanOrEqualTo")
+    Object_scriptingIsGreaterThanOrEqualTo :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="scriptingIsGreaterThan:", objc_name="scriptingIsGreaterThan")
+    Object_scriptingIsGreaterThan :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="scriptingBeginsWith:", objc_name="scriptingBeginsWith")
+    Object_scriptingBeginsWith :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="scriptingEndsWith:", objc_name="scriptingEndsWith")
+    Object_scriptingEndsWith :: proc(self: ^Object, object: id) -> bool ---
+
+    @(objc_type=Object, objc_selector="scriptingContains:", objc_name="scriptingContains")
+    Object_scriptingContains :: proc(self: ^Object, object: id) -> bool ---
+}
+
 @(objc_type=Object, objc_name="attemptRecoveryFromError")
 Object_attemptRecoveryFromError :: proc {
     Object_attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo,

@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSAttributedString
 ///
-@(objc_class="NSAttributedString")
+@(objc_class="NSAttributedString", objc_superclass=Object)
 AttributedString :: struct { using _: Object, 
     using _: Copying,
     using _: MutableCopying,

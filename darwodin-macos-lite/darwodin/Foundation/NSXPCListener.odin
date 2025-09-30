@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSXPCListener
 ///
-@(objc_class="NSXPCListener")
+@(objc_class="NSXPCListener", objc_superclass=Object)
 XPCListener :: struct { using _: Object, }
 

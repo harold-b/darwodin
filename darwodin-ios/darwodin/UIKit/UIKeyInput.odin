@@ -21,15 +21,14 @@ KeyInput :: struct { using _: intrinsics.objc_object,
     using _: TextInputTraitsProtocol,
 }
 
-@(objc_type=KeyInput, objc_name="insertText")
-KeyInput_insertText :: #force_inline proc "c" (self: ^KeyInput, text: ^NS.String) {
-    msgSend(nil, self, "insertText:", text)
-}
-@(objc_type=KeyInput, objc_name="deleteBackward")
-KeyInput_deleteBackward :: #force_inline proc "c" (self: ^KeyInput) {
-    msgSend(nil, self, "deleteBackward")
-}
-@(objc_type=KeyInput, objc_name="hasText")
-KeyInput_hasText :: #force_inline proc "c" (self: ^KeyInput) -> bool {
-    return msgSend(bool, self, "hasText")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=KeyInput, objc_selector="insertText:", objc_name="insertText")
+    KeyInput_insertText :: proc(self: ^KeyInput, text: ^NS.String) ---
+
+    @(objc_type=KeyInput, objc_selector="deleteBackward", objc_name="deleteBackward")
+    KeyInput_deleteBackward :: proc(self: ^KeyInput) ---
+
+    @(objc_type=KeyInput, objc_selector="hasText", objc_name="hasText")
+    KeyInput_hasText :: proc(self: ^KeyInput) -> bool ---
 }

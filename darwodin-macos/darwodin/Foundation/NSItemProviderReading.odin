@@ -18,11 +18,11 @@ ItemProviderReading :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=ItemProviderReading, objc_name="objectWithItemProviderData", objc_is_class_method=true)
-ItemProviderReading_objectWithItemProviderData :: #force_inline proc "c" (data: ^Data, typeIdentifier: ^String, outError: ^^Error) -> ^ItemProviderReading {
-    return msgSend(^ItemProviderReading, ItemProviderReading, "objectWithItemProviderData:typeIdentifier:error:", data, typeIdentifier, outError)
-}
-@(objc_type=ItemProviderReading, objc_name="readableTypeIdentifiersForItemProvider", objc_is_class_method=true)
-ItemProviderReading_readableTypeIdentifiersForItemProvider :: #force_inline proc "c" () -> ^Array {
-    return msgSend(^Array, ItemProviderReading, "readableTypeIdentifiersForItemProvider")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ItemProviderReading, objc_selector="objectWithItemProviderData:typeIdentifier:error:", objc_name="objectWithItemProviderData", objc_is_class_method=true)
+    ItemProviderReading_objectWithItemProviderData :: proc(data: ^Data, typeIdentifier: ^String, outError: ^^Error) -> ^ItemProviderReading ---
+
+    @(objc_type=ItemProviderReading, objc_selector="readableTypeIdentifiersForItemProvider", objc_name="readableTypeIdentifiersForItemProvider", objc_is_class_method=true)
+    ItemProviderReading_readableTypeIdentifiersForItemProvider :: proc() -> ^Array ---
 }

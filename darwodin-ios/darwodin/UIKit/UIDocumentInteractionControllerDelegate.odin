@@ -21,55 +21,45 @@ DocumentInteractionControllerDelegate :: struct { using _: intrinsics.objc_objec
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerViewControllerForPreview")
-DocumentInteractionControllerDelegate_documentInteractionControllerViewControllerForPreview :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) -> ^ViewController {
-    return msgSend(^ViewController, self, "documentInteractionControllerViewControllerForPreview:", controller)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerViewControllerForPreview:", objc_name="documentInteractionControllerViewControllerForPreview")
+    DocumentInteractionControllerDelegate_documentInteractionControllerViewControllerForPreview :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) -> ^ViewController ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerRectForPreview:", objc_name="documentInteractionControllerRectForPreview")
+    DocumentInteractionControllerDelegate_documentInteractionControllerRectForPreview :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) -> CG.Rect ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerViewForPreview:", objc_name="documentInteractionControllerViewForPreview")
+    DocumentInteractionControllerDelegate_documentInteractionControllerViewForPreview :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) -> ^View ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerWillBeginPreview:", objc_name="documentInteractionControllerWillBeginPreview")
+    DocumentInteractionControllerDelegate_documentInteractionControllerWillBeginPreview :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerDidEndPreview:", objc_name="documentInteractionControllerDidEndPreview")
+    DocumentInteractionControllerDelegate_documentInteractionControllerDidEndPreview :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerWillPresentOptionsMenu:", objc_name="documentInteractionControllerWillPresentOptionsMenu")
+    DocumentInteractionControllerDelegate_documentInteractionControllerWillPresentOptionsMenu :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerDidDismissOptionsMenu:", objc_name="documentInteractionControllerDidDismissOptionsMenu")
+    DocumentInteractionControllerDelegate_documentInteractionControllerDidDismissOptionsMenu :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerWillPresentOpenInMenu:", objc_name="documentInteractionControllerWillPresentOpenInMenu")
+    DocumentInteractionControllerDelegate_documentInteractionControllerWillPresentOpenInMenu :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionControllerDidDismissOpenInMenu:", objc_name="documentInteractionControllerDidDismissOpenInMenu")
+    DocumentInteractionControllerDelegate_documentInteractionControllerDidDismissOpenInMenu :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionController:willBeginSendingToApplication:", objc_name="documentInteractionController_willBeginSendingToApplication")
+    DocumentInteractionControllerDelegate_documentInteractionController_willBeginSendingToApplication :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController, application: ^NS.String) ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionController:didEndSendingToApplication:", objc_name="documentInteractionController_didEndSendingToApplication")
+    DocumentInteractionControllerDelegate_documentInteractionController_didEndSendingToApplication :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController, application: ^NS.String) ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionController:canPerformAction:", objc_name="documentInteractionController_canPerformAction")
+    DocumentInteractionControllerDelegate_documentInteractionController_canPerformAction :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController, action: SEL) -> bool ---
+
+    @(objc_type=DocumentInteractionControllerDelegate, objc_selector="documentInteractionController:performAction:", objc_name="documentInteractionController_performAction")
+    DocumentInteractionControllerDelegate_documentInteractionController_performAction :: proc(self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController, action: SEL) -> bool ---
 }
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerRectForPreview")
-DocumentInteractionControllerDelegate_documentInteractionControllerRectForPreview :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) -> CG.Rect {
-    return msgSend(CG.Rect, self, "documentInteractionControllerRectForPreview:", controller)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerViewForPreview")
-DocumentInteractionControllerDelegate_documentInteractionControllerViewForPreview :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) -> ^View {
-    return msgSend(^View, self, "documentInteractionControllerViewForPreview:", controller)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerWillBeginPreview")
-DocumentInteractionControllerDelegate_documentInteractionControllerWillBeginPreview :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) {
-    msgSend(nil, self, "documentInteractionControllerWillBeginPreview:", controller)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerDidEndPreview")
-DocumentInteractionControllerDelegate_documentInteractionControllerDidEndPreview :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) {
-    msgSend(nil, self, "documentInteractionControllerDidEndPreview:", controller)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerWillPresentOptionsMenu")
-DocumentInteractionControllerDelegate_documentInteractionControllerWillPresentOptionsMenu :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) {
-    msgSend(nil, self, "documentInteractionControllerWillPresentOptionsMenu:", controller)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerDidDismissOptionsMenu")
-DocumentInteractionControllerDelegate_documentInteractionControllerDidDismissOptionsMenu :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) {
-    msgSend(nil, self, "documentInteractionControllerDidDismissOptionsMenu:", controller)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerWillPresentOpenInMenu")
-DocumentInteractionControllerDelegate_documentInteractionControllerWillPresentOpenInMenu :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) {
-    msgSend(nil, self, "documentInteractionControllerWillPresentOpenInMenu:", controller)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionControllerDidDismissOpenInMenu")
-DocumentInteractionControllerDelegate_documentInteractionControllerDidDismissOpenInMenu :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController) {
-    msgSend(nil, self, "documentInteractionControllerDidDismissOpenInMenu:", controller)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionController_willBeginSendingToApplication")
-DocumentInteractionControllerDelegate_documentInteractionController_willBeginSendingToApplication :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController, application: ^NS.String) {
-    msgSend(nil, self, "documentInteractionController:willBeginSendingToApplication:", controller, application)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionController_didEndSendingToApplication")
-DocumentInteractionControllerDelegate_documentInteractionController_didEndSendingToApplication :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController, application: ^NS.String) {
-    msgSend(nil, self, "documentInteractionController:didEndSendingToApplication:", controller, application)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionController_canPerformAction")
-DocumentInteractionControllerDelegate_documentInteractionController_canPerformAction :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController, action: SEL) -> bool {
-    return msgSend(bool, self, "documentInteractionController:canPerformAction:", controller, action)
-}
-@(objc_type=DocumentInteractionControllerDelegate, objc_name="documentInteractionController_performAction")
-DocumentInteractionControllerDelegate_documentInteractionController_performAction :: #force_inline proc "c" (self: ^DocumentInteractionControllerDelegate, controller: ^DocumentInteractionController, action: SEL) -> bool {
-    return msgSend(bool, self, "documentInteractionController:performAction:", controller, action)
-}
+

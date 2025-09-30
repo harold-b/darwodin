@@ -21,79 +21,62 @@ DraggingInfo :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DraggingInfo, objc_name="slideDraggedImageTo")
-DraggingInfo_slideDraggedImageTo :: #force_inline proc "c" (self: ^DraggingInfo, screenPoint: CG.Point) {
-    msgSend(nil, self, "slideDraggedImageTo:", screenPoint)
-}
-@(objc_type=DraggingInfo, objc_name="namesOfPromisedFilesDroppedAtDestination")
-DraggingInfo_namesOfPromisedFilesDroppedAtDestination :: #force_inline proc "c" (self: ^DraggingInfo, dropDestination: ^NS.URL) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "namesOfPromisedFilesDroppedAtDestination:", dropDestination)
-}
-@(objc_type=DraggingInfo, objc_name="enumerateDraggingItemsWithOptions")
-DraggingInfo_enumerateDraggingItemsWithOptions :: #force_inline proc "c" (self: ^DraggingInfo, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool))) {
-    msgSend(nil, self, "enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:", enumOpts, view, classArray, searchOptions, block)
-}
-@(objc_type=DraggingInfo, objc_name="resetSpringLoading")
-DraggingInfo_resetSpringLoading :: #force_inline proc "c" (self: ^DraggingInfo) {
-    msgSend(nil, self, "resetSpringLoading")
-}
-@(objc_type=DraggingInfo, objc_name="draggingDestinationWindow")
-DraggingInfo_draggingDestinationWindow :: #force_inline proc "c" (self: ^DraggingInfo) -> ^Window {
-    return msgSend(^Window, self, "draggingDestinationWindow")
-}
-@(objc_type=DraggingInfo, objc_name="draggingSourceOperationMask")
-DraggingInfo_draggingSourceOperationMask :: #force_inline proc "c" (self: ^DraggingInfo) -> DragOperation {
-    return msgSend(DragOperation, self, "draggingSourceOperationMask")
-}
-@(objc_type=DraggingInfo, objc_name="draggingLocation")
-DraggingInfo_draggingLocation :: #force_inline proc "c" (self: ^DraggingInfo) -> CG.Point {
-    return msgSend(CG.Point, self, "draggingLocation")
-}
-@(objc_type=DraggingInfo, objc_name="draggedImageLocation")
-DraggingInfo_draggedImageLocation :: #force_inline proc "c" (self: ^DraggingInfo) -> CG.Point {
-    return msgSend(CG.Point, self, "draggedImageLocation")
-}
-@(objc_type=DraggingInfo, objc_name="draggedImage")
-DraggingInfo_draggedImage :: #force_inline proc "c" (self: ^DraggingInfo) -> ^NS.Image {
-    return msgSend(^NS.Image, self, "draggedImage")
-}
-@(objc_type=DraggingInfo, objc_name="draggingPasteboard")
-DraggingInfo_draggingPasteboard :: #force_inline proc "c" (self: ^DraggingInfo) -> ^Pasteboard {
-    return msgSend(^Pasteboard, self, "draggingPasteboard")
-}
-@(objc_type=DraggingInfo, objc_name="draggingSource")
-DraggingInfo_draggingSource :: #force_inline proc "c" (self: ^DraggingInfo) -> id {
-    return msgSend(id, self, "draggingSource")
-}
-@(objc_type=DraggingInfo, objc_name="draggingSequenceNumber")
-DraggingInfo_draggingSequenceNumber :: #force_inline proc "c" (self: ^DraggingInfo) -> NS.Integer {
-    return msgSend(NS.Integer, self, "draggingSequenceNumber")
-}
-@(objc_type=DraggingInfo, objc_name="draggingFormation")
-DraggingInfo_draggingFormation :: #force_inline proc "c" (self: ^DraggingInfo) -> DraggingFormation {
-    return msgSend(DraggingFormation, self, "draggingFormation")
-}
-@(objc_type=DraggingInfo, objc_name="setDraggingFormation")
-DraggingInfo_setDraggingFormation :: #force_inline proc "c" (self: ^DraggingInfo, draggingFormation: DraggingFormation) {
-    msgSend(nil, self, "setDraggingFormation:", draggingFormation)
-}
-@(objc_type=DraggingInfo, objc_name="animatesToDestination")
-DraggingInfo_animatesToDestination :: #force_inline proc "c" (self: ^DraggingInfo) -> bool {
-    return msgSend(bool, self, "animatesToDestination")
-}
-@(objc_type=DraggingInfo, objc_name="setAnimatesToDestination")
-DraggingInfo_setAnimatesToDestination :: #force_inline proc "c" (self: ^DraggingInfo, animatesToDestination: bool) {
-    msgSend(nil, self, "setAnimatesToDestination:", animatesToDestination)
-}
-@(objc_type=DraggingInfo, objc_name="numberOfValidItemsForDrop")
-DraggingInfo_numberOfValidItemsForDrop :: #force_inline proc "c" (self: ^DraggingInfo) -> NS.Integer {
-    return msgSend(NS.Integer, self, "numberOfValidItemsForDrop")
-}
-@(objc_type=DraggingInfo, objc_name="setNumberOfValidItemsForDrop")
-DraggingInfo_setNumberOfValidItemsForDrop :: #force_inline proc "c" (self: ^DraggingInfo, numberOfValidItemsForDrop: NS.Integer) {
-    msgSend(nil, self, "setNumberOfValidItemsForDrop:", numberOfValidItemsForDrop)
-}
-@(objc_type=DraggingInfo, objc_name="springLoadingHighlight")
-DraggingInfo_springLoadingHighlight :: #force_inline proc "c" (self: ^DraggingInfo) -> SpringLoadingHighlight {
-    return msgSend(SpringLoadingHighlight, self, "springLoadingHighlight")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DraggingInfo, objc_selector="slideDraggedImageTo:", objc_name="slideDraggedImageTo")
+    DraggingInfo_slideDraggedImageTo :: proc(self: ^DraggingInfo, screenPoint: CG.Point) ---
+
+    @(objc_type=DraggingInfo, objc_selector="namesOfPromisedFilesDroppedAtDestination:", objc_name="namesOfPromisedFilesDroppedAtDestination")
+    DraggingInfo_namesOfPromisedFilesDroppedAtDestination :: proc(self: ^DraggingInfo, dropDestination: ^NS.URL) -> ^NS.Array ---
+
+    @(objc_type=DraggingInfo, objc_selector="enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:", objc_name="enumerateDraggingItemsWithOptions")
+    DraggingInfo_enumerateDraggingItemsWithOptions :: proc(self: ^DraggingInfo, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool))) ---
+
+    @(objc_type=DraggingInfo, objc_selector="resetSpringLoading", objc_name="resetSpringLoading")
+    DraggingInfo_resetSpringLoading :: proc(self: ^DraggingInfo) ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggingDestinationWindow", objc_name="draggingDestinationWindow")
+    DraggingInfo_draggingDestinationWindow :: proc(self: ^DraggingInfo) -> ^Window ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggingSourceOperationMask", objc_name="draggingSourceOperationMask")
+    DraggingInfo_draggingSourceOperationMask :: proc(self: ^DraggingInfo) -> DragOperation ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggingLocation", objc_name="draggingLocation")
+    DraggingInfo_draggingLocation :: proc(self: ^DraggingInfo) -> CG.Point ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggedImageLocation", objc_name="draggedImageLocation")
+    DraggingInfo_draggedImageLocation :: proc(self: ^DraggingInfo) -> CG.Point ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggedImage", objc_name="draggedImage")
+    DraggingInfo_draggedImage :: proc(self: ^DraggingInfo) -> ^NS.Image ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggingPasteboard", objc_name="draggingPasteboard")
+    DraggingInfo_draggingPasteboard :: proc(self: ^DraggingInfo) -> ^Pasteboard ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggingSource", objc_name="draggingSource")
+    DraggingInfo_draggingSource :: proc(self: ^DraggingInfo) -> id ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggingSequenceNumber", objc_name="draggingSequenceNumber")
+    DraggingInfo_draggingSequenceNumber :: proc(self: ^DraggingInfo) -> NS.Integer ---
+
+    @(objc_type=DraggingInfo, objc_selector="draggingFormation", objc_name="draggingFormation")
+    DraggingInfo_draggingFormation :: proc(self: ^DraggingInfo) -> DraggingFormation ---
+
+    @(objc_type=DraggingInfo, objc_selector="setDraggingFormation:", objc_name="setDraggingFormation")
+    DraggingInfo_setDraggingFormation :: proc(self: ^DraggingInfo, draggingFormation: DraggingFormation) ---
+
+    @(objc_type=DraggingInfo, objc_selector="animatesToDestination", objc_name="animatesToDestination")
+    DraggingInfo_animatesToDestination :: proc(self: ^DraggingInfo) -> bool ---
+
+    @(objc_type=DraggingInfo, objc_selector="setAnimatesToDestination:", objc_name="setAnimatesToDestination")
+    DraggingInfo_setAnimatesToDestination :: proc(self: ^DraggingInfo, animatesToDestination: bool) ---
+
+    @(objc_type=DraggingInfo, objc_selector="numberOfValidItemsForDrop", objc_name="numberOfValidItemsForDrop")
+    DraggingInfo_numberOfValidItemsForDrop :: proc(self: ^DraggingInfo) -> NS.Integer ---
+
+    @(objc_type=DraggingInfo, objc_selector="setNumberOfValidItemsForDrop:", objc_name="setNumberOfValidItemsForDrop")
+    DraggingInfo_setNumberOfValidItemsForDrop :: proc(self: ^DraggingInfo, numberOfValidItemsForDrop: NS.Integer) ---
+
+    @(objc_type=DraggingInfo, objc_selector="springLoadingHighlight", objc_name="springLoadingHighlight")
+    DraggingInfo_springLoadingHighlight :: proc(self: ^DraggingInfo) -> SpringLoadingHighlight ---
 }

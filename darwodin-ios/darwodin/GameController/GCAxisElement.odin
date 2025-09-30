@@ -19,11 +19,11 @@ AxisElement :: struct { using _: intrinsics.objc_object,
     using _: PhysicalInputElement,
 }
 
-@(objc_type=AxisElement, objc_name="absoluteInput")
-AxisElement_absoluteInput :: #force_inline proc "c" (self: ^AxisElement) -> ^AxisInput {
-    return msgSend(^AxisInput, self, "absoluteInput")
-}
-@(objc_type=AxisElement, objc_name="relativeInput")
-AxisElement_relativeInput :: #force_inline proc "c" (self: ^AxisElement) -> ^RelativeInput {
-    return msgSend(^RelativeInput, self, "relativeInput")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AxisElement, objc_selector="absoluteInput", objc_name="absoluteInput")
+    AxisElement_absoluteInput :: proc(self: ^AxisElement) -> ^AxisInput ---
+
+    @(objc_type=AxisElement, objc_selector="relativeInput", objc_name="relativeInput")
+    AxisElement_relativeInput :: proc(self: ^AxisElement) -> ^RelativeInput ---
 }

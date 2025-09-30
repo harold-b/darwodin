@@ -18,7 +18,8 @@ ProgressReporting :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=ProgressReporting, objc_name="progress")
-ProgressReporting_progress :: #force_inline proc "c" (self: ^ProgressReporting) -> ^Progress {
-    return msgSend(^Progress, self, "progress")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ProgressReporting, objc_selector="progress", objc_name="progress")
+    ProgressReporting_progress :: proc(self: ^ProgressReporting) -> ^Progress ---
 }

@@ -21,31 +21,27 @@ DocumentBrowserViewControllerDelegate :: struct { using _: intrinsics.objc_objec
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_didPickDocumentURLs")
-DocumentBrowserViewControllerDelegate_documentBrowser_didPickDocumentURLs :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURLs: ^NS.Array) {
-    msgSend(nil, self, "documentBrowser:didPickDocumentURLs:", controller, documentURLs)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:didPickDocumentURLs:", objc_name="documentBrowser_didPickDocumentURLs")
+    DocumentBrowserViewControllerDelegate_documentBrowser_didPickDocumentURLs :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURLs: ^NS.Array) ---
+
+    @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:didPickDocumentsAtURLs:", objc_name="documentBrowser_didPickDocumentsAtURLs")
+    DocumentBrowserViewControllerDelegate_documentBrowser_didPickDocumentsAtURLs :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURLs: ^NS.Array) ---
+
+    @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:didRequestDocumentCreationWithHandler:", objc_name="documentBrowser_didRequestDocumentCreationWithHandler")
+    DocumentBrowserViewControllerDelegate_documentBrowser_didRequestDocumentCreationWithHandler :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, importHandler: ^Objc_Block(proc "c" (urlToImport: ^NS.URL, importMode: DocumentBrowserImportMode))) ---
+
+    @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:didImportDocumentAtURL:toDestinationURL:", objc_name="documentBrowser_didImportDocumentAtURL_toDestinationURL")
+    DocumentBrowserViewControllerDelegate_documentBrowser_didImportDocumentAtURL_toDestinationURL :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, sourceURL: ^NS.URL, destinationURL: ^NS.URL) ---
+
+    @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:failedToImportDocumentAtURL:error:", objc_name="documentBrowser_failedToImportDocumentAtURL_error")
+    DocumentBrowserViewControllerDelegate_documentBrowser_failedToImportDocumentAtURL_error :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURL: ^NS.URL, error: ^NS.Error) ---
+
+    @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:applicationActivitiesForDocumentURLs:", objc_name="documentBrowser_applicationActivitiesForDocumentURLs")
+    DocumentBrowserViewControllerDelegate_documentBrowser_applicationActivitiesForDocumentURLs :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURLs: ^NS.Array) -> ^NS.Array ---
+
+    @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:willPresentActivityViewController:", objc_name="documentBrowser_willPresentActivityViewController")
+    DocumentBrowserViewControllerDelegate_documentBrowser_willPresentActivityViewController :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, activityViewController: ^ActivityViewController) ---
 }
-@(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_didPickDocumentsAtURLs")
-DocumentBrowserViewControllerDelegate_documentBrowser_didPickDocumentsAtURLs :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURLs: ^NS.Array) {
-    msgSend(nil, self, "documentBrowser:didPickDocumentsAtURLs:", controller, documentURLs)
-}
-@(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_didRequestDocumentCreationWithHandler")
-DocumentBrowserViewControllerDelegate_documentBrowser_didRequestDocumentCreationWithHandler :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, importHandler: ^Objc_Block(proc "c" (urlToImport: ^NS.URL, importMode: DocumentBrowserImportMode))) {
-    msgSend(nil, self, "documentBrowser:didRequestDocumentCreationWithHandler:", controller, importHandler)
-}
-@(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_didImportDocumentAtURL_toDestinationURL")
-DocumentBrowserViewControllerDelegate_documentBrowser_didImportDocumentAtURL_toDestinationURL :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, sourceURL: ^NS.URL, destinationURL: ^NS.URL) {
-    msgSend(nil, self, "documentBrowser:didImportDocumentAtURL:toDestinationURL:", controller, sourceURL, destinationURL)
-}
-@(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_failedToImportDocumentAtURL_error")
-DocumentBrowserViewControllerDelegate_documentBrowser_failedToImportDocumentAtURL_error :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURL: ^NS.URL, error: ^NS.Error) {
-    msgSend(nil, self, "documentBrowser:failedToImportDocumentAtURL:error:", controller, documentURL, error)
-}
-@(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_applicationActivitiesForDocumentURLs")
-DocumentBrowserViewControllerDelegate_documentBrowser_applicationActivitiesForDocumentURLs :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURLs: ^NS.Array) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "documentBrowser:applicationActivitiesForDocumentURLs:", controller, documentURLs)
-}
-@(objc_type=DocumentBrowserViewControllerDelegate, objc_name="documentBrowser_willPresentActivityViewController")
-DocumentBrowserViewControllerDelegate_documentBrowser_willPresentActivityViewController :: #force_inline proc "c" (self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, activityViewController: ^ActivityViewController) {
-    msgSend(nil, self, "documentBrowser:willPresentActivityViewController:", controller, activityViewController)
-}
+

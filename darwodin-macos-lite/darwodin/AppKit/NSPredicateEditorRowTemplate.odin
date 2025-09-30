@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSPredicateEditorRowTemplate
 ///
-@(objc_class="NSPredicateEditorRowTemplate")
+@(objc_class="NSPredicateEditorRowTemplate", objc_superclass=NS.Object)
 PredicateEditorRowTemplate :: struct { using _: NS.Object, 
     using _: NS.Coding,
     using _: NS.Copying,

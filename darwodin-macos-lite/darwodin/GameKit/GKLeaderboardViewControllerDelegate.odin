@@ -18,7 +18,8 @@ LeaderboardViewControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=LeaderboardViewControllerDelegate, objc_name="leaderboardViewControllerDidFinish")
-LeaderboardViewControllerDelegate_leaderboardViewControllerDidFinish :: #force_inline proc "c" (self: ^LeaderboardViewControllerDelegate, viewController: ^LeaderboardViewController) {
-    msgSend(nil, self, "leaderboardViewControllerDidFinish:", viewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LeaderboardViewControllerDelegate, objc_selector="leaderboardViewControllerDidFinish:", objc_name="leaderboardViewControllerDidFinish")
+    LeaderboardViewControllerDelegate_leaderboardViewControllerDidFinish :: proc(self: ^LeaderboardViewControllerDelegate, viewController: ^LeaderboardViewController) ---
 }

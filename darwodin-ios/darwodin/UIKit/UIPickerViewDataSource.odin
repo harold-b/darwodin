@@ -21,11 +21,11 @@ PickerViewDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PickerViewDataSource, objc_name="numberOfComponentsInPickerView")
-PickerViewDataSource_numberOfComponentsInPickerView :: #force_inline proc "c" (self: ^PickerViewDataSource, pickerView: ^PickerView) -> NS.Integer {
-    return msgSend(NS.Integer, self, "numberOfComponentsInPickerView:", pickerView)
-}
-@(objc_type=PickerViewDataSource, objc_name="pickerView")
-PickerViewDataSource_pickerView :: #force_inline proc "c" (self: ^PickerViewDataSource, pickerView: ^PickerView, component: NS.Integer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "pickerView:numberOfRowsInComponent:", pickerView, component)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PickerViewDataSource, objc_selector="numberOfComponentsInPickerView:", objc_name="numberOfComponentsInPickerView")
+    PickerViewDataSource_numberOfComponentsInPickerView :: proc(self: ^PickerViewDataSource, pickerView: ^PickerView) -> NS.Integer ---
+
+    @(objc_type=PickerViewDataSource, objc_selector="pickerView:numberOfRowsInComponent:", objc_name="pickerView")
+    PickerViewDataSource_pickerView :: proc(self: ^PickerViewDataSource, pickerView: ^PickerView, component: NS.Integer) -> NS.Integer ---
 }

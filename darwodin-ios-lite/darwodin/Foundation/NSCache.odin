@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSCache
 ///
-@(objc_class="NSCache")
+@(objc_class="NSCache", objc_superclass=Object)
 Cache :: struct { using _: Object, }
 

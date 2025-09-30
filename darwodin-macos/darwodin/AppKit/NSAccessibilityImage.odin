@@ -21,7 +21,8 @@ AccessibilityImage :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
-@(objc_type=AccessibilityImage, objc_name="accessibilityLabel")
-AccessibilityImage_accessibilityLabel :: #force_inline proc "c" (self: ^AccessibilityImage) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityLabel")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityImage, objc_selector="accessibilityLabel", objc_name="accessibilityLabel")
+    AccessibilityImage_accessibilityLabel :: proc(self: ^AccessibilityImage) -> ^NS.String ---
 }

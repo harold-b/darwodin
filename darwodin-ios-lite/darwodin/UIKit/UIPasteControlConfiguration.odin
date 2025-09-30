@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPasteControlConfiguration
 ///
-@(objc_class="UIPasteControlConfiguration")
+@(objc_class="UIPasteControlConfiguration", objc_superclass=NS.Object)
 PasteControlConfiguration :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }

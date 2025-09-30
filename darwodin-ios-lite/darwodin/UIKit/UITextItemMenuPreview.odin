@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITextItemMenuPreview
 ///
-@(objc_class="UITextItemMenuPreview")
+@(objc_class="UITextItemMenuPreview", objc_superclass=NS.Object)
 TextItemMenuPreview :: struct { using _: NS.Object, }
 

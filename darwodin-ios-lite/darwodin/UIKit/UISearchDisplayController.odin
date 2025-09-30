@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISearchDisplayController
 ///
-@(objc_class="UISearchDisplayController")
+@(objc_class="UISearchDisplayController", objc_superclass=NS.Object)
 SearchDisplayController :: struct { using _: NS.Object, }
 

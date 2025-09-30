@@ -21,7 +21,8 @@ WindowRestoration :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=WindowRestoration, objc_name="restoreWindowWithIdentifier", objc_is_class_method=true)
-WindowRestoration_restoreWindowWithIdentifier :: #force_inline proc "c" (identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^Window, _1: ^NS.Error))) {
-    msgSend(nil, WindowRestoration, "restoreWindowWithIdentifier:state:completionHandler:", identifier, state, completionHandler)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=WindowRestoration, objc_selector="restoreWindowWithIdentifier:state:completionHandler:", objc_name="restoreWindowWithIdentifier", objc_is_class_method=true)
+    WindowRestoration_restoreWindowWithIdentifier :: proc(identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^Window, _1: ^NS.Error))) ---
 }

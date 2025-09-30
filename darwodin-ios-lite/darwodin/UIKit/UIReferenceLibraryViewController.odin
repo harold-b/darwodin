@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIReferenceLibraryViewController
 ///
-@(objc_class="UIReferenceLibraryViewController")
+@(objc_class="UIReferenceLibraryViewController", objc_superclass=ViewController)
 ReferenceLibraryViewController :: struct { using _: ViewController, }
 

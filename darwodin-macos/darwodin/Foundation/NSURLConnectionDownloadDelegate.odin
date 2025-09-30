@@ -18,15 +18,14 @@ URLConnectionDownloadDelegate :: struct { using _: intrinsics.objc_object,
     using _: URLConnectionDelegate,
 }
 
-@(objc_type=URLConnectionDownloadDelegate, objc_name="connection")
-URLConnectionDownloadDelegate_connection :: #force_inline proc "c" (self: ^URLConnectionDownloadDelegate, connection: ^URLConnection, bytesWritten: cffi.longlong, totalBytesWritten: cffi.longlong, expectedTotalBytes: cffi.longlong) {
-    msgSend(nil, self, "connection:didWriteData:totalBytesWritten:expectedTotalBytes:", connection, bytesWritten, totalBytesWritten, expectedTotalBytes)
-}
-@(objc_type=URLConnectionDownloadDelegate, objc_name="connectionDidResumeDownloading")
-URLConnectionDownloadDelegate_connectionDidResumeDownloading :: #force_inline proc "c" (self: ^URLConnectionDownloadDelegate, connection: ^URLConnection, totalBytesWritten: cffi.longlong, expectedTotalBytes: cffi.longlong) {
-    msgSend(nil, self, "connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:", connection, totalBytesWritten, expectedTotalBytes)
-}
-@(objc_type=URLConnectionDownloadDelegate, objc_name="connectionDidFinishDownloading")
-URLConnectionDownloadDelegate_connectionDidFinishDownloading :: #force_inline proc "c" (self: ^URLConnectionDownloadDelegate, connection: ^URLConnection, destinationURL: ^URL) {
-    msgSend(nil, self, "connectionDidFinishDownloading:destinationURL:", connection, destinationURL)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=URLConnectionDownloadDelegate, objc_selector="connection:didWriteData:totalBytesWritten:expectedTotalBytes:", objc_name="connection")
+    URLConnectionDownloadDelegate_connection :: proc(self: ^URLConnectionDownloadDelegate, connection: ^URLConnection, bytesWritten: cffi.longlong, totalBytesWritten: cffi.longlong, expectedTotalBytes: cffi.longlong) ---
+
+    @(objc_type=URLConnectionDownloadDelegate, objc_selector="connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:", objc_name="connectionDidResumeDownloading")
+    URLConnectionDownloadDelegate_connectionDidResumeDownloading :: proc(self: ^URLConnectionDownloadDelegate, connection: ^URLConnection, totalBytesWritten: cffi.longlong, expectedTotalBytes: cffi.longlong) ---
+
+    @(objc_type=URLConnectionDownloadDelegate, objc_selector="connectionDidFinishDownloading:destinationURL:", objc_name="connectionDidFinishDownloading")
+    URLConnectionDownloadDelegate_connectionDidFinishDownloading :: proc(self: ^URLConnectionDownloadDelegate, connection: ^URLConnection, destinationURL: ^URL) ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPointerLiftEffect
 ///
-@(objc_class="UIPointerLiftEffect")
+@(objc_class="UIPointerLiftEffect", objc_superclass=PointerEffect)
 PointerLiftEffect :: struct { using _: PointerEffect, }
 

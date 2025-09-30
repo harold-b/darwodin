@@ -21,127 +21,99 @@ TableViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 
-@(objc_type=TableViewDelegate, objc_name="tableView_viewForTableColumn_row")
-TableViewDelegate_tableView_viewForTableColumn_row :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> ^View {
-    return msgSend(^View, self, "tableView:viewForTableColumn:row:", tableView, tableColumn, row)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TableViewDelegate, objc_selector="tableView:viewForTableColumn:row:", objc_name="tableView_viewForTableColumn_row")
+    TableViewDelegate_tableView_viewForTableColumn_row :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> ^View ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:rowViewForRow:", objc_name="tableView_rowViewForRow")
+    TableViewDelegate_tableView_rowViewForRow :: proc(self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer) -> ^TableRowView ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:didAddRowView:forRow:", objc_name="tableView_didAddRowView_forRow")
+    TableViewDelegate_tableView_didAddRowView_forRow :: proc(self: ^TableViewDelegate, tableView: ^TableView, rowView: ^TableRowView, row: NS.Integer) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:didRemoveRowView:forRow:", objc_name="tableView_didRemoveRowView_forRow")
+    TableViewDelegate_tableView_didRemoveRowView_forRow :: proc(self: ^TableViewDelegate, tableView: ^TableView, rowView: ^TableRowView, row: NS.Integer) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:willDisplayCell:forTableColumn:row:", objc_name="tableView_willDisplayCell_forTableColumn_row")
+    TableViewDelegate_tableView_willDisplayCell_forTableColumn_row :: proc(self: ^TableViewDelegate, tableView: ^TableView, cell: id, tableColumn: ^TableColumn, row: NS.Integer) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:shouldEditTableColumn:row:", objc_name="tableView_shouldEditTableColumn_row")
+    TableViewDelegate_tableView_shouldEditTableColumn_row :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:", objc_name="tableView_toolTipForCell_rect_tableColumn_row_mouseLocation")
+    TableViewDelegate_tableView_toolTipForCell_rect_tableColumn_row_mouseLocation :: proc(self: ^TableViewDelegate, tableView: ^TableView, cell: ^Cell, rect: ^NS.Rect, tableColumn: ^TableColumn, row: NS.Integer, mouseLocation: CG.Point) -> ^NS.String ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:shouldShowCellExpansionForTableColumn:row:", objc_name="tableView_shouldShowCellExpansionForTableColumn_row")
+    TableViewDelegate_tableView_shouldShowCellExpansionForTableColumn_row :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:shouldTrackCell:forTableColumn:row:", objc_name="tableView_shouldTrackCell_forTableColumn_row")
+    TableViewDelegate_tableView_shouldTrackCell_forTableColumn_row :: proc(self: ^TableViewDelegate, tableView: ^TableView, cell: ^Cell, tableColumn: ^TableColumn, row: NS.Integer) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:dataCellForTableColumn:row:", objc_name="tableView_dataCellForTableColumn_row")
+    TableViewDelegate_tableView_dataCellForTableColumn_row :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> ^Cell ---
+
+    @(objc_type=TableViewDelegate, objc_selector="selectionShouldChangeInTableView:", objc_name="selectionShouldChangeInTableView")
+    TableViewDelegate_selectionShouldChangeInTableView :: proc(self: ^TableViewDelegate, tableView: ^TableView) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:shouldSelectRow:", objc_name="tableView_shouldSelectRow")
+    TableViewDelegate_tableView_shouldSelectRow :: proc(self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:selectionIndexesForProposedSelection:", objc_name="tableView_selectionIndexesForProposedSelection")
+    TableViewDelegate_tableView_selectionIndexesForProposedSelection :: proc(self: ^TableViewDelegate, tableView: ^TableView, proposedSelectionIndexes: ^NS.IndexSet) -> ^NS.IndexSet ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:shouldSelectTableColumn:", objc_name="tableView_shouldSelectTableColumn")
+    TableViewDelegate_tableView_shouldSelectTableColumn :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:mouseDownInHeaderOfTableColumn:", objc_name="tableView_mouseDownInHeaderOfTableColumn")
+    TableViewDelegate_tableView_mouseDownInHeaderOfTableColumn :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:didClickTableColumn:", objc_name="tableView_didClickTableColumn")
+    TableViewDelegate_tableView_didClickTableColumn :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:didDragTableColumn:", objc_name="tableView_didDragTableColumn")
+    TableViewDelegate_tableView_didDragTableColumn :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:heightOfRow:", objc_name="tableView_heightOfRow")
+    TableViewDelegate_tableView_heightOfRow :: proc(self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer) -> CG.Float ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:typeSelectStringForTableColumn:row:", objc_name="tableView_typeSelectStringForTableColumn_row")
+    TableViewDelegate_tableView_typeSelectStringForTableColumn_row :: proc(self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> ^NS.String ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:nextTypeSelectMatchFromRow:toRow:forString:", objc_name="tableView_nextTypeSelectMatchFromRow_toRow_forString")
+    TableViewDelegate_tableView_nextTypeSelectMatchFromRow_toRow_forString :: proc(self: ^TableViewDelegate, tableView: ^TableView, startRow: NS.Integer, endRow: NS.Integer, searchString: ^NS.String) -> NS.Integer ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:shouldTypeSelectForEvent:withCurrentSearchString:", objc_name="tableView_shouldTypeSelectForEvent_withCurrentSearchString")
+    TableViewDelegate_tableView_shouldTypeSelectForEvent_withCurrentSearchString :: proc(self: ^TableViewDelegate, tableView: ^TableView, event: ^Event, searchString: ^NS.String) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:isGroupRow:", objc_name="tableView_isGroupRow")
+    TableViewDelegate_tableView_isGroupRow :: proc(self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:sizeToFitWidthOfColumn:", objc_name="tableView_sizeToFitWidthOfColumn")
+    TableViewDelegate_tableView_sizeToFitWidthOfColumn :: proc(self: ^TableViewDelegate, tableView: ^TableView, column: NS.Integer) -> CG.Float ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:shouldReorderColumn:toColumn:", objc_name="tableView_shouldReorderColumn_toColumn")
+    TableViewDelegate_tableView_shouldReorderColumn_toColumn :: proc(self: ^TableViewDelegate, tableView: ^TableView, columnIndex: NS.Integer, newColumnIndex: NS.Integer) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:rowActionsForRow:edge:", objc_name="tableView_rowActionsForRow_edge")
+    TableViewDelegate_tableView_rowActionsForRow_edge :: proc(self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer, edge: TableRowActionEdge) -> ^NS.Array ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:userCanChangeVisibilityOfTableColumn:", objc_name="tableView_userCanChangeVisibilityOfTableColumn")
+    TableViewDelegate_tableView_userCanChangeVisibilityOfTableColumn :: proc(self: ^TableViewDelegate, tableView: ^TableView, column: ^TableColumn) -> bool ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableView:userDidChangeVisibilityOfTableColumns:", objc_name="tableView_userDidChangeVisibilityOfTableColumns")
+    TableViewDelegate_tableView_userDidChangeVisibilityOfTableColumns :: proc(self: ^TableViewDelegate, tableView: ^TableView, columns: ^NS.Array) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableViewSelectionDidChange:", objc_name="tableViewSelectionDidChange")
+    TableViewDelegate_tableViewSelectionDidChange :: proc(self: ^TableViewDelegate, notification: ^NS.Notification) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableViewColumnDidMove:", objc_name="tableViewColumnDidMove")
+    TableViewDelegate_tableViewColumnDidMove :: proc(self: ^TableViewDelegate, notification: ^NS.Notification) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableViewColumnDidResize:", objc_name="tableViewColumnDidResize")
+    TableViewDelegate_tableViewColumnDidResize :: proc(self: ^TableViewDelegate, notification: ^NS.Notification) ---
+
+    @(objc_type=TableViewDelegate, objc_selector="tableViewSelectionIsChanging:", objc_name="tableViewSelectionIsChanging")
+    TableViewDelegate_tableViewSelectionIsChanging :: proc(self: ^TableViewDelegate, notification: ^NS.Notification) ---
 }
-@(objc_type=TableViewDelegate, objc_name="tableView_rowViewForRow")
-TableViewDelegate_tableView_rowViewForRow :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer) -> ^TableRowView {
-    return msgSend(^TableRowView, self, "tableView:rowViewForRow:", tableView, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_didAddRowView_forRow")
-TableViewDelegate_tableView_didAddRowView_forRow :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, rowView: ^TableRowView, row: NS.Integer) {
-    msgSend(nil, self, "tableView:didAddRowView:forRow:", tableView, rowView, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_didRemoveRowView_forRow")
-TableViewDelegate_tableView_didRemoveRowView_forRow :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, rowView: ^TableRowView, row: NS.Integer) {
-    msgSend(nil, self, "tableView:didRemoveRowView:forRow:", tableView, rowView, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_willDisplayCell_forTableColumn_row")
-TableViewDelegate_tableView_willDisplayCell_forTableColumn_row :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, cell: id, tableColumn: ^TableColumn, row: NS.Integer) {
-    msgSend(nil, self, "tableView:willDisplayCell:forTableColumn:row:", tableView, cell, tableColumn, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_shouldEditTableColumn_row")
-TableViewDelegate_tableView_shouldEditTableColumn_row :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> bool {
-    return msgSend(bool, self, "tableView:shouldEditTableColumn:row:", tableView, tableColumn, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_toolTipForCell_rect_tableColumn_row_mouseLocation")
-TableViewDelegate_tableView_toolTipForCell_rect_tableColumn_row_mouseLocation :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, cell: ^Cell, rect: ^NS.Rect, tableColumn: ^TableColumn, row: NS.Integer, mouseLocation: CG.Point) -> ^NS.String {
-    return msgSend(^NS.String, self, "tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:", tableView, cell, rect, tableColumn, row, mouseLocation)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_shouldShowCellExpansionForTableColumn_row")
-TableViewDelegate_tableView_shouldShowCellExpansionForTableColumn_row :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> bool {
-    return msgSend(bool, self, "tableView:shouldShowCellExpansionForTableColumn:row:", tableView, tableColumn, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_shouldTrackCell_forTableColumn_row")
-TableViewDelegate_tableView_shouldTrackCell_forTableColumn_row :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, cell: ^Cell, tableColumn: ^TableColumn, row: NS.Integer) -> bool {
-    return msgSend(bool, self, "tableView:shouldTrackCell:forTableColumn:row:", tableView, cell, tableColumn, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_dataCellForTableColumn_row")
-TableViewDelegate_tableView_dataCellForTableColumn_row :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> ^Cell {
-    return msgSend(^Cell, self, "tableView:dataCellForTableColumn:row:", tableView, tableColumn, row)
-}
-@(objc_type=TableViewDelegate, objc_name="selectionShouldChangeInTableView")
-TableViewDelegate_selectionShouldChangeInTableView :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView) -> bool {
-    return msgSend(bool, self, "selectionShouldChangeInTableView:", tableView)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_shouldSelectRow")
-TableViewDelegate_tableView_shouldSelectRow :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer) -> bool {
-    return msgSend(bool, self, "tableView:shouldSelectRow:", tableView, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_selectionIndexesForProposedSelection")
-TableViewDelegate_tableView_selectionIndexesForProposedSelection :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, proposedSelectionIndexes: ^NS.IndexSet) -> ^NS.IndexSet {
-    return msgSend(^NS.IndexSet, self, "tableView:selectionIndexesForProposedSelection:", tableView, proposedSelectionIndexes)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_shouldSelectTableColumn")
-TableViewDelegate_tableView_shouldSelectTableColumn :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn) -> bool {
-    return msgSend(bool, self, "tableView:shouldSelectTableColumn:", tableView, tableColumn)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_mouseDownInHeaderOfTableColumn")
-TableViewDelegate_tableView_mouseDownInHeaderOfTableColumn :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn) {
-    msgSend(nil, self, "tableView:mouseDownInHeaderOfTableColumn:", tableView, tableColumn)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_didClickTableColumn")
-TableViewDelegate_tableView_didClickTableColumn :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn) {
-    msgSend(nil, self, "tableView:didClickTableColumn:", tableView, tableColumn)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_didDragTableColumn")
-TableViewDelegate_tableView_didDragTableColumn :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn) {
-    msgSend(nil, self, "tableView:didDragTableColumn:", tableView, tableColumn)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_heightOfRow")
-TableViewDelegate_tableView_heightOfRow :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer) -> CG.Float {
-    return msgSend(CG.Float, self, "tableView:heightOfRow:", tableView, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_typeSelectStringForTableColumn_row")
-TableViewDelegate_tableView_typeSelectStringForTableColumn_row :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, tableColumn: ^TableColumn, row: NS.Integer) -> ^NS.String {
-    return msgSend(^NS.String, self, "tableView:typeSelectStringForTableColumn:row:", tableView, tableColumn, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_nextTypeSelectMatchFromRow_toRow_forString")
-TableViewDelegate_tableView_nextTypeSelectMatchFromRow_toRow_forString :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, startRow: NS.Integer, endRow: NS.Integer, searchString: ^NS.String) -> NS.Integer {
-    return msgSend(NS.Integer, self, "tableView:nextTypeSelectMatchFromRow:toRow:forString:", tableView, startRow, endRow, searchString)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_shouldTypeSelectForEvent_withCurrentSearchString")
-TableViewDelegate_tableView_shouldTypeSelectForEvent_withCurrentSearchString :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, event: ^Event, searchString: ^NS.String) -> bool {
-    return msgSend(bool, self, "tableView:shouldTypeSelectForEvent:withCurrentSearchString:", tableView, event, searchString)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_isGroupRow")
-TableViewDelegate_tableView_isGroupRow :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer) -> bool {
-    return msgSend(bool, self, "tableView:isGroupRow:", tableView, row)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_sizeToFitWidthOfColumn")
-TableViewDelegate_tableView_sizeToFitWidthOfColumn :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, column: NS.Integer) -> CG.Float {
-    return msgSend(CG.Float, self, "tableView:sizeToFitWidthOfColumn:", tableView, column)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_shouldReorderColumn_toColumn")
-TableViewDelegate_tableView_shouldReorderColumn_toColumn :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, columnIndex: NS.Integer, newColumnIndex: NS.Integer) -> bool {
-    return msgSend(bool, self, "tableView:shouldReorderColumn:toColumn:", tableView, columnIndex, newColumnIndex)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_rowActionsForRow_edge")
-TableViewDelegate_tableView_rowActionsForRow_edge :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, row: NS.Integer, edge: TableRowActionEdge) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "tableView:rowActionsForRow:edge:", tableView, row, edge)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_userCanChangeVisibilityOfTableColumn")
-TableViewDelegate_tableView_userCanChangeVisibilityOfTableColumn :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, column: ^TableColumn) -> bool {
-    return msgSend(bool, self, "tableView:userCanChangeVisibilityOfTableColumn:", tableView, column)
-}
-@(objc_type=TableViewDelegate, objc_name="tableView_userDidChangeVisibilityOfTableColumns")
-TableViewDelegate_tableView_userDidChangeVisibilityOfTableColumns :: #force_inline proc "c" (self: ^TableViewDelegate, tableView: ^TableView, columns: ^NS.Array) {
-    msgSend(nil, self, "tableView:userDidChangeVisibilityOfTableColumns:", tableView, columns)
-}
-@(objc_type=TableViewDelegate, objc_name="tableViewSelectionDidChange")
-TableViewDelegate_tableViewSelectionDidChange :: #force_inline proc "c" (self: ^TableViewDelegate, notification: ^NS.Notification) {
-    msgSend(nil, self, "tableViewSelectionDidChange:", notification)
-}
-@(objc_type=TableViewDelegate, objc_name="tableViewColumnDidMove")
-TableViewDelegate_tableViewColumnDidMove :: #force_inline proc "c" (self: ^TableViewDelegate, notification: ^NS.Notification) {
-    msgSend(nil, self, "tableViewColumnDidMove:", notification)
-}
-@(objc_type=TableViewDelegate, objc_name="tableViewColumnDidResize")
-TableViewDelegate_tableViewColumnDidResize :: #force_inline proc "c" (self: ^TableViewDelegate, notification: ^NS.Notification) {
-    msgSend(nil, self, "tableViewColumnDidResize:", notification)
-}
-@(objc_type=TableViewDelegate, objc_name="tableViewSelectionIsChanging")
-TableViewDelegate_tableViewSelectionIsChanging :: #force_inline proc "c" (self: ^TableViewDelegate, notification: ^NS.Notification) {
-    msgSend(nil, self, "tableViewSelectionIsChanging:", notification)
-}
+

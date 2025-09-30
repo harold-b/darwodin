@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CAAnimationGroup
 ///
-@(objc_class="CAAnimationGroup")
+@(objc_class="CAAnimationGroup", objc_superclass=Animation)
 AnimationGroup :: struct { using _: Animation, }
 

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSUserAutomatorTask
 ///
-@(objc_class="NSUserAutomatorTask")
+@(objc_class="NSUserAutomatorTask", objc_superclass=UserScriptTask)
 UserAutomatorTask :: struct { using _: UserScriptTask, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSColorPanel
 ///
-@(objc_class="NSColorPanel")
+@(objc_class="NSColorPanel", objc_superclass=Panel)
 ColorPanel :: struct { using _: Panel, }
 

@@ -20,75 +20,59 @@ RenderPipelineState :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=RenderPipelineState, objc_name="imageblockMemoryLengthForDimensions")
-RenderPipelineState_imageblockMemoryLengthForDimensions :: #force_inline proc "c" (self: ^RenderPipelineState, imageblockDimensions: Size) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "imageblockMemoryLengthForDimensions:", imageblockDimensions)
-}
-@(objc_type=RenderPipelineState, objc_name="functionHandleWithFunction")
-RenderPipelineState_functionHandleWithFunction :: #force_inline proc "c" (self: ^RenderPipelineState, function: ^Function, stage: RenderStages) -> ^FunctionHandle {
-    return msgSend(^FunctionHandle, self, "functionHandleWithFunction:stage:", function, stage)
-}
-@(objc_type=RenderPipelineState, objc_name="newVisibleFunctionTableWithDescriptor")
-RenderPipelineState_newVisibleFunctionTableWithDescriptor :: #force_inline proc "c" (self: ^RenderPipelineState, descriptor: ^VisibleFunctionTableDescriptor, stage: RenderStages) -> ^VisibleFunctionTable {
-    return msgSend(^VisibleFunctionTable, self, "newVisibleFunctionTableWithDescriptor:stage:", descriptor, stage)
-}
-@(objc_type=RenderPipelineState, objc_name="newIntersectionFunctionTableWithDescriptor")
-RenderPipelineState_newIntersectionFunctionTableWithDescriptor :: #force_inline proc "c" (self: ^RenderPipelineState, descriptor: ^IntersectionFunctionTableDescriptor, stage: RenderStages) -> ^IntersectionFunctionTable {
-    return msgSend(^IntersectionFunctionTable, self, "newIntersectionFunctionTableWithDescriptor:stage:", descriptor, stage)
-}
-@(objc_type=RenderPipelineState, objc_name="newRenderPipelineStateWithAdditionalBinaryFunctions")
-RenderPipelineState_newRenderPipelineStateWithAdditionalBinaryFunctions :: #force_inline proc "c" (self: ^RenderPipelineState, additionalBinaryFunctions: ^RenderPipelineFunctionsDescriptor, error: ^^NS.Error) -> ^RenderPipelineState {
-    return msgSend(^RenderPipelineState, self, "newRenderPipelineStateWithAdditionalBinaryFunctions:error:", additionalBinaryFunctions, error)
-}
-@(objc_type=RenderPipelineState, objc_name="label")
-RenderPipelineState_label :: #force_inline proc "c" (self: ^RenderPipelineState) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=RenderPipelineState, objc_name="device")
-RenderPipelineState_device :: #force_inline proc "c" (self: ^RenderPipelineState) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=RenderPipelineState, objc_name="maxTotalThreadsPerThreadgroup")
-RenderPipelineState_maxTotalThreadsPerThreadgroup :: #force_inline proc "c" (self: ^RenderPipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "maxTotalThreadsPerThreadgroup")
-}
-@(objc_type=RenderPipelineState, objc_name="threadgroupSizeMatchesTileSize")
-RenderPipelineState_threadgroupSizeMatchesTileSize :: #force_inline proc "c" (self: ^RenderPipelineState) -> bool {
-    return msgSend(bool, self, "threadgroupSizeMatchesTileSize")
-}
-@(objc_type=RenderPipelineState, objc_name="imageblockSampleLength")
-RenderPipelineState_imageblockSampleLength :: #force_inline proc "c" (self: ^RenderPipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "imageblockSampleLength")
-}
-@(objc_type=RenderPipelineState, objc_name="supportIndirectCommandBuffers")
-RenderPipelineState_supportIndirectCommandBuffers :: #force_inline proc "c" (self: ^RenderPipelineState) -> bool {
-    return msgSend(bool, self, "supportIndirectCommandBuffers")
-}
-@(objc_type=RenderPipelineState, objc_name="maxTotalThreadsPerObjectThreadgroup")
-RenderPipelineState_maxTotalThreadsPerObjectThreadgroup :: #force_inline proc "c" (self: ^RenderPipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "maxTotalThreadsPerObjectThreadgroup")
-}
-@(objc_type=RenderPipelineState, objc_name="maxTotalThreadsPerMeshThreadgroup")
-RenderPipelineState_maxTotalThreadsPerMeshThreadgroup :: #force_inline proc "c" (self: ^RenderPipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "maxTotalThreadsPerMeshThreadgroup")
-}
-@(objc_type=RenderPipelineState, objc_name="objectThreadExecutionWidth")
-RenderPipelineState_objectThreadExecutionWidth :: #force_inline proc "c" (self: ^RenderPipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "objectThreadExecutionWidth")
-}
-@(objc_type=RenderPipelineState, objc_name="meshThreadExecutionWidth")
-RenderPipelineState_meshThreadExecutionWidth :: #force_inline proc "c" (self: ^RenderPipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "meshThreadExecutionWidth")
-}
-@(objc_type=RenderPipelineState, objc_name="maxTotalThreadgroupsPerMeshGrid")
-RenderPipelineState_maxTotalThreadgroupsPerMeshGrid :: #force_inline proc "c" (self: ^RenderPipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "maxTotalThreadgroupsPerMeshGrid")
-}
-@(objc_type=RenderPipelineState, objc_name="gpuResourceID")
-RenderPipelineState_gpuResourceID :: #force_inline proc "c" (self: ^RenderPipelineState) -> ResourceID {
-    return msgSend(ResourceID, self, "gpuResourceID")
-}
-@(objc_type=RenderPipelineState, objc_name="shaderValidation")
-RenderPipelineState_shaderValidation :: #force_inline proc "c" (self: ^RenderPipelineState) -> ShaderValidation {
-    return msgSend(ShaderValidation, self, "shaderValidation")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=RenderPipelineState, objc_selector="imageblockMemoryLengthForDimensions:", objc_name="imageblockMemoryLengthForDimensions")
+    RenderPipelineState_imageblockMemoryLengthForDimensions :: proc(self: ^RenderPipelineState, imageblockDimensions: Size) -> NS.UInteger ---
+
+    @(objc_type=RenderPipelineState, objc_selector="functionHandleWithFunction:stage:", objc_name="functionHandleWithFunction")
+    RenderPipelineState_functionHandleWithFunction :: proc(self: ^RenderPipelineState, function: ^Function, stage: RenderStages) -> ^FunctionHandle ---
+
+    @(objc_type=RenderPipelineState, objc_selector="newVisibleFunctionTableWithDescriptor:stage:", objc_name="newVisibleFunctionTableWithDescriptor")
+    RenderPipelineState_newVisibleFunctionTableWithDescriptor :: proc(self: ^RenderPipelineState, descriptor: ^VisibleFunctionTableDescriptor, stage: RenderStages) -> ^VisibleFunctionTable ---
+
+    @(objc_type=RenderPipelineState, objc_selector="newIntersectionFunctionTableWithDescriptor:stage:", objc_name="newIntersectionFunctionTableWithDescriptor")
+    RenderPipelineState_newIntersectionFunctionTableWithDescriptor :: proc(self: ^RenderPipelineState, descriptor: ^IntersectionFunctionTableDescriptor, stage: RenderStages) -> ^IntersectionFunctionTable ---
+
+    @(objc_type=RenderPipelineState, objc_selector="newRenderPipelineStateWithAdditionalBinaryFunctions:error:", objc_name="newRenderPipelineStateWithAdditionalBinaryFunctions")
+    RenderPipelineState_newRenderPipelineStateWithAdditionalBinaryFunctions :: proc(self: ^RenderPipelineState, additionalBinaryFunctions: ^RenderPipelineFunctionsDescriptor, error: ^^NS.Error) -> ^RenderPipelineState ---
+
+    @(objc_type=RenderPipelineState, objc_selector="label", objc_name="label")
+    RenderPipelineState_label :: proc(self: ^RenderPipelineState) -> ^NS.String ---
+
+    @(objc_type=RenderPipelineState, objc_selector="device", objc_name="device")
+    RenderPipelineState_device :: proc(self: ^RenderPipelineState) -> ^Device ---
+
+    @(objc_type=RenderPipelineState, objc_selector="maxTotalThreadsPerThreadgroup", objc_name="maxTotalThreadsPerThreadgroup")
+    RenderPipelineState_maxTotalThreadsPerThreadgroup :: proc(self: ^RenderPipelineState) -> NS.UInteger ---
+
+    @(objc_type=RenderPipelineState, objc_selector="threadgroupSizeMatchesTileSize", objc_name="threadgroupSizeMatchesTileSize")
+    RenderPipelineState_threadgroupSizeMatchesTileSize :: proc(self: ^RenderPipelineState) -> bool ---
+
+    @(objc_type=RenderPipelineState, objc_selector="imageblockSampleLength", objc_name="imageblockSampleLength")
+    RenderPipelineState_imageblockSampleLength :: proc(self: ^RenderPipelineState) -> NS.UInteger ---
+
+    @(objc_type=RenderPipelineState, objc_selector="supportIndirectCommandBuffers", objc_name="supportIndirectCommandBuffers")
+    RenderPipelineState_supportIndirectCommandBuffers :: proc(self: ^RenderPipelineState) -> bool ---
+
+    @(objc_type=RenderPipelineState, objc_selector="maxTotalThreadsPerObjectThreadgroup", objc_name="maxTotalThreadsPerObjectThreadgroup")
+    RenderPipelineState_maxTotalThreadsPerObjectThreadgroup :: proc(self: ^RenderPipelineState) -> NS.UInteger ---
+
+    @(objc_type=RenderPipelineState, objc_selector="maxTotalThreadsPerMeshThreadgroup", objc_name="maxTotalThreadsPerMeshThreadgroup")
+    RenderPipelineState_maxTotalThreadsPerMeshThreadgroup :: proc(self: ^RenderPipelineState) -> NS.UInteger ---
+
+    @(objc_type=RenderPipelineState, objc_selector="objectThreadExecutionWidth", objc_name="objectThreadExecutionWidth")
+    RenderPipelineState_objectThreadExecutionWidth :: proc(self: ^RenderPipelineState) -> NS.UInteger ---
+
+    @(objc_type=RenderPipelineState, objc_selector="meshThreadExecutionWidth", objc_name="meshThreadExecutionWidth")
+    RenderPipelineState_meshThreadExecutionWidth :: proc(self: ^RenderPipelineState) -> NS.UInteger ---
+
+    @(objc_type=RenderPipelineState, objc_selector="maxTotalThreadgroupsPerMeshGrid", objc_name="maxTotalThreadgroupsPerMeshGrid")
+    RenderPipelineState_maxTotalThreadgroupsPerMeshGrid :: proc(self: ^RenderPipelineState) -> NS.UInteger ---
+
+    @(objc_type=RenderPipelineState, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+    RenderPipelineState_gpuResourceID :: proc(self: ^RenderPipelineState) -> ResourceID ---
+
+    @(objc_type=RenderPipelineState, objc_selector="shaderValidation", objc_name="shaderValidation")
+    RenderPipelineState_shaderValidation :: proc(self: ^RenderPipelineState) -> ShaderValidation ---
 }

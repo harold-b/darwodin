@@ -21,11 +21,11 @@ ViewControllerPresentationAnimator :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewControllerPresentationAnimator, objc_name="animatePresentationOfViewController")
-ViewControllerPresentationAnimator_animatePresentationOfViewController :: #force_inline proc "c" (self: ^ViewControllerPresentationAnimator, viewController: ^ViewController, fromViewController: ^ViewController) {
-    msgSend(nil, self, "animatePresentationOfViewController:fromViewController:", viewController, fromViewController)
-}
-@(objc_type=ViewControllerPresentationAnimator, objc_name="animateDismissalOfViewController")
-ViewControllerPresentationAnimator_animateDismissalOfViewController :: #force_inline proc "c" (self: ^ViewControllerPresentationAnimator, viewController: ^ViewController, fromViewController: ^ViewController) {
-    msgSend(nil, self, "animateDismissalOfViewController:fromViewController:", viewController, fromViewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewControllerPresentationAnimator, objc_selector="animatePresentationOfViewController:fromViewController:", objc_name="animatePresentationOfViewController")
+    ViewControllerPresentationAnimator_animatePresentationOfViewController :: proc(self: ^ViewControllerPresentationAnimator, viewController: ^ViewController, fromViewController: ^ViewController) ---
+
+    @(objc_type=ViewControllerPresentationAnimator, objc_selector="animateDismissalOfViewController:fromViewController:", objc_name="animateDismissalOfViewController")
+    ViewControllerPresentationAnimator_animateDismissalOfViewController :: proc(self: ^ViewControllerPresentationAnimator, viewController: ^ViewController, fromViewController: ^ViewController) ---
 }

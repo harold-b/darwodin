@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnit
 ///
-@(objc_class="NSUnit")
+@(objc_class="NSUnit", objc_superclass=Object)
 Unit :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

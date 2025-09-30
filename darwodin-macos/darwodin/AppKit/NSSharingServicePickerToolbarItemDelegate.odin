@@ -21,7 +21,8 @@ SharingServicePickerToolbarItemDelegate :: struct { using _: intrinsics.objc_obj
     using _: SharingServicePickerDelegate,
 }
 
-@(objc_type=SharingServicePickerToolbarItemDelegate, objc_name="itemsForSharingServicePickerToolbarItem")
-SharingServicePickerToolbarItemDelegate_itemsForSharingServicePickerToolbarItem :: #force_inline proc "c" (self: ^SharingServicePickerToolbarItemDelegate, pickerToolbarItem: ^SharingServicePickerToolbarItem) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "itemsForSharingServicePickerToolbarItem:", pickerToolbarItem)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SharingServicePickerToolbarItemDelegate, objc_selector="itemsForSharingServicePickerToolbarItem:", objc_name="itemsForSharingServicePickerToolbarItem")
+    SharingServicePickerToolbarItemDelegate_itemsForSharingServicePickerToolbarItem :: proc(self: ^SharingServicePickerToolbarItemDelegate, pickerToolbarItem: ^SharingServicePickerToolbarItem) -> ^NS.Array ---
 }

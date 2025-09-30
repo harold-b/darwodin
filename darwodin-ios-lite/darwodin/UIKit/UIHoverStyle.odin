@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIHoverStyle
 ///
-@(objc_class="UIHoverStyle")
+@(objc_class="UIHoverStyle", objc_superclass=NS.Object)
 HoverStyle :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

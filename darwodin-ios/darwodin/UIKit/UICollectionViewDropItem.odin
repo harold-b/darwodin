@@ -21,15 +21,14 @@ CollectionViewDropItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CollectionViewDropItem, objc_name="dragItem")
-CollectionViewDropItem_dragItem :: #force_inline proc "c" (self: ^CollectionViewDropItem) -> ^DragItem {
-    return msgSend(^DragItem, self, "dragItem")
-}
-@(objc_type=CollectionViewDropItem, objc_name="sourceIndexPath")
-CollectionViewDropItem_sourceIndexPath :: #force_inline proc "c" (self: ^CollectionViewDropItem) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "sourceIndexPath")
-}
-@(objc_type=CollectionViewDropItem, objc_name="previewSize")
-CollectionViewDropItem_previewSize :: #force_inline proc "c" (self: ^CollectionViewDropItem) -> CG.Size {
-    return msgSend(CG.Size, self, "previewSize")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewDropItem, objc_selector="dragItem", objc_name="dragItem")
+    CollectionViewDropItem_dragItem :: proc(self: ^CollectionViewDropItem) -> ^DragItem ---
+
+    @(objc_type=CollectionViewDropItem, objc_selector="sourceIndexPath", objc_name="sourceIndexPath")
+    CollectionViewDropItem_sourceIndexPath :: proc(self: ^CollectionViewDropItem) -> ^NS.IndexPath ---
+
+    @(objc_type=CollectionViewDropItem, objc_selector="previewSize", objc_name="previewSize")
+    CollectionViewDropItem_previewSize :: proc(self: ^CollectionViewDropItem) -> CG.Size ---
 }

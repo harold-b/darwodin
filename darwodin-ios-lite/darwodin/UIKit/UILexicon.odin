@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UILexicon
 ///
-@(objc_class="UILexicon")
+@(objc_class="UILexicon", objc_superclass=NS.Object)
 Lexicon :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIAction
 ///
-@(objc_class="UIAction")
+@(objc_class="UIAction", objc_superclass=MenuElement)
 Action :: struct { using _: MenuElement, 
     using _: MenuLeaf,
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPasteboard
 ///
-@(objc_class="UIPasteboard")
+@(objc_class="UIPasteboard", objc_superclass=NS.Object)
 Pasteboard :: struct { using _: NS.Object, }
 

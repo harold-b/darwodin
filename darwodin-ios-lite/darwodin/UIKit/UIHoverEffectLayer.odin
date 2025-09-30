@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIHoverEffectLayer
 ///
-@(objc_class="UIHoverEffectLayer")
+@(objc_class="UIHoverEffectLayer", objc_superclass=CA.Layer)
 HoverEffectLayer :: struct { using _: CA.Layer, }
 

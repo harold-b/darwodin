@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSStackView
 ///
-@(objc_class="NSStackView")
+@(objc_class="NSStackView", objc_superclass=View)
 StackView :: struct { using _: View, }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSCollectionViewItem
 ///
-@(objc_class="NSCollectionViewItem")
+@(objc_class="NSCollectionViewItem", objc_superclass=ViewController)
 CollectionViewItem :: struct { using _: ViewController, 
     using _: NS.Copying,
     using _: CollectionViewElement,

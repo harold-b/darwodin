@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSpellChecker
 ///
-@(objc_class="NSSpellChecker")
+@(objc_class="NSSpellChecker", objc_superclass=NS.Object)
 SpellChecker :: struct { using _: NS.Object, }
 

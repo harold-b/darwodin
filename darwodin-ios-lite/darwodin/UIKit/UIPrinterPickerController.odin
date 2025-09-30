@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPrinterPickerController
 ///
-@(objc_class="UIPrinterPickerController")
+@(objc_class="UIPrinterPickerController", objc_superclass=NS.Object)
 PrinterPickerController :: struct { using _: NS.Object, }
 

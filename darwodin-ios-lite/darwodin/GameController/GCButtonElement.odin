@@ -19,11 +19,11 @@ ButtonElement :: struct { using _: intrinsics.objc_object,
     using _: PhysicalInputElement,
 }
 
-@(objc_type=ButtonElement, objc_name="pressedInput")
-ButtonElement_pressedInput :: #force_inline proc "c" (self: ^ButtonElement) -> ^id {
-    return msgSend(^id, self, "pressedInput")
-}
-@(objc_type=ButtonElement, objc_name="touchedInput")
-ButtonElement_touchedInput :: #force_inline proc "c" (self: ^ButtonElement) -> ^TouchedStateInput {
-    return msgSend(^TouchedStateInput, self, "touchedInput")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ButtonElement, objc_selector="pressedInput", objc_name="pressedInput")
+    ButtonElement_pressedInput :: proc(self: ^ButtonElement) -> ^id ---
+
+    @(objc_type=ButtonElement, objc_selector="touchedInput", objc_name="touchedInput")
+    ButtonElement_touchedInput :: proc(self: ^ButtonElement) -> ^TouchedStateInput ---
 }

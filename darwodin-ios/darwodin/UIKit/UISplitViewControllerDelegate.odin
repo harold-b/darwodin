@@ -19,91 +19,72 @@ import CA "../QuartzCore"
 @(objc_class="UISplitViewControllerDelegate")
 SplitViewControllerDelegate :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_willChangeToDisplayMode")
-SplitViewControllerDelegate_splitViewController_willChangeToDisplayMode :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, displayMode: SplitViewControllerDisplayMode) {
-    msgSend(nil, self, "splitViewController:willChangeToDisplayMode:", svc, displayMode)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:willChangeToDisplayMode:", objc_name="splitViewController_willChangeToDisplayMode")
+    SplitViewControllerDelegate_splitViewController_willChangeToDisplayMode :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, displayMode: SplitViewControllerDisplayMode) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="targetDisplayModeForActionInSplitViewController:", objc_name="targetDisplayModeForActionInSplitViewController")
+    SplitViewControllerDelegate_targetDisplayModeForActionInSplitViewController :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController) -> SplitViewControllerDisplayMode ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:showViewController:sender:", objc_name="splitViewController_showViewController_sender")
+    SplitViewControllerDelegate_splitViewController_showViewController_sender :: proc(self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController, vc: ^ViewController, sender: id) -> bool ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:showDetailViewController:sender:", objc_name="splitViewController_showDetailViewController_sender")
+    SplitViewControllerDelegate_splitViewController_showDetailViewController_sender :: proc(self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController, vc: ^ViewController, sender: id) -> bool ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="primaryViewControllerForCollapsingSplitViewController:", objc_name="primaryViewControllerForCollapsingSplitViewController")
+    SplitViewControllerDelegate_primaryViewControllerForCollapsingSplitViewController :: proc(self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController) -> ^ViewController ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="primaryViewControllerForExpandingSplitViewController:", objc_name="primaryViewControllerForExpandingSplitViewController")
+    SplitViewControllerDelegate_primaryViewControllerForExpandingSplitViewController :: proc(self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController) -> ^ViewController ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:", objc_name="splitViewController_collapseSecondaryViewController_ontoPrimaryViewController")
+    SplitViewControllerDelegate_splitViewController_collapseSecondaryViewController_ontoPrimaryViewController :: proc(self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController, secondaryViewController: ^ViewController, primaryViewController: ^ViewController) -> bool ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:separateSecondaryViewControllerFromPrimaryViewController:", objc_name="splitViewController_separateSecondaryViewControllerFromPrimaryViewController")
+    SplitViewControllerDelegate_splitViewController_separateSecondaryViewControllerFromPrimaryViewController :: proc(self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController, primaryViewController: ^ViewController) -> ^ViewController ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewControllerSupportedInterfaceOrientations:", objc_name="splitViewControllerSupportedInterfaceOrientations")
+    SplitViewControllerDelegate_splitViewControllerSupportedInterfaceOrientations :: proc(self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController) -> InterfaceOrientationMask ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewControllerPreferredInterfaceOrientationForPresentation:", objc_name="splitViewControllerPreferredInterfaceOrientationForPresentation")
+    SplitViewControllerDelegate_splitViewControllerPreferredInterfaceOrientationForPresentation :: proc(self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController) -> InterfaceOrientation ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:willHideViewController:withBarButtonItem:forPopoverController:", objc_name="splitViewController_willHideViewController_withBarButtonItem_forPopoverController")
+    SplitViewControllerDelegate_splitViewController_willHideViewController_withBarButtonItem_forPopoverController :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, aViewController: ^ViewController, barButtonItem: ^BarButtonItem, pc: ^PopoverController) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:willShowViewController:invalidatingBarButtonItem:", objc_name="splitViewController_willShowViewController_invalidatingBarButtonItem")
+    SplitViewControllerDelegate_splitViewController_willShowViewController_invalidatingBarButtonItem :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, aViewController: ^ViewController, barButtonItem: ^BarButtonItem) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:popoverController:willPresentViewController:", objc_name="splitViewController_popoverController_willPresentViewController")
+    SplitViewControllerDelegate_splitViewController_popoverController_willPresentViewController :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, pc: ^PopoverController, aViewController: ^ViewController) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:shouldHideViewController:inOrientation:", objc_name="splitViewController_shouldHideViewController_inOrientation")
+    SplitViewControllerDelegate_splitViewController_shouldHideViewController_inOrientation :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, vc: ^ViewController, orientation: InterfaceOrientation) -> bool ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:topColumnForCollapsingToProposedTopColumn:", objc_name="splitViewController_topColumnForCollapsingToProposedTopColumn")
+    SplitViewControllerDelegate_splitViewController_topColumnForCollapsingToProposedTopColumn :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, proposedTopColumn: SplitViewControllerColumn) -> SplitViewControllerColumn ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:displayModeForExpandingToProposedDisplayMode:", objc_name="splitViewController_displayModeForExpandingToProposedDisplayMode")
+    SplitViewControllerDelegate_splitViewController_displayModeForExpandingToProposedDisplayMode :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, proposedDisplayMode: SplitViewControllerDisplayMode) -> SplitViewControllerDisplayMode ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewControllerDidCollapse:", objc_name="splitViewControllerDidCollapse")
+    SplitViewControllerDelegate_splitViewControllerDidCollapse :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewControllerDidExpand:", objc_name="splitViewControllerDidExpand")
+    SplitViewControllerDelegate_splitViewControllerDidExpand :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:willShowColumn:", objc_name="splitViewController_willShowColumn")
+    SplitViewControllerDelegate_splitViewController_willShowColumn :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, column: SplitViewControllerColumn) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:willHideColumn:", objc_name="splitViewController_willHideColumn")
+    SplitViewControllerDelegate_splitViewController_willHideColumn :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, column: SplitViewControllerColumn) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewControllerInteractivePresentationGestureWillBegin:", objc_name="splitViewControllerInteractivePresentationGestureWillBegin")
+    SplitViewControllerDelegate_splitViewControllerInteractivePresentationGestureWillBegin :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewControllerInteractivePresentationGestureDidEnd:", objc_name="splitViewControllerInteractivePresentationGestureDidEnd")
+    SplitViewControllerDelegate_splitViewControllerInteractivePresentationGestureDidEnd :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController) ---
 }
-@(objc_type=SplitViewControllerDelegate, objc_name="targetDisplayModeForActionInSplitViewController")
-SplitViewControllerDelegate_targetDisplayModeForActionInSplitViewController :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController) -> SplitViewControllerDisplayMode {
-    return msgSend(SplitViewControllerDisplayMode, self, "targetDisplayModeForActionInSplitViewController:", svc)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_showViewController_sender")
-SplitViewControllerDelegate_splitViewController_showViewController_sender :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController, vc: ^ViewController, sender: id) -> bool {
-    return msgSend(bool, self, "splitViewController:showViewController:sender:", splitViewController, vc, sender)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_showDetailViewController_sender")
-SplitViewControllerDelegate_splitViewController_showDetailViewController_sender :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController, vc: ^ViewController, sender: id) -> bool {
-    return msgSend(bool, self, "splitViewController:showDetailViewController:sender:", splitViewController, vc, sender)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="primaryViewControllerForCollapsingSplitViewController")
-SplitViewControllerDelegate_primaryViewControllerForCollapsingSplitViewController :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController) -> ^ViewController {
-    return msgSend(^ViewController, self, "primaryViewControllerForCollapsingSplitViewController:", splitViewController)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="primaryViewControllerForExpandingSplitViewController")
-SplitViewControllerDelegate_primaryViewControllerForExpandingSplitViewController :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController) -> ^ViewController {
-    return msgSend(^ViewController, self, "primaryViewControllerForExpandingSplitViewController:", splitViewController)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_collapseSecondaryViewController_ontoPrimaryViewController")
-SplitViewControllerDelegate_splitViewController_collapseSecondaryViewController_ontoPrimaryViewController :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController, secondaryViewController: ^ViewController, primaryViewController: ^ViewController) -> bool {
-    return msgSend(bool, self, "splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:", splitViewController, secondaryViewController, primaryViewController)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_separateSecondaryViewControllerFromPrimaryViewController")
-SplitViewControllerDelegate_splitViewController_separateSecondaryViewControllerFromPrimaryViewController :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController, primaryViewController: ^ViewController) -> ^ViewController {
-    return msgSend(^ViewController, self, "splitViewController:separateSecondaryViewControllerFromPrimaryViewController:", splitViewController, primaryViewController)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewControllerSupportedInterfaceOrientations")
-SplitViewControllerDelegate_splitViewControllerSupportedInterfaceOrientations :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController) -> InterfaceOrientationMask {
-    return msgSend(InterfaceOrientationMask, self, "splitViewControllerSupportedInterfaceOrientations:", splitViewController)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewControllerPreferredInterfaceOrientationForPresentation")
-SplitViewControllerDelegate_splitViewControllerPreferredInterfaceOrientationForPresentation :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, splitViewController: ^SplitViewController) -> InterfaceOrientation {
-    return msgSend(InterfaceOrientation, self, "splitViewControllerPreferredInterfaceOrientationForPresentation:", splitViewController)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_willHideViewController_withBarButtonItem_forPopoverController")
-SplitViewControllerDelegate_splitViewController_willHideViewController_withBarButtonItem_forPopoverController :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, aViewController: ^ViewController, barButtonItem: ^BarButtonItem, pc: ^PopoverController) {
-    msgSend(nil, self, "splitViewController:willHideViewController:withBarButtonItem:forPopoverController:", svc, aViewController, barButtonItem, pc)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_willShowViewController_invalidatingBarButtonItem")
-SplitViewControllerDelegate_splitViewController_willShowViewController_invalidatingBarButtonItem :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, aViewController: ^ViewController, barButtonItem: ^BarButtonItem) {
-    msgSend(nil, self, "splitViewController:willShowViewController:invalidatingBarButtonItem:", svc, aViewController, barButtonItem)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_popoverController_willPresentViewController")
-SplitViewControllerDelegate_splitViewController_popoverController_willPresentViewController :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, pc: ^PopoverController, aViewController: ^ViewController) {
-    msgSend(nil, self, "splitViewController:popoverController:willPresentViewController:", svc, pc, aViewController)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_shouldHideViewController_inOrientation")
-SplitViewControllerDelegate_splitViewController_shouldHideViewController_inOrientation :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, vc: ^ViewController, orientation: InterfaceOrientation) -> bool {
-    return msgSend(bool, self, "splitViewController:shouldHideViewController:inOrientation:", svc, vc, orientation)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_topColumnForCollapsingToProposedTopColumn")
-SplitViewControllerDelegate_splitViewController_topColumnForCollapsingToProposedTopColumn :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, proposedTopColumn: SplitViewControllerColumn) -> SplitViewControllerColumn {
-    return msgSend(SplitViewControllerColumn, self, "splitViewController:topColumnForCollapsingToProposedTopColumn:", svc, proposedTopColumn)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_displayModeForExpandingToProposedDisplayMode")
-SplitViewControllerDelegate_splitViewController_displayModeForExpandingToProposedDisplayMode :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, proposedDisplayMode: SplitViewControllerDisplayMode) -> SplitViewControllerDisplayMode {
-    return msgSend(SplitViewControllerDisplayMode, self, "splitViewController:displayModeForExpandingToProposedDisplayMode:", svc, proposedDisplayMode)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewControllerDidCollapse")
-SplitViewControllerDelegate_splitViewControllerDidCollapse :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController) {
-    msgSend(nil, self, "splitViewControllerDidCollapse:", svc)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewControllerDidExpand")
-SplitViewControllerDelegate_splitViewControllerDidExpand :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController) {
-    msgSend(nil, self, "splitViewControllerDidExpand:", svc)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_willShowColumn")
-SplitViewControllerDelegate_splitViewController_willShowColumn :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, column: SplitViewControllerColumn) {
-    msgSend(nil, self, "splitViewController:willShowColumn:", svc, column)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewController_willHideColumn")
-SplitViewControllerDelegate_splitViewController_willHideColumn :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController, column: SplitViewControllerColumn) {
-    msgSend(nil, self, "splitViewController:willHideColumn:", svc, column)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewControllerInteractivePresentationGestureWillBegin")
-SplitViewControllerDelegate_splitViewControllerInteractivePresentationGestureWillBegin :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController) {
-    msgSend(nil, self, "splitViewControllerInteractivePresentationGestureWillBegin:", svc)
-}
-@(objc_type=SplitViewControllerDelegate, objc_name="splitViewControllerInteractivePresentationGestureDidEnd")
-SplitViewControllerDelegate_splitViewControllerInteractivePresentationGestureDidEnd :: #force_inline proc "c" (self: ^SplitViewControllerDelegate, svc: ^SplitViewController) {
-    msgSend(nil, self, "splitViewControllerInteractivePresentationGestureDidEnd:", svc)
-}
+

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIStandardTextCursorView
 ///
-@(objc_class="UIStandardTextCursorView")
+@(objc_class="UIStandardTextCursorView", objc_superclass=View)
 StandardTextCursorView :: struct { using _: View, 
     using _: TextCursorView,
 }

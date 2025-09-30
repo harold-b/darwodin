@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSImageView
 ///
-@(objc_class="NSImageView")
+@(objc_class="NSImageView", objc_superclass=Control)
 ImageView :: struct { using _: Control, 
     using _: AccessibilityImage,
     using _: MenuItemValidation,

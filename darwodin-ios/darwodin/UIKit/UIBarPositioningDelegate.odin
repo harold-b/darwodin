@@ -21,7 +21,8 @@ BarPositioningDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=BarPositioningDelegate, objc_name="positionForBar")
-BarPositioningDelegate_positionForBar :: #force_inline proc "c" (self: ^BarPositioningDelegate, bar: ^BarPositioning) -> BarPosition {
-    return msgSend(BarPosition, self, "positionForBar:", bar)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=BarPositioningDelegate, objc_selector="positionForBar:", objc_name="positionForBar")
+    BarPositioningDelegate_positionForBar :: proc(self: ^BarPositioningDelegate, bar: ^BarPositioning) -> BarPosition ---
 }

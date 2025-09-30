@@ -21,23 +21,20 @@ TextSearchAggregator :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextSearchAggregator, objc_name="foundRange")
-TextSearchAggregator_foundRange :: #force_inline proc "c" (self: ^TextSearchAggregator, range: ^TextRange, string: ^NS.String, document: ^id) {
-    msgSend(nil, self, "foundRange:forSearchString:inDocument:", range, string, document)
-}
-@(objc_type=TextSearchAggregator, objc_name="invalidateFoundRange")
-TextSearchAggregator_invalidateFoundRange :: #force_inline proc "c" (self: ^TextSearchAggregator, range: ^TextRange, document: ^id) {
-    msgSend(nil, self, "invalidateFoundRange:inDocument:", range, document)
-}
-@(objc_type=TextSearchAggregator, objc_name="invalidate")
-TextSearchAggregator_invalidate :: #force_inline proc "c" (self: ^TextSearchAggregator) {
-    msgSend(nil, self, "invalidate")
-}
-@(objc_type=TextSearchAggregator, objc_name="finishedSearching")
-TextSearchAggregator_finishedSearching :: #force_inline proc "c" (self: ^TextSearchAggregator) {
-    msgSend(nil, self, "finishedSearching")
-}
-@(objc_type=TextSearchAggregator, objc_name="allFoundRanges")
-TextSearchAggregator_allFoundRanges :: #force_inline proc "c" (self: ^TextSearchAggregator) -> ^NS.OrderedSet {
-    return msgSend(^NS.OrderedSet, self, "allFoundRanges")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextSearchAggregator, objc_selector="foundRange:forSearchString:inDocument:", objc_name="foundRange")
+    TextSearchAggregator_foundRange :: proc(self: ^TextSearchAggregator, range: ^TextRange, string: ^NS.String, document: ^id) ---
+
+    @(objc_type=TextSearchAggregator, objc_selector="invalidateFoundRange:inDocument:", objc_name="invalidateFoundRange")
+    TextSearchAggregator_invalidateFoundRange :: proc(self: ^TextSearchAggregator, range: ^TextRange, document: ^id) ---
+
+    @(objc_type=TextSearchAggregator, objc_selector="invalidate", objc_name="invalidate")
+    TextSearchAggregator_invalidate :: proc(self: ^TextSearchAggregator) ---
+
+    @(objc_type=TextSearchAggregator, objc_selector="finishedSearching", objc_name="finishedSearching")
+    TextSearchAggregator_finishedSearching :: proc(self: ^TextSearchAggregator) ---
+
+    @(objc_type=TextSearchAggregator, objc_selector="allFoundRanges", objc_name="allFoundRanges")
+    TextSearchAggregator_allFoundRanges :: proc(self: ^TextSearchAggregator) -> ^NS.OrderedSet ---
 }

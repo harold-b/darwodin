@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSClassDescription
 ///
-@(objc_class="NSClassDescription")
+@(objc_class="NSClassDescription", objc_superclass=Object)
 ClassDescription :: struct { using _: Object, }
 

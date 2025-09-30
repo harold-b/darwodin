@@ -20,162 +20,126 @@ ComputeCommandEncoder :: struct { using _: intrinsics.objc_object,
     using _: CommandEncoder,
 }
 
-@(objc_type=ComputeCommandEncoder, objc_name="setComputePipelineState")
-ComputeCommandEncoder_setComputePipelineState :: #force_inline proc "c" (self: ^ComputeCommandEncoder, state: ^ComputePipelineState) {
-    msgSend(nil, self, "setComputePipelineState:", state)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ComputeCommandEncoder, objc_selector="setComputePipelineState:", objc_name="setComputePipelineState")
+    ComputeCommandEncoder_setComputePipelineState :: proc(self: ^ComputeCommandEncoder, state: ^ComputePipelineState) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setBytes:length:atIndex:", objc_name="setBytes_length_atIndex")
+    ComputeCommandEncoder_setBytes_length_atIndex :: proc(self: ^ComputeCommandEncoder, bytes: rawptr, length: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setBuffer:offset:atIndex:", objc_name="setBuffer_offset_atIndex")
+    ComputeCommandEncoder_setBuffer_offset_atIndex :: proc(self: ^ComputeCommandEncoder, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setBufferOffset:atIndex:", objc_name="setBufferOffset_atIndex")
+    ComputeCommandEncoder_setBufferOffset_atIndex :: proc(self: ^ComputeCommandEncoder, offset: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setBuffers:offsets:withRange:", objc_name="setBuffers_offsets_withRange")
+    ComputeCommandEncoder_setBuffers_offsets_withRange :: proc(self: ^ComputeCommandEncoder, buffers: ^^Buffer, offsets: ^NS.UInteger, range: NS._NSRange) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setBuffer:offset:attributeStride:atIndex:", objc_name="setBuffer_offset_attributeStride_atIndex")
+    ComputeCommandEncoder_setBuffer_offset_attributeStride_atIndex :: proc(self: ^ComputeCommandEncoder, buffer: ^Buffer, offset: NS.UInteger, stride: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setBuffers:offsets:attributeStrides:withRange:", objc_name="setBuffers_offsets_attributeStrides_withRange")
+    ComputeCommandEncoder_setBuffers_offsets_attributeStrides_withRange :: proc(self: ^ComputeCommandEncoder, buffers: ^^Buffer, offsets: ^NS.UInteger, strides: ^NS.UInteger, range: NS._NSRange) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setBufferOffset:attributeStride:atIndex:", objc_name="setBufferOffset_attributeStride_atIndex")
+    ComputeCommandEncoder_setBufferOffset_attributeStride_atIndex :: proc(self: ^ComputeCommandEncoder, offset: NS.UInteger, stride: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setBytes:length:attributeStride:atIndex:", objc_name="setBytes_length_attributeStride_atIndex")
+    ComputeCommandEncoder_setBytes_length_attributeStride_atIndex :: proc(self: ^ComputeCommandEncoder, bytes: rawptr, length: NS.UInteger, stride: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setVisibleFunctionTable:atBufferIndex:", objc_name="setVisibleFunctionTable")
+    ComputeCommandEncoder_setVisibleFunctionTable :: proc(self: ^ComputeCommandEncoder, visibleFunctionTable: ^VisibleFunctionTable, bufferIndex: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setVisibleFunctionTables:withBufferRange:", objc_name="setVisibleFunctionTables")
+    ComputeCommandEncoder_setVisibleFunctionTables :: proc(self: ^ComputeCommandEncoder, visibleFunctionTables: ^^VisibleFunctionTable, range: NS._NSRange) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setIntersectionFunctionTable:atBufferIndex:", objc_name="setIntersectionFunctionTable")
+    ComputeCommandEncoder_setIntersectionFunctionTable :: proc(self: ^ComputeCommandEncoder, intersectionFunctionTable: ^IntersectionFunctionTable, bufferIndex: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setIntersectionFunctionTables:withBufferRange:", objc_name="setIntersectionFunctionTables")
+    ComputeCommandEncoder_setIntersectionFunctionTables :: proc(self: ^ComputeCommandEncoder, intersectionFunctionTables: ^^IntersectionFunctionTable, range: NS._NSRange) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setAccelerationStructure:atBufferIndex:", objc_name="setAccelerationStructure")
+    ComputeCommandEncoder_setAccelerationStructure :: proc(self: ^ComputeCommandEncoder, accelerationStructure: ^AccelerationStructure, bufferIndex: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setTexture:atIndex:", objc_name="setTexture")
+    ComputeCommandEncoder_setTexture :: proc(self: ^ComputeCommandEncoder, texture: ^Texture, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setTextures:withRange:", objc_name="setTextures")
+    ComputeCommandEncoder_setTextures :: proc(self: ^ComputeCommandEncoder, textures: ^^Texture, range: NS._NSRange) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setSamplerState:atIndex:", objc_name="setSamplerState_atIndex")
+    ComputeCommandEncoder_setSamplerState_atIndex :: proc(self: ^ComputeCommandEncoder, sampler: ^SamplerState, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setSamplerStates:withRange:", objc_name="setSamplerStates_withRange")
+    ComputeCommandEncoder_setSamplerStates_withRange :: proc(self: ^ComputeCommandEncoder, samplers: ^^SamplerState, range: NS._NSRange) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setSamplerState:lodMinClamp:lodMaxClamp:atIndex:", objc_name="setSamplerState_lodMinClamp_lodMaxClamp_atIndex")
+    ComputeCommandEncoder_setSamplerState_lodMinClamp_lodMaxClamp_atIndex :: proc(self: ^ComputeCommandEncoder, sampler: ^SamplerState, lodMinClamp: cffi.float, lodMaxClamp: cffi.float, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setSamplerStates:lodMinClamps:lodMaxClamps:withRange:", objc_name="setSamplerStates_lodMinClamps_lodMaxClamps_withRange")
+    ComputeCommandEncoder_setSamplerStates_lodMinClamps_lodMaxClamps_withRange :: proc(self: ^ComputeCommandEncoder, samplers: ^^SamplerState, lodMinClamps: ^cffi.float, lodMaxClamps: ^cffi.float, range: NS._NSRange) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setThreadgroupMemoryLength:atIndex:", objc_name="setThreadgroupMemoryLength")
+    ComputeCommandEncoder_setThreadgroupMemoryLength :: proc(self: ^ComputeCommandEncoder, length: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setImageblockWidth:height:", objc_name="setImageblockWidth")
+    ComputeCommandEncoder_setImageblockWidth :: proc(self: ^ComputeCommandEncoder, width: NS.UInteger, height: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setStageInRegion:", objc_name="setStageInRegion")
+    ComputeCommandEncoder_setStageInRegion :: proc(self: ^ComputeCommandEncoder, region: Region) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="setStageInRegionWithIndirectBuffer:indirectBufferOffset:", objc_name="setStageInRegionWithIndirectBuffer")
+    ComputeCommandEncoder_setStageInRegionWithIndirectBuffer :: proc(self: ^ComputeCommandEncoder, indirectBuffer: ^Buffer, indirectBufferOffset: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="dispatchThreadgroups:threadsPerThreadgroup:", objc_name="dispatchThreadgroups")
+    ComputeCommandEncoder_dispatchThreadgroups :: proc(self: ^ComputeCommandEncoder, threadgroupsPerGrid: Size, threadsPerThreadgroup: Size) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:", objc_name="dispatchThreadgroupsWithIndirectBuffer")
+    ComputeCommandEncoder_dispatchThreadgroupsWithIndirectBuffer :: proc(self: ^ComputeCommandEncoder, indirectBuffer: ^Buffer, indirectBufferOffset: NS.UInteger, threadsPerThreadgroup: Size) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="dispatchThreads:threadsPerThreadgroup:", objc_name="dispatchThreads")
+    ComputeCommandEncoder_dispatchThreads :: proc(self: ^ComputeCommandEncoder, threadsPerGrid: Size, threadsPerThreadgroup: Size) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="updateFence:", objc_name="updateFence")
+    ComputeCommandEncoder_updateFence :: proc(self: ^ComputeCommandEncoder, fence: ^Fence) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="waitForFence:", objc_name="waitForFence")
+    ComputeCommandEncoder_waitForFence :: proc(self: ^ComputeCommandEncoder, fence: ^Fence) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="useResource:usage:", objc_name="useResource")
+    ComputeCommandEncoder_useResource :: proc(self: ^ComputeCommandEncoder, resource: ^Resource, usage: ResourceUsage) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="useResources:count:usage:", objc_name="useResources")
+    ComputeCommandEncoder_useResources :: proc(self: ^ComputeCommandEncoder, resources: ^^Resource, count: NS.UInteger, usage: ResourceUsage) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="useHeap:", objc_name="useHeap")
+    ComputeCommandEncoder_useHeap :: proc(self: ^ComputeCommandEncoder, heap: ^Heap) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="useHeaps:count:", objc_name="useHeaps")
+    ComputeCommandEncoder_useHeaps :: proc(self: ^ComputeCommandEncoder, heaps: ^^Heap, count: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="executeCommandsInBuffer:withRange:", objc_name="executeCommandsInBuffer_withRange")
+    ComputeCommandEncoder_executeCommandsInBuffer_withRange :: proc(self: ^ComputeCommandEncoder, indirectCommandBuffer: ^IndirectCommandBuffer, executionRange: NS._NSRange) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:", objc_name="executeCommandsInBuffer_indirectBuffer_indirectBufferOffset")
+    ComputeCommandEncoder_executeCommandsInBuffer_indirectBuffer_indirectBufferOffset :: proc(self: ^ComputeCommandEncoder, indirectCommandbuffer: ^IndirectCommandBuffer, indirectRangeBuffer: ^Buffer, indirectBufferOffset: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="memoryBarrierWithScope:", objc_name="memoryBarrierWithScope")
+    ComputeCommandEncoder_memoryBarrierWithScope :: proc(self: ^ComputeCommandEncoder, scope: BarrierScope) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="memoryBarrierWithResources:count:", objc_name="memoryBarrierWithResources")
+    ComputeCommandEncoder_memoryBarrierWithResources :: proc(self: ^ComputeCommandEncoder, resources: ^^Resource, count: NS.UInteger) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="sampleCountersInBuffer:atSampleIndex:withBarrier:", objc_name="sampleCountersInBuffer")
+    ComputeCommandEncoder_sampleCountersInBuffer :: proc(self: ^ComputeCommandEncoder, sampleBuffer: ^CounterSampleBuffer, sampleIndex: NS.UInteger, barrier: bool) ---
+
+    @(objc_type=ComputeCommandEncoder, objc_selector="dispatchType", objc_name="dispatchType")
+    ComputeCommandEncoder_dispatchType :: proc(self: ^ComputeCommandEncoder) -> DispatchType ---
 }
-@(objc_type=ComputeCommandEncoder, objc_name="setBytes_length_atIndex")
-ComputeCommandEncoder_setBytes_length_atIndex :: #force_inline proc "c" (self: ^ComputeCommandEncoder, bytes: rawptr, length: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setBytes:length:atIndex:", bytes, length, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setBuffer_offset_atIndex")
-ComputeCommandEncoder_setBuffer_offset_atIndex :: #force_inline proc "c" (self: ^ComputeCommandEncoder, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setBuffer:offset:atIndex:", buffer, offset, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setBufferOffset_atIndex")
-ComputeCommandEncoder_setBufferOffset_atIndex :: #force_inline proc "c" (self: ^ComputeCommandEncoder, offset: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setBufferOffset:atIndex:", offset, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setBuffers_offsets_withRange")
-ComputeCommandEncoder_setBuffers_offsets_withRange :: #force_inline proc "c" (self: ^ComputeCommandEncoder, buffers: ^^Buffer, offsets: ^NS.UInteger, range: NS._NSRange) {
-    msgSend(nil, self, "setBuffers:offsets:withRange:", buffers, offsets, range)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setBuffer_offset_attributeStride_atIndex")
-ComputeCommandEncoder_setBuffer_offset_attributeStride_atIndex :: #force_inline proc "c" (self: ^ComputeCommandEncoder, buffer: ^Buffer, offset: NS.UInteger, stride: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setBuffer:offset:attributeStride:atIndex:", buffer, offset, stride, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setBuffers_offsets_attributeStrides_withRange")
-ComputeCommandEncoder_setBuffers_offsets_attributeStrides_withRange :: #force_inline proc "c" (self: ^ComputeCommandEncoder, buffers: ^^Buffer, offsets: ^NS.UInteger, strides: ^NS.UInteger, range: NS._NSRange) {
-    msgSend(nil, self, "setBuffers:offsets:attributeStrides:withRange:", buffers, offsets, strides, range)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setBufferOffset_attributeStride_atIndex")
-ComputeCommandEncoder_setBufferOffset_attributeStride_atIndex :: #force_inline proc "c" (self: ^ComputeCommandEncoder, offset: NS.UInteger, stride: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setBufferOffset:attributeStride:atIndex:", offset, stride, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setBytes_length_attributeStride_atIndex")
-ComputeCommandEncoder_setBytes_length_attributeStride_atIndex :: #force_inline proc "c" (self: ^ComputeCommandEncoder, bytes: rawptr, length: NS.UInteger, stride: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setBytes:length:attributeStride:atIndex:", bytes, length, stride, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setVisibleFunctionTable")
-ComputeCommandEncoder_setVisibleFunctionTable :: #force_inline proc "c" (self: ^ComputeCommandEncoder, visibleFunctionTable: ^VisibleFunctionTable, bufferIndex: NS.UInteger) {
-    msgSend(nil, self, "setVisibleFunctionTable:atBufferIndex:", visibleFunctionTable, bufferIndex)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setVisibleFunctionTables")
-ComputeCommandEncoder_setVisibleFunctionTables :: #force_inline proc "c" (self: ^ComputeCommandEncoder, visibleFunctionTables: ^^VisibleFunctionTable, range: NS._NSRange) {
-    msgSend(nil, self, "setVisibleFunctionTables:withBufferRange:", visibleFunctionTables, range)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setIntersectionFunctionTable")
-ComputeCommandEncoder_setIntersectionFunctionTable :: #force_inline proc "c" (self: ^ComputeCommandEncoder, intersectionFunctionTable: ^IntersectionFunctionTable, bufferIndex: NS.UInteger) {
-    msgSend(nil, self, "setIntersectionFunctionTable:atBufferIndex:", intersectionFunctionTable, bufferIndex)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setIntersectionFunctionTables")
-ComputeCommandEncoder_setIntersectionFunctionTables :: #force_inline proc "c" (self: ^ComputeCommandEncoder, intersectionFunctionTables: ^^IntersectionFunctionTable, range: NS._NSRange) {
-    msgSend(nil, self, "setIntersectionFunctionTables:withBufferRange:", intersectionFunctionTables, range)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setAccelerationStructure")
-ComputeCommandEncoder_setAccelerationStructure :: #force_inline proc "c" (self: ^ComputeCommandEncoder, accelerationStructure: ^AccelerationStructure, bufferIndex: NS.UInteger) {
-    msgSend(nil, self, "setAccelerationStructure:atBufferIndex:", accelerationStructure, bufferIndex)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setTexture")
-ComputeCommandEncoder_setTexture :: #force_inline proc "c" (self: ^ComputeCommandEncoder, texture: ^Texture, index: NS.UInteger) {
-    msgSend(nil, self, "setTexture:atIndex:", texture, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setTextures")
-ComputeCommandEncoder_setTextures :: #force_inline proc "c" (self: ^ComputeCommandEncoder, textures: ^^Texture, range: NS._NSRange) {
-    msgSend(nil, self, "setTextures:withRange:", textures, range)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setSamplerState_atIndex")
-ComputeCommandEncoder_setSamplerState_atIndex :: #force_inline proc "c" (self: ^ComputeCommandEncoder, sampler: ^SamplerState, index: NS.UInteger) {
-    msgSend(nil, self, "setSamplerState:atIndex:", sampler, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setSamplerStates_withRange")
-ComputeCommandEncoder_setSamplerStates_withRange :: #force_inline proc "c" (self: ^ComputeCommandEncoder, samplers: ^^SamplerState, range: NS._NSRange) {
-    msgSend(nil, self, "setSamplerStates:withRange:", samplers, range)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setSamplerState_lodMinClamp_lodMaxClamp_atIndex")
-ComputeCommandEncoder_setSamplerState_lodMinClamp_lodMaxClamp_atIndex :: #force_inline proc "c" (self: ^ComputeCommandEncoder, sampler: ^SamplerState, lodMinClamp: cffi.float, lodMaxClamp: cffi.float, index: NS.UInteger) {
-    msgSend(nil, self, "setSamplerState:lodMinClamp:lodMaxClamp:atIndex:", sampler, lodMinClamp, lodMaxClamp, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setSamplerStates_lodMinClamps_lodMaxClamps_withRange")
-ComputeCommandEncoder_setSamplerStates_lodMinClamps_lodMaxClamps_withRange :: #force_inline proc "c" (self: ^ComputeCommandEncoder, samplers: ^^SamplerState, lodMinClamps: ^cffi.float, lodMaxClamps: ^cffi.float, range: NS._NSRange) {
-    msgSend(nil, self, "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:", samplers, lodMinClamps, lodMaxClamps, range)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setThreadgroupMemoryLength")
-ComputeCommandEncoder_setThreadgroupMemoryLength :: #force_inline proc "c" (self: ^ComputeCommandEncoder, length: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setThreadgroupMemoryLength:atIndex:", length, index)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setImageblockWidth")
-ComputeCommandEncoder_setImageblockWidth :: #force_inline proc "c" (self: ^ComputeCommandEncoder, width: NS.UInteger, height: NS.UInteger) {
-    msgSend(nil, self, "setImageblockWidth:height:", width, height)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setStageInRegion")
-ComputeCommandEncoder_setStageInRegion :: #force_inline proc "c" (self: ^ComputeCommandEncoder, region: Region) {
-    msgSend(nil, self, "setStageInRegion:", region)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="setStageInRegionWithIndirectBuffer")
-ComputeCommandEncoder_setStageInRegionWithIndirectBuffer :: #force_inline proc "c" (self: ^ComputeCommandEncoder, indirectBuffer: ^Buffer, indirectBufferOffset: NS.UInteger) {
-    msgSend(nil, self, "setStageInRegionWithIndirectBuffer:indirectBufferOffset:", indirectBuffer, indirectBufferOffset)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="dispatchThreadgroups")
-ComputeCommandEncoder_dispatchThreadgroups :: #force_inline proc "c" (self: ^ComputeCommandEncoder, threadgroupsPerGrid: Size, threadsPerThreadgroup: Size) {
-    msgSend(nil, self, "dispatchThreadgroups:threadsPerThreadgroup:", threadgroupsPerGrid, threadsPerThreadgroup)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="dispatchThreadgroupsWithIndirectBuffer")
-ComputeCommandEncoder_dispatchThreadgroupsWithIndirectBuffer :: #force_inline proc "c" (self: ^ComputeCommandEncoder, indirectBuffer: ^Buffer, indirectBufferOffset: NS.UInteger, threadsPerThreadgroup: Size) {
-    msgSend(nil, self, "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:", indirectBuffer, indirectBufferOffset, threadsPerThreadgroup)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="dispatchThreads")
-ComputeCommandEncoder_dispatchThreads :: #force_inline proc "c" (self: ^ComputeCommandEncoder, threadsPerGrid: Size, threadsPerThreadgroup: Size) {
-    msgSend(nil, self, "dispatchThreads:threadsPerThreadgroup:", threadsPerGrid, threadsPerThreadgroup)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="updateFence")
-ComputeCommandEncoder_updateFence :: #force_inline proc "c" (self: ^ComputeCommandEncoder, fence: ^Fence) {
-    msgSend(nil, self, "updateFence:", fence)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="waitForFence")
-ComputeCommandEncoder_waitForFence :: #force_inline proc "c" (self: ^ComputeCommandEncoder, fence: ^Fence) {
-    msgSend(nil, self, "waitForFence:", fence)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="useResource")
-ComputeCommandEncoder_useResource :: #force_inline proc "c" (self: ^ComputeCommandEncoder, resource: ^Resource, usage: ResourceUsage) {
-    msgSend(nil, self, "useResource:usage:", resource, usage)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="useResources")
-ComputeCommandEncoder_useResources :: #force_inline proc "c" (self: ^ComputeCommandEncoder, resources: ^^Resource, count: NS.UInteger, usage: ResourceUsage) {
-    msgSend(nil, self, "useResources:count:usage:", resources, count, usage)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="useHeap")
-ComputeCommandEncoder_useHeap :: #force_inline proc "c" (self: ^ComputeCommandEncoder, heap: ^Heap) {
-    msgSend(nil, self, "useHeap:", heap)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="useHeaps")
-ComputeCommandEncoder_useHeaps :: #force_inline proc "c" (self: ^ComputeCommandEncoder, heaps: ^^Heap, count: NS.UInteger) {
-    msgSend(nil, self, "useHeaps:count:", heaps, count)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="executeCommandsInBuffer_withRange")
-ComputeCommandEncoder_executeCommandsInBuffer_withRange :: #force_inline proc "c" (self: ^ComputeCommandEncoder, indirectCommandBuffer: ^IndirectCommandBuffer, executionRange: NS._NSRange) {
-    msgSend(nil, self, "executeCommandsInBuffer:withRange:", indirectCommandBuffer, executionRange)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="executeCommandsInBuffer_indirectBuffer_indirectBufferOffset")
-ComputeCommandEncoder_executeCommandsInBuffer_indirectBuffer_indirectBufferOffset :: #force_inline proc "c" (self: ^ComputeCommandEncoder, indirectCommandbuffer: ^IndirectCommandBuffer, indirectRangeBuffer: ^Buffer, indirectBufferOffset: NS.UInteger) {
-    msgSend(nil, self, "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:", indirectCommandbuffer, indirectRangeBuffer, indirectBufferOffset)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="memoryBarrierWithScope")
-ComputeCommandEncoder_memoryBarrierWithScope :: #force_inline proc "c" (self: ^ComputeCommandEncoder, scope: BarrierScope) {
-    msgSend(nil, self, "memoryBarrierWithScope:", scope)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="memoryBarrierWithResources")
-ComputeCommandEncoder_memoryBarrierWithResources :: #force_inline proc "c" (self: ^ComputeCommandEncoder, resources: ^^Resource, count: NS.UInteger) {
-    msgSend(nil, self, "memoryBarrierWithResources:count:", resources, count)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="sampleCountersInBuffer")
-ComputeCommandEncoder_sampleCountersInBuffer :: #force_inline proc "c" (self: ^ComputeCommandEncoder, sampleBuffer: ^CounterSampleBuffer, sampleIndex: NS.UInteger, barrier: bool) {
-    msgSend(nil, self, "sampleCountersInBuffer:atSampleIndex:withBarrier:", sampleBuffer, sampleIndex, barrier)
-}
-@(objc_type=ComputeCommandEncoder, objc_name="dispatchType")
-ComputeCommandEncoder_dispatchType :: #force_inline proc "c" (self: ^ComputeCommandEncoder) -> DispatchType {
-    return msgSend(DispatchType, self, "dispatchType")
-}
+
 @(objc_type=ComputeCommandEncoder, objc_name="setBuffer")
 ComputeCommandEncoder_setBuffer :: proc {
     ComputeCommandEncoder_setBuffer_offset_atIndex,

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICollectionViewSupplementaryRegistration
 ///
-@(objc_class="UICollectionViewSupplementaryRegistration")
+@(objc_class="UICollectionViewSupplementaryRegistration", objc_superclass=NS.Object)
 CollectionViewSupplementaryRegistration :: struct { using _: NS.Object, }
 

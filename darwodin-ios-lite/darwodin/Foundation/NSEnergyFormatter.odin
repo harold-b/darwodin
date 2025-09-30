@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSEnergyFormatter
 ///
-@(objc_class="NSEnergyFormatter")
+@(objc_class="NSEnergyFormatter", objc_superclass=Formatter)
 EnergyFormatter :: struct { using _: Formatter, }
 

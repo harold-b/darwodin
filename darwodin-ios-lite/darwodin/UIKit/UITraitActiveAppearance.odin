@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitActiveAppearance
 ///
-@(objc_class="UITraitActiveAppearance")
+@(objc_class="UITraitActiveAppearance", objc_superclass=NS.Object)
 TraitActiveAppearance :: struct { using _: NS.Object, 
     using _: NSIntegerTraitDefinition,
 }

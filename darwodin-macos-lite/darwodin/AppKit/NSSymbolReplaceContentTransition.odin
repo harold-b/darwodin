@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSymbolReplaceContentTransition
 ///
-@(objc_class="NSSymbolReplaceContentTransition")
+@(objc_class="NSSymbolReplaceContentTransition", objc_superclass=SymbolContentTransition)
 SymbolReplaceContentTransition :: struct { using _: SymbolContentTransition, }
 

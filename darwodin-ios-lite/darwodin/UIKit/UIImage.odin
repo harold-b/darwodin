@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIImage
 ///
-@(objc_class="UIImage")
+@(objc_class="UIImage", objc_superclass=NS.Object)
 Image :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }

@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSURLSessionConfiguration
 ///
-@(objc_class="NSURLSessionConfiguration")
+@(objc_class="NSURLSessionConfiguration", objc_superclass=Object)
 URLSessionConfiguration :: struct { using _: Object, 
     using _: Copying,
 }

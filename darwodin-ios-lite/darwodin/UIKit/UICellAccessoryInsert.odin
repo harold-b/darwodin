@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICellAccessoryInsert
 ///
-@(objc_class="UICellAccessoryInsert")
+@(objc_class="UICellAccessoryInsert", objc_superclass=CellAccessory)
 CellAccessoryInsert :: struct { using _: CellAccessory, }
 

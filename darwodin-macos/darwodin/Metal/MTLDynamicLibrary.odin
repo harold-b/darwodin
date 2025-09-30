@@ -20,23 +20,20 @@ DynamicLibrary :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DynamicLibrary, objc_name="serializeToURL")
-DynamicLibrary_serializeToURL :: #force_inline proc "c" (self: ^DynamicLibrary, url: ^NS.URL, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "serializeToURL:error:", url, error)
-}
-@(objc_type=DynamicLibrary, objc_name="label")
-DynamicLibrary_label :: #force_inline proc "c" (self: ^DynamicLibrary) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=DynamicLibrary, objc_name="setLabel")
-DynamicLibrary_setLabel :: #force_inline proc "c" (self: ^DynamicLibrary, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
-}
-@(objc_type=DynamicLibrary, objc_name="device")
-DynamicLibrary_device :: #force_inline proc "c" (self: ^DynamicLibrary) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=DynamicLibrary, objc_name="installName")
-DynamicLibrary_installName :: #force_inline proc "c" (self: ^DynamicLibrary) -> ^NS.String {
-    return msgSend(^NS.String, self, "installName")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DynamicLibrary, objc_selector="serializeToURL:error:", objc_name="serializeToURL")
+    DynamicLibrary_serializeToURL :: proc(self: ^DynamicLibrary, url: ^NS.URL, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=DynamicLibrary, objc_selector="label", objc_name="label")
+    DynamicLibrary_label :: proc(self: ^DynamicLibrary) -> ^NS.String ---
+
+    @(objc_type=DynamicLibrary, objc_selector="setLabel:", objc_name="setLabel")
+    DynamicLibrary_setLabel :: proc(self: ^DynamicLibrary, label: ^NS.String) ---
+
+    @(objc_type=DynamicLibrary, objc_selector="device", objc_name="device")
+    DynamicLibrary_device :: proc(self: ^DynamicLibrary) -> ^Device ---
+
+    @(objc_type=DynamicLibrary, objc_selector="installName", objc_name="installName")
+    DynamicLibrary_installName :: proc(self: ^DynamicLibrary) -> ^NS.String ---
 }

@@ -21,23 +21,21 @@ TabBarDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TabBarDelegate, objc_name="tabBar_didSelectItem")
-TabBarDelegate_tabBar_didSelectItem :: #force_inline proc "c" (self: ^TabBarDelegate, tabBar: ^TabBar, item: ^TabBarItem) {
-    msgSend(nil, self, "tabBar:didSelectItem:", tabBar, item)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TabBarDelegate, objc_selector="tabBar:didSelectItem:", objc_name="tabBar_didSelectItem")
+    TabBarDelegate_tabBar_didSelectItem :: proc(self: ^TabBarDelegate, tabBar: ^TabBar, item: ^TabBarItem) ---
+
+    @(objc_type=TabBarDelegate, objc_selector="tabBar:willBeginCustomizingItems:", objc_name="tabBar_willBeginCustomizingItems")
+    TabBarDelegate_tabBar_willBeginCustomizingItems :: proc(self: ^TabBarDelegate, tabBar: ^TabBar, items: ^NS.Array) ---
+
+    @(objc_type=TabBarDelegate, objc_selector="tabBar:didBeginCustomizingItems:", objc_name="tabBar_didBeginCustomizingItems")
+    TabBarDelegate_tabBar_didBeginCustomizingItems :: proc(self: ^TabBarDelegate, tabBar: ^TabBar, items: ^NS.Array) ---
+
+    @(objc_type=TabBarDelegate, objc_selector="tabBar:willEndCustomizingItems:changed:", objc_name="tabBar_willEndCustomizingItems_changed")
+    TabBarDelegate_tabBar_willEndCustomizingItems_changed :: proc(self: ^TabBarDelegate, tabBar: ^TabBar, items: ^NS.Array, changed: bool) ---
+
+    @(objc_type=TabBarDelegate, objc_selector="tabBar:didEndCustomizingItems:changed:", objc_name="tabBar_didEndCustomizingItems_changed")
+    TabBarDelegate_tabBar_didEndCustomizingItems_changed :: proc(self: ^TabBarDelegate, tabBar: ^TabBar, items: ^NS.Array, changed: bool) ---
 }
-@(objc_type=TabBarDelegate, objc_name="tabBar_willBeginCustomizingItems")
-TabBarDelegate_tabBar_willBeginCustomizingItems :: #force_inline proc "c" (self: ^TabBarDelegate, tabBar: ^TabBar, items: ^NS.Array) {
-    msgSend(nil, self, "tabBar:willBeginCustomizingItems:", tabBar, items)
-}
-@(objc_type=TabBarDelegate, objc_name="tabBar_didBeginCustomizingItems")
-TabBarDelegate_tabBar_didBeginCustomizingItems :: #force_inline proc "c" (self: ^TabBarDelegate, tabBar: ^TabBar, items: ^NS.Array) {
-    msgSend(nil, self, "tabBar:didBeginCustomizingItems:", tabBar, items)
-}
-@(objc_type=TabBarDelegate, objc_name="tabBar_willEndCustomizingItems_changed")
-TabBarDelegate_tabBar_willEndCustomizingItems_changed :: #force_inline proc "c" (self: ^TabBarDelegate, tabBar: ^TabBar, items: ^NS.Array, changed: bool) {
-    msgSend(nil, self, "tabBar:willEndCustomizingItems:changed:", tabBar, items, changed)
-}
-@(objc_type=TabBarDelegate, objc_name="tabBar_didEndCustomizingItems_changed")
-TabBarDelegate_tabBar_didEndCustomizingItems_changed :: #force_inline proc "c" (self: ^TabBarDelegate, tabBar: ^TabBar, items: ^NS.Array, changed: bool) {
-    msgSend(nil, self, "tabBar:didEndCustomizingItems:changed:", tabBar, items, changed)
-}
+

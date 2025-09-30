@@ -21,23 +21,20 @@ DataSourceTranslating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DataSourceTranslating, objc_name="presentationSectionIndexForDataSourceSectionIndex")
-DataSourceTranslating_presentationSectionIndexForDataSourceSectionIndex :: #force_inline proc "c" (self: ^DataSourceTranslating, dataSourceSectionIndex: NS.Integer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "presentationSectionIndexForDataSourceSectionIndex:", dataSourceSectionIndex)
-}
-@(objc_type=DataSourceTranslating, objc_name="dataSourceSectionIndexForPresentationSectionIndex")
-DataSourceTranslating_dataSourceSectionIndexForPresentationSectionIndex :: #force_inline proc "c" (self: ^DataSourceTranslating, presentationSectionIndex: NS.Integer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "dataSourceSectionIndexForPresentationSectionIndex:", presentationSectionIndex)
-}
-@(objc_type=DataSourceTranslating, objc_name="presentationIndexPathForDataSourceIndexPath")
-DataSourceTranslating_presentationIndexPathForDataSourceIndexPath :: #force_inline proc "c" (self: ^DataSourceTranslating, dataSourceIndexPath: ^NS.IndexPath) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "presentationIndexPathForDataSourceIndexPath:", dataSourceIndexPath)
-}
-@(objc_type=DataSourceTranslating, objc_name="dataSourceIndexPathForPresentationIndexPath")
-DataSourceTranslating_dataSourceIndexPathForPresentationIndexPath :: #force_inline proc "c" (self: ^DataSourceTranslating, presentationIndexPath: ^NS.IndexPath) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "dataSourceIndexPathForPresentationIndexPath:", presentationIndexPath)
-}
-@(objc_type=DataSourceTranslating, objc_name="performUsingPresentationValues")
-DataSourceTranslating_performUsingPresentationValues :: #force_inline proc "c" (self: ^DataSourceTranslating, actionsToTranslate: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "performUsingPresentationValues:", actionsToTranslate)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DataSourceTranslating, objc_selector="presentationSectionIndexForDataSourceSectionIndex:", objc_name="presentationSectionIndexForDataSourceSectionIndex")
+    DataSourceTranslating_presentationSectionIndexForDataSourceSectionIndex :: proc(self: ^DataSourceTranslating, dataSourceSectionIndex: NS.Integer) -> NS.Integer ---
+
+    @(objc_type=DataSourceTranslating, objc_selector="dataSourceSectionIndexForPresentationSectionIndex:", objc_name="dataSourceSectionIndexForPresentationSectionIndex")
+    DataSourceTranslating_dataSourceSectionIndexForPresentationSectionIndex :: proc(self: ^DataSourceTranslating, presentationSectionIndex: NS.Integer) -> NS.Integer ---
+
+    @(objc_type=DataSourceTranslating, objc_selector="presentationIndexPathForDataSourceIndexPath:", objc_name="presentationIndexPathForDataSourceIndexPath")
+    DataSourceTranslating_presentationIndexPathForDataSourceIndexPath :: proc(self: ^DataSourceTranslating, dataSourceIndexPath: ^NS.IndexPath) -> ^NS.IndexPath ---
+
+    @(objc_type=DataSourceTranslating, objc_selector="dataSourceIndexPathForPresentationIndexPath:", objc_name="dataSourceIndexPathForPresentationIndexPath")
+    DataSourceTranslating_dataSourceIndexPathForPresentationIndexPath :: proc(self: ^DataSourceTranslating, presentationIndexPath: ^NS.IndexPath) -> ^NS.IndexPath ---
+
+    @(objc_type=DataSourceTranslating, objc_selector="performUsingPresentationValues:", objc_name="performUsingPresentationValues")
+    DataSourceTranslating_performUsingPresentationValues :: proc(self: ^DataSourceTranslating, actionsToTranslate: ^Objc_Block(proc "c" ())) ---
 }

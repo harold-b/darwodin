@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPointerInteraction
 ///
-@(objc_class="UIPointerInteraction")
+@(objc_class="UIPointerInteraction", objc_superclass=NS.Object)
 PointerInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

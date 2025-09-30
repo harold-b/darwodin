@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSDraggingSession
 ///
-@(objc_class="NSDraggingSession")
+@(objc_class="NSDraggingSession", objc_superclass=NS.Object)
 DraggingSession :: struct { using _: NS.Object, }
 

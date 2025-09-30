@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMetadataQueryAttributeValueTuple
 ///
-@(objc_class="NSMetadataQueryAttributeValueTuple")
+@(objc_class="NSMetadataQueryAttributeValueTuple", objc_superclass=Object)
 MetadataQueryAttributeValueTuple :: struct { using _: Object, }
 

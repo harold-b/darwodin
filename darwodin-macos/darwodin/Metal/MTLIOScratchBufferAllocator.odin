@@ -20,7 +20,8 @@ IOScratchBufferAllocator :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=IOScratchBufferAllocator, objc_name="newScratchBufferWithMinimumSize")
-IOScratchBufferAllocator_newScratchBufferWithMinimumSize :: #force_inline proc "c" (self: ^IOScratchBufferAllocator, minimumSize: NS.UInteger) -> ^IOScratchBuffer {
-    return msgSend(^IOScratchBuffer, self, "newScratchBufferWithMinimumSize:", minimumSize)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IOScratchBufferAllocator, objc_selector="newScratchBufferWithMinimumSize:", objc_name="newScratchBufferWithMinimumSize")
+    IOScratchBufferAllocator_newScratchBufferWithMinimumSize :: proc(self: ^IOScratchBufferAllocator, minimumSize: NS.UInteger) -> ^IOScratchBuffer ---
 }

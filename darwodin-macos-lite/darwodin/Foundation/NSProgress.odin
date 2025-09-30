@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSProgress
 ///
-@(objc_class="NSProgress")
+@(objc_class="NSProgress", objc_superclass=Object)
 Progress :: struct { using _: Object, }
 

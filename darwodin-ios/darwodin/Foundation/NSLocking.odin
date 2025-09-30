@@ -16,11 +16,11 @@ import Sec "../Security"
 @(objc_class="NSLocking")
 Locking :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=Locking, objc_name="lock")
-Locking_lock :: #force_inline proc "c" (self: ^Locking) {
-    msgSend(nil, self, "lock")
-}
-@(objc_type=Locking, objc_name="unlock")
-Locking_unlock :: #force_inline proc "c" (self: ^Locking) {
-    msgSend(nil, self, "unlock")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Locking, objc_selector="lock", objc_name="lock")
+    Locking_lock :: proc(self: ^Locking) ---
+
+    @(objc_type=Locking, objc_selector="unlock", objc_name="unlock")
+    Locking_unlock :: proc(self: ^Locking) ---
 }

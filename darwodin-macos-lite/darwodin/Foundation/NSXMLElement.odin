@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSXMLElement
 ///
-@(objc_class="NSXMLElement")
+@(objc_class="NSXMLElement", objc_superclass=XMLNode)
 XMLElement :: struct { using _: XMLNode, }
 

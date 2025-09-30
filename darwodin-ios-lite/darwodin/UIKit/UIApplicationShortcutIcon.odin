@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIApplicationShortcutIcon
 ///
-@(objc_class="UIApplicationShortcutIcon")
+@(objc_class="UIApplicationShortcutIcon", objc_superclass=NS.Object)
 ApplicationShortcutIcon :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

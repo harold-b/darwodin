@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIUpdateActionPhase
 ///
-@(objc_class="UIUpdateActionPhase")
+@(objc_class="UIUpdateActionPhase", objc_superclass=NS.Object)
 UpdateActionPhase :: struct { using _: NS.Object, }
 

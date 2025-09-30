@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSymbolRotateEffect
 ///
-@(objc_class="NSSymbolRotateEffect")
+@(objc_class="NSSymbolRotateEffect", objc_superclass=SymbolEffect)
 SymbolRotateEffect :: struct { using _: SymbolEffect, }
 

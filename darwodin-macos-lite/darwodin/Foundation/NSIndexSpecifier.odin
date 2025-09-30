@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSIndexSpecifier
 ///
-@(objc_class="NSIndexSpecifier")
+@(objc_class="NSIndexSpecifier", objc_superclass=ScriptObjectSpecifier)
 IndexSpecifier :: struct { using _: ScriptObjectSpecifier, }
 

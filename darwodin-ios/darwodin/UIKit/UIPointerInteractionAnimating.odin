@@ -21,11 +21,11 @@ PointerInteractionAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PointerInteractionAnimating, objc_name="addAnimations")
-PointerInteractionAnimating_addAnimations :: #force_inline proc "c" (self: ^PointerInteractionAnimating, animations: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "addAnimations:", animations)
-}
-@(objc_type=PointerInteractionAnimating, objc_name="addCompletion")
-PointerInteractionAnimating_addCompletion :: #force_inline proc "c" (self: ^PointerInteractionAnimating, completion: ^Objc_Block(proc "c" (finished: bool))) {
-    msgSend(nil, self, "addCompletion:", completion)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PointerInteractionAnimating, objc_selector="addAnimations:", objc_name="addAnimations")
+    PointerInteractionAnimating_addAnimations :: proc(self: ^PointerInteractionAnimating, animations: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=PointerInteractionAnimating, objc_selector="addCompletion:", objc_name="addCompletion")
+    PointerInteractionAnimating_addCompletion :: proc(self: ^PointerInteractionAnimating, completion: ^Objc_Block(proc "c" (finished: bool))) ---
 }

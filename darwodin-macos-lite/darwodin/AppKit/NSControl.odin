@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSControl
 ///
-@(objc_class="NSControl")
+@(objc_class="NSControl", objc_superclass=View)
 Control :: struct { using _: View, }
 

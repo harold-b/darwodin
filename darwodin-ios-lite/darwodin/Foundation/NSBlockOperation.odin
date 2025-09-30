@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSBlockOperation
 ///
-@(objc_class="NSBlockOperation")
+@(objc_class="NSBlockOperation", objc_superclass=Operation)
 BlockOperation :: struct { using _: Operation, }
 

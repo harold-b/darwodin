@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITextPosition
 ///
-@(objc_class="UITextPosition")
+@(objc_class="UITextPosition", objc_superclass=NS.Object)
 TextPosition :: struct { using _: NS.Object, }
 

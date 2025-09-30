@@ -19,35 +19,29 @@ AxisInput :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AxisInput, objc_name="valueDidChangeHandler")
-AxisInput_valueDidChangeHandler :: #force_inline proc "c" (self: ^AxisInput) -> ^Objc_Block(proc "c" ()) {
-    return msgSend(^Objc_Block(proc "c" ()), self, "valueDidChangeHandler")
-}
-@(objc_type=AxisInput, objc_name="setValueDidChangeHandler")
-AxisInput_setValueDidChangeHandler :: #force_inline proc "c" (self: ^AxisInput, valueDidChangeHandler: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "setValueDidChangeHandler:", valueDidChangeHandler)
-}
-@(objc_type=AxisInput, objc_name="value")
-AxisInput_value :: #force_inline proc "c" (self: ^AxisInput) -> cffi.float {
-    return msgSend(cffi.float, self, "value")
-}
-@(objc_type=AxisInput, objc_name="isAnalog")
-AxisInput_isAnalog :: #force_inline proc "c" (self: ^AxisInput) -> bool {
-    return msgSend(bool, self, "isAnalog")
-}
-@(objc_type=AxisInput, objc_name="canWrap")
-AxisInput_canWrap :: #force_inline proc "c" (self: ^AxisInput) -> bool {
-    return msgSend(bool, self, "canWrap")
-}
-@(objc_type=AxisInput, objc_name="lastValueTimestamp")
-AxisInput_lastValueTimestamp :: #force_inline proc "c" (self: ^AxisInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastValueTimestamp")
-}
-@(objc_type=AxisInput, objc_name="lastValueLatency")
-AxisInput_lastValueLatency :: #force_inline proc "c" (self: ^AxisInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastValueLatency")
-}
-@(objc_type=AxisInput, objc_name="sources")
-AxisInput_sources :: #force_inline proc "c" (self: ^AxisInput) -> ^NS.Set {
-    return msgSend(^NS.Set, self, "sources")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AxisInput, objc_selector="valueDidChangeHandler", objc_name="valueDidChangeHandler")
+    AxisInput_valueDidChangeHandler :: proc(self: ^AxisInput) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=AxisInput, objc_selector="setValueDidChangeHandler:", objc_name="setValueDidChangeHandler")
+    AxisInput_setValueDidChangeHandler :: proc(self: ^AxisInput, valueDidChangeHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=AxisInput, objc_selector="value", objc_name="value")
+    AxisInput_value :: proc(self: ^AxisInput) -> cffi.float ---
+
+    @(objc_type=AxisInput, objc_selector="isAnalog", objc_name="isAnalog")
+    AxisInput_isAnalog :: proc(self: ^AxisInput) -> bool ---
+
+    @(objc_type=AxisInput, objc_selector="canWrap", objc_name="canWrap")
+    AxisInput_canWrap :: proc(self: ^AxisInput) -> bool ---
+
+    @(objc_type=AxisInput, objc_selector="lastValueTimestamp", objc_name="lastValueTimestamp")
+    AxisInput_lastValueTimestamp :: proc(self: ^AxisInput) -> NS.TimeInterval ---
+
+    @(objc_type=AxisInput, objc_selector="lastValueLatency", objc_name="lastValueLatency")
+    AxisInput_lastValueLatency :: proc(self: ^AxisInput) -> NS.TimeInterval ---
+
+    @(objc_type=AxisInput, objc_selector="sources", objc_name="sources")
+    AxisInput_sources :: proc(self: ^AxisInput) -> ^NS.Set ---
 }

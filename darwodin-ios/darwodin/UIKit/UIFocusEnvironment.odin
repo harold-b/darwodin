@@ -21,43 +21,35 @@ FocusEnvironment :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=FocusEnvironment, objc_name="setNeedsFocusUpdate")
-FocusEnvironment_setNeedsFocusUpdate :: #force_inline proc "c" (self: ^FocusEnvironment) {
-    msgSend(nil, self, "setNeedsFocusUpdate")
-}
-@(objc_type=FocusEnvironment, objc_name="updateFocusIfNeeded")
-FocusEnvironment_updateFocusIfNeeded :: #force_inline proc "c" (self: ^FocusEnvironment) {
-    msgSend(nil, self, "updateFocusIfNeeded")
-}
-@(objc_type=FocusEnvironment, objc_name="shouldUpdateFocusInContext")
-FocusEnvironment_shouldUpdateFocusInContext :: #force_inline proc "c" (self: ^FocusEnvironment, _context: ^FocusUpdateContext) -> bool {
-    return msgSend(bool, self, "shouldUpdateFocusInContext:", _context)
-}
-@(objc_type=FocusEnvironment, objc_name="didUpdateFocusInContext")
-FocusEnvironment_didUpdateFocusInContext :: #force_inline proc "c" (self: ^FocusEnvironment, _context: ^FocusUpdateContext, coordinator: ^FocusAnimationCoordinator) {
-    msgSend(nil, self, "didUpdateFocusInContext:withAnimationCoordinator:", _context, coordinator)
-}
-@(objc_type=FocusEnvironment, objc_name="soundIdentifierForFocusUpdateInContext")
-FocusEnvironment_soundIdentifierForFocusUpdateInContext :: #force_inline proc "c" (self: ^FocusEnvironment, _context: ^FocusUpdateContext) -> ^NS.String {
-    return msgSend(^NS.String, self, "soundIdentifierForFocusUpdateInContext:", _context)
-}
-@(objc_type=FocusEnvironment, objc_name="preferredFocusEnvironments")
-FocusEnvironment_preferredFocusEnvironments :: #force_inline proc "c" (self: ^FocusEnvironment) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "preferredFocusEnvironments")
-}
-@(objc_type=FocusEnvironment, objc_name="parentFocusEnvironment")
-FocusEnvironment_parentFocusEnvironment :: #force_inline proc "c" (self: ^FocusEnvironment) -> ^FocusEnvironment {
-    return msgSend(^FocusEnvironment, self, "parentFocusEnvironment")
-}
-@(objc_type=FocusEnvironment, objc_name="focusItemContainer")
-FocusEnvironment_focusItemContainer :: #force_inline proc "c" (self: ^FocusEnvironment) -> ^FocusItemContainer {
-    return msgSend(^FocusItemContainer, self, "focusItemContainer")
-}
-@(objc_type=FocusEnvironment, objc_name="preferredFocusedView")
-FocusEnvironment_preferredFocusedView :: #force_inline proc "c" (self: ^FocusEnvironment) -> ^View {
-    return msgSend(^View, self, "preferredFocusedView")
-}
-@(objc_type=FocusEnvironment, objc_name="focusGroupIdentifier")
-FocusEnvironment_focusGroupIdentifier :: #force_inline proc "c" (self: ^FocusEnvironment) -> ^NS.String {
-    return msgSend(^NS.String, self, "focusGroupIdentifier")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=FocusEnvironment, objc_selector="setNeedsFocusUpdate", objc_name="setNeedsFocusUpdate")
+    FocusEnvironment_setNeedsFocusUpdate :: proc(self: ^FocusEnvironment) ---
+
+    @(objc_type=FocusEnvironment, objc_selector="updateFocusIfNeeded", objc_name="updateFocusIfNeeded")
+    FocusEnvironment_updateFocusIfNeeded :: proc(self: ^FocusEnvironment) ---
+
+    @(objc_type=FocusEnvironment, objc_selector="shouldUpdateFocusInContext:", objc_name="shouldUpdateFocusInContext")
+    FocusEnvironment_shouldUpdateFocusInContext :: proc(self: ^FocusEnvironment, _context: ^FocusUpdateContext) -> bool ---
+
+    @(objc_type=FocusEnvironment, objc_selector="didUpdateFocusInContext:withAnimationCoordinator:", objc_name="didUpdateFocusInContext")
+    FocusEnvironment_didUpdateFocusInContext :: proc(self: ^FocusEnvironment, _context: ^FocusUpdateContext, coordinator: ^FocusAnimationCoordinator) ---
+
+    @(objc_type=FocusEnvironment, objc_selector="soundIdentifierForFocusUpdateInContext:", objc_name="soundIdentifierForFocusUpdateInContext")
+    FocusEnvironment_soundIdentifierForFocusUpdateInContext :: proc(self: ^FocusEnvironment, _context: ^FocusUpdateContext) -> ^NS.String ---
+
+    @(objc_type=FocusEnvironment, objc_selector="preferredFocusEnvironments", objc_name="preferredFocusEnvironments")
+    FocusEnvironment_preferredFocusEnvironments :: proc(self: ^FocusEnvironment) -> ^NS.Array ---
+
+    @(objc_type=FocusEnvironment, objc_selector="parentFocusEnvironment", objc_name="parentFocusEnvironment")
+    FocusEnvironment_parentFocusEnvironment :: proc(self: ^FocusEnvironment) -> ^FocusEnvironment ---
+
+    @(objc_type=FocusEnvironment, objc_selector="focusItemContainer", objc_name="focusItemContainer")
+    FocusEnvironment_focusItemContainer :: proc(self: ^FocusEnvironment) -> ^FocusItemContainer ---
+
+    @(objc_type=FocusEnvironment, objc_selector="preferredFocusedView", objc_name="preferredFocusedView")
+    FocusEnvironment_preferredFocusedView :: proc(self: ^FocusEnvironment) -> ^View ---
+
+    @(objc_type=FocusEnvironment, objc_selector="focusGroupIdentifier", objc_name="focusGroupIdentifier")
+    FocusEnvironment_focusGroupIdentifier :: proc(self: ^FocusEnvironment) -> ^NS.String ---
 }

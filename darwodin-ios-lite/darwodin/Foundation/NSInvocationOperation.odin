@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSInvocationOperation
 ///
-@(objc_class="NSInvocationOperation")
+@(objc_class="NSInvocationOperation", objc_superclass=Operation)
 InvocationOperation :: struct { using _: Operation, }
 

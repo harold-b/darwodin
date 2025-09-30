@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -361,7 +362,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).tableView_editActionsForRowAtIndexPath(self, tableView, indexPath)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:editActionsForRowAtIndexPath:"), auto_cast tableView_editActionsForRowAtIndexPath, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:editActionsForRowAtIndexPath:"), auto_cast tableView_editActionsForRowAtIndexPath, "^void@:@@") do panic("Failed to register objC method.")
     }
     if vt.tableView_leadingSwipeActionsConfigurationForRowAtIndexPath != nil {
         tableView_leadingSwipeActionsConfigurationForRowAtIndexPath :: proc "c" (self: ^UI.TableViewDelegate, _: SEL, tableView: ^UI.TableView, indexPath: ^NS.IndexPath) -> ^UI.SwipeActionsConfiguration {

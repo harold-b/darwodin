@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIToolbarAppearance
 ///
-@(objc_class="UIToolbarAppearance")
+@(objc_class="UIToolbarAppearance", objc_superclass=BarAppearance)
 ToolbarAppearance :: struct { using _: BarAppearance, }
 

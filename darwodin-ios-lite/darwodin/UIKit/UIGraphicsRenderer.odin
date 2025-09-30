@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIGraphicsRenderer
 ///
-@(objc_class="UIGraphicsRenderer")
+@(objc_class="UIGraphicsRenderer", objc_superclass=NS.Object)
 GraphicsRenderer :: struct { using _: NS.Object, }
 

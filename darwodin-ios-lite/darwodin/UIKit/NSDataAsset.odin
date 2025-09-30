@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSDataAsset
 ///
-@(objc_class="NSDataAsset")
+@(objc_class="NSDataAsset", objc_superclass=NS.Object)
 NSDataAsset :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

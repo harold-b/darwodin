@@ -21,27 +21,24 @@ NavigationControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=NavigationControllerDelegate, objc_name="navigationController_willShowViewController_animated")
-NavigationControllerDelegate_navigationController_willShowViewController_animated :: #force_inline proc "c" (self: ^NavigationControllerDelegate, navigationController: ^NavigationController, viewController: ^ViewController, animated: bool) {
-    msgSend(nil, self, "navigationController:willShowViewController:animated:", navigationController, viewController, animated)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NavigationControllerDelegate, objc_selector="navigationController:willShowViewController:animated:", objc_name="navigationController_willShowViewController_animated")
+    NavigationControllerDelegate_navigationController_willShowViewController_animated :: proc(self: ^NavigationControllerDelegate, navigationController: ^NavigationController, viewController: ^ViewController, animated: bool) ---
+
+    @(objc_type=NavigationControllerDelegate, objc_selector="navigationController:didShowViewController:animated:", objc_name="navigationController_didShowViewController_animated")
+    NavigationControllerDelegate_navigationController_didShowViewController_animated :: proc(self: ^NavigationControllerDelegate, navigationController: ^NavigationController, viewController: ^ViewController, animated: bool) ---
+
+    @(objc_type=NavigationControllerDelegate, objc_selector="navigationControllerSupportedInterfaceOrientations:", objc_name="navigationControllerSupportedInterfaceOrientations")
+    NavigationControllerDelegate_navigationControllerSupportedInterfaceOrientations :: proc(self: ^NavigationControllerDelegate, navigationController: ^NavigationController) -> InterfaceOrientationMask ---
+
+    @(objc_type=NavigationControllerDelegate, objc_selector="navigationControllerPreferredInterfaceOrientationForPresentation:", objc_name="navigationControllerPreferredInterfaceOrientationForPresentation")
+    NavigationControllerDelegate_navigationControllerPreferredInterfaceOrientationForPresentation :: proc(self: ^NavigationControllerDelegate, navigationController: ^NavigationController) -> InterfaceOrientation ---
+
+    @(objc_type=NavigationControllerDelegate, objc_selector="navigationController:interactionControllerForAnimationController:", objc_name="navigationController_interactionControllerForAnimationController")
+    NavigationControllerDelegate_navigationController_interactionControllerForAnimationController :: proc(self: ^NavigationControllerDelegate, navigationController: ^NavigationController, animationController: ^ViewControllerAnimatedTransitioning) -> ^ViewControllerInteractiveTransitioning ---
+
+    @(objc_type=NavigationControllerDelegate, objc_selector="navigationController:animationControllerForOperation:fromViewController:toViewController:", objc_name="navigationController_animationControllerForOperation_fromViewController_toViewController")
+    NavigationControllerDelegate_navigationController_animationControllerForOperation_fromViewController_toViewController :: proc(self: ^NavigationControllerDelegate, navigationController: ^NavigationController, operation: NavigationControllerOperation, fromVC: ^ViewController, toVC: ^ViewController) -> ^ViewControllerAnimatedTransitioning ---
 }
-@(objc_type=NavigationControllerDelegate, objc_name="navigationController_didShowViewController_animated")
-NavigationControllerDelegate_navigationController_didShowViewController_animated :: #force_inline proc "c" (self: ^NavigationControllerDelegate, navigationController: ^NavigationController, viewController: ^ViewController, animated: bool) {
-    msgSend(nil, self, "navigationController:didShowViewController:animated:", navigationController, viewController, animated)
-}
-@(objc_type=NavigationControllerDelegate, objc_name="navigationControllerSupportedInterfaceOrientations")
-NavigationControllerDelegate_navigationControllerSupportedInterfaceOrientations :: #force_inline proc "c" (self: ^NavigationControllerDelegate, navigationController: ^NavigationController) -> InterfaceOrientationMask {
-    return msgSend(InterfaceOrientationMask, self, "navigationControllerSupportedInterfaceOrientations:", navigationController)
-}
-@(objc_type=NavigationControllerDelegate, objc_name="navigationControllerPreferredInterfaceOrientationForPresentation")
-NavigationControllerDelegate_navigationControllerPreferredInterfaceOrientationForPresentation :: #force_inline proc "c" (self: ^NavigationControllerDelegate, navigationController: ^NavigationController) -> InterfaceOrientation {
-    return msgSend(InterfaceOrientation, self, "navigationControllerPreferredInterfaceOrientationForPresentation:", navigationController)
-}
-@(objc_type=NavigationControllerDelegate, objc_name="navigationController_interactionControllerForAnimationController")
-NavigationControllerDelegate_navigationController_interactionControllerForAnimationController :: #force_inline proc "c" (self: ^NavigationControllerDelegate, navigationController: ^NavigationController, animationController: ^ViewControllerAnimatedTransitioning) -> ^ViewControllerInteractiveTransitioning {
-    return msgSend(^ViewControllerInteractiveTransitioning, self, "navigationController:interactionControllerForAnimationController:", navigationController, animationController)
-}
-@(objc_type=NavigationControllerDelegate, objc_name="navigationController_animationControllerForOperation_fromViewController_toViewController")
-NavigationControllerDelegate_navigationController_animationControllerForOperation_fromViewController_toViewController :: #force_inline proc "c" (self: ^NavigationControllerDelegate, navigationController: ^NavigationController, operation: NavigationControllerOperation, fromVC: ^ViewController, toVC: ^ViewController) -> ^ViewControllerAnimatedTransitioning {
-    return msgSend(^ViewControllerAnimatedTransitioning, self, "navigationController:animationControllerForOperation:fromViewController:toViewController:", navigationController, operation, fromVC, toVC)
-}
+

@@ -16,158 +16,26 @@ import CA "../QuartzCore"
 ///
 /// UIKeyboardLayoutGuide
 ///
-@(objc_class="UIKeyboardLayoutGuide")
+@(objc_class="UIKeyboardLayoutGuide", objc_superclass=TrackingLayoutGuide)
 KeyboardLayoutGuide :: struct { using _: TrackingLayoutGuide, }
 
-@(objc_type=KeyboardLayoutGuide, objc_name="init")
-KeyboardLayoutGuide_init :: proc "c" (self: ^KeyboardLayoutGuide) -> ^KeyboardLayoutGuide {
-    return msgSend(^KeyboardLayoutGuide, self, "init")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=KeyboardLayoutGuide, objc_selector="followsUndockedKeyboard", objc_name="followsUndockedKeyboard")
+    KeyboardLayoutGuide_followsUndockedKeyboard :: proc(self: ^KeyboardLayoutGuide) -> bool ---
 
+    @(objc_type=KeyboardLayoutGuide, objc_selector="setFollowsUndockedKeyboard:", objc_name="setFollowsUndockedKeyboard")
+    KeyboardLayoutGuide_setFollowsUndockedKeyboard :: proc(self: ^KeyboardLayoutGuide, followsUndockedKeyboard: bool) ---
 
-@(objc_type=KeyboardLayoutGuide, objc_name="followsUndockedKeyboard")
-KeyboardLayoutGuide_followsUndockedKeyboard :: #force_inline proc "c" (self: ^KeyboardLayoutGuide) -> bool {
-    return msgSend(bool, self, "followsUndockedKeyboard")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="setFollowsUndockedKeyboard")
-KeyboardLayoutGuide_setFollowsUndockedKeyboard :: #force_inline proc "c" (self: ^KeyboardLayoutGuide, followsUndockedKeyboard: bool) {
-    msgSend(nil, self, "setFollowsUndockedKeyboard:", followsUndockedKeyboard)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="usesBottomSafeArea")
-KeyboardLayoutGuide_usesBottomSafeArea :: #force_inline proc "c" (self: ^KeyboardLayoutGuide) -> bool {
-    return msgSend(bool, self, "usesBottomSafeArea")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="setUsesBottomSafeArea")
-KeyboardLayoutGuide_setUsesBottomSafeArea :: #force_inline proc "c" (self: ^KeyboardLayoutGuide, usesBottomSafeArea: bool) {
-    msgSend(nil, self, "setUsesBottomSafeArea:", usesBottomSafeArea)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="keyboardDismissPadding")
-KeyboardLayoutGuide_keyboardDismissPadding :: #force_inline proc "c" (self: ^KeyboardLayoutGuide) -> CG.Float {
-    return msgSend(CG.Float, self, "keyboardDismissPadding")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="setKeyboardDismissPadding")
-KeyboardLayoutGuide_setKeyboardDismissPadding :: #force_inline proc "c" (self: ^KeyboardLayoutGuide, keyboardDismissPadding: CG.Float) {
-    msgSend(nil, self, "setKeyboardDismissPadding:", keyboardDismissPadding)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="load", objc_is_class_method=true)
-KeyboardLayoutGuide_load :: #force_inline proc "c" () {
-    msgSend(nil, KeyboardLayoutGuide, "load")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="initialize", objc_is_class_method=true)
-KeyboardLayoutGuide_initialize :: #force_inline proc "c" () {
-    msgSend(nil, KeyboardLayoutGuide, "initialize")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="new", objc_is_class_method=true)
-KeyboardLayoutGuide_new :: #force_inline proc "c" () -> ^KeyboardLayoutGuide {
-    return msgSend(^KeyboardLayoutGuide, KeyboardLayoutGuide, "new")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="allocWithZone", objc_is_class_method=true)
-KeyboardLayoutGuide_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^KeyboardLayoutGuide {
-    return msgSend(^KeyboardLayoutGuide, KeyboardLayoutGuide, "allocWithZone:", zone)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="alloc", objc_is_class_method=true)
-KeyboardLayoutGuide_alloc :: #force_inline proc "c" () -> ^KeyboardLayoutGuide {
-    return msgSend(^KeyboardLayoutGuide, KeyboardLayoutGuide, "alloc")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="copyWithZone", objc_is_class_method=true)
-KeyboardLayoutGuide_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, KeyboardLayoutGuide, "copyWithZone:", zone)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-KeyboardLayoutGuide_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, KeyboardLayoutGuide, "mutableCopyWithZone:", zone)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-KeyboardLayoutGuide_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, KeyboardLayoutGuide, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="conformsToProtocol", objc_is_class_method=true)
-KeyboardLayoutGuide_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, KeyboardLayoutGuide, "conformsToProtocol:", protocol)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-KeyboardLayoutGuide_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, KeyboardLayoutGuide, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-KeyboardLayoutGuide_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, KeyboardLayoutGuide, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="isSubclassOfClass", objc_is_class_method=true)
-KeyboardLayoutGuide_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, KeyboardLayoutGuide, "isSubclassOfClass:", aClass)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="resolveClassMethod", objc_is_class_method=true)
-KeyboardLayoutGuide_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, KeyboardLayoutGuide, "resolveClassMethod:", sel)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-KeyboardLayoutGuide_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, KeyboardLayoutGuide, "resolveInstanceMethod:", sel)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="hash", objc_is_class_method=true)
-KeyboardLayoutGuide_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, KeyboardLayoutGuide, "hash")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="superclass", objc_is_class_method=true)
-KeyboardLayoutGuide_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, KeyboardLayoutGuide, "superclass")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="class", objc_is_class_method=true)
-KeyboardLayoutGuide_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, KeyboardLayoutGuide, "class")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="description", objc_is_class_method=true)
-KeyboardLayoutGuide_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, KeyboardLayoutGuide, "description")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="debugDescription", objc_is_class_method=true)
-KeyboardLayoutGuide_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, KeyboardLayoutGuide, "debugDescription")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="version", objc_is_class_method=true)
-KeyboardLayoutGuide_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, KeyboardLayoutGuide, "version")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="setVersion", objc_is_class_method=true)
-KeyboardLayoutGuide_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, KeyboardLayoutGuide, "setVersion:", aVersion)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-KeyboardLayoutGuide_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, KeyboardLayoutGuide, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-KeyboardLayoutGuide_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, KeyboardLayoutGuide, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-KeyboardLayoutGuide_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, KeyboardLayoutGuide, "accessInstanceVariablesDirectly")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="useStoredAccessor", objc_is_class_method=true)
-KeyboardLayoutGuide_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, KeyboardLayoutGuide, "useStoredAccessor")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-KeyboardLayoutGuide_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, KeyboardLayoutGuide, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-KeyboardLayoutGuide_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, KeyboardLayoutGuide, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-KeyboardLayoutGuide_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, KeyboardLayoutGuide, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-KeyboardLayoutGuide_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, KeyboardLayoutGuide, "classForKeyedUnarchiver")
-}
-@(objc_type=KeyboardLayoutGuide, objc_name="cancelPreviousPerformRequestsWithTarget")
-KeyboardLayoutGuide_cancelPreviousPerformRequestsWithTarget :: proc {
-    KeyboardLayoutGuide_cancelPreviousPerformRequestsWithTarget_selector_object,
-    KeyboardLayoutGuide_cancelPreviousPerformRequestsWithTarget_,
-}
+    @(objc_type=KeyboardLayoutGuide, objc_selector="usesBottomSafeArea", objc_name="usesBottomSafeArea")
+    KeyboardLayoutGuide_usesBottomSafeArea :: proc(self: ^KeyboardLayoutGuide) -> bool ---
 
+    @(objc_type=KeyboardLayoutGuide, objc_selector="setUsesBottomSafeArea:", objc_name="setUsesBottomSafeArea")
+    KeyboardLayoutGuide_setUsesBottomSafeArea :: proc(self: ^KeyboardLayoutGuide, usesBottomSafeArea: bool) ---
+
+    @(objc_type=KeyboardLayoutGuide, objc_selector="keyboardDismissPadding", objc_name="keyboardDismissPadding")
+    KeyboardLayoutGuide_keyboardDismissPadding :: proc(self: ^KeyboardLayoutGuide) -> CG.Float ---
+
+    @(objc_type=KeyboardLayoutGuide, objc_selector="setKeyboardDismissPadding:", objc_name="setKeyboardDismissPadding")
+    KeyboardLayoutGuide_setKeyboardDismissPadding :: proc(self: ^KeyboardLayoutGuide, keyboardDismissPadding: CG.Float) ---
+}

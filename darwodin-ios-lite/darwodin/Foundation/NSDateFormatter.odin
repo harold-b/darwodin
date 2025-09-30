@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSDateFormatter
 ///
-@(objc_class="NSDateFormatter")
+@(objc_class="NSDateFormatter", objc_superclass=Formatter)
 DateFormatter :: struct { using _: Formatter, }
 

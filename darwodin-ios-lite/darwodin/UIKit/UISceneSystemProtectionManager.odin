@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISceneSystemProtectionManager
 ///
-@(objc_class="UISceneSystemProtectionManager")
+@(objc_class="UISceneSystemProtectionManager", objc_superclass=NS.Object)
 SceneSystemProtectionManager :: struct { using _: NS.Object, }
 

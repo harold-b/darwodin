@@ -16,14 +16,5 @@ import NS "../Foundation"
 @(objc_class="CALayerArray")
 LayerArray :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=LayerArray, objc_name="alloc", objc_is_class_method=true)
-LayerArray_alloc :: proc "c" () -> ^LayerArray {
-    return msgSend(^LayerArray, LayerArray, "alloc")
-}
-
-@(objc_type=LayerArray, objc_name="init")
-LayerArray_init :: proc "c" (self: ^LayerArray) -> ^LayerArray {
-    return msgSend(^LayerArray, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

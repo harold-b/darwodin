@@ -19,31 +19,26 @@ DirectionPadElement :: struct { using _: intrinsics.objc_object,
     using _: PhysicalInputElement,
 }
 
-@(objc_type=DirectionPadElement, objc_name="xyAxes")
-DirectionPadElement_xyAxes :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^Axis2DInput {
-    return msgSend(^Axis2DInput, self, "xyAxes")
-}
-@(objc_type=DirectionPadElement, objc_name="xAxis")
-DirectionPadElement_xAxis :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^AxisInput {
-    return msgSend(^AxisInput, self, "xAxis")
-}
-@(objc_type=DirectionPadElement, objc_name="yAxis")
-DirectionPadElement_yAxis :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^AxisInput {
-    return msgSend(^AxisInput, self, "yAxis")
-}
-@(objc_type=DirectionPadElement, objc_name="up")
-DirectionPadElement_up :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^id {
-    return msgSend(^id, self, "up")
-}
-@(objc_type=DirectionPadElement, objc_name="down")
-DirectionPadElement_down :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^id {
-    return msgSend(^id, self, "down")
-}
-@(objc_type=DirectionPadElement, objc_name="left")
-DirectionPadElement_left :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^id {
-    return msgSend(^id, self, "left")
-}
-@(objc_type=DirectionPadElement, objc_name="right")
-DirectionPadElement_right :: #force_inline proc "c" (self: ^DirectionPadElement) -> ^id {
-    return msgSend(^id, self, "right")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DirectionPadElement, objc_selector="xyAxes", objc_name="xyAxes")
+    DirectionPadElement_xyAxes :: proc(self: ^DirectionPadElement) -> ^Axis2DInput ---
+
+    @(objc_type=DirectionPadElement, objc_selector="xAxis", objc_name="xAxis")
+    DirectionPadElement_xAxis :: proc(self: ^DirectionPadElement) -> ^AxisInput ---
+
+    @(objc_type=DirectionPadElement, objc_selector="yAxis", objc_name="yAxis")
+    DirectionPadElement_yAxis :: proc(self: ^DirectionPadElement) -> ^AxisInput ---
+
+    @(objc_type=DirectionPadElement, objc_selector="up", objc_name="up")
+    DirectionPadElement_up :: proc(self: ^DirectionPadElement) -> ^id ---
+
+    @(objc_type=DirectionPadElement, objc_selector="down", objc_name="down")
+    DirectionPadElement_down :: proc(self: ^DirectionPadElement) -> ^id ---
+
+    @(objc_type=DirectionPadElement, objc_selector="left", objc_name="left")
+    DirectionPadElement_left :: proc(self: ^DirectionPadElement) -> ^id ---
+
+    @(objc_type=DirectionPadElement, objc_selector="right", objc_name="right")
+    DirectionPadElement_right :: proc(self: ^DirectionPadElement) -> ^id ---
 }

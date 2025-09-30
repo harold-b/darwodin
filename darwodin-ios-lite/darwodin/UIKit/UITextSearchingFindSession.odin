@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITextSearchingFindSession
 ///
-@(objc_class="UITextSearchingFindSession")
+@(objc_class="UITextSearchingFindSession", objc_superclass=FindSession)
 TextSearchingFindSession :: struct { using _: FindSession, }
 

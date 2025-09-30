@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSConstantString
 ///
-@(objc_class="NSConstantString")
+@(objc_class="NSConstantString", objc_superclass=SimpleCString)
 ConstantString :: struct { using _: SimpleCString, }
 

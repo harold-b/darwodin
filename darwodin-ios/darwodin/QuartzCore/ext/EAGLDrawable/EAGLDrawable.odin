@@ -12,11 +12,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import CA "../../"
 
@@ -37,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).drawableProperties(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("drawableProperties"), auto_cast drawableProperties, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("drawableProperties"), auto_cast drawableProperties, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setDrawableProperties != nil {
         setDrawableProperties :: proc "c" (self: ^CA.EAGLDrawable, _: SEL, drawableProperties: ^NS.Dictionary) {
@@ -47,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setDrawableProperties(self, drawableProperties)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setDrawableProperties:"), auto_cast setDrawableProperties, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDrawableProperties:"), auto_cast setDrawableProperties, "v@:^void") do panic("Failed to register objC method.")
     }
 }
 

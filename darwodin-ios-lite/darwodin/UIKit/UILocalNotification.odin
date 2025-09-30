@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UILocalNotification
 ///
-@(objc_class="UILocalNotification")
+@(objc_class="UILocalNotification", objc_superclass=NS.Object)
 LocalNotification :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.Coding,

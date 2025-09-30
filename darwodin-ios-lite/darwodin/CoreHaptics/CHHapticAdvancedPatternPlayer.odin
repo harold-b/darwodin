@@ -18,55 +18,44 @@ HapticAdvancedPatternPlayer :: struct { using _: intrinsics.objc_object,
     using _: HapticPatternPlayer,
 }
 
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="pauseAtTime")
-HapticAdvancedPatternPlayer_pauseAtTime :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer, time: NS.TimeInterval, outError: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "pauseAtTime:error:", time, outError)
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="resumeAtTime")
-HapticAdvancedPatternPlayer_resumeAtTime :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer, time: NS.TimeInterval, outError: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "resumeAtTime:error:", time, outError)
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="seekToOffset")
-HapticAdvancedPatternPlayer_seekToOffset :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer, offsetTime: NS.TimeInterval, outError: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "seekToOffset:error:", offsetTime, outError)
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="loopEnabled")
-HapticAdvancedPatternPlayer_loopEnabled :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer) -> bool {
-    return msgSend(bool, self, "loopEnabled")
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="setLoopEnabled")
-HapticAdvancedPatternPlayer_setLoopEnabled :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer, loopEnabled: bool) {
-    msgSend(nil, self, "setLoopEnabled:", loopEnabled)
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="loopEnd")
-HapticAdvancedPatternPlayer_loopEnd :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "loopEnd")
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="setLoopEnd")
-HapticAdvancedPatternPlayer_setLoopEnd :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer, loopEnd: NS.TimeInterval) {
-    msgSend(nil, self, "setLoopEnd:", loopEnd)
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="playbackRate")
-HapticAdvancedPatternPlayer_playbackRate :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer) -> cffi.float {
-    return msgSend(cffi.float, self, "playbackRate")
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="setPlaybackRate")
-HapticAdvancedPatternPlayer_setPlaybackRate :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer, playbackRate: cffi.float) {
-    msgSend(nil, self, "setPlaybackRate:", playbackRate)
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="isMuted")
-HapticAdvancedPatternPlayer_isMuted :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer) -> bool {
-    return msgSend(bool, self, "isMuted")
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="setIsMuted")
-HapticAdvancedPatternPlayer_setIsMuted :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer, isMuted: bool) {
-    msgSend(nil, self, "setIsMuted:", isMuted)
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="completionHandler")
-HapticAdvancedPatternPlayer_completionHandler :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer) -> HapticAdvancedPatternPlayerCompletionHandler {
-    return msgSend(HapticAdvancedPatternPlayerCompletionHandler, self, "completionHandler")
-}
-@(objc_type=HapticAdvancedPatternPlayer, objc_name="setCompletionHandler")
-HapticAdvancedPatternPlayer_setCompletionHandler :: #force_inline proc "c" (self: ^HapticAdvancedPatternPlayer, completionHandler: HapticAdvancedPatternPlayerCompletionHandler) {
-    msgSend(nil, self, "setCompletionHandler:", completionHandler)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="pauseAtTime:error:", objc_name="pauseAtTime")
+    HapticAdvancedPatternPlayer_pauseAtTime :: proc(self: ^HapticAdvancedPatternPlayer, time: NS.TimeInterval, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="resumeAtTime:error:", objc_name="resumeAtTime")
+    HapticAdvancedPatternPlayer_resumeAtTime :: proc(self: ^HapticAdvancedPatternPlayer, time: NS.TimeInterval, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="seekToOffset:error:", objc_name="seekToOffset")
+    HapticAdvancedPatternPlayer_seekToOffset :: proc(self: ^HapticAdvancedPatternPlayer, offsetTime: NS.TimeInterval, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="loopEnabled", objc_name="loopEnabled")
+    HapticAdvancedPatternPlayer_loopEnabled :: proc(self: ^HapticAdvancedPatternPlayer) -> bool ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="setLoopEnabled:", objc_name="setLoopEnabled")
+    HapticAdvancedPatternPlayer_setLoopEnabled :: proc(self: ^HapticAdvancedPatternPlayer, loopEnabled: bool) ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="loopEnd", objc_name="loopEnd")
+    HapticAdvancedPatternPlayer_loopEnd :: proc(self: ^HapticAdvancedPatternPlayer) -> NS.TimeInterval ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="setLoopEnd:", objc_name="setLoopEnd")
+    HapticAdvancedPatternPlayer_setLoopEnd :: proc(self: ^HapticAdvancedPatternPlayer, loopEnd: NS.TimeInterval) ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="playbackRate", objc_name="playbackRate")
+    HapticAdvancedPatternPlayer_playbackRate :: proc(self: ^HapticAdvancedPatternPlayer) -> cffi.float ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="setPlaybackRate:", objc_name="setPlaybackRate")
+    HapticAdvancedPatternPlayer_setPlaybackRate :: proc(self: ^HapticAdvancedPatternPlayer, playbackRate: cffi.float) ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="isMuted", objc_name="isMuted")
+    HapticAdvancedPatternPlayer_isMuted :: proc(self: ^HapticAdvancedPatternPlayer) -> bool ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="setIsMuted:", objc_name="setIsMuted")
+    HapticAdvancedPatternPlayer_setIsMuted :: proc(self: ^HapticAdvancedPatternPlayer, isMuted: bool) ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="completionHandler", objc_name="completionHandler")
+    HapticAdvancedPatternPlayer_completionHandler :: proc(self: ^HapticAdvancedPatternPlayer) -> HapticAdvancedPatternPlayerCompletionHandler ---
+
+    @(objc_type=HapticAdvancedPatternPlayer, objc_selector="setCompletionHandler:", objc_name="setCompletionHandler")
+    HapticAdvancedPatternPlayer_setCompletionHandler :: proc(self: ^HapticAdvancedPatternPlayer, completionHandler: HapticAdvancedPatternPlayerCompletionHandler) ---
 }

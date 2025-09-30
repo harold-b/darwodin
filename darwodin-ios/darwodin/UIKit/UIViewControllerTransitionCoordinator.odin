@@ -21,19 +21,17 @@ ViewControllerTransitionCoordinator :: struct { using _: intrinsics.objc_object,
     using _: ViewControllerTransitionCoordinatorContext,
 }
 
-@(objc_type=ViewControllerTransitionCoordinator, objc_name="animateAlongsideTransition")
-ViewControllerTransitionCoordinator_animateAlongsideTransition :: #force_inline proc "c" (self: ^ViewControllerTransitionCoordinator, animation: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext)), completion: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext))) -> bool {
-    return msgSend(bool, self, "animateAlongsideTransition:completion:", animation, completion)
-}
-@(objc_type=ViewControllerTransitionCoordinator, objc_name="animateAlongsideTransitionInView")
-ViewControllerTransitionCoordinator_animateAlongsideTransitionInView :: #force_inline proc "c" (self: ^ViewControllerTransitionCoordinator, view: ^View, animation: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext)), completion: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext))) -> bool {
-    return msgSend(bool, self, "animateAlongsideTransitionInView:animation:completion:", view, animation, completion)
-}
-@(objc_type=ViewControllerTransitionCoordinator, objc_name="notifyWhenInteractionEndsUsingBlock")
-ViewControllerTransitionCoordinator_notifyWhenInteractionEndsUsingBlock :: #force_inline proc "c" (self: ^ViewControllerTransitionCoordinator, handler: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext))) {
-    msgSend(nil, self, "notifyWhenInteractionEndsUsingBlock:", handler)
-}
-@(objc_type=ViewControllerTransitionCoordinator, objc_name="notifyWhenInteractionChangesUsingBlock")
-ViewControllerTransitionCoordinator_notifyWhenInteractionChangesUsingBlock :: #force_inline proc "c" (self: ^ViewControllerTransitionCoordinator, handler: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext))) {
-    msgSend(nil, self, "notifyWhenInteractionChangesUsingBlock:", handler)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewControllerTransitionCoordinator, objc_selector="animateAlongsideTransition:completion:", objc_name="animateAlongsideTransition")
+    ViewControllerTransitionCoordinator_animateAlongsideTransition :: proc(self: ^ViewControllerTransitionCoordinator, animation: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext)), completion: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext))) -> bool ---
+
+    @(objc_type=ViewControllerTransitionCoordinator, objc_selector="animateAlongsideTransitionInView:animation:completion:", objc_name="animateAlongsideTransitionInView")
+    ViewControllerTransitionCoordinator_animateAlongsideTransitionInView :: proc(self: ^ViewControllerTransitionCoordinator, view: ^View, animation: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext)), completion: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext))) -> bool ---
+
+    @(objc_type=ViewControllerTransitionCoordinator, objc_selector="notifyWhenInteractionEndsUsingBlock:", objc_name="notifyWhenInteractionEndsUsingBlock")
+    ViewControllerTransitionCoordinator_notifyWhenInteractionEndsUsingBlock :: proc(self: ^ViewControllerTransitionCoordinator, handler: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext))) ---
+
+    @(objc_type=ViewControllerTransitionCoordinator, objc_selector="notifyWhenInteractionChangesUsingBlock:", objc_name="notifyWhenInteractionChangesUsingBlock")
+    ViewControllerTransitionCoordinator_notifyWhenInteractionChangesUsingBlock :: proc(self: ^ViewControllerTransitionCoordinator, handler: ^Objc_Block(proc "c" (_context: ^ViewControllerTransitionCoordinatorContext))) ---
 }

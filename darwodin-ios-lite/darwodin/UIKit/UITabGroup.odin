@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITabGroup
 ///
-@(objc_class="UITabGroup")
+@(objc_class="UITabGroup", objc_superclass=Tab)
 TabGroup :: struct { using _: Tab, }
 

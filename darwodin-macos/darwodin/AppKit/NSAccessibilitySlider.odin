@@ -21,19 +21,17 @@ AccessibilitySlider :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
-@(objc_type=AccessibilitySlider, objc_name="accessibilityLabel")
-AccessibilitySlider_accessibilityLabel :: #force_inline proc "c" (self: ^AccessibilitySlider) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityLabel")
-}
-@(objc_type=AccessibilitySlider, objc_name="accessibilityValue")
-AccessibilitySlider_accessibilityValue :: #force_inline proc "c" (self: ^AccessibilitySlider) -> id {
-    return msgSend(id, self, "accessibilityValue")
-}
-@(objc_type=AccessibilitySlider, objc_name="accessibilityPerformIncrement")
-AccessibilitySlider_accessibilityPerformIncrement :: #force_inline proc "c" (self: ^AccessibilitySlider) -> bool {
-    return msgSend(bool, self, "accessibilityPerformIncrement")
-}
-@(objc_type=AccessibilitySlider, objc_name="accessibilityPerformDecrement")
-AccessibilitySlider_accessibilityPerformDecrement :: #force_inline proc "c" (self: ^AccessibilitySlider) -> bool {
-    return msgSend(bool, self, "accessibilityPerformDecrement")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilitySlider, objc_selector="accessibilityLabel", objc_name="accessibilityLabel")
+    AccessibilitySlider_accessibilityLabel :: proc(self: ^AccessibilitySlider) -> ^NS.String ---
+
+    @(objc_type=AccessibilitySlider, objc_selector="accessibilityValue", objc_name="accessibilityValue")
+    AccessibilitySlider_accessibilityValue :: proc(self: ^AccessibilitySlider) -> id ---
+
+    @(objc_type=AccessibilitySlider, objc_selector="accessibilityPerformIncrement", objc_name="accessibilityPerformIncrement")
+    AccessibilitySlider_accessibilityPerformIncrement :: proc(self: ^AccessibilitySlider) -> bool ---
+
+    @(objc_type=AccessibilitySlider, objc_selector="accessibilityPerformDecrement", objc_name="accessibilityPerformDecrement")
+    AccessibilitySlider_accessibilityPerformDecrement :: proc(self: ^AccessibilitySlider) -> bool ---
 }

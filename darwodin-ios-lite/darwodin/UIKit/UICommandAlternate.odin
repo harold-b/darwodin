@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UICommandAlternate
 ///
-@(objc_class="UICommandAlternate")
+@(objc_class="UICommandAlternate", objc_superclass=NS.Object)
 CommandAlternate :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

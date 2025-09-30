@@ -21,11 +21,11 @@ CollectionViewSectionHeaderView :: struct { using _: intrinsics.objc_object,
     using _: CollectionViewElement,
 }
 
-@(objc_type=CollectionViewSectionHeaderView, objc_name="sectionCollapseButton")
-CollectionViewSectionHeaderView_sectionCollapseButton :: #force_inline proc "c" (self: ^CollectionViewSectionHeaderView) -> ^Button {
-    return msgSend(^Button, self, "sectionCollapseButton")
-}
-@(objc_type=CollectionViewSectionHeaderView, objc_name="setSectionCollapseButton")
-CollectionViewSectionHeaderView_setSectionCollapseButton :: #force_inline proc "c" (self: ^CollectionViewSectionHeaderView, sectionCollapseButton: ^Button) {
-    msgSend(nil, self, "setSectionCollapseButton:", sectionCollapseButton)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewSectionHeaderView, objc_selector="sectionCollapseButton", objc_name="sectionCollapseButton")
+    CollectionViewSectionHeaderView_sectionCollapseButton :: proc(self: ^CollectionViewSectionHeaderView) -> ^Button ---
+
+    @(objc_type=CollectionViewSectionHeaderView, objc_selector="setSectionCollapseButton:", objc_name="setSectionCollapseButton")
+    CollectionViewSectionHeaderView_setSectionCollapseButton :: proc(self: ^CollectionViewSectionHeaderView, sectionCollapseButton: ^Button) ---
 }

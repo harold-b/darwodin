@@ -21,19 +21,18 @@ PreviewInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PreviewInteractionDelegate, objc_name="previewInteraction_didUpdatePreviewTransition_ended")
-PreviewInteractionDelegate_previewInteraction_didUpdatePreviewTransition_ended :: #force_inline proc "c" (self: ^PreviewInteractionDelegate, previewInteraction: ^PreviewInteraction, transitionProgress: CG.Float, ended: bool) {
-    msgSend(nil, self, "previewInteraction:didUpdatePreviewTransition:ended:", previewInteraction, transitionProgress, ended)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PreviewInteractionDelegate, objc_selector="previewInteraction:didUpdatePreviewTransition:ended:", objc_name="previewInteraction_didUpdatePreviewTransition_ended")
+    PreviewInteractionDelegate_previewInteraction_didUpdatePreviewTransition_ended :: proc(self: ^PreviewInteractionDelegate, previewInteraction: ^PreviewInteraction, transitionProgress: CG.Float, ended: bool) ---
+
+    @(objc_type=PreviewInteractionDelegate, objc_selector="previewInteractionDidCancel:", objc_name="previewInteractionDidCancel")
+    PreviewInteractionDelegate_previewInteractionDidCancel :: proc(self: ^PreviewInteractionDelegate, previewInteraction: ^PreviewInteraction) ---
+
+    @(objc_type=PreviewInteractionDelegate, objc_selector="previewInteractionShouldBegin:", objc_name="previewInteractionShouldBegin")
+    PreviewInteractionDelegate_previewInteractionShouldBegin :: proc(self: ^PreviewInteractionDelegate, previewInteraction: ^PreviewInteraction) -> bool ---
+
+    @(objc_type=PreviewInteractionDelegate, objc_selector="previewInteraction:didUpdateCommitTransition:ended:", objc_name="previewInteraction_didUpdateCommitTransition_ended")
+    PreviewInteractionDelegate_previewInteraction_didUpdateCommitTransition_ended :: proc(self: ^PreviewInteractionDelegate, previewInteraction: ^PreviewInteraction, transitionProgress: CG.Float, ended: bool) ---
 }
-@(objc_type=PreviewInteractionDelegate, objc_name="previewInteractionDidCancel")
-PreviewInteractionDelegate_previewInteractionDidCancel :: #force_inline proc "c" (self: ^PreviewInteractionDelegate, previewInteraction: ^PreviewInteraction) {
-    msgSend(nil, self, "previewInteractionDidCancel:", previewInteraction)
-}
-@(objc_type=PreviewInteractionDelegate, objc_name="previewInteractionShouldBegin")
-PreviewInteractionDelegate_previewInteractionShouldBegin :: #force_inline proc "c" (self: ^PreviewInteractionDelegate, previewInteraction: ^PreviewInteraction) -> bool {
-    return msgSend(bool, self, "previewInteractionShouldBegin:", previewInteraction)
-}
-@(objc_type=PreviewInteractionDelegate, objc_name="previewInteraction_didUpdateCommitTransition_ended")
-PreviewInteractionDelegate_previewInteraction_didUpdateCommitTransition_ended :: #force_inline proc "c" (self: ^PreviewInteractionDelegate, previewInteraction: ^PreviewInteraction, transitionProgress: CG.Float, ended: bool) {
-    msgSend(nil, self, "previewInteraction:didUpdateCommitTransition:ended:", previewInteraction, transitionProgress, ended)
-}
+

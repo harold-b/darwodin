@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitHorizontalSizeClass
 ///
-@(objc_class="UITraitHorizontalSizeClass")
+@(objc_class="UITraitHorizontalSizeClass", objc_superclass=NS.Object)
 TraitHorizontalSizeClass :: struct { using _: NS.Object, 
     using _: NSIntegerTraitDefinition,
 }

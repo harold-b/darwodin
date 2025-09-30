@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSPropertyListSerialization
 ///
-@(objc_class="NSPropertyListSerialization")
+@(objc_class="NSPropertyListSerialization", objc_superclass=Object)
 PropertyListSerialization :: struct { using _: Object, }
 

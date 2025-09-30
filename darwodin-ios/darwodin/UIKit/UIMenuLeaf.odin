@@ -21,63 +21,50 @@ MenuLeaf :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=MenuLeaf, objc_name="performWithSender")
-MenuLeaf_performWithSender :: #force_inline proc "c" (self: ^MenuLeaf, sender: id, target: id) {
-    msgSend(nil, self, "performWithSender:target:", sender, target)
-}
-@(objc_type=MenuLeaf, objc_name="title")
-MenuLeaf_title :: #force_inline proc "c" (self: ^MenuLeaf) -> ^NS.String {
-    return msgSend(^NS.String, self, "title")
-}
-@(objc_type=MenuLeaf, objc_name="setTitle")
-MenuLeaf_setTitle :: #force_inline proc "c" (self: ^MenuLeaf, title: ^NS.String) {
-    msgSend(nil, self, "setTitle:", title)
-}
-@(objc_type=MenuLeaf, objc_name="image")
-MenuLeaf_image :: #force_inline proc "c" (self: ^MenuLeaf) -> ^Image {
-    return msgSend(^Image, self, "image")
-}
-@(objc_type=MenuLeaf, objc_name="setImage")
-MenuLeaf_setImage :: #force_inline proc "c" (self: ^MenuLeaf, image: ^Image) {
-    msgSend(nil, self, "setImage:", image)
-}
-@(objc_type=MenuLeaf, objc_name="selectedImage")
-MenuLeaf_selectedImage :: #force_inline proc "c" (self: ^MenuLeaf) -> ^Image {
-    return msgSend(^Image, self, "selectedImage")
-}
-@(objc_type=MenuLeaf, objc_name="setSelectedImage")
-MenuLeaf_setSelectedImage :: #force_inline proc "c" (self: ^MenuLeaf, selectedImage: ^Image) {
-    msgSend(nil, self, "setSelectedImage:", selectedImage)
-}
-@(objc_type=MenuLeaf, objc_name="discoverabilityTitle")
-MenuLeaf_discoverabilityTitle :: #force_inline proc "c" (self: ^MenuLeaf) -> ^NS.String {
-    return msgSend(^NS.String, self, "discoverabilityTitle")
-}
-@(objc_type=MenuLeaf, objc_name="setDiscoverabilityTitle")
-MenuLeaf_setDiscoverabilityTitle :: #force_inline proc "c" (self: ^MenuLeaf, discoverabilityTitle: ^NS.String) {
-    msgSend(nil, self, "setDiscoverabilityTitle:", discoverabilityTitle)
-}
-@(objc_type=MenuLeaf, objc_name="attributes")
-MenuLeaf_attributes :: #force_inline proc "c" (self: ^MenuLeaf) -> MenuElementAttributes {
-    return msgSend(MenuElementAttributes, self, "attributes")
-}
-@(objc_type=MenuLeaf, objc_name="setAttributes")
-MenuLeaf_setAttributes :: #force_inline proc "c" (self: ^MenuLeaf, attributes: MenuElementAttributes) {
-    msgSend(nil, self, "setAttributes:", attributes)
-}
-@(objc_type=MenuLeaf, objc_name="state")
-MenuLeaf_state :: #force_inline proc "c" (self: ^MenuLeaf) -> MenuElementState {
-    return msgSend(MenuElementState, self, "state")
-}
-@(objc_type=MenuLeaf, objc_name="setState")
-MenuLeaf_setState :: #force_inline proc "c" (self: ^MenuLeaf, state: MenuElementState) {
-    msgSend(nil, self, "setState:", state)
-}
-@(objc_type=MenuLeaf, objc_name="sender")
-MenuLeaf_sender :: #force_inline proc "c" (self: ^MenuLeaf) -> id {
-    return msgSend(id, self, "sender")
-}
-@(objc_type=MenuLeaf, objc_name="presentationSourceItem")
-MenuLeaf_presentationSourceItem :: #force_inline proc "c" (self: ^MenuLeaf) -> ^PopoverPresentationControllerSourceItem {
-    return msgSend(^PopoverPresentationControllerSourceItem, self, "presentationSourceItem")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MenuLeaf, objc_selector="performWithSender:target:", objc_name="performWithSender")
+    MenuLeaf_performWithSender :: proc(self: ^MenuLeaf, sender: id, target: id) ---
+
+    @(objc_type=MenuLeaf, objc_selector="title", objc_name="title")
+    MenuLeaf_title :: proc(self: ^MenuLeaf) -> ^NS.String ---
+
+    @(objc_type=MenuLeaf, objc_selector="setTitle:", objc_name="setTitle")
+    MenuLeaf_setTitle :: proc(self: ^MenuLeaf, title: ^NS.String) ---
+
+    @(objc_type=MenuLeaf, objc_selector="image", objc_name="image")
+    MenuLeaf_image :: proc(self: ^MenuLeaf) -> ^Image ---
+
+    @(objc_type=MenuLeaf, objc_selector="setImage:", objc_name="setImage")
+    MenuLeaf_setImage :: proc(self: ^MenuLeaf, image: ^Image) ---
+
+    @(objc_type=MenuLeaf, objc_selector="selectedImage", objc_name="selectedImage")
+    MenuLeaf_selectedImage :: proc(self: ^MenuLeaf) -> ^Image ---
+
+    @(objc_type=MenuLeaf, objc_selector="setSelectedImage:", objc_name="setSelectedImage")
+    MenuLeaf_setSelectedImage :: proc(self: ^MenuLeaf, selectedImage: ^Image) ---
+
+    @(objc_type=MenuLeaf, objc_selector="discoverabilityTitle", objc_name="discoverabilityTitle")
+    MenuLeaf_discoverabilityTitle :: proc(self: ^MenuLeaf) -> ^NS.String ---
+
+    @(objc_type=MenuLeaf, objc_selector="setDiscoverabilityTitle:", objc_name="setDiscoverabilityTitle")
+    MenuLeaf_setDiscoverabilityTitle :: proc(self: ^MenuLeaf, discoverabilityTitle: ^NS.String) ---
+
+    @(objc_type=MenuLeaf, objc_selector="attributes", objc_name="attributes")
+    MenuLeaf_attributes :: proc(self: ^MenuLeaf) -> MenuElementAttributes ---
+
+    @(objc_type=MenuLeaf, objc_selector="setAttributes:", objc_name="setAttributes")
+    MenuLeaf_setAttributes :: proc(self: ^MenuLeaf, attributes: MenuElementAttributes) ---
+
+    @(objc_type=MenuLeaf, objc_selector="state", objc_name="state")
+    MenuLeaf_state :: proc(self: ^MenuLeaf) -> MenuElementState ---
+
+    @(objc_type=MenuLeaf, objc_selector="setState:", objc_name="setState")
+    MenuLeaf_setState :: proc(self: ^MenuLeaf, state: MenuElementState) ---
+
+    @(objc_type=MenuLeaf, objc_selector="sender", objc_name="sender")
+    MenuLeaf_sender :: proc(self: ^MenuLeaf) -> id ---
+
+    @(objc_type=MenuLeaf, objc_selector="presentationSourceItem", objc_name="presentationSourceItem")
+    MenuLeaf_presentationSourceItem :: proc(self: ^MenuLeaf) -> ^PopoverPresentationControllerSourceItem ---
 }

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 @(objc_class="NSUserInterfaceValidations")
 UserInterfaceValidations :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=UserInterfaceValidations, objc_name="validateUserInterfaceItem")
-UserInterfaceValidations_validateUserInterfaceItem :: #force_inline proc "c" (self: ^UserInterfaceValidations, item: ^ValidatedUserInterfaceItem) -> bool {
-    return msgSend(bool, self, "validateUserInterfaceItem:", item)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=UserInterfaceValidations, objc_selector="validateUserInterfaceItem:", objc_name="validateUserInterfaceItem")
+    UserInterfaceValidations_validateUserInterfaceItem :: proc(self: ^UserInterfaceValidations, item: ^ValidatedUserInterfaceItem) -> bool ---
 }

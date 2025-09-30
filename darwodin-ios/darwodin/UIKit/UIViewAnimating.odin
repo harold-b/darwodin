@@ -21,47 +21,38 @@ ViewAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewAnimating, objc_name="startAnimation")
-ViewAnimating_startAnimation :: #force_inline proc "c" (self: ^ViewAnimating) {
-    msgSend(nil, self, "startAnimation")
-}
-@(objc_type=ViewAnimating, objc_name="startAnimationAfterDelay")
-ViewAnimating_startAnimationAfterDelay :: #force_inline proc "c" (self: ^ViewAnimating, delay: NS.TimeInterval) {
-    msgSend(nil, self, "startAnimationAfterDelay:", delay)
-}
-@(objc_type=ViewAnimating, objc_name="pauseAnimation")
-ViewAnimating_pauseAnimation :: #force_inline proc "c" (self: ^ViewAnimating) {
-    msgSend(nil, self, "pauseAnimation")
-}
-@(objc_type=ViewAnimating, objc_name="stopAnimation")
-ViewAnimating_stopAnimation :: #force_inline proc "c" (self: ^ViewAnimating, withoutFinishing: bool) {
-    msgSend(nil, self, "stopAnimation:", withoutFinishing)
-}
-@(objc_type=ViewAnimating, objc_name="finishAnimationAtPosition")
-ViewAnimating_finishAnimationAtPosition :: #force_inline proc "c" (self: ^ViewAnimating, finalPosition: ViewAnimatingPosition) {
-    msgSend(nil, self, "finishAnimationAtPosition:", finalPosition)
-}
-@(objc_type=ViewAnimating, objc_name="state")
-ViewAnimating_state :: #force_inline proc "c" (self: ^ViewAnimating) -> ViewAnimatingState {
-    return msgSend(ViewAnimatingState, self, "state")
-}
-@(objc_type=ViewAnimating, objc_name="isRunning")
-ViewAnimating_isRunning :: #force_inline proc "c" (self: ^ViewAnimating) -> bool {
-    return msgSend(bool, self, "isRunning")
-}
-@(objc_type=ViewAnimating, objc_name="isReversed")
-ViewAnimating_isReversed :: #force_inline proc "c" (self: ^ViewAnimating) -> bool {
-    return msgSend(bool, self, "isReversed")
-}
-@(objc_type=ViewAnimating, objc_name="setReversed")
-ViewAnimating_setReversed :: #force_inline proc "c" (self: ^ViewAnimating, reversed: bool) {
-    msgSend(nil, self, "setReversed:", reversed)
-}
-@(objc_type=ViewAnimating, objc_name="fractionComplete")
-ViewAnimating_fractionComplete :: #force_inline proc "c" (self: ^ViewAnimating) -> CG.Float {
-    return msgSend(CG.Float, self, "fractionComplete")
-}
-@(objc_type=ViewAnimating, objc_name="setFractionComplete")
-ViewAnimating_setFractionComplete :: #force_inline proc "c" (self: ^ViewAnimating, fractionComplete: CG.Float) {
-    msgSend(nil, self, "setFractionComplete:", fractionComplete)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewAnimating, objc_selector="startAnimation", objc_name="startAnimation")
+    ViewAnimating_startAnimation :: proc(self: ^ViewAnimating) ---
+
+    @(objc_type=ViewAnimating, objc_selector="startAnimationAfterDelay:", objc_name="startAnimationAfterDelay")
+    ViewAnimating_startAnimationAfterDelay :: proc(self: ^ViewAnimating, delay: NS.TimeInterval) ---
+
+    @(objc_type=ViewAnimating, objc_selector="pauseAnimation", objc_name="pauseAnimation")
+    ViewAnimating_pauseAnimation :: proc(self: ^ViewAnimating) ---
+
+    @(objc_type=ViewAnimating, objc_selector="stopAnimation:", objc_name="stopAnimation")
+    ViewAnimating_stopAnimation :: proc(self: ^ViewAnimating, withoutFinishing: bool) ---
+
+    @(objc_type=ViewAnimating, objc_selector="finishAnimationAtPosition:", objc_name="finishAnimationAtPosition")
+    ViewAnimating_finishAnimationAtPosition :: proc(self: ^ViewAnimating, finalPosition: ViewAnimatingPosition) ---
+
+    @(objc_type=ViewAnimating, objc_selector="state", objc_name="state")
+    ViewAnimating_state :: proc(self: ^ViewAnimating) -> ViewAnimatingState ---
+
+    @(objc_type=ViewAnimating, objc_selector="isRunning", objc_name="isRunning")
+    ViewAnimating_isRunning :: proc(self: ^ViewAnimating) -> bool ---
+
+    @(objc_type=ViewAnimating, objc_selector="isReversed", objc_name="isReversed")
+    ViewAnimating_isReversed :: proc(self: ^ViewAnimating) -> bool ---
+
+    @(objc_type=ViewAnimating, objc_selector="setReversed:", objc_name="setReversed")
+    ViewAnimating_setReversed :: proc(self: ^ViewAnimating, reversed: bool) ---
+
+    @(objc_type=ViewAnimating, objc_selector="fractionComplete", objc_name="fractionComplete")
+    ViewAnimating_fractionComplete :: proc(self: ^ViewAnimating) -> CG.Float ---
+
+    @(objc_type=ViewAnimating, objc_selector="setFractionComplete:", objc_name="setFractionComplete")
+    ViewAnimating_setFractionComplete :: proc(self: ^ViewAnimating, fractionComplete: CG.Float) ---
 }

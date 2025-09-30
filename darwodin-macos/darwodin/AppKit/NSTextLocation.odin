@@ -21,7 +21,8 @@ TextLocation :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextLocation, objc_name="compare")
-TextLocation_compare :: #force_inline proc "c" (self: ^TextLocation, location: ^TextLocation) -> NS.ComparisonResult {
-    return msgSend(NS.ComparisonResult, self, "compare:", location)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextLocation, objc_selector="compare:", objc_name="compare")
+    TextLocation_compare :: proc(self: ^TextLocation, location: ^TextLocation) -> NS.ComparisonResult ---
 }

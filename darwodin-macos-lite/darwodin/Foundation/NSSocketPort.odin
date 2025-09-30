@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSSocketPort
 ///
-@(objc_class="NSSocketPort")
+@(objc_class="NSSocketPort", objc_superclass=Port)
 SocketPort :: struct { using _: Port, }
 

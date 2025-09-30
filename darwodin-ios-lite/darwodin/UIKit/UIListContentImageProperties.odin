@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIListContentImageProperties
 ///
-@(objc_class="UIListContentImageProperties")
+@(objc_class="UIListContentImageProperties", objc_superclass=NS.Object)
 ListContentImageProperties :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

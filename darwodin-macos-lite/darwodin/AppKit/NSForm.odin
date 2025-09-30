@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSForm
 ///
-@(objc_class="NSForm")
+@(objc_class="NSForm", objc_superclass=Matrix)
 Form :: struct { using _: Matrix, }
 

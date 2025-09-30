@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIBlurEffect
 ///
-@(objc_class="UIBlurEffect")
+@(objc_class="UIBlurEffect", objc_superclass=VisualEffect)
 BlurEffect :: struct { using _: VisualEffect, }
 

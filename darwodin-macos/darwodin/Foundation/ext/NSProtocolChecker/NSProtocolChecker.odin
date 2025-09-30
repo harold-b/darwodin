@@ -12,11 +12,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import NS "../../"
 
@@ -28,10 +29,6 @@ VTable :: struct {
     target: proc(self: ^NS.ProtocolChecker) -> ^NS.Object,
     protocolCheckerWithTarget: proc(anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> ^NS.ProtocolChecker,
     initWithTarget: proc(self: ^NS.ProtocolChecker, anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> ^NS.ProtocolChecker,
-    alloc: proc() -> ^NS.ProtocolChecker,
-    allocWithZone: proc(zone: ^NS.Zone) -> ^NS.ProtocolChecker,
-    class: proc() -> Class,
-    respondsToSelector: proc(aSelector: SEL) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -80,46 +77,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTarget:protocol:"), auto_cast initWithTarget, "@@:@@") do panic("Failed to register objC method.")
-    }
-    if vt.alloc != nil {
-        alloc :: proc "c" (self: Class, _: SEL) -> ^NS.ProtocolChecker {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).alloc()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("alloc"), auto_cast alloc, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.allocWithZone != nil {
-        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS.Zone) -> ^NS.ProtocolChecker {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).allocWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allocWithZone:"), auto_cast allocWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.class != nil {
-        class :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).class()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("class"), auto_cast class, "##:") do panic("Failed to register objC method.")
-    }
-    if vt.respondsToSelector != nil {
-        respondsToSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).respondsToSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("respondsToSelector:"), auto_cast respondsToSelector, "B#::") do panic("Failed to register objC method.")
     }
 }
 

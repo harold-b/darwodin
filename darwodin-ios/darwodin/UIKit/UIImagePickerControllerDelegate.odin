@@ -21,18 +21,18 @@ ImagePickerControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ImagePickerControllerDelegate, objc_name="imagePickerController_didFinishPickingImage_editingInfo")
-ImagePickerControllerDelegate_imagePickerController_didFinishPickingImage_editingInfo :: #force_inline proc "c" (self: ^ImagePickerControllerDelegate, picker: ^ImagePickerController, image: ^Image, editingInfo: ^NS.Dictionary) {
-    msgSend(nil, self, "imagePickerController:didFinishPickingImage:editingInfo:", picker, image, editingInfo)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ImagePickerControllerDelegate, objc_selector="imagePickerController:didFinishPickingImage:editingInfo:", objc_name="imagePickerController_didFinishPickingImage_editingInfo")
+    ImagePickerControllerDelegate_imagePickerController_didFinishPickingImage_editingInfo :: proc(self: ^ImagePickerControllerDelegate, picker: ^ImagePickerController, image: ^Image, editingInfo: ^NS.Dictionary) ---
+
+    @(objc_type=ImagePickerControllerDelegate, objc_selector="imagePickerController:didFinishPickingMediaWithInfo:", objc_name="imagePickerController_didFinishPickingMediaWithInfo")
+    ImagePickerControllerDelegate_imagePickerController_didFinishPickingMediaWithInfo :: proc(self: ^ImagePickerControllerDelegate, picker: ^ImagePickerController, info: ^NS.Dictionary) ---
+
+    @(objc_type=ImagePickerControllerDelegate, objc_selector="imagePickerControllerDidCancel:", objc_name="imagePickerControllerDidCancel")
+    ImagePickerControllerDelegate_imagePickerControllerDidCancel :: proc(self: ^ImagePickerControllerDelegate, picker: ^ImagePickerController) ---
 }
-@(objc_type=ImagePickerControllerDelegate, objc_name="imagePickerController_didFinishPickingMediaWithInfo")
-ImagePickerControllerDelegate_imagePickerController_didFinishPickingMediaWithInfo :: #force_inline proc "c" (self: ^ImagePickerControllerDelegate, picker: ^ImagePickerController, info: ^NS.Dictionary) {
-    msgSend(nil, self, "imagePickerController:didFinishPickingMediaWithInfo:", picker, info)
-}
-@(objc_type=ImagePickerControllerDelegate, objc_name="imagePickerControllerDidCancel")
-ImagePickerControllerDelegate_imagePickerControllerDidCancel :: #force_inline proc "c" (self: ^ImagePickerControllerDelegate, picker: ^ImagePickerController) {
-    msgSend(nil, self, "imagePickerControllerDidCancel:", picker)
-}
+
 @(objc_type=ImagePickerControllerDelegate, objc_name="imagePickerController")
 ImagePickerControllerDelegate_imagePickerController :: proc {
     ImagePickerControllerDelegate_imagePickerController_didFinishPickingImage_editingInfo,

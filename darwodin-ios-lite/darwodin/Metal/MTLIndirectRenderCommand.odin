@@ -20,70 +20,57 @@ IndirectRenderCommand :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=IndirectRenderCommand, objc_name="setRenderPipelineState")
-IndirectRenderCommand_setRenderPipelineState :: #force_inline proc "c" (self: ^IndirectRenderCommand, pipelineState: ^RenderPipelineState) {
-    msgSend(nil, self, "setRenderPipelineState:", pipelineState)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IndirectRenderCommand, objc_selector="setRenderPipelineState:", objc_name="setRenderPipelineState")
+    IndirectRenderCommand_setRenderPipelineState :: proc(self: ^IndirectRenderCommand, pipelineState: ^RenderPipelineState) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setVertexBuffer:offset:atIndex:", objc_name="setVertexBuffer_offset_atIndex")
+    IndirectRenderCommand_setVertexBuffer_offset_atIndex :: proc(self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setFragmentBuffer:offset:atIndex:", objc_name="setFragmentBuffer")
+    IndirectRenderCommand_setFragmentBuffer :: proc(self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setVertexBuffer:offset:attributeStride:atIndex:", objc_name="setVertexBuffer_offset_attributeStride_atIndex")
+    IndirectRenderCommand_setVertexBuffer_offset_attributeStride_atIndex :: proc(self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, stride: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", objc_name="drawPatches")
+    IndirectRenderCommand_drawPatches :: proc(self: ^IndirectRenderCommand, numberOfPatchControlPoints: NS.UInteger, patchStart: NS.UInteger, patchCount: NS.UInteger, patchIndexBuffer: ^Buffer, patchIndexBufferOffset: NS.UInteger, instanceCount: NS.UInteger, baseInstance: NS.UInteger, buffer: ^Buffer, offset: NS.UInteger, instanceStride: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", objc_name="drawIndexedPatches")
+    IndirectRenderCommand_drawIndexedPatches :: proc(self: ^IndirectRenderCommand, numberOfPatchControlPoints: NS.UInteger, patchStart: NS.UInteger, patchCount: NS.UInteger, patchIndexBuffer: ^Buffer, patchIndexBufferOffset: NS.UInteger, controlPointIndexBuffer: ^Buffer, controlPointIndexBufferOffset: NS.UInteger, instanceCount: NS.UInteger, baseInstance: NS.UInteger, buffer: ^Buffer, offset: NS.UInteger, instanceStride: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", objc_name="drawPrimitives")
+    IndirectRenderCommand_drawPrimitives :: proc(self: ^IndirectRenderCommand, primitiveType: PrimitiveType, vertexStart: NS.UInteger, vertexCount: NS.UInteger, instanceCount: NS.UInteger, baseInstance: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", objc_name="drawIndexedPrimitives")
+    IndirectRenderCommand_drawIndexedPrimitives :: proc(self: ^IndirectRenderCommand, primitiveType: PrimitiveType, indexCount: NS.UInteger, indexType: IndexType, indexBuffer: ^Buffer, indexBufferOffset: NS.UInteger, instanceCount: NS.UInteger, baseVertex: NS.Integer, baseInstance: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setObjectThreadgroupMemoryLength:atIndex:", objc_name="setObjectThreadgroupMemoryLength")
+    IndirectRenderCommand_setObjectThreadgroupMemoryLength :: proc(self: ^IndirectRenderCommand, length: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setObjectBuffer:offset:atIndex:", objc_name="setObjectBuffer")
+    IndirectRenderCommand_setObjectBuffer :: proc(self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setMeshBuffer:offset:atIndex:", objc_name="setMeshBuffer")
+    IndirectRenderCommand_setMeshBuffer :: proc(self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", objc_name="drawMeshThreadgroups")
+    IndirectRenderCommand_drawMeshThreadgroups :: proc(self: ^IndirectRenderCommand, threadgroupsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", objc_name="drawMeshThreads")
+    IndirectRenderCommand_drawMeshThreads :: proc(self: ^IndirectRenderCommand, threadsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setBarrier", objc_name="setBarrier")
+    IndirectRenderCommand_setBarrier :: proc(self: ^IndirectRenderCommand) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="clearBarrier", objc_name="clearBarrier")
+    IndirectRenderCommand_clearBarrier :: proc(self: ^IndirectRenderCommand) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="reset", objc_name="reset")
+    IndirectRenderCommand_reset :: proc(self: ^IndirectRenderCommand) ---
 }
-@(objc_type=IndirectRenderCommand, objc_name="setVertexBuffer_offset_atIndex")
-IndirectRenderCommand_setVertexBuffer_offset_atIndex :: #force_inline proc "c" (self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setVertexBuffer:offset:atIndex:", buffer, offset, index)
-}
-@(objc_type=IndirectRenderCommand, objc_name="setFragmentBuffer")
-IndirectRenderCommand_setFragmentBuffer :: #force_inline proc "c" (self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setFragmentBuffer:offset:atIndex:", buffer, offset, index)
-}
-@(objc_type=IndirectRenderCommand, objc_name="setVertexBuffer_offset_attributeStride_atIndex")
-IndirectRenderCommand_setVertexBuffer_offset_attributeStride_atIndex :: #force_inline proc "c" (self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, stride: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setVertexBuffer:offset:attributeStride:atIndex:", buffer, offset, stride, index)
-}
-@(objc_type=IndirectRenderCommand, objc_name="drawPatches")
-IndirectRenderCommand_drawPatches :: #force_inline proc "c" (self: ^IndirectRenderCommand, numberOfPatchControlPoints: NS.UInteger, patchStart: NS.UInteger, patchCount: NS.UInteger, patchIndexBuffer: ^Buffer, patchIndexBufferOffset: NS.UInteger, instanceCount: NS.UInteger, baseInstance: NS.UInteger, buffer: ^Buffer, offset: NS.UInteger, instanceStride: NS.UInteger) {
-    msgSend(nil, self, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", numberOfPatchControlPoints, patchStart, patchCount, patchIndexBuffer, patchIndexBufferOffset, instanceCount, baseInstance, buffer, offset, instanceStride)
-}
-@(objc_type=IndirectRenderCommand, objc_name="drawIndexedPatches")
-IndirectRenderCommand_drawIndexedPatches :: #force_inline proc "c" (self: ^IndirectRenderCommand, numberOfPatchControlPoints: NS.UInteger, patchStart: NS.UInteger, patchCount: NS.UInteger, patchIndexBuffer: ^Buffer, patchIndexBufferOffset: NS.UInteger, controlPointIndexBuffer: ^Buffer, controlPointIndexBufferOffset: NS.UInteger, instanceCount: NS.UInteger, baseInstance: NS.UInteger, buffer: ^Buffer, offset: NS.UInteger, instanceStride: NS.UInteger) {
-    msgSend(nil, self, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", numberOfPatchControlPoints, patchStart, patchCount, patchIndexBuffer, patchIndexBufferOffset, controlPointIndexBuffer, controlPointIndexBufferOffset, instanceCount, baseInstance, buffer, offset, instanceStride)
-}
-@(objc_type=IndirectRenderCommand, objc_name="drawPrimitives")
-IndirectRenderCommand_drawPrimitives :: #force_inline proc "c" (self: ^IndirectRenderCommand, primitiveType: PrimitiveType, vertexStart: NS.UInteger, vertexCount: NS.UInteger, instanceCount: NS.UInteger, baseInstance: NS.UInteger) {
-    msgSend(nil, self, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", primitiveType, vertexStart, vertexCount, instanceCount, baseInstance)
-}
-@(objc_type=IndirectRenderCommand, objc_name="drawIndexedPrimitives")
-IndirectRenderCommand_drawIndexedPrimitives :: #force_inline proc "c" (self: ^IndirectRenderCommand, primitiveType: PrimitiveType, indexCount: NS.UInteger, indexType: IndexType, indexBuffer: ^Buffer, indexBufferOffset: NS.UInteger, instanceCount: NS.UInteger, baseVertex: NS.Integer, baseInstance: NS.UInteger) {
-    msgSend(nil, self, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", primitiveType, indexCount, indexType, indexBuffer, indexBufferOffset, instanceCount, baseVertex, baseInstance)
-}
-@(objc_type=IndirectRenderCommand, objc_name="setObjectThreadgroupMemoryLength")
-IndirectRenderCommand_setObjectThreadgroupMemoryLength :: #force_inline proc "c" (self: ^IndirectRenderCommand, length: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setObjectThreadgroupMemoryLength:atIndex:", length, index)
-}
-@(objc_type=IndirectRenderCommand, objc_name="setObjectBuffer")
-IndirectRenderCommand_setObjectBuffer :: #force_inline proc "c" (self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setObjectBuffer:offset:atIndex:", buffer, offset, index)
-}
-@(objc_type=IndirectRenderCommand, objc_name="setMeshBuffer")
-IndirectRenderCommand_setMeshBuffer :: #force_inline proc "c" (self: ^IndirectRenderCommand, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setMeshBuffer:offset:atIndex:", buffer, offset, index)
-}
-@(objc_type=IndirectRenderCommand, objc_name="drawMeshThreadgroups")
-IndirectRenderCommand_drawMeshThreadgroups :: #force_inline proc "c" (self: ^IndirectRenderCommand, threadgroupsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) {
-    msgSend(nil, self, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", threadgroupsPerGrid, threadsPerObjectThreadgroup, threadsPerMeshThreadgroup)
-}
-@(objc_type=IndirectRenderCommand, objc_name="drawMeshThreads")
-IndirectRenderCommand_drawMeshThreads :: #force_inline proc "c" (self: ^IndirectRenderCommand, threadsPerGrid: Size, threadsPerObjectThreadgroup: Size, threadsPerMeshThreadgroup: Size) {
-    msgSend(nil, self, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", threadsPerGrid, threadsPerObjectThreadgroup, threadsPerMeshThreadgroup)
-}
-@(objc_type=IndirectRenderCommand, objc_name="setBarrier")
-IndirectRenderCommand_setBarrier :: #force_inline proc "c" (self: ^IndirectRenderCommand) {
-    msgSend(nil, self, "setBarrier")
-}
-@(objc_type=IndirectRenderCommand, objc_name="clearBarrier")
-IndirectRenderCommand_clearBarrier :: #force_inline proc "c" (self: ^IndirectRenderCommand) {
-    msgSend(nil, self, "clearBarrier")
-}
-@(objc_type=IndirectRenderCommand, objc_name="reset")
-IndirectRenderCommand_reset :: #force_inline proc "c" (self: ^IndirectRenderCommand) {
-    msgSend(nil, self, "reset")
-}
+
 @(objc_type=IndirectRenderCommand, objc_name="setVertexBuffer")
 IndirectRenderCommand_setVertexBuffer :: proc {
     IndirectRenderCommand_setVertexBuffer_offset_atIndex,

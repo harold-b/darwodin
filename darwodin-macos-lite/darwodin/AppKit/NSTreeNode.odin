@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTreeNode
 ///
-@(objc_class="NSTreeNode")
+@(objc_class="NSTreeNode", objc_superclass=NS.Object)
 TreeNode :: struct { using _: NS.Object, }
 

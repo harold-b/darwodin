@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -45,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).documentBrowser_didPickDocumentURLs(self, controller, documentURLs)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("documentBrowser:didPickDocumentURLs:"), auto_cast documentBrowser_didPickDocumentURLs, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("documentBrowser:didPickDocumentURLs:"), auto_cast documentBrowser_didPickDocumentURLs, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.documentBrowser_didPickDocumentsAtURLs != nil {
         documentBrowser_didPickDocumentsAtURLs :: proc "c" (self: ^UI.DocumentBrowserViewControllerDelegate, _: SEL, controller: ^UI.DocumentBrowserViewController, documentURLs: ^NS.Array) {
@@ -55,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).documentBrowser_didPickDocumentsAtURLs(self, controller, documentURLs)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("documentBrowser:didPickDocumentsAtURLs:"), auto_cast documentBrowser_didPickDocumentsAtURLs, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("documentBrowser:didPickDocumentsAtURLs:"), auto_cast documentBrowser_didPickDocumentsAtURLs, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.documentBrowser_didRequestDocumentCreationWithHandler != nil {
         documentBrowser_didRequestDocumentCreationWithHandler :: proc "c" (self: ^UI.DocumentBrowserViewControllerDelegate, _: SEL, controller: ^UI.DocumentBrowserViewController, importHandler: ^Objc_Block(proc "c" (urlToImport: ^NS.URL, importMode: UI.DocumentBrowserImportMode))) {
@@ -95,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).documentBrowser_applicationActivitiesForDocumentURLs(self, controller, documentURLs)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("documentBrowser:applicationActivitiesForDocumentURLs:"), auto_cast documentBrowser_applicationActivitiesForDocumentURLs, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("documentBrowser:applicationActivitiesForDocumentURLs:"), auto_cast documentBrowser_applicationActivitiesForDocumentURLs, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.documentBrowser_willPresentActivityViewController != nil {
         documentBrowser_willPresentActivityViewController :: proc "c" (self: ^UI.DocumentBrowserViewControllerDelegate, _: SEL, controller: ^UI.DocumentBrowserViewController, activityViewController: ^UI.ActivityViewController) {

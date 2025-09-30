@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIInterpolatingMotionEffect
 ///
-@(objc_class="UIInterpolatingMotionEffect")
+@(objc_class="UIInterpolatingMotionEffect", objc_superclass=MotionEffect)
 InterpolatingMotionEffect :: struct { using _: MotionEffect, }
 

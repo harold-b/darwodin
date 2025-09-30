@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CAPropertyAnimation
 ///
-@(objc_class="CAPropertyAnimation")
+@(objc_class="CAPropertyAnimation", objc_superclass=Animation)
 PropertyAnimation :: struct { using _: Animation, }
 

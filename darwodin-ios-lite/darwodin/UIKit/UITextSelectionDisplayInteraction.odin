@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITextSelectionDisplayInteraction
 ///
-@(objc_class="UITextSelectionDisplayInteraction")
+@(objc_class="UITextSelectionDisplayInteraction", objc_superclass=NS.Object)
 TextSelectionDisplayInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITableViewDropPlaceholder
 ///
-@(objc_class="UITableViewDropPlaceholder")
+@(objc_class="UITableViewDropPlaceholder", objc_superclass=TableViewPlaceholder)
 TableViewDropPlaceholder :: struct { using _: TableViewPlaceholder, }
 

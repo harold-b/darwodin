@@ -18,14 +18,15 @@ MetadataQueryDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=MetadataQueryDelegate, objc_name="metadataQuery_replacementObjectForResultObject")
-MetadataQueryDelegate_metadataQuery_replacementObjectForResultObject :: #force_inline proc "c" (self: ^MetadataQueryDelegate, query: ^MetadataQuery, result: ^MetadataItem) -> id {
-    return msgSend(id, self, "metadataQuery:replacementObjectForResultObject:", query, result)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MetadataQueryDelegate, objc_selector="metadataQuery:replacementObjectForResultObject:", objc_name="metadataQuery_replacementObjectForResultObject")
+    MetadataQueryDelegate_metadataQuery_replacementObjectForResultObject :: proc(self: ^MetadataQueryDelegate, query: ^MetadataQuery, result: ^MetadataItem) -> id ---
+
+    @(objc_type=MetadataQueryDelegate, objc_selector="metadataQuery:replacementValueForAttribute:value:", objc_name="metadataQuery_replacementValueForAttribute_value")
+    MetadataQueryDelegate_metadataQuery_replacementValueForAttribute_value :: proc(self: ^MetadataQueryDelegate, query: ^MetadataQuery, attrName: ^String, attrValue: id) -> id ---
 }
-@(objc_type=MetadataQueryDelegate, objc_name="metadataQuery_replacementValueForAttribute_value")
-MetadataQueryDelegate_metadataQuery_replacementValueForAttribute_value :: #force_inline proc "c" (self: ^MetadataQueryDelegate, query: ^MetadataQuery, attrName: ^String, attrValue: id) -> id {
-    return msgSend(id, self, "metadataQuery:replacementValueForAttribute:value:", query, attrName, attrValue)
-}
+
 @(objc_type=MetadataQueryDelegate, objc_name="metadataQuery")
 MetadataQueryDelegate_metadataQuery :: proc {
     MetadataQueryDelegate_metadataQuery_replacementObjectForResultObject,

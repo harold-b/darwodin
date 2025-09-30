@@ -21,27 +21,24 @@ GestureRecognizerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=GestureRecognizerDelegate, objc_name="gestureRecognizer_shouldAttemptToRecognizeWithEvent")
-GestureRecognizerDelegate_gestureRecognizer_shouldAttemptToRecognizeWithEvent :: #force_inline proc "c" (self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, event: ^Event) -> bool {
-    return msgSend(bool, self, "gestureRecognizer:shouldAttemptToRecognizeWithEvent:", gestureRecognizer, event)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=GestureRecognizerDelegate, objc_selector="gestureRecognizer:shouldAttemptToRecognizeWithEvent:", objc_name="gestureRecognizer_shouldAttemptToRecognizeWithEvent")
+    GestureRecognizerDelegate_gestureRecognizer_shouldAttemptToRecognizeWithEvent :: proc(self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, event: ^Event) -> bool ---
+
+    @(objc_type=GestureRecognizerDelegate, objc_selector="gestureRecognizerShouldBegin:", objc_name="gestureRecognizerShouldBegin")
+    GestureRecognizerDelegate_gestureRecognizerShouldBegin :: proc(self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer) -> bool ---
+
+    @(objc_type=GestureRecognizerDelegate, objc_selector="gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:", objc_name="gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer")
+    GestureRecognizerDelegate_gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer :: proc(self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer) -> bool ---
+
+    @(objc_type=GestureRecognizerDelegate, objc_selector="gestureRecognizer:shouldRequireFailureOfGestureRecognizer:", objc_name="gestureRecognizer_shouldRequireFailureOfGestureRecognizer")
+    GestureRecognizerDelegate_gestureRecognizer_shouldRequireFailureOfGestureRecognizer :: proc(self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer) -> bool ---
+
+    @(objc_type=GestureRecognizerDelegate, objc_selector="gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:", objc_name="gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer")
+    GestureRecognizerDelegate_gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer :: proc(self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer) -> bool ---
+
+    @(objc_type=GestureRecognizerDelegate, objc_selector="gestureRecognizer:shouldReceiveTouch:", objc_name="gestureRecognizer_shouldReceiveTouch")
+    GestureRecognizerDelegate_gestureRecognizer_shouldReceiveTouch :: proc(self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, touch: ^Touch) -> bool ---
 }
-@(objc_type=GestureRecognizerDelegate, objc_name="gestureRecognizerShouldBegin")
-GestureRecognizerDelegate_gestureRecognizerShouldBegin :: #force_inline proc "c" (self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer) -> bool {
-    return msgSend(bool, self, "gestureRecognizerShouldBegin:", gestureRecognizer)
-}
-@(objc_type=GestureRecognizerDelegate, objc_name="gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer")
-GestureRecognizerDelegate_gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer :: #force_inline proc "c" (self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer) -> bool {
-    return msgSend(bool, self, "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:", gestureRecognizer, otherGestureRecognizer)
-}
-@(objc_type=GestureRecognizerDelegate, objc_name="gestureRecognizer_shouldRequireFailureOfGestureRecognizer")
-GestureRecognizerDelegate_gestureRecognizer_shouldRequireFailureOfGestureRecognizer :: #force_inline proc "c" (self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer) -> bool {
-    return msgSend(bool, self, "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:", gestureRecognizer, otherGestureRecognizer)
-}
-@(objc_type=GestureRecognizerDelegate, objc_name="gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer")
-GestureRecognizerDelegate_gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer :: #force_inline proc "c" (self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, otherGestureRecognizer: ^GestureRecognizer) -> bool {
-    return msgSend(bool, self, "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:", gestureRecognizer, otherGestureRecognizer)
-}
-@(objc_type=GestureRecognizerDelegate, objc_name="gestureRecognizer_shouldReceiveTouch")
-GestureRecognizerDelegate_gestureRecognizer_shouldReceiveTouch :: #force_inline proc "c" (self: ^GestureRecognizerDelegate, gestureRecognizer: ^GestureRecognizer, touch: ^Touch) -> bool {
-    return msgSend(bool, self, "gestureRecognizer:shouldReceiveTouch:", gestureRecognizer, touch)
-}
+

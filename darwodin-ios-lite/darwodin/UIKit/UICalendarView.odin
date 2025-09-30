@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICalendarView
 ///
-@(objc_class="UICalendarView")
+@(objc_class="UICalendarView", objc_superclass=View)
 CalendarView :: struct { using _: View, }
 

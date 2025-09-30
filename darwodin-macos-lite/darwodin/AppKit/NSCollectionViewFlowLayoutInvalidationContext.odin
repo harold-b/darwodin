@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSCollectionViewFlowLayoutInvalidationContext
 ///
-@(objc_class="NSCollectionViewFlowLayoutInvalidationContext")
+@(objc_class="NSCollectionViewFlowLayoutInvalidationContext", objc_superclass=CollectionViewLayoutInvalidationContext)
 CollectionViewFlowLayoutInvalidationContext :: struct { using _: CollectionViewLayoutInvalidationContext, }
 

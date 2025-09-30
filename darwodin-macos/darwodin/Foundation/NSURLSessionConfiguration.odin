@@ -13,386 +13,199 @@ import Sec "../Security"
 ///
 /// NSURLSessionConfiguration
 ///
-@(objc_class="NSURLSessionConfiguration")
+@(objc_class="NSURLSessionConfiguration", objc_superclass=Object)
 URLSessionConfiguration :: struct { using _: Object, 
     using _: Copying,
 }
 
-@(objc_type=URLSessionConfiguration, objc_name="backgroundSessionConfigurationWithIdentifier", objc_is_class_method=true)
-URLSessionConfiguration_backgroundSessionConfigurationWithIdentifier :: #force_inline proc "c" (identifier: ^String) -> ^URLSessionConfiguration {
-    return msgSend(^URLSessionConfiguration, URLSessionConfiguration, "backgroundSessionConfigurationWithIdentifier:", identifier)
-}
-@(objc_type=URLSessionConfiguration, objc_name="init")
-URLSessionConfiguration_init :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^URLSessionConfiguration {
-    return msgSend(^URLSessionConfiguration, self, "init")
-}
-@(objc_type=URLSessionConfiguration, objc_name="new", objc_is_class_method=true)
-URLSessionConfiguration_new :: #force_inline proc "c" () -> ^URLSessionConfiguration {
-    return msgSend(^URLSessionConfiguration, URLSessionConfiguration, "new")
-}
-@(objc_type=URLSessionConfiguration, objc_name="defaultSessionConfiguration", objc_is_class_method=true)
-URLSessionConfiguration_defaultSessionConfiguration :: #force_inline proc "c" () -> ^URLSessionConfiguration {
-    return msgSend(^URLSessionConfiguration, URLSessionConfiguration, "defaultSessionConfiguration")
-}
-@(objc_type=URLSessionConfiguration, objc_name="ephemeralSessionConfiguration", objc_is_class_method=true)
-URLSessionConfiguration_ephemeralSessionConfiguration :: #force_inline proc "c" () -> ^URLSessionConfiguration {
-    return msgSend(^URLSessionConfiguration, URLSessionConfiguration, "ephemeralSessionConfiguration")
-}
-@(objc_type=URLSessionConfiguration, objc_name="identifier")
-URLSessionConfiguration_identifier :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^String {
-    return msgSend(^String, self, "identifier")
-}
-@(objc_type=URLSessionConfiguration, objc_name="requestCachePolicy")
-URLSessionConfiguration_requestCachePolicy :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> URLRequestCachePolicy {
-    return msgSend(URLRequestCachePolicy, self, "requestCachePolicy")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setRequestCachePolicy")
-URLSessionConfiguration_setRequestCachePolicy :: #force_inline proc "c" (self: ^URLSessionConfiguration, requestCachePolicy: URLRequestCachePolicy) {
-    msgSend(nil, self, "setRequestCachePolicy:", requestCachePolicy)
-}
-@(objc_type=URLSessionConfiguration, objc_name="timeoutIntervalForRequest")
-URLSessionConfiguration_timeoutIntervalForRequest :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> TimeInterval {
-    return msgSend(TimeInterval, self, "timeoutIntervalForRequest")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setTimeoutIntervalForRequest")
-URLSessionConfiguration_setTimeoutIntervalForRequest :: #force_inline proc "c" (self: ^URLSessionConfiguration, timeoutIntervalForRequest: TimeInterval) {
-    msgSend(nil, self, "setTimeoutIntervalForRequest:", timeoutIntervalForRequest)
-}
-@(objc_type=URLSessionConfiguration, objc_name="timeoutIntervalForResource")
-URLSessionConfiguration_timeoutIntervalForResource :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> TimeInterval {
-    return msgSend(TimeInterval, self, "timeoutIntervalForResource")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setTimeoutIntervalForResource")
-URLSessionConfiguration_setTimeoutIntervalForResource :: #force_inline proc "c" (self: ^URLSessionConfiguration, timeoutIntervalForResource: TimeInterval) {
-    msgSend(nil, self, "setTimeoutIntervalForResource:", timeoutIntervalForResource)
-}
-@(objc_type=URLSessionConfiguration, objc_name="networkServiceType")
-URLSessionConfiguration_networkServiceType :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> URLRequestNetworkServiceType {
-    return msgSend(URLRequestNetworkServiceType, self, "networkServiceType")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setNetworkServiceType")
-URLSessionConfiguration_setNetworkServiceType :: #force_inline proc "c" (self: ^URLSessionConfiguration, networkServiceType: URLRequestNetworkServiceType) {
-    msgSend(nil, self, "setNetworkServiceType:", networkServiceType)
-}
-@(objc_type=URLSessionConfiguration, objc_name="allowsCellularAccess")
-URLSessionConfiguration_allowsCellularAccess :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "allowsCellularAccess")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setAllowsCellularAccess")
-URLSessionConfiguration_setAllowsCellularAccess :: #force_inline proc "c" (self: ^URLSessionConfiguration, allowsCellularAccess: bool) {
-    msgSend(nil, self, "setAllowsCellularAccess:", allowsCellularAccess)
-}
-@(objc_type=URLSessionConfiguration, objc_name="allowsExpensiveNetworkAccess")
-URLSessionConfiguration_allowsExpensiveNetworkAccess :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "allowsExpensiveNetworkAccess")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setAllowsExpensiveNetworkAccess")
-URLSessionConfiguration_setAllowsExpensiveNetworkAccess :: #force_inline proc "c" (self: ^URLSessionConfiguration, allowsExpensiveNetworkAccess: bool) {
-    msgSend(nil, self, "setAllowsExpensiveNetworkAccess:", allowsExpensiveNetworkAccess)
-}
-@(objc_type=URLSessionConfiguration, objc_name="allowsConstrainedNetworkAccess")
-URLSessionConfiguration_allowsConstrainedNetworkAccess :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "allowsConstrainedNetworkAccess")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setAllowsConstrainedNetworkAccess")
-URLSessionConfiguration_setAllowsConstrainedNetworkAccess :: #force_inline proc "c" (self: ^URLSessionConfiguration, allowsConstrainedNetworkAccess: bool) {
-    msgSend(nil, self, "setAllowsConstrainedNetworkAccess:", allowsConstrainedNetworkAccess)
-}
-@(objc_type=URLSessionConfiguration, objc_name="requiresDNSSECValidation")
-URLSessionConfiguration_requiresDNSSECValidation :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "requiresDNSSECValidation")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setRequiresDNSSECValidation")
-URLSessionConfiguration_setRequiresDNSSECValidation :: #force_inline proc "c" (self: ^URLSessionConfiguration, requiresDNSSECValidation: bool) {
-    msgSend(nil, self, "setRequiresDNSSECValidation:", requiresDNSSECValidation)
-}
-@(objc_type=URLSessionConfiguration, objc_name="waitsForConnectivity")
-URLSessionConfiguration_waitsForConnectivity :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "waitsForConnectivity")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setWaitsForConnectivity")
-URLSessionConfiguration_setWaitsForConnectivity :: #force_inline proc "c" (self: ^URLSessionConfiguration, waitsForConnectivity: bool) {
-    msgSend(nil, self, "setWaitsForConnectivity:", waitsForConnectivity)
-}
-@(objc_type=URLSessionConfiguration, objc_name="isDiscretionary")
-URLSessionConfiguration_isDiscretionary :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "isDiscretionary")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setDiscretionary")
-URLSessionConfiguration_setDiscretionary :: #force_inline proc "c" (self: ^URLSessionConfiguration, discretionary: bool) {
-    msgSend(nil, self, "setDiscretionary:", discretionary)
-}
-@(objc_type=URLSessionConfiguration, objc_name="sharedContainerIdentifier")
-URLSessionConfiguration_sharedContainerIdentifier :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^String {
-    return msgSend(^String, self, "sharedContainerIdentifier")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setSharedContainerIdentifier")
-URLSessionConfiguration_setSharedContainerIdentifier :: #force_inline proc "c" (self: ^URLSessionConfiguration, sharedContainerIdentifier: ^String) {
-    msgSend(nil, self, "setSharedContainerIdentifier:", sharedContainerIdentifier)
-}
-@(objc_type=URLSessionConfiguration, objc_name="sessionSendsLaunchEvents")
-URLSessionConfiguration_sessionSendsLaunchEvents :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "sessionSendsLaunchEvents")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setSessionSendsLaunchEvents")
-URLSessionConfiguration_setSessionSendsLaunchEvents :: #force_inline proc "c" (self: ^URLSessionConfiguration, sessionSendsLaunchEvents: bool) {
-    msgSend(nil, self, "setSessionSendsLaunchEvents:", sessionSendsLaunchEvents)
-}
-@(objc_type=URLSessionConfiguration, objc_name="connectionProxyDictionary")
-URLSessionConfiguration_connectionProxyDictionary :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "connectionProxyDictionary")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setConnectionProxyDictionary")
-URLSessionConfiguration_setConnectionProxyDictionary :: #force_inline proc "c" (self: ^URLSessionConfiguration, connectionProxyDictionary: ^Dictionary) {
-    msgSend(nil, self, "setConnectionProxyDictionary:", connectionProxyDictionary)
-}
-@(objc_type=URLSessionConfiguration, objc_name="TLSMinimumSupportedProtocol")
-URLSessionConfiguration_TLSMinimumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Sec.SSLProtocol {
-    return msgSend(Sec.SSLProtocol, self, "TLSMinimumSupportedProtocol")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setTLSMinimumSupportedProtocol")
-URLSessionConfiguration_setTLSMinimumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMinimumSupportedProtocol: Sec.SSLProtocol) {
-    msgSend(nil, self, "setTLSMinimumSupportedProtocol:", TLSMinimumSupportedProtocol)
-}
-@(objc_type=URLSessionConfiguration, objc_name="TLSMaximumSupportedProtocol")
-URLSessionConfiguration_TLSMaximumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Sec.SSLProtocol {
-    return msgSend(Sec.SSLProtocol, self, "TLSMaximumSupportedProtocol")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setTLSMaximumSupportedProtocol")
-URLSessionConfiguration_setTLSMaximumSupportedProtocol :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMaximumSupportedProtocol: Sec.SSLProtocol) {
-    msgSend(nil, self, "setTLSMaximumSupportedProtocol:", TLSMaximumSupportedProtocol)
-}
-@(objc_type=URLSessionConfiguration, objc_name="TLSMinimumSupportedProtocolVersion")
-URLSessionConfiguration_TLSMinimumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Sec.tls_protocol_version_t {
-    return msgSend(Sec.tls_protocol_version_t, self, "TLSMinimumSupportedProtocolVersion")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setTLSMinimumSupportedProtocolVersion")
-URLSessionConfiguration_setTLSMinimumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMinimumSupportedProtocolVersion: Sec.tls_protocol_version_t) {
-    msgSend(nil, self, "setTLSMinimumSupportedProtocolVersion:", TLSMinimumSupportedProtocolVersion)
-}
-@(objc_type=URLSessionConfiguration, objc_name="TLSMaximumSupportedProtocolVersion")
-URLSessionConfiguration_TLSMaximumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Sec.tls_protocol_version_t {
-    return msgSend(Sec.tls_protocol_version_t, self, "TLSMaximumSupportedProtocolVersion")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setTLSMaximumSupportedProtocolVersion")
-URLSessionConfiguration_setTLSMaximumSupportedProtocolVersion :: #force_inline proc "c" (self: ^URLSessionConfiguration, TLSMaximumSupportedProtocolVersion: Sec.tls_protocol_version_t) {
-    msgSend(nil, self, "setTLSMaximumSupportedProtocolVersion:", TLSMaximumSupportedProtocolVersion)
-}
-@(objc_type=URLSessionConfiguration, objc_name="HTTPShouldUsePipelining")
-URLSessionConfiguration_HTTPShouldUsePipelining :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "HTTPShouldUsePipelining")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setHTTPShouldUsePipelining")
-URLSessionConfiguration_setHTTPShouldUsePipelining :: #force_inline proc "c" (self: ^URLSessionConfiguration, HTTPShouldUsePipelining: bool) {
-    msgSend(nil, self, "setHTTPShouldUsePipelining:", HTTPShouldUsePipelining)
-}
-@(objc_type=URLSessionConfiguration, objc_name="HTTPShouldSetCookies")
-URLSessionConfiguration_HTTPShouldSetCookies :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "HTTPShouldSetCookies")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setHTTPShouldSetCookies")
-URLSessionConfiguration_setHTTPShouldSetCookies :: #force_inline proc "c" (self: ^URLSessionConfiguration, HTTPShouldSetCookies: bool) {
-    msgSend(nil, self, "setHTTPShouldSetCookies:", HTTPShouldSetCookies)
-}
-@(objc_type=URLSessionConfiguration, objc_name="HTTPCookieAcceptPolicy")
-URLSessionConfiguration_HTTPCookieAcceptPolicy :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> HTTPCookieAcceptPolicy {
-    return msgSend(HTTPCookieAcceptPolicy, self, "HTTPCookieAcceptPolicy")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setHTTPCookieAcceptPolicy")
-URLSessionConfiguration_setHTTPCookieAcceptPolicy :: #force_inline proc "c" (self: ^URLSessionConfiguration, _HTTPCookieAcceptPolicy: HTTPCookieAcceptPolicy) {
-    msgSend(nil, self, "setHTTPCookieAcceptPolicy:", _HTTPCookieAcceptPolicy)
-}
-@(objc_type=URLSessionConfiguration, objc_name="HTTPAdditionalHeaders")
-URLSessionConfiguration_HTTPAdditionalHeaders :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "HTTPAdditionalHeaders")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setHTTPAdditionalHeaders")
-URLSessionConfiguration_setHTTPAdditionalHeaders :: #force_inline proc "c" (self: ^URLSessionConfiguration, HTTPAdditionalHeaders: ^Dictionary) {
-    msgSend(nil, self, "setHTTPAdditionalHeaders:", HTTPAdditionalHeaders)
-}
-@(objc_type=URLSessionConfiguration, objc_name="HTTPMaximumConnectionsPerHost")
-URLSessionConfiguration_HTTPMaximumConnectionsPerHost :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> Integer {
-    return msgSend(Integer, self, "HTTPMaximumConnectionsPerHost")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setHTTPMaximumConnectionsPerHost")
-URLSessionConfiguration_setHTTPMaximumConnectionsPerHost :: #force_inline proc "c" (self: ^URLSessionConfiguration, HTTPMaximumConnectionsPerHost: Integer) {
-    msgSend(nil, self, "setHTTPMaximumConnectionsPerHost:", HTTPMaximumConnectionsPerHost)
-}
-@(objc_type=URLSessionConfiguration, objc_name="HTTPCookieStorage")
-URLSessionConfiguration_HTTPCookieStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^HTTPCookieStorage {
-    return msgSend(^HTTPCookieStorage, self, "HTTPCookieStorage")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setHTTPCookieStorage")
-URLSessionConfiguration_setHTTPCookieStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration, _HTTPCookieStorage: ^HTTPCookieStorage) {
-    msgSend(nil, self, "setHTTPCookieStorage:", _HTTPCookieStorage)
-}
-@(objc_type=URLSessionConfiguration, objc_name="URLCredentialStorage")
-URLSessionConfiguration_URLCredentialStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^URLCredentialStorage {
-    return msgSend(^URLCredentialStorage, self, "URLCredentialStorage")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setURLCredentialStorage")
-URLSessionConfiguration_setURLCredentialStorage :: #force_inline proc "c" (self: ^URLSessionConfiguration, _URLCredentialStorage: ^URLCredentialStorage) {
-    msgSend(nil, self, "setURLCredentialStorage:", _URLCredentialStorage)
-}
-@(objc_type=URLSessionConfiguration, objc_name="URLCache")
-URLSessionConfiguration_URLCache :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^URLCache {
-    return msgSend(^URLCache, self, "URLCache")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setURLCache")
-URLSessionConfiguration_setURLCache :: #force_inline proc "c" (self: ^URLSessionConfiguration, _URLCache: ^URLCache) {
-    msgSend(nil, self, "setURLCache:", _URLCache)
-}
-@(objc_type=URLSessionConfiguration, objc_name="shouldUseExtendedBackgroundIdleMode")
-URLSessionConfiguration_shouldUseExtendedBackgroundIdleMode :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> bool {
-    return msgSend(bool, self, "shouldUseExtendedBackgroundIdleMode")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setShouldUseExtendedBackgroundIdleMode")
-URLSessionConfiguration_setShouldUseExtendedBackgroundIdleMode :: #force_inline proc "c" (self: ^URLSessionConfiguration, shouldUseExtendedBackgroundIdleMode: bool) {
-    msgSend(nil, self, "setShouldUseExtendedBackgroundIdleMode:", shouldUseExtendedBackgroundIdleMode)
-}
-@(objc_type=URLSessionConfiguration, objc_name="protocolClasses")
-URLSessionConfiguration_protocolClasses :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> ^Array {
-    return msgSend(^Array, self, "protocolClasses")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setProtocolClasses")
-URLSessionConfiguration_setProtocolClasses :: #force_inline proc "c" (self: ^URLSessionConfiguration, protocolClasses: ^Array) {
-    msgSend(nil, self, "setProtocolClasses:", protocolClasses)
-}
-@(objc_type=URLSessionConfiguration, objc_name="multipathServiceType")
-URLSessionConfiguration_multipathServiceType :: #force_inline proc "c" (self: ^URLSessionConfiguration) -> URLSessionMultipathServiceType {
-    return msgSend(URLSessionMultipathServiceType, self, "multipathServiceType")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setMultipathServiceType")
-URLSessionConfiguration_setMultipathServiceType :: #force_inline proc "c" (self: ^URLSessionConfiguration, multipathServiceType: URLSessionMultipathServiceType) {
-    msgSend(nil, self, "setMultipathServiceType:", multipathServiceType)
-}
-@(objc_type=URLSessionConfiguration, objc_name="backgroundSessionConfiguration", objc_is_class_method=true)
-URLSessionConfiguration_backgroundSessionConfiguration :: #force_inline proc "c" (identifier: ^String) -> ^URLSessionConfiguration {
-    return msgSend(^URLSessionConfiguration, URLSessionConfiguration, "backgroundSessionConfiguration:", identifier)
-}
-@(objc_type=URLSessionConfiguration, objc_name="load", objc_is_class_method=true)
-URLSessionConfiguration_load :: #force_inline proc "c" () {
-    msgSend(nil, URLSessionConfiguration, "load")
-}
-@(objc_type=URLSessionConfiguration, objc_name="initialize", objc_is_class_method=true)
-URLSessionConfiguration_initialize :: #force_inline proc "c" () {
-    msgSend(nil, URLSessionConfiguration, "initialize")
-}
-@(objc_type=URLSessionConfiguration, objc_name="allocWithZone", objc_is_class_method=true)
-URLSessionConfiguration_allocWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> ^URLSessionConfiguration {
-    return msgSend(^URLSessionConfiguration, URLSessionConfiguration, "allocWithZone:", zone)
-}
-@(objc_type=URLSessionConfiguration, objc_name="alloc", objc_is_class_method=true)
-URLSessionConfiguration_alloc :: #force_inline proc "c" () -> ^URLSessionConfiguration {
-    return msgSend(^URLSessionConfiguration, URLSessionConfiguration, "alloc")
-}
-@(objc_type=URLSessionConfiguration, objc_name="copyWithZone", objc_is_class_method=true)
-URLSessionConfiguration_copyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
-    return msgSend(id, URLSessionConfiguration, "copyWithZone:", zone)
-}
-@(objc_type=URLSessionConfiguration, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-URLSessionConfiguration_mutableCopyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
-    return msgSend(id, URLSessionConfiguration, "mutableCopyWithZone:", zone)
-}
-@(objc_type=URLSessionConfiguration, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-URLSessionConfiguration_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, URLSessionConfiguration, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=URLSessionConfiguration, objc_name="conformsToProtocol", objc_is_class_method=true)
-URLSessionConfiguration_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, URLSessionConfiguration, "conformsToProtocol:", protocol)
-}
-@(objc_type=URLSessionConfiguration, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-URLSessionConfiguration_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, URLSessionConfiguration, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=URLSessionConfiguration, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-URLSessionConfiguration_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^MethodSignature {
-    return msgSend(^MethodSignature, URLSessionConfiguration, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=URLSessionConfiguration, objc_name="isSubclassOfClass", objc_is_class_method=true)
-URLSessionConfiguration_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, URLSessionConfiguration, "isSubclassOfClass:", aClass)
-}
-@(objc_type=URLSessionConfiguration, objc_name="resolveClassMethod", objc_is_class_method=true)
-URLSessionConfiguration_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, URLSessionConfiguration, "resolveClassMethod:", sel)
-}
-@(objc_type=URLSessionConfiguration, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-URLSessionConfiguration_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, URLSessionConfiguration, "resolveInstanceMethod:", sel)
-}
-@(objc_type=URLSessionConfiguration, objc_name="hash", objc_is_class_method=true)
-URLSessionConfiguration_hash :: #force_inline proc "c" () -> UInteger {
-    return msgSend(UInteger, URLSessionConfiguration, "hash")
-}
-@(objc_type=URLSessionConfiguration, objc_name="superclass", objc_is_class_method=true)
-URLSessionConfiguration_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, URLSessionConfiguration, "superclass")
-}
-@(objc_type=URLSessionConfiguration, objc_name="class", objc_is_class_method=true)
-URLSessionConfiguration_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, URLSessionConfiguration, "class")
-}
-@(objc_type=URLSessionConfiguration, objc_name="description", objc_is_class_method=true)
-URLSessionConfiguration_description :: #force_inline proc "c" () -> ^String {
-    return msgSend(^String, URLSessionConfiguration, "description")
-}
-@(objc_type=URLSessionConfiguration, objc_name="debugDescription", objc_is_class_method=true)
-URLSessionConfiguration_debugDescription :: #force_inline proc "c" () -> ^String {
-    return msgSend(^String, URLSessionConfiguration, "debugDescription")
-}
-@(objc_type=URLSessionConfiguration, objc_name="version", objc_is_class_method=true)
-URLSessionConfiguration_version :: #force_inline proc "c" () -> Integer {
-    return msgSend(Integer, URLSessionConfiguration, "version")
-}
-@(objc_type=URLSessionConfiguration, objc_name="setVersion", objc_is_class_method=true)
-URLSessionConfiguration_setVersion :: #force_inline proc "c" (aVersion: Integer) {
-    msgSend(nil, URLSessionConfiguration, "setVersion:", aVersion)
-}
-@(objc_type=URLSessionConfiguration, objc_name="poseAsClass", objc_is_class_method=true)
-URLSessionConfiguration_poseAsClass :: #force_inline proc "c" (aClass: Class) {
-    msgSend(nil, URLSessionConfiguration, "poseAsClass:", aClass)
-}
-@(objc_type=URLSessionConfiguration, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-URLSessionConfiguration_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, URLSessionConfiguration, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=URLSessionConfiguration, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-URLSessionConfiguration_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, URLSessionConfiguration, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=URLSessionConfiguration, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-URLSessionConfiguration_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, URLSessionConfiguration, "accessInstanceVariablesDirectly")
-}
-@(objc_type=URLSessionConfiguration, objc_name="useStoredAccessor", objc_is_class_method=true)
-URLSessionConfiguration_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, URLSessionConfiguration, "useStoredAccessor")
-}
-@(objc_type=URLSessionConfiguration, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-URLSessionConfiguration_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^String) -> ^Set {
-    return msgSend(^Set, URLSessionConfiguration, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=URLSessionConfiguration, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-URLSessionConfiguration_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^String) -> bool {
-    return msgSend(bool, URLSessionConfiguration, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=URLSessionConfiguration, objc_name="setKeys", objc_is_class_method=true)
-URLSessionConfiguration_setKeys :: #force_inline proc "c" (keys: ^Array, dependentKey: ^String) {
-    msgSend(nil, URLSessionConfiguration, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
-}
-@(objc_type=URLSessionConfiguration, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-URLSessionConfiguration_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^Array {
-    return msgSend(^Array, URLSessionConfiguration, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=URLSessionConfiguration, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-URLSessionConfiguration_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, URLSessionConfiguration, "classForKeyedUnarchiver")
-}
-@(objc_type=URLSessionConfiguration, objc_name="cancelPreviousPerformRequestsWithTarget")
-URLSessionConfiguration_cancelPreviousPerformRequestsWithTarget :: proc {
-    URLSessionConfiguration_cancelPreviousPerformRequestsWithTarget_selector_object,
-    URLSessionConfiguration_cancelPreviousPerformRequestsWithTarget_,
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=URLSessionConfiguration, objc_selector="backgroundSessionConfigurationWithIdentifier:", objc_name="backgroundSessionConfigurationWithIdentifier", objc_is_class_method=true)
+    URLSessionConfiguration_backgroundSessionConfigurationWithIdentifier :: proc(identifier: ^String) -> ^URLSessionConfiguration ---
 
+    @(objc_type=URLSessionConfiguration, objc_selector="init", objc_name="init")
+    URLSessionConfiguration_init :: proc(self: ^URLSessionConfiguration) -> ^URLSessionConfiguration ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    URLSessionConfiguration_new :: proc() -> ^URLSessionConfiguration ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="defaultSessionConfiguration", objc_name="defaultSessionConfiguration", objc_is_class_method=true)
+    URLSessionConfiguration_defaultSessionConfiguration :: proc() -> ^URLSessionConfiguration ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="ephemeralSessionConfiguration", objc_name="ephemeralSessionConfiguration", objc_is_class_method=true)
+    URLSessionConfiguration_ephemeralSessionConfiguration :: proc() -> ^URLSessionConfiguration ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="identifier", objc_name="identifier")
+    URLSessionConfiguration_identifier :: proc(self: ^URLSessionConfiguration) -> ^String ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="requestCachePolicy", objc_name="requestCachePolicy")
+    URLSessionConfiguration_requestCachePolicy :: proc(self: ^URLSessionConfiguration) -> URLRequestCachePolicy ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setRequestCachePolicy:", objc_name="setRequestCachePolicy")
+    URLSessionConfiguration_setRequestCachePolicy :: proc(self: ^URLSessionConfiguration, requestCachePolicy: URLRequestCachePolicy) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="timeoutIntervalForRequest", objc_name="timeoutIntervalForRequest")
+    URLSessionConfiguration_timeoutIntervalForRequest :: proc(self: ^URLSessionConfiguration) -> TimeInterval ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setTimeoutIntervalForRequest:", objc_name="setTimeoutIntervalForRequest")
+    URLSessionConfiguration_setTimeoutIntervalForRequest :: proc(self: ^URLSessionConfiguration, timeoutIntervalForRequest: TimeInterval) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="timeoutIntervalForResource", objc_name="timeoutIntervalForResource")
+    URLSessionConfiguration_timeoutIntervalForResource :: proc(self: ^URLSessionConfiguration) -> TimeInterval ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setTimeoutIntervalForResource:", objc_name="setTimeoutIntervalForResource")
+    URLSessionConfiguration_setTimeoutIntervalForResource :: proc(self: ^URLSessionConfiguration, timeoutIntervalForResource: TimeInterval) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="networkServiceType", objc_name="networkServiceType")
+    URLSessionConfiguration_networkServiceType :: proc(self: ^URLSessionConfiguration) -> URLRequestNetworkServiceType ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setNetworkServiceType:", objc_name="setNetworkServiceType")
+    URLSessionConfiguration_setNetworkServiceType :: proc(self: ^URLSessionConfiguration, networkServiceType: URLRequestNetworkServiceType) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="allowsCellularAccess", objc_name="allowsCellularAccess")
+    URLSessionConfiguration_allowsCellularAccess :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setAllowsCellularAccess:", objc_name="setAllowsCellularAccess")
+    URLSessionConfiguration_setAllowsCellularAccess :: proc(self: ^URLSessionConfiguration, allowsCellularAccess: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="allowsExpensiveNetworkAccess", objc_name="allowsExpensiveNetworkAccess")
+    URLSessionConfiguration_allowsExpensiveNetworkAccess :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setAllowsExpensiveNetworkAccess:", objc_name="setAllowsExpensiveNetworkAccess")
+    URLSessionConfiguration_setAllowsExpensiveNetworkAccess :: proc(self: ^URLSessionConfiguration, allowsExpensiveNetworkAccess: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="allowsConstrainedNetworkAccess", objc_name="allowsConstrainedNetworkAccess")
+    URLSessionConfiguration_allowsConstrainedNetworkAccess :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setAllowsConstrainedNetworkAccess:", objc_name="setAllowsConstrainedNetworkAccess")
+    URLSessionConfiguration_setAllowsConstrainedNetworkAccess :: proc(self: ^URLSessionConfiguration, allowsConstrainedNetworkAccess: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="requiresDNSSECValidation", objc_name="requiresDNSSECValidation")
+    URLSessionConfiguration_requiresDNSSECValidation :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setRequiresDNSSECValidation:", objc_name="setRequiresDNSSECValidation")
+    URLSessionConfiguration_setRequiresDNSSECValidation :: proc(self: ^URLSessionConfiguration, requiresDNSSECValidation: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="waitsForConnectivity", objc_name="waitsForConnectivity")
+    URLSessionConfiguration_waitsForConnectivity :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setWaitsForConnectivity:", objc_name="setWaitsForConnectivity")
+    URLSessionConfiguration_setWaitsForConnectivity :: proc(self: ^URLSessionConfiguration, waitsForConnectivity: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="isDiscretionary", objc_name="isDiscretionary")
+    URLSessionConfiguration_isDiscretionary :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setDiscretionary:", objc_name="setDiscretionary")
+    URLSessionConfiguration_setDiscretionary :: proc(self: ^URLSessionConfiguration, discretionary: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="sharedContainerIdentifier", objc_name="sharedContainerIdentifier")
+    URLSessionConfiguration_sharedContainerIdentifier :: proc(self: ^URLSessionConfiguration) -> ^String ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setSharedContainerIdentifier:", objc_name="setSharedContainerIdentifier")
+    URLSessionConfiguration_setSharedContainerIdentifier :: proc(self: ^URLSessionConfiguration, sharedContainerIdentifier: ^String) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="sessionSendsLaunchEvents", objc_name="sessionSendsLaunchEvents")
+    URLSessionConfiguration_sessionSendsLaunchEvents :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setSessionSendsLaunchEvents:", objc_name="setSessionSendsLaunchEvents")
+    URLSessionConfiguration_setSessionSendsLaunchEvents :: proc(self: ^URLSessionConfiguration, sessionSendsLaunchEvents: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="connectionProxyDictionary", objc_name="connectionProxyDictionary")
+    URLSessionConfiguration_connectionProxyDictionary :: proc(self: ^URLSessionConfiguration) -> ^Dictionary ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setConnectionProxyDictionary:", objc_name="setConnectionProxyDictionary")
+    URLSessionConfiguration_setConnectionProxyDictionary :: proc(self: ^URLSessionConfiguration, connectionProxyDictionary: ^Dictionary) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="TLSMinimumSupportedProtocol", objc_name="TLSMinimumSupportedProtocol")
+    URLSessionConfiguration_TLSMinimumSupportedProtocol :: proc(self: ^URLSessionConfiguration) -> Sec.SSLProtocol ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setTLSMinimumSupportedProtocol:", objc_name="setTLSMinimumSupportedProtocol")
+    URLSessionConfiguration_setTLSMinimumSupportedProtocol :: proc(self: ^URLSessionConfiguration, TLSMinimumSupportedProtocol: Sec.SSLProtocol) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="TLSMaximumSupportedProtocol", objc_name="TLSMaximumSupportedProtocol")
+    URLSessionConfiguration_TLSMaximumSupportedProtocol :: proc(self: ^URLSessionConfiguration) -> Sec.SSLProtocol ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setTLSMaximumSupportedProtocol:", objc_name="setTLSMaximumSupportedProtocol")
+    URLSessionConfiguration_setTLSMaximumSupportedProtocol :: proc(self: ^URLSessionConfiguration, TLSMaximumSupportedProtocol: Sec.SSLProtocol) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="TLSMinimumSupportedProtocolVersion", objc_name="TLSMinimumSupportedProtocolVersion")
+    URLSessionConfiguration_TLSMinimumSupportedProtocolVersion :: proc(self: ^URLSessionConfiguration) -> Sec.tls_protocol_version_t ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setTLSMinimumSupportedProtocolVersion:", objc_name="setTLSMinimumSupportedProtocolVersion")
+    URLSessionConfiguration_setTLSMinimumSupportedProtocolVersion :: proc(self: ^URLSessionConfiguration, TLSMinimumSupportedProtocolVersion: Sec.tls_protocol_version_t) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="TLSMaximumSupportedProtocolVersion", objc_name="TLSMaximumSupportedProtocolVersion")
+    URLSessionConfiguration_TLSMaximumSupportedProtocolVersion :: proc(self: ^URLSessionConfiguration) -> Sec.tls_protocol_version_t ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setTLSMaximumSupportedProtocolVersion:", objc_name="setTLSMaximumSupportedProtocolVersion")
+    URLSessionConfiguration_setTLSMaximumSupportedProtocolVersion :: proc(self: ^URLSessionConfiguration, TLSMaximumSupportedProtocolVersion: Sec.tls_protocol_version_t) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="HTTPShouldUsePipelining", objc_name="HTTPShouldUsePipelining")
+    URLSessionConfiguration_HTTPShouldUsePipelining :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setHTTPShouldUsePipelining:", objc_name="setHTTPShouldUsePipelining")
+    URLSessionConfiguration_setHTTPShouldUsePipelining :: proc(self: ^URLSessionConfiguration, HTTPShouldUsePipelining: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="HTTPShouldSetCookies", objc_name="HTTPShouldSetCookies")
+    URLSessionConfiguration_HTTPShouldSetCookies :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setHTTPShouldSetCookies:", objc_name="setHTTPShouldSetCookies")
+    URLSessionConfiguration_setHTTPShouldSetCookies :: proc(self: ^URLSessionConfiguration, HTTPShouldSetCookies: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="HTTPCookieAcceptPolicy", objc_name="HTTPCookieAcceptPolicy")
+    URLSessionConfiguration_HTTPCookieAcceptPolicy :: proc(self: ^URLSessionConfiguration) -> HTTPCookieAcceptPolicy ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setHTTPCookieAcceptPolicy:", objc_name="setHTTPCookieAcceptPolicy")
+    URLSessionConfiguration_setHTTPCookieAcceptPolicy :: proc(self: ^URLSessionConfiguration, _HTTPCookieAcceptPolicy: HTTPCookieAcceptPolicy) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="HTTPAdditionalHeaders", objc_name="HTTPAdditionalHeaders")
+    URLSessionConfiguration_HTTPAdditionalHeaders :: proc(self: ^URLSessionConfiguration) -> ^Dictionary ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setHTTPAdditionalHeaders:", objc_name="setHTTPAdditionalHeaders")
+    URLSessionConfiguration_setHTTPAdditionalHeaders :: proc(self: ^URLSessionConfiguration, HTTPAdditionalHeaders: ^Dictionary) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="HTTPMaximumConnectionsPerHost", objc_name="HTTPMaximumConnectionsPerHost")
+    URLSessionConfiguration_HTTPMaximumConnectionsPerHost :: proc(self: ^URLSessionConfiguration) -> Integer ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setHTTPMaximumConnectionsPerHost:", objc_name="setHTTPMaximumConnectionsPerHost")
+    URLSessionConfiguration_setHTTPMaximumConnectionsPerHost :: proc(self: ^URLSessionConfiguration, HTTPMaximumConnectionsPerHost: Integer) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="HTTPCookieStorage", objc_name="HTTPCookieStorage")
+    URLSessionConfiguration_HTTPCookieStorage :: proc(self: ^URLSessionConfiguration) -> ^HTTPCookieStorage ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setHTTPCookieStorage:", objc_name="setHTTPCookieStorage")
+    URLSessionConfiguration_setHTTPCookieStorage :: proc(self: ^URLSessionConfiguration, _HTTPCookieStorage: ^HTTPCookieStorage) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="URLCredentialStorage", objc_name="URLCredentialStorage")
+    URLSessionConfiguration_URLCredentialStorage :: proc(self: ^URLSessionConfiguration) -> ^URLCredentialStorage ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setURLCredentialStorage:", objc_name="setURLCredentialStorage")
+    URLSessionConfiguration_setURLCredentialStorage :: proc(self: ^URLSessionConfiguration, _URLCredentialStorage: ^URLCredentialStorage) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="URLCache", objc_name="URLCache")
+    URLSessionConfiguration_URLCache :: proc(self: ^URLSessionConfiguration) -> ^URLCache ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setURLCache:", objc_name="setURLCache")
+    URLSessionConfiguration_setURLCache :: proc(self: ^URLSessionConfiguration, _URLCache: ^URLCache) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="shouldUseExtendedBackgroundIdleMode", objc_name="shouldUseExtendedBackgroundIdleMode")
+    URLSessionConfiguration_shouldUseExtendedBackgroundIdleMode :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setShouldUseExtendedBackgroundIdleMode:", objc_name="setShouldUseExtendedBackgroundIdleMode")
+    URLSessionConfiguration_setShouldUseExtendedBackgroundIdleMode :: proc(self: ^URLSessionConfiguration, shouldUseExtendedBackgroundIdleMode: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="protocolClasses", objc_name="protocolClasses")
+    URLSessionConfiguration_protocolClasses :: proc(self: ^URLSessionConfiguration) -> ^Array ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setProtocolClasses:", objc_name="setProtocolClasses")
+    URLSessionConfiguration_setProtocolClasses :: proc(self: ^URLSessionConfiguration, protocolClasses: ^Array) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="multipathServiceType", objc_name="multipathServiceType")
+    URLSessionConfiguration_multipathServiceType :: proc(self: ^URLSessionConfiguration) -> URLSessionMultipathServiceType ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setMultipathServiceType:", objc_name="setMultipathServiceType")
+    URLSessionConfiguration_setMultipathServiceType :: proc(self: ^URLSessionConfiguration, multipathServiceType: URLSessionMultipathServiceType) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="backgroundSessionConfiguration:", objc_name="backgroundSessionConfiguration", objc_is_class_method=true)
+    URLSessionConfiguration_backgroundSessionConfiguration :: proc(identifier: ^String) -> ^URLSessionConfiguration ---
+}

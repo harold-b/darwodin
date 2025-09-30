@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTextTable
 ///
-@(objc_class="NSTextTable")
+@(objc_class="NSTextTable", objc_superclass=TextBlock)
 TextTable :: struct { using _: TextBlock, }
 

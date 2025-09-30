@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -40,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).selectionRects(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("selectionRects"), auto_cast selectionRects, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectionRects"), auto_cast selectionRects, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionRects != nil {
         setSelectionRects :: proc "c" (self: ^UI.TextSelectionHighlightView, _: SEL, selectionRects: ^NS.Array) {
@@ -50,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).setSelectionRects(self, selectionRects)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionRects:"), auto_cast setSelectionRects, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionRects:"), auto_cast setSelectionRects, "v@:^void") do panic("Failed to register objC method.")
     }
 }
 

@@ -21,7 +21,8 @@ CloudSharingValidation :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CloudSharingValidation, objc_name="cloudShareForUserInterfaceItem")
-CloudSharingValidation_cloudShareForUserInterfaceItem :: #force_inline proc "c" (self: ^CloudSharingValidation, item: ^ValidatedUserInterfaceItem) -> ^CKShare {
-    return msgSend(^CKShare, self, "cloudShareForUserInterfaceItem:", item)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CloudSharingValidation, objc_selector="cloudShareForUserInterfaceItem:", objc_name="cloudShareForUserInterfaceItem")
+    CloudSharingValidation_cloudShareForUserInterfaceItem :: proc(self: ^CloudSharingValidation, item: ^ValidatedUserInterfaceItem) -> ^CKShare ---
 }

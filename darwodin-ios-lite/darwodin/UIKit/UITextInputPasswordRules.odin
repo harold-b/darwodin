@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITextInputPasswordRules
 ///
-@(objc_class="UITextInputPasswordRules")
+@(objc_class="UITextInputPasswordRules", objc_superclass=NS.Object)
 TextInputPasswordRules :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,

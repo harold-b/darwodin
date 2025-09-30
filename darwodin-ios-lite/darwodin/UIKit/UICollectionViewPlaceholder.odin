@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICollectionViewPlaceholder
 ///
-@(objc_class="UICollectionViewPlaceholder")
+@(objc_class="UICollectionViewPlaceholder", objc_superclass=NS.Object)
 CollectionViewPlaceholder :: struct { using _: NS.Object, }
 

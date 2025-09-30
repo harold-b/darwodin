@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSNull
 ///
-@(objc_class="NSNull")
+@(objc_class="NSNull", objc_superclass=Object)
 Null :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

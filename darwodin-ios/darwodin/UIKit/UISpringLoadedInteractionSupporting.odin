@@ -21,11 +21,11 @@ SpringLoadedInteractionSupporting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SpringLoadedInteractionSupporting, objc_name="isSpringLoaded")
-SpringLoadedInteractionSupporting_isSpringLoaded :: #force_inline proc "c" (self: ^SpringLoadedInteractionSupporting) -> bool {
-    return msgSend(bool, self, "isSpringLoaded")
-}
-@(objc_type=SpringLoadedInteractionSupporting, objc_name="setSpringLoaded")
-SpringLoadedInteractionSupporting_setSpringLoaded :: #force_inline proc "c" (self: ^SpringLoadedInteractionSupporting, springLoaded: bool) {
-    msgSend(nil, self, "setSpringLoaded:", springLoaded)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpringLoadedInteractionSupporting, objc_selector="isSpringLoaded", objc_name="isSpringLoaded")
+    SpringLoadedInteractionSupporting_isSpringLoaded :: proc(self: ^SpringLoadedInteractionSupporting) -> bool ---
+
+    @(objc_type=SpringLoadedInteractionSupporting, objc_selector="setSpringLoaded:", objc_name="setSpringLoaded")
+    SpringLoadedInteractionSupporting_setSpringLoaded :: proc(self: ^SpringLoadedInteractionSupporting, springLoaded: bool) ---
 }

@@ -20,55 +20,44 @@ ComputePipelineState :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ComputePipelineState, objc_name="imageblockMemoryLengthForDimensions")
-ComputePipelineState_imageblockMemoryLengthForDimensions :: #force_inline proc "c" (self: ^ComputePipelineState, imageblockDimensions: Size) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "imageblockMemoryLengthForDimensions:", imageblockDimensions)
-}
-@(objc_type=ComputePipelineState, objc_name="functionHandleWithFunction")
-ComputePipelineState_functionHandleWithFunction :: #force_inline proc "c" (self: ^ComputePipelineState, function: ^Function) -> ^FunctionHandle {
-    return msgSend(^FunctionHandle, self, "functionHandleWithFunction:", function)
-}
-@(objc_type=ComputePipelineState, objc_name="newComputePipelineStateWithAdditionalBinaryFunctions")
-ComputePipelineState_newComputePipelineStateWithAdditionalBinaryFunctions :: #force_inline proc "c" (self: ^ComputePipelineState, functions: ^NS.Array, error: ^^NS.Error) -> ^ComputePipelineState {
-    return msgSend(^ComputePipelineState, self, "newComputePipelineStateWithAdditionalBinaryFunctions:error:", functions, error)
-}
-@(objc_type=ComputePipelineState, objc_name="newVisibleFunctionTableWithDescriptor")
-ComputePipelineState_newVisibleFunctionTableWithDescriptor :: #force_inline proc "c" (self: ^ComputePipelineState, descriptor: ^VisibleFunctionTableDescriptor) -> ^VisibleFunctionTable {
-    return msgSend(^VisibleFunctionTable, self, "newVisibleFunctionTableWithDescriptor:", descriptor)
-}
-@(objc_type=ComputePipelineState, objc_name="newIntersectionFunctionTableWithDescriptor")
-ComputePipelineState_newIntersectionFunctionTableWithDescriptor :: #force_inline proc "c" (self: ^ComputePipelineState, descriptor: ^IntersectionFunctionTableDescriptor) -> ^IntersectionFunctionTable {
-    return msgSend(^IntersectionFunctionTable, self, "newIntersectionFunctionTableWithDescriptor:", descriptor)
-}
-@(objc_type=ComputePipelineState, objc_name="label")
-ComputePipelineState_label :: #force_inline proc "c" (self: ^ComputePipelineState) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=ComputePipelineState, objc_name="device")
-ComputePipelineState_device :: #force_inline proc "c" (self: ^ComputePipelineState) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=ComputePipelineState, objc_name="maxTotalThreadsPerThreadgroup")
-ComputePipelineState_maxTotalThreadsPerThreadgroup :: #force_inline proc "c" (self: ^ComputePipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "maxTotalThreadsPerThreadgroup")
-}
-@(objc_type=ComputePipelineState, objc_name="threadExecutionWidth")
-ComputePipelineState_threadExecutionWidth :: #force_inline proc "c" (self: ^ComputePipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "threadExecutionWidth")
-}
-@(objc_type=ComputePipelineState, objc_name="staticThreadgroupMemoryLength")
-ComputePipelineState_staticThreadgroupMemoryLength :: #force_inline proc "c" (self: ^ComputePipelineState) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "staticThreadgroupMemoryLength")
-}
-@(objc_type=ComputePipelineState, objc_name="supportIndirectCommandBuffers")
-ComputePipelineState_supportIndirectCommandBuffers :: #force_inline proc "c" (self: ^ComputePipelineState) -> bool {
-    return msgSend(bool, self, "supportIndirectCommandBuffers")
-}
-@(objc_type=ComputePipelineState, objc_name="gpuResourceID")
-ComputePipelineState_gpuResourceID :: #force_inline proc "c" (self: ^ComputePipelineState) -> ResourceID {
-    return msgSend(ResourceID, self, "gpuResourceID")
-}
-@(objc_type=ComputePipelineState, objc_name="shaderValidation")
-ComputePipelineState_shaderValidation :: #force_inline proc "c" (self: ^ComputePipelineState) -> ShaderValidation {
-    return msgSend(ShaderValidation, self, "shaderValidation")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ComputePipelineState, objc_selector="imageblockMemoryLengthForDimensions:", objc_name="imageblockMemoryLengthForDimensions")
+    ComputePipelineState_imageblockMemoryLengthForDimensions :: proc(self: ^ComputePipelineState, imageblockDimensions: Size) -> NS.UInteger ---
+
+    @(objc_type=ComputePipelineState, objc_selector="functionHandleWithFunction:", objc_name="functionHandleWithFunction")
+    ComputePipelineState_functionHandleWithFunction :: proc(self: ^ComputePipelineState, function: ^Function) -> ^FunctionHandle ---
+
+    @(objc_type=ComputePipelineState, objc_selector="newComputePipelineStateWithAdditionalBinaryFunctions:error:", objc_name="newComputePipelineStateWithAdditionalBinaryFunctions")
+    ComputePipelineState_newComputePipelineStateWithAdditionalBinaryFunctions :: proc(self: ^ComputePipelineState, functions: ^NS.Array, error: ^^NS.Error) -> ^ComputePipelineState ---
+
+    @(objc_type=ComputePipelineState, objc_selector="newVisibleFunctionTableWithDescriptor:", objc_name="newVisibleFunctionTableWithDescriptor")
+    ComputePipelineState_newVisibleFunctionTableWithDescriptor :: proc(self: ^ComputePipelineState, descriptor: ^VisibleFunctionTableDescriptor) -> ^VisibleFunctionTable ---
+
+    @(objc_type=ComputePipelineState, objc_selector="newIntersectionFunctionTableWithDescriptor:", objc_name="newIntersectionFunctionTableWithDescriptor")
+    ComputePipelineState_newIntersectionFunctionTableWithDescriptor :: proc(self: ^ComputePipelineState, descriptor: ^IntersectionFunctionTableDescriptor) -> ^IntersectionFunctionTable ---
+
+    @(objc_type=ComputePipelineState, objc_selector="label", objc_name="label")
+    ComputePipelineState_label :: proc(self: ^ComputePipelineState) -> ^NS.String ---
+
+    @(objc_type=ComputePipelineState, objc_selector="device", objc_name="device")
+    ComputePipelineState_device :: proc(self: ^ComputePipelineState) -> ^Device ---
+
+    @(objc_type=ComputePipelineState, objc_selector="maxTotalThreadsPerThreadgroup", objc_name="maxTotalThreadsPerThreadgroup")
+    ComputePipelineState_maxTotalThreadsPerThreadgroup :: proc(self: ^ComputePipelineState) -> NS.UInteger ---
+
+    @(objc_type=ComputePipelineState, objc_selector="threadExecutionWidth", objc_name="threadExecutionWidth")
+    ComputePipelineState_threadExecutionWidth :: proc(self: ^ComputePipelineState) -> NS.UInteger ---
+
+    @(objc_type=ComputePipelineState, objc_selector="staticThreadgroupMemoryLength", objc_name="staticThreadgroupMemoryLength")
+    ComputePipelineState_staticThreadgroupMemoryLength :: proc(self: ^ComputePipelineState) -> NS.UInteger ---
+
+    @(objc_type=ComputePipelineState, objc_selector="supportIndirectCommandBuffers", objc_name="supportIndirectCommandBuffers")
+    ComputePipelineState_supportIndirectCommandBuffers :: proc(self: ^ComputePipelineState) -> bool ---
+
+    @(objc_type=ComputePipelineState, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+    ComputePipelineState_gpuResourceID :: proc(self: ^ComputePipelineState) -> ResourceID ---
+
+    @(objc_type=ComputePipelineState, objc_selector="shaderValidation", objc_name="shaderValidation")
+    ComputePipelineState_shaderValidation :: proc(self: ^ComputePipelineState) -> ShaderValidation ---
 }

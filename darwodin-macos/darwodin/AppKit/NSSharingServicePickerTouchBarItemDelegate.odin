@@ -21,7 +21,8 @@ SharingServicePickerTouchBarItemDelegate :: struct { using _: intrinsics.objc_ob
     using _: SharingServicePickerDelegate,
 }
 
-@(objc_type=SharingServicePickerTouchBarItemDelegate, objc_name="itemsForSharingServicePickerTouchBarItem")
-SharingServicePickerTouchBarItemDelegate_itemsForSharingServicePickerTouchBarItem :: #force_inline proc "c" (self: ^SharingServicePickerTouchBarItemDelegate, pickerTouchBarItem: ^SharingServicePickerTouchBarItem) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "itemsForSharingServicePickerTouchBarItem:", pickerTouchBarItem)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SharingServicePickerTouchBarItemDelegate, objc_selector="itemsForSharingServicePickerTouchBarItem:", objc_name="itemsForSharingServicePickerTouchBarItem")
+    SharingServicePickerTouchBarItemDelegate_itemsForSharingServicePickerTouchBarItem :: proc(self: ^SharingServicePickerTouchBarItemDelegate, pickerTouchBarItem: ^SharingServicePickerTouchBarItem) -> ^NS.Array ---
 }

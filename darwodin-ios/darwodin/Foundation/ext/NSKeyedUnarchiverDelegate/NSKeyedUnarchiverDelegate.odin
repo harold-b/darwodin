@@ -12,11 +12,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import NS "../../"
 
@@ -40,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).unarchiver_cannotDecodeObjectOfClassName_originalClasses(self, unarchiver, name, classNames)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("unarchiver:cannotDecodeObjectOfClassName:originalClasses:"), auto_cast unarchiver_cannotDecodeObjectOfClassName_originalClasses, "#@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("unarchiver:cannotDecodeObjectOfClassName:originalClasses:"), auto_cast unarchiver_cannotDecodeObjectOfClassName_originalClasses, "#@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.unarchiver_didDecodeObject != nil {
         unarchiver_didDecodeObject :: proc "c" (self: ^NS.KeyedUnarchiverDelegate, _: SEL, unarchiver: ^NS.KeyedUnarchiver, object: id) -> id {

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSBrowserCell
 ///
-@(objc_class="NSBrowserCell")
+@(objc_class="NSBrowserCell", objc_superclass=Cell)
 BrowserCell :: struct { using _: Cell, }
 

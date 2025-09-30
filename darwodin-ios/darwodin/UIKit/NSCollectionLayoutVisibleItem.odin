@@ -22,75 +22,59 @@ NSCollectionLayoutVisibleItem :: struct { using _: intrinsics.objc_object,
     using _: DynamicItem,
 }
 
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="alpha")
-NSCollectionLayoutVisibleItem_alpha :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> CG.Float {
-    return msgSend(CG.Float, self, "alpha")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="setAlpha")
-NSCollectionLayoutVisibleItem_setAlpha :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem, alpha: CG.Float) {
-    msgSend(nil, self, "setAlpha:", alpha)
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="zIndex")
-NSCollectionLayoutVisibleItem_zIndex :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> NS.Integer {
-    return msgSend(NS.Integer, self, "zIndex")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="setZIndex")
-NSCollectionLayoutVisibleItem_setZIndex :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem, zIndex: NS.Integer) {
-    msgSend(nil, self, "setZIndex:", zIndex)
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="isHidden")
-NSCollectionLayoutVisibleItem_isHidden :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> bool {
-    return msgSend(bool, self, "isHidden")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="setHidden")
-NSCollectionLayoutVisibleItem_setHidden :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem, hidden: bool) {
-    msgSend(nil, self, "setHidden:", hidden)
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="center")
-NSCollectionLayoutVisibleItem_center :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> CG.Point {
-    return msgSend(CG.Point, self, "center")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="setCenter")
-NSCollectionLayoutVisibleItem_setCenter :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem, center: CG.Point) {
-    msgSend(nil, self, "setCenter:", center)
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="transform")
-NSCollectionLayoutVisibleItem_transform :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> CG.AffineTransform {
-    return msgSend(CG.AffineTransform, self, "transform")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="setTransform")
-NSCollectionLayoutVisibleItem_setTransform :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem, transform: CG.AffineTransform) {
-    msgSend(nil, self, "setTransform:", transform)
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="transform3D")
-NSCollectionLayoutVisibleItem_transform3D :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> CA.Transform3D {
-    return msgSend(CA.Transform3D, self, "transform3D")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="setTransform3D")
-NSCollectionLayoutVisibleItem_setTransform3D :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem, transform3D: CA.Transform3D) {
-    msgSend(nil, self, "setTransform3D:", transform3D)
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="name")
-NSCollectionLayoutVisibleItem_name :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="indexPath")
-NSCollectionLayoutVisibleItem_indexPath :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "indexPath")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="frame")
-NSCollectionLayoutVisibleItem_frame :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> CG.Rect {
-    return msgSend(CG.Rect, self, "frame")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="bounds")
-NSCollectionLayoutVisibleItem_bounds :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> CG.Rect {
-    return msgSend(CG.Rect, self, "bounds")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="representedElementCategory")
-NSCollectionLayoutVisibleItem_representedElementCategory :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> CollectionElementCategory {
-    return msgSend(CollectionElementCategory, self, "representedElementCategory")
-}
-@(objc_type=NSCollectionLayoutVisibleItem, objc_name="representedElementKind")
-NSCollectionLayoutVisibleItem_representedElementKind :: #force_inline proc "c" (self: ^NSCollectionLayoutVisibleItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "representedElementKind")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="alpha", objc_name="alpha")
+    NSCollectionLayoutVisibleItem_alpha :: proc(self: ^NSCollectionLayoutVisibleItem) -> CG.Float ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="setAlpha:", objc_name="setAlpha")
+    NSCollectionLayoutVisibleItem_setAlpha :: proc(self: ^NSCollectionLayoutVisibleItem, alpha: CG.Float) ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="zIndex", objc_name="zIndex")
+    NSCollectionLayoutVisibleItem_zIndex :: proc(self: ^NSCollectionLayoutVisibleItem) -> NS.Integer ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="setZIndex:", objc_name="setZIndex")
+    NSCollectionLayoutVisibleItem_setZIndex :: proc(self: ^NSCollectionLayoutVisibleItem, zIndex: NS.Integer) ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="isHidden", objc_name="isHidden")
+    NSCollectionLayoutVisibleItem_isHidden :: proc(self: ^NSCollectionLayoutVisibleItem) -> bool ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="setHidden:", objc_name="setHidden")
+    NSCollectionLayoutVisibleItem_setHidden :: proc(self: ^NSCollectionLayoutVisibleItem, hidden: bool) ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="center", objc_name="center")
+    NSCollectionLayoutVisibleItem_center :: proc(self: ^NSCollectionLayoutVisibleItem) -> CG.Point ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="setCenter:", objc_name="setCenter")
+    NSCollectionLayoutVisibleItem_setCenter :: proc(self: ^NSCollectionLayoutVisibleItem, center: CG.Point) ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="transform", objc_name="transform")
+    NSCollectionLayoutVisibleItem_transform :: proc(self: ^NSCollectionLayoutVisibleItem) -> CG.AffineTransform ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="setTransform:", objc_name="setTransform")
+    NSCollectionLayoutVisibleItem_setTransform :: proc(self: ^NSCollectionLayoutVisibleItem, transform: CG.AffineTransform) ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="transform3D", objc_name="transform3D")
+    NSCollectionLayoutVisibleItem_transform3D :: proc(self: ^NSCollectionLayoutVisibleItem) -> CA.Transform3D ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="setTransform3D:", objc_name="setTransform3D")
+    NSCollectionLayoutVisibleItem_setTransform3D :: proc(self: ^NSCollectionLayoutVisibleItem, transform3D: CA.Transform3D) ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="name", objc_name="name")
+    NSCollectionLayoutVisibleItem_name :: proc(self: ^NSCollectionLayoutVisibleItem) -> ^NS.String ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="indexPath", objc_name="indexPath")
+    NSCollectionLayoutVisibleItem_indexPath :: proc(self: ^NSCollectionLayoutVisibleItem) -> ^NS.IndexPath ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="frame", objc_name="frame")
+    NSCollectionLayoutVisibleItem_frame :: proc(self: ^NSCollectionLayoutVisibleItem) -> CG.Rect ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="bounds", objc_name="bounds")
+    NSCollectionLayoutVisibleItem_bounds :: proc(self: ^NSCollectionLayoutVisibleItem) -> CG.Rect ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="representedElementCategory", objc_name="representedElementCategory")
+    NSCollectionLayoutVisibleItem_representedElementCategory :: proc(self: ^NSCollectionLayoutVisibleItem) -> CollectionElementCategory ---
+
+    @(objc_type=NSCollectionLayoutVisibleItem, objc_selector="representedElementKind", objc_name="representedElementKind")
+    NSCollectionLayoutVisibleItem_representedElementKind :: proc(self: ^NSCollectionLayoutVisibleItem) -> ^NS.String ---
 }

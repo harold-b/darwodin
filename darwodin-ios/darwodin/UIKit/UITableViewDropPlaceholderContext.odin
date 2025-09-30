@@ -21,15 +21,14 @@ TableViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object,
     using _: DragAnimating,
 }
 
-@(objc_type=TableViewDropPlaceholderContext, objc_name="commitInsertionWithDataSourceUpdates")
-TableViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: #force_inline proc "c" (self: ^TableViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool {
-    return msgSend(bool, self, "commitInsertionWithDataSourceUpdates:", dataSourceUpdates)
-}
-@(objc_type=TableViewDropPlaceholderContext, objc_name="deletePlaceholder")
-TableViewDropPlaceholderContext_deletePlaceholder :: #force_inline proc "c" (self: ^TableViewDropPlaceholderContext) -> bool {
-    return msgSend(bool, self, "deletePlaceholder")
-}
-@(objc_type=TableViewDropPlaceholderContext, objc_name="dragItem")
-TableViewDropPlaceholderContext_dragItem :: #force_inline proc "c" (self: ^TableViewDropPlaceholderContext) -> ^DragItem {
-    return msgSend(^DragItem, self, "dragItem")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TableViewDropPlaceholderContext, objc_selector="commitInsertionWithDataSourceUpdates:", objc_name="commitInsertionWithDataSourceUpdates")
+    TableViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: proc(self: ^TableViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool ---
+
+    @(objc_type=TableViewDropPlaceholderContext, objc_selector="deletePlaceholder", objc_name="deletePlaceholder")
+    TableViewDropPlaceholderContext_deletePlaceholder :: proc(self: ^TableViewDropPlaceholderContext) -> bool ---
+
+    @(objc_type=TableViewDropPlaceholderContext, objc_selector="dragItem", objc_name="dragItem")
+    TableViewDropPlaceholderContext_dragItem :: proc(self: ^TableViewDropPlaceholderContext) -> ^DragItem ---
 }

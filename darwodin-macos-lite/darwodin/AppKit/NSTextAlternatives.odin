@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTextAlternatives
 ///
-@(objc_class="NSTextAlternatives")
+@(objc_class="NSTextAlternatives", objc_superclass=NS.Object)
 TextAlternatives :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }

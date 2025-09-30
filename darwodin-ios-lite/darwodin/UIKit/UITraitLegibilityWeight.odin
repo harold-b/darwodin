@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitLegibilityWeight
 ///
-@(objc_class="UITraitLegibilityWeight")
+@(objc_class="UITraitLegibilityWeight", objc_superclass=NS.Object)
 TraitLegibilityWeight :: struct { using _: NS.Object, 
     using _: NSIntegerTraitDefinition,
 }

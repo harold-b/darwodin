@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPencilInteractionTap
 ///
-@(objc_class="UIPencilInteractionTap")
+@(objc_class="UIPencilInteractionTap", objc_superclass=NS.Object)
 PencilInteractionTap :: struct { using _: NS.Object, }
 

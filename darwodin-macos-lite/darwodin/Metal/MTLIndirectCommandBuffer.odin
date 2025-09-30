@@ -20,23 +20,20 @@ IndirectCommandBuffer :: struct { using _: intrinsics.objc_object,
     using _: Resource,
 }
 
-@(objc_type=IndirectCommandBuffer, objc_name="resetWithRange")
-IndirectCommandBuffer_resetWithRange :: #force_inline proc "c" (self: ^IndirectCommandBuffer, range: NS._NSRange) {
-    msgSend(nil, self, "resetWithRange:", range)
-}
-@(objc_type=IndirectCommandBuffer, objc_name="indirectRenderCommandAtIndex")
-IndirectCommandBuffer_indirectRenderCommandAtIndex :: #force_inline proc "c" (self: ^IndirectCommandBuffer, commandIndex: NS.UInteger) -> ^IndirectRenderCommand {
-    return msgSend(^IndirectRenderCommand, self, "indirectRenderCommandAtIndex:", commandIndex)
-}
-@(objc_type=IndirectCommandBuffer, objc_name="indirectComputeCommandAtIndex")
-IndirectCommandBuffer_indirectComputeCommandAtIndex :: #force_inline proc "c" (self: ^IndirectCommandBuffer, commandIndex: NS.UInteger) -> ^IndirectComputeCommand {
-    return msgSend(^IndirectComputeCommand, self, "indirectComputeCommandAtIndex:", commandIndex)
-}
-@(objc_type=IndirectCommandBuffer, objc_name="size")
-IndirectCommandBuffer_size :: #force_inline proc "c" (self: ^IndirectCommandBuffer) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "size")
-}
-@(objc_type=IndirectCommandBuffer, objc_name="gpuResourceID")
-IndirectCommandBuffer_gpuResourceID :: #force_inline proc "c" (self: ^IndirectCommandBuffer) -> ResourceID {
-    return msgSend(ResourceID, self, "gpuResourceID")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IndirectCommandBuffer, objc_selector="resetWithRange:", objc_name="resetWithRange")
+    IndirectCommandBuffer_resetWithRange :: proc(self: ^IndirectCommandBuffer, range: NS._NSRange) ---
+
+    @(objc_type=IndirectCommandBuffer, objc_selector="indirectRenderCommandAtIndex:", objc_name="indirectRenderCommandAtIndex")
+    IndirectCommandBuffer_indirectRenderCommandAtIndex :: proc(self: ^IndirectCommandBuffer, commandIndex: NS.UInteger) -> ^IndirectRenderCommand ---
+
+    @(objc_type=IndirectCommandBuffer, objc_selector="indirectComputeCommandAtIndex:", objc_name="indirectComputeCommandAtIndex")
+    IndirectCommandBuffer_indirectComputeCommandAtIndex :: proc(self: ^IndirectCommandBuffer, commandIndex: NS.UInteger) -> ^IndirectComputeCommand ---
+
+    @(objc_type=IndirectCommandBuffer, objc_selector="size", objc_name="size")
+    IndirectCommandBuffer_size :: proc(self: ^IndirectCommandBuffer) -> NS.UInteger ---
+
+    @(objc_type=IndirectCommandBuffer, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+    IndirectCommandBuffer_gpuResourceID :: proc(self: ^IndirectCommandBuffer) -> ResourceID ---
 }

@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSURLComponents
 ///
-@(objc_class="NSURLComponents")
+@(objc_class="NSURLComponents", objc_superclass=Object)
 URLComponents :: struct { using _: Object, 
     using _: Copying,
 }

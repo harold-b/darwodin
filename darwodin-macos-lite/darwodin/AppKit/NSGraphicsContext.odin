@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSGraphicsContext
 ///
-@(objc_class="NSGraphicsContext")
+@(objc_class="NSGraphicsContext", objc_superclass=NS.Object)
 GraphicsContext :: struct { using _: NS.Object, }
 

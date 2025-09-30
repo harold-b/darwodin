@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSProtocolChecker
 ///
-@(objc_class="NSProtocolChecker")
+@(objc_class="NSProtocolChecker", objc_superclass=Proxy)
 ProtocolChecker :: struct { using _: Proxy, }
 

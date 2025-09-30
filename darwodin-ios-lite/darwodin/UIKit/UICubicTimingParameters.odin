@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UICubicTimingParameters
 ///
-@(objc_class="UICubicTimingParameters")
+@(objc_class="UICubicTimingParameters", objc_superclass=NS.Object)
 CubicTimingParameters :: struct { using _: NS.Object, 
     using _: TimingCurveProvider,
 }

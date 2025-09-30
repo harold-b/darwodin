@@ -20,43 +20,35 @@ BinaryArchive :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=BinaryArchive, objc_name="addComputePipelineFunctionsWithDescriptor")
-BinaryArchive_addComputePipelineFunctionsWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^ComputePipelineDescriptor, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "addComputePipelineFunctionsWithDescriptor:error:", descriptor, error)
-}
-@(objc_type=BinaryArchive, objc_name="addRenderPipelineFunctionsWithDescriptor")
-BinaryArchive_addRenderPipelineFunctionsWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^RenderPipelineDescriptor, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "addRenderPipelineFunctionsWithDescriptor:error:", descriptor, error)
-}
-@(objc_type=BinaryArchive, objc_name="addTileRenderPipelineFunctionsWithDescriptor")
-BinaryArchive_addTileRenderPipelineFunctionsWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^TileRenderPipelineDescriptor, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "addTileRenderPipelineFunctionsWithDescriptor:error:", descriptor, error)
-}
-@(objc_type=BinaryArchive, objc_name="addMeshRenderPipelineFunctionsWithDescriptor")
-BinaryArchive_addMeshRenderPipelineFunctionsWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^MeshRenderPipelineDescriptor, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "addMeshRenderPipelineFunctionsWithDescriptor:error:", descriptor, error)
-}
-@(objc_type=BinaryArchive, objc_name="addLibraryWithDescriptor")
-BinaryArchive_addLibraryWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^StitchedLibraryDescriptor, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "addLibraryWithDescriptor:error:", descriptor, error)
-}
-@(objc_type=BinaryArchive, objc_name="serializeToURL")
-BinaryArchive_serializeToURL :: #force_inline proc "c" (self: ^BinaryArchive, url: ^NS.URL, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "serializeToURL:error:", url, error)
-}
-@(objc_type=BinaryArchive, objc_name="addFunctionWithDescriptor")
-BinaryArchive_addFunctionWithDescriptor :: #force_inline proc "c" (self: ^BinaryArchive, descriptor: ^FunctionDescriptor, library: ^Library, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "addFunctionWithDescriptor:library:error:", descriptor, library, error)
-}
-@(objc_type=BinaryArchive, objc_name="label")
-BinaryArchive_label :: #force_inline proc "c" (self: ^BinaryArchive) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=BinaryArchive, objc_name="setLabel")
-BinaryArchive_setLabel :: #force_inline proc "c" (self: ^BinaryArchive, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
-}
-@(objc_type=BinaryArchive, objc_name="device")
-BinaryArchive_device :: #force_inline proc "c" (self: ^BinaryArchive) -> ^Device {
-    return msgSend(^Device, self, "device")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=BinaryArchive, objc_selector="addComputePipelineFunctionsWithDescriptor:error:", objc_name="addComputePipelineFunctionsWithDescriptor")
+    BinaryArchive_addComputePipelineFunctionsWithDescriptor :: proc(self: ^BinaryArchive, descriptor: ^ComputePipelineDescriptor, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=BinaryArchive, objc_selector="addRenderPipelineFunctionsWithDescriptor:error:", objc_name="addRenderPipelineFunctionsWithDescriptor")
+    BinaryArchive_addRenderPipelineFunctionsWithDescriptor :: proc(self: ^BinaryArchive, descriptor: ^RenderPipelineDescriptor, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=BinaryArchive, objc_selector="addTileRenderPipelineFunctionsWithDescriptor:error:", objc_name="addTileRenderPipelineFunctionsWithDescriptor")
+    BinaryArchive_addTileRenderPipelineFunctionsWithDescriptor :: proc(self: ^BinaryArchive, descriptor: ^TileRenderPipelineDescriptor, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=BinaryArchive, objc_selector="addMeshRenderPipelineFunctionsWithDescriptor:error:", objc_name="addMeshRenderPipelineFunctionsWithDescriptor")
+    BinaryArchive_addMeshRenderPipelineFunctionsWithDescriptor :: proc(self: ^BinaryArchive, descriptor: ^MeshRenderPipelineDescriptor, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=BinaryArchive, objc_selector="addLibraryWithDescriptor:error:", objc_name="addLibraryWithDescriptor")
+    BinaryArchive_addLibraryWithDescriptor :: proc(self: ^BinaryArchive, descriptor: ^StitchedLibraryDescriptor, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=BinaryArchive, objc_selector="serializeToURL:error:", objc_name="serializeToURL")
+    BinaryArchive_serializeToURL :: proc(self: ^BinaryArchive, url: ^NS.URL, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=BinaryArchive, objc_selector="addFunctionWithDescriptor:library:error:", objc_name="addFunctionWithDescriptor")
+    BinaryArchive_addFunctionWithDescriptor :: proc(self: ^BinaryArchive, descriptor: ^FunctionDescriptor, library: ^Library, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=BinaryArchive, objc_selector="label", objc_name="label")
+    BinaryArchive_label :: proc(self: ^BinaryArchive) -> ^NS.String ---
+
+    @(objc_type=BinaryArchive, objc_selector="setLabel:", objc_name="setLabel")
+    BinaryArchive_setLabel :: proc(self: ^BinaryArchive, label: ^NS.String) ---
+
+    @(objc_type=BinaryArchive, objc_selector="device", objc_name="device")
+    BinaryArchive_device :: proc(self: ^BinaryArchive) -> ^Device ---
 }

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMetadataQuery
 ///
-@(objc_class="NSMetadataQuery")
+@(objc_class="NSMetadataQuery", objc_superclass=Object)
 MetadataQuery :: struct { using _: Object, }
 

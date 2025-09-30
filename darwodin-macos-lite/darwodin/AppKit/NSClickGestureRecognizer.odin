@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSClickGestureRecognizer
 ///
-@(objc_class="NSClickGestureRecognizer")
+@(objc_class="NSClickGestureRecognizer", objc_superclass=GestureRecognizer)
 ClickGestureRecognizer :: struct { using _: GestureRecognizer, 
     using _: NS.Coding,
 }

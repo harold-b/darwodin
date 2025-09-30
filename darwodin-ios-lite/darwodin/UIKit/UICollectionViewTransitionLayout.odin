@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICollectionViewTransitionLayout
 ///
-@(objc_class="UICollectionViewTransitionLayout")
+@(objc_class="UICollectionViewTransitionLayout", objc_superclass=CollectionViewLayout)
 CollectionViewTransitionLayout :: struct { using _: CollectionViewLayout, }
 

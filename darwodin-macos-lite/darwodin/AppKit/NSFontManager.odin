@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSFontManager
 ///
-@(objc_class="NSFontManager")
+@(objc_class="NSFontManager", objc_superclass=NS.Object)
 FontManager :: struct { using _: NS.Object, 
     using _: MenuItemValidation,
 }

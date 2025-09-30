@@ -21,19 +21,18 @@ TabViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TabViewDelegate, objc_name="tabView_shouldSelectTabViewItem")
-TabViewDelegate_tabView_shouldSelectTabViewItem :: #force_inline proc "c" (self: ^TabViewDelegate, tabView: ^TabView, tabViewItem: ^TabViewItem) -> bool {
-    return msgSend(bool, self, "tabView:shouldSelectTabViewItem:", tabView, tabViewItem)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TabViewDelegate, objc_selector="tabView:shouldSelectTabViewItem:", objc_name="tabView_shouldSelectTabViewItem")
+    TabViewDelegate_tabView_shouldSelectTabViewItem :: proc(self: ^TabViewDelegate, tabView: ^TabView, tabViewItem: ^TabViewItem) -> bool ---
+
+    @(objc_type=TabViewDelegate, objc_selector="tabView:willSelectTabViewItem:", objc_name="tabView_willSelectTabViewItem")
+    TabViewDelegate_tabView_willSelectTabViewItem :: proc(self: ^TabViewDelegate, tabView: ^TabView, tabViewItem: ^TabViewItem) ---
+
+    @(objc_type=TabViewDelegate, objc_selector="tabView:didSelectTabViewItem:", objc_name="tabView_didSelectTabViewItem")
+    TabViewDelegate_tabView_didSelectTabViewItem :: proc(self: ^TabViewDelegate, tabView: ^TabView, tabViewItem: ^TabViewItem) ---
+
+    @(objc_type=TabViewDelegate, objc_selector="tabViewDidChangeNumberOfTabViewItems:", objc_name="tabViewDidChangeNumberOfTabViewItems")
+    TabViewDelegate_tabViewDidChangeNumberOfTabViewItems :: proc(self: ^TabViewDelegate, tabView: ^TabView) ---
 }
-@(objc_type=TabViewDelegate, objc_name="tabView_willSelectTabViewItem")
-TabViewDelegate_tabView_willSelectTabViewItem :: #force_inline proc "c" (self: ^TabViewDelegate, tabView: ^TabView, tabViewItem: ^TabViewItem) {
-    msgSend(nil, self, "tabView:willSelectTabViewItem:", tabView, tabViewItem)
-}
-@(objc_type=TabViewDelegate, objc_name="tabView_didSelectTabViewItem")
-TabViewDelegate_tabView_didSelectTabViewItem :: #force_inline proc "c" (self: ^TabViewDelegate, tabView: ^TabView, tabViewItem: ^TabViewItem) {
-    msgSend(nil, self, "tabView:didSelectTabViewItem:", tabView, tabViewItem)
-}
-@(objc_type=TabViewDelegate, objc_name="tabViewDidChangeNumberOfTabViewItems")
-TabViewDelegate_tabViewDidChangeNumberOfTabViewItems :: #force_inline proc "c" (self: ^TabViewDelegate, tabView: ^TabView) {
-    msgSend(nil, self, "tabViewDidChangeNumberOfTabViewItems:", tabView)
-}
+

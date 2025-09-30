@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSTextCheckingResult
 ///
-@(objc_class="NSTextCheckingResult")
+@(objc_class="NSTextCheckingResult", objc_superclass=Object)
 TextCheckingResult :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

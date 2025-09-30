@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CAEmitterLayer
 ///
-@(objc_class="CAEmitterLayer")
+@(objc_class="CAEmitterLayer", objc_superclass=Layer)
 EmitterLayer :: struct { using _: Layer, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSWindowTabGroup
 ///
-@(objc_class="NSWindowTabGroup")
+@(objc_class="NSWindowTabGroup", objc_superclass=NS.Object)
 WindowTabGroup :: struct { using _: NS.Object, }
 

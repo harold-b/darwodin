@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSCountedSet
 ///
-@(objc_class="NSCountedSet")
+@(objc_class="NSCountedSet", objc_superclass=MutableSet)
 CountedSet :: struct { using _: MutableSet, }
 

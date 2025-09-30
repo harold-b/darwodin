@@ -21,11 +21,11 @@ DragSession :: struct { using _: intrinsics.objc_object,
     using _: DragDropSession,
 }
 
-@(objc_type=DragSession, objc_name="localContext")
-DragSession_localContext :: #force_inline proc "c" (self: ^DragSession) -> id {
-    return msgSend(id, self, "localContext")
-}
-@(objc_type=DragSession, objc_name="setLocalContext")
-DragSession_setLocalContext :: #force_inline proc "c" (self: ^DragSession, localContext: id) {
-    msgSend(nil, self, "setLocalContext:", localContext)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DragSession, objc_selector="localContext", objc_name="localContext")
+    DragSession_localContext :: proc(self: ^DragSession) -> id ---
+
+    @(objc_type=DragSession, objc_selector="setLocalContext:", objc_name="setLocalContext")
+    DragSession_setLocalContext :: proc(self: ^DragSession, localContext: id) ---
 }

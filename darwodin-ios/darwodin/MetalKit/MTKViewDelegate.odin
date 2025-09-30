@@ -22,11 +22,11 @@ ViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewDelegate, objc_name="mtkView")
-ViewDelegate_mtkView :: #force_inline proc "c" (self: ^ViewDelegate, view: ^View, size: CG.Size) {
-    msgSend(nil, self, "mtkView:drawableSizeWillChange:", view, size)
-}
-@(objc_type=ViewDelegate, objc_name="drawInMTKView")
-ViewDelegate_drawInMTKView :: #force_inline proc "c" (self: ^ViewDelegate, view: ^View) {
-    msgSend(nil, self, "drawInMTKView:", view)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewDelegate, objc_selector="mtkView:drawableSizeWillChange:", objc_name="mtkView")
+    ViewDelegate_mtkView :: proc(self: ^ViewDelegate, view: ^View, size: CG.Size) ---
+
+    @(objc_type=ViewDelegate, objc_selector="drawInMTKView:", objc_name="drawInMTKView")
+    ViewDelegate_drawInMTKView :: proc(self: ^ViewDelegate, view: ^View) ---
 }

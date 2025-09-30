@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSXPCInterface
 ///
-@(objc_class="NSXPCInterface")
+@(objc_class="NSXPCInterface", objc_superclass=Object)
 XPCInterface :: struct { using _: Object, }
 

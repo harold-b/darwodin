@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CAGradientLayer
 ///
-@(objc_class="CAGradientLayer")
+@(objc_class="CAGradientLayer", objc_superclass=Layer)
 GradientLayer :: struct { using _: Layer, }
 

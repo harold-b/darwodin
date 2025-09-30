@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIContentUnavailableButtonProperties
 ///
-@(objc_class="UIContentUnavailableButtonProperties")
+@(objc_class="UIContentUnavailableButtonProperties", objc_superclass=NS.Object)
 ContentUnavailableButtonProperties :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

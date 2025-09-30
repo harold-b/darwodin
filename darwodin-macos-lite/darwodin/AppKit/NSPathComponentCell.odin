@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPathComponentCell
 ///
-@(objc_class="NSPathComponentCell")
+@(objc_class="NSPathComponentCell", objc_superclass=TextFieldCell)
 PathComponentCell :: struct { using _: TextFieldCell, }
 

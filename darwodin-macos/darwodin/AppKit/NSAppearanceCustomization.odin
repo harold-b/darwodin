@@ -21,15 +21,14 @@ AppearanceCustomization :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AppearanceCustomization, objc_name="appearance")
-AppearanceCustomization_appearance :: #force_inline proc "c" (self: ^AppearanceCustomization) -> ^Appearance {
-    return msgSend(^Appearance, self, "appearance")
-}
-@(objc_type=AppearanceCustomization, objc_name="setAppearance")
-AppearanceCustomization_setAppearance :: #force_inline proc "c" (self: ^AppearanceCustomization, appearance: ^Appearance) {
-    msgSend(nil, self, "setAppearance:", appearance)
-}
-@(objc_type=AppearanceCustomization, objc_name="effectiveAppearance")
-AppearanceCustomization_effectiveAppearance :: #force_inline proc "c" (self: ^AppearanceCustomization) -> ^Appearance {
-    return msgSend(^Appearance, self, "effectiveAppearance")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AppearanceCustomization, objc_selector="appearance", objc_name="appearance")
+    AppearanceCustomization_appearance :: proc(self: ^AppearanceCustomization) -> ^Appearance ---
+
+    @(objc_type=AppearanceCustomization, objc_selector="setAppearance:", objc_name="setAppearance")
+    AppearanceCustomization_setAppearance :: proc(self: ^AppearanceCustomization, appearance: ^Appearance) ---
+
+    @(objc_type=AppearanceCustomization, objc_selector="effectiveAppearance", objc_name="effectiveAppearance")
+    AppearanceCustomization_effectiveAppearance :: proc(self: ^AppearanceCustomization) -> ^Appearance ---
 }

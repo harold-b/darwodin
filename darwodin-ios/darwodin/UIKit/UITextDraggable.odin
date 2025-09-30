@@ -21,27 +21,23 @@ TextDraggable :: struct { using _: intrinsics.objc_object,
     using _: TextInput,
 }
 
-@(objc_type=TextDraggable, objc_name="textDragDelegate")
-TextDraggable_textDragDelegate :: #force_inline proc "c" (self: ^TextDraggable) -> ^TextDragDelegate {
-    return msgSend(^TextDragDelegate, self, "textDragDelegate")
-}
-@(objc_type=TextDraggable, objc_name="setTextDragDelegate")
-TextDraggable_setTextDragDelegate :: #force_inline proc "c" (self: ^TextDraggable, textDragDelegate: ^TextDragDelegate) {
-    msgSend(nil, self, "setTextDragDelegate:", textDragDelegate)
-}
-@(objc_type=TextDraggable, objc_name="textDragInteraction")
-TextDraggable_textDragInteraction :: #force_inline proc "c" (self: ^TextDraggable) -> ^DragInteraction {
-    return msgSend(^DragInteraction, self, "textDragInteraction")
-}
-@(objc_type=TextDraggable, objc_name="isTextDragActive")
-TextDraggable_isTextDragActive :: #force_inline proc "c" (self: ^TextDraggable) -> bool {
-    return msgSend(bool, self, "isTextDragActive")
-}
-@(objc_type=TextDraggable, objc_name="textDragOptions")
-TextDraggable_textDragOptions :: #force_inline proc "c" (self: ^TextDraggable) -> TextDragOptions {
-    return msgSend(TextDragOptions, self, "textDragOptions")
-}
-@(objc_type=TextDraggable, objc_name="setTextDragOptions")
-TextDraggable_setTextDragOptions :: #force_inline proc "c" (self: ^TextDraggable, textDragOptions: TextDragOptions) {
-    msgSend(nil, self, "setTextDragOptions:", textDragOptions)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextDraggable, objc_selector="textDragDelegate", objc_name="textDragDelegate")
+    TextDraggable_textDragDelegate :: proc(self: ^TextDraggable) -> ^TextDragDelegate ---
+
+    @(objc_type=TextDraggable, objc_selector="setTextDragDelegate:", objc_name="setTextDragDelegate")
+    TextDraggable_setTextDragDelegate :: proc(self: ^TextDraggable, textDragDelegate: ^TextDragDelegate) ---
+
+    @(objc_type=TextDraggable, objc_selector="textDragInteraction", objc_name="textDragInteraction")
+    TextDraggable_textDragInteraction :: proc(self: ^TextDraggable) -> ^DragInteraction ---
+
+    @(objc_type=TextDraggable, objc_selector="isTextDragActive", objc_name="isTextDragActive")
+    TextDraggable_isTextDragActive :: proc(self: ^TextDraggable) -> bool ---
+
+    @(objc_type=TextDraggable, objc_selector="textDragOptions", objc_name="textDragOptions")
+    TextDraggable_textDragOptions :: proc(self: ^TextDraggable) -> TextDragOptions ---
+
+    @(objc_type=TextDraggable, objc_selector="setTextDragOptions:", objc_name="setTextDragOptions")
+    TextDraggable_setTextDragOptions :: proc(self: ^TextDraggable, textDragOptions: TextDragOptions) ---
 }

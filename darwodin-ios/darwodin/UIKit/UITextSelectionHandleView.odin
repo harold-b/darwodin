@@ -21,27 +21,23 @@ TextSelectionHandleView :: struct { using _: intrinsics.objc_object,
     using _: CoordinateSpace,
 }
 
-@(objc_type=TextSelectionHandleView, objc_name="preferredFrameForRect")
-TextSelectionHandleView_preferredFrameForRect :: #force_inline proc "c" (self: ^TextSelectionHandleView, rect: CG.Rect) -> CG.Rect {
-    return msgSend(CG.Rect, self, "preferredFrameForRect:", rect)
-}
-@(objc_type=TextSelectionHandleView, objc_name="direction")
-TextSelectionHandleView_direction :: #force_inline proc "c" (self: ^TextSelectionHandleView) -> NSDirectionalRectEdge {
-    return msgSend(NSDirectionalRectEdge, self, "direction")
-}
-@(objc_type=TextSelectionHandleView, objc_name="setDirection")
-TextSelectionHandleView_setDirection :: #force_inline proc "c" (self: ^TextSelectionHandleView, direction: NSDirectionalRectEdge) {
-    msgSend(nil, self, "setDirection:", direction)
-}
-@(objc_type=TextSelectionHandleView, objc_name="isVertical")
-TextSelectionHandleView_isVertical :: #force_inline proc "c" (self: ^TextSelectionHandleView) -> bool {
-    return msgSend(bool, self, "isVertical")
-}
-@(objc_type=TextSelectionHandleView, objc_name="customShape")
-TextSelectionHandleView_customShape :: #force_inline proc "c" (self: ^TextSelectionHandleView) -> ^BezierPath {
-    return msgSend(^BezierPath, self, "customShape")
-}
-@(objc_type=TextSelectionHandleView, objc_name="setCustomShape")
-TextSelectionHandleView_setCustomShape :: #force_inline proc "c" (self: ^TextSelectionHandleView, customShape: ^BezierPath) {
-    msgSend(nil, self, "setCustomShape:", customShape)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextSelectionHandleView, objc_selector="preferredFrameForRect:", objc_name="preferredFrameForRect")
+    TextSelectionHandleView_preferredFrameForRect :: proc(self: ^TextSelectionHandleView, rect: CG.Rect) -> CG.Rect ---
+
+    @(objc_type=TextSelectionHandleView, objc_selector="direction", objc_name="direction")
+    TextSelectionHandleView_direction :: proc(self: ^TextSelectionHandleView) -> NSDirectionalRectEdge ---
+
+    @(objc_type=TextSelectionHandleView, objc_selector="setDirection:", objc_name="setDirection")
+    TextSelectionHandleView_setDirection :: proc(self: ^TextSelectionHandleView, direction: NSDirectionalRectEdge) ---
+
+    @(objc_type=TextSelectionHandleView, objc_selector="isVertical", objc_name="isVertical")
+    TextSelectionHandleView_isVertical :: proc(self: ^TextSelectionHandleView) -> bool ---
+
+    @(objc_type=TextSelectionHandleView, objc_selector="customShape", objc_name="customShape")
+    TextSelectionHandleView_customShape :: proc(self: ^TextSelectionHandleView) -> ^BezierPath ---
+
+    @(objc_type=TextSelectionHandleView, objc_selector="setCustomShape:", objc_name="setCustomShape")
+    TextSelectionHandleView_setCustomShape :: proc(self: ^TextSelectionHandleView, customShape: ^BezierPath) ---
 }

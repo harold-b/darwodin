@@ -19,47 +19,39 @@ import CA "../QuartzCore"
 @(objc_class="UIMenuBuilder")
 MenuBuilder :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=MenuBuilder, objc_name="menuForIdentifier")
-MenuBuilder_menuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, identifier: ^NS.String) -> ^Menu {
-    return msgSend(^Menu, self, "menuForIdentifier:", identifier)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MenuBuilder, objc_selector="menuForIdentifier:", objc_name="menuForIdentifier")
+    MenuBuilder_menuForIdentifier :: proc(self: ^MenuBuilder, identifier: ^NS.String) -> ^Menu ---
+
+    @(objc_type=MenuBuilder, objc_selector="actionForIdentifier:", objc_name="actionForIdentifier")
+    MenuBuilder_actionForIdentifier :: proc(self: ^MenuBuilder, identifier: ^NS.String) -> ^Action ---
+
+    @(objc_type=MenuBuilder, objc_selector="commandForAction:propertyList:", objc_name="commandForAction")
+    MenuBuilder_commandForAction :: proc(self: ^MenuBuilder, action: SEL, propertyList: id) -> ^Command ---
+
+    @(objc_type=MenuBuilder, objc_selector="replaceMenuForIdentifier:withMenu:", objc_name="replaceMenuForIdentifier")
+    MenuBuilder_replaceMenuForIdentifier :: proc(self: ^MenuBuilder, replacedIdentifier: ^NS.String, replacementMenu: ^Menu) ---
+
+    @(objc_type=MenuBuilder, objc_selector="replaceChildrenOfMenuForIdentifier:fromChildrenBlock:", objc_name="replaceChildrenOfMenuForIdentifier")
+    MenuBuilder_replaceChildrenOfMenuForIdentifier :: proc(self: ^MenuBuilder, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" (_: ^NS.Array) -> ^NS.Array)) ---
+
+    @(objc_type=MenuBuilder, objc_selector="insertSiblingMenu:beforeMenuForIdentifier:", objc_name="insertSiblingMenu_beforeMenuForIdentifier")
+    MenuBuilder_insertSiblingMenu_beforeMenuForIdentifier :: proc(self: ^MenuBuilder, siblingMenu: ^Menu, siblingIdentifier: ^NS.String) ---
+
+    @(objc_type=MenuBuilder, objc_selector="insertSiblingMenu:afterMenuForIdentifier:", objc_name="insertSiblingMenu_afterMenuForIdentifier")
+    MenuBuilder_insertSiblingMenu_afterMenuForIdentifier :: proc(self: ^MenuBuilder, siblingMenu: ^Menu, siblingIdentifier: ^NS.String) ---
+
+    @(objc_type=MenuBuilder, objc_selector="insertChildMenu:atStartOfMenuForIdentifier:", objc_name="insertChildMenu_atStartOfMenuForIdentifier")
+    MenuBuilder_insertChildMenu_atStartOfMenuForIdentifier :: proc(self: ^MenuBuilder, childMenu: ^Menu, parentIdentifier: ^NS.String) ---
+
+    @(objc_type=MenuBuilder, objc_selector="insertChildMenu:atEndOfMenuForIdentifier:", objc_name="insertChildMenu_atEndOfMenuForIdentifier")
+    MenuBuilder_insertChildMenu_atEndOfMenuForIdentifier :: proc(self: ^MenuBuilder, childMenu: ^Menu, parentIdentifier: ^NS.String) ---
+
+    @(objc_type=MenuBuilder, objc_selector="removeMenuForIdentifier:", objc_name="removeMenuForIdentifier")
+    MenuBuilder_removeMenuForIdentifier :: proc(self: ^MenuBuilder, removedIdentifier: ^NS.String) ---
+
+    @(objc_type=MenuBuilder, objc_selector="system", objc_name="system")
+    MenuBuilder_system :: proc(self: ^MenuBuilder) -> ^MenuSystem ---
 }
-@(objc_type=MenuBuilder, objc_name="actionForIdentifier")
-MenuBuilder_actionForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, identifier: ^NS.String) -> ^Action {
-    return msgSend(^Action, self, "actionForIdentifier:", identifier)
-}
-@(objc_type=MenuBuilder, objc_name="commandForAction")
-MenuBuilder_commandForAction :: #force_inline proc "c" (self: ^MenuBuilder, action: SEL, propertyList: id) -> ^Command {
-    return msgSend(^Command, self, "commandForAction:propertyList:", action, propertyList)
-}
-@(objc_type=MenuBuilder, objc_name="replaceMenuForIdentifier")
-MenuBuilder_replaceMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, replacedIdentifier: ^NS.String, replacementMenu: ^Menu) {
-    msgSend(nil, self, "replaceMenuForIdentifier:withMenu:", replacedIdentifier, replacementMenu)
-}
-@(objc_type=MenuBuilder, objc_name="replaceChildrenOfMenuForIdentifier")
-MenuBuilder_replaceChildrenOfMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" (_: ^NS.Array) -> ^NS.Array)) {
-    msgSend(nil, self, "replaceChildrenOfMenuForIdentifier:fromChildrenBlock:", parentIdentifier, childrenBlock)
-}
-@(objc_type=MenuBuilder, objc_name="insertSiblingMenu_beforeMenuForIdentifier")
-MenuBuilder_insertSiblingMenu_beforeMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, siblingMenu: ^Menu, siblingIdentifier: ^NS.String) {
-    msgSend(nil, self, "insertSiblingMenu:beforeMenuForIdentifier:", siblingMenu, siblingIdentifier)
-}
-@(objc_type=MenuBuilder, objc_name="insertSiblingMenu_afterMenuForIdentifier")
-MenuBuilder_insertSiblingMenu_afterMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, siblingMenu: ^Menu, siblingIdentifier: ^NS.String) {
-    msgSend(nil, self, "insertSiblingMenu:afterMenuForIdentifier:", siblingMenu, siblingIdentifier)
-}
-@(objc_type=MenuBuilder, objc_name="insertChildMenu_atStartOfMenuForIdentifier")
-MenuBuilder_insertChildMenu_atStartOfMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, childMenu: ^Menu, parentIdentifier: ^NS.String) {
-    msgSend(nil, self, "insertChildMenu:atStartOfMenuForIdentifier:", childMenu, parentIdentifier)
-}
-@(objc_type=MenuBuilder, objc_name="insertChildMenu_atEndOfMenuForIdentifier")
-MenuBuilder_insertChildMenu_atEndOfMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, childMenu: ^Menu, parentIdentifier: ^NS.String) {
-    msgSend(nil, self, "insertChildMenu:atEndOfMenuForIdentifier:", childMenu, parentIdentifier)
-}
-@(objc_type=MenuBuilder, objc_name="removeMenuForIdentifier")
-MenuBuilder_removeMenuForIdentifier :: #force_inline proc "c" (self: ^MenuBuilder, removedIdentifier: ^NS.String) {
-    msgSend(nil, self, "removeMenuForIdentifier:", removedIdentifier)
-}
-@(objc_type=MenuBuilder, objc_name="system")
-MenuBuilder_system :: #force_inline proc "c" (self: ^MenuBuilder) -> ^MenuSystem {
-    return msgSend(^MenuSystem, self, "system")
-}
+

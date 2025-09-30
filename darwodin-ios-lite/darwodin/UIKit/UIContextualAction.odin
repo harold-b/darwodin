@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIContextualAction
 ///
-@(objc_class="UIContextualAction")
+@(objc_class="UIContextualAction", objc_superclass=NS.Object)
 ContextualAction :: struct { using _: NS.Object, }
 

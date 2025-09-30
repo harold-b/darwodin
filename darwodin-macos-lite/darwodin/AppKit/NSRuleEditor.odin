@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSRuleEditor
 ///
-@(objc_class="NSRuleEditor")
+@(objc_class="NSRuleEditor", objc_superclass=Control)
 RuleEditor :: struct { using _: Control, }
 

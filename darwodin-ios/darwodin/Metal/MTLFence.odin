@@ -20,15 +20,14 @@ Fence :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Fence, objc_name="device")
-Fence_device :: #force_inline proc "c" (self: ^Fence) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=Fence, objc_name="label")
-Fence_label :: #force_inline proc "c" (self: ^Fence) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=Fence, objc_name="setLabel")
-Fence_setLabel :: #force_inline proc "c" (self: ^Fence, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Fence, objc_selector="device", objc_name="device")
+    Fence_device :: proc(self: ^Fence) -> ^Device ---
+
+    @(objc_type=Fence, objc_selector="label", objc_name="label")
+    Fence_label :: proc(self: ^Fence) -> ^NS.String ---
+
+    @(objc_type=Fence, objc_selector="setLabel:", objc_name="setLabel")
+    Fence_setLabel :: proc(self: ^Fence, label: ^NS.String) ---
 }

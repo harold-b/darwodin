@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTableHeaderCell
 ///
-@(objc_class="NSTableHeaderCell")
+@(objc_class="NSTableHeaderCell", objc_superclass=TextFieldCell)
 TableHeaderCell :: struct { using _: TextFieldCell, }
 

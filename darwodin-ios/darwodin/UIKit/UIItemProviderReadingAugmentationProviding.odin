@@ -19,15 +19,14 @@ import CA "../QuartzCore"
 @(objc_class="UIItemProviderReadingAugmentationProviding")
 ItemProviderReadingAugmentationProviding :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=ItemProviderReadingAugmentationProviding, objc_name="objectWithItemProviderData", objc_is_class_method=true)
-ItemProviderReadingAugmentationProviding_objectWithItemProviderData :: #force_inline proc "c" (data: ^NS.Data, typeIdentifier: ^NS.String, requestedClass: Class, outError: ^^NS.Error) -> id {
-    return msgSend(id, ItemProviderReadingAugmentationProviding, "objectWithItemProviderData:typeIdentifier:requestedClass:error:", data, typeIdentifier, requestedClass, outError)
-}
-@(objc_type=ItemProviderReadingAugmentationProviding, objc_name="additionalLeadingReadableTypeIdentifiersForItemProvider", objc_is_class_method=true)
-ItemProviderReadingAugmentationProviding_additionalLeadingReadableTypeIdentifiersForItemProvider :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, ItemProviderReadingAugmentationProviding, "additionalLeadingReadableTypeIdentifiersForItemProvider")
-}
-@(objc_type=ItemProviderReadingAugmentationProviding, objc_name="additionalTrailingReadableTypeIdentifiersForItemProvider", objc_is_class_method=true)
-ItemProviderReadingAugmentationProviding_additionalTrailingReadableTypeIdentifiersForItemProvider :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, ItemProviderReadingAugmentationProviding, "additionalTrailingReadableTypeIdentifiersForItemProvider")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ItemProviderReadingAugmentationProviding, objc_selector="objectWithItemProviderData:typeIdentifier:requestedClass:error:", objc_name="objectWithItemProviderData", objc_is_class_method=true)
+    ItemProviderReadingAugmentationProviding_objectWithItemProviderData :: proc(data: ^NS.Data, typeIdentifier: ^NS.String, requestedClass: Class, outError: ^^NS.Error) -> id ---
+
+    @(objc_type=ItemProviderReadingAugmentationProviding, objc_selector="additionalLeadingReadableTypeIdentifiersForItemProvider", objc_name="additionalLeadingReadableTypeIdentifiersForItemProvider", objc_is_class_method=true)
+    ItemProviderReadingAugmentationProviding_additionalLeadingReadableTypeIdentifiersForItemProvider :: proc() -> ^NS.Array ---
+
+    @(objc_type=ItemProviderReadingAugmentationProviding, objc_selector="additionalTrailingReadableTypeIdentifiersForItemProvider", objc_name="additionalTrailingReadableTypeIdentifiersForItemProvider", objc_is_class_method=true)
+    ItemProviderReadingAugmentationProviding_additionalTrailingReadableTypeIdentifiersForItemProvider :: proc() -> ^NS.Array ---
 }

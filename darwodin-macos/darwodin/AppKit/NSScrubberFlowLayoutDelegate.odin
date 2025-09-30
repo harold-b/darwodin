@@ -21,7 +21,8 @@ ScrubberFlowLayoutDelegate :: struct { using _: intrinsics.objc_object,
     using _: ScrubberDelegate,
 }
 
-@(objc_type=ScrubberFlowLayoutDelegate, objc_name="scrubber")
-ScrubberFlowLayoutDelegate_scrubber :: #force_inline proc "c" (self: ^ScrubberFlowLayoutDelegate, scrubber: ^Scrubber, layout: ^ScrubberFlowLayout, itemIndex: NS.Integer) -> NS.Size {
-    return msgSend(NS.Size, self, "scrubber:layout:sizeForItemAtIndex:", scrubber, layout, itemIndex)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ScrubberFlowLayoutDelegate, objc_selector="scrubber:layout:sizeForItemAtIndex:", objc_name="scrubber")
+    ScrubberFlowLayoutDelegate_scrubber :: proc(self: ^ScrubberFlowLayoutDelegate, scrubber: ^Scrubber, layout: ^ScrubberFlowLayout, itemIndex: NS.Integer) -> NS.Size ---
 }

@@ -20,11 +20,11 @@ IOFileHandle :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=IOFileHandle, objc_name="label")
-IOFileHandle_label :: #force_inline proc "c" (self: ^IOFileHandle) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=IOFileHandle, objc_name="setLabel")
-IOFileHandle_setLabel :: #force_inline proc "c" (self: ^IOFileHandle, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IOFileHandle, objc_selector="label", objc_name="label")
+    IOFileHandle_label :: proc(self: ^IOFileHandle) -> ^NS.String ---
+
+    @(objc_type=IOFileHandle, objc_selector="setLabel:", objc_name="setLabel")
+    IOFileHandle_setLabel :: proc(self: ^IOFileHandle, label: ^NS.String) ---
 }

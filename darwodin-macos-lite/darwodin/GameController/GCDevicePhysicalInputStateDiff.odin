@@ -19,11 +19,11 @@ DevicePhysicalInputStateDiff :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DevicePhysicalInputStateDiff, objc_name="changeForElement")
-DevicePhysicalInputStateDiff_changeForElement :: #force_inline proc "c" (self: ^DevicePhysicalInputStateDiff, element: ^PhysicalInputElement) -> DevicePhysicalInputElementChange {
-    return msgSend(DevicePhysicalInputElementChange, self, "changeForElement:", element)
-}
-@(objc_type=DevicePhysicalInputStateDiff, objc_name="changedElements")
-DevicePhysicalInputStateDiff_changedElements :: #force_inline proc "c" (self: ^DevicePhysicalInputStateDiff) -> ^NS.Enumerator {
-    return msgSend(^NS.Enumerator, self, "changedElements")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DevicePhysicalInputStateDiff, objc_selector="changeForElement:", objc_name="changeForElement")
+    DevicePhysicalInputStateDiff_changeForElement :: proc(self: ^DevicePhysicalInputStateDiff, element: ^PhysicalInputElement) -> DevicePhysicalInputElementChange ---
+
+    @(objc_type=DevicePhysicalInputStateDiff, objc_selector="changedElements", objc_name="changedElements")
+    DevicePhysicalInputStateDiff_changedElements :: proc(self: ^DevicePhysicalInputStateDiff) -> ^NS.Enumerator ---
 }

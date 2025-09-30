@@ -21,30 +21,27 @@ Appearance :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Appearance, objc_name="appearance", objc_is_class_method=true)
-Appearance_appearance :: #force_inline proc "c" () -> ^Appearance {
-    return msgSend(^Appearance, Appearance, "appearance")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Appearance, objc_selector="appearance", objc_name="appearance", objc_is_class_method=true)
+    Appearance_appearance :: proc() -> ^Appearance ---
+
+    @(objc_type=Appearance, objc_selector="appearanceWhenContainedIn:", objc_name="appearanceWhenContainedIn", objc_is_class_method=true)
+    Appearance_appearanceWhenContainedIn :: proc(ContainerClass: ^Class) -> ^Appearance ---
+
+    @(objc_type=Appearance, objc_selector="appearanceWhenContainedInInstancesOfClasses:", objc_name="appearanceWhenContainedInInstancesOfClasses", objc_is_class_method=true)
+    Appearance_appearanceWhenContainedInInstancesOfClasses :: proc(containerTypes: ^NS.Array) -> ^Appearance ---
+
+    @(objc_type=Appearance, objc_selector="appearanceForTraitCollection:", objc_name="appearanceForTraitCollection_", objc_is_class_method=true)
+    Appearance_appearanceForTraitCollection_ :: proc(trait: ^TraitCollection) -> ^Appearance ---
+
+    @(objc_type=Appearance, objc_selector="appearanceForTraitCollection:whenContainedIn:", objc_name="appearanceForTraitCollection_whenContainedIn", objc_is_class_method=true)
+    Appearance_appearanceForTraitCollection_whenContainedIn :: proc(trait: ^TraitCollection, ContainerClass: ^Class) -> ^Appearance ---
+
+    @(objc_type=Appearance, objc_selector="appearanceForTraitCollection:whenContainedInInstancesOfClasses:", objc_name="appearanceForTraitCollection_whenContainedInInstancesOfClasses", objc_is_class_method=true)
+    Appearance_appearanceForTraitCollection_whenContainedInInstancesOfClasses :: proc(trait: ^TraitCollection, containerTypes: ^NS.Array) -> ^Appearance ---
 }
-@(objc_type=Appearance, objc_name="appearanceWhenContainedIn", objc_is_class_method=true)
-Appearance_appearanceWhenContainedIn :: #force_inline proc "c" (ContainerClass: ^Class) -> ^Appearance {
-    return msgSend(^Appearance, Appearance, "appearanceWhenContainedIn:", ContainerClass)
-}
-@(objc_type=Appearance, objc_name="appearanceWhenContainedInInstancesOfClasses", objc_is_class_method=true)
-Appearance_appearanceWhenContainedInInstancesOfClasses :: #force_inline proc "c" (containerTypes: ^NS.Array) -> ^Appearance {
-    return msgSend(^Appearance, Appearance, "appearanceWhenContainedInInstancesOfClasses:", containerTypes)
-}
-@(objc_type=Appearance, objc_name="appearanceForTraitCollection_", objc_is_class_method=true)
-Appearance_appearanceForTraitCollection_ :: #force_inline proc "c" (trait: ^TraitCollection) -> ^Appearance {
-    return msgSend(^Appearance, Appearance, "appearanceForTraitCollection:", trait)
-}
-@(objc_type=Appearance, objc_name="appearanceForTraitCollection_whenContainedIn", objc_is_class_method=true)
-Appearance_appearanceForTraitCollection_whenContainedIn :: #force_inline proc "c" (trait: ^TraitCollection, ContainerClass: ^Class) -> ^Appearance {
-    return msgSend(^Appearance, Appearance, "appearanceForTraitCollection:whenContainedIn:", trait, ContainerClass)
-}
-@(objc_type=Appearance, objc_name="appearanceForTraitCollection_whenContainedInInstancesOfClasses", objc_is_class_method=true)
-Appearance_appearanceForTraitCollection_whenContainedInInstancesOfClasses :: #force_inline proc "c" (trait: ^TraitCollection, containerTypes: ^NS.Array) -> ^Appearance {
-    return msgSend(^Appearance, Appearance, "appearanceForTraitCollection:whenContainedInInstancesOfClasses:", trait, containerTypes)
-}
+
 @(objc_type=Appearance, objc_name="appearanceForTraitCollection")
 Appearance_appearanceForTraitCollection :: proc {
     Appearance_appearanceForTraitCollection_,

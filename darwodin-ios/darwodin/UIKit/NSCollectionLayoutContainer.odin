@@ -21,19 +21,17 @@ NSCollectionLayoutContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=NSCollectionLayoutContainer, objc_name="contentSize")
-NSCollectionLayoutContainer_contentSize :: #force_inline proc "c" (self: ^NSCollectionLayoutContainer) -> CG.Size {
-    return msgSend(CG.Size, self, "contentSize")
-}
-@(objc_type=NSCollectionLayoutContainer, objc_name="effectiveContentSize")
-NSCollectionLayoutContainer_effectiveContentSize :: #force_inline proc "c" (self: ^NSCollectionLayoutContainer) -> CG.Size {
-    return msgSend(CG.Size, self, "effectiveContentSize")
-}
-@(objc_type=NSCollectionLayoutContainer, objc_name="contentInsets")
-NSCollectionLayoutContainer_contentInsets :: #force_inline proc "c" (self: ^NSCollectionLayoutContainer) -> NSDirectionalEdgeInsets {
-    return msgSend(NSDirectionalEdgeInsets, self, "contentInsets")
-}
-@(objc_type=NSCollectionLayoutContainer, objc_name="effectiveContentInsets")
-NSCollectionLayoutContainer_effectiveContentInsets :: #force_inline proc "c" (self: ^NSCollectionLayoutContainer) -> NSDirectionalEdgeInsets {
-    return msgSend(NSDirectionalEdgeInsets, self, "effectiveContentInsets")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NSCollectionLayoutContainer, objc_selector="contentSize", objc_name="contentSize")
+    NSCollectionLayoutContainer_contentSize :: proc(self: ^NSCollectionLayoutContainer) -> CG.Size ---
+
+    @(objc_type=NSCollectionLayoutContainer, objc_selector="effectiveContentSize", objc_name="effectiveContentSize")
+    NSCollectionLayoutContainer_effectiveContentSize :: proc(self: ^NSCollectionLayoutContainer) -> CG.Size ---
+
+    @(objc_type=NSCollectionLayoutContainer, objc_selector="contentInsets", objc_name="contentInsets")
+    NSCollectionLayoutContainer_contentInsets :: proc(self: ^NSCollectionLayoutContainer) -> NSDirectionalEdgeInsets ---
+
+    @(objc_type=NSCollectionLayoutContainer, objc_selector="effectiveContentInsets", objc_name="effectiveContentInsets")
+    NSCollectionLayoutContainer_effectiveContentInsets :: proc(self: ^NSCollectionLayoutContainer) -> NSDirectionalEdgeInsets ---
 }

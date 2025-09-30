@@ -20,31 +20,26 @@ CommandEncoder :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CommandEncoder, objc_name="endEncoding")
-CommandEncoder_endEncoding :: #force_inline proc "c" (self: ^CommandEncoder) {
-    msgSend(nil, self, "endEncoding")
-}
-@(objc_type=CommandEncoder, objc_name="insertDebugSignpost")
-CommandEncoder_insertDebugSignpost :: #force_inline proc "c" (self: ^CommandEncoder, string: ^NS.String) {
-    msgSend(nil, self, "insertDebugSignpost:", string)
-}
-@(objc_type=CommandEncoder, objc_name="pushDebugGroup")
-CommandEncoder_pushDebugGroup :: #force_inline proc "c" (self: ^CommandEncoder, string: ^NS.String) {
-    msgSend(nil, self, "pushDebugGroup:", string)
-}
-@(objc_type=CommandEncoder, objc_name="popDebugGroup")
-CommandEncoder_popDebugGroup :: #force_inline proc "c" (self: ^CommandEncoder) {
-    msgSend(nil, self, "popDebugGroup")
-}
-@(objc_type=CommandEncoder, objc_name="device")
-CommandEncoder_device :: #force_inline proc "c" (self: ^CommandEncoder) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=CommandEncoder, objc_name="label")
-CommandEncoder_label :: #force_inline proc "c" (self: ^CommandEncoder) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=CommandEncoder, objc_name="setLabel")
-CommandEncoder_setLabel :: #force_inline proc "c" (self: ^CommandEncoder, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CommandEncoder, objc_selector="endEncoding", objc_name="endEncoding")
+    CommandEncoder_endEncoding :: proc(self: ^CommandEncoder) ---
+
+    @(objc_type=CommandEncoder, objc_selector="insertDebugSignpost:", objc_name="insertDebugSignpost")
+    CommandEncoder_insertDebugSignpost :: proc(self: ^CommandEncoder, string: ^NS.String) ---
+
+    @(objc_type=CommandEncoder, objc_selector="pushDebugGroup:", objc_name="pushDebugGroup")
+    CommandEncoder_pushDebugGroup :: proc(self: ^CommandEncoder, string: ^NS.String) ---
+
+    @(objc_type=CommandEncoder, objc_selector="popDebugGroup", objc_name="popDebugGroup")
+    CommandEncoder_popDebugGroup :: proc(self: ^CommandEncoder) ---
+
+    @(objc_type=CommandEncoder, objc_selector="device", objc_name="device")
+    CommandEncoder_device :: proc(self: ^CommandEncoder) -> ^Device ---
+
+    @(objc_type=CommandEncoder, objc_selector="label", objc_name="label")
+    CommandEncoder_label :: proc(self: ^CommandEncoder) -> ^NS.String ---
+
+    @(objc_type=CommandEncoder, objc_selector="setLabel:", objc_name="setLabel")
+    CommandEncoder_setLabel :: proc(self: ^CommandEncoder, label: ^NS.String) ---
 }

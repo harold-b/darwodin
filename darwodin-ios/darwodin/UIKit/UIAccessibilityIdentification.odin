@@ -21,11 +21,11 @@ AccessibilityIdentification :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AccessibilityIdentification, objc_name="accessibilityIdentifier")
-AccessibilityIdentification_accessibilityIdentifier :: #force_inline proc "c" (self: ^AccessibilityIdentification) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityIdentifier")
-}
-@(objc_type=AccessibilityIdentification, objc_name="setAccessibilityIdentifier")
-AccessibilityIdentification_setAccessibilityIdentifier :: #force_inline proc "c" (self: ^AccessibilityIdentification, accessibilityIdentifier: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityIdentifier:", accessibilityIdentifier)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityIdentification, objc_selector="accessibilityIdentifier", objc_name="accessibilityIdentifier")
+    AccessibilityIdentification_accessibilityIdentifier :: proc(self: ^AccessibilityIdentification) -> ^NS.String ---
+
+    @(objc_type=AccessibilityIdentification, objc_selector="setAccessibilityIdentifier:", objc_name="setAccessibilityIdentifier")
+    AccessibilityIdentification_setAccessibilityIdentifier :: proc(self: ^AccessibilityIdentification, accessibilityIdentifier: ^NS.String) ---
 }

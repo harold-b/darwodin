@@ -19,14 +19,5 @@ import CA "../QuartzCore"
 @(objc_class="UITextInteractionAssistant")
 TextInteractionAssistant :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=TextInteractionAssistant, objc_name="alloc", objc_is_class_method=true)
-TextInteractionAssistant_alloc :: proc "c" () -> ^TextInteractionAssistant {
-    return msgSend(^TextInteractionAssistant, TextInteractionAssistant, "alloc")
-}
-
-@(objc_type=TextInteractionAssistant, objc_name="init")
-TextInteractionAssistant_init :: proc "c" (self: ^TextInteractionAssistant) -> ^TextInteractionAssistant {
-    return msgSend(^TextInteractionAssistant, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

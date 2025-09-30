@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMachPort
 ///
-@(objc_class="NSMachPort")
+@(objc_class="NSMachPort", objc_superclass=Port)
 MachPort :: struct { using _: Port, }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UINavigationBar
 ///
-@(objc_class="UINavigationBar")
+@(objc_class="UINavigationBar", objc_superclass=View)
 NavigationBar :: struct { using _: View, 
     using _: NS.Coding,
     using _: BarPositioning,

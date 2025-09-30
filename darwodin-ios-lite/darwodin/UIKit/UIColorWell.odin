@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIColorWell
 ///
-@(objc_class="UIColorWell")
+@(objc_class="UIColorWell", objc_superclass=Control)
 ColorWell :: struct { using _: Control, }
 

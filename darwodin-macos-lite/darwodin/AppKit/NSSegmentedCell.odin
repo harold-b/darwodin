@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSegmentedCell
 ///
-@(objc_class="NSSegmentedCell")
+@(objc_class="NSSegmentedCell", objc_superclass=ActionCell)
 SegmentedCell :: struct { using _: ActionCell, }
 

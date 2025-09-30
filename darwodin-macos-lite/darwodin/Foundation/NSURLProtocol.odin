@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSURLProtocol
 ///
-@(objc_class="NSURLProtocol")
+@(objc_class="NSURLProtocol", objc_superclass=Object)
 URLProtocol :: struct { using _: Object, }
 

@@ -21,15 +21,14 @@ SeguePerforming :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SeguePerforming, objc_name="prepareForSegue")
-SeguePerforming_prepareForSegue :: #force_inline proc "c" (self: ^SeguePerforming, segue: ^StoryboardSegue, sender: id) {
-    msgSend(nil, self, "prepareForSegue:sender:", segue, sender)
-}
-@(objc_type=SeguePerforming, objc_name="performSegueWithIdentifier")
-SeguePerforming_performSegueWithIdentifier :: #force_inline proc "c" (self: ^SeguePerforming, identifier: ^NS.String, sender: id) {
-    msgSend(nil, self, "performSegueWithIdentifier:sender:", identifier, sender)
-}
-@(objc_type=SeguePerforming, objc_name="shouldPerformSegueWithIdentifier")
-SeguePerforming_shouldPerformSegueWithIdentifier :: #force_inline proc "c" (self: ^SeguePerforming, identifier: ^NS.String, sender: id) -> bool {
-    return msgSend(bool, self, "shouldPerformSegueWithIdentifier:sender:", identifier, sender)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SeguePerforming, objc_selector="prepareForSegue:sender:", objc_name="prepareForSegue")
+    SeguePerforming_prepareForSegue :: proc(self: ^SeguePerforming, segue: ^StoryboardSegue, sender: id) ---
+
+    @(objc_type=SeguePerforming, objc_selector="performSegueWithIdentifier:sender:", objc_name="performSegueWithIdentifier")
+    SeguePerforming_performSegueWithIdentifier :: proc(self: ^SeguePerforming, identifier: ^NS.String, sender: id) ---
+
+    @(objc_type=SeguePerforming, objc_selector="shouldPerformSegueWithIdentifier:sender:", objc_name="shouldPerformSegueWithIdentifier")
+    SeguePerforming_shouldPerformSegueWithIdentifier :: proc(self: ^SeguePerforming, identifier: ^NS.String, sender: id) -> bool ---
 }

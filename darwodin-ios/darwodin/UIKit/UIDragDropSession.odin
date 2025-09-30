@@ -21,27 +21,23 @@ DragDropSession :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DragDropSession, objc_name="locationInView")
-DragDropSession_locationInView :: #force_inline proc "c" (self: ^DragDropSession, view: ^View) -> CG.Point {
-    return msgSend(CG.Point, self, "locationInView:", view)
-}
-@(objc_type=DragDropSession, objc_name="hasItemsConformingToTypeIdentifiers")
-DragDropSession_hasItemsConformingToTypeIdentifiers :: #force_inline proc "c" (self: ^DragDropSession, typeIdentifiers: ^NS.Array) -> bool {
-    return msgSend(bool, self, "hasItemsConformingToTypeIdentifiers:", typeIdentifiers)
-}
-@(objc_type=DragDropSession, objc_name="canLoadObjectsOfClass")
-DragDropSession_canLoadObjectsOfClass :: #force_inline proc "c" (self: ^DragDropSession, aClass: ^Class) -> bool {
-    return msgSend(bool, self, "canLoadObjectsOfClass:", aClass)
-}
-@(objc_type=DragDropSession, objc_name="items")
-DragDropSession_items :: #force_inline proc "c" (self: ^DragDropSession) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "items")
-}
-@(objc_type=DragDropSession, objc_name="allowsMoveOperation")
-DragDropSession_allowsMoveOperation :: #force_inline proc "c" (self: ^DragDropSession) -> bool {
-    return msgSend(bool, self, "allowsMoveOperation")
-}
-@(objc_type=DragDropSession, objc_name="isRestrictedToDraggingApplication")
-DragDropSession_isRestrictedToDraggingApplication :: #force_inline proc "c" (self: ^DragDropSession) -> bool {
-    return msgSend(bool, self, "isRestrictedToDraggingApplication")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DragDropSession, objc_selector="locationInView:", objc_name="locationInView")
+    DragDropSession_locationInView :: proc(self: ^DragDropSession, view: ^View) -> CG.Point ---
+
+    @(objc_type=DragDropSession, objc_selector="hasItemsConformingToTypeIdentifiers:", objc_name="hasItemsConformingToTypeIdentifiers")
+    DragDropSession_hasItemsConformingToTypeIdentifiers :: proc(self: ^DragDropSession, typeIdentifiers: ^NS.Array) -> bool ---
+
+    @(objc_type=DragDropSession, objc_selector="canLoadObjectsOfClass:", objc_name="canLoadObjectsOfClass")
+    DragDropSession_canLoadObjectsOfClass :: proc(self: ^DragDropSession, aClass: ^Class) -> bool ---
+
+    @(objc_type=DragDropSession, objc_selector="items", objc_name="items")
+    DragDropSession_items :: proc(self: ^DragDropSession) -> ^NS.Array ---
+
+    @(objc_type=DragDropSession, objc_selector="allowsMoveOperation", objc_name="allowsMoveOperation")
+    DragDropSession_allowsMoveOperation :: proc(self: ^DragDropSession) -> bool ---
+
+    @(objc_type=DragDropSession, objc_selector="isRestrictedToDraggingApplication", objc_name="isRestrictedToDraggingApplication")
+    DragDropSession_isRestrictedToDraggingApplication :: proc(self: ^DragDropSession) -> bool ---
 }

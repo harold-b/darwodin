@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIShape
 ///
-@(objc_class="UIShape")
+@(objc_class="UIShape", objc_superclass=NS.Object)
 Shape :: struct { using _: NS.Object, 
     using _: ShapeProvider,
     using _: NS.Copying,

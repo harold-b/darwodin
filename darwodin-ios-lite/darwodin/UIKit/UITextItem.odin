@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITextItem
 ///
-@(objc_class="UITextItem")
+@(objc_class="UITextItem", objc_superclass=NS.Object)
 TextItem :: struct { using _: NS.Object, }
 

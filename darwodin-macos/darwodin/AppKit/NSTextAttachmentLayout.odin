@@ -21,15 +21,14 @@ TextAttachmentLayout :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextAttachmentLayout, objc_name="imageForBounds")
-TextAttachmentLayout_imageForBounds :: #force_inline proc "c" (self: ^TextAttachmentLayout, bounds: CG.Rect, attributes: ^NS.Dictionary, location: ^TextLocation, textContainer: ^TextContainer) -> ^NS.Image {
-    return msgSend(^NS.Image, self, "imageForBounds:attributes:location:textContainer:", bounds, attributes, location, textContainer)
-}
-@(objc_type=TextAttachmentLayout, objc_name="attachmentBoundsForAttributes")
-TextAttachmentLayout_attachmentBoundsForAttributes :: #force_inline proc "c" (self: ^TextAttachmentLayout, attributes: ^NS.Dictionary, location: ^TextLocation, textContainer: ^TextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect {
-    return msgSend(CG.Rect, self, "attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", attributes, location, textContainer, proposedLineFragment, position)
-}
-@(objc_type=TextAttachmentLayout, objc_name="viewProviderForParentView")
-TextAttachmentLayout_viewProviderForParentView :: #force_inline proc "c" (self: ^TextAttachmentLayout, parentView: ^View, location: ^TextLocation, textContainer: ^TextContainer) -> ^TextAttachmentViewProvider {
-    return msgSend(^TextAttachmentViewProvider, self, "viewProviderForParentView:location:textContainer:", parentView, location, textContainer)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextAttachmentLayout, objc_selector="imageForBounds:attributes:location:textContainer:", objc_name="imageForBounds")
+    TextAttachmentLayout_imageForBounds :: proc(self: ^TextAttachmentLayout, bounds: CG.Rect, attributes: ^NS.Dictionary, location: ^TextLocation, textContainer: ^TextContainer) -> ^NS.Image ---
+
+    @(objc_type=TextAttachmentLayout, objc_selector="attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", objc_name="attachmentBoundsForAttributes")
+    TextAttachmentLayout_attachmentBoundsForAttributes :: proc(self: ^TextAttachmentLayout, attributes: ^NS.Dictionary, location: ^TextLocation, textContainer: ^TextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect ---
+
+    @(objc_type=TextAttachmentLayout, objc_selector="viewProviderForParentView:location:textContainer:", objc_name="viewProviderForParentView")
+    TextAttachmentLayout_viewProviderForParentView :: proc(self: ^TextAttachmentLayout, parentView: ^View, location: ^TextLocation, textContainer: ^TextContainer) -> ^TextAttachmentViewProvider ---
 }

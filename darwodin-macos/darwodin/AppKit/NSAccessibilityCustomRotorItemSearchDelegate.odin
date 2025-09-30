@@ -21,7 +21,8 @@ AccessibilityCustomRotorItemSearchDelegate :: struct { using _: intrinsics.objc_
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AccessibilityCustomRotorItemSearchDelegate, objc_name="rotor")
-AccessibilityCustomRotorItemSearchDelegate_rotor :: #force_inline proc "c" (self: ^AccessibilityCustomRotorItemSearchDelegate, rotor: ^AccessibilityCustomRotor, searchParameters: ^AccessibilityCustomRotorSearchParameters) -> ^AccessibilityCustomRotorItemResult {
-    return msgSend(^AccessibilityCustomRotorItemResult, self, "rotor:resultForSearchParameters:", rotor, searchParameters)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityCustomRotorItemSearchDelegate, objc_selector="rotor:resultForSearchParameters:", objc_name="rotor")
+    AccessibilityCustomRotorItemSearchDelegate_rotor :: proc(self: ^AccessibilityCustomRotorItemSearchDelegate, rotor: ^AccessibilityCustomRotor, searchParameters: ^AccessibilityCustomRotorSearchParameters) -> ^AccessibilityCustomRotorItemResult ---
 }

@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSScanner
 ///
-@(objc_class="NSScanner")
+@(objc_class="NSScanner", objc_superclass=Object)
 Scanner :: struct { using _: Object, 
     using _: Copying,
 }

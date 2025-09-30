@@ -20,11 +20,11 @@ CounterSet :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CounterSet, objc_name="name")
-CounterSet_name :: #force_inline proc "c" (self: ^CounterSet) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
-}
-@(objc_type=CounterSet, objc_name="counters")
-CounterSet_counters :: #force_inline proc "c" (self: ^CounterSet) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "counters")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CounterSet, objc_selector="name", objc_name="name")
+    CounterSet_name :: proc(self: ^CounterSet) -> ^NS.String ---
+
+    @(objc_type=CounterSet, objc_selector="counters", objc_name="counters")
+    CounterSet_counters :: proc(self: ^CounterSet) -> ^NS.Array ---
 }

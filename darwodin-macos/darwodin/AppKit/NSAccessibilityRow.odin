@@ -21,11 +21,11 @@ AccessibilityRow :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 
-@(objc_type=AccessibilityRow, objc_name="accessibilityIndex")
-AccessibilityRow_accessibilityIndex :: #force_inline proc "c" (self: ^AccessibilityRow) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityIndex")
-}
-@(objc_type=AccessibilityRow, objc_name="accessibilityDisclosureLevel")
-AccessibilityRow_accessibilityDisclosureLevel :: #force_inline proc "c" (self: ^AccessibilityRow) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityDisclosureLevel")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityRow, objc_selector="accessibilityIndex", objc_name="accessibilityIndex")
+    AccessibilityRow_accessibilityIndex :: proc(self: ^AccessibilityRow) -> NS.Integer ---
+
+    @(objc_type=AccessibilityRow, objc_selector="accessibilityDisclosureLevel", objc_name="accessibilityDisclosureLevel")
+    AccessibilityRow_accessibilityDisclosureLevel :: proc(self: ^AccessibilityRow) -> NS.Integer ---
 }

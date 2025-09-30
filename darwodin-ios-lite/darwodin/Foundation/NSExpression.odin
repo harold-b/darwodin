@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSExpression
 ///
-@(objc_class="NSExpression")
+@(objc_class="NSExpression", objc_superclass=Object)
 Expression :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,

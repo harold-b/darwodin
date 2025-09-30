@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UISwitch
 ///
-@(objc_class="UISwitch")
+@(objc_class="UISwitch", objc_superclass=Control)
 Switch :: struct { using _: Control, 
     using _: NS.Coding,
 }

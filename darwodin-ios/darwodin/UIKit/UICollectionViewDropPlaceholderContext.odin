@@ -21,19 +21,17 @@ CollectionViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object
     using _: DragAnimating,
 }
 
-@(objc_type=CollectionViewDropPlaceholderContext, objc_name="commitInsertionWithDataSourceUpdates")
-CollectionViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool {
-    return msgSend(bool, self, "commitInsertionWithDataSourceUpdates:", dataSourceUpdates)
-}
-@(objc_type=CollectionViewDropPlaceholderContext, objc_name="deletePlaceholder")
-CollectionViewDropPlaceholderContext_deletePlaceholder :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholderContext) -> bool {
-    return msgSend(bool, self, "deletePlaceholder")
-}
-@(objc_type=CollectionViewDropPlaceholderContext, objc_name="setNeedsCellUpdate")
-CollectionViewDropPlaceholderContext_setNeedsCellUpdate :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholderContext) {
-    msgSend(nil, self, "setNeedsCellUpdate")
-}
-@(objc_type=CollectionViewDropPlaceholderContext, objc_name="dragItem")
-CollectionViewDropPlaceholderContext_dragItem :: #force_inline proc "c" (self: ^CollectionViewDropPlaceholderContext) -> ^DragItem {
-    return msgSend(^DragItem, self, "dragItem")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewDropPlaceholderContext, objc_selector="commitInsertionWithDataSourceUpdates:", objc_name="commitInsertionWithDataSourceUpdates")
+    CollectionViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: proc(self: ^CollectionViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool ---
+
+    @(objc_type=CollectionViewDropPlaceholderContext, objc_selector="deletePlaceholder", objc_name="deletePlaceholder")
+    CollectionViewDropPlaceholderContext_deletePlaceholder :: proc(self: ^CollectionViewDropPlaceholderContext) -> bool ---
+
+    @(objc_type=CollectionViewDropPlaceholderContext, objc_selector="setNeedsCellUpdate", objc_name="setNeedsCellUpdate")
+    CollectionViewDropPlaceholderContext_setNeedsCellUpdate :: proc(self: ^CollectionViewDropPlaceholderContext) ---
+
+    @(objc_type=CollectionViewDropPlaceholderContext, objc_selector="dragItem", objc_name="dragItem")
+    CollectionViewDropPlaceholderContext_dragItem :: proc(self: ^CollectionViewDropPlaceholderContext) -> ^DragItem ---
 }

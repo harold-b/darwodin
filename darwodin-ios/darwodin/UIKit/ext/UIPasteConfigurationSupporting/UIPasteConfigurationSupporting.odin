@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -42,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).pasteItemProviders(self, itemProviders)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteItemProviders:"), auto_cast pasteItemProviders, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pasteItemProviders:"), auto_cast pasteItemProviders, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.canPasteItemProviders != nil {
         canPasteItemProviders :: proc "c" (self: ^UI.PasteConfigurationSupporting, _: SEL, itemProviders: ^NS.Array) -> bool {
@@ -52,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).canPasteItemProviders(self, itemProviders)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("canPasteItemProviders:"), auto_cast canPasteItemProviders, "B@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("canPasteItemProviders:"), auto_cast canPasteItemProviders, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.pasteConfiguration != nil {
         pasteConfiguration :: proc "c" (self: ^UI.PasteConfigurationSupporting, _: SEL) -> ^UI.PasteConfiguration {

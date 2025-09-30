@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIGraphicsPDFRendererFormat
 ///
-@(objc_class="UIGraphicsPDFRendererFormat")
+@(objc_class="UIGraphicsPDFRendererFormat", objc_superclass=GraphicsRendererFormat)
 GraphicsPDFRendererFormat :: struct { using _: GraphicsRendererFormat, }
 

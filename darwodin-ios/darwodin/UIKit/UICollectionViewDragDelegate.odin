@@ -21,31 +21,27 @@ CollectionViewDragDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CollectionViewDragDelegate, objc_name="collectionView_itemsForBeginningDragSession_atIndexPath")
-CollectionViewDragDelegate_collectionView_itemsForBeginningDragSession_atIndexPath :: #force_inline proc "c" (self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession, indexPath: ^NS.IndexPath) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "collectionView:itemsForBeginningDragSession:atIndexPath:", collectionView, session, indexPath)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewDragDelegate, objc_selector="collectionView:itemsForBeginningDragSession:atIndexPath:", objc_name="collectionView_itemsForBeginningDragSession_atIndexPath")
+    CollectionViewDragDelegate_collectionView_itemsForBeginningDragSession_atIndexPath :: proc(self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession, indexPath: ^NS.IndexPath) -> ^NS.Array ---
+
+    @(objc_type=CollectionViewDragDelegate, objc_selector="collectionView:itemsForAddingToDragSession:atIndexPath:point:", objc_name="collectionView_itemsForAddingToDragSession_atIndexPath_point")
+    CollectionViewDragDelegate_collectionView_itemsForAddingToDragSession_atIndexPath_point :: proc(self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession, indexPath: ^NS.IndexPath, point: CG.Point) -> ^NS.Array ---
+
+    @(objc_type=CollectionViewDragDelegate, objc_selector="collectionView:dragPreviewParametersForItemAtIndexPath:", objc_name="collectionView_dragPreviewParametersForItemAtIndexPath")
+    CollectionViewDragDelegate_collectionView_dragPreviewParametersForItemAtIndexPath :: proc(self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> ^DragPreviewParameters ---
+
+    @(objc_type=CollectionViewDragDelegate, objc_selector="collectionView:dragSessionWillBegin:", objc_name="collectionView_dragSessionWillBegin")
+    CollectionViewDragDelegate_collectionView_dragSessionWillBegin :: proc(self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession) ---
+
+    @(objc_type=CollectionViewDragDelegate, objc_selector="collectionView:dragSessionDidEnd:", objc_name="collectionView_dragSessionDidEnd")
+    CollectionViewDragDelegate_collectionView_dragSessionDidEnd :: proc(self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession) ---
+
+    @(objc_type=CollectionViewDragDelegate, objc_selector="collectionView:dragSessionAllowsMoveOperation:", objc_name="collectionView_dragSessionAllowsMoveOperation")
+    CollectionViewDragDelegate_collectionView_dragSessionAllowsMoveOperation :: proc(self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession) -> bool ---
+
+    @(objc_type=CollectionViewDragDelegate, objc_selector="collectionView:dragSessionIsRestrictedToDraggingApplication:", objc_name="collectionView_dragSessionIsRestrictedToDraggingApplication")
+    CollectionViewDragDelegate_collectionView_dragSessionIsRestrictedToDraggingApplication :: proc(self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession) -> bool ---
 }
-@(objc_type=CollectionViewDragDelegate, objc_name="collectionView_itemsForAddingToDragSession_atIndexPath_point")
-CollectionViewDragDelegate_collectionView_itemsForAddingToDragSession_atIndexPath_point :: #force_inline proc "c" (self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession, indexPath: ^NS.IndexPath, point: CG.Point) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "collectionView:itemsForAddingToDragSession:atIndexPath:point:", collectionView, session, indexPath, point)
-}
-@(objc_type=CollectionViewDragDelegate, objc_name="collectionView_dragPreviewParametersForItemAtIndexPath")
-CollectionViewDragDelegate_collectionView_dragPreviewParametersForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> ^DragPreviewParameters {
-    return msgSend(^DragPreviewParameters, self, "collectionView:dragPreviewParametersForItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDragDelegate, objc_name="collectionView_dragSessionWillBegin")
-CollectionViewDragDelegate_collectionView_dragSessionWillBegin :: #force_inline proc "c" (self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession) {
-    msgSend(nil, self, "collectionView:dragSessionWillBegin:", collectionView, session)
-}
-@(objc_type=CollectionViewDragDelegate, objc_name="collectionView_dragSessionDidEnd")
-CollectionViewDragDelegate_collectionView_dragSessionDidEnd :: #force_inline proc "c" (self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession) {
-    msgSend(nil, self, "collectionView:dragSessionDidEnd:", collectionView, session)
-}
-@(objc_type=CollectionViewDragDelegate, objc_name="collectionView_dragSessionAllowsMoveOperation")
-CollectionViewDragDelegate_collectionView_dragSessionAllowsMoveOperation :: #force_inline proc "c" (self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession) -> bool {
-    return msgSend(bool, self, "collectionView:dragSessionAllowsMoveOperation:", collectionView, session)
-}
-@(objc_type=CollectionViewDragDelegate, objc_name="collectionView_dragSessionIsRestrictedToDraggingApplication")
-CollectionViewDragDelegate_collectionView_dragSessionIsRestrictedToDraggingApplication :: #force_inline proc "c" (self: ^CollectionViewDragDelegate, collectionView: ^CollectionView, session: ^DragSession) -> bool {
-    return msgSend(bool, self, "collectionView:dragSessionIsRestrictedToDraggingApplication:", collectionView, session)
-}
+

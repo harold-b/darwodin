@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTextFieldCell
 ///
-@(objc_class="NSTextFieldCell")
+@(objc_class="NSTextFieldCell", objc_superclass=ActionCell)
 TextFieldCell :: struct { using _: ActionCell, }
 

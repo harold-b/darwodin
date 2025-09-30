@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSUserDefaultsController
 ///
-@(objc_class="NSUserDefaultsController")
+@(objc_class="NSUserDefaultsController", objc_superclass=Controller)
 UserDefaultsController :: struct { using _: Controller, }
 

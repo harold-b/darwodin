@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIKeyboardLayoutGuide
 ///
-@(objc_class="UIKeyboardLayoutGuide")
+@(objc_class="UIKeyboardLayoutGuide", objc_superclass=TrackingLayoutGuide)
 KeyboardLayoutGuide :: struct { using _: TrackingLayoutGuide, }
 

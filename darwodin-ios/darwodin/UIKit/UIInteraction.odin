@@ -21,15 +21,14 @@ Interaction :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Interaction, objc_name="willMoveToView")
-Interaction_willMoveToView :: #force_inline proc "c" (self: ^Interaction, view: ^View) {
-    msgSend(nil, self, "willMoveToView:", view)
-}
-@(objc_type=Interaction, objc_name="didMoveToView")
-Interaction_didMoveToView :: #force_inline proc "c" (self: ^Interaction, view: ^View) {
-    msgSend(nil, self, "didMoveToView:", view)
-}
-@(objc_type=Interaction, objc_name="view")
-Interaction_view :: #force_inline proc "c" (self: ^Interaction) -> ^View {
-    return msgSend(^View, self, "view")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Interaction, objc_selector="willMoveToView:", objc_name="willMoveToView")
+    Interaction_willMoveToView :: proc(self: ^Interaction, view: ^View) ---
+
+    @(objc_type=Interaction, objc_selector="didMoveToView:", objc_name="didMoveToView")
+    Interaction_didMoveToView :: proc(self: ^Interaction, view: ^View) ---
+
+    @(objc_type=Interaction, objc_selector="view", objc_name="view")
+    Interaction_view :: proc(self: ^Interaction) -> ^View ---
 }

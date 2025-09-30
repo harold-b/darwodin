@@ -23,35 +23,26 @@ ConfigurationState :: struct { using _: intrinsics.objc_object,
     using _: NS.SecureCoding,
 }
 
-@(objc_type=ConfigurationState, objc_name="initWithTraitCollection")
-ConfigurationState_initWithTraitCollection :: #force_inline proc "c" (self: ^ConfigurationState, traitCollection: ^TraitCollection) -> ^ConfigurationState {
-    return msgSend(^ConfigurationState, self, "initWithTraitCollection:", traitCollection)
-}
-@(objc_type=ConfigurationState, objc_name="customStateForKey")
-ConfigurationState_customStateForKey :: #force_inline proc "c" (self: ^ConfigurationState, key: ^NS.String) -> id {
-    return msgSend(id, self, "customStateForKey:", key)
-}
-@(objc_type=ConfigurationState, objc_name="setCustomState")
-ConfigurationState_setCustomState :: #force_inline proc "c" (self: ^ConfigurationState, customState: id, key: ^NS.String) {
-    msgSend(nil, self, "setCustomState:forKey:", customState, key)
-}
-@(objc_type=ConfigurationState, objc_name="objectForKeyedSubscript")
-ConfigurationState_objectForKeyedSubscript :: #force_inline proc "c" (self: ^ConfigurationState, key: ^NS.String) -> id {
-    return msgSend(id, self, "objectForKeyedSubscript:", key)
-}
-@(objc_type=ConfigurationState, objc_name="setObject")
-ConfigurationState_setObject :: #force_inline proc "c" (self: ^ConfigurationState, obj: id, key: ^NS.String) {
-    msgSend(nil, self, "setObject:forKeyedSubscript:", obj, key)
-}
-@(objc_type=ConfigurationState, objc_name="traitCollection")
-ConfigurationState_traitCollection :: #force_inline proc "c" (self: ^ConfigurationState) -> ^TraitCollection {
-    return msgSend(^TraitCollection, self, "traitCollection")
-}
-@(objc_type=ConfigurationState, objc_name="setTraitCollection")
-ConfigurationState_setTraitCollection :: #force_inline proc "c" (self: ^ConfigurationState, traitCollection: ^TraitCollection) {
-    msgSend(nil, self, "setTraitCollection:", traitCollection)
-}
-@(objc_type=ConfigurationState, objc_name="supportsSecureCoding", objc_is_class_method=true)
-ConfigurationState_supportsSecureCoding :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, ConfigurationState, "supportsSecureCoding")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ConfigurationState, objc_selector="initWithTraitCollection:", objc_name="initWithTraitCollection")
+    ConfigurationState_initWithTraitCollection :: proc(self: ^ConfigurationState, traitCollection: ^TraitCollection) -> ^ConfigurationState ---
+
+    @(objc_type=ConfigurationState, objc_selector="customStateForKey:", objc_name="customStateForKey")
+    ConfigurationState_customStateForKey :: proc(self: ^ConfigurationState, key: ^NS.String) -> id ---
+
+    @(objc_type=ConfigurationState, objc_selector="setCustomState:forKey:", objc_name="setCustomState")
+    ConfigurationState_setCustomState :: proc(self: ^ConfigurationState, customState: id, key: ^NS.String) ---
+
+    @(objc_type=ConfigurationState, objc_selector="objectForKeyedSubscript:", objc_name="objectForKeyedSubscript")
+    ConfigurationState_objectForKeyedSubscript :: proc(self: ^ConfigurationState, key: ^NS.String) -> id ---
+
+    @(objc_type=ConfigurationState, objc_selector="setObject:forKeyedSubscript:", objc_name="setObject")
+    ConfigurationState_setObject :: proc(self: ^ConfigurationState, obj: id, key: ^NS.String) ---
+
+    @(objc_type=ConfigurationState, objc_selector="traitCollection", objc_name="traitCollection")
+    ConfigurationState_traitCollection :: proc(self: ^ConfigurationState) -> ^TraitCollection ---
+
+    @(objc_type=ConfigurationState, objc_selector="setTraitCollection:", objc_name="setTraitCollection")
+    ConfigurationState_setTraitCollection :: proc(self: ^ConfigurationState, traitCollection: ^TraitCollection) ---
 }

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMutableIndexSet
 ///
-@(objc_class="NSMutableIndexSet")
+@(objc_class="NSMutableIndexSet", objc_superclass=IndexSet)
 MutableIndexSet :: struct { using _: IndexSet, }
 

@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CATiledLayer
 ///
-@(objc_class="CATiledLayer")
+@(objc_class="CATiledLayer", objc_superclass=Layer)
 TiledLayer :: struct { using _: Layer, }
 

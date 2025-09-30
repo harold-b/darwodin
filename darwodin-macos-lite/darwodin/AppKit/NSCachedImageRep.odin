@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSCachedImageRep
 ///
-@(objc_class="NSCachedImageRep")
+@(objc_class="NSCachedImageRep", objc_superclass=ImageRep)
 CachedImageRep :: struct { using _: ImageRep, }
 

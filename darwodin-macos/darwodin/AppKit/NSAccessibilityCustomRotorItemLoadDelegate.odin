@@ -19,3 +19,5 @@ import CA "../QuartzCore"
 @(objc_class="NSAccessibilityCustomRotorItemLoadDelegate")
 AccessibilityCustomRotorItemLoadDelegate :: struct { using _: intrinsics.objc_object, }
 
+@(default_calling_convention="c")
+foreign lib {}

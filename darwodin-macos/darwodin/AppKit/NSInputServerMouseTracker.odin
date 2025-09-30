@@ -19,15 +19,14 @@ import CA "../QuartzCore"
 @(objc_class="NSInputServerMouseTracker")
 InputServerMouseTracker :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=InputServerMouseTracker, objc_name="mouseDownOnCharacterIndex")
-InputServerMouseTracker_mouseDownOnCharacterIndex :: #force_inline proc "c" (self: ^InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool {
-    return msgSend(bool, self, "mouseDownOnCharacterIndex:atCoordinate:withModifier:client:", index, point, flags, sender)
-}
-@(objc_type=InputServerMouseTracker, objc_name="mouseDraggedOnCharacterIndex")
-InputServerMouseTracker_mouseDraggedOnCharacterIndex :: #force_inline proc "c" (self: ^InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool {
-    return msgSend(bool, self, "mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:", index, point, flags, sender)
-}
-@(objc_type=InputServerMouseTracker, objc_name="mouseUpOnCharacterIndex")
-InputServerMouseTracker_mouseUpOnCharacterIndex :: #force_inline proc "c" (self: ^InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) {
-    msgSend(nil, self, "mouseUpOnCharacterIndex:atCoordinate:withModifier:client:", index, point, flags, sender)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=InputServerMouseTracker, objc_selector="mouseDownOnCharacterIndex:atCoordinate:withModifier:client:", objc_name="mouseDownOnCharacterIndex")
+    InputServerMouseTracker_mouseDownOnCharacterIndex :: proc(self: ^InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool ---
+
+    @(objc_type=InputServerMouseTracker, objc_selector="mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:", objc_name="mouseDraggedOnCharacterIndex")
+    InputServerMouseTracker_mouseDraggedOnCharacterIndex :: proc(self: ^InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool ---
+
+    @(objc_type=InputServerMouseTracker, objc_selector="mouseUpOnCharacterIndex:atCoordinate:withModifier:client:", objc_name="mouseUpOnCharacterIndex")
+    InputServerMouseTracker_mouseUpOnCharacterIndex :: proc(self: ^InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) ---
 }

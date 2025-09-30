@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSSpecifierTest
 ///
-@(objc_class="NSSpecifierTest")
+@(objc_class="NSSpecifierTest", objc_superclass=ScriptWhoseTest)
 SpecifierTest :: struct { using _: ScriptWhoseTest, }
 

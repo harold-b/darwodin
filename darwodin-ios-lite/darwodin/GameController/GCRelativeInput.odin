@@ -19,31 +19,26 @@ RelativeInput :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=RelativeInput, objc_name="deltaDidChangeHandler")
-RelativeInput_deltaDidChangeHandler :: #force_inline proc "c" (self: ^RelativeInput) -> ^Objc_Block(proc "c" ()) {
-    return msgSend(^Objc_Block(proc "c" ()), self, "deltaDidChangeHandler")
-}
-@(objc_type=RelativeInput, objc_name="setDeltaDidChangeHandler")
-RelativeInput_setDeltaDidChangeHandler :: #force_inline proc "c" (self: ^RelativeInput, deltaDidChangeHandler: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "setDeltaDidChangeHandler:", deltaDidChangeHandler)
-}
-@(objc_type=RelativeInput, objc_name="delta")
-RelativeInput_delta :: #force_inline proc "c" (self: ^RelativeInput) -> cffi.float {
-    return msgSend(cffi.float, self, "delta")
-}
-@(objc_type=RelativeInput, objc_name="isAnalog")
-RelativeInput_isAnalog :: #force_inline proc "c" (self: ^RelativeInput) -> bool {
-    return msgSend(bool, self, "isAnalog")
-}
-@(objc_type=RelativeInput, objc_name="lastDeltaTimestamp")
-RelativeInput_lastDeltaTimestamp :: #force_inline proc "c" (self: ^RelativeInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastDeltaTimestamp")
-}
-@(objc_type=RelativeInput, objc_name="lastDeltaLatency")
-RelativeInput_lastDeltaLatency :: #force_inline proc "c" (self: ^RelativeInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastDeltaLatency")
-}
-@(objc_type=RelativeInput, objc_name="sources")
-RelativeInput_sources :: #force_inline proc "c" (self: ^RelativeInput) -> ^NS.Set {
-    return msgSend(^NS.Set, self, "sources")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=RelativeInput, objc_selector="deltaDidChangeHandler", objc_name="deltaDidChangeHandler")
+    RelativeInput_deltaDidChangeHandler :: proc(self: ^RelativeInput) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=RelativeInput, objc_selector="setDeltaDidChangeHandler:", objc_name="setDeltaDidChangeHandler")
+    RelativeInput_setDeltaDidChangeHandler :: proc(self: ^RelativeInput, deltaDidChangeHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=RelativeInput, objc_selector="delta", objc_name="delta")
+    RelativeInput_delta :: proc(self: ^RelativeInput) -> cffi.float ---
+
+    @(objc_type=RelativeInput, objc_selector="isAnalog", objc_name="isAnalog")
+    RelativeInput_isAnalog :: proc(self: ^RelativeInput) -> bool ---
+
+    @(objc_type=RelativeInput, objc_selector="lastDeltaTimestamp", objc_name="lastDeltaTimestamp")
+    RelativeInput_lastDeltaTimestamp :: proc(self: ^RelativeInput) -> NS.TimeInterval ---
+
+    @(objc_type=RelativeInput, objc_selector="lastDeltaLatency", objc_name="lastDeltaLatency")
+    RelativeInput_lastDeltaLatency :: proc(self: ^RelativeInput) -> NS.TimeInterval ---
+
+    @(objc_type=RelativeInput, objc_selector="sources", objc_name="sources")
+    RelativeInput_sources :: proc(self: ^RelativeInput) -> ^NS.Set ---
 }

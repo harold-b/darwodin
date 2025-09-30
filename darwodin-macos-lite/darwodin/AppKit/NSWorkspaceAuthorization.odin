@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSWorkspaceAuthorization
 ///
-@(objc_class="NSWorkspaceAuthorization")
+@(objc_class="NSWorkspaceAuthorization", objc_superclass=NS.Object)
 WorkspaceAuthorization :: struct { using _: NS.Object, }
 

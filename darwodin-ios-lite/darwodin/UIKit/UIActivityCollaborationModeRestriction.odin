@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIActivityCollaborationModeRestriction
 ///
-@(objc_class="UIActivityCollaborationModeRestriction")
+@(objc_class="UIActivityCollaborationModeRestriction", objc_superclass=NS.Object)
 ActivityCollaborationModeRestriction :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,

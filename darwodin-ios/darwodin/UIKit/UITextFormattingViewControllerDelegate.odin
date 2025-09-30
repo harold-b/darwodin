@@ -21,22 +21,21 @@ TextFormattingViewControllerDelegate :: struct { using _: intrinsics.objc_object
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextFormattingViewControllerDelegate, objc_name="textFormattingViewController_didChangeValue")
-TextFormattingViewControllerDelegate_textFormattingViewController_didChangeValue :: #force_inline proc "c" (self: ^TextFormattingViewControllerDelegate, viewController: ^TextFormattingViewController, changeValue: ^TextFormattingViewControllerChangeValue) {
-    msgSend(nil, self, "textFormattingViewController:didChangeValue:", viewController, changeValue)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextFormattingViewControllerDelegate, objc_selector="textFormattingViewController:didChangeValue:", objc_name="textFormattingViewController_didChangeValue")
+    TextFormattingViewControllerDelegate_textFormattingViewController_didChangeValue :: proc(self: ^TextFormattingViewControllerDelegate, viewController: ^TextFormattingViewController, changeValue: ^TextFormattingViewControllerChangeValue) ---
+
+    @(objc_type=TextFormattingViewControllerDelegate, objc_selector="textFormattingViewController:shouldPresentFontPicker:", objc_name="textFormattingViewController_shouldPresentFontPicker")
+    TextFormattingViewControllerDelegate_textFormattingViewController_shouldPresentFontPicker :: proc(self: ^TextFormattingViewControllerDelegate, viewController: ^TextFormattingViewController, fontPicker: ^FontPickerViewController) -> bool ---
+
+    @(objc_type=TextFormattingViewControllerDelegate, objc_selector="textFormattingViewController:shouldPresentColorPicker:", objc_name="textFormattingViewController_shouldPresentColorPicker")
+    TextFormattingViewControllerDelegate_textFormattingViewController_shouldPresentColorPicker :: proc(self: ^TextFormattingViewControllerDelegate, viewController: ^TextFormattingViewController, colorPicker: ^ColorPickerViewController) -> bool ---
+
+    @(objc_type=TextFormattingViewControllerDelegate, objc_selector="textFormattingDidFinish:", objc_name="textFormattingDidFinish")
+    TextFormattingViewControllerDelegate_textFormattingDidFinish :: proc(self: ^TextFormattingViewControllerDelegate, viewController: ^TextFormattingViewController) ---
 }
-@(objc_type=TextFormattingViewControllerDelegate, objc_name="textFormattingViewController_shouldPresentFontPicker")
-TextFormattingViewControllerDelegate_textFormattingViewController_shouldPresentFontPicker :: #force_inline proc "c" (self: ^TextFormattingViewControllerDelegate, viewController: ^TextFormattingViewController, fontPicker: ^FontPickerViewController) -> bool {
-    return msgSend(bool, self, "textFormattingViewController:shouldPresentFontPicker:", viewController, fontPicker)
-}
-@(objc_type=TextFormattingViewControllerDelegate, objc_name="textFormattingViewController_shouldPresentColorPicker")
-TextFormattingViewControllerDelegate_textFormattingViewController_shouldPresentColorPicker :: #force_inline proc "c" (self: ^TextFormattingViewControllerDelegate, viewController: ^TextFormattingViewController, colorPicker: ^ColorPickerViewController) -> bool {
-    return msgSend(bool, self, "textFormattingViewController:shouldPresentColorPicker:", viewController, colorPicker)
-}
-@(objc_type=TextFormattingViewControllerDelegate, objc_name="textFormattingDidFinish")
-TextFormattingViewControllerDelegate_textFormattingDidFinish :: #force_inline proc "c" (self: ^TextFormattingViewControllerDelegate, viewController: ^TextFormattingViewController) {
-    msgSend(nil, self, "textFormattingDidFinish:", viewController)
-}
+
 @(objc_type=TextFormattingViewControllerDelegate, objc_name="textFormattingViewController")
 TextFormattingViewControllerDelegate_textFormattingViewController :: proc {
     TextFormattingViewControllerDelegate_textFormattingViewController_didChangeValue,

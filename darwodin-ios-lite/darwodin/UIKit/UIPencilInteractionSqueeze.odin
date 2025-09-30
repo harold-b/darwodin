@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPencilInteractionSqueeze
 ///
-@(objc_class="UIPencilInteractionSqueeze")
+@(objc_class="UIPencilInteractionSqueeze", objc_superclass=NS.Object)
 PencilInteractionSqueeze :: struct { using _: NS.Object, }
 

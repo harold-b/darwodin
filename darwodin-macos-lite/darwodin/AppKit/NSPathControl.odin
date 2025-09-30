@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPathControl
 ///
-@(objc_class="NSPathControl")
+@(objc_class="NSPathControl", objc_superclass=Control)
 PathControl :: struct { using _: Control, }
 

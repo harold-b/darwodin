@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSDatePicker
 ///
-@(objc_class="NSDatePicker")
+@(objc_class="NSDatePicker", objc_superclass=Control)
 DatePicker :: struct { using _: Control, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITextSearchOptions
 ///
-@(objc_class="UITextSearchOptions")
+@(objc_class="UITextSearchOptions", objc_superclass=NS.Object)
 TextSearchOptions :: struct { using _: NS.Object, }
 

@@ -21,31 +21,27 @@ IndirectScribbleInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_requestElementsInRect_completion")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_requestElementsInRect_completion :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, rect: CG.Rect, completion: ^Objc_Block(proc "c" (elements: ^NS.Array))) {
-    msgSend(nil, self, "indirectScribbleInteraction:requestElementsInRect:completion:", interaction, rect, completion)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:requestElementsInRect:completion:", objc_name="indirectScribbleInteraction_requestElementsInRect_completion")
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_requestElementsInRect_completion :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, rect: CG.Rect, completion: ^Objc_Block(proc "c" (elements: ^NS.Array))) ---
+
+    @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:isElementFocused:", objc_name="indirectScribbleInteraction_isElementFocused")
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_isElementFocused :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> bool ---
+
+    @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:frameForElement:", objc_name="indirectScribbleInteraction_frameForElement")
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_frameForElement :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> CG.Rect ---
+
+    @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:focusElementIfNeeded:referencePoint:completion:", objc_name="indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion")
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: ^Objc_Block(proc "c" (focusedInput: ^Responder))) ---
+
+    @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:shouldDelayFocusForElement:", objc_name="indirectScribbleInteraction_shouldDelayFocusForElement")
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_shouldDelayFocusForElement :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> bool ---
+
+    @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:willBeginWritingInElement:", objc_name="indirectScribbleInteraction_willBeginWritingInElement")
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_willBeginWritingInElement :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) ---
+
+    @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:didFinishWritingInElement:", objc_name="indirectScribbleInteraction_didFinishWritingInElement")
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_didFinishWritingInElement :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) ---
 }
-@(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_isElementFocused")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_isElementFocused :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> bool {
-    return msgSend(bool, self, "indirectScribbleInteraction:isElementFocused:", interaction, elementIdentifier)
-}
-@(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_frameForElement")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_frameForElement :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> CG.Rect {
-    return msgSend(CG.Rect, self, "indirectScribbleInteraction:frameForElement:", interaction, elementIdentifier)
-}
-@(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: ^Objc_Block(proc "c" (focusedInput: ^Responder))) {
-    msgSend(nil, self, "indirectScribbleInteraction:focusElementIfNeeded:referencePoint:completion:", interaction, elementIdentifier, focusReferencePoint, completion)
-}
-@(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_shouldDelayFocusForElement")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_shouldDelayFocusForElement :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> bool {
-    return msgSend(bool, self, "indirectScribbleInteraction:shouldDelayFocusForElement:", interaction, elementIdentifier)
-}
-@(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_willBeginWritingInElement")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_willBeginWritingInElement :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) {
-    msgSend(nil, self, "indirectScribbleInteraction:willBeginWritingInElement:", interaction, elementIdentifier)
-}
-@(objc_type=IndirectScribbleInteractionDelegate, objc_name="indirectScribbleInteraction_didFinishWritingInElement")
-IndirectScribbleInteractionDelegate_indirectScribbleInteraction_didFinishWritingInElement :: #force_inline proc "c" (self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) {
-    msgSend(nil, self, "indirectScribbleInteraction:didFinishWritingInElement:", interaction, elementIdentifier)
-}
+

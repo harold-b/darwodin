@@ -22,23 +22,20 @@ CollectionViewElement :: struct { using _: intrinsics.objc_object,
     using _: UserInterfaceItemIdentification,
 }
 
-@(objc_type=CollectionViewElement, objc_name="prepareForReuse")
-CollectionViewElement_prepareForReuse :: #force_inline proc "c" (self: ^CollectionViewElement) {
-    msgSend(nil, self, "prepareForReuse")
-}
-@(objc_type=CollectionViewElement, objc_name="applyLayoutAttributes")
-CollectionViewElement_applyLayoutAttributes :: #force_inline proc "c" (self: ^CollectionViewElement, layoutAttributes: ^CollectionViewLayoutAttributes) {
-    msgSend(nil, self, "applyLayoutAttributes:", layoutAttributes)
-}
-@(objc_type=CollectionViewElement, objc_name="willTransitionFromLayout")
-CollectionViewElement_willTransitionFromLayout :: #force_inline proc "c" (self: ^CollectionViewElement, oldLayout: ^CollectionViewLayout, newLayout: ^CollectionViewLayout) {
-    msgSend(nil, self, "willTransitionFromLayout:toLayout:", oldLayout, newLayout)
-}
-@(objc_type=CollectionViewElement, objc_name="didTransitionFromLayout")
-CollectionViewElement_didTransitionFromLayout :: #force_inline proc "c" (self: ^CollectionViewElement, oldLayout: ^CollectionViewLayout, newLayout: ^CollectionViewLayout) {
-    msgSend(nil, self, "didTransitionFromLayout:toLayout:", oldLayout, newLayout)
-}
-@(objc_type=CollectionViewElement, objc_name="preferredLayoutAttributesFittingAttributes")
-CollectionViewElement_preferredLayoutAttributesFittingAttributes :: #force_inline proc "c" (self: ^CollectionViewElement, layoutAttributes: ^CollectionViewLayoutAttributes) -> ^CollectionViewLayoutAttributes {
-    return msgSend(^CollectionViewLayoutAttributes, self, "preferredLayoutAttributesFittingAttributes:", layoutAttributes)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewElement, objc_selector="prepareForReuse", objc_name="prepareForReuse")
+    CollectionViewElement_prepareForReuse :: proc(self: ^CollectionViewElement) ---
+
+    @(objc_type=CollectionViewElement, objc_selector="applyLayoutAttributes:", objc_name="applyLayoutAttributes")
+    CollectionViewElement_applyLayoutAttributes :: proc(self: ^CollectionViewElement, layoutAttributes: ^CollectionViewLayoutAttributes) ---
+
+    @(objc_type=CollectionViewElement, objc_selector="willTransitionFromLayout:toLayout:", objc_name="willTransitionFromLayout")
+    CollectionViewElement_willTransitionFromLayout :: proc(self: ^CollectionViewElement, oldLayout: ^CollectionViewLayout, newLayout: ^CollectionViewLayout) ---
+
+    @(objc_type=CollectionViewElement, objc_selector="didTransitionFromLayout:toLayout:", objc_name="didTransitionFromLayout")
+    CollectionViewElement_didTransitionFromLayout :: proc(self: ^CollectionViewElement, oldLayout: ^CollectionViewLayout, newLayout: ^CollectionViewLayout) ---
+
+    @(objc_type=CollectionViewElement, objc_selector="preferredLayoutAttributesFittingAttributes:", objc_name="preferredLayoutAttributesFittingAttributes")
+    CollectionViewElement_preferredLayoutAttributesFittingAttributes :: proc(self: ^CollectionViewElement, layoutAttributes: ^CollectionViewLayoutAttributes) -> ^CollectionViewLayoutAttributes ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIToolTipConfiguration
 ///
-@(objc_class="UIToolTipConfiguration")
+@(objc_class="UIToolTipConfiguration", objc_superclass=NS.Object)
 ToolTipConfiguration :: struct { using _: NS.Object, }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UILabel
 ///
-@(objc_class="UILabel")
+@(objc_class="UILabel", objc_superclass=View)
 Label :: struct { using _: View, 
     using _: NS.Coding,
     using _: ContentSizeCategoryAdjusting,

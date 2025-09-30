@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSPasteboardItem
 ///
-@(objc_class="NSPasteboardItem")
+@(objc_class="NSPasteboardItem", objc_superclass=NS.Object)
 PasteboardItem :: struct { using _: NS.Object, 
     using _: PasteboardWriting,
     using _: PasteboardReading,

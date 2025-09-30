@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSTimeZone
 ///
-@(objc_class="NSTimeZone")
+@(objc_class="NSTimeZone", objc_superclass=Object)
 TimeZone :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

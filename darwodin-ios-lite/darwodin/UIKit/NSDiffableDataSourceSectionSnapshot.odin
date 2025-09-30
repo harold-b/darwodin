@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSDiffableDataSourceSectionSnapshot
 ///
-@(objc_class="NSDiffableDataSourceSectionSnapshot")
+@(objc_class="NSDiffableDataSourceSectionSnapshot", objc_superclass=NS.Object)
 NSDiffableDataSourceSectionSnapshot :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

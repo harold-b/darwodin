@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSPipe
 ///
-@(objc_class="NSPipe")
+@(objc_class="NSPipe", objc_superclass=Object)
 Pipe :: struct { using _: Object, }
 

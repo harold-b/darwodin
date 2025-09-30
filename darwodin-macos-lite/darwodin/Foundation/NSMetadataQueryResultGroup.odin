@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMetadataQueryResultGroup
 ///
-@(objc_class="NSMetadataQueryResultGroup")
+@(objc_class="NSMetadataQueryResultGroup", objc_superclass=Object)
 MetadataQueryResultGroup :: struct { using _: Object, }
 

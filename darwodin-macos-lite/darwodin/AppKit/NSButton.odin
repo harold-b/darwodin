@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSButton
 ///
-@(objc_class="NSButton")
+@(objc_class="NSButton", objc_superclass=Control)
 Button :: struct { using _: Control, 
     using _: UserInterfaceValidations,
     using _: AccessibilityButton,

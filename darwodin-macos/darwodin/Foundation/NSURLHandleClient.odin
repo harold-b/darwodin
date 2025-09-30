@@ -16,26 +16,24 @@ import Sec "../Security"
 @(objc_class="NSURLHandleClient")
 URLHandleClient :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=URLHandleClient, objc_name="URLHandle_resourceDataDidBecomeAvailable")
-URLHandleClient_URLHandle_resourceDataDidBecomeAvailable :: #force_inline proc "c" (self: ^URLHandleClient, sender: ^URLHandle, newBytes: ^Data) {
-    msgSend(nil, self, "URLHandle:resourceDataDidBecomeAvailable:", sender, newBytes)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=URLHandleClient, objc_selector="URLHandle:resourceDataDidBecomeAvailable:", objc_name="URLHandle_resourceDataDidBecomeAvailable")
+    URLHandleClient_URLHandle_resourceDataDidBecomeAvailable :: proc(self: ^URLHandleClient, sender: ^URLHandle, newBytes: ^Data) ---
+
+    @(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidBeginLoading:", objc_name="URLHandleResourceDidBeginLoading")
+    URLHandleClient_URLHandleResourceDidBeginLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
+
+    @(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidFinishLoading:", objc_name="URLHandleResourceDidFinishLoading")
+    URLHandleClient_URLHandleResourceDidFinishLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
+
+    @(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidCancelLoading:", objc_name="URLHandleResourceDidCancelLoading")
+    URLHandleClient_URLHandleResourceDidCancelLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
+
+    @(objc_type=URLHandleClient, objc_selector="URLHandle:resourceDidFailLoadingWithReason:", objc_name="URLHandle_resourceDidFailLoadingWithReason")
+    URLHandleClient_URLHandle_resourceDidFailLoadingWithReason :: proc(self: ^URLHandleClient, sender: ^URLHandle, reason: ^String) ---
 }
-@(objc_type=URLHandleClient, objc_name="URLHandleResourceDidBeginLoading")
-URLHandleClient_URLHandleResourceDidBeginLoading :: #force_inline proc "c" (self: ^URLHandleClient, sender: ^URLHandle) {
-    msgSend(nil, self, "URLHandleResourceDidBeginLoading:", sender)
-}
-@(objc_type=URLHandleClient, objc_name="URLHandleResourceDidFinishLoading")
-URLHandleClient_URLHandleResourceDidFinishLoading :: #force_inline proc "c" (self: ^URLHandleClient, sender: ^URLHandle) {
-    msgSend(nil, self, "URLHandleResourceDidFinishLoading:", sender)
-}
-@(objc_type=URLHandleClient, objc_name="URLHandleResourceDidCancelLoading")
-URLHandleClient_URLHandleResourceDidCancelLoading :: #force_inline proc "c" (self: ^URLHandleClient, sender: ^URLHandle) {
-    msgSend(nil, self, "URLHandleResourceDidCancelLoading:", sender)
-}
-@(objc_type=URLHandleClient, objc_name="URLHandle_resourceDidFailLoadingWithReason")
-URLHandleClient_URLHandle_resourceDidFailLoadingWithReason :: #force_inline proc "c" (self: ^URLHandleClient, sender: ^URLHandle, reason: ^String) {
-    msgSend(nil, self, "URLHandle:resourceDidFailLoadingWithReason:", sender, reason)
-}
+
 @(objc_type=URLHandleClient, objc_name="URLHandle")
 URLHandleClient_URLHandle :: proc {
     URLHandleClient_URLHandle_resourceDataDidBecomeAvailable,

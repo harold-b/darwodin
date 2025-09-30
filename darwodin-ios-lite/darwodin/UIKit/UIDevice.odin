@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDevice
 ///
-@(objc_class="UIDevice")
+@(objc_class="UIDevice", objc_superclass=NS.Object)
 Device :: struct { using _: NS.Object, }
 

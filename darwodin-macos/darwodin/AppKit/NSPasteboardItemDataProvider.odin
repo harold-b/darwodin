@@ -21,11 +21,11 @@ PasteboardItemDataProvider :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PasteboardItemDataProvider, objc_name="pasteboard")
-PasteboardItemDataProvider_pasteboard :: #force_inline proc "c" (self: ^PasteboardItemDataProvider, pasteboard: ^Pasteboard, item: ^PasteboardItem, type: ^NS.String) {
-    msgSend(nil, self, "pasteboard:item:provideDataForType:", pasteboard, item, type)
-}
-@(objc_type=PasteboardItemDataProvider, objc_name="pasteboardFinishedWithDataProvider")
-PasteboardItemDataProvider_pasteboardFinishedWithDataProvider :: #force_inline proc "c" (self: ^PasteboardItemDataProvider, pasteboard: ^Pasteboard) {
-    msgSend(nil, self, "pasteboardFinishedWithDataProvider:", pasteboard)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PasteboardItemDataProvider, objc_selector="pasteboard:item:provideDataForType:", objc_name="pasteboard")
+    PasteboardItemDataProvider_pasteboard :: proc(self: ^PasteboardItemDataProvider, pasteboard: ^Pasteboard, item: ^PasteboardItem, type: ^NS.String) ---
+
+    @(objc_type=PasteboardItemDataProvider, objc_selector="pasteboardFinishedWithDataProvider:", objc_name="pasteboardFinishedWithDataProvider")
+    PasteboardItemDataProvider_pasteboardFinishedWithDataProvider :: proc(self: ^PasteboardItemDataProvider, pasteboard: ^Pasteboard) ---
 }

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSValueTransformer
 ///
-@(objc_class="NSValueTransformer")
+@(objc_class="NSValueTransformer", objc_superclass=Object)
 ValueTransformer :: struct { using _: Object, }
 

@@ -13,7 +13,7 @@ import NS "../Foundation"
 ///
 /// CAConstraintLayoutManager
 ///
-@(objc_class="CAConstraintLayoutManager")
+@(objc_class="CAConstraintLayoutManager", objc_superclass=NS.Object)
 ConstraintLayoutManager :: struct { using _: NS.Object, 
     using _: LayoutManager,
 }

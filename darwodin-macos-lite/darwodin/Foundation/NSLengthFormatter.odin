@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSLengthFormatter
 ///
-@(objc_class="NSLengthFormatter")
+@(objc_class="NSLengthFormatter", objc_superclass=Formatter)
 LengthFormatter :: struct { using _: Formatter, }
 

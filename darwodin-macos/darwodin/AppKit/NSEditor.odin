@@ -21,19 +21,17 @@ Editor :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Editor, objc_name="discardEditing")
-Editor_discardEditing :: #force_inline proc "c" (self: ^Editor) {
-    msgSend(nil, self, "discardEditing")
-}
-@(objc_type=Editor, objc_name="commitEditing")
-Editor_commitEditing :: #force_inline proc "c" (self: ^Editor) -> bool {
-    return msgSend(bool, self, "commitEditing")
-}
-@(objc_type=Editor, objc_name="commitEditingWithDelegate")
-Editor_commitEditingWithDelegate :: #force_inline proc "c" (self: ^Editor, delegate: id, didCommitSelector: SEL, contextInfo: rawptr) {
-    msgSend(nil, self, "commitEditingWithDelegate:didCommitSelector:contextInfo:", delegate, didCommitSelector, contextInfo)
-}
-@(objc_type=Editor, objc_name="commitEditingAndReturnError")
-Editor_commitEditingAndReturnError :: #force_inline proc "c" (self: ^Editor, error: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "commitEditingAndReturnError:", error)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Editor, objc_selector="discardEditing", objc_name="discardEditing")
+    Editor_discardEditing :: proc(self: ^Editor) ---
+
+    @(objc_type=Editor, objc_selector="commitEditing", objc_name="commitEditing")
+    Editor_commitEditing :: proc(self: ^Editor) -> bool ---
+
+    @(objc_type=Editor, objc_selector="commitEditingWithDelegate:didCommitSelector:contextInfo:", objc_name="commitEditingWithDelegate")
+    Editor_commitEditingWithDelegate :: proc(self: ^Editor, delegate: id, didCommitSelector: SEL, contextInfo: rawptr) ---
+
+    @(objc_type=Editor, objc_selector="commitEditingAndReturnError:", objc_name="commitEditingAndReturnError")
+    Editor_commitEditingAndReturnError :: proc(self: ^Editor, error: ^^NS.Error) -> bool ---
 }

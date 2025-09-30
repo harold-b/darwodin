@@ -18,7 +18,8 @@ XPCListenerDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=XPCListenerDelegate, objc_name="listener")
-XPCListenerDelegate_listener :: #force_inline proc "c" (self: ^XPCListenerDelegate, listener: ^XPCListener, newConnection: ^XPCConnection) -> bool {
-    return msgSend(bool, self, "listener:shouldAcceptNewConnection:", listener, newConnection)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=XPCListenerDelegate, objc_selector="listener:shouldAcceptNewConnection:", objc_name="listener")
+    XPCListenerDelegate_listener :: proc(self: ^XPCListenerDelegate, listener: ^XPCListener, newConnection: ^XPCConnection) -> bool ---
 }

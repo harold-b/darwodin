@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIWindowSceneReplacePlacement
 ///
-@(objc_class="UIWindowSceneReplacePlacement")
+@(objc_class="UIWindowSceneReplacePlacement", objc_superclass=WindowScenePlacement)
 WindowSceneReplacePlacement :: struct { using _: WindowScenePlacement, }
 

@@ -18,7 +18,8 @@ StreamDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=StreamDelegate, objc_name="stream")
-StreamDelegate_stream :: #force_inline proc "c" (self: ^StreamDelegate, aStream: ^Stream, eventCode: StreamEvent) {
-    msgSend(nil, self, "stream:handleEvent:", aStream, eventCode)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=StreamDelegate, objc_selector="stream:handleEvent:", objc_name="stream")
+    StreamDelegate_stream :: proc(self: ^StreamDelegate, aStream: ^Stream, eventCode: StreamEvent) ---
 }

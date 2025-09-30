@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnitConverterLinear
 ///
-@(objc_class="NSUnitConverterLinear")
+@(objc_class="NSUnitConverterLinear", objc_superclass=UnitConverter)
 UnitConverterLinear :: struct { using _: UnitConverter, 
     using _: SecureCoding,
 }

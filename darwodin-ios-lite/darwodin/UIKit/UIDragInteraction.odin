@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIDragInteraction
 ///
-@(objc_class="UIDragInteraction")
+@(objc_class="UIDragInteraction", objc_superclass=NS.Object)
 DragInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

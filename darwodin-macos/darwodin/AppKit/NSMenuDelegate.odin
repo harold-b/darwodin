@@ -21,38 +21,33 @@ MenuDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=MenuDelegate, objc_name="menuNeedsUpdate")
-MenuDelegate_menuNeedsUpdate :: #force_inline proc "c" (self: ^MenuDelegate, menu: ^Menu) {
-    msgSend(nil, self, "menuNeedsUpdate:", menu)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MenuDelegate, objc_selector="menuNeedsUpdate:", objc_name="menuNeedsUpdate")
+    MenuDelegate_menuNeedsUpdate :: proc(self: ^MenuDelegate, menu: ^Menu) ---
+
+    @(objc_type=MenuDelegate, objc_selector="numberOfItemsInMenu:", objc_name="numberOfItemsInMenu")
+    MenuDelegate_numberOfItemsInMenu :: proc(self: ^MenuDelegate, menu: ^Menu) -> NS.Integer ---
+
+    @(objc_type=MenuDelegate, objc_selector="menu:updateItem:atIndex:shouldCancel:", objc_name="menu_updateItem_atIndex_shouldCancel")
+    MenuDelegate_menu_updateItem_atIndex_shouldCancel :: proc(self: ^MenuDelegate, menu: ^Menu, item: ^MenuItem, index: NS.Integer, shouldCancel: bool) -> bool ---
+
+    @(objc_type=MenuDelegate, objc_selector="menuHasKeyEquivalent:forEvent:target:action:", objc_name="menuHasKeyEquivalent")
+    MenuDelegate_menuHasKeyEquivalent :: proc(self: ^MenuDelegate, menu: ^Menu, event: ^Event, target: ^id, action: ^SEL) -> bool ---
+
+    @(objc_type=MenuDelegate, objc_selector="menuWillOpen:", objc_name="menuWillOpen")
+    MenuDelegate_menuWillOpen :: proc(self: ^MenuDelegate, menu: ^Menu) ---
+
+    @(objc_type=MenuDelegate, objc_selector="menuDidClose:", objc_name="menuDidClose")
+    MenuDelegate_menuDidClose :: proc(self: ^MenuDelegate, menu: ^Menu) ---
+
+    @(objc_type=MenuDelegate, objc_selector="menu:willHighlightItem:", objc_name="menu_willHighlightItem")
+    MenuDelegate_menu_willHighlightItem :: proc(self: ^MenuDelegate, menu: ^Menu, item: ^MenuItem) ---
+
+    @(objc_type=MenuDelegate, objc_selector="confinementRectForMenu:onScreen:", objc_name="confinementRectForMenu")
+    MenuDelegate_confinementRectForMenu :: proc(self: ^MenuDelegate, menu: ^Menu, screen: ^Screen) -> NS.Rect ---
 }
-@(objc_type=MenuDelegate, objc_name="numberOfItemsInMenu")
-MenuDelegate_numberOfItemsInMenu :: #force_inline proc "c" (self: ^MenuDelegate, menu: ^Menu) -> NS.Integer {
-    return msgSend(NS.Integer, self, "numberOfItemsInMenu:", menu)
-}
-@(objc_type=MenuDelegate, objc_name="menu_updateItem_atIndex_shouldCancel")
-MenuDelegate_menu_updateItem_atIndex_shouldCancel :: #force_inline proc "c" (self: ^MenuDelegate, menu: ^Menu, item: ^MenuItem, index: NS.Integer, shouldCancel: bool) -> bool {
-    return msgSend(bool, self, "menu:updateItem:atIndex:shouldCancel:", menu, item, index, shouldCancel)
-}
-@(objc_type=MenuDelegate, objc_name="menuHasKeyEquivalent")
-MenuDelegate_menuHasKeyEquivalent :: #force_inline proc "c" (self: ^MenuDelegate, menu: ^Menu, event: ^Event, target: ^id, action: ^SEL) -> bool {
-    return msgSend(bool, self, "menuHasKeyEquivalent:forEvent:target:action:", menu, event, target, action)
-}
-@(objc_type=MenuDelegate, objc_name="menuWillOpen")
-MenuDelegate_menuWillOpen :: #force_inline proc "c" (self: ^MenuDelegate, menu: ^Menu) {
-    msgSend(nil, self, "menuWillOpen:", menu)
-}
-@(objc_type=MenuDelegate, objc_name="menuDidClose")
-MenuDelegate_menuDidClose :: #force_inline proc "c" (self: ^MenuDelegate, menu: ^Menu) {
-    msgSend(nil, self, "menuDidClose:", menu)
-}
-@(objc_type=MenuDelegate, objc_name="menu_willHighlightItem")
-MenuDelegate_menu_willHighlightItem :: #force_inline proc "c" (self: ^MenuDelegate, menu: ^Menu, item: ^MenuItem) {
-    msgSend(nil, self, "menu:willHighlightItem:", menu, item)
-}
-@(objc_type=MenuDelegate, objc_name="confinementRectForMenu")
-MenuDelegate_confinementRectForMenu :: #force_inline proc "c" (self: ^MenuDelegate, menu: ^Menu, screen: ^Screen) -> NS.Rect {
-    return msgSend(NS.Rect, self, "confinementRectForMenu:onScreen:", menu, screen)
-}
+
 @(objc_type=MenuDelegate, objc_name="menu")
 MenuDelegate_menu :: proc {
     MenuDelegate_menu_updateItem_atIndex_shouldCancel,

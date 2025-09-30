@@ -20,59 +20,47 @@ Resource :: struct { using _: intrinsics.objc_object,
     using _: Allocation,
 }
 
-@(objc_type=Resource, objc_name="setPurgeableState")
-Resource_setPurgeableState :: #force_inline proc "c" (self: ^Resource, state: PurgeableState) -> PurgeableState {
-    return msgSend(PurgeableState, self, "setPurgeableState:", state)
-}
-@(objc_type=Resource, objc_name="makeAliasable")
-Resource_makeAliasable :: #force_inline proc "c" (self: ^Resource) {
-    msgSend(nil, self, "makeAliasable")
-}
-@(objc_type=Resource, objc_name="isAliasable")
-Resource_isAliasable :: #force_inline proc "c" (self: ^Resource) -> bool {
-    return msgSend(bool, self, "isAliasable")
-}
-@(objc_type=Resource, objc_name="setOwnerWithIdentity")
-Resource_setOwnerWithIdentity :: #force_inline proc "c" (self: ^Resource, task_id_token: CF.task_id_token_t) -> CF.kern_return_t {
-    return msgSend(CF.kern_return_t, self, "setOwnerWithIdentity:", task_id_token)
-}
-@(objc_type=Resource, objc_name="label")
-Resource_label :: #force_inline proc "c" (self: ^Resource) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=Resource, objc_name="setLabel")
-Resource_setLabel :: #force_inline proc "c" (self: ^Resource, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
-}
-@(objc_type=Resource, objc_name="device")
-Resource_device :: #force_inline proc "c" (self: ^Resource) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=Resource, objc_name="cpuCacheMode")
-Resource_cpuCacheMode :: #force_inline proc "c" (self: ^Resource) -> CPUCacheMode {
-    return msgSend(CPUCacheMode, self, "cpuCacheMode")
-}
-@(objc_type=Resource, objc_name="storageMode")
-Resource_storageMode :: #force_inline proc "c" (self: ^Resource) -> StorageMode {
-    return msgSend(StorageMode, self, "storageMode")
-}
-@(objc_type=Resource, objc_name="hazardTrackingMode")
-Resource_hazardTrackingMode :: #force_inline proc "c" (self: ^Resource) -> HazardTrackingMode {
-    return msgSend(HazardTrackingMode, self, "hazardTrackingMode")
-}
-@(objc_type=Resource, objc_name="resourceOptions")
-Resource_resourceOptions :: #force_inline proc "c" (self: ^Resource) -> ResourceOptions {
-    return msgSend(ResourceOptions, self, "resourceOptions")
-}
-@(objc_type=Resource, objc_name="heap")
-Resource_heap :: #force_inline proc "c" (self: ^Resource) -> ^Heap {
-    return msgSend(^Heap, self, "heap")
-}
-@(objc_type=Resource, objc_name="heapOffset")
-Resource_heapOffset :: #force_inline proc "c" (self: ^Resource) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "heapOffset")
-}
-@(objc_type=Resource, objc_name="allocatedSize")
-Resource_allocatedSize :: #force_inline proc "c" (self: ^Resource) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "allocatedSize")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Resource, objc_selector="setPurgeableState:", objc_name="setPurgeableState")
+    Resource_setPurgeableState :: proc(self: ^Resource, state: PurgeableState) -> PurgeableState ---
+
+    @(objc_type=Resource, objc_selector="makeAliasable", objc_name="makeAliasable")
+    Resource_makeAliasable :: proc(self: ^Resource) ---
+
+    @(objc_type=Resource, objc_selector="isAliasable", objc_name="isAliasable")
+    Resource_isAliasable :: proc(self: ^Resource) -> bool ---
+
+    @(objc_type=Resource, objc_selector="setOwnerWithIdentity:", objc_name="setOwnerWithIdentity")
+    Resource_setOwnerWithIdentity :: proc(self: ^Resource, task_id_token: CF.task_id_token_t) -> CF.kern_return_t ---
+
+    @(objc_type=Resource, objc_selector="label", objc_name="label")
+    Resource_label :: proc(self: ^Resource) -> ^NS.String ---
+
+    @(objc_type=Resource, objc_selector="setLabel:", objc_name="setLabel")
+    Resource_setLabel :: proc(self: ^Resource, label: ^NS.String) ---
+
+    @(objc_type=Resource, objc_selector="device", objc_name="device")
+    Resource_device :: proc(self: ^Resource) -> ^Device ---
+
+    @(objc_type=Resource, objc_selector="cpuCacheMode", objc_name="cpuCacheMode")
+    Resource_cpuCacheMode :: proc(self: ^Resource) -> CPUCacheMode ---
+
+    @(objc_type=Resource, objc_selector="storageMode", objc_name="storageMode")
+    Resource_storageMode :: proc(self: ^Resource) -> StorageMode ---
+
+    @(objc_type=Resource, objc_selector="hazardTrackingMode", objc_name="hazardTrackingMode")
+    Resource_hazardTrackingMode :: proc(self: ^Resource) -> HazardTrackingMode ---
+
+    @(objc_type=Resource, objc_selector="resourceOptions", objc_name="resourceOptions")
+    Resource_resourceOptions :: proc(self: ^Resource) -> ResourceOptions ---
+
+    @(objc_type=Resource, objc_selector="heap", objc_name="heap")
+    Resource_heap :: proc(self: ^Resource) -> ^Heap ---
+
+    @(objc_type=Resource, objc_selector="heapOffset", objc_name="heapOffset")
+    Resource_heapOffset :: proc(self: ^Resource) -> NS.UInteger ---
+
+    @(objc_type=Resource, objc_selector="allocatedSize", objc_name="allocatedSize")
+    Resource_allocatedSize :: proc(self: ^Resource) -> NS.UInteger ---
 }

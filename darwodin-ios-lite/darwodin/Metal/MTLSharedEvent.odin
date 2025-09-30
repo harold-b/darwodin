@@ -20,23 +20,20 @@ SharedEvent :: struct { using _: intrinsics.objc_object,
     using _: Event,
 }
 
-@(objc_type=SharedEvent, objc_name="notifyListener")
-SharedEvent_notifyListener :: #force_inline proc "c" (self: ^SharedEvent, listener: ^SharedEventListener, value: cffi.uint64_t, block: SharedEventNotificationBlock) {
-    msgSend(nil, self, "notifyListener:atValue:block:", listener, value, block)
-}
-@(objc_type=SharedEvent, objc_name="newSharedEventHandle")
-SharedEvent_newSharedEventHandle :: #force_inline proc "c" (self: ^SharedEvent) -> ^SharedEventHandle {
-    return msgSend(^SharedEventHandle, self, "newSharedEventHandle")
-}
-@(objc_type=SharedEvent, objc_name="waitUntilSignaledValue")
-SharedEvent_waitUntilSignaledValue :: #force_inline proc "c" (self: ^SharedEvent, value: cffi.uint64_t, milliseconds: cffi.uint64_t) -> bool {
-    return msgSend(bool, self, "waitUntilSignaledValue:timeoutMS:", value, milliseconds)
-}
-@(objc_type=SharedEvent, objc_name="signaledValue")
-SharedEvent_signaledValue :: #force_inline proc "c" (self: ^SharedEvent) -> cffi.uint64_t {
-    return msgSend(cffi.uint64_t, self, "signaledValue")
-}
-@(objc_type=SharedEvent, objc_name="setSignaledValue")
-SharedEvent_setSignaledValue :: #force_inline proc "c" (self: ^SharedEvent, signaledValue: cffi.uint64_t) {
-    msgSend(nil, self, "setSignaledValue:", signaledValue)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SharedEvent, objc_selector="notifyListener:atValue:block:", objc_name="notifyListener")
+    SharedEvent_notifyListener :: proc(self: ^SharedEvent, listener: ^SharedEventListener, value: cffi.uint64_t, block: SharedEventNotificationBlock) ---
+
+    @(objc_type=SharedEvent, objc_selector="newSharedEventHandle", objc_name="newSharedEventHandle")
+    SharedEvent_newSharedEventHandle :: proc(self: ^SharedEvent) -> ^SharedEventHandle ---
+
+    @(objc_type=SharedEvent, objc_selector="waitUntilSignaledValue:timeoutMS:", objc_name="waitUntilSignaledValue")
+    SharedEvent_waitUntilSignaledValue :: proc(self: ^SharedEvent, value: cffi.uint64_t, milliseconds: cffi.uint64_t) -> bool ---
+
+    @(objc_type=SharedEvent, objc_selector="signaledValue", objc_name="signaledValue")
+    SharedEvent_signaledValue :: proc(self: ^SharedEvent) -> cffi.uint64_t ---
+
+    @(objc_type=SharedEvent, objc_selector="setSignaledValue:", objc_name="setSignaledValue")
+    SharedEvent_setSignaledValue :: proc(self: ^SharedEvent, signaledValue: cffi.uint64_t) ---
 }

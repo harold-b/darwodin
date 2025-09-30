@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSExistsCommand
 ///
-@(objc_class="NSExistsCommand")
+@(objc_class="NSExistsCommand", objc_superclass=ScriptCommand)
 ExistsCommand :: struct { using _: ScriptCommand, }
 

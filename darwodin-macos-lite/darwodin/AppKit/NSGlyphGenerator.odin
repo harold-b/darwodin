@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSGlyphGenerator
 ///
-@(objc_class="NSGlyphGenerator")
+@(objc_class="NSGlyphGenerator", objc_superclass=NS.Object)
 GlyphGenerator :: struct { using _: NS.Object, }
 

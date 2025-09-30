@@ -21,163 +21,126 @@ CollectionViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: ScrollViewDelegate,
 }
 
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_shouldHighlightItemAtIndexPath")
-CollectionViewDelegate_collectionView_shouldHighlightItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:shouldHighlightItemAtIndexPath:", collectionView, indexPath)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:shouldHighlightItemAtIndexPath:", objc_name="collectionView_shouldHighlightItemAtIndexPath")
+    CollectionViewDelegate_collectionView_shouldHighlightItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:didHighlightItemAtIndexPath:", objc_name="collectionView_didHighlightItemAtIndexPath")
+    CollectionViewDelegate_collectionView_didHighlightItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:didUnhighlightItemAtIndexPath:", objc_name="collectionView_didUnhighlightItemAtIndexPath")
+    CollectionViewDelegate_collectionView_didUnhighlightItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:shouldSelectItemAtIndexPath:", objc_name="collectionView_shouldSelectItemAtIndexPath")
+    CollectionViewDelegate_collectionView_shouldSelectItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:shouldDeselectItemAtIndexPath:", objc_name="collectionView_shouldDeselectItemAtIndexPath")
+    CollectionViewDelegate_collectionView_shouldDeselectItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:didSelectItemAtIndexPath:", objc_name="collectionView_didSelectItemAtIndexPath")
+    CollectionViewDelegate_collectionView_didSelectItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:didDeselectItemAtIndexPath:", objc_name="collectionView_didDeselectItemAtIndexPath")
+    CollectionViewDelegate_collectionView_didDeselectItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:canPerformPrimaryActionForItemAtIndexPath:", objc_name="collectionView_canPerformPrimaryActionForItemAtIndexPath")
+    CollectionViewDelegate_collectionView_canPerformPrimaryActionForItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:performPrimaryActionForItemAtIndexPath:", objc_name="collectionView_performPrimaryActionForItemAtIndexPath")
+    CollectionViewDelegate_collectionView_performPrimaryActionForItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:willDisplayCell:forItemAtIndexPath:", objc_name="collectionView_willDisplayCell_forItemAtIndexPath")
+    CollectionViewDelegate_collectionView_willDisplayCell_forItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, cell: ^CollectionViewCell, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:", objc_name="collectionView_willDisplaySupplementaryView_forElementKind_atIndexPath")
+    CollectionViewDelegate_collectionView_willDisplaySupplementaryView_forElementKind_atIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, view: ^CollectionReusableView, elementKind: ^NS.String, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:didEndDisplayingCell:forItemAtIndexPath:", objc_name="collectionView_didEndDisplayingCell_forItemAtIndexPath")
+    CollectionViewDelegate_collectionView_didEndDisplayingCell_forItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, cell: ^CollectionViewCell, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:", objc_name="collectionView_didEndDisplayingSupplementaryView_forElementOfKind_atIndexPath")
+    CollectionViewDelegate_collectionView_didEndDisplayingSupplementaryView_forElementOfKind_atIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, view: ^CollectionReusableView, elementKind: ^NS.String, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:shouldShowMenuForItemAtIndexPath:", objc_name="collectionView_shouldShowMenuForItemAtIndexPath")
+    CollectionViewDelegate_collectionView_shouldShowMenuForItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:canPerformAction:forItemAtIndexPath:withSender:", objc_name="collectionView_canPerformAction_forItemAtIndexPath_withSender")
+    CollectionViewDelegate_collectionView_canPerformAction_forItemAtIndexPath_withSender :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, action: SEL, indexPath: ^NS.IndexPath, sender: id) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:performAction:forItemAtIndexPath:withSender:", objc_name="collectionView_performAction_forItemAtIndexPath_withSender")
+    CollectionViewDelegate_collectionView_performAction_forItemAtIndexPath_withSender :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, action: SEL, indexPath: ^NS.IndexPath, sender: id) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:transitionLayoutForOldLayout:newLayout:", objc_name="collectionView_transitionLayoutForOldLayout_newLayout")
+    CollectionViewDelegate_collectionView_transitionLayoutForOldLayout_newLayout :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, fromLayout: ^CollectionViewLayout, toLayout: ^CollectionViewLayout) -> ^CollectionViewTransitionLayout ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:canFocusItemAtIndexPath:", objc_name="collectionView_canFocusItemAtIndexPath")
+    CollectionViewDelegate_collectionView_canFocusItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:shouldUpdateFocusInContext:", objc_name="collectionView_shouldUpdateFocusInContext")
+    CollectionViewDelegate_collectionView_shouldUpdateFocusInContext :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, _context: ^CollectionViewFocusUpdateContext) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:didUpdateFocusInContext:withAnimationCoordinator:", objc_name="collectionView_didUpdateFocusInContext_withAnimationCoordinator")
+    CollectionViewDelegate_collectionView_didUpdateFocusInContext_withAnimationCoordinator :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, _context: ^CollectionViewFocusUpdateContext, coordinator: ^FocusAnimationCoordinator) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="indexPathForPreferredFocusedViewInCollectionView:", objc_name="indexPathForPreferredFocusedViewInCollectionView")
+    CollectionViewDelegate_indexPathForPreferredFocusedViewInCollectionView :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView) -> ^NS.IndexPath ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:selectionFollowsFocusForItemAtIndexPath:", objc_name="collectionView_selectionFollowsFocusForItemAtIndexPath")
+    CollectionViewDelegate_collectionView_selectionFollowsFocusForItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:", objc_name="collectionView_targetIndexPathForMoveOfItemFromOriginalIndexPath_atCurrentIndexPath_toProposedIndexPath")
+    CollectionViewDelegate_collectionView_targetIndexPathForMoveOfItemFromOriginalIndexPath_atCurrentIndexPath_toProposedIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, originalIndexPath: ^NS.IndexPath, currentIndexPath: ^NS.IndexPath, proposedIndexPath: ^NS.IndexPath) -> ^NS.IndexPath ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:", objc_name="collectionView_targetIndexPathForMoveFromItemAtIndexPath_toProposedIndexPath")
+    CollectionViewDelegate_collectionView_targetIndexPathForMoveFromItemAtIndexPath_toProposedIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, currentIndexPath: ^NS.IndexPath, proposedIndexPath: ^NS.IndexPath) -> ^NS.IndexPath ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:targetContentOffsetForProposedContentOffset:", objc_name="collectionView_targetContentOffsetForProposedContentOffset")
+    CollectionViewDelegate_collectionView_targetContentOffsetForProposedContentOffset :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, proposedContentOffset: CG.Point) -> CG.Point ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:canEditItemAtIndexPath:", objc_name="collectionView_canEditItemAtIndexPath")
+    CollectionViewDelegate_collectionView_canEditItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:shouldSpringLoadItemAtIndexPath:withContext:", objc_name="collectionView_shouldSpringLoadItemAtIndexPath_withContext")
+    CollectionViewDelegate_collectionView_shouldSpringLoadItemAtIndexPath_withContext :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath, _context: ^SpringLoadedInteractionContext) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:", objc_name="collectionView_shouldBeginMultipleSelectionInteractionAtIndexPath")
+    CollectionViewDelegate_collectionView_shouldBeginMultipleSelectionInteractionAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:didBeginMultipleSelectionInteractionAtIndexPath:", objc_name="collectionView_didBeginMultipleSelectionInteractionAtIndexPath")
+    CollectionViewDelegate_collectionView_didBeginMultipleSelectionInteractionAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionViewDidEndMultipleSelectionInteraction:", objc_name="collectionViewDidEndMultipleSelectionInteraction")
+    CollectionViewDelegate_collectionViewDidEndMultipleSelectionInteraction :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:contextMenuConfigurationForItemsAtIndexPaths:point:", objc_name="collectionView_contextMenuConfigurationForItemsAtIndexPaths_point")
+    CollectionViewDelegate_collectionView_contextMenuConfigurationForItemsAtIndexPaths_point :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPaths: ^NS.Array, point: CG.Point) -> ^ContextMenuConfiguration ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:contextMenuConfiguration:highlightPreviewForItemAtIndexPath:", objc_name="collectionView_contextMenuConfiguration_highlightPreviewForItemAtIndexPath")
+    CollectionViewDelegate_collectionView_contextMenuConfiguration_highlightPreviewForItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, indexPath: ^NS.IndexPath) -> ^TargetedPreview ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:contextMenuConfiguration:dismissalPreviewForItemAtIndexPath:", objc_name="collectionView_contextMenuConfiguration_dismissalPreviewForItemAtIndexPath")
+    CollectionViewDelegate_collectionView_contextMenuConfiguration_dismissalPreviewForItemAtIndexPath :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, indexPath: ^NS.IndexPath) -> ^TargetedPreview ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:", objc_name="collectionView_willPerformPreviewActionForMenuWithConfiguration_animator")
+    CollectionViewDelegate_collectionView_willPerformPreviewActionForMenuWithConfiguration_animator :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionCommitAnimating) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:willDisplayContextMenuWithConfiguration:animator:", objc_name="collectionView_willDisplayContextMenuWithConfiguration_animator")
+    CollectionViewDelegate_collectionView_willDisplayContextMenuWithConfiguration_animator :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionAnimating) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:willEndContextMenuInteractionWithConfiguration:animator:", objc_name="collectionView_willEndContextMenuInteractionWithConfiguration_animator")
+    CollectionViewDelegate_collectionView_willEndContextMenuInteractionWithConfiguration_animator :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionAnimating) ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:sceneActivationConfigurationForItemAtIndexPath:point:", objc_name="collectionView_sceneActivationConfigurationForItemAtIndexPath_point")
+    CollectionViewDelegate_collectionView_sceneActivationConfigurationForItemAtIndexPath_point :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath, point: CG.Point) -> ^WindowSceneActivationConfiguration ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:contextMenuConfigurationForItemAtIndexPath:point:", objc_name="collectionView_contextMenuConfigurationForItemAtIndexPath_point")
+    CollectionViewDelegate_collectionView_contextMenuConfigurationForItemAtIndexPath_point :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath, point: CG.Point) -> ^ContextMenuConfiguration ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:previewForHighlightingContextMenuWithConfiguration:", objc_name="collectionView_previewForHighlightingContextMenuWithConfiguration")
+    CollectionViewDelegate_collectionView_previewForHighlightingContextMenuWithConfiguration :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration) -> ^TargetedPreview ---
+
+    @(objc_type=CollectionViewDelegate, objc_selector="collectionView:previewForDismissingContextMenuWithConfiguration:", objc_name="collectionView_previewForDismissingContextMenuWithConfiguration")
+    CollectionViewDelegate_collectionView_previewForDismissingContextMenuWithConfiguration :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration) -> ^TargetedPreview ---
 }
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_didHighlightItemAtIndexPath")
-CollectionViewDelegate_collectionView_didHighlightItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:didHighlightItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_didUnhighlightItemAtIndexPath")
-CollectionViewDelegate_collectionView_didUnhighlightItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:didUnhighlightItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_shouldSelectItemAtIndexPath")
-CollectionViewDelegate_collectionView_shouldSelectItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:shouldSelectItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_shouldDeselectItemAtIndexPath")
-CollectionViewDelegate_collectionView_shouldDeselectItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:shouldDeselectItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_didSelectItemAtIndexPath")
-CollectionViewDelegate_collectionView_didSelectItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:didSelectItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_didDeselectItemAtIndexPath")
-CollectionViewDelegate_collectionView_didDeselectItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:didDeselectItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_canPerformPrimaryActionForItemAtIndexPath")
-CollectionViewDelegate_collectionView_canPerformPrimaryActionForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:canPerformPrimaryActionForItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_performPrimaryActionForItemAtIndexPath")
-CollectionViewDelegate_collectionView_performPrimaryActionForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:performPrimaryActionForItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_willDisplayCell_forItemAtIndexPath")
-CollectionViewDelegate_collectionView_willDisplayCell_forItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, cell: ^CollectionViewCell, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:willDisplayCell:forItemAtIndexPath:", collectionView, cell, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_willDisplaySupplementaryView_forElementKind_atIndexPath")
-CollectionViewDelegate_collectionView_willDisplaySupplementaryView_forElementKind_atIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, view: ^CollectionReusableView, elementKind: ^NS.String, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:", collectionView, view, elementKind, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_didEndDisplayingCell_forItemAtIndexPath")
-CollectionViewDelegate_collectionView_didEndDisplayingCell_forItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, cell: ^CollectionViewCell, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:didEndDisplayingCell:forItemAtIndexPath:", collectionView, cell, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_didEndDisplayingSupplementaryView_forElementOfKind_atIndexPath")
-CollectionViewDelegate_collectionView_didEndDisplayingSupplementaryView_forElementOfKind_atIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, view: ^CollectionReusableView, elementKind: ^NS.String, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:", collectionView, view, elementKind, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_shouldShowMenuForItemAtIndexPath")
-CollectionViewDelegate_collectionView_shouldShowMenuForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:shouldShowMenuForItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_canPerformAction_forItemAtIndexPath_withSender")
-CollectionViewDelegate_collectionView_canPerformAction_forItemAtIndexPath_withSender :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, action: SEL, indexPath: ^NS.IndexPath, sender: id) -> bool {
-    return msgSend(bool, self, "collectionView:canPerformAction:forItemAtIndexPath:withSender:", collectionView, action, indexPath, sender)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_performAction_forItemAtIndexPath_withSender")
-CollectionViewDelegate_collectionView_performAction_forItemAtIndexPath_withSender :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, action: SEL, indexPath: ^NS.IndexPath, sender: id) {
-    msgSend(nil, self, "collectionView:performAction:forItemAtIndexPath:withSender:", collectionView, action, indexPath, sender)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_transitionLayoutForOldLayout_newLayout")
-CollectionViewDelegate_collectionView_transitionLayoutForOldLayout_newLayout :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, fromLayout: ^CollectionViewLayout, toLayout: ^CollectionViewLayout) -> ^CollectionViewTransitionLayout {
-    return msgSend(^CollectionViewTransitionLayout, self, "collectionView:transitionLayoutForOldLayout:newLayout:", collectionView, fromLayout, toLayout)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_canFocusItemAtIndexPath")
-CollectionViewDelegate_collectionView_canFocusItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:canFocusItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_shouldUpdateFocusInContext")
-CollectionViewDelegate_collectionView_shouldUpdateFocusInContext :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, _context: ^CollectionViewFocusUpdateContext) -> bool {
-    return msgSend(bool, self, "collectionView:shouldUpdateFocusInContext:", collectionView, _context)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_didUpdateFocusInContext_withAnimationCoordinator")
-CollectionViewDelegate_collectionView_didUpdateFocusInContext_withAnimationCoordinator :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, _context: ^CollectionViewFocusUpdateContext, coordinator: ^FocusAnimationCoordinator) {
-    msgSend(nil, self, "collectionView:didUpdateFocusInContext:withAnimationCoordinator:", collectionView, _context, coordinator)
-}
-@(objc_type=CollectionViewDelegate, objc_name="indexPathForPreferredFocusedViewInCollectionView")
-CollectionViewDelegate_indexPathForPreferredFocusedViewInCollectionView :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "indexPathForPreferredFocusedViewInCollectionView:", collectionView)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_selectionFollowsFocusForItemAtIndexPath")
-CollectionViewDelegate_collectionView_selectionFollowsFocusForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:selectionFollowsFocusForItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_targetIndexPathForMoveOfItemFromOriginalIndexPath_atCurrentIndexPath_toProposedIndexPath")
-CollectionViewDelegate_collectionView_targetIndexPathForMoveOfItemFromOriginalIndexPath_atCurrentIndexPath_toProposedIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, originalIndexPath: ^NS.IndexPath, currentIndexPath: ^NS.IndexPath, proposedIndexPath: ^NS.IndexPath) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:", collectionView, originalIndexPath, currentIndexPath, proposedIndexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_targetIndexPathForMoveFromItemAtIndexPath_toProposedIndexPath")
-CollectionViewDelegate_collectionView_targetIndexPathForMoveFromItemAtIndexPath_toProposedIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, currentIndexPath: ^NS.IndexPath, proposedIndexPath: ^NS.IndexPath) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:", collectionView, currentIndexPath, proposedIndexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_targetContentOffsetForProposedContentOffset")
-CollectionViewDelegate_collectionView_targetContentOffsetForProposedContentOffset :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, proposedContentOffset: CG.Point) -> CG.Point {
-    return msgSend(CG.Point, self, "collectionView:targetContentOffsetForProposedContentOffset:", collectionView, proposedContentOffset)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_canEditItemAtIndexPath")
-CollectionViewDelegate_collectionView_canEditItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:canEditItemAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_shouldSpringLoadItemAtIndexPath_withContext")
-CollectionViewDelegate_collectionView_shouldSpringLoadItemAtIndexPath_withContext :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath, _context: ^SpringLoadedInteractionContext) -> bool {
-    return msgSend(bool, self, "collectionView:shouldSpringLoadItemAtIndexPath:withContext:", collectionView, indexPath, _context)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_shouldBeginMultipleSelectionInteractionAtIndexPath")
-CollectionViewDelegate_collectionView_shouldBeginMultipleSelectionInteractionAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> bool {
-    return msgSend(bool, self, "collectionView:shouldBeginMultipleSelectionInteractionAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_didBeginMultipleSelectionInteractionAtIndexPath")
-CollectionViewDelegate_collectionView_didBeginMultipleSelectionInteractionAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) {
-    msgSend(nil, self, "collectionView:didBeginMultipleSelectionInteractionAtIndexPath:", collectionView, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionViewDidEndMultipleSelectionInteraction")
-CollectionViewDelegate_collectionViewDidEndMultipleSelectionInteraction :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView) {
-    msgSend(nil, self, "collectionViewDidEndMultipleSelectionInteraction:", collectionView)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_contextMenuConfigurationForItemsAtIndexPaths_point")
-CollectionViewDelegate_collectionView_contextMenuConfigurationForItemsAtIndexPaths_point :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPaths: ^NS.Array, point: CG.Point) -> ^ContextMenuConfiguration {
-    return msgSend(^ContextMenuConfiguration, self, "collectionView:contextMenuConfigurationForItemsAtIndexPaths:point:", collectionView, indexPaths, point)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_contextMenuConfiguration_highlightPreviewForItemAtIndexPath")
-CollectionViewDelegate_collectionView_contextMenuConfiguration_highlightPreviewForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, indexPath: ^NS.IndexPath) -> ^TargetedPreview {
-    return msgSend(^TargetedPreview, self, "collectionView:contextMenuConfiguration:highlightPreviewForItemAtIndexPath:", collectionView, configuration, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_contextMenuConfiguration_dismissalPreviewForItemAtIndexPath")
-CollectionViewDelegate_collectionView_contextMenuConfiguration_dismissalPreviewForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, indexPath: ^NS.IndexPath) -> ^TargetedPreview {
-    return msgSend(^TargetedPreview, self, "collectionView:contextMenuConfiguration:dismissalPreviewForItemAtIndexPath:", collectionView, configuration, indexPath)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_willPerformPreviewActionForMenuWithConfiguration_animator")
-CollectionViewDelegate_collectionView_willPerformPreviewActionForMenuWithConfiguration_animator :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionCommitAnimating) {
-    msgSend(nil, self, "collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:", collectionView, configuration, animator)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_willDisplayContextMenuWithConfiguration_animator")
-CollectionViewDelegate_collectionView_willDisplayContextMenuWithConfiguration_animator :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionAnimating) {
-    msgSend(nil, self, "collectionView:willDisplayContextMenuWithConfiguration:animator:", collectionView, configuration, animator)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_willEndContextMenuInteractionWithConfiguration_animator")
-CollectionViewDelegate_collectionView_willEndContextMenuInteractionWithConfiguration_animator :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionAnimating) {
-    msgSend(nil, self, "collectionView:willEndContextMenuInteractionWithConfiguration:animator:", collectionView, configuration, animator)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_sceneActivationConfigurationForItemAtIndexPath_point")
-CollectionViewDelegate_collectionView_sceneActivationConfigurationForItemAtIndexPath_point :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath, point: CG.Point) -> ^WindowSceneActivationConfiguration {
-    return msgSend(^WindowSceneActivationConfiguration, self, "collectionView:sceneActivationConfigurationForItemAtIndexPath:point:", collectionView, indexPath, point)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_contextMenuConfigurationForItemAtIndexPath_point")
-CollectionViewDelegate_collectionView_contextMenuConfigurationForItemAtIndexPath_point :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath, point: CG.Point) -> ^ContextMenuConfiguration {
-    return msgSend(^ContextMenuConfiguration, self, "collectionView:contextMenuConfigurationForItemAtIndexPath:point:", collectionView, indexPath, point)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_previewForHighlightingContextMenuWithConfiguration")
-CollectionViewDelegate_collectionView_previewForHighlightingContextMenuWithConfiguration :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration) -> ^TargetedPreview {
-    return msgSend(^TargetedPreview, self, "collectionView:previewForHighlightingContextMenuWithConfiguration:", collectionView, configuration)
-}
-@(objc_type=CollectionViewDelegate, objc_name="collectionView_previewForDismissingContextMenuWithConfiguration")
-CollectionViewDelegate_collectionView_previewForDismissingContextMenuWithConfiguration :: #force_inline proc "c" (self: ^CollectionViewDelegate, collectionView: ^CollectionView, configuration: ^ContextMenuConfiguration) -> ^TargetedPreview {
-    return msgSend(^TargetedPreview, self, "collectionView:previewForDismissingContextMenuWithConfiguration:", collectionView, configuration)
-}
+

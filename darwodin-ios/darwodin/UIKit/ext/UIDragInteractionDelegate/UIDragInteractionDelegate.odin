@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -54,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).dragInteraction_itemsForBeginningSession(self, interaction, session)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dragInteraction:itemsForBeginningSession:"), auto_cast dragInteraction_itemsForBeginningSession, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragInteraction:itemsForBeginningSession:"), auto_cast dragInteraction_itemsForBeginningSession, "^void@:@@") do panic("Failed to register objC method.")
     }
     if vt.dragInteraction_previewForLiftingItem_session != nil {
         dragInteraction_previewForLiftingItem_session :: proc "c" (self: ^UI.DragInteractionDelegate, _: SEL, interaction: ^UI.DragInteraction, item: ^UI.DragItem, session: ^UI.DragSession) -> ^UI.TargetedDragPreview {
@@ -164,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).dragInteraction_itemsForAddingToSession_withTouchAtPoint(self, interaction, session, point)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dragInteraction:itemsForAddingToSession:withTouchAtPoint:"), auto_cast dragInteraction_itemsForAddingToSession_withTouchAtPoint, "@@:@@{CGPoint=dd}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragInteraction:itemsForAddingToSession:withTouchAtPoint:"), auto_cast dragInteraction_itemsForAddingToSession_withTouchAtPoint, "^void@:@@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.dragInteraction_sessionForAddingItems_withTouchAtPoint != nil {
         dragInteraction_sessionForAddingItems_withTouchAtPoint :: proc "c" (self: ^UI.DragInteractionDelegate, _: SEL, interaction: ^UI.DragInteraction, sessions: ^NS.Array, point: CG.Point) -> ^UI.DragSession {
@@ -174,7 +175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).dragInteraction_sessionForAddingItems_withTouchAtPoint(self, interaction, sessions, point)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dragInteraction:sessionForAddingItems:withTouchAtPoint:"), auto_cast dragInteraction_sessionForAddingItems_withTouchAtPoint, "@@:@@{CGPoint=dd}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragInteraction:sessionForAddingItems:withTouchAtPoint:"), auto_cast dragInteraction_sessionForAddingItems_withTouchAtPoint, "@@:@^void{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.dragInteraction_session_willAddItems_forInteraction != nil {
         dragInteraction_session_willAddItems_forInteraction :: proc "c" (self: ^UI.DragInteractionDelegate, _: SEL, interaction: ^UI.DragInteraction, session: ^UI.DragSession, items: ^NS.Array, addingInteraction: ^UI.DragInteraction) {
@@ -184,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).dragInteraction_session_willAddItems_forInteraction(self, interaction, session, items, addingInteraction)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("dragInteraction:session:willAddItems:forInteraction:"), auto_cast dragInteraction_session_willAddItems_forInteraction, "v@:@@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("dragInteraction:session:willAddItems:forInteraction:"), auto_cast dragInteraction_session_willAddItems_forInteraction, "v@:@@^void@") do panic("Failed to register objC method.")
     }
     if vt.dragInteraction_previewForCancellingItem_withDefault != nil {
         dragInteraction_previewForCancellingItem_withDefault :: proc "c" (self: ^UI.DragInteractionDelegate, _: SEL, interaction: ^UI.DragInteraction, item: ^UI.DragItem, defaultPreview: ^UI.TargetedDragPreview) -> ^UI.TargetedDragPreview {

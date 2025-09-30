@@ -21,19 +21,17 @@ ViewControllerAnimatedTransitioning :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewControllerAnimatedTransitioning, objc_name="transitionDuration")
-ViewControllerAnimatedTransitioning_transitionDuration :: #force_inline proc "c" (self: ^ViewControllerAnimatedTransitioning, transitionContext: ^ViewControllerContextTransitioning) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "transitionDuration:", transitionContext)
-}
-@(objc_type=ViewControllerAnimatedTransitioning, objc_name="animateTransition")
-ViewControllerAnimatedTransitioning_animateTransition :: #force_inline proc "c" (self: ^ViewControllerAnimatedTransitioning, transitionContext: ^ViewControllerContextTransitioning) {
-    msgSend(nil, self, "animateTransition:", transitionContext)
-}
-@(objc_type=ViewControllerAnimatedTransitioning, objc_name="interruptibleAnimatorForTransition")
-ViewControllerAnimatedTransitioning_interruptibleAnimatorForTransition :: #force_inline proc "c" (self: ^ViewControllerAnimatedTransitioning, transitionContext: ^ViewControllerContextTransitioning) -> ^ViewImplicitlyAnimating {
-    return msgSend(^ViewImplicitlyAnimating, self, "interruptibleAnimatorForTransition:", transitionContext)
-}
-@(objc_type=ViewControllerAnimatedTransitioning, objc_name="animationEnded")
-ViewControllerAnimatedTransitioning_animationEnded :: #force_inline proc "c" (self: ^ViewControllerAnimatedTransitioning, transitionCompleted: bool) {
-    msgSend(nil, self, "animationEnded:", transitionCompleted)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewControllerAnimatedTransitioning, objc_selector="transitionDuration:", objc_name="transitionDuration")
+    ViewControllerAnimatedTransitioning_transitionDuration :: proc(self: ^ViewControllerAnimatedTransitioning, transitionContext: ^ViewControllerContextTransitioning) -> NS.TimeInterval ---
+
+    @(objc_type=ViewControllerAnimatedTransitioning, objc_selector="animateTransition:", objc_name="animateTransition")
+    ViewControllerAnimatedTransitioning_animateTransition :: proc(self: ^ViewControllerAnimatedTransitioning, transitionContext: ^ViewControllerContextTransitioning) ---
+
+    @(objc_type=ViewControllerAnimatedTransitioning, objc_selector="interruptibleAnimatorForTransition:", objc_name="interruptibleAnimatorForTransition")
+    ViewControllerAnimatedTransitioning_interruptibleAnimatorForTransition :: proc(self: ^ViewControllerAnimatedTransitioning, transitionContext: ^ViewControllerContextTransitioning) -> ^ViewImplicitlyAnimating ---
+
+    @(objc_type=ViewControllerAnimatedTransitioning, objc_selector="animationEnded:", objc_name="animationEnded")
+    ViewControllerAnimatedTransitioning_animationEnded :: proc(self: ^ViewControllerAnimatedTransitioning, transitionCompleted: bool) ---
 }

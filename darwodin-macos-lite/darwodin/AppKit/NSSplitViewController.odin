@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSSplitViewController
 ///
-@(objc_class="NSSplitViewController")
+@(objc_class="NSSplitViewController", objc_superclass=ViewController)
 SplitViewController :: struct { using _: ViewController, 
     using _: SplitViewDelegate,
     using _: UserInterfaceValidations,

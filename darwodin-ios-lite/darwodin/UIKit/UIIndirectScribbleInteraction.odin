@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIIndirectScribbleInteraction
 ///
-@(objc_class="UIIndirectScribbleInteraction")
+@(objc_class="UIIndirectScribbleInteraction", objc_superclass=NS.Object)
 IndirectScribbleInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

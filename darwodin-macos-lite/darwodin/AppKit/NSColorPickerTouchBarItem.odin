@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSColorPickerTouchBarItem
 ///
-@(objc_class="NSColorPickerTouchBarItem")
+@(objc_class="NSColorPickerTouchBarItem", objc_superclass=TouchBarItem)
 ColorPickerTouchBarItem :: struct { using _: TouchBarItem, }
 

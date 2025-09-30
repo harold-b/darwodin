@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDynamicAnimator
 ///
-@(objc_class="UIDynamicAnimator")
+@(objc_class="UIDynamicAnimator", objc_superclass=NS.Object)
 DynamicAnimator :: struct { using _: NS.Object, }
 

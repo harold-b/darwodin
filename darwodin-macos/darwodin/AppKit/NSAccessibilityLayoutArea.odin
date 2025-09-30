@@ -21,19 +21,17 @@ AccessibilityLayoutArea :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 
-@(objc_type=AccessibilityLayoutArea, objc_name="accessibilityLabel")
-AccessibilityLayoutArea_accessibilityLabel :: #force_inline proc "c" (self: ^AccessibilityLayoutArea) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityLabel")
-}
-@(objc_type=AccessibilityLayoutArea, objc_name="accessibilityChildren")
-AccessibilityLayoutArea_accessibilityChildren :: #force_inline proc "c" (self: ^AccessibilityLayoutArea) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityChildren")
-}
-@(objc_type=AccessibilityLayoutArea, objc_name="accessibilitySelectedChildren")
-AccessibilityLayoutArea_accessibilitySelectedChildren :: #force_inline proc "c" (self: ^AccessibilityLayoutArea) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySelectedChildren")
-}
-@(objc_type=AccessibilityLayoutArea, objc_name="accessibilityFocusedUIElement")
-AccessibilityLayoutArea_accessibilityFocusedUIElement :: #force_inline proc "c" (self: ^AccessibilityLayoutArea) -> id {
-    return msgSend(id, self, "accessibilityFocusedUIElement")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityLayoutArea, objc_selector="accessibilityLabel", objc_name="accessibilityLabel")
+    AccessibilityLayoutArea_accessibilityLabel :: proc(self: ^AccessibilityLayoutArea) -> ^NS.String ---
+
+    @(objc_type=AccessibilityLayoutArea, objc_selector="accessibilityChildren", objc_name="accessibilityChildren")
+    AccessibilityLayoutArea_accessibilityChildren :: proc(self: ^AccessibilityLayoutArea) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityLayoutArea, objc_selector="accessibilitySelectedChildren", objc_name="accessibilitySelectedChildren")
+    AccessibilityLayoutArea_accessibilitySelectedChildren :: proc(self: ^AccessibilityLayoutArea) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityLayoutArea, objc_selector="accessibilityFocusedUIElement", objc_name="accessibilityFocusedUIElement")
+    AccessibilityLayoutArea_accessibilityFocusedUIElement :: proc(self: ^AccessibilityLayoutArea) -> id ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSOpenPanel
 ///
-@(objc_class="NSOpenPanel")
+@(objc_class="NSOpenPanel", objc_superclass=SavePanel)
 OpenPanel :: struct { using _: SavePanel, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSDraggingImageComponent
 ///
-@(objc_class="NSDraggingImageComponent")
+@(objc_class="NSDraggingImageComponent", objc_superclass=NS.Object)
 DraggingImageComponent :: struct { using _: NS.Object, }
 

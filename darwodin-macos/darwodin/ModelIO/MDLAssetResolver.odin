@@ -21,11 +21,11 @@ AssetResolver :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AssetResolver, objc_name="canResolveAssetNamed")
-AssetResolver_canResolveAssetNamed :: #force_inline proc "c" (self: ^AssetResolver, name: ^NS.String) -> bool {
-    return msgSend(bool, self, "canResolveAssetNamed:", name)
-}
-@(objc_type=AssetResolver, objc_name="resolveAssetNamed")
-AssetResolver_resolveAssetNamed :: #force_inline proc "c" (self: ^AssetResolver, name: ^NS.String) -> ^NS.URL {
-    return msgSend(^NS.URL, self, "resolveAssetNamed:", name)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AssetResolver, objc_selector="canResolveAssetNamed:", objc_name="canResolveAssetNamed")
+    AssetResolver_canResolveAssetNamed :: proc(self: ^AssetResolver, name: ^NS.String) -> bool ---
+
+    @(objc_type=AssetResolver, objc_selector="resolveAssetNamed:", objc_name="resolveAssetNamed")
+    AssetResolver_resolveAssetNamed :: proc(self: ^AssetResolver, name: ^NS.String) -> ^NS.URL ---
 }

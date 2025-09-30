@@ -21,19 +21,17 @@ TextInputDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextInputDelegate, objc_name="selectionWillChange")
-TextInputDelegate_selectionWillChange :: #force_inline proc "c" (self: ^TextInputDelegate, textInput: ^TextInput) {
-    msgSend(nil, self, "selectionWillChange:", textInput)
-}
-@(objc_type=TextInputDelegate, objc_name="selectionDidChange")
-TextInputDelegate_selectionDidChange :: #force_inline proc "c" (self: ^TextInputDelegate, textInput: ^TextInput) {
-    msgSend(nil, self, "selectionDidChange:", textInput)
-}
-@(objc_type=TextInputDelegate, objc_name="textWillChange")
-TextInputDelegate_textWillChange :: #force_inline proc "c" (self: ^TextInputDelegate, textInput: ^TextInput) {
-    msgSend(nil, self, "textWillChange:", textInput)
-}
-@(objc_type=TextInputDelegate, objc_name="textDidChange")
-TextInputDelegate_textDidChange :: #force_inline proc "c" (self: ^TextInputDelegate, textInput: ^TextInput) {
-    msgSend(nil, self, "textDidChange:", textInput)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextInputDelegate, objc_selector="selectionWillChange:", objc_name="selectionWillChange")
+    TextInputDelegate_selectionWillChange :: proc(self: ^TextInputDelegate, textInput: ^TextInput) ---
+
+    @(objc_type=TextInputDelegate, objc_selector="selectionDidChange:", objc_name="selectionDidChange")
+    TextInputDelegate_selectionDidChange :: proc(self: ^TextInputDelegate, textInput: ^TextInput) ---
+
+    @(objc_type=TextInputDelegate, objc_selector="textWillChange:", objc_name="textWillChange")
+    TextInputDelegate_textWillChange :: proc(self: ^TextInputDelegate, textInput: ^TextInput) ---
+
+    @(objc_type=TextInputDelegate, objc_selector="textDidChange:", objc_name="textDidChange")
+    TextInputDelegate_textDidChange :: proc(self: ^TextInputDelegate, textInput: ^TextInput) ---
 }

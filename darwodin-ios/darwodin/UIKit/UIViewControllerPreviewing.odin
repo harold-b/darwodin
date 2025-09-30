@@ -21,23 +21,20 @@ ViewControllerPreviewing :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewControllerPreviewing, objc_name="previewingGestureRecognizerForFailureRelationship")
-ViewControllerPreviewing_previewingGestureRecognizerForFailureRelationship :: #force_inline proc "c" (self: ^ViewControllerPreviewing) -> ^GestureRecognizer {
-    return msgSend(^GestureRecognizer, self, "previewingGestureRecognizerForFailureRelationship")
-}
-@(objc_type=ViewControllerPreviewing, objc_name="delegate")
-ViewControllerPreviewing_delegate :: #force_inline proc "c" (self: ^ViewControllerPreviewing) -> ^ViewControllerPreviewingDelegate {
-    return msgSend(^ViewControllerPreviewingDelegate, self, "delegate")
-}
-@(objc_type=ViewControllerPreviewing, objc_name="sourceView")
-ViewControllerPreviewing_sourceView :: #force_inline proc "c" (self: ^ViewControllerPreviewing) -> ^View {
-    return msgSend(^View, self, "sourceView")
-}
-@(objc_type=ViewControllerPreviewing, objc_name="sourceRect")
-ViewControllerPreviewing_sourceRect :: #force_inline proc "c" (self: ^ViewControllerPreviewing) -> CG.Rect {
-    return msgSend(CG.Rect, self, "sourceRect")
-}
-@(objc_type=ViewControllerPreviewing, objc_name="setSourceRect")
-ViewControllerPreviewing_setSourceRect :: #force_inline proc "c" (self: ^ViewControllerPreviewing, sourceRect: CG.Rect) {
-    msgSend(nil, self, "setSourceRect:", sourceRect)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewControllerPreviewing, objc_selector="previewingGestureRecognizerForFailureRelationship", objc_name="previewingGestureRecognizerForFailureRelationship")
+    ViewControllerPreviewing_previewingGestureRecognizerForFailureRelationship :: proc(self: ^ViewControllerPreviewing) -> ^GestureRecognizer ---
+
+    @(objc_type=ViewControllerPreviewing, objc_selector="delegate", objc_name="delegate")
+    ViewControllerPreviewing_delegate :: proc(self: ^ViewControllerPreviewing) -> ^ViewControllerPreviewingDelegate ---
+
+    @(objc_type=ViewControllerPreviewing, objc_selector="sourceView", objc_name="sourceView")
+    ViewControllerPreviewing_sourceView :: proc(self: ^ViewControllerPreviewing) -> ^View ---
+
+    @(objc_type=ViewControllerPreviewing, objc_selector="sourceRect", objc_name="sourceRect")
+    ViewControllerPreviewing_sourceRect :: proc(self: ^ViewControllerPreviewing) -> CG.Rect ---
+
+    @(objc_type=ViewControllerPreviewing, objc_selector="setSourceRect:", objc_name="setSourceRect")
+    ViewControllerPreviewing_setSourceRect :: proc(self: ^ViewControllerPreviewing, sourceRect: CG.Rect) ---
 }

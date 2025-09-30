@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIGraphicsImageRendererContext
 ///
-@(objc_class="UIGraphicsImageRendererContext")
+@(objc_class="UIGraphicsImageRendererContext", objc_superclass=GraphicsRendererContext)
 GraphicsImageRendererContext :: struct { using _: GraphicsRendererContext, }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITableViewController
 ///
-@(objc_class="UITableViewController")
+@(objc_class="UITableViewController", objc_superclass=ViewController)
 TableViewController :: struct { using _: ViewController, 
     using _: TableViewDelegate,
     using _: TableViewDataSource,

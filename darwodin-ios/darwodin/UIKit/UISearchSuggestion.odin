@@ -21,27 +21,23 @@ SearchSuggestion :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SearchSuggestion, objc_name="localizedSuggestion")
-SearchSuggestion_localizedSuggestion :: #force_inline proc "c" (self: ^SearchSuggestion) -> ^NS.String {
-    return msgSend(^NS.String, self, "localizedSuggestion")
-}
-@(objc_type=SearchSuggestion, objc_name="localizedDescription")
-SearchSuggestion_localizedDescription :: #force_inline proc "c" (self: ^SearchSuggestion) -> ^NS.String {
-    return msgSend(^NS.String, self, "localizedDescription")
-}
-@(objc_type=SearchSuggestion, objc_name="iconImage")
-SearchSuggestion_iconImage :: #force_inline proc "c" (self: ^SearchSuggestion) -> ^Image {
-    return msgSend(^Image, self, "iconImage")
-}
-@(objc_type=SearchSuggestion, objc_name="localizedAttributedSuggestion")
-SearchSuggestion_localizedAttributedSuggestion :: #force_inline proc "c" (self: ^SearchSuggestion) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "localizedAttributedSuggestion")
-}
-@(objc_type=SearchSuggestion, objc_name="representedObject")
-SearchSuggestion_representedObject :: #force_inline proc "c" (self: ^SearchSuggestion) -> id {
-    return msgSend(id, self, "representedObject")
-}
-@(objc_type=SearchSuggestion, objc_name="setRepresentedObject")
-SearchSuggestion_setRepresentedObject :: #force_inline proc "c" (self: ^SearchSuggestion, representedObject: id) {
-    msgSend(nil, self, "setRepresentedObject:", representedObject)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SearchSuggestion, objc_selector="localizedSuggestion", objc_name="localizedSuggestion")
+    SearchSuggestion_localizedSuggestion :: proc(self: ^SearchSuggestion) -> ^NS.String ---
+
+    @(objc_type=SearchSuggestion, objc_selector="localizedDescription", objc_name="localizedDescription")
+    SearchSuggestion_localizedDescription :: proc(self: ^SearchSuggestion) -> ^NS.String ---
+
+    @(objc_type=SearchSuggestion, objc_selector="iconImage", objc_name="iconImage")
+    SearchSuggestion_iconImage :: proc(self: ^SearchSuggestion) -> ^Image ---
+
+    @(objc_type=SearchSuggestion, objc_selector="localizedAttributedSuggestion", objc_name="localizedAttributedSuggestion")
+    SearchSuggestion_localizedAttributedSuggestion :: proc(self: ^SearchSuggestion) -> ^NS.AttributedString ---
+
+    @(objc_type=SearchSuggestion, objc_selector="representedObject", objc_name="representedObject")
+    SearchSuggestion_representedObject :: proc(self: ^SearchSuggestion) -> id ---
+
+    @(objc_type=SearchSuggestion, objc_selector="setRepresentedObject:", objc_name="setRepresentedObject")
+    SearchSuggestion_setRepresentedObject :: proc(self: ^SearchSuggestion, representedObject: id) ---
 }

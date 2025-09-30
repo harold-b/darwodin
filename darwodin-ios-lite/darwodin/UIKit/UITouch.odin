@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITouch
 ///
-@(objc_class="UITouch")
+@(objc_class="UITouch", objc_superclass=NS.Object)
 Touch :: struct { using _: NS.Object, }
 

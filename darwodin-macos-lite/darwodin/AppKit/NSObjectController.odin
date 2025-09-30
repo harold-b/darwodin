@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSObjectController
 ///
-@(objc_class="NSObjectController")
+@(objc_class="NSObjectController", objc_superclass=Controller)
 ObjectController :: struct { using _: Controller, }
 

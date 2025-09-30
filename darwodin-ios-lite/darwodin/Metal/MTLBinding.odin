@@ -20,27 +20,23 @@ Binding :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Binding, objc_name="name")
-Binding_name :: #force_inline proc "c" (self: ^Binding) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
-}
-@(objc_type=Binding, objc_name="type")
-Binding_type :: #force_inline proc "c" (self: ^Binding) -> BindingType {
-    return msgSend(BindingType, self, "type")
-}
-@(objc_type=Binding, objc_name="access")
-Binding_access :: #force_inline proc "c" (self: ^Binding) -> BindingAccess {
-    return msgSend(BindingAccess, self, "access")
-}
-@(objc_type=Binding, objc_name="index")
-Binding_index :: #force_inline proc "c" (self: ^Binding) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "index")
-}
-@(objc_type=Binding, objc_name="isUsed")
-Binding_isUsed :: #force_inline proc "c" (self: ^Binding) -> bool {
-    return msgSend(bool, self, "isUsed")
-}
-@(objc_type=Binding, objc_name="isArgument")
-Binding_isArgument :: #force_inline proc "c" (self: ^Binding) -> bool {
-    return msgSend(bool, self, "isArgument")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Binding, objc_selector="name", objc_name="name")
+    Binding_name :: proc(self: ^Binding) -> ^NS.String ---
+
+    @(objc_type=Binding, objc_selector="type", objc_name="type")
+    Binding_type :: proc(self: ^Binding) -> BindingType ---
+
+    @(objc_type=Binding, objc_selector="access", objc_name="access")
+    Binding_access :: proc(self: ^Binding) -> BindingAccess ---
+
+    @(objc_type=Binding, objc_selector="index", objc_name="index")
+    Binding_index :: proc(self: ^Binding) -> NS.UInteger ---
+
+    @(objc_type=Binding, objc_selector="isUsed", objc_name="isUsed")
+    Binding_isUsed :: proc(self: ^Binding) -> bool ---
+
+    @(objc_type=Binding, objc_selector="isArgument", objc_name="isArgument")
+    Binding_isArgument :: proc(self: ^Binding) -> bool ---
 }

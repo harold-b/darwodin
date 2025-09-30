@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSDistantObjectRequest
 ///
-@(objc_class="NSDistantObjectRequest")
+@(objc_class="NSDistantObjectRequest", objc_superclass=Object)
 DistantObjectRequest :: struct { using _: Object, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPrintServiceExtension
 ///
-@(objc_class="UIPrintServiceExtension")
+@(objc_class="UIPrintServiceExtension", objc_superclass=NS.Object)
 PrintServiceExtension :: struct { using _: NS.Object, }
 

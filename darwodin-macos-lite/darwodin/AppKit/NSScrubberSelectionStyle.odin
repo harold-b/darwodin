@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSScrubberSelectionStyle
 ///
-@(objc_class="NSScrubberSelectionStyle")
+@(objc_class="NSScrubberSelectionStyle", objc_superclass=NS.Object)
 ScrubberSelectionStyle :: struct { using _: NS.Object, 
     using _: NS.Coding,
 }

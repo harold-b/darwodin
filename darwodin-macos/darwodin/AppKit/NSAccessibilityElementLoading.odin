@@ -21,11 +21,11 @@ AccessibilityElementLoading :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AccessibilityElementLoading, objc_name="accessibilityElementWithToken")
-AccessibilityElementLoading_accessibilityElementWithToken :: #force_inline proc "c" (self: ^AccessibilityElementLoading, token: ^id) -> ^AccessibilityElementProtocol {
-    return msgSend(^AccessibilityElementProtocol, self, "accessibilityElementWithToken:", token)
-}
-@(objc_type=AccessibilityElementLoading, objc_name="accessibilityRangeInTargetElementWithToken")
-AccessibilityElementLoading_accessibilityRangeInTargetElementWithToken :: #force_inline proc "c" (self: ^AccessibilityElementLoading, token: ^id) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityRangeInTargetElementWithToken:", token)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityElementLoading, objc_selector="accessibilityElementWithToken:", objc_name="accessibilityElementWithToken")
+    AccessibilityElementLoading_accessibilityElementWithToken :: proc(self: ^AccessibilityElementLoading, token: ^id) -> ^AccessibilityElementProtocol ---
+
+    @(objc_type=AccessibilityElementLoading, objc_selector="accessibilityRangeInTargetElementWithToken:", objc_name="accessibilityRangeInTargetElementWithToken")
+    AccessibilityElementLoading_accessibilityRangeInTargetElementWithToken :: proc(self: ^AccessibilityElementLoading, token: ^id) -> NS._NSRange ---
 }

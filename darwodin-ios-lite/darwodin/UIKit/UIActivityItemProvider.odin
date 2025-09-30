@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIActivityItemProvider
 ///
-@(objc_class="UIActivityItemProvider")
+@(objc_class="UIActivityItemProvider", objc_superclass=NS.Operation)
 ActivityItemProvider :: struct { using _: NS.Operation, 
     using _: ActivityItemSource,
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITableViewPlaceholder
 ///
-@(objc_class="UITableViewPlaceholder")
+@(objc_class="UITableViewPlaceholder", objc_superclass=NS.Object)
 TableViewPlaceholder :: struct { using _: NS.Object, }
 

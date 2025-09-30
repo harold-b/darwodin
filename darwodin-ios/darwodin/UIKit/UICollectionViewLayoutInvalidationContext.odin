@@ -16,194 +16,53 @@ import CA "../QuartzCore"
 ///
 /// UICollectionViewLayoutInvalidationContext
 ///
-@(objc_class="UICollectionViewLayoutInvalidationContext")
+@(objc_class="UICollectionViewLayoutInvalidationContext", objc_superclass=NS.Object)
 CollectionViewLayoutInvalidationContext :: struct { using _: NS.Object, }
 
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="init")
-CollectionViewLayoutInvalidationContext_init :: proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> ^CollectionViewLayoutInvalidationContext {
-    return msgSend(^CollectionViewLayoutInvalidationContext, self, "init")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="invalidateItemsAtIndexPaths:", objc_name="invalidateItemsAtIndexPaths")
+    CollectionViewLayoutInvalidationContext_invalidateItemsAtIndexPaths :: proc(self: ^CollectionViewLayoutInvalidationContext, indexPaths: ^NS.Array) ---
 
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="invalidateSupplementaryElementsOfKind:atIndexPaths:", objc_name="invalidateSupplementaryElementsOfKind")
+    CollectionViewLayoutInvalidationContext_invalidateSupplementaryElementsOfKind :: proc(self: ^CollectionViewLayoutInvalidationContext, elementKind: ^NS.String, indexPaths: ^NS.Array) ---
 
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="invalidateItemsAtIndexPaths")
-CollectionViewLayoutInvalidationContext_invalidateItemsAtIndexPaths :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext, indexPaths: ^NS.Array) {
-    msgSend(nil, self, "invalidateItemsAtIndexPaths:", indexPaths)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="invalidateSupplementaryElementsOfKind")
-CollectionViewLayoutInvalidationContext_invalidateSupplementaryElementsOfKind :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext, elementKind: ^NS.String, indexPaths: ^NS.Array) {
-    msgSend(nil, self, "invalidateSupplementaryElementsOfKind:atIndexPaths:", elementKind, indexPaths)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="invalidateDecorationElementsOfKind")
-CollectionViewLayoutInvalidationContext_invalidateDecorationElementsOfKind :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext, elementKind: ^NS.String, indexPaths: ^NS.Array) {
-    msgSend(nil, self, "invalidateDecorationElementsOfKind:atIndexPaths:", elementKind, indexPaths)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="invalidateEverything")
-CollectionViewLayoutInvalidationContext_invalidateEverything :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> bool {
-    return msgSend(bool, self, "invalidateEverything")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="invalidateDataSourceCounts")
-CollectionViewLayoutInvalidationContext_invalidateDataSourceCounts :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> bool {
-    return msgSend(bool, self, "invalidateDataSourceCounts")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="invalidatedItemIndexPaths")
-CollectionViewLayoutInvalidationContext_invalidatedItemIndexPaths :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "invalidatedItemIndexPaths")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="invalidatedSupplementaryIndexPaths")
-CollectionViewLayoutInvalidationContext_invalidatedSupplementaryIndexPaths :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "invalidatedSupplementaryIndexPaths")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="invalidatedDecorationIndexPaths")
-CollectionViewLayoutInvalidationContext_invalidatedDecorationIndexPaths :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "invalidatedDecorationIndexPaths")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="contentOffsetAdjustment")
-CollectionViewLayoutInvalidationContext_contentOffsetAdjustment :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> CG.Point {
-    return msgSend(CG.Point, self, "contentOffsetAdjustment")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="setContentOffsetAdjustment")
-CollectionViewLayoutInvalidationContext_setContentOffsetAdjustment :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext, contentOffsetAdjustment: CG.Point) {
-    msgSend(nil, self, "setContentOffsetAdjustment:", contentOffsetAdjustment)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="contentSizeAdjustment")
-CollectionViewLayoutInvalidationContext_contentSizeAdjustment :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> CG.Size {
-    return msgSend(CG.Size, self, "contentSizeAdjustment")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="setContentSizeAdjustment")
-CollectionViewLayoutInvalidationContext_setContentSizeAdjustment :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext, contentSizeAdjustment: CG.Size) {
-    msgSend(nil, self, "setContentSizeAdjustment:", contentSizeAdjustment)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="previousIndexPathsForInteractivelyMovingItems")
-CollectionViewLayoutInvalidationContext_previousIndexPathsForInteractivelyMovingItems :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "previousIndexPathsForInteractivelyMovingItems")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="targetIndexPathsForInteractivelyMovingItems")
-CollectionViewLayoutInvalidationContext_targetIndexPathsForInteractivelyMovingItems :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "targetIndexPathsForInteractivelyMovingItems")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="interactiveMovementTarget")
-CollectionViewLayoutInvalidationContext_interactiveMovementTarget :: #force_inline proc "c" (self: ^CollectionViewLayoutInvalidationContext) -> CG.Point {
-    return msgSend(CG.Point, self, "interactiveMovementTarget")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="load", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_load :: #force_inline proc "c" () {
-    msgSend(nil, CollectionViewLayoutInvalidationContext, "load")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="initialize", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_initialize :: #force_inline proc "c" () {
-    msgSend(nil, CollectionViewLayoutInvalidationContext, "initialize")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="new", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_new :: #force_inline proc "c" () -> ^CollectionViewLayoutInvalidationContext {
-    return msgSend(^CollectionViewLayoutInvalidationContext, CollectionViewLayoutInvalidationContext, "new")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="allocWithZone", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^CollectionViewLayoutInvalidationContext {
-    return msgSend(^CollectionViewLayoutInvalidationContext, CollectionViewLayoutInvalidationContext, "allocWithZone:", zone)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="alloc", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_alloc :: #force_inline proc "c" () -> ^CollectionViewLayoutInvalidationContext {
-    return msgSend(^CollectionViewLayoutInvalidationContext, CollectionViewLayoutInvalidationContext, "alloc")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="copyWithZone", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, CollectionViewLayoutInvalidationContext, "copyWithZone:", zone)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, CollectionViewLayoutInvalidationContext, "mutableCopyWithZone:", zone)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, CollectionViewLayoutInvalidationContext, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="conformsToProtocol", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, CollectionViewLayoutInvalidationContext, "conformsToProtocol:", protocol)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, CollectionViewLayoutInvalidationContext, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, CollectionViewLayoutInvalidationContext, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="isSubclassOfClass", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, CollectionViewLayoutInvalidationContext, "isSubclassOfClass:", aClass)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="resolveClassMethod", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, CollectionViewLayoutInvalidationContext, "resolveClassMethod:", sel)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, CollectionViewLayoutInvalidationContext, "resolveInstanceMethod:", sel)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="hash", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, CollectionViewLayoutInvalidationContext, "hash")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="superclass", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionViewLayoutInvalidationContext, "superclass")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="class", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionViewLayoutInvalidationContext, "class")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="description", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, CollectionViewLayoutInvalidationContext, "description")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="debugDescription", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, CollectionViewLayoutInvalidationContext, "debugDescription")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="version", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, CollectionViewLayoutInvalidationContext, "version")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="setVersion", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, CollectionViewLayoutInvalidationContext, "setVersion:", aVersion)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, CollectionViewLayoutInvalidationContext, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, CollectionViewLayoutInvalidationContext, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, CollectionViewLayoutInvalidationContext, "accessInstanceVariablesDirectly")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="useStoredAccessor", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, CollectionViewLayoutInvalidationContext, "useStoredAccessor")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, CollectionViewLayoutInvalidationContext, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, CollectionViewLayoutInvalidationContext, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, CollectionViewLayoutInvalidationContext, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-CollectionViewLayoutInvalidationContext_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, CollectionViewLayoutInvalidationContext, "classForKeyedUnarchiver")
-}
-@(objc_type=CollectionViewLayoutInvalidationContext, objc_name="cancelPreviousPerformRequestsWithTarget")
-CollectionViewLayoutInvalidationContext_cancelPreviousPerformRequestsWithTarget :: proc {
-    CollectionViewLayoutInvalidationContext_cancelPreviousPerformRequestsWithTarget_selector_object,
-    CollectionViewLayoutInvalidationContext_cancelPreviousPerformRequestsWithTarget_,
-}
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="invalidateDecorationElementsOfKind:atIndexPaths:", objc_name="invalidateDecorationElementsOfKind")
+    CollectionViewLayoutInvalidationContext_invalidateDecorationElementsOfKind :: proc(self: ^CollectionViewLayoutInvalidationContext, elementKind: ^NS.String, indexPaths: ^NS.Array) ---
 
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="invalidateEverything", objc_name="invalidateEverything")
+    CollectionViewLayoutInvalidationContext_invalidateEverything :: proc(self: ^CollectionViewLayoutInvalidationContext) -> bool ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="invalidateDataSourceCounts", objc_name="invalidateDataSourceCounts")
+    CollectionViewLayoutInvalidationContext_invalidateDataSourceCounts :: proc(self: ^CollectionViewLayoutInvalidationContext) -> bool ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="invalidatedItemIndexPaths", objc_name="invalidatedItemIndexPaths")
+    CollectionViewLayoutInvalidationContext_invalidatedItemIndexPaths :: proc(self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Array ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="invalidatedSupplementaryIndexPaths", objc_name="invalidatedSupplementaryIndexPaths")
+    CollectionViewLayoutInvalidationContext_invalidatedSupplementaryIndexPaths :: proc(self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Dictionary ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="invalidatedDecorationIndexPaths", objc_name="invalidatedDecorationIndexPaths")
+    CollectionViewLayoutInvalidationContext_invalidatedDecorationIndexPaths :: proc(self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Dictionary ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="contentOffsetAdjustment", objc_name="contentOffsetAdjustment")
+    CollectionViewLayoutInvalidationContext_contentOffsetAdjustment :: proc(self: ^CollectionViewLayoutInvalidationContext) -> CG.Point ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="setContentOffsetAdjustment:", objc_name="setContentOffsetAdjustment")
+    CollectionViewLayoutInvalidationContext_setContentOffsetAdjustment :: proc(self: ^CollectionViewLayoutInvalidationContext, contentOffsetAdjustment: CG.Point) ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="contentSizeAdjustment", objc_name="contentSizeAdjustment")
+    CollectionViewLayoutInvalidationContext_contentSizeAdjustment :: proc(self: ^CollectionViewLayoutInvalidationContext) -> CG.Size ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="setContentSizeAdjustment:", objc_name="setContentSizeAdjustment")
+    CollectionViewLayoutInvalidationContext_setContentSizeAdjustment :: proc(self: ^CollectionViewLayoutInvalidationContext, contentSizeAdjustment: CG.Size) ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="previousIndexPathsForInteractivelyMovingItems", objc_name="previousIndexPathsForInteractivelyMovingItems")
+    CollectionViewLayoutInvalidationContext_previousIndexPathsForInteractivelyMovingItems :: proc(self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Array ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="targetIndexPathsForInteractivelyMovingItems", objc_name="targetIndexPathsForInteractivelyMovingItems")
+    CollectionViewLayoutInvalidationContext_targetIndexPathsForInteractivelyMovingItems :: proc(self: ^CollectionViewLayoutInvalidationContext) -> ^NS.Array ---
+
+    @(objc_type=CollectionViewLayoutInvalidationContext, objc_selector="interactiveMovementTarget", objc_name="interactiveMovementTarget")
+    CollectionViewLayoutInvalidationContext_interactiveMovementTarget :: proc(self: ^CollectionViewLayoutInvalidationContext) -> CG.Point ---
+}

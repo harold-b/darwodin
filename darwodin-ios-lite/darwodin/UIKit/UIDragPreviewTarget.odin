@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDragPreviewTarget
 ///
-@(objc_class="UIDragPreviewTarget")
+@(objc_class="UIDragPreviewTarget", objc_superclass=PreviewTarget)
 DragPreviewTarget :: struct { using _: PreviewTarget, }
 

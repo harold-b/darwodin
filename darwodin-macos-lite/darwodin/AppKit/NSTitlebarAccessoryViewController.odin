@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTitlebarAccessoryViewController
 ///
-@(objc_class="NSTitlebarAccessoryViewController")
+@(objc_class="NSTitlebarAccessoryViewController", objc_superclass=ViewController)
 TitlebarAccessoryViewController :: struct { using _: ViewController, 
     using _: AnimationDelegate,
     using _: AnimatablePropertyContainer,

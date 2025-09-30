@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSDataDetector
 ///
-@(objc_class="NSDataDetector")
+@(objc_class="NSDataDetector", objc_superclass=RegularExpression)
 DataDetector :: struct { using _: RegularExpression, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISearchTab
 ///
-@(objc_class="UISearchTab")
+@(objc_class="UISearchTab", objc_superclass=Tab)
 SearchTab :: struct { using _: Tab, }
 

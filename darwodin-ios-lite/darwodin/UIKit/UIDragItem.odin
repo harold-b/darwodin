@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDragItem
 ///
-@(objc_class="UIDragItem")
+@(objc_class="UIDragItem", objc_superclass=NS.Object)
 DragItem :: struct { using _: NS.Object, }
 

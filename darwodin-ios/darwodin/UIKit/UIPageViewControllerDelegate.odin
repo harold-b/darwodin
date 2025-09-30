@@ -21,26 +21,24 @@ PageViewControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PageViewControllerDelegate, objc_name="pageViewController_willTransitionToViewControllers")
-PageViewControllerDelegate_pageViewController_willTransitionToViewControllers :: #force_inline proc "c" (self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, pendingViewControllers: ^NS.Array) {
-    msgSend(nil, self, "pageViewController:willTransitionToViewControllers:", pageViewController, pendingViewControllers)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewController:willTransitionToViewControllers:", objc_name="pageViewController_willTransitionToViewControllers")
+    PageViewControllerDelegate_pageViewController_willTransitionToViewControllers :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, pendingViewControllers: ^NS.Array) ---
+
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:", objc_name="pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted")
+    PageViewControllerDelegate_pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, finished: bool, previousViewControllers: ^NS.Array, completed: bool) ---
+
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewController:spineLocationForInterfaceOrientation:", objc_name="pageViewController_spineLocationForInterfaceOrientation")
+    PageViewControllerDelegate_pageViewController_spineLocationForInterfaceOrientation :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, orientation: InterfaceOrientation) -> PageViewControllerSpineLocation ---
+
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewControllerSupportedInterfaceOrientations:", objc_name="pageViewControllerSupportedInterfaceOrientations")
+    PageViewControllerDelegate_pageViewControllerSupportedInterfaceOrientations :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController) -> InterfaceOrientationMask ---
+
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewControllerPreferredInterfaceOrientationForPresentation:", objc_name="pageViewControllerPreferredInterfaceOrientationForPresentation")
+    PageViewControllerDelegate_pageViewControllerPreferredInterfaceOrientationForPresentation :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController) -> InterfaceOrientation ---
 }
-@(objc_type=PageViewControllerDelegate, objc_name="pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted")
-PageViewControllerDelegate_pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted :: #force_inline proc "c" (self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, finished: bool, previousViewControllers: ^NS.Array, completed: bool) {
-    msgSend(nil, self, "pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:", pageViewController, finished, previousViewControllers, completed)
-}
-@(objc_type=PageViewControllerDelegate, objc_name="pageViewController_spineLocationForInterfaceOrientation")
-PageViewControllerDelegate_pageViewController_spineLocationForInterfaceOrientation :: #force_inline proc "c" (self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, orientation: InterfaceOrientation) -> PageViewControllerSpineLocation {
-    return msgSend(PageViewControllerSpineLocation, self, "pageViewController:spineLocationForInterfaceOrientation:", pageViewController, orientation)
-}
-@(objc_type=PageViewControllerDelegate, objc_name="pageViewControllerSupportedInterfaceOrientations")
-PageViewControllerDelegate_pageViewControllerSupportedInterfaceOrientations :: #force_inline proc "c" (self: ^PageViewControllerDelegate, pageViewController: ^PageViewController) -> InterfaceOrientationMask {
-    return msgSend(InterfaceOrientationMask, self, "pageViewControllerSupportedInterfaceOrientations:", pageViewController)
-}
-@(objc_type=PageViewControllerDelegate, objc_name="pageViewControllerPreferredInterfaceOrientationForPresentation")
-PageViewControllerDelegate_pageViewControllerPreferredInterfaceOrientationForPresentation :: #force_inline proc "c" (self: ^PageViewControllerDelegate, pageViewController: ^PageViewController) -> InterfaceOrientation {
-    return msgSend(InterfaceOrientation, self, "pageViewControllerPreferredInterfaceOrientationForPresentation:", pageViewController)
-}
+
 @(objc_type=PageViewControllerDelegate, objc_name="pageViewController")
 PageViewControllerDelegate_pageViewController :: proc {
     PageViewControllerDelegate_pageViewController_willTransitionToViewControllers,

@@ -16,7 +16,8 @@ import NS "../Foundation"
 @(objc_class="CAMetalDisplayLinkDelegate")
 MetalDisplayLinkDelegate :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=MetalDisplayLinkDelegate, objc_name="metalDisplayLink")
-MetalDisplayLinkDelegate_metalDisplayLink :: #force_inline proc "c" (self: ^MetalDisplayLinkDelegate, link: ^MetalDisplayLink, update: ^MetalDisplayLinkUpdate) {
-    msgSend(nil, self, "metalDisplayLink:needsUpdate:", link, update)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MetalDisplayLinkDelegate, objc_selector="metalDisplayLink:needsUpdate:", objc_name="metalDisplayLink")
+    MetalDisplayLinkDelegate_metalDisplayLink :: proc(self: ^MetalDisplayLinkDelegate, link: ^MetalDisplayLink, update: ^MetalDisplayLinkUpdate) ---
 }

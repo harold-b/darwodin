@@ -16,11 +16,11 @@ import NS "../Foundation"
 @(objc_class="EAGLDrawable")
 EAGLDrawable :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=EAGLDrawable, objc_name="drawableProperties")
-EAGLDrawable_drawableProperties :: #force_inline proc "c" (self: ^EAGLDrawable) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "drawableProperties")
-}
-@(objc_type=EAGLDrawable, objc_name="setDrawableProperties")
-EAGLDrawable_setDrawableProperties :: #force_inline proc "c" (self: ^EAGLDrawable, drawableProperties: ^NS.Dictionary) {
-    msgSend(nil, self, "setDrawableProperties:", drawableProperties)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=EAGLDrawable, objc_selector="drawableProperties", objc_name="drawableProperties")
+    EAGLDrawable_drawableProperties :: proc(self: ^EAGLDrawable) -> ^NS.Dictionary ---
+
+    @(objc_type=EAGLDrawable, objc_selector="setDrawableProperties:", objc_name="setDrawableProperties")
+    EAGLDrawable_setDrawableProperties :: proc(self: ^EAGLDrawable, drawableProperties: ^NS.Dictionary) ---
 }

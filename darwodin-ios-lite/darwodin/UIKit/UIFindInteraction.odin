@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIFindInteraction
 ///
-@(objc_class="UIFindInteraction")
+@(objc_class="UIFindInteraction", objc_superclass=NS.Object)
 FindInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

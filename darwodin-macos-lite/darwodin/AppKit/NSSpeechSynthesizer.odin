@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSpeechSynthesizer
 ///
-@(objc_class="NSSpeechSynthesizer")
+@(objc_class="NSSpeechSynthesizer", objc_superclass=NS.Object)
 SpeechSynthesizer :: struct { using _: NS.Object, }
 

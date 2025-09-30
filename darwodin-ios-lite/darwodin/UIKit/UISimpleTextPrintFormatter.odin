@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISimpleTextPrintFormatter
 ///
-@(objc_class="UISimpleTextPrintFormatter")
+@(objc_class="UISimpleTextPrintFormatter", objc_superclass=PrintFormatter)
 SimpleTextPrintFormatter :: struct { using _: PrintFormatter, }
 

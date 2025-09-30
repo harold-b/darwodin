@@ -21,11 +21,11 @@ LookToDictateCapable :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=LookToDictateCapable, objc_name="isLookToDictateEnabled")
-LookToDictateCapable_isLookToDictateEnabled :: #force_inline proc "c" (self: ^LookToDictateCapable) -> bool {
-    return msgSend(bool, self, "isLookToDictateEnabled")
-}
-@(objc_type=LookToDictateCapable, objc_name="setLookToDictateEnabled")
-LookToDictateCapable_setLookToDictateEnabled :: #force_inline proc "c" (self: ^LookToDictateCapable, lookToDictateEnabled: bool) {
-    msgSend(nil, self, "setLookToDictateEnabled:", lookToDictateEnabled)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LookToDictateCapable, objc_selector="isLookToDictateEnabled", objc_name="isLookToDictateEnabled")
+    LookToDictateCapable_isLookToDictateEnabled :: proc(self: ^LookToDictateCapable) -> bool ---
+
+    @(objc_type=LookToDictateCapable, objc_selector="setLookToDictateEnabled:", objc_name="setLookToDictateEnabled")
+    LookToDictateCapable_setLookToDictateEnabled :: proc(self: ^LookToDictateCapable, lookToDictateEnabled: bool) ---
 }

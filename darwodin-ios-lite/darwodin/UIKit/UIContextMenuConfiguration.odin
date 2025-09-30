@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIContextMenuConfiguration
 ///
-@(objc_class="UIContextMenuConfiguration")
+@(objc_class="UIContextMenuConfiguration", objc_superclass=NS.Object)
 ContextMenuConfiguration :: struct { using _: NS.Object, }
 

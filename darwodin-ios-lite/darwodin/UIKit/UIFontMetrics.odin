@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIFontMetrics
 ///
-@(objc_class="UIFontMetrics")
+@(objc_class="UIFontMetrics", objc_superclass=NS.Object)
 FontMetrics :: struct { using _: NS.Object, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIImageReader
 ///
-@(objc_class="UIImageReader")
+@(objc_class="UIImageReader", objc_superclass=NS.Object)
 ImageReader :: struct { using _: NS.Object, }
 

@@ -19,51 +19,41 @@ import CA "../QuartzCore"
 @(objc_class="NSTextInput")
 TextInput :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=TextInput, objc_name="insertText")
-TextInput_insertText :: #force_inline proc "c" (self: ^TextInput, string: id) {
-    msgSend(nil, self, "insertText:", string)
-}
-@(objc_type=TextInput, objc_name="doCommandBySelector")
-TextInput_doCommandBySelector :: #force_inline proc "c" (self: ^TextInput, selector: SEL) {
-    msgSend(nil, self, "doCommandBySelector:", selector)
-}
-@(objc_type=TextInput, objc_name="setMarkedText")
-TextInput_setMarkedText :: #force_inline proc "c" (self: ^TextInput, string: id, selRange: NS._NSRange) {
-    msgSend(nil, self, "setMarkedText:selectedRange:", string, selRange)
-}
-@(objc_type=TextInput, objc_name="unmarkText")
-TextInput_unmarkText :: #force_inline proc "c" (self: ^TextInput) {
-    msgSend(nil, self, "unmarkText")
-}
-@(objc_type=TextInput, objc_name="hasMarkedText")
-TextInput_hasMarkedText :: #force_inline proc "c" (self: ^TextInput) -> bool {
-    return msgSend(bool, self, "hasMarkedText")
-}
-@(objc_type=TextInput, objc_name="conversationIdentifier")
-TextInput_conversationIdentifier :: #force_inline proc "c" (self: ^TextInput) -> NS.Integer {
-    return msgSend(NS.Integer, self, "conversationIdentifier")
-}
-@(objc_type=TextInput, objc_name="attributedSubstringFromRange")
-TextInput_attributedSubstringFromRange :: #force_inline proc "c" (self: ^TextInput, range: NS._NSRange) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "attributedSubstringFromRange:", range)
-}
-@(objc_type=TextInput, objc_name="markedRange")
-TextInput_markedRange :: #force_inline proc "c" (self: ^TextInput) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "markedRange")
-}
-@(objc_type=TextInput, objc_name="selectedRange")
-TextInput_selectedRange :: #force_inline proc "c" (self: ^TextInput) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "selectedRange")
-}
-@(objc_type=TextInput, objc_name="firstRectForCharacterRange")
-TextInput_firstRectForCharacterRange :: #force_inline proc "c" (self: ^TextInput, range: NS._NSRange) -> NS.Rect {
-    return msgSend(NS.Rect, self, "firstRectForCharacterRange:", range)
-}
-@(objc_type=TextInput, objc_name="characterIndexForPoint")
-TextInput_characterIndexForPoint :: #force_inline proc "c" (self: ^TextInput, point: CG.Point) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "characterIndexForPoint:", point)
-}
-@(objc_type=TextInput, objc_name="validAttributesForMarkedText")
-TextInput_validAttributesForMarkedText :: #force_inline proc "c" (self: ^TextInput) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "validAttributesForMarkedText")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextInput, objc_selector="insertText:", objc_name="insertText")
+    TextInput_insertText :: proc(self: ^TextInput, string: id) ---
+
+    @(objc_type=TextInput, objc_selector="doCommandBySelector:", objc_name="doCommandBySelector")
+    TextInput_doCommandBySelector :: proc(self: ^TextInput, selector: SEL) ---
+
+    @(objc_type=TextInput, objc_selector="setMarkedText:selectedRange:", objc_name="setMarkedText")
+    TextInput_setMarkedText :: proc(self: ^TextInput, string: id, selRange: NS._NSRange) ---
+
+    @(objc_type=TextInput, objc_selector="unmarkText", objc_name="unmarkText")
+    TextInput_unmarkText :: proc(self: ^TextInput) ---
+
+    @(objc_type=TextInput, objc_selector="hasMarkedText", objc_name="hasMarkedText")
+    TextInput_hasMarkedText :: proc(self: ^TextInput) -> bool ---
+
+    @(objc_type=TextInput, objc_selector="conversationIdentifier", objc_name="conversationIdentifier")
+    TextInput_conversationIdentifier :: proc(self: ^TextInput) -> NS.Integer ---
+
+    @(objc_type=TextInput, objc_selector="attributedSubstringFromRange:", objc_name="attributedSubstringFromRange")
+    TextInput_attributedSubstringFromRange :: proc(self: ^TextInput, range: NS._NSRange) -> ^NS.AttributedString ---
+
+    @(objc_type=TextInput, objc_selector="markedRange", objc_name="markedRange")
+    TextInput_markedRange :: proc(self: ^TextInput) -> NS._NSRange ---
+
+    @(objc_type=TextInput, objc_selector="selectedRange", objc_name="selectedRange")
+    TextInput_selectedRange :: proc(self: ^TextInput) -> NS._NSRange ---
+
+    @(objc_type=TextInput, objc_selector="firstRectForCharacterRange:", objc_name="firstRectForCharacterRange")
+    TextInput_firstRectForCharacterRange :: proc(self: ^TextInput, range: NS._NSRange) -> NS.Rect ---
+
+    @(objc_type=TextInput, objc_selector="characterIndexForPoint:", objc_name="characterIndexForPoint")
+    TextInput_characterIndexForPoint :: proc(self: ^TextInput, point: CG.Point) -> NS.UInteger ---
+
+    @(objc_type=TextInput, objc_selector="validAttributesForMarkedText", objc_name="validAttributesForMarkedText")
+    TextInput_validAttributesForMarkedText :: proc(self: ^TextInput) -> ^NS.Array ---
 }

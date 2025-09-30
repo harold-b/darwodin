@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSMutableParagraphStyle
 ///
-@(objc_class="NSMutableParagraphStyle")
+@(objc_class="NSMutableParagraphStyle", objc_superclass=NSParagraphStyle)
 NSMutableParagraphStyle :: struct { using _: NSParagraphStyle, }
 

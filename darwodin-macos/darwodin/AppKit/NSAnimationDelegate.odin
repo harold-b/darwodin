@@ -21,23 +21,21 @@ AnimationDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AnimationDelegate, objc_name="animationShouldStart")
-AnimationDelegate_animationShouldStart :: #force_inline proc "c" (self: ^AnimationDelegate, animation: ^Animation) -> bool {
-    return msgSend(bool, self, "animationShouldStart:", animation)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AnimationDelegate, objc_selector="animationShouldStart:", objc_name="animationShouldStart")
+    AnimationDelegate_animationShouldStart :: proc(self: ^AnimationDelegate, animation: ^Animation) -> bool ---
+
+    @(objc_type=AnimationDelegate, objc_selector="animationDidStop:", objc_name="animationDidStop")
+    AnimationDelegate_animationDidStop :: proc(self: ^AnimationDelegate, animation: ^Animation) ---
+
+    @(objc_type=AnimationDelegate, objc_selector="animationDidEnd:", objc_name="animationDidEnd")
+    AnimationDelegate_animationDidEnd :: proc(self: ^AnimationDelegate, animation: ^Animation) ---
+
+    @(objc_type=AnimationDelegate, objc_selector="animation:valueForProgress:", objc_name="animation_valueForProgress")
+    AnimationDelegate_animation_valueForProgress :: proc(self: ^AnimationDelegate, animation: ^Animation, progress: AnimationProgress) -> cffi.float ---
+
+    @(objc_type=AnimationDelegate, objc_selector="animation:didReachProgressMark:", objc_name="animation_didReachProgressMark")
+    AnimationDelegate_animation_didReachProgressMark :: proc(self: ^AnimationDelegate, animation: ^Animation, progress: AnimationProgress) ---
 }
-@(objc_type=AnimationDelegate, objc_name="animationDidStop")
-AnimationDelegate_animationDidStop :: #force_inline proc "c" (self: ^AnimationDelegate, animation: ^Animation) {
-    msgSend(nil, self, "animationDidStop:", animation)
-}
-@(objc_type=AnimationDelegate, objc_name="animationDidEnd")
-AnimationDelegate_animationDidEnd :: #force_inline proc "c" (self: ^AnimationDelegate, animation: ^Animation) {
-    msgSend(nil, self, "animationDidEnd:", animation)
-}
-@(objc_type=AnimationDelegate, objc_name="animation_valueForProgress")
-AnimationDelegate_animation_valueForProgress :: #force_inline proc "c" (self: ^AnimationDelegate, animation: ^Animation, progress: AnimationProgress) -> cffi.float {
-    return msgSend(cffi.float, self, "animation:valueForProgress:", animation, progress)
-}
-@(objc_type=AnimationDelegate, objc_name="animation_didReachProgressMark")
-AnimationDelegate_animation_didReachProgressMark :: #force_inline proc "c" (self: ^AnimationDelegate, animation: ^Animation, progress: AnimationProgress) {
-    msgSend(nil, self, "animation:didReachProgressMark:", animation, progress)
-}
+

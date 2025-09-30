@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISearchTextField
 ///
-@(objc_class="UISearchTextField")
+@(objc_class="UISearchTextField", objc_superclass=TextField)
 SearchTextField :: struct { using _: TextField, }
 

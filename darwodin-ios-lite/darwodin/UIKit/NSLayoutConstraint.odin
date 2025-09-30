@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSLayoutConstraint
 ///
-@(objc_class="NSLayoutConstraint")
+@(objc_class="NSLayoutConstraint", objc_superclass=NS.Object)
 NSLayoutConstraint :: struct { using _: NS.Object, }
 

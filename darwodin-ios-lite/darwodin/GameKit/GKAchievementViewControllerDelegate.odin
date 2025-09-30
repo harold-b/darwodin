@@ -18,7 +18,8 @@ AchievementViewControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AchievementViewControllerDelegate, objc_name="achievementViewControllerDidFinish")
-AchievementViewControllerDelegate_achievementViewControllerDidFinish :: #force_inline proc "c" (self: ^AchievementViewControllerDelegate, viewController: ^AchievementViewController) {
-    msgSend(nil, self, "achievementViewControllerDidFinish:", viewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AchievementViewControllerDelegate, objc_selector="achievementViewControllerDidFinish:", objc_name="achievementViewControllerDidFinish")
+    AchievementViewControllerDelegate_achievementViewControllerDidFinish :: proc(self: ^AchievementViewControllerDelegate, viewController: ^AchievementViewController) ---
 }

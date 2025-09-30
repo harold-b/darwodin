@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPreviewActionGroup
 ///
-@(objc_class="UIPreviewActionGroup")
+@(objc_class="UIPreviewActionGroup", objc_superclass=NS.Object)
 PreviewActionGroup :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: PreviewActionItem,

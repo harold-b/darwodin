@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTintConfiguration
 ///
-@(objc_class="NSTintConfiguration")
+@(objc_class="NSTintConfiguration", objc_superclass=NS.Object)
 TintConfiguration :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CAShapeLayer
 ///
-@(objc_class="CAShapeLayer")
+@(objc_class="CAShapeLayer", objc_superclass=Layer)
 ShapeLayer :: struct { using _: Layer, }
 

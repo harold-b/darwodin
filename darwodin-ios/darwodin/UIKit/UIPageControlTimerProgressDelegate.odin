@@ -21,11 +21,11 @@ PageControlTimerProgressDelegate :: struct { using _: intrinsics.objc_object,
     using _: PageControlProgressDelegate,
 }
 
-@(objc_type=PageControlTimerProgressDelegate, objc_name="pageControlTimerProgressDidChange")
-PageControlTimerProgressDelegate_pageControlTimerProgressDidChange :: #force_inline proc "c" (self: ^PageControlTimerProgressDelegate, progress: ^PageControlTimerProgress) {
-    msgSend(nil, self, "pageControlTimerProgressDidChange:", progress)
-}
-@(objc_type=PageControlTimerProgressDelegate, objc_name="pageControlTimerProgress")
-PageControlTimerProgressDelegate_pageControlTimerProgress :: #force_inline proc "c" (self: ^PageControlTimerProgressDelegate, progress: ^PageControlTimerProgress, page: NS.Integer) -> bool {
-    return msgSend(bool, self, "pageControlTimerProgress:shouldAdvanceToPage:", progress, page)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PageControlTimerProgressDelegate, objc_selector="pageControlTimerProgressDidChange:", objc_name="pageControlTimerProgressDidChange")
+    PageControlTimerProgressDelegate_pageControlTimerProgressDidChange :: proc(self: ^PageControlTimerProgressDelegate, progress: ^PageControlTimerProgress) ---
+
+    @(objc_type=PageControlTimerProgressDelegate, objc_selector="pageControlTimerProgress:shouldAdvanceToPage:", objc_name="pageControlTimerProgress")
+    PageControlTimerProgressDelegate_pageControlTimerProgress :: proc(self: ^PageControlTimerProgressDelegate, progress: ^PageControlTimerProgress, page: NS.Integer) -> bool ---
 }

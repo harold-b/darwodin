@@ -32,7 +32,6 @@ Cpp:
   IgnoreTypes  : []
   IgnoreMethods: []
 
-
 Odin:
   Emit             : true
   ExportPath       : ..
@@ -47,6 +46,12 @@ Odin:
     - ../exports/CoreGraphics.exports.yml
     - ../exports/Security.exports.yml
 
+  NonDistinctTypeDefs:
+    - ^NSRange$
+    - ^NSZone$
+    - ^unichar$
+    - ^Integer$
+    - ^UInteger$
 
   ResolvedTypedefs:
     - '[su]?int.*'

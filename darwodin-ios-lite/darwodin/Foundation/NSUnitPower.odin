@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnitPower
 ///
-@(objc_class="NSUnitPower")
+@(objc_class="NSUnitPower", objc_superclass=Dimension)
 UnitPower :: struct { using _: Dimension, 
     using _: SecureCoding,
 }

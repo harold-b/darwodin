@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSOpenGLPixelFormat
 ///
-@(objc_class="NSOpenGLPixelFormat")
+@(objc_class="NSOpenGLPixelFormat", objc_superclass=NS.Object)
 OpenGLPixelFormat :: struct { using _: NS.Object, 
     using _: NS.Coding,
 }

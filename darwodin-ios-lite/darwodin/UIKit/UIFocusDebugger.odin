@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIFocusDebugger
 ///
-@(objc_class="UIFocusDebugger")
+@(objc_class="UIFocusDebugger", objc_superclass=NS.Object)
 FocusDebugger :: struct { using _: NS.Object, }
 

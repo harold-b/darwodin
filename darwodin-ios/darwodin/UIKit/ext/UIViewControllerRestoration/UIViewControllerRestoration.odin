@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -39,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).viewControllerWithRestorationIdentifierPath( identifierComponents, coder)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("viewControllerWithRestorationIdentifierPath:coder:"), auto_cast viewControllerWithRestorationIdentifierPath, "@#:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("viewControllerWithRestorationIdentifierPath:coder:"), auto_cast viewControllerWithRestorationIdentifierPath, "@#:^void@") do panic("Failed to register objC method.")
     }
 }
 

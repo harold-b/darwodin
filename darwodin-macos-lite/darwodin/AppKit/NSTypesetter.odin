@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTypesetter
 ///
-@(objc_class="NSTypesetter")
+@(objc_class="NSTypesetter", objc_superclass=NS.Object)
 Typesetter :: struct { using _: NS.Object, }
 

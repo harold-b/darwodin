@@ -18,7 +18,8 @@ PortDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=PortDelegate, objc_name="handlePortMessage")
-PortDelegate_handlePortMessage :: #force_inline proc "c" (self: ^PortDelegate, message: ^PortMessage) {
-    msgSend(nil, self, "handlePortMessage:", message)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PortDelegate, objc_selector="handlePortMessage:", objc_name="handlePortMessage")
+    PortDelegate_handlePortMessage :: proc(self: ^PortDelegate, message: ^PortMessage) ---
 }

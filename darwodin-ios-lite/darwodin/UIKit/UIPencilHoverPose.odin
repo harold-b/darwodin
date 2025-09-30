@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPencilHoverPose
 ///
-@(objc_class="UIPencilHoverPose")
+@(objc_class="UIPencilHoverPose", objc_superclass=NS.Object)
 PencilHoverPose :: struct { using _: NS.Object, }
 

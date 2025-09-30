@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICalendarViewDecoration
 ///
-@(objc_class="UICalendarViewDecoration")
+@(objc_class="UICalendarViewDecoration", objc_superclass=NS.Object)
 CalendarViewDecoration :: struct { using _: NS.Object, }
 

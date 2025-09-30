@@ -21,11 +21,11 @@ ContextMenuInteractionCommitAnimating :: struct { using _: intrinsics.objc_objec
     using _: ContextMenuInteractionAnimating,
 }
 
-@(objc_type=ContextMenuInteractionCommitAnimating, objc_name="preferredCommitStyle")
-ContextMenuInteractionCommitAnimating_preferredCommitStyle :: #force_inline proc "c" (self: ^ContextMenuInteractionCommitAnimating) -> ContextMenuInteractionCommitStyle {
-    return msgSend(ContextMenuInteractionCommitStyle, self, "preferredCommitStyle")
-}
-@(objc_type=ContextMenuInteractionCommitAnimating, objc_name="setPreferredCommitStyle")
-ContextMenuInteractionCommitAnimating_setPreferredCommitStyle :: #force_inline proc "c" (self: ^ContextMenuInteractionCommitAnimating, preferredCommitStyle: ContextMenuInteractionCommitStyle) {
-    msgSend(nil, self, "setPreferredCommitStyle:", preferredCommitStyle)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ContextMenuInteractionCommitAnimating, objc_selector="preferredCommitStyle", objc_name="preferredCommitStyle")
+    ContextMenuInteractionCommitAnimating_preferredCommitStyle :: proc(self: ^ContextMenuInteractionCommitAnimating) -> ContextMenuInteractionCommitStyle ---
+
+    @(objc_type=ContextMenuInteractionCommitAnimating, objc_selector="setPreferredCommitStyle:", objc_name="setPreferredCommitStyle")
+    ContextMenuInteractionCommitAnimating_setPreferredCommitStyle :: proc(self: ^ContextMenuInteractionCommitAnimating, preferredCommitStyle: ContextMenuInteractionCommitStyle) ---
 }

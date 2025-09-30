@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIWebView
 ///
-@(objc_class="UIWebView")
+@(objc_class="UIWebView", objc_superclass=View)
 WebView :: struct { using _: View, 
     using _: NS.Coding,
     using _: ScrollViewDelegate,

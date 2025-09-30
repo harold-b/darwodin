@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSPresentationIntent
 ///
-@(objc_class="NSPresentationIntent")
+@(objc_class="NSPresentationIntent", objc_superclass=Object)
 PresentationIntent :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

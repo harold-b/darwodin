@@ -21,27 +21,24 @@ ScrubberDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ScrubberDelegate, objc_name="scrubber_didSelectItemAtIndex")
-ScrubberDelegate_scrubber_didSelectItemAtIndex :: #force_inline proc "c" (self: ^ScrubberDelegate, scrubber: ^Scrubber, selectedIndex: NS.Integer) {
-    msgSend(nil, self, "scrubber:didSelectItemAtIndex:", scrubber, selectedIndex)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ScrubberDelegate, objc_selector="scrubber:didSelectItemAtIndex:", objc_name="scrubber_didSelectItemAtIndex")
+    ScrubberDelegate_scrubber_didSelectItemAtIndex :: proc(self: ^ScrubberDelegate, scrubber: ^Scrubber, selectedIndex: NS.Integer) ---
+
+    @(objc_type=ScrubberDelegate, objc_selector="scrubber:didHighlightItemAtIndex:", objc_name="scrubber_didHighlightItemAtIndex")
+    ScrubberDelegate_scrubber_didHighlightItemAtIndex :: proc(self: ^ScrubberDelegate, scrubber: ^Scrubber, highlightedIndex: NS.Integer) ---
+
+    @(objc_type=ScrubberDelegate, objc_selector="scrubber:didChangeVisibleRange:", objc_name="scrubber_didChangeVisibleRange")
+    ScrubberDelegate_scrubber_didChangeVisibleRange :: proc(self: ^ScrubberDelegate, scrubber: ^Scrubber, visibleRange: NS._NSRange) ---
+
+    @(objc_type=ScrubberDelegate, objc_selector="didBeginInteractingWithScrubber:", objc_name="didBeginInteractingWithScrubber")
+    ScrubberDelegate_didBeginInteractingWithScrubber :: proc(self: ^ScrubberDelegate, scrubber: ^Scrubber) ---
+
+    @(objc_type=ScrubberDelegate, objc_selector="didFinishInteractingWithScrubber:", objc_name="didFinishInteractingWithScrubber")
+    ScrubberDelegate_didFinishInteractingWithScrubber :: proc(self: ^ScrubberDelegate, scrubber: ^Scrubber) ---
+
+    @(objc_type=ScrubberDelegate, objc_selector="didCancelInteractingWithScrubber:", objc_name="didCancelInteractingWithScrubber")
+    ScrubberDelegate_didCancelInteractingWithScrubber :: proc(self: ^ScrubberDelegate, scrubber: ^Scrubber) ---
 }
-@(objc_type=ScrubberDelegate, objc_name="scrubber_didHighlightItemAtIndex")
-ScrubberDelegate_scrubber_didHighlightItemAtIndex :: #force_inline proc "c" (self: ^ScrubberDelegate, scrubber: ^Scrubber, highlightedIndex: NS.Integer) {
-    msgSend(nil, self, "scrubber:didHighlightItemAtIndex:", scrubber, highlightedIndex)
-}
-@(objc_type=ScrubberDelegate, objc_name="scrubber_didChangeVisibleRange")
-ScrubberDelegate_scrubber_didChangeVisibleRange :: #force_inline proc "c" (self: ^ScrubberDelegate, scrubber: ^Scrubber, visibleRange: NS._NSRange) {
-    msgSend(nil, self, "scrubber:didChangeVisibleRange:", scrubber, visibleRange)
-}
-@(objc_type=ScrubberDelegate, objc_name="didBeginInteractingWithScrubber")
-ScrubberDelegate_didBeginInteractingWithScrubber :: #force_inline proc "c" (self: ^ScrubberDelegate, scrubber: ^Scrubber) {
-    msgSend(nil, self, "didBeginInteractingWithScrubber:", scrubber)
-}
-@(objc_type=ScrubberDelegate, objc_name="didFinishInteractingWithScrubber")
-ScrubberDelegate_didFinishInteractingWithScrubber :: #force_inline proc "c" (self: ^ScrubberDelegate, scrubber: ^Scrubber) {
-    msgSend(nil, self, "didFinishInteractingWithScrubber:", scrubber)
-}
-@(objc_type=ScrubberDelegate, objc_name="didCancelInteractingWithScrubber")
-ScrubberDelegate_didCancelInteractingWithScrubber :: #force_inline proc "c" (self: ^ScrubberDelegate, scrubber: ^Scrubber) {
-    msgSend(nil, self, "didCancelInteractingWithScrubber:", scrubber)
-}
+

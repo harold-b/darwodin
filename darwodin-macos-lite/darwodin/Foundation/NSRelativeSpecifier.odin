@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSRelativeSpecifier
 ///
-@(objc_class="NSRelativeSpecifier")
+@(objc_class="NSRelativeSpecifier", objc_superclass=ScriptObjectSpecifier)
 RelativeSpecifier :: struct { using _: ScriptObjectSpecifier, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIScene
 ///
-@(objc_class="UIScene")
+@(objc_class="UIScene", objc_superclass=Responder)
 Scene :: struct { using _: Responder, }
 

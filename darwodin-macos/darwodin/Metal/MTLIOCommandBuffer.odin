@@ -20,75 +20,59 @@ IOCommandBuffer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=IOCommandBuffer, objc_name="addCompletedHandler")
-IOCommandBuffer_addCompletedHandler :: #force_inline proc "c" (self: ^IOCommandBuffer, block: IOCommandBufferHandler) {
-    msgSend(nil, self, "addCompletedHandler:", block)
-}
-@(objc_type=IOCommandBuffer, objc_name="loadBytes")
-IOCommandBuffer_loadBytes :: #force_inline proc "c" (self: ^IOCommandBuffer, pointer: rawptr, size: NS.UInteger, sourceHandle: ^IOFileHandle, sourceHandleOffset: NS.UInteger) {
-    msgSend(nil, self, "loadBytes:size:sourceHandle:sourceHandleOffset:", pointer, size, sourceHandle, sourceHandleOffset)
-}
-@(objc_type=IOCommandBuffer, objc_name="loadBuffer")
-IOCommandBuffer_loadBuffer :: #force_inline proc "c" (self: ^IOCommandBuffer, buffer: ^Buffer, offset: NS.UInteger, size: NS.UInteger, sourceHandle: ^IOFileHandle, sourceHandleOffset: NS.UInteger) {
-    msgSend(nil, self, "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:", buffer, offset, size, sourceHandle, sourceHandleOffset)
-}
-@(objc_type=IOCommandBuffer, objc_name="loadTexture")
-IOCommandBuffer_loadTexture :: #force_inline proc "c" (self: ^IOCommandBuffer, texture: ^Texture, slice: NS.UInteger, level: NS.UInteger, size: Size, sourceBytesPerRow: NS.UInteger, sourceBytesPerImage: NS.UInteger, destinationOrigin: Origin, sourceHandle: ^IOFileHandle, sourceHandleOffset: NS.UInteger) {
-    msgSend(nil, self, "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:", texture, slice, level, size, sourceBytesPerRow, sourceBytesPerImage, destinationOrigin, sourceHandle, sourceHandleOffset)
-}
-@(objc_type=IOCommandBuffer, objc_name="copyStatusToBuffer")
-IOCommandBuffer_copyStatusToBuffer :: #force_inline proc "c" (self: ^IOCommandBuffer, buffer: ^Buffer, offset: NS.UInteger) {
-    msgSend(nil, self, "copyStatusToBuffer:offset:", buffer, offset)
-}
-@(objc_type=IOCommandBuffer, objc_name="commit")
-IOCommandBuffer_commit :: #force_inline proc "c" (self: ^IOCommandBuffer) {
-    msgSend(nil, self, "commit")
-}
-@(objc_type=IOCommandBuffer, objc_name="waitUntilCompleted")
-IOCommandBuffer_waitUntilCompleted :: #force_inline proc "c" (self: ^IOCommandBuffer) {
-    msgSend(nil, self, "waitUntilCompleted")
-}
-@(objc_type=IOCommandBuffer, objc_name="tryCancel")
-IOCommandBuffer_tryCancel :: #force_inline proc "c" (self: ^IOCommandBuffer) {
-    msgSend(nil, self, "tryCancel")
-}
-@(objc_type=IOCommandBuffer, objc_name="addBarrier")
-IOCommandBuffer_addBarrier :: #force_inline proc "c" (self: ^IOCommandBuffer) {
-    msgSend(nil, self, "addBarrier")
-}
-@(objc_type=IOCommandBuffer, objc_name="pushDebugGroup")
-IOCommandBuffer_pushDebugGroup :: #force_inline proc "c" (self: ^IOCommandBuffer, string: ^NS.String) {
-    msgSend(nil, self, "pushDebugGroup:", string)
-}
-@(objc_type=IOCommandBuffer, objc_name="popDebugGroup")
-IOCommandBuffer_popDebugGroup :: #force_inline proc "c" (self: ^IOCommandBuffer) {
-    msgSend(nil, self, "popDebugGroup")
-}
-@(objc_type=IOCommandBuffer, objc_name="enqueue")
-IOCommandBuffer_enqueue :: #force_inline proc "c" (self: ^IOCommandBuffer) {
-    msgSend(nil, self, "enqueue")
-}
-@(objc_type=IOCommandBuffer, objc_name="waitForEvent")
-IOCommandBuffer_waitForEvent :: #force_inline proc "c" (self: ^IOCommandBuffer, event: ^SharedEvent, value: cffi.uint64_t) {
-    msgSend(nil, self, "waitForEvent:value:", event, value)
-}
-@(objc_type=IOCommandBuffer, objc_name="signalEvent")
-IOCommandBuffer_signalEvent :: #force_inline proc "c" (self: ^IOCommandBuffer, event: ^SharedEvent, value: cffi.uint64_t) {
-    msgSend(nil, self, "signalEvent:value:", event, value)
-}
-@(objc_type=IOCommandBuffer, objc_name="label")
-IOCommandBuffer_label :: #force_inline proc "c" (self: ^IOCommandBuffer) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=IOCommandBuffer, objc_name="setLabel")
-IOCommandBuffer_setLabel :: #force_inline proc "c" (self: ^IOCommandBuffer, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
-}
-@(objc_type=IOCommandBuffer, objc_name="status")
-IOCommandBuffer_status :: #force_inline proc "c" (self: ^IOCommandBuffer) -> IOStatus {
-    return msgSend(IOStatus, self, "status")
-}
-@(objc_type=IOCommandBuffer, objc_name="error")
-IOCommandBuffer_error :: #force_inline proc "c" (self: ^IOCommandBuffer) -> ^NS.Error {
-    return msgSend(^NS.Error, self, "error")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IOCommandBuffer, objc_selector="addCompletedHandler:", objc_name="addCompletedHandler")
+    IOCommandBuffer_addCompletedHandler :: proc(self: ^IOCommandBuffer, block: IOCommandBufferHandler) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="loadBytes:size:sourceHandle:sourceHandleOffset:", objc_name="loadBytes")
+    IOCommandBuffer_loadBytes :: proc(self: ^IOCommandBuffer, pointer: rawptr, size: NS.UInteger, sourceHandle: ^IOFileHandle, sourceHandleOffset: NS.UInteger) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="loadBuffer:offset:size:sourceHandle:sourceHandleOffset:", objc_name="loadBuffer")
+    IOCommandBuffer_loadBuffer :: proc(self: ^IOCommandBuffer, buffer: ^Buffer, offset: NS.UInteger, size: NS.UInteger, sourceHandle: ^IOFileHandle, sourceHandleOffset: NS.UInteger) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:", objc_name="loadTexture")
+    IOCommandBuffer_loadTexture :: proc(self: ^IOCommandBuffer, texture: ^Texture, slice: NS.UInteger, level: NS.UInteger, size: Size, sourceBytesPerRow: NS.UInteger, sourceBytesPerImage: NS.UInteger, destinationOrigin: Origin, sourceHandle: ^IOFileHandle, sourceHandleOffset: NS.UInteger) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="copyStatusToBuffer:offset:", objc_name="copyStatusToBuffer")
+    IOCommandBuffer_copyStatusToBuffer :: proc(self: ^IOCommandBuffer, buffer: ^Buffer, offset: NS.UInteger) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="commit", objc_name="commit")
+    IOCommandBuffer_commit :: proc(self: ^IOCommandBuffer) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="waitUntilCompleted", objc_name="waitUntilCompleted")
+    IOCommandBuffer_waitUntilCompleted :: proc(self: ^IOCommandBuffer) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="tryCancel", objc_name="tryCancel")
+    IOCommandBuffer_tryCancel :: proc(self: ^IOCommandBuffer) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="addBarrier", objc_name="addBarrier")
+    IOCommandBuffer_addBarrier :: proc(self: ^IOCommandBuffer) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="pushDebugGroup:", objc_name="pushDebugGroup")
+    IOCommandBuffer_pushDebugGroup :: proc(self: ^IOCommandBuffer, string: ^NS.String) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="popDebugGroup", objc_name="popDebugGroup")
+    IOCommandBuffer_popDebugGroup :: proc(self: ^IOCommandBuffer) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="enqueue", objc_name="enqueue")
+    IOCommandBuffer_enqueue :: proc(self: ^IOCommandBuffer) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="waitForEvent:value:", objc_name="waitForEvent")
+    IOCommandBuffer_waitForEvent :: proc(self: ^IOCommandBuffer, event: ^SharedEvent, value: cffi.uint64_t) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="signalEvent:value:", objc_name="signalEvent")
+    IOCommandBuffer_signalEvent :: proc(self: ^IOCommandBuffer, event: ^SharedEvent, value: cffi.uint64_t) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="label", objc_name="label")
+    IOCommandBuffer_label :: proc(self: ^IOCommandBuffer) -> ^NS.String ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="setLabel:", objc_name="setLabel")
+    IOCommandBuffer_setLabel :: proc(self: ^IOCommandBuffer, label: ^NS.String) ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="status", objc_name="status")
+    IOCommandBuffer_status :: proc(self: ^IOCommandBuffer) -> IOStatus ---
+
+    @(objc_type=IOCommandBuffer, objc_selector="error", objc_name="error")
+    IOCommandBuffer_error :: proc(self: ^IOCommandBuffer) -> ^NS.Error ---
 }

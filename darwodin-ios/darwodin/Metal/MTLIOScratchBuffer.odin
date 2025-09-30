@@ -20,7 +20,8 @@ IOScratchBuffer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=IOScratchBuffer, objc_name="buffer")
-IOScratchBuffer_buffer :: #force_inline proc "c" (self: ^IOScratchBuffer) -> ^Buffer {
-    return msgSend(^Buffer, self, "buffer")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IOScratchBuffer, objc_selector="buffer", objc_name="buffer")
+    IOScratchBuffer_buffer :: proc(self: ^IOScratchBuffer) -> ^Buffer ---
 }

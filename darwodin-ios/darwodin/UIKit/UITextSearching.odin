@@ -21,55 +21,44 @@ TextSearching :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextSearching, objc_name="compareFoundRange")
-TextSearching_compareFoundRange :: #force_inline proc "c" (self: ^TextSearching, foundRange: ^TextRange, toRange: ^TextRange, document: ^id) -> NS.ComparisonResult {
-    return msgSend(NS.ComparisonResult, self, "compareFoundRange:toRange:inDocument:", foundRange, toRange, document)
-}
-@(objc_type=TextSearching, objc_name="performTextSearchWithQueryString")
-TextSearching_performTextSearchWithQueryString :: #force_inline proc "c" (self: ^TextSearching, string: ^NS.String, options: ^TextSearchOptions, aggregator: ^TextSearchAggregator) {
-    msgSend(nil, self, "performTextSearchWithQueryString:usingOptions:resultAggregator:", string, options, aggregator)
-}
-@(objc_type=TextSearching, objc_name="decorateFoundTextRange")
-TextSearching_decorateFoundTextRange :: #force_inline proc "c" (self: ^TextSearching, range: ^TextRange, document: ^id, style: TextSearchFoundTextStyle) {
-    msgSend(nil, self, "decorateFoundTextRange:inDocument:usingStyle:", range, document, style)
-}
-@(objc_type=TextSearching, objc_name="clearAllDecoratedFoundText")
-TextSearching_clearAllDecoratedFoundText :: #force_inline proc "c" (self: ^TextSearching) {
-    msgSend(nil, self, "clearAllDecoratedFoundText")
-}
-@(objc_type=TextSearching, objc_name="shouldReplaceFoundTextInRange")
-TextSearching_shouldReplaceFoundTextInRange :: #force_inline proc "c" (self: ^TextSearching, range: ^TextRange, document: ^id, replacementText: ^NS.String) -> bool {
-    return msgSend(bool, self, "shouldReplaceFoundTextInRange:inDocument:withText:", range, document, replacementText)
-}
-@(objc_type=TextSearching, objc_name="replaceFoundTextInRange")
-TextSearching_replaceFoundTextInRange :: #force_inline proc "c" (self: ^TextSearching, range: ^TextRange, document: ^id, replacementText: ^NS.String) {
-    msgSend(nil, self, "replaceFoundTextInRange:inDocument:withText:", range, document, replacementText)
-}
-@(objc_type=TextSearching, objc_name="replaceAllOccurrencesOfQueryString")
-TextSearching_replaceAllOccurrencesOfQueryString :: #force_inline proc "c" (self: ^TextSearching, queryString: ^NS.String, options: ^TextSearchOptions, replacementText: ^NS.String) {
-    msgSend(nil, self, "replaceAllOccurrencesOfQueryString:usingOptions:withText:", queryString, options, replacementText)
-}
-@(objc_type=TextSearching, objc_name="willHighlightFoundTextRange")
-TextSearching_willHighlightFoundTextRange :: #force_inline proc "c" (self: ^TextSearching, range: ^TextRange, document: ^id) {
-    msgSend(nil, self, "willHighlightFoundTextRange:inDocument:", range, document)
-}
-@(objc_type=TextSearching, objc_name="scrollRangeToVisible")
-TextSearching_scrollRangeToVisible :: #force_inline proc "c" (self: ^TextSearching, range: ^TextRange, document: ^id) {
-    msgSend(nil, self, "scrollRangeToVisible:inDocument:", range, document)
-}
-@(objc_type=TextSearching, objc_name="compareOrderFromDocument")
-TextSearching_compareOrderFromDocument :: #force_inline proc "c" (self: ^TextSearching, fromDocument: ^id, toDocument: ^id) -> NS.ComparisonResult {
-    return msgSend(NS.ComparisonResult, self, "compareOrderFromDocument:toDocument:", fromDocument, toDocument)
-}
-@(objc_type=TextSearching, objc_name="selectedTextRange")
-TextSearching_selectedTextRange :: #force_inline proc "c" (self: ^TextSearching) -> ^TextRange {
-    return msgSend(^TextRange, self, "selectedTextRange")
-}
-@(objc_type=TextSearching, objc_name="supportsTextReplacement")
-TextSearching_supportsTextReplacement :: #force_inline proc "c" (self: ^TextSearching) -> bool {
-    return msgSend(bool, self, "supportsTextReplacement")
-}
-@(objc_type=TextSearching, objc_name="selectedTextSearchDocument")
-TextSearching_selectedTextSearchDocument :: #force_inline proc "c" (self: ^TextSearching) -> ^id {
-    return msgSend(^id, self, "selectedTextSearchDocument")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextSearching, objc_selector="compareFoundRange:toRange:inDocument:", objc_name="compareFoundRange")
+    TextSearching_compareFoundRange :: proc(self: ^TextSearching, foundRange: ^TextRange, toRange: ^TextRange, document: ^id) -> NS.ComparisonResult ---
+
+    @(objc_type=TextSearching, objc_selector="performTextSearchWithQueryString:usingOptions:resultAggregator:", objc_name="performTextSearchWithQueryString")
+    TextSearching_performTextSearchWithQueryString :: proc(self: ^TextSearching, string: ^NS.String, options: ^TextSearchOptions, aggregator: ^TextSearchAggregator) ---
+
+    @(objc_type=TextSearching, objc_selector="decorateFoundTextRange:inDocument:usingStyle:", objc_name="decorateFoundTextRange")
+    TextSearching_decorateFoundTextRange :: proc(self: ^TextSearching, range: ^TextRange, document: ^id, style: TextSearchFoundTextStyle) ---
+
+    @(objc_type=TextSearching, objc_selector="clearAllDecoratedFoundText", objc_name="clearAllDecoratedFoundText")
+    TextSearching_clearAllDecoratedFoundText :: proc(self: ^TextSearching) ---
+
+    @(objc_type=TextSearching, objc_selector="shouldReplaceFoundTextInRange:inDocument:withText:", objc_name="shouldReplaceFoundTextInRange")
+    TextSearching_shouldReplaceFoundTextInRange :: proc(self: ^TextSearching, range: ^TextRange, document: ^id, replacementText: ^NS.String) -> bool ---
+
+    @(objc_type=TextSearching, objc_selector="replaceFoundTextInRange:inDocument:withText:", objc_name="replaceFoundTextInRange")
+    TextSearching_replaceFoundTextInRange :: proc(self: ^TextSearching, range: ^TextRange, document: ^id, replacementText: ^NS.String) ---
+
+    @(objc_type=TextSearching, objc_selector="replaceAllOccurrencesOfQueryString:usingOptions:withText:", objc_name="replaceAllOccurrencesOfQueryString")
+    TextSearching_replaceAllOccurrencesOfQueryString :: proc(self: ^TextSearching, queryString: ^NS.String, options: ^TextSearchOptions, replacementText: ^NS.String) ---
+
+    @(objc_type=TextSearching, objc_selector="willHighlightFoundTextRange:inDocument:", objc_name="willHighlightFoundTextRange")
+    TextSearching_willHighlightFoundTextRange :: proc(self: ^TextSearching, range: ^TextRange, document: ^id) ---
+
+    @(objc_type=TextSearching, objc_selector="scrollRangeToVisible:inDocument:", objc_name="scrollRangeToVisible")
+    TextSearching_scrollRangeToVisible :: proc(self: ^TextSearching, range: ^TextRange, document: ^id) ---
+
+    @(objc_type=TextSearching, objc_selector="compareOrderFromDocument:toDocument:", objc_name="compareOrderFromDocument")
+    TextSearching_compareOrderFromDocument :: proc(self: ^TextSearching, fromDocument: ^id, toDocument: ^id) -> NS.ComparisonResult ---
+
+    @(objc_type=TextSearching, objc_selector="selectedTextRange", objc_name="selectedTextRange")
+    TextSearching_selectedTextRange :: proc(self: ^TextSearching) -> ^TextRange ---
+
+    @(objc_type=TextSearching, objc_selector="supportsTextReplacement", objc_name="supportsTextReplacement")
+    TextSearching_supportsTextReplacement :: proc(self: ^TextSearching) -> bool ---
+
+    @(objc_type=TextSearching, objc_selector="selectedTextSearchDocument", objc_name="selectedTextSearchDocument")
+    TextSearching_selectedTextSearchDocument :: proc(self: ^TextSearching) -> ^id ---
 }

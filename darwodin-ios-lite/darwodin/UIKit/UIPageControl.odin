@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPageControl
 ///
-@(objc_class="UIPageControl")
+@(objc_class="UIPageControl", objc_superclass=Control)
 PageControl :: struct { using _: Control, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSpeechRecognizer
 ///
-@(objc_class="NSSpeechRecognizer")
+@(objc_class="NSSpeechRecognizer", objc_superclass=NS.Object)
 SpeechRecognizer :: struct { using _: NS.Object, }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSFontCollection
 ///
-@(objc_class="NSFontCollection")
+@(objc_class="NSFontCollection", objc_superclass=NS.Object)
 FontCollection :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.MutableCopying,

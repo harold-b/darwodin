@@ -19,15 +19,14 @@ PhysicalInputElement :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PhysicalInputElement, objc_name="aliases")
-PhysicalInputElement_aliases :: #force_inline proc "c" (self: ^PhysicalInputElement) -> ^NS.Set {
-    return msgSend(^NS.Set, self, "aliases")
-}
-@(objc_type=PhysicalInputElement, objc_name="localizedName")
-PhysicalInputElement_localizedName :: #force_inline proc "c" (self: ^PhysicalInputElement) -> ^NS.String {
-    return msgSend(^NS.String, self, "localizedName")
-}
-@(objc_type=PhysicalInputElement, objc_name="sfSymbolsName")
-PhysicalInputElement_sfSymbolsName :: #force_inline proc "c" (self: ^PhysicalInputElement) -> ^NS.String {
-    return msgSend(^NS.String, self, "sfSymbolsName")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PhysicalInputElement, objc_selector="aliases", objc_name="aliases")
+    PhysicalInputElement_aliases :: proc(self: ^PhysicalInputElement) -> ^NS.Set ---
+
+    @(objc_type=PhysicalInputElement, objc_selector="localizedName", objc_name="localizedName")
+    PhysicalInputElement_localizedName :: proc(self: ^PhysicalInputElement) -> ^NS.String ---
+
+    @(objc_type=PhysicalInputElement, objc_selector="sfSymbolsName", objc_name="sfSymbolsName")
+    PhysicalInputElement_sfSymbolsName :: proc(self: ^PhysicalInputElement) -> ^NS.String ---
 }

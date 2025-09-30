@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSDistributedLock
 ///
-@(objc_class="NSDistributedLock")
+@(objc_class="NSDistributedLock", objc_superclass=Object)
 DistributedLock :: struct { using _: Object, }
 

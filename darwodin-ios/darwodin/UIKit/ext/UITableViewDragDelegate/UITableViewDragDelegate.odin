@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -45,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).tableView_itemsForBeginningDragSession_atIndexPath(self, tableView, session, indexPath)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:itemsForBeginningDragSession:atIndexPath:"), auto_cast tableView_itemsForBeginningDragSession_atIndexPath, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:itemsForBeginningDragSession:atIndexPath:"), auto_cast tableView_itemsForBeginningDragSession_atIndexPath, "^void@:@@@") do panic("Failed to register objC method.")
     }
     if vt.tableView_itemsForAddingToDragSession_atIndexPath_point != nil {
         tableView_itemsForAddingToDragSession_atIndexPath_point :: proc "c" (self: ^UI.TableViewDragDelegate, _: SEL, tableView: ^UI.TableView, session: ^UI.DragSession, indexPath: ^NS.IndexPath, point: CG.Point) -> ^NS.Array {
@@ -55,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).tableView_itemsForAddingToDragSession_atIndexPath_point(self, tableView, session, indexPath, point)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:itemsForAddingToDragSession:atIndexPath:point:"), auto_cast tableView_itemsForAddingToDragSession_atIndexPath_point, "@@:@@@{CGPoint=dd}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:itemsForAddingToDragSession:atIndexPath:point:"), auto_cast tableView_itemsForAddingToDragSession_atIndexPath_point, "^void@:@@@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.tableView_dragPreviewParametersForRowAtIndexPath != nil {
         tableView_dragPreviewParametersForRowAtIndexPath :: proc "c" (self: ^UI.TableViewDragDelegate, _: SEL, tableView: ^UI.TableView, indexPath: ^NS.IndexPath) -> ^UI.DragPreviewParameters {

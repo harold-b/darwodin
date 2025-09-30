@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITextField
 ///
-@(objc_class="UITextField")
+@(objc_class="UITextField", objc_superclass=Control)
 TextField :: struct { using _: Control, 
     using _: TextInput,
     using _: NS.Coding,

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSCollectionLayoutSection
 ///
-@(objc_class="NSCollectionLayoutSection")
+@(objc_class="NSCollectionLayoutSection", objc_superclass=NS.Object)
 NSCollectionLayoutSection :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

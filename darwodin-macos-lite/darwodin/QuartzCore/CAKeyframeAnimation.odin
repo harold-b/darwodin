@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CAKeyframeAnimation
 ///
-@(objc_class="CAKeyframeAnimation")
+@(objc_class="CAKeyframeAnimation", objc_superclass=PropertyAnimation)
 KeyframeAnimation :: struct { using _: PropertyAnimation, }
 

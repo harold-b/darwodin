@@ -19,35 +19,29 @@ Axis2DInput :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Axis2DInput, objc_name="valueDidChangeHandler")
-Axis2DInput_valueDidChangeHandler :: #force_inline proc "c" (self: ^Axis2DInput) -> ^Objc_Block(proc "c" ()) {
-    return msgSend(^Objc_Block(proc "c" ()), self, "valueDidChangeHandler")
-}
-@(objc_type=Axis2DInput, objc_name="setValueDidChangeHandler")
-Axis2DInput_setValueDidChangeHandler :: #force_inline proc "c" (self: ^Axis2DInput, valueDidChangeHandler: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "setValueDidChangeHandler:", valueDidChangeHandler)
-}
-@(objc_type=Axis2DInput, objc_name="value")
-Axis2DInput_value :: #force_inline proc "c" (self: ^Axis2DInput) -> Point2 {
-    return msgSend(Point2, self, "value")
-}
-@(objc_type=Axis2DInput, objc_name="isAnalog")
-Axis2DInput_isAnalog :: #force_inline proc "c" (self: ^Axis2DInput) -> bool {
-    return msgSend(bool, self, "isAnalog")
-}
-@(objc_type=Axis2DInput, objc_name="canWrap")
-Axis2DInput_canWrap :: #force_inline proc "c" (self: ^Axis2DInput) -> bool {
-    return msgSend(bool, self, "canWrap")
-}
-@(objc_type=Axis2DInput, objc_name="lastValueTimestamp")
-Axis2DInput_lastValueTimestamp :: #force_inline proc "c" (self: ^Axis2DInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastValueTimestamp")
-}
-@(objc_type=Axis2DInput, objc_name="lastValueLatency")
-Axis2DInput_lastValueLatency :: #force_inline proc "c" (self: ^Axis2DInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastValueLatency")
-}
-@(objc_type=Axis2DInput, objc_name="sources")
-Axis2DInput_sources :: #force_inline proc "c" (self: ^Axis2DInput) -> ^NS.Set {
-    return msgSend(^NS.Set, self, "sources")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Axis2DInput, objc_selector="valueDidChangeHandler", objc_name="valueDidChangeHandler")
+    Axis2DInput_valueDidChangeHandler :: proc(self: ^Axis2DInput) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=Axis2DInput, objc_selector="setValueDidChangeHandler:", objc_name="setValueDidChangeHandler")
+    Axis2DInput_setValueDidChangeHandler :: proc(self: ^Axis2DInput, valueDidChangeHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=Axis2DInput, objc_selector="value", objc_name="value")
+    Axis2DInput_value :: proc(self: ^Axis2DInput) -> Point2 ---
+
+    @(objc_type=Axis2DInput, objc_selector="isAnalog", objc_name="isAnalog")
+    Axis2DInput_isAnalog :: proc(self: ^Axis2DInput) -> bool ---
+
+    @(objc_type=Axis2DInput, objc_selector="canWrap", objc_name="canWrap")
+    Axis2DInput_canWrap :: proc(self: ^Axis2DInput) -> bool ---
+
+    @(objc_type=Axis2DInput, objc_selector="lastValueTimestamp", objc_name="lastValueTimestamp")
+    Axis2DInput_lastValueTimestamp :: proc(self: ^Axis2DInput) -> NS.TimeInterval ---
+
+    @(objc_type=Axis2DInput, objc_selector="lastValueLatency", objc_name="lastValueLatency")
+    Axis2DInput_lastValueLatency :: proc(self: ^Axis2DInput) -> NS.TimeInterval ---
+
+    @(objc_type=Axis2DInput, objc_selector="sources", objc_name="sources")
+    Axis2DInput_sources :: proc(self: ^Axis2DInput) -> ^NS.Set ---
 }

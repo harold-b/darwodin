@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSISO8601DateFormatter
 ///
-@(objc_class="NSISO8601DateFormatter")
+@(objc_class="NSISO8601DateFormatter", objc_superclass=Formatter)
 ISO8601DateFormatter :: struct { using _: Formatter, 
     using _: SecureCoding,
 }

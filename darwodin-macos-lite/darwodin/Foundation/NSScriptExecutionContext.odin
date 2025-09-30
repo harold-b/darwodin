@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSScriptExecutionContext
 ///
-@(objc_class="NSScriptExecutionContext")
+@(objc_class="NSScriptExecutionContext", objc_superclass=Object)
 ScriptExecutionContext :: struct { using _: Object, }
 

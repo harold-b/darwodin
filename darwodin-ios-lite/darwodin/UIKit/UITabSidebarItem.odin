@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITabSidebarItem
 ///
-@(objc_class="UITabSidebarItem")
+@(objc_class="UITabSidebarItem", objc_superclass=NS.Object)
 TabSidebarItem :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

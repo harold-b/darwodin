@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIDragPreview
 ///
-@(objc_class="UIDragPreview")
+@(objc_class="UIDragPreview", objc_superclass=NS.Object)
 DragPreview :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

@@ -16,11 +16,11 @@ import Sec "../Security"
 @(objc_class="NSCoding")
 Coding :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=Coding, objc_name="encodeWithCoder")
-Coding_encodeWithCoder :: #force_inline proc "c" (self: ^Coding, coder: ^Coder) {
-    msgSend(nil, self, "encodeWithCoder:", coder)
-}
-@(objc_type=Coding, objc_name="initWithCoder")
-Coding_initWithCoder :: #force_inline proc "c" (self: ^Coding, coder: ^Coder) -> ^Coding {
-    return msgSend(^Coding, self, "initWithCoder:", coder)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Coding, objc_selector="encodeWithCoder:", objc_name="encodeWithCoder")
+    Coding_encodeWithCoder :: proc(self: ^Coding, coder: ^Coder) ---
+
+    @(objc_type=Coding, objc_selector="initWithCoder:", objc_name="initWithCoder")
+    Coding_initWithCoder :: proc(self: ^Coding, coder: ^Coder) -> ^Coding ---
 }

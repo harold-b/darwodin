@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTextLayoutManager
 ///
-@(objc_class="NSTextLayoutManager")
+@(objc_class="NSTextLayoutManager", objc_superclass=NS.Object)
 TextLayoutManager :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: TextSelectionDataSource,

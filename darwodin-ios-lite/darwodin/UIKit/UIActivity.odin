@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIActivity
 ///
-@(objc_class="UIActivity")
+@(objc_class="UIActivity", objc_superclass=NS.Object)
 Activity :: struct { using _: NS.Object, }
 

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSOutputStream
 ///
-@(objc_class="NSOutputStream")
+@(objc_class="NSOutputStream", objc_superclass=Stream)
 OutputStream :: struct { using _: Stream, }
 

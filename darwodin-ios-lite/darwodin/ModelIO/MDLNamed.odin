@@ -19,11 +19,11 @@ import UI "../UIKit"
 @(objc_class="MDLNamed")
 Named :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=Named, objc_name="name")
-Named_name :: #force_inline proc "c" (self: ^Named) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
-}
-@(objc_type=Named, objc_name="setName")
-Named_setName :: #force_inline proc "c" (self: ^Named, name: ^NS.String) {
-    msgSend(nil, self, "setName:", name)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Named, objc_selector="name", objc_name="name")
+    Named_name :: proc(self: ^Named) -> ^NS.String ---
+
+    @(objc_type=Named, objc_selector="setName:", objc_name="setName")
+    Named_setName :: proc(self: ^Named, name: ^NS.String) ---
 }

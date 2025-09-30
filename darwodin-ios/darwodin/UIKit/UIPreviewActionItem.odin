@@ -21,7 +21,8 @@ PreviewActionItem :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PreviewActionItem, objc_name="title")
-PreviewActionItem_title :: #force_inline proc "c" (self: ^PreviewActionItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "title")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PreviewActionItem, objc_selector="title", objc_name="title")
+    PreviewActionItem_title :: proc(self: ^PreviewActionItem) -> ^NS.String ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITabBarItem
 ///
-@(objc_class="UITabBarItem")
+@(objc_class="UITabBarItem", objc_superclass=BarItem)
 TabBarItem :: struct { using _: BarItem, }
 

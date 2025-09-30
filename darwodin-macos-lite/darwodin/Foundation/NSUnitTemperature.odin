@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnitTemperature
 ///
-@(objc_class="NSUnitTemperature")
+@(objc_class="NSUnitTemperature", objc_superclass=Dimension)
 UnitTemperature :: struct { using _: Dimension, 
     using _: SecureCoding,
 }

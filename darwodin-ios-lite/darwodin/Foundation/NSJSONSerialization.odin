@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSJSONSerialization
 ///
-@(objc_class="NSJSONSerialization")
+@(objc_class="NSJSONSerialization", objc_superclass=Object)
 JSONSerialization :: struct { using _: Object, }
 

@@ -21,19 +21,18 @@ SharingServicePickerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SharingServicePickerDelegate, objc_name="sharingServicePicker_sharingServicesForItems_proposedSharingServices")
-SharingServicePickerDelegate_sharingServicePicker_sharingServicesForItems_proposedSharingServices :: #force_inline proc "c" (self: ^SharingServicePickerDelegate, sharingServicePicker: ^SharingServicePicker, items: ^NS.Array, proposedServices: ^NS.Array) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "sharingServicePicker:sharingServicesForItems:proposedSharingServices:", sharingServicePicker, items, proposedServices)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SharingServicePickerDelegate, objc_selector="sharingServicePicker:sharingServicesForItems:proposedSharingServices:", objc_name="sharingServicePicker_sharingServicesForItems_proposedSharingServices")
+    SharingServicePickerDelegate_sharingServicePicker_sharingServicesForItems_proposedSharingServices :: proc(self: ^SharingServicePickerDelegate, sharingServicePicker: ^SharingServicePicker, items: ^NS.Array, proposedServices: ^NS.Array) -> ^NS.Array ---
+
+    @(objc_type=SharingServicePickerDelegate, objc_selector="sharingServicePicker:delegateForSharingService:", objc_name="sharingServicePicker_delegateForSharingService")
+    SharingServicePickerDelegate_sharingServicePicker_delegateForSharingService :: proc(self: ^SharingServicePickerDelegate, sharingServicePicker: ^SharingServicePicker, sharingService: ^SharingService) -> ^SharingServiceDelegate ---
+
+    @(objc_type=SharingServicePickerDelegate, objc_selector="sharingServicePicker:didChooseSharingService:", objc_name="sharingServicePicker_didChooseSharingService")
+    SharingServicePickerDelegate_sharingServicePicker_didChooseSharingService :: proc(self: ^SharingServicePickerDelegate, sharingServicePicker: ^SharingServicePicker, service: ^SharingService) ---
+
+    @(objc_type=SharingServicePickerDelegate, objc_selector="sharingServicePickerCollaborationModeRestrictions:", objc_name="sharingServicePickerCollaborationModeRestrictions")
+    SharingServicePickerDelegate_sharingServicePickerCollaborationModeRestrictions :: proc(self: ^SharingServicePickerDelegate, sharingServicePicker: ^SharingServicePicker) -> ^NS.Array ---
 }
-@(objc_type=SharingServicePickerDelegate, objc_name="sharingServicePicker_delegateForSharingService")
-SharingServicePickerDelegate_sharingServicePicker_delegateForSharingService :: #force_inline proc "c" (self: ^SharingServicePickerDelegate, sharingServicePicker: ^SharingServicePicker, sharingService: ^SharingService) -> ^SharingServiceDelegate {
-    return msgSend(^SharingServiceDelegate, self, "sharingServicePicker:delegateForSharingService:", sharingServicePicker, sharingService)
-}
-@(objc_type=SharingServicePickerDelegate, objc_name="sharingServicePicker_didChooseSharingService")
-SharingServicePickerDelegate_sharingServicePicker_didChooseSharingService :: #force_inline proc "c" (self: ^SharingServicePickerDelegate, sharingServicePicker: ^SharingServicePicker, service: ^SharingService) {
-    msgSend(nil, self, "sharingServicePicker:didChooseSharingService:", sharingServicePicker, service)
-}
-@(objc_type=SharingServicePickerDelegate, objc_name="sharingServicePickerCollaborationModeRestrictions")
-SharingServicePickerDelegate_sharingServicePickerCollaborationModeRestrictions :: #force_inline proc "c" (self: ^SharingServicePickerDelegate, sharingServicePicker: ^SharingServicePicker) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "sharingServicePickerCollaborationModeRestrictions:", sharingServicePicker)
-}
+

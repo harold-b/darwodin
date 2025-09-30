@@ -21,19 +21,17 @@ ViewControllerInteractiveTransitioning :: struct { using _: intrinsics.objc_obje
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewControllerInteractiveTransitioning, objc_name="startInteractiveTransition")
-ViewControllerInteractiveTransitioning_startInteractiveTransition :: #force_inline proc "c" (self: ^ViewControllerInteractiveTransitioning, transitionContext: ^ViewControllerContextTransitioning) {
-    msgSend(nil, self, "startInteractiveTransition:", transitionContext)
-}
-@(objc_type=ViewControllerInteractiveTransitioning, objc_name="completionSpeed")
-ViewControllerInteractiveTransitioning_completionSpeed :: #force_inline proc "c" (self: ^ViewControllerInteractiveTransitioning) -> CG.Float {
-    return msgSend(CG.Float, self, "completionSpeed")
-}
-@(objc_type=ViewControllerInteractiveTransitioning, objc_name="completionCurve")
-ViewControllerInteractiveTransitioning_completionCurve :: #force_inline proc "c" (self: ^ViewControllerInteractiveTransitioning) -> ViewAnimationCurve {
-    return msgSend(ViewAnimationCurve, self, "completionCurve")
-}
-@(objc_type=ViewControllerInteractiveTransitioning, objc_name="wantsInteractiveStart")
-ViewControllerInteractiveTransitioning_wantsInteractiveStart :: #force_inline proc "c" (self: ^ViewControllerInteractiveTransitioning) -> bool {
-    return msgSend(bool, self, "wantsInteractiveStart")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewControllerInteractiveTransitioning, objc_selector="startInteractiveTransition:", objc_name="startInteractiveTransition")
+    ViewControllerInteractiveTransitioning_startInteractiveTransition :: proc(self: ^ViewControllerInteractiveTransitioning, transitionContext: ^ViewControllerContextTransitioning) ---
+
+    @(objc_type=ViewControllerInteractiveTransitioning, objc_selector="completionSpeed", objc_name="completionSpeed")
+    ViewControllerInteractiveTransitioning_completionSpeed :: proc(self: ^ViewControllerInteractiveTransitioning) -> CG.Float ---
+
+    @(objc_type=ViewControllerInteractiveTransitioning, objc_selector="completionCurve", objc_name="completionCurve")
+    ViewControllerInteractiveTransitioning_completionCurve :: proc(self: ^ViewControllerInteractiveTransitioning) -> ViewAnimationCurve ---
+
+    @(objc_type=ViewControllerInteractiveTransitioning, objc_selector="wantsInteractiveStart", objc_name="wantsInteractiveStart")
+    ViewControllerInteractiveTransitioning_wantsInteractiveStart :: proc(self: ^ViewControllerInteractiveTransitioning) -> bool ---
 }

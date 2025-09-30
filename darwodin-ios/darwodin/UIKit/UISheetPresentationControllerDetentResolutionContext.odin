@@ -21,11 +21,11 @@ SheetPresentationControllerDetentResolutionContext :: struct { using _: intrinsi
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SheetPresentationControllerDetentResolutionContext, objc_name="containerTraitCollection")
-SheetPresentationControllerDetentResolutionContext_containerTraitCollection :: #force_inline proc "c" (self: ^SheetPresentationControllerDetentResolutionContext) -> ^TraitCollection {
-    return msgSend(^TraitCollection, self, "containerTraitCollection")
-}
-@(objc_type=SheetPresentationControllerDetentResolutionContext, objc_name="maximumDetentValue")
-SheetPresentationControllerDetentResolutionContext_maximumDetentValue :: #force_inline proc "c" (self: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float {
-    return msgSend(CG.Float, self, "maximumDetentValue")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SheetPresentationControllerDetentResolutionContext, objc_selector="containerTraitCollection", objc_name="containerTraitCollection")
+    SheetPresentationControllerDetentResolutionContext_containerTraitCollection :: proc(self: ^SheetPresentationControllerDetentResolutionContext) -> ^TraitCollection ---
+
+    @(objc_type=SheetPresentationControllerDetentResolutionContext, objc_selector="maximumDetentValue", objc_name="maximumDetentValue")
+    SheetPresentationControllerDetentResolutionContext_maximumDetentValue :: proc(self: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float ---
 }

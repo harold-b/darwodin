@@ -18,7 +18,8 @@ CacheDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=CacheDelegate, objc_name="cache")
-CacheDelegate_cache :: #force_inline proc "c" (self: ^CacheDelegate, cache: ^Cache, obj: id) {
-    msgSend(nil, self, "cache:willEvictObject:", cache, obj)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CacheDelegate, objc_selector="cache:willEvictObject:", objc_name="cache")
+    CacheDelegate_cache :: proc(self: ^CacheDelegate, cache: ^Cache, obj: id) ---
 }

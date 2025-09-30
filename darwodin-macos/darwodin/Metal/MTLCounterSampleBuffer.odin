@@ -20,19 +20,17 @@ CounterSampleBuffer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CounterSampleBuffer, objc_name="resolveCounterRange")
-CounterSampleBuffer_resolveCounterRange :: #force_inline proc "c" (self: ^CounterSampleBuffer, range: NS._NSRange) -> ^NS.Data {
-    return msgSend(^NS.Data, self, "resolveCounterRange:", range)
-}
-@(objc_type=CounterSampleBuffer, objc_name="device")
-CounterSampleBuffer_device :: #force_inline proc "c" (self: ^CounterSampleBuffer) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=CounterSampleBuffer, objc_name="label")
-CounterSampleBuffer_label :: #force_inline proc "c" (self: ^CounterSampleBuffer) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=CounterSampleBuffer, objc_name="sampleCount")
-CounterSampleBuffer_sampleCount :: #force_inline proc "c" (self: ^CounterSampleBuffer) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "sampleCount")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CounterSampleBuffer, objc_selector="resolveCounterRange:", objc_name="resolveCounterRange")
+    CounterSampleBuffer_resolveCounterRange :: proc(self: ^CounterSampleBuffer, range: NS._NSRange) -> ^NS.Data ---
+
+    @(objc_type=CounterSampleBuffer, objc_selector="device", objc_name="device")
+    CounterSampleBuffer_device :: proc(self: ^CounterSampleBuffer) -> ^Device ---
+
+    @(objc_type=CounterSampleBuffer, objc_selector="label", objc_name="label")
+    CounterSampleBuffer_label :: proc(self: ^CounterSampleBuffer) -> ^NS.String ---
+
+    @(objc_type=CounterSampleBuffer, objc_selector="sampleCount", objc_name="sampleCount")
+    CounterSampleBuffer_sampleCount :: proc(self: ^CounterSampleBuffer) -> NS.UInteger ---
 }

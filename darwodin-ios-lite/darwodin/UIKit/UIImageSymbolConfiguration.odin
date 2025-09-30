@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIImageSymbolConfiguration
 ///
-@(objc_class="UIImageSymbolConfiguration")
+@(objc_class="UIImageSymbolConfiguration", objc_superclass=ImageConfiguration)
 ImageSymbolConfiguration :: struct { using _: ImageConfiguration, }
 

@@ -21,27 +21,23 @@ ContentContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ContentContainer, objc_name="preferredContentSizeDidChangeForChildContentContainer")
-ContentContainer_preferredContentSizeDidChangeForChildContentContainer :: #force_inline proc "c" (self: ^ContentContainer, container: ^ContentContainer) {
-    msgSend(nil, self, "preferredContentSizeDidChangeForChildContentContainer:", container)
-}
-@(objc_type=ContentContainer, objc_name="systemLayoutFittingSizeDidChangeForChildContentContainer")
-ContentContainer_systemLayoutFittingSizeDidChangeForChildContentContainer :: #force_inline proc "c" (self: ^ContentContainer, container: ^ContentContainer) {
-    msgSend(nil, self, "systemLayoutFittingSizeDidChangeForChildContentContainer:", container)
-}
-@(objc_type=ContentContainer, objc_name="sizeForChildContentContainer")
-ContentContainer_sizeForChildContentContainer :: #force_inline proc "c" (self: ^ContentContainer, container: ^ContentContainer, parentSize: CG.Size) -> CG.Size {
-    return msgSend(CG.Size, self, "sizeForChildContentContainer:withParentContainerSize:", container, parentSize)
-}
-@(objc_type=ContentContainer, objc_name="viewWillTransitionToSize")
-ContentContainer_viewWillTransitionToSize :: #force_inline proc "c" (self: ^ContentContainer, size: CG.Size, coordinator: ^ViewControllerTransitionCoordinator) {
-    msgSend(nil, self, "viewWillTransitionToSize:withTransitionCoordinator:", size, coordinator)
-}
-@(objc_type=ContentContainer, objc_name="willTransitionToTraitCollection")
-ContentContainer_willTransitionToTraitCollection :: #force_inline proc "c" (self: ^ContentContainer, newCollection: ^TraitCollection, coordinator: ^ViewControllerTransitionCoordinator) {
-    msgSend(nil, self, "willTransitionToTraitCollection:withTransitionCoordinator:", newCollection, coordinator)
-}
-@(objc_type=ContentContainer, objc_name="preferredContentSize")
-ContentContainer_preferredContentSize :: #force_inline proc "c" (self: ^ContentContainer) -> CG.Size {
-    return msgSend(CG.Size, self, "preferredContentSize")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ContentContainer, objc_selector="preferredContentSizeDidChangeForChildContentContainer:", objc_name="preferredContentSizeDidChangeForChildContentContainer")
+    ContentContainer_preferredContentSizeDidChangeForChildContentContainer :: proc(self: ^ContentContainer, container: ^ContentContainer) ---
+
+    @(objc_type=ContentContainer, objc_selector="systemLayoutFittingSizeDidChangeForChildContentContainer:", objc_name="systemLayoutFittingSizeDidChangeForChildContentContainer")
+    ContentContainer_systemLayoutFittingSizeDidChangeForChildContentContainer :: proc(self: ^ContentContainer, container: ^ContentContainer) ---
+
+    @(objc_type=ContentContainer, objc_selector="sizeForChildContentContainer:withParentContainerSize:", objc_name="sizeForChildContentContainer")
+    ContentContainer_sizeForChildContentContainer :: proc(self: ^ContentContainer, container: ^ContentContainer, parentSize: CG.Size) -> CG.Size ---
+
+    @(objc_type=ContentContainer, objc_selector="viewWillTransitionToSize:withTransitionCoordinator:", objc_name="viewWillTransitionToSize")
+    ContentContainer_viewWillTransitionToSize :: proc(self: ^ContentContainer, size: CG.Size, coordinator: ^ViewControllerTransitionCoordinator) ---
+
+    @(objc_type=ContentContainer, objc_selector="willTransitionToTraitCollection:withTransitionCoordinator:", objc_name="willTransitionToTraitCollection")
+    ContentContainer_willTransitionToTraitCollection :: proc(self: ^ContentContainer, newCollection: ^TraitCollection, coordinator: ^ViewControllerTransitionCoordinator) ---
+
+    @(objc_type=ContentContainer, objc_selector="preferredContentSize", objc_name="preferredContentSize")
+    ContentContainer_preferredContentSize :: proc(self: ^ContentContainer) -> CG.Size ---
 }

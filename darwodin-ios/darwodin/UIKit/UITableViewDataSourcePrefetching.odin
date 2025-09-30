@@ -21,11 +21,12 @@ TableViewDataSourcePrefetching :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TableViewDataSourcePrefetching, objc_name="tableView_prefetchRowsAtIndexPaths")
-TableViewDataSourcePrefetching_tableView_prefetchRowsAtIndexPaths :: #force_inline proc "c" (self: ^TableViewDataSourcePrefetching, tableView: ^TableView, indexPaths: ^NS.Array) {
-    msgSend(nil, self, "tableView:prefetchRowsAtIndexPaths:", tableView, indexPaths)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TableViewDataSourcePrefetching, objc_selector="tableView:prefetchRowsAtIndexPaths:", objc_name="tableView_prefetchRowsAtIndexPaths")
+    TableViewDataSourcePrefetching_tableView_prefetchRowsAtIndexPaths :: proc(self: ^TableViewDataSourcePrefetching, tableView: ^TableView, indexPaths: ^NS.Array) ---
+
+    @(objc_type=TableViewDataSourcePrefetching, objc_selector="tableView:cancelPrefetchingForRowsAtIndexPaths:", objc_name="tableView_cancelPrefetchingForRowsAtIndexPaths")
+    TableViewDataSourcePrefetching_tableView_cancelPrefetchingForRowsAtIndexPaths :: proc(self: ^TableViewDataSourcePrefetching, tableView: ^TableView, indexPaths: ^NS.Array) ---
 }
-@(objc_type=TableViewDataSourcePrefetching, objc_name="tableView_cancelPrefetchingForRowsAtIndexPaths")
-TableViewDataSourcePrefetching_tableView_cancelPrefetchingForRowsAtIndexPaths :: #force_inline proc "c" (self: ^TableViewDataSourcePrefetching, tableView: ^TableView, indexPaths: ^NS.Array) {
-    msgSend(nil, self, "tableView:cancelPrefetchingForRowsAtIndexPaths:", tableView, indexPaths)
-}
+

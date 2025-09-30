@@ -16,22 +16,21 @@ import UI "../UIKit"
 @(objc_class="GKTurnBasedEventHandlerDelegate")
 TurnBasedEventHandlerDelegate :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=TurnBasedEventHandlerDelegate, objc_name="handleInviteFromGameCenter")
-TurnBasedEventHandlerDelegate_handleInviteFromGameCenter :: #force_inline proc "c" (self: ^TurnBasedEventHandlerDelegate, playersToInvite: ^NS.Array) {
-    msgSend(nil, self, "handleInviteFromGameCenter:", playersToInvite)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TurnBasedEventHandlerDelegate, objc_selector="handleInviteFromGameCenter:", objc_name="handleInviteFromGameCenter")
+    TurnBasedEventHandlerDelegate_handleInviteFromGameCenter :: proc(self: ^TurnBasedEventHandlerDelegate, playersToInvite: ^NS.Array) ---
+
+    @(objc_type=TurnBasedEventHandlerDelegate, objc_selector="handleTurnEventForMatch:didBecomeActive:", objc_name="handleTurnEventForMatch_didBecomeActive")
+    TurnBasedEventHandlerDelegate_handleTurnEventForMatch_didBecomeActive :: proc(self: ^TurnBasedEventHandlerDelegate, match: ^TurnBasedMatch, didBecomeActive: bool) ---
+
+    @(objc_type=TurnBasedEventHandlerDelegate, objc_selector="handleTurnEventForMatch:", objc_name="handleTurnEventForMatch_")
+    TurnBasedEventHandlerDelegate_handleTurnEventForMatch_ :: proc(self: ^TurnBasedEventHandlerDelegate, match: ^TurnBasedMatch) ---
+
+    @(objc_type=TurnBasedEventHandlerDelegate, objc_selector="handleMatchEnded:", objc_name="handleMatchEnded")
+    TurnBasedEventHandlerDelegate_handleMatchEnded :: proc(self: ^TurnBasedEventHandlerDelegate, match: ^TurnBasedMatch) ---
 }
-@(objc_type=TurnBasedEventHandlerDelegate, objc_name="handleTurnEventForMatch_didBecomeActive")
-TurnBasedEventHandlerDelegate_handleTurnEventForMatch_didBecomeActive :: #force_inline proc "c" (self: ^TurnBasedEventHandlerDelegate, match: ^TurnBasedMatch, didBecomeActive: bool) {
-    msgSend(nil, self, "handleTurnEventForMatch:didBecomeActive:", match, didBecomeActive)
-}
-@(objc_type=TurnBasedEventHandlerDelegate, objc_name="handleTurnEventForMatch_")
-TurnBasedEventHandlerDelegate_handleTurnEventForMatch_ :: #force_inline proc "c" (self: ^TurnBasedEventHandlerDelegate, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "handleTurnEventForMatch:", match)
-}
-@(objc_type=TurnBasedEventHandlerDelegate, objc_name="handleMatchEnded")
-TurnBasedEventHandlerDelegate_handleMatchEnded :: #force_inline proc "c" (self: ^TurnBasedEventHandlerDelegate, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "handleMatchEnded:", match)
-}
+
 @(objc_type=TurnBasedEventHandlerDelegate, objc_name="handleTurnEventForMatch")
 TurnBasedEventHandlerDelegate_handleTurnEventForMatch :: proc {
     TurnBasedEventHandlerDelegate_handleTurnEventForMatch_didBecomeActive,

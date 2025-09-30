@@ -12,11 +12,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import NS "../../"
 
@@ -93,36 +94,6 @@ VTable :: struct {
     shortStandaloneQuarterSymbols: proc(self: ^NS.Calendar) -> ^NS.Array,
     _AMSymbol: proc(self: ^NS.Calendar) -> ^NS.String,
     _PMSymbol: proc(self: ^NS.Calendar) -> ^NS.String,
-    supportsSecureCoding: proc() -> bool,
-    load: proc(),
-    initialize: proc(),
-    new: proc() -> ^NS.Calendar,
-    allocWithZone: proc(zone: ^NS._NSZone) -> ^NS.Calendar,
-    alloc: proc() -> ^NS.Calendar,
-    copyWithZone: proc(zone: ^NS._NSZone) -> id,
-    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> id,
-    instancesRespondToSelector: proc(aSelector: SEL) -> bool,
-    conformsToProtocol: proc(protocol: ^NS.Protocol) -> bool,
-    instanceMethodForSelector: proc(aSelector: SEL) -> NS.IMP,
-    instanceMethodSignatureForSelector: proc(aSelector: SEL) -> ^NS.MethodSignature,
-    isSubclassOfClass: proc(aClass: Class) -> bool,
-    resolveClassMethod: proc(sel: SEL) -> bool,
-    resolveInstanceMethod: proc(sel: SEL) -> bool,
-    hash: proc() -> NS.UInteger,
-    superclass: proc() -> Class,
-    class: proc() -> Class,
-    description: proc() -> ^NS.String,
-    debugDescription: proc() -> ^NS.String,
-    version: proc() -> NS.Integer,
-    setVersion: proc(aVersion: NS.Integer),
-    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
-    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
-    accessInstanceVariablesDirectly: proc() -> bool,
-    useStoredAccessor: proc() -> bool,
-    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
-    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
-    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
-    classForKeyedUnarchiver: proc() -> Class,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -630,7 +601,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).eraSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("eraSymbols"), auto_cast eraSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("eraSymbols"), auto_cast eraSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.longEraSymbols != nil {
         longEraSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -640,7 +611,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).longEraSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("longEraSymbols"), auto_cast longEraSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("longEraSymbols"), auto_cast longEraSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.monthSymbols != nil {
         monthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -650,7 +621,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).monthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("monthSymbols"), auto_cast monthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("monthSymbols"), auto_cast monthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortMonthSymbols != nil {
         shortMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -660,7 +631,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortMonthSymbols"), auto_cast shortMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortMonthSymbols"), auto_cast shortMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.veryShortMonthSymbols != nil {
         veryShortMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -670,7 +641,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).veryShortMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortMonthSymbols"), auto_cast veryShortMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortMonthSymbols"), auto_cast veryShortMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.standaloneMonthSymbols != nil {
         standaloneMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -680,7 +651,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).standaloneMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneMonthSymbols"), auto_cast standaloneMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneMonthSymbols"), auto_cast standaloneMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortStandaloneMonthSymbols != nil {
         shortStandaloneMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -690,7 +661,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortStandaloneMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneMonthSymbols"), auto_cast shortStandaloneMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneMonthSymbols"), auto_cast shortStandaloneMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.veryShortStandaloneMonthSymbols != nil {
         veryShortStandaloneMonthSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -700,7 +671,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).veryShortStandaloneMonthSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortStandaloneMonthSymbols"), auto_cast veryShortStandaloneMonthSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortStandaloneMonthSymbols"), auto_cast veryShortStandaloneMonthSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.weekdaySymbols != nil {
         weekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -710,7 +681,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).weekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("weekdaySymbols"), auto_cast weekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("weekdaySymbols"), auto_cast weekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortWeekdaySymbols != nil {
         shortWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -720,7 +691,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortWeekdaySymbols"), auto_cast shortWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortWeekdaySymbols"), auto_cast shortWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.veryShortWeekdaySymbols != nil {
         veryShortWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -730,7 +701,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).veryShortWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortWeekdaySymbols"), auto_cast veryShortWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortWeekdaySymbols"), auto_cast veryShortWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.standaloneWeekdaySymbols != nil {
         standaloneWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -740,7 +711,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).standaloneWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneWeekdaySymbols"), auto_cast standaloneWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneWeekdaySymbols"), auto_cast standaloneWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortStandaloneWeekdaySymbols != nil {
         shortStandaloneWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -750,7 +721,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortStandaloneWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneWeekdaySymbols"), auto_cast shortStandaloneWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneWeekdaySymbols"), auto_cast shortStandaloneWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.veryShortStandaloneWeekdaySymbols != nil {
         veryShortStandaloneWeekdaySymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -760,7 +731,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).veryShortStandaloneWeekdaySymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortStandaloneWeekdaySymbols"), auto_cast veryShortStandaloneWeekdaySymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("veryShortStandaloneWeekdaySymbols"), auto_cast veryShortStandaloneWeekdaySymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.quarterSymbols != nil {
         quarterSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -770,7 +741,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).quarterSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("quarterSymbols"), auto_cast quarterSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("quarterSymbols"), auto_cast quarterSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortQuarterSymbols != nil {
         shortQuarterSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -780,7 +751,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortQuarterSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortQuarterSymbols"), auto_cast shortQuarterSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortQuarterSymbols"), auto_cast shortQuarterSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.standaloneQuarterSymbols != nil {
         standaloneQuarterSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -790,7 +761,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).standaloneQuarterSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneQuarterSymbols"), auto_cast standaloneQuarterSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("standaloneQuarterSymbols"), auto_cast standaloneQuarterSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.shortStandaloneQuarterSymbols != nil {
         shortStandaloneQuarterSymbols :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Array {
@@ -800,7 +771,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).shortStandaloneQuarterSymbols(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneQuarterSymbols"), auto_cast shortStandaloneQuarterSymbols, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("shortStandaloneQuarterSymbols"), auto_cast shortStandaloneQuarterSymbols, "^void@:") do panic("Failed to register objC method.")
     }
     if vt._AMSymbol != nil {
         _AMSymbol :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.String {
@@ -821,306 +792,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("PMSymbol"), auto_cast _PMSymbol, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.supportsSecureCoding != nil {
-        supportsSecureCoding :: proc "c" (self: Class, _: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).supportsSecureCoding()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("supportsSecureCoding"), auto_cast supportsSecureCoding, "B#:") do panic("Failed to register objC method.")
-    }
-    if vt.load != nil {
-        load :: proc "c" (self: Class, _: SEL) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).load()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("load"), auto_cast load, "v#:") do panic("Failed to register objC method.")
-    }
-    if vt.initialize != nil {
-        initialize :: proc "c" (self: Class, _: SEL) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).initialize()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("initialize"), auto_cast initialize, "v#:") do panic("Failed to register objC method.")
-    }
-    if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^NS.Calendar {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).new()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.allocWithZone != nil {
-        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> ^NS.Calendar {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).allocWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allocWithZone:"), auto_cast allocWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.alloc != nil {
-        alloc :: proc "c" (self: Class, _: SEL) -> ^NS.Calendar {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).alloc()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("alloc"), auto_cast alloc, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.copyWithZone != nil {
-        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).copyWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("copyWithZone:"), auto_cast copyWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.mutableCopyWithZone != nil {
-        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).mutableCopyWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("mutableCopyWithZone:"), auto_cast mutableCopyWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.instancesRespondToSelector != nil {
-        instancesRespondToSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instancesRespondToSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instancesRespondToSelector:"), auto_cast instancesRespondToSelector, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.conformsToProtocol != nil {
-        conformsToProtocol :: proc "c" (self: Class, _: SEL, protocol: ^NS.Protocol) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).conformsToProtocol( protocol)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("conformsToProtocol:"), auto_cast conformsToProtocol, "B#:@") do panic("Failed to register objC method.")
-    }
-    if vt.instanceMethodForSelector != nil {
-        instanceMethodForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> NS.IMP {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instanceMethodForSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodForSelector:"), auto_cast instanceMethodForSelector, "?#::") do panic("Failed to register objC method.")
-    }
-    if vt.instanceMethodSignatureForSelector != nil {
-        instanceMethodSignatureForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> ^NS.MethodSignature {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instanceMethodSignatureForSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodSignatureForSelector:"), auto_cast instanceMethodSignatureForSelector, "@#::") do panic("Failed to register objC method.")
-    }
-    if vt.isSubclassOfClass != nil {
-        isSubclassOfClass :: proc "c" (self: Class, _: SEL, aClass: Class) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).isSubclassOfClass( aClass)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("isSubclassOfClass:"), auto_cast isSubclassOfClass, "B#:#") do panic("Failed to register objC method.")
-    }
-    if vt.resolveClassMethod != nil {
-        resolveClassMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).resolveClassMethod( sel)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveClassMethod:"), auto_cast resolveClassMethod, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.resolveInstanceMethod != nil {
-        resolveInstanceMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).resolveInstanceMethod( sel)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveInstanceMethod:"), auto_cast resolveInstanceMethod, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.hash != nil {
-        hash :: proc "c" (self: Class, _: SEL) -> NS.UInteger {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).hash()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("hash"), auto_cast hash, "L#:") do panic("Failed to register objC method.")
-    }
-    if vt.superclass != nil {
-        superclass :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).superclass()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("superclass"), auto_cast superclass, "##:") do panic("Failed to register objC method.")
-    }
-    if vt.class != nil {
-        class :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).class()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("class"), auto_cast class, "##:") do panic("Failed to register objC method.")
-    }
-    if vt.description != nil {
-        description :: proc "c" (self: Class, _: SEL) -> ^NS.String {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).description()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("description"), auto_cast description, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.debugDescription != nil {
-        debugDescription :: proc "c" (self: Class, _: SEL) -> ^NS.String {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).debugDescription()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.version != nil {
-        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).version()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
-    }
-    if vt.setVersion != nil {
-        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setVersion( aVersion)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
-    }
-    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
-        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
-    }
-    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
-        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
-    }
-    if vt.accessInstanceVariablesDirectly != nil {
-        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
-    }
-    if vt.useStoredAccessor != nil {
-        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).useStoredAccessor()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
-    }
-    if vt.keyPathsForValuesAffectingValueForKey != nil {
-        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
-    }
-    if vt.automaticallyNotifiesObserversForKey != nil {
-        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
-    }
-    if vt.classFallbacksForKeyedArchiver != nil {
-        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.classForKeyedUnarchiver != nil {
-        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

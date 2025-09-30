@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UILocalizedIndexedCollation
 ///
-@(objc_class="UILocalizedIndexedCollation")
+@(objc_class="UILocalizedIndexedCollation", objc_superclass=NS.Object)
 LocalizedIndexedCollation :: struct { using _: NS.Object, }
 

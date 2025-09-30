@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSInflectionRuleExplicit
 ///
-@(objc_class="NSInflectionRuleExplicit")
+@(objc_class="NSInflectionRuleExplicit", objc_superclass=InflectionRule)
 InflectionRuleExplicit :: struct { using _: InflectionRule, }
 

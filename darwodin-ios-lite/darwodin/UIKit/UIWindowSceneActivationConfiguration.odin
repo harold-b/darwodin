@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIWindowSceneActivationConfiguration
 ///
-@(objc_class="UIWindowSceneActivationConfiguration")
+@(objc_class="UIWindowSceneActivationConfiguration", objc_superclass=NS.Object)
 WindowSceneActivationConfiguration :: struct { using _: NS.Object, }
 

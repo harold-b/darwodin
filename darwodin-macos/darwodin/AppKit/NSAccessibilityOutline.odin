@@ -21,3 +21,5 @@ AccessibilityOutline :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityTable,
 }
 
+@(default_calling_convention="c")
+foreign lib {}

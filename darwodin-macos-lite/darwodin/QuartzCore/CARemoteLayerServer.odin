@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CARemoteLayerServer
 ///
-@(objc_class="CARemoteLayerServer")
+@(objc_class="CARemoteLayerServer", objc_superclass=NS.Object)
 RemoteLayerServer :: struct { using _: NS.Object, }
 

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSScriptSuiteRegistry
 ///
-@(objc_class="NSScriptSuiteRegistry")
+@(objc_class="NSScriptSuiteRegistry", objc_superclass=Object)
 ScriptSuiteRegistry :: struct { using _: Object, }
 

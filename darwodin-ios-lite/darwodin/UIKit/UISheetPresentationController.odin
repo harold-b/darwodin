@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISheetPresentationController
 ///
-@(objc_class="UISheetPresentationController")
+@(objc_class="UISheetPresentationController", objc_superclass=PresentationController)
 SheetPresentationController :: struct { using _: PresentationController, }
 

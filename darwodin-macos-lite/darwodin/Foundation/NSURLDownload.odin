@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSURLDownload
 ///
-@(objc_class="NSURLDownload")
+@(objc_class="NSURLDownload", objc_superclass=Object)
 URLDownload :: struct { using _: Object, }
 

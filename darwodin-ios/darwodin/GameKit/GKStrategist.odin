@@ -18,23 +18,20 @@ Strategist :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Strategist, objc_name="bestMoveForActivePlayer")
-Strategist_bestMoveForActivePlayer :: #force_inline proc "c" (self: ^Strategist) -> ^GameModelUpdate {
-    return msgSend(^GameModelUpdate, self, "bestMoveForActivePlayer")
-}
-@(objc_type=Strategist, objc_name="gameModel")
-Strategist_gameModel :: #force_inline proc "c" (self: ^Strategist) -> ^GameModel {
-    return msgSend(^GameModel, self, "gameModel")
-}
-@(objc_type=Strategist, objc_name="setGameModel")
-Strategist_setGameModel :: #force_inline proc "c" (self: ^Strategist, gameModel: ^GameModel) {
-    msgSend(nil, self, "setGameModel:", gameModel)
-}
-@(objc_type=Strategist, objc_name="randomSource")
-Strategist_randomSource :: #force_inline proc "c" (self: ^Strategist) -> ^Random {
-    return msgSend(^Random, self, "randomSource")
-}
-@(objc_type=Strategist, objc_name="setRandomSource")
-Strategist_setRandomSource :: #force_inline proc "c" (self: ^Strategist, randomSource: ^Random) {
-    msgSend(nil, self, "setRandomSource:", randomSource)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Strategist, objc_selector="bestMoveForActivePlayer", objc_name="bestMoveForActivePlayer")
+    Strategist_bestMoveForActivePlayer :: proc(self: ^Strategist) -> ^GameModelUpdate ---
+
+    @(objc_type=Strategist, objc_selector="gameModel", objc_name="gameModel")
+    Strategist_gameModel :: proc(self: ^Strategist) -> ^GameModel ---
+
+    @(objc_type=Strategist, objc_selector="setGameModel:", objc_name="setGameModel")
+    Strategist_setGameModel :: proc(self: ^Strategist, gameModel: ^GameModel) ---
+
+    @(objc_type=Strategist, objc_selector="randomSource", objc_name="randomSource")
+    Strategist_randomSource :: proc(self: ^Strategist) -> ^Random ---
+
+    @(objc_type=Strategist, objc_selector="setRandomSource:", objc_name="setRandomSource")
+    Strategist_setRandomSource :: proc(self: ^Strategist, randomSource: ^Random) ---
 }

@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -116,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tabBarController_visibilityDidChangeForTabs(self, tabBarController, tabs)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:visibilityDidChangeForTabs:"), auto_cast tabBarController_visibilityDidChangeForTabs, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:visibilityDidChangeForTabs:"), auto_cast tabBarController_visibilityDidChangeForTabs, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.tabBarController_displayOrderDidChangeForGroup != nil {
         tabBarController_displayOrderDidChangeForGroup :: proc "c" (self: ^UI.TabBarControllerDelegate, _: SEL, tabBarController: ^UI.TabBarController, group: ^UI.TabGroup) {
@@ -136,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).tabBarController_displayedViewControllersForTab_proposedViewControllers(self, tabBarController, tab, proposedViewControllers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:displayedViewControllersForTab:proposedViewControllers:"), auto_cast tabBarController_displayedViewControllersForTab_proposedViewControllers, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:displayedViewControllersForTab:proposedViewControllers:"), auto_cast tabBarController_displayedViewControllersForTab_proposedViewControllers, "^void@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.tabBarController_shouldSelectViewController != nil {
         tabBarController_shouldSelectViewController :: proc "c" (self: ^UI.TabBarControllerDelegate, _: SEL, tabBarController: ^UI.TabBarController, viewController: ^UI.ViewController) -> bool {
@@ -166,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tabBarController_willBeginCustomizingViewControllers(self, tabBarController, viewControllers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:willBeginCustomizingViewControllers:"), auto_cast tabBarController_willBeginCustomizingViewControllers, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:willBeginCustomizingViewControllers:"), auto_cast tabBarController_willBeginCustomizingViewControllers, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.tabBarController_willEndCustomizingViewControllers_changed != nil {
         tabBarController_willEndCustomizingViewControllers_changed :: proc "c" (self: ^UI.TabBarControllerDelegate, _: SEL, tabBarController: ^UI.TabBarController, viewControllers: ^NS.Array, changed: bool) {
@@ -176,7 +177,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tabBarController_willEndCustomizingViewControllers_changed(self, tabBarController, viewControllers, changed)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:willEndCustomizingViewControllers:changed:"), auto_cast tabBarController_willEndCustomizingViewControllers_changed, "v@:@@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:willEndCustomizingViewControllers:changed:"), auto_cast tabBarController_willEndCustomizingViewControllers_changed, "v@:@^voidB") do panic("Failed to register objC method.")
     }
     if vt.tabBarController_didEndCustomizingViewControllers_changed != nil {
         tabBarController_didEndCustomizingViewControllers_changed :: proc "c" (self: ^UI.TabBarControllerDelegate, _: SEL, tabBarController: ^UI.TabBarController, viewControllers: ^NS.Array, changed: bool) {
@@ -186,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tabBarController_didEndCustomizingViewControllers_changed(self, tabBarController, viewControllers, changed)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:didEndCustomizingViewControllers:changed:"), auto_cast tabBarController_didEndCustomizingViewControllers_changed, "v@:@@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:didEndCustomizingViewControllers:changed:"), auto_cast tabBarController_didEndCustomizingViewControllers_changed, "v@:@^voidB") do panic("Failed to register objC method.")
     }
     if vt.tabBarControllerSupportedInterfaceOrientations != nil {
         tabBarControllerSupportedInterfaceOrientations :: proc "c" (self: ^UI.TabBarControllerDelegate, _: SEL, tabBarController: ^UI.TabBarController) -> UI.InterfaceOrientationMask {

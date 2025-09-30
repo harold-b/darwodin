@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISceneSizeRestrictions
 ///
-@(objc_class="UISceneSizeRestrictions")
+@(objc_class="UISceneSizeRestrictions", objc_superclass=NS.Object)
 SceneSizeRestrictions :: struct { using _: NS.Object, }
 

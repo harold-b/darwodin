@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSActionCell
 ///
-@(objc_class="NSActionCell")
+@(objc_class="NSActionCell", objc_superclass=Cell)
 ActionCell :: struct { using _: Cell, }
 

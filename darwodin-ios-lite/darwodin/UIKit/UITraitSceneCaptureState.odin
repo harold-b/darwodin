@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitSceneCaptureState
 ///
-@(objc_class="UITraitSceneCaptureState")
+@(objc_class="UITraitSceneCaptureState", objc_superclass=NS.Object)
 TraitSceneCaptureState :: struct { using _: NS.Object, 
     using _: NSIntegerTraitDefinition,
 }

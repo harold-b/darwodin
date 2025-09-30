@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSTask
 ///
-@(objc_class="NSTask")
+@(objc_class="NSTask", objc_superclass=Object)
 Task :: struct { using _: Object, }
 

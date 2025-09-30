@@ -20,7 +20,8 @@ Allocation :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Allocation, objc_name="allocatedSize")
-Allocation_allocatedSize :: #force_inline proc "c" (self: ^Allocation) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "allocatedSize")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Allocation, objc_selector="allocatedSize", objc_name="allocatedSize")
+    Allocation_allocatedSize :: proc(self: ^Allocation) -> NS.UInteger ---
 }

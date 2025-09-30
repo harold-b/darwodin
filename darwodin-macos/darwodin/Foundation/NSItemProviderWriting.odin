@@ -18,23 +18,20 @@ ItemProviderWriting :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=ItemProviderWriting, objc_name="itemProviderVisibilityForRepresentationWithTypeIdentifierStatic", objc_is_class_method=true)
-ItemProviderWriting_itemProviderVisibilityForRepresentationWithTypeIdentifierStatic :: #force_inline proc "c" (typeIdentifier: ^String) -> ItemProviderRepresentationVisibility {
-    return msgSend(ItemProviderRepresentationVisibility, ItemProviderWriting, "itemProviderVisibilityForRepresentationWithTypeIdentifier:", typeIdentifier)
-}
-@(objc_type=ItemProviderWriting, objc_name="itemProviderVisibilityForRepresentationWithTypeIdentifier")
-ItemProviderWriting_itemProviderVisibilityForRepresentationWithTypeIdentifier :: #force_inline proc "c" (self: ^ItemProviderWriting, typeIdentifier: ^String) -> ItemProviderRepresentationVisibility {
-    return msgSend(ItemProviderRepresentationVisibility, self, "itemProviderVisibilityForRepresentationWithTypeIdentifier:", typeIdentifier)
-}
-@(objc_type=ItemProviderWriting, objc_name="loadDataWithTypeIdentifier")
-ItemProviderWriting_loadDataWithTypeIdentifier :: #force_inline proc "c" (self: ^ItemProviderWriting, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress {
-    return msgSend(^Progress, self, "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:", typeIdentifier, completionHandler)
-}
-@(objc_type=ItemProviderWriting, objc_name="writableTypeIdentifiersForItemProviderStatic", objc_is_class_method=true)
-ItemProviderWriting_writableTypeIdentifiersForItemProviderStatic :: #force_inline proc "c" () -> ^Array {
-    return msgSend(^Array, ItemProviderWriting, "writableTypeIdentifiersForItemProvider")
-}
-@(objc_type=ItemProviderWriting, objc_name="writableTypeIdentifiersForItemProvider")
-ItemProviderWriting_writableTypeIdentifiersForItemProvider :: #force_inline proc "c" (self: ^ItemProviderWriting) -> ^Array {
-    return msgSend(^Array, self, "writableTypeIdentifiersForItemProvider")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ItemProviderWriting, objc_selector="itemProviderVisibilityForRepresentationWithTypeIdentifier:", objc_name="itemProviderVisibilityForRepresentationWithTypeIdentifierStatic", objc_is_class_method=true)
+    ItemProviderWriting_itemProviderVisibilityForRepresentationWithTypeIdentifierStatic :: proc(typeIdentifier: ^String) -> ItemProviderRepresentationVisibility ---
+
+    @(objc_type=ItemProviderWriting, objc_selector="itemProviderVisibilityForRepresentationWithTypeIdentifier:", objc_name="itemProviderVisibilityForRepresentationWithTypeIdentifier")
+    ItemProviderWriting_itemProviderVisibilityForRepresentationWithTypeIdentifier :: proc(self: ^ItemProviderWriting, typeIdentifier: ^String) -> ItemProviderRepresentationVisibility ---
+
+    @(objc_type=ItemProviderWriting, objc_selector="loadDataWithTypeIdentifier:forItemProviderCompletionHandler:", objc_name="loadDataWithTypeIdentifier")
+    ItemProviderWriting_loadDataWithTypeIdentifier :: proc(self: ^ItemProviderWriting, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress ---
+
+    @(objc_type=ItemProviderWriting, objc_selector="writableTypeIdentifiersForItemProvider", objc_name="writableTypeIdentifiersForItemProviderStatic", objc_is_class_method=true)
+    ItemProviderWriting_writableTypeIdentifiersForItemProviderStatic :: proc() -> ^Array ---
+
+    @(objc_type=ItemProviderWriting, objc_selector="writableTypeIdentifiersForItemProvider", objc_name="writableTypeIdentifiersForItemProvider")
+    ItemProviderWriting_writableTypeIdentifiersForItemProvider :: proc(self: ^ItemProviderWriting) -> ^Array ---
 }

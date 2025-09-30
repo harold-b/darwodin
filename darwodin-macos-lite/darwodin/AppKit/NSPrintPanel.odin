@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPrintPanel
 ///
-@(objc_class="NSPrintPanel")
+@(objc_class="NSPrintPanel", objc_superclass=NS.Object)
 PrintPanel :: struct { using _: NS.Object, }
 

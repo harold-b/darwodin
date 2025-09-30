@@ -21,7 +21,8 @@ ToolTipInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ToolTipInteractionDelegate, objc_name="toolTipInteraction")
-ToolTipInteractionDelegate_toolTipInteraction :: #force_inline proc "c" (self: ^ToolTipInteractionDelegate, interaction: ^ToolTipInteraction, point: CG.Point) -> ^ToolTipConfiguration {
-    return msgSend(^ToolTipConfiguration, self, "toolTipInteraction:configurationAtPoint:", interaction, point)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ToolTipInteractionDelegate, objc_selector="toolTipInteraction:configurationAtPoint:", objc_name="toolTipInteraction")
+    ToolTipInteractionDelegate_toolTipInteraction :: proc(self: ^ToolTipInteractionDelegate, interaction: ^ToolTipInteraction, point: CG.Point) -> ^ToolTipConfiguration ---
 }

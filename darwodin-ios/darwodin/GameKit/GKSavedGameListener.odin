@@ -18,14 +18,15 @@ SavedGameListener :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SavedGameListener, objc_name="player_didModifySavedGame")
-SavedGameListener_player_didModifySavedGame :: #force_inline proc "c" (self: ^SavedGameListener, player: ^Player, savedGame: ^SavedGame) {
-    msgSend(nil, self, "player:didModifySavedGame:", player, savedGame)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SavedGameListener, objc_selector="player:didModifySavedGame:", objc_name="player_didModifySavedGame")
+    SavedGameListener_player_didModifySavedGame :: proc(self: ^SavedGameListener, player: ^Player, savedGame: ^SavedGame) ---
+
+    @(objc_type=SavedGameListener, objc_selector="player:hasConflictingSavedGames:", objc_name="player_hasConflictingSavedGames")
+    SavedGameListener_player_hasConflictingSavedGames :: proc(self: ^SavedGameListener, player: ^Player, savedGames: ^NS.Array) ---
 }
-@(objc_type=SavedGameListener, objc_name="player_hasConflictingSavedGames")
-SavedGameListener_player_hasConflictingSavedGames :: #force_inline proc "c" (self: ^SavedGameListener, player: ^Player, savedGames: ^NS.Array) {
-    msgSend(nil, self, "player:hasConflictingSavedGames:", player, savedGames)
-}
+
 @(objc_type=SavedGameListener, objc_name="player")
 SavedGameListener_player :: proc {
     SavedGameListener_player_didModifySavedGame,

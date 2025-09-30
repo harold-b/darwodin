@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSPopover
 ///
-@(objc_class="NSPopover")
+@(objc_class="NSPopover", objc_superclass=Responder)
 Popover :: struct { using _: Responder, 
     using _: AppearanceCustomization,
     using _: AccessibilityElementProtocol,

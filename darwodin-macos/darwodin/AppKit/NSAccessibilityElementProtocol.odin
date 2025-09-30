@@ -21,19 +21,17 @@ AccessibilityElementProtocol :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AccessibilityElementProtocol, objc_name="accessibilityFrame")
-AccessibilityElementProtocol_accessibilityFrame :: #force_inline proc "c" (self: ^AccessibilityElementProtocol) -> NS.Rect {
-    return msgSend(NS.Rect, self, "accessibilityFrame")
-}
-@(objc_type=AccessibilityElementProtocol, objc_name="accessibilityParent")
-AccessibilityElementProtocol_accessibilityParent :: #force_inline proc "c" (self: ^AccessibilityElementProtocol) -> id {
-    return msgSend(id, self, "accessibilityParent")
-}
-@(objc_type=AccessibilityElementProtocol, objc_name="isAccessibilityFocused")
-AccessibilityElementProtocol_isAccessibilityFocused :: #force_inline proc "c" (self: ^AccessibilityElementProtocol) -> bool {
-    return msgSend(bool, self, "isAccessibilityFocused")
-}
-@(objc_type=AccessibilityElementProtocol, objc_name="accessibilityIdentifier")
-AccessibilityElementProtocol_accessibilityIdentifier :: #force_inline proc "c" (self: ^AccessibilityElementProtocol) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityIdentifier")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityElementProtocol, objc_selector="accessibilityFrame", objc_name="accessibilityFrame")
+    AccessibilityElementProtocol_accessibilityFrame :: proc(self: ^AccessibilityElementProtocol) -> NS.Rect ---
+
+    @(objc_type=AccessibilityElementProtocol, objc_selector="accessibilityParent", objc_name="accessibilityParent")
+    AccessibilityElementProtocol_accessibilityParent :: proc(self: ^AccessibilityElementProtocol) -> id ---
+
+    @(objc_type=AccessibilityElementProtocol, objc_selector="isAccessibilityFocused", objc_name="isAccessibilityFocused")
+    AccessibilityElementProtocol_isAccessibilityFocused :: proc(self: ^AccessibilityElementProtocol) -> bool ---
+
+    @(objc_type=AccessibilityElementProtocol, objc_selector="accessibilityIdentifier", objc_name="accessibilityIdentifier")
+    AccessibilityElementProtocol_accessibilityIdentifier :: proc(self: ^AccessibilityElementProtocol) -> ^NS.String ---
 }

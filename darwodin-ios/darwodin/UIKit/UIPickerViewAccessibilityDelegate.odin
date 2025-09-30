@@ -21,27 +21,24 @@ PickerViewAccessibilityDelegate :: struct { using _: intrinsics.objc_object,
     using _: PickerViewDelegate,
 }
 
-@(objc_type=PickerViewAccessibilityDelegate, objc_name="pickerView_accessibilityLabelForComponent")
-PickerViewAccessibilityDelegate_pickerView_accessibilityLabelForComponent :: #force_inline proc "c" (self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.String {
-    return msgSend(^NS.String, self, "pickerView:accessibilityLabelForComponent:", pickerView, component)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PickerViewAccessibilityDelegate, objc_selector="pickerView:accessibilityLabelForComponent:", objc_name="pickerView_accessibilityLabelForComponent")
+    PickerViewAccessibilityDelegate_pickerView_accessibilityLabelForComponent :: proc(self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.String ---
+
+    @(objc_type=PickerViewAccessibilityDelegate, objc_selector="pickerView:accessibilityHintForComponent:", objc_name="pickerView_accessibilityHintForComponent")
+    PickerViewAccessibilityDelegate_pickerView_accessibilityHintForComponent :: proc(self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.String ---
+
+    @(objc_type=PickerViewAccessibilityDelegate, objc_selector="pickerView:accessibilityUserInputLabelsForComponent:", objc_name="pickerView_accessibilityUserInputLabelsForComponent")
+    PickerViewAccessibilityDelegate_pickerView_accessibilityUserInputLabelsForComponent :: proc(self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.Array ---
+
+    @(objc_type=PickerViewAccessibilityDelegate, objc_selector="pickerView:accessibilityAttributedLabelForComponent:", objc_name="pickerView_accessibilityAttributedLabelForComponent")
+    PickerViewAccessibilityDelegate_pickerView_accessibilityAttributedLabelForComponent :: proc(self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.AttributedString ---
+
+    @(objc_type=PickerViewAccessibilityDelegate, objc_selector="pickerView:accessibilityAttributedHintForComponent:", objc_name="pickerView_accessibilityAttributedHintForComponent")
+    PickerViewAccessibilityDelegate_pickerView_accessibilityAttributedHintForComponent :: proc(self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.AttributedString ---
+
+    @(objc_type=PickerViewAccessibilityDelegate, objc_selector="pickerView:accessibilityAttributedUserInputLabelsForComponent:", objc_name="pickerView_accessibilityAttributedUserInputLabelsForComponent")
+    PickerViewAccessibilityDelegate_pickerView_accessibilityAttributedUserInputLabelsForComponent :: proc(self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.Array ---
 }
-@(objc_type=PickerViewAccessibilityDelegate, objc_name="pickerView_accessibilityHintForComponent")
-PickerViewAccessibilityDelegate_pickerView_accessibilityHintForComponent :: #force_inline proc "c" (self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.String {
-    return msgSend(^NS.String, self, "pickerView:accessibilityHintForComponent:", pickerView, component)
-}
-@(objc_type=PickerViewAccessibilityDelegate, objc_name="pickerView_accessibilityUserInputLabelsForComponent")
-PickerViewAccessibilityDelegate_pickerView_accessibilityUserInputLabelsForComponent :: #force_inline proc "c" (self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "pickerView:accessibilityUserInputLabelsForComponent:", pickerView, component)
-}
-@(objc_type=PickerViewAccessibilityDelegate, objc_name="pickerView_accessibilityAttributedLabelForComponent")
-PickerViewAccessibilityDelegate_pickerView_accessibilityAttributedLabelForComponent :: #force_inline proc "c" (self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "pickerView:accessibilityAttributedLabelForComponent:", pickerView, component)
-}
-@(objc_type=PickerViewAccessibilityDelegate, objc_name="pickerView_accessibilityAttributedHintForComponent")
-PickerViewAccessibilityDelegate_pickerView_accessibilityAttributedHintForComponent :: #force_inline proc "c" (self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "pickerView:accessibilityAttributedHintForComponent:", pickerView, component)
-}
-@(objc_type=PickerViewAccessibilityDelegate, objc_name="pickerView_accessibilityAttributedUserInputLabelsForComponent")
-PickerViewAccessibilityDelegate_pickerView_accessibilityAttributedUserInputLabelsForComponent :: #force_inline proc "c" (self: ^PickerViewAccessibilityDelegate, pickerView: ^PickerView, component: NS.Integer) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "pickerView:accessibilityAttributedUserInputLabelsForComponent:", pickerView, component)
-}
+

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSDictionaryController
 ///
-@(objc_class="NSDictionaryController")
+@(objc_class="NSDictionaryController", objc_superclass=ArrayController)
 DictionaryController :: struct { using _: ArrayController, }
 

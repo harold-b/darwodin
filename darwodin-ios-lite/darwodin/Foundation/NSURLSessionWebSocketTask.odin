@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSURLSessionWebSocketTask
 ///
-@(objc_class="NSURLSessionWebSocketTask")
+@(objc_class="NSURLSessionWebSocketTask", objc_superclass=URLSessionTask)
 URLSessionWebSocketTask :: struct { using _: URLSessionTask, }
 

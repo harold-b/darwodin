@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIAlertView
 ///
-@(objc_class="UIAlertView")
+@(objc_class="UIAlertView", objc_superclass=View)
 AlertView :: struct { using _: View, }
 

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSPositionalSpecifier
 ///
-@(objc_class="NSPositionalSpecifier")
+@(objc_class="NSPositionalSpecifier", objc_superclass=Object)
 PositionalSpecifier :: struct { using _: Object, }
 

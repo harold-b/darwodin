@@ -21,11 +21,11 @@ EditMenuInteractionAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=EditMenuInteractionAnimating, objc_name="addAnimations")
-EditMenuInteractionAnimating_addAnimations :: #force_inline proc "c" (self: ^EditMenuInteractionAnimating, animations: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "addAnimations:", animations)
-}
-@(objc_type=EditMenuInteractionAnimating, objc_name="addCompletion")
-EditMenuInteractionAnimating_addCompletion :: #force_inline proc "c" (self: ^EditMenuInteractionAnimating, completion: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "addCompletion:", completion)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=EditMenuInteractionAnimating, objc_selector="addAnimations:", objc_name="addAnimations")
+    EditMenuInteractionAnimating_addAnimations :: proc(self: ^EditMenuInteractionAnimating, animations: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=EditMenuInteractionAnimating, objc_selector="addCompletion:", objc_name="addCompletion")
+    EditMenuInteractionAnimating_addCompletion :: proc(self: ^EditMenuInteractionAnimating, completion: ^Objc_Block(proc "c" ())) ---
 }

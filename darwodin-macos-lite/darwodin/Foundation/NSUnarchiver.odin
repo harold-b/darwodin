@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSUnarchiver
 ///
-@(objc_class="NSUnarchiver")
+@(objc_class="NSUnarchiver", objc_superclass=Coder)
 Unarchiver :: struct { using _: Coder, }
 

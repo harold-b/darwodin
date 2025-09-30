@@ -21,11 +21,11 @@ AccessibilityButton :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 
-@(objc_type=AccessibilityButton, objc_name="accessibilityLabel")
-AccessibilityButton_accessibilityLabel :: #force_inline proc "c" (self: ^AccessibilityButton) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityLabel")
-}
-@(objc_type=AccessibilityButton, objc_name="accessibilityPerformPress")
-AccessibilityButton_accessibilityPerformPress :: #force_inline proc "c" (self: ^AccessibilityButton) -> bool {
-    return msgSend(bool, self, "accessibilityPerformPress")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityButton, objc_selector="accessibilityLabel", objc_name="accessibilityLabel")
+    AccessibilityButton_accessibilityLabel :: proc(self: ^AccessibilityButton) -> ^NS.String ---
+
+    @(objc_type=AccessibilityButton, objc_selector="accessibilityPerformPress", objc_name="accessibilityPerformPress")
+    AccessibilityButton_accessibilityPerformPress :: proc(self: ^AccessibilityButton) -> bool ---
 }

@@ -21,11 +21,12 @@ CalendarSelectionSingleDateDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CalendarSelectionSingleDateDelegate, objc_name="dateSelection_didSelectDate")
-CalendarSelectionSingleDateDelegate_dateSelection_didSelectDate :: #force_inline proc "c" (self: ^CalendarSelectionSingleDateDelegate, selection: ^CalendarSelectionSingleDate, dateComponents: ^NS.DateComponents) {
-    msgSend(nil, self, "dateSelection:didSelectDate:", selection, dateComponents)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CalendarSelectionSingleDateDelegate, objc_selector="dateSelection:didSelectDate:", objc_name="dateSelection_didSelectDate")
+    CalendarSelectionSingleDateDelegate_dateSelection_didSelectDate :: proc(self: ^CalendarSelectionSingleDateDelegate, selection: ^CalendarSelectionSingleDate, dateComponents: ^NS.DateComponents) ---
+
+    @(objc_type=CalendarSelectionSingleDateDelegate, objc_selector="dateSelection:canSelectDate:", objc_name="dateSelection_canSelectDate")
+    CalendarSelectionSingleDateDelegate_dateSelection_canSelectDate :: proc(self: ^CalendarSelectionSingleDateDelegate, selection: ^CalendarSelectionSingleDate, dateComponents: ^NS.DateComponents) -> bool ---
 }
-@(objc_type=CalendarSelectionSingleDateDelegate, objc_name="dateSelection_canSelectDate")
-CalendarSelectionSingleDateDelegate_dateSelection_canSelectDate :: #force_inline proc "c" (self: ^CalendarSelectionSingleDateDelegate, selection: ^CalendarSelectionSingleDate, dateComponents: ^NS.DateComponents) -> bool {
-    return msgSend(bool, self, "dateSelection:canSelectDate:", selection, dateComponents)
-}
+

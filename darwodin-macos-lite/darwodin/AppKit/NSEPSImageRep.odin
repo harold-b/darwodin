@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSEPSImageRep
 ///
-@(objc_class="NSEPSImageRep")
+@(objc_class="NSEPSImageRep", objc_superclass=ImageRep)
 EPSImageRep :: struct { using _: ImageRep, }
 

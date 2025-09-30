@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSScrubberProportionalLayout
 ///
-@(objc_class="NSScrubberProportionalLayout")
+@(objc_class="NSScrubberProportionalLayout", objc_superclass=ScrubberLayout)
 ScrubberProportionalLayout :: struct { using _: ScrubberLayout, }
 

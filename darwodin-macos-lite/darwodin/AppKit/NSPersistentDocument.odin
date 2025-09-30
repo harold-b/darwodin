@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPersistentDocument
 ///
-@(objc_class="NSPersistentDocument")
+@(objc_class="NSPersistentDocument", objc_superclass=Document)
 PersistentDocument :: struct { using _: Document, }
 

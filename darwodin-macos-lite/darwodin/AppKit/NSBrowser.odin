@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSBrowser
 ///
-@(objc_class="NSBrowser")
+@(objc_class="NSBrowser", objc_superclass=Control)
 Browser :: struct { using _: Control, }
 

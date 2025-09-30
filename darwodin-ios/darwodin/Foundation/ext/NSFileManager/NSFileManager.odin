@@ -12,11 +12,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import NS "../../"
 
@@ -91,35 +92,6 @@ VTable :: struct {
     homeDirectoryForUser: proc(self: ^NS.FileManager, userName: ^NS.String) -> ^NS.URL,
     homeDirectoryForCurrentUser: proc(self: ^NS.FileManager) -> ^NS.URL,
     temporaryDirectory: proc(self: ^NS.FileManager) -> ^NS.URL,
-    load: proc(),
-    initialize: proc(),
-    new: proc() -> ^NS.FileManager,
-    allocWithZone: proc(zone: ^NS._NSZone) -> ^NS.FileManager,
-    alloc: proc() -> ^NS.FileManager,
-    copyWithZone: proc(zone: ^NS._NSZone) -> id,
-    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> id,
-    instancesRespondToSelector: proc(aSelector: SEL) -> bool,
-    conformsToProtocol: proc(protocol: ^NS.Protocol) -> bool,
-    instanceMethodForSelector: proc(aSelector: SEL) -> NS.IMP,
-    instanceMethodSignatureForSelector: proc(aSelector: SEL) -> ^NS.MethodSignature,
-    isSubclassOfClass: proc(aClass: Class) -> bool,
-    resolveClassMethod: proc(sel: SEL) -> bool,
-    resolveInstanceMethod: proc(sel: SEL) -> bool,
-    hash: proc() -> NS.UInteger,
-    superclass: proc() -> Class,
-    class: proc() -> Class,
-    description: proc() -> ^NS.String,
-    debugDescription: proc() -> ^NS.String,
-    version: proc() -> NS.Integer,
-    setVersion: proc(aVersion: NS.Integer),
-    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
-    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
-    accessInstanceVariablesDirectly: proc() -> bool,
-    useStoredAccessor: proc() -> bool,
-    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
-    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
-    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
-    classForKeyedUnarchiver: proc() -> Class,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -137,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).mountedVolumeURLsIncludingResourceValuesForKeys(self, propertyKeys, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("mountedVolumeURLsIncludingResourceValuesForKeys:options:"), auto_cast mountedVolumeURLsIncludingResourceValuesForKeys, "@@:@L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mountedVolumeURLsIncludingResourceValuesForKeys:options:"), auto_cast mountedVolumeURLsIncludingResourceValuesForKeys, "^void@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.unmountVolumeAtURL != nil {
         unmountVolumeAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, mask: NS.FileManagerUnmountOptions, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
@@ -157,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).contentsOfDirectoryAtURL(self, url, keys, mask, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:"), auto_cast contentsOfDirectoryAtURL, "@@:@@L^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:"), auto_cast contentsOfDirectoryAtURL, "^void@:@^voidL^void") do panic("Failed to register objC method.")
     }
     if vt._URLsForDirectory != nil {
         _URLsForDirectory :: proc "c" (self: ^NS.FileManager, _: SEL, directory: NS.SearchPathDirectory, domainMask: NS.SearchPathDomainMask) -> ^NS.Array {
@@ -167,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt)._URLsForDirectory(self, directory, domainMask)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForDirectory:inDomains:"), auto_cast _URLsForDirectory, "@@:LL") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("URLsForDirectory:inDomains:"), auto_cast _URLsForDirectory, "^void@:LL") do panic("Failed to register objC method.")
     }
     if vt._URLForDirectory != nil {
         _URLForDirectory :: proc "c" (self: ^NS.FileManager, _: SEL, directory: NS.SearchPathDirectory, domain: NS.SearchPathDomainMask, url: ^NS.URL, shouldCreate: bool, error: ^^NS.Error) -> ^NS.URL {
@@ -207,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).createDirectoryAtURL(self, url, createIntermediates, attributes, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("createDirectoryAtURL:withIntermediateDirectories:attributes:error:"), auto_cast createDirectoryAtURL, "B@:@B@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("createDirectoryAtURL:withIntermediateDirectories:attributes:error:"), auto_cast createDirectoryAtURL, "B@:@B^void^void") do panic("Failed to register objC method.")
     }
     if vt.createSymbolicLinkAtURL != nil {
         createSymbolicLinkAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, destURL: ^NS.URL, error: ^^NS.Error) -> bool {
@@ -227,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).setAttributes(self, attributes, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributes:ofItemAtPath:error:"), auto_cast setAttributes, "B@:@@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributes:ofItemAtPath:error:"), auto_cast setAttributes, "B@:^void@^void") do panic("Failed to register objC method.")
     }
     if vt.createDirectoryAtPath_withIntermediateDirectories_attributes_error != nil {
         createDirectoryAtPath_withIntermediateDirectories_attributes_error :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, createIntermediates: bool, attributes: ^NS.Dictionary, error: ^^NS.Error) -> bool {
@@ -237,7 +209,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).createDirectoryAtPath_withIntermediateDirectories_attributes_error(self, path, createIntermediates, attributes, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("createDirectoryAtPath:withIntermediateDirectories:attributes:error:"), auto_cast createDirectoryAtPath_withIntermediateDirectories_attributes_error, "B@:@B@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("createDirectoryAtPath:withIntermediateDirectories:attributes:error:"), auto_cast createDirectoryAtPath_withIntermediateDirectories_attributes_error, "B@:@B^void^void") do panic("Failed to register objC method.")
     }
     if vt.contentsOfDirectoryAtPath != nil {
         contentsOfDirectoryAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, error: ^^NS.Error) -> ^NS.Array {
@@ -247,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).contentsOfDirectoryAtPath(self, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsOfDirectoryAtPath:error:"), auto_cast contentsOfDirectoryAtPath, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsOfDirectoryAtPath:error:"), auto_cast contentsOfDirectoryAtPath, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.subpathsOfDirectoryAtPath != nil {
         subpathsOfDirectoryAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, error: ^^NS.Error) -> ^NS.Array {
@@ -257,7 +229,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).subpathsOfDirectoryAtPath(self, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("subpathsOfDirectoryAtPath:error:"), auto_cast subpathsOfDirectoryAtPath, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subpathsOfDirectoryAtPath:error:"), auto_cast subpathsOfDirectoryAtPath, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.attributesOfItemAtPath != nil {
         attributesOfItemAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, error: ^^NS.Error) -> ^NS.Dictionary {
@@ -267,7 +239,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).attributesOfItemAtPath(self, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesOfItemAtPath:error:"), auto_cast attributesOfItemAtPath, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesOfItemAtPath:error:"), auto_cast attributesOfItemAtPath, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.attributesOfFileSystemForPath != nil {
         attributesOfFileSystemForPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, error: ^^NS.Error) -> ^NS.Dictionary {
@@ -277,7 +249,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).attributesOfFileSystemForPath(self, path, error)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesOfFileSystemForPath:error:"), auto_cast attributesOfFileSystemForPath, "@@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributesOfFileSystemForPath:error:"), auto_cast attributesOfFileSystemForPath, "^void@:@^void") do panic("Failed to register objC method.")
     }
     if vt.createSymbolicLinkAtPath_withDestinationPath_error != nil {
         createSymbolicLinkAtPath_withDestinationPath_error :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String, destPath: ^NS.String, error: ^^NS.Error) -> bool {
@@ -557,7 +529,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).componentsToDisplayForPath(self, path)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("componentsToDisplayForPath:"), auto_cast componentsToDisplayForPath, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("componentsToDisplayForPath:"), auto_cast componentsToDisplayForPath, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.enumeratorAtPath != nil {
         enumeratorAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String) -> ^NS.DirectoryEnumerator {
@@ -567,7 +539,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).enumeratorAtPath(self, path)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtPath:"), auto_cast enumeratorAtPath, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtPath:"), auto_cast enumeratorAtPath, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.enumeratorAtURL != nil {
         enumeratorAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, keys: ^NS.Array, mask: NS.DirectoryEnumerationOptions, handler: ^Objc_Block(proc "c" (url: ^NS.URL, error: ^NS.Error) -> bool)) -> ^NS.DirectoryEnumerator {
@@ -577,7 +549,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).enumeratorAtURL(self, url, keys, mask, handler)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:"), auto_cast enumeratorAtURL, "@@:@@L?") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:"), auto_cast enumeratorAtURL, "^void@:@^voidL?") do panic("Failed to register objC method.")
     }
     if vt.subpathsAtPath != nil {
         subpathsAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String) -> ^NS.Array {
@@ -587,7 +559,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).subpathsAtPath(self, path)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("subpathsAtPath:"), auto_cast subpathsAtPath, "@@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subpathsAtPath:"), auto_cast subpathsAtPath, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.contentsAtPath != nil {
         contentsAtPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String) -> ^NS.Data {
@@ -607,7 +579,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).createFileAtPath(self, path, data, attr)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("createFileAtPath:contents:attributes:"), auto_cast createFileAtPath, "B@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("createFileAtPath:contents:attributes:"), auto_cast createFileAtPath, "B@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.fileSystemRepresentationWithPath != nil {
         fileSystemRepresentationWithPath :: proc "c" (self: ^NS.FileManager, _: SEL, path: ^NS.String) -> cstring {
@@ -798,296 +770,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("temporaryDirectory"), auto_cast temporaryDirectory, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.load != nil {
-        load :: proc "c" (self: Class, _: SEL) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).load()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("load"), auto_cast load, "v#:") do panic("Failed to register objC method.")
-    }
-    if vt.initialize != nil {
-        initialize :: proc "c" (self: Class, _: SEL) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).initialize()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("initialize"), auto_cast initialize, "v#:") do panic("Failed to register objC method.")
-    }
-    if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^NS.FileManager {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).new()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.allocWithZone != nil {
-        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> ^NS.FileManager {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).allocWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allocWithZone:"), auto_cast allocWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.alloc != nil {
-        alloc :: proc "c" (self: Class, _: SEL) -> ^NS.FileManager {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).alloc()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("alloc"), auto_cast alloc, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.copyWithZone != nil {
-        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).copyWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("copyWithZone:"), auto_cast copyWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.mutableCopyWithZone != nil {
-        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).mutableCopyWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("mutableCopyWithZone:"), auto_cast mutableCopyWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.instancesRespondToSelector != nil {
-        instancesRespondToSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instancesRespondToSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instancesRespondToSelector:"), auto_cast instancesRespondToSelector, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.conformsToProtocol != nil {
-        conformsToProtocol :: proc "c" (self: Class, _: SEL, protocol: ^NS.Protocol) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).conformsToProtocol( protocol)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("conformsToProtocol:"), auto_cast conformsToProtocol, "B#:@") do panic("Failed to register objC method.")
-    }
-    if vt.instanceMethodForSelector != nil {
-        instanceMethodForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> NS.IMP {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instanceMethodForSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodForSelector:"), auto_cast instanceMethodForSelector, "?#::") do panic("Failed to register objC method.")
-    }
-    if vt.instanceMethodSignatureForSelector != nil {
-        instanceMethodSignatureForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> ^NS.MethodSignature {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instanceMethodSignatureForSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodSignatureForSelector:"), auto_cast instanceMethodSignatureForSelector, "@#::") do panic("Failed to register objC method.")
-    }
-    if vt.isSubclassOfClass != nil {
-        isSubclassOfClass :: proc "c" (self: Class, _: SEL, aClass: Class) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).isSubclassOfClass( aClass)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("isSubclassOfClass:"), auto_cast isSubclassOfClass, "B#:#") do panic("Failed to register objC method.")
-    }
-    if vt.resolveClassMethod != nil {
-        resolveClassMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).resolveClassMethod( sel)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveClassMethod:"), auto_cast resolveClassMethod, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.resolveInstanceMethod != nil {
-        resolveInstanceMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).resolveInstanceMethod( sel)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveInstanceMethod:"), auto_cast resolveInstanceMethod, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.hash != nil {
-        hash :: proc "c" (self: Class, _: SEL) -> NS.UInteger {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).hash()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("hash"), auto_cast hash, "L#:") do panic("Failed to register objC method.")
-    }
-    if vt.superclass != nil {
-        superclass :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).superclass()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("superclass"), auto_cast superclass, "##:") do panic("Failed to register objC method.")
-    }
-    if vt.class != nil {
-        class :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).class()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("class"), auto_cast class, "##:") do panic("Failed to register objC method.")
-    }
-    if vt.description != nil {
-        description :: proc "c" (self: Class, _: SEL) -> ^NS.String {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).description()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("description"), auto_cast description, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.debugDescription != nil {
-        debugDescription :: proc "c" (self: Class, _: SEL) -> ^NS.String {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).debugDescription()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.version != nil {
-        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).version()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
-    }
-    if vt.setVersion != nil {
-        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setVersion( aVersion)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
-    }
-    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
-        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
-    }
-    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
-        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
-    }
-    if vt.accessInstanceVariablesDirectly != nil {
-        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
-    }
-    if vt.useStoredAccessor != nil {
-        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).useStoredAccessor()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
-    }
-    if vt.keyPathsForValuesAffectingValueForKey != nil {
-        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
-    }
-    if vt.automaticallyNotifiesObserversForKey != nil {
-        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
-    }
-    if vt.classFallbacksForKeyedArchiver != nil {
-        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.classForKeyedUnarchiver != nil {
-        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

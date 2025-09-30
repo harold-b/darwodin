@@ -21,19 +21,17 @@ PasteConfigurationSupporting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PasteConfigurationSupporting, objc_name="pasteItemProviders")
-PasteConfigurationSupporting_pasteItemProviders :: #force_inline proc "c" (self: ^PasteConfigurationSupporting, itemProviders: ^NS.Array) {
-    msgSend(nil, self, "pasteItemProviders:", itemProviders)
-}
-@(objc_type=PasteConfigurationSupporting, objc_name="canPasteItemProviders")
-PasteConfigurationSupporting_canPasteItemProviders :: #force_inline proc "c" (self: ^PasteConfigurationSupporting, itemProviders: ^NS.Array) -> bool {
-    return msgSend(bool, self, "canPasteItemProviders:", itemProviders)
-}
-@(objc_type=PasteConfigurationSupporting, objc_name="pasteConfiguration")
-PasteConfigurationSupporting_pasteConfiguration :: #force_inline proc "c" (self: ^PasteConfigurationSupporting) -> ^PasteConfiguration {
-    return msgSend(^PasteConfiguration, self, "pasteConfiguration")
-}
-@(objc_type=PasteConfigurationSupporting, objc_name="setPasteConfiguration")
-PasteConfigurationSupporting_setPasteConfiguration :: #force_inline proc "c" (self: ^PasteConfigurationSupporting, pasteConfiguration: ^PasteConfiguration) {
-    msgSend(nil, self, "setPasteConfiguration:", pasteConfiguration)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PasteConfigurationSupporting, objc_selector="pasteItemProviders:", objc_name="pasteItemProviders")
+    PasteConfigurationSupporting_pasteItemProviders :: proc(self: ^PasteConfigurationSupporting, itemProviders: ^NS.Array) ---
+
+    @(objc_type=PasteConfigurationSupporting, objc_selector="canPasteItemProviders:", objc_name="canPasteItemProviders")
+    PasteConfigurationSupporting_canPasteItemProviders :: proc(self: ^PasteConfigurationSupporting, itemProviders: ^NS.Array) -> bool ---
+
+    @(objc_type=PasteConfigurationSupporting, objc_selector="pasteConfiguration", objc_name="pasteConfiguration")
+    PasteConfigurationSupporting_pasteConfiguration :: proc(self: ^PasteConfigurationSupporting) -> ^PasteConfiguration ---
+
+    @(objc_type=PasteConfigurationSupporting, objc_selector="setPasteConfiguration:", objc_name="setPasteConfiguration")
+    PasteConfigurationSupporting_setPasteConfiguration :: proc(self: ^PasteConfigurationSupporting, pasteConfiguration: ^PasteConfiguration) ---
 }

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSDeleteCommand
 ///
-@(objc_class="NSDeleteCommand")
+@(objc_class="NSDeleteCommand", objc_superclass=ScriptCommand)
 DeleteCommand :: struct { using _: ScriptCommand, }
 

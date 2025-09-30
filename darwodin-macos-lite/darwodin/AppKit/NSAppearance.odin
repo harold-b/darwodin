@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSAppearance
 ///
-@(objc_class="NSAppearance")
+@(objc_class="NSAppearance", objc_superclass=NS.Object)
 Appearance :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }

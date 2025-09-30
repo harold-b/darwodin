@@ -21,11 +21,11 @@ TextSelectionHighlightView :: struct { using _: intrinsics.objc_object,
     using _: CoordinateSpace,
 }
 
-@(objc_type=TextSelectionHighlightView, objc_name="selectionRects")
-TextSelectionHighlightView_selectionRects :: #force_inline proc "c" (self: ^TextSelectionHighlightView) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "selectionRects")
-}
-@(objc_type=TextSelectionHighlightView, objc_name="setSelectionRects")
-TextSelectionHighlightView_setSelectionRects :: #force_inline proc "c" (self: ^TextSelectionHighlightView, selectionRects: ^NS.Array) {
-    msgSend(nil, self, "setSelectionRects:", selectionRects)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextSelectionHighlightView, objc_selector="selectionRects", objc_name="selectionRects")
+    TextSelectionHighlightView_selectionRects :: proc(self: ^TextSelectionHighlightView) -> ^NS.Array ---
+
+    @(objc_type=TextSelectionHighlightView, objc_selector="setSelectionRects:", objc_name="setSelectionRects")
+    TextSelectionHighlightView_setSelectionRects :: proc(self: ^TextSelectionHighlightView, selectionRects: ^NS.Array) ---
 }

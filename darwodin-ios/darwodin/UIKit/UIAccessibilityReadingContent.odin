@@ -19,27 +19,23 @@ import CA "../QuartzCore"
 @(objc_class="UIAccessibilityReadingContent")
 AccessibilityReadingContent :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=AccessibilityReadingContent, objc_name="accessibilityLineNumberForPoint")
-AccessibilityReadingContent_accessibilityLineNumberForPoint :: #force_inline proc "c" (self: ^AccessibilityReadingContent, point: CG.Point) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityLineNumberForPoint:", point)
-}
-@(objc_type=AccessibilityReadingContent, objc_name="accessibilityContentForLineNumber")
-AccessibilityReadingContent_accessibilityContentForLineNumber :: #force_inline proc "c" (self: ^AccessibilityReadingContent, lineNumber: NS.Integer) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityContentForLineNumber:", lineNumber)
-}
-@(objc_type=AccessibilityReadingContent, objc_name="accessibilityFrameForLineNumber")
-AccessibilityReadingContent_accessibilityFrameForLineNumber :: #force_inline proc "c" (self: ^AccessibilityReadingContent, lineNumber: NS.Integer) -> CG.Rect {
-    return msgSend(CG.Rect, self, "accessibilityFrameForLineNumber:", lineNumber)
-}
-@(objc_type=AccessibilityReadingContent, objc_name="accessibilityPageContent")
-AccessibilityReadingContent_accessibilityPageContent :: #force_inline proc "c" (self: ^AccessibilityReadingContent) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityPageContent")
-}
-@(objc_type=AccessibilityReadingContent, objc_name="accessibilityAttributedContentForLineNumber")
-AccessibilityReadingContent_accessibilityAttributedContentForLineNumber :: #force_inline proc "c" (self: ^AccessibilityReadingContent, lineNumber: NS.Integer) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "accessibilityAttributedContentForLineNumber:", lineNumber)
-}
-@(objc_type=AccessibilityReadingContent, objc_name="accessibilityAttributedPageContent")
-AccessibilityReadingContent_accessibilityAttributedPageContent :: #force_inline proc "c" (self: ^AccessibilityReadingContent) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "accessibilityAttributedPageContent")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityReadingContent, objc_selector="accessibilityLineNumberForPoint:", objc_name="accessibilityLineNumberForPoint")
+    AccessibilityReadingContent_accessibilityLineNumberForPoint :: proc(self: ^AccessibilityReadingContent, point: CG.Point) -> NS.Integer ---
+
+    @(objc_type=AccessibilityReadingContent, objc_selector="accessibilityContentForLineNumber:", objc_name="accessibilityContentForLineNumber")
+    AccessibilityReadingContent_accessibilityContentForLineNumber :: proc(self: ^AccessibilityReadingContent, lineNumber: NS.Integer) -> ^NS.String ---
+
+    @(objc_type=AccessibilityReadingContent, objc_selector="accessibilityFrameForLineNumber:", objc_name="accessibilityFrameForLineNumber")
+    AccessibilityReadingContent_accessibilityFrameForLineNumber :: proc(self: ^AccessibilityReadingContent, lineNumber: NS.Integer) -> CG.Rect ---
+
+    @(objc_type=AccessibilityReadingContent, objc_selector="accessibilityPageContent", objc_name="accessibilityPageContent")
+    AccessibilityReadingContent_accessibilityPageContent :: proc(self: ^AccessibilityReadingContent) -> ^NS.String ---
+
+    @(objc_type=AccessibilityReadingContent, objc_selector="accessibilityAttributedContentForLineNumber:", objc_name="accessibilityAttributedContentForLineNumber")
+    AccessibilityReadingContent_accessibilityAttributedContentForLineNumber :: proc(self: ^AccessibilityReadingContent, lineNumber: NS.Integer) -> ^NS.AttributedString ---
+
+    @(objc_type=AccessibilityReadingContent, objc_selector="accessibilityAttributedPageContent", objc_name="accessibilityAttributedPageContent")
+    AccessibilityReadingContent_accessibilityAttributedPageContent :: proc(self: ^AccessibilityReadingContent) -> ^NS.AttributedString ---
 }

@@ -18,11 +18,11 @@ AnimationDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AnimationDelegate, objc_name="animationDidStart")
-AnimationDelegate_animationDidStart :: #force_inline proc "c" (self: ^AnimationDelegate, anim: ^Animation) {
-    msgSend(nil, self, "animationDidStart:", anim)
-}
-@(objc_type=AnimationDelegate, objc_name="animationDidStop")
-AnimationDelegate_animationDidStop :: #force_inline proc "c" (self: ^AnimationDelegate, anim: ^Animation, flag: bool) {
-    msgSend(nil, self, "animationDidStop:finished:", anim, flag)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AnimationDelegate, objc_selector="animationDidStart:", objc_name="animationDidStart")
+    AnimationDelegate_animationDidStart :: proc(self: ^AnimationDelegate, anim: ^Animation) ---
+
+    @(objc_type=AnimationDelegate, objc_selector="animationDidStop:finished:", objc_name="animationDidStop")
+    AnimationDelegate_animationDidStop :: proc(self: ^AnimationDelegate, anim: ^Animation, flag: bool) ---
 }

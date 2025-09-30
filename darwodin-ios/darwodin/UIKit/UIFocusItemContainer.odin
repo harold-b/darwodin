@@ -21,11 +21,11 @@ FocusItemContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=FocusItemContainer, objc_name="focusItemsInRect")
-FocusItemContainer_focusItemsInRect :: #force_inline proc "c" (self: ^FocusItemContainer, rect: CG.Rect) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "focusItemsInRect:", rect)
-}
-@(objc_type=FocusItemContainer, objc_name="coordinateSpace")
-FocusItemContainer_coordinateSpace :: #force_inline proc "c" (self: ^FocusItemContainer) -> ^CoordinateSpace {
-    return msgSend(^CoordinateSpace, self, "coordinateSpace")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=FocusItemContainer, objc_selector="focusItemsInRect:", objc_name="focusItemsInRect")
+    FocusItemContainer_focusItemsInRect :: proc(self: ^FocusItemContainer, rect: CG.Rect) -> ^NS.Array ---
+
+    @(objc_type=FocusItemContainer, objc_selector="coordinateSpace", objc_name="coordinateSpace")
+    FocusItemContainer_coordinateSpace :: proc(self: ^FocusItemContainer) -> ^CoordinateSpace ---
 }

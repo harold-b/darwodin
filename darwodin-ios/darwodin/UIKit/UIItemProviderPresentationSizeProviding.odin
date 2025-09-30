@@ -21,7 +21,8 @@ ItemProviderPresentationSizeProviding :: struct { using _: intrinsics.objc_objec
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ItemProviderPresentationSizeProviding, objc_name="preferredPresentationSizeForItemProvider")
-ItemProviderPresentationSizeProviding_preferredPresentationSizeForItemProvider :: #force_inline proc "c" (self: ^ItemProviderPresentationSizeProviding) -> CG.Size {
-    return msgSend(CG.Size, self, "preferredPresentationSizeForItemProvider")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ItemProviderPresentationSizeProviding, objc_selector="preferredPresentationSizeForItemProvider", objc_name="preferredPresentationSizeForItemProvider")
+    ItemProviderPresentationSizeProviding_preferredPresentationSizeForItemProvider :: proc(self: ^ItemProviderPresentationSizeProviding) -> CG.Size ---
 }

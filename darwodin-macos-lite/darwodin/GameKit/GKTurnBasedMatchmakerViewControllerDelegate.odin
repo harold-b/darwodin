@@ -18,19 +18,18 @@ TurnBasedMatchmakerViewControllerDelegate :: struct { using _: intrinsics.objc_o
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_name="turnBasedMatchmakerViewControllerWasCancelled")
-TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewControllerWasCancelled :: #force_inline proc "c" (self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController) {
-    msgSend(nil, self, "turnBasedMatchmakerViewControllerWasCancelled:", viewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_selector="turnBasedMatchmakerViewControllerWasCancelled:", objc_name="turnBasedMatchmakerViewControllerWasCancelled")
+    TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewControllerWasCancelled :: proc(self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController) ---
+
+    @(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_selector="turnBasedMatchmakerViewController:didFailWithError:", objc_name="turnBasedMatchmakerViewController_didFailWithError")
+    TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewController_didFailWithError :: proc(self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController, error: ^NS.Error) ---
+
+    @(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_selector="turnBasedMatchmakerViewController:didFindMatch:", objc_name="turnBasedMatchmakerViewController_didFindMatch")
+    TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewController_didFindMatch :: proc(self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController, match: ^TurnBasedMatch) ---
+
+    @(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_selector="turnBasedMatchmakerViewController:playerQuitForMatch:", objc_name="turnBasedMatchmakerViewController_playerQuitForMatch")
+    TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewController_playerQuitForMatch :: proc(self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController, match: ^TurnBasedMatch) ---
 }
-@(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_name="turnBasedMatchmakerViewController_didFailWithError")
-TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewController_didFailWithError :: #force_inline proc "c" (self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController, error: ^NS.Error) {
-    msgSend(nil, self, "turnBasedMatchmakerViewController:didFailWithError:", viewController, error)
-}
-@(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_name="turnBasedMatchmakerViewController_didFindMatch")
-TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewController_didFindMatch :: #force_inline proc "c" (self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "turnBasedMatchmakerViewController:didFindMatch:", viewController, match)
-}
-@(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_name="turnBasedMatchmakerViewController_playerQuitForMatch")
-TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewController_playerQuitForMatch :: #force_inline proc "c" (self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "turnBasedMatchmakerViewController:playerQuitForMatch:", viewController, match)
-}
+

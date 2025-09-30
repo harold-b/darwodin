@@ -19,11 +19,11 @@ import CA "../QuartzCore"
 @(objc_class="NSValidatedUserInterfaceItem")
 ValidatedUserInterfaceItem :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=ValidatedUserInterfaceItem, objc_name="action")
-ValidatedUserInterfaceItem_action :: #force_inline proc "c" (self: ^ValidatedUserInterfaceItem) -> SEL {
-    return msgSend(SEL, self, "action")
-}
-@(objc_type=ValidatedUserInterfaceItem, objc_name="tag")
-ValidatedUserInterfaceItem_tag :: #force_inline proc "c" (self: ^ValidatedUserInterfaceItem) -> NS.Integer {
-    return msgSend(NS.Integer, self, "tag")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ValidatedUserInterfaceItem, objc_selector="action", objc_name="action")
+    ValidatedUserInterfaceItem_action :: proc(self: ^ValidatedUserInterfaceItem) -> SEL ---
+
+    @(objc_type=ValidatedUserInterfaceItem, objc_selector="tag", objc_name="tag")
+    ValidatedUserInterfaceItem_tag :: proc(self: ^ValidatedUserInterfaceItem) -> NS.Integer ---
 }

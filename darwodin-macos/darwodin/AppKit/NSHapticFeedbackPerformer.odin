@@ -21,7 +21,8 @@ HapticFeedbackPerformer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=HapticFeedbackPerformer, objc_name="performFeedbackPattern")
-HapticFeedbackPerformer_performFeedbackPattern :: #force_inline proc "c" (self: ^HapticFeedbackPerformer, pattern: HapticFeedbackPattern, performanceTime: HapticFeedbackPerformanceTime) {
-    msgSend(nil, self, "performFeedbackPattern:performanceTime:", pattern, performanceTime)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=HapticFeedbackPerformer, objc_selector="performFeedbackPattern:performanceTime:", objc_name="performFeedbackPattern")
+    HapticFeedbackPerformer_performFeedbackPattern :: proc(self: ^HapticFeedbackPerformer, pattern: HapticFeedbackPattern, performanceTime: HapticFeedbackPerformanceTime) ---
 }

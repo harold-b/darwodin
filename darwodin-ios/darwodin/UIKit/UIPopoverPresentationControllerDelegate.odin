@@ -21,19 +21,17 @@ PopoverPresentationControllerDelegate :: struct { using _: intrinsics.objc_objec
     using _: AdaptivePresentationControllerDelegate,
 }
 
-@(objc_type=PopoverPresentationControllerDelegate, objc_name="prepareForPopoverPresentation")
-PopoverPresentationControllerDelegate_prepareForPopoverPresentation :: #force_inline proc "c" (self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) {
-    msgSend(nil, self, "prepareForPopoverPresentation:", popoverPresentationController)
-}
-@(objc_type=PopoverPresentationControllerDelegate, objc_name="popoverPresentationControllerShouldDismissPopover")
-PopoverPresentationControllerDelegate_popoverPresentationControllerShouldDismissPopover :: #force_inline proc "c" (self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) -> bool {
-    return msgSend(bool, self, "popoverPresentationControllerShouldDismissPopover:", popoverPresentationController)
-}
-@(objc_type=PopoverPresentationControllerDelegate, objc_name="popoverPresentationControllerDidDismissPopover")
-PopoverPresentationControllerDelegate_popoverPresentationControllerDidDismissPopover :: #force_inline proc "c" (self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) {
-    msgSend(nil, self, "popoverPresentationControllerDidDismissPopover:", popoverPresentationController)
-}
-@(objc_type=PopoverPresentationControllerDelegate, objc_name="popoverPresentationController")
-PopoverPresentationControllerDelegate_popoverPresentationController :: #force_inline proc "c" (self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController, rect: ^CG.Rect, view: ^^View) {
-    msgSend(nil, self, "popoverPresentationController:willRepositionPopoverToRect:inView:", popoverPresentationController, rect, view)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PopoverPresentationControllerDelegate, objc_selector="prepareForPopoverPresentation:", objc_name="prepareForPopoverPresentation")
+    PopoverPresentationControllerDelegate_prepareForPopoverPresentation :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) ---
+
+    @(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationControllerShouldDismissPopover:", objc_name="popoverPresentationControllerShouldDismissPopover")
+    PopoverPresentationControllerDelegate_popoverPresentationControllerShouldDismissPopover :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) -> bool ---
+
+    @(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationControllerDidDismissPopover:", objc_name="popoverPresentationControllerDidDismissPopover")
+    PopoverPresentationControllerDelegate_popoverPresentationControllerDidDismissPopover :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) ---
+
+    @(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationController:willRepositionPopoverToRect:inView:", objc_name="popoverPresentationController")
+    PopoverPresentationControllerDelegate_popoverPresentationController :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController, rect: ^CG.Rect, view: ^^View) ---
 }

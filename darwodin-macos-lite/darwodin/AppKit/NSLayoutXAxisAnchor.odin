@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSLayoutXAxisAnchor
 ///
-@(objc_class="NSLayoutXAxisAnchor")
+@(objc_class="NSLayoutXAxisAnchor", objc_superclass=LayoutAnchor)
 LayoutXAxisAnchor :: struct { using _: LayoutAnchor, }
 

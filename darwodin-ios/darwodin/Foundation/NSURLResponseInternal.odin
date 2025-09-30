@@ -16,14 +16,5 @@ import Sec "../Security"
 @(objc_class="NSURLResponseInternal")
 URLResponseInternal :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=URLResponseInternal, objc_name="alloc", objc_is_class_method=true)
-URLResponseInternal_alloc :: proc "c" () -> ^URLResponseInternal {
-    return msgSend(^URLResponseInternal, URLResponseInternal, "alloc")
-}
-
-@(objc_type=URLResponseInternal, objc_name="init")
-URLResponseInternal_init :: proc "c" (self: ^URLResponseInternal) -> ^URLResponseInternal {
-    return msgSend(^URLResponseInternal, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

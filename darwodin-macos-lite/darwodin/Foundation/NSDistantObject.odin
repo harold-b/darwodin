@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSDistantObject
 ///
-@(objc_class="NSDistantObject")
+@(objc_class="NSDistantObject", objc_superclass=Proxy)
 DistantObject :: struct { using _: Proxy, 
     using _: Coding,
 }

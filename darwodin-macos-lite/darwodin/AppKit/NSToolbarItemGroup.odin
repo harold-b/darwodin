@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSToolbarItemGroup
 ///
-@(objc_class="NSToolbarItemGroup")
+@(objc_class="NSToolbarItemGroup", objc_superclass=ToolbarItem)
 ToolbarItemGroup :: struct { using _: ToolbarItem, }
 

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSPropertySpecifier
 ///
-@(objc_class="NSPropertySpecifier")
+@(objc_class="NSPropertySpecifier", objc_superclass=ScriptObjectSpecifier)
 PropertySpecifier :: struct { using _: ScriptObjectSpecifier, }
 

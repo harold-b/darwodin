@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSFileHandle
 ///
-@(objc_class="NSFileHandle")
+@(objc_class="NSFileHandle", objc_superclass=Object)
 FileHandle :: struct { using _: Object, 
     using _: SecureCoding,
 }

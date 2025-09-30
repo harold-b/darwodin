@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSScriptCommandDescription
 ///
-@(objc_class="NSScriptCommandDescription")
+@(objc_class="NSScriptCommandDescription", objc_superclass=Object)
 ScriptCommandDescription :: struct { using _: Object, 
     using _: Coding,
 }

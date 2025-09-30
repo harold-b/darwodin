@@ -21,7 +21,8 @@ AccelerometerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AccelerometerDelegate, objc_name="accelerometer")
-AccelerometerDelegate_accelerometer :: #force_inline proc "c" (self: ^AccelerometerDelegate, accelerometer: ^Accelerometer, acceleration: ^Acceleration) {
-    msgSend(nil, self, "accelerometer:didAccelerate:", accelerometer, acceleration)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccelerometerDelegate, objc_selector="accelerometer:didAccelerate:", objc_name="accelerometer")
+    AccelerometerDelegate_accelerometer :: proc(self: ^AccelerometerDelegate, accelerometer: ^Accelerometer, acceleration: ^Acceleration) ---
 }

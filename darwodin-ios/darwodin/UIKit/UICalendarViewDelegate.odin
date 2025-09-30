@@ -21,11 +21,12 @@ CalendarViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CalendarViewDelegate, objc_name="calendarView_decorationForDateComponents")
-CalendarViewDelegate_calendarView_decorationForDateComponents :: #force_inline proc "c" (self: ^CalendarViewDelegate, calendarView: ^CalendarView, dateComponents: ^NS.DateComponents) -> ^CalendarViewDecoration {
-    return msgSend(^CalendarViewDecoration, self, "calendarView:decorationForDateComponents:", calendarView, dateComponents)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CalendarViewDelegate, objc_selector="calendarView:decorationForDateComponents:", objc_name="calendarView_decorationForDateComponents")
+    CalendarViewDelegate_calendarView_decorationForDateComponents :: proc(self: ^CalendarViewDelegate, calendarView: ^CalendarView, dateComponents: ^NS.DateComponents) -> ^CalendarViewDecoration ---
+
+    @(objc_type=CalendarViewDelegate, objc_selector="calendarView:didChangeVisibleDateComponentsFrom:", objc_name="calendarView_didChangeVisibleDateComponentsFrom")
+    CalendarViewDelegate_calendarView_didChangeVisibleDateComponentsFrom :: proc(self: ^CalendarViewDelegate, calendarView: ^CalendarView, previousDateComponents: ^NS.DateComponents) ---
 }
-@(objc_type=CalendarViewDelegate, objc_name="calendarView_didChangeVisibleDateComponentsFrom")
-CalendarViewDelegate_calendarView_didChangeVisibleDateComponentsFrom :: #force_inline proc "c" (self: ^CalendarViewDelegate, calendarView: ^CalendarView, previousDateComponents: ^NS.DateComponents) {
-    msgSend(nil, self, "calendarView:didChangeVisibleDateComponentsFrom:", calendarView, previousDateComponents)
-}
+

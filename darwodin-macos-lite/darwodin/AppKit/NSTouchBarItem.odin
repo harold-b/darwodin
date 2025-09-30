@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTouchBarItem
 ///
-@(objc_class="NSTouchBarItem")
+@(objc_class="NSTouchBarItem", objc_superclass=NS.Object)
 TouchBarItem :: struct { using _: NS.Object, 
     using _: NS.Coding,
 }

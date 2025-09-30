@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICollectionViewUpdateItem
 ///
-@(objc_class="UICollectionViewUpdateItem")
+@(objc_class="UICollectionViewUpdateItem", objc_superclass=NS.Object)
 CollectionViewUpdateItem :: struct { using _: NS.Object, }
 

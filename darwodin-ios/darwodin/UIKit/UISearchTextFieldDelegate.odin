@@ -21,14 +21,15 @@ SearchTextFieldDelegate :: struct { using _: intrinsics.objc_object,
     using _: TextFieldDelegate,
 }
 
-@(objc_type=SearchTextFieldDelegate, objc_name="searchTextField_itemProviderForCopyingToken")
-SearchTextFieldDelegate_searchTextField_itemProviderForCopyingToken :: #force_inline proc "c" (self: ^SearchTextFieldDelegate, searchTextField: ^SearchTextField, token: ^SearchToken) -> ^NS.ItemProvider {
-    return msgSend(^NS.ItemProvider, self, "searchTextField:itemProviderForCopyingToken:", searchTextField, token)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SearchTextFieldDelegate, objc_selector="searchTextField:itemProviderForCopyingToken:", objc_name="searchTextField_itemProviderForCopyingToken")
+    SearchTextFieldDelegate_searchTextField_itemProviderForCopyingToken :: proc(self: ^SearchTextFieldDelegate, searchTextField: ^SearchTextField, token: ^SearchToken) -> ^NS.ItemProvider ---
+
+    @(objc_type=SearchTextFieldDelegate, objc_selector="searchTextField:didSelectSuggestion:", objc_name="searchTextField_didSelectSuggestion")
+    SearchTextFieldDelegate_searchTextField_didSelectSuggestion :: proc(self: ^SearchTextFieldDelegate, searchTextField: ^SearchTextField, suggestion: ^SearchSuggestion) ---
 }
-@(objc_type=SearchTextFieldDelegate, objc_name="searchTextField_didSelectSuggestion")
-SearchTextFieldDelegate_searchTextField_didSelectSuggestion :: #force_inline proc "c" (self: ^SearchTextFieldDelegate, searchTextField: ^SearchTextField, suggestion: ^SearchSuggestion) {
-    msgSend(nil, self, "searchTextField:didSelectSuggestion:", searchTextField, suggestion)
-}
+
 @(objc_type=SearchTextFieldDelegate, objc_name="searchTextField")
 SearchTextFieldDelegate_searchTextField :: proc {
     SearchTextFieldDelegate_searchTextField_itemProviderForCopyingToken,

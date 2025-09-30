@@ -21,7 +21,8 @@ MenuItemValidation :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=MenuItemValidation, objc_name="validateMenuItem")
-MenuItemValidation_validateMenuItem :: #force_inline proc "c" (self: ^MenuItemValidation, menuItem: ^MenuItem) -> bool {
-    return msgSend(bool, self, "validateMenuItem:", menuItem)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MenuItemValidation, objc_selector="validateMenuItem:", objc_name="validateMenuItem")
+    MenuItemValidation_validateMenuItem :: proc(self: ^MenuItemValidation, menuItem: ^MenuItem) -> bool ---
 }

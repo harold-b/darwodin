@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSOrderedSet
 ///
-@(objc_class="NSOrderedSet")
+@(objc_class="NSOrderedSet", objc_superclass=Object)
 OrderedSet :: struct { using _: Object, 
     using _: Copying,
     using _: MutableCopying,

@@ -21,19 +21,17 @@ ColorPickingCustom :: struct { using _: intrinsics.objc_object,
     using _: ColorPickingDefault,
 }
 
-@(objc_type=ColorPickingCustom, objc_name="supportsMode")
-ColorPickingCustom_supportsMode :: #force_inline proc "c" (self: ^ColorPickingCustom, mode: ColorPanelMode) -> bool {
-    return msgSend(bool, self, "supportsMode:", mode)
-}
-@(objc_type=ColorPickingCustom, objc_name="currentMode")
-ColorPickingCustom_currentMode :: #force_inline proc "c" (self: ^ColorPickingCustom) -> ColorPanelMode {
-    return msgSend(ColorPanelMode, self, "currentMode")
-}
-@(objc_type=ColorPickingCustom, objc_name="provideNewView")
-ColorPickingCustom_provideNewView :: #force_inline proc "c" (self: ^ColorPickingCustom, initialRequest: bool) -> ^View {
-    return msgSend(^View, self, "provideNewView:", initialRequest)
-}
-@(objc_type=ColorPickingCustom, objc_name="setColor")
-ColorPickingCustom_setColor :: #force_inline proc "c" (self: ^ColorPickingCustom, newColor: ^Color) {
-    msgSend(nil, self, "setColor:", newColor)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ColorPickingCustom, objc_selector="supportsMode:", objc_name="supportsMode")
+    ColorPickingCustom_supportsMode :: proc(self: ^ColorPickingCustom, mode: ColorPanelMode) -> bool ---
+
+    @(objc_type=ColorPickingCustom, objc_selector="currentMode", objc_name="currentMode")
+    ColorPickingCustom_currentMode :: proc(self: ^ColorPickingCustom) -> ColorPanelMode ---
+
+    @(objc_type=ColorPickingCustom, objc_selector="provideNewView:", objc_name="provideNewView")
+    ColorPickingCustom_provideNewView :: proc(self: ^ColorPickingCustom, initialRequest: bool) -> ^View ---
+
+    @(objc_type=ColorPickingCustom, objc_selector="setColor:", objc_name="setColor")
+    ColorPickingCustom_setColor :: proc(self: ^ColorPickingCustom, newColor: ^Color) ---
 }

@@ -21,23 +21,20 @@ TextDragRequest :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextDragRequest, objc_name="dragRange")
-TextDragRequest_dragRange :: #force_inline proc "c" (self: ^TextDragRequest) -> ^TextRange {
-    return msgSend(^TextRange, self, "dragRange")
-}
-@(objc_type=TextDragRequest, objc_name="suggestedItems")
-TextDragRequest_suggestedItems :: #force_inline proc "c" (self: ^TextDragRequest) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "suggestedItems")
-}
-@(objc_type=TextDragRequest, objc_name="existingItems")
-TextDragRequest_existingItems :: #force_inline proc "c" (self: ^TextDragRequest) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "existingItems")
-}
-@(objc_type=TextDragRequest, objc_name="isSelected")
-TextDragRequest_isSelected :: #force_inline proc "c" (self: ^TextDragRequest) -> bool {
-    return msgSend(bool, self, "isSelected")
-}
-@(objc_type=TextDragRequest, objc_name="dragSession")
-TextDragRequest_dragSession :: #force_inline proc "c" (self: ^TextDragRequest) -> ^DragSession {
-    return msgSend(^DragSession, self, "dragSession")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextDragRequest, objc_selector="dragRange", objc_name="dragRange")
+    TextDragRequest_dragRange :: proc(self: ^TextDragRequest) -> ^TextRange ---
+
+    @(objc_type=TextDragRequest, objc_selector="suggestedItems", objc_name="suggestedItems")
+    TextDragRequest_suggestedItems :: proc(self: ^TextDragRequest) -> ^NS.Array ---
+
+    @(objc_type=TextDragRequest, objc_selector="existingItems", objc_name="existingItems")
+    TextDragRequest_existingItems :: proc(self: ^TextDragRequest) -> ^NS.Array ---
+
+    @(objc_type=TextDragRequest, objc_selector="isSelected", objc_name="isSelected")
+    TextDragRequest_isSelected :: proc(self: ^TextDragRequest) -> bool ---
+
+    @(objc_type=TextDragRequest, objc_selector="dragSession", objc_name="dragSession")
+    TextDragRequest_dragSession :: proc(self: ^TextDragRequest) -> ^DragSession ---
 }

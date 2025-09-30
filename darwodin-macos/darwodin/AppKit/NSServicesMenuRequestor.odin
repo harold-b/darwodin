@@ -21,11 +21,11 @@ ServicesMenuRequestor :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ServicesMenuRequestor, objc_name="writeSelectionToPasteboard")
-ServicesMenuRequestor_writeSelectionToPasteboard :: #force_inline proc "c" (self: ^ServicesMenuRequestor, pboard: ^Pasteboard, types: ^NS.Array) -> bool {
-    return msgSend(bool, self, "writeSelectionToPasteboard:types:", pboard, types)
-}
-@(objc_type=ServicesMenuRequestor, objc_name="readSelectionFromPasteboard")
-ServicesMenuRequestor_readSelectionFromPasteboard :: #force_inline proc "c" (self: ^ServicesMenuRequestor, pboard: ^Pasteboard) -> bool {
-    return msgSend(bool, self, "readSelectionFromPasteboard:", pboard)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ServicesMenuRequestor, objc_selector="writeSelectionToPasteboard:types:", objc_name="writeSelectionToPasteboard")
+    ServicesMenuRequestor_writeSelectionToPasteboard :: proc(self: ^ServicesMenuRequestor, pboard: ^Pasteboard, types: ^NS.Array) -> bool ---
+
+    @(objc_type=ServicesMenuRequestor, objc_selector="readSelectionFromPasteboard:", objc_name="readSelectionFromPasteboard")
+    ServicesMenuRequestor_readSelectionFromPasteboard :: proc(self: ^ServicesMenuRequestor, pboard: ^Pasteboard) -> bool ---
 }

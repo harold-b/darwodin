@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSToolbar
 ///
-@(objc_class="NSToolbar")
+@(objc_class="NSToolbar", objc_superclass=NS.Object)
 Toolbar :: struct { using _: NS.Object, }
 

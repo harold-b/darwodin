@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIAcceleration
 ///
-@(objc_class="UIAcceleration")
+@(objc_class="UIAcceleration", objc_superclass=NS.Object)
 Acceleration :: struct { using _: NS.Object, }
 

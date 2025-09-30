@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSUserNotificationCenter
 ///
-@(objc_class="NSUserNotificationCenter")
+@(objc_class="NSUserNotificationCenter", objc_superclass=Object)
 UserNotificationCenter :: struct { using _: Object, }
 

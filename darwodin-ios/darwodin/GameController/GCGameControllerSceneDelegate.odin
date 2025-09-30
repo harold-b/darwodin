@@ -19,7 +19,8 @@ GameControllerSceneDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=GameControllerSceneDelegate, objc_name="scene")
-GameControllerSceneDelegate_scene :: #force_inline proc "c" (self: ^GameControllerSceneDelegate, scene: ^UI.Scene, _context: ^GameControllerActivationContext) {
-    msgSend(nil, self, "scene:didActivateGameControllerWithContext:", scene, _context)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=GameControllerSceneDelegate, objc_selector="scene:didActivateGameControllerWithContext:", objc_name="scene")
+    GameControllerSceneDelegate_scene :: proc(self: ^GameControllerSceneDelegate, scene: ^UI.Scene, _context: ^GameControllerActivationContext) ---
 }

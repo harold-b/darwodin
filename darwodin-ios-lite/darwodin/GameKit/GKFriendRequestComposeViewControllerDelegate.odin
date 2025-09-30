@@ -16,7 +16,8 @@ import UI "../UIKit"
 @(objc_class="GKFriendRequestComposeViewControllerDelegate")
 FriendRequestComposeViewControllerDelegate :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=FriendRequestComposeViewControllerDelegate, objc_name="friendRequestComposeViewControllerDidFinish")
-FriendRequestComposeViewControllerDelegate_friendRequestComposeViewControllerDidFinish :: #force_inline proc "c" (self: ^FriendRequestComposeViewControllerDelegate, viewController: ^FriendRequestComposeViewController) {
-    msgSend(nil, self, "friendRequestComposeViewControllerDidFinish:", viewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=FriendRequestComposeViewControllerDelegate, objc_selector="friendRequestComposeViewControllerDidFinish:", objc_name="friendRequestComposeViewControllerDidFinish")
+    FriendRequestComposeViewControllerDelegate_friendRequestComposeViewControllerDidFinish :: proc(self: ^FriendRequestComposeViewControllerDelegate, viewController: ^FriendRequestComposeViewController) ---
 }

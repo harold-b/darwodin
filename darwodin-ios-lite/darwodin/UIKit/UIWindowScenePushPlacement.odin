@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIWindowScenePushPlacement
 ///
-@(objc_class="UIWindowScenePushPlacement")
+@(objc_class="UIWindowScenePushPlacement", objc_superclass=WindowScenePlacement)
 WindowScenePushPlacement :: struct { using _: WindowScenePlacement, }
 

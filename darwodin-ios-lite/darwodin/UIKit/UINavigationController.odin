@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UINavigationController
 ///
-@(objc_class="UINavigationController")
+@(objc_class="UINavigationController", objc_superclass=ViewController)
 NavigationController :: struct { using _: ViewController, }
 

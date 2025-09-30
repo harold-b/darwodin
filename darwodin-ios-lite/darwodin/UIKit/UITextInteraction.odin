@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITextInteraction
 ///
-@(objc_class="UITextInteraction")
+@(objc_class="UITextInteraction", objc_superclass=NS.Object)
 TextInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

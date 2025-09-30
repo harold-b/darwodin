@@ -21,39 +21,32 @@ DraggingDestination :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DraggingDestination, objc_name="draggingEntered")
-DraggingDestination_draggingEntered :: #force_inline proc "c" (self: ^DraggingDestination, sender: ^DraggingInfo) -> DragOperation {
-    return msgSend(DragOperation, self, "draggingEntered:", sender)
-}
-@(objc_type=DraggingDestination, objc_name="draggingUpdated")
-DraggingDestination_draggingUpdated :: #force_inline proc "c" (self: ^DraggingDestination, sender: ^DraggingInfo) -> DragOperation {
-    return msgSend(DragOperation, self, "draggingUpdated:", sender)
-}
-@(objc_type=DraggingDestination, objc_name="draggingExited")
-DraggingDestination_draggingExited :: #force_inline proc "c" (self: ^DraggingDestination, sender: ^DraggingInfo) {
-    msgSend(nil, self, "draggingExited:", sender)
-}
-@(objc_type=DraggingDestination, objc_name="prepareForDragOperation")
-DraggingDestination_prepareForDragOperation :: #force_inline proc "c" (self: ^DraggingDestination, sender: ^DraggingInfo) -> bool {
-    return msgSend(bool, self, "prepareForDragOperation:", sender)
-}
-@(objc_type=DraggingDestination, objc_name="performDragOperation")
-DraggingDestination_performDragOperation :: #force_inline proc "c" (self: ^DraggingDestination, sender: ^DraggingInfo) -> bool {
-    return msgSend(bool, self, "performDragOperation:", sender)
-}
-@(objc_type=DraggingDestination, objc_name="concludeDragOperation")
-DraggingDestination_concludeDragOperation :: #force_inline proc "c" (self: ^DraggingDestination, sender: ^DraggingInfo) {
-    msgSend(nil, self, "concludeDragOperation:", sender)
-}
-@(objc_type=DraggingDestination, objc_name="draggingEnded")
-DraggingDestination_draggingEnded :: #force_inline proc "c" (self: ^DraggingDestination, sender: ^DraggingInfo) {
-    msgSend(nil, self, "draggingEnded:", sender)
-}
-@(objc_type=DraggingDestination, objc_name="wantsPeriodicDraggingUpdates")
-DraggingDestination_wantsPeriodicDraggingUpdates :: #force_inline proc "c" (self: ^DraggingDestination) -> bool {
-    return msgSend(bool, self, "wantsPeriodicDraggingUpdates")
-}
-@(objc_type=DraggingDestination, objc_name="updateDraggingItemsForDrag")
-DraggingDestination_updateDraggingItemsForDrag :: #force_inline proc "c" (self: ^DraggingDestination, sender: ^DraggingInfo) {
-    msgSend(nil, self, "updateDraggingItemsForDrag:", sender)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DraggingDestination, objc_selector="draggingEntered:", objc_name="draggingEntered")
+    DraggingDestination_draggingEntered :: proc(self: ^DraggingDestination, sender: ^DraggingInfo) -> DragOperation ---
+
+    @(objc_type=DraggingDestination, objc_selector="draggingUpdated:", objc_name="draggingUpdated")
+    DraggingDestination_draggingUpdated :: proc(self: ^DraggingDestination, sender: ^DraggingInfo) -> DragOperation ---
+
+    @(objc_type=DraggingDestination, objc_selector="draggingExited:", objc_name="draggingExited")
+    DraggingDestination_draggingExited :: proc(self: ^DraggingDestination, sender: ^DraggingInfo) ---
+
+    @(objc_type=DraggingDestination, objc_selector="prepareForDragOperation:", objc_name="prepareForDragOperation")
+    DraggingDestination_prepareForDragOperation :: proc(self: ^DraggingDestination, sender: ^DraggingInfo) -> bool ---
+
+    @(objc_type=DraggingDestination, objc_selector="performDragOperation:", objc_name="performDragOperation")
+    DraggingDestination_performDragOperation :: proc(self: ^DraggingDestination, sender: ^DraggingInfo) -> bool ---
+
+    @(objc_type=DraggingDestination, objc_selector="concludeDragOperation:", objc_name="concludeDragOperation")
+    DraggingDestination_concludeDragOperation :: proc(self: ^DraggingDestination, sender: ^DraggingInfo) ---
+
+    @(objc_type=DraggingDestination, objc_selector="draggingEnded:", objc_name="draggingEnded")
+    DraggingDestination_draggingEnded :: proc(self: ^DraggingDestination, sender: ^DraggingInfo) ---
+
+    @(objc_type=DraggingDestination, objc_selector="wantsPeriodicDraggingUpdates", objc_name="wantsPeriodicDraggingUpdates")
+    DraggingDestination_wantsPeriodicDraggingUpdates :: proc(self: ^DraggingDestination) -> bool ---
+
+    @(objc_type=DraggingDestination, objc_selector="updateDraggingItemsForDrag:", objc_name="updateDraggingItemsForDrag")
+    DraggingDestination_updateDraggingItemsForDrag :: proc(self: ^DraggingDestination, sender: ^DraggingInfo) ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPrintPaper
 ///
-@(objc_class="UIPrintPaper")
+@(objc_class="UIPrintPaper", objc_superclass=NS.Object)
 PrintPaper :: struct { using _: NS.Object, }
 

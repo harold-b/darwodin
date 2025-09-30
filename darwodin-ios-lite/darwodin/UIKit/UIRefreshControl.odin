@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIRefreshControl
 ///
-@(objc_class="UIRefreshControl")
+@(objc_class="UIRefreshControl", objc_superclass=Control)
 RefreshControl :: struct { using _: Control, }
 

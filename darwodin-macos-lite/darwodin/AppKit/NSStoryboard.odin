@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSStoryboard
 ///
-@(objc_class="NSStoryboard")
+@(objc_class="NSStoryboard", objc_superclass=NS.Object)
 Storyboard :: struct { using _: NS.Object, }
 

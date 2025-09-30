@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPrintInfo
 ///
-@(objc_class="UIPrintInfo")
+@(objc_class="UIPrintInfo", objc_superclass=NS.Object)
 PrintInfo :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.Coding,

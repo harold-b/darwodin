@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITextLoupeSession
 ///
-@(objc_class="UITextLoupeSession")
+@(objc_class="UITextLoupeSession", objc_superclass=NS.Object)
 TextLoupeSession :: struct { using _: NS.Object, }
 

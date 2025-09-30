@@ -21,71 +21,56 @@ TextFinderClient :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextFinderClient, objc_name="stringAtIndex")
-TextFinderClient_stringAtIndex :: #force_inline proc "c" (self: ^TextFinderClient, characterIndex: NS.UInteger, outRange: ^NS._NSRange, outFlag: ^bool) -> ^NS.String {
-    return msgSend(^NS.String, self, "stringAtIndex:effectiveRange:endsWithSearchBoundary:", characterIndex, outRange, outFlag)
-}
-@(objc_type=TextFinderClient, objc_name="stringLength")
-TextFinderClient_stringLength :: #force_inline proc "c" (self: ^TextFinderClient) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "stringLength")
-}
-@(objc_type=TextFinderClient, objc_name="scrollRangeToVisible")
-TextFinderClient_scrollRangeToVisible :: #force_inline proc "c" (self: ^TextFinderClient, range: NS._NSRange) {
-    msgSend(nil, self, "scrollRangeToVisible:", range)
-}
-@(objc_type=TextFinderClient, objc_name="shouldReplaceCharactersInRanges")
-TextFinderClient_shouldReplaceCharactersInRanges :: #force_inline proc "c" (self: ^TextFinderClient, ranges: ^NS.Array, strings: ^NS.Array) -> bool {
-    return msgSend(bool, self, "shouldReplaceCharactersInRanges:withStrings:", ranges, strings)
-}
-@(objc_type=TextFinderClient, objc_name="replaceCharactersInRange")
-TextFinderClient_replaceCharactersInRange :: #force_inline proc "c" (self: ^TextFinderClient, range: NS._NSRange, string: ^NS.String) {
-    msgSend(nil, self, "replaceCharactersInRange:withString:", range, string)
-}
-@(objc_type=TextFinderClient, objc_name="didReplaceCharacters")
-TextFinderClient_didReplaceCharacters :: #force_inline proc "c" (self: ^TextFinderClient) {
-    msgSend(nil, self, "didReplaceCharacters")
-}
-@(objc_type=TextFinderClient, objc_name="contentViewAtIndex")
-TextFinderClient_contentViewAtIndex :: #force_inline proc "c" (self: ^TextFinderClient, index: NS.UInteger, outRange: ^NS._NSRange) -> ^View {
-    return msgSend(^View, self, "contentViewAtIndex:effectiveCharacterRange:", index, outRange)
-}
-@(objc_type=TextFinderClient, objc_name="rectsForCharacterRange")
-TextFinderClient_rectsForCharacterRange :: #force_inline proc "c" (self: ^TextFinderClient, range: NS._NSRange) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "rectsForCharacterRange:", range)
-}
-@(objc_type=TextFinderClient, objc_name="drawCharactersInRange")
-TextFinderClient_drawCharactersInRange :: #force_inline proc "c" (self: ^TextFinderClient, range: NS._NSRange, view: ^View) {
-    msgSend(nil, self, "drawCharactersInRange:forContentView:", range, view)
-}
-@(objc_type=TextFinderClient, objc_name="isSelectable")
-TextFinderClient_isSelectable :: #force_inline proc "c" (self: ^TextFinderClient) -> bool {
-    return msgSend(bool, self, "isSelectable")
-}
-@(objc_type=TextFinderClient, objc_name="allowsMultipleSelection")
-TextFinderClient_allowsMultipleSelection :: #force_inline proc "c" (self: ^TextFinderClient) -> bool {
-    return msgSend(bool, self, "allowsMultipleSelection")
-}
-@(objc_type=TextFinderClient, objc_name="isEditable")
-TextFinderClient_isEditable :: #force_inline proc "c" (self: ^TextFinderClient) -> bool {
-    return msgSend(bool, self, "isEditable")
-}
-@(objc_type=TextFinderClient, objc_name="string")
-TextFinderClient_string :: #force_inline proc "c" (self: ^TextFinderClient) -> ^NS.String {
-    return msgSend(^NS.String, self, "string")
-}
-@(objc_type=TextFinderClient, objc_name="firstSelectedRange")
-TextFinderClient_firstSelectedRange :: #force_inline proc "c" (self: ^TextFinderClient) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "firstSelectedRange")
-}
-@(objc_type=TextFinderClient, objc_name="selectedRanges")
-TextFinderClient_selectedRanges :: #force_inline proc "c" (self: ^TextFinderClient) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "selectedRanges")
-}
-@(objc_type=TextFinderClient, objc_name="setSelectedRanges")
-TextFinderClient_setSelectedRanges :: #force_inline proc "c" (self: ^TextFinderClient, selectedRanges: ^NS.Array) {
-    msgSend(nil, self, "setSelectedRanges:", selectedRanges)
-}
-@(objc_type=TextFinderClient, objc_name="visibleCharacterRanges")
-TextFinderClient_visibleCharacterRanges :: #force_inline proc "c" (self: ^TextFinderClient) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "visibleCharacterRanges")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextFinderClient, objc_selector="stringAtIndex:effectiveRange:endsWithSearchBoundary:", objc_name="stringAtIndex")
+    TextFinderClient_stringAtIndex :: proc(self: ^TextFinderClient, characterIndex: NS.UInteger, outRange: ^NS._NSRange, outFlag: ^bool) -> ^NS.String ---
+
+    @(objc_type=TextFinderClient, objc_selector="stringLength", objc_name="stringLength")
+    TextFinderClient_stringLength :: proc(self: ^TextFinderClient) -> NS.UInteger ---
+
+    @(objc_type=TextFinderClient, objc_selector="scrollRangeToVisible:", objc_name="scrollRangeToVisible")
+    TextFinderClient_scrollRangeToVisible :: proc(self: ^TextFinderClient, range: NS._NSRange) ---
+
+    @(objc_type=TextFinderClient, objc_selector="shouldReplaceCharactersInRanges:withStrings:", objc_name="shouldReplaceCharactersInRanges")
+    TextFinderClient_shouldReplaceCharactersInRanges :: proc(self: ^TextFinderClient, ranges: ^NS.Array, strings: ^NS.Array) -> bool ---
+
+    @(objc_type=TextFinderClient, objc_selector="replaceCharactersInRange:withString:", objc_name="replaceCharactersInRange")
+    TextFinderClient_replaceCharactersInRange :: proc(self: ^TextFinderClient, range: NS._NSRange, string: ^NS.String) ---
+
+    @(objc_type=TextFinderClient, objc_selector="didReplaceCharacters", objc_name="didReplaceCharacters")
+    TextFinderClient_didReplaceCharacters :: proc(self: ^TextFinderClient) ---
+
+    @(objc_type=TextFinderClient, objc_selector="contentViewAtIndex:effectiveCharacterRange:", objc_name="contentViewAtIndex")
+    TextFinderClient_contentViewAtIndex :: proc(self: ^TextFinderClient, index: NS.UInteger, outRange: ^NS._NSRange) -> ^View ---
+
+    @(objc_type=TextFinderClient, objc_selector="rectsForCharacterRange:", objc_name="rectsForCharacterRange")
+    TextFinderClient_rectsForCharacterRange :: proc(self: ^TextFinderClient, range: NS._NSRange) -> ^NS.Array ---
+
+    @(objc_type=TextFinderClient, objc_selector="drawCharactersInRange:forContentView:", objc_name="drawCharactersInRange")
+    TextFinderClient_drawCharactersInRange :: proc(self: ^TextFinderClient, range: NS._NSRange, view: ^View) ---
+
+    @(objc_type=TextFinderClient, objc_selector="isSelectable", objc_name="isSelectable")
+    TextFinderClient_isSelectable :: proc(self: ^TextFinderClient) -> bool ---
+
+    @(objc_type=TextFinderClient, objc_selector="allowsMultipleSelection", objc_name="allowsMultipleSelection")
+    TextFinderClient_allowsMultipleSelection :: proc(self: ^TextFinderClient) -> bool ---
+
+    @(objc_type=TextFinderClient, objc_selector="isEditable", objc_name="isEditable")
+    TextFinderClient_isEditable :: proc(self: ^TextFinderClient) -> bool ---
+
+    @(objc_type=TextFinderClient, objc_selector="string", objc_name="string")
+    TextFinderClient_string :: proc(self: ^TextFinderClient) -> ^NS.String ---
+
+    @(objc_type=TextFinderClient, objc_selector="firstSelectedRange", objc_name="firstSelectedRange")
+    TextFinderClient_firstSelectedRange :: proc(self: ^TextFinderClient) -> NS._NSRange ---
+
+    @(objc_type=TextFinderClient, objc_selector="selectedRanges", objc_name="selectedRanges")
+    TextFinderClient_selectedRanges :: proc(self: ^TextFinderClient) -> ^NS.Array ---
+
+    @(objc_type=TextFinderClient, objc_selector="setSelectedRanges:", objc_name="setSelectedRanges")
+    TextFinderClient_setSelectedRanges :: proc(self: ^TextFinderClient, selectedRanges: ^NS.Array) ---
+
+    @(objc_type=TextFinderClient, objc_selector="visibleCharacterRanges", objc_name="visibleCharacterRanges")
+    TextFinderClient_visibleCharacterRanges :: proc(self: ^TextFinderClient) -> ^NS.Array ---
 }

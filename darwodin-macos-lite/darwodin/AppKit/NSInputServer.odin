@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSInputServer
 ///
-@(objc_class="NSInputServer")
+@(objc_class="NSInputServer", objc_superclass=NS.Object)
 InputServer :: struct { using _: NS.Object, 
     using _: InputServiceProvider,
     using _: InputServerMouseTracker,

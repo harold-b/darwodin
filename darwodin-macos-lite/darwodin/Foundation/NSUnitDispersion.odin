@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnitDispersion
 ///
-@(objc_class="NSUnitDispersion")
+@(objc_class="NSUnitDispersion", objc_superclass=Dimension)
 UnitDispersion :: struct { using _: Dimension, 
     using _: SecureCoding,
 }

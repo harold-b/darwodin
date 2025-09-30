@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISearchContainerViewController
 ///
-@(objc_class="UISearchContainerViewController")
+@(objc_class="UISearchContainerViewController", objc_superclass=ViewController)
 SearchContainerViewController :: struct { using _: ViewController, }
 

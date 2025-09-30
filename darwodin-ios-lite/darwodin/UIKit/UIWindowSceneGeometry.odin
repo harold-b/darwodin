@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIWindowSceneGeometry
 ///
-@(objc_class="UIWindowSceneGeometry")
+@(objc_class="UIWindowSceneGeometry", objc_superclass=NS.Object)
 WindowSceneGeometry :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

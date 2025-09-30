@@ -16,35 +16,30 @@ import AK "../AppKit"
 @(objc_class="GKTurnBasedEventListener")
 TurnBasedEventListener :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=TurnBasedEventListener, objc_name="player_didRequestMatchWithOtherPlayers")
-TurnBasedEventListener_player_didRequestMatchWithOtherPlayers :: #force_inline proc "c" (self: ^TurnBasedEventListener, player: ^Player, playersToInvite: ^NS.Array) {
-    msgSend(nil, self, "player:didRequestMatchWithOtherPlayers:", player, playersToInvite)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TurnBasedEventListener, objc_selector="player:didRequestMatchWithOtherPlayers:", objc_name="player_didRequestMatchWithOtherPlayers")
+    TurnBasedEventListener_player_didRequestMatchWithOtherPlayers :: proc(self: ^TurnBasedEventListener, player: ^Player, playersToInvite: ^NS.Array) ---
+
+    @(objc_type=TurnBasedEventListener, objc_selector="player:receivedTurnEventForMatch:didBecomeActive:", objc_name="player_receivedTurnEventForMatch_didBecomeActive")
+    TurnBasedEventListener_player_receivedTurnEventForMatch_didBecomeActive :: proc(self: ^TurnBasedEventListener, player: ^Player, match: ^TurnBasedMatch, didBecomeActive: bool) ---
+
+    @(objc_type=TurnBasedEventListener, objc_selector="player:matchEnded:", objc_name="player_matchEnded")
+    TurnBasedEventListener_player_matchEnded :: proc(self: ^TurnBasedEventListener, player: ^Player, match: ^TurnBasedMatch) ---
+
+    @(objc_type=TurnBasedEventListener, objc_selector="player:receivedExchangeRequest:forMatch:", objc_name="player_receivedExchangeRequest_forMatch")
+    TurnBasedEventListener_player_receivedExchangeRequest_forMatch :: proc(self: ^TurnBasedEventListener, player: ^Player, exchange: ^TurnBasedExchange, match: ^TurnBasedMatch) ---
+
+    @(objc_type=TurnBasedEventListener, objc_selector="player:receivedExchangeCancellation:forMatch:", objc_name="player_receivedExchangeCancellation_forMatch")
+    TurnBasedEventListener_player_receivedExchangeCancellation_forMatch :: proc(self: ^TurnBasedEventListener, player: ^Player, exchange: ^TurnBasedExchange, match: ^TurnBasedMatch) ---
+
+    @(objc_type=TurnBasedEventListener, objc_selector="player:receivedExchangeReplies:forCompletedExchange:forMatch:", objc_name="player_receivedExchangeReplies_forCompletedExchange_forMatch")
+    TurnBasedEventListener_player_receivedExchangeReplies_forCompletedExchange_forMatch :: proc(self: ^TurnBasedEventListener, player: ^Player, replies: ^NS.Array, exchange: ^TurnBasedExchange, match: ^TurnBasedMatch) ---
+
+    @(objc_type=TurnBasedEventListener, objc_selector="player:wantsToQuitMatch:", objc_name="player_wantsToQuitMatch")
+    TurnBasedEventListener_player_wantsToQuitMatch :: proc(self: ^TurnBasedEventListener, player: ^Player, match: ^TurnBasedMatch) ---
+
+    @(objc_type=TurnBasedEventListener, objc_selector="player:didRequestMatchWithPlayers:", objc_name="player_didRequestMatchWithPlayers")
+    TurnBasedEventListener_player_didRequestMatchWithPlayers :: proc(self: ^TurnBasedEventListener, player: ^Player, playerIDsToInvite: ^NS.Array) ---
 }
-@(objc_type=TurnBasedEventListener, objc_name="player_receivedTurnEventForMatch_didBecomeActive")
-TurnBasedEventListener_player_receivedTurnEventForMatch_didBecomeActive :: #force_inline proc "c" (self: ^TurnBasedEventListener, player: ^Player, match: ^TurnBasedMatch, didBecomeActive: bool) {
-    msgSend(nil, self, "player:receivedTurnEventForMatch:didBecomeActive:", player, match, didBecomeActive)
-}
-@(objc_type=TurnBasedEventListener, objc_name="player_matchEnded")
-TurnBasedEventListener_player_matchEnded :: #force_inline proc "c" (self: ^TurnBasedEventListener, player: ^Player, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "player:matchEnded:", player, match)
-}
-@(objc_type=TurnBasedEventListener, objc_name="player_receivedExchangeRequest_forMatch")
-TurnBasedEventListener_player_receivedExchangeRequest_forMatch :: #force_inline proc "c" (self: ^TurnBasedEventListener, player: ^Player, exchange: ^TurnBasedExchange, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "player:receivedExchangeRequest:forMatch:", player, exchange, match)
-}
-@(objc_type=TurnBasedEventListener, objc_name="player_receivedExchangeCancellation_forMatch")
-TurnBasedEventListener_player_receivedExchangeCancellation_forMatch :: #force_inline proc "c" (self: ^TurnBasedEventListener, player: ^Player, exchange: ^TurnBasedExchange, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "player:receivedExchangeCancellation:forMatch:", player, exchange, match)
-}
-@(objc_type=TurnBasedEventListener, objc_name="player_receivedExchangeReplies_forCompletedExchange_forMatch")
-TurnBasedEventListener_player_receivedExchangeReplies_forCompletedExchange_forMatch :: #force_inline proc "c" (self: ^TurnBasedEventListener, player: ^Player, replies: ^NS.Array, exchange: ^TurnBasedExchange, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "player:receivedExchangeReplies:forCompletedExchange:forMatch:", player, replies, exchange, match)
-}
-@(objc_type=TurnBasedEventListener, objc_name="player_wantsToQuitMatch")
-TurnBasedEventListener_player_wantsToQuitMatch :: #force_inline proc "c" (self: ^TurnBasedEventListener, player: ^Player, match: ^TurnBasedMatch) {
-    msgSend(nil, self, "player:wantsToQuitMatch:", player, match)
-}
-@(objc_type=TurnBasedEventListener, objc_name="player_didRequestMatchWithPlayers")
-TurnBasedEventListener_player_didRequestMatchWithPlayers :: #force_inline proc "c" (self: ^TurnBasedEventListener, player: ^Player, playerIDsToInvite: ^NS.Array) {
-    msgSend(nil, self, "player:didRequestMatchWithPlayers:", player, playerIDsToInvite)
-}
+

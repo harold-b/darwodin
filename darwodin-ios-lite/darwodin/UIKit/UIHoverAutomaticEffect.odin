@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIHoverAutomaticEffect
 ///
-@(objc_class="UIHoverAutomaticEffect")
+@(objc_class="UIHoverAutomaticEffect", objc_superclass=NS.Object)
 HoverAutomaticEffect :: struct { using _: NS.Object, 
     using _: HoverEffect,
 }

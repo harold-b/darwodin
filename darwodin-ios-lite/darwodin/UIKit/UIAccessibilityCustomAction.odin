@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIAccessibilityCustomAction
 ///
-@(objc_class="UIAccessibilityCustomAction")
+@(objc_class="UIAccessibilityCustomAction", objc_superclass=NS.Object)
 AccessibilityCustomAction :: struct { using _: NS.Object, }
 

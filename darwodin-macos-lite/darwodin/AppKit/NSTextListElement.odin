@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTextListElement
 ///
-@(objc_class="NSTextListElement")
+@(objc_class="NSTextListElement", objc_superclass=TextParagraph)
 TextListElement :: struct { using _: TextParagraph, }
 

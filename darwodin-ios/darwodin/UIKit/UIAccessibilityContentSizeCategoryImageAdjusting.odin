@@ -21,11 +21,11 @@ AccessibilityContentSizeCategoryImageAdjusting :: struct { using _: intrinsics.o
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AccessibilityContentSizeCategoryImageAdjusting, objc_name="adjustsImageSizeForAccessibilityContentSizeCategory")
-AccessibilityContentSizeCategoryImageAdjusting_adjustsImageSizeForAccessibilityContentSizeCategory :: #force_inline proc "c" (self: ^AccessibilityContentSizeCategoryImageAdjusting) -> bool {
-    return msgSend(bool, self, "adjustsImageSizeForAccessibilityContentSizeCategory")
-}
-@(objc_type=AccessibilityContentSizeCategoryImageAdjusting, objc_name="setAdjustsImageSizeForAccessibilityContentSizeCategory")
-AccessibilityContentSizeCategoryImageAdjusting_setAdjustsImageSizeForAccessibilityContentSizeCategory :: #force_inline proc "c" (self: ^AccessibilityContentSizeCategoryImageAdjusting, adjustsImageSizeForAccessibilityContentSizeCategory: bool) {
-    msgSend(nil, self, "setAdjustsImageSizeForAccessibilityContentSizeCategory:", adjustsImageSizeForAccessibilityContentSizeCategory)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityContentSizeCategoryImageAdjusting, objc_selector="adjustsImageSizeForAccessibilityContentSizeCategory", objc_name="adjustsImageSizeForAccessibilityContentSizeCategory")
+    AccessibilityContentSizeCategoryImageAdjusting_adjustsImageSizeForAccessibilityContentSizeCategory :: proc(self: ^AccessibilityContentSizeCategoryImageAdjusting) -> bool ---
+
+    @(objc_type=AccessibilityContentSizeCategoryImageAdjusting, objc_selector="setAdjustsImageSizeForAccessibilityContentSizeCategory:", objc_name="setAdjustsImageSizeForAccessibilityContentSizeCategory")
+    AccessibilityContentSizeCategoryImageAdjusting_setAdjustsImageSizeForAccessibilityContentSizeCategory :: proc(self: ^AccessibilityContentSizeCategoryImageAdjusting, adjustsImageSizeForAccessibilityContentSizeCategory: bool) ---
 }

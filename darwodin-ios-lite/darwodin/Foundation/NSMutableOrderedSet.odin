@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMutableOrderedSet
 ///
-@(objc_class="NSMutableOrderedSet")
+@(objc_class="NSMutableOrderedSet", objc_superclass=OrderedSet)
 MutableOrderedSet :: struct { using _: OrderedSet, }
 

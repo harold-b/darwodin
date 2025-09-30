@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSURLCredentialStorage
 ///
-@(objc_class="NSURLCredentialStorage")
+@(objc_class="NSURLCredentialStorage", objc_superclass=Object)
 URLCredentialStorage :: struct { using _: Object, }
 

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSOrderedCollectionChange
 ///
-@(objc_class="NSOrderedCollectionChange")
+@(objc_class="NSOrderedCollectionChange", objc_superclass=Object)
 OrderedCollectionChange :: struct { using _: Object, }
 

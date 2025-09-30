@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitTypesettingLanguage
 ///
-@(objc_class="UITraitTypesettingLanguage")
+@(objc_class="UITraitTypesettingLanguage", objc_superclass=NS.Object)
 TraitTypesettingLanguage :: struct { using _: NS.Object, 
     using _: ObjectTraitDefinition,
 }

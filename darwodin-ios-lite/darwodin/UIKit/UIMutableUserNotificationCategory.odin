@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIMutableUserNotificationCategory
 ///
-@(objc_class="UIMutableUserNotificationCategory")
+@(objc_class="UIMutableUserNotificationCategory", objc_superclass=UserNotificationCategory)
 MutableUserNotificationCategory :: struct { using _: UserNotificationCategory, }
 

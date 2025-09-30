@@ -21,14 +21,15 @@ SearchResultsUpdating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SearchResultsUpdating, objc_name="updateSearchResultsForSearchController_")
-SearchResultsUpdating_updateSearchResultsForSearchController_ :: #force_inline proc "c" (self: ^SearchResultsUpdating, searchController: ^SearchController) {
-    msgSend(nil, self, "updateSearchResultsForSearchController:", searchController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SearchResultsUpdating, objc_selector="updateSearchResultsForSearchController:", objc_name="updateSearchResultsForSearchController_")
+    SearchResultsUpdating_updateSearchResultsForSearchController_ :: proc(self: ^SearchResultsUpdating, searchController: ^SearchController) ---
+
+    @(objc_type=SearchResultsUpdating, objc_selector="updateSearchResultsForSearchController:selectingSearchSuggestion:", objc_name="updateSearchResultsForSearchController_selectingSearchSuggestion")
+    SearchResultsUpdating_updateSearchResultsForSearchController_selectingSearchSuggestion :: proc(self: ^SearchResultsUpdating, searchController: ^SearchController, searchSuggestion: ^SearchSuggestion) ---
 }
-@(objc_type=SearchResultsUpdating, objc_name="updateSearchResultsForSearchController_selectingSearchSuggestion")
-SearchResultsUpdating_updateSearchResultsForSearchController_selectingSearchSuggestion :: #force_inline proc "c" (self: ^SearchResultsUpdating, searchController: ^SearchController, searchSuggestion: ^SearchSuggestion) {
-    msgSend(nil, self, "updateSearchResultsForSearchController:selectingSearchSuggestion:", searchController, searchSuggestion)
-}
+
 @(objc_type=SearchResultsUpdating, objc_name="updateSearchResultsForSearchController")
 SearchResultsUpdating_updateSearchResultsForSearchController :: proc {
     SearchResultsUpdating_updateSearchResultsForSearchController_,

@@ -21,19 +21,17 @@ AccessibilityNavigableStaticText :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityStaticText,
 }
 
-@(objc_type=AccessibilityNavigableStaticText, objc_name="accessibilityStringForRange")
-AccessibilityNavigableStaticText_accessibilityStringForRange :: #force_inline proc "c" (self: ^AccessibilityNavigableStaticText, range: NS._NSRange) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityStringForRange:", range)
-}
-@(objc_type=AccessibilityNavigableStaticText, objc_name="accessibilityLineForIndex")
-AccessibilityNavigableStaticText_accessibilityLineForIndex :: #force_inline proc "c" (self: ^AccessibilityNavigableStaticText, index: NS.Integer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityLineForIndex:", index)
-}
-@(objc_type=AccessibilityNavigableStaticText, objc_name="accessibilityRangeForLine")
-AccessibilityNavigableStaticText_accessibilityRangeForLine :: #force_inline proc "c" (self: ^AccessibilityNavigableStaticText, lineNumber: NS.Integer) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityRangeForLine:", lineNumber)
-}
-@(objc_type=AccessibilityNavigableStaticText, objc_name="accessibilityFrameForRange")
-AccessibilityNavigableStaticText_accessibilityFrameForRange :: #force_inline proc "c" (self: ^AccessibilityNavigableStaticText, range: NS._NSRange) -> NS.Rect {
-    return msgSend(NS.Rect, self, "accessibilityFrameForRange:", range)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityNavigableStaticText, objc_selector="accessibilityStringForRange:", objc_name="accessibilityStringForRange")
+    AccessibilityNavigableStaticText_accessibilityStringForRange :: proc(self: ^AccessibilityNavigableStaticText, range: NS._NSRange) -> ^NS.String ---
+
+    @(objc_type=AccessibilityNavigableStaticText, objc_selector="accessibilityLineForIndex:", objc_name="accessibilityLineForIndex")
+    AccessibilityNavigableStaticText_accessibilityLineForIndex :: proc(self: ^AccessibilityNavigableStaticText, index: NS.Integer) -> NS.Integer ---
+
+    @(objc_type=AccessibilityNavigableStaticText, objc_selector="accessibilityRangeForLine:", objc_name="accessibilityRangeForLine")
+    AccessibilityNavigableStaticText_accessibilityRangeForLine :: proc(self: ^AccessibilityNavigableStaticText, lineNumber: NS.Integer) -> NS._NSRange ---
+
+    @(objc_type=AccessibilityNavigableStaticText, objc_selector="accessibilityFrameForRange:", objc_name="accessibilityFrameForRange")
+    AccessibilityNavigableStaticText_accessibilityFrameForRange :: proc(self: ^AccessibilityNavigableStaticText, range: NS._NSRange) -> NS.Rect ---
 }

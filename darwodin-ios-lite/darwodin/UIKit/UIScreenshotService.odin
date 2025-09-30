@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIScreenshotService
 ///
-@(objc_class="UIScreenshotService")
+@(objc_class="UIScreenshotService", objc_superclass=NS.Object)
 ScreenshotService :: struct { using _: NS.Object, }
 

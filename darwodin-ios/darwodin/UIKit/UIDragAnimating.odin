@@ -21,11 +21,11 @@ DragAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DragAnimating, objc_name="addAnimations")
-DragAnimating_addAnimations :: #force_inline proc "c" (self: ^DragAnimating, animations: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "addAnimations:", animations)
-}
-@(objc_type=DragAnimating, objc_name="addCompletion")
-DragAnimating_addCompletion :: #force_inline proc "c" (self: ^DragAnimating, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) {
-    msgSend(nil, self, "addCompletion:", completion)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DragAnimating, objc_selector="addAnimations:", objc_name="addAnimations")
+    DragAnimating_addAnimations :: proc(self: ^DragAnimating, animations: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=DragAnimating, objc_selector="addCompletion:", objc_name="addCompletion")
+    DragAnimating_addCompletion :: proc(self: ^DragAnimating, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) ---
 }

@@ -21,27 +21,23 @@ SpringLoadedInteractionContext :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SpringLoadedInteractionContext, objc_name="locationInView")
-SpringLoadedInteractionContext_locationInView :: #force_inline proc "c" (self: ^SpringLoadedInteractionContext, view: ^View) -> CG.Point {
-    return msgSend(CG.Point, self, "locationInView:", view)
-}
-@(objc_type=SpringLoadedInteractionContext, objc_name="state")
-SpringLoadedInteractionContext_state :: #force_inline proc "c" (self: ^SpringLoadedInteractionContext) -> SpringLoadedInteractionEffectState {
-    return msgSend(SpringLoadedInteractionEffectState, self, "state")
-}
-@(objc_type=SpringLoadedInteractionContext, objc_name="targetView")
-SpringLoadedInteractionContext_targetView :: #force_inline proc "c" (self: ^SpringLoadedInteractionContext) -> ^View {
-    return msgSend(^View, self, "targetView")
-}
-@(objc_type=SpringLoadedInteractionContext, objc_name="setTargetView")
-SpringLoadedInteractionContext_setTargetView :: #force_inline proc "c" (self: ^SpringLoadedInteractionContext, targetView: ^View) {
-    msgSend(nil, self, "setTargetView:", targetView)
-}
-@(objc_type=SpringLoadedInteractionContext, objc_name="targetItem")
-SpringLoadedInteractionContext_targetItem :: #force_inline proc "c" (self: ^SpringLoadedInteractionContext) -> id {
-    return msgSend(id, self, "targetItem")
-}
-@(objc_type=SpringLoadedInteractionContext, objc_name="setTargetItem")
-SpringLoadedInteractionContext_setTargetItem :: #force_inline proc "c" (self: ^SpringLoadedInteractionContext, targetItem: id) {
-    msgSend(nil, self, "setTargetItem:", targetItem)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="locationInView:", objc_name="locationInView")
+    SpringLoadedInteractionContext_locationInView :: proc(self: ^SpringLoadedInteractionContext, view: ^View) -> CG.Point ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="state", objc_name="state")
+    SpringLoadedInteractionContext_state :: proc(self: ^SpringLoadedInteractionContext) -> SpringLoadedInteractionEffectState ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="targetView", objc_name="targetView")
+    SpringLoadedInteractionContext_targetView :: proc(self: ^SpringLoadedInteractionContext) -> ^View ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="setTargetView:", objc_name="setTargetView")
+    SpringLoadedInteractionContext_setTargetView :: proc(self: ^SpringLoadedInteractionContext, targetView: ^View) ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="targetItem", objc_name="targetItem")
+    SpringLoadedInteractionContext_targetItem :: proc(self: ^SpringLoadedInteractionContext) -> id ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="setTargetItem:", objc_name="setTargetItem")
+    SpringLoadedInteractionContext_setTargetItem :: proc(self: ^SpringLoadedInteractionContext, targetItem: id) ---
 }

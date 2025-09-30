@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSPersonNameComponentsFormatter
 ///
-@(objc_class="NSPersonNameComponentsFormatter")
+@(objc_class="NSPersonNameComponentsFormatter", objc_superclass=Formatter)
 PersonNameComponentsFormatter :: struct { using _: Formatter, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICellConfigurationState
 ///
-@(objc_class="UICellConfigurationState")
+@(objc_class="UICellConfigurationState", objc_superclass=ViewConfigurationState)
 CellConfigurationState :: struct { using _: ViewConfigurationState, }
 

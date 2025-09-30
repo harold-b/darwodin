@@ -21,7 +21,8 @@ SpeechRecognizerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SpeechRecognizerDelegate, objc_name="speechRecognizer")
-SpeechRecognizerDelegate_speechRecognizer :: #force_inline proc "c" (self: ^SpeechRecognizerDelegate, sender: ^SpeechRecognizer, command: ^NS.String) {
-    msgSend(nil, self, "speechRecognizer:didRecognizeCommand:", sender, command)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpeechRecognizerDelegate, objc_selector="speechRecognizer:didRecognizeCommand:", objc_name="speechRecognizer")
+    SpeechRecognizerDelegate_speechRecognizer :: proc(self: ^SpeechRecognizerDelegate, sender: ^SpeechRecognizer, command: ^NS.String) ---
 }

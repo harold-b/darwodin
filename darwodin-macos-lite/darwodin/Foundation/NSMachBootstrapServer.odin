@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMachBootstrapServer
 ///
-@(objc_class="NSMachBootstrapServer")
+@(objc_class="NSMachBootstrapServer", objc_superclass=PortNameServer)
 MachBootstrapServer :: struct { using _: PortNameServer, }
 

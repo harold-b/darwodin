@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIDynamicItemGroup
 ///
-@(objc_class="UIDynamicItemGroup")
+@(objc_class="UIDynamicItemGroup", objc_superclass=NS.Object)
 DynamicItemGroup :: struct { using _: NS.Object, 
     using _: DynamicItem,
 }

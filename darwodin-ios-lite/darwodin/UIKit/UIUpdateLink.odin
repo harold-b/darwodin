@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIUpdateLink
 ///
-@(objc_class="UIUpdateLink")
+@(objc_class="UIUpdateLink", objc_superclass=NS.Object)
 UpdateLink :: struct { using _: NS.Object, }
 

@@ -21,7 +21,8 @@ AccessibilityLayoutItem :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 
-@(objc_type=AccessibilityLayoutItem, objc_name="setAccessibilityFrame")
-AccessibilityLayoutItem_setAccessibilityFrame :: #force_inline proc "c" (self: ^AccessibilityLayoutItem, frame: NS.Rect) {
-    msgSend(nil, self, "setAccessibilityFrame:", frame)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityLayoutItem, objc_selector="setAccessibilityFrame:", objc_name="setAccessibilityFrame")
+    AccessibilityLayoutItem_setAccessibilityFrame :: proc(self: ^AccessibilityLayoutItem, frame: NS.Rect) ---
 }

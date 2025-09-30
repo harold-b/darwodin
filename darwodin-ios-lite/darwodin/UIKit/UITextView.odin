@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITextView
 ///
-@(objc_class="UITextView")
+@(objc_class="UITextView", objc_superclass=ScrollView)
 TextView :: struct { using _: ScrollView, 
     using _: TextInput,
     using _: ContentSizeCategoryAdjusting,

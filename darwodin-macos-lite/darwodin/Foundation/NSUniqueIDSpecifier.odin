@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSUniqueIDSpecifier
 ///
-@(objc_class="NSUniqueIDSpecifier")
+@(objc_class="NSUniqueIDSpecifier", objc_superclass=ScriptObjectSpecifier)
 UniqueIDSpecifier :: struct { using _: ScriptObjectSpecifier, }
 

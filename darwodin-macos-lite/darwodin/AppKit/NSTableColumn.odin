@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTableColumn
 ///
-@(objc_class="NSTableColumn")
+@(objc_class="NSTableColumn", objc_superclass=NS.Object)
 TableColumn :: struct { using _: NS.Object, 
     using _: NS.Coding,
     using _: UserInterfaceItemIdentification,

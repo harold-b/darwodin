@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSPreviewRepresentingActivityItem
 ///
-@(objc_class="NSPreviewRepresentingActivityItem")
+@(objc_class="NSPreviewRepresentingActivityItem", objc_superclass=NS.Object)
 PreviewRepresentingActivityItem :: struct { using _: NS.Object, 
     using _: PreviewRepresentableActivityItem,
 }

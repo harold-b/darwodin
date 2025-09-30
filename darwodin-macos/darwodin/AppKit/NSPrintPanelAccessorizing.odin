@@ -19,11 +19,11 @@ import CA "../QuartzCore"
 @(objc_class="NSPrintPanelAccessorizing")
 PrintPanelAccessorizing :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=PrintPanelAccessorizing, objc_name="localizedSummaryItems")
-PrintPanelAccessorizing_localizedSummaryItems :: #force_inline proc "c" (self: ^PrintPanelAccessorizing) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "localizedSummaryItems")
-}
-@(objc_type=PrintPanelAccessorizing, objc_name="keyPathsForValuesAffectingPreview")
-PrintPanelAccessorizing_keyPathsForValuesAffectingPreview :: #force_inline proc "c" (self: ^PrintPanelAccessorizing) -> ^NS.Set {
-    return msgSend(^NS.Set, self, "keyPathsForValuesAffectingPreview")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PrintPanelAccessorizing, objc_selector="localizedSummaryItems", objc_name="localizedSummaryItems")
+    PrintPanelAccessorizing_localizedSummaryItems :: proc(self: ^PrintPanelAccessorizing) -> ^NS.Array ---
+
+    @(objc_type=PrintPanelAccessorizing, objc_selector="keyPathsForValuesAffectingPreview", objc_name="keyPathsForValuesAffectingPreview")
+    PrintPanelAccessorizing_keyPathsForValuesAffectingPreview :: proc(self: ^PrintPanelAccessorizing) -> ^NS.Set ---
 }

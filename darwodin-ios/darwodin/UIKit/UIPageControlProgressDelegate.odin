@@ -21,11 +21,11 @@ PageControlProgressDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PageControlProgressDelegate, objc_name="pageControlProgress")
-PageControlProgressDelegate_pageControlProgress :: #force_inline proc "c" (self: ^PageControlProgressDelegate, progress: ^PageControlProgress, page: NS.Integer) -> cffi.float {
-    return msgSend(cffi.float, self, "pageControlProgress:initialProgressForPage:", progress, page)
-}
-@(objc_type=PageControlProgressDelegate, objc_name="pageControlProgressVisibilityDidChange")
-PageControlProgressDelegate_pageControlProgressVisibilityDidChange :: #force_inline proc "c" (self: ^PageControlProgressDelegate, progress: ^PageControlProgress) {
-    msgSend(nil, self, "pageControlProgressVisibilityDidChange:", progress)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PageControlProgressDelegate, objc_selector="pageControlProgress:initialProgressForPage:", objc_name="pageControlProgress")
+    PageControlProgressDelegate_pageControlProgress :: proc(self: ^PageControlProgressDelegate, progress: ^PageControlProgress, page: NS.Integer) -> cffi.float ---
+
+    @(objc_type=PageControlProgressDelegate, objc_selector="pageControlProgressVisibilityDidChange:", objc_name="pageControlProgressVisibilityDidChange")
+    PageControlProgressDelegate_pageControlProgressVisibilityDidChange :: proc(self: ^PageControlProgressDelegate, progress: ^PageControlProgress) ---
 }

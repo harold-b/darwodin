@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMassFormatter
 ///
-@(objc_class="NSMassFormatter")
+@(objc_class="NSMassFormatter", objc_superclass=Formatter)
 MassFormatter :: struct { using _: Formatter, }
 

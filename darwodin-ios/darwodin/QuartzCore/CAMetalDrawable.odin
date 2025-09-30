@@ -18,11 +18,11 @@ MetalDrawable :: struct { using _: intrinsics.objc_object,
     using _: MTLDrawable,
 }
 
-@(objc_type=MetalDrawable, objc_name="texture")
-MetalDrawable_texture :: #force_inline proc "c" (self: ^MetalDrawable) -> ^MTLTexture {
-    return msgSend(^MTLTexture, self, "texture")
-}
-@(objc_type=MetalDrawable, objc_name="layer")
-MetalDrawable_layer :: #force_inline proc "c" (self: ^MetalDrawable) -> ^MetalLayer {
-    return msgSend(^MetalLayer, self, "layer")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MetalDrawable, objc_selector="texture", objc_name="texture")
+    MetalDrawable_texture :: proc(self: ^MetalDrawable) -> ^MTLTexture ---
+
+    @(objc_type=MetalDrawable, objc_selector="layer", objc_name="layer")
+    MetalDrawable_layer :: proc(self: ^MetalDrawable) -> ^MetalLayer ---
 }

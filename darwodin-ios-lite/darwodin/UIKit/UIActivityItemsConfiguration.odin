@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIActivityItemsConfiguration
 ///
-@(objc_class="UIActivityItemsConfiguration")
+@(objc_class="UIActivityItemsConfiguration", objc_superclass=NS.Object)
 ActivityItemsConfiguration :: struct { using _: NS.Object, 
     using _: ActivityItemsConfigurationReading,
 }

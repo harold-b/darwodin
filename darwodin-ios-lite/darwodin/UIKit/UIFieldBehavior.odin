@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIFieldBehavior
 ///
-@(objc_class="UIFieldBehavior")
+@(objc_class="UIFieldBehavior", objc_superclass=DynamicBehavior)
 FieldBehavior :: struct { using _: DynamicBehavior, }
 

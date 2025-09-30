@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSConditionLock
 ///
-@(objc_class="NSConditionLock")
+@(objc_class="NSConditionLock", objc_superclass=Object)
 ConditionLock :: struct { using _: Object, 
     using _: Locking,
 }

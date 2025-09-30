@@ -21,19 +21,18 @@ TextInputTokenizer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextInputTokenizer, objc_name="rangeEnclosingPosition")
-TextInputTokenizer_rangeEnclosingPosition :: #force_inline proc "c" (self: ^TextInputTokenizer, position: ^TextPosition, granularity: TextGranularity, direction: TextDirection) -> ^TextRange {
-    return msgSend(^TextRange, self, "rangeEnclosingPosition:withGranularity:inDirection:", position, granularity, direction)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextInputTokenizer, objc_selector="rangeEnclosingPosition:withGranularity:inDirection:", objc_name="rangeEnclosingPosition")
+    TextInputTokenizer_rangeEnclosingPosition :: proc(self: ^TextInputTokenizer, position: ^TextPosition, granularity: TextGranularity, direction: TextDirection) -> ^TextRange ---
+
+    @(objc_type=TextInputTokenizer, objc_selector="isPosition:atBoundary:inDirection:", objc_name="isPosition_atBoundary_inDirection")
+    TextInputTokenizer_isPosition_atBoundary_inDirection :: proc(self: ^TextInputTokenizer, position: ^TextPosition, granularity: TextGranularity, direction: TextDirection) -> bool ---
+
+    @(objc_type=TextInputTokenizer, objc_selector="positionFromPosition:toBoundary:inDirection:", objc_name="positionFromPosition")
+    TextInputTokenizer_positionFromPosition :: proc(self: ^TextInputTokenizer, position: ^TextPosition, granularity: TextGranularity, direction: TextDirection) -> ^TextPosition ---
+
+    @(objc_type=TextInputTokenizer, objc_selector="isPosition:withinTextUnit:inDirection:", objc_name="isPosition_withinTextUnit_inDirection")
+    TextInputTokenizer_isPosition_withinTextUnit_inDirection :: proc(self: ^TextInputTokenizer, position: ^TextPosition, granularity: TextGranularity, direction: TextDirection) -> bool ---
 }
-@(objc_type=TextInputTokenizer, objc_name="isPosition_atBoundary_inDirection")
-TextInputTokenizer_isPosition_atBoundary_inDirection :: #force_inline proc "c" (self: ^TextInputTokenizer, position: ^TextPosition, granularity: TextGranularity, direction: TextDirection) -> bool {
-    return msgSend(bool, self, "isPosition:atBoundary:inDirection:", position, granularity, direction)
-}
-@(objc_type=TextInputTokenizer, objc_name="positionFromPosition")
-TextInputTokenizer_positionFromPosition :: #force_inline proc "c" (self: ^TextInputTokenizer, position: ^TextPosition, granularity: TextGranularity, direction: TextDirection) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "positionFromPosition:toBoundary:inDirection:", position, granularity, direction)
-}
-@(objc_type=TextInputTokenizer, objc_name="isPosition_withinTextUnit_inDirection")
-TextInputTokenizer_isPosition_withinTextUnit_inDirection :: #force_inline proc "c" (self: ^TextInputTokenizer, position: ^TextPosition, granularity: TextGranularity, direction: TextDirection) -> bool {
-    return msgSend(bool, self, "isPosition:withinTextUnit:inDirection:", position, granularity, direction)
-}
+

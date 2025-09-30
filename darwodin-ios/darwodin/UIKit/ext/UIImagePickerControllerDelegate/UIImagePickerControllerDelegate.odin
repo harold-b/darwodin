@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -41,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).imagePickerController_didFinishPickingImage_editingInfo(self, picker, image, editingInfo)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("imagePickerController:didFinishPickingImage:editingInfo:"), auto_cast imagePickerController_didFinishPickingImage_editingInfo, "v@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("imagePickerController:didFinishPickingImage:editingInfo:"), auto_cast imagePickerController_didFinishPickingImage_editingInfo, "v@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.imagePickerController_didFinishPickingMediaWithInfo != nil {
         imagePickerController_didFinishPickingMediaWithInfo :: proc "c" (self: ^UI.ImagePickerControllerDelegate, _: SEL, picker: ^UI.ImagePickerController, info: ^NS.Dictionary) {
@@ -51,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).imagePickerController_didFinishPickingMediaWithInfo(self, picker, info)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("imagePickerController:didFinishPickingMediaWithInfo:"), auto_cast imagePickerController_didFinishPickingMediaWithInfo, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("imagePickerController:didFinishPickingMediaWithInfo:"), auto_cast imagePickerController_didFinishPickingMediaWithInfo, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.imagePickerControllerDidCancel != nil {
         imagePickerControllerDidCancel :: proc "c" (self: ^UI.ImagePickerControllerDelegate, _: SEL, picker: ^UI.ImagePickerController) {

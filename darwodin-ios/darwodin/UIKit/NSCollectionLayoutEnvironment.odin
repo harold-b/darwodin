@@ -21,11 +21,11 @@ NSCollectionLayoutEnvironment :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=NSCollectionLayoutEnvironment, objc_name="container")
-NSCollectionLayoutEnvironment_container :: #force_inline proc "c" (self: ^NSCollectionLayoutEnvironment) -> ^NSCollectionLayoutContainer {
-    return msgSend(^NSCollectionLayoutContainer, self, "container")
-}
-@(objc_type=NSCollectionLayoutEnvironment, objc_name="traitCollection")
-NSCollectionLayoutEnvironment_traitCollection :: #force_inline proc "c" (self: ^NSCollectionLayoutEnvironment) -> ^TraitCollection {
-    return msgSend(^TraitCollection, self, "traitCollection")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NSCollectionLayoutEnvironment, objc_selector="container", objc_name="container")
+    NSCollectionLayoutEnvironment_container :: proc(self: ^NSCollectionLayoutEnvironment) -> ^NSCollectionLayoutContainer ---
+
+    @(objc_type=NSCollectionLayoutEnvironment, objc_selector="traitCollection", objc_name="traitCollection")
+    NSCollectionLayoutEnvironment_traitCollection :: proc(self: ^NSCollectionLayoutEnvironment) -> ^TraitCollection ---
 }

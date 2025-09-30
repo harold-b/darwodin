@@ -21,7 +21,8 @@ ToolbarItemValidation :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ToolbarItemValidation, objc_name="validateToolbarItem")
-ToolbarItemValidation_validateToolbarItem :: #force_inline proc "c" (self: ^ToolbarItemValidation, item: ^ToolbarItem) -> bool {
-    return msgSend(bool, self, "validateToolbarItem:", item)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ToolbarItemValidation, objc_selector="validateToolbarItem:", objc_name="validateToolbarItem")
+    ToolbarItemValidation_validateToolbarItem :: proc(self: ^ToolbarItemValidation, item: ^ToolbarItem) -> bool ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDynamicItemBehavior
 ///
-@(objc_class="UIDynamicItemBehavior")
+@(objc_class="UIDynamicItemBehavior", objc_superclass=DynamicBehavior)
 DynamicItemBehavior :: struct { using _: DynamicBehavior, }
 

@@ -19,11 +19,11 @@ import CA "../QuartzCore"
 @(objc_class="UIDataSourceModelAssociation")
 DataSourceModelAssociation :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=DataSourceModelAssociation, objc_name="modelIdentifierForElementAtIndexPath")
-DataSourceModelAssociation_modelIdentifierForElementAtIndexPath :: #force_inline proc "c" (self: ^DataSourceModelAssociation, idx: ^NS.IndexPath, view: ^View) -> ^NS.String {
-    return msgSend(^NS.String, self, "modelIdentifierForElementAtIndexPath:inView:", idx, view)
-}
-@(objc_type=DataSourceModelAssociation, objc_name="indexPathForElementWithModelIdentifier")
-DataSourceModelAssociation_indexPathForElementWithModelIdentifier :: #force_inline proc "c" (self: ^DataSourceModelAssociation, identifier: ^NS.String, view: ^View) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "indexPathForElementWithModelIdentifier:inView:", identifier, view)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DataSourceModelAssociation, objc_selector="modelIdentifierForElementAtIndexPath:inView:", objc_name="modelIdentifierForElementAtIndexPath")
+    DataSourceModelAssociation_modelIdentifierForElementAtIndexPath :: proc(self: ^DataSourceModelAssociation, idx: ^NS.IndexPath, view: ^View) -> ^NS.String ---
+
+    @(objc_type=DataSourceModelAssociation, objc_selector="indexPathForElementWithModelIdentifier:inView:", objc_name="indexPathForElementWithModelIdentifier")
+    DataSourceModelAssociation_indexPathForElementWithModelIdentifier :: proc(self: ^DataSourceModelAssociation, identifier: ^NS.String, view: ^View) -> ^NS.IndexPath ---
 }

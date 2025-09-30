@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPrintOperation
 ///
-@(objc_class="NSPrintOperation")
+@(objc_class="NSPrintOperation", objc_superclass=NS.Object)
 PrintOperation :: struct { using _: NS.Object, }
 

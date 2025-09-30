@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSStepperCell
 ///
-@(objc_class="NSStepperCell")
+@(objc_class="NSStepperCell", objc_superclass=ActionCell)
 StepperCell :: struct { using _: ActionCell, }
 

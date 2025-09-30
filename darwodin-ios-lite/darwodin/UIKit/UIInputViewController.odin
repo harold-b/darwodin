@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIInputViewController
 ///
-@(objc_class="UIInputViewController")
+@(objc_class="UIInputViewController", objc_superclass=ViewController)
 InputViewController :: struct { using _: ViewController, 
     using _: TextInputDelegate,
 }

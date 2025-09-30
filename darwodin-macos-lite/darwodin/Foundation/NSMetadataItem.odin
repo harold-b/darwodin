@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMetadataItem
 ///
-@(objc_class="NSMetadataItem")
+@(objc_class="NSMetadataItem", objc_superclass=Object)
 MetadataItem :: struct { using _: Object, }
 

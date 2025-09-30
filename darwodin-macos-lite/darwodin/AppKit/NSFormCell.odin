@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSFormCell
 ///
-@(objc_class="NSFormCell")
+@(objc_class="NSFormCell", objc_superclass=ActionCell)
 FormCell :: struct { using _: ActionCell, }
 

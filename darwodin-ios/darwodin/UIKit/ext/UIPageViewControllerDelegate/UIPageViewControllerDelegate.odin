@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -43,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).pageViewController_willTransitionToViewControllers(self, pageViewController, pendingViewControllers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pageViewController:willTransitionToViewControllers:"), auto_cast pageViewController_willTransitionToViewControllers, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pageViewController:willTransitionToViewControllers:"), auto_cast pageViewController_willTransitionToViewControllers, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted != nil {
         pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted :: proc "c" (self: ^UI.PageViewControllerDelegate, _: SEL, pageViewController: ^UI.PageViewController, finished: bool, previousViewControllers: ^NS.Array, completed: bool) {
@@ -53,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted(self, pageViewController, finished, previousViewControllers, completed)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:"), auto_cast pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted, "v@:@B@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:"), auto_cast pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted, "v@:@B^voidB") do panic("Failed to register objC method.")
     }
     if vt.pageViewController_spineLocationForInterfaceOrientation != nil {
         pageViewController_spineLocationForInterfaceOrientation :: proc "c" (self: ^UI.PageViewControllerDelegate, _: SEL, pageViewController: ^UI.PageViewController, orientation: UI.InterfaceOrientation) -> UI.PageViewControllerSpineLocation {

@@ -21,31 +21,27 @@ TableViewDragDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TableViewDragDelegate, objc_name="tableView_itemsForBeginningDragSession_atIndexPath")
-TableViewDragDelegate_tableView_itemsForBeginningDragSession_atIndexPath :: #force_inline proc "c" (self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession, indexPath: ^NS.IndexPath) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "tableView:itemsForBeginningDragSession:atIndexPath:", tableView, session, indexPath)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TableViewDragDelegate, objc_selector="tableView:itemsForBeginningDragSession:atIndexPath:", objc_name="tableView_itemsForBeginningDragSession_atIndexPath")
+    TableViewDragDelegate_tableView_itemsForBeginningDragSession_atIndexPath :: proc(self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession, indexPath: ^NS.IndexPath) -> ^NS.Array ---
+
+    @(objc_type=TableViewDragDelegate, objc_selector="tableView:itemsForAddingToDragSession:atIndexPath:point:", objc_name="tableView_itemsForAddingToDragSession_atIndexPath_point")
+    TableViewDragDelegate_tableView_itemsForAddingToDragSession_atIndexPath_point :: proc(self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession, indexPath: ^NS.IndexPath, point: CG.Point) -> ^NS.Array ---
+
+    @(objc_type=TableViewDragDelegate, objc_selector="tableView:dragPreviewParametersForRowAtIndexPath:", objc_name="tableView_dragPreviewParametersForRowAtIndexPath")
+    TableViewDragDelegate_tableView_dragPreviewParametersForRowAtIndexPath :: proc(self: ^TableViewDragDelegate, tableView: ^TableView, indexPath: ^NS.IndexPath) -> ^DragPreviewParameters ---
+
+    @(objc_type=TableViewDragDelegate, objc_selector="tableView:dragSessionWillBegin:", objc_name="tableView_dragSessionWillBegin")
+    TableViewDragDelegate_tableView_dragSessionWillBegin :: proc(self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession) ---
+
+    @(objc_type=TableViewDragDelegate, objc_selector="tableView:dragSessionDidEnd:", objc_name="tableView_dragSessionDidEnd")
+    TableViewDragDelegate_tableView_dragSessionDidEnd :: proc(self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession) ---
+
+    @(objc_type=TableViewDragDelegate, objc_selector="tableView:dragSessionAllowsMoveOperation:", objc_name="tableView_dragSessionAllowsMoveOperation")
+    TableViewDragDelegate_tableView_dragSessionAllowsMoveOperation :: proc(self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession) -> bool ---
+
+    @(objc_type=TableViewDragDelegate, objc_selector="tableView:dragSessionIsRestrictedToDraggingApplication:", objc_name="tableView_dragSessionIsRestrictedToDraggingApplication")
+    TableViewDragDelegate_tableView_dragSessionIsRestrictedToDraggingApplication :: proc(self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession) -> bool ---
 }
-@(objc_type=TableViewDragDelegate, objc_name="tableView_itemsForAddingToDragSession_atIndexPath_point")
-TableViewDragDelegate_tableView_itemsForAddingToDragSession_atIndexPath_point :: #force_inline proc "c" (self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession, indexPath: ^NS.IndexPath, point: CG.Point) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "tableView:itemsForAddingToDragSession:atIndexPath:point:", tableView, session, indexPath, point)
-}
-@(objc_type=TableViewDragDelegate, objc_name="tableView_dragPreviewParametersForRowAtIndexPath")
-TableViewDragDelegate_tableView_dragPreviewParametersForRowAtIndexPath :: #force_inline proc "c" (self: ^TableViewDragDelegate, tableView: ^TableView, indexPath: ^NS.IndexPath) -> ^DragPreviewParameters {
-    return msgSend(^DragPreviewParameters, self, "tableView:dragPreviewParametersForRowAtIndexPath:", tableView, indexPath)
-}
-@(objc_type=TableViewDragDelegate, objc_name="tableView_dragSessionWillBegin")
-TableViewDragDelegate_tableView_dragSessionWillBegin :: #force_inline proc "c" (self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession) {
-    msgSend(nil, self, "tableView:dragSessionWillBegin:", tableView, session)
-}
-@(objc_type=TableViewDragDelegate, objc_name="tableView_dragSessionDidEnd")
-TableViewDragDelegate_tableView_dragSessionDidEnd :: #force_inline proc "c" (self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession) {
-    msgSend(nil, self, "tableView:dragSessionDidEnd:", tableView, session)
-}
-@(objc_type=TableViewDragDelegate, objc_name="tableView_dragSessionAllowsMoveOperation")
-TableViewDragDelegate_tableView_dragSessionAllowsMoveOperation :: #force_inline proc "c" (self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession) -> bool {
-    return msgSend(bool, self, "tableView:dragSessionAllowsMoveOperation:", tableView, session)
-}
-@(objc_type=TableViewDragDelegate, objc_name="tableView_dragSessionIsRestrictedToDraggingApplication")
-TableViewDragDelegate_tableView_dragSessionIsRestrictedToDraggingApplication :: #force_inline proc "c" (self: ^TableViewDragDelegate, tableView: ^TableView, session: ^DragSession) -> bool {
-    return msgSend(bool, self, "tableView:dragSessionIsRestrictedToDraggingApplication:", tableView, session)
-}
+

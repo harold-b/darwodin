@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSScrollView
 ///
-@(objc_class="NSScrollView")
+@(objc_class="NSScrollView", objc_superclass=View)
 ScrollView :: struct { using _: View, 
     using _: TextFinderBarContainer,
 }

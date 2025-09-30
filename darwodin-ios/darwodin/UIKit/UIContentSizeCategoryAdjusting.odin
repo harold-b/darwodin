@@ -21,11 +21,11 @@ ContentSizeCategoryAdjusting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ContentSizeCategoryAdjusting, objc_name="adjustsFontForContentSizeCategory")
-ContentSizeCategoryAdjusting_adjustsFontForContentSizeCategory :: #force_inline proc "c" (self: ^ContentSizeCategoryAdjusting) -> bool {
-    return msgSend(bool, self, "adjustsFontForContentSizeCategory")
-}
-@(objc_type=ContentSizeCategoryAdjusting, objc_name="setAdjustsFontForContentSizeCategory")
-ContentSizeCategoryAdjusting_setAdjustsFontForContentSizeCategory :: #force_inline proc "c" (self: ^ContentSizeCategoryAdjusting, adjustsFontForContentSizeCategory: bool) {
-    msgSend(nil, self, "setAdjustsFontForContentSizeCategory:", adjustsFontForContentSizeCategory)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ContentSizeCategoryAdjusting, objc_selector="adjustsFontForContentSizeCategory", objc_name="adjustsFontForContentSizeCategory")
+    ContentSizeCategoryAdjusting_adjustsFontForContentSizeCategory :: proc(self: ^ContentSizeCategoryAdjusting) -> bool ---
+
+    @(objc_type=ContentSizeCategoryAdjusting, objc_selector="setAdjustsFontForContentSizeCategory:", objc_name="setAdjustsFontForContentSizeCategory")
+    ContentSizeCategoryAdjusting_setAdjustsFontForContentSizeCategory :: proc(self: ^ContentSizeCategoryAdjusting, adjustsFontForContentSizeCategory: bool) ---
 }

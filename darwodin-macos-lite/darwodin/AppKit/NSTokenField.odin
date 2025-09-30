@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTokenField
 ///
-@(objc_class="NSTokenField")
+@(objc_class="NSTokenField", objc_superclass=TextField)
 TokenField :: struct { using _: TextField, }
 

@@ -19,27 +19,23 @@ PressedStateInput :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PressedStateInput, objc_name="pressedDidChangeHandler")
-PressedStateInput_pressedDidChangeHandler :: #force_inline proc "c" (self: ^PressedStateInput) -> ^Objc_Block(proc "c" ()) {
-    return msgSend(^Objc_Block(proc "c" ()), self, "pressedDidChangeHandler")
-}
-@(objc_type=PressedStateInput, objc_name="setPressedDidChangeHandler")
-PressedStateInput_setPressedDidChangeHandler :: #force_inline proc "c" (self: ^PressedStateInput, pressedDidChangeHandler: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "setPressedDidChangeHandler:", pressedDidChangeHandler)
-}
-@(objc_type=PressedStateInput, objc_name="isPressed")
-PressedStateInput_isPressed :: #force_inline proc "c" (self: ^PressedStateInput) -> bool {
-    return msgSend(bool, self, "isPressed")
-}
-@(objc_type=PressedStateInput, objc_name="lastPressedStateTimestamp")
-PressedStateInput_lastPressedStateTimestamp :: #force_inline proc "c" (self: ^PressedStateInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastPressedStateTimestamp")
-}
-@(objc_type=PressedStateInput, objc_name="lastPressedStateLatency")
-PressedStateInput_lastPressedStateLatency :: #force_inline proc "c" (self: ^PressedStateInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastPressedStateLatency")
-}
-@(objc_type=PressedStateInput, objc_name="sources")
-PressedStateInput_sources :: #force_inline proc "c" (self: ^PressedStateInput) -> ^NS.Set {
-    return msgSend(^NS.Set, self, "sources")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PressedStateInput, objc_selector="pressedDidChangeHandler", objc_name="pressedDidChangeHandler")
+    PressedStateInput_pressedDidChangeHandler :: proc(self: ^PressedStateInput) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=PressedStateInput, objc_selector="setPressedDidChangeHandler:", objc_name="setPressedDidChangeHandler")
+    PressedStateInput_setPressedDidChangeHandler :: proc(self: ^PressedStateInput, pressedDidChangeHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=PressedStateInput, objc_selector="isPressed", objc_name="isPressed")
+    PressedStateInput_isPressed :: proc(self: ^PressedStateInput) -> bool ---
+
+    @(objc_type=PressedStateInput, objc_selector="lastPressedStateTimestamp", objc_name="lastPressedStateTimestamp")
+    PressedStateInput_lastPressedStateTimestamp :: proc(self: ^PressedStateInput) -> NS.TimeInterval ---
+
+    @(objc_type=PressedStateInput, objc_selector="lastPressedStateLatency", objc_name="lastPressedStateLatency")
+    PressedStateInput_lastPressedStateLatency :: proc(self: ^PressedStateInput) -> NS.TimeInterval ---
+
+    @(objc_type=PressedStateInput, objc_selector="sources", objc_name="sources")
+    PressedStateInput_sources :: proc(self: ^PressedStateInput) -> ^NS.Set ---
 }

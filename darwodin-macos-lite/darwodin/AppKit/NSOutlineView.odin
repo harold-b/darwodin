@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSOutlineView
 ///
-@(objc_class="NSOutlineView")
+@(objc_class="NSOutlineView", objc_superclass=TableView)
 OutlineView :: struct { using _: TableView, 
     using _: AccessibilityOutline,
 }

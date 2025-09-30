@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITableViewDiffableDataSource
 ///
-@(objc_class="UITableViewDiffableDataSource")
+@(objc_class="UITableViewDiffableDataSource", objc_superclass=NS.Object)
 TableViewDiffableDataSource :: struct { using _: NS.Object, 
     using _: TableViewDataSource,
 }

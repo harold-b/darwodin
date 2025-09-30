@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -103,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).application_willFinishLaunchingWithOptions(self, application, launchOptions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:willFinishLaunchingWithOptions:"), auto_cast application_willFinishLaunchingWithOptions, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:willFinishLaunchingWithOptions:"), auto_cast application_willFinishLaunchingWithOptions, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.application_didFinishLaunchingWithOptions != nil {
         application_didFinishLaunchingWithOptions :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, launchOptions: ^NS.Dictionary) -> bool {
@@ -113,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).application_didFinishLaunchingWithOptions(self, application, launchOptions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:didFinishLaunchingWithOptions:"), auto_cast application_didFinishLaunchingWithOptions, "B@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:didFinishLaunchingWithOptions:"), auto_cast application_didFinishLaunchingWithOptions, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.applicationDidBecomeActive != nil {
         applicationDidBecomeActive :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application) {
@@ -163,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).application_openURL_options(self, app, url, options)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:openURL:options:"), auto_cast application_openURL_options, "B@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:openURL:options:"), auto_cast application_openURL_options, "B@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.applicationDidReceiveMemoryWarning != nil {
         applicationDidReceiveMemoryWarning :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application) {
@@ -473,7 +474,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).application_viewControllerWithRestorationIdentifierPath_coder(self, application, identifierComponents, coder)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:viewControllerWithRestorationIdentifierPath:coder:"), auto_cast application_viewControllerWithRestorationIdentifierPath_coder, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:viewControllerWithRestorationIdentifierPath:coder:"), auto_cast application_viewControllerWithRestorationIdentifierPath_coder, "@@:@^void@") do panic("Failed to register objC method.")
     }
     if vt.application_shouldSaveSecureApplicationState != nil {
         application_shouldSaveSecureApplicationState :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, coder: ^NS.Coder) -> bool {
@@ -603,7 +604,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).application_didDiscardSceneSessions(self, application, sceneSessions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("application:didDiscardSceneSessions:"), auto_cast application_didDiscardSceneSessions, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("application:didDiscardSceneSessions:"), auto_cast application_didDiscardSceneSessions, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.applicationShouldAutomaticallyLocalizeKeyCommands != nil {
         applicationShouldAutomaticallyLocalizeKeyCommands :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application) -> bool {

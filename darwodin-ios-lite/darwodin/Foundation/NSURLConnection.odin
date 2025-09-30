@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSURLConnection
 ///
-@(objc_class="NSURLConnection")
+@(objc_class="NSURLConnection", objc_superclass=Object)
 URLConnection :: struct { using _: Object, }
 

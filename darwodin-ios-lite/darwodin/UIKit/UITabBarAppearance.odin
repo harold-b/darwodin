@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITabBarAppearance
 ///
-@(objc_class="UITabBarAppearance")
+@(objc_class="UITabBarAppearance", objc_superclass=BarAppearance)
 TabBarAppearance :: struct { using _: BarAppearance, }
 

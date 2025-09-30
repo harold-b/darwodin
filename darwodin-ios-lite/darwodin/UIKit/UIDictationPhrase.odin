@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDictationPhrase
 ///
-@(objc_class="UIDictationPhrase")
+@(objc_class="UIDictationPhrase", objc_superclass=NS.Object)
 DictationPhrase :: struct { using _: NS.Object, }
 

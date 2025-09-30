@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitVerticalSizeClass
 ///
-@(objc_class="UITraitVerticalSizeClass")
+@(objc_class="UITraitVerticalSizeClass", objc_superclass=NS.Object)
 TraitVerticalSizeClass :: struct { using _: NS.Object, 
     using _: NSIntegerTraitDefinition,
 }

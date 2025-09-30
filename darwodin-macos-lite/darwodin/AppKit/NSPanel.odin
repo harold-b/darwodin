@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPanel
 ///
-@(objc_class="NSPanel")
+@(objc_class="NSPanel", objc_superclass=Window)
 Panel :: struct { using _: Window, }
 

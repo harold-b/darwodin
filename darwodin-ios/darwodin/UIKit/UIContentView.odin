@@ -21,15 +21,14 @@ ContentView :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ContentView, objc_name="supportsConfiguration")
-ContentView_supportsConfiguration :: #force_inline proc "c" (self: ^ContentView, configuration: ^ContentConfiguration) -> bool {
-    return msgSend(bool, self, "supportsConfiguration:", configuration)
-}
-@(objc_type=ContentView, objc_name="configuration")
-ContentView_configuration :: #force_inline proc "c" (self: ^ContentView) -> ^ContentConfiguration {
-    return msgSend(^ContentConfiguration, self, "configuration")
-}
-@(objc_type=ContentView, objc_name="setConfiguration")
-ContentView_setConfiguration :: #force_inline proc "c" (self: ^ContentView, configuration: ^ContentConfiguration) {
-    msgSend(nil, self, "setConfiguration:", configuration)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ContentView, objc_selector="supportsConfiguration:", objc_name="supportsConfiguration")
+    ContentView_supportsConfiguration :: proc(self: ^ContentView, configuration: ^ContentConfiguration) -> bool ---
+
+    @(objc_type=ContentView, objc_selector="configuration", objc_name="configuration")
+    ContentView_configuration :: proc(self: ^ContentView) -> ^ContentConfiguration ---
+
+    @(objc_type=ContentView, objc_selector="setConfiguration:", objc_name="setConfiguration")
+    ContentView_setConfiguration :: proc(self: ^ContentView, configuration: ^ContentConfiguration) ---
 }

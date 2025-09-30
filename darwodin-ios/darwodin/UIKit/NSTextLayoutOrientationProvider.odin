@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 @(objc_class="NSTextLayoutOrientationProvider")
 NSTextLayoutOrientationProvider :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=NSTextLayoutOrientationProvider, objc_name="layoutOrientation")
-NSTextLayoutOrientationProvider_layoutOrientation :: #force_inline proc "c" (self: ^NSTextLayoutOrientationProvider) -> NSTextLayoutOrientation {
-    return msgSend(NSTextLayoutOrientation, self, "layoutOrientation")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NSTextLayoutOrientationProvider, objc_selector="layoutOrientation", objc_name="layoutOrientation")
+    NSTextLayoutOrientationProvider_layoutOrientation :: proc(self: ^NSTextLayoutOrientationProvider) -> NSTextLayoutOrientation ---
 }

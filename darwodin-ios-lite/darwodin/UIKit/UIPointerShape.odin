@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPointerShape
 ///
-@(objc_class="UIPointerShape")
+@(objc_class="UIPointerShape", objc_superclass=NS.Object)
 PointerShape :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

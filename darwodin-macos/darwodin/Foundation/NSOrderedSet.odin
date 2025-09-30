@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSOrderedSet
 ///
-@(objc_class="NSOrderedSet")
+@(objc_class="NSOrderedSet", objc_superclass=Object)
 OrderedSet :: struct { using _: Object, 
     using _: Copying,
     using _: MutableCopying,
@@ -21,406 +21,213 @@ OrderedSet :: struct { using _: Object,
     using _: FastEnumeration,
 }
 
-@(objc_type=OrderedSet, objc_name="objectAtIndex")
-OrderedSet_objectAtIndex :: #force_inline proc "c" (self: ^OrderedSet, idx: UInteger) -> id {
-    return msgSend(id, self, "objectAtIndex:", idx)
-}
-@(objc_type=OrderedSet, objc_name="indexOfObject_")
-OrderedSet_indexOfObject_ :: #force_inline proc "c" (self: ^OrderedSet, object: id) -> UInteger {
-    return msgSend(UInteger, self, "indexOfObject:", object)
-}
-@(objc_type=OrderedSet, objc_name="init")
-OrderedSet_init :: #force_inline proc "c" (self: ^OrderedSet) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "init")
-}
-@(objc_type=OrderedSet, objc_name="initWithObjects_count")
-OrderedSet_initWithObjects_count :: #force_inline proc "c" (self: ^OrderedSet, objects: ^id, cnt: UInteger) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithObjects:count:", objects, cnt)
-}
-@(objc_type=OrderedSet, objc_name="initWithCoder")
-OrderedSet_initWithCoder :: #force_inline proc "c" (self: ^OrderedSet, coder: ^Coder) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithCoder:", coder)
-}
-@(objc_type=OrderedSet, objc_name="count")
-OrderedSet_count :: #force_inline proc "c" (self: ^OrderedSet) -> UInteger {
-    return msgSend(UInteger, self, "count")
-}
-@(objc_type=OrderedSet, objc_name="getObjects")
-OrderedSet_getObjects :: #force_inline proc "c" (self: ^OrderedSet, objects: ^id, range: _NSRange) {
-    msgSend(nil, self, "getObjects:range:", objects, range)
-}
-@(objc_type=OrderedSet, objc_name="objectsAtIndexes")
-OrderedSet_objectsAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, indexes: ^IndexSet) -> ^Array {
-    return msgSend(^Array, self, "objectsAtIndexes:", indexes)
-}
-@(objc_type=OrderedSet, objc_name="isEqualToOrderedSet")
-OrderedSet_isEqualToOrderedSet :: #force_inline proc "c" (self: ^OrderedSet, other: ^OrderedSet) -> bool {
-    return msgSend(bool, self, "isEqualToOrderedSet:", other)
-}
-@(objc_type=OrderedSet, objc_name="containsObject")
-OrderedSet_containsObject :: #force_inline proc "c" (self: ^OrderedSet, object: id) -> bool {
-    return msgSend(bool, self, "containsObject:", object)
-}
-@(objc_type=OrderedSet, objc_name="intersectsOrderedSet")
-OrderedSet_intersectsOrderedSet :: #force_inline proc "c" (self: ^OrderedSet, other: ^OrderedSet) -> bool {
-    return msgSend(bool, self, "intersectsOrderedSet:", other)
-}
-@(objc_type=OrderedSet, objc_name="intersectsSet")
-OrderedSet_intersectsSet :: #force_inline proc "c" (self: ^OrderedSet, set: ^Set) -> bool {
-    return msgSend(bool, self, "intersectsSet:", set)
-}
-@(objc_type=OrderedSet, objc_name="isSubsetOfOrderedSet")
-OrderedSet_isSubsetOfOrderedSet :: #force_inline proc "c" (self: ^OrderedSet, other: ^OrderedSet) -> bool {
-    return msgSend(bool, self, "isSubsetOfOrderedSet:", other)
-}
-@(objc_type=OrderedSet, objc_name="isSubsetOfSet")
-OrderedSet_isSubsetOfSet :: #force_inline proc "c" (self: ^OrderedSet, set: ^Set) -> bool {
-    return msgSend(bool, self, "isSubsetOfSet:", set)
-}
-@(objc_type=OrderedSet, objc_name="objectAtIndexedSubscript")
-OrderedSet_objectAtIndexedSubscript :: #force_inline proc "c" (self: ^OrderedSet, idx: UInteger) -> id {
-    return msgSend(id, self, "objectAtIndexedSubscript:", idx)
-}
-@(objc_type=OrderedSet, objc_name="objectEnumerator")
-OrderedSet_objectEnumerator :: #force_inline proc "c" (self: ^OrderedSet) -> ^Enumerator {
-    return msgSend(^Enumerator, self, "objectEnumerator")
-}
-@(objc_type=OrderedSet, objc_name="reverseObjectEnumerator")
-OrderedSet_reverseObjectEnumerator :: #force_inline proc "c" (self: ^OrderedSet) -> ^Enumerator {
-    return msgSend(^Enumerator, self, "reverseObjectEnumerator")
-}
-@(objc_type=OrderedSet, objc_name="enumerateObjectsUsingBlock")
-OrderedSet_enumerateObjectsUsingBlock :: #force_inline proc "c" (self: ^OrderedSet, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) {
-    msgSend(nil, self, "enumerateObjectsUsingBlock:", block)
-}
-@(objc_type=OrderedSet, objc_name="enumerateObjectsWithOptions")
-OrderedSet_enumerateObjectsWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) {
-    msgSend(nil, self, "enumerateObjectsWithOptions:usingBlock:", opts, block)
-}
-@(objc_type=OrderedSet, objc_name="enumerateObjectsAtIndexes")
-OrderedSet_enumerateObjectsAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) {
-    msgSend(nil, self, "enumerateObjectsAtIndexes:options:usingBlock:", s, opts, block)
-}
-@(objc_type=OrderedSet, objc_name="indexOfObjectPassingTest")
-OrderedSet_indexOfObjectPassingTest :: #force_inline proc "c" (self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
-    return msgSend(UInteger, self, "indexOfObjectPassingTest:", predicate)
-}
-@(objc_type=OrderedSet, objc_name="indexOfObjectWithOptions")
-OrderedSet_indexOfObjectWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
-    return msgSend(UInteger, self, "indexOfObjectWithOptions:passingTest:", opts, predicate)
-}
-@(objc_type=OrderedSet, objc_name="indexOfObjectAtIndexes")
-OrderedSet_indexOfObjectAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger {
-    return msgSend(UInteger, self, "indexOfObjectAtIndexes:options:passingTest:", s, opts, predicate)
-}
-@(objc_type=OrderedSet, objc_name="indexesOfObjectsPassingTest")
-OrderedSet_indexesOfObjectsPassingTest :: #force_inline proc "c" (self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
-    return msgSend(^IndexSet, self, "indexesOfObjectsPassingTest:", predicate)
-}
-@(objc_type=OrderedSet, objc_name="indexesOfObjectsWithOptions")
-OrderedSet_indexesOfObjectsWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
-    return msgSend(^IndexSet, self, "indexesOfObjectsWithOptions:passingTest:", opts, predicate)
-}
-@(objc_type=OrderedSet, objc_name="indexesOfObjectsAtIndexes")
-OrderedSet_indexesOfObjectsAtIndexes :: #force_inline proc "c" (self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet {
-    return msgSend(^IndexSet, self, "indexesOfObjectsAtIndexes:options:passingTest:", s, opts, predicate)
-}
-@(objc_type=OrderedSet, objc_name="indexOfObject_inSortedRange_options_usingComparator")
-OrderedSet_indexOfObject_inSortedRange_options_usingComparator :: #force_inline proc "c" (self: ^OrderedSet, object: id, range: _NSRange, opts: BinarySearchingOptions, cmp: Comparator) -> UInteger {
-    return msgSend(UInteger, self, "indexOfObject:inSortedRange:options:usingComparator:", object, range, opts, cmp)
-}
-@(objc_type=OrderedSet, objc_name="sortedArrayUsingComparator")
-OrderedSet_sortedArrayUsingComparator :: #force_inline proc "c" (self: ^OrderedSet, cmptr: Comparator) -> ^Array {
-    return msgSend(^Array, self, "sortedArrayUsingComparator:", cmptr)
-}
-@(objc_type=OrderedSet, objc_name="sortedArrayWithOptions")
-OrderedSet_sortedArrayWithOptions :: #force_inline proc "c" (self: ^OrderedSet, opts: SortOptions, cmptr: Comparator) -> ^Array {
-    return msgSend(^Array, self, "sortedArrayWithOptions:usingComparator:", opts, cmptr)
-}
-@(objc_type=OrderedSet, objc_name="descriptionWithLocale_")
-OrderedSet_descriptionWithLocale_ :: #force_inline proc "c" (self: ^OrderedSet, locale: id) -> ^String {
-    return msgSend(^String, self, "descriptionWithLocale:", locale)
-}
-@(objc_type=OrderedSet, objc_name="descriptionWithLocale_indent")
-OrderedSet_descriptionWithLocale_indent :: #force_inline proc "c" (self: ^OrderedSet, locale: id, level: UInteger) -> ^String {
-    return msgSend(^String, self, "descriptionWithLocale:indent:", locale, level)
-}
-@(objc_type=OrderedSet, objc_name="firstObject")
-OrderedSet_firstObject :: #force_inline proc "c" (self: ^OrderedSet) -> id {
-    return msgSend(id, self, "firstObject")
-}
-@(objc_type=OrderedSet, objc_name="lastObject")
-OrderedSet_lastObject :: #force_inline proc "c" (self: ^OrderedSet) -> id {
-    return msgSend(id, self, "lastObject")
-}
-@(objc_type=OrderedSet, objc_name="reversedOrderedSet")
-OrderedSet_reversedOrderedSet :: #force_inline proc "c" (self: ^OrderedSet) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "reversedOrderedSet")
-}
-@(objc_type=OrderedSet, objc_name="array")
-OrderedSet_array :: #force_inline proc "c" (self: ^OrderedSet) -> ^Array {
-    return msgSend(^Array, self, "array")
-}
-@(objc_type=OrderedSet, objc_name="set")
-OrderedSet_set :: #force_inline proc "c" (self: ^OrderedSet) -> ^Set {
-    return msgSend(^Set, self, "set")
-}
-@(objc_type=OrderedSet, objc_name="description")
-OrderedSet_description :: #force_inline proc "c" (self: ^OrderedSet) -> ^String {
-    return msgSend(^String, self, "description")
-}
-@(objc_type=OrderedSet, objc_name="orderedSet", objc_is_class_method=true)
-OrderedSet_orderedSet :: #force_inline proc "c" () -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSet")
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithObject", objc_is_class_method=true)
-OrderedSet_orderedSetWithObject :: #force_inline proc "c" (object: id) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithObject:", object)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithObjects_count", objc_is_class_method=true)
-OrderedSet_orderedSetWithObjects_count :: #force_inline proc "c" (objects: ^id, cnt: UInteger) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithObjects:count:", objects, cnt)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithObjects_", objc_is_class_method=true)
-OrderedSet_orderedSetWithObjects_ :: #force_inline proc "c" (firstObj: id) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithObjects:", firstObj)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithOrderedSet_", objc_is_class_method=true)
-OrderedSet_orderedSetWithOrderedSet_ :: #force_inline proc "c" (set: ^OrderedSet) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithOrderedSet:", set)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithOrderedSet_range_copyItems", objc_is_class_method=true)
-OrderedSet_orderedSetWithOrderedSet_range_copyItems :: #force_inline proc "c" (set: ^OrderedSet, range: _NSRange, flag: bool) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithOrderedSet:range:copyItems:", set, range, flag)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithArray_", objc_is_class_method=true)
-OrderedSet_orderedSetWithArray_ :: #force_inline proc "c" (array: ^Array) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithArray:", array)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithArray_range_copyItems", objc_is_class_method=true)
-OrderedSet_orderedSetWithArray_range_copyItems :: #force_inline proc "c" (array: ^Array, range: _NSRange, flag: bool) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithArray:range:copyItems:", array, range, flag)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithSet_", objc_is_class_method=true)
-OrderedSet_orderedSetWithSet_ :: #force_inline proc "c" (set: ^Set) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithSet:", set)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetWithSet_copyItems", objc_is_class_method=true)
-OrderedSet_orderedSetWithSet_copyItems :: #force_inline proc "c" (set: ^Set, flag: bool) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "orderedSetWithSet:copyItems:", set, flag)
-}
-@(objc_type=OrderedSet, objc_name="initWithObject")
-OrderedSet_initWithObject :: #force_inline proc "c" (self: ^OrderedSet, object: id) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithObject:", object)
-}
-@(objc_type=OrderedSet, objc_name="initWithObjects_")
-OrderedSet_initWithObjects_ :: #force_inline proc "c" (self: ^OrderedSet, firstObj: id) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithObjects:", firstObj)
-}
-@(objc_type=OrderedSet, objc_name="initWithOrderedSet_")
-OrderedSet_initWithOrderedSet_ :: #force_inline proc "c" (self: ^OrderedSet, set: ^OrderedSet) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithOrderedSet:", set)
-}
-@(objc_type=OrderedSet, objc_name="initWithOrderedSet_copyItems")
-OrderedSet_initWithOrderedSet_copyItems :: #force_inline proc "c" (self: ^OrderedSet, set: ^OrderedSet, flag: bool) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithOrderedSet:copyItems:", set, flag)
-}
-@(objc_type=OrderedSet, objc_name="initWithOrderedSet_range_copyItems")
-OrderedSet_initWithOrderedSet_range_copyItems :: #force_inline proc "c" (self: ^OrderedSet, set: ^OrderedSet, range: _NSRange, flag: bool) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithOrderedSet:range:copyItems:", set, range, flag)
-}
-@(objc_type=OrderedSet, objc_name="initWithArray_")
-OrderedSet_initWithArray_ :: #force_inline proc "c" (self: ^OrderedSet, array: ^Array) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithArray:", array)
-}
-@(objc_type=OrderedSet, objc_name="initWithArray_copyItems")
-OrderedSet_initWithArray_copyItems :: #force_inline proc "c" (self: ^OrderedSet, set: ^Array, flag: bool) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithArray:copyItems:", set, flag)
-}
-@(objc_type=OrderedSet, objc_name="initWithArray_range_copyItems")
-OrderedSet_initWithArray_range_copyItems :: #force_inline proc "c" (self: ^OrderedSet, set: ^Array, range: _NSRange, flag: bool) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithArray:range:copyItems:", set, range, flag)
-}
-@(objc_type=OrderedSet, objc_name="initWithSet_")
-OrderedSet_initWithSet_ :: #force_inline proc "c" (self: ^OrderedSet, set: ^Set) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithSet:", set)
-}
-@(objc_type=OrderedSet, objc_name="initWithSet_copyItems")
-OrderedSet_initWithSet_copyItems :: #force_inline proc "c" (self: ^OrderedSet, set: ^Set, flag: bool) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "initWithSet:copyItems:", set, flag)
-}
-@(objc_type=OrderedSet, objc_name="differenceFromOrderedSet_withOptions_usingEquivalenceTest")
-OrderedSet_differenceFromOrderedSet_withOptions_usingEquivalenceTest :: #force_inline proc "c" (self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> bool)) -> ^OrderedCollectionDifference {
-    return msgSend(^OrderedCollectionDifference, self, "differenceFromOrderedSet:withOptions:usingEquivalenceTest:", other, options, block)
-}
-@(objc_type=OrderedSet, objc_name="differenceFromOrderedSet_withOptions")
-OrderedSet_differenceFromOrderedSet_withOptions :: #force_inline proc "c" (self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions) -> ^OrderedCollectionDifference {
-    return msgSend(^OrderedCollectionDifference, self, "differenceFromOrderedSet:withOptions:", other, options)
-}
-@(objc_type=OrderedSet, objc_name="differenceFromOrderedSet_")
-OrderedSet_differenceFromOrderedSet_ :: #force_inline proc "c" (self: ^OrderedSet, other: ^OrderedSet) -> ^OrderedCollectionDifference {
-    return msgSend(^OrderedCollectionDifference, self, "differenceFromOrderedSet:", other)
-}
-@(objc_type=OrderedSet, objc_name="orderedSetByApplyingDifference")
-OrderedSet_orderedSetByApplyingDifference :: #force_inline proc "c" (self: ^OrderedSet, difference: ^OrderedCollectionDifference) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "orderedSetByApplyingDifference:", difference)
-}
-@(objc_type=OrderedSet, objc_name="valueForKey")
-OrderedSet_valueForKey :: #force_inline proc "c" (self: ^OrderedSet, key: ^String) -> id {
-    return msgSend(id, self, "valueForKey:", key)
-}
-@(objc_type=OrderedSet, objc_name="setValue")
-OrderedSet_setValue :: #force_inline proc "c" (self: ^OrderedSet, value: id, key: ^String) {
-    msgSend(nil, self, "setValue:forKey:", value, key)
-}
-@(objc_type=OrderedSet, objc_name="addObserver")
-OrderedSet_addObserver :: #force_inline proc "c" (self: ^OrderedSet, observer: ^Object, keyPath: ^String, options: KeyValueObservingOptions, _context: rawptr) {
-    msgSend(nil, self, "addObserver:forKeyPath:options:context:", observer, keyPath, options, _context)
-}
-@(objc_type=OrderedSet, objc_name="removeObserver_forKeyPath_context")
-OrderedSet_removeObserver_forKeyPath_context :: #force_inline proc "c" (self: ^OrderedSet, observer: ^Object, keyPath: ^String, _context: rawptr) {
-    msgSend(nil, self, "removeObserver:forKeyPath:context:", observer, keyPath, _context)
-}
-@(objc_type=OrderedSet, objc_name="removeObserver_forKeyPath")
-OrderedSet_removeObserver_forKeyPath :: #force_inline proc "c" (self: ^OrderedSet, observer: ^Object, keyPath: ^String) {
-    msgSend(nil, self, "removeObserver:forKeyPath:", observer, keyPath)
-}
-@(objc_type=OrderedSet, objc_name="sortedArrayUsingDescriptors")
-OrderedSet_sortedArrayUsingDescriptors :: #force_inline proc "c" (self: ^OrderedSet, sortDescriptors: ^Array) -> ^Array {
-    return msgSend(^Array, self, "sortedArrayUsingDescriptors:", sortDescriptors)
-}
-@(objc_type=OrderedSet, objc_name="filteredOrderedSetUsingPredicate")
-OrderedSet_filteredOrderedSetUsingPredicate :: #force_inline proc "c" (self: ^OrderedSet, p: ^Predicate) -> ^OrderedSet {
-    return msgSend(^OrderedSet, self, "filteredOrderedSetUsingPredicate:", p)
-}
-@(objc_type=OrderedSet, objc_name="supportsSecureCoding", objc_is_class_method=true)
-OrderedSet_supportsSecureCoding :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, OrderedSet, "supportsSecureCoding")
-}
-@(objc_type=OrderedSet, objc_name="load", objc_is_class_method=true)
-OrderedSet_load :: #force_inline proc "c" () {
-    msgSend(nil, OrderedSet, "load")
-}
-@(objc_type=OrderedSet, objc_name="initialize", objc_is_class_method=true)
-OrderedSet_initialize :: #force_inline proc "c" () {
-    msgSend(nil, OrderedSet, "initialize")
-}
-@(objc_type=OrderedSet, objc_name="new", objc_is_class_method=true)
-OrderedSet_new :: #force_inline proc "c" () -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "new")
-}
-@(objc_type=OrderedSet, objc_name="allocWithZone", objc_is_class_method=true)
-OrderedSet_allocWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "allocWithZone:", zone)
-}
-@(objc_type=OrderedSet, objc_name="alloc", objc_is_class_method=true)
-OrderedSet_alloc :: #force_inline proc "c" () -> ^OrderedSet {
-    return msgSend(^OrderedSet, OrderedSet, "alloc")
-}
-@(objc_type=OrderedSet, objc_name="copyWithZone", objc_is_class_method=true)
-OrderedSet_copyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
-    return msgSend(id, OrderedSet, "copyWithZone:", zone)
-}
-@(objc_type=OrderedSet, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-OrderedSet_mutableCopyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
-    return msgSend(id, OrderedSet, "mutableCopyWithZone:", zone)
-}
-@(objc_type=OrderedSet, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-OrderedSet_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, OrderedSet, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=OrderedSet, objc_name="conformsToProtocol", objc_is_class_method=true)
-OrderedSet_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, OrderedSet, "conformsToProtocol:", protocol)
-}
-@(objc_type=OrderedSet, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-OrderedSet_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, OrderedSet, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=OrderedSet, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-OrderedSet_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^MethodSignature {
-    return msgSend(^MethodSignature, OrderedSet, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=OrderedSet, objc_name="isSubclassOfClass", objc_is_class_method=true)
-OrderedSet_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, OrderedSet, "isSubclassOfClass:", aClass)
-}
-@(objc_type=OrderedSet, objc_name="resolveClassMethod", objc_is_class_method=true)
-OrderedSet_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, OrderedSet, "resolveClassMethod:", sel)
-}
-@(objc_type=OrderedSet, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-OrderedSet_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, OrderedSet, "resolveInstanceMethod:", sel)
-}
-@(objc_type=OrderedSet, objc_name="hash", objc_is_class_method=true)
-OrderedSet_hash :: #force_inline proc "c" () -> UInteger {
-    return msgSend(UInteger, OrderedSet, "hash")
-}
-@(objc_type=OrderedSet, objc_name="superclass", objc_is_class_method=true)
-OrderedSet_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, OrderedSet, "superclass")
-}
-@(objc_type=OrderedSet, objc_name="class", objc_is_class_method=true)
-OrderedSet_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, OrderedSet, "class")
-}
-@(objc_type=OrderedSet, objc_name="descriptionStatic", objc_is_class_method=true)
-OrderedSet_descriptionStatic :: #force_inline proc "c" () -> ^String {
-    return msgSend(^String, OrderedSet, "description")
-}
-@(objc_type=OrderedSet, objc_name="debugDescription", objc_is_class_method=true)
-OrderedSet_debugDescription :: #force_inline proc "c" () -> ^String {
-    return msgSend(^String, OrderedSet, "debugDescription")
-}
-@(objc_type=OrderedSet, objc_name="version", objc_is_class_method=true)
-OrderedSet_version :: #force_inline proc "c" () -> Integer {
-    return msgSend(Integer, OrderedSet, "version")
-}
-@(objc_type=OrderedSet, objc_name="setVersion", objc_is_class_method=true)
-OrderedSet_setVersion :: #force_inline proc "c" (aVersion: Integer) {
-    msgSend(nil, OrderedSet, "setVersion:", aVersion)
-}
-@(objc_type=OrderedSet, objc_name="poseAsClass", objc_is_class_method=true)
-OrderedSet_poseAsClass :: #force_inline proc "c" (aClass: Class) {
-    msgSend(nil, OrderedSet, "poseAsClass:", aClass)
-}
-@(objc_type=OrderedSet, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-OrderedSet_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, OrderedSet, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=OrderedSet, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-OrderedSet_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, OrderedSet, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=OrderedSet, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-OrderedSet_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, OrderedSet, "accessInstanceVariablesDirectly")
-}
-@(objc_type=OrderedSet, objc_name="useStoredAccessor", objc_is_class_method=true)
-OrderedSet_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, OrderedSet, "useStoredAccessor")
-}
-@(objc_type=OrderedSet, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-OrderedSet_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^String) -> ^Set {
-    return msgSend(^Set, OrderedSet, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=OrderedSet, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-OrderedSet_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^String) -> bool {
-    return msgSend(bool, OrderedSet, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=OrderedSet, objc_name="setKeys", objc_is_class_method=true)
-OrderedSet_setKeys :: #force_inline proc "c" (keys: ^Array, dependentKey: ^String) {
-    msgSend(nil, OrderedSet, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
-}
-@(objc_type=OrderedSet, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-OrderedSet_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^Array {
-    return msgSend(^Array, OrderedSet, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=OrderedSet, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-OrderedSet_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, OrderedSet, "classForKeyedUnarchiver")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=OrderedSet, objc_selector="objectAtIndex:", objc_name="objectAtIndex")
+    OrderedSet_objectAtIndex :: proc(self: ^OrderedSet, idx: UInteger) -> id ---
+
+    @(objc_type=OrderedSet, objc_selector="indexOfObject:", objc_name="indexOfObject_")
+    OrderedSet_indexOfObject_ :: proc(self: ^OrderedSet, object: id) -> UInteger ---
+
+    @(objc_type=OrderedSet, objc_selector="init", objc_name="init")
+    OrderedSet_init :: proc(self: ^OrderedSet) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithObjects:count:", objc_name="initWithObjects_count")
+    OrderedSet_initWithObjects_count :: proc(self: ^OrderedSet, objects: ^id, cnt: UInteger) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithCoder:", objc_name="initWithCoder")
+    OrderedSet_initWithCoder :: proc(self: ^OrderedSet, coder: ^Coder) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="count", objc_name="count")
+    OrderedSet_count :: proc(self: ^OrderedSet) -> UInteger ---
+
+    @(objc_type=OrderedSet, objc_selector="getObjects:range:", objc_name="getObjects")
+    OrderedSet_getObjects :: proc(self: ^OrderedSet, objects: ^id, range: _NSRange) ---
+
+    @(objc_type=OrderedSet, objc_selector="objectsAtIndexes:", objc_name="objectsAtIndexes")
+    OrderedSet_objectsAtIndexes :: proc(self: ^OrderedSet, indexes: ^IndexSet) -> ^Array ---
+
+    @(objc_type=OrderedSet, objc_selector="isEqualToOrderedSet:", objc_name="isEqualToOrderedSet")
+    OrderedSet_isEqualToOrderedSet :: proc(self: ^OrderedSet, other: ^OrderedSet) -> bool ---
+
+    @(objc_type=OrderedSet, objc_selector="containsObject:", objc_name="containsObject")
+    OrderedSet_containsObject :: proc(self: ^OrderedSet, object: id) -> bool ---
+
+    @(objc_type=OrderedSet, objc_selector="intersectsOrderedSet:", objc_name="intersectsOrderedSet")
+    OrderedSet_intersectsOrderedSet :: proc(self: ^OrderedSet, other: ^OrderedSet) -> bool ---
+
+    @(objc_type=OrderedSet, objc_selector="intersectsSet:", objc_name="intersectsSet")
+    OrderedSet_intersectsSet :: proc(self: ^OrderedSet, set: ^Set) -> bool ---
+
+    @(objc_type=OrderedSet, objc_selector="isSubsetOfOrderedSet:", objc_name="isSubsetOfOrderedSet")
+    OrderedSet_isSubsetOfOrderedSet :: proc(self: ^OrderedSet, other: ^OrderedSet) -> bool ---
+
+    @(objc_type=OrderedSet, objc_selector="isSubsetOfSet:", objc_name="isSubsetOfSet")
+    OrderedSet_isSubsetOfSet :: proc(self: ^OrderedSet, set: ^Set) -> bool ---
+
+    @(objc_type=OrderedSet, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
+    OrderedSet_objectAtIndexedSubscript :: proc(self: ^OrderedSet, idx: UInteger) -> id ---
+
+    @(objc_type=OrderedSet, objc_selector="objectEnumerator", objc_name="objectEnumerator")
+    OrderedSet_objectEnumerator :: proc(self: ^OrderedSet) -> ^Enumerator ---
+
+    @(objc_type=OrderedSet, objc_selector="reverseObjectEnumerator", objc_name="reverseObjectEnumerator")
+    OrderedSet_reverseObjectEnumerator :: proc(self: ^OrderedSet) -> ^Enumerator ---
+
+    @(objc_type=OrderedSet, objc_selector="enumerateObjectsUsingBlock:", objc_name="enumerateObjectsUsingBlock")
+    OrderedSet_enumerateObjectsUsingBlock :: proc(self: ^OrderedSet, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+
+    @(objc_type=OrderedSet, objc_selector="enumerateObjectsWithOptions:usingBlock:", objc_name="enumerateObjectsWithOptions")
+    OrderedSet_enumerateObjectsWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+
+    @(objc_type=OrderedSet, objc_selector="enumerateObjectsAtIndexes:options:usingBlock:", objc_name="enumerateObjectsAtIndexes")
+    OrderedSet_enumerateObjectsAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+
+    @(objc_type=OrderedSet, objc_selector="indexOfObjectPassingTest:", objc_name="indexOfObjectPassingTest")
+    OrderedSet_indexOfObjectPassingTest :: proc(self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+
+    @(objc_type=OrderedSet, objc_selector="indexOfObjectWithOptions:passingTest:", objc_name="indexOfObjectWithOptions")
+    OrderedSet_indexOfObjectWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+
+    @(objc_type=OrderedSet, objc_selector="indexOfObjectAtIndexes:options:passingTest:", objc_name="indexOfObjectAtIndexes")
+    OrderedSet_indexOfObjectAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+
+    @(objc_type=OrderedSet, objc_selector="indexesOfObjectsPassingTest:", objc_name="indexesOfObjectsPassingTest")
+    OrderedSet_indexesOfObjectsPassingTest :: proc(self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+
+    @(objc_type=OrderedSet, objc_selector="indexesOfObjectsWithOptions:passingTest:", objc_name="indexesOfObjectsWithOptions")
+    OrderedSet_indexesOfObjectsWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+
+    @(objc_type=OrderedSet, objc_selector="indexesOfObjectsAtIndexes:options:passingTest:", objc_name="indexesOfObjectsAtIndexes")
+    OrderedSet_indexesOfObjectsAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+
+    @(objc_type=OrderedSet, objc_selector="indexOfObject:inSortedRange:options:usingComparator:", objc_name="indexOfObject_inSortedRange_options_usingComparator")
+    OrderedSet_indexOfObject_inSortedRange_options_usingComparator :: proc(self: ^OrderedSet, object: id, range: _NSRange, opts: BinarySearchingOptions, cmp: Comparator) -> UInteger ---
+
+    @(objc_type=OrderedSet, objc_selector="sortedArrayUsingComparator:", objc_name="sortedArrayUsingComparator")
+    OrderedSet_sortedArrayUsingComparator :: proc(self: ^OrderedSet, cmptr: Comparator) -> ^Array ---
+
+    @(objc_type=OrderedSet, objc_selector="sortedArrayWithOptions:usingComparator:", objc_name="sortedArrayWithOptions")
+    OrderedSet_sortedArrayWithOptions :: proc(self: ^OrderedSet, opts: SortOptions, cmptr: Comparator) -> ^Array ---
+
+    @(objc_type=OrderedSet, objc_selector="descriptionWithLocale:", objc_name="descriptionWithLocale_")
+    OrderedSet_descriptionWithLocale_ :: proc(self: ^OrderedSet, locale: id) -> ^String ---
+
+    @(objc_type=OrderedSet, objc_selector="descriptionWithLocale:indent:", objc_name="descriptionWithLocale_indent")
+    OrderedSet_descriptionWithLocale_indent :: proc(self: ^OrderedSet, locale: id, level: UInteger) -> ^String ---
+
+    @(objc_type=OrderedSet, objc_selector="firstObject", objc_name="firstObject")
+    OrderedSet_firstObject :: proc(self: ^OrderedSet) -> id ---
+
+    @(objc_type=OrderedSet, objc_selector="lastObject", objc_name="lastObject")
+    OrderedSet_lastObject :: proc(self: ^OrderedSet) -> id ---
+
+    @(objc_type=OrderedSet, objc_selector="reversedOrderedSet", objc_name="reversedOrderedSet")
+    OrderedSet_reversedOrderedSet :: proc(self: ^OrderedSet) -> ^OrderedSet ---
+
+    @(objc_type=OrderedSet, objc_selector="array", objc_name="array")
+    OrderedSet_array :: proc(self: ^OrderedSet) -> ^Array ---
+
+    @(objc_type=OrderedSet, objc_selector="set", objc_name="set")
+    OrderedSet_set :: proc(self: ^OrderedSet) -> ^Set ---
+
+    @(objc_type=OrderedSet, objc_selector="description", objc_name="description")
+    OrderedSet_description :: proc(self: ^OrderedSet) -> ^String ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSet", objc_name="orderedSet", objc_is_class_method=true)
+    OrderedSet_orderedSet :: proc() -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithObject:", objc_name="orderedSetWithObject", objc_is_class_method=true)
+    OrderedSet_orderedSetWithObject :: proc(object: id) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithObjects:count:", objc_name="orderedSetWithObjects_count", objc_is_class_method=true)
+    OrderedSet_orderedSetWithObjects_count :: proc(objects: ^id, cnt: UInteger) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithObjects:", objc_name="orderedSetWithObjects_", objc_is_class_method=true)
+    OrderedSet_orderedSetWithObjects_ :: proc(firstObj: id) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithOrderedSet:", objc_name="orderedSetWithOrderedSet_", objc_is_class_method=true)
+    OrderedSet_orderedSetWithOrderedSet_ :: proc(set: ^OrderedSet) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithOrderedSet:range:copyItems:", objc_name="orderedSetWithOrderedSet_range_copyItems", objc_is_class_method=true)
+    OrderedSet_orderedSetWithOrderedSet_range_copyItems :: proc(set: ^OrderedSet, range: _NSRange, flag: bool) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithArray:", objc_name="orderedSetWithArray_", objc_is_class_method=true)
+    OrderedSet_orderedSetWithArray_ :: proc(array: ^Array) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithArray:range:copyItems:", objc_name="orderedSetWithArray_range_copyItems", objc_is_class_method=true)
+    OrderedSet_orderedSetWithArray_range_copyItems :: proc(array: ^Array, range: _NSRange, flag: bool) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithSet:", objc_name="orderedSetWithSet_", objc_is_class_method=true)
+    OrderedSet_orderedSetWithSet_ :: proc(set: ^Set) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetWithSet:copyItems:", objc_name="orderedSetWithSet_copyItems", objc_is_class_method=true)
+    OrderedSet_orderedSetWithSet_copyItems :: proc(set: ^Set, flag: bool) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithObject:", objc_name="initWithObject")
+    OrderedSet_initWithObject :: proc(self: ^OrderedSet, object: id) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithObjects:", objc_name="initWithObjects_")
+    OrderedSet_initWithObjects_ :: proc(self: ^OrderedSet, firstObj: id) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithOrderedSet:", objc_name="initWithOrderedSet_")
+    OrderedSet_initWithOrderedSet_ :: proc(self: ^OrderedSet, set: ^OrderedSet) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithOrderedSet:copyItems:", objc_name="initWithOrderedSet_copyItems")
+    OrderedSet_initWithOrderedSet_copyItems :: proc(self: ^OrderedSet, set: ^OrderedSet, flag: bool) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithOrderedSet:range:copyItems:", objc_name="initWithOrderedSet_range_copyItems")
+    OrderedSet_initWithOrderedSet_range_copyItems :: proc(self: ^OrderedSet, set: ^OrderedSet, range: _NSRange, flag: bool) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithArray:", objc_name="initWithArray_")
+    OrderedSet_initWithArray_ :: proc(self: ^OrderedSet, array: ^Array) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithArray:copyItems:", objc_name="initWithArray_copyItems")
+    OrderedSet_initWithArray_copyItems :: proc(self: ^OrderedSet, set: ^Array, flag: bool) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithArray:range:copyItems:", objc_name="initWithArray_range_copyItems")
+    OrderedSet_initWithArray_range_copyItems :: proc(self: ^OrderedSet, set: ^Array, range: _NSRange, flag: bool) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithSet:", objc_name="initWithSet_")
+    OrderedSet_initWithSet_ :: proc(self: ^OrderedSet, set: ^Set) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="initWithSet:copyItems:", objc_name="initWithSet_copyItems")
+    OrderedSet_initWithSet_copyItems :: proc(self: ^OrderedSet, set: ^Set, flag: bool) -> instancetype ---
+
+    @(objc_type=OrderedSet, objc_selector="differenceFromOrderedSet:withOptions:usingEquivalenceTest:", objc_name="differenceFromOrderedSet_withOptions_usingEquivalenceTest")
+    OrderedSet_differenceFromOrderedSet_withOptions_usingEquivalenceTest :: proc(self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> bool)) -> ^OrderedCollectionDifference ---
+
+    @(objc_type=OrderedSet, objc_selector="differenceFromOrderedSet:withOptions:", objc_name="differenceFromOrderedSet_withOptions")
+    OrderedSet_differenceFromOrderedSet_withOptions :: proc(self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions) -> ^OrderedCollectionDifference ---
+
+    @(objc_type=OrderedSet, objc_selector="differenceFromOrderedSet:", objc_name="differenceFromOrderedSet_")
+    OrderedSet_differenceFromOrderedSet_ :: proc(self: ^OrderedSet, other: ^OrderedSet) -> ^OrderedCollectionDifference ---
+
+    @(objc_type=OrderedSet, objc_selector="orderedSetByApplyingDifference:", objc_name="orderedSetByApplyingDifference")
+    OrderedSet_orderedSetByApplyingDifference :: proc(self: ^OrderedSet, difference: ^OrderedCollectionDifference) -> ^OrderedSet ---
+
+    @(objc_type=OrderedSet, objc_selector="valueForKey:", objc_name="valueForKey")
+    OrderedSet_valueForKey :: proc(self: ^OrderedSet, key: ^String) -> id ---
+
+    @(objc_type=OrderedSet, objc_selector="setValue:forKey:", objc_name="setValue")
+    OrderedSet_setValue :: proc(self: ^OrderedSet, value: id, key: ^String) ---
+
+    @(objc_type=OrderedSet, objc_selector="addObserver:forKeyPath:options:context:", objc_name="addObserver")
+    OrderedSet_addObserver :: proc(self: ^OrderedSet, observer: ^Object, keyPath: ^String, options: KeyValueObservingOptions, _context: rawptr) ---
+
+    @(objc_type=OrderedSet, objc_selector="removeObserver:forKeyPath:context:", objc_name="removeObserver_forKeyPath_context")
+    OrderedSet_removeObserver_forKeyPath_context :: proc(self: ^OrderedSet, observer: ^Object, keyPath: ^String, _context: rawptr) ---
+
+    @(objc_type=OrderedSet, objc_selector="removeObserver:forKeyPath:", objc_name="removeObserver_forKeyPath")
+    OrderedSet_removeObserver_forKeyPath :: proc(self: ^OrderedSet, observer: ^Object, keyPath: ^String) ---
+
+    @(objc_type=OrderedSet, objc_selector="sortedArrayUsingDescriptors:", objc_name="sortedArrayUsingDescriptors")
+    OrderedSet_sortedArrayUsingDescriptors :: proc(self: ^OrderedSet, sortDescriptors: ^Array) -> ^Array ---
+
+    @(objc_type=OrderedSet, objc_selector="filteredOrderedSetUsingPredicate:", objc_name="filteredOrderedSetUsingPredicate")
+    OrderedSet_filteredOrderedSetUsingPredicate :: proc(self: ^OrderedSet, p: ^Predicate) -> ^OrderedSet ---
+}
+
 @(objc_type=OrderedSet, objc_name="indexOfObject")
 OrderedSet_indexOfObject :: proc {
     OrderedSet_indexOfObject_,
@@ -494,11 +301,5 @@ OrderedSet_differenceFromOrderedSet :: proc {
 OrderedSet_removeObserver :: proc {
     OrderedSet_removeObserver_forKeyPath_context,
     OrderedSet_removeObserver_forKeyPath,
-}
-
-@(objc_type=OrderedSet, objc_name="cancelPreviousPerformRequestsWithTarget")
-OrderedSet_cancelPreviousPerformRequestsWithTarget :: proc {
-    OrderedSet_cancelPreviousPerformRequestsWithTarget_selector_object,
-    OrderedSet_cancelPreviousPerformRequestsWithTarget_,
 }
 

@@ -18,14 +18,5 @@ import AK "../AppKit"
 @(objc_class="MTLTilePipelineColorAttachmentDescriptor")
 TilePipelineColorAttachmentDescriptor :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=TilePipelineColorAttachmentDescriptor, objc_name="alloc", objc_is_class_method=true)
-TilePipelineColorAttachmentDescriptor_alloc :: proc "c" () -> ^TilePipelineColorAttachmentDescriptor {
-    return msgSend(^TilePipelineColorAttachmentDescriptor, TilePipelineColorAttachmentDescriptor, "alloc")
-}
-
-@(objc_type=TilePipelineColorAttachmentDescriptor, objc_name="init")
-TilePipelineColorAttachmentDescriptor_init :: proc "c" (self: ^TilePipelineColorAttachmentDescriptor) -> ^TilePipelineColorAttachmentDescriptor {
-    return msgSend(^TilePipelineColorAttachmentDescriptor, self, "init")
-}
-
-
+@(default_calling_convention="c")
+foreign lib {}

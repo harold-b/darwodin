@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSGridCell
 ///
-@(objc_class="NSGridCell")
+@(objc_class="NSGridCell", objc_superclass=NS.Object)
 GridCell :: struct { using _: NS.Object, 
     using _: NS.Coding,
 }

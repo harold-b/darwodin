@@ -21,43 +21,35 @@ NSTextSelectionDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=NSTextSelectionDataSource, objc_name="enumerateSubstringsFromLocation")
-NSTextSelectionDataSource_enumerateSubstringsFromLocation :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, location: ^NSTextLocation, options: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" (substring: ^NS.String, substringRange: ^NSTextRange, enclosingRange: ^NSTextRange, stop: ^bool))) {
-    msgSend(nil, self, "enumerateSubstringsFromLocation:options:usingBlock:", location, options, block)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="textRangeForSelectionGranularity")
-NSTextSelectionDataSource_textRangeForSelectionGranularity :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, selectionGranularity: NSTextSelectionGranularity, location: ^NSTextLocation) -> ^NSTextRange {
-    return msgSend(^NSTextRange, self, "textRangeForSelectionGranularity:enclosingLocation:", selectionGranularity, location)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="locationFromLocation")
-NSTextSelectionDataSource_locationFromLocation :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, location: ^NSTextLocation, offset: NS.Integer) -> ^NSTextLocation {
-    return msgSend(^NSTextLocation, self, "locationFromLocation:withOffset:", location, offset)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="offsetFromLocation")
-NSTextSelectionDataSource_offsetFromLocation :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, from: ^NSTextLocation, to: ^NSTextLocation) -> NS.Integer {
-    return msgSend(NS.Integer, self, "offsetFromLocation:toLocation:", from, to)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="baseWritingDirectionAtLocation")
-NSTextSelectionDataSource_baseWritingDirectionAtLocation :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, location: ^NSTextLocation) -> NSTextSelectionNavigationWritingDirection {
-    return msgSend(NSTextSelectionNavigationWritingDirection, self, "baseWritingDirectionAtLocation:", location)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="enumerateCaretOffsetsInLineFragmentAtLocation")
-NSTextSelectionDataSource_enumerateCaretOffsetsInLineFragmentAtLocation :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, location: ^NSTextLocation, block: ^Objc_Block(proc "c" (caretOffset: CG.Float, location: ^NSTextLocation, leadingEdge: bool, stop: ^bool))) {
-    msgSend(nil, self, "enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:", location, block)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="lineFragmentRangeForPoint")
-NSTextSelectionDataSource_lineFragmentRangeForPoint :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, point: CG.Point, location: ^NSTextLocation) -> ^NSTextRange {
-    return msgSend(^NSTextRange, self, "lineFragmentRangeForPoint:inContainerAtLocation:", point, location)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="enumerateContainerBoundariesFromLocation")
-NSTextSelectionDataSource_enumerateContainerBoundariesFromLocation :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, location: ^NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" (boundaryLocation: ^NSTextLocation, stop: ^bool))) {
-    msgSend(nil, self, "enumerateContainerBoundariesFromLocation:reverse:usingBlock:", location, reverse, block)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="textLayoutOrientationAtLocation")
-NSTextSelectionDataSource_textLayoutOrientationAtLocation :: #force_inline proc "c" (self: ^NSTextSelectionDataSource, location: ^NSTextLocation) -> NSTextSelectionNavigationLayoutOrientation {
-    return msgSend(NSTextSelectionNavigationLayoutOrientation, self, "textLayoutOrientationAtLocation:", location)
-}
-@(objc_type=NSTextSelectionDataSource, objc_name="documentRange")
-NSTextSelectionDataSource_documentRange :: #force_inline proc "c" (self: ^NSTextSelectionDataSource) -> ^NSTextRange {
-    return msgSend(^NSTextRange, self, "documentRange")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NSTextSelectionDataSource, objc_selector="enumerateSubstringsFromLocation:options:usingBlock:", objc_name="enumerateSubstringsFromLocation")
+    NSTextSelectionDataSource_enumerateSubstringsFromLocation :: proc(self: ^NSTextSelectionDataSource, location: ^NSTextLocation, options: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" (substring: ^NS.String, substringRange: ^NSTextRange, enclosingRange: ^NSTextRange, stop: ^bool))) ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="textRangeForSelectionGranularity:enclosingLocation:", objc_name="textRangeForSelectionGranularity")
+    NSTextSelectionDataSource_textRangeForSelectionGranularity :: proc(self: ^NSTextSelectionDataSource, selectionGranularity: NSTextSelectionGranularity, location: ^NSTextLocation) -> ^NSTextRange ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="locationFromLocation:withOffset:", objc_name="locationFromLocation")
+    NSTextSelectionDataSource_locationFromLocation :: proc(self: ^NSTextSelectionDataSource, location: ^NSTextLocation, offset: NS.Integer) -> ^NSTextLocation ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="offsetFromLocation:toLocation:", objc_name="offsetFromLocation")
+    NSTextSelectionDataSource_offsetFromLocation :: proc(self: ^NSTextSelectionDataSource, from: ^NSTextLocation, to: ^NSTextLocation) -> NS.Integer ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="baseWritingDirectionAtLocation:", objc_name="baseWritingDirectionAtLocation")
+    NSTextSelectionDataSource_baseWritingDirectionAtLocation :: proc(self: ^NSTextSelectionDataSource, location: ^NSTextLocation) -> NSTextSelectionNavigationWritingDirection ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:", objc_name="enumerateCaretOffsetsInLineFragmentAtLocation")
+    NSTextSelectionDataSource_enumerateCaretOffsetsInLineFragmentAtLocation :: proc(self: ^NSTextSelectionDataSource, location: ^NSTextLocation, block: ^Objc_Block(proc "c" (caretOffset: CG.Float, location: ^NSTextLocation, leadingEdge: bool, stop: ^bool))) ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="lineFragmentRangeForPoint:inContainerAtLocation:", objc_name="lineFragmentRangeForPoint")
+    NSTextSelectionDataSource_lineFragmentRangeForPoint :: proc(self: ^NSTextSelectionDataSource, point: CG.Point, location: ^NSTextLocation) -> ^NSTextRange ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="enumerateContainerBoundariesFromLocation:reverse:usingBlock:", objc_name="enumerateContainerBoundariesFromLocation")
+    NSTextSelectionDataSource_enumerateContainerBoundariesFromLocation :: proc(self: ^NSTextSelectionDataSource, location: ^NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" (boundaryLocation: ^NSTextLocation, stop: ^bool))) ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="textLayoutOrientationAtLocation:", objc_name="textLayoutOrientationAtLocation")
+    NSTextSelectionDataSource_textLayoutOrientationAtLocation :: proc(self: ^NSTextSelectionDataSource, location: ^NSTextLocation) -> NSTextSelectionNavigationLayoutOrientation ---
+
+    @(objc_type=NSTextSelectionDataSource, objc_selector="documentRange", objc_name="documentRange")
+    NSTextSelectionDataSource_documentRange :: proc(self: ^NSTextSelectionDataSource) -> ^NSTextRange ---
 }

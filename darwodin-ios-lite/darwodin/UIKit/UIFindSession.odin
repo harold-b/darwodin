@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIFindSession
 ///
-@(objc_class="UIFindSession")
+@(objc_class="UIFindSession", objc_superclass=NS.Object)
 FindSession :: struct { using _: NS.Object, }
 

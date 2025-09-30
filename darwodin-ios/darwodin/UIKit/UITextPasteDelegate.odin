@@ -21,19 +21,18 @@ TextPasteDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextPasteDelegate, objc_name="textPasteConfigurationSupporting_transformPasteItem")
-TextPasteDelegate_textPasteConfigurationSupporting_transformPasteItem :: #force_inline proc "c" (self: ^TextPasteDelegate, textPasteConfigurationSupporting: ^TextPasteConfigurationSupporting, item: ^TextPasteItem) {
-    msgSend(nil, self, "textPasteConfigurationSupporting:transformPasteItem:", textPasteConfigurationSupporting, item)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextPasteDelegate, objc_selector="textPasteConfigurationSupporting:transformPasteItem:", objc_name="textPasteConfigurationSupporting_transformPasteItem")
+    TextPasteDelegate_textPasteConfigurationSupporting_transformPasteItem :: proc(self: ^TextPasteDelegate, textPasteConfigurationSupporting: ^TextPasteConfigurationSupporting, item: ^TextPasteItem) ---
+
+    @(objc_type=TextPasteDelegate, objc_selector="textPasteConfigurationSupporting:combineItemAttributedStrings:forRange:", objc_name="textPasteConfigurationSupporting_combineItemAttributedStrings_forRange")
+    TextPasteDelegate_textPasteConfigurationSupporting_combineItemAttributedStrings_forRange :: proc(self: ^TextPasteDelegate, textPasteConfigurationSupporting: ^TextPasteConfigurationSupporting, itemStrings: ^NS.Array, textRange: ^TextRange) -> ^NS.AttributedString ---
+
+    @(objc_type=TextPasteDelegate, objc_selector="textPasteConfigurationSupporting:performPasteOfAttributedString:toRange:", objc_name="textPasteConfigurationSupporting_performPasteOfAttributedString_toRange")
+    TextPasteDelegate_textPasteConfigurationSupporting_performPasteOfAttributedString_toRange :: proc(self: ^TextPasteDelegate, textPasteConfigurationSupporting: ^TextPasteConfigurationSupporting, attributedString: ^NS.AttributedString, textRange: ^TextRange) -> ^TextRange ---
+
+    @(objc_type=TextPasteDelegate, objc_selector="textPasteConfigurationSupporting:shouldAnimatePasteOfAttributedString:toRange:", objc_name="textPasteConfigurationSupporting_shouldAnimatePasteOfAttributedString_toRange")
+    TextPasteDelegate_textPasteConfigurationSupporting_shouldAnimatePasteOfAttributedString_toRange :: proc(self: ^TextPasteDelegate, textPasteConfigurationSupporting: ^TextPasteConfigurationSupporting, attributedString: ^NS.AttributedString, textRange: ^TextRange) -> bool ---
 }
-@(objc_type=TextPasteDelegate, objc_name="textPasteConfigurationSupporting_combineItemAttributedStrings_forRange")
-TextPasteDelegate_textPasteConfigurationSupporting_combineItemAttributedStrings_forRange :: #force_inline proc "c" (self: ^TextPasteDelegate, textPasteConfigurationSupporting: ^TextPasteConfigurationSupporting, itemStrings: ^NS.Array, textRange: ^TextRange) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "textPasteConfigurationSupporting:combineItemAttributedStrings:forRange:", textPasteConfigurationSupporting, itemStrings, textRange)
-}
-@(objc_type=TextPasteDelegate, objc_name="textPasteConfigurationSupporting_performPasteOfAttributedString_toRange")
-TextPasteDelegate_textPasteConfigurationSupporting_performPasteOfAttributedString_toRange :: #force_inline proc "c" (self: ^TextPasteDelegate, textPasteConfigurationSupporting: ^TextPasteConfigurationSupporting, attributedString: ^NS.AttributedString, textRange: ^TextRange) -> ^TextRange {
-    return msgSend(^TextRange, self, "textPasteConfigurationSupporting:performPasteOfAttributedString:toRange:", textPasteConfigurationSupporting, attributedString, textRange)
-}
-@(objc_type=TextPasteDelegate, objc_name="textPasteConfigurationSupporting_shouldAnimatePasteOfAttributedString_toRange")
-TextPasteDelegate_textPasteConfigurationSupporting_shouldAnimatePasteOfAttributedString_toRange :: #force_inline proc "c" (self: ^TextPasteDelegate, textPasteConfigurationSupporting: ^TextPasteConfigurationSupporting, attributedString: ^NS.AttributedString, textRange: ^TextRange) -> bool {
-    return msgSend(bool, self, "textPasteConfigurationSupporting:shouldAnimatePasteOfAttributedString:toRange:", textPasteConfigurationSupporting, attributedString, textRange)
-}
+

@@ -21,19 +21,17 @@ UserInterfaceItemSearching :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=UserInterfaceItemSearching, objc_name="searchForItemsWithSearchString")
-UserInterfaceItemSearching_searchForItemsWithSearchString :: #force_inline proc "c" (self: ^UserInterfaceItemSearching, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" (items: ^NS.Array))) {
-    msgSend(nil, self, "searchForItemsWithSearchString:resultLimit:matchedItemHandler:", searchString, resultLimit, handleMatchedItems)
-}
-@(objc_type=UserInterfaceItemSearching, objc_name="localizedTitlesForItem")
-UserInterfaceItemSearching_localizedTitlesForItem :: #force_inline proc "c" (self: ^UserInterfaceItemSearching, item: id) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "localizedTitlesForItem:", item)
-}
-@(objc_type=UserInterfaceItemSearching, objc_name="performActionForItem")
-UserInterfaceItemSearching_performActionForItem :: #force_inline proc "c" (self: ^UserInterfaceItemSearching, item: id) {
-    msgSend(nil, self, "performActionForItem:", item)
-}
-@(objc_type=UserInterfaceItemSearching, objc_name="showAllHelpTopicsForSearchString")
-UserInterfaceItemSearching_showAllHelpTopicsForSearchString :: #force_inline proc "c" (self: ^UserInterfaceItemSearching, searchString: ^NS.String) {
-    msgSend(nil, self, "showAllHelpTopicsForSearchString:", searchString)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=UserInterfaceItemSearching, objc_selector="searchForItemsWithSearchString:resultLimit:matchedItemHandler:", objc_name="searchForItemsWithSearchString")
+    UserInterfaceItemSearching_searchForItemsWithSearchString :: proc(self: ^UserInterfaceItemSearching, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" (items: ^NS.Array))) ---
+
+    @(objc_type=UserInterfaceItemSearching, objc_selector="localizedTitlesForItem:", objc_name="localizedTitlesForItem")
+    UserInterfaceItemSearching_localizedTitlesForItem :: proc(self: ^UserInterfaceItemSearching, item: id) -> ^NS.Array ---
+
+    @(objc_type=UserInterfaceItemSearching, objc_selector="performActionForItem:", objc_name="performActionForItem")
+    UserInterfaceItemSearching_performActionForItem :: proc(self: ^UserInterfaceItemSearching, item: id) ---
+
+    @(objc_type=UserInterfaceItemSearching, objc_selector="showAllHelpTopicsForSearchString:", objc_name="showAllHelpTopicsForSearchString")
+    UserInterfaceItemSearching_showAllHelpTopicsForSearchString :: proc(self: ^UserInterfaceItemSearching, searchString: ^NS.String) ---
 }

@@ -21,171 +21,131 @@ MutableTraits :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=MutableTraits, objc_name="setCGFloatValue")
-MutableTraits_setCGFloatValue :: #force_inline proc "c" (self: ^MutableTraits, value: CG.Float, trait: ^Class) {
-    msgSend(nil, self, "setCGFloatValue:forTrait:", value, trait)
-}
-@(objc_type=MutableTraits, objc_name="valueForCGFloatTrait")
-MutableTraits_valueForCGFloatTrait :: #force_inline proc "c" (self: ^MutableTraits, trait: ^Class) -> CG.Float {
-    return msgSend(CG.Float, self, "valueForCGFloatTrait:", trait)
-}
-@(objc_type=MutableTraits, objc_name="setNSIntegerValue")
-MutableTraits_setNSIntegerValue :: #force_inline proc "c" (self: ^MutableTraits, value: NS.Integer, trait: ^Class) {
-    msgSend(nil, self, "setNSIntegerValue:forTrait:", value, trait)
-}
-@(objc_type=MutableTraits, objc_name="valueForNSIntegerTrait")
-MutableTraits_valueForNSIntegerTrait :: #force_inline proc "c" (self: ^MutableTraits, trait: ^Class) -> NS.Integer {
-    return msgSend(NS.Integer, self, "valueForNSIntegerTrait:", trait)
-}
-@(objc_type=MutableTraits, objc_name="setObject")
-MutableTraits_setObject :: #force_inline proc "c" (self: ^MutableTraits, object: ^NS.ObjectProtocol, trait: ^Class) {
-    msgSend(nil, self, "setObject:forTrait:", object, trait)
-}
-@(objc_type=MutableTraits, objc_name="objectForTrait")
-MutableTraits_objectForTrait :: #force_inline proc "c" (self: ^MutableTraits, trait: ^Class) -> ^NS.ObjectProtocol {
-    return msgSend(^NS.ObjectProtocol, self, "objectForTrait:", trait)
-}
-@(objc_type=MutableTraits, objc_name="userInterfaceIdiom")
-MutableTraits_userInterfaceIdiom :: #force_inline proc "c" (self: ^MutableTraits) -> UserInterfaceIdiom {
-    return msgSend(UserInterfaceIdiom, self, "userInterfaceIdiom")
-}
-@(objc_type=MutableTraits, objc_name="setUserInterfaceIdiom")
-MutableTraits_setUserInterfaceIdiom :: #force_inline proc "c" (self: ^MutableTraits, userInterfaceIdiom: UserInterfaceIdiom) {
-    msgSend(nil, self, "setUserInterfaceIdiom:", userInterfaceIdiom)
-}
-@(objc_type=MutableTraits, objc_name="userInterfaceStyle")
-MutableTraits_userInterfaceStyle :: #force_inline proc "c" (self: ^MutableTraits) -> UserInterfaceStyle {
-    return msgSend(UserInterfaceStyle, self, "userInterfaceStyle")
-}
-@(objc_type=MutableTraits, objc_name="setUserInterfaceStyle")
-MutableTraits_setUserInterfaceStyle :: #force_inline proc "c" (self: ^MutableTraits, userInterfaceStyle: UserInterfaceStyle) {
-    msgSend(nil, self, "setUserInterfaceStyle:", userInterfaceStyle)
-}
-@(objc_type=MutableTraits, objc_name="layoutDirection")
-MutableTraits_layoutDirection :: #force_inline proc "c" (self: ^MutableTraits) -> TraitEnvironmentLayoutDirection {
-    return msgSend(TraitEnvironmentLayoutDirection, self, "layoutDirection")
-}
-@(objc_type=MutableTraits, objc_name="setLayoutDirection")
-MutableTraits_setLayoutDirection :: #force_inline proc "c" (self: ^MutableTraits, layoutDirection: TraitEnvironmentLayoutDirection) {
-    msgSend(nil, self, "setLayoutDirection:", layoutDirection)
-}
-@(objc_type=MutableTraits, objc_name="displayScale")
-MutableTraits_displayScale :: #force_inline proc "c" (self: ^MutableTraits) -> CG.Float {
-    return msgSend(CG.Float, self, "displayScale")
-}
-@(objc_type=MutableTraits, objc_name="setDisplayScale")
-MutableTraits_setDisplayScale :: #force_inline proc "c" (self: ^MutableTraits, displayScale: CG.Float) {
-    msgSend(nil, self, "setDisplayScale:", displayScale)
-}
-@(objc_type=MutableTraits, objc_name="horizontalSizeClass")
-MutableTraits_horizontalSizeClass :: #force_inline proc "c" (self: ^MutableTraits) -> UserInterfaceSizeClass {
-    return msgSend(UserInterfaceSizeClass, self, "horizontalSizeClass")
-}
-@(objc_type=MutableTraits, objc_name="setHorizontalSizeClass")
-MutableTraits_setHorizontalSizeClass :: #force_inline proc "c" (self: ^MutableTraits, horizontalSizeClass: UserInterfaceSizeClass) {
-    msgSend(nil, self, "setHorizontalSizeClass:", horizontalSizeClass)
-}
-@(objc_type=MutableTraits, objc_name="verticalSizeClass")
-MutableTraits_verticalSizeClass :: #force_inline proc "c" (self: ^MutableTraits) -> UserInterfaceSizeClass {
-    return msgSend(UserInterfaceSizeClass, self, "verticalSizeClass")
-}
-@(objc_type=MutableTraits, objc_name="setVerticalSizeClass")
-MutableTraits_setVerticalSizeClass :: #force_inline proc "c" (self: ^MutableTraits, verticalSizeClass: UserInterfaceSizeClass) {
-    msgSend(nil, self, "setVerticalSizeClass:", verticalSizeClass)
-}
-@(objc_type=MutableTraits, objc_name="forceTouchCapability")
-MutableTraits_forceTouchCapability :: #force_inline proc "c" (self: ^MutableTraits) -> ForceTouchCapability {
-    return msgSend(ForceTouchCapability, self, "forceTouchCapability")
-}
-@(objc_type=MutableTraits, objc_name="setForceTouchCapability")
-MutableTraits_setForceTouchCapability :: #force_inline proc "c" (self: ^MutableTraits, forceTouchCapability: ForceTouchCapability) {
-    msgSend(nil, self, "setForceTouchCapability:", forceTouchCapability)
-}
-@(objc_type=MutableTraits, objc_name="preferredContentSizeCategory")
-MutableTraits_preferredContentSizeCategory :: #force_inline proc "c" (self: ^MutableTraits) -> ^NS.String {
-    return msgSend(^NS.String, self, "preferredContentSizeCategory")
-}
-@(objc_type=MutableTraits, objc_name="setPreferredContentSizeCategory")
-MutableTraits_setPreferredContentSizeCategory :: #force_inline proc "c" (self: ^MutableTraits, preferredContentSizeCategory: ^NS.String) {
-    msgSend(nil, self, "setPreferredContentSizeCategory:", preferredContentSizeCategory)
-}
-@(objc_type=MutableTraits, objc_name="displayGamut")
-MutableTraits_displayGamut :: #force_inline proc "c" (self: ^MutableTraits) -> DisplayGamut {
-    return msgSend(DisplayGamut, self, "displayGamut")
-}
-@(objc_type=MutableTraits, objc_name="setDisplayGamut")
-MutableTraits_setDisplayGamut :: #force_inline proc "c" (self: ^MutableTraits, displayGamut: DisplayGamut) {
-    msgSend(nil, self, "setDisplayGamut:", displayGamut)
-}
-@(objc_type=MutableTraits, objc_name="accessibilityContrast")
-MutableTraits_accessibilityContrast :: #force_inline proc "c" (self: ^MutableTraits) -> AccessibilityContrast {
-    return msgSend(AccessibilityContrast, self, "accessibilityContrast")
-}
-@(objc_type=MutableTraits, objc_name="setAccessibilityContrast")
-MutableTraits_setAccessibilityContrast :: #force_inline proc "c" (self: ^MutableTraits, accessibilityContrast: AccessibilityContrast) {
-    msgSend(nil, self, "setAccessibilityContrast:", accessibilityContrast)
-}
-@(objc_type=MutableTraits, objc_name="userInterfaceLevel")
-MutableTraits_userInterfaceLevel :: #force_inline proc "c" (self: ^MutableTraits) -> UserInterfaceLevel {
-    return msgSend(UserInterfaceLevel, self, "userInterfaceLevel")
-}
-@(objc_type=MutableTraits, objc_name="setUserInterfaceLevel")
-MutableTraits_setUserInterfaceLevel :: #force_inline proc "c" (self: ^MutableTraits, userInterfaceLevel: UserInterfaceLevel) {
-    msgSend(nil, self, "setUserInterfaceLevel:", userInterfaceLevel)
-}
-@(objc_type=MutableTraits, objc_name="legibilityWeight")
-MutableTraits_legibilityWeight :: #force_inline proc "c" (self: ^MutableTraits) -> LegibilityWeight {
-    return msgSend(LegibilityWeight, self, "legibilityWeight")
-}
-@(objc_type=MutableTraits, objc_name="setLegibilityWeight")
-MutableTraits_setLegibilityWeight :: #force_inline proc "c" (self: ^MutableTraits, legibilityWeight: LegibilityWeight) {
-    msgSend(nil, self, "setLegibilityWeight:", legibilityWeight)
-}
-@(objc_type=MutableTraits, objc_name="activeAppearance")
-MutableTraits_activeAppearance :: #force_inline proc "c" (self: ^MutableTraits) -> UserInterfaceActiveAppearance {
-    return msgSend(UserInterfaceActiveAppearance, self, "activeAppearance")
-}
-@(objc_type=MutableTraits, objc_name="setActiveAppearance")
-MutableTraits_setActiveAppearance :: #force_inline proc "c" (self: ^MutableTraits, activeAppearance: UserInterfaceActiveAppearance) {
-    msgSend(nil, self, "setActiveAppearance:", activeAppearance)
-}
-@(objc_type=MutableTraits, objc_name="toolbarItemPresentationSize")
-MutableTraits_toolbarItemPresentationSize :: #force_inline proc "c" (self: ^MutableTraits) -> NSToolbarItemPresentationSize {
-    return msgSend(NSToolbarItemPresentationSize, self, "toolbarItemPresentationSize")
-}
-@(objc_type=MutableTraits, objc_name="setToolbarItemPresentationSize")
-MutableTraits_setToolbarItemPresentationSize :: #force_inline proc "c" (self: ^MutableTraits, toolbarItemPresentationSize: NSToolbarItemPresentationSize) {
-    msgSend(nil, self, "setToolbarItemPresentationSize:", toolbarItemPresentationSize)
-}
-@(objc_type=MutableTraits, objc_name="imageDynamicRange")
-MutableTraits_imageDynamicRange :: #force_inline proc "c" (self: ^MutableTraits) -> ImageDynamicRange {
-    return msgSend(ImageDynamicRange, self, "imageDynamicRange")
-}
-@(objc_type=MutableTraits, objc_name="setImageDynamicRange")
-MutableTraits_setImageDynamicRange :: #force_inline proc "c" (self: ^MutableTraits, imageDynamicRange: ImageDynamicRange) {
-    msgSend(nil, self, "setImageDynamicRange:", imageDynamicRange)
-}
-@(objc_type=MutableTraits, objc_name="sceneCaptureState")
-MutableTraits_sceneCaptureState :: #force_inline proc "c" (self: ^MutableTraits) -> SceneCaptureState {
-    return msgSend(SceneCaptureState, self, "sceneCaptureState")
-}
-@(objc_type=MutableTraits, objc_name="setSceneCaptureState")
-MutableTraits_setSceneCaptureState :: #force_inline proc "c" (self: ^MutableTraits, sceneCaptureState: SceneCaptureState) {
-    msgSend(nil, self, "setSceneCaptureState:", sceneCaptureState)
-}
-@(objc_type=MutableTraits, objc_name="typesettingLanguage")
-MutableTraits_typesettingLanguage :: #force_inline proc "c" (self: ^MutableTraits) -> ^NS.String {
-    return msgSend(^NS.String, self, "typesettingLanguage")
-}
-@(objc_type=MutableTraits, objc_name="setTypesettingLanguage")
-MutableTraits_setTypesettingLanguage :: #force_inline proc "c" (self: ^MutableTraits, typesettingLanguage: ^NS.String) {
-    msgSend(nil, self, "setTypesettingLanguage:", typesettingLanguage)
-}
-@(objc_type=MutableTraits, objc_name="listEnvironment")
-MutableTraits_listEnvironment :: #force_inline proc "c" (self: ^MutableTraits) -> ListEnvironment {
-    return msgSend(ListEnvironment, self, "listEnvironment")
-}
-@(objc_type=MutableTraits, objc_name="setListEnvironment")
-MutableTraits_setListEnvironment :: #force_inline proc "c" (self: ^MutableTraits, listEnvironment: ListEnvironment) {
-    msgSend(nil, self, "setListEnvironment:", listEnvironment)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MutableTraits, objc_selector="setCGFloatValue:forTrait:", objc_name="setCGFloatValue")
+    MutableTraits_setCGFloatValue :: proc(self: ^MutableTraits, value: CG.Float, trait: ^Class) ---
+
+    @(objc_type=MutableTraits, objc_selector="valueForCGFloatTrait:", objc_name="valueForCGFloatTrait")
+    MutableTraits_valueForCGFloatTrait :: proc(self: ^MutableTraits, trait: ^Class) -> CG.Float ---
+
+    @(objc_type=MutableTraits, objc_selector="setNSIntegerValue:forTrait:", objc_name="setNSIntegerValue")
+    MutableTraits_setNSIntegerValue :: proc(self: ^MutableTraits, value: NS.Integer, trait: ^Class) ---
+
+    @(objc_type=MutableTraits, objc_selector="valueForNSIntegerTrait:", objc_name="valueForNSIntegerTrait")
+    MutableTraits_valueForNSIntegerTrait :: proc(self: ^MutableTraits, trait: ^Class) -> NS.Integer ---
+
+    @(objc_type=MutableTraits, objc_selector="setObject:forTrait:", objc_name="setObject")
+    MutableTraits_setObject :: proc(self: ^MutableTraits, object: ^NS.ObjectProtocol, trait: ^Class) ---
+
+    @(objc_type=MutableTraits, objc_selector="objectForTrait:", objc_name="objectForTrait")
+    MutableTraits_objectForTrait :: proc(self: ^MutableTraits, trait: ^Class) -> ^NS.ObjectProtocol ---
+
+    @(objc_type=MutableTraits, objc_selector="userInterfaceIdiom", objc_name="userInterfaceIdiom")
+    MutableTraits_userInterfaceIdiom :: proc(self: ^MutableTraits) -> UserInterfaceIdiom ---
+
+    @(objc_type=MutableTraits, objc_selector="setUserInterfaceIdiom:", objc_name="setUserInterfaceIdiom")
+    MutableTraits_setUserInterfaceIdiom :: proc(self: ^MutableTraits, userInterfaceIdiom: UserInterfaceIdiom) ---
+
+    @(objc_type=MutableTraits, objc_selector="userInterfaceStyle", objc_name="userInterfaceStyle")
+    MutableTraits_userInterfaceStyle :: proc(self: ^MutableTraits) -> UserInterfaceStyle ---
+
+    @(objc_type=MutableTraits, objc_selector="setUserInterfaceStyle:", objc_name="setUserInterfaceStyle")
+    MutableTraits_setUserInterfaceStyle :: proc(self: ^MutableTraits, userInterfaceStyle: UserInterfaceStyle) ---
+
+    @(objc_type=MutableTraits, objc_selector="layoutDirection", objc_name="layoutDirection")
+    MutableTraits_layoutDirection :: proc(self: ^MutableTraits) -> TraitEnvironmentLayoutDirection ---
+
+    @(objc_type=MutableTraits, objc_selector="setLayoutDirection:", objc_name="setLayoutDirection")
+    MutableTraits_setLayoutDirection :: proc(self: ^MutableTraits, layoutDirection: TraitEnvironmentLayoutDirection) ---
+
+    @(objc_type=MutableTraits, objc_selector="displayScale", objc_name="displayScale")
+    MutableTraits_displayScale :: proc(self: ^MutableTraits) -> CG.Float ---
+
+    @(objc_type=MutableTraits, objc_selector="setDisplayScale:", objc_name="setDisplayScale")
+    MutableTraits_setDisplayScale :: proc(self: ^MutableTraits, displayScale: CG.Float) ---
+
+    @(objc_type=MutableTraits, objc_selector="horizontalSizeClass", objc_name="horizontalSizeClass")
+    MutableTraits_horizontalSizeClass :: proc(self: ^MutableTraits) -> UserInterfaceSizeClass ---
+
+    @(objc_type=MutableTraits, objc_selector="setHorizontalSizeClass:", objc_name="setHorizontalSizeClass")
+    MutableTraits_setHorizontalSizeClass :: proc(self: ^MutableTraits, horizontalSizeClass: UserInterfaceSizeClass) ---
+
+    @(objc_type=MutableTraits, objc_selector="verticalSizeClass", objc_name="verticalSizeClass")
+    MutableTraits_verticalSizeClass :: proc(self: ^MutableTraits) -> UserInterfaceSizeClass ---
+
+    @(objc_type=MutableTraits, objc_selector="setVerticalSizeClass:", objc_name="setVerticalSizeClass")
+    MutableTraits_setVerticalSizeClass :: proc(self: ^MutableTraits, verticalSizeClass: UserInterfaceSizeClass) ---
+
+    @(objc_type=MutableTraits, objc_selector="forceTouchCapability", objc_name="forceTouchCapability")
+    MutableTraits_forceTouchCapability :: proc(self: ^MutableTraits) -> ForceTouchCapability ---
+
+    @(objc_type=MutableTraits, objc_selector="setForceTouchCapability:", objc_name="setForceTouchCapability")
+    MutableTraits_setForceTouchCapability :: proc(self: ^MutableTraits, forceTouchCapability: ForceTouchCapability) ---
+
+    @(objc_type=MutableTraits, objc_selector="preferredContentSizeCategory", objc_name="preferredContentSizeCategory")
+    MutableTraits_preferredContentSizeCategory :: proc(self: ^MutableTraits) -> ^NS.String ---
+
+    @(objc_type=MutableTraits, objc_selector="setPreferredContentSizeCategory:", objc_name="setPreferredContentSizeCategory")
+    MutableTraits_setPreferredContentSizeCategory :: proc(self: ^MutableTraits, preferredContentSizeCategory: ^NS.String) ---
+
+    @(objc_type=MutableTraits, objc_selector="displayGamut", objc_name="displayGamut")
+    MutableTraits_displayGamut :: proc(self: ^MutableTraits) -> DisplayGamut ---
+
+    @(objc_type=MutableTraits, objc_selector="setDisplayGamut:", objc_name="setDisplayGamut")
+    MutableTraits_setDisplayGamut :: proc(self: ^MutableTraits, displayGamut: DisplayGamut) ---
+
+    @(objc_type=MutableTraits, objc_selector="accessibilityContrast", objc_name="accessibilityContrast")
+    MutableTraits_accessibilityContrast :: proc(self: ^MutableTraits) -> AccessibilityContrast ---
+
+    @(objc_type=MutableTraits, objc_selector="setAccessibilityContrast:", objc_name="setAccessibilityContrast")
+    MutableTraits_setAccessibilityContrast :: proc(self: ^MutableTraits, accessibilityContrast: AccessibilityContrast) ---
+
+    @(objc_type=MutableTraits, objc_selector="userInterfaceLevel", objc_name="userInterfaceLevel")
+    MutableTraits_userInterfaceLevel :: proc(self: ^MutableTraits) -> UserInterfaceLevel ---
+
+    @(objc_type=MutableTraits, objc_selector="setUserInterfaceLevel:", objc_name="setUserInterfaceLevel")
+    MutableTraits_setUserInterfaceLevel :: proc(self: ^MutableTraits, userInterfaceLevel: UserInterfaceLevel) ---
+
+    @(objc_type=MutableTraits, objc_selector="legibilityWeight", objc_name="legibilityWeight")
+    MutableTraits_legibilityWeight :: proc(self: ^MutableTraits) -> LegibilityWeight ---
+
+    @(objc_type=MutableTraits, objc_selector="setLegibilityWeight:", objc_name="setLegibilityWeight")
+    MutableTraits_setLegibilityWeight :: proc(self: ^MutableTraits, legibilityWeight: LegibilityWeight) ---
+
+    @(objc_type=MutableTraits, objc_selector="activeAppearance", objc_name="activeAppearance")
+    MutableTraits_activeAppearance :: proc(self: ^MutableTraits) -> UserInterfaceActiveAppearance ---
+
+    @(objc_type=MutableTraits, objc_selector="setActiveAppearance:", objc_name="setActiveAppearance")
+    MutableTraits_setActiveAppearance :: proc(self: ^MutableTraits, activeAppearance: UserInterfaceActiveAppearance) ---
+
+    @(objc_type=MutableTraits, objc_selector="toolbarItemPresentationSize", objc_name="toolbarItemPresentationSize")
+    MutableTraits_toolbarItemPresentationSize :: proc(self: ^MutableTraits) -> NSToolbarItemPresentationSize ---
+
+    @(objc_type=MutableTraits, objc_selector="setToolbarItemPresentationSize:", objc_name="setToolbarItemPresentationSize")
+    MutableTraits_setToolbarItemPresentationSize :: proc(self: ^MutableTraits, toolbarItemPresentationSize: NSToolbarItemPresentationSize) ---
+
+    @(objc_type=MutableTraits, objc_selector="imageDynamicRange", objc_name="imageDynamicRange")
+    MutableTraits_imageDynamicRange :: proc(self: ^MutableTraits) -> ImageDynamicRange ---
+
+    @(objc_type=MutableTraits, objc_selector="setImageDynamicRange:", objc_name="setImageDynamicRange")
+    MutableTraits_setImageDynamicRange :: proc(self: ^MutableTraits, imageDynamicRange: ImageDynamicRange) ---
+
+    @(objc_type=MutableTraits, objc_selector="sceneCaptureState", objc_name="sceneCaptureState")
+    MutableTraits_sceneCaptureState :: proc(self: ^MutableTraits) -> SceneCaptureState ---
+
+    @(objc_type=MutableTraits, objc_selector="setSceneCaptureState:", objc_name="setSceneCaptureState")
+    MutableTraits_setSceneCaptureState :: proc(self: ^MutableTraits, sceneCaptureState: SceneCaptureState) ---
+
+    @(objc_type=MutableTraits, objc_selector="typesettingLanguage", objc_name="typesettingLanguage")
+    MutableTraits_typesettingLanguage :: proc(self: ^MutableTraits) -> ^NS.String ---
+
+    @(objc_type=MutableTraits, objc_selector="setTypesettingLanguage:", objc_name="setTypesettingLanguage")
+    MutableTraits_setTypesettingLanguage :: proc(self: ^MutableTraits, typesettingLanguage: ^NS.String) ---
+
+    @(objc_type=MutableTraits, objc_selector="listEnvironment", objc_name="listEnvironment")
+    MutableTraits_listEnvironment :: proc(self: ^MutableTraits) -> ListEnvironment ---
+
+    @(objc_type=MutableTraits, objc_selector="setListEnvironment:", objc_name="setListEnvironment")
+    MutableTraits_setListEnvironment :: proc(self: ^MutableTraits, listEnvironment: ListEnvironment) ---
 }

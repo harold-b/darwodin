@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSCloseCommand
 ///
-@(objc_class="NSCloseCommand")
+@(objc_class="NSCloseCommand", objc_superclass=ScriptCommand)
 CloseCommand :: struct { using _: ScriptCommand, }
 

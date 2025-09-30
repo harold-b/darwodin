@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICellAccessoryPopUpMenu
 ///
-@(objc_class="UICellAccessoryPopUpMenu")
+@(objc_class="UICellAccessoryPopUpMenu", objc_superclass=CellAccessory)
 CellAccessoryPopUpMenu :: struct { using _: CellAccessory, }
 

@@ -20,7 +20,8 @@ Counter :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Counter, objc_name="name")
-Counter_name :: #force_inline proc "c" (self: ^Counter) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Counter, objc_selector="name", objc_name="name")
+    Counter_name :: proc(self: ^Counter) -> ^NS.String ---
 }

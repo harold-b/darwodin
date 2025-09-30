@@ -21,27 +21,23 @@ CloudSharingControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CloudSharingControllerDelegate, objc_name="cloudSharingController")
-CloudSharingControllerDelegate_cloudSharingController :: #force_inline proc "c" (self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController, error: ^NS.Error) {
-    msgSend(nil, self, "cloudSharingController:failedToSaveShareWithError:", csc, error)
-}
-@(objc_type=CloudSharingControllerDelegate, objc_name="itemTitleForCloudSharingController")
-CloudSharingControllerDelegate_itemTitleForCloudSharingController :: #force_inline proc "c" (self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) -> ^NS.String {
-    return msgSend(^NS.String, self, "itemTitleForCloudSharingController:", csc)
-}
-@(objc_type=CloudSharingControllerDelegate, objc_name="itemThumbnailDataForCloudSharingController")
-CloudSharingControllerDelegate_itemThumbnailDataForCloudSharingController :: #force_inline proc "c" (self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) -> ^NS.Data {
-    return msgSend(^NS.Data, self, "itemThumbnailDataForCloudSharingController:", csc)
-}
-@(objc_type=CloudSharingControllerDelegate, objc_name="itemTypeForCloudSharingController")
-CloudSharingControllerDelegate_itemTypeForCloudSharingController :: #force_inline proc "c" (self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) -> ^NS.String {
-    return msgSend(^NS.String, self, "itemTypeForCloudSharingController:", csc)
-}
-@(objc_type=CloudSharingControllerDelegate, objc_name="cloudSharingControllerDidSaveShare")
-CloudSharingControllerDelegate_cloudSharingControllerDidSaveShare :: #force_inline proc "c" (self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) {
-    msgSend(nil, self, "cloudSharingControllerDidSaveShare:", csc)
-}
-@(objc_type=CloudSharingControllerDelegate, objc_name="cloudSharingControllerDidStopSharing")
-CloudSharingControllerDelegate_cloudSharingControllerDidStopSharing :: #force_inline proc "c" (self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) {
-    msgSend(nil, self, "cloudSharingControllerDidStopSharing:", csc)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CloudSharingControllerDelegate, objc_selector="cloudSharingController:failedToSaveShareWithError:", objc_name="cloudSharingController")
+    CloudSharingControllerDelegate_cloudSharingController :: proc(self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController, error: ^NS.Error) ---
+
+    @(objc_type=CloudSharingControllerDelegate, objc_selector="itemTitleForCloudSharingController:", objc_name="itemTitleForCloudSharingController")
+    CloudSharingControllerDelegate_itemTitleForCloudSharingController :: proc(self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) -> ^NS.String ---
+
+    @(objc_type=CloudSharingControllerDelegate, objc_selector="itemThumbnailDataForCloudSharingController:", objc_name="itemThumbnailDataForCloudSharingController")
+    CloudSharingControllerDelegate_itemThumbnailDataForCloudSharingController :: proc(self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) -> ^NS.Data ---
+
+    @(objc_type=CloudSharingControllerDelegate, objc_selector="itemTypeForCloudSharingController:", objc_name="itemTypeForCloudSharingController")
+    CloudSharingControllerDelegate_itemTypeForCloudSharingController :: proc(self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) -> ^NS.String ---
+
+    @(objc_type=CloudSharingControllerDelegate, objc_selector="cloudSharingControllerDidSaveShare:", objc_name="cloudSharingControllerDidSaveShare")
+    CloudSharingControllerDelegate_cloudSharingControllerDidSaveShare :: proc(self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) ---
+
+    @(objc_type=CloudSharingControllerDelegate, objc_selector="cloudSharingControllerDidStopSharing:", objc_name="cloudSharingControllerDidStopSharing")
+    CloudSharingControllerDelegate_cloudSharingControllerDidStopSharing :: proc(self: ^CloudSharingControllerDelegate, csc: ^CloudSharingController) ---
 }

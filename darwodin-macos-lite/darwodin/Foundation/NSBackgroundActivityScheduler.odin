@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSBackgroundActivityScheduler
 ///
-@(objc_class="NSBackgroundActivityScheduler")
+@(objc_class="NSBackgroundActivityScheduler", objc_superclass=Object)
 BackgroundActivityScheduler :: struct { using _: Object, }
 

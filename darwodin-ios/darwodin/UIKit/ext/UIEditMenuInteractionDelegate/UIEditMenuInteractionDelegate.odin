@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -42,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).editMenuInteraction_menuForConfiguration_suggestedActions(self, interaction, configuration, suggestedActions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("editMenuInteraction:menuForConfiguration:suggestedActions:"), auto_cast editMenuInteraction_menuForConfiguration_suggestedActions, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("editMenuInteraction:menuForConfiguration:suggestedActions:"), auto_cast editMenuInteraction_menuForConfiguration_suggestedActions, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.editMenuInteraction_targetRectForConfiguration != nil {
         editMenuInteraction_targetRectForConfiguration :: proc "c" (self: ^UI.EditMenuInteractionDelegate, _: SEL, interaction: ^UI.EditMenuInteraction, configuration: ^UI.EditMenuConfiguration) -> CG.Rect {

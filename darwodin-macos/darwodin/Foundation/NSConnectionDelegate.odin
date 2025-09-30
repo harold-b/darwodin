@@ -18,30 +18,27 @@ ConnectionDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=ConnectionDelegate, objc_name="makeNewConnection")
-ConnectionDelegate_makeNewConnection :: #force_inline proc "c" (self: ^ConnectionDelegate, conn: ^Connection, ancestor: ^Connection) -> bool {
-    return msgSend(bool, self, "makeNewConnection:sender:", conn, ancestor)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ConnectionDelegate, objc_selector="makeNewConnection:sender:", objc_name="makeNewConnection")
+    ConnectionDelegate_makeNewConnection :: proc(self: ^ConnectionDelegate, conn: ^Connection, ancestor: ^Connection) -> bool ---
+
+    @(objc_type=ConnectionDelegate, objc_selector="connection:shouldMakeNewConnection:", objc_name="connection_shouldMakeNewConnection")
+    ConnectionDelegate_connection_shouldMakeNewConnection :: proc(self: ^ConnectionDelegate, ancestor: ^Connection, conn: ^Connection) -> bool ---
+
+    @(objc_type=ConnectionDelegate, objc_selector="authenticationDataForComponents:", objc_name="authenticationDataForComponents")
+    ConnectionDelegate_authenticationDataForComponents :: proc(self: ^ConnectionDelegate, components: ^Array) -> ^Data ---
+
+    @(objc_type=ConnectionDelegate, objc_selector="authenticateComponents:withData:", objc_name="authenticateComponents")
+    ConnectionDelegate_authenticateComponents :: proc(self: ^ConnectionDelegate, components: ^Array, signature: ^Data) -> bool ---
+
+    @(objc_type=ConnectionDelegate, objc_selector="createConversationForConnection:", objc_name="createConversationForConnection")
+    ConnectionDelegate_createConversationForConnection :: proc(self: ^ConnectionDelegate, conn: ^Connection) -> id ---
+
+    @(objc_type=ConnectionDelegate, objc_selector="connection:handleRequest:", objc_name="connection_handleRequest")
+    ConnectionDelegate_connection_handleRequest :: proc(self: ^ConnectionDelegate, connection: ^Connection, doreq: ^DistantObjectRequest) -> bool ---
 }
-@(objc_type=ConnectionDelegate, objc_name="connection_shouldMakeNewConnection")
-ConnectionDelegate_connection_shouldMakeNewConnection :: #force_inline proc "c" (self: ^ConnectionDelegate, ancestor: ^Connection, conn: ^Connection) -> bool {
-    return msgSend(bool, self, "connection:shouldMakeNewConnection:", ancestor, conn)
-}
-@(objc_type=ConnectionDelegate, objc_name="authenticationDataForComponents")
-ConnectionDelegate_authenticationDataForComponents :: #force_inline proc "c" (self: ^ConnectionDelegate, components: ^Array) -> ^Data {
-    return msgSend(^Data, self, "authenticationDataForComponents:", components)
-}
-@(objc_type=ConnectionDelegate, objc_name="authenticateComponents")
-ConnectionDelegate_authenticateComponents :: #force_inline proc "c" (self: ^ConnectionDelegate, components: ^Array, signature: ^Data) -> bool {
-    return msgSend(bool, self, "authenticateComponents:withData:", components, signature)
-}
-@(objc_type=ConnectionDelegate, objc_name="createConversationForConnection")
-ConnectionDelegate_createConversationForConnection :: #force_inline proc "c" (self: ^ConnectionDelegate, conn: ^Connection) -> id {
-    return msgSend(id, self, "createConversationForConnection:", conn)
-}
-@(objc_type=ConnectionDelegate, objc_name="connection_handleRequest")
-ConnectionDelegate_connection_handleRequest :: #force_inline proc "c" (self: ^ConnectionDelegate, connection: ^Connection, doreq: ^DistantObjectRequest) -> bool {
-    return msgSend(bool, self, "connection:handleRequest:", connection, doreq)
-}
+
 @(objc_type=ConnectionDelegate, objc_name="connection")
 ConnectionDelegate_connection :: proc {
     ConnectionDelegate_connection_shouldMakeNewConnection,

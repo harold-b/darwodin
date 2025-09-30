@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSSecureUnarchiveFromDataTransformer
 ///
-@(objc_class="NSSecureUnarchiveFromDataTransformer")
+@(objc_class="NSSecureUnarchiveFromDataTransformer", objc_superclass=ValueTransformer)
 SecureUnarchiveFromDataTransformer :: struct { using _: ValueTransformer, }
 

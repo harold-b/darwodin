@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UISceneActivationConditions
 ///
-@(objc_class="UISceneActivationConditions")
+@(objc_class="UISceneActivationConditions", objc_superclass=NS.Object)
 SceneActivationConditions :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }

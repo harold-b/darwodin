@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UICollectionView
 ///
-@(objc_class="UICollectionView")
+@(objc_class="UICollectionView", objc_superclass=ScrollView)
 CollectionView :: struct { using _: ScrollView, 
     using _: DataSourceTranslating,
 }

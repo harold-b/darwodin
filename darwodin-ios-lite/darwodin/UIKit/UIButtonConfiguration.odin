@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIButtonConfiguration
 ///
-@(objc_class="UIButtonConfiguration")
+@(objc_class="UIButtonConfiguration", objc_superclass=NS.Object)
 ButtonConfiguration :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

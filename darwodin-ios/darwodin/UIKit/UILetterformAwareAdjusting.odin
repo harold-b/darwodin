@@ -21,11 +21,11 @@ LetterformAwareAdjusting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=LetterformAwareAdjusting, objc_name="sizingRule")
-LetterformAwareAdjusting_sizingRule :: #force_inline proc "c" (self: ^LetterformAwareAdjusting) -> LetterformAwareSizingRule {
-    return msgSend(LetterformAwareSizingRule, self, "sizingRule")
-}
-@(objc_type=LetterformAwareAdjusting, objc_name="setSizingRule")
-LetterformAwareAdjusting_setSizingRule :: #force_inline proc "c" (self: ^LetterformAwareAdjusting, sizingRule: LetterformAwareSizingRule) {
-    msgSend(nil, self, "setSizingRule:", sizingRule)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LetterformAwareAdjusting, objc_selector="sizingRule", objc_name="sizingRule")
+    LetterformAwareAdjusting_sizingRule :: proc(self: ^LetterformAwareAdjusting) -> LetterformAwareSizingRule ---
+
+    @(objc_type=LetterformAwareAdjusting, objc_selector="setSizingRule:", objc_name="setSizingRule")
+    LetterformAwareAdjusting_setSizingRule :: proc(self: ^LetterformAwareAdjusting, sizingRule: LetterformAwareSizingRule) ---
 }

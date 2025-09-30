@@ -13,7 +13,7 @@ import NS "../Foundation"
 ///
 /// CAEAGLLayer
 ///
-@(objc_class="CAEAGLLayer")
+@(objc_class="CAEAGLLayer", objc_superclass=Layer)
 EAGLLayer :: struct { using _: Layer, 
     using _: EAGLDrawable,
 }

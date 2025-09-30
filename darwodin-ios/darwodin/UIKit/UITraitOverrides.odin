@@ -21,11 +21,11 @@ TraitOverrides :: struct { using _: intrinsics.objc_object,
     using _: MutableTraits,
 }
 
-@(objc_type=TraitOverrides, objc_name="containsTrait")
-TraitOverrides_containsTrait :: #force_inline proc "c" (self: ^TraitOverrides, trait: ^Class) -> bool {
-    return msgSend(bool, self, "containsTrait:", trait)
-}
-@(objc_type=TraitOverrides, objc_name="removeTrait")
-TraitOverrides_removeTrait :: #force_inline proc "c" (self: ^TraitOverrides, trait: ^Class) {
-    msgSend(nil, self, "removeTrait:", trait)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TraitOverrides, objc_selector="containsTrait:", objc_name="containsTrait")
+    TraitOverrides_containsTrait :: proc(self: ^TraitOverrides, trait: ^Class) -> bool ---
+
+    @(objc_type=TraitOverrides, objc_selector="removeTrait:", objc_name="removeTrait")
+    TraitOverrides_removeTrait :: proc(self: ^TraitOverrides, trait: ^Class) ---
 }

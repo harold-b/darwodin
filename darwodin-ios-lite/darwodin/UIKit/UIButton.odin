@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIButton
 ///
-@(objc_class="UIButton")
+@(objc_class="UIButton", objc_superclass=Control)
 Button :: struct { using _: Control, 
     using _: NS.Coding,
 }

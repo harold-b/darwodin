@@ -21,19 +21,18 @@ NavigationItemRenameDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=NavigationItemRenameDelegate, objc_name="navigationItem_didEndRenamingWithTitle")
-NavigationItemRenameDelegate_navigationItem_didEndRenamingWithTitle :: #force_inline proc "c" (self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String) {
-    msgSend(nil, self, "navigationItem:didEndRenamingWithTitle:", navigationItem, title)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NavigationItemRenameDelegate, objc_selector="navigationItem:didEndRenamingWithTitle:", objc_name="navigationItem_didEndRenamingWithTitle")
+    NavigationItemRenameDelegate_navigationItem_didEndRenamingWithTitle :: proc(self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String) ---
+
+    @(objc_type=NavigationItemRenameDelegate, objc_selector="navigationItemShouldBeginRenaming:", objc_name="navigationItemShouldBeginRenaming")
+    NavigationItemRenameDelegate_navigationItemShouldBeginRenaming :: proc(self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem) -> bool ---
+
+    @(objc_type=NavigationItemRenameDelegate, objc_selector="navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:", objc_name="navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange")
+    NavigationItemRenameDelegate_navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange :: proc(self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String, selectedRange: ^NS._NSRange) -> ^NS.String ---
+
+    @(objc_type=NavigationItemRenameDelegate, objc_selector="navigationItem:shouldEndRenamingWithTitle:", objc_name="navigationItem_shouldEndRenamingWithTitle")
+    NavigationItemRenameDelegate_navigationItem_shouldEndRenamingWithTitle :: proc(self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String) -> bool ---
 }
-@(objc_type=NavigationItemRenameDelegate, objc_name="navigationItemShouldBeginRenaming")
-NavigationItemRenameDelegate_navigationItemShouldBeginRenaming :: #force_inline proc "c" (self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem) -> bool {
-    return msgSend(bool, self, "navigationItemShouldBeginRenaming:", navigationItem)
-}
-@(objc_type=NavigationItemRenameDelegate, objc_name="navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange")
-NavigationItemRenameDelegate_navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange :: #force_inline proc "c" (self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String, selectedRange: ^NS._NSRange) -> ^NS.String {
-    return msgSend(^NS.String, self, "navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:", navigationItem, title, selectedRange)
-}
-@(objc_type=NavigationItemRenameDelegate, objc_name="navigationItem_shouldEndRenamingWithTitle")
-NavigationItemRenameDelegate_navigationItem_shouldEndRenamingWithTitle :: #force_inline proc "c" (self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String) -> bool {
-    return msgSend(bool, self, "navigationItem:shouldEndRenamingWithTitle:", navigationItem, title)
-}
+

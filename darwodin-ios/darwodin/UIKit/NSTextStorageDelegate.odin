@@ -21,11 +21,12 @@ NSTextStorageDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=NSTextStorageDelegate, objc_name="textStorage_willProcessEditing_range_changeInLength")
-NSTextStorageDelegate_textStorage_willProcessEditing_range_changeInLength :: #force_inline proc "c" (self: ^NSTextStorageDelegate, textStorage: ^NSTextStorage, editedMask: NSTextStorageEditActions, editedRange: NS._NSRange, delta: NS.Integer) {
-    msgSend(nil, self, "textStorage:willProcessEditing:range:changeInLength:", textStorage, editedMask, editedRange, delta)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NSTextStorageDelegate, objc_selector="textStorage:willProcessEditing:range:changeInLength:", objc_name="textStorage_willProcessEditing_range_changeInLength")
+    NSTextStorageDelegate_textStorage_willProcessEditing_range_changeInLength :: proc(self: ^NSTextStorageDelegate, textStorage: ^NSTextStorage, editedMask: NSTextStorageEditActions, editedRange: NS._NSRange, delta: NS.Integer) ---
+
+    @(objc_type=NSTextStorageDelegate, objc_selector="textStorage:didProcessEditing:range:changeInLength:", objc_name="textStorage_didProcessEditing_range_changeInLength")
+    NSTextStorageDelegate_textStorage_didProcessEditing_range_changeInLength :: proc(self: ^NSTextStorageDelegate, textStorage: ^NSTextStorage, editedMask: NSTextStorageEditActions, editedRange: NS._NSRange, delta: NS.Integer) ---
 }
-@(objc_type=NSTextStorageDelegate, objc_name="textStorage_didProcessEditing_range_changeInLength")
-NSTextStorageDelegate_textStorage_didProcessEditing_range_changeInLength :: #force_inline proc "c" (self: ^NSTextStorageDelegate, textStorage: ^NSTextStorage, editedMask: NSTextStorageEditActions, editedRange: NS._NSRange, delta: NS.Integer) {
-    msgSend(nil, self, "textStorage:didProcessEditing:range:changeInLength:", textStorage, editedMask, editedRange, delta)
-}
+

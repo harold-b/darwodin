@@ -16,343 +16,171 @@ import CA "../QuartzCore"
 ///
 /// UIPasteboard
 ///
-@(objc_class="UIPasteboard")
+@(objc_class="UIPasteboard", objc_superclass=NS.Object)
 Pasteboard :: struct { using _: NS.Object, }
 
-@(objc_type=Pasteboard, objc_name="init")
-Pasteboard_init :: proc "c" (self: ^Pasteboard) -> ^Pasteboard {
-    return msgSend(^Pasteboard, self, "init")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Pasteboard, objc_selector="pasteboardWithName:create:", objc_name="pasteboardWithName", objc_is_class_method=true)
+    Pasteboard_pasteboardWithName :: proc(pasteboardName: ^NS.String, create: bool) -> ^Pasteboard ---
+
+    @(objc_type=Pasteboard, objc_selector="pasteboardWithUniqueName", objc_name="pasteboardWithUniqueName", objc_is_class_method=true)
+    Pasteboard_pasteboardWithUniqueName :: proc() -> ^Pasteboard ---
+
+    @(objc_type=Pasteboard, objc_selector="removePasteboardWithName:", objc_name="removePasteboardWithName", objc_is_class_method=true)
+    Pasteboard_removePasteboardWithName :: proc(pasteboardName: ^NS.String) ---
+
+    @(objc_type=Pasteboard, objc_selector="setPersistent:", objc_name="setPersistent")
+    Pasteboard_setPersistent :: proc(self: ^Pasteboard, persistent: bool) ---
+
+    @(objc_type=Pasteboard, objc_selector="setItemProviders:localOnly:expirationDate:", objc_name="setItemProviders_localOnly_expirationDate")
+    Pasteboard_setItemProviders_localOnly_expirationDate :: proc(self: ^Pasteboard, itemProviders: ^NS.Array, localOnly: bool, expirationDate: ^NS.Date) ---
+
+    @(objc_type=Pasteboard, objc_selector="setObjects:", objc_name="setObjects_")
+    Pasteboard_setObjects_ :: proc(self: ^Pasteboard, objects: ^NS.Array) ---
+
+    @(objc_type=Pasteboard, objc_selector="setObjects:localOnly:expirationDate:", objc_name="setObjects_localOnly_expirationDate")
+    Pasteboard_setObjects_localOnly_expirationDate :: proc(self: ^Pasteboard, objects: ^NS.Array, localOnly: bool, expirationDate: ^NS.Date) ---
+
+    @(objc_type=Pasteboard, objc_selector="containsPasteboardTypes:", objc_name="containsPasteboardTypes_")
+    Pasteboard_containsPasteboardTypes_ :: proc(self: ^Pasteboard, pasteboardTypes: ^NS.Array) -> bool ---
+
+    @(objc_type=Pasteboard, objc_selector="dataForPasteboardType:", objc_name="dataForPasteboardType_")
+    Pasteboard_dataForPasteboardType_ :: proc(self: ^Pasteboard, pasteboardType: ^NS.String) -> ^NS.Data ---
+
+    @(objc_type=Pasteboard, objc_selector="valueForPasteboardType:", objc_name="valueForPasteboardType")
+    Pasteboard_valueForPasteboardType :: proc(self: ^Pasteboard, pasteboardType: ^NS.String) -> id ---
+
+    @(objc_type=Pasteboard, objc_selector="setValue:forPasteboardType:", objc_name="setValue")
+    Pasteboard_setValue :: proc(self: ^Pasteboard, value: id, pasteboardType: ^NS.String) ---
+
+    @(objc_type=Pasteboard, objc_selector="setData:forPasteboardType:", objc_name="setData")
+    Pasteboard_setData :: proc(self: ^Pasteboard, data: ^NS.Data, pasteboardType: ^NS.String) ---
+
+    @(objc_type=Pasteboard, objc_selector="pasteboardTypesForItemSet:", objc_name="pasteboardTypesForItemSet")
+    Pasteboard_pasteboardTypesForItemSet :: proc(self: ^Pasteboard, itemSet: ^NS.IndexSet) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="containsPasteboardTypes:inItemSet:", objc_name="containsPasteboardTypes_inItemSet")
+    Pasteboard_containsPasteboardTypes_inItemSet :: proc(self: ^Pasteboard, pasteboardTypes: ^NS.Array, itemSet: ^NS.IndexSet) -> bool ---
+
+    @(objc_type=Pasteboard, objc_selector="itemSetWithPasteboardTypes:", objc_name="itemSetWithPasteboardTypes")
+    Pasteboard_itemSetWithPasteboardTypes :: proc(self: ^Pasteboard, pasteboardTypes: ^NS.Array) -> ^NS.IndexSet ---
+
+    @(objc_type=Pasteboard, objc_selector="valuesForPasteboardType:inItemSet:", objc_name="valuesForPasteboardType")
+    Pasteboard_valuesForPasteboardType :: proc(self: ^Pasteboard, pasteboardType: ^NS.String, itemSet: ^NS.IndexSet) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="dataForPasteboardType:inItemSet:", objc_name="dataForPasteboardType_inItemSet")
+    Pasteboard_dataForPasteboardType_inItemSet :: proc(self: ^Pasteboard, pasteboardType: ^NS.String, itemSet: ^NS.IndexSet) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="addItems:", objc_name="addItems")
+    Pasteboard_addItems :: proc(self: ^Pasteboard, items: ^NS.Array) ---
+
+    @(objc_type=Pasteboard, objc_selector="setItems:options:", objc_name="setItems_options")
+    Pasteboard_setItems_options :: proc(self: ^Pasteboard, items: ^NS.Array, options: ^NS.Dictionary) ---
+
+    @(objc_type=Pasteboard, objc_selector="detectPatternsForPatterns:completionHandler:", objc_name="detectPatternsForPatterns_completionHandler")
+    Pasteboard_detectPatternsForPatterns_completionHandler :: proc(self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Set, _1: ^NS.Error))) ---
+
+    @(objc_type=Pasteboard, objc_selector="detectPatternsForPatterns:inItemSet:completionHandler:", objc_name="detectPatternsForPatterns_inItemSet_completionHandler")
+    Pasteboard_detectPatternsForPatterns_inItemSet_completionHandler :: proc(self: ^Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+
+    @(objc_type=Pasteboard, objc_selector="detectValuesForPatterns:completionHandler:", objc_name="detectValuesForPatterns_completionHandler")
+    Pasteboard_detectValuesForPatterns_completionHandler :: proc(self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Dictionary, _1: ^NS.Error))) ---
+
+    @(objc_type=Pasteboard, objc_selector="detectValuesForPatterns:inItemSet:completionHandler:", objc_name="detectValuesForPatterns_inItemSet_completionHandler")
+    Pasteboard_detectValuesForPatterns_inItemSet_completionHandler :: proc(self: ^Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+
+    @(objc_type=Pasteboard, objc_selector="generalPasteboard", objc_name="generalPasteboard", objc_is_class_method=true)
+    Pasteboard_generalPasteboard :: proc() -> ^Pasteboard ---
+
+    @(objc_type=Pasteboard, objc_selector="name", objc_name="name")
+    Pasteboard_name :: proc(self: ^Pasteboard) -> ^NS.String ---
+
+    @(objc_type=Pasteboard, objc_selector="isPersistent", objc_name="isPersistent")
+    Pasteboard_isPersistent :: proc(self: ^Pasteboard) -> bool ---
+
+    @(objc_type=Pasteboard, objc_selector="changeCount", objc_name="changeCount")
+    Pasteboard_changeCount :: proc(self: ^Pasteboard) -> NS.Integer ---
+
+    @(objc_type=Pasteboard, objc_selector="itemProviders", objc_name="itemProviders")
+    Pasteboard_itemProviders :: proc(self: ^Pasteboard) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="setItemProviders:", objc_name="setItemProviders_")
+    Pasteboard_setItemProviders_ :: proc(self: ^Pasteboard, itemProviders: ^NS.Array) ---
+
+    @(objc_type=Pasteboard, objc_selector="pasteboardTypes", objc_name="pasteboardTypes")
+    Pasteboard_pasteboardTypes :: proc(self: ^Pasteboard) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="numberOfItems", objc_name="numberOfItems")
+    Pasteboard_numberOfItems :: proc(self: ^Pasteboard) -> NS.Integer ---
+
+    @(objc_type=Pasteboard, objc_selector="items", objc_name="items")
+    Pasteboard_items :: proc(self: ^Pasteboard) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="setItems:", objc_name="setItems_")
+    Pasteboard_setItems_ :: proc(self: ^Pasteboard, items: ^NS.Array) ---
+
+    @(objc_type=Pasteboard, objc_selector="string", objc_name="string")
+    Pasteboard_string :: proc(self: ^Pasteboard) -> ^NS.String ---
+
+    @(objc_type=Pasteboard, objc_selector="setString:", objc_name="setString")
+    Pasteboard_setString :: proc(self: ^Pasteboard, string: ^NS.String) ---
+
+    @(objc_type=Pasteboard, objc_selector="strings", objc_name="strings")
+    Pasteboard_strings :: proc(self: ^Pasteboard) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="setStrings:", objc_name="setStrings")
+    Pasteboard_setStrings :: proc(self: ^Pasteboard, strings: ^NS.Array) ---
+
+    @(objc_type=Pasteboard, objc_selector="URL", objc_name="URL")
+    Pasteboard_URL :: proc(self: ^Pasteboard) -> ^NS.URL ---
+
+    @(objc_type=Pasteboard, objc_selector="setURL:", objc_name="setURL")
+    Pasteboard_setURL :: proc(self: ^Pasteboard, _URL: ^NS.URL) ---
+
+    @(objc_type=Pasteboard, objc_selector="URLs", objc_name="URLs")
+    Pasteboard_URLs :: proc(self: ^Pasteboard) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="setURLs:", objc_name="setURLs")
+    Pasteboard_setURLs :: proc(self: ^Pasteboard, URLs: ^NS.Array) ---
+
+    @(objc_type=Pasteboard, objc_selector="image", objc_name="image")
+    Pasteboard_image :: proc(self: ^Pasteboard) -> ^Image ---
+
+    @(objc_type=Pasteboard, objc_selector="setImage:", objc_name="setImage")
+    Pasteboard_setImage :: proc(self: ^Pasteboard, image: ^Image) ---
+
+    @(objc_type=Pasteboard, objc_selector="images", objc_name="images")
+    Pasteboard_images :: proc(self: ^Pasteboard) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="setImages:", objc_name="setImages")
+    Pasteboard_setImages :: proc(self: ^Pasteboard, images: ^NS.Array) ---
+
+    @(objc_type=Pasteboard, objc_selector="color", objc_name="color")
+    Pasteboard_color :: proc(self: ^Pasteboard) -> ^Color ---
+
+    @(objc_type=Pasteboard, objc_selector="setColor:", objc_name="setColor")
+    Pasteboard_setColor :: proc(self: ^Pasteboard, color: ^Color) ---
+
+    @(objc_type=Pasteboard, objc_selector="colors", objc_name="colors")
+    Pasteboard_colors :: proc(self: ^Pasteboard) -> ^NS.Array ---
+
+    @(objc_type=Pasteboard, objc_selector="setColors:", objc_name="setColors")
+    Pasteboard_setColors :: proc(self: ^Pasteboard, colors: ^NS.Array) ---
+
+    @(objc_type=Pasteboard, objc_selector="hasStrings", objc_name="hasStrings")
+    Pasteboard_hasStrings :: proc(self: ^Pasteboard) -> bool ---
+
+    @(objc_type=Pasteboard, objc_selector="hasURLs", objc_name="hasURLs")
+    Pasteboard_hasURLs :: proc(self: ^Pasteboard) -> bool ---
+
+    @(objc_type=Pasteboard, objc_selector="hasImages", objc_name="hasImages")
+    Pasteboard_hasImages :: proc(self: ^Pasteboard) -> bool ---
+
+    @(objc_type=Pasteboard, objc_selector="hasColors", objc_name="hasColors")
+    Pasteboard_hasColors :: proc(self: ^Pasteboard) -> bool ---
 }
 
-
-@(objc_type=Pasteboard, objc_name="pasteboardWithName", objc_is_class_method=true)
-Pasteboard_pasteboardWithName :: #force_inline proc "c" (pasteboardName: ^NS.String, create: bool) -> ^Pasteboard {
-    return msgSend(^Pasteboard, Pasteboard, "pasteboardWithName:create:", pasteboardName, create)
-}
-@(objc_type=Pasteboard, objc_name="pasteboardWithUniqueName", objc_is_class_method=true)
-Pasteboard_pasteboardWithUniqueName :: #force_inline proc "c" () -> ^Pasteboard {
-    return msgSend(^Pasteboard, Pasteboard, "pasteboardWithUniqueName")
-}
-@(objc_type=Pasteboard, objc_name="removePasteboardWithName", objc_is_class_method=true)
-Pasteboard_removePasteboardWithName :: #force_inline proc "c" (pasteboardName: ^NS.String) {
-    msgSend(nil, Pasteboard, "removePasteboardWithName:", pasteboardName)
-}
-@(objc_type=Pasteboard, objc_name="setPersistent")
-Pasteboard_setPersistent :: #force_inline proc "c" (self: ^Pasteboard, persistent: bool) {
-    msgSend(nil, self, "setPersistent:", persistent)
-}
-@(objc_type=Pasteboard, objc_name="setItemProviders_localOnly_expirationDate")
-Pasteboard_setItemProviders_localOnly_expirationDate :: #force_inline proc "c" (self: ^Pasteboard, itemProviders: ^NS.Array, localOnly: bool, expirationDate: ^NS.Date) {
-    msgSend(nil, self, "setItemProviders:localOnly:expirationDate:", itemProviders, localOnly, expirationDate)
-}
-@(objc_type=Pasteboard, objc_name="setObjects_")
-Pasteboard_setObjects_ :: #force_inline proc "c" (self: ^Pasteboard, objects: ^NS.Array) {
-    msgSend(nil, self, "setObjects:", objects)
-}
-@(objc_type=Pasteboard, objc_name="setObjects_localOnly_expirationDate")
-Pasteboard_setObjects_localOnly_expirationDate :: #force_inline proc "c" (self: ^Pasteboard, objects: ^NS.Array, localOnly: bool, expirationDate: ^NS.Date) {
-    msgSend(nil, self, "setObjects:localOnly:expirationDate:", objects, localOnly, expirationDate)
-}
-@(objc_type=Pasteboard, objc_name="containsPasteboardTypes_")
-Pasteboard_containsPasteboardTypes_ :: #force_inline proc "c" (self: ^Pasteboard, pasteboardTypes: ^NS.Array) -> bool {
-    return msgSend(bool, self, "containsPasteboardTypes:", pasteboardTypes)
-}
-@(objc_type=Pasteboard, objc_name="dataForPasteboardType_")
-Pasteboard_dataForPasteboardType_ :: #force_inline proc "c" (self: ^Pasteboard, pasteboardType: ^NS.String) -> ^NS.Data {
-    return msgSend(^NS.Data, self, "dataForPasteboardType:", pasteboardType)
-}
-@(objc_type=Pasteboard, objc_name="valueForPasteboardType")
-Pasteboard_valueForPasteboardType :: #force_inline proc "c" (self: ^Pasteboard, pasteboardType: ^NS.String) -> id {
-    return msgSend(id, self, "valueForPasteboardType:", pasteboardType)
-}
-@(objc_type=Pasteboard, objc_name="setValue")
-Pasteboard_setValue :: #force_inline proc "c" (self: ^Pasteboard, value: id, pasteboardType: ^NS.String) {
-    msgSend(nil, self, "setValue:forPasteboardType:", value, pasteboardType)
-}
-@(objc_type=Pasteboard, objc_name="setData")
-Pasteboard_setData :: #force_inline proc "c" (self: ^Pasteboard, data: ^NS.Data, pasteboardType: ^NS.String) {
-    msgSend(nil, self, "setData:forPasteboardType:", data, pasteboardType)
-}
-@(objc_type=Pasteboard, objc_name="pasteboardTypesForItemSet")
-Pasteboard_pasteboardTypesForItemSet :: #force_inline proc "c" (self: ^Pasteboard, itemSet: ^NS.IndexSet) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "pasteboardTypesForItemSet:", itemSet)
-}
-@(objc_type=Pasteboard, objc_name="containsPasteboardTypes_inItemSet")
-Pasteboard_containsPasteboardTypes_inItemSet :: #force_inline proc "c" (self: ^Pasteboard, pasteboardTypes: ^NS.Array, itemSet: ^NS.IndexSet) -> bool {
-    return msgSend(bool, self, "containsPasteboardTypes:inItemSet:", pasteboardTypes, itemSet)
-}
-@(objc_type=Pasteboard, objc_name="itemSetWithPasteboardTypes")
-Pasteboard_itemSetWithPasteboardTypes :: #force_inline proc "c" (self: ^Pasteboard, pasteboardTypes: ^NS.Array) -> ^NS.IndexSet {
-    return msgSend(^NS.IndexSet, self, "itemSetWithPasteboardTypes:", pasteboardTypes)
-}
-@(objc_type=Pasteboard, objc_name="valuesForPasteboardType")
-Pasteboard_valuesForPasteboardType :: #force_inline proc "c" (self: ^Pasteboard, pasteboardType: ^NS.String, itemSet: ^NS.IndexSet) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "valuesForPasteboardType:inItemSet:", pasteboardType, itemSet)
-}
-@(objc_type=Pasteboard, objc_name="dataForPasteboardType_inItemSet")
-Pasteboard_dataForPasteboardType_inItemSet :: #force_inline proc "c" (self: ^Pasteboard, pasteboardType: ^NS.String, itemSet: ^NS.IndexSet) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "dataForPasteboardType:inItemSet:", pasteboardType, itemSet)
-}
-@(objc_type=Pasteboard, objc_name="addItems")
-Pasteboard_addItems :: #force_inline proc "c" (self: ^Pasteboard, items: ^NS.Array) {
-    msgSend(nil, self, "addItems:", items)
-}
-@(objc_type=Pasteboard, objc_name="setItems_options")
-Pasteboard_setItems_options :: #force_inline proc "c" (self: ^Pasteboard, items: ^NS.Array, options: ^NS.Dictionary) {
-    msgSend(nil, self, "setItems:options:", items, options)
-}
-@(objc_type=Pasteboard, objc_name="detectPatternsForPatterns_completionHandler")
-Pasteboard_detectPatternsForPatterns_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Set, _1: ^NS.Error))) {
-    msgSend(nil, self, "detectPatternsForPatterns:completionHandler:", patterns, completionHandler)
-}
-@(objc_type=Pasteboard, objc_name="detectPatternsForPatterns_inItemSet_completionHandler")
-Pasteboard_detectPatternsForPatterns_inItemSet_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) {
-    msgSend(nil, self, "detectPatternsForPatterns:inItemSet:completionHandler:", patterns, itemSet, completionHandler)
-}
-@(objc_type=Pasteboard, objc_name="detectValuesForPatterns_completionHandler")
-Pasteboard_detectValuesForPatterns_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Dictionary, _1: ^NS.Error))) {
-    msgSend(nil, self, "detectValuesForPatterns:completionHandler:", patterns, completionHandler)
-}
-@(objc_type=Pasteboard, objc_name="detectValuesForPatterns_inItemSet_completionHandler")
-Pasteboard_detectValuesForPatterns_inItemSet_completionHandler :: #force_inline proc "c" (self: ^Pasteboard, patterns: ^NS.Set, itemSet: ^NS.IndexSet, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) {
-    msgSend(nil, self, "detectValuesForPatterns:inItemSet:completionHandler:", patterns, itemSet, completionHandler)
-}
-@(objc_type=Pasteboard, objc_name="generalPasteboard", objc_is_class_method=true)
-Pasteboard_generalPasteboard :: #force_inline proc "c" () -> ^Pasteboard {
-    return msgSend(^Pasteboard, Pasteboard, "generalPasteboard")
-}
-@(objc_type=Pasteboard, objc_name="name")
-Pasteboard_name :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
-}
-@(objc_type=Pasteboard, objc_name="isPersistent")
-Pasteboard_isPersistent :: #force_inline proc "c" (self: ^Pasteboard) -> bool {
-    return msgSend(bool, self, "isPersistent")
-}
-@(objc_type=Pasteboard, objc_name="changeCount")
-Pasteboard_changeCount :: #force_inline proc "c" (self: ^Pasteboard) -> NS.Integer {
-    return msgSend(NS.Integer, self, "changeCount")
-}
-@(objc_type=Pasteboard, objc_name="itemProviders")
-Pasteboard_itemProviders :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "itemProviders")
-}
-@(objc_type=Pasteboard, objc_name="setItemProviders_")
-Pasteboard_setItemProviders_ :: #force_inline proc "c" (self: ^Pasteboard, itemProviders: ^NS.Array) {
-    msgSend(nil, self, "setItemProviders:", itemProviders)
-}
-@(objc_type=Pasteboard, objc_name="pasteboardTypes")
-Pasteboard_pasteboardTypes :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "pasteboardTypes")
-}
-@(objc_type=Pasteboard, objc_name="numberOfItems")
-Pasteboard_numberOfItems :: #force_inline proc "c" (self: ^Pasteboard) -> NS.Integer {
-    return msgSend(NS.Integer, self, "numberOfItems")
-}
-@(objc_type=Pasteboard, objc_name="items")
-Pasteboard_items :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "items")
-}
-@(objc_type=Pasteboard, objc_name="setItems_")
-Pasteboard_setItems_ :: #force_inline proc "c" (self: ^Pasteboard, items: ^NS.Array) {
-    msgSend(nil, self, "setItems:", items)
-}
-@(objc_type=Pasteboard, objc_name="string")
-Pasteboard_string :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.String {
-    return msgSend(^NS.String, self, "string")
-}
-@(objc_type=Pasteboard, objc_name="setString")
-Pasteboard_setString :: #force_inline proc "c" (self: ^Pasteboard, string: ^NS.String) {
-    msgSend(nil, self, "setString:", string)
-}
-@(objc_type=Pasteboard, objc_name="strings")
-Pasteboard_strings :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "strings")
-}
-@(objc_type=Pasteboard, objc_name="setStrings")
-Pasteboard_setStrings :: #force_inline proc "c" (self: ^Pasteboard, strings: ^NS.Array) {
-    msgSend(nil, self, "setStrings:", strings)
-}
-@(objc_type=Pasteboard, objc_name="URL")
-Pasteboard_URL :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.URL {
-    return msgSend(^NS.URL, self, "URL")
-}
-@(objc_type=Pasteboard, objc_name="setURL")
-Pasteboard_setURL :: #force_inline proc "c" (self: ^Pasteboard, _URL: ^NS.URL) {
-    msgSend(nil, self, "setURL:", _URL)
-}
-@(objc_type=Pasteboard, objc_name="URLs")
-Pasteboard_URLs :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "URLs")
-}
-@(objc_type=Pasteboard, objc_name="setURLs")
-Pasteboard_setURLs :: #force_inline proc "c" (self: ^Pasteboard, URLs: ^NS.Array) {
-    msgSend(nil, self, "setURLs:", URLs)
-}
-@(objc_type=Pasteboard, objc_name="image")
-Pasteboard_image :: #force_inline proc "c" (self: ^Pasteboard) -> ^Image {
-    return msgSend(^Image, self, "image")
-}
-@(objc_type=Pasteboard, objc_name="setImage")
-Pasteboard_setImage :: #force_inline proc "c" (self: ^Pasteboard, image: ^Image) {
-    msgSend(nil, self, "setImage:", image)
-}
-@(objc_type=Pasteboard, objc_name="images")
-Pasteboard_images :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "images")
-}
-@(objc_type=Pasteboard, objc_name="setImages")
-Pasteboard_setImages :: #force_inline proc "c" (self: ^Pasteboard, images: ^NS.Array) {
-    msgSend(nil, self, "setImages:", images)
-}
-@(objc_type=Pasteboard, objc_name="color")
-Pasteboard_color :: #force_inline proc "c" (self: ^Pasteboard) -> ^Color {
-    return msgSend(^Color, self, "color")
-}
-@(objc_type=Pasteboard, objc_name="setColor")
-Pasteboard_setColor :: #force_inline proc "c" (self: ^Pasteboard, color: ^Color) {
-    msgSend(nil, self, "setColor:", color)
-}
-@(objc_type=Pasteboard, objc_name="colors")
-Pasteboard_colors :: #force_inline proc "c" (self: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "colors")
-}
-@(objc_type=Pasteboard, objc_name="setColors")
-Pasteboard_setColors :: #force_inline proc "c" (self: ^Pasteboard, colors: ^NS.Array) {
-    msgSend(nil, self, "setColors:", colors)
-}
-@(objc_type=Pasteboard, objc_name="hasStrings")
-Pasteboard_hasStrings :: #force_inline proc "c" (self: ^Pasteboard) -> bool {
-    return msgSend(bool, self, "hasStrings")
-}
-@(objc_type=Pasteboard, objc_name="hasURLs")
-Pasteboard_hasURLs :: #force_inline proc "c" (self: ^Pasteboard) -> bool {
-    return msgSend(bool, self, "hasURLs")
-}
-@(objc_type=Pasteboard, objc_name="hasImages")
-Pasteboard_hasImages :: #force_inline proc "c" (self: ^Pasteboard) -> bool {
-    return msgSend(bool, self, "hasImages")
-}
-@(objc_type=Pasteboard, objc_name="hasColors")
-Pasteboard_hasColors :: #force_inline proc "c" (self: ^Pasteboard) -> bool {
-    return msgSend(bool, self, "hasColors")
-}
-@(objc_type=Pasteboard, objc_name="load", objc_is_class_method=true)
-Pasteboard_load :: #force_inline proc "c" () {
-    msgSend(nil, Pasteboard, "load")
-}
-@(objc_type=Pasteboard, objc_name="initialize", objc_is_class_method=true)
-Pasteboard_initialize :: #force_inline proc "c" () {
-    msgSend(nil, Pasteboard, "initialize")
-}
-@(objc_type=Pasteboard, objc_name="new", objc_is_class_method=true)
-Pasteboard_new :: #force_inline proc "c" () -> ^Pasteboard {
-    return msgSend(^Pasteboard, Pasteboard, "new")
-}
-@(objc_type=Pasteboard, objc_name="allocWithZone", objc_is_class_method=true)
-Pasteboard_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^Pasteboard {
-    return msgSend(^Pasteboard, Pasteboard, "allocWithZone:", zone)
-}
-@(objc_type=Pasteboard, objc_name="alloc", objc_is_class_method=true)
-Pasteboard_alloc :: #force_inline proc "c" () -> ^Pasteboard {
-    return msgSend(^Pasteboard, Pasteboard, "alloc")
-}
-@(objc_type=Pasteboard, objc_name="copyWithZone", objc_is_class_method=true)
-Pasteboard_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, Pasteboard, "copyWithZone:", zone)
-}
-@(objc_type=Pasteboard, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-Pasteboard_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, Pasteboard, "mutableCopyWithZone:", zone)
-}
-@(objc_type=Pasteboard, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Pasteboard_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, Pasteboard, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=Pasteboard, objc_name="conformsToProtocol", objc_is_class_method=true)
-Pasteboard_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, Pasteboard, "conformsToProtocol:", protocol)
-}
-@(objc_type=Pasteboard, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Pasteboard_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, Pasteboard, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=Pasteboard, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-Pasteboard_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, Pasteboard, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=Pasteboard, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Pasteboard_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, Pasteboard, "isSubclassOfClass:", aClass)
-}
-@(objc_type=Pasteboard, objc_name="resolveClassMethod", objc_is_class_method=true)
-Pasteboard_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, Pasteboard, "resolveClassMethod:", sel)
-}
-@(objc_type=Pasteboard, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Pasteboard_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, Pasteboard, "resolveInstanceMethod:", sel)
-}
-@(objc_type=Pasteboard, objc_name="hash", objc_is_class_method=true)
-Pasteboard_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, Pasteboard, "hash")
-}
-@(objc_type=Pasteboard, objc_name="superclass", objc_is_class_method=true)
-Pasteboard_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Pasteboard, "superclass")
-}
-@(objc_type=Pasteboard, objc_name="class", objc_is_class_method=true)
-Pasteboard_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Pasteboard, "class")
-}
-@(objc_type=Pasteboard, objc_name="description", objc_is_class_method=true)
-Pasteboard_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, Pasteboard, "description")
-}
-@(objc_type=Pasteboard, objc_name="debugDescription", objc_is_class_method=true)
-Pasteboard_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, Pasteboard, "debugDescription")
-}
-@(objc_type=Pasteboard, objc_name="version", objc_is_class_method=true)
-Pasteboard_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, Pasteboard, "version")
-}
-@(objc_type=Pasteboard, objc_name="setVersion", objc_is_class_method=true)
-Pasteboard_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, Pasteboard, "setVersion:", aVersion)
-}
-@(objc_type=Pasteboard, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-Pasteboard_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, Pasteboard, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=Pasteboard, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-Pasteboard_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, Pasteboard, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=Pasteboard, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Pasteboard_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, Pasteboard, "accessInstanceVariablesDirectly")
-}
-@(objc_type=Pasteboard, objc_name="useStoredAccessor", objc_is_class_method=true)
-Pasteboard_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, Pasteboard, "useStoredAccessor")
-}
-@(objc_type=Pasteboard, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-Pasteboard_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, Pasteboard, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=Pasteboard, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Pasteboard_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, Pasteboard, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=Pasteboard, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-Pasteboard_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, Pasteboard, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=Pasteboard, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-Pasteboard_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Pasteboard, "classForKeyedUnarchiver")
-}
 @(objc_type=Pasteboard, objc_name="setObjects")
 Pasteboard_setObjects :: proc {
     Pasteboard_setObjects_,
@@ -393,11 +221,5 @@ Pasteboard_setItemProviders :: proc {
 Pasteboard_setItems :: proc {
     Pasteboard_setItems_options,
     Pasteboard_setItems_,
-}
-
-@(objc_type=Pasteboard, objc_name="cancelPreviousPerformRequestsWithTarget")
-Pasteboard_cancelPreviousPerformRequestsWithTarget :: proc {
-    Pasteboard_cancelPreviousPerformRequestsWithTarget_selector_object,
-    Pasteboard_cancelPreviousPerformRequestsWithTarget_,
 }
 

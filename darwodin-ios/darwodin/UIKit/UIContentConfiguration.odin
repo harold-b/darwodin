@@ -22,11 +22,11 @@ ContentConfiguration :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
-@(objc_type=ContentConfiguration, objc_name="makeContentView")
-ContentConfiguration_makeContentView :: #force_inline proc "c" (self: ^ContentConfiguration) -> ^View {
-    return msgSend(^View, self, "makeContentView")
-}
-@(objc_type=ContentConfiguration, objc_name="updatedConfigurationForState")
-ContentConfiguration_updatedConfigurationForState :: #force_inline proc "c" (self: ^ContentConfiguration, state: ^ConfigurationState) -> ^ContentConfiguration {
-    return msgSend(^ContentConfiguration, self, "updatedConfigurationForState:", state)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ContentConfiguration, objc_selector="makeContentView", objc_name="makeContentView")
+    ContentConfiguration_makeContentView :: proc(self: ^ContentConfiguration) -> ^View ---
+
+    @(objc_type=ContentConfiguration, objc_selector="updatedConfigurationForState:", objc_name="updatedConfigurationForState")
+    ContentConfiguration_updatedConfigurationForState :: proc(self: ^ContentConfiguration, state: ^ConfigurationState) -> ^ContentConfiguration ---
 }

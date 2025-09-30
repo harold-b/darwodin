@@ -21,19 +21,18 @@ EditMenuInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=EditMenuInteractionDelegate, objc_name="editMenuInteraction_menuForConfiguration_suggestedActions")
-EditMenuInteractionDelegate_editMenuInteraction_menuForConfiguration_suggestedActions :: #force_inline proc "c" (self: ^EditMenuInteractionDelegate, interaction: ^EditMenuInteraction, configuration: ^EditMenuConfiguration, suggestedActions: ^NS.Array) -> ^Menu {
-    return msgSend(^Menu, self, "editMenuInteraction:menuForConfiguration:suggestedActions:", interaction, configuration, suggestedActions)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=EditMenuInteractionDelegate, objc_selector="editMenuInteraction:menuForConfiguration:suggestedActions:", objc_name="editMenuInteraction_menuForConfiguration_suggestedActions")
+    EditMenuInteractionDelegate_editMenuInteraction_menuForConfiguration_suggestedActions :: proc(self: ^EditMenuInteractionDelegate, interaction: ^EditMenuInteraction, configuration: ^EditMenuConfiguration, suggestedActions: ^NS.Array) -> ^Menu ---
+
+    @(objc_type=EditMenuInteractionDelegate, objc_selector="editMenuInteraction:targetRectForConfiguration:", objc_name="editMenuInteraction_targetRectForConfiguration")
+    EditMenuInteractionDelegate_editMenuInteraction_targetRectForConfiguration :: proc(self: ^EditMenuInteractionDelegate, interaction: ^EditMenuInteraction, configuration: ^EditMenuConfiguration) -> CG.Rect ---
+
+    @(objc_type=EditMenuInteractionDelegate, objc_selector="editMenuInteraction:willPresentMenuForConfiguration:animator:", objc_name="editMenuInteraction_willPresentMenuForConfiguration_animator")
+    EditMenuInteractionDelegate_editMenuInteraction_willPresentMenuForConfiguration_animator :: proc(self: ^EditMenuInteractionDelegate, interaction: ^EditMenuInteraction, configuration: ^EditMenuConfiguration, animator: ^EditMenuInteractionAnimating) ---
+
+    @(objc_type=EditMenuInteractionDelegate, objc_selector="editMenuInteraction:willDismissMenuForConfiguration:animator:", objc_name="editMenuInteraction_willDismissMenuForConfiguration_animator")
+    EditMenuInteractionDelegate_editMenuInteraction_willDismissMenuForConfiguration_animator :: proc(self: ^EditMenuInteractionDelegate, interaction: ^EditMenuInteraction, configuration: ^EditMenuConfiguration, animator: ^EditMenuInteractionAnimating) ---
 }
-@(objc_type=EditMenuInteractionDelegate, objc_name="editMenuInteraction_targetRectForConfiguration")
-EditMenuInteractionDelegate_editMenuInteraction_targetRectForConfiguration :: #force_inline proc "c" (self: ^EditMenuInteractionDelegate, interaction: ^EditMenuInteraction, configuration: ^EditMenuConfiguration) -> CG.Rect {
-    return msgSend(CG.Rect, self, "editMenuInteraction:targetRectForConfiguration:", interaction, configuration)
-}
-@(objc_type=EditMenuInteractionDelegate, objc_name="editMenuInteraction_willPresentMenuForConfiguration_animator")
-EditMenuInteractionDelegate_editMenuInteraction_willPresentMenuForConfiguration_animator :: #force_inline proc "c" (self: ^EditMenuInteractionDelegate, interaction: ^EditMenuInteraction, configuration: ^EditMenuConfiguration, animator: ^EditMenuInteractionAnimating) {
-    msgSend(nil, self, "editMenuInteraction:willPresentMenuForConfiguration:animator:", interaction, configuration, animator)
-}
-@(objc_type=EditMenuInteractionDelegate, objc_name="editMenuInteraction_willDismissMenuForConfiguration_animator")
-EditMenuInteractionDelegate_editMenuInteraction_willDismissMenuForConfiguration_animator :: #force_inline proc "c" (self: ^EditMenuInteractionDelegate, interaction: ^EditMenuInteraction, configuration: ^EditMenuConfiguration, animator: ^EditMenuInteractionAnimating) {
-    msgSend(nil, self, "editMenuInteraction:willDismissMenuForConfiguration:animator:", interaction, configuration, animator)
-}
+

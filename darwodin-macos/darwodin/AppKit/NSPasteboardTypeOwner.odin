@@ -21,11 +21,11 @@ PasteboardTypeOwner :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PasteboardTypeOwner, objc_name="pasteboard")
-PasteboardTypeOwner_pasteboard :: #force_inline proc "c" (self: ^PasteboardTypeOwner, sender: ^Pasteboard, type: ^NS.String) {
-    msgSend(nil, self, "pasteboard:provideDataForType:", sender, type)
-}
-@(objc_type=PasteboardTypeOwner, objc_name="pasteboardChangedOwner")
-PasteboardTypeOwner_pasteboardChangedOwner :: #force_inline proc "c" (self: ^PasteboardTypeOwner, sender: ^Pasteboard) {
-    msgSend(nil, self, "pasteboardChangedOwner:", sender)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PasteboardTypeOwner, objc_selector="pasteboard:provideDataForType:", objc_name="pasteboard")
+    PasteboardTypeOwner_pasteboard :: proc(self: ^PasteboardTypeOwner, sender: ^Pasteboard, type: ^NS.String) ---
+
+    @(objc_type=PasteboardTypeOwner, objc_selector="pasteboardChangedOwner:", objc_name="pasteboardChangedOwner")
+    PasteboardTypeOwner_pasteboardChangedOwner :: proc(self: ^PasteboardTypeOwner, sender: ^Pasteboard) ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSCustomImageRep
 ///
-@(objc_class="NSCustomImageRep")
+@(objc_class="NSCustomImageRep", objc_superclass=ImageRep)
 CustomImageRep :: struct { using _: ImageRep, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDeferredMenuElement
 ///
-@(objc_class="UIDeferredMenuElement")
+@(objc_class="UIDeferredMenuElement", objc_superclass=MenuElement)
 DeferredMenuElement :: struct { using _: MenuElement, }
 

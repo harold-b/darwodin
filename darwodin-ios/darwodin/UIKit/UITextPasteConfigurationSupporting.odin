@@ -21,11 +21,11 @@ TextPasteConfigurationSupporting :: struct { using _: intrinsics.objc_object,
     using _: PasteConfigurationSupporting,
 }
 
-@(objc_type=TextPasteConfigurationSupporting, objc_name="pasteDelegate")
-TextPasteConfigurationSupporting_pasteDelegate :: #force_inline proc "c" (self: ^TextPasteConfigurationSupporting) -> ^TextPasteDelegate {
-    return msgSend(^TextPasteDelegate, self, "pasteDelegate")
-}
-@(objc_type=TextPasteConfigurationSupporting, objc_name="setPasteDelegate")
-TextPasteConfigurationSupporting_setPasteDelegate :: #force_inline proc "c" (self: ^TextPasteConfigurationSupporting, pasteDelegate: ^TextPasteDelegate) {
-    msgSend(nil, self, "setPasteDelegate:", pasteDelegate)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextPasteConfigurationSupporting, objc_selector="pasteDelegate", objc_name="pasteDelegate")
+    TextPasteConfigurationSupporting_pasteDelegate :: proc(self: ^TextPasteConfigurationSupporting) -> ^TextPasteDelegate ---
+
+    @(objc_type=TextPasteConfigurationSupporting, objc_selector="setPasteDelegate:", objc_name="setPasteDelegate")
+    TextPasteConfigurationSupporting_setPasteDelegate :: proc(self: ^TextPasteConfigurationSupporting, pasteDelegate: ^TextPasteDelegate) ---
 }

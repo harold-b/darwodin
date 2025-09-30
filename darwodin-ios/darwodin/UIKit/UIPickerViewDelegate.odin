@@ -21,27 +21,24 @@ PickerViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PickerViewDelegate, objc_name="pickerView_widthForComponent")
-PickerViewDelegate_pickerView_widthForComponent :: #force_inline proc "c" (self: ^PickerViewDelegate, pickerView: ^PickerView, component: NS.Integer) -> CG.Float {
-    return msgSend(CG.Float, self, "pickerView:widthForComponent:", pickerView, component)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PickerViewDelegate, objc_selector="pickerView:widthForComponent:", objc_name="pickerView_widthForComponent")
+    PickerViewDelegate_pickerView_widthForComponent :: proc(self: ^PickerViewDelegate, pickerView: ^PickerView, component: NS.Integer) -> CG.Float ---
+
+    @(objc_type=PickerViewDelegate, objc_selector="pickerView:rowHeightForComponent:", objc_name="pickerView_rowHeightForComponent")
+    PickerViewDelegate_pickerView_rowHeightForComponent :: proc(self: ^PickerViewDelegate, pickerView: ^PickerView, component: NS.Integer) -> CG.Float ---
+
+    @(objc_type=PickerViewDelegate, objc_selector="pickerView:titleForRow:forComponent:", objc_name="pickerView_titleForRow_forComponent")
+    PickerViewDelegate_pickerView_titleForRow_forComponent :: proc(self: ^PickerViewDelegate, pickerView: ^PickerView, row: NS.Integer, component: NS.Integer) -> ^NS.String ---
+
+    @(objc_type=PickerViewDelegate, objc_selector="pickerView:attributedTitleForRow:forComponent:", objc_name="pickerView_attributedTitleForRow_forComponent")
+    PickerViewDelegate_pickerView_attributedTitleForRow_forComponent :: proc(self: ^PickerViewDelegate, pickerView: ^PickerView, row: NS.Integer, component: NS.Integer) -> ^NS.AttributedString ---
+
+    @(objc_type=PickerViewDelegate, objc_selector="pickerView:viewForRow:forComponent:reusingView:", objc_name="pickerView_viewForRow_forComponent_reusingView")
+    PickerViewDelegate_pickerView_viewForRow_forComponent_reusingView :: proc(self: ^PickerViewDelegate, pickerView: ^PickerView, row: NS.Integer, component: NS.Integer, view: ^View) -> ^View ---
+
+    @(objc_type=PickerViewDelegate, objc_selector="pickerView:didSelectRow:inComponent:", objc_name="pickerView_didSelectRow_inComponent")
+    PickerViewDelegate_pickerView_didSelectRow_inComponent :: proc(self: ^PickerViewDelegate, pickerView: ^PickerView, row: NS.Integer, component: NS.Integer) ---
 }
-@(objc_type=PickerViewDelegate, objc_name="pickerView_rowHeightForComponent")
-PickerViewDelegate_pickerView_rowHeightForComponent :: #force_inline proc "c" (self: ^PickerViewDelegate, pickerView: ^PickerView, component: NS.Integer) -> CG.Float {
-    return msgSend(CG.Float, self, "pickerView:rowHeightForComponent:", pickerView, component)
-}
-@(objc_type=PickerViewDelegate, objc_name="pickerView_titleForRow_forComponent")
-PickerViewDelegate_pickerView_titleForRow_forComponent :: #force_inline proc "c" (self: ^PickerViewDelegate, pickerView: ^PickerView, row: NS.Integer, component: NS.Integer) -> ^NS.String {
-    return msgSend(^NS.String, self, "pickerView:titleForRow:forComponent:", pickerView, row, component)
-}
-@(objc_type=PickerViewDelegate, objc_name="pickerView_attributedTitleForRow_forComponent")
-PickerViewDelegate_pickerView_attributedTitleForRow_forComponent :: #force_inline proc "c" (self: ^PickerViewDelegate, pickerView: ^PickerView, row: NS.Integer, component: NS.Integer) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "pickerView:attributedTitleForRow:forComponent:", pickerView, row, component)
-}
-@(objc_type=PickerViewDelegate, objc_name="pickerView_viewForRow_forComponent_reusingView")
-PickerViewDelegate_pickerView_viewForRow_forComponent_reusingView :: #force_inline proc "c" (self: ^PickerViewDelegate, pickerView: ^PickerView, row: NS.Integer, component: NS.Integer, view: ^View) -> ^View {
-    return msgSend(^View, self, "pickerView:viewForRow:forComponent:reusingView:", pickerView, row, component, view)
-}
-@(objc_type=PickerViewDelegate, objc_name="pickerView_didSelectRow_inComponent")
-PickerViewDelegate_pickerView_didSelectRow_inComponent :: #force_inline proc "c" (self: ^PickerViewDelegate, pickerView: ^PickerView, row: NS.Integer, component: NS.Integer) {
-    msgSend(nil, self, "pickerView:didSelectRow:inComponent:", pickerView, row, component)
-}
+

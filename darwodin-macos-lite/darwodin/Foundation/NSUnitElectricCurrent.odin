@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnitElectricCurrent
 ///
-@(objc_class="NSUnitElectricCurrent")
+@(objc_class="NSUnitElectricCurrent", objc_superclass=Dimension)
 UnitElectricCurrent :: struct { using _: Dimension, 
     using _: SecureCoding,
 }

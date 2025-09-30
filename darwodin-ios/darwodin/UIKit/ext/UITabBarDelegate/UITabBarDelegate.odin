@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -53,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tabBar_willBeginCustomizingItems(self, tabBar, items)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar:willBeginCustomizingItems:"), auto_cast tabBar_willBeginCustomizingItems, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar:willBeginCustomizingItems:"), auto_cast tabBar_willBeginCustomizingItems, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.tabBar_didBeginCustomizingItems != nil {
         tabBar_didBeginCustomizingItems :: proc "c" (self: ^UI.TabBarDelegate, _: SEL, tabBar: ^UI.TabBar, items: ^NS.Array) {
@@ -63,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tabBar_didBeginCustomizingItems(self, tabBar, items)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar:didBeginCustomizingItems:"), auto_cast tabBar_didBeginCustomizingItems, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar:didBeginCustomizingItems:"), auto_cast tabBar_didBeginCustomizingItems, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.tabBar_willEndCustomizingItems_changed != nil {
         tabBar_willEndCustomizingItems_changed :: proc "c" (self: ^UI.TabBarDelegate, _: SEL, tabBar: ^UI.TabBar, items: ^NS.Array, changed: bool) {
@@ -73,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tabBar_willEndCustomizingItems_changed(self, tabBar, items, changed)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar:willEndCustomizingItems:changed:"), auto_cast tabBar_willEndCustomizingItems_changed, "v@:@@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar:willEndCustomizingItems:changed:"), auto_cast tabBar_willEndCustomizingItems_changed, "v@:@^voidB") do panic("Failed to register objC method.")
     }
     if vt.tabBar_didEndCustomizingItems_changed != nil {
         tabBar_didEndCustomizingItems_changed :: proc "c" (self: ^UI.TabBarDelegate, _: SEL, tabBar: ^UI.TabBar, items: ^NS.Array, changed: bool) {
@@ -83,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tabBar_didEndCustomizingItems_changed(self, tabBar, items, changed)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar:didEndCustomizingItems:changed:"), auto_cast tabBar_didEndCustomizingItems_changed, "v@:@@B") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBar:didEndCustomizingItems:changed:"), auto_cast tabBar_didEndCustomizingItems_changed, "v@:@^voidB") do panic("Failed to register objC method.")
     }
 }
 

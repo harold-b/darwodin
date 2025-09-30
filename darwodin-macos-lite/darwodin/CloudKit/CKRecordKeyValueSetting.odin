@@ -18,27 +18,24 @@ RecordKeyValueSetting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=RecordKeyValueSetting, objc_name="objectForKey")
-RecordKeyValueSetting_objectForKey :: #force_inline proc "c" (self: ^RecordKeyValueSetting, key: ^NS.String) -> ^RecordValue {
-    return msgSend(^RecordValue, self, "objectForKey:", key)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=RecordKeyValueSetting, objc_selector="objectForKey:", objc_name="objectForKey")
+    RecordKeyValueSetting_objectForKey :: proc(self: ^RecordKeyValueSetting, key: ^NS.String) -> ^RecordValue ---
+
+    @(objc_type=RecordKeyValueSetting, objc_selector="setObject:forKey:", objc_name="setObject_forKey")
+    RecordKeyValueSetting_setObject_forKey :: proc(self: ^RecordKeyValueSetting, object: ^RecordValue, key: ^NS.String) ---
+
+    @(objc_type=RecordKeyValueSetting, objc_selector="objectForKeyedSubscript:", objc_name="objectForKeyedSubscript")
+    RecordKeyValueSetting_objectForKeyedSubscript :: proc(self: ^RecordKeyValueSetting, key: ^NS.String) -> ^RecordValue ---
+
+    @(objc_type=RecordKeyValueSetting, objc_selector="setObject:forKeyedSubscript:", objc_name="setObject_forKeyedSubscript")
+    RecordKeyValueSetting_setObject_forKeyedSubscript :: proc(self: ^RecordKeyValueSetting, object: ^RecordValue, key: ^NS.String) ---
+
+    @(objc_type=RecordKeyValueSetting, objc_selector="allKeys", objc_name="allKeys")
+    RecordKeyValueSetting_allKeys :: proc(self: ^RecordKeyValueSetting) -> ^NS.Array ---
+
+    @(objc_type=RecordKeyValueSetting, objc_selector="changedKeys", objc_name="changedKeys")
+    RecordKeyValueSetting_changedKeys :: proc(self: ^RecordKeyValueSetting) -> ^NS.Array ---
 }
-@(objc_type=RecordKeyValueSetting, objc_name="setObject_forKey")
-RecordKeyValueSetting_setObject_forKey :: #force_inline proc "c" (self: ^RecordKeyValueSetting, object: ^RecordValue, key: ^NS.String) {
-    msgSend(nil, self, "setObject:forKey:", object, key)
-}
-@(objc_type=RecordKeyValueSetting, objc_name="objectForKeyedSubscript")
-RecordKeyValueSetting_objectForKeyedSubscript :: #force_inline proc "c" (self: ^RecordKeyValueSetting, key: ^NS.String) -> ^RecordValue {
-    return msgSend(^RecordValue, self, "objectForKeyedSubscript:", key)
-}
-@(objc_type=RecordKeyValueSetting, objc_name="setObject_forKeyedSubscript")
-RecordKeyValueSetting_setObject_forKeyedSubscript :: #force_inline proc "c" (self: ^RecordKeyValueSetting, object: ^RecordValue, key: ^NS.String) {
-    msgSend(nil, self, "setObject:forKeyedSubscript:", object, key)
-}
-@(objc_type=RecordKeyValueSetting, objc_name="allKeys")
-RecordKeyValueSetting_allKeys :: #force_inline proc "c" (self: ^RecordKeyValueSetting) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "allKeys")
-}
-@(objc_type=RecordKeyValueSetting, objc_name="changedKeys")
-RecordKeyValueSetting_changedKeys :: #force_inline proc "c" (self: ^RecordKeyValueSetting) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "changedKeys")
-}
+

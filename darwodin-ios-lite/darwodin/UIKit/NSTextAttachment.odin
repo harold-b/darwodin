@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTextAttachment
 ///
-@(objc_class="NSTextAttachment")
+@(objc_class="NSTextAttachment", objc_superclass=NS.Object)
 NSTextAttachment :: struct { using _: NS.Object, 
     using _: NSTextAttachmentLayout,
     using _: NS.SecureCoding,

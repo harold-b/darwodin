@@ -16,86 +16,69 @@ import Sec "../Security"
 @(objc_class="NSObject")
 ObjectProtocol :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=ObjectProtocol, objc_name="isEqual")
-ObjectProtocol_isEqual :: #force_inline proc "c" (self: ^ObjectProtocol, object: id) -> bool {
-    return msgSend(bool, self, "isEqual:", object)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ObjectProtocol, objc_selector="isEqual:", objc_name="isEqual")
+    ObjectProtocol_isEqual :: proc(self: ^ObjectProtocol, object: id) -> bool ---
+
+    @(objc_type=ObjectProtocol, objc_selector="class", objc_name="class")
+    ObjectProtocol_class :: proc(self: ^ObjectProtocol) -> Class ---
+
+    @(objc_type=ObjectProtocol, objc_selector="self", objc_name="self")
+    ObjectProtocol_self :: proc(self: ^ObjectProtocol) -> ^ObjectProtocol ---
+
+    @(objc_type=ObjectProtocol, objc_selector="performSelector:", objc_name="performSelector_")
+    ObjectProtocol_performSelector_ :: proc(self: ^ObjectProtocol, aSelector: SEL) -> id ---
+
+    @(objc_type=ObjectProtocol, objc_selector="performSelector:withObject:", objc_name="performSelector_withObject")
+    ObjectProtocol_performSelector_withObject :: proc(self: ^ObjectProtocol, aSelector: SEL, object: id) -> id ---
+
+    @(objc_type=ObjectProtocol, objc_selector="performSelector:withObject:withObject:", objc_name="performSelector_withObject_withObject")
+    ObjectProtocol_performSelector_withObject_withObject :: proc(self: ^ObjectProtocol, aSelector: SEL, object1: id, object2: id) -> id ---
+
+    @(objc_type=ObjectProtocol, objc_selector="isProxy", objc_name="isProxy")
+    ObjectProtocol_isProxy :: proc(self: ^ObjectProtocol) -> bool ---
+
+    @(objc_type=ObjectProtocol, objc_selector="isKindOfClass:", objc_name="isKindOfClass")
+    ObjectProtocol_isKindOfClass :: proc(self: ^ObjectProtocol, aClass: Class) -> bool ---
+
+    @(objc_type=ObjectProtocol, objc_selector="isMemberOfClass:", objc_name="isMemberOfClass")
+    ObjectProtocol_isMemberOfClass :: proc(self: ^ObjectProtocol, aClass: Class) -> bool ---
+
+    @(objc_type=ObjectProtocol, objc_selector="conformsToProtocol:", objc_name="conformsToProtocol")
+    ObjectProtocol_conformsToProtocol :: proc(self: ^ObjectProtocol, aProtocol: ^Protocol) -> bool ---
+
+    @(objc_type=ObjectProtocol, objc_selector="respondsToSelector:", objc_name="respondsToSelector")
+    ObjectProtocol_respondsToSelector :: proc(self: ^ObjectProtocol, aSelector: SEL) -> bool ---
+
+    @(objc_type=ObjectProtocol, objc_selector="retain", objc_name="retain")
+    ObjectProtocol_retain :: proc(self: ^ObjectProtocol) -> instancetype ---
+
+    @(objc_type=ObjectProtocol, objc_selector="release", objc_name="release")
+    ObjectProtocol_release :: proc(self: ^ObjectProtocol) ---
+
+    @(objc_type=ObjectProtocol, objc_selector="autorelease", objc_name="autorelease")
+    ObjectProtocol_autorelease :: proc(self: ^ObjectProtocol) -> instancetype ---
+
+    @(objc_type=ObjectProtocol, objc_selector="retainCount", objc_name="retainCount")
+    ObjectProtocol_retainCount :: proc(self: ^ObjectProtocol) -> UInteger ---
+
+    @(objc_type=ObjectProtocol, objc_selector="zone", objc_name="zone")
+    ObjectProtocol_zone :: proc(self: ^ObjectProtocol) -> ^_NSZone ---
+
+    @(objc_type=ObjectProtocol, objc_selector="hash", objc_name="hash")
+    ObjectProtocol_hash :: proc(self: ^ObjectProtocol) -> UInteger ---
+
+    @(objc_type=ObjectProtocol, objc_selector="superclass", objc_name="superclass")
+    ObjectProtocol_superclass :: proc(self: ^ObjectProtocol) -> Class ---
+
+    @(objc_type=ObjectProtocol, objc_selector="description", objc_name="description")
+    ObjectProtocol_description :: proc(self: ^ObjectProtocol) -> ^String ---
+
+    @(objc_type=ObjectProtocol, objc_selector="debugDescription", objc_name="debugDescription")
+    ObjectProtocol_debugDescription :: proc(self: ^ObjectProtocol) -> ^String ---
 }
-@(objc_type=ObjectProtocol, objc_name="class")
-ObjectProtocol_class :: #force_inline proc "c" (self: ^ObjectProtocol) -> Class {
-    return msgSend(Class, self, "class")
-}
-@(objc_type=ObjectProtocol, objc_name="self")
-ObjectProtocol_self :: #force_inline proc "c" (self: ^ObjectProtocol) -> ^ObjectProtocol {
-    return msgSend(^ObjectProtocol, self, "self")
-}
-@(objc_type=ObjectProtocol, objc_name="performSelector_")
-ObjectProtocol_performSelector_ :: #force_inline proc "c" (self: ^ObjectProtocol, aSelector: SEL) -> id {
-    return msgSend(id, self, "performSelector:", aSelector)
-}
-@(objc_type=ObjectProtocol, objc_name="performSelector_withObject")
-ObjectProtocol_performSelector_withObject :: #force_inline proc "c" (self: ^ObjectProtocol, aSelector: SEL, object: id) -> id {
-    return msgSend(id, self, "performSelector:withObject:", aSelector, object)
-}
-@(objc_type=ObjectProtocol, objc_name="performSelector_withObject_withObject")
-ObjectProtocol_performSelector_withObject_withObject :: #force_inline proc "c" (self: ^ObjectProtocol, aSelector: SEL, object1: id, object2: id) -> id {
-    return msgSend(id, self, "performSelector:withObject:withObject:", aSelector, object1, object2)
-}
-@(objc_type=ObjectProtocol, objc_name="isProxy")
-ObjectProtocol_isProxy :: #force_inline proc "c" (self: ^ObjectProtocol) -> bool {
-    return msgSend(bool, self, "isProxy")
-}
-@(objc_type=ObjectProtocol, objc_name="isKindOfClass")
-ObjectProtocol_isKindOfClass :: #force_inline proc "c" (self: ^ObjectProtocol, aClass: Class) -> bool {
-    return msgSend(bool, self, "isKindOfClass:", aClass)
-}
-@(objc_type=ObjectProtocol, objc_name="isMemberOfClass")
-ObjectProtocol_isMemberOfClass :: #force_inline proc "c" (self: ^ObjectProtocol, aClass: Class) -> bool {
-    return msgSend(bool, self, "isMemberOfClass:", aClass)
-}
-@(objc_type=ObjectProtocol, objc_name="conformsToProtocol")
-ObjectProtocol_conformsToProtocol :: #force_inline proc "c" (self: ^ObjectProtocol, aProtocol: ^Protocol) -> bool {
-    return msgSend(bool, self, "conformsToProtocol:", aProtocol)
-}
-@(objc_type=ObjectProtocol, objc_name="respondsToSelector")
-ObjectProtocol_respondsToSelector :: #force_inline proc "c" (self: ^ObjectProtocol, aSelector: SEL) -> bool {
-    return msgSend(bool, self, "respondsToSelector:", aSelector)
-}
-@(objc_type=ObjectProtocol, objc_name="retain")
-ObjectProtocol_retain :: #force_inline proc "c" (self: ^ObjectProtocol) -> ^ObjectProtocol {
-    return msgSend(^ObjectProtocol, self, "retain")
-}
-@(objc_type=ObjectProtocol, objc_name="release")
-ObjectProtocol_release :: #force_inline proc "c" (self: ^ObjectProtocol) {
-    msgSend(nil, self, "release")
-}
-@(objc_type=ObjectProtocol, objc_name="autorelease")
-ObjectProtocol_autorelease :: #force_inline proc "c" (self: ^ObjectProtocol) -> ^ObjectProtocol {
-    return msgSend(^ObjectProtocol, self, "autorelease")
-}
-@(objc_type=ObjectProtocol, objc_name="retainCount")
-ObjectProtocol_retainCount :: #force_inline proc "c" (self: ^ObjectProtocol) -> UInteger {
-    return msgSend(UInteger, self, "retainCount")
-}
-@(objc_type=ObjectProtocol, objc_name="zone")
-ObjectProtocol_zone :: #force_inline proc "c" (self: ^ObjectProtocol) -> ^_NSZone {
-    return msgSend(^_NSZone, self, "zone")
-}
-@(objc_type=ObjectProtocol, objc_name="hash")
-ObjectProtocol_hash :: #force_inline proc "c" (self: ^ObjectProtocol) -> UInteger {
-    return msgSend(UInteger, self, "hash")
-}
-@(objc_type=ObjectProtocol, objc_name="superclass")
-ObjectProtocol_superclass :: #force_inline proc "c" (self: ^ObjectProtocol) -> Class {
-    return msgSend(Class, self, "superclass")
-}
-@(objc_type=ObjectProtocol, objc_name="description")
-ObjectProtocol_description :: #force_inline proc "c" (self: ^ObjectProtocol) -> ^String {
-    return msgSend(^String, self, "description")
-}
-@(objc_type=ObjectProtocol, objc_name="debugDescription")
-ObjectProtocol_debugDescription :: #force_inline proc "c" (self: ^ObjectProtocol) -> ^String {
-    return msgSend(^String, self, "debugDescription")
-}
+
 @(objc_type=ObjectProtocol, objc_name="performSelector")
 ObjectProtocol_performSelector :: proc {
     ObjectProtocol_performSelector_,

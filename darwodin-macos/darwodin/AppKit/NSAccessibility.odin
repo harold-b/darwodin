@@ -21,1099 +21,827 @@ Accessibility :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Accessibility, objc_name="accessibilityLayoutPointForScreenPoint")
-Accessibility_accessibilityLayoutPointForScreenPoint :: #force_inline proc "c" (self: ^Accessibility, point: CG.Point) -> CG.Point {
-    return msgSend(CG.Point, self, "accessibilityLayoutPointForScreenPoint:", point)
-}
-@(objc_type=Accessibility, objc_name="accessibilityLayoutSizeForScreenSize")
-Accessibility_accessibilityLayoutSizeForScreenSize :: #force_inline proc "c" (self: ^Accessibility, size: NS.Size) -> NS.Size {
-    return msgSend(NS.Size, self, "accessibilityLayoutSizeForScreenSize:", size)
-}
-@(objc_type=Accessibility, objc_name="accessibilityScreenPointForLayoutPoint")
-Accessibility_accessibilityScreenPointForLayoutPoint :: #force_inline proc "c" (self: ^Accessibility, point: CG.Point) -> CG.Point {
-    return msgSend(CG.Point, self, "accessibilityScreenPointForLayoutPoint:", point)
-}
-@(objc_type=Accessibility, objc_name="accessibilityScreenSizeForLayoutSize")
-Accessibility_accessibilityScreenSizeForLayoutSize :: #force_inline proc "c" (self: ^Accessibility, size: NS.Size) -> NS.Size {
-    return msgSend(NS.Size, self, "accessibilityScreenSizeForLayoutSize:", size)
-}
-@(objc_type=Accessibility, objc_name="accessibilityCellForColumn")
-Accessibility_accessibilityCellForColumn :: #force_inline proc "c" (self: ^Accessibility, column: NS.Integer, row: NS.Integer) -> id {
-    return msgSend(id, self, "accessibilityCellForColumn:row:", column, row)
-}
-@(objc_type=Accessibility, objc_name="accessibilityAttributedStringForRange")
-Accessibility_accessibilityAttributedStringForRange :: #force_inline proc "c" (self: ^Accessibility, range: NS._NSRange) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "accessibilityAttributedStringForRange:", range)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRangeForLine")
-Accessibility_accessibilityRangeForLine :: #force_inline proc "c" (self: ^Accessibility, line: NS.Integer) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityRangeForLine:", line)
-}
-@(objc_type=Accessibility, objc_name="accessibilityStringForRange")
-Accessibility_accessibilityStringForRange :: #force_inline proc "c" (self: ^Accessibility, range: NS._NSRange) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityStringForRange:", range)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRangeForPosition")
-Accessibility_accessibilityRangeForPosition :: #force_inline proc "c" (self: ^Accessibility, point: CG.Point) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityRangeForPosition:", point)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRangeForIndex")
-Accessibility_accessibilityRangeForIndex :: #force_inline proc "c" (self: ^Accessibility, index: NS.Integer) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityRangeForIndex:", index)
-}
-@(objc_type=Accessibility, objc_name="accessibilityFrameForRange")
-Accessibility_accessibilityFrameForRange :: #force_inline proc "c" (self: ^Accessibility, range: NS._NSRange) -> NS.Rect {
-    return msgSend(NS.Rect, self, "accessibilityFrameForRange:", range)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRTFForRange")
-Accessibility_accessibilityRTFForRange :: #force_inline proc "c" (self: ^Accessibility, range: NS._NSRange) -> ^NS.Data {
-    return msgSend(^NS.Data, self, "accessibilityRTFForRange:", range)
-}
-@(objc_type=Accessibility, objc_name="accessibilityStyleRangeForIndex")
-Accessibility_accessibilityStyleRangeForIndex :: #force_inline proc "c" (self: ^Accessibility, index: NS.Integer) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityStyleRangeForIndex:", index)
-}
-@(objc_type=Accessibility, objc_name="accessibilityLineForIndex")
-Accessibility_accessibilityLineForIndex :: #force_inline proc "c" (self: ^Accessibility, index: NS.Integer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityLineForIndex:", index)
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformCancel")
-Accessibility_accessibilityPerformCancel :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformCancel")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformConfirm")
-Accessibility_accessibilityPerformConfirm :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformConfirm")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformDecrement")
-Accessibility_accessibilityPerformDecrement :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformDecrement")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformDelete")
-Accessibility_accessibilityPerformDelete :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformDelete")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformIncrement")
-Accessibility_accessibilityPerformIncrement :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformIncrement")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformPick")
-Accessibility_accessibilityPerformPick :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformPick")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformPress")
-Accessibility_accessibilityPerformPress :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformPress")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformRaise")
-Accessibility_accessibilityPerformRaise :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformRaise")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformShowAlternateUI")
-Accessibility_accessibilityPerformShowAlternateUI :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformShowAlternateUI")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformShowDefaultUI")
-Accessibility_accessibilityPerformShowDefaultUI :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformShowDefaultUI")
-}
-@(objc_type=Accessibility, objc_name="accessibilityPerformShowMenu")
-Accessibility_accessibilityPerformShowMenu :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "accessibilityPerformShowMenu")
-}
-@(objc_type=Accessibility, objc_name="isAccessibilitySelectorAllowed")
-Accessibility_isAccessibilitySelectorAllowed :: #force_inline proc "c" (self: ^Accessibility, selector: SEL) -> bool {
-    return msgSend(bool, self, "isAccessibilitySelectorAllowed:", selector)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityElement")
-Accessibility_isAccessibilityElement :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityElement")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityElement")
-Accessibility_setAccessibilityElement :: #force_inline proc "c" (self: ^Accessibility, accessibilityElement: bool) {
-    msgSend(nil, self, "setAccessibilityElement:", accessibilityElement)
-}
-@(objc_type=Accessibility, objc_name="accessibilityFrame")
-Accessibility_accessibilityFrame :: #force_inline proc "c" (self: ^Accessibility) -> NS.Rect {
-    return msgSend(NS.Rect, self, "accessibilityFrame")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityFrame")
-Accessibility_setAccessibilityFrame :: #force_inline proc "c" (self: ^Accessibility, accessibilityFrame: NS.Rect) {
-    msgSend(nil, self, "setAccessibilityFrame:", accessibilityFrame)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityFocused")
-Accessibility_isAccessibilityFocused :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityFocused")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityFocused")
-Accessibility_setAccessibilityFocused :: #force_inline proc "c" (self: ^Accessibility, accessibilityFocused: bool) {
-    msgSend(nil, self, "setAccessibilityFocused:", accessibilityFocused)
-}
-@(objc_type=Accessibility, objc_name="accessibilityActivationPoint")
-Accessibility_accessibilityActivationPoint :: #force_inline proc "c" (self: ^Accessibility) -> CG.Point {
-    return msgSend(CG.Point, self, "accessibilityActivationPoint")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityActivationPoint")
-Accessibility_setAccessibilityActivationPoint :: #force_inline proc "c" (self: ^Accessibility, accessibilityActivationPoint: CG.Point) {
-    msgSend(nil, self, "setAccessibilityActivationPoint:", accessibilityActivationPoint)
-}
-@(objc_type=Accessibility, objc_name="accessibilityTopLevelUIElement")
-Accessibility_accessibilityTopLevelUIElement :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityTopLevelUIElement")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityTopLevelUIElement")
-Accessibility_setAccessibilityTopLevelUIElement :: #force_inline proc "c" (self: ^Accessibility, accessibilityTopLevelUIElement: id) {
-    msgSend(nil, self, "setAccessibilityTopLevelUIElement:", accessibilityTopLevelUIElement)
-}
-@(objc_type=Accessibility, objc_name="accessibilityURL")
-Accessibility_accessibilityURL :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.URL {
-    return msgSend(^NS.URL, self, "accessibilityURL")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityURL")
-Accessibility_setAccessibilityURL :: #force_inline proc "c" (self: ^Accessibility, accessibilityURL: ^NS.URL) {
-    msgSend(nil, self, "setAccessibilityURL:", accessibilityURL)
-}
-@(objc_type=Accessibility, objc_name="accessibilityValue")
-Accessibility_accessibilityValue :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityValue")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityValue")
-Accessibility_setAccessibilityValue :: #force_inline proc "c" (self: ^Accessibility, accessibilityValue: id) {
-    msgSend(nil, self, "setAccessibilityValue:", accessibilityValue)
-}
-@(objc_type=Accessibility, objc_name="accessibilityValueDescription")
-Accessibility_accessibilityValueDescription :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityValueDescription")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityValueDescription")
-Accessibility_setAccessibilityValueDescription :: #force_inline proc "c" (self: ^Accessibility, accessibilityValueDescription: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityValueDescription:", accessibilityValueDescription)
-}
-@(objc_type=Accessibility, objc_name="accessibilityVisibleChildren")
-Accessibility_accessibilityVisibleChildren :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityVisibleChildren")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityVisibleChildren")
-Accessibility_setAccessibilityVisibleChildren :: #force_inline proc "c" (self: ^Accessibility, accessibilityVisibleChildren: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityVisibleChildren:", accessibilityVisibleChildren)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySubrole")
-Accessibility_accessibilitySubrole :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilitySubrole")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySubrole")
-Accessibility_setAccessibilitySubrole :: #force_inline proc "c" (self: ^Accessibility, accessibilitySubrole: ^NS.String) {
-    msgSend(nil, self, "setAccessibilitySubrole:", accessibilitySubrole)
-}
-@(objc_type=Accessibility, objc_name="accessibilityTitle")
-Accessibility_accessibilityTitle :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityTitle")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityTitle")
-Accessibility_setAccessibilityTitle :: #force_inline proc "c" (self: ^Accessibility, accessibilityTitle: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityTitle:", accessibilityTitle)
-}
-@(objc_type=Accessibility, objc_name="accessibilityTitleUIElement")
-Accessibility_accessibilityTitleUIElement :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityTitleUIElement")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityTitleUIElement")
-Accessibility_setAccessibilityTitleUIElement :: #force_inline proc "c" (self: ^Accessibility, accessibilityTitleUIElement: id) {
-    msgSend(nil, self, "setAccessibilityTitleUIElement:", accessibilityTitleUIElement)
-}
-@(objc_type=Accessibility, objc_name="accessibilityNextContents")
-Accessibility_accessibilityNextContents :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityNextContents")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityNextContents")
-Accessibility_setAccessibilityNextContents :: #force_inline proc "c" (self: ^Accessibility, accessibilityNextContents: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityNextContents:", accessibilityNextContents)
-}
-@(objc_type=Accessibility, objc_name="accessibilityOrientation")
-Accessibility_accessibilityOrientation :: #force_inline proc "c" (self: ^Accessibility) -> AccessibilityOrientation {
-    return msgSend(AccessibilityOrientation, self, "accessibilityOrientation")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityOrientation")
-Accessibility_setAccessibilityOrientation :: #force_inline proc "c" (self: ^Accessibility, accessibilityOrientation: AccessibilityOrientation) {
-    msgSend(nil, self, "setAccessibilityOrientation:", accessibilityOrientation)
-}
-@(objc_type=Accessibility, objc_name="accessibilityOverflowButton")
-Accessibility_accessibilityOverflowButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityOverflowButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityOverflowButton")
-Accessibility_setAccessibilityOverflowButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityOverflowButton: id) {
-    msgSend(nil, self, "setAccessibilityOverflowButton:", accessibilityOverflowButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilityParent")
-Accessibility_accessibilityParent :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityParent")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityParent")
-Accessibility_setAccessibilityParent :: #force_inline proc "c" (self: ^Accessibility, accessibilityParent: id) {
-    msgSend(nil, self, "setAccessibilityParent:", accessibilityParent)
-}
-@(objc_type=Accessibility, objc_name="accessibilityPlaceholderValue")
-Accessibility_accessibilityPlaceholderValue :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityPlaceholderValue")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityPlaceholderValue")
-Accessibility_setAccessibilityPlaceholderValue :: #force_inline proc "c" (self: ^Accessibility, accessibilityPlaceholderValue: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityPlaceholderValue:", accessibilityPlaceholderValue)
-}
-@(objc_type=Accessibility, objc_name="accessibilityPreviousContents")
-Accessibility_accessibilityPreviousContents :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityPreviousContents")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityPreviousContents")
-Accessibility_setAccessibilityPreviousContents :: #force_inline proc "c" (self: ^Accessibility, accessibilityPreviousContents: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityPreviousContents:", accessibilityPreviousContents)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRole")
-Accessibility_accessibilityRole :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityRole")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityRole")
-Accessibility_setAccessibilityRole :: #force_inline proc "c" (self: ^Accessibility, accessibilityRole: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityRole:", accessibilityRole)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRoleDescription")
-Accessibility_accessibilityRoleDescription :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityRoleDescription")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityRoleDescription")
-Accessibility_setAccessibilityRoleDescription :: #force_inline proc "c" (self: ^Accessibility, accessibilityRoleDescription: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityRoleDescription:", accessibilityRoleDescription)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySearchButton")
-Accessibility_accessibilitySearchButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilitySearchButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySearchButton")
-Accessibility_setAccessibilitySearchButton :: #force_inline proc "c" (self: ^Accessibility, accessibilitySearchButton: id) {
-    msgSend(nil, self, "setAccessibilitySearchButton:", accessibilitySearchButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySearchMenu")
-Accessibility_accessibilitySearchMenu :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilitySearchMenu")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySearchMenu")
-Accessibility_setAccessibilitySearchMenu :: #force_inline proc "c" (self: ^Accessibility, accessibilitySearchMenu: id) {
-    msgSend(nil, self, "setAccessibilitySearchMenu:", accessibilitySearchMenu)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilitySelected")
-Accessibility_isAccessibilitySelected :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilitySelected")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySelected")
-Accessibility_setAccessibilitySelected :: #force_inline proc "c" (self: ^Accessibility, accessibilitySelected: bool) {
-    msgSend(nil, self, "setAccessibilitySelected:", accessibilitySelected)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySelectedChildren")
-Accessibility_accessibilitySelectedChildren :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySelectedChildren")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySelectedChildren")
-Accessibility_setAccessibilitySelectedChildren :: #force_inline proc "c" (self: ^Accessibility, accessibilitySelectedChildren: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilitySelectedChildren:", accessibilitySelectedChildren)
-}
-@(objc_type=Accessibility, objc_name="accessibilityServesAsTitleForUIElements")
-Accessibility_accessibilityServesAsTitleForUIElements :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityServesAsTitleForUIElements")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityServesAsTitleForUIElements")
-Accessibility_setAccessibilityServesAsTitleForUIElements :: #force_inline proc "c" (self: ^Accessibility, accessibilityServesAsTitleForUIElements: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityServesAsTitleForUIElements:", accessibilityServesAsTitleForUIElements)
-}
-@(objc_type=Accessibility, objc_name="accessibilityShownMenu")
-Accessibility_accessibilityShownMenu :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityShownMenu")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityShownMenu")
-Accessibility_setAccessibilityShownMenu :: #force_inline proc "c" (self: ^Accessibility, accessibilityShownMenu: id) {
-    msgSend(nil, self, "setAccessibilityShownMenu:", accessibilityShownMenu)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMinValue")
-Accessibility_accessibilityMinValue :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityMinValue")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMinValue")
-Accessibility_setAccessibilityMinValue :: #force_inline proc "c" (self: ^Accessibility, accessibilityMinValue: id) {
-    msgSend(nil, self, "setAccessibilityMinValue:", accessibilityMinValue)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMaxValue")
-Accessibility_accessibilityMaxValue :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityMaxValue")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMaxValue")
-Accessibility_setAccessibilityMaxValue :: #force_inline proc "c" (self: ^Accessibility, accessibilityMaxValue: id) {
-    msgSend(nil, self, "setAccessibilityMaxValue:", accessibilityMaxValue)
-}
-@(objc_type=Accessibility, objc_name="accessibilityLinkedUIElements")
-Accessibility_accessibilityLinkedUIElements :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityLinkedUIElements")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityLinkedUIElements")
-Accessibility_setAccessibilityLinkedUIElements :: #force_inline proc "c" (self: ^Accessibility, accessibilityLinkedUIElements: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityLinkedUIElements:", accessibilityLinkedUIElements)
-}
-@(objc_type=Accessibility, objc_name="accessibilityWindow")
-Accessibility_accessibilityWindow :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityWindow")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityWindow")
-Accessibility_setAccessibilityWindow :: #force_inline proc "c" (self: ^Accessibility, accessibilityWindow: id) {
-    msgSend(nil, self, "setAccessibilityWindow:", accessibilityWindow)
-}
-@(objc_type=Accessibility, objc_name="accessibilityIdentifier")
-Accessibility_accessibilityIdentifier :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityIdentifier")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityIdentifier")
-Accessibility_setAccessibilityIdentifier :: #force_inline proc "c" (self: ^Accessibility, accessibilityIdentifier: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityIdentifier:", accessibilityIdentifier)
-}
-@(objc_type=Accessibility, objc_name="accessibilityHelp")
-Accessibility_accessibilityHelp :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityHelp")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityHelp")
-Accessibility_setAccessibilityHelp :: #force_inline proc "c" (self: ^Accessibility, accessibilityHelp: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityHelp:", accessibilityHelp)
-}
-@(objc_type=Accessibility, objc_name="accessibilityFilename")
-Accessibility_accessibilityFilename :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityFilename")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityFilename")
-Accessibility_setAccessibilityFilename :: #force_inline proc "c" (self: ^Accessibility, accessibilityFilename: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityFilename:", accessibilityFilename)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityExpanded")
-Accessibility_isAccessibilityExpanded :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityExpanded")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityExpanded")
-Accessibility_setAccessibilityExpanded :: #force_inline proc "c" (self: ^Accessibility, accessibilityExpanded: bool) {
-    msgSend(nil, self, "setAccessibilityExpanded:", accessibilityExpanded)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityEdited")
-Accessibility_isAccessibilityEdited :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityEdited")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityEdited")
-Accessibility_setAccessibilityEdited :: #force_inline proc "c" (self: ^Accessibility, accessibilityEdited: bool) {
-    msgSend(nil, self, "setAccessibilityEdited:", accessibilityEdited)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityEnabled")
-Accessibility_isAccessibilityEnabled :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityEnabled")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityEnabled")
-Accessibility_setAccessibilityEnabled :: #force_inline proc "c" (self: ^Accessibility, accessibilityEnabled: bool) {
-    msgSend(nil, self, "setAccessibilityEnabled:", accessibilityEnabled)
-}
-@(objc_type=Accessibility, objc_name="accessibilityChildren")
-Accessibility_accessibilityChildren :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityChildren")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityChildren")
-Accessibility_setAccessibilityChildren :: #force_inline proc "c" (self: ^Accessibility, accessibilityChildren: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityChildren:", accessibilityChildren)
-}
-@(objc_type=Accessibility, objc_name="accessibilityChildrenInNavigationOrder")
-Accessibility_accessibilityChildrenInNavigationOrder :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityChildrenInNavigationOrder")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityChildrenInNavigationOrder")
-Accessibility_setAccessibilityChildrenInNavigationOrder :: #force_inline proc "c" (self: ^Accessibility, accessibilityChildrenInNavigationOrder: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityChildrenInNavigationOrder:", accessibilityChildrenInNavigationOrder)
-}
-@(objc_type=Accessibility, objc_name="accessibilityClearButton")
-Accessibility_accessibilityClearButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityClearButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityClearButton")
-Accessibility_setAccessibilityClearButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityClearButton: id) {
-    msgSend(nil, self, "setAccessibilityClearButton:", accessibilityClearButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilityCancelButton")
-Accessibility_accessibilityCancelButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityCancelButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityCancelButton")
-Accessibility_setAccessibilityCancelButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityCancelButton: id) {
-    msgSend(nil, self, "setAccessibilityCancelButton:", accessibilityCancelButton)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityProtectedContent")
-Accessibility_isAccessibilityProtectedContent :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityProtectedContent")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityProtectedContent")
-Accessibility_setAccessibilityProtectedContent :: #force_inline proc "c" (self: ^Accessibility, accessibilityProtectedContent: bool) {
-    msgSend(nil, self, "setAccessibilityProtectedContent:", accessibilityProtectedContent)
-}
-@(objc_type=Accessibility, objc_name="accessibilityContents")
-Accessibility_accessibilityContents :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityContents")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityContents")
-Accessibility_setAccessibilityContents :: #force_inline proc "c" (self: ^Accessibility, accessibilityContents: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityContents:", accessibilityContents)
-}
-@(objc_type=Accessibility, objc_name="accessibilityLabel")
-Accessibility_accessibilityLabel :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityLabel")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityLabel")
-Accessibility_setAccessibilityLabel :: #force_inline proc "c" (self: ^Accessibility, accessibilityLabel: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityLabel:", accessibilityLabel)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityAlternateUIVisible")
-Accessibility_isAccessibilityAlternateUIVisible :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityAlternateUIVisible")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityAlternateUIVisible")
-Accessibility_setAccessibilityAlternateUIVisible :: #force_inline proc "c" (self: ^Accessibility, accessibilityAlternateUIVisible: bool) {
-    msgSend(nil, self, "setAccessibilityAlternateUIVisible:", accessibilityAlternateUIVisible)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySharedFocusElements")
-Accessibility_accessibilitySharedFocusElements :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySharedFocusElements")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySharedFocusElements")
-Accessibility_setAccessibilitySharedFocusElements :: #force_inline proc "c" (self: ^Accessibility, accessibilitySharedFocusElements: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilitySharedFocusElements:", accessibilitySharedFocusElements)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityRequired")
-Accessibility_isAccessibilityRequired :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityRequired")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityRequired")
-Accessibility_setAccessibilityRequired :: #force_inline proc "c" (self: ^Accessibility, accessibilityRequired: bool) {
-    msgSend(nil, self, "setAccessibilityRequired:", accessibilityRequired)
-}
-@(objc_type=Accessibility, objc_name="accessibilityCustomRotors")
-Accessibility_accessibilityCustomRotors :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityCustomRotors")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityCustomRotors")
-Accessibility_setAccessibilityCustomRotors :: #force_inline proc "c" (self: ^Accessibility, accessibilityCustomRotors: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityCustomRotors:", accessibilityCustomRotors)
-}
-@(objc_type=Accessibility, objc_name="accessibilityUserInputLabels")
-Accessibility_accessibilityUserInputLabels :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityUserInputLabels")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityUserInputLabels")
-Accessibility_setAccessibilityUserInputLabels :: #force_inline proc "c" (self: ^Accessibility, accessibilityUserInputLabels: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityUserInputLabels:", accessibilityUserInputLabels)
-}
-@(objc_type=Accessibility, objc_name="accessibilityAttributedUserInputLabels")
-Accessibility_accessibilityAttributedUserInputLabels :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityAttributedUserInputLabels")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityAttributedUserInputLabels")
-Accessibility_setAccessibilityAttributedUserInputLabels :: #force_inline proc "c" (self: ^Accessibility, accessibilityAttributedUserInputLabels: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityAttributedUserInputLabels:", accessibilityAttributedUserInputLabels)
-}
-@(objc_type=Accessibility, objc_name="accessibilityApplicationFocusedUIElement")
-Accessibility_accessibilityApplicationFocusedUIElement :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityApplicationFocusedUIElement")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityApplicationFocusedUIElement")
-Accessibility_setAccessibilityApplicationFocusedUIElement :: #force_inline proc "c" (self: ^Accessibility, accessibilityApplicationFocusedUIElement: id) {
-    msgSend(nil, self, "setAccessibilityApplicationFocusedUIElement:", accessibilityApplicationFocusedUIElement)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMainWindow")
-Accessibility_accessibilityMainWindow :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityMainWindow")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMainWindow")
-Accessibility_setAccessibilityMainWindow :: #force_inline proc "c" (self: ^Accessibility, accessibilityMainWindow: id) {
-    msgSend(nil, self, "setAccessibilityMainWindow:", accessibilityMainWindow)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityHidden")
-Accessibility_isAccessibilityHidden :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityHidden")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityHidden")
-Accessibility_setAccessibilityHidden :: #force_inline proc "c" (self: ^Accessibility, accessibilityHidden: bool) {
-    msgSend(nil, self, "setAccessibilityHidden:", accessibilityHidden)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityFrontmost")
-Accessibility_isAccessibilityFrontmost :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityFrontmost")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityFrontmost")
-Accessibility_setAccessibilityFrontmost :: #force_inline proc "c" (self: ^Accessibility, accessibilityFrontmost: bool) {
-    msgSend(nil, self, "setAccessibilityFrontmost:", accessibilityFrontmost)
-}
-@(objc_type=Accessibility, objc_name="accessibilityFocusedWindow")
-Accessibility_accessibilityFocusedWindow :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityFocusedWindow")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityFocusedWindow")
-Accessibility_setAccessibilityFocusedWindow :: #force_inline proc "c" (self: ^Accessibility, accessibilityFocusedWindow: id) {
-    msgSend(nil, self, "setAccessibilityFocusedWindow:", accessibilityFocusedWindow)
-}
-@(objc_type=Accessibility, objc_name="accessibilityWindows")
-Accessibility_accessibilityWindows :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityWindows")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityWindows")
-Accessibility_setAccessibilityWindows :: #force_inline proc "c" (self: ^Accessibility, accessibilityWindows: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityWindows:", accessibilityWindows)
-}
-@(objc_type=Accessibility, objc_name="accessibilityExtrasMenuBar")
-Accessibility_accessibilityExtrasMenuBar :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityExtrasMenuBar")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityExtrasMenuBar")
-Accessibility_setAccessibilityExtrasMenuBar :: #force_inline proc "c" (self: ^Accessibility, accessibilityExtrasMenuBar: id) {
-    msgSend(nil, self, "setAccessibilityExtrasMenuBar:", accessibilityExtrasMenuBar)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMenuBar")
-Accessibility_accessibilityMenuBar :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityMenuBar")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMenuBar")
-Accessibility_setAccessibilityMenuBar :: #force_inline proc "c" (self: ^Accessibility, accessibilityMenuBar: id) {
-    msgSend(nil, self, "setAccessibilityMenuBar:", accessibilityMenuBar)
-}
-@(objc_type=Accessibility, objc_name="accessibilityColumnTitles")
-Accessibility_accessibilityColumnTitles :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityColumnTitles")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityColumnTitles")
-Accessibility_setAccessibilityColumnTitles :: #force_inline proc "c" (self: ^Accessibility, accessibilityColumnTitles: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityColumnTitles:", accessibilityColumnTitles)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityOrderedByRow")
-Accessibility_isAccessibilityOrderedByRow :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityOrderedByRow")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityOrderedByRow")
-Accessibility_setAccessibilityOrderedByRow :: #force_inline proc "c" (self: ^Accessibility, accessibilityOrderedByRow: bool) {
-    msgSend(nil, self, "setAccessibilityOrderedByRow:", accessibilityOrderedByRow)
-}
-@(objc_type=Accessibility, objc_name="accessibilityHorizontalUnits")
-Accessibility_accessibilityHorizontalUnits :: #force_inline proc "c" (self: ^Accessibility) -> AccessibilityUnits {
-    return msgSend(AccessibilityUnits, self, "accessibilityHorizontalUnits")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityHorizontalUnits")
-Accessibility_setAccessibilityHorizontalUnits :: #force_inline proc "c" (self: ^Accessibility, accessibilityHorizontalUnits: AccessibilityUnits) {
-    msgSend(nil, self, "setAccessibilityHorizontalUnits:", accessibilityHorizontalUnits)
-}
-@(objc_type=Accessibility, objc_name="accessibilityVerticalUnits")
-Accessibility_accessibilityVerticalUnits :: #force_inline proc "c" (self: ^Accessibility) -> AccessibilityUnits {
-    return msgSend(AccessibilityUnits, self, "accessibilityVerticalUnits")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityVerticalUnits")
-Accessibility_setAccessibilityVerticalUnits :: #force_inline proc "c" (self: ^Accessibility, accessibilityVerticalUnits: AccessibilityUnits) {
-    msgSend(nil, self, "setAccessibilityVerticalUnits:", accessibilityVerticalUnits)
-}
-@(objc_type=Accessibility, objc_name="accessibilityHorizontalUnitDescription")
-Accessibility_accessibilityHorizontalUnitDescription :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityHorizontalUnitDescription")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityHorizontalUnitDescription")
-Accessibility_setAccessibilityHorizontalUnitDescription :: #force_inline proc "c" (self: ^Accessibility, accessibilityHorizontalUnitDescription: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityHorizontalUnitDescription:", accessibilityHorizontalUnitDescription)
-}
-@(objc_type=Accessibility, objc_name="accessibilityVerticalUnitDescription")
-Accessibility_accessibilityVerticalUnitDescription :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityVerticalUnitDescription")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityVerticalUnitDescription")
-Accessibility_setAccessibilityVerticalUnitDescription :: #force_inline proc "c" (self: ^Accessibility, accessibilityVerticalUnitDescription: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityVerticalUnitDescription:", accessibilityVerticalUnitDescription)
-}
-@(objc_type=Accessibility, objc_name="accessibilityHandles")
-Accessibility_accessibilityHandles :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityHandles")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityHandles")
-Accessibility_setAccessibilityHandles :: #force_inline proc "c" (self: ^Accessibility, accessibilityHandles: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityHandles:", accessibilityHandles)
-}
-@(objc_type=Accessibility, objc_name="accessibilityWarningValue")
-Accessibility_accessibilityWarningValue :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityWarningValue")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityWarningValue")
-Accessibility_setAccessibilityWarningValue :: #force_inline proc "c" (self: ^Accessibility, accessibilityWarningValue: id) {
-    msgSend(nil, self, "setAccessibilityWarningValue:", accessibilityWarningValue)
-}
-@(objc_type=Accessibility, objc_name="accessibilityCriticalValue")
-Accessibility_accessibilityCriticalValue :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityCriticalValue")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityCriticalValue")
-Accessibility_setAccessibilityCriticalValue :: #force_inline proc "c" (self: ^Accessibility, accessibilityCriticalValue: id) {
-    msgSend(nil, self, "setAccessibilityCriticalValue:", accessibilityCriticalValue)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityDisclosed")
-Accessibility_isAccessibilityDisclosed :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityDisclosed")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityDisclosed")
-Accessibility_setAccessibilityDisclosed :: #force_inline proc "c" (self: ^Accessibility, accessibilityDisclosed: bool) {
-    msgSend(nil, self, "setAccessibilityDisclosed:", accessibilityDisclosed)
-}
-@(objc_type=Accessibility, objc_name="accessibilityDisclosedByRow")
-Accessibility_accessibilityDisclosedByRow :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityDisclosedByRow")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityDisclosedByRow")
-Accessibility_setAccessibilityDisclosedByRow :: #force_inline proc "c" (self: ^Accessibility, accessibilityDisclosedByRow: id) {
-    msgSend(nil, self, "setAccessibilityDisclosedByRow:", accessibilityDisclosedByRow)
-}
-@(objc_type=Accessibility, objc_name="accessibilityDisclosedRows")
-Accessibility_accessibilityDisclosedRows :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityDisclosedRows")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityDisclosedRows")
-Accessibility_setAccessibilityDisclosedRows :: #force_inline proc "c" (self: ^Accessibility, accessibilityDisclosedRows: id) {
-    msgSend(nil, self, "setAccessibilityDisclosedRows:", accessibilityDisclosedRows)
-}
-@(objc_type=Accessibility, objc_name="accessibilityDisclosureLevel")
-Accessibility_accessibilityDisclosureLevel :: #force_inline proc "c" (self: ^Accessibility) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityDisclosureLevel")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityDisclosureLevel")
-Accessibility_setAccessibilityDisclosureLevel :: #force_inline proc "c" (self: ^Accessibility, accessibilityDisclosureLevel: NS.Integer) {
-    msgSend(nil, self, "setAccessibilityDisclosureLevel:", accessibilityDisclosureLevel)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMarkerUIElements")
-Accessibility_accessibilityMarkerUIElements :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityMarkerUIElements")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMarkerUIElements")
-Accessibility_setAccessibilityMarkerUIElements :: #force_inline proc "c" (self: ^Accessibility, accessibilityMarkerUIElements: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityMarkerUIElements:", accessibilityMarkerUIElements)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMarkerValues")
-Accessibility_accessibilityMarkerValues :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityMarkerValues")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMarkerValues")
-Accessibility_setAccessibilityMarkerValues :: #force_inline proc "c" (self: ^Accessibility, accessibilityMarkerValues: id) {
-    msgSend(nil, self, "setAccessibilityMarkerValues:", accessibilityMarkerValues)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMarkerGroupUIElement")
-Accessibility_accessibilityMarkerGroupUIElement :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityMarkerGroupUIElement")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMarkerGroupUIElement")
-Accessibility_setAccessibilityMarkerGroupUIElement :: #force_inline proc "c" (self: ^Accessibility, accessibilityMarkerGroupUIElement: id) {
-    msgSend(nil, self, "setAccessibilityMarkerGroupUIElement:", accessibilityMarkerGroupUIElement)
-}
-@(objc_type=Accessibility, objc_name="accessibilityUnits")
-Accessibility_accessibilityUnits :: #force_inline proc "c" (self: ^Accessibility) -> AccessibilityUnits {
-    return msgSend(AccessibilityUnits, self, "accessibilityUnits")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityUnits")
-Accessibility_setAccessibilityUnits :: #force_inline proc "c" (self: ^Accessibility, accessibilityUnits: AccessibilityUnits) {
-    msgSend(nil, self, "setAccessibilityUnits:", accessibilityUnits)
-}
-@(objc_type=Accessibility, objc_name="accessibilityUnitDescription")
-Accessibility_accessibilityUnitDescription :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityUnitDescription")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityUnitDescription")
-Accessibility_setAccessibilityUnitDescription :: #force_inline proc "c" (self: ^Accessibility, accessibilityUnitDescription: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityUnitDescription:", accessibilityUnitDescription)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRulerMarkerType")
-Accessibility_accessibilityRulerMarkerType :: #force_inline proc "c" (self: ^Accessibility) -> AccessibilityRulerMarkerType {
-    return msgSend(AccessibilityRulerMarkerType, self, "accessibilityRulerMarkerType")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityRulerMarkerType")
-Accessibility_setAccessibilityRulerMarkerType :: #force_inline proc "c" (self: ^Accessibility, accessibilityRulerMarkerType: AccessibilityRulerMarkerType) {
-    msgSend(nil, self, "setAccessibilityRulerMarkerType:", accessibilityRulerMarkerType)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMarkerTypeDescription")
-Accessibility_accessibilityMarkerTypeDescription :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityMarkerTypeDescription")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMarkerTypeDescription")
-Accessibility_setAccessibilityMarkerTypeDescription :: #force_inline proc "c" (self: ^Accessibility, accessibilityMarkerTypeDescription: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityMarkerTypeDescription:", accessibilityMarkerTypeDescription)
-}
-@(objc_type=Accessibility, objc_name="accessibilityHorizontalScrollBar")
-Accessibility_accessibilityHorizontalScrollBar :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityHorizontalScrollBar")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityHorizontalScrollBar")
-Accessibility_setAccessibilityHorizontalScrollBar :: #force_inline proc "c" (self: ^Accessibility, accessibilityHorizontalScrollBar: id) {
-    msgSend(nil, self, "setAccessibilityHorizontalScrollBar:", accessibilityHorizontalScrollBar)
-}
-@(objc_type=Accessibility, objc_name="accessibilityVerticalScrollBar")
-Accessibility_accessibilityVerticalScrollBar :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityVerticalScrollBar")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityVerticalScrollBar")
-Accessibility_setAccessibilityVerticalScrollBar :: #force_inline proc "c" (self: ^Accessibility, accessibilityVerticalScrollBar: id) {
-    msgSend(nil, self, "setAccessibilityVerticalScrollBar:", accessibilityVerticalScrollBar)
-}
-@(objc_type=Accessibility, objc_name="accessibilityAllowedValues")
-Accessibility_accessibilityAllowedValues :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityAllowedValues")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityAllowedValues")
-Accessibility_setAccessibilityAllowedValues :: #force_inline proc "c" (self: ^Accessibility, accessibilityAllowedValues: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityAllowedValues:", accessibilityAllowedValues)
-}
-@(objc_type=Accessibility, objc_name="accessibilityLabelUIElements")
-Accessibility_accessibilityLabelUIElements :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityLabelUIElements")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityLabelUIElements")
-Accessibility_setAccessibilityLabelUIElements :: #force_inline proc "c" (self: ^Accessibility, accessibilityLabelUIElements: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityLabelUIElements:", accessibilityLabelUIElements)
-}
-@(objc_type=Accessibility, objc_name="accessibilityLabelValue")
-Accessibility_accessibilityLabelValue :: #force_inline proc "c" (self: ^Accessibility) -> cffi.float {
-    return msgSend(cffi.float, self, "accessibilityLabelValue")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityLabelValue")
-Accessibility_setAccessibilityLabelValue :: #force_inline proc "c" (self: ^Accessibility, accessibilityLabelValue: cffi.float) {
-    msgSend(nil, self, "setAccessibilityLabelValue:", accessibilityLabelValue)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySplitters")
-Accessibility_accessibilitySplitters :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySplitters")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySplitters")
-Accessibility_setAccessibilitySplitters :: #force_inline proc "c" (self: ^Accessibility, accessibilitySplitters: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilitySplitters:", accessibilitySplitters)
-}
-@(objc_type=Accessibility, objc_name="accessibilityDecrementButton")
-Accessibility_accessibilityDecrementButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityDecrementButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityDecrementButton")
-Accessibility_setAccessibilityDecrementButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityDecrementButton: id) {
-    msgSend(nil, self, "setAccessibilityDecrementButton:", accessibilityDecrementButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilityIncrementButton")
-Accessibility_accessibilityIncrementButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityIncrementButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityIncrementButton")
-Accessibility_setAccessibilityIncrementButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityIncrementButton: id) {
-    msgSend(nil, self, "setAccessibilityIncrementButton:", accessibilityIncrementButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilityTabs")
-Accessibility_accessibilityTabs :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityTabs")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityTabs")
-Accessibility_setAccessibilityTabs :: #force_inline proc "c" (self: ^Accessibility, accessibilityTabs: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityTabs:", accessibilityTabs)
-}
-@(objc_type=Accessibility, objc_name="accessibilityHeader")
-Accessibility_accessibilityHeader :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityHeader")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityHeader")
-Accessibility_setAccessibilityHeader :: #force_inline proc "c" (self: ^Accessibility, accessibilityHeader: id) {
-    msgSend(nil, self, "setAccessibilityHeader:", accessibilityHeader)
-}
-@(objc_type=Accessibility, objc_name="accessibilityColumnCount")
-Accessibility_accessibilityColumnCount :: #force_inline proc "c" (self: ^Accessibility) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityColumnCount")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityColumnCount")
-Accessibility_setAccessibilityColumnCount :: #force_inline proc "c" (self: ^Accessibility, accessibilityColumnCount: NS.Integer) {
-    msgSend(nil, self, "setAccessibilityColumnCount:", accessibilityColumnCount)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRowCount")
-Accessibility_accessibilityRowCount :: #force_inline proc "c" (self: ^Accessibility) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityRowCount")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityRowCount")
-Accessibility_setAccessibilityRowCount :: #force_inline proc "c" (self: ^Accessibility, accessibilityRowCount: NS.Integer) {
-    msgSend(nil, self, "setAccessibilityRowCount:", accessibilityRowCount)
-}
-@(objc_type=Accessibility, objc_name="accessibilityIndex")
-Accessibility_accessibilityIndex :: #force_inline proc "c" (self: ^Accessibility) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityIndex")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityIndex")
-Accessibility_setAccessibilityIndex :: #force_inline proc "c" (self: ^Accessibility, accessibilityIndex: NS.Integer) {
-    msgSend(nil, self, "setAccessibilityIndex:", accessibilityIndex)
-}
-@(objc_type=Accessibility, objc_name="accessibilityColumns")
-Accessibility_accessibilityColumns :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityColumns")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityColumns")
-Accessibility_setAccessibilityColumns :: #force_inline proc "c" (self: ^Accessibility, accessibilityColumns: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityColumns:", accessibilityColumns)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRows")
-Accessibility_accessibilityRows :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityRows")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityRows")
-Accessibility_setAccessibilityRows :: #force_inline proc "c" (self: ^Accessibility, accessibilityRows: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityRows:", accessibilityRows)
-}
-@(objc_type=Accessibility, objc_name="accessibilityVisibleRows")
-Accessibility_accessibilityVisibleRows :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityVisibleRows")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityVisibleRows")
-Accessibility_setAccessibilityVisibleRows :: #force_inline proc "c" (self: ^Accessibility, accessibilityVisibleRows: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityVisibleRows:", accessibilityVisibleRows)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySelectedRows")
-Accessibility_accessibilitySelectedRows :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySelectedRows")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySelectedRows")
-Accessibility_setAccessibilitySelectedRows :: #force_inline proc "c" (self: ^Accessibility, accessibilitySelectedRows: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilitySelectedRows:", accessibilitySelectedRows)
-}
-@(objc_type=Accessibility, objc_name="accessibilityVisibleColumns")
-Accessibility_accessibilityVisibleColumns :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityVisibleColumns")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityVisibleColumns")
-Accessibility_setAccessibilityVisibleColumns :: #force_inline proc "c" (self: ^Accessibility, accessibilityVisibleColumns: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityVisibleColumns:", accessibilityVisibleColumns)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySelectedColumns")
-Accessibility_accessibilitySelectedColumns :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySelectedColumns")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySelectedColumns")
-Accessibility_setAccessibilitySelectedColumns :: #force_inline proc "c" (self: ^Accessibility, accessibilitySelectedColumns: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilitySelectedColumns:", accessibilitySelectedColumns)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySortDirection")
-Accessibility_accessibilitySortDirection :: #force_inline proc "c" (self: ^Accessibility) -> AccessibilitySortDirection {
-    return msgSend(AccessibilitySortDirection, self, "accessibilitySortDirection")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySortDirection")
-Accessibility_setAccessibilitySortDirection :: #force_inline proc "c" (self: ^Accessibility, accessibilitySortDirection: AccessibilitySortDirection) {
-    msgSend(nil, self, "setAccessibilitySortDirection:", accessibilitySortDirection)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRowHeaderUIElements")
-Accessibility_accessibilityRowHeaderUIElements :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityRowHeaderUIElements")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityRowHeaderUIElements")
-Accessibility_setAccessibilityRowHeaderUIElements :: #force_inline proc "c" (self: ^Accessibility, accessibilityRowHeaderUIElements: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityRowHeaderUIElements:", accessibilityRowHeaderUIElements)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySelectedCells")
-Accessibility_accessibilitySelectedCells :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySelectedCells")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySelectedCells")
-Accessibility_setAccessibilitySelectedCells :: #force_inline proc "c" (self: ^Accessibility, accessibilitySelectedCells: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilitySelectedCells:", accessibilitySelectedCells)
-}
-@(objc_type=Accessibility, objc_name="accessibilityVisibleCells")
-Accessibility_accessibilityVisibleCells :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityVisibleCells")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityVisibleCells")
-Accessibility_setAccessibilityVisibleCells :: #force_inline proc "c" (self: ^Accessibility, accessibilityVisibleCells: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityVisibleCells:", accessibilityVisibleCells)
-}
-@(objc_type=Accessibility, objc_name="accessibilityColumnHeaderUIElements")
-Accessibility_accessibilityColumnHeaderUIElements :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityColumnHeaderUIElements")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityColumnHeaderUIElements")
-Accessibility_setAccessibilityColumnHeaderUIElements :: #force_inline proc "c" (self: ^Accessibility, accessibilityColumnHeaderUIElements: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityColumnHeaderUIElements:", accessibilityColumnHeaderUIElements)
-}
-@(objc_type=Accessibility, objc_name="accessibilityRowIndexRange")
-Accessibility_accessibilityRowIndexRange :: #force_inline proc "c" (self: ^Accessibility) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityRowIndexRange")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityRowIndexRange")
-Accessibility_setAccessibilityRowIndexRange :: #force_inline proc "c" (self: ^Accessibility, accessibilityRowIndexRange: NS._NSRange) {
-    msgSend(nil, self, "setAccessibilityRowIndexRange:", accessibilityRowIndexRange)
-}
-@(objc_type=Accessibility, objc_name="accessibilityColumnIndexRange")
-Accessibility_accessibilityColumnIndexRange :: #force_inline proc "c" (self: ^Accessibility) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityColumnIndexRange")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityColumnIndexRange")
-Accessibility_setAccessibilityColumnIndexRange :: #force_inline proc "c" (self: ^Accessibility, accessibilityColumnIndexRange: NS._NSRange) {
-    msgSend(nil, self, "setAccessibilityColumnIndexRange:", accessibilityColumnIndexRange)
-}
-@(objc_type=Accessibility, objc_name="accessibilityInsertionPointLineNumber")
-Accessibility_accessibilityInsertionPointLineNumber :: #force_inline proc "c" (self: ^Accessibility) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityInsertionPointLineNumber")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityInsertionPointLineNumber")
-Accessibility_setAccessibilityInsertionPointLineNumber :: #force_inline proc "c" (self: ^Accessibility, accessibilityInsertionPointLineNumber: NS.Integer) {
-    msgSend(nil, self, "setAccessibilityInsertionPointLineNumber:", accessibilityInsertionPointLineNumber)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySharedCharacterRange")
-Accessibility_accessibilitySharedCharacterRange :: #force_inline proc "c" (self: ^Accessibility) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilitySharedCharacterRange")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySharedCharacterRange")
-Accessibility_setAccessibilitySharedCharacterRange :: #force_inline proc "c" (self: ^Accessibility, accessibilitySharedCharacterRange: NS._NSRange) {
-    msgSend(nil, self, "setAccessibilitySharedCharacterRange:", accessibilitySharedCharacterRange)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySharedTextUIElements")
-Accessibility_accessibilitySharedTextUIElements :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySharedTextUIElements")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySharedTextUIElements")
-Accessibility_setAccessibilitySharedTextUIElements :: #force_inline proc "c" (self: ^Accessibility, accessibilitySharedTextUIElements: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilitySharedTextUIElements:", accessibilitySharedTextUIElements)
-}
-@(objc_type=Accessibility, objc_name="accessibilityVisibleCharacterRange")
-Accessibility_accessibilityVisibleCharacterRange :: #force_inline proc "c" (self: ^Accessibility) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilityVisibleCharacterRange")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityVisibleCharacterRange")
-Accessibility_setAccessibilityVisibleCharacterRange :: #force_inline proc "c" (self: ^Accessibility, accessibilityVisibleCharacterRange: NS._NSRange) {
-    msgSend(nil, self, "setAccessibilityVisibleCharacterRange:", accessibilityVisibleCharacterRange)
-}
-@(objc_type=Accessibility, objc_name="accessibilityNumberOfCharacters")
-Accessibility_accessibilityNumberOfCharacters :: #force_inline proc "c" (self: ^Accessibility) -> NS.Integer {
-    return msgSend(NS.Integer, self, "accessibilityNumberOfCharacters")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityNumberOfCharacters")
-Accessibility_setAccessibilityNumberOfCharacters :: #force_inline proc "c" (self: ^Accessibility, accessibilityNumberOfCharacters: NS.Integer) {
-    msgSend(nil, self, "setAccessibilityNumberOfCharacters:", accessibilityNumberOfCharacters)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySelectedText")
-Accessibility_accessibilitySelectedText :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilitySelectedText")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySelectedText")
-Accessibility_setAccessibilitySelectedText :: #force_inline proc "c" (self: ^Accessibility, accessibilitySelectedText: ^NS.String) {
-    msgSend(nil, self, "setAccessibilitySelectedText:", accessibilitySelectedText)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySelectedTextRange")
-Accessibility_accessibilitySelectedTextRange :: #force_inline proc "c" (self: ^Accessibility) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "accessibilitySelectedTextRange")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySelectedTextRange")
-Accessibility_setAccessibilitySelectedTextRange :: #force_inline proc "c" (self: ^Accessibility, accessibilitySelectedTextRange: NS._NSRange) {
-    msgSend(nil, self, "setAccessibilitySelectedTextRange:", accessibilitySelectedTextRange)
-}
-@(objc_type=Accessibility, objc_name="accessibilitySelectedTextRanges")
-Accessibility_accessibilitySelectedTextRanges :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilitySelectedTextRanges")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilitySelectedTextRanges")
-Accessibility_setAccessibilitySelectedTextRanges :: #force_inline proc "c" (self: ^Accessibility, accessibilitySelectedTextRanges: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilitySelectedTextRanges:", accessibilitySelectedTextRanges)
-}
-@(objc_type=Accessibility, objc_name="accessibilityToolbarButton")
-Accessibility_accessibilityToolbarButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityToolbarButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityToolbarButton")
-Accessibility_setAccessibilityToolbarButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityToolbarButton: id) {
-    msgSend(nil, self, "setAccessibilityToolbarButton:", accessibilityToolbarButton)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityModal")
-Accessibility_isAccessibilityModal :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityModal")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityModal")
-Accessibility_setAccessibilityModal :: #force_inline proc "c" (self: ^Accessibility, accessibilityModal: bool) {
-    msgSend(nil, self, "setAccessibilityModal:", accessibilityModal)
-}
-@(objc_type=Accessibility, objc_name="accessibilityProxy")
-Accessibility_accessibilityProxy :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityProxy")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityProxy")
-Accessibility_setAccessibilityProxy :: #force_inline proc "c" (self: ^Accessibility, accessibilityProxy: id) {
-    msgSend(nil, self, "setAccessibilityProxy:", accessibilityProxy)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityMain")
-Accessibility_isAccessibilityMain :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityMain")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMain")
-Accessibility_setAccessibilityMain :: #force_inline proc "c" (self: ^Accessibility, accessibilityMain: bool) {
-    msgSend(nil, self, "setAccessibilityMain:", accessibilityMain)
-}
-@(objc_type=Accessibility, objc_name="accessibilityFullScreenButton")
-Accessibility_accessibilityFullScreenButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityFullScreenButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityFullScreenButton")
-Accessibility_setAccessibilityFullScreenButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityFullScreenButton: id) {
-    msgSend(nil, self, "setAccessibilityFullScreenButton:", accessibilityFullScreenButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilityGrowArea")
-Accessibility_accessibilityGrowArea :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityGrowArea")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityGrowArea")
-Accessibility_setAccessibilityGrowArea :: #force_inline proc "c" (self: ^Accessibility, accessibilityGrowArea: id) {
-    msgSend(nil, self, "setAccessibilityGrowArea:", accessibilityGrowArea)
-}
-@(objc_type=Accessibility, objc_name="accessibilityDocument")
-Accessibility_accessibilityDocument :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityDocument")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityDocument")
-Accessibility_setAccessibilityDocument :: #force_inline proc "c" (self: ^Accessibility, accessibilityDocument: ^NS.String) {
-    msgSend(nil, self, "setAccessibilityDocument:", accessibilityDocument)
-}
-@(objc_type=Accessibility, objc_name="accessibilityDefaultButton")
-Accessibility_accessibilityDefaultButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityDefaultButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityDefaultButton")
-Accessibility_setAccessibilityDefaultButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityDefaultButton: id) {
-    msgSend(nil, self, "setAccessibilityDefaultButton:", accessibilityDefaultButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilityCloseButton")
-Accessibility_accessibilityCloseButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityCloseButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityCloseButton")
-Accessibility_setAccessibilityCloseButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityCloseButton: id) {
-    msgSend(nil, self, "setAccessibilityCloseButton:", accessibilityCloseButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilityZoomButton")
-Accessibility_accessibilityZoomButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityZoomButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityZoomButton")
-Accessibility_setAccessibilityZoomButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityZoomButton: id) {
-    msgSend(nil, self, "setAccessibilityZoomButton:", accessibilityZoomButton)
-}
-@(objc_type=Accessibility, objc_name="accessibilityMinimizeButton")
-Accessibility_accessibilityMinimizeButton :: #force_inline proc "c" (self: ^Accessibility) -> id {
-    return msgSend(id, self, "accessibilityMinimizeButton")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMinimizeButton")
-Accessibility_setAccessibilityMinimizeButton :: #force_inline proc "c" (self: ^Accessibility, accessibilityMinimizeButton: id) {
-    msgSend(nil, self, "setAccessibilityMinimizeButton:", accessibilityMinimizeButton)
-}
-@(objc_type=Accessibility, objc_name="isAccessibilityMinimized")
-Accessibility_isAccessibilityMinimized :: #force_inline proc "c" (self: ^Accessibility) -> bool {
-    return msgSend(bool, self, "isAccessibilityMinimized")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityMinimized")
-Accessibility_setAccessibilityMinimized :: #force_inline proc "c" (self: ^Accessibility, accessibilityMinimized: bool) {
-    msgSend(nil, self, "setAccessibilityMinimized:", accessibilityMinimized)
-}
-@(objc_type=Accessibility, objc_name="accessibilityCustomActions")
-Accessibility_accessibilityCustomActions :: #force_inline proc "c" (self: ^Accessibility) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "accessibilityCustomActions")
-}
-@(objc_type=Accessibility, objc_name="setAccessibilityCustomActions")
-Accessibility_setAccessibilityCustomActions :: #force_inline proc "c" (self: ^Accessibility, accessibilityCustomActions: ^NS.Array) {
-    msgSend(nil, self, "setAccessibilityCustomActions:", accessibilityCustomActions)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Accessibility, objc_selector="accessibilityLayoutPointForScreenPoint:", objc_name="accessibilityLayoutPointForScreenPoint")
+    Accessibility_accessibilityLayoutPointForScreenPoint :: proc(self: ^Accessibility, point: CG.Point) -> CG.Point ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityLayoutSizeForScreenSize:", objc_name="accessibilityLayoutSizeForScreenSize")
+    Accessibility_accessibilityLayoutSizeForScreenSize :: proc(self: ^Accessibility, size: NS.Size) -> NS.Size ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityScreenPointForLayoutPoint:", objc_name="accessibilityScreenPointForLayoutPoint")
+    Accessibility_accessibilityScreenPointForLayoutPoint :: proc(self: ^Accessibility, point: CG.Point) -> CG.Point ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityScreenSizeForLayoutSize:", objc_name="accessibilityScreenSizeForLayoutSize")
+    Accessibility_accessibilityScreenSizeForLayoutSize :: proc(self: ^Accessibility, size: NS.Size) -> NS.Size ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityCellForColumn:row:", objc_name="accessibilityCellForColumn")
+    Accessibility_accessibilityCellForColumn :: proc(self: ^Accessibility, column: NS.Integer, row: NS.Integer) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityAttributedStringForRange:", objc_name="accessibilityAttributedStringForRange")
+    Accessibility_accessibilityAttributedStringForRange :: proc(self: ^Accessibility, range: NS._NSRange) -> ^NS.AttributedString ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRangeForLine:", objc_name="accessibilityRangeForLine")
+    Accessibility_accessibilityRangeForLine :: proc(self: ^Accessibility, line: NS.Integer) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityStringForRange:", objc_name="accessibilityStringForRange")
+    Accessibility_accessibilityStringForRange :: proc(self: ^Accessibility, range: NS._NSRange) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRangeForPosition:", objc_name="accessibilityRangeForPosition")
+    Accessibility_accessibilityRangeForPosition :: proc(self: ^Accessibility, point: CG.Point) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRangeForIndex:", objc_name="accessibilityRangeForIndex")
+    Accessibility_accessibilityRangeForIndex :: proc(self: ^Accessibility, index: NS.Integer) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityFrameForRange:", objc_name="accessibilityFrameForRange")
+    Accessibility_accessibilityFrameForRange :: proc(self: ^Accessibility, range: NS._NSRange) -> NS.Rect ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRTFForRange:", objc_name="accessibilityRTFForRange")
+    Accessibility_accessibilityRTFForRange :: proc(self: ^Accessibility, range: NS._NSRange) -> ^NS.Data ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityStyleRangeForIndex:", objc_name="accessibilityStyleRangeForIndex")
+    Accessibility_accessibilityStyleRangeForIndex :: proc(self: ^Accessibility, index: NS.Integer) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityLineForIndex:", objc_name="accessibilityLineForIndex")
+    Accessibility_accessibilityLineForIndex :: proc(self: ^Accessibility, index: NS.Integer) -> NS.Integer ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformCancel", objc_name="accessibilityPerformCancel")
+    Accessibility_accessibilityPerformCancel :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformConfirm", objc_name="accessibilityPerformConfirm")
+    Accessibility_accessibilityPerformConfirm :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformDecrement", objc_name="accessibilityPerformDecrement")
+    Accessibility_accessibilityPerformDecrement :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformDelete", objc_name="accessibilityPerformDelete")
+    Accessibility_accessibilityPerformDelete :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformIncrement", objc_name="accessibilityPerformIncrement")
+    Accessibility_accessibilityPerformIncrement :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformPick", objc_name="accessibilityPerformPick")
+    Accessibility_accessibilityPerformPick :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformPress", objc_name="accessibilityPerformPress")
+    Accessibility_accessibilityPerformPress :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformRaise", objc_name="accessibilityPerformRaise")
+    Accessibility_accessibilityPerformRaise :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformShowAlternateUI", objc_name="accessibilityPerformShowAlternateUI")
+    Accessibility_accessibilityPerformShowAlternateUI :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformShowDefaultUI", objc_name="accessibilityPerformShowDefaultUI")
+    Accessibility_accessibilityPerformShowDefaultUI :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPerformShowMenu", objc_name="accessibilityPerformShowMenu")
+    Accessibility_accessibilityPerformShowMenu :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilitySelectorAllowed:", objc_name="isAccessibilitySelectorAllowed")
+    Accessibility_isAccessibilitySelectorAllowed :: proc(self: ^Accessibility, selector: SEL) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityElement", objc_name="isAccessibilityElement")
+    Accessibility_isAccessibilityElement :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityElement:", objc_name="setAccessibilityElement")
+    Accessibility_setAccessibilityElement :: proc(self: ^Accessibility, accessibilityElement: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityFrame", objc_name="accessibilityFrame")
+    Accessibility_accessibilityFrame :: proc(self: ^Accessibility) -> NS.Rect ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityFrame:", objc_name="setAccessibilityFrame")
+    Accessibility_setAccessibilityFrame :: proc(self: ^Accessibility, accessibilityFrame: NS.Rect) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityFocused", objc_name="isAccessibilityFocused")
+    Accessibility_isAccessibilityFocused :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityFocused:", objc_name="setAccessibilityFocused")
+    Accessibility_setAccessibilityFocused :: proc(self: ^Accessibility, accessibilityFocused: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityActivationPoint", objc_name="accessibilityActivationPoint")
+    Accessibility_accessibilityActivationPoint :: proc(self: ^Accessibility) -> CG.Point ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityActivationPoint:", objc_name="setAccessibilityActivationPoint")
+    Accessibility_setAccessibilityActivationPoint :: proc(self: ^Accessibility, accessibilityActivationPoint: CG.Point) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityTopLevelUIElement", objc_name="accessibilityTopLevelUIElement")
+    Accessibility_accessibilityTopLevelUIElement :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityTopLevelUIElement:", objc_name="setAccessibilityTopLevelUIElement")
+    Accessibility_setAccessibilityTopLevelUIElement :: proc(self: ^Accessibility, accessibilityTopLevelUIElement: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityURL", objc_name="accessibilityURL")
+    Accessibility_accessibilityURL :: proc(self: ^Accessibility) -> ^NS.URL ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityURL:", objc_name="setAccessibilityURL")
+    Accessibility_setAccessibilityURL :: proc(self: ^Accessibility, accessibilityURL: ^NS.URL) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityValue", objc_name="accessibilityValue")
+    Accessibility_accessibilityValue :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityValue:", objc_name="setAccessibilityValue")
+    Accessibility_setAccessibilityValue :: proc(self: ^Accessibility, accessibilityValue: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityValueDescription", objc_name="accessibilityValueDescription")
+    Accessibility_accessibilityValueDescription :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityValueDescription:", objc_name="setAccessibilityValueDescription")
+    Accessibility_setAccessibilityValueDescription :: proc(self: ^Accessibility, accessibilityValueDescription: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityVisibleChildren", objc_name="accessibilityVisibleChildren")
+    Accessibility_accessibilityVisibleChildren :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityVisibleChildren:", objc_name="setAccessibilityVisibleChildren")
+    Accessibility_setAccessibilityVisibleChildren :: proc(self: ^Accessibility, accessibilityVisibleChildren: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySubrole", objc_name="accessibilitySubrole")
+    Accessibility_accessibilitySubrole :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySubrole:", objc_name="setAccessibilitySubrole")
+    Accessibility_setAccessibilitySubrole :: proc(self: ^Accessibility, accessibilitySubrole: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityTitle", objc_name="accessibilityTitle")
+    Accessibility_accessibilityTitle :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityTitle:", objc_name="setAccessibilityTitle")
+    Accessibility_setAccessibilityTitle :: proc(self: ^Accessibility, accessibilityTitle: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityTitleUIElement", objc_name="accessibilityTitleUIElement")
+    Accessibility_accessibilityTitleUIElement :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityTitleUIElement:", objc_name="setAccessibilityTitleUIElement")
+    Accessibility_setAccessibilityTitleUIElement :: proc(self: ^Accessibility, accessibilityTitleUIElement: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityNextContents", objc_name="accessibilityNextContents")
+    Accessibility_accessibilityNextContents :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityNextContents:", objc_name="setAccessibilityNextContents")
+    Accessibility_setAccessibilityNextContents :: proc(self: ^Accessibility, accessibilityNextContents: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityOrientation", objc_name="accessibilityOrientation")
+    Accessibility_accessibilityOrientation :: proc(self: ^Accessibility) -> AccessibilityOrientation ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityOrientation:", objc_name="setAccessibilityOrientation")
+    Accessibility_setAccessibilityOrientation :: proc(self: ^Accessibility, accessibilityOrientation: AccessibilityOrientation) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityOverflowButton", objc_name="accessibilityOverflowButton")
+    Accessibility_accessibilityOverflowButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityOverflowButton:", objc_name="setAccessibilityOverflowButton")
+    Accessibility_setAccessibilityOverflowButton :: proc(self: ^Accessibility, accessibilityOverflowButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityParent", objc_name="accessibilityParent")
+    Accessibility_accessibilityParent :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityParent:", objc_name="setAccessibilityParent")
+    Accessibility_setAccessibilityParent :: proc(self: ^Accessibility, accessibilityParent: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPlaceholderValue", objc_name="accessibilityPlaceholderValue")
+    Accessibility_accessibilityPlaceholderValue :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityPlaceholderValue:", objc_name="setAccessibilityPlaceholderValue")
+    Accessibility_setAccessibilityPlaceholderValue :: proc(self: ^Accessibility, accessibilityPlaceholderValue: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityPreviousContents", objc_name="accessibilityPreviousContents")
+    Accessibility_accessibilityPreviousContents :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityPreviousContents:", objc_name="setAccessibilityPreviousContents")
+    Accessibility_setAccessibilityPreviousContents :: proc(self: ^Accessibility, accessibilityPreviousContents: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRole", objc_name="accessibilityRole")
+    Accessibility_accessibilityRole :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityRole:", objc_name="setAccessibilityRole")
+    Accessibility_setAccessibilityRole :: proc(self: ^Accessibility, accessibilityRole: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRoleDescription", objc_name="accessibilityRoleDescription")
+    Accessibility_accessibilityRoleDescription :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityRoleDescription:", objc_name="setAccessibilityRoleDescription")
+    Accessibility_setAccessibilityRoleDescription :: proc(self: ^Accessibility, accessibilityRoleDescription: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySearchButton", objc_name="accessibilitySearchButton")
+    Accessibility_accessibilitySearchButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySearchButton:", objc_name="setAccessibilitySearchButton")
+    Accessibility_setAccessibilitySearchButton :: proc(self: ^Accessibility, accessibilitySearchButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySearchMenu", objc_name="accessibilitySearchMenu")
+    Accessibility_accessibilitySearchMenu :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySearchMenu:", objc_name="setAccessibilitySearchMenu")
+    Accessibility_setAccessibilitySearchMenu :: proc(self: ^Accessibility, accessibilitySearchMenu: id) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilitySelected", objc_name="isAccessibilitySelected")
+    Accessibility_isAccessibilitySelected :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySelected:", objc_name="setAccessibilitySelected")
+    Accessibility_setAccessibilitySelected :: proc(self: ^Accessibility, accessibilitySelected: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySelectedChildren", objc_name="accessibilitySelectedChildren")
+    Accessibility_accessibilitySelectedChildren :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySelectedChildren:", objc_name="setAccessibilitySelectedChildren")
+    Accessibility_setAccessibilitySelectedChildren :: proc(self: ^Accessibility, accessibilitySelectedChildren: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityServesAsTitleForUIElements", objc_name="accessibilityServesAsTitleForUIElements")
+    Accessibility_accessibilityServesAsTitleForUIElements :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityServesAsTitleForUIElements:", objc_name="setAccessibilityServesAsTitleForUIElements")
+    Accessibility_setAccessibilityServesAsTitleForUIElements :: proc(self: ^Accessibility, accessibilityServesAsTitleForUIElements: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityShownMenu", objc_name="accessibilityShownMenu")
+    Accessibility_accessibilityShownMenu :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityShownMenu:", objc_name="setAccessibilityShownMenu")
+    Accessibility_setAccessibilityShownMenu :: proc(self: ^Accessibility, accessibilityShownMenu: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMinValue", objc_name="accessibilityMinValue")
+    Accessibility_accessibilityMinValue :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMinValue:", objc_name="setAccessibilityMinValue")
+    Accessibility_setAccessibilityMinValue :: proc(self: ^Accessibility, accessibilityMinValue: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMaxValue", objc_name="accessibilityMaxValue")
+    Accessibility_accessibilityMaxValue :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMaxValue:", objc_name="setAccessibilityMaxValue")
+    Accessibility_setAccessibilityMaxValue :: proc(self: ^Accessibility, accessibilityMaxValue: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityLinkedUIElements", objc_name="accessibilityLinkedUIElements")
+    Accessibility_accessibilityLinkedUIElements :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityLinkedUIElements:", objc_name="setAccessibilityLinkedUIElements")
+    Accessibility_setAccessibilityLinkedUIElements :: proc(self: ^Accessibility, accessibilityLinkedUIElements: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityWindow", objc_name="accessibilityWindow")
+    Accessibility_accessibilityWindow :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityWindow:", objc_name="setAccessibilityWindow")
+    Accessibility_setAccessibilityWindow :: proc(self: ^Accessibility, accessibilityWindow: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityIdentifier", objc_name="accessibilityIdentifier")
+    Accessibility_accessibilityIdentifier :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityIdentifier:", objc_name="setAccessibilityIdentifier")
+    Accessibility_setAccessibilityIdentifier :: proc(self: ^Accessibility, accessibilityIdentifier: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityHelp", objc_name="accessibilityHelp")
+    Accessibility_accessibilityHelp :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityHelp:", objc_name="setAccessibilityHelp")
+    Accessibility_setAccessibilityHelp :: proc(self: ^Accessibility, accessibilityHelp: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityFilename", objc_name="accessibilityFilename")
+    Accessibility_accessibilityFilename :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityFilename:", objc_name="setAccessibilityFilename")
+    Accessibility_setAccessibilityFilename :: proc(self: ^Accessibility, accessibilityFilename: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityExpanded", objc_name="isAccessibilityExpanded")
+    Accessibility_isAccessibilityExpanded :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityExpanded:", objc_name="setAccessibilityExpanded")
+    Accessibility_setAccessibilityExpanded :: proc(self: ^Accessibility, accessibilityExpanded: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityEdited", objc_name="isAccessibilityEdited")
+    Accessibility_isAccessibilityEdited :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityEdited:", objc_name="setAccessibilityEdited")
+    Accessibility_setAccessibilityEdited :: proc(self: ^Accessibility, accessibilityEdited: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityEnabled", objc_name="isAccessibilityEnabled")
+    Accessibility_isAccessibilityEnabled :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityEnabled:", objc_name="setAccessibilityEnabled")
+    Accessibility_setAccessibilityEnabled :: proc(self: ^Accessibility, accessibilityEnabled: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityChildren", objc_name="accessibilityChildren")
+    Accessibility_accessibilityChildren :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityChildren:", objc_name="setAccessibilityChildren")
+    Accessibility_setAccessibilityChildren :: proc(self: ^Accessibility, accessibilityChildren: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityChildrenInNavigationOrder", objc_name="accessibilityChildrenInNavigationOrder")
+    Accessibility_accessibilityChildrenInNavigationOrder :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityChildrenInNavigationOrder:", objc_name="setAccessibilityChildrenInNavigationOrder")
+    Accessibility_setAccessibilityChildrenInNavigationOrder :: proc(self: ^Accessibility, accessibilityChildrenInNavigationOrder: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityClearButton", objc_name="accessibilityClearButton")
+    Accessibility_accessibilityClearButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityClearButton:", objc_name="setAccessibilityClearButton")
+    Accessibility_setAccessibilityClearButton :: proc(self: ^Accessibility, accessibilityClearButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityCancelButton", objc_name="accessibilityCancelButton")
+    Accessibility_accessibilityCancelButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityCancelButton:", objc_name="setAccessibilityCancelButton")
+    Accessibility_setAccessibilityCancelButton :: proc(self: ^Accessibility, accessibilityCancelButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityProtectedContent", objc_name="isAccessibilityProtectedContent")
+    Accessibility_isAccessibilityProtectedContent :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityProtectedContent:", objc_name="setAccessibilityProtectedContent")
+    Accessibility_setAccessibilityProtectedContent :: proc(self: ^Accessibility, accessibilityProtectedContent: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityContents", objc_name="accessibilityContents")
+    Accessibility_accessibilityContents :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityContents:", objc_name="setAccessibilityContents")
+    Accessibility_setAccessibilityContents :: proc(self: ^Accessibility, accessibilityContents: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityLabel", objc_name="accessibilityLabel")
+    Accessibility_accessibilityLabel :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityLabel:", objc_name="setAccessibilityLabel")
+    Accessibility_setAccessibilityLabel :: proc(self: ^Accessibility, accessibilityLabel: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityAlternateUIVisible", objc_name="isAccessibilityAlternateUIVisible")
+    Accessibility_isAccessibilityAlternateUIVisible :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityAlternateUIVisible:", objc_name="setAccessibilityAlternateUIVisible")
+    Accessibility_setAccessibilityAlternateUIVisible :: proc(self: ^Accessibility, accessibilityAlternateUIVisible: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySharedFocusElements", objc_name="accessibilitySharedFocusElements")
+    Accessibility_accessibilitySharedFocusElements :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySharedFocusElements:", objc_name="setAccessibilitySharedFocusElements")
+    Accessibility_setAccessibilitySharedFocusElements :: proc(self: ^Accessibility, accessibilitySharedFocusElements: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityRequired", objc_name="isAccessibilityRequired")
+    Accessibility_isAccessibilityRequired :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityRequired:", objc_name="setAccessibilityRequired")
+    Accessibility_setAccessibilityRequired :: proc(self: ^Accessibility, accessibilityRequired: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityCustomRotors", objc_name="accessibilityCustomRotors")
+    Accessibility_accessibilityCustomRotors :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityCustomRotors:", objc_name="setAccessibilityCustomRotors")
+    Accessibility_setAccessibilityCustomRotors :: proc(self: ^Accessibility, accessibilityCustomRotors: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityUserInputLabels", objc_name="accessibilityUserInputLabels")
+    Accessibility_accessibilityUserInputLabels :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityUserInputLabels:", objc_name="setAccessibilityUserInputLabels")
+    Accessibility_setAccessibilityUserInputLabels :: proc(self: ^Accessibility, accessibilityUserInputLabels: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityAttributedUserInputLabels", objc_name="accessibilityAttributedUserInputLabels")
+    Accessibility_accessibilityAttributedUserInputLabels :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityAttributedUserInputLabels:", objc_name="setAccessibilityAttributedUserInputLabels")
+    Accessibility_setAccessibilityAttributedUserInputLabels :: proc(self: ^Accessibility, accessibilityAttributedUserInputLabels: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityApplicationFocusedUIElement", objc_name="accessibilityApplicationFocusedUIElement")
+    Accessibility_accessibilityApplicationFocusedUIElement :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityApplicationFocusedUIElement:", objc_name="setAccessibilityApplicationFocusedUIElement")
+    Accessibility_setAccessibilityApplicationFocusedUIElement :: proc(self: ^Accessibility, accessibilityApplicationFocusedUIElement: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMainWindow", objc_name="accessibilityMainWindow")
+    Accessibility_accessibilityMainWindow :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMainWindow:", objc_name="setAccessibilityMainWindow")
+    Accessibility_setAccessibilityMainWindow :: proc(self: ^Accessibility, accessibilityMainWindow: id) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityHidden", objc_name="isAccessibilityHidden")
+    Accessibility_isAccessibilityHidden :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityHidden:", objc_name="setAccessibilityHidden")
+    Accessibility_setAccessibilityHidden :: proc(self: ^Accessibility, accessibilityHidden: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityFrontmost", objc_name="isAccessibilityFrontmost")
+    Accessibility_isAccessibilityFrontmost :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityFrontmost:", objc_name="setAccessibilityFrontmost")
+    Accessibility_setAccessibilityFrontmost :: proc(self: ^Accessibility, accessibilityFrontmost: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityFocusedWindow", objc_name="accessibilityFocusedWindow")
+    Accessibility_accessibilityFocusedWindow :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityFocusedWindow:", objc_name="setAccessibilityFocusedWindow")
+    Accessibility_setAccessibilityFocusedWindow :: proc(self: ^Accessibility, accessibilityFocusedWindow: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityWindows", objc_name="accessibilityWindows")
+    Accessibility_accessibilityWindows :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityWindows:", objc_name="setAccessibilityWindows")
+    Accessibility_setAccessibilityWindows :: proc(self: ^Accessibility, accessibilityWindows: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityExtrasMenuBar", objc_name="accessibilityExtrasMenuBar")
+    Accessibility_accessibilityExtrasMenuBar :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityExtrasMenuBar:", objc_name="setAccessibilityExtrasMenuBar")
+    Accessibility_setAccessibilityExtrasMenuBar :: proc(self: ^Accessibility, accessibilityExtrasMenuBar: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMenuBar", objc_name="accessibilityMenuBar")
+    Accessibility_accessibilityMenuBar :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMenuBar:", objc_name="setAccessibilityMenuBar")
+    Accessibility_setAccessibilityMenuBar :: proc(self: ^Accessibility, accessibilityMenuBar: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityColumnTitles", objc_name="accessibilityColumnTitles")
+    Accessibility_accessibilityColumnTitles :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityColumnTitles:", objc_name="setAccessibilityColumnTitles")
+    Accessibility_setAccessibilityColumnTitles :: proc(self: ^Accessibility, accessibilityColumnTitles: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityOrderedByRow", objc_name="isAccessibilityOrderedByRow")
+    Accessibility_isAccessibilityOrderedByRow :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityOrderedByRow:", objc_name="setAccessibilityOrderedByRow")
+    Accessibility_setAccessibilityOrderedByRow :: proc(self: ^Accessibility, accessibilityOrderedByRow: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityHorizontalUnits", objc_name="accessibilityHorizontalUnits")
+    Accessibility_accessibilityHorizontalUnits :: proc(self: ^Accessibility) -> AccessibilityUnits ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityHorizontalUnits:", objc_name="setAccessibilityHorizontalUnits")
+    Accessibility_setAccessibilityHorizontalUnits :: proc(self: ^Accessibility, accessibilityHorizontalUnits: AccessibilityUnits) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityVerticalUnits", objc_name="accessibilityVerticalUnits")
+    Accessibility_accessibilityVerticalUnits :: proc(self: ^Accessibility) -> AccessibilityUnits ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityVerticalUnits:", objc_name="setAccessibilityVerticalUnits")
+    Accessibility_setAccessibilityVerticalUnits :: proc(self: ^Accessibility, accessibilityVerticalUnits: AccessibilityUnits) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityHorizontalUnitDescription", objc_name="accessibilityHorizontalUnitDescription")
+    Accessibility_accessibilityHorizontalUnitDescription :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityHorizontalUnitDescription:", objc_name="setAccessibilityHorizontalUnitDescription")
+    Accessibility_setAccessibilityHorizontalUnitDescription :: proc(self: ^Accessibility, accessibilityHorizontalUnitDescription: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityVerticalUnitDescription", objc_name="accessibilityVerticalUnitDescription")
+    Accessibility_accessibilityVerticalUnitDescription :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityVerticalUnitDescription:", objc_name="setAccessibilityVerticalUnitDescription")
+    Accessibility_setAccessibilityVerticalUnitDescription :: proc(self: ^Accessibility, accessibilityVerticalUnitDescription: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityHandles", objc_name="accessibilityHandles")
+    Accessibility_accessibilityHandles :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityHandles:", objc_name="setAccessibilityHandles")
+    Accessibility_setAccessibilityHandles :: proc(self: ^Accessibility, accessibilityHandles: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityWarningValue", objc_name="accessibilityWarningValue")
+    Accessibility_accessibilityWarningValue :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityWarningValue:", objc_name="setAccessibilityWarningValue")
+    Accessibility_setAccessibilityWarningValue :: proc(self: ^Accessibility, accessibilityWarningValue: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityCriticalValue", objc_name="accessibilityCriticalValue")
+    Accessibility_accessibilityCriticalValue :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityCriticalValue:", objc_name="setAccessibilityCriticalValue")
+    Accessibility_setAccessibilityCriticalValue :: proc(self: ^Accessibility, accessibilityCriticalValue: id) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityDisclosed", objc_name="isAccessibilityDisclosed")
+    Accessibility_isAccessibilityDisclosed :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityDisclosed:", objc_name="setAccessibilityDisclosed")
+    Accessibility_setAccessibilityDisclosed :: proc(self: ^Accessibility, accessibilityDisclosed: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityDisclosedByRow", objc_name="accessibilityDisclosedByRow")
+    Accessibility_accessibilityDisclosedByRow :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityDisclosedByRow:", objc_name="setAccessibilityDisclosedByRow")
+    Accessibility_setAccessibilityDisclosedByRow :: proc(self: ^Accessibility, accessibilityDisclosedByRow: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityDisclosedRows", objc_name="accessibilityDisclosedRows")
+    Accessibility_accessibilityDisclosedRows :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityDisclosedRows:", objc_name="setAccessibilityDisclosedRows")
+    Accessibility_setAccessibilityDisclosedRows :: proc(self: ^Accessibility, accessibilityDisclosedRows: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityDisclosureLevel", objc_name="accessibilityDisclosureLevel")
+    Accessibility_accessibilityDisclosureLevel :: proc(self: ^Accessibility) -> NS.Integer ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityDisclosureLevel:", objc_name="setAccessibilityDisclosureLevel")
+    Accessibility_setAccessibilityDisclosureLevel :: proc(self: ^Accessibility, accessibilityDisclosureLevel: NS.Integer) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMarkerUIElements", objc_name="accessibilityMarkerUIElements")
+    Accessibility_accessibilityMarkerUIElements :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMarkerUIElements:", objc_name="setAccessibilityMarkerUIElements")
+    Accessibility_setAccessibilityMarkerUIElements :: proc(self: ^Accessibility, accessibilityMarkerUIElements: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMarkerValues", objc_name="accessibilityMarkerValues")
+    Accessibility_accessibilityMarkerValues :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMarkerValues:", objc_name="setAccessibilityMarkerValues")
+    Accessibility_setAccessibilityMarkerValues :: proc(self: ^Accessibility, accessibilityMarkerValues: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMarkerGroupUIElement", objc_name="accessibilityMarkerGroupUIElement")
+    Accessibility_accessibilityMarkerGroupUIElement :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMarkerGroupUIElement:", objc_name="setAccessibilityMarkerGroupUIElement")
+    Accessibility_setAccessibilityMarkerGroupUIElement :: proc(self: ^Accessibility, accessibilityMarkerGroupUIElement: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityUnits", objc_name="accessibilityUnits")
+    Accessibility_accessibilityUnits :: proc(self: ^Accessibility) -> AccessibilityUnits ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityUnits:", objc_name="setAccessibilityUnits")
+    Accessibility_setAccessibilityUnits :: proc(self: ^Accessibility, accessibilityUnits: AccessibilityUnits) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityUnitDescription", objc_name="accessibilityUnitDescription")
+    Accessibility_accessibilityUnitDescription :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityUnitDescription:", objc_name="setAccessibilityUnitDescription")
+    Accessibility_setAccessibilityUnitDescription :: proc(self: ^Accessibility, accessibilityUnitDescription: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRulerMarkerType", objc_name="accessibilityRulerMarkerType")
+    Accessibility_accessibilityRulerMarkerType :: proc(self: ^Accessibility) -> AccessibilityRulerMarkerType ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityRulerMarkerType:", objc_name="setAccessibilityRulerMarkerType")
+    Accessibility_setAccessibilityRulerMarkerType :: proc(self: ^Accessibility, accessibilityRulerMarkerType: AccessibilityRulerMarkerType) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMarkerTypeDescription", objc_name="accessibilityMarkerTypeDescription")
+    Accessibility_accessibilityMarkerTypeDescription :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMarkerTypeDescription:", objc_name="setAccessibilityMarkerTypeDescription")
+    Accessibility_setAccessibilityMarkerTypeDescription :: proc(self: ^Accessibility, accessibilityMarkerTypeDescription: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityHorizontalScrollBar", objc_name="accessibilityHorizontalScrollBar")
+    Accessibility_accessibilityHorizontalScrollBar :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityHorizontalScrollBar:", objc_name="setAccessibilityHorizontalScrollBar")
+    Accessibility_setAccessibilityHorizontalScrollBar :: proc(self: ^Accessibility, accessibilityHorizontalScrollBar: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityVerticalScrollBar", objc_name="accessibilityVerticalScrollBar")
+    Accessibility_accessibilityVerticalScrollBar :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityVerticalScrollBar:", objc_name="setAccessibilityVerticalScrollBar")
+    Accessibility_setAccessibilityVerticalScrollBar :: proc(self: ^Accessibility, accessibilityVerticalScrollBar: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityAllowedValues", objc_name="accessibilityAllowedValues")
+    Accessibility_accessibilityAllowedValues :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityAllowedValues:", objc_name="setAccessibilityAllowedValues")
+    Accessibility_setAccessibilityAllowedValues :: proc(self: ^Accessibility, accessibilityAllowedValues: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityLabelUIElements", objc_name="accessibilityLabelUIElements")
+    Accessibility_accessibilityLabelUIElements :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityLabelUIElements:", objc_name="setAccessibilityLabelUIElements")
+    Accessibility_setAccessibilityLabelUIElements :: proc(self: ^Accessibility, accessibilityLabelUIElements: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityLabelValue", objc_name="accessibilityLabelValue")
+    Accessibility_accessibilityLabelValue :: proc(self: ^Accessibility) -> cffi.float ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityLabelValue:", objc_name="setAccessibilityLabelValue")
+    Accessibility_setAccessibilityLabelValue :: proc(self: ^Accessibility, accessibilityLabelValue: cffi.float) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySplitters", objc_name="accessibilitySplitters")
+    Accessibility_accessibilitySplitters :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySplitters:", objc_name="setAccessibilitySplitters")
+    Accessibility_setAccessibilitySplitters :: proc(self: ^Accessibility, accessibilitySplitters: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityDecrementButton", objc_name="accessibilityDecrementButton")
+    Accessibility_accessibilityDecrementButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityDecrementButton:", objc_name="setAccessibilityDecrementButton")
+    Accessibility_setAccessibilityDecrementButton :: proc(self: ^Accessibility, accessibilityDecrementButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityIncrementButton", objc_name="accessibilityIncrementButton")
+    Accessibility_accessibilityIncrementButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityIncrementButton:", objc_name="setAccessibilityIncrementButton")
+    Accessibility_setAccessibilityIncrementButton :: proc(self: ^Accessibility, accessibilityIncrementButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityTabs", objc_name="accessibilityTabs")
+    Accessibility_accessibilityTabs :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityTabs:", objc_name="setAccessibilityTabs")
+    Accessibility_setAccessibilityTabs :: proc(self: ^Accessibility, accessibilityTabs: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityHeader", objc_name="accessibilityHeader")
+    Accessibility_accessibilityHeader :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityHeader:", objc_name="setAccessibilityHeader")
+    Accessibility_setAccessibilityHeader :: proc(self: ^Accessibility, accessibilityHeader: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityColumnCount", objc_name="accessibilityColumnCount")
+    Accessibility_accessibilityColumnCount :: proc(self: ^Accessibility) -> NS.Integer ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityColumnCount:", objc_name="setAccessibilityColumnCount")
+    Accessibility_setAccessibilityColumnCount :: proc(self: ^Accessibility, accessibilityColumnCount: NS.Integer) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRowCount", objc_name="accessibilityRowCount")
+    Accessibility_accessibilityRowCount :: proc(self: ^Accessibility) -> NS.Integer ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityRowCount:", objc_name="setAccessibilityRowCount")
+    Accessibility_setAccessibilityRowCount :: proc(self: ^Accessibility, accessibilityRowCount: NS.Integer) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityIndex", objc_name="accessibilityIndex")
+    Accessibility_accessibilityIndex :: proc(self: ^Accessibility) -> NS.Integer ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityIndex:", objc_name="setAccessibilityIndex")
+    Accessibility_setAccessibilityIndex :: proc(self: ^Accessibility, accessibilityIndex: NS.Integer) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityColumns", objc_name="accessibilityColumns")
+    Accessibility_accessibilityColumns :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityColumns:", objc_name="setAccessibilityColumns")
+    Accessibility_setAccessibilityColumns :: proc(self: ^Accessibility, accessibilityColumns: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRows", objc_name="accessibilityRows")
+    Accessibility_accessibilityRows :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityRows:", objc_name="setAccessibilityRows")
+    Accessibility_setAccessibilityRows :: proc(self: ^Accessibility, accessibilityRows: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityVisibleRows", objc_name="accessibilityVisibleRows")
+    Accessibility_accessibilityVisibleRows :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityVisibleRows:", objc_name="setAccessibilityVisibleRows")
+    Accessibility_setAccessibilityVisibleRows :: proc(self: ^Accessibility, accessibilityVisibleRows: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySelectedRows", objc_name="accessibilitySelectedRows")
+    Accessibility_accessibilitySelectedRows :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySelectedRows:", objc_name="setAccessibilitySelectedRows")
+    Accessibility_setAccessibilitySelectedRows :: proc(self: ^Accessibility, accessibilitySelectedRows: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityVisibleColumns", objc_name="accessibilityVisibleColumns")
+    Accessibility_accessibilityVisibleColumns :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityVisibleColumns:", objc_name="setAccessibilityVisibleColumns")
+    Accessibility_setAccessibilityVisibleColumns :: proc(self: ^Accessibility, accessibilityVisibleColumns: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySelectedColumns", objc_name="accessibilitySelectedColumns")
+    Accessibility_accessibilitySelectedColumns :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySelectedColumns:", objc_name="setAccessibilitySelectedColumns")
+    Accessibility_setAccessibilitySelectedColumns :: proc(self: ^Accessibility, accessibilitySelectedColumns: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySortDirection", objc_name="accessibilitySortDirection")
+    Accessibility_accessibilitySortDirection :: proc(self: ^Accessibility) -> AccessibilitySortDirection ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySortDirection:", objc_name="setAccessibilitySortDirection")
+    Accessibility_setAccessibilitySortDirection :: proc(self: ^Accessibility, accessibilitySortDirection: AccessibilitySortDirection) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRowHeaderUIElements", objc_name="accessibilityRowHeaderUIElements")
+    Accessibility_accessibilityRowHeaderUIElements :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityRowHeaderUIElements:", objc_name="setAccessibilityRowHeaderUIElements")
+    Accessibility_setAccessibilityRowHeaderUIElements :: proc(self: ^Accessibility, accessibilityRowHeaderUIElements: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySelectedCells", objc_name="accessibilitySelectedCells")
+    Accessibility_accessibilitySelectedCells :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySelectedCells:", objc_name="setAccessibilitySelectedCells")
+    Accessibility_setAccessibilitySelectedCells :: proc(self: ^Accessibility, accessibilitySelectedCells: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityVisibleCells", objc_name="accessibilityVisibleCells")
+    Accessibility_accessibilityVisibleCells :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityVisibleCells:", objc_name="setAccessibilityVisibleCells")
+    Accessibility_setAccessibilityVisibleCells :: proc(self: ^Accessibility, accessibilityVisibleCells: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityColumnHeaderUIElements", objc_name="accessibilityColumnHeaderUIElements")
+    Accessibility_accessibilityColumnHeaderUIElements :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityColumnHeaderUIElements:", objc_name="setAccessibilityColumnHeaderUIElements")
+    Accessibility_setAccessibilityColumnHeaderUIElements :: proc(self: ^Accessibility, accessibilityColumnHeaderUIElements: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityRowIndexRange", objc_name="accessibilityRowIndexRange")
+    Accessibility_accessibilityRowIndexRange :: proc(self: ^Accessibility) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityRowIndexRange:", objc_name="setAccessibilityRowIndexRange")
+    Accessibility_setAccessibilityRowIndexRange :: proc(self: ^Accessibility, accessibilityRowIndexRange: NS._NSRange) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityColumnIndexRange", objc_name="accessibilityColumnIndexRange")
+    Accessibility_accessibilityColumnIndexRange :: proc(self: ^Accessibility) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityColumnIndexRange:", objc_name="setAccessibilityColumnIndexRange")
+    Accessibility_setAccessibilityColumnIndexRange :: proc(self: ^Accessibility, accessibilityColumnIndexRange: NS._NSRange) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityInsertionPointLineNumber", objc_name="accessibilityInsertionPointLineNumber")
+    Accessibility_accessibilityInsertionPointLineNumber :: proc(self: ^Accessibility) -> NS.Integer ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityInsertionPointLineNumber:", objc_name="setAccessibilityInsertionPointLineNumber")
+    Accessibility_setAccessibilityInsertionPointLineNumber :: proc(self: ^Accessibility, accessibilityInsertionPointLineNumber: NS.Integer) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySharedCharacterRange", objc_name="accessibilitySharedCharacterRange")
+    Accessibility_accessibilitySharedCharacterRange :: proc(self: ^Accessibility) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySharedCharacterRange:", objc_name="setAccessibilitySharedCharacterRange")
+    Accessibility_setAccessibilitySharedCharacterRange :: proc(self: ^Accessibility, accessibilitySharedCharacterRange: NS._NSRange) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySharedTextUIElements", objc_name="accessibilitySharedTextUIElements")
+    Accessibility_accessibilitySharedTextUIElements :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySharedTextUIElements:", objc_name="setAccessibilitySharedTextUIElements")
+    Accessibility_setAccessibilitySharedTextUIElements :: proc(self: ^Accessibility, accessibilitySharedTextUIElements: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityVisibleCharacterRange", objc_name="accessibilityVisibleCharacterRange")
+    Accessibility_accessibilityVisibleCharacterRange :: proc(self: ^Accessibility) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityVisibleCharacterRange:", objc_name="setAccessibilityVisibleCharacterRange")
+    Accessibility_setAccessibilityVisibleCharacterRange :: proc(self: ^Accessibility, accessibilityVisibleCharacterRange: NS._NSRange) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityNumberOfCharacters", objc_name="accessibilityNumberOfCharacters")
+    Accessibility_accessibilityNumberOfCharacters :: proc(self: ^Accessibility) -> NS.Integer ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityNumberOfCharacters:", objc_name="setAccessibilityNumberOfCharacters")
+    Accessibility_setAccessibilityNumberOfCharacters :: proc(self: ^Accessibility, accessibilityNumberOfCharacters: NS.Integer) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySelectedText", objc_name="accessibilitySelectedText")
+    Accessibility_accessibilitySelectedText :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySelectedText:", objc_name="setAccessibilitySelectedText")
+    Accessibility_setAccessibilitySelectedText :: proc(self: ^Accessibility, accessibilitySelectedText: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySelectedTextRange", objc_name="accessibilitySelectedTextRange")
+    Accessibility_accessibilitySelectedTextRange :: proc(self: ^Accessibility) -> NS._NSRange ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySelectedTextRange:", objc_name="setAccessibilitySelectedTextRange")
+    Accessibility_setAccessibilitySelectedTextRange :: proc(self: ^Accessibility, accessibilitySelectedTextRange: NS._NSRange) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilitySelectedTextRanges", objc_name="accessibilitySelectedTextRanges")
+    Accessibility_accessibilitySelectedTextRanges :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilitySelectedTextRanges:", objc_name="setAccessibilitySelectedTextRanges")
+    Accessibility_setAccessibilitySelectedTextRanges :: proc(self: ^Accessibility, accessibilitySelectedTextRanges: ^NS.Array) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityToolbarButton", objc_name="accessibilityToolbarButton")
+    Accessibility_accessibilityToolbarButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityToolbarButton:", objc_name="setAccessibilityToolbarButton")
+    Accessibility_setAccessibilityToolbarButton :: proc(self: ^Accessibility, accessibilityToolbarButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityModal", objc_name="isAccessibilityModal")
+    Accessibility_isAccessibilityModal :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityModal:", objc_name="setAccessibilityModal")
+    Accessibility_setAccessibilityModal :: proc(self: ^Accessibility, accessibilityModal: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityProxy", objc_name="accessibilityProxy")
+    Accessibility_accessibilityProxy :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityProxy:", objc_name="setAccessibilityProxy")
+    Accessibility_setAccessibilityProxy :: proc(self: ^Accessibility, accessibilityProxy: id) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityMain", objc_name="isAccessibilityMain")
+    Accessibility_isAccessibilityMain :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMain:", objc_name="setAccessibilityMain")
+    Accessibility_setAccessibilityMain :: proc(self: ^Accessibility, accessibilityMain: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityFullScreenButton", objc_name="accessibilityFullScreenButton")
+    Accessibility_accessibilityFullScreenButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityFullScreenButton:", objc_name="setAccessibilityFullScreenButton")
+    Accessibility_setAccessibilityFullScreenButton :: proc(self: ^Accessibility, accessibilityFullScreenButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityGrowArea", objc_name="accessibilityGrowArea")
+    Accessibility_accessibilityGrowArea :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityGrowArea:", objc_name="setAccessibilityGrowArea")
+    Accessibility_setAccessibilityGrowArea :: proc(self: ^Accessibility, accessibilityGrowArea: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityDocument", objc_name="accessibilityDocument")
+    Accessibility_accessibilityDocument :: proc(self: ^Accessibility) -> ^NS.String ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityDocument:", objc_name="setAccessibilityDocument")
+    Accessibility_setAccessibilityDocument :: proc(self: ^Accessibility, accessibilityDocument: ^NS.String) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityDefaultButton", objc_name="accessibilityDefaultButton")
+    Accessibility_accessibilityDefaultButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityDefaultButton:", objc_name="setAccessibilityDefaultButton")
+    Accessibility_setAccessibilityDefaultButton :: proc(self: ^Accessibility, accessibilityDefaultButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityCloseButton", objc_name="accessibilityCloseButton")
+    Accessibility_accessibilityCloseButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityCloseButton:", objc_name="setAccessibilityCloseButton")
+    Accessibility_setAccessibilityCloseButton :: proc(self: ^Accessibility, accessibilityCloseButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityZoomButton", objc_name="accessibilityZoomButton")
+    Accessibility_accessibilityZoomButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityZoomButton:", objc_name="setAccessibilityZoomButton")
+    Accessibility_setAccessibilityZoomButton :: proc(self: ^Accessibility, accessibilityZoomButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityMinimizeButton", objc_name="accessibilityMinimizeButton")
+    Accessibility_accessibilityMinimizeButton :: proc(self: ^Accessibility) -> id ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMinimizeButton:", objc_name="setAccessibilityMinimizeButton")
+    Accessibility_setAccessibilityMinimizeButton :: proc(self: ^Accessibility, accessibilityMinimizeButton: id) ---
+
+    @(objc_type=Accessibility, objc_selector="isAccessibilityMinimized", objc_name="isAccessibilityMinimized")
+    Accessibility_isAccessibilityMinimized :: proc(self: ^Accessibility) -> bool ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityMinimized:", objc_name="setAccessibilityMinimized")
+    Accessibility_setAccessibilityMinimized :: proc(self: ^Accessibility, accessibilityMinimized: bool) ---
+
+    @(objc_type=Accessibility, objc_selector="accessibilityCustomActions", objc_name="accessibilityCustomActions")
+    Accessibility_accessibilityCustomActions :: proc(self: ^Accessibility) -> ^NS.Array ---
+
+    @(objc_type=Accessibility, objc_selector="setAccessibilityCustomActions:", objc_name="setAccessibilityCustomActions")
+    Accessibility_setAccessibilityCustomActions :: proc(self: ^Accessibility, accessibilityCustomActions: ^NS.Array) ---
 }

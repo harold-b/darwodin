@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITableViewHeaderFooterView
 ///
-@(objc_class="UITableViewHeaderFooterView")
+@(objc_class="UITableViewHeaderFooterView", objc_superclass=View)
 TableViewHeaderFooterView :: struct { using _: View, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSAlignmentFeedbackFilter
 ///
-@(objc_class="NSAlignmentFeedbackFilter")
+@(objc_class="NSAlignmentFeedbackFilter", objc_superclass=NS.Object)
 AlignmentFeedbackFilter :: struct { using _: NS.Object, }
 

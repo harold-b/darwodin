@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMethodSignature
 ///
-@(objc_class="NSMethodSignature")
+@(objc_class="NSMethodSignature", objc_superclass=Object)
 MethodSignature :: struct { using _: Object, }
 

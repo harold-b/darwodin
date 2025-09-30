@@ -21,11 +21,11 @@ ScrubberDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ScrubberDataSource, objc_name="numberOfItemsForScrubber")
-ScrubberDataSource_numberOfItemsForScrubber :: #force_inline proc "c" (self: ^ScrubberDataSource, scrubber: ^Scrubber) -> NS.Integer {
-    return msgSend(NS.Integer, self, "numberOfItemsForScrubber:", scrubber)
-}
-@(objc_type=ScrubberDataSource, objc_name="scrubber")
-ScrubberDataSource_scrubber :: #force_inline proc "c" (self: ^ScrubberDataSource, scrubber: ^Scrubber, index: NS.Integer) -> ^ScrubberItemView {
-    return msgSend(^ScrubberItemView, self, "scrubber:viewForItemAtIndex:", scrubber, index)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ScrubberDataSource, objc_selector="numberOfItemsForScrubber:", objc_name="numberOfItemsForScrubber")
+    ScrubberDataSource_numberOfItemsForScrubber :: proc(self: ^ScrubberDataSource, scrubber: ^Scrubber) -> NS.Integer ---
+
+    @(objc_type=ScrubberDataSource, objc_selector="scrubber:viewForItemAtIndex:", objc_name="scrubber")
+    ScrubberDataSource_scrubber :: proc(self: ^ScrubberDataSource, scrubber: ^Scrubber, index: NS.Integer) -> ^ScrubberItemView ---
 }

@@ -21,18 +21,18 @@ NSTextLayoutManagerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=NSTextLayoutManagerDelegate, objc_name="textLayoutManager_textLayoutFragmentForLocation_inTextElement")
-NSTextLayoutManagerDelegate_textLayoutManager_textLayoutFragmentForLocation_inTextElement :: #force_inline proc "c" (self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, location: ^NSTextLocation, textElement: ^NSTextElement) -> ^NSTextLayoutFragment {
-    return msgSend(^NSTextLayoutFragment, self, "textLayoutManager:textLayoutFragmentForLocation:inTextElement:", textLayoutManager, location, textElement)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NSTextLayoutManagerDelegate, objc_selector="textLayoutManager:textLayoutFragmentForLocation:inTextElement:", objc_name="textLayoutManager_textLayoutFragmentForLocation_inTextElement")
+    NSTextLayoutManagerDelegate_textLayoutManager_textLayoutFragmentForLocation_inTextElement :: proc(self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, location: ^NSTextLocation, textElement: ^NSTextElement) -> ^NSTextLayoutFragment ---
+
+    @(objc_type=NSTextLayoutManagerDelegate, objc_selector="textLayoutManager:shouldBreakLineBeforeLocation:hyphenating:", objc_name="textLayoutManager_shouldBreakLineBeforeLocation_hyphenating")
+    NSTextLayoutManagerDelegate_textLayoutManager_shouldBreakLineBeforeLocation_hyphenating :: proc(self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, location: ^NSTextLocation, hyphenating: bool) -> bool ---
+
+    @(objc_type=NSTextLayoutManagerDelegate, objc_selector="textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:", objc_name="textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes")
+    NSTextLayoutManagerDelegate_textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes :: proc(self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, link: id, location: ^NSTextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary ---
 }
-@(objc_type=NSTextLayoutManagerDelegate, objc_name="textLayoutManager_shouldBreakLineBeforeLocation_hyphenating")
-NSTextLayoutManagerDelegate_textLayoutManager_shouldBreakLineBeforeLocation_hyphenating :: #force_inline proc "c" (self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, location: ^NSTextLocation, hyphenating: bool) -> bool {
-    return msgSend(bool, self, "textLayoutManager:shouldBreakLineBeforeLocation:hyphenating:", textLayoutManager, location, hyphenating)
-}
-@(objc_type=NSTextLayoutManagerDelegate, objc_name="textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes")
-NSTextLayoutManagerDelegate_textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes :: #force_inline proc "c" (self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, link: id, location: ^NSTextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:", textLayoutManager, link, location, renderingAttributes)
-}
+
 @(objc_type=NSTextLayoutManagerDelegate, objc_name="textLayoutManager")
 NSTextLayoutManagerDelegate_textLayoutManager :: proc {
     NSTextLayoutManagerDelegate_textLayoutManager_textLayoutFragmentForLocation_inTextElement,

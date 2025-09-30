@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSRelativeDateTimeFormatter
 ///
-@(objc_class="NSRelativeDateTimeFormatter")
+@(objc_class="NSRelativeDateTimeFormatter", objc_superclass=Formatter)
 RelativeDateTimeFormatter :: struct { using _: Formatter, }
 

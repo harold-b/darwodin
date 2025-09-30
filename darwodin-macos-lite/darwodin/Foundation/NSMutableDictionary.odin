@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMutableDictionary
 ///
-@(objc_class="NSMutableDictionary")
+@(objc_class="NSMutableDictionary", objc_superclass=Dictionary)
 MutableDictionary :: struct { using _: Dictionary, }
 

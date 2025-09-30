@@ -21,35 +21,30 @@ ContextMenuInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ContextMenuInteractionDelegate, objc_name="contextMenuInteraction_configurationForMenuAtLocation")
-ContextMenuInteractionDelegate_contextMenuInteraction_configurationForMenuAtLocation :: #force_inline proc "c" (self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, location: CG.Point) -> ^ContextMenuConfiguration {
-    return msgSend(^ContextMenuConfiguration, self, "contextMenuInteraction:configurationForMenuAtLocation:", interaction, location)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ContextMenuInteractionDelegate, objc_selector="contextMenuInteraction:configurationForMenuAtLocation:", objc_name="contextMenuInteraction_configurationForMenuAtLocation")
+    ContextMenuInteractionDelegate_contextMenuInteraction_configurationForMenuAtLocation :: proc(self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, location: CG.Point) -> ^ContextMenuConfiguration ---
+
+    @(objc_type=ContextMenuInteractionDelegate, objc_selector="contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:", objc_name="contextMenuInteraction_configuration_highlightPreviewForItemWithIdentifier")
+    ContextMenuInteractionDelegate_contextMenuInteraction_configuration_highlightPreviewForItemWithIdentifier :: proc(self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, identifier: ^NS.Copying) -> ^TargetedPreview ---
+
+    @(objc_type=ContextMenuInteractionDelegate, objc_selector="contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:", objc_name="contextMenuInteraction_configuration_dismissalPreviewForItemWithIdentifier")
+    ContextMenuInteractionDelegate_contextMenuInteraction_configuration_dismissalPreviewForItemWithIdentifier :: proc(self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, identifier: ^NS.Copying) -> ^TargetedPreview ---
+
+    @(objc_type=ContextMenuInteractionDelegate, objc_selector="contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:", objc_name="contextMenuInteraction_willPerformPreviewActionForMenuWithConfiguration_animator")
+    ContextMenuInteractionDelegate_contextMenuInteraction_willPerformPreviewActionForMenuWithConfiguration_animator :: proc(self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionCommitAnimating) ---
+
+    @(objc_type=ContextMenuInteractionDelegate, objc_selector="contextMenuInteraction:willDisplayMenuForConfiguration:animator:", objc_name="contextMenuInteraction_willDisplayMenuForConfiguration_animator")
+    ContextMenuInteractionDelegate_contextMenuInteraction_willDisplayMenuForConfiguration_animator :: proc(self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionAnimating) ---
+
+    @(objc_type=ContextMenuInteractionDelegate, objc_selector="contextMenuInteraction:willEndForConfiguration:animator:", objc_name="contextMenuInteraction_willEndForConfiguration_animator")
+    ContextMenuInteractionDelegate_contextMenuInteraction_willEndForConfiguration_animator :: proc(self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionAnimating) ---
+
+    @(objc_type=ContextMenuInteractionDelegate, objc_selector="contextMenuInteraction:previewForHighlightingMenuWithConfiguration:", objc_name="contextMenuInteraction_previewForHighlightingMenuWithConfiguration")
+    ContextMenuInteractionDelegate_contextMenuInteraction_previewForHighlightingMenuWithConfiguration :: proc(self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration) -> ^TargetedPreview ---
+
+    @(objc_type=ContextMenuInteractionDelegate, objc_selector="contextMenuInteraction:previewForDismissingMenuWithConfiguration:", objc_name="contextMenuInteraction_previewForDismissingMenuWithConfiguration")
+    ContextMenuInteractionDelegate_contextMenuInteraction_previewForDismissingMenuWithConfiguration :: proc(self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration) -> ^TargetedPreview ---
 }
-@(objc_type=ContextMenuInteractionDelegate, objc_name="contextMenuInteraction_configuration_highlightPreviewForItemWithIdentifier")
-ContextMenuInteractionDelegate_contextMenuInteraction_configuration_highlightPreviewForItemWithIdentifier :: #force_inline proc "c" (self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, identifier: ^NS.Copying) -> ^TargetedPreview {
-    return msgSend(^TargetedPreview, self, "contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:", interaction, configuration, identifier)
-}
-@(objc_type=ContextMenuInteractionDelegate, objc_name="contextMenuInteraction_configuration_dismissalPreviewForItemWithIdentifier")
-ContextMenuInteractionDelegate_contextMenuInteraction_configuration_dismissalPreviewForItemWithIdentifier :: #force_inline proc "c" (self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, identifier: ^NS.Copying) -> ^TargetedPreview {
-    return msgSend(^TargetedPreview, self, "contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:", interaction, configuration, identifier)
-}
-@(objc_type=ContextMenuInteractionDelegate, objc_name="contextMenuInteraction_willPerformPreviewActionForMenuWithConfiguration_animator")
-ContextMenuInteractionDelegate_contextMenuInteraction_willPerformPreviewActionForMenuWithConfiguration_animator :: #force_inline proc "c" (self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionCommitAnimating) {
-    msgSend(nil, self, "contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:", interaction, configuration, animator)
-}
-@(objc_type=ContextMenuInteractionDelegate, objc_name="contextMenuInteraction_willDisplayMenuForConfiguration_animator")
-ContextMenuInteractionDelegate_contextMenuInteraction_willDisplayMenuForConfiguration_animator :: #force_inline proc "c" (self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionAnimating) {
-    msgSend(nil, self, "contextMenuInteraction:willDisplayMenuForConfiguration:animator:", interaction, configuration, animator)
-}
-@(objc_type=ContextMenuInteractionDelegate, objc_name="contextMenuInteraction_willEndForConfiguration_animator")
-ContextMenuInteractionDelegate_contextMenuInteraction_willEndForConfiguration_animator :: #force_inline proc "c" (self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration, animator: ^ContextMenuInteractionAnimating) {
-    msgSend(nil, self, "contextMenuInteraction:willEndForConfiguration:animator:", interaction, configuration, animator)
-}
-@(objc_type=ContextMenuInteractionDelegate, objc_name="contextMenuInteraction_previewForHighlightingMenuWithConfiguration")
-ContextMenuInteractionDelegate_contextMenuInteraction_previewForHighlightingMenuWithConfiguration :: #force_inline proc "c" (self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration) -> ^TargetedPreview {
-    return msgSend(^TargetedPreview, self, "contextMenuInteraction:previewForHighlightingMenuWithConfiguration:", interaction, configuration)
-}
-@(objc_type=ContextMenuInteractionDelegate, objc_name="contextMenuInteraction_previewForDismissingMenuWithConfiguration")
-ContextMenuInteractionDelegate_contextMenuInteraction_previewForDismissingMenuWithConfiguration :: #force_inline proc "c" (self: ^ContextMenuInteractionDelegate, interaction: ^ContextMenuInteraction, configuration: ^ContextMenuConfiguration) -> ^TargetedPreview {
-    return msgSend(^TargetedPreview, self, "contextMenuInteraction:previewForDismissingMenuWithConfiguration:", interaction, configuration)
-}
+

@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSURLRequest
 ///
-@(objc_class="NSURLRequest")
+@(objc_class="NSURLRequest", objc_superclass=Object)
 URLRequest :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,

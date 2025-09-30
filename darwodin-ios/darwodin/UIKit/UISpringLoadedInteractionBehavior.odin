@@ -21,11 +21,11 @@ SpringLoadedInteractionBehavior :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SpringLoadedInteractionBehavior, objc_name="shouldAllowInteraction")
-SpringLoadedInteractionBehavior_shouldAllowInteraction :: #force_inline proc "c" (self: ^SpringLoadedInteractionBehavior, interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext) -> bool {
-    return msgSend(bool, self, "shouldAllowInteraction:withContext:", interaction, _context)
-}
-@(objc_type=SpringLoadedInteractionBehavior, objc_name="interactionDidFinish")
-SpringLoadedInteractionBehavior_interactionDidFinish :: #force_inline proc "c" (self: ^SpringLoadedInteractionBehavior, interaction: ^SpringLoadedInteraction) {
-    msgSend(nil, self, "interactionDidFinish:", interaction)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpringLoadedInteractionBehavior, objc_selector="shouldAllowInteraction:withContext:", objc_name="shouldAllowInteraction")
+    SpringLoadedInteractionBehavior_shouldAllowInteraction :: proc(self: ^SpringLoadedInteractionBehavior, interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext) -> bool ---
+
+    @(objc_type=SpringLoadedInteractionBehavior, objc_selector="interactionDidFinish:", objc_name="interactionDidFinish")
+    SpringLoadedInteractionBehavior_interactionDidFinish :: proc(self: ^SpringLoadedInteractionBehavior, interaction: ^SpringLoadedInteraction) ---
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSStringDrawingContext
 ///
-@(objc_class="NSStringDrawingContext")
+@(objc_class="NSStringDrawingContext", objc_superclass=NS.Object)
 NSStringDrawingContext :: struct { using _: NS.Object, }
 

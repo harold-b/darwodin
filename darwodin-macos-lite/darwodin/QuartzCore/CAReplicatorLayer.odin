@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CAReplicatorLayer
 ///
-@(objc_class="CAReplicatorLayer")
+@(objc_class="CAReplicatorLayer", objc_superclass=Layer)
 ReplicatorLayer :: struct { using _: Layer, }
 

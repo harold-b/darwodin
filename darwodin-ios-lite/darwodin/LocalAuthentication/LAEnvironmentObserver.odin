@@ -18,7 +18,8 @@ EnvironmentObserver :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=EnvironmentObserver, objc_name="environment")
-EnvironmentObserver_environment :: #force_inline proc "c" (self: ^EnvironmentObserver, environment: ^Environment, oldState: ^EnvironmentState) {
-    msgSend(nil, self, "environment:stateDidChangeFromOldState:", environment, oldState)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=EnvironmentObserver, objc_selector="environment:stateDidChangeFromOldState:", objc_name="environment")
+    EnvironmentObserver_environment :: proc(self: ^EnvironmentObserver, environment: ^Environment, oldState: ^EnvironmentState) ---
 }

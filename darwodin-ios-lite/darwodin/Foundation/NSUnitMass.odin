@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnitMass
 ///
-@(objc_class="NSUnitMass")
+@(objc_class="NSUnitMass", objc_superclass=Dimension)
 UnitMass :: struct { using _: Dimension, 
     using _: SecureCoding,
 }

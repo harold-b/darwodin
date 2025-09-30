@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSPressureConfiguration
 ///
-@(objc_class="NSPressureConfiguration")
+@(objc_class="NSPressureConfiguration", objc_superclass=NS.Object)
 PressureConfiguration :: struct { using _: NS.Object, }
 

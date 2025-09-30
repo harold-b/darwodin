@@ -21,15 +21,14 @@ ColorPickerViewControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ColorPickerViewControllerDelegate, objc_name="colorPickerViewControllerDidSelectColor")
-ColorPickerViewControllerDelegate_colorPickerViewControllerDidSelectColor :: #force_inline proc "c" (self: ^ColorPickerViewControllerDelegate, viewController: ^ColorPickerViewController) {
-    msgSend(nil, self, "colorPickerViewControllerDidSelectColor:", viewController)
-}
-@(objc_type=ColorPickerViewControllerDelegate, objc_name="colorPickerViewController")
-ColorPickerViewControllerDelegate_colorPickerViewController :: #force_inline proc "c" (self: ^ColorPickerViewControllerDelegate, viewController: ^ColorPickerViewController, color: ^Color, continuously: bool) {
-    msgSend(nil, self, "colorPickerViewController:didSelectColor:continuously:", viewController, color, continuously)
-}
-@(objc_type=ColorPickerViewControllerDelegate, objc_name="colorPickerViewControllerDidFinish")
-ColorPickerViewControllerDelegate_colorPickerViewControllerDidFinish :: #force_inline proc "c" (self: ^ColorPickerViewControllerDelegate, viewController: ^ColorPickerViewController) {
-    msgSend(nil, self, "colorPickerViewControllerDidFinish:", viewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ColorPickerViewControllerDelegate, objc_selector="colorPickerViewControllerDidSelectColor:", objc_name="colorPickerViewControllerDidSelectColor")
+    ColorPickerViewControllerDelegate_colorPickerViewControllerDidSelectColor :: proc(self: ^ColorPickerViewControllerDelegate, viewController: ^ColorPickerViewController) ---
+
+    @(objc_type=ColorPickerViewControllerDelegate, objc_selector="colorPickerViewController:didSelectColor:continuously:", objc_name="colorPickerViewController")
+    ColorPickerViewControllerDelegate_colorPickerViewController :: proc(self: ^ColorPickerViewControllerDelegate, viewController: ^ColorPickerViewController, color: ^Color, continuously: bool) ---
+
+    @(objc_type=ColorPickerViewControllerDelegate, objc_selector="colorPickerViewControllerDidFinish:", objc_name="colorPickerViewControllerDidFinish")
+    ColorPickerViewControllerDelegate_colorPickerViewControllerDidFinish :: proc(self: ^ColorPickerViewControllerDelegate, viewController: ^ColorPickerViewController) ---
 }

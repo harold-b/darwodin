@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSRunningApplication
 ///
-@(objc_class="NSRunningApplication")
+@(objc_class="NSRunningApplication", objc_superclass=NS.Object)
 RunningApplication :: struct { using _: NS.Object, }
 

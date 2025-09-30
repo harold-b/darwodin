@@ -20,23 +20,20 @@ IOCommandQueue :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=IOCommandQueue, objc_name="enqueueBarrier")
-IOCommandQueue_enqueueBarrier :: #force_inline proc "c" (self: ^IOCommandQueue) {
-    msgSend(nil, self, "enqueueBarrier")
-}
-@(objc_type=IOCommandQueue, objc_name="commandBuffer")
-IOCommandQueue_commandBuffer :: #force_inline proc "c" (self: ^IOCommandQueue) -> ^IOCommandBuffer {
-    return msgSend(^IOCommandBuffer, self, "commandBuffer")
-}
-@(objc_type=IOCommandQueue, objc_name="commandBufferWithUnretainedReferences")
-IOCommandQueue_commandBufferWithUnretainedReferences :: #force_inline proc "c" (self: ^IOCommandQueue) -> ^IOCommandBuffer {
-    return msgSend(^IOCommandBuffer, self, "commandBufferWithUnretainedReferences")
-}
-@(objc_type=IOCommandQueue, objc_name="label")
-IOCommandQueue_label :: #force_inline proc "c" (self: ^IOCommandQueue) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=IOCommandQueue, objc_name="setLabel")
-IOCommandQueue_setLabel :: #force_inline proc "c" (self: ^IOCommandQueue, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IOCommandQueue, objc_selector="enqueueBarrier", objc_name="enqueueBarrier")
+    IOCommandQueue_enqueueBarrier :: proc(self: ^IOCommandQueue) ---
+
+    @(objc_type=IOCommandQueue, objc_selector="commandBuffer", objc_name="commandBuffer")
+    IOCommandQueue_commandBuffer :: proc(self: ^IOCommandQueue) -> ^IOCommandBuffer ---
+
+    @(objc_type=IOCommandQueue, objc_selector="commandBufferWithUnretainedReferences", objc_name="commandBufferWithUnretainedReferences")
+    IOCommandQueue_commandBufferWithUnretainedReferences :: proc(self: ^IOCommandQueue) -> ^IOCommandBuffer ---
+
+    @(objc_type=IOCommandQueue, objc_selector="label", objc_name="label")
+    IOCommandQueue_label :: proc(self: ^IOCommandQueue) -> ^NS.String ---
+
+    @(objc_type=IOCommandQueue, objc_selector="setLabel:", objc_name="setLabel")
+    IOCommandQueue_setLabel :: proc(self: ^IOCommandQueue, label: ^NS.String) ---
 }

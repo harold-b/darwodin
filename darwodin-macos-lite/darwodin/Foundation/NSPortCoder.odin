@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSPortCoder
 ///
-@(objc_class="NSPortCoder")
+@(objc_class="NSPortCoder", objc_superclass=Coder)
 PortCoder :: struct { using _: Coder, }
 

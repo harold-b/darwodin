@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSCollectionViewLayoutAttributes
 ///
-@(objc_class="NSCollectionViewLayoutAttributes")
+@(objc_class="NSCollectionViewLayoutAttributes", objc_superclass=NS.Object)
 CollectionViewLayoutAttributes :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

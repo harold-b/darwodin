@@ -21,7 +21,8 @@ ShapeProvider :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ShapeProvider, objc_name="resolvedShapeInContext")
-ShapeProvider_resolvedShapeInContext :: #force_inline proc "c" (self: ^ShapeProvider, _context: ^ShapeResolutionContext) -> ^ResolvedShape {
-    return msgSend(^ResolvedShape, self, "resolvedShapeInContext:", _context)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ShapeProvider, objc_selector="resolvedShapeInContext:", objc_name="resolvedShapeInContext")
+    ShapeProvider_resolvedShapeInContext :: proc(self: ^ShapeProvider, _context: ^ShapeResolutionContext) -> ^ResolvedShape ---
 }

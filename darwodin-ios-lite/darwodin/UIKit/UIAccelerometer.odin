@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIAccelerometer
 ///
-@(objc_class="UIAccelerometer")
+@(objc_class="UIAccelerometer", objc_superclass=NS.Object)
 Accelerometer :: struct { using _: NS.Object, }
 

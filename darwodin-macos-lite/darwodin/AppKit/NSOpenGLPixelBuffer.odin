@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSOpenGLPixelBuffer
 ///
-@(objc_class="NSOpenGLPixelBuffer")
+@(objc_class="NSOpenGLPixelBuffer", objc_superclass=NS.Object)
 OpenGLPixelBuffer :: struct { using _: NS.Object, }
 

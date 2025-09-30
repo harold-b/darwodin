@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIToolbar
 ///
-@(objc_class="UIToolbar")
+@(objc_class="UIToolbar", objc_superclass=View)
 Toolbar :: struct { using _: View, 
     using _: BarPositioning,
 }

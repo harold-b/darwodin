@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSBindingSelectionMarker
 ///
-@(objc_class="NSBindingSelectionMarker")
+@(objc_class="NSBindingSelectionMarker", objc_superclass=NS.Object)
 BindingSelectionMarker :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

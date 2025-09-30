@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIMenuItem
 ///
-@(objc_class="UIMenuItem")
+@(objc_class="UIMenuItem", objc_superclass=NS.Object)
 MenuItem :: struct { using _: NS.Object, }
 

@@ -18,15 +18,14 @@ UserActivityDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=UserActivityDelegate, objc_name="userActivityWillSave")
-UserActivityDelegate_userActivityWillSave :: #force_inline proc "c" (self: ^UserActivityDelegate, userActivity: ^UserActivity) {
-    msgSend(nil, self, "userActivityWillSave:", userActivity)
-}
-@(objc_type=UserActivityDelegate, objc_name="userActivityWasContinued")
-UserActivityDelegate_userActivityWasContinued :: #force_inline proc "c" (self: ^UserActivityDelegate, userActivity: ^UserActivity) {
-    msgSend(nil, self, "userActivityWasContinued:", userActivity)
-}
-@(objc_type=UserActivityDelegate, objc_name="userActivity")
-UserActivityDelegate_userActivity :: #force_inline proc "c" (self: ^UserActivityDelegate, userActivity: ^UserActivity, inputStream: ^InputStream, outputStream: ^OutputStream) {
-    msgSend(nil, self, "userActivity:didReceiveInputStream:outputStream:", userActivity, inputStream, outputStream)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=UserActivityDelegate, objc_selector="userActivityWillSave:", objc_name="userActivityWillSave")
+    UserActivityDelegate_userActivityWillSave :: proc(self: ^UserActivityDelegate, userActivity: ^UserActivity) ---
+
+    @(objc_type=UserActivityDelegate, objc_selector="userActivityWasContinued:", objc_name="userActivityWasContinued")
+    UserActivityDelegate_userActivityWasContinued :: proc(self: ^UserActivityDelegate, userActivity: ^UserActivity) ---
+
+    @(objc_type=UserActivityDelegate, objc_selector="userActivity:didReceiveInputStream:outputStream:", objc_name="userActivity")
+    UserActivityDelegate_userActivity :: proc(self: ^UserActivityDelegate, userActivity: ^UserActivity, inputStream: ^InputStream, outputStream: ^OutputStream) ---
 }

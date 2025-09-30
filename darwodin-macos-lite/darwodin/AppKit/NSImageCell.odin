@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSImageCell
 ///
-@(objc_class="NSImageCell")
+@(objc_class="NSImageCell", objc_superclass=Cell)
 ImageCell :: struct { using _: Cell, 
     using _: NS.Copying,
     using _: NS.Coding,

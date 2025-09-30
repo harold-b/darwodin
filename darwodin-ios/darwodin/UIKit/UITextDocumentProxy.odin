@@ -21,35 +21,29 @@ TextDocumentProxy :: struct { using _: intrinsics.objc_object,
     using _: KeyInput,
 }
 
-@(objc_type=TextDocumentProxy, objc_name="adjustTextPositionByCharacterOffset")
-TextDocumentProxy_adjustTextPositionByCharacterOffset :: #force_inline proc "c" (self: ^TextDocumentProxy, offset: NS.Integer) {
-    msgSend(nil, self, "adjustTextPositionByCharacterOffset:", offset)
-}
-@(objc_type=TextDocumentProxy, objc_name="setMarkedText")
-TextDocumentProxy_setMarkedText :: #force_inline proc "c" (self: ^TextDocumentProxy, markedText: ^NS.String, selectedRange: NS._NSRange) {
-    msgSend(nil, self, "setMarkedText:selectedRange:", markedText, selectedRange)
-}
-@(objc_type=TextDocumentProxy, objc_name="unmarkText")
-TextDocumentProxy_unmarkText :: #force_inline proc "c" (self: ^TextDocumentProxy) {
-    msgSend(nil, self, "unmarkText")
-}
-@(objc_type=TextDocumentProxy, objc_name="documentContextBeforeInput")
-TextDocumentProxy_documentContextBeforeInput :: #force_inline proc "c" (self: ^TextDocumentProxy) -> ^NS.String {
-    return msgSend(^NS.String, self, "documentContextBeforeInput")
-}
-@(objc_type=TextDocumentProxy, objc_name="documentContextAfterInput")
-TextDocumentProxy_documentContextAfterInput :: #force_inline proc "c" (self: ^TextDocumentProxy) -> ^NS.String {
-    return msgSend(^NS.String, self, "documentContextAfterInput")
-}
-@(objc_type=TextDocumentProxy, objc_name="selectedText")
-TextDocumentProxy_selectedText :: #force_inline proc "c" (self: ^TextDocumentProxy) -> ^NS.String {
-    return msgSend(^NS.String, self, "selectedText")
-}
-@(objc_type=TextDocumentProxy, objc_name="documentInputMode")
-TextDocumentProxy_documentInputMode :: #force_inline proc "c" (self: ^TextDocumentProxy) -> ^TextInputMode {
-    return msgSend(^TextInputMode, self, "documentInputMode")
-}
-@(objc_type=TextDocumentProxy, objc_name="documentIdentifier")
-TextDocumentProxy_documentIdentifier :: #force_inline proc "c" (self: ^TextDocumentProxy) -> ^NS.UUID {
-    return msgSend(^NS.UUID, self, "documentIdentifier")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextDocumentProxy, objc_selector="adjustTextPositionByCharacterOffset:", objc_name="adjustTextPositionByCharacterOffset")
+    TextDocumentProxy_adjustTextPositionByCharacterOffset :: proc(self: ^TextDocumentProxy, offset: NS.Integer) ---
+
+    @(objc_type=TextDocumentProxy, objc_selector="setMarkedText:selectedRange:", objc_name="setMarkedText")
+    TextDocumentProxy_setMarkedText :: proc(self: ^TextDocumentProxy, markedText: ^NS.String, selectedRange: NS._NSRange) ---
+
+    @(objc_type=TextDocumentProxy, objc_selector="unmarkText", objc_name="unmarkText")
+    TextDocumentProxy_unmarkText :: proc(self: ^TextDocumentProxy) ---
+
+    @(objc_type=TextDocumentProxy, objc_selector="documentContextBeforeInput", objc_name="documentContextBeforeInput")
+    TextDocumentProxy_documentContextBeforeInput :: proc(self: ^TextDocumentProxy) -> ^NS.String ---
+
+    @(objc_type=TextDocumentProxy, objc_selector="documentContextAfterInput", objc_name="documentContextAfterInput")
+    TextDocumentProxy_documentContextAfterInput :: proc(self: ^TextDocumentProxy) -> ^NS.String ---
+
+    @(objc_type=TextDocumentProxy, objc_selector="selectedText", objc_name="selectedText")
+    TextDocumentProxy_selectedText :: proc(self: ^TextDocumentProxy) -> ^NS.String ---
+
+    @(objc_type=TextDocumentProxy, objc_selector="documentInputMode", objc_name="documentInputMode")
+    TextDocumentProxy_documentInputMode :: proc(self: ^TextDocumentProxy) -> ^TextInputMode ---
+
+    @(objc_type=TextDocumentProxy, objc_selector="documentIdentifier", objc_name="documentIdentifier")
+    TextDocumentProxy_documentIdentifier :: proc(self: ^TextDocumentProxy) -> ^NS.UUID ---
 }

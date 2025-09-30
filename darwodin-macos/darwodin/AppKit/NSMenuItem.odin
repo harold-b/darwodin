@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSMenuItem
 ///
-@(objc_class="NSMenuItem")
+@(objc_class="NSMenuItem", objc_superclass=NS.Object)
 MenuItem :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.Coding,
@@ -26,427 +26,212 @@ MenuItem :: struct { using _: NS.Object,
     using _: Accessibility,
 }
 
-@(objc_type=MenuItem, objc_name="init")
-MenuItem_init :: proc "c" (self: ^MenuItem) -> ^MenuItem {
-    return msgSend(^MenuItem, self, "init")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MenuItem, objc_selector="separatorItem", objc_name="separatorItem", objc_is_class_method=true)
+    MenuItem_separatorItem :: proc() -> ^MenuItem ---
 
+    @(objc_type=MenuItem, objc_selector="sectionHeaderWithTitle:", objc_name="sectionHeaderWithTitle", objc_is_class_method=true)
+    MenuItem_sectionHeaderWithTitle :: proc(title: ^NS.String) -> ^MenuItem ---
 
-@(objc_type=MenuItem, objc_name="separatorItem", objc_is_class_method=true)
-MenuItem_separatorItem :: #force_inline proc "c" () -> ^MenuItem {
-    return msgSend(^MenuItem, MenuItem, "separatorItem")
-}
-@(objc_type=MenuItem, objc_name="sectionHeaderWithTitle", objc_is_class_method=true)
-MenuItem_sectionHeaderWithTitle :: #force_inline proc "c" (title: ^NS.String) -> ^MenuItem {
-    return msgSend(^MenuItem, MenuItem, "sectionHeaderWithTitle:", title)
-}
-@(objc_type=MenuItem, objc_name="initWithTitle")
-MenuItem_initWithTitle :: #force_inline proc "c" (self: ^MenuItem, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^MenuItem {
-    return msgSend(^MenuItem, self, "initWithTitle:action:keyEquivalent:", string, selector, charCode)
-}
-@(objc_type=MenuItem, objc_name="initWithCoder")
-MenuItem_initWithCoder :: #force_inline proc "c" (self: ^MenuItem, coder: ^NS.Coder) -> ^MenuItem {
-    return msgSend(^MenuItem, self, "initWithCoder:", coder)
-}
-@(objc_type=MenuItem, objc_name="usesUserKeyEquivalents", objc_is_class_method=true)
-MenuItem_usesUserKeyEquivalents :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, MenuItem, "usesUserKeyEquivalents")
-}
-@(objc_type=MenuItem, objc_name="setUsesUserKeyEquivalents", objc_is_class_method=true)
-MenuItem_setUsesUserKeyEquivalents :: #force_inline proc "c" (usesUserKeyEquivalents: bool) {
-    msgSend(nil, MenuItem, "setUsesUserKeyEquivalents:", usesUserKeyEquivalents)
-}
-@(objc_type=MenuItem, objc_name="menu")
-MenuItem_menu :: #force_inline proc "c" (self: ^MenuItem) -> ^Menu {
-    return msgSend(^Menu, self, "menu")
-}
-@(objc_type=MenuItem, objc_name="setMenu")
-MenuItem_setMenu :: #force_inline proc "c" (self: ^MenuItem, menu: ^Menu) {
-    msgSend(nil, self, "setMenu:", menu)
-}
-@(objc_type=MenuItem, objc_name="hasSubmenu")
-MenuItem_hasSubmenu :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "hasSubmenu")
-}
-@(objc_type=MenuItem, objc_name="submenu")
-MenuItem_submenu :: #force_inline proc "c" (self: ^MenuItem) -> ^Menu {
-    return msgSend(^Menu, self, "submenu")
-}
-@(objc_type=MenuItem, objc_name="setSubmenu")
-MenuItem_setSubmenu :: #force_inline proc "c" (self: ^MenuItem, submenu: ^Menu) {
-    msgSend(nil, self, "setSubmenu:", submenu)
-}
-@(objc_type=MenuItem, objc_name="parentItem")
-MenuItem_parentItem :: #force_inline proc "c" (self: ^MenuItem) -> ^MenuItem {
-    return msgSend(^MenuItem, self, "parentItem")
-}
-@(objc_type=MenuItem, objc_name="title")
-MenuItem_title :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "title")
-}
-@(objc_type=MenuItem, objc_name="setTitle")
-MenuItem_setTitle :: #force_inline proc "c" (self: ^MenuItem, title: ^NS.String) {
-    msgSend(nil, self, "setTitle:", title)
-}
-@(objc_type=MenuItem, objc_name="attributedTitle")
-MenuItem_attributedTitle :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "attributedTitle")
-}
-@(objc_type=MenuItem, objc_name="setAttributedTitle")
-MenuItem_setAttributedTitle :: #force_inline proc "c" (self: ^MenuItem, attributedTitle: ^NS.AttributedString) {
-    msgSend(nil, self, "setAttributedTitle:", attributedTitle)
-}
-@(objc_type=MenuItem, objc_name="subtitle")
-MenuItem_subtitle :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "subtitle")
-}
-@(objc_type=MenuItem, objc_name="setSubtitle")
-MenuItem_setSubtitle :: #force_inline proc "c" (self: ^MenuItem, subtitle: ^NS.String) {
-    msgSend(nil, self, "setSubtitle:", subtitle)
-}
-@(objc_type=MenuItem, objc_name="isSeparatorItem")
-MenuItem_isSeparatorItem :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "isSeparatorItem")
-}
-@(objc_type=MenuItem, objc_name="isSectionHeader")
-MenuItem_isSectionHeader :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "isSectionHeader")
-}
-@(objc_type=MenuItem, objc_name="keyEquivalent")
-MenuItem_keyEquivalent :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "keyEquivalent")
-}
-@(objc_type=MenuItem, objc_name="setKeyEquivalent")
-MenuItem_setKeyEquivalent :: #force_inline proc "c" (self: ^MenuItem, keyEquivalent: ^NS.String) {
-    msgSend(nil, self, "setKeyEquivalent:", keyEquivalent)
-}
-@(objc_type=MenuItem, objc_name="keyEquivalentModifierMask")
-MenuItem_keyEquivalentModifierMask :: #force_inline proc "c" (self: ^MenuItem) -> EventModifierFlags {
-    return msgSend(EventModifierFlags, self, "keyEquivalentModifierMask")
-}
-@(objc_type=MenuItem, objc_name="setKeyEquivalentModifierMask")
-MenuItem_setKeyEquivalentModifierMask :: #force_inline proc "c" (self: ^MenuItem, keyEquivalentModifierMask: EventModifierFlags) {
-    msgSend(nil, self, "setKeyEquivalentModifierMask:", keyEquivalentModifierMask)
-}
-@(objc_type=MenuItem, objc_name="userKeyEquivalent")
-MenuItem_userKeyEquivalent :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "userKeyEquivalent")
-}
-@(objc_type=MenuItem, objc_name="allowsKeyEquivalentWhenHidden")
-MenuItem_allowsKeyEquivalentWhenHidden :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "allowsKeyEquivalentWhenHidden")
-}
-@(objc_type=MenuItem, objc_name="setAllowsKeyEquivalentWhenHidden")
-MenuItem_setAllowsKeyEquivalentWhenHidden :: #force_inline proc "c" (self: ^MenuItem, allowsKeyEquivalentWhenHidden: bool) {
-    msgSend(nil, self, "setAllowsKeyEquivalentWhenHidden:", allowsKeyEquivalentWhenHidden)
-}
-@(objc_type=MenuItem, objc_name="allowsAutomaticKeyEquivalentLocalization")
-MenuItem_allowsAutomaticKeyEquivalentLocalization :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "allowsAutomaticKeyEquivalentLocalization")
-}
-@(objc_type=MenuItem, objc_name="setAllowsAutomaticKeyEquivalentLocalization")
-MenuItem_setAllowsAutomaticKeyEquivalentLocalization :: #force_inline proc "c" (self: ^MenuItem, allowsAutomaticKeyEquivalentLocalization: bool) {
-    msgSend(nil, self, "setAllowsAutomaticKeyEquivalentLocalization:", allowsAutomaticKeyEquivalentLocalization)
-}
-@(objc_type=MenuItem, objc_name="allowsAutomaticKeyEquivalentMirroring")
-MenuItem_allowsAutomaticKeyEquivalentMirroring :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "allowsAutomaticKeyEquivalentMirroring")
-}
-@(objc_type=MenuItem, objc_name="setAllowsAutomaticKeyEquivalentMirroring")
-MenuItem_setAllowsAutomaticKeyEquivalentMirroring :: #force_inline proc "c" (self: ^MenuItem, allowsAutomaticKeyEquivalentMirroring: bool) {
-    msgSend(nil, self, "setAllowsAutomaticKeyEquivalentMirroring:", allowsAutomaticKeyEquivalentMirroring)
-}
-@(objc_type=MenuItem, objc_name="image")
-MenuItem_image :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.Image {
-    return msgSend(^NS.Image, self, "image")
-}
-@(objc_type=MenuItem, objc_name="setImage")
-MenuItem_setImage :: #force_inline proc "c" (self: ^MenuItem, image: ^NS.Image) {
-    msgSend(nil, self, "setImage:", image)
-}
-@(objc_type=MenuItem, objc_name="state")
-MenuItem_state :: #force_inline proc "c" (self: ^MenuItem) -> ControlStateValue {
-    return msgSend(ControlStateValue, self, "state")
-}
-@(objc_type=MenuItem, objc_name="setState")
-MenuItem_setState :: #force_inline proc "c" (self: ^MenuItem, state: ControlStateValue) {
-    msgSend(nil, self, "setState:", state)
-}
-@(objc_type=MenuItem, objc_name="onStateImage")
-MenuItem_onStateImage :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.Image {
-    return msgSend(^NS.Image, self, "onStateImage")
-}
-@(objc_type=MenuItem, objc_name="setOnStateImage")
-MenuItem_setOnStateImage :: #force_inline proc "c" (self: ^MenuItem, onStateImage: ^NS.Image) {
-    msgSend(nil, self, "setOnStateImage:", onStateImage)
-}
-@(objc_type=MenuItem, objc_name="offStateImage")
-MenuItem_offStateImage :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.Image {
-    return msgSend(^NS.Image, self, "offStateImage")
-}
-@(objc_type=MenuItem, objc_name="setOffStateImage")
-MenuItem_setOffStateImage :: #force_inline proc "c" (self: ^MenuItem, offStateImage: ^NS.Image) {
-    msgSend(nil, self, "setOffStateImage:", offStateImage)
-}
-@(objc_type=MenuItem, objc_name="mixedStateImage")
-MenuItem_mixedStateImage :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.Image {
-    return msgSend(^NS.Image, self, "mixedStateImage")
-}
-@(objc_type=MenuItem, objc_name="setMixedStateImage")
-MenuItem_setMixedStateImage :: #force_inline proc "c" (self: ^MenuItem, mixedStateImage: ^NS.Image) {
-    msgSend(nil, self, "setMixedStateImage:", mixedStateImage)
-}
-@(objc_type=MenuItem, objc_name="isEnabled")
-MenuItem_isEnabled :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "isEnabled")
-}
-@(objc_type=MenuItem, objc_name="setEnabled")
-MenuItem_setEnabled :: #force_inline proc "c" (self: ^MenuItem, enabled: bool) {
-    msgSend(nil, self, "setEnabled:", enabled)
-}
-@(objc_type=MenuItem, objc_name="isAlternate")
-MenuItem_isAlternate :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "isAlternate")
-}
-@(objc_type=MenuItem, objc_name="setAlternate")
-MenuItem_setAlternate :: #force_inline proc "c" (self: ^MenuItem, alternate: bool) {
-    msgSend(nil, self, "setAlternate:", alternate)
-}
-@(objc_type=MenuItem, objc_name="indentationLevel")
-MenuItem_indentationLevel :: #force_inline proc "c" (self: ^MenuItem) -> NS.Integer {
-    return msgSend(NS.Integer, self, "indentationLevel")
-}
-@(objc_type=MenuItem, objc_name="setIndentationLevel")
-MenuItem_setIndentationLevel :: #force_inline proc "c" (self: ^MenuItem, indentationLevel: NS.Integer) {
-    msgSend(nil, self, "setIndentationLevel:", indentationLevel)
-}
-@(objc_type=MenuItem, objc_name="target")
-MenuItem_target :: #force_inline proc "c" (self: ^MenuItem) -> id {
-    return msgSend(id, self, "target")
-}
-@(objc_type=MenuItem, objc_name="setTarget")
-MenuItem_setTarget :: #force_inline proc "c" (self: ^MenuItem, target: id) {
-    msgSend(nil, self, "setTarget:", target)
-}
-@(objc_type=MenuItem, objc_name="action")
-MenuItem_action :: #force_inline proc "c" (self: ^MenuItem) -> SEL {
-    return msgSend(SEL, self, "action")
-}
-@(objc_type=MenuItem, objc_name="setAction")
-MenuItem_setAction :: #force_inline proc "c" (self: ^MenuItem, action: SEL) {
-    msgSend(nil, self, "setAction:", action)
-}
-@(objc_type=MenuItem, objc_name="tag")
-MenuItem_tag :: #force_inline proc "c" (self: ^MenuItem) -> NS.Integer {
-    return msgSend(NS.Integer, self, "tag")
-}
-@(objc_type=MenuItem, objc_name="setTag")
-MenuItem_setTag :: #force_inline proc "c" (self: ^MenuItem, tag: NS.Integer) {
-    msgSend(nil, self, "setTag:", tag)
-}
-@(objc_type=MenuItem, objc_name="representedObject")
-MenuItem_representedObject :: #force_inline proc "c" (self: ^MenuItem) -> id {
-    return msgSend(id, self, "representedObject")
-}
-@(objc_type=MenuItem, objc_name="setRepresentedObject")
-MenuItem_setRepresentedObject :: #force_inline proc "c" (self: ^MenuItem, representedObject: id) {
-    msgSend(nil, self, "setRepresentedObject:", representedObject)
-}
-@(objc_type=MenuItem, objc_name="view")
-MenuItem_view :: #force_inline proc "c" (self: ^MenuItem) -> ^View {
-    return msgSend(^View, self, "view")
-}
-@(objc_type=MenuItem, objc_name="setView")
-MenuItem_setView :: #force_inline proc "c" (self: ^MenuItem, view: ^View) {
-    msgSend(nil, self, "setView:", view)
-}
-@(objc_type=MenuItem, objc_name="isHighlighted")
-MenuItem_isHighlighted :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "isHighlighted")
-}
-@(objc_type=MenuItem, objc_name="isHidden")
-MenuItem_isHidden :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "isHidden")
-}
-@(objc_type=MenuItem, objc_name="setHidden")
-MenuItem_setHidden :: #force_inline proc "c" (self: ^MenuItem, hidden: bool) {
-    msgSend(nil, self, "setHidden:", hidden)
-}
-@(objc_type=MenuItem, objc_name="isHiddenOrHasHiddenAncestor")
-MenuItem_isHiddenOrHasHiddenAncestor :: #force_inline proc "c" (self: ^MenuItem) -> bool {
-    return msgSend(bool, self, "isHiddenOrHasHiddenAncestor")
-}
-@(objc_type=MenuItem, objc_name="toolTip")
-MenuItem_toolTip :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "toolTip")
-}
-@(objc_type=MenuItem, objc_name="setToolTip")
-MenuItem_setToolTip :: #force_inline proc "c" (self: ^MenuItem, toolTip: ^NS.String) {
-    msgSend(nil, self, "setToolTip:", toolTip)
-}
-@(objc_type=MenuItem, objc_name="badge")
-MenuItem_badge :: #force_inline proc "c" (self: ^MenuItem) -> ^MenuItemBadge {
-    return msgSend(^MenuItemBadge, self, "badge")
-}
-@(objc_type=MenuItem, objc_name="setBadge")
-MenuItem_setBadge :: #force_inline proc "c" (self: ^MenuItem, badge: ^MenuItemBadge) {
-    msgSend(nil, self, "setBadge:", badge)
-}
-@(objc_type=MenuItem, objc_name="setMnemonicLocation")
-MenuItem_setMnemonicLocation :: #force_inline proc "c" (self: ^MenuItem, location: NS.UInteger) {
-    msgSend(nil, self, "setMnemonicLocation:", location)
-}
-@(objc_type=MenuItem, objc_name="mnemonicLocation")
-MenuItem_mnemonicLocation :: #force_inline proc "c" (self: ^MenuItem) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "mnemonicLocation")
-}
-@(objc_type=MenuItem, objc_name="mnemonic")
-MenuItem_mnemonic :: #force_inline proc "c" (self: ^MenuItem) -> ^NS.String {
-    return msgSend(^NS.String, self, "mnemonic")
-}
-@(objc_type=MenuItem, objc_name="setTitleWithMnemonic")
-MenuItem_setTitleWithMnemonic :: #force_inline proc "c" (self: ^MenuItem, stringWithAmpersand: ^NS.String) {
-    msgSend(nil, self, "setTitleWithMnemonic:", stringWithAmpersand)
-}
-@(objc_type=MenuItem, objc_name="load", objc_is_class_method=true)
-MenuItem_load :: #force_inline proc "c" () {
-    msgSend(nil, MenuItem, "load")
-}
-@(objc_type=MenuItem, objc_name="initialize", objc_is_class_method=true)
-MenuItem_initialize :: #force_inline proc "c" () {
-    msgSend(nil, MenuItem, "initialize")
-}
-@(objc_type=MenuItem, objc_name="new", objc_is_class_method=true)
-MenuItem_new :: #force_inline proc "c" () -> ^MenuItem {
-    return msgSend(^MenuItem, MenuItem, "new")
-}
-@(objc_type=MenuItem, objc_name="allocWithZone", objc_is_class_method=true)
-MenuItem_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^MenuItem {
-    return msgSend(^MenuItem, MenuItem, "allocWithZone:", zone)
-}
-@(objc_type=MenuItem, objc_name="alloc", objc_is_class_method=true)
-MenuItem_alloc :: #force_inline proc "c" () -> ^MenuItem {
-    return msgSend(^MenuItem, MenuItem, "alloc")
-}
-@(objc_type=MenuItem, objc_name="copyWithZone", objc_is_class_method=true)
-MenuItem_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, MenuItem, "copyWithZone:", zone)
-}
-@(objc_type=MenuItem, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-MenuItem_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, MenuItem, "mutableCopyWithZone:", zone)
-}
-@(objc_type=MenuItem, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-MenuItem_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, MenuItem, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=MenuItem, objc_name="conformsToProtocol", objc_is_class_method=true)
-MenuItem_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, MenuItem, "conformsToProtocol:", protocol)
-}
-@(objc_type=MenuItem, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-MenuItem_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, MenuItem, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=MenuItem, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-MenuItem_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, MenuItem, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=MenuItem, objc_name="isSubclassOfClass", objc_is_class_method=true)
-MenuItem_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, MenuItem, "isSubclassOfClass:", aClass)
-}
-@(objc_type=MenuItem, objc_name="resolveClassMethod", objc_is_class_method=true)
-MenuItem_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, MenuItem, "resolveClassMethod:", sel)
-}
-@(objc_type=MenuItem, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-MenuItem_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, MenuItem, "resolveInstanceMethod:", sel)
-}
-@(objc_type=MenuItem, objc_name="hash", objc_is_class_method=true)
-MenuItem_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, MenuItem, "hash")
-}
-@(objc_type=MenuItem, objc_name="superclass", objc_is_class_method=true)
-MenuItem_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, MenuItem, "superclass")
-}
-@(objc_type=MenuItem, objc_name="class", objc_is_class_method=true)
-MenuItem_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, MenuItem, "class")
-}
-@(objc_type=MenuItem, objc_name="description", objc_is_class_method=true)
-MenuItem_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, MenuItem, "description")
-}
-@(objc_type=MenuItem, objc_name="debugDescription", objc_is_class_method=true)
-MenuItem_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, MenuItem, "debugDescription")
-}
-@(objc_type=MenuItem, objc_name="version", objc_is_class_method=true)
-MenuItem_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, MenuItem, "version")
-}
-@(objc_type=MenuItem, objc_name="setVersion", objc_is_class_method=true)
-MenuItem_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, MenuItem, "setVersion:", aVersion)
-}
-@(objc_type=MenuItem, objc_name="poseAsClass", objc_is_class_method=true)
-MenuItem_poseAsClass :: #force_inline proc "c" (aClass: Class) {
-    msgSend(nil, MenuItem, "poseAsClass:", aClass)
-}
-@(objc_type=MenuItem, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-MenuItem_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, MenuItem, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=MenuItem, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-MenuItem_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, MenuItem, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=MenuItem, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-MenuItem_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, MenuItem, "accessInstanceVariablesDirectly")
-}
-@(objc_type=MenuItem, objc_name="useStoredAccessor", objc_is_class_method=true)
-MenuItem_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, MenuItem, "useStoredAccessor")
-}
-@(objc_type=MenuItem, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-MenuItem_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, MenuItem, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=MenuItem, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-MenuItem_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, MenuItem, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=MenuItem, objc_name="setKeys", objc_is_class_method=true)
-MenuItem_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {
-    msgSend(nil, MenuItem, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
-}
-@(objc_type=MenuItem, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-MenuItem_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, MenuItem, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=MenuItem, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-MenuItem_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, MenuItem, "classForKeyedUnarchiver")
-}
-@(objc_type=MenuItem, objc_name="exposeBinding", objc_is_class_method=true)
-MenuItem_exposeBinding :: #force_inline proc "c" (binding: ^NS.String) {
-    msgSend(nil, MenuItem, "exposeBinding:", binding)
-}
-@(objc_type=MenuItem, objc_name="setDefaultPlaceholder", objc_is_class_method=true)
-MenuItem_setDefaultPlaceholder :: #force_inline proc "c" (placeholder: id, marker: id, binding: ^NS.String) {
-    msgSend(nil, MenuItem, "setDefaultPlaceholder:forMarker:withBinding:", placeholder, marker, binding)
-}
-@(objc_type=MenuItem, objc_name="defaultPlaceholderForMarker", objc_is_class_method=true)
-MenuItem_defaultPlaceholderForMarker :: #force_inline proc "c" (marker: id, binding: ^NS.String) -> id {
-    return msgSend(id, MenuItem, "defaultPlaceholderForMarker:withBinding:", marker, binding)
-}
-@(objc_type=MenuItem, objc_name="cancelPreviousPerformRequestsWithTarget")
-MenuItem_cancelPreviousPerformRequestsWithTarget :: proc {
-    MenuItem_cancelPreviousPerformRequestsWithTarget_selector_object,
-    MenuItem_cancelPreviousPerformRequestsWithTarget_,
-}
+    @(objc_type=MenuItem, objc_selector="initWithTitle:action:keyEquivalent:", objc_name="initWithTitle")
+    MenuItem_initWithTitle :: proc(self: ^MenuItem, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^MenuItem ---
 
+    @(objc_type=MenuItem, objc_selector="initWithCoder:", objc_name="initWithCoder")
+    MenuItem_initWithCoder :: proc(self: ^MenuItem, coder: ^NS.Coder) -> ^MenuItem ---
+
+    @(objc_type=MenuItem, objc_selector="usesUserKeyEquivalents", objc_name="usesUserKeyEquivalents", objc_is_class_method=true)
+    MenuItem_usesUserKeyEquivalents :: proc() -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="setUsesUserKeyEquivalents:", objc_name="setUsesUserKeyEquivalents", objc_is_class_method=true)
+    MenuItem_setUsesUserKeyEquivalents :: proc(usesUserKeyEquivalents: bool) ---
+
+    @(objc_type=MenuItem, objc_selector="menu", objc_name="menu")
+    MenuItem_menu :: proc(self: ^MenuItem) -> ^Menu ---
+
+    @(objc_type=MenuItem, objc_selector="setMenu:", objc_name="setMenu")
+    MenuItem_setMenu :: proc(self: ^MenuItem, menu: ^Menu) ---
+
+    @(objc_type=MenuItem, objc_selector="hasSubmenu", objc_name="hasSubmenu")
+    MenuItem_hasSubmenu :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="submenu", objc_name="submenu")
+    MenuItem_submenu :: proc(self: ^MenuItem) -> ^Menu ---
+
+    @(objc_type=MenuItem, objc_selector="setSubmenu:", objc_name="setSubmenu")
+    MenuItem_setSubmenu :: proc(self: ^MenuItem, submenu: ^Menu) ---
+
+    @(objc_type=MenuItem, objc_selector="parentItem", objc_name="parentItem")
+    MenuItem_parentItem :: proc(self: ^MenuItem) -> ^MenuItem ---
+
+    @(objc_type=MenuItem, objc_selector="title", objc_name="title")
+    MenuItem_title :: proc(self: ^MenuItem) -> ^NS.String ---
+
+    @(objc_type=MenuItem, objc_selector="setTitle:", objc_name="setTitle")
+    MenuItem_setTitle :: proc(self: ^MenuItem, title: ^NS.String) ---
+
+    @(objc_type=MenuItem, objc_selector="attributedTitle", objc_name="attributedTitle")
+    MenuItem_attributedTitle :: proc(self: ^MenuItem) -> ^NS.AttributedString ---
+
+    @(objc_type=MenuItem, objc_selector="setAttributedTitle:", objc_name="setAttributedTitle")
+    MenuItem_setAttributedTitle :: proc(self: ^MenuItem, attributedTitle: ^NS.AttributedString) ---
+
+    @(objc_type=MenuItem, objc_selector="subtitle", objc_name="subtitle")
+    MenuItem_subtitle :: proc(self: ^MenuItem) -> ^NS.String ---
+
+    @(objc_type=MenuItem, objc_selector="setSubtitle:", objc_name="setSubtitle")
+    MenuItem_setSubtitle :: proc(self: ^MenuItem, subtitle: ^NS.String) ---
+
+    @(objc_type=MenuItem, objc_selector="isSeparatorItem", objc_name="isSeparatorItem")
+    MenuItem_isSeparatorItem :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="isSectionHeader", objc_name="isSectionHeader")
+    MenuItem_isSectionHeader :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="keyEquivalent", objc_name="keyEquivalent")
+    MenuItem_keyEquivalent :: proc(self: ^MenuItem) -> ^NS.String ---
+
+    @(objc_type=MenuItem, objc_selector="setKeyEquivalent:", objc_name="setKeyEquivalent")
+    MenuItem_setKeyEquivalent :: proc(self: ^MenuItem, keyEquivalent: ^NS.String) ---
+
+    @(objc_type=MenuItem, objc_selector="keyEquivalentModifierMask", objc_name="keyEquivalentModifierMask")
+    MenuItem_keyEquivalentModifierMask :: proc(self: ^MenuItem) -> EventModifierFlags ---
+
+    @(objc_type=MenuItem, objc_selector="setKeyEquivalentModifierMask:", objc_name="setKeyEquivalentModifierMask")
+    MenuItem_setKeyEquivalentModifierMask :: proc(self: ^MenuItem, keyEquivalentModifierMask: EventModifierFlags) ---
+
+    @(objc_type=MenuItem, objc_selector="userKeyEquivalent", objc_name="userKeyEquivalent")
+    MenuItem_userKeyEquivalent :: proc(self: ^MenuItem) -> ^NS.String ---
+
+    @(objc_type=MenuItem, objc_selector="allowsKeyEquivalentWhenHidden", objc_name="allowsKeyEquivalentWhenHidden")
+    MenuItem_allowsKeyEquivalentWhenHidden :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="setAllowsKeyEquivalentWhenHidden:", objc_name="setAllowsKeyEquivalentWhenHidden")
+    MenuItem_setAllowsKeyEquivalentWhenHidden :: proc(self: ^MenuItem, allowsKeyEquivalentWhenHidden: bool) ---
+
+    @(objc_type=MenuItem, objc_selector="allowsAutomaticKeyEquivalentLocalization", objc_name="allowsAutomaticKeyEquivalentLocalization")
+    MenuItem_allowsAutomaticKeyEquivalentLocalization :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="setAllowsAutomaticKeyEquivalentLocalization:", objc_name="setAllowsAutomaticKeyEquivalentLocalization")
+    MenuItem_setAllowsAutomaticKeyEquivalentLocalization :: proc(self: ^MenuItem, allowsAutomaticKeyEquivalentLocalization: bool) ---
+
+    @(objc_type=MenuItem, objc_selector="allowsAutomaticKeyEquivalentMirroring", objc_name="allowsAutomaticKeyEquivalentMirroring")
+    MenuItem_allowsAutomaticKeyEquivalentMirroring :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="setAllowsAutomaticKeyEquivalentMirroring:", objc_name="setAllowsAutomaticKeyEquivalentMirroring")
+    MenuItem_setAllowsAutomaticKeyEquivalentMirroring :: proc(self: ^MenuItem, allowsAutomaticKeyEquivalentMirroring: bool) ---
+
+    @(objc_type=MenuItem, objc_selector="image", objc_name="image")
+    MenuItem_image :: proc(self: ^MenuItem) -> ^NS.Image ---
+
+    @(objc_type=MenuItem, objc_selector="setImage:", objc_name="setImage")
+    MenuItem_setImage :: proc(self: ^MenuItem, image: ^NS.Image) ---
+
+    @(objc_type=MenuItem, objc_selector="state", objc_name="state")
+    MenuItem_state :: proc(self: ^MenuItem) -> ControlStateValue ---
+
+    @(objc_type=MenuItem, objc_selector="setState:", objc_name="setState")
+    MenuItem_setState :: proc(self: ^MenuItem, state: ControlStateValue) ---
+
+    @(objc_type=MenuItem, objc_selector="onStateImage", objc_name="onStateImage")
+    MenuItem_onStateImage :: proc(self: ^MenuItem) -> ^NS.Image ---
+
+    @(objc_type=MenuItem, objc_selector="setOnStateImage:", objc_name="setOnStateImage")
+    MenuItem_setOnStateImage :: proc(self: ^MenuItem, onStateImage: ^NS.Image) ---
+
+    @(objc_type=MenuItem, objc_selector="offStateImage", objc_name="offStateImage")
+    MenuItem_offStateImage :: proc(self: ^MenuItem) -> ^NS.Image ---
+
+    @(objc_type=MenuItem, objc_selector="setOffStateImage:", objc_name="setOffStateImage")
+    MenuItem_setOffStateImage :: proc(self: ^MenuItem, offStateImage: ^NS.Image) ---
+
+    @(objc_type=MenuItem, objc_selector="mixedStateImage", objc_name="mixedStateImage")
+    MenuItem_mixedStateImage :: proc(self: ^MenuItem) -> ^NS.Image ---
+
+    @(objc_type=MenuItem, objc_selector="setMixedStateImage:", objc_name="setMixedStateImage")
+    MenuItem_setMixedStateImage :: proc(self: ^MenuItem, mixedStateImage: ^NS.Image) ---
+
+    @(objc_type=MenuItem, objc_selector="isEnabled", objc_name="isEnabled")
+    MenuItem_isEnabled :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="setEnabled:", objc_name="setEnabled")
+    MenuItem_setEnabled :: proc(self: ^MenuItem, enabled: bool) ---
+
+    @(objc_type=MenuItem, objc_selector="isAlternate", objc_name="isAlternate")
+    MenuItem_isAlternate :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="setAlternate:", objc_name="setAlternate")
+    MenuItem_setAlternate :: proc(self: ^MenuItem, alternate: bool) ---
+
+    @(objc_type=MenuItem, objc_selector="indentationLevel", objc_name="indentationLevel")
+    MenuItem_indentationLevel :: proc(self: ^MenuItem) -> NS.Integer ---
+
+    @(objc_type=MenuItem, objc_selector="setIndentationLevel:", objc_name="setIndentationLevel")
+    MenuItem_setIndentationLevel :: proc(self: ^MenuItem, indentationLevel: NS.Integer) ---
+
+    @(objc_type=MenuItem, objc_selector="target", objc_name="target")
+    MenuItem_target :: proc(self: ^MenuItem) -> id ---
+
+    @(objc_type=MenuItem, objc_selector="setTarget:", objc_name="setTarget")
+    MenuItem_setTarget :: proc(self: ^MenuItem, target: id) ---
+
+    @(objc_type=MenuItem, objc_selector="action", objc_name="action")
+    MenuItem_action :: proc(self: ^MenuItem) -> SEL ---
+
+    @(objc_type=MenuItem, objc_selector="setAction:", objc_name="setAction")
+    MenuItem_setAction :: proc(self: ^MenuItem, action: SEL) ---
+
+    @(objc_type=MenuItem, objc_selector="tag", objc_name="tag")
+    MenuItem_tag :: proc(self: ^MenuItem) -> NS.Integer ---
+
+    @(objc_type=MenuItem, objc_selector="setTag:", objc_name="setTag")
+    MenuItem_setTag :: proc(self: ^MenuItem, tag: NS.Integer) ---
+
+    @(objc_type=MenuItem, objc_selector="representedObject", objc_name="representedObject")
+    MenuItem_representedObject :: proc(self: ^MenuItem) -> id ---
+
+    @(objc_type=MenuItem, objc_selector="setRepresentedObject:", objc_name="setRepresentedObject")
+    MenuItem_setRepresentedObject :: proc(self: ^MenuItem, representedObject: id) ---
+
+    @(objc_type=MenuItem, objc_selector="view", objc_name="view")
+    MenuItem_view :: proc(self: ^MenuItem) -> ^View ---
+
+    @(objc_type=MenuItem, objc_selector="setView:", objc_name="setView")
+    MenuItem_setView :: proc(self: ^MenuItem, view: ^View) ---
+
+    @(objc_type=MenuItem, objc_selector="isHighlighted", objc_name="isHighlighted")
+    MenuItem_isHighlighted :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="isHidden", objc_name="isHidden")
+    MenuItem_isHidden :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="setHidden:", objc_name="setHidden")
+    MenuItem_setHidden :: proc(self: ^MenuItem, hidden: bool) ---
+
+    @(objc_type=MenuItem, objc_selector="isHiddenOrHasHiddenAncestor", objc_name="isHiddenOrHasHiddenAncestor")
+    MenuItem_isHiddenOrHasHiddenAncestor :: proc(self: ^MenuItem) -> bool ---
+
+    @(objc_type=MenuItem, objc_selector="toolTip", objc_name="toolTip")
+    MenuItem_toolTip :: proc(self: ^MenuItem) -> ^NS.String ---
+
+    @(objc_type=MenuItem, objc_selector="setToolTip:", objc_name="setToolTip")
+    MenuItem_setToolTip :: proc(self: ^MenuItem, toolTip: ^NS.String) ---
+
+    @(objc_type=MenuItem, objc_selector="badge", objc_name="badge")
+    MenuItem_badge :: proc(self: ^MenuItem) -> ^MenuItemBadge ---
+
+    @(objc_type=MenuItem, objc_selector="setBadge:", objc_name="setBadge")
+    MenuItem_setBadge :: proc(self: ^MenuItem, badge: ^MenuItemBadge) ---
+
+    @(objc_type=MenuItem, objc_selector="setMnemonicLocation:", objc_name="setMnemonicLocation")
+    MenuItem_setMnemonicLocation :: proc(self: ^MenuItem, location: NS.UInteger) ---
+
+    @(objc_type=MenuItem, objc_selector="mnemonicLocation", objc_name="mnemonicLocation")
+    MenuItem_mnemonicLocation :: proc(self: ^MenuItem) -> NS.UInteger ---
+
+    @(objc_type=MenuItem, objc_selector="mnemonic", objc_name="mnemonic")
+    MenuItem_mnemonic :: proc(self: ^MenuItem) -> ^NS.String ---
+
+    @(objc_type=MenuItem, objc_selector="setTitleWithMnemonic:", objc_name="setTitleWithMnemonic")
+    MenuItem_setTitleWithMnemonic :: proc(self: ^MenuItem, stringWithAmpersand: ^NS.String) ---
+}

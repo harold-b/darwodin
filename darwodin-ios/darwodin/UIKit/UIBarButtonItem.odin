@@ -16,455 +16,242 @@ import CA "../QuartzCore"
 ///
 /// UIBarButtonItem
 ///
-@(objc_class="UIBarButtonItem")
+@(objc_class="UIBarButtonItem", objc_superclass=BarItem)
 BarButtonItem :: struct { using _: BarItem, 
     using _: NS.Coding,
 }
 
-@(objc_type=BarButtonItem, objc_name="init")
-BarButtonItem_init :: #force_inline proc "c" (self: ^BarButtonItem) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "init")
-}
-@(objc_type=BarButtonItem, objc_name="initWithCoder")
-BarButtonItem_initWithCoder :: #force_inline proc "c" (self: ^BarButtonItem, coder: ^NS.Coder) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithCoder:", coder)
-}
-@(objc_type=BarButtonItem, objc_name="initWithImage_style_target_action")
-BarButtonItem_initWithImage_style_target_action :: #force_inline proc "c" (self: ^BarButtonItem, image: ^Image, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithImage:style:target:action:", image, style, target, action)
-}
-@(objc_type=BarButtonItem, objc_name="initWithImage_landscapeImagePhone_style_target_action")
-BarButtonItem_initWithImage_landscapeImagePhone_style_target_action :: #force_inline proc "c" (self: ^BarButtonItem, image: ^Image, landscapeImagePhone: ^Image, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithImage:landscapeImagePhone:style:target:action:", image, landscapeImagePhone, style, target, action)
-}
-@(objc_type=BarButtonItem, objc_name="initWithTitle_style_target_action")
-BarButtonItem_initWithTitle_style_target_action :: #force_inline proc "c" (self: ^BarButtonItem, title: ^NS.String, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithTitle:style:target:action:", title, style, target, action)
-}
-@(objc_type=BarButtonItem, objc_name="initWithBarButtonSystemItem_target_action")
-BarButtonItem_initWithBarButtonSystemItem_target_action :: #force_inline proc "c" (self: ^BarButtonItem, systemItem: BarButtonSystemItem, target: id, action: SEL) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithBarButtonSystemItem:target:action:", systemItem, target, action)
-}
-@(objc_type=BarButtonItem, objc_name="initWithCustomView")
-BarButtonItem_initWithCustomView :: #force_inline proc "c" (self: ^BarButtonItem, customView: ^View) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithCustomView:", customView)
-}
-@(objc_type=BarButtonItem, objc_name="initWithBarButtonSystemItem_primaryAction")
-BarButtonItem_initWithBarButtonSystemItem_primaryAction :: #force_inline proc "c" (self: ^BarButtonItem, systemItem: BarButtonSystemItem, primaryAction: ^Action) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithBarButtonSystemItem:primaryAction:", systemItem, primaryAction)
-}
-@(objc_type=BarButtonItem, objc_name="initWithPrimaryAction_")
-BarButtonItem_initWithPrimaryAction_ :: #force_inline proc "c" (self: ^BarButtonItem, primaryAction: ^Action) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithPrimaryAction:", primaryAction)
-}
-@(objc_type=BarButtonItem, objc_name="initWithBarButtonSystemItem_menu")
-BarButtonItem_initWithBarButtonSystemItem_menu :: #force_inline proc "c" (self: ^BarButtonItem, systemItem: BarButtonSystemItem, menu: ^Menu) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithBarButtonSystemItem:menu:", systemItem, menu)
-}
-@(objc_type=BarButtonItem, objc_name="initWithTitle_menu")
-BarButtonItem_initWithTitle_menu :: #force_inline proc "c" (self: ^BarButtonItem, title: ^NS.String, menu: ^Menu) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithTitle:menu:", title, menu)
-}
-@(objc_type=BarButtonItem, objc_name="initWithImage_menu")
-BarButtonItem_initWithImage_menu :: #force_inline proc "c" (self: ^BarButtonItem, image: ^Image, menu: ^Menu) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithImage:menu:", image, menu)
-}
-@(objc_type=BarButtonItem, objc_name="initWithPrimaryAction_menu")
-BarButtonItem_initWithPrimaryAction_menu :: #force_inline proc "c" (self: ^BarButtonItem, primaryAction: ^Action, menu: ^Menu) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithPrimaryAction:menu:", primaryAction, menu)
-}
-@(objc_type=BarButtonItem, objc_name="initWithBarButtonSystemItem_primaryAction_menu")
-BarButtonItem_initWithBarButtonSystemItem_primaryAction_menu :: #force_inline proc "c" (self: ^BarButtonItem, systemItem: BarButtonSystemItem, primaryAction: ^Action, menu: ^Menu) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithBarButtonSystemItem:primaryAction:menu:", systemItem, primaryAction, menu)
-}
-@(objc_type=BarButtonItem, objc_name="initWithTitle_image_target_action_menu")
-BarButtonItem_initWithTitle_image_target_action_menu :: #force_inline proc "c" (self: ^BarButtonItem, title: ^NS.String, image: ^Image, target: id, action: SEL, menu: ^Menu) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, self, "initWithTitle:image:target:action:menu:", title, image, target, action, menu)
-}
-@(objc_type=BarButtonItem, objc_name="fixedSpaceItemOfWidth", objc_is_class_method=true)
-BarButtonItem_fixedSpaceItemOfWidth :: #force_inline proc "c" (width: CG.Float) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, BarButtonItem, "fixedSpaceItemOfWidth:", width)
-}
-@(objc_type=BarButtonItem, objc_name="flexibleSpaceItem", objc_is_class_method=true)
-BarButtonItem_flexibleSpaceItem :: #force_inline proc "c" () -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, BarButtonItem, "flexibleSpaceItem")
-}
-@(objc_type=BarButtonItem, objc_name="creatingFixedGroup")
-BarButtonItem_creatingFixedGroup :: #force_inline proc "c" (self: ^BarButtonItem) -> ^BarButtonItemGroup {
-    return msgSend(^BarButtonItemGroup, self, "creatingFixedGroup")
-}
-@(objc_type=BarButtonItem, objc_name="creatingMovableGroupWithCustomizationIdentifier")
-BarButtonItem_creatingMovableGroupWithCustomizationIdentifier :: #force_inline proc "c" (self: ^BarButtonItem, customizationIdentifier: ^NS.String) -> ^BarButtonItemGroup {
-    return msgSend(^BarButtonItemGroup, self, "creatingMovableGroupWithCustomizationIdentifier:", customizationIdentifier)
-}
-@(objc_type=BarButtonItem, objc_name="creatingOptionalGroupWithCustomizationIdentifier")
-BarButtonItem_creatingOptionalGroupWithCustomizationIdentifier :: #force_inline proc "c" (self: ^BarButtonItem, customizationIdentifier: ^NS.String, inDefaultCustomization: bool) -> ^BarButtonItemGroup {
-    return msgSend(^BarButtonItemGroup, self, "creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:", customizationIdentifier, inDefaultCustomization)
-}
-@(objc_type=BarButtonItem, objc_name="setBackgroundImage_forState_barMetrics")
-BarButtonItem_setBackgroundImage_forState_barMetrics :: #force_inline proc "c" (self: ^BarButtonItem, backgroundImage: ^Image, state: ControlState, barMetrics: BarMetrics) {
-    msgSend(nil, self, "setBackgroundImage:forState:barMetrics:", backgroundImage, state, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="backgroundImageForState_barMetrics")
-BarButtonItem_backgroundImageForState_barMetrics :: #force_inline proc "c" (self: ^BarButtonItem, state: ControlState, barMetrics: BarMetrics) -> ^Image {
-    return msgSend(^Image, self, "backgroundImageForState:barMetrics:", state, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="setBackgroundImage_forState_style_barMetrics")
-BarButtonItem_setBackgroundImage_forState_style_barMetrics :: #force_inline proc "c" (self: ^BarButtonItem, backgroundImage: ^Image, state: ControlState, style: BarButtonItemStyle, barMetrics: BarMetrics) {
-    msgSend(nil, self, "setBackgroundImage:forState:style:barMetrics:", backgroundImage, state, style, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="backgroundImageForState_style_barMetrics")
-BarButtonItem_backgroundImageForState_style_barMetrics :: #force_inline proc "c" (self: ^BarButtonItem, state: ControlState, style: BarButtonItemStyle, barMetrics: BarMetrics) -> ^Image {
-    return msgSend(^Image, self, "backgroundImageForState:style:barMetrics:", state, style, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="setBackgroundVerticalPositionAdjustment")
-BarButtonItem_setBackgroundVerticalPositionAdjustment :: #force_inline proc "c" (self: ^BarButtonItem, adjustment: CG.Float, barMetrics: BarMetrics) {
-    msgSend(nil, self, "setBackgroundVerticalPositionAdjustment:forBarMetrics:", adjustment, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="backgroundVerticalPositionAdjustmentForBarMetrics")
-BarButtonItem_backgroundVerticalPositionAdjustmentForBarMetrics :: #force_inline proc "c" (self: ^BarButtonItem, barMetrics: BarMetrics) -> CG.Float {
-    return msgSend(CG.Float, self, "backgroundVerticalPositionAdjustmentForBarMetrics:", barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="setTitlePositionAdjustment")
-BarButtonItem_setTitlePositionAdjustment :: #force_inline proc "c" (self: ^BarButtonItem, adjustment: Offset, barMetrics: BarMetrics) {
-    msgSend(nil, self, "setTitlePositionAdjustment:forBarMetrics:", adjustment, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="titlePositionAdjustmentForBarMetrics")
-BarButtonItem_titlePositionAdjustmentForBarMetrics :: #force_inline proc "c" (self: ^BarButtonItem, barMetrics: BarMetrics) -> Offset {
-    return msgSend(Offset, self, "titlePositionAdjustmentForBarMetrics:", barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="setBackButtonBackgroundImage")
-BarButtonItem_setBackButtonBackgroundImage :: #force_inline proc "c" (self: ^BarButtonItem, backgroundImage: ^Image, state: ControlState, barMetrics: BarMetrics) {
-    msgSend(nil, self, "setBackButtonBackgroundImage:forState:barMetrics:", backgroundImage, state, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="backButtonBackgroundImageForState")
-BarButtonItem_backButtonBackgroundImageForState :: #force_inline proc "c" (self: ^BarButtonItem, state: ControlState, barMetrics: BarMetrics) -> ^Image {
-    return msgSend(^Image, self, "backButtonBackgroundImageForState:barMetrics:", state, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="setBackButtonTitlePositionAdjustment")
-BarButtonItem_setBackButtonTitlePositionAdjustment :: #force_inline proc "c" (self: ^BarButtonItem, adjustment: Offset, barMetrics: BarMetrics) {
-    msgSend(nil, self, "setBackButtonTitlePositionAdjustment:forBarMetrics:", adjustment, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="backButtonTitlePositionAdjustmentForBarMetrics")
-BarButtonItem_backButtonTitlePositionAdjustmentForBarMetrics :: #force_inline proc "c" (self: ^BarButtonItem, barMetrics: BarMetrics) -> Offset {
-    return msgSend(Offset, self, "backButtonTitlePositionAdjustmentForBarMetrics:", barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="setBackButtonBackgroundVerticalPositionAdjustment")
-BarButtonItem_setBackButtonBackgroundVerticalPositionAdjustment :: #force_inline proc "c" (self: ^BarButtonItem, adjustment: CG.Float, barMetrics: BarMetrics) {
-    msgSend(nil, self, "setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:", adjustment, barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="backButtonBackgroundVerticalPositionAdjustmentForBarMetrics")
-BarButtonItem_backButtonBackgroundVerticalPositionAdjustmentForBarMetrics :: #force_inline proc "c" (self: ^BarButtonItem, barMetrics: BarMetrics) -> CG.Float {
-    return msgSend(CG.Float, self, "backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:", barMetrics)
-}
-@(objc_type=BarButtonItem, objc_name="style")
-BarButtonItem_style :: #force_inline proc "c" (self: ^BarButtonItem) -> BarButtonItemStyle {
-    return msgSend(BarButtonItemStyle, self, "style")
-}
-@(objc_type=BarButtonItem, objc_name="setStyle")
-BarButtonItem_setStyle :: #force_inline proc "c" (self: ^BarButtonItem, style: BarButtonItemStyle) {
-    msgSend(nil, self, "setStyle:", style)
-}
-@(objc_type=BarButtonItem, objc_name="width")
-BarButtonItem_width :: #force_inline proc "c" (self: ^BarButtonItem) -> CG.Float {
-    return msgSend(CG.Float, self, "width")
-}
-@(objc_type=BarButtonItem, objc_name="setWidth")
-BarButtonItem_setWidth :: #force_inline proc "c" (self: ^BarButtonItem, width: CG.Float) {
-    msgSend(nil, self, "setWidth:", width)
-}
-@(objc_type=BarButtonItem, objc_name="possibleTitles")
-BarButtonItem_possibleTitles :: #force_inline proc "c" (self: ^BarButtonItem) -> ^NS.Set {
-    return msgSend(^NS.Set, self, "possibleTitles")
-}
-@(objc_type=BarButtonItem, objc_name="setPossibleTitles")
-BarButtonItem_setPossibleTitles :: #force_inline proc "c" (self: ^BarButtonItem, possibleTitles: ^NS.Set) {
-    msgSend(nil, self, "setPossibleTitles:", possibleTitles)
-}
-@(objc_type=BarButtonItem, objc_name="customView")
-BarButtonItem_customView :: #force_inline proc "c" (self: ^BarButtonItem) -> ^View {
-    return msgSend(^View, self, "customView")
-}
-@(objc_type=BarButtonItem, objc_name="setCustomView")
-BarButtonItem_setCustomView :: #force_inline proc "c" (self: ^BarButtonItem, customView: ^View) {
-    msgSend(nil, self, "setCustomView:", customView)
-}
-@(objc_type=BarButtonItem, objc_name="action")
-BarButtonItem_action :: #force_inline proc "c" (self: ^BarButtonItem) -> SEL {
-    return msgSend(SEL, self, "action")
-}
-@(objc_type=BarButtonItem, objc_name="setAction")
-BarButtonItem_setAction :: #force_inline proc "c" (self: ^BarButtonItem, action: SEL) {
-    msgSend(nil, self, "setAction:", action)
-}
-@(objc_type=BarButtonItem, objc_name="target")
-BarButtonItem_target :: #force_inline proc "c" (self: ^BarButtonItem) -> id {
-    return msgSend(id, self, "target")
-}
-@(objc_type=BarButtonItem, objc_name="setTarget")
-BarButtonItem_setTarget :: #force_inline proc "c" (self: ^BarButtonItem, target: id) {
-    msgSend(nil, self, "setTarget:", target)
-}
-@(objc_type=BarButtonItem, objc_name="primaryAction")
-BarButtonItem_primaryAction :: #force_inline proc "c" (self: ^BarButtonItem) -> ^Action {
-    return msgSend(^Action, self, "primaryAction")
-}
-@(objc_type=BarButtonItem, objc_name="setPrimaryAction")
-BarButtonItem_setPrimaryAction :: #force_inline proc "c" (self: ^BarButtonItem, primaryAction: ^Action) {
-    msgSend(nil, self, "setPrimaryAction:", primaryAction)
-}
-@(objc_type=BarButtonItem, objc_name="menu")
-BarButtonItem_menu :: #force_inline proc "c" (self: ^BarButtonItem) -> ^Menu {
-    return msgSend(^Menu, self, "menu")
-}
-@(objc_type=BarButtonItem, objc_name="setMenu")
-BarButtonItem_setMenu :: #force_inline proc "c" (self: ^BarButtonItem, menu: ^Menu) {
-    msgSend(nil, self, "setMenu:", menu)
-}
-@(objc_type=BarButtonItem, objc_name="preferredMenuElementOrder")
-BarButtonItem_preferredMenuElementOrder :: #force_inline proc "c" (self: ^BarButtonItem) -> ContextMenuConfigurationElementOrder {
-    return msgSend(ContextMenuConfigurationElementOrder, self, "preferredMenuElementOrder")
-}
-@(objc_type=BarButtonItem, objc_name="setPreferredMenuElementOrder")
-BarButtonItem_setPreferredMenuElementOrder :: #force_inline proc "c" (self: ^BarButtonItem, preferredMenuElementOrder: ContextMenuConfigurationElementOrder) {
-    msgSend(nil, self, "setPreferredMenuElementOrder:", preferredMenuElementOrder)
-}
-@(objc_type=BarButtonItem, objc_name="changesSelectionAsPrimaryAction")
-BarButtonItem_changesSelectionAsPrimaryAction :: #force_inline proc "c" (self: ^BarButtonItem) -> bool {
-    return msgSend(bool, self, "changesSelectionAsPrimaryAction")
-}
-@(objc_type=BarButtonItem, objc_name="setChangesSelectionAsPrimaryAction")
-BarButtonItem_setChangesSelectionAsPrimaryAction :: #force_inline proc "c" (self: ^BarButtonItem, changesSelectionAsPrimaryAction: bool) {
-    msgSend(nil, self, "setChangesSelectionAsPrimaryAction:", changesSelectionAsPrimaryAction)
-}
-@(objc_type=BarButtonItem, objc_name="isSelected")
-BarButtonItem_isSelected :: #force_inline proc "c" (self: ^BarButtonItem) -> bool {
-    return msgSend(bool, self, "isSelected")
-}
-@(objc_type=BarButtonItem, objc_name="setSelected")
-BarButtonItem_setSelected :: #force_inline proc "c" (self: ^BarButtonItem, selected: bool) {
-    msgSend(nil, self, "setSelected:", selected)
-}
-@(objc_type=BarButtonItem, objc_name="isHidden")
-BarButtonItem_isHidden :: #force_inline proc "c" (self: ^BarButtonItem) -> bool {
-    return msgSend(bool, self, "isHidden")
-}
-@(objc_type=BarButtonItem, objc_name="setHidden")
-BarButtonItem_setHidden :: #force_inline proc "c" (self: ^BarButtonItem, hidden: bool) {
-    msgSend(nil, self, "setHidden:", hidden)
-}
-@(objc_type=BarButtonItem, objc_name="isSymbolAnimationEnabled")
-BarButtonItem_isSymbolAnimationEnabled :: #force_inline proc "c" (self: ^BarButtonItem) -> bool {
-    return msgSend(bool, self, "isSymbolAnimationEnabled")
-}
-@(objc_type=BarButtonItem, objc_name="setSymbolAnimationEnabled")
-BarButtonItem_setSymbolAnimationEnabled :: #force_inline proc "c" (self: ^BarButtonItem, symbolAnimationEnabled: bool) {
-    msgSend(nil, self, "setSymbolAnimationEnabled:", symbolAnimationEnabled)
-}
-@(objc_type=BarButtonItem, objc_name="menuRepresentation")
-BarButtonItem_menuRepresentation :: #force_inline proc "c" (self: ^BarButtonItem) -> ^MenuElement {
-    return msgSend(^MenuElement, self, "menuRepresentation")
-}
-@(objc_type=BarButtonItem, objc_name="setMenuRepresentation")
-BarButtonItem_setMenuRepresentation :: #force_inline proc "c" (self: ^BarButtonItem, menuRepresentation: ^MenuElement) {
-    msgSend(nil, self, "setMenuRepresentation:", menuRepresentation)
-}
-@(objc_type=BarButtonItem, objc_name="tintColor")
-BarButtonItem_tintColor :: #force_inline proc "c" (self: ^BarButtonItem) -> ^Color {
-    return msgSend(^Color, self, "tintColor")
-}
-@(objc_type=BarButtonItem, objc_name="setTintColor")
-BarButtonItem_setTintColor :: #force_inline proc "c" (self: ^BarButtonItem, tintColor: ^Color) {
-    msgSend(nil, self, "setTintColor:", tintColor)
-}
-@(objc_type=BarButtonItem, objc_name="addSymbolEffect_")
-BarButtonItem_addSymbolEffect_ :: #force_inline proc "c" (self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect) {
-    msgSend(nil, self, "addSymbolEffect:", symbolEffect)
-}
-@(objc_type=BarButtonItem, objc_name="addSymbolEffect_options")
-BarButtonItem_addSymbolEffect_options :: #force_inline proc "c" (self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect, options: ^NSSymbolEffectOptions) {
-    msgSend(nil, self, "addSymbolEffect:options:", symbolEffect, options)
-}
-@(objc_type=BarButtonItem, objc_name="addSymbolEffect_options_animated")
-BarButtonItem_addSymbolEffect_options_animated :: #force_inline proc "c" (self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect, options: ^NSSymbolEffectOptions, animated: bool) {
-    msgSend(nil, self, "addSymbolEffect:options:animated:", symbolEffect, options, animated)
-}
-@(objc_type=BarButtonItem, objc_name="removeSymbolEffectOfType_")
-BarButtonItem_removeSymbolEffectOfType_ :: #force_inline proc "c" (self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect) {
-    msgSend(nil, self, "removeSymbolEffectOfType:", symbolEffect)
-}
-@(objc_type=BarButtonItem, objc_name="removeSymbolEffectOfType_options")
-BarButtonItem_removeSymbolEffectOfType_options :: #force_inline proc "c" (self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect, options: ^NSSymbolEffectOptions) {
-    msgSend(nil, self, "removeSymbolEffectOfType:options:", symbolEffect, options)
-}
-@(objc_type=BarButtonItem, objc_name="removeSymbolEffectOfType_options_animated")
-BarButtonItem_removeSymbolEffectOfType_options_animated :: #force_inline proc "c" (self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect, options: ^NSSymbolEffectOptions, animated: bool) {
-    msgSend(nil, self, "removeSymbolEffectOfType:options:animated:", symbolEffect, options, animated)
-}
-@(objc_type=BarButtonItem, objc_name="removeAllSymbolEffects")
-BarButtonItem_removeAllSymbolEffects :: #force_inline proc "c" (self: ^BarButtonItem) {
-    msgSend(nil, self, "removeAllSymbolEffects")
-}
-@(objc_type=BarButtonItem, objc_name="removeAllSymbolEffectsWithOptions_")
-BarButtonItem_removeAllSymbolEffectsWithOptions_ :: #force_inline proc "c" (self: ^BarButtonItem, options: ^NSSymbolEffectOptions) {
-    msgSend(nil, self, "removeAllSymbolEffectsWithOptions:", options)
-}
-@(objc_type=BarButtonItem, objc_name="removeAllSymbolEffectsWithOptions_animated")
-BarButtonItem_removeAllSymbolEffectsWithOptions_animated :: #force_inline proc "c" (self: ^BarButtonItem, options: ^NSSymbolEffectOptions, animated: bool) {
-    msgSend(nil, self, "removeAllSymbolEffectsWithOptions:animated:", options, animated)
-}
-@(objc_type=BarButtonItem, objc_name="setSymbolImage_withContentTransition")
-BarButtonItem_setSymbolImage_withContentTransition :: #force_inline proc "c" (self: ^BarButtonItem, symbolImage: ^Image, transition: ^NSSymbolContentTransition) {
-    msgSend(nil, self, "setSymbolImage:withContentTransition:", symbolImage, transition)
-}
-@(objc_type=BarButtonItem, objc_name="setSymbolImage_withContentTransition_options")
-BarButtonItem_setSymbolImage_withContentTransition_options :: #force_inline proc "c" (self: ^BarButtonItem, symbolImage: ^Image, transition: ^NSSymbolContentTransition, options: ^NSSymbolEffectOptions) {
-    msgSend(nil, self, "setSymbolImage:withContentTransition:options:", symbolImage, transition, options)
-}
-@(objc_type=BarButtonItem, objc_name="buttonGroup")
-BarButtonItem_buttonGroup :: #force_inline proc "c" (self: ^BarButtonItem) -> ^BarButtonItemGroup {
-    return msgSend(^BarButtonItemGroup, self, "buttonGroup")
-}
-@(objc_type=BarButtonItem, objc_name="appearance", objc_is_class_method=true)
-BarButtonItem_appearance :: #force_inline proc "c" () -> ^Appearance {
-    return msgSend(^Appearance, BarButtonItem, "appearance")
-}
-@(objc_type=BarButtonItem, objc_name="appearanceWhenContainedIn", objc_is_class_method=true)
-BarButtonItem_appearanceWhenContainedIn :: #force_inline proc "c" (ContainerClass: ^Class) -> ^Appearance {
-    return msgSend(^Appearance, BarButtonItem, "appearanceWhenContainedIn:", ContainerClass)
-}
-@(objc_type=BarButtonItem, objc_name="appearanceWhenContainedInInstancesOfClasses", objc_is_class_method=true)
-BarButtonItem_appearanceWhenContainedInInstancesOfClasses :: #force_inline proc "c" (containerTypes: ^NS.Array) -> ^Appearance {
-    return msgSend(^Appearance, BarButtonItem, "appearanceWhenContainedInInstancesOfClasses:", containerTypes)
-}
-@(objc_type=BarButtonItem, objc_name="appearanceForTraitCollection_", objc_is_class_method=true)
-BarButtonItem_appearanceForTraitCollection_ :: #force_inline proc "c" (trait: ^TraitCollection) -> ^Appearance {
-    return msgSend(^Appearance, BarButtonItem, "appearanceForTraitCollection:", trait)
-}
-@(objc_type=BarButtonItem, objc_name="appearanceForTraitCollection_whenContainedIn", objc_is_class_method=true)
-BarButtonItem_appearanceForTraitCollection_whenContainedIn :: #force_inline proc "c" (trait: ^TraitCollection, ContainerClass: ^Class) -> ^Appearance {
-    return msgSend(^Appearance, BarButtonItem, "appearanceForTraitCollection:whenContainedIn:", trait, ContainerClass)
-}
-@(objc_type=BarButtonItem, objc_name="appearanceForTraitCollection_whenContainedInInstancesOfClasses", objc_is_class_method=true)
-BarButtonItem_appearanceForTraitCollection_whenContainedInInstancesOfClasses :: #force_inline proc "c" (trait: ^TraitCollection, containerTypes: ^NS.Array) -> ^Appearance {
-    return msgSend(^Appearance, BarButtonItem, "appearanceForTraitCollection:whenContainedInInstancesOfClasses:", trait, containerTypes)
-}
-@(objc_type=BarButtonItem, objc_name="load", objc_is_class_method=true)
-BarButtonItem_load :: #force_inline proc "c" () {
-    msgSend(nil, BarButtonItem, "load")
-}
-@(objc_type=BarButtonItem, objc_name="initialize", objc_is_class_method=true)
-BarButtonItem_initialize :: #force_inline proc "c" () {
-    msgSend(nil, BarButtonItem, "initialize")
-}
-@(objc_type=BarButtonItem, objc_name="new", objc_is_class_method=true)
-BarButtonItem_new :: #force_inline proc "c" () -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, BarButtonItem, "new")
-}
-@(objc_type=BarButtonItem, objc_name="allocWithZone", objc_is_class_method=true)
-BarButtonItem_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, BarButtonItem, "allocWithZone:", zone)
-}
-@(objc_type=BarButtonItem, objc_name="alloc", objc_is_class_method=true)
-BarButtonItem_alloc :: #force_inline proc "c" () -> ^BarButtonItem {
-    return msgSend(^BarButtonItem, BarButtonItem, "alloc")
-}
-@(objc_type=BarButtonItem, objc_name="copyWithZone", objc_is_class_method=true)
-BarButtonItem_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, BarButtonItem, "copyWithZone:", zone)
-}
-@(objc_type=BarButtonItem, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-BarButtonItem_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, BarButtonItem, "mutableCopyWithZone:", zone)
-}
-@(objc_type=BarButtonItem, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-BarButtonItem_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, BarButtonItem, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=BarButtonItem, objc_name="conformsToProtocol", objc_is_class_method=true)
-BarButtonItem_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, BarButtonItem, "conformsToProtocol:", protocol)
-}
-@(objc_type=BarButtonItem, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-BarButtonItem_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, BarButtonItem, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=BarButtonItem, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-BarButtonItem_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, BarButtonItem, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=BarButtonItem, objc_name="isSubclassOfClass", objc_is_class_method=true)
-BarButtonItem_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, BarButtonItem, "isSubclassOfClass:", aClass)
-}
-@(objc_type=BarButtonItem, objc_name="resolveClassMethod", objc_is_class_method=true)
-BarButtonItem_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, BarButtonItem, "resolveClassMethod:", sel)
-}
-@(objc_type=BarButtonItem, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-BarButtonItem_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, BarButtonItem, "resolveInstanceMethod:", sel)
-}
-@(objc_type=BarButtonItem, objc_name="hash", objc_is_class_method=true)
-BarButtonItem_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, BarButtonItem, "hash")
-}
-@(objc_type=BarButtonItem, objc_name="superclass", objc_is_class_method=true)
-BarButtonItem_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, BarButtonItem, "superclass")
-}
-@(objc_type=BarButtonItem, objc_name="class", objc_is_class_method=true)
-BarButtonItem_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, BarButtonItem, "class")
-}
-@(objc_type=BarButtonItem, objc_name="description", objc_is_class_method=true)
-BarButtonItem_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, BarButtonItem, "description")
-}
-@(objc_type=BarButtonItem, objc_name="debugDescription", objc_is_class_method=true)
-BarButtonItem_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, BarButtonItem, "debugDescription")
-}
-@(objc_type=BarButtonItem, objc_name="version", objc_is_class_method=true)
-BarButtonItem_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, BarButtonItem, "version")
-}
-@(objc_type=BarButtonItem, objc_name="setVersion", objc_is_class_method=true)
-BarButtonItem_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, BarButtonItem, "setVersion:", aVersion)
-}
-@(objc_type=BarButtonItem, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-BarButtonItem_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, BarButtonItem, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=BarButtonItem, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-BarButtonItem_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, BarButtonItem, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=BarButtonItem, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-BarButtonItem_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, BarButtonItem, "accessInstanceVariablesDirectly")
-}
-@(objc_type=BarButtonItem, objc_name="useStoredAccessor", objc_is_class_method=true)
-BarButtonItem_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, BarButtonItem, "useStoredAccessor")
-}
-@(objc_type=BarButtonItem, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-BarButtonItem_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, BarButtonItem, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=BarButtonItem, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-BarButtonItem_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, BarButtonItem, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=BarButtonItem, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-BarButtonItem_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, BarButtonItem, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=BarButtonItem, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-BarButtonItem_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, BarButtonItem, "classForKeyedUnarchiver")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=BarButtonItem, objc_selector="init", objc_name="init")
+    BarButtonItem_init :: proc(self: ^BarButtonItem) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithCoder:", objc_name="initWithCoder")
+    BarButtonItem_initWithCoder :: proc(self: ^BarButtonItem, coder: ^NS.Coder) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithImage:style:target:action:", objc_name="initWithImage_style_target_action")
+    BarButtonItem_initWithImage_style_target_action :: proc(self: ^BarButtonItem, image: ^Image, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithImage:landscapeImagePhone:style:target:action:", objc_name="initWithImage_landscapeImagePhone_style_target_action")
+    BarButtonItem_initWithImage_landscapeImagePhone_style_target_action :: proc(self: ^BarButtonItem, image: ^Image, landscapeImagePhone: ^Image, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithTitle:style:target:action:", objc_name="initWithTitle_style_target_action")
+    BarButtonItem_initWithTitle_style_target_action :: proc(self: ^BarButtonItem, title: ^NS.String, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithBarButtonSystemItem:target:action:", objc_name="initWithBarButtonSystemItem_target_action")
+    BarButtonItem_initWithBarButtonSystemItem_target_action :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, target: id, action: SEL) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithCustomView:", objc_name="initWithCustomView")
+    BarButtonItem_initWithCustomView :: proc(self: ^BarButtonItem, customView: ^View) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithBarButtonSystemItem:primaryAction:", objc_name="initWithBarButtonSystemItem_primaryAction")
+    BarButtonItem_initWithBarButtonSystemItem_primaryAction :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, primaryAction: ^Action) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithPrimaryAction:", objc_name="initWithPrimaryAction_")
+    BarButtonItem_initWithPrimaryAction_ :: proc(self: ^BarButtonItem, primaryAction: ^Action) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithBarButtonSystemItem:menu:", objc_name="initWithBarButtonSystemItem_menu")
+    BarButtonItem_initWithBarButtonSystemItem_menu :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, menu: ^Menu) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithTitle:menu:", objc_name="initWithTitle_menu")
+    BarButtonItem_initWithTitle_menu :: proc(self: ^BarButtonItem, title: ^NS.String, menu: ^Menu) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithImage:menu:", objc_name="initWithImage_menu")
+    BarButtonItem_initWithImage_menu :: proc(self: ^BarButtonItem, image: ^Image, menu: ^Menu) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithPrimaryAction:menu:", objc_name="initWithPrimaryAction_menu")
+    BarButtonItem_initWithPrimaryAction_menu :: proc(self: ^BarButtonItem, primaryAction: ^Action, menu: ^Menu) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithBarButtonSystemItem:primaryAction:menu:", objc_name="initWithBarButtonSystemItem_primaryAction_menu")
+    BarButtonItem_initWithBarButtonSystemItem_primaryAction_menu :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, primaryAction: ^Action, menu: ^Menu) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="initWithTitle:image:target:action:menu:", objc_name="initWithTitle_image_target_action_menu")
+    BarButtonItem_initWithTitle_image_target_action_menu :: proc(self: ^BarButtonItem, title: ^NS.String, image: ^Image, target: id, action: SEL, menu: ^Menu) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="fixedSpaceItemOfWidth:", objc_name="fixedSpaceItemOfWidth", objc_is_class_method=true)
+    BarButtonItem_fixedSpaceItemOfWidth :: proc(width: CG.Float) -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="flexibleSpaceItem", objc_name="flexibleSpaceItem", objc_is_class_method=true)
+    BarButtonItem_flexibleSpaceItem :: proc() -> ^BarButtonItem ---
+
+    @(objc_type=BarButtonItem, objc_selector="creatingFixedGroup", objc_name="creatingFixedGroup")
+    BarButtonItem_creatingFixedGroup :: proc(self: ^BarButtonItem) -> ^BarButtonItemGroup ---
+
+    @(objc_type=BarButtonItem, objc_selector="creatingMovableGroupWithCustomizationIdentifier:", objc_name="creatingMovableGroupWithCustomizationIdentifier")
+    BarButtonItem_creatingMovableGroupWithCustomizationIdentifier :: proc(self: ^BarButtonItem, customizationIdentifier: ^NS.String) -> ^BarButtonItemGroup ---
+
+    @(objc_type=BarButtonItem, objc_selector="creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:", objc_name="creatingOptionalGroupWithCustomizationIdentifier")
+    BarButtonItem_creatingOptionalGroupWithCustomizationIdentifier :: proc(self: ^BarButtonItem, customizationIdentifier: ^NS.String, inDefaultCustomization: bool) -> ^BarButtonItemGroup ---
+
+    @(objc_type=BarButtonItem, objc_selector="setBackgroundImage:forState:barMetrics:", objc_name="setBackgroundImage_forState_barMetrics")
+    BarButtonItem_setBackgroundImage_forState_barMetrics :: proc(self: ^BarButtonItem, backgroundImage: ^Image, state: ControlState, barMetrics: BarMetrics) ---
+
+    @(objc_type=BarButtonItem, objc_selector="backgroundImageForState:barMetrics:", objc_name="backgroundImageForState_barMetrics")
+    BarButtonItem_backgroundImageForState_barMetrics :: proc(self: ^BarButtonItem, state: ControlState, barMetrics: BarMetrics) -> ^Image ---
+
+    @(objc_type=BarButtonItem, objc_selector="setBackgroundImage:forState:style:barMetrics:", objc_name="setBackgroundImage_forState_style_barMetrics")
+    BarButtonItem_setBackgroundImage_forState_style_barMetrics :: proc(self: ^BarButtonItem, backgroundImage: ^Image, state: ControlState, style: BarButtonItemStyle, barMetrics: BarMetrics) ---
+
+    @(objc_type=BarButtonItem, objc_selector="backgroundImageForState:style:barMetrics:", objc_name="backgroundImageForState_style_barMetrics")
+    BarButtonItem_backgroundImageForState_style_barMetrics :: proc(self: ^BarButtonItem, state: ControlState, style: BarButtonItemStyle, barMetrics: BarMetrics) -> ^Image ---
+
+    @(objc_type=BarButtonItem, objc_selector="setBackgroundVerticalPositionAdjustment:forBarMetrics:", objc_name="setBackgroundVerticalPositionAdjustment")
+    BarButtonItem_setBackgroundVerticalPositionAdjustment :: proc(self: ^BarButtonItem, adjustment: CG.Float, barMetrics: BarMetrics) ---
+
+    @(objc_type=BarButtonItem, objc_selector="backgroundVerticalPositionAdjustmentForBarMetrics:", objc_name="backgroundVerticalPositionAdjustmentForBarMetrics")
+    BarButtonItem_backgroundVerticalPositionAdjustmentForBarMetrics :: proc(self: ^BarButtonItem, barMetrics: BarMetrics) -> CG.Float ---
+
+    @(objc_type=BarButtonItem, objc_selector="setTitlePositionAdjustment:forBarMetrics:", objc_name="setTitlePositionAdjustment")
+    BarButtonItem_setTitlePositionAdjustment :: proc(self: ^BarButtonItem, adjustment: Offset, barMetrics: BarMetrics) ---
+
+    @(objc_type=BarButtonItem, objc_selector="titlePositionAdjustmentForBarMetrics:", objc_name="titlePositionAdjustmentForBarMetrics")
+    BarButtonItem_titlePositionAdjustmentForBarMetrics :: proc(self: ^BarButtonItem, barMetrics: BarMetrics) -> Offset ---
+
+    @(objc_type=BarButtonItem, objc_selector="setBackButtonBackgroundImage:forState:barMetrics:", objc_name="setBackButtonBackgroundImage")
+    BarButtonItem_setBackButtonBackgroundImage :: proc(self: ^BarButtonItem, backgroundImage: ^Image, state: ControlState, barMetrics: BarMetrics) ---
+
+    @(objc_type=BarButtonItem, objc_selector="backButtonBackgroundImageForState:barMetrics:", objc_name="backButtonBackgroundImageForState")
+    BarButtonItem_backButtonBackgroundImageForState :: proc(self: ^BarButtonItem, state: ControlState, barMetrics: BarMetrics) -> ^Image ---
+
+    @(objc_type=BarButtonItem, objc_selector="setBackButtonTitlePositionAdjustment:forBarMetrics:", objc_name="setBackButtonTitlePositionAdjustment")
+    BarButtonItem_setBackButtonTitlePositionAdjustment :: proc(self: ^BarButtonItem, adjustment: Offset, barMetrics: BarMetrics) ---
+
+    @(objc_type=BarButtonItem, objc_selector="backButtonTitlePositionAdjustmentForBarMetrics:", objc_name="backButtonTitlePositionAdjustmentForBarMetrics")
+    BarButtonItem_backButtonTitlePositionAdjustmentForBarMetrics :: proc(self: ^BarButtonItem, barMetrics: BarMetrics) -> Offset ---
+
+    @(objc_type=BarButtonItem, objc_selector="setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:", objc_name="setBackButtonBackgroundVerticalPositionAdjustment")
+    BarButtonItem_setBackButtonBackgroundVerticalPositionAdjustment :: proc(self: ^BarButtonItem, adjustment: CG.Float, barMetrics: BarMetrics) ---
+
+    @(objc_type=BarButtonItem, objc_selector="backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:", objc_name="backButtonBackgroundVerticalPositionAdjustmentForBarMetrics")
+    BarButtonItem_backButtonBackgroundVerticalPositionAdjustmentForBarMetrics :: proc(self: ^BarButtonItem, barMetrics: BarMetrics) -> CG.Float ---
+
+    @(objc_type=BarButtonItem, objc_selector="style", objc_name="style")
+    BarButtonItem_style :: proc(self: ^BarButtonItem) -> BarButtonItemStyle ---
+
+    @(objc_type=BarButtonItem, objc_selector="setStyle:", objc_name="setStyle")
+    BarButtonItem_setStyle :: proc(self: ^BarButtonItem, style: BarButtonItemStyle) ---
+
+    @(objc_type=BarButtonItem, objc_selector="width", objc_name="width")
+    BarButtonItem_width :: proc(self: ^BarButtonItem) -> CG.Float ---
+
+    @(objc_type=BarButtonItem, objc_selector="setWidth:", objc_name="setWidth")
+    BarButtonItem_setWidth :: proc(self: ^BarButtonItem, width: CG.Float) ---
+
+    @(objc_type=BarButtonItem, objc_selector="possibleTitles", objc_name="possibleTitles")
+    BarButtonItem_possibleTitles :: proc(self: ^BarButtonItem) -> ^NS.Set ---
+
+    @(objc_type=BarButtonItem, objc_selector="setPossibleTitles:", objc_name="setPossibleTitles")
+    BarButtonItem_setPossibleTitles :: proc(self: ^BarButtonItem, possibleTitles: ^NS.Set) ---
+
+    @(objc_type=BarButtonItem, objc_selector="customView", objc_name="customView")
+    BarButtonItem_customView :: proc(self: ^BarButtonItem) -> ^View ---
+
+    @(objc_type=BarButtonItem, objc_selector="setCustomView:", objc_name="setCustomView")
+    BarButtonItem_setCustomView :: proc(self: ^BarButtonItem, customView: ^View) ---
+
+    @(objc_type=BarButtonItem, objc_selector="action", objc_name="action")
+    BarButtonItem_action :: proc(self: ^BarButtonItem) -> SEL ---
+
+    @(objc_type=BarButtonItem, objc_selector="setAction:", objc_name="setAction")
+    BarButtonItem_setAction :: proc(self: ^BarButtonItem, action: SEL) ---
+
+    @(objc_type=BarButtonItem, objc_selector="target", objc_name="target")
+    BarButtonItem_target :: proc(self: ^BarButtonItem) -> id ---
+
+    @(objc_type=BarButtonItem, objc_selector="setTarget:", objc_name="setTarget")
+    BarButtonItem_setTarget :: proc(self: ^BarButtonItem, target: id) ---
+
+    @(objc_type=BarButtonItem, objc_selector="primaryAction", objc_name="primaryAction")
+    BarButtonItem_primaryAction :: proc(self: ^BarButtonItem) -> ^Action ---
+
+    @(objc_type=BarButtonItem, objc_selector="setPrimaryAction:", objc_name="setPrimaryAction")
+    BarButtonItem_setPrimaryAction :: proc(self: ^BarButtonItem, primaryAction: ^Action) ---
+
+    @(objc_type=BarButtonItem, objc_selector="menu", objc_name="menu")
+    BarButtonItem_menu :: proc(self: ^BarButtonItem) -> ^Menu ---
+
+    @(objc_type=BarButtonItem, objc_selector="setMenu:", objc_name="setMenu")
+    BarButtonItem_setMenu :: proc(self: ^BarButtonItem, menu: ^Menu) ---
+
+    @(objc_type=BarButtonItem, objc_selector="preferredMenuElementOrder", objc_name="preferredMenuElementOrder")
+    BarButtonItem_preferredMenuElementOrder :: proc(self: ^BarButtonItem) -> ContextMenuConfigurationElementOrder ---
+
+    @(objc_type=BarButtonItem, objc_selector="setPreferredMenuElementOrder:", objc_name="setPreferredMenuElementOrder")
+    BarButtonItem_setPreferredMenuElementOrder :: proc(self: ^BarButtonItem, preferredMenuElementOrder: ContextMenuConfigurationElementOrder) ---
+
+    @(objc_type=BarButtonItem, objc_selector="changesSelectionAsPrimaryAction", objc_name="changesSelectionAsPrimaryAction")
+    BarButtonItem_changesSelectionAsPrimaryAction :: proc(self: ^BarButtonItem) -> bool ---
+
+    @(objc_type=BarButtonItem, objc_selector="setChangesSelectionAsPrimaryAction:", objc_name="setChangesSelectionAsPrimaryAction")
+    BarButtonItem_setChangesSelectionAsPrimaryAction :: proc(self: ^BarButtonItem, changesSelectionAsPrimaryAction: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="isSelected", objc_name="isSelected")
+    BarButtonItem_isSelected :: proc(self: ^BarButtonItem) -> bool ---
+
+    @(objc_type=BarButtonItem, objc_selector="setSelected:", objc_name="setSelected")
+    BarButtonItem_setSelected :: proc(self: ^BarButtonItem, selected: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="isHidden", objc_name="isHidden")
+    BarButtonItem_isHidden :: proc(self: ^BarButtonItem) -> bool ---
+
+    @(objc_type=BarButtonItem, objc_selector="setHidden:", objc_name="setHidden")
+    BarButtonItem_setHidden :: proc(self: ^BarButtonItem, hidden: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="isSymbolAnimationEnabled", objc_name="isSymbolAnimationEnabled")
+    BarButtonItem_isSymbolAnimationEnabled :: proc(self: ^BarButtonItem) -> bool ---
+
+    @(objc_type=BarButtonItem, objc_selector="setSymbolAnimationEnabled:", objc_name="setSymbolAnimationEnabled")
+    BarButtonItem_setSymbolAnimationEnabled :: proc(self: ^BarButtonItem, symbolAnimationEnabled: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="menuRepresentation", objc_name="menuRepresentation")
+    BarButtonItem_menuRepresentation :: proc(self: ^BarButtonItem) -> ^MenuElement ---
+
+    @(objc_type=BarButtonItem, objc_selector="setMenuRepresentation:", objc_name="setMenuRepresentation")
+    BarButtonItem_setMenuRepresentation :: proc(self: ^BarButtonItem, menuRepresentation: ^MenuElement) ---
+
+    @(objc_type=BarButtonItem, objc_selector="tintColor", objc_name="tintColor")
+    BarButtonItem_tintColor :: proc(self: ^BarButtonItem) -> ^Color ---
+
+    @(objc_type=BarButtonItem, objc_selector="setTintColor:", objc_name="setTintColor")
+    BarButtonItem_setTintColor :: proc(self: ^BarButtonItem, tintColor: ^Color) ---
+
+    @(objc_type=BarButtonItem, objc_selector="addSymbolEffect:", objc_name="addSymbolEffect_")
+    BarButtonItem_addSymbolEffect_ :: proc(self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect) ---
+
+    @(objc_type=BarButtonItem, objc_selector="addSymbolEffect:options:", objc_name="addSymbolEffect_options")
+    BarButtonItem_addSymbolEffect_options :: proc(self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect, options: ^NSSymbolEffectOptions) ---
+
+    @(objc_type=BarButtonItem, objc_selector="addSymbolEffect:options:animated:", objc_name="addSymbolEffect_options_animated")
+    BarButtonItem_addSymbolEffect_options_animated :: proc(self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect, options: ^NSSymbolEffectOptions, animated: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="removeSymbolEffectOfType:", objc_name="removeSymbolEffectOfType_")
+    BarButtonItem_removeSymbolEffectOfType_ :: proc(self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect) ---
+
+    @(objc_type=BarButtonItem, objc_selector="removeSymbolEffectOfType:options:", objc_name="removeSymbolEffectOfType_options")
+    BarButtonItem_removeSymbolEffectOfType_options :: proc(self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect, options: ^NSSymbolEffectOptions) ---
+
+    @(objc_type=BarButtonItem, objc_selector="removeSymbolEffectOfType:options:animated:", objc_name="removeSymbolEffectOfType_options_animated")
+    BarButtonItem_removeSymbolEffectOfType_options_animated :: proc(self: ^BarButtonItem, symbolEffect: ^NSSymbolEffect, options: ^NSSymbolEffectOptions, animated: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="removeAllSymbolEffects", objc_name="removeAllSymbolEffects")
+    BarButtonItem_removeAllSymbolEffects :: proc(self: ^BarButtonItem) ---
+
+    @(objc_type=BarButtonItem, objc_selector="removeAllSymbolEffectsWithOptions:", objc_name="removeAllSymbolEffectsWithOptions_")
+    BarButtonItem_removeAllSymbolEffectsWithOptions_ :: proc(self: ^BarButtonItem, options: ^NSSymbolEffectOptions) ---
+
+    @(objc_type=BarButtonItem, objc_selector="removeAllSymbolEffectsWithOptions:animated:", objc_name="removeAllSymbolEffectsWithOptions_animated")
+    BarButtonItem_removeAllSymbolEffectsWithOptions_animated :: proc(self: ^BarButtonItem, options: ^NSSymbolEffectOptions, animated: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="setSymbolImage:withContentTransition:", objc_name="setSymbolImage_withContentTransition")
+    BarButtonItem_setSymbolImage_withContentTransition :: proc(self: ^BarButtonItem, symbolImage: ^Image, transition: ^NSSymbolContentTransition) ---
+
+    @(objc_type=BarButtonItem, objc_selector="setSymbolImage:withContentTransition:options:", objc_name="setSymbolImage_withContentTransition_options")
+    BarButtonItem_setSymbolImage_withContentTransition_options :: proc(self: ^BarButtonItem, symbolImage: ^Image, transition: ^NSSymbolContentTransition, options: ^NSSymbolEffectOptions) ---
+
+    @(objc_type=BarButtonItem, objc_selector="buttonGroup", objc_name="buttonGroup")
+    BarButtonItem_buttonGroup :: proc(self: ^BarButtonItem) -> ^BarButtonItemGroup ---
+}
+
 @(objc_type=BarButtonItem, objc_name="initWithImage")
 BarButtonItem_initWithImage :: proc {
     BarButtonItem_initWithImage_style_target_action,
@@ -529,18 +316,5 @@ BarButtonItem_removeAllSymbolEffectsWithOptions :: proc {
 BarButtonItem_setSymbolImage :: proc {
     BarButtonItem_setSymbolImage_withContentTransition,
     BarButtonItem_setSymbolImage_withContentTransition_options,
-}
-
-@(objc_type=BarButtonItem, objc_name="appearanceForTraitCollection")
-BarButtonItem_appearanceForTraitCollection :: proc {
-    BarButtonItem_appearanceForTraitCollection_,
-    BarButtonItem_appearanceForTraitCollection_whenContainedIn,
-    BarButtonItem_appearanceForTraitCollection_whenContainedInInstancesOfClasses,
-}
-
-@(objc_type=BarButtonItem, objc_name="cancelPreviousPerformRequestsWithTarget")
-BarButtonItem_cancelPreviousPerformRequestsWithTarget :: proc {
-    BarButtonItem_cancelPreviousPerformRequestsWithTarget_selector_object,
-    BarButtonItem_cancelPreviousPerformRequestsWithTarget_,
 }
 

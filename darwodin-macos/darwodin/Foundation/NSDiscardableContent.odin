@@ -16,19 +16,17 @@ import Sec "../Security"
 @(objc_class="NSDiscardableContent")
 DiscardableContent :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=DiscardableContent, objc_name="beginContentAccess")
-DiscardableContent_beginContentAccess :: #force_inline proc "c" (self: ^DiscardableContent) -> bool {
-    return msgSend(bool, self, "beginContentAccess")
-}
-@(objc_type=DiscardableContent, objc_name="endContentAccess")
-DiscardableContent_endContentAccess :: #force_inline proc "c" (self: ^DiscardableContent) {
-    msgSend(nil, self, "endContentAccess")
-}
-@(objc_type=DiscardableContent, objc_name="discardContentIfPossible")
-DiscardableContent_discardContentIfPossible :: #force_inline proc "c" (self: ^DiscardableContent) {
-    msgSend(nil, self, "discardContentIfPossible")
-}
-@(objc_type=DiscardableContent, objc_name="isContentDiscarded")
-DiscardableContent_isContentDiscarded :: #force_inline proc "c" (self: ^DiscardableContent) -> bool {
-    return msgSend(bool, self, "isContentDiscarded")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DiscardableContent, objc_selector="beginContentAccess", objc_name="beginContentAccess")
+    DiscardableContent_beginContentAccess :: proc(self: ^DiscardableContent) -> bool ---
+
+    @(objc_type=DiscardableContent, objc_selector="endContentAccess", objc_name="endContentAccess")
+    DiscardableContent_endContentAccess :: proc(self: ^DiscardableContent) ---
+
+    @(objc_type=DiscardableContent, objc_selector="discardContentIfPossible", objc_name="discardContentIfPossible")
+    DiscardableContent_discardContentIfPossible :: proc(self: ^DiscardableContent) ---
+
+    @(objc_type=DiscardableContent, objc_selector="isContentDiscarded", objc_name="isContentDiscarded")
+    DiscardableContent_isContentDiscarded :: proc(self: ^DiscardableContent) -> bool ---
 }

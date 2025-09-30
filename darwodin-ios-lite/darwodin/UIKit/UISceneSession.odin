@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UISceneSession
 ///
-@(objc_class="UISceneSession")
+@(objc_class="UISceneSession", objc_superclass=NS.Object)
 SceneSession :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }

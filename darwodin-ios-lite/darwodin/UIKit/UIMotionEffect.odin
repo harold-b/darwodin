@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIMotionEffect
 ///
-@(objc_class="UIMotionEffect")
+@(objc_class="UIMotionEffect", objc_superclass=NS.Object)
 MotionEffect :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.Coding,

@@ -21,31 +21,26 @@ DrawerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DrawerDelegate, objc_name="drawerShouldOpen")
-DrawerDelegate_drawerShouldOpen :: #force_inline proc "c" (self: ^DrawerDelegate, sender: ^Drawer) -> bool {
-    return msgSend(bool, self, "drawerShouldOpen:", sender)
-}
-@(objc_type=DrawerDelegate, objc_name="drawerShouldClose")
-DrawerDelegate_drawerShouldClose :: #force_inline proc "c" (self: ^DrawerDelegate, sender: ^Drawer) -> bool {
-    return msgSend(bool, self, "drawerShouldClose:", sender)
-}
-@(objc_type=DrawerDelegate, objc_name="drawerWillResizeContents")
-DrawerDelegate_drawerWillResizeContents :: #force_inline proc "c" (self: ^DrawerDelegate, sender: ^Drawer, contentSize: NS.Size) -> NS.Size {
-    return msgSend(NS.Size, self, "drawerWillResizeContents:toSize:", sender, contentSize)
-}
-@(objc_type=DrawerDelegate, objc_name="drawerWillOpen")
-DrawerDelegate_drawerWillOpen :: #force_inline proc "c" (self: ^DrawerDelegate, notification: ^NS.Notification) {
-    msgSend(nil, self, "drawerWillOpen:", notification)
-}
-@(objc_type=DrawerDelegate, objc_name="drawerDidOpen")
-DrawerDelegate_drawerDidOpen :: #force_inline proc "c" (self: ^DrawerDelegate, notification: ^NS.Notification) {
-    msgSend(nil, self, "drawerDidOpen:", notification)
-}
-@(objc_type=DrawerDelegate, objc_name="drawerWillClose")
-DrawerDelegate_drawerWillClose :: #force_inline proc "c" (self: ^DrawerDelegate, notification: ^NS.Notification) {
-    msgSend(nil, self, "drawerWillClose:", notification)
-}
-@(objc_type=DrawerDelegate, objc_name="drawerDidClose")
-DrawerDelegate_drawerDidClose :: #force_inline proc "c" (self: ^DrawerDelegate, notification: ^NS.Notification) {
-    msgSend(nil, self, "drawerDidClose:", notification)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DrawerDelegate, objc_selector="drawerShouldOpen:", objc_name="drawerShouldOpen")
+    DrawerDelegate_drawerShouldOpen :: proc(self: ^DrawerDelegate, sender: ^Drawer) -> bool ---
+
+    @(objc_type=DrawerDelegate, objc_selector="drawerShouldClose:", objc_name="drawerShouldClose")
+    DrawerDelegate_drawerShouldClose :: proc(self: ^DrawerDelegate, sender: ^Drawer) -> bool ---
+
+    @(objc_type=DrawerDelegate, objc_selector="drawerWillResizeContents:toSize:", objc_name="drawerWillResizeContents")
+    DrawerDelegate_drawerWillResizeContents :: proc(self: ^DrawerDelegate, sender: ^Drawer, contentSize: NS.Size) -> NS.Size ---
+
+    @(objc_type=DrawerDelegate, objc_selector="drawerWillOpen:", objc_name="drawerWillOpen")
+    DrawerDelegate_drawerWillOpen :: proc(self: ^DrawerDelegate, notification: ^NS.Notification) ---
+
+    @(objc_type=DrawerDelegate, objc_selector="drawerDidOpen:", objc_name="drawerDidOpen")
+    DrawerDelegate_drawerDidOpen :: proc(self: ^DrawerDelegate, notification: ^NS.Notification) ---
+
+    @(objc_type=DrawerDelegate, objc_selector="drawerWillClose:", objc_name="drawerWillClose")
+    DrawerDelegate_drawerWillClose :: proc(self: ^DrawerDelegate, notification: ^NS.Notification) ---
+
+    @(objc_type=DrawerDelegate, objc_selector="drawerDidClose:", objc_name="drawerDidClose")
+    DrawerDelegate_drawerDidClose :: proc(self: ^DrawerDelegate, notification: ^NS.Notification) ---
 }

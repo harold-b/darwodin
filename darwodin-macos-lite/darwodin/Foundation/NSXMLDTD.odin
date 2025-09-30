@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSXMLDTD
 ///
-@(objc_class="NSXMLDTD")
+@(objc_class="NSXMLDTD", objc_superclass=XMLNode)
 XMLDTD :: struct { using _: XMLNode, }
 

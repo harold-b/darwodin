@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIFocusGuide
 ///
-@(objc_class="UIFocusGuide")
+@(objc_class="UIFocusGuide", objc_superclass=LayoutGuide)
 FocusGuide :: struct { using _: LayoutGuide, }
 

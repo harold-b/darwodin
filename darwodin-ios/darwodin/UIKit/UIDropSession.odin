@@ -22,19 +22,17 @@ DropSession :: struct { using _: intrinsics.objc_object,
     using _: NS.ProgressReporting,
 }
 
-@(objc_type=DropSession, objc_name="loadObjectsOfClass")
-DropSession_loadObjectsOfClass :: #force_inline proc "c" (self: ^DropSession, aClass: ^Class, completion: ^Objc_Block(proc "c" (objects: ^NS.Array))) -> ^NS.Progress {
-    return msgSend(^NS.Progress, self, "loadObjectsOfClass:completion:", aClass, completion)
-}
-@(objc_type=DropSession, objc_name="localDragSession")
-DropSession_localDragSession :: #force_inline proc "c" (self: ^DropSession) -> ^DragSession {
-    return msgSend(^DragSession, self, "localDragSession")
-}
-@(objc_type=DropSession, objc_name="progressIndicatorStyle")
-DropSession_progressIndicatorStyle :: #force_inline proc "c" (self: ^DropSession) -> DropSessionProgressIndicatorStyle {
-    return msgSend(DropSessionProgressIndicatorStyle, self, "progressIndicatorStyle")
-}
-@(objc_type=DropSession, objc_name="setProgressIndicatorStyle")
-DropSession_setProgressIndicatorStyle :: #force_inline proc "c" (self: ^DropSession, progressIndicatorStyle: DropSessionProgressIndicatorStyle) {
-    msgSend(nil, self, "setProgressIndicatorStyle:", progressIndicatorStyle)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DropSession, objc_selector="loadObjectsOfClass:completion:", objc_name="loadObjectsOfClass")
+    DropSession_loadObjectsOfClass :: proc(self: ^DropSession, aClass: ^Class, completion: ^Objc_Block(proc "c" (objects: ^NS.Array))) -> ^NS.Progress ---
+
+    @(objc_type=DropSession, objc_selector="localDragSession", objc_name="localDragSession")
+    DropSession_localDragSession :: proc(self: ^DropSession) -> ^DragSession ---
+
+    @(objc_type=DropSession, objc_selector="progressIndicatorStyle", objc_name="progressIndicatorStyle")
+    DropSession_progressIndicatorStyle :: proc(self: ^DropSession) -> DropSessionProgressIndicatorStyle ---
+
+    @(objc_type=DropSession, objc_selector="setProgressIndicatorStyle:", objc_name="setProgressIndicatorStyle")
+    DropSession_setProgressIndicatorStyle :: proc(self: ^DropSession, progressIndicatorStyle: DropSessionProgressIndicatorStyle) ---
 }

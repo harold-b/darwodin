@@ -22,15 +22,14 @@ TimingCurveProvider :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
-@(objc_type=TimingCurveProvider, objc_name="timingCurveType")
-TimingCurveProvider_timingCurveType :: #force_inline proc "c" (self: ^TimingCurveProvider) -> TimingCurveType {
-    return msgSend(TimingCurveType, self, "timingCurveType")
-}
-@(objc_type=TimingCurveProvider, objc_name="cubicTimingParameters")
-TimingCurveProvider_cubicTimingParameters :: #force_inline proc "c" (self: ^TimingCurveProvider) -> ^CubicTimingParameters {
-    return msgSend(^CubicTimingParameters, self, "cubicTimingParameters")
-}
-@(objc_type=TimingCurveProvider, objc_name="springTimingParameters")
-TimingCurveProvider_springTimingParameters :: #force_inline proc "c" (self: ^TimingCurveProvider) -> ^SpringTimingParameters {
-    return msgSend(^SpringTimingParameters, self, "springTimingParameters")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TimingCurveProvider, objc_selector="timingCurveType", objc_name="timingCurveType")
+    TimingCurveProvider_timingCurveType :: proc(self: ^TimingCurveProvider) -> TimingCurveType ---
+
+    @(objc_type=TimingCurveProvider, objc_selector="cubicTimingParameters", objc_name="cubicTimingParameters")
+    TimingCurveProvider_cubicTimingParameters :: proc(self: ^TimingCurveProvider) -> ^CubicTimingParameters ---
+
+    @(objc_type=TimingCurveProvider, objc_selector="springTimingParameters", objc_name="springTimingParameters")
+    TimingCurveProvider_springTimingParameters :: proc(self: ^TimingCurveProvider) -> ^SpringTimingParameters ---
 }

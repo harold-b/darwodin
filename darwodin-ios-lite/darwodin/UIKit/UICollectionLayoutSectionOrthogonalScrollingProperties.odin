@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UICollectionLayoutSectionOrthogonalScrollingProperties
 ///
-@(objc_class="UICollectionLayoutSectionOrthogonalScrollingProperties")
+@(objc_class="UICollectionLayoutSectionOrthogonalScrollingProperties", objc_superclass=NS.Object)
 CollectionLayoutSectionOrthogonalScrollingProperties :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

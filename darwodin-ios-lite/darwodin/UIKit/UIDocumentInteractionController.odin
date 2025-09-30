@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIDocumentInteractionController
 ///
-@(objc_class="UIDocumentInteractionController")
+@(objc_class="UIDocumentInteractionController", objc_superclass=NS.Object)
 DocumentInteractionController :: struct { using _: NS.Object, 
     using _: ActionSheetDelegate,
 }

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSKeyValueSharedObserversSnapshot
 ///
-@(objc_class="NSKeyValueSharedObserversSnapshot")
+@(objc_class="NSKeyValueSharedObserversSnapshot", objc_superclass=Object)
 KeyValueSharedObserversSnapshot :: struct { using _: Object, }
 

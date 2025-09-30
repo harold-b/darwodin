@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIVisualEffect
 ///
-@(objc_class="UIVisualEffect")
+@(objc_class="UIVisualEffect", objc_superclass=NS.Object)
 VisualEffect :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

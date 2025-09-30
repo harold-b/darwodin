@@ -13,140 +13,20 @@ import UI "../UIKit"
 ///
 /// CKSyncEngineFailedRecordSave
 ///
-@(objc_class="CKSyncEngineFailedRecordSave")
+@(objc_class="CKSyncEngineFailedRecordSave", objc_superclass=NS.Object)
 SyncEngineFailedRecordSave :: struct { using _: NS.Object, }
 
-@(objc_type=SyncEngineFailedRecordSave, objc_name="init")
-SyncEngineFailedRecordSave_init :: #force_inline proc "c" (self: ^SyncEngineFailedRecordSave) -> ^SyncEngineFailedRecordSave {
-    return msgSend(^SyncEngineFailedRecordSave, self, "init")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="new", objc_is_class_method=true)
-SyncEngineFailedRecordSave_new :: #force_inline proc "c" () -> ^SyncEngineFailedRecordSave {
-    return msgSend(^SyncEngineFailedRecordSave, SyncEngineFailedRecordSave, "new")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="record")
-SyncEngineFailedRecordSave_record :: #force_inline proc "c" (self: ^SyncEngineFailedRecordSave) -> ^Record {
-    return msgSend(^Record, self, "record")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="error")
-SyncEngineFailedRecordSave_error :: #force_inline proc "c" (self: ^SyncEngineFailedRecordSave) -> ^NS.Error {
-    return msgSend(^NS.Error, self, "error")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="load", objc_is_class_method=true)
-SyncEngineFailedRecordSave_load :: #force_inline proc "c" () {
-    msgSend(nil, SyncEngineFailedRecordSave, "load")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="initialize", objc_is_class_method=true)
-SyncEngineFailedRecordSave_initialize :: #force_inline proc "c" () {
-    msgSend(nil, SyncEngineFailedRecordSave, "initialize")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="allocWithZone", objc_is_class_method=true)
-SyncEngineFailedRecordSave_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^SyncEngineFailedRecordSave {
-    return msgSend(^SyncEngineFailedRecordSave, SyncEngineFailedRecordSave, "allocWithZone:", zone)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="alloc", objc_is_class_method=true)
-SyncEngineFailedRecordSave_alloc :: #force_inline proc "c" () -> ^SyncEngineFailedRecordSave {
-    return msgSend(^SyncEngineFailedRecordSave, SyncEngineFailedRecordSave, "alloc")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="copyWithZone", objc_is_class_method=true)
-SyncEngineFailedRecordSave_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, SyncEngineFailedRecordSave, "copyWithZone:", zone)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-SyncEngineFailedRecordSave_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, SyncEngineFailedRecordSave, "mutableCopyWithZone:", zone)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-SyncEngineFailedRecordSave_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, SyncEngineFailedRecordSave, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="conformsToProtocol", objc_is_class_method=true)
-SyncEngineFailedRecordSave_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, SyncEngineFailedRecordSave, "conformsToProtocol:", protocol)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-SyncEngineFailedRecordSave_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, SyncEngineFailedRecordSave, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-SyncEngineFailedRecordSave_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, SyncEngineFailedRecordSave, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="isSubclassOfClass", objc_is_class_method=true)
-SyncEngineFailedRecordSave_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, SyncEngineFailedRecordSave, "isSubclassOfClass:", aClass)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="resolveClassMethod", objc_is_class_method=true)
-SyncEngineFailedRecordSave_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, SyncEngineFailedRecordSave, "resolveClassMethod:", sel)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-SyncEngineFailedRecordSave_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, SyncEngineFailedRecordSave, "resolveInstanceMethod:", sel)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="hash", objc_is_class_method=true)
-SyncEngineFailedRecordSave_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, SyncEngineFailedRecordSave, "hash")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="superclass", objc_is_class_method=true)
-SyncEngineFailedRecordSave_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, SyncEngineFailedRecordSave, "superclass")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="class", objc_is_class_method=true)
-SyncEngineFailedRecordSave_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, SyncEngineFailedRecordSave, "class")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="description", objc_is_class_method=true)
-SyncEngineFailedRecordSave_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, SyncEngineFailedRecordSave, "description")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="debugDescription", objc_is_class_method=true)
-SyncEngineFailedRecordSave_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, SyncEngineFailedRecordSave, "debugDescription")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="version", objc_is_class_method=true)
-SyncEngineFailedRecordSave_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, SyncEngineFailedRecordSave, "version")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="setVersion", objc_is_class_method=true)
-SyncEngineFailedRecordSave_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, SyncEngineFailedRecordSave, "setVersion:", aVersion)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-SyncEngineFailedRecordSave_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, SyncEngineFailedRecordSave, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-SyncEngineFailedRecordSave_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, SyncEngineFailedRecordSave, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-SyncEngineFailedRecordSave_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, SyncEngineFailedRecordSave, "accessInstanceVariablesDirectly")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="useStoredAccessor", objc_is_class_method=true)
-SyncEngineFailedRecordSave_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, SyncEngineFailedRecordSave, "useStoredAccessor")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-SyncEngineFailedRecordSave_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, SyncEngineFailedRecordSave, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-SyncEngineFailedRecordSave_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, SyncEngineFailedRecordSave, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-SyncEngineFailedRecordSave_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, SyncEngineFailedRecordSave, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-SyncEngineFailedRecordSave_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, SyncEngineFailedRecordSave, "classForKeyedUnarchiver")
-}
-@(objc_type=SyncEngineFailedRecordSave, objc_name="cancelPreviousPerformRequestsWithTarget")
-SyncEngineFailedRecordSave_cancelPreviousPerformRequestsWithTarget :: proc {
-    SyncEngineFailedRecordSave_cancelPreviousPerformRequestsWithTarget_selector_object,
-    SyncEngineFailedRecordSave_cancelPreviousPerformRequestsWithTarget_,
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SyncEngineFailedRecordSave, objc_selector="init", objc_name="init")
+    SyncEngineFailedRecordSave_init :: proc(self: ^SyncEngineFailedRecordSave) -> ^SyncEngineFailedRecordSave ---
 
+    @(objc_type=SyncEngineFailedRecordSave, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    SyncEngineFailedRecordSave_new :: proc() -> ^SyncEngineFailedRecordSave ---
+
+    @(objc_type=SyncEngineFailedRecordSave, objc_selector="record", objc_name="record")
+    SyncEngineFailedRecordSave_record :: proc(self: ^SyncEngineFailedRecordSave) -> ^Record ---
+
+    @(objc_type=SyncEngineFailedRecordSave, objc_selector="error", objc_name="error")
+    SyncEngineFailedRecordSave_error :: proc(self: ^SyncEngineFailedRecordSave) -> ^NS.Error ---
+}

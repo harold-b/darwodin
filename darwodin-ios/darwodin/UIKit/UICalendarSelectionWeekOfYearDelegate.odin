@@ -21,11 +21,12 @@ CalendarSelectionWeekOfYearDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CalendarSelectionWeekOfYearDelegate, objc_name="weekOfYearSelection_didSelectWeekOfYear")
-CalendarSelectionWeekOfYearDelegate_weekOfYearSelection_didSelectWeekOfYear :: #force_inline proc "c" (self: ^CalendarSelectionWeekOfYearDelegate, selection: ^CalendarSelectionWeekOfYear, weekOfYearComponents: ^NS.DateComponents) {
-    msgSend(nil, self, "weekOfYearSelection:didSelectWeekOfYear:", selection, weekOfYearComponents)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CalendarSelectionWeekOfYearDelegate, objc_selector="weekOfYearSelection:didSelectWeekOfYear:", objc_name="weekOfYearSelection_didSelectWeekOfYear")
+    CalendarSelectionWeekOfYearDelegate_weekOfYearSelection_didSelectWeekOfYear :: proc(self: ^CalendarSelectionWeekOfYearDelegate, selection: ^CalendarSelectionWeekOfYear, weekOfYearComponents: ^NS.DateComponents) ---
+
+    @(objc_type=CalendarSelectionWeekOfYearDelegate, objc_selector="weekOfYearSelection:canSelectWeekOfYear:", objc_name="weekOfYearSelection_canSelectWeekOfYear")
+    CalendarSelectionWeekOfYearDelegate_weekOfYearSelection_canSelectWeekOfYear :: proc(self: ^CalendarSelectionWeekOfYearDelegate, selection: ^CalendarSelectionWeekOfYear, weekOfYearComponents: ^NS.DateComponents) -> bool ---
 }
-@(objc_type=CalendarSelectionWeekOfYearDelegate, objc_name="weekOfYearSelection_canSelectWeekOfYear")
-CalendarSelectionWeekOfYearDelegate_weekOfYearSelection_canSelectWeekOfYear :: #force_inline proc "c" (self: ^CalendarSelectionWeekOfYearDelegate, selection: ^CalendarSelectionWeekOfYear, weekOfYearComponents: ^NS.DateComponents) -> bool {
-    return msgSend(bool, self, "weekOfYearSelection:canSelectWeekOfYear:", selection, weekOfYearComponents)
-}
+

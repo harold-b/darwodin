@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -40,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tableView_prefetchRowsAtIndexPaths(self, tableView, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:prefetchRowsAtIndexPaths:"), auto_cast tableView_prefetchRowsAtIndexPaths, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:prefetchRowsAtIndexPaths:"), auto_cast tableView_prefetchRowsAtIndexPaths, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.tableView_cancelPrefetchingForRowsAtIndexPaths != nil {
         tableView_cancelPrefetchingForRowsAtIndexPaths :: proc "c" (self: ^UI.TableViewDataSourcePrefetching, _: SEL, tableView: ^UI.TableView, indexPaths: ^NS.Array) {
@@ -50,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.protocol_vt).tableView_cancelPrefetchingForRowsAtIndexPaths(self, tableView, indexPaths)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:cancelPrefetchingForRowsAtIndexPaths:"), auto_cast tableView_cancelPrefetchingForRowsAtIndexPaths, "v@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tableView:cancelPrefetchingForRowsAtIndexPaths:"), auto_cast tableView_cancelPrefetchingForRowsAtIndexPaths, "v@:@^void") do panic("Failed to register objC method.")
     }
 }
 

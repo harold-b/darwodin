@@ -21,11 +21,11 @@ TabBarControllerSidebarAnimating :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TabBarControllerSidebarAnimating, objc_name="addAnimations")
-TabBarControllerSidebarAnimating_addAnimations :: #force_inline proc "c" (self: ^TabBarControllerSidebarAnimating, animations: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "addAnimations:", animations)
-}
-@(objc_type=TabBarControllerSidebarAnimating, objc_name="addCompletion")
-TabBarControllerSidebarAnimating_addCompletion :: #force_inline proc "c" (self: ^TabBarControllerSidebarAnimating, completion: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "addCompletion:", completion)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TabBarControllerSidebarAnimating, objc_selector="addAnimations:", objc_name="addAnimations")
+    TabBarControllerSidebarAnimating_addAnimations :: proc(self: ^TabBarControllerSidebarAnimating, animations: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=TabBarControllerSidebarAnimating, objc_selector="addCompletion:", objc_name="addCompletion")
+    TabBarControllerSidebarAnimating_addCompletion :: proc(self: ^TabBarControllerSidebarAnimating, completion: ^Objc_Block(proc "c" ())) ---
 }

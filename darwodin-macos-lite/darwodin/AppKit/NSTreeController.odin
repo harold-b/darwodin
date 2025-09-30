@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTreeController
 ///
-@(objc_class="NSTreeController")
+@(objc_class="NSTreeController", objc_superclass=ObjectController)
 TreeController :: struct { using _: ObjectController, }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIImageReaderConfiguration
 ///
-@(objc_class="UIImageReaderConfiguration")
+@(objc_class="UIImageReaderConfiguration", objc_superclass=NS.Object)
 ImageReaderConfiguration :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

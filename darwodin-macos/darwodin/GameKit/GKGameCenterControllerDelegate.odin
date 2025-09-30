@@ -18,7 +18,8 @@ GameCenterControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=GameCenterControllerDelegate, objc_name="gameCenterViewControllerDidFinish")
-GameCenterControllerDelegate_gameCenterViewControllerDidFinish :: #force_inline proc "c" (self: ^GameCenterControllerDelegate, gameCenterViewController: ^GameCenterViewController) {
-    msgSend(nil, self, "gameCenterViewControllerDidFinish:", gameCenterViewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=GameCenterControllerDelegate, objc_selector="gameCenterViewControllerDidFinish:", objc_name="gameCenterViewControllerDidFinish")
+    GameCenterControllerDelegate_gameCenterViewControllerDidFinish :: proc(self: ^GameCenterControllerDelegate, gameCenterViewController: ^GameCenterViewController) ---
 }

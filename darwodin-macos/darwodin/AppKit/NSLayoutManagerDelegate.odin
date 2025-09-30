@@ -21,55 +21,45 @@ LayoutManagerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange")
-LayoutManagerDelegate_layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphs: ^CG.Glyph, props: ^GlyphProperty, charIndexes: ^NS.UInteger, aFont: ^Font, glyphRange: NS._NSRange) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:", layoutManager, glyphs, props, charIndexes, aFont, glyphRange)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:", objc_name="layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange")
+    LayoutManagerDelegate_layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphs: ^CG.Glyph, props: ^GlyphProperty, charIndexes: ^NS.UInteger, aFont: ^Font, glyphRange: NS._NSRange) -> NS.UInteger ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", objc_name="layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect")
+    LayoutManagerDelegate_layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:", objc_name="layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect")
+    LayoutManagerDelegate_layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", objc_name="layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect")
+    LayoutManagerDelegate_layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:shouldUseAction:forControlCharacterAtIndex:", objc_name="layoutManager_shouldUseAction_forControlCharacterAtIndex")
+    LayoutManagerDelegate_layoutManager_shouldUseAction_forControlCharacterAtIndex :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, action: ControlCharacterAction, charIndex: NS.UInteger) -> ControlCharacterAction ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:shouldBreakLineByWordBeforeCharacterAtIndex:", objc_name="layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex")
+    LayoutManagerDelegate_layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, charIndex: NS.UInteger) -> bool ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:shouldBreakLineByHyphenatingBeforeCharacterAtIndex:", objc_name="layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex")
+    LayoutManagerDelegate_layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, charIndex: NS.UInteger) -> bool ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:", objc_name="layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex")
+    LayoutManagerDelegate_layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphIndex: NS.UInteger, textContainer: ^TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:", objc_name="layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange")
+    LayoutManagerDelegate_layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, baselineOffset: ^CG.Float, textContainer: ^TextContainer, glyphRange: NS._NSRange) -> bool ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManagerDidInvalidateLayout:", objc_name="layoutManagerDidInvalidateLayout")
+    LayoutManagerDelegate_layoutManagerDidInvalidateLayout :: proc(self: ^LayoutManagerDelegate, sender: ^LayoutManager) ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:didCompleteLayoutForTextContainer:atEnd:", objc_name="layoutManager_didCompleteLayoutForTextContainer_atEnd")
+    LayoutManagerDelegate_layoutManager_didCompleteLayoutForTextContainer_atEnd :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, textContainer: ^TextContainer, layoutFinishedFlag: bool) ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:textContainer:didChangeGeometryFromSize:", objc_name="layoutManager_textContainer_didChangeGeometryFromSize")
+    LayoutManagerDelegate_layoutManager_textContainer_didChangeGeometryFromSize :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, textContainer: ^TextContainer, oldSize: NS.Size) ---
+
+    @(objc_type=LayoutManagerDelegate, objc_selector="layoutManager:shouldUseTemporaryAttributes:forDrawingToScreen:atCharacterIndex:effectiveRange:", objc_name="layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange")
+    LayoutManagerDelegate_layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange :: proc(self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, attrs: ^NS.Dictionary, toScreen: bool, charIndex: NS.UInteger, effectiveCharRange: ^NS._NSRange) -> ^NS.Dictionary ---
 }
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect")
-LayoutManagerDelegate_layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
-    return msgSend(CG.Float, self, "layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", layoutManager, glyphIndex, rect)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect")
-LayoutManagerDelegate_layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
-    return msgSend(CG.Float, self, "layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:", layoutManager, glyphIndex, rect)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect")
-LayoutManagerDelegate_layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
-    return msgSend(CG.Float, self, "layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:", layoutManager, glyphIndex, rect)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_shouldUseAction_forControlCharacterAtIndex")
-LayoutManagerDelegate_layoutManager_shouldUseAction_forControlCharacterAtIndex :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, action: ControlCharacterAction, charIndex: NS.UInteger) -> ControlCharacterAction {
-    return msgSend(ControlCharacterAction, self, "layoutManager:shouldUseAction:forControlCharacterAtIndex:", layoutManager, action, charIndex)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex")
-LayoutManagerDelegate_layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, charIndex: NS.UInteger) -> bool {
-    return msgSend(bool, self, "layoutManager:shouldBreakLineByWordBeforeCharacterAtIndex:", layoutManager, charIndex)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex")
-LayoutManagerDelegate_layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, charIndex: NS.UInteger) -> bool {
-    return msgSend(bool, self, "layoutManager:shouldBreakLineByHyphenatingBeforeCharacterAtIndex:", layoutManager, charIndex)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex")
-LayoutManagerDelegate_layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, glyphIndex: NS.UInteger, textContainer: ^TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect {
-    return msgSend(NS.Rect, self, "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:", layoutManager, glyphIndex, textContainer, proposedRect, glyphPosition, charIndex)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange")
-LayoutManagerDelegate_layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, baselineOffset: ^CG.Float, textContainer: ^TextContainer, glyphRange: NS._NSRange) -> bool {
-    return msgSend(bool, self, "layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:", layoutManager, lineFragmentRect, lineFragmentUsedRect, baselineOffset, textContainer, glyphRange)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManagerDidInvalidateLayout")
-LayoutManagerDelegate_layoutManagerDidInvalidateLayout :: #force_inline proc "c" (self: ^LayoutManagerDelegate, sender: ^LayoutManager) {
-    msgSend(nil, self, "layoutManagerDidInvalidateLayout:", sender)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_didCompleteLayoutForTextContainer_atEnd")
-LayoutManagerDelegate_layoutManager_didCompleteLayoutForTextContainer_atEnd :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, textContainer: ^TextContainer, layoutFinishedFlag: bool) {
-    msgSend(nil, self, "layoutManager:didCompleteLayoutForTextContainer:atEnd:", layoutManager, textContainer, layoutFinishedFlag)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_textContainer_didChangeGeometryFromSize")
-LayoutManagerDelegate_layoutManager_textContainer_didChangeGeometryFromSize :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, textContainer: ^TextContainer, oldSize: NS.Size) {
-    msgSend(nil, self, "layoutManager:textContainer:didChangeGeometryFromSize:", layoutManager, textContainer, oldSize)
-}
-@(objc_type=LayoutManagerDelegate, objc_name="layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange")
-LayoutManagerDelegate_layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange :: #force_inline proc "c" (self: ^LayoutManagerDelegate, layoutManager: ^LayoutManager, attrs: ^NS.Dictionary, toScreen: bool, charIndex: NS.UInteger, effectiveCharRange: ^NS._NSRange) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "layoutManager:shouldUseTemporaryAttributes:forDrawingToScreen:atCharacterIndex:effectiveRange:", layoutManager, attrs, toScreen, charIndex, effectiveCharRange)
-}
+

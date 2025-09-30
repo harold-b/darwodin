@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSSliderAccessoryBehavior
 ///
-@(objc_class="NSSliderAccessoryBehavior")
+@(objc_class="NSSliderAccessoryBehavior", objc_superclass=NS.Object)
 SliderAccessoryBehavior :: struct { using _: NS.Object, 
     using _: NS.Coding,
     using _: NS.Copying,

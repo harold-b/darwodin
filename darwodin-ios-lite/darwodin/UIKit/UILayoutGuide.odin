@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UILayoutGuide
 ///
-@(objc_class="UILayoutGuide")
+@(objc_class="UILayoutGuide", objc_superclass=NS.Object)
 LayoutGuide :: struct { using _: NS.Object, 
     using _: NS.Coding,
 }

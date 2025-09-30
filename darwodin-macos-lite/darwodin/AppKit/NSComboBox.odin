@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSComboBox
 ///
-@(objc_class="NSComboBox")
+@(objc_class="NSComboBox", objc_superclass=TextField)
 ComboBox :: struct { using _: TextField, }
 

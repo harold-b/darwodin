@@ -21,11 +21,11 @@ ScrollViewAccessibilityDelegate :: struct { using _: intrinsics.objc_object,
     using _: ScrollViewDelegate,
 }
 
-@(objc_type=ScrollViewAccessibilityDelegate, objc_name="accessibilityScrollStatusForScrollView")
-ScrollViewAccessibilityDelegate_accessibilityScrollStatusForScrollView :: #force_inline proc "c" (self: ^ScrollViewAccessibilityDelegate, scrollView: ^ScrollView) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityScrollStatusForScrollView:", scrollView)
-}
-@(objc_type=ScrollViewAccessibilityDelegate, objc_name="accessibilityAttributedScrollStatusForScrollView")
-ScrollViewAccessibilityDelegate_accessibilityAttributedScrollStatusForScrollView :: #force_inline proc "c" (self: ^ScrollViewAccessibilityDelegate, scrollView: ^ScrollView) -> ^NS.AttributedString {
-    return msgSend(^NS.AttributedString, self, "accessibilityAttributedScrollStatusForScrollView:", scrollView)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ScrollViewAccessibilityDelegate, objc_selector="accessibilityScrollStatusForScrollView:", objc_name="accessibilityScrollStatusForScrollView")
+    ScrollViewAccessibilityDelegate_accessibilityScrollStatusForScrollView :: proc(self: ^ScrollViewAccessibilityDelegate, scrollView: ^ScrollView) -> ^NS.String ---
+
+    @(objc_type=ScrollViewAccessibilityDelegate, objc_selector="accessibilityAttributedScrollStatusForScrollView:", objc_name="accessibilityAttributedScrollStatusForScrollView")
+    ScrollViewAccessibilityDelegate_accessibilityAttributedScrollStatusForScrollView :: proc(self: ^ScrollViewAccessibilityDelegate, scrollView: ^ScrollView) -> ^NS.AttributedString ---
 }

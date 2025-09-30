@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITabBarController
 ///
-@(objc_class="UITabBarController")
+@(objc_class="UITabBarController", objc_superclass=ViewController)
 TabBarController :: struct { using _: ViewController, 
     using _: TabBarDelegate,
     using _: NS.Coding,

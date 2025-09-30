@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICloudSharingController
 ///
-@(objc_class="UICloudSharingController")
+@(objc_class="UICloudSharingController", objc_superclass=ViewController)
 CloudSharingController :: struct { using _: ViewController, }
 

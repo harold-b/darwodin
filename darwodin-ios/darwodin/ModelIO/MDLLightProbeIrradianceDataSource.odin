@@ -21,23 +21,20 @@ LightProbeIrradianceDataSource :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=LightProbeIrradianceDataSource, objc_name="sphericalHarmonicsCoefficientsAtPosition")
-LightProbeIrradianceDataSource_sphericalHarmonicsCoefficientsAtPosition :: #force_inline proc "c" (self: ^LightProbeIrradianceDataSource, position: vector_float3) -> ^NS.Data {
-    return msgSend(^NS.Data, self, "sphericalHarmonicsCoefficientsAtPosition:", position)
-}
-@(objc_type=LightProbeIrradianceDataSource, objc_name="boundingBox")
-LightProbeIrradianceDataSource_boundingBox :: #force_inline proc "c" (self: ^LightProbeIrradianceDataSource) -> AxisAlignedBoundingBox {
-    return msgSend(AxisAlignedBoundingBox, self, "boundingBox")
-}
-@(objc_type=LightProbeIrradianceDataSource, objc_name="setBoundingBox")
-LightProbeIrradianceDataSource_setBoundingBox :: #force_inline proc "c" (self: ^LightProbeIrradianceDataSource, boundingBox: AxisAlignedBoundingBox) {
-    msgSend(nil, self, "setBoundingBox:", boundingBox)
-}
-@(objc_type=LightProbeIrradianceDataSource, objc_name="sphericalHarmonicsLevel")
-LightProbeIrradianceDataSource_sphericalHarmonicsLevel :: #force_inline proc "c" (self: ^LightProbeIrradianceDataSource) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "sphericalHarmonicsLevel")
-}
-@(objc_type=LightProbeIrradianceDataSource, objc_name="setSphericalHarmonicsLevel")
-LightProbeIrradianceDataSource_setSphericalHarmonicsLevel :: #force_inline proc "c" (self: ^LightProbeIrradianceDataSource, sphericalHarmonicsLevel: NS.UInteger) {
-    msgSend(nil, self, "setSphericalHarmonicsLevel:", sphericalHarmonicsLevel)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LightProbeIrradianceDataSource, objc_selector="sphericalHarmonicsCoefficientsAtPosition:", objc_name="sphericalHarmonicsCoefficientsAtPosition")
+    LightProbeIrradianceDataSource_sphericalHarmonicsCoefficientsAtPosition :: proc(self: ^LightProbeIrradianceDataSource, position: vector_float3) -> ^NS.Data ---
+
+    @(objc_type=LightProbeIrradianceDataSource, objc_selector="boundingBox", objc_name="boundingBox")
+    LightProbeIrradianceDataSource_boundingBox :: proc(self: ^LightProbeIrradianceDataSource) -> AxisAlignedBoundingBox ---
+
+    @(objc_type=LightProbeIrradianceDataSource, objc_selector="setBoundingBox:", objc_name="setBoundingBox")
+    LightProbeIrradianceDataSource_setBoundingBox :: proc(self: ^LightProbeIrradianceDataSource, boundingBox: AxisAlignedBoundingBox) ---
+
+    @(objc_type=LightProbeIrradianceDataSource, objc_selector="sphericalHarmonicsLevel", objc_name="sphericalHarmonicsLevel")
+    LightProbeIrradianceDataSource_sphericalHarmonicsLevel :: proc(self: ^LightProbeIrradianceDataSource) -> NS.UInteger ---
+
+    @(objc_type=LightProbeIrradianceDataSource, objc_selector="setSphericalHarmonicsLevel:", objc_name="setSphericalHarmonicsLevel")
+    LightProbeIrradianceDataSource_setSphericalHarmonicsLevel :: proc(self: ^LightProbeIrradianceDataSource, sphericalHarmonicsLevel: NS.UInteger) ---
 }

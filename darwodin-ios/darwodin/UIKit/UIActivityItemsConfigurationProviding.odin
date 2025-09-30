@@ -21,7 +21,8 @@ ActivityItemsConfigurationProviding :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ActivityItemsConfigurationProviding, objc_name="activityItemsConfiguration")
-ActivityItemsConfigurationProviding_activityItemsConfiguration :: #force_inline proc "c" (self: ^ActivityItemsConfigurationProviding) -> ^ActivityItemsConfigurationReading {
-    return msgSend(^ActivityItemsConfigurationReading, self, "activityItemsConfiguration")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ActivityItemsConfigurationProviding, objc_selector="activityItemsConfiguration", objc_name="activityItemsConfiguration")
+    ActivityItemsConfigurationProviding_activityItemsConfiguration :: proc(self: ^ActivityItemsConfigurationProviding) -> ^ActivityItemsConfigurationReading ---
 }

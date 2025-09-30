@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIWindowSceneDestructionRequestOptions
 ///
-@(objc_class="UIWindowSceneDestructionRequestOptions")
+@(objc_class="UIWindowSceneDestructionRequestOptions", objc_superclass=SceneDestructionRequestOptions)
 WindowSceneDestructionRequestOptions :: struct { using _: SceneDestructionRequestOptions, }
 

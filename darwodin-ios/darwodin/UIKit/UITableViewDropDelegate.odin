@@ -21,31 +21,27 @@ TableViewDropDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TableViewDropDelegate, objc_name="tableView_performDropWithCoordinator")
-TableViewDropDelegate_tableView_performDropWithCoordinator :: #force_inline proc "c" (self: ^TableViewDropDelegate, tableView: ^TableView, coordinator: ^TableViewDropCoordinator) {
-    msgSend(nil, self, "tableView:performDropWithCoordinator:", tableView, coordinator)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TableViewDropDelegate, objc_selector="tableView:performDropWithCoordinator:", objc_name="tableView_performDropWithCoordinator")
+    TableViewDropDelegate_tableView_performDropWithCoordinator :: proc(self: ^TableViewDropDelegate, tableView: ^TableView, coordinator: ^TableViewDropCoordinator) ---
+
+    @(objc_type=TableViewDropDelegate, objc_selector="tableView:canHandleDropSession:", objc_name="tableView_canHandleDropSession")
+    TableViewDropDelegate_tableView_canHandleDropSession :: proc(self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession) -> bool ---
+
+    @(objc_type=TableViewDropDelegate, objc_selector="tableView:dropSessionDidEnter:", objc_name="tableView_dropSessionDidEnter")
+    TableViewDropDelegate_tableView_dropSessionDidEnter :: proc(self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession) ---
+
+    @(objc_type=TableViewDropDelegate, objc_selector="tableView:dropSessionDidUpdate:withDestinationIndexPath:", objc_name="tableView_dropSessionDidUpdate_withDestinationIndexPath")
+    TableViewDropDelegate_tableView_dropSessionDidUpdate_withDestinationIndexPath :: proc(self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession, destinationIndexPath: ^NS.IndexPath) -> ^TableViewDropProposal ---
+
+    @(objc_type=TableViewDropDelegate, objc_selector="tableView:dropSessionDidExit:", objc_name="tableView_dropSessionDidExit")
+    TableViewDropDelegate_tableView_dropSessionDidExit :: proc(self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession) ---
+
+    @(objc_type=TableViewDropDelegate, objc_selector="tableView:dropSessionDidEnd:", objc_name="tableView_dropSessionDidEnd")
+    TableViewDropDelegate_tableView_dropSessionDidEnd :: proc(self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession) ---
+
+    @(objc_type=TableViewDropDelegate, objc_selector="tableView:dropPreviewParametersForRowAtIndexPath:", objc_name="tableView_dropPreviewParametersForRowAtIndexPath")
+    TableViewDropDelegate_tableView_dropPreviewParametersForRowAtIndexPath :: proc(self: ^TableViewDropDelegate, tableView: ^TableView, indexPath: ^NS.IndexPath) -> ^DragPreviewParameters ---
 }
-@(objc_type=TableViewDropDelegate, objc_name="tableView_canHandleDropSession")
-TableViewDropDelegate_tableView_canHandleDropSession :: #force_inline proc "c" (self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession) -> bool {
-    return msgSend(bool, self, "tableView:canHandleDropSession:", tableView, session)
-}
-@(objc_type=TableViewDropDelegate, objc_name="tableView_dropSessionDidEnter")
-TableViewDropDelegate_tableView_dropSessionDidEnter :: #force_inline proc "c" (self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession) {
-    msgSend(nil, self, "tableView:dropSessionDidEnter:", tableView, session)
-}
-@(objc_type=TableViewDropDelegate, objc_name="tableView_dropSessionDidUpdate_withDestinationIndexPath")
-TableViewDropDelegate_tableView_dropSessionDidUpdate_withDestinationIndexPath :: #force_inline proc "c" (self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession, destinationIndexPath: ^NS.IndexPath) -> ^TableViewDropProposal {
-    return msgSend(^TableViewDropProposal, self, "tableView:dropSessionDidUpdate:withDestinationIndexPath:", tableView, session, destinationIndexPath)
-}
-@(objc_type=TableViewDropDelegate, objc_name="tableView_dropSessionDidExit")
-TableViewDropDelegate_tableView_dropSessionDidExit :: #force_inline proc "c" (self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession) {
-    msgSend(nil, self, "tableView:dropSessionDidExit:", tableView, session)
-}
-@(objc_type=TableViewDropDelegate, objc_name="tableView_dropSessionDidEnd")
-TableViewDropDelegate_tableView_dropSessionDidEnd :: #force_inline proc "c" (self: ^TableViewDropDelegate, tableView: ^TableView, session: ^DropSession) {
-    msgSend(nil, self, "tableView:dropSessionDidEnd:", tableView, session)
-}
-@(objc_type=TableViewDropDelegate, objc_name="tableView_dropPreviewParametersForRowAtIndexPath")
-TableViewDropDelegate_tableView_dropPreviewParametersForRowAtIndexPath :: #force_inline proc "c" (self: ^TableViewDropDelegate, tableView: ^TableView, indexPath: ^NS.IndexPath) -> ^DragPreviewParameters {
-    return msgSend(^DragPreviewParameters, self, "tableView:dropPreviewParametersForRowAtIndexPath:", tableView, indexPath)
-}
+

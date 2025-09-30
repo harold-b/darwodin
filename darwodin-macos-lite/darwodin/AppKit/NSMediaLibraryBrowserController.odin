@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSMediaLibraryBrowserController
 ///
-@(objc_class="NSMediaLibraryBrowserController")
+@(objc_class="NSMediaLibraryBrowserController", objc_superclass=NS.Object)
 MediaLibraryBrowserController :: struct { using _: NS.Object, }
 

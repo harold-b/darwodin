@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UISceneSessionActivationRequest
 ///
-@(objc_class="UISceneSessionActivationRequest")
+@(objc_class="UISceneSessionActivationRequest", objc_superclass=NS.Object)
 SceneSessionActivationRequest :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

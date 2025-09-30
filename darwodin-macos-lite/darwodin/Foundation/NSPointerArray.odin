@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSPointerArray
 ///
-@(objc_class="NSPointerArray")
+@(objc_class="NSPointerArray", objc_superclass=Object)
 PointerArray :: struct { using _: Object, 
     using _: FastEnumeration,
     using _: Copying,

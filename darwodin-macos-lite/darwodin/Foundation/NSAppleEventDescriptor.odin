@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSAppleEventDescriptor
 ///
-@(objc_class="NSAppleEventDescriptor")
+@(objc_class="NSAppleEventDescriptor", objc_superclass=Object)
 AppleEventDescriptor :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

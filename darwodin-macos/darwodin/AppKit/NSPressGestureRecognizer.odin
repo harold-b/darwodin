@@ -16,188 +16,34 @@ import CA "../QuartzCore"
 ///
 /// NSPressGestureRecognizer
 ///
-@(objc_class="NSPressGestureRecognizer")
+@(objc_class="NSPressGestureRecognizer", objc_superclass=GestureRecognizer)
 PressGestureRecognizer :: struct { using _: GestureRecognizer, 
     using _: NS.Coding,
 }
 
-@(objc_type=PressGestureRecognizer, objc_name="init")
-PressGestureRecognizer_init :: proc "c" (self: ^PressGestureRecognizer) -> ^PressGestureRecognizer {
-    return msgSend(^PressGestureRecognizer, self, "init")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PressGestureRecognizer, objc_selector="buttonMask", objc_name="buttonMask")
+    PressGestureRecognizer_buttonMask :: proc(self: ^PressGestureRecognizer) -> NS.UInteger ---
 
+    @(objc_type=PressGestureRecognizer, objc_selector="setButtonMask:", objc_name="setButtonMask")
+    PressGestureRecognizer_setButtonMask :: proc(self: ^PressGestureRecognizer, buttonMask: NS.UInteger) ---
 
-@(objc_type=PressGestureRecognizer, objc_name="buttonMask")
-PressGestureRecognizer_buttonMask :: #force_inline proc "c" (self: ^PressGestureRecognizer) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "buttonMask")
-}
-@(objc_type=PressGestureRecognizer, objc_name="setButtonMask")
-PressGestureRecognizer_setButtonMask :: #force_inline proc "c" (self: ^PressGestureRecognizer, buttonMask: NS.UInteger) {
-    msgSend(nil, self, "setButtonMask:", buttonMask)
-}
-@(objc_type=PressGestureRecognizer, objc_name="minimumPressDuration")
-PressGestureRecognizer_minimumPressDuration :: #force_inline proc "c" (self: ^PressGestureRecognizer) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "minimumPressDuration")
-}
-@(objc_type=PressGestureRecognizer, objc_name="setMinimumPressDuration")
-PressGestureRecognizer_setMinimumPressDuration :: #force_inline proc "c" (self: ^PressGestureRecognizer, minimumPressDuration: NS.TimeInterval) {
-    msgSend(nil, self, "setMinimumPressDuration:", minimumPressDuration)
-}
-@(objc_type=PressGestureRecognizer, objc_name="allowableMovement")
-PressGestureRecognizer_allowableMovement :: #force_inline proc "c" (self: ^PressGestureRecognizer) -> CG.Float {
-    return msgSend(CG.Float, self, "allowableMovement")
-}
-@(objc_type=PressGestureRecognizer, objc_name="setAllowableMovement")
-PressGestureRecognizer_setAllowableMovement :: #force_inline proc "c" (self: ^PressGestureRecognizer, allowableMovement: CG.Float) {
-    msgSend(nil, self, "setAllowableMovement:", allowableMovement)
-}
-@(objc_type=PressGestureRecognizer, objc_name="numberOfTouchesRequired")
-PressGestureRecognizer_numberOfTouchesRequired :: #force_inline proc "c" (self: ^PressGestureRecognizer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "numberOfTouchesRequired")
-}
-@(objc_type=PressGestureRecognizer, objc_name="setNumberOfTouchesRequired")
-PressGestureRecognizer_setNumberOfTouchesRequired :: #force_inline proc "c" (self: ^PressGestureRecognizer, numberOfTouchesRequired: NS.Integer) {
-    msgSend(nil, self, "setNumberOfTouchesRequired:", numberOfTouchesRequired)
-}
-@(objc_type=PressGestureRecognizer, objc_name="load", objc_is_class_method=true)
-PressGestureRecognizer_load :: #force_inline proc "c" () {
-    msgSend(nil, PressGestureRecognizer, "load")
-}
-@(objc_type=PressGestureRecognizer, objc_name="initialize", objc_is_class_method=true)
-PressGestureRecognizer_initialize :: #force_inline proc "c" () {
-    msgSend(nil, PressGestureRecognizer, "initialize")
-}
-@(objc_type=PressGestureRecognizer, objc_name="new", objc_is_class_method=true)
-PressGestureRecognizer_new :: #force_inline proc "c" () -> ^PressGestureRecognizer {
-    return msgSend(^PressGestureRecognizer, PressGestureRecognizer, "new")
-}
-@(objc_type=PressGestureRecognizer, objc_name="allocWithZone", objc_is_class_method=true)
-PressGestureRecognizer_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^PressGestureRecognizer {
-    return msgSend(^PressGestureRecognizer, PressGestureRecognizer, "allocWithZone:", zone)
-}
-@(objc_type=PressGestureRecognizer, objc_name="alloc", objc_is_class_method=true)
-PressGestureRecognizer_alloc :: #force_inline proc "c" () -> ^PressGestureRecognizer {
-    return msgSend(^PressGestureRecognizer, PressGestureRecognizer, "alloc")
-}
-@(objc_type=PressGestureRecognizer, objc_name="copyWithZone", objc_is_class_method=true)
-PressGestureRecognizer_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, PressGestureRecognizer, "copyWithZone:", zone)
-}
-@(objc_type=PressGestureRecognizer, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-PressGestureRecognizer_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, PressGestureRecognizer, "mutableCopyWithZone:", zone)
-}
-@(objc_type=PressGestureRecognizer, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-PressGestureRecognizer_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, PressGestureRecognizer, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=PressGestureRecognizer, objc_name="conformsToProtocol", objc_is_class_method=true)
-PressGestureRecognizer_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, PressGestureRecognizer, "conformsToProtocol:", protocol)
-}
-@(objc_type=PressGestureRecognizer, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-PressGestureRecognizer_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, PressGestureRecognizer, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=PressGestureRecognizer, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-PressGestureRecognizer_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, PressGestureRecognizer, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=PressGestureRecognizer, objc_name="isSubclassOfClass", objc_is_class_method=true)
-PressGestureRecognizer_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, PressGestureRecognizer, "isSubclassOfClass:", aClass)
-}
-@(objc_type=PressGestureRecognizer, objc_name="resolveClassMethod", objc_is_class_method=true)
-PressGestureRecognizer_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, PressGestureRecognizer, "resolveClassMethod:", sel)
-}
-@(objc_type=PressGestureRecognizer, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-PressGestureRecognizer_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, PressGestureRecognizer, "resolveInstanceMethod:", sel)
-}
-@(objc_type=PressGestureRecognizer, objc_name="hash", objc_is_class_method=true)
-PressGestureRecognizer_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, PressGestureRecognizer, "hash")
-}
-@(objc_type=PressGestureRecognizer, objc_name="superclass", objc_is_class_method=true)
-PressGestureRecognizer_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, PressGestureRecognizer, "superclass")
-}
-@(objc_type=PressGestureRecognizer, objc_name="class", objc_is_class_method=true)
-PressGestureRecognizer_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, PressGestureRecognizer, "class")
-}
-@(objc_type=PressGestureRecognizer, objc_name="description", objc_is_class_method=true)
-PressGestureRecognizer_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, PressGestureRecognizer, "description")
-}
-@(objc_type=PressGestureRecognizer, objc_name="debugDescription", objc_is_class_method=true)
-PressGestureRecognizer_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, PressGestureRecognizer, "debugDescription")
-}
-@(objc_type=PressGestureRecognizer, objc_name="version", objc_is_class_method=true)
-PressGestureRecognizer_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, PressGestureRecognizer, "version")
-}
-@(objc_type=PressGestureRecognizer, objc_name="setVersion", objc_is_class_method=true)
-PressGestureRecognizer_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, PressGestureRecognizer, "setVersion:", aVersion)
-}
-@(objc_type=PressGestureRecognizer, objc_name="poseAsClass", objc_is_class_method=true)
-PressGestureRecognizer_poseAsClass :: #force_inline proc "c" (aClass: Class) {
-    msgSend(nil, PressGestureRecognizer, "poseAsClass:", aClass)
-}
-@(objc_type=PressGestureRecognizer, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-PressGestureRecognizer_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, PressGestureRecognizer, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=PressGestureRecognizer, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-PressGestureRecognizer_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, PressGestureRecognizer, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=PressGestureRecognizer, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-PressGestureRecognizer_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, PressGestureRecognizer, "accessInstanceVariablesDirectly")
-}
-@(objc_type=PressGestureRecognizer, objc_name="useStoredAccessor", objc_is_class_method=true)
-PressGestureRecognizer_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, PressGestureRecognizer, "useStoredAccessor")
-}
-@(objc_type=PressGestureRecognizer, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-PressGestureRecognizer_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, PressGestureRecognizer, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=PressGestureRecognizer, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-PressGestureRecognizer_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, PressGestureRecognizer, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=PressGestureRecognizer, objc_name="setKeys", objc_is_class_method=true)
-PressGestureRecognizer_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {
-    msgSend(nil, PressGestureRecognizer, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
-}
-@(objc_type=PressGestureRecognizer, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-PressGestureRecognizer_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, PressGestureRecognizer, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=PressGestureRecognizer, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-PressGestureRecognizer_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, PressGestureRecognizer, "classForKeyedUnarchiver")
-}
-@(objc_type=PressGestureRecognizer, objc_name="exposeBinding", objc_is_class_method=true)
-PressGestureRecognizer_exposeBinding :: #force_inline proc "c" (binding: ^NS.String) {
-    msgSend(nil, PressGestureRecognizer, "exposeBinding:", binding)
-}
-@(objc_type=PressGestureRecognizer, objc_name="setDefaultPlaceholder", objc_is_class_method=true)
-PressGestureRecognizer_setDefaultPlaceholder :: #force_inline proc "c" (placeholder: id, marker: id, binding: ^NS.String) {
-    msgSend(nil, PressGestureRecognizer, "setDefaultPlaceholder:forMarker:withBinding:", placeholder, marker, binding)
-}
-@(objc_type=PressGestureRecognizer, objc_name="defaultPlaceholderForMarker", objc_is_class_method=true)
-PressGestureRecognizer_defaultPlaceholderForMarker :: #force_inline proc "c" (marker: id, binding: ^NS.String) -> id {
-    return msgSend(id, PressGestureRecognizer, "defaultPlaceholderForMarker:withBinding:", marker, binding)
-}
-@(objc_type=PressGestureRecognizer, objc_name="cancelPreviousPerformRequestsWithTarget")
-PressGestureRecognizer_cancelPreviousPerformRequestsWithTarget :: proc {
-    PressGestureRecognizer_cancelPreviousPerformRequestsWithTarget_selector_object,
-    PressGestureRecognizer_cancelPreviousPerformRequestsWithTarget_,
-}
+    @(objc_type=PressGestureRecognizer, objc_selector="minimumPressDuration", objc_name="minimumPressDuration")
+    PressGestureRecognizer_minimumPressDuration :: proc(self: ^PressGestureRecognizer) -> NS.TimeInterval ---
 
+    @(objc_type=PressGestureRecognizer, objc_selector="setMinimumPressDuration:", objc_name="setMinimumPressDuration")
+    PressGestureRecognizer_setMinimumPressDuration :: proc(self: ^PressGestureRecognizer, minimumPressDuration: NS.TimeInterval) ---
+
+    @(objc_type=PressGestureRecognizer, objc_selector="allowableMovement", objc_name="allowableMovement")
+    PressGestureRecognizer_allowableMovement :: proc(self: ^PressGestureRecognizer) -> CG.Float ---
+
+    @(objc_type=PressGestureRecognizer, objc_selector="setAllowableMovement:", objc_name="setAllowableMovement")
+    PressGestureRecognizer_setAllowableMovement :: proc(self: ^PressGestureRecognizer, allowableMovement: CG.Float) ---
+
+    @(objc_type=PressGestureRecognizer, objc_selector="numberOfTouchesRequired", objc_name="numberOfTouchesRequired")
+    PressGestureRecognizer_numberOfTouchesRequired :: proc(self: ^PressGestureRecognizer) -> NS.Integer ---
+
+    @(objc_type=PressGestureRecognizer, objc_selector="setNumberOfTouchesRequired:", objc_name="setNumberOfTouchesRequired")
+    PressGestureRecognizer_setNumberOfTouchesRequired :: proc(self: ^PressGestureRecognizer, numberOfTouchesRequired: NS.Integer) ---
+}

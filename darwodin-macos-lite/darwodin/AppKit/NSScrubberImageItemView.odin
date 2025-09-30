@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSScrubberImageItemView
 ///
-@(objc_class="NSScrubberImageItemView")
+@(objc_class="NSScrubberImageItemView", objc_superclass=ScrubberItemView)
 ScrubberImageItemView :: struct { using _: ScrubberItemView, }
 

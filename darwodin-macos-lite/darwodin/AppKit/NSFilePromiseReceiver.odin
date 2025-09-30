@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSFilePromiseReceiver
 ///
-@(objc_class="NSFilePromiseReceiver")
+@(objc_class="NSFilePromiseReceiver", objc_superclass=NS.Object)
 FilePromiseReceiver :: struct { using _: NS.Object, 
     using _: PasteboardReading,
 }

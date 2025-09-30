@@ -20,47 +20,38 @@ CommandQueue :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CommandQueue, objc_name="commandBuffer")
-CommandQueue_commandBuffer :: #force_inline proc "c" (self: ^CommandQueue) -> ^CommandBuffer {
-    return msgSend(^CommandBuffer, self, "commandBuffer")
-}
-@(objc_type=CommandQueue, objc_name="commandBufferWithDescriptor")
-CommandQueue_commandBufferWithDescriptor :: #force_inline proc "c" (self: ^CommandQueue, descriptor: ^CommandBufferDescriptor) -> ^CommandBuffer {
-    return msgSend(^CommandBuffer, self, "commandBufferWithDescriptor:", descriptor)
-}
-@(objc_type=CommandQueue, objc_name="commandBufferWithUnretainedReferences")
-CommandQueue_commandBufferWithUnretainedReferences :: #force_inline proc "c" (self: ^CommandQueue) -> ^CommandBuffer {
-    return msgSend(^CommandBuffer, self, "commandBufferWithUnretainedReferences")
-}
-@(objc_type=CommandQueue, objc_name="insertDebugCaptureBoundary")
-CommandQueue_insertDebugCaptureBoundary :: #force_inline proc "c" (self: ^CommandQueue) {
-    msgSend(nil, self, "insertDebugCaptureBoundary")
-}
-@(objc_type=CommandQueue, objc_name="addResidencySet")
-CommandQueue_addResidencySet :: #force_inline proc "c" (self: ^CommandQueue, residencySet: ^ResidencySet) {
-    msgSend(nil, self, "addResidencySet:", residencySet)
-}
-@(objc_type=CommandQueue, objc_name="addResidencySets")
-CommandQueue_addResidencySets :: #force_inline proc "c" (self: ^CommandQueue, residencySets: ^^ResidencySet, count: NS.UInteger) {
-    msgSend(nil, self, "addResidencySets:count:", residencySets, count)
-}
-@(objc_type=CommandQueue, objc_name="removeResidencySet")
-CommandQueue_removeResidencySet :: #force_inline proc "c" (self: ^CommandQueue, residencySet: ^ResidencySet) {
-    msgSend(nil, self, "removeResidencySet:", residencySet)
-}
-@(objc_type=CommandQueue, objc_name="removeResidencySets")
-CommandQueue_removeResidencySets :: #force_inline proc "c" (self: ^CommandQueue, residencySets: ^^ResidencySet, count: NS.UInteger) {
-    msgSend(nil, self, "removeResidencySets:count:", residencySets, count)
-}
-@(objc_type=CommandQueue, objc_name="label")
-CommandQueue_label :: #force_inline proc "c" (self: ^CommandQueue) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=CommandQueue, objc_name="setLabel")
-CommandQueue_setLabel :: #force_inline proc "c" (self: ^CommandQueue, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
-}
-@(objc_type=CommandQueue, objc_name="device")
-CommandQueue_device :: #force_inline proc "c" (self: ^CommandQueue) -> ^Device {
-    return msgSend(^Device, self, "device")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CommandQueue, objc_selector="commandBuffer", objc_name="commandBuffer")
+    CommandQueue_commandBuffer :: proc(self: ^CommandQueue) -> ^CommandBuffer ---
+
+    @(objc_type=CommandQueue, objc_selector="commandBufferWithDescriptor:", objc_name="commandBufferWithDescriptor")
+    CommandQueue_commandBufferWithDescriptor :: proc(self: ^CommandQueue, descriptor: ^CommandBufferDescriptor) -> ^CommandBuffer ---
+
+    @(objc_type=CommandQueue, objc_selector="commandBufferWithUnretainedReferences", objc_name="commandBufferWithUnretainedReferences")
+    CommandQueue_commandBufferWithUnretainedReferences :: proc(self: ^CommandQueue) -> ^CommandBuffer ---
+
+    @(objc_type=CommandQueue, objc_selector="insertDebugCaptureBoundary", objc_name="insertDebugCaptureBoundary")
+    CommandQueue_insertDebugCaptureBoundary :: proc(self: ^CommandQueue) ---
+
+    @(objc_type=CommandQueue, objc_selector="addResidencySet:", objc_name="addResidencySet")
+    CommandQueue_addResidencySet :: proc(self: ^CommandQueue, residencySet: ^ResidencySet) ---
+
+    @(objc_type=CommandQueue, objc_selector="addResidencySets:count:", objc_name="addResidencySets")
+    CommandQueue_addResidencySets :: proc(self: ^CommandQueue, residencySets: ^^ResidencySet, count: NS.UInteger) ---
+
+    @(objc_type=CommandQueue, objc_selector="removeResidencySet:", objc_name="removeResidencySet")
+    CommandQueue_removeResidencySet :: proc(self: ^CommandQueue, residencySet: ^ResidencySet) ---
+
+    @(objc_type=CommandQueue, objc_selector="removeResidencySets:count:", objc_name="removeResidencySets")
+    CommandQueue_removeResidencySets :: proc(self: ^CommandQueue, residencySets: ^^ResidencySet, count: NS.UInteger) ---
+
+    @(objc_type=CommandQueue, objc_selector="label", objc_name="label")
+    CommandQueue_label :: proc(self: ^CommandQueue) -> ^NS.String ---
+
+    @(objc_type=CommandQueue, objc_selector="setLabel:", objc_name="setLabel")
+    CommandQueue_setLabel :: proc(self: ^CommandQueue, label: ^NS.String) ---
+
+    @(objc_type=CommandQueue, objc_selector="device", objc_name="device")
+    CommandQueue_device :: proc(self: ^CommandQueue) -> ^Device ---
 }

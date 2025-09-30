@@ -21,7 +21,8 @@ SheetPresentationControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: AdaptivePresentationControllerDelegate,
 }
 
-@(objc_type=SheetPresentationControllerDelegate, objc_name="sheetPresentationControllerDidChangeSelectedDetentIdentifier")
-SheetPresentationControllerDelegate_sheetPresentationControllerDidChangeSelectedDetentIdentifier :: #force_inline proc "c" (self: ^SheetPresentationControllerDelegate, sheetPresentationController: ^SheetPresentationController) {
-    msgSend(nil, self, "sheetPresentationControllerDidChangeSelectedDetentIdentifier:", sheetPresentationController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SheetPresentationControllerDelegate, objc_selector="sheetPresentationControllerDidChangeSelectedDetentIdentifier:", objc_name="sheetPresentationControllerDidChangeSelectedDetentIdentifier")
+    SheetPresentationControllerDelegate_sheetPresentationControllerDidChangeSelectedDetentIdentifier :: proc(self: ^SheetPresentationControllerDelegate, sheetPresentationController: ^SheetPresentationController) ---
 }

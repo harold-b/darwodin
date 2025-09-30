@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTextContentStorage
 ///
-@(objc_class="NSTextContentStorage")
+@(objc_class="NSTextContentStorage", objc_superclass=TextContentManager)
 TextContentStorage :: struct { using _: TextContentManager, 
     using _: TextStorageObserving,
 }

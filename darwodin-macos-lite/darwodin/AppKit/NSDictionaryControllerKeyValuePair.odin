@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSDictionaryControllerKeyValuePair
 ///
-@(objc_class="NSDictionaryControllerKeyValuePair")
+@(objc_class="NSDictionaryControllerKeyValuePair", objc_superclass=NS.Object)
 DictionaryControllerKeyValuePair :: struct { using _: NS.Object, }
 

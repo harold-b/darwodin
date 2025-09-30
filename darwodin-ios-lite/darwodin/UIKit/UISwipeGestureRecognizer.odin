@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISwipeGestureRecognizer
 ///
-@(objc_class="UISwipeGestureRecognizer")
+@(objc_class="UISwipeGestureRecognizer", objc_superclass=GestureRecognizer)
 SwipeGestureRecognizer :: struct { using _: GestureRecognizer, }
 

@@ -21,7 +21,8 @@ AlertDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AlertDelegate, objc_name="alertShowHelp")
-AlertDelegate_alertShowHelp :: #force_inline proc "c" (self: ^AlertDelegate, alert: ^Alert) -> bool {
-    return msgSend(bool, self, "alertShowHelp:", alert)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AlertDelegate, objc_selector="alertShowHelp:", objc_name="alertShowHelp")
+    AlertDelegate_alertShowHelp :: proc(self: ^AlertDelegate, alert: ^Alert) -> bool ---
 }

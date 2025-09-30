@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 @(objc_class="NSIgnoreMisspelledWords")
 IgnoreMisspelledWords :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=IgnoreMisspelledWords, objc_name="ignoreSpelling")
-IgnoreMisspelledWords_ignoreSpelling :: #force_inline proc "c" (self: ^IgnoreMisspelledWords, sender: id) {
-    msgSend(nil, self, "ignoreSpelling:", sender)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IgnoreMisspelledWords, objc_selector="ignoreSpelling:", objc_name="ignoreSpelling")
+    IgnoreMisspelledWords_ignoreSpelling :: proc(self: ^IgnoreMisspelledWords, sender: id) ---
 }

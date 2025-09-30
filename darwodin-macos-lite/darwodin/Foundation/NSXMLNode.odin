@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSXMLNode
 ///
-@(objc_class="NSXMLNode")
+@(objc_class="NSXMLNode", objc_superclass=Object)
 XMLNode :: struct { using _: Object, 
     using _: Copying,
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIHoverGestureRecognizer
 ///
-@(objc_class="UIHoverGestureRecognizer")
+@(objc_class="UIHoverGestureRecognizer", objc_superclass=GestureRecognizer)
 HoverGestureRecognizer :: struct { using _: GestureRecognizer, }
 

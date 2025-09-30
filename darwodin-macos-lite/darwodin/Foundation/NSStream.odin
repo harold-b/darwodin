@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSStream
 ///
-@(objc_class="NSStream")
+@(objc_class="NSStream", objc_superclass=Object)
 Stream :: struct { using _: Object, }
 

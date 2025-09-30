@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSRandomSpecifier
 ///
-@(objc_class="NSRandomSpecifier")
+@(objc_class="NSRandomSpecifier", objc_superclass=ScriptObjectSpecifier)
 RandomSpecifier :: struct { using _: ScriptObjectSpecifier, }
 

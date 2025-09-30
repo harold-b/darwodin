@@ -21,26 +21,24 @@ WindowSceneDelegateProtocol :: struct { using _: intrinsics.objc_object,
     using _: SceneDelegate,
 }
 
-@(objc_type=WindowSceneDelegateProtocol, objc_name="windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection")
-WindowSceneDelegateProtocol_windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection :: #force_inline proc "c" (self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, previousCoordinateSpace: ^CoordinateSpace, previousInterfaceOrientation: InterfaceOrientation, previousTraitCollection: ^TraitCollection) {
-    msgSend(nil, self, "windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:", windowScene, previousCoordinateSpace, previousInterfaceOrientation, previousTraitCollection)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:", objc_name="windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection")
+    WindowSceneDelegateProtocol_windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, previousCoordinateSpace: ^CoordinateSpace, previousInterfaceOrientation: InterfaceOrientation, previousTraitCollection: ^TraitCollection) ---
+
+    @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:performActionForShortcutItem:completionHandler:", objc_name="windowScene_performActionForShortcutItem_completionHandler")
+    WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) ---
+
+    @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:userDidAcceptCloudKitShareWithMetadata:", objc_name="windowScene_userDidAcceptCloudKitShareWithMetadata")
+    WindowSceneDelegateProtocol_windowScene_userDidAcceptCloudKitShareWithMetadata :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, cloudKitShareMetadata: ^CKShareMetadata) ---
+
+    @(objc_type=WindowSceneDelegateProtocol, objc_selector="window", objc_name="window")
+    WindowSceneDelegateProtocol_window :: proc(self: ^WindowSceneDelegateProtocol) -> ^Window ---
+
+    @(objc_type=WindowSceneDelegateProtocol, objc_selector="setWindow:", objc_name="setWindow")
+    WindowSceneDelegateProtocol_setWindow :: proc(self: ^WindowSceneDelegateProtocol, window: ^Window) ---
 }
-@(objc_type=WindowSceneDelegateProtocol, objc_name="windowScene_performActionForShortcutItem_completionHandler")
-WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler :: #force_inline proc "c" (self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) {
-    msgSend(nil, self, "windowScene:performActionForShortcutItem:completionHandler:", windowScene, shortcutItem, completionHandler)
-}
-@(objc_type=WindowSceneDelegateProtocol, objc_name="windowScene_userDidAcceptCloudKitShareWithMetadata")
-WindowSceneDelegateProtocol_windowScene_userDidAcceptCloudKitShareWithMetadata :: #force_inline proc "c" (self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, cloudKitShareMetadata: ^CKShareMetadata) {
-    msgSend(nil, self, "windowScene:userDidAcceptCloudKitShareWithMetadata:", windowScene, cloudKitShareMetadata)
-}
-@(objc_type=WindowSceneDelegateProtocol, objc_name="window")
-WindowSceneDelegateProtocol_window :: #force_inline proc "c" (self: ^WindowSceneDelegateProtocol) -> ^Window {
-    return msgSend(^Window, self, "window")
-}
-@(objc_type=WindowSceneDelegateProtocol, objc_name="setWindow")
-WindowSceneDelegateProtocol_setWindow :: #force_inline proc "c" (self: ^WindowSceneDelegateProtocol, window: ^Window) {
-    msgSend(nil, self, "setWindow:", window)
-}
+
 @(objc_type=WindowSceneDelegateProtocol, objc_name="windowScene")
 WindowSceneDelegateProtocol_windowScene :: proc {
     WindowSceneDelegateProtocol_windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection,

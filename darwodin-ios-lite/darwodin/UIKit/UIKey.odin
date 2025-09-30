@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIKey
 ///
-@(objc_class="UIKey")
+@(objc_class="UIKey", objc_superclass=NS.Object)
 Key :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.Coding,

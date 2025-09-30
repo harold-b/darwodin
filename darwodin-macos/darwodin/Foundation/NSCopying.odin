@@ -16,7 +16,8 @@ import Sec "../Security"
 @(objc_class="NSCopying")
 Copying :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=Copying, objc_name="copyWithZone")
-Copying_copyWithZone :: #force_inline proc "c" (self: ^Copying, zone: ^Zone) -> id {
-    return msgSend(id, self, "copyWithZone:", zone)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Copying, objc_selector="copyWithZone:", objc_name="copyWithZone")
+    Copying_copyWithZone :: proc(self: ^Copying, zone: ^Zone) -> id ---
 }

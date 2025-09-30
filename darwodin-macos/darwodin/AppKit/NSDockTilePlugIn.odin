@@ -21,11 +21,11 @@ DockTilePlugIn :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DockTilePlugIn, objc_name="setDockTile")
-DockTilePlugIn_setDockTile :: #force_inline proc "c" (self: ^DockTilePlugIn, dockTile: ^DockTile) {
-    msgSend(nil, self, "setDockTile:", dockTile)
-}
-@(objc_type=DockTilePlugIn, objc_name="dockMenu")
-DockTilePlugIn_dockMenu :: #force_inline proc "c" (self: ^DockTilePlugIn) -> ^Menu {
-    return msgSend(^Menu, self, "dockMenu")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DockTilePlugIn, objc_selector="setDockTile:", objc_name="setDockTile")
+    DockTilePlugIn_setDockTile :: proc(self: ^DockTilePlugIn, dockTile: ^DockTile) ---
+
+    @(objc_type=DockTilePlugIn, objc_selector="dockMenu", objc_name="dockMenu")
+    DockTilePlugIn_dockMenu :: proc(self: ^DockTilePlugIn) -> ^Menu ---
 }

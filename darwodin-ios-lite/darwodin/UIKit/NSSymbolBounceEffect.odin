@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSymbolBounceEffect
 ///
-@(objc_class="NSSymbolBounceEffect")
+@(objc_class="NSSymbolBounceEffect", objc_superclass=NSSymbolEffect)
 NSSymbolBounceEffect :: struct { using _: NSSymbolEffect, }
 

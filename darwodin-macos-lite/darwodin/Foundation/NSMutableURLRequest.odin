@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMutableURLRequest
 ///
-@(objc_class="NSMutableURLRequest")
+@(objc_class="NSMutableURLRequest", objc_superclass=URLRequest)
 MutableURLRequest :: struct { using _: URLRequest, }
 

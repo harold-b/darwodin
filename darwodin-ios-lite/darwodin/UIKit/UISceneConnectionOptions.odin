@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISceneConnectionOptions
 ///
-@(objc_class="UISceneConnectionOptions")
+@(objc_class="UISceneConnectionOptions", objc_superclass=NS.Object)
 SceneConnectionOptions :: struct { using _: NS.Object, }
 

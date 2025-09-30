@@ -21,38 +21,33 @@ TableViewDropCoordinator :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TableViewDropCoordinator, objc_name="dropItem_toPlaceholder")
-TableViewDropCoordinator_dropItem_toPlaceholder :: #force_inline proc "c" (self: ^TableViewDropCoordinator, dragItem: ^DragItem, placeholder: ^TableViewDropPlaceholder) -> ^TableViewDropPlaceholderContext {
-    return msgSend(^TableViewDropPlaceholderContext, self, "dropItem:toPlaceholder:", dragItem, placeholder)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TableViewDropCoordinator, objc_selector="dropItem:toPlaceholder:", objc_name="dropItem_toPlaceholder")
+    TableViewDropCoordinator_dropItem_toPlaceholder :: proc(self: ^TableViewDropCoordinator, dragItem: ^DragItem, placeholder: ^TableViewDropPlaceholder) -> ^TableViewDropPlaceholderContext ---
+
+    @(objc_type=TableViewDropCoordinator, objc_selector="dropItem:toRowAtIndexPath:", objc_name="dropItem_toRowAtIndexPath")
+    TableViewDropCoordinator_dropItem_toRowAtIndexPath :: proc(self: ^TableViewDropCoordinator, dragItem: ^DragItem, indexPath: ^NS.IndexPath) -> ^DragAnimating ---
+
+    @(objc_type=TableViewDropCoordinator, objc_selector="dropItem:intoRowAtIndexPath:rect:", objc_name="dropItem_intoRowAtIndexPath_rect")
+    TableViewDropCoordinator_dropItem_intoRowAtIndexPath_rect :: proc(self: ^TableViewDropCoordinator, dragItem: ^DragItem, indexPath: ^NS.IndexPath, rect: CG.Rect) -> ^DragAnimating ---
+
+    @(objc_type=TableViewDropCoordinator, objc_selector="dropItem:toTarget:", objc_name="dropItem_toTarget")
+    TableViewDropCoordinator_dropItem_toTarget :: proc(self: ^TableViewDropCoordinator, dragItem: ^DragItem, target: ^DragPreviewTarget) -> ^DragAnimating ---
+
+    @(objc_type=TableViewDropCoordinator, objc_selector="items", objc_name="items")
+    TableViewDropCoordinator_items :: proc(self: ^TableViewDropCoordinator) -> ^NS.Array ---
+
+    @(objc_type=TableViewDropCoordinator, objc_selector="destinationIndexPath", objc_name="destinationIndexPath")
+    TableViewDropCoordinator_destinationIndexPath :: proc(self: ^TableViewDropCoordinator) -> ^NS.IndexPath ---
+
+    @(objc_type=TableViewDropCoordinator, objc_selector="proposal", objc_name="proposal")
+    TableViewDropCoordinator_proposal :: proc(self: ^TableViewDropCoordinator) -> ^TableViewDropProposal ---
+
+    @(objc_type=TableViewDropCoordinator, objc_selector="session", objc_name="session")
+    TableViewDropCoordinator_session :: proc(self: ^TableViewDropCoordinator) -> ^DropSession ---
 }
-@(objc_type=TableViewDropCoordinator, objc_name="dropItem_toRowAtIndexPath")
-TableViewDropCoordinator_dropItem_toRowAtIndexPath :: #force_inline proc "c" (self: ^TableViewDropCoordinator, dragItem: ^DragItem, indexPath: ^NS.IndexPath) -> ^DragAnimating {
-    return msgSend(^DragAnimating, self, "dropItem:toRowAtIndexPath:", dragItem, indexPath)
-}
-@(objc_type=TableViewDropCoordinator, objc_name="dropItem_intoRowAtIndexPath_rect")
-TableViewDropCoordinator_dropItem_intoRowAtIndexPath_rect :: #force_inline proc "c" (self: ^TableViewDropCoordinator, dragItem: ^DragItem, indexPath: ^NS.IndexPath, rect: CG.Rect) -> ^DragAnimating {
-    return msgSend(^DragAnimating, self, "dropItem:intoRowAtIndexPath:rect:", dragItem, indexPath, rect)
-}
-@(objc_type=TableViewDropCoordinator, objc_name="dropItem_toTarget")
-TableViewDropCoordinator_dropItem_toTarget :: #force_inline proc "c" (self: ^TableViewDropCoordinator, dragItem: ^DragItem, target: ^DragPreviewTarget) -> ^DragAnimating {
-    return msgSend(^DragAnimating, self, "dropItem:toTarget:", dragItem, target)
-}
-@(objc_type=TableViewDropCoordinator, objc_name="items")
-TableViewDropCoordinator_items :: #force_inline proc "c" (self: ^TableViewDropCoordinator) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "items")
-}
-@(objc_type=TableViewDropCoordinator, objc_name="destinationIndexPath")
-TableViewDropCoordinator_destinationIndexPath :: #force_inline proc "c" (self: ^TableViewDropCoordinator) -> ^NS.IndexPath {
-    return msgSend(^NS.IndexPath, self, "destinationIndexPath")
-}
-@(objc_type=TableViewDropCoordinator, objc_name="proposal")
-TableViewDropCoordinator_proposal :: #force_inline proc "c" (self: ^TableViewDropCoordinator) -> ^TableViewDropProposal {
-    return msgSend(^TableViewDropProposal, self, "proposal")
-}
-@(objc_type=TableViewDropCoordinator, objc_name="session")
-TableViewDropCoordinator_session :: #force_inline proc "c" (self: ^TableViewDropCoordinator) -> ^DropSession {
-    return msgSend(^DropSession, self, "session")
-}
+
 @(objc_type=TableViewDropCoordinator, objc_name="dropItem")
 TableViewDropCoordinator_dropItem :: proc {
     TableViewDropCoordinator_dropItem_toPlaceholder,

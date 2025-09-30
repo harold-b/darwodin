@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSymbolAppearEffect
 ///
-@(objc_class="NSSymbolAppearEffect")
+@(objc_class="NSSymbolAppearEffect", objc_superclass=SymbolEffect)
 SymbolAppearEffect :: struct { using _: SymbolEffect, }
 

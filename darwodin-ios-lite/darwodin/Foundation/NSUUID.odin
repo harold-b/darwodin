@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUUID
 ///
-@(objc_class="NSUUID")
+@(objc_class="NSUUID", objc_superclass=Object)
 UUID :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

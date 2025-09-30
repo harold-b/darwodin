@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSCursor
 ///
-@(objc_class="NSCursor")
+@(objc_class="NSCursor", objc_superclass=NS.Object)
 Cursor :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }

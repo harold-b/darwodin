@@ -21,31 +21,27 @@ CollectionViewDropDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CollectionViewDropDelegate, objc_name="collectionView_performDropWithCoordinator")
-CollectionViewDropDelegate_collectionView_performDropWithCoordinator :: #force_inline proc "c" (self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, coordinator: ^CollectionViewDropCoordinator) {
-    msgSend(nil, self, "collectionView:performDropWithCoordinator:", collectionView, coordinator)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewDropDelegate, objc_selector="collectionView:performDropWithCoordinator:", objc_name="collectionView_performDropWithCoordinator")
+    CollectionViewDropDelegate_collectionView_performDropWithCoordinator :: proc(self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, coordinator: ^CollectionViewDropCoordinator) ---
+
+    @(objc_type=CollectionViewDropDelegate, objc_selector="collectionView:canHandleDropSession:", objc_name="collectionView_canHandleDropSession")
+    CollectionViewDropDelegate_collectionView_canHandleDropSession :: proc(self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession) -> bool ---
+
+    @(objc_type=CollectionViewDropDelegate, objc_selector="collectionView:dropSessionDidEnter:", objc_name="collectionView_dropSessionDidEnter")
+    CollectionViewDropDelegate_collectionView_dropSessionDidEnter :: proc(self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession) ---
+
+    @(objc_type=CollectionViewDropDelegate, objc_selector="collectionView:dropSessionDidUpdate:withDestinationIndexPath:", objc_name="collectionView_dropSessionDidUpdate_withDestinationIndexPath")
+    CollectionViewDropDelegate_collectionView_dropSessionDidUpdate_withDestinationIndexPath :: proc(self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession, destinationIndexPath: ^NS.IndexPath) -> ^CollectionViewDropProposal ---
+
+    @(objc_type=CollectionViewDropDelegate, objc_selector="collectionView:dropSessionDidExit:", objc_name="collectionView_dropSessionDidExit")
+    CollectionViewDropDelegate_collectionView_dropSessionDidExit :: proc(self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession) ---
+
+    @(objc_type=CollectionViewDropDelegate, objc_selector="collectionView:dropSessionDidEnd:", objc_name="collectionView_dropSessionDidEnd")
+    CollectionViewDropDelegate_collectionView_dropSessionDidEnd :: proc(self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession) ---
+
+    @(objc_type=CollectionViewDropDelegate, objc_selector="collectionView:dropPreviewParametersForItemAtIndexPath:", objc_name="collectionView_dropPreviewParametersForItemAtIndexPath")
+    CollectionViewDropDelegate_collectionView_dropPreviewParametersForItemAtIndexPath :: proc(self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> ^DragPreviewParameters ---
 }
-@(objc_type=CollectionViewDropDelegate, objc_name="collectionView_canHandleDropSession")
-CollectionViewDropDelegate_collectionView_canHandleDropSession :: #force_inline proc "c" (self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession) -> bool {
-    return msgSend(bool, self, "collectionView:canHandleDropSession:", collectionView, session)
-}
-@(objc_type=CollectionViewDropDelegate, objc_name="collectionView_dropSessionDidEnter")
-CollectionViewDropDelegate_collectionView_dropSessionDidEnter :: #force_inline proc "c" (self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession) {
-    msgSend(nil, self, "collectionView:dropSessionDidEnter:", collectionView, session)
-}
-@(objc_type=CollectionViewDropDelegate, objc_name="collectionView_dropSessionDidUpdate_withDestinationIndexPath")
-CollectionViewDropDelegate_collectionView_dropSessionDidUpdate_withDestinationIndexPath :: #force_inline proc "c" (self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession, destinationIndexPath: ^NS.IndexPath) -> ^CollectionViewDropProposal {
-    return msgSend(^CollectionViewDropProposal, self, "collectionView:dropSessionDidUpdate:withDestinationIndexPath:", collectionView, session, destinationIndexPath)
-}
-@(objc_type=CollectionViewDropDelegate, objc_name="collectionView_dropSessionDidExit")
-CollectionViewDropDelegate_collectionView_dropSessionDidExit :: #force_inline proc "c" (self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession) {
-    msgSend(nil, self, "collectionView:dropSessionDidExit:", collectionView, session)
-}
-@(objc_type=CollectionViewDropDelegate, objc_name="collectionView_dropSessionDidEnd")
-CollectionViewDropDelegate_collectionView_dropSessionDidEnd :: #force_inline proc "c" (self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, session: ^DropSession) {
-    msgSend(nil, self, "collectionView:dropSessionDidEnd:", collectionView, session)
-}
-@(objc_type=CollectionViewDropDelegate, objc_name="collectionView_dropPreviewParametersForItemAtIndexPath")
-CollectionViewDropDelegate_collectionView_dropPreviewParametersForItemAtIndexPath :: #force_inline proc "c" (self: ^CollectionViewDropDelegate, collectionView: ^CollectionView, indexPath: ^NS.IndexPath) -> ^DragPreviewParameters {
-    return msgSend(^DragPreviewParameters, self, "collectionView:dropPreviewParametersForItemAtIndexPath:", collectionView, indexPath)
-}
+

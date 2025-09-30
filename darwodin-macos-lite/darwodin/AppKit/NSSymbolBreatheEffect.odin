@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSymbolBreatheEffect
 ///
-@(objc_class="NSSymbolBreatheEffect")
+@(objc_class="NSSymbolBreatheEffect", objc_superclass=SymbolEffect)
 SymbolBreatheEffect :: struct { using _: SymbolEffect, }
 

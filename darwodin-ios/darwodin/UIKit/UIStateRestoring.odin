@@ -21,23 +21,20 @@ StateRestoring :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=StateRestoring, objc_name="encodeRestorableStateWithCoder")
-StateRestoring_encodeRestorableStateWithCoder :: #force_inline proc "c" (self: ^StateRestoring, coder: ^NS.Coder) {
-    msgSend(nil, self, "encodeRestorableStateWithCoder:", coder)
-}
-@(objc_type=StateRestoring, objc_name="decodeRestorableStateWithCoder")
-StateRestoring_decodeRestorableStateWithCoder :: #force_inline proc "c" (self: ^StateRestoring, coder: ^NS.Coder) {
-    msgSend(nil, self, "decodeRestorableStateWithCoder:", coder)
-}
-@(objc_type=StateRestoring, objc_name="applicationFinishedRestoringState")
-StateRestoring_applicationFinishedRestoringState :: #force_inline proc "c" (self: ^StateRestoring) {
-    msgSend(nil, self, "applicationFinishedRestoringState")
-}
-@(objc_type=StateRestoring, objc_name="restorationParent")
-StateRestoring_restorationParent :: #force_inline proc "c" (self: ^StateRestoring) -> ^StateRestoring {
-    return msgSend(^StateRestoring, self, "restorationParent")
-}
-@(objc_type=StateRestoring, objc_name="objectRestorationClass")
-StateRestoring_objectRestorationClass :: #force_inline proc "c" (self: ^StateRestoring) -> ^Class {
-    return msgSend(^Class, self, "objectRestorationClass")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=StateRestoring, objc_selector="encodeRestorableStateWithCoder:", objc_name="encodeRestorableStateWithCoder")
+    StateRestoring_encodeRestorableStateWithCoder :: proc(self: ^StateRestoring, coder: ^NS.Coder) ---
+
+    @(objc_type=StateRestoring, objc_selector="decodeRestorableStateWithCoder:", objc_name="decodeRestorableStateWithCoder")
+    StateRestoring_decodeRestorableStateWithCoder :: proc(self: ^StateRestoring, coder: ^NS.Coder) ---
+
+    @(objc_type=StateRestoring, objc_selector="applicationFinishedRestoringState", objc_name="applicationFinishedRestoringState")
+    StateRestoring_applicationFinishedRestoringState :: proc(self: ^StateRestoring) ---
+
+    @(objc_type=StateRestoring, objc_selector="restorationParent", objc_name="restorationParent")
+    StateRestoring_restorationParent :: proc(self: ^StateRestoring) -> ^StateRestoring ---
+
+    @(objc_type=StateRestoring, objc_selector="objectRestorationClass", objc_name="objectRestorationClass")
+    StateRestoring_objectRestorationClass :: proc(self: ^StateRestoring) -> ^Class ---
 }

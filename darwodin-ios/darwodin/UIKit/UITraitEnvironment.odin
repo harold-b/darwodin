@@ -21,11 +21,11 @@ TraitEnvironment :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TraitEnvironment, objc_name="traitCollectionDidChange")
-TraitEnvironment_traitCollectionDidChange :: #force_inline proc "c" (self: ^TraitEnvironment, previousTraitCollection: ^TraitCollection) {
-    msgSend(nil, self, "traitCollectionDidChange:", previousTraitCollection)
-}
-@(objc_type=TraitEnvironment, objc_name="traitCollection")
-TraitEnvironment_traitCollection :: #force_inline proc "c" (self: ^TraitEnvironment) -> ^TraitCollection {
-    return msgSend(^TraitCollection, self, "traitCollection")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TraitEnvironment, objc_selector="traitCollectionDidChange:", objc_name="traitCollectionDidChange")
+    TraitEnvironment_traitCollectionDidChange :: proc(self: ^TraitEnvironment, previousTraitCollection: ^TraitCollection) ---
+
+    @(objc_type=TraitEnvironment, objc_selector="traitCollection", objc_name="traitCollection")
+    TraitEnvironment_traitCollection :: proc(self: ^TraitEnvironment) -> ^TraitCollection ---
 }

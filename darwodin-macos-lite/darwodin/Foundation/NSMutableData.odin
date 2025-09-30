@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMutableData
 ///
-@(objc_class="NSMutableData")
+@(objc_class="NSMutableData", objc_superclass=Data)
 MutableData :: struct { using _: Data, }
 

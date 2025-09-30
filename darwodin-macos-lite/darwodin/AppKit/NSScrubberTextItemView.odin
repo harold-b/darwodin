@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSScrubberTextItemView
 ///
-@(objc_class="NSScrubberTextItemView")
+@(objc_class="NSScrubberTextItemView", objc_superclass=ScrubberItemView)
 ScrubberTextItemView :: struct { using _: ScrubberItemView, }
 

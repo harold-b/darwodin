@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UINib
 ///
-@(objc_class="UINib")
+@(objc_class="UINib", objc_superclass=NS.Object)
 Nib :: struct { using _: NS.Object, }
 

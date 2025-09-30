@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSAttributeDescription
 ///
-@(objc_class="NSAttributeDescription")
+@(objc_class="NSAttributeDescription", objc_superclass=PropertyDescription)
 AttributeDescription :: struct { using _: PropertyDescription, }
 

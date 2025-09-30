@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICellAccessoryCheckmark
 ///
-@(objc_class="UICellAccessoryCheckmark")
+@(objc_class="UICellAccessoryCheckmark", objc_superclass=CellAccessory)
 CellAccessoryCheckmark :: struct { using _: CellAccessory, }
 

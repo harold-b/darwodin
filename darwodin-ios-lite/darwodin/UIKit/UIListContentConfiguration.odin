@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIListContentConfiguration
 ///
-@(objc_class="UIListContentConfiguration")
+@(objc_class="UIListContentConfiguration", objc_superclass=NS.Object)
 ListContentConfiguration :: struct { using _: NS.Object, 
     using _: ContentConfiguration,
     using _: NS.SecureCoding,

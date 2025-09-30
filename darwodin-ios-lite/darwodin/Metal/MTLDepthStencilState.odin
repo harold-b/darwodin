@@ -20,11 +20,11 @@ DepthStencilState :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DepthStencilState, objc_name="label")
-DepthStencilState_label :: #force_inline proc "c" (self: ^DepthStencilState) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=DepthStencilState, objc_name="device")
-DepthStencilState_device :: #force_inline proc "c" (self: ^DepthStencilState) -> ^Device {
-    return msgSend(^Device, self, "device")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DepthStencilState, objc_selector="label", objc_name="label")
+    DepthStencilState_label :: proc(self: ^DepthStencilState) -> ^NS.String ---
+
+    @(objc_type=DepthStencilState, objc_selector="device", objc_name="device")
+    DepthStencilState_device :: proc(self: ^DepthStencilState) -> ^Device ---
 }

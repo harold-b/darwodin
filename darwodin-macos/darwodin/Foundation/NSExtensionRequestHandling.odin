@@ -18,7 +18,8 @@ ExtensionRequestHandling :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=ExtensionRequestHandling, objc_name="beginRequestWithExtensionContext")
-ExtensionRequestHandling_beginRequestWithExtensionContext :: #force_inline proc "c" (self: ^ExtensionRequestHandling, _context: ^ExtensionContext) {
-    msgSend(nil, self, "beginRequestWithExtensionContext:", _context)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ExtensionRequestHandling, objc_selector="beginRequestWithExtensionContext:", objc_name="beginRequestWithExtensionContext")
+    ExtensionRequestHandling_beginRequestWithExtensionContext :: proc(self: ^ExtensionRequestHandling, _context: ^ExtensionContext) ---
 }

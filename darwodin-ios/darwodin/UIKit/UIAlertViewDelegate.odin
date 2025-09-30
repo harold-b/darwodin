@@ -21,31 +21,27 @@ AlertViewDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=AlertViewDelegate, objc_name="alertView_clickedButtonAtIndex")
-AlertViewDelegate_alertView_clickedButtonAtIndex :: #force_inline proc "c" (self: ^AlertViewDelegate, alertView: ^AlertView, buttonIndex: NS.Integer) {
-    msgSend(nil, self, "alertView:clickedButtonAtIndex:", alertView, buttonIndex)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AlertViewDelegate, objc_selector="alertView:clickedButtonAtIndex:", objc_name="alertView_clickedButtonAtIndex")
+    AlertViewDelegate_alertView_clickedButtonAtIndex :: proc(self: ^AlertViewDelegate, alertView: ^AlertView, buttonIndex: NS.Integer) ---
+
+    @(objc_type=AlertViewDelegate, objc_selector="alertViewCancel:", objc_name="alertViewCancel")
+    AlertViewDelegate_alertViewCancel :: proc(self: ^AlertViewDelegate, alertView: ^AlertView) ---
+
+    @(objc_type=AlertViewDelegate, objc_selector="willPresentAlertView:", objc_name="willPresentAlertView")
+    AlertViewDelegate_willPresentAlertView :: proc(self: ^AlertViewDelegate, alertView: ^AlertView) ---
+
+    @(objc_type=AlertViewDelegate, objc_selector="didPresentAlertView:", objc_name="didPresentAlertView")
+    AlertViewDelegate_didPresentAlertView :: proc(self: ^AlertViewDelegate, alertView: ^AlertView) ---
+
+    @(objc_type=AlertViewDelegate, objc_selector="alertView:willDismissWithButtonIndex:", objc_name="alertView_willDismissWithButtonIndex")
+    AlertViewDelegate_alertView_willDismissWithButtonIndex :: proc(self: ^AlertViewDelegate, alertView: ^AlertView, buttonIndex: NS.Integer) ---
+
+    @(objc_type=AlertViewDelegate, objc_selector="alertView:didDismissWithButtonIndex:", objc_name="alertView_didDismissWithButtonIndex")
+    AlertViewDelegate_alertView_didDismissWithButtonIndex :: proc(self: ^AlertViewDelegate, alertView: ^AlertView, buttonIndex: NS.Integer) ---
+
+    @(objc_type=AlertViewDelegate, objc_selector="alertViewShouldEnableFirstOtherButton:", objc_name="alertViewShouldEnableFirstOtherButton")
+    AlertViewDelegate_alertViewShouldEnableFirstOtherButton :: proc(self: ^AlertViewDelegate, alertView: ^AlertView) -> bool ---
 }
-@(objc_type=AlertViewDelegate, objc_name="alertViewCancel")
-AlertViewDelegate_alertViewCancel :: #force_inline proc "c" (self: ^AlertViewDelegate, alertView: ^AlertView) {
-    msgSend(nil, self, "alertViewCancel:", alertView)
-}
-@(objc_type=AlertViewDelegate, objc_name="willPresentAlertView")
-AlertViewDelegate_willPresentAlertView :: #force_inline proc "c" (self: ^AlertViewDelegate, alertView: ^AlertView) {
-    msgSend(nil, self, "willPresentAlertView:", alertView)
-}
-@(objc_type=AlertViewDelegate, objc_name="didPresentAlertView")
-AlertViewDelegate_didPresentAlertView :: #force_inline proc "c" (self: ^AlertViewDelegate, alertView: ^AlertView) {
-    msgSend(nil, self, "didPresentAlertView:", alertView)
-}
-@(objc_type=AlertViewDelegate, objc_name="alertView_willDismissWithButtonIndex")
-AlertViewDelegate_alertView_willDismissWithButtonIndex :: #force_inline proc "c" (self: ^AlertViewDelegate, alertView: ^AlertView, buttonIndex: NS.Integer) {
-    msgSend(nil, self, "alertView:willDismissWithButtonIndex:", alertView, buttonIndex)
-}
-@(objc_type=AlertViewDelegate, objc_name="alertView_didDismissWithButtonIndex")
-AlertViewDelegate_alertView_didDismissWithButtonIndex :: #force_inline proc "c" (self: ^AlertViewDelegate, alertView: ^AlertView, buttonIndex: NS.Integer) {
-    msgSend(nil, self, "alertView:didDismissWithButtonIndex:", alertView, buttonIndex)
-}
-@(objc_type=AlertViewDelegate, objc_name="alertViewShouldEnableFirstOtherButton")
-AlertViewDelegate_alertViewShouldEnableFirstOtherButton :: #force_inline proc "c" (self: ^AlertViewDelegate, alertView: ^AlertView) -> bool {
-    return msgSend(bool, self, "alertViewShouldEnableFirstOtherButton:", alertView)
-}
+

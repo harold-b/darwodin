@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTableView
 ///
-@(objc_class="NSTableView")
+@(objc_class="NSTableView", objc_superclass=Control)
 TableView :: struct { using _: Control, 
     using _: UserInterfaceValidations,
     using _: TextViewDelegate,

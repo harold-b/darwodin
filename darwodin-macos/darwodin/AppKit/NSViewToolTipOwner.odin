@@ -21,7 +21,8 @@ ViewToolTipOwner :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewToolTipOwner, objc_name="view")
-ViewToolTipOwner_view :: #force_inline proc "c" (self: ^ViewToolTipOwner, view: ^View, tag: ToolTipTag, point: CG.Point, data: rawptr) -> ^NS.String {
-    return msgSend(^NS.String, self, "view:stringForToolTip:point:userData:", view, tag, point, data)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewToolTipOwner, objc_selector="view:stringForToolTip:point:userData:", objc_name="view")
+    ViewToolTipOwner_view :: proc(self: ^ViewToolTipOwner, view: ^View, tag: ToolTipTag, point: CG.Point, data: rawptr) -> ^NS.String ---
 }

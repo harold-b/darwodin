@@ -20,15 +20,14 @@ SamplerState :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SamplerState, objc_name="label")
-SamplerState_label :: #force_inline proc "c" (self: ^SamplerState) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=SamplerState, objc_name="device")
-SamplerState_device :: #force_inline proc "c" (self: ^SamplerState) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=SamplerState, objc_name="gpuResourceID")
-SamplerState_gpuResourceID :: #force_inline proc "c" (self: ^SamplerState) -> ResourceID {
-    return msgSend(ResourceID, self, "gpuResourceID")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SamplerState, objc_selector="label", objc_name="label")
+    SamplerState_label :: proc(self: ^SamplerState) -> ^NS.String ---
+
+    @(objc_type=SamplerState, objc_selector="device", objc_name="device")
+    SamplerState_device :: proc(self: ^SamplerState) -> ^Device ---
+
+    @(objc_type=SamplerState, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+    SamplerState_gpuResourceID :: proc(self: ^SamplerState) -> ResourceID ---
 }

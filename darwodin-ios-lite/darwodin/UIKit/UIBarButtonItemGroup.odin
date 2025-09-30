@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIBarButtonItemGroup
 ///
-@(objc_class="UIBarButtonItemGroup")
+@(objc_class="UIBarButtonItemGroup", objc_superclass=NS.Object)
 BarButtonItemGroup :: struct { using _: NS.Object, 
     using _: NS.Coding,
 }

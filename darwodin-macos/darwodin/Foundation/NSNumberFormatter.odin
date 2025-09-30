@@ -13,694 +13,422 @@ import Sec "../Security"
 ///
 /// NSNumberFormatter
 ///
-@(objc_class="NSNumberFormatter")
+@(objc_class="NSNumberFormatter", objc_superclass=Formatter)
 NumberFormatter :: struct { using _: Formatter, }
 
-@(objc_type=NumberFormatter, objc_name="init")
-NumberFormatter_init :: proc "c" (self: ^NumberFormatter) -> ^NumberFormatter {
-    return msgSend(^NumberFormatter, self, "init")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NumberFormatter, objc_selector="getObjectValue:forString:range:error:", objc_name="getObjectValue")
+    NumberFormatter_getObjectValue :: proc(self: ^NumberFormatter, obj: ^id, string: ^String, rangep: ^_NSRange, error: ^^Error) -> bool ---
 
+    @(objc_type=NumberFormatter, objc_selector="stringFromNumber:", objc_name="stringFromNumber")
+    NumberFormatter_stringFromNumber :: proc(self: ^NumberFormatter, number: ^Number) -> ^String ---
 
-@(objc_type=NumberFormatter, objc_name="getObjectValue")
-NumberFormatter_getObjectValue :: #force_inline proc "c" (self: ^NumberFormatter, obj: ^id, string: ^String, rangep: ^_NSRange, error: ^^Error) -> bool {
-    return msgSend(bool, self, "getObjectValue:forString:range:error:", obj, string, rangep, error)
-}
-@(objc_type=NumberFormatter, objc_name="stringFromNumber")
-NumberFormatter_stringFromNumber :: #force_inline proc "c" (self: ^NumberFormatter, number: ^Number) -> ^String {
-    return msgSend(^String, self, "stringFromNumber:", number)
-}
-@(objc_type=NumberFormatter, objc_name="numberFromString")
-NumberFormatter_numberFromString :: #force_inline proc "c" (self: ^NumberFormatter, string: ^String) -> ^Number {
-    return msgSend(^Number, self, "numberFromString:", string)
-}
-@(objc_type=NumberFormatter, objc_name="localizedStringFromNumber", objc_is_class_method=true)
-NumberFormatter_localizedStringFromNumber :: #force_inline proc "c" (num: ^Number, nstyle: NumberFormatterStyle) -> ^String {
-    return msgSend(^String, NumberFormatter, "localizedStringFromNumber:numberStyle:", num, nstyle)
-}
-@(objc_type=NumberFormatter, objc_name="defaultFormatterBehavior", objc_is_class_method=true)
-NumberFormatter_defaultFormatterBehavior :: #force_inline proc "c" () -> NumberFormatterBehavior {
-    return msgSend(NumberFormatterBehavior, NumberFormatter, "defaultFormatterBehavior")
-}
-@(objc_type=NumberFormatter, objc_name="setDefaultFormatterBehavior", objc_is_class_method=true)
-NumberFormatter_setDefaultFormatterBehavior :: #force_inline proc "c" (behavior: NumberFormatterBehavior) {
-    msgSend(nil, NumberFormatter, "setDefaultFormatterBehavior:", behavior)
-}
-@(objc_type=NumberFormatter, objc_name="formattingContext")
-NumberFormatter_formattingContext :: #force_inline proc "c" (self: ^NumberFormatter) -> FormattingContext {
-    return msgSend(FormattingContext, self, "formattingContext")
-}
-@(objc_type=NumberFormatter, objc_name="setFormattingContext")
-NumberFormatter_setFormattingContext :: #force_inline proc "c" (self: ^NumberFormatter, formattingContext: FormattingContext) {
-    msgSend(nil, self, "setFormattingContext:", formattingContext)
-}
-@(objc_type=NumberFormatter, objc_name="minimumGroupingDigits")
-NumberFormatter_minimumGroupingDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> Integer {
-    return msgSend(Integer, self, "minimumGroupingDigits")
-}
-@(objc_type=NumberFormatter, objc_name="setMinimumGroupingDigits")
-NumberFormatter_setMinimumGroupingDigits :: #force_inline proc "c" (self: ^NumberFormatter, minimumGroupingDigits: Integer) {
-    msgSend(nil, self, "setMinimumGroupingDigits:", minimumGroupingDigits)
-}
-@(objc_type=NumberFormatter, objc_name="numberStyle")
-NumberFormatter_numberStyle :: #force_inline proc "c" (self: ^NumberFormatter) -> NumberFormatterStyle {
-    return msgSend(NumberFormatterStyle, self, "numberStyle")
-}
-@(objc_type=NumberFormatter, objc_name="setNumberStyle")
-NumberFormatter_setNumberStyle :: #force_inline proc "c" (self: ^NumberFormatter, numberStyle: NumberFormatterStyle) {
-    msgSend(nil, self, "setNumberStyle:", numberStyle)
-}
-@(objc_type=NumberFormatter, objc_name="locale")
-NumberFormatter_locale :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Locale {
-    return msgSend(^Locale, self, "locale")
-}
-@(objc_type=NumberFormatter, objc_name="setLocale")
-NumberFormatter_setLocale :: #force_inline proc "c" (self: ^NumberFormatter, locale: ^Locale) {
-    msgSend(nil, self, "setLocale:", locale)
-}
-@(objc_type=NumberFormatter, objc_name="generatesDecimalNumbers")
-NumberFormatter_generatesDecimalNumbers :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "generatesDecimalNumbers")
-}
-@(objc_type=NumberFormatter, objc_name="setGeneratesDecimalNumbers")
-NumberFormatter_setGeneratesDecimalNumbers :: #force_inline proc "c" (self: ^NumberFormatter, generatesDecimalNumbers: bool) {
-    msgSend(nil, self, "setGeneratesDecimalNumbers:", generatesDecimalNumbers)
-}
-@(objc_type=NumberFormatter, objc_name="formatterBehavior")
-NumberFormatter_formatterBehavior :: #force_inline proc "c" (self: ^NumberFormatter) -> NumberFormatterBehavior {
-    return msgSend(NumberFormatterBehavior, self, "formatterBehavior")
-}
-@(objc_type=NumberFormatter, objc_name="setFormatterBehavior")
-NumberFormatter_setFormatterBehavior :: #force_inline proc "c" (self: ^NumberFormatter, formatterBehavior: NumberFormatterBehavior) {
-    msgSend(nil, self, "setFormatterBehavior:", formatterBehavior)
-}
-@(objc_type=NumberFormatter, objc_name="negativeFormat")
-NumberFormatter_negativeFormat :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "negativeFormat")
-}
-@(objc_type=NumberFormatter, objc_name="setNegativeFormat")
-NumberFormatter_setNegativeFormat :: #force_inline proc "c" (self: ^NumberFormatter, negativeFormat: ^String) {
-    msgSend(nil, self, "setNegativeFormat:", negativeFormat)
-}
-@(objc_type=NumberFormatter, objc_name="textAttributesForNegativeValues")
-NumberFormatter_textAttributesForNegativeValues :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "textAttributesForNegativeValues")
-}
-@(objc_type=NumberFormatter, objc_name="setTextAttributesForNegativeValues")
-NumberFormatter_setTextAttributesForNegativeValues :: #force_inline proc "c" (self: ^NumberFormatter, textAttributesForNegativeValues: ^Dictionary) {
-    msgSend(nil, self, "setTextAttributesForNegativeValues:", textAttributesForNegativeValues)
-}
-@(objc_type=NumberFormatter, objc_name="positiveFormat")
-NumberFormatter_positiveFormat :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "positiveFormat")
-}
-@(objc_type=NumberFormatter, objc_name="setPositiveFormat")
-NumberFormatter_setPositiveFormat :: #force_inline proc "c" (self: ^NumberFormatter, positiveFormat: ^String) {
-    msgSend(nil, self, "setPositiveFormat:", positiveFormat)
-}
-@(objc_type=NumberFormatter, objc_name="textAttributesForPositiveValues")
-NumberFormatter_textAttributesForPositiveValues :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "textAttributesForPositiveValues")
-}
-@(objc_type=NumberFormatter, objc_name="setTextAttributesForPositiveValues")
-NumberFormatter_setTextAttributesForPositiveValues :: #force_inline proc "c" (self: ^NumberFormatter, textAttributesForPositiveValues: ^Dictionary) {
-    msgSend(nil, self, "setTextAttributesForPositiveValues:", textAttributesForPositiveValues)
-}
-@(objc_type=NumberFormatter, objc_name="allowsFloats")
-NumberFormatter_allowsFloats :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "allowsFloats")
-}
-@(objc_type=NumberFormatter, objc_name="setAllowsFloats")
-NumberFormatter_setAllowsFloats :: #force_inline proc "c" (self: ^NumberFormatter, allowsFloats: bool) {
-    msgSend(nil, self, "setAllowsFloats:", allowsFloats)
-}
-@(objc_type=NumberFormatter, objc_name="decimalSeparator")
-NumberFormatter_decimalSeparator :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "decimalSeparator")
-}
-@(objc_type=NumberFormatter, objc_name="setDecimalSeparator")
-NumberFormatter_setDecimalSeparator :: #force_inline proc "c" (self: ^NumberFormatter, decimalSeparator: ^String) {
-    msgSend(nil, self, "setDecimalSeparator:", decimalSeparator)
-}
-@(objc_type=NumberFormatter, objc_name="alwaysShowsDecimalSeparator")
-NumberFormatter_alwaysShowsDecimalSeparator :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "alwaysShowsDecimalSeparator")
-}
-@(objc_type=NumberFormatter, objc_name="setAlwaysShowsDecimalSeparator")
-NumberFormatter_setAlwaysShowsDecimalSeparator :: #force_inline proc "c" (self: ^NumberFormatter, alwaysShowsDecimalSeparator: bool) {
-    msgSend(nil, self, "setAlwaysShowsDecimalSeparator:", alwaysShowsDecimalSeparator)
-}
-@(objc_type=NumberFormatter, objc_name="currencyDecimalSeparator")
-NumberFormatter_currencyDecimalSeparator :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "currencyDecimalSeparator")
-}
-@(objc_type=NumberFormatter, objc_name="setCurrencyDecimalSeparator")
-NumberFormatter_setCurrencyDecimalSeparator :: #force_inline proc "c" (self: ^NumberFormatter, currencyDecimalSeparator: ^String) {
-    msgSend(nil, self, "setCurrencyDecimalSeparator:", currencyDecimalSeparator)
-}
-@(objc_type=NumberFormatter, objc_name="usesGroupingSeparator")
-NumberFormatter_usesGroupingSeparator :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "usesGroupingSeparator")
-}
-@(objc_type=NumberFormatter, objc_name="setUsesGroupingSeparator")
-NumberFormatter_setUsesGroupingSeparator :: #force_inline proc "c" (self: ^NumberFormatter, usesGroupingSeparator: bool) {
-    msgSend(nil, self, "setUsesGroupingSeparator:", usesGroupingSeparator)
-}
-@(objc_type=NumberFormatter, objc_name="groupingSeparator")
-NumberFormatter_groupingSeparator :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "groupingSeparator")
-}
-@(objc_type=NumberFormatter, objc_name="setGroupingSeparator")
-NumberFormatter_setGroupingSeparator :: #force_inline proc "c" (self: ^NumberFormatter, groupingSeparator: ^String) {
-    msgSend(nil, self, "setGroupingSeparator:", groupingSeparator)
-}
-@(objc_type=NumberFormatter, objc_name="zeroSymbol")
-NumberFormatter_zeroSymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "zeroSymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setZeroSymbol")
-NumberFormatter_setZeroSymbol :: #force_inline proc "c" (self: ^NumberFormatter, zeroSymbol: ^String) {
-    msgSend(nil, self, "setZeroSymbol:", zeroSymbol)
-}
-@(objc_type=NumberFormatter, objc_name="textAttributesForZero")
-NumberFormatter_textAttributesForZero :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "textAttributesForZero")
-}
-@(objc_type=NumberFormatter, objc_name="setTextAttributesForZero")
-NumberFormatter_setTextAttributesForZero :: #force_inline proc "c" (self: ^NumberFormatter, textAttributesForZero: ^Dictionary) {
-    msgSend(nil, self, "setTextAttributesForZero:", textAttributesForZero)
-}
-@(objc_type=NumberFormatter, objc_name="nilSymbol")
-NumberFormatter_nilSymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "nilSymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setNilSymbol")
-NumberFormatter_setNilSymbol :: #force_inline proc "c" (self: ^NumberFormatter, nilSymbol: ^String) {
-    msgSend(nil, self, "setNilSymbol:", nilSymbol)
-}
-@(objc_type=NumberFormatter, objc_name="textAttributesForNil")
-NumberFormatter_textAttributesForNil :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "textAttributesForNil")
-}
-@(objc_type=NumberFormatter, objc_name="setTextAttributesForNil")
-NumberFormatter_setTextAttributesForNil :: #force_inline proc "c" (self: ^NumberFormatter, textAttributesForNil: ^Dictionary) {
-    msgSend(nil, self, "setTextAttributesForNil:", textAttributesForNil)
-}
-@(objc_type=NumberFormatter, objc_name="notANumberSymbol")
-NumberFormatter_notANumberSymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "notANumberSymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setNotANumberSymbol")
-NumberFormatter_setNotANumberSymbol :: #force_inline proc "c" (self: ^NumberFormatter, notANumberSymbol: ^String) {
-    msgSend(nil, self, "setNotANumberSymbol:", notANumberSymbol)
-}
-@(objc_type=NumberFormatter, objc_name="textAttributesForNotANumber")
-NumberFormatter_textAttributesForNotANumber :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "textAttributesForNotANumber")
-}
-@(objc_type=NumberFormatter, objc_name="setTextAttributesForNotANumber")
-NumberFormatter_setTextAttributesForNotANumber :: #force_inline proc "c" (self: ^NumberFormatter, textAttributesForNotANumber: ^Dictionary) {
-    msgSend(nil, self, "setTextAttributesForNotANumber:", textAttributesForNotANumber)
-}
-@(objc_type=NumberFormatter, objc_name="positiveInfinitySymbol")
-NumberFormatter_positiveInfinitySymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "positiveInfinitySymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setPositiveInfinitySymbol")
-NumberFormatter_setPositiveInfinitySymbol :: #force_inline proc "c" (self: ^NumberFormatter, positiveInfinitySymbol: ^String) {
-    msgSend(nil, self, "setPositiveInfinitySymbol:", positiveInfinitySymbol)
-}
-@(objc_type=NumberFormatter, objc_name="textAttributesForPositiveInfinity")
-NumberFormatter_textAttributesForPositiveInfinity :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "textAttributesForPositiveInfinity")
-}
-@(objc_type=NumberFormatter, objc_name="setTextAttributesForPositiveInfinity")
-NumberFormatter_setTextAttributesForPositiveInfinity :: #force_inline proc "c" (self: ^NumberFormatter, textAttributesForPositiveInfinity: ^Dictionary) {
-    msgSend(nil, self, "setTextAttributesForPositiveInfinity:", textAttributesForPositiveInfinity)
-}
-@(objc_type=NumberFormatter, objc_name="negativeInfinitySymbol")
-NumberFormatter_negativeInfinitySymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "negativeInfinitySymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setNegativeInfinitySymbol")
-NumberFormatter_setNegativeInfinitySymbol :: #force_inline proc "c" (self: ^NumberFormatter, negativeInfinitySymbol: ^String) {
-    msgSend(nil, self, "setNegativeInfinitySymbol:", negativeInfinitySymbol)
-}
-@(objc_type=NumberFormatter, objc_name="textAttributesForNegativeInfinity")
-NumberFormatter_textAttributesForNegativeInfinity :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Dictionary {
-    return msgSend(^Dictionary, self, "textAttributesForNegativeInfinity")
-}
-@(objc_type=NumberFormatter, objc_name="setTextAttributesForNegativeInfinity")
-NumberFormatter_setTextAttributesForNegativeInfinity :: #force_inline proc "c" (self: ^NumberFormatter, textAttributesForNegativeInfinity: ^Dictionary) {
-    msgSend(nil, self, "setTextAttributesForNegativeInfinity:", textAttributesForNegativeInfinity)
-}
-@(objc_type=NumberFormatter, objc_name="positivePrefix")
-NumberFormatter_positivePrefix :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "positivePrefix")
-}
-@(objc_type=NumberFormatter, objc_name="setPositivePrefix")
-NumberFormatter_setPositivePrefix :: #force_inline proc "c" (self: ^NumberFormatter, positivePrefix: ^String) {
-    msgSend(nil, self, "setPositivePrefix:", positivePrefix)
-}
-@(objc_type=NumberFormatter, objc_name="positiveSuffix")
-NumberFormatter_positiveSuffix :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "positiveSuffix")
-}
-@(objc_type=NumberFormatter, objc_name="setPositiveSuffix")
-NumberFormatter_setPositiveSuffix :: #force_inline proc "c" (self: ^NumberFormatter, positiveSuffix: ^String) {
-    msgSend(nil, self, "setPositiveSuffix:", positiveSuffix)
-}
-@(objc_type=NumberFormatter, objc_name="negativePrefix")
-NumberFormatter_negativePrefix :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "negativePrefix")
-}
-@(objc_type=NumberFormatter, objc_name="setNegativePrefix")
-NumberFormatter_setNegativePrefix :: #force_inline proc "c" (self: ^NumberFormatter, negativePrefix: ^String) {
-    msgSend(nil, self, "setNegativePrefix:", negativePrefix)
-}
-@(objc_type=NumberFormatter, objc_name="negativeSuffix")
-NumberFormatter_negativeSuffix :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "negativeSuffix")
-}
-@(objc_type=NumberFormatter, objc_name="setNegativeSuffix")
-NumberFormatter_setNegativeSuffix :: #force_inline proc "c" (self: ^NumberFormatter, negativeSuffix: ^String) {
-    msgSend(nil, self, "setNegativeSuffix:", negativeSuffix)
-}
-@(objc_type=NumberFormatter, objc_name="currencyCode")
-NumberFormatter_currencyCode :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "currencyCode")
-}
-@(objc_type=NumberFormatter, objc_name="setCurrencyCode")
-NumberFormatter_setCurrencyCode :: #force_inline proc "c" (self: ^NumberFormatter, currencyCode: ^String) {
-    msgSend(nil, self, "setCurrencyCode:", currencyCode)
-}
-@(objc_type=NumberFormatter, objc_name="currencySymbol")
-NumberFormatter_currencySymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "currencySymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setCurrencySymbol")
-NumberFormatter_setCurrencySymbol :: #force_inline proc "c" (self: ^NumberFormatter, currencySymbol: ^String) {
-    msgSend(nil, self, "setCurrencySymbol:", currencySymbol)
-}
-@(objc_type=NumberFormatter, objc_name="internationalCurrencySymbol")
-NumberFormatter_internationalCurrencySymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "internationalCurrencySymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setInternationalCurrencySymbol")
-NumberFormatter_setInternationalCurrencySymbol :: #force_inline proc "c" (self: ^NumberFormatter, internationalCurrencySymbol: ^String) {
-    msgSend(nil, self, "setInternationalCurrencySymbol:", internationalCurrencySymbol)
-}
-@(objc_type=NumberFormatter, objc_name="percentSymbol")
-NumberFormatter_percentSymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "percentSymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setPercentSymbol")
-NumberFormatter_setPercentSymbol :: #force_inline proc "c" (self: ^NumberFormatter, percentSymbol: ^String) {
-    msgSend(nil, self, "setPercentSymbol:", percentSymbol)
-}
-@(objc_type=NumberFormatter, objc_name="perMillSymbol")
-NumberFormatter_perMillSymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "perMillSymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setPerMillSymbol")
-NumberFormatter_setPerMillSymbol :: #force_inline proc "c" (self: ^NumberFormatter, perMillSymbol: ^String) {
-    msgSend(nil, self, "setPerMillSymbol:", perMillSymbol)
-}
-@(objc_type=NumberFormatter, objc_name="minusSign")
-NumberFormatter_minusSign :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "minusSign")
-}
-@(objc_type=NumberFormatter, objc_name="setMinusSign")
-NumberFormatter_setMinusSign :: #force_inline proc "c" (self: ^NumberFormatter, minusSign: ^String) {
-    msgSend(nil, self, "setMinusSign:", minusSign)
-}
-@(objc_type=NumberFormatter, objc_name="plusSign")
-NumberFormatter_plusSign :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "plusSign")
-}
-@(objc_type=NumberFormatter, objc_name="setPlusSign")
-NumberFormatter_setPlusSign :: #force_inline proc "c" (self: ^NumberFormatter, plusSign: ^String) {
-    msgSend(nil, self, "setPlusSign:", plusSign)
-}
-@(objc_type=NumberFormatter, objc_name="exponentSymbol")
-NumberFormatter_exponentSymbol :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "exponentSymbol")
-}
-@(objc_type=NumberFormatter, objc_name="setExponentSymbol")
-NumberFormatter_setExponentSymbol :: #force_inline proc "c" (self: ^NumberFormatter, exponentSymbol: ^String) {
-    msgSend(nil, self, "setExponentSymbol:", exponentSymbol)
-}
-@(objc_type=NumberFormatter, objc_name="groupingSize")
-NumberFormatter_groupingSize :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "groupingSize")
-}
-@(objc_type=NumberFormatter, objc_name="setGroupingSize")
-NumberFormatter_setGroupingSize :: #force_inline proc "c" (self: ^NumberFormatter, groupingSize: UInteger) {
-    msgSend(nil, self, "setGroupingSize:", groupingSize)
-}
-@(objc_type=NumberFormatter, objc_name="secondaryGroupingSize")
-NumberFormatter_secondaryGroupingSize :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "secondaryGroupingSize")
-}
-@(objc_type=NumberFormatter, objc_name="setSecondaryGroupingSize")
-NumberFormatter_setSecondaryGroupingSize :: #force_inline proc "c" (self: ^NumberFormatter, secondaryGroupingSize: UInteger) {
-    msgSend(nil, self, "setSecondaryGroupingSize:", secondaryGroupingSize)
-}
-@(objc_type=NumberFormatter, objc_name="multiplier")
-NumberFormatter_multiplier :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Number {
-    return msgSend(^Number, self, "multiplier")
-}
-@(objc_type=NumberFormatter, objc_name="setMultiplier")
-NumberFormatter_setMultiplier :: #force_inline proc "c" (self: ^NumberFormatter, multiplier: ^Number) {
-    msgSend(nil, self, "setMultiplier:", multiplier)
-}
-@(objc_type=NumberFormatter, objc_name="formatWidth")
-NumberFormatter_formatWidth :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "formatWidth")
-}
-@(objc_type=NumberFormatter, objc_name="setFormatWidth")
-NumberFormatter_setFormatWidth :: #force_inline proc "c" (self: ^NumberFormatter, formatWidth: UInteger) {
-    msgSend(nil, self, "setFormatWidth:", formatWidth)
-}
-@(objc_type=NumberFormatter, objc_name="paddingCharacter")
-NumberFormatter_paddingCharacter :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "paddingCharacter")
-}
-@(objc_type=NumberFormatter, objc_name="setPaddingCharacter")
-NumberFormatter_setPaddingCharacter :: #force_inline proc "c" (self: ^NumberFormatter, paddingCharacter: ^String) {
-    msgSend(nil, self, "setPaddingCharacter:", paddingCharacter)
-}
-@(objc_type=NumberFormatter, objc_name="paddingPosition")
-NumberFormatter_paddingPosition :: #force_inline proc "c" (self: ^NumberFormatter) -> NumberFormatterPadPosition {
-    return msgSend(NumberFormatterPadPosition, self, "paddingPosition")
-}
-@(objc_type=NumberFormatter, objc_name="setPaddingPosition")
-NumberFormatter_setPaddingPosition :: #force_inline proc "c" (self: ^NumberFormatter, paddingPosition: NumberFormatterPadPosition) {
-    msgSend(nil, self, "setPaddingPosition:", paddingPosition)
-}
-@(objc_type=NumberFormatter, objc_name="roundingMode")
-NumberFormatter_roundingMode :: #force_inline proc "c" (self: ^NumberFormatter) -> NumberFormatterRoundingMode {
-    return msgSend(NumberFormatterRoundingMode, self, "roundingMode")
-}
-@(objc_type=NumberFormatter, objc_name="setRoundingMode")
-NumberFormatter_setRoundingMode :: #force_inline proc "c" (self: ^NumberFormatter, roundingMode: NumberFormatterRoundingMode) {
-    msgSend(nil, self, "setRoundingMode:", roundingMode)
-}
-@(objc_type=NumberFormatter, objc_name="roundingIncrement")
-NumberFormatter_roundingIncrement :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Number {
-    return msgSend(^Number, self, "roundingIncrement")
-}
-@(objc_type=NumberFormatter, objc_name="setRoundingIncrement")
-NumberFormatter_setRoundingIncrement :: #force_inline proc "c" (self: ^NumberFormatter, roundingIncrement: ^Number) {
-    msgSend(nil, self, "setRoundingIncrement:", roundingIncrement)
-}
-@(objc_type=NumberFormatter, objc_name="minimumIntegerDigits")
-NumberFormatter_minimumIntegerDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "minimumIntegerDigits")
-}
-@(objc_type=NumberFormatter, objc_name="setMinimumIntegerDigits")
-NumberFormatter_setMinimumIntegerDigits :: #force_inline proc "c" (self: ^NumberFormatter, minimumIntegerDigits: UInteger) {
-    msgSend(nil, self, "setMinimumIntegerDigits:", minimumIntegerDigits)
-}
-@(objc_type=NumberFormatter, objc_name="maximumIntegerDigits")
-NumberFormatter_maximumIntegerDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "maximumIntegerDigits")
-}
-@(objc_type=NumberFormatter, objc_name="setMaximumIntegerDigits")
-NumberFormatter_setMaximumIntegerDigits :: #force_inline proc "c" (self: ^NumberFormatter, maximumIntegerDigits: UInteger) {
-    msgSend(nil, self, "setMaximumIntegerDigits:", maximumIntegerDigits)
-}
-@(objc_type=NumberFormatter, objc_name="minimumFractionDigits")
-NumberFormatter_minimumFractionDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "minimumFractionDigits")
-}
-@(objc_type=NumberFormatter, objc_name="setMinimumFractionDigits")
-NumberFormatter_setMinimumFractionDigits :: #force_inline proc "c" (self: ^NumberFormatter, minimumFractionDigits: UInteger) {
-    msgSend(nil, self, "setMinimumFractionDigits:", minimumFractionDigits)
-}
-@(objc_type=NumberFormatter, objc_name="maximumFractionDigits")
-NumberFormatter_maximumFractionDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "maximumFractionDigits")
-}
-@(objc_type=NumberFormatter, objc_name="setMaximumFractionDigits")
-NumberFormatter_setMaximumFractionDigits :: #force_inline proc "c" (self: ^NumberFormatter, maximumFractionDigits: UInteger) {
-    msgSend(nil, self, "setMaximumFractionDigits:", maximumFractionDigits)
-}
-@(objc_type=NumberFormatter, objc_name="minimum")
-NumberFormatter_minimum :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Number {
-    return msgSend(^Number, self, "minimum")
-}
-@(objc_type=NumberFormatter, objc_name="setMinimum")
-NumberFormatter_setMinimum :: #force_inline proc "c" (self: ^NumberFormatter, minimum: ^Number) {
-    msgSend(nil, self, "setMinimum:", minimum)
-}
-@(objc_type=NumberFormatter, objc_name="maximum")
-NumberFormatter_maximum :: #force_inline proc "c" (self: ^NumberFormatter) -> ^Number {
-    return msgSend(^Number, self, "maximum")
-}
-@(objc_type=NumberFormatter, objc_name="setMaximum")
-NumberFormatter_setMaximum :: #force_inline proc "c" (self: ^NumberFormatter, maximum: ^Number) {
-    msgSend(nil, self, "setMaximum:", maximum)
-}
-@(objc_type=NumberFormatter, objc_name="currencyGroupingSeparator")
-NumberFormatter_currencyGroupingSeparator :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "currencyGroupingSeparator")
-}
-@(objc_type=NumberFormatter, objc_name="setCurrencyGroupingSeparator")
-NumberFormatter_setCurrencyGroupingSeparator :: #force_inline proc "c" (self: ^NumberFormatter, currencyGroupingSeparator: ^String) {
-    msgSend(nil, self, "setCurrencyGroupingSeparator:", currencyGroupingSeparator)
-}
-@(objc_type=NumberFormatter, objc_name="isLenient")
-NumberFormatter_isLenient :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "isLenient")
-}
-@(objc_type=NumberFormatter, objc_name="setLenient")
-NumberFormatter_setLenient :: #force_inline proc "c" (self: ^NumberFormatter, lenient: bool) {
-    msgSend(nil, self, "setLenient:", lenient)
-}
-@(objc_type=NumberFormatter, objc_name="usesSignificantDigits")
-NumberFormatter_usesSignificantDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "usesSignificantDigits")
-}
-@(objc_type=NumberFormatter, objc_name="setUsesSignificantDigits")
-NumberFormatter_setUsesSignificantDigits :: #force_inline proc "c" (self: ^NumberFormatter, usesSignificantDigits: bool) {
-    msgSend(nil, self, "setUsesSignificantDigits:", usesSignificantDigits)
-}
-@(objc_type=NumberFormatter, objc_name="minimumSignificantDigits")
-NumberFormatter_minimumSignificantDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "minimumSignificantDigits")
-}
-@(objc_type=NumberFormatter, objc_name="setMinimumSignificantDigits")
-NumberFormatter_setMinimumSignificantDigits :: #force_inline proc "c" (self: ^NumberFormatter, minimumSignificantDigits: UInteger) {
-    msgSend(nil, self, "setMinimumSignificantDigits:", minimumSignificantDigits)
-}
-@(objc_type=NumberFormatter, objc_name="maximumSignificantDigits")
-NumberFormatter_maximumSignificantDigits :: #force_inline proc "c" (self: ^NumberFormatter) -> UInteger {
-    return msgSend(UInteger, self, "maximumSignificantDigits")
-}
-@(objc_type=NumberFormatter, objc_name="setMaximumSignificantDigits")
-NumberFormatter_setMaximumSignificantDigits :: #force_inline proc "c" (self: ^NumberFormatter, maximumSignificantDigits: UInteger) {
-    msgSend(nil, self, "setMaximumSignificantDigits:", maximumSignificantDigits)
-}
-@(objc_type=NumberFormatter, objc_name="isPartialStringValidationEnabled")
-NumberFormatter_isPartialStringValidationEnabled :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "isPartialStringValidationEnabled")
-}
-@(objc_type=NumberFormatter, objc_name="setPartialStringValidationEnabled")
-NumberFormatter_setPartialStringValidationEnabled :: #force_inline proc "c" (self: ^NumberFormatter, partialStringValidationEnabled: bool) {
-    msgSend(nil, self, "setPartialStringValidationEnabled:", partialStringValidationEnabled)
-}
-@(objc_type=NumberFormatter, objc_name="hasThousandSeparators")
-NumberFormatter_hasThousandSeparators :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "hasThousandSeparators")
-}
-@(objc_type=NumberFormatter, objc_name="setHasThousandSeparators")
-NumberFormatter_setHasThousandSeparators :: #force_inline proc "c" (self: ^NumberFormatter, hasThousandSeparators: bool) {
-    msgSend(nil, self, "setHasThousandSeparators:", hasThousandSeparators)
-}
-@(objc_type=NumberFormatter, objc_name="thousandSeparator")
-NumberFormatter_thousandSeparator :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "thousandSeparator")
-}
-@(objc_type=NumberFormatter, objc_name="setThousandSeparator")
-NumberFormatter_setThousandSeparator :: #force_inline proc "c" (self: ^NumberFormatter, thousandSeparator: ^String) {
-    msgSend(nil, self, "setThousandSeparator:", thousandSeparator)
-}
-@(objc_type=NumberFormatter, objc_name="localizesFormat")
-NumberFormatter_localizesFormat :: #force_inline proc "c" (self: ^NumberFormatter) -> bool {
-    return msgSend(bool, self, "localizesFormat")
-}
-@(objc_type=NumberFormatter, objc_name="setLocalizesFormat")
-NumberFormatter_setLocalizesFormat :: #force_inline proc "c" (self: ^NumberFormatter, localizesFormat: bool) {
-    msgSend(nil, self, "setLocalizesFormat:", localizesFormat)
-}
-@(objc_type=NumberFormatter, objc_name="format")
-NumberFormatter_format :: #force_inline proc "c" (self: ^NumberFormatter) -> ^String {
-    return msgSend(^String, self, "format")
-}
-@(objc_type=NumberFormatter, objc_name="setFormat")
-NumberFormatter_setFormat :: #force_inline proc "c" (self: ^NumberFormatter, format: ^String) {
-    msgSend(nil, self, "setFormat:", format)
-}
-@(objc_type=NumberFormatter, objc_name="attributedStringForZero")
-NumberFormatter_attributedStringForZero :: #force_inline proc "c" (self: ^NumberFormatter) -> ^AttributedString {
-    return msgSend(^AttributedString, self, "attributedStringForZero")
-}
-@(objc_type=NumberFormatter, objc_name="setAttributedStringForZero")
-NumberFormatter_setAttributedStringForZero :: #force_inline proc "c" (self: ^NumberFormatter, attributedStringForZero: ^AttributedString) {
-    msgSend(nil, self, "setAttributedStringForZero:", attributedStringForZero)
-}
-@(objc_type=NumberFormatter, objc_name="attributedStringForNil")
-NumberFormatter_attributedStringForNil :: #force_inline proc "c" (self: ^NumberFormatter) -> ^AttributedString {
-    return msgSend(^AttributedString, self, "attributedStringForNil")
-}
-@(objc_type=NumberFormatter, objc_name="setAttributedStringForNil")
-NumberFormatter_setAttributedStringForNil :: #force_inline proc "c" (self: ^NumberFormatter, attributedStringForNil: ^AttributedString) {
-    msgSend(nil, self, "setAttributedStringForNil:", attributedStringForNil)
-}
-@(objc_type=NumberFormatter, objc_name="attributedStringForNotANumber")
-NumberFormatter_attributedStringForNotANumber :: #force_inline proc "c" (self: ^NumberFormatter) -> ^AttributedString {
-    return msgSend(^AttributedString, self, "attributedStringForNotANumber")
-}
-@(objc_type=NumberFormatter, objc_name="setAttributedStringForNotANumber")
-NumberFormatter_setAttributedStringForNotANumber :: #force_inline proc "c" (self: ^NumberFormatter, attributedStringForNotANumber: ^AttributedString) {
-    msgSend(nil, self, "setAttributedStringForNotANumber:", attributedStringForNotANumber)
-}
-@(objc_type=NumberFormatter, objc_name="roundingBehavior")
-NumberFormatter_roundingBehavior :: #force_inline proc "c" (self: ^NumberFormatter) -> ^DecimalNumberHandler {
-    return msgSend(^DecimalNumberHandler, self, "roundingBehavior")
-}
-@(objc_type=NumberFormatter, objc_name="setRoundingBehavior")
-NumberFormatter_setRoundingBehavior :: #force_inline proc "c" (self: ^NumberFormatter, roundingBehavior: ^DecimalNumberHandler) {
-    msgSend(nil, self, "setRoundingBehavior:", roundingBehavior)
-}
-@(objc_type=NumberFormatter, objc_name="load", objc_is_class_method=true)
-NumberFormatter_load :: #force_inline proc "c" () {
-    msgSend(nil, NumberFormatter, "load")
-}
-@(objc_type=NumberFormatter, objc_name="initialize", objc_is_class_method=true)
-NumberFormatter_initialize :: #force_inline proc "c" () {
-    msgSend(nil, NumberFormatter, "initialize")
-}
-@(objc_type=NumberFormatter, objc_name="new", objc_is_class_method=true)
-NumberFormatter_new :: #force_inline proc "c" () -> ^NumberFormatter {
-    return msgSend(^NumberFormatter, NumberFormatter, "new")
-}
-@(objc_type=NumberFormatter, objc_name="allocWithZone", objc_is_class_method=true)
-NumberFormatter_allocWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> ^NumberFormatter {
-    return msgSend(^NumberFormatter, NumberFormatter, "allocWithZone:", zone)
-}
-@(objc_type=NumberFormatter, objc_name="alloc", objc_is_class_method=true)
-NumberFormatter_alloc :: #force_inline proc "c" () -> ^NumberFormatter {
-    return msgSend(^NumberFormatter, NumberFormatter, "alloc")
-}
-@(objc_type=NumberFormatter, objc_name="copyWithZone", objc_is_class_method=true)
-NumberFormatter_copyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
-    return msgSend(id, NumberFormatter, "copyWithZone:", zone)
-}
-@(objc_type=NumberFormatter, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-NumberFormatter_mutableCopyWithZone :: #force_inline proc "c" (zone: ^_NSZone) -> id {
-    return msgSend(id, NumberFormatter, "mutableCopyWithZone:", zone)
-}
-@(objc_type=NumberFormatter, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-NumberFormatter_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, NumberFormatter, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=NumberFormatter, objc_name="conformsToProtocol", objc_is_class_method=true)
-NumberFormatter_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, NumberFormatter, "conformsToProtocol:", protocol)
-}
-@(objc_type=NumberFormatter, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-NumberFormatter_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, NumberFormatter, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=NumberFormatter, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-NumberFormatter_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^MethodSignature {
-    return msgSend(^MethodSignature, NumberFormatter, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=NumberFormatter, objc_name="isSubclassOfClass", objc_is_class_method=true)
-NumberFormatter_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, NumberFormatter, "isSubclassOfClass:", aClass)
-}
-@(objc_type=NumberFormatter, objc_name="resolveClassMethod", objc_is_class_method=true)
-NumberFormatter_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, NumberFormatter, "resolveClassMethod:", sel)
-}
-@(objc_type=NumberFormatter, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-NumberFormatter_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, NumberFormatter, "resolveInstanceMethod:", sel)
-}
-@(objc_type=NumberFormatter, objc_name="hash", objc_is_class_method=true)
-NumberFormatter_hash :: #force_inline proc "c" () -> UInteger {
-    return msgSend(UInteger, NumberFormatter, "hash")
-}
-@(objc_type=NumberFormatter, objc_name="superclass", objc_is_class_method=true)
-NumberFormatter_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, NumberFormatter, "superclass")
-}
-@(objc_type=NumberFormatter, objc_name="class", objc_is_class_method=true)
-NumberFormatter_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, NumberFormatter, "class")
-}
-@(objc_type=NumberFormatter, objc_name="description", objc_is_class_method=true)
-NumberFormatter_description :: #force_inline proc "c" () -> ^String {
-    return msgSend(^String, NumberFormatter, "description")
-}
-@(objc_type=NumberFormatter, objc_name="debugDescription", objc_is_class_method=true)
-NumberFormatter_debugDescription :: #force_inline proc "c" () -> ^String {
-    return msgSend(^String, NumberFormatter, "debugDescription")
-}
-@(objc_type=NumberFormatter, objc_name="version", objc_is_class_method=true)
-NumberFormatter_version :: #force_inline proc "c" () -> Integer {
-    return msgSend(Integer, NumberFormatter, "version")
-}
-@(objc_type=NumberFormatter, objc_name="setVersion", objc_is_class_method=true)
-NumberFormatter_setVersion :: #force_inline proc "c" (aVersion: Integer) {
-    msgSend(nil, NumberFormatter, "setVersion:", aVersion)
-}
-@(objc_type=NumberFormatter, objc_name="poseAsClass", objc_is_class_method=true)
-NumberFormatter_poseAsClass :: #force_inline proc "c" (aClass: Class) {
-    msgSend(nil, NumberFormatter, "poseAsClass:", aClass)
-}
-@(objc_type=NumberFormatter, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-NumberFormatter_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, NumberFormatter, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=NumberFormatter, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-NumberFormatter_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, NumberFormatter, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=NumberFormatter, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-NumberFormatter_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, NumberFormatter, "accessInstanceVariablesDirectly")
-}
-@(objc_type=NumberFormatter, objc_name="useStoredAccessor", objc_is_class_method=true)
-NumberFormatter_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, NumberFormatter, "useStoredAccessor")
-}
-@(objc_type=NumberFormatter, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-NumberFormatter_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^String) -> ^Set {
-    return msgSend(^Set, NumberFormatter, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=NumberFormatter, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-NumberFormatter_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^String) -> bool {
-    return msgSend(bool, NumberFormatter, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=NumberFormatter, objc_name="setKeys", objc_is_class_method=true)
-NumberFormatter_setKeys :: #force_inline proc "c" (keys: ^Array, dependentKey: ^String) {
-    msgSend(nil, NumberFormatter, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
-}
-@(objc_type=NumberFormatter, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-NumberFormatter_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^Array {
-    return msgSend(^Array, NumberFormatter, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=NumberFormatter, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-NumberFormatter_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, NumberFormatter, "classForKeyedUnarchiver")
-}
-@(objc_type=NumberFormatter, objc_name="cancelPreviousPerformRequestsWithTarget")
-NumberFormatter_cancelPreviousPerformRequestsWithTarget :: proc {
-    NumberFormatter_cancelPreviousPerformRequestsWithTarget_selector_object,
-    NumberFormatter_cancelPreviousPerformRequestsWithTarget_,
-}
+    @(objc_type=NumberFormatter, objc_selector="numberFromString:", objc_name="numberFromString")
+    NumberFormatter_numberFromString :: proc(self: ^NumberFormatter, string: ^String) -> ^Number ---
 
+    @(objc_type=NumberFormatter, objc_selector="localizedStringFromNumber:numberStyle:", objc_name="localizedStringFromNumber", objc_is_class_method=true)
+    NumberFormatter_localizedStringFromNumber :: proc(num: ^Number, nstyle: NumberFormatterStyle) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="defaultFormatterBehavior", objc_name="defaultFormatterBehavior", objc_is_class_method=true)
+    NumberFormatter_defaultFormatterBehavior :: proc() -> NumberFormatterBehavior ---
+
+    @(objc_type=NumberFormatter, objc_selector="setDefaultFormatterBehavior:", objc_name="setDefaultFormatterBehavior", objc_is_class_method=true)
+    NumberFormatter_setDefaultFormatterBehavior :: proc(behavior: NumberFormatterBehavior) ---
+
+    @(objc_type=NumberFormatter, objc_selector="formattingContext", objc_name="formattingContext")
+    NumberFormatter_formattingContext :: proc(self: ^NumberFormatter) -> FormattingContext ---
+
+    @(objc_type=NumberFormatter, objc_selector="setFormattingContext:", objc_name="setFormattingContext")
+    NumberFormatter_setFormattingContext :: proc(self: ^NumberFormatter, formattingContext: FormattingContext) ---
+
+    @(objc_type=NumberFormatter, objc_selector="minimumGroupingDigits", objc_name="minimumGroupingDigits")
+    NumberFormatter_minimumGroupingDigits :: proc(self: ^NumberFormatter) -> Integer ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMinimumGroupingDigits:", objc_name="setMinimumGroupingDigits")
+    NumberFormatter_setMinimumGroupingDigits :: proc(self: ^NumberFormatter, minimumGroupingDigits: Integer) ---
+
+    @(objc_type=NumberFormatter, objc_selector="numberStyle", objc_name="numberStyle")
+    NumberFormatter_numberStyle :: proc(self: ^NumberFormatter) -> NumberFormatterStyle ---
+
+    @(objc_type=NumberFormatter, objc_selector="setNumberStyle:", objc_name="setNumberStyle")
+    NumberFormatter_setNumberStyle :: proc(self: ^NumberFormatter, numberStyle: NumberFormatterStyle) ---
+
+    @(objc_type=NumberFormatter, objc_selector="locale", objc_name="locale")
+    NumberFormatter_locale :: proc(self: ^NumberFormatter) -> ^Locale ---
+
+    @(objc_type=NumberFormatter, objc_selector="setLocale:", objc_name="setLocale")
+    NumberFormatter_setLocale :: proc(self: ^NumberFormatter, locale: ^Locale) ---
+
+    @(objc_type=NumberFormatter, objc_selector="generatesDecimalNumbers", objc_name="generatesDecimalNumbers")
+    NumberFormatter_generatesDecimalNumbers :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setGeneratesDecimalNumbers:", objc_name="setGeneratesDecimalNumbers")
+    NumberFormatter_setGeneratesDecimalNumbers :: proc(self: ^NumberFormatter, generatesDecimalNumbers: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="formatterBehavior", objc_name="formatterBehavior")
+    NumberFormatter_formatterBehavior :: proc(self: ^NumberFormatter) -> NumberFormatterBehavior ---
+
+    @(objc_type=NumberFormatter, objc_selector="setFormatterBehavior:", objc_name="setFormatterBehavior")
+    NumberFormatter_setFormatterBehavior :: proc(self: ^NumberFormatter, formatterBehavior: NumberFormatterBehavior) ---
+
+    @(objc_type=NumberFormatter, objc_selector="negativeFormat", objc_name="negativeFormat")
+    NumberFormatter_negativeFormat :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setNegativeFormat:", objc_name="setNegativeFormat")
+    NumberFormatter_setNegativeFormat :: proc(self: ^NumberFormatter, negativeFormat: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="textAttributesForNegativeValues", objc_name="textAttributesForNegativeValues")
+    NumberFormatter_textAttributesForNegativeValues :: proc(self: ^NumberFormatter) -> ^Dictionary ---
+
+    @(objc_type=NumberFormatter, objc_selector="setTextAttributesForNegativeValues:", objc_name="setTextAttributesForNegativeValues")
+    NumberFormatter_setTextAttributesForNegativeValues :: proc(self: ^NumberFormatter, textAttributesForNegativeValues: ^Dictionary) ---
+
+    @(objc_type=NumberFormatter, objc_selector="positiveFormat", objc_name="positiveFormat")
+    NumberFormatter_positiveFormat :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPositiveFormat:", objc_name="setPositiveFormat")
+    NumberFormatter_setPositiveFormat :: proc(self: ^NumberFormatter, positiveFormat: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="textAttributesForPositiveValues", objc_name="textAttributesForPositiveValues")
+    NumberFormatter_textAttributesForPositiveValues :: proc(self: ^NumberFormatter) -> ^Dictionary ---
+
+    @(objc_type=NumberFormatter, objc_selector="setTextAttributesForPositiveValues:", objc_name="setTextAttributesForPositiveValues")
+    NumberFormatter_setTextAttributesForPositiveValues :: proc(self: ^NumberFormatter, textAttributesForPositiveValues: ^Dictionary) ---
+
+    @(objc_type=NumberFormatter, objc_selector="allowsFloats", objc_name="allowsFloats")
+    NumberFormatter_allowsFloats :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setAllowsFloats:", objc_name="setAllowsFloats")
+    NumberFormatter_setAllowsFloats :: proc(self: ^NumberFormatter, allowsFloats: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="decimalSeparator", objc_name="decimalSeparator")
+    NumberFormatter_decimalSeparator :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setDecimalSeparator:", objc_name="setDecimalSeparator")
+    NumberFormatter_setDecimalSeparator :: proc(self: ^NumberFormatter, decimalSeparator: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="alwaysShowsDecimalSeparator", objc_name="alwaysShowsDecimalSeparator")
+    NumberFormatter_alwaysShowsDecimalSeparator :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setAlwaysShowsDecimalSeparator:", objc_name="setAlwaysShowsDecimalSeparator")
+    NumberFormatter_setAlwaysShowsDecimalSeparator :: proc(self: ^NumberFormatter, alwaysShowsDecimalSeparator: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="currencyDecimalSeparator", objc_name="currencyDecimalSeparator")
+    NumberFormatter_currencyDecimalSeparator :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setCurrencyDecimalSeparator:", objc_name="setCurrencyDecimalSeparator")
+    NumberFormatter_setCurrencyDecimalSeparator :: proc(self: ^NumberFormatter, currencyDecimalSeparator: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="usesGroupingSeparator", objc_name="usesGroupingSeparator")
+    NumberFormatter_usesGroupingSeparator :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setUsesGroupingSeparator:", objc_name="setUsesGroupingSeparator")
+    NumberFormatter_setUsesGroupingSeparator :: proc(self: ^NumberFormatter, usesGroupingSeparator: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="groupingSeparator", objc_name="groupingSeparator")
+    NumberFormatter_groupingSeparator :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setGroupingSeparator:", objc_name="setGroupingSeparator")
+    NumberFormatter_setGroupingSeparator :: proc(self: ^NumberFormatter, groupingSeparator: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="zeroSymbol", objc_name="zeroSymbol")
+    NumberFormatter_zeroSymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setZeroSymbol:", objc_name="setZeroSymbol")
+    NumberFormatter_setZeroSymbol :: proc(self: ^NumberFormatter, zeroSymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="textAttributesForZero", objc_name="textAttributesForZero")
+    NumberFormatter_textAttributesForZero :: proc(self: ^NumberFormatter) -> ^Dictionary ---
+
+    @(objc_type=NumberFormatter, objc_selector="setTextAttributesForZero:", objc_name="setTextAttributesForZero")
+    NumberFormatter_setTextAttributesForZero :: proc(self: ^NumberFormatter, textAttributesForZero: ^Dictionary) ---
+
+    @(objc_type=NumberFormatter, objc_selector="nilSymbol", objc_name="nilSymbol")
+    NumberFormatter_nilSymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setNilSymbol:", objc_name="setNilSymbol")
+    NumberFormatter_setNilSymbol :: proc(self: ^NumberFormatter, nilSymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="textAttributesForNil", objc_name="textAttributesForNil")
+    NumberFormatter_textAttributesForNil :: proc(self: ^NumberFormatter) -> ^Dictionary ---
+
+    @(objc_type=NumberFormatter, objc_selector="setTextAttributesForNil:", objc_name="setTextAttributesForNil")
+    NumberFormatter_setTextAttributesForNil :: proc(self: ^NumberFormatter, textAttributesForNil: ^Dictionary) ---
+
+    @(objc_type=NumberFormatter, objc_selector="notANumberSymbol", objc_name="notANumberSymbol")
+    NumberFormatter_notANumberSymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setNotANumberSymbol:", objc_name="setNotANumberSymbol")
+    NumberFormatter_setNotANumberSymbol :: proc(self: ^NumberFormatter, notANumberSymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="textAttributesForNotANumber", objc_name="textAttributesForNotANumber")
+    NumberFormatter_textAttributesForNotANumber :: proc(self: ^NumberFormatter) -> ^Dictionary ---
+
+    @(objc_type=NumberFormatter, objc_selector="setTextAttributesForNotANumber:", objc_name="setTextAttributesForNotANumber")
+    NumberFormatter_setTextAttributesForNotANumber :: proc(self: ^NumberFormatter, textAttributesForNotANumber: ^Dictionary) ---
+
+    @(objc_type=NumberFormatter, objc_selector="positiveInfinitySymbol", objc_name="positiveInfinitySymbol")
+    NumberFormatter_positiveInfinitySymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPositiveInfinitySymbol:", objc_name="setPositiveInfinitySymbol")
+    NumberFormatter_setPositiveInfinitySymbol :: proc(self: ^NumberFormatter, positiveInfinitySymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="textAttributesForPositiveInfinity", objc_name="textAttributesForPositiveInfinity")
+    NumberFormatter_textAttributesForPositiveInfinity :: proc(self: ^NumberFormatter) -> ^Dictionary ---
+
+    @(objc_type=NumberFormatter, objc_selector="setTextAttributesForPositiveInfinity:", objc_name="setTextAttributesForPositiveInfinity")
+    NumberFormatter_setTextAttributesForPositiveInfinity :: proc(self: ^NumberFormatter, textAttributesForPositiveInfinity: ^Dictionary) ---
+
+    @(objc_type=NumberFormatter, objc_selector="negativeInfinitySymbol", objc_name="negativeInfinitySymbol")
+    NumberFormatter_negativeInfinitySymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setNegativeInfinitySymbol:", objc_name="setNegativeInfinitySymbol")
+    NumberFormatter_setNegativeInfinitySymbol :: proc(self: ^NumberFormatter, negativeInfinitySymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="textAttributesForNegativeInfinity", objc_name="textAttributesForNegativeInfinity")
+    NumberFormatter_textAttributesForNegativeInfinity :: proc(self: ^NumberFormatter) -> ^Dictionary ---
+
+    @(objc_type=NumberFormatter, objc_selector="setTextAttributesForNegativeInfinity:", objc_name="setTextAttributesForNegativeInfinity")
+    NumberFormatter_setTextAttributesForNegativeInfinity :: proc(self: ^NumberFormatter, textAttributesForNegativeInfinity: ^Dictionary) ---
+
+    @(objc_type=NumberFormatter, objc_selector="positivePrefix", objc_name="positivePrefix")
+    NumberFormatter_positivePrefix :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPositivePrefix:", objc_name="setPositivePrefix")
+    NumberFormatter_setPositivePrefix :: proc(self: ^NumberFormatter, positivePrefix: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="positiveSuffix", objc_name="positiveSuffix")
+    NumberFormatter_positiveSuffix :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPositiveSuffix:", objc_name="setPositiveSuffix")
+    NumberFormatter_setPositiveSuffix :: proc(self: ^NumberFormatter, positiveSuffix: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="negativePrefix", objc_name="negativePrefix")
+    NumberFormatter_negativePrefix :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setNegativePrefix:", objc_name="setNegativePrefix")
+    NumberFormatter_setNegativePrefix :: proc(self: ^NumberFormatter, negativePrefix: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="negativeSuffix", objc_name="negativeSuffix")
+    NumberFormatter_negativeSuffix :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setNegativeSuffix:", objc_name="setNegativeSuffix")
+    NumberFormatter_setNegativeSuffix :: proc(self: ^NumberFormatter, negativeSuffix: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="currencyCode", objc_name="currencyCode")
+    NumberFormatter_currencyCode :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setCurrencyCode:", objc_name="setCurrencyCode")
+    NumberFormatter_setCurrencyCode :: proc(self: ^NumberFormatter, currencyCode: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="currencySymbol", objc_name="currencySymbol")
+    NumberFormatter_currencySymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setCurrencySymbol:", objc_name="setCurrencySymbol")
+    NumberFormatter_setCurrencySymbol :: proc(self: ^NumberFormatter, currencySymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="internationalCurrencySymbol", objc_name="internationalCurrencySymbol")
+    NumberFormatter_internationalCurrencySymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setInternationalCurrencySymbol:", objc_name="setInternationalCurrencySymbol")
+    NumberFormatter_setInternationalCurrencySymbol :: proc(self: ^NumberFormatter, internationalCurrencySymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="percentSymbol", objc_name="percentSymbol")
+    NumberFormatter_percentSymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPercentSymbol:", objc_name="setPercentSymbol")
+    NumberFormatter_setPercentSymbol :: proc(self: ^NumberFormatter, percentSymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="perMillSymbol", objc_name="perMillSymbol")
+    NumberFormatter_perMillSymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPerMillSymbol:", objc_name="setPerMillSymbol")
+    NumberFormatter_setPerMillSymbol :: proc(self: ^NumberFormatter, perMillSymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="minusSign", objc_name="minusSign")
+    NumberFormatter_minusSign :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMinusSign:", objc_name="setMinusSign")
+    NumberFormatter_setMinusSign :: proc(self: ^NumberFormatter, minusSign: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="plusSign", objc_name="plusSign")
+    NumberFormatter_plusSign :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPlusSign:", objc_name="setPlusSign")
+    NumberFormatter_setPlusSign :: proc(self: ^NumberFormatter, plusSign: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="exponentSymbol", objc_name="exponentSymbol")
+    NumberFormatter_exponentSymbol :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setExponentSymbol:", objc_name="setExponentSymbol")
+    NumberFormatter_setExponentSymbol :: proc(self: ^NumberFormatter, exponentSymbol: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="groupingSize", objc_name="groupingSize")
+    NumberFormatter_groupingSize :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setGroupingSize:", objc_name="setGroupingSize")
+    NumberFormatter_setGroupingSize :: proc(self: ^NumberFormatter, groupingSize: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="secondaryGroupingSize", objc_name="secondaryGroupingSize")
+    NumberFormatter_secondaryGroupingSize :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setSecondaryGroupingSize:", objc_name="setSecondaryGroupingSize")
+    NumberFormatter_setSecondaryGroupingSize :: proc(self: ^NumberFormatter, secondaryGroupingSize: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="multiplier", objc_name="multiplier")
+    NumberFormatter_multiplier :: proc(self: ^NumberFormatter) -> ^Number ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMultiplier:", objc_name="setMultiplier")
+    NumberFormatter_setMultiplier :: proc(self: ^NumberFormatter, multiplier: ^Number) ---
+
+    @(objc_type=NumberFormatter, objc_selector="formatWidth", objc_name="formatWidth")
+    NumberFormatter_formatWidth :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setFormatWidth:", objc_name="setFormatWidth")
+    NumberFormatter_setFormatWidth :: proc(self: ^NumberFormatter, formatWidth: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="paddingCharacter", objc_name="paddingCharacter")
+    NumberFormatter_paddingCharacter :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPaddingCharacter:", objc_name="setPaddingCharacter")
+    NumberFormatter_setPaddingCharacter :: proc(self: ^NumberFormatter, paddingCharacter: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="paddingPosition", objc_name="paddingPosition")
+    NumberFormatter_paddingPosition :: proc(self: ^NumberFormatter) -> NumberFormatterPadPosition ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPaddingPosition:", objc_name="setPaddingPosition")
+    NumberFormatter_setPaddingPosition :: proc(self: ^NumberFormatter, paddingPosition: NumberFormatterPadPosition) ---
+
+    @(objc_type=NumberFormatter, objc_selector="roundingMode", objc_name="roundingMode")
+    NumberFormatter_roundingMode :: proc(self: ^NumberFormatter) -> NumberFormatterRoundingMode ---
+
+    @(objc_type=NumberFormatter, objc_selector="setRoundingMode:", objc_name="setRoundingMode")
+    NumberFormatter_setRoundingMode :: proc(self: ^NumberFormatter, roundingMode: NumberFormatterRoundingMode) ---
+
+    @(objc_type=NumberFormatter, objc_selector="roundingIncrement", objc_name="roundingIncrement")
+    NumberFormatter_roundingIncrement :: proc(self: ^NumberFormatter) -> ^Number ---
+
+    @(objc_type=NumberFormatter, objc_selector="setRoundingIncrement:", objc_name="setRoundingIncrement")
+    NumberFormatter_setRoundingIncrement :: proc(self: ^NumberFormatter, roundingIncrement: ^Number) ---
+
+    @(objc_type=NumberFormatter, objc_selector="minimumIntegerDigits", objc_name="minimumIntegerDigits")
+    NumberFormatter_minimumIntegerDigits :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMinimumIntegerDigits:", objc_name="setMinimumIntegerDigits")
+    NumberFormatter_setMinimumIntegerDigits :: proc(self: ^NumberFormatter, minimumIntegerDigits: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="maximumIntegerDigits", objc_name="maximumIntegerDigits")
+    NumberFormatter_maximumIntegerDigits :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMaximumIntegerDigits:", objc_name="setMaximumIntegerDigits")
+    NumberFormatter_setMaximumIntegerDigits :: proc(self: ^NumberFormatter, maximumIntegerDigits: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="minimumFractionDigits", objc_name="minimumFractionDigits")
+    NumberFormatter_minimumFractionDigits :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMinimumFractionDigits:", objc_name="setMinimumFractionDigits")
+    NumberFormatter_setMinimumFractionDigits :: proc(self: ^NumberFormatter, minimumFractionDigits: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="maximumFractionDigits", objc_name="maximumFractionDigits")
+    NumberFormatter_maximumFractionDigits :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMaximumFractionDigits:", objc_name="setMaximumFractionDigits")
+    NumberFormatter_setMaximumFractionDigits :: proc(self: ^NumberFormatter, maximumFractionDigits: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="minimum", objc_name="minimum")
+    NumberFormatter_minimum :: proc(self: ^NumberFormatter) -> ^Number ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMinimum:", objc_name="setMinimum")
+    NumberFormatter_setMinimum :: proc(self: ^NumberFormatter, minimum: ^Number) ---
+
+    @(objc_type=NumberFormatter, objc_selector="maximum", objc_name="maximum")
+    NumberFormatter_maximum :: proc(self: ^NumberFormatter) -> ^Number ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMaximum:", objc_name="setMaximum")
+    NumberFormatter_setMaximum :: proc(self: ^NumberFormatter, maximum: ^Number) ---
+
+    @(objc_type=NumberFormatter, objc_selector="currencyGroupingSeparator", objc_name="currencyGroupingSeparator")
+    NumberFormatter_currencyGroupingSeparator :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setCurrencyGroupingSeparator:", objc_name="setCurrencyGroupingSeparator")
+    NumberFormatter_setCurrencyGroupingSeparator :: proc(self: ^NumberFormatter, currencyGroupingSeparator: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="isLenient", objc_name="isLenient")
+    NumberFormatter_isLenient :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setLenient:", objc_name="setLenient")
+    NumberFormatter_setLenient :: proc(self: ^NumberFormatter, lenient: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="usesSignificantDigits", objc_name="usesSignificantDigits")
+    NumberFormatter_usesSignificantDigits :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setUsesSignificantDigits:", objc_name="setUsesSignificantDigits")
+    NumberFormatter_setUsesSignificantDigits :: proc(self: ^NumberFormatter, usesSignificantDigits: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="minimumSignificantDigits", objc_name="minimumSignificantDigits")
+    NumberFormatter_minimumSignificantDigits :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMinimumSignificantDigits:", objc_name="setMinimumSignificantDigits")
+    NumberFormatter_setMinimumSignificantDigits :: proc(self: ^NumberFormatter, minimumSignificantDigits: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="maximumSignificantDigits", objc_name="maximumSignificantDigits")
+    NumberFormatter_maximumSignificantDigits :: proc(self: ^NumberFormatter) -> UInteger ---
+
+    @(objc_type=NumberFormatter, objc_selector="setMaximumSignificantDigits:", objc_name="setMaximumSignificantDigits")
+    NumberFormatter_setMaximumSignificantDigits :: proc(self: ^NumberFormatter, maximumSignificantDigits: UInteger) ---
+
+    @(objc_type=NumberFormatter, objc_selector="isPartialStringValidationEnabled", objc_name="isPartialStringValidationEnabled")
+    NumberFormatter_isPartialStringValidationEnabled :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setPartialStringValidationEnabled:", objc_name="setPartialStringValidationEnabled")
+    NumberFormatter_setPartialStringValidationEnabled :: proc(self: ^NumberFormatter, partialStringValidationEnabled: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="hasThousandSeparators", objc_name="hasThousandSeparators")
+    NumberFormatter_hasThousandSeparators :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setHasThousandSeparators:", objc_name="setHasThousandSeparators")
+    NumberFormatter_setHasThousandSeparators :: proc(self: ^NumberFormatter, hasThousandSeparators: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="thousandSeparator", objc_name="thousandSeparator")
+    NumberFormatter_thousandSeparator :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setThousandSeparator:", objc_name="setThousandSeparator")
+    NumberFormatter_setThousandSeparator :: proc(self: ^NumberFormatter, thousandSeparator: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="localizesFormat", objc_name="localizesFormat")
+    NumberFormatter_localizesFormat :: proc(self: ^NumberFormatter) -> bool ---
+
+    @(objc_type=NumberFormatter, objc_selector="setLocalizesFormat:", objc_name="setLocalizesFormat")
+    NumberFormatter_setLocalizesFormat :: proc(self: ^NumberFormatter, localizesFormat: bool) ---
+
+    @(objc_type=NumberFormatter, objc_selector="format", objc_name="format")
+    NumberFormatter_format :: proc(self: ^NumberFormatter) -> ^String ---
+
+    @(objc_type=NumberFormatter, objc_selector="setFormat:", objc_name="setFormat")
+    NumberFormatter_setFormat :: proc(self: ^NumberFormatter, format: ^String) ---
+
+    @(objc_type=NumberFormatter, objc_selector="attributedStringForZero", objc_name="attributedStringForZero")
+    NumberFormatter_attributedStringForZero :: proc(self: ^NumberFormatter) -> ^AttributedString ---
+
+    @(objc_type=NumberFormatter, objc_selector="setAttributedStringForZero:", objc_name="setAttributedStringForZero")
+    NumberFormatter_setAttributedStringForZero :: proc(self: ^NumberFormatter, attributedStringForZero: ^AttributedString) ---
+
+    @(objc_type=NumberFormatter, objc_selector="attributedStringForNil", objc_name="attributedStringForNil")
+    NumberFormatter_attributedStringForNil :: proc(self: ^NumberFormatter) -> ^AttributedString ---
+
+    @(objc_type=NumberFormatter, objc_selector="setAttributedStringForNil:", objc_name="setAttributedStringForNil")
+    NumberFormatter_setAttributedStringForNil :: proc(self: ^NumberFormatter, attributedStringForNil: ^AttributedString) ---
+
+    @(objc_type=NumberFormatter, objc_selector="attributedStringForNotANumber", objc_name="attributedStringForNotANumber")
+    NumberFormatter_attributedStringForNotANumber :: proc(self: ^NumberFormatter) -> ^AttributedString ---
+
+    @(objc_type=NumberFormatter, objc_selector="setAttributedStringForNotANumber:", objc_name="setAttributedStringForNotANumber")
+    NumberFormatter_setAttributedStringForNotANumber :: proc(self: ^NumberFormatter, attributedStringForNotANumber: ^AttributedString) ---
+
+    @(objc_type=NumberFormatter, objc_selector="roundingBehavior", objc_name="roundingBehavior")
+    NumberFormatter_roundingBehavior :: proc(self: ^NumberFormatter) -> ^DecimalNumberHandler ---
+
+    @(objc_type=NumberFormatter, objc_selector="setRoundingBehavior:", objc_name="setRoundingBehavior")
+    NumberFormatter_setRoundingBehavior :: proc(self: ^NumberFormatter, roundingBehavior: ^DecimalNumberHandler) ---
+}

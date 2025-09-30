@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSScrubberFlowLayout
 ///
-@(objc_class="NSScrubberFlowLayout")
+@(objc_class="NSScrubberFlowLayout", objc_superclass=ScrubberLayout)
 ScrubberFlowLayout :: struct { using _: ScrubberLayout, }
 

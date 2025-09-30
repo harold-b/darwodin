@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSPort
 ///
-@(objc_class="NSPort")
+@(objc_class="NSPort", objc_superclass=Object)
 Port :: struct { using _: Object, 
     using _: Copying,
     using _: Coding,

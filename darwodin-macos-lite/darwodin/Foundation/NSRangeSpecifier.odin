@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSRangeSpecifier
 ///
-@(objc_class="NSRangeSpecifier")
+@(objc_class="NSRangeSpecifier", objc_superclass=ScriptObjectSpecifier)
 RangeSpecifier :: struct { using _: ScriptObjectSpecifier, }
 

@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSAssertionHandler
 ///
-@(objc_class="NSAssertionHandler")
+@(objc_class="NSAssertionHandler", objc_superclass=Object)
 AssertionHandler :: struct { using _: Object, }
 

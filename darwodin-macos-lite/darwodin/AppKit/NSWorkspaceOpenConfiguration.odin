@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSWorkspaceOpenConfiguration
 ///
-@(objc_class="NSWorkspaceOpenConfiguration")
+@(objc_class="NSWorkspaceOpenConfiguration", objc_superclass=NS.Object)
 WorkspaceOpenConfiguration :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

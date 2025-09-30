@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISearchToken
 ///
-@(objc_class="UISearchToken")
+@(objc_class="UISearchToken", objc_superclass=NS.Object)
 SearchToken :: struct { using _: NS.Object, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSViewAnimation
 ///
-@(objc_class="NSViewAnimation")
+@(objc_class="NSViewAnimation", objc_superclass=Animation)
 ViewAnimation :: struct { using _: Animation, }
 

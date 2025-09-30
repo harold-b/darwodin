@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTextRange
 ///
-@(objc_class="NSTextRange")
+@(objc_class="NSTextRange", objc_superclass=NS.Object)
 NSTextRange :: struct { using _: NS.Object, }
 

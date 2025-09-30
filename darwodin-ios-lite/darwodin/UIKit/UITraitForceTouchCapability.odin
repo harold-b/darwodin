@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitForceTouchCapability
 ///
-@(objc_class="UITraitForceTouchCapability")
+@(objc_class="UITraitForceTouchCapability", objc_superclass=NS.Object)
 TraitForceTouchCapability :: struct { using _: NS.Object, 
     using _: NSIntegerTraitDefinition,
 }

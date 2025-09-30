@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitCollection
 ///
-@(objc_class="UITraitCollection")
+@(objc_class="UITraitCollection", objc_superclass=NS.Object)
 TraitCollection :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

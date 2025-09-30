@@ -21,27 +21,23 @@ ActivityItemsConfigurationReading :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ActivityItemsConfigurationReading, objc_name="activityItemsConfigurationSupportsInteraction")
-ActivityItemsConfigurationReading_activityItemsConfigurationSupportsInteraction :: #force_inline proc "c" (self: ^ActivityItemsConfigurationReading, interaction: ^NS.String) -> bool {
-    return msgSend(bool, self, "activityItemsConfigurationSupportsInteraction:", interaction)
-}
-@(objc_type=ActivityItemsConfigurationReading, objc_name="activityItemsConfigurationMetadataForKey")
-ActivityItemsConfigurationReading_activityItemsConfigurationMetadataForKey :: #force_inline proc "c" (self: ^ActivityItemsConfigurationReading, key: ^NS.String) -> id {
-    return msgSend(id, self, "activityItemsConfigurationMetadataForKey:", key)
-}
-@(objc_type=ActivityItemsConfigurationReading, objc_name="activityItemsConfigurationMetadataForItemAtIndex")
-ActivityItemsConfigurationReading_activityItemsConfigurationMetadataForItemAtIndex :: #force_inline proc "c" (self: ^ActivityItemsConfigurationReading, index: NS.Integer, key: ^NS.String) -> id {
-    return msgSend(id, self, "activityItemsConfigurationMetadataForItemAtIndex:key:", index, key)
-}
-@(objc_type=ActivityItemsConfigurationReading, objc_name="activityItemsConfigurationPreviewForItemAtIndex")
-ActivityItemsConfigurationReading_activityItemsConfigurationPreviewForItemAtIndex :: #force_inline proc "c" (self: ^ActivityItemsConfigurationReading, index: NS.Integer, intent: ^NS.String, suggestedSize: CG.Size) -> ^NS.ItemProvider {
-    return msgSend(^NS.ItemProvider, self, "activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:", index, intent, suggestedSize)
-}
-@(objc_type=ActivityItemsConfigurationReading, objc_name="itemProvidersForActivityItemsConfiguration")
-ActivityItemsConfigurationReading_itemProvidersForActivityItemsConfiguration :: #force_inline proc "c" (self: ^ActivityItemsConfigurationReading) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "itemProvidersForActivityItemsConfiguration")
-}
-@(objc_type=ActivityItemsConfigurationReading, objc_name="applicationActivitiesForActivityItemsConfiguration")
-ActivityItemsConfigurationReading_applicationActivitiesForActivityItemsConfiguration :: #force_inline proc "c" (self: ^ActivityItemsConfigurationReading) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "applicationActivitiesForActivityItemsConfiguration")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ActivityItemsConfigurationReading, objc_selector="activityItemsConfigurationSupportsInteraction:", objc_name="activityItemsConfigurationSupportsInteraction")
+    ActivityItemsConfigurationReading_activityItemsConfigurationSupportsInteraction :: proc(self: ^ActivityItemsConfigurationReading, interaction: ^NS.String) -> bool ---
+
+    @(objc_type=ActivityItemsConfigurationReading, objc_selector="activityItemsConfigurationMetadataForKey:", objc_name="activityItemsConfigurationMetadataForKey")
+    ActivityItemsConfigurationReading_activityItemsConfigurationMetadataForKey :: proc(self: ^ActivityItemsConfigurationReading, key: ^NS.String) -> id ---
+
+    @(objc_type=ActivityItemsConfigurationReading, objc_selector="activityItemsConfigurationMetadataForItemAtIndex:key:", objc_name="activityItemsConfigurationMetadataForItemAtIndex")
+    ActivityItemsConfigurationReading_activityItemsConfigurationMetadataForItemAtIndex :: proc(self: ^ActivityItemsConfigurationReading, index: NS.Integer, key: ^NS.String) -> id ---
+
+    @(objc_type=ActivityItemsConfigurationReading, objc_selector="activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:", objc_name="activityItemsConfigurationPreviewForItemAtIndex")
+    ActivityItemsConfigurationReading_activityItemsConfigurationPreviewForItemAtIndex :: proc(self: ^ActivityItemsConfigurationReading, index: NS.Integer, intent: ^NS.String, suggestedSize: CG.Size) -> ^NS.ItemProvider ---
+
+    @(objc_type=ActivityItemsConfigurationReading, objc_selector="itemProvidersForActivityItemsConfiguration", objc_name="itemProvidersForActivityItemsConfiguration")
+    ActivityItemsConfigurationReading_itemProvidersForActivityItemsConfiguration :: proc(self: ^ActivityItemsConfigurationReading) -> ^NS.Array ---
+
+    @(objc_type=ActivityItemsConfigurationReading, objc_selector="applicationActivitiesForActivityItemsConfiguration", objc_name="applicationActivitiesForActivityItemsConfiguration")
+    ActivityItemsConfigurationReading_applicationActivitiesForActivityItemsConfiguration :: proc(self: ^ActivityItemsConfigurationReading) -> ^NS.Array ---
 }

@@ -20,7 +20,8 @@ LogState :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=LogState, objc_name="addLogHandler")
-LogState_addLogHandler :: #force_inline proc "c" (self: ^LogState, block: ^Objc_Block(proc "c" (subSystem: ^NS.String, category: ^NS.String, logLevel: LogLevel, message: ^NS.String))) {
-    msgSend(nil, self, "addLogHandler:", block)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LogState, objc_selector="addLogHandler:", objc_name="addLogHandler")
+    LogState_addLogHandler :: proc(self: ^LogState, block: ^Objc_Block(proc "c" (subSystem: ^NS.String, category: ^NS.String, logLevel: LogLevel, message: ^NS.String))) ---
 }

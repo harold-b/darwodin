@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSNumberFormatter
 ///
-@(objc_class="NSNumberFormatter")
+@(objc_class="NSNumberFormatter", objc_superclass=Formatter)
 NumberFormatter :: struct { using _: Formatter, }
 

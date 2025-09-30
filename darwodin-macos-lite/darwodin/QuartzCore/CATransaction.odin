@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CATransaction
 ///
-@(objc_class="CATransaction")
+@(objc_class="CATransaction", objc_superclass=NS.Object)
 Transaction :: struct { using _: NS.Object, }
 

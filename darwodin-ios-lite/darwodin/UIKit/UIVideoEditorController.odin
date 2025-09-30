@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIVideoEditorController
 ///
-@(objc_class="UIVideoEditorController")
+@(objc_class="UIVideoEditorController", objc_superclass=NavigationController)
 VideoEditorController :: struct { using _: NavigationController, }
 

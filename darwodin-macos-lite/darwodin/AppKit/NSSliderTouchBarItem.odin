@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSliderTouchBarItem
 ///
-@(objc_class="NSSliderTouchBarItem")
+@(objc_class="NSSliderTouchBarItem", objc_superclass=TouchBarItem)
 SliderTouchBarItem :: struct { using _: TouchBarItem, }
 

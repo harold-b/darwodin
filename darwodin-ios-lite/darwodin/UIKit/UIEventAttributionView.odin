@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIEventAttributionView
 ///
-@(objc_class="UIEventAttributionView")
+@(objc_class="UIEventAttributionView", objc_superclass=View)
 EventAttributionView :: struct { using _: View, }
 

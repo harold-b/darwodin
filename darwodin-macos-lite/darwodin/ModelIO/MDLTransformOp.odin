@@ -19,19 +19,17 @@ import AK "../AppKit"
 @(objc_class="MDLTransformOp")
 TransformOp :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=TransformOp, objc_name="float4x4AtTime")
-TransformOp_float4x4AtTime :: #force_inline proc "c" (self: ^TransformOp, time: NS.TimeInterval) -> matrix[4,4]f32 {
-    return msgSend(matrix[4,4]f32, self, "float4x4AtTime:", time)
-}
-@(objc_type=TransformOp, objc_name="double4x4AtTime")
-TransformOp_double4x4AtTime :: #force_inline proc "c" (self: ^TransformOp, time: NS.TimeInterval) -> matrix[4,4]f64 {
-    return msgSend(matrix[4,4]f64, self, "double4x4AtTime:", time)
-}
-@(objc_type=TransformOp, objc_name="IsInverseOp")
-TransformOp_IsInverseOp :: #force_inline proc "c" (self: ^TransformOp) -> cffi.bool {
-    return msgSend(cffi.bool, self, "IsInverseOp")
-}
-@(objc_type=TransformOp, objc_name="name")
-TransformOp_name :: #force_inline proc "c" (self: ^TransformOp) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TransformOp, objc_selector="float4x4AtTime:", objc_name="float4x4AtTime")
+    TransformOp_float4x4AtTime :: proc(self: ^TransformOp, time: NS.TimeInterval) -> matrix[4,4]f32 ---
+
+    @(objc_type=TransformOp, objc_selector="double4x4AtTime:", objc_name="double4x4AtTime")
+    TransformOp_double4x4AtTime :: proc(self: ^TransformOp, time: NS.TimeInterval) -> matrix[4,4]f64 ---
+
+    @(objc_type=TransformOp, objc_selector="IsInverseOp", objc_name="IsInverseOp")
+    TransformOp_IsInverseOp :: proc(self: ^TransformOp) -> cffi.bool ---
+
+    @(objc_type=TransformOp, objc_selector="name", objc_name="name")
+    TransformOp_name :: proc(self: ^TransformOp) -> ^NS.String ---
 }

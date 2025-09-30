@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTextInsertionIndicator
 ///
-@(objc_class="NSTextInsertionIndicator")
+@(objc_class="NSTextInsertionIndicator", objc_superclass=View)
 TextInsertionIndicator :: struct { using _: View, }
 

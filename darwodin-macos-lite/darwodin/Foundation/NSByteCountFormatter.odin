@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSByteCountFormatter
 ///
-@(objc_class="NSByteCountFormatter")
+@(objc_class="NSByteCountFormatter", objc_superclass=Formatter)
 ByteCountFormatter :: struct { using _: Formatter, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIStepper
 ///
-@(objc_class="UIStepper")
+@(objc_class="UIStepper", objc_superclass=Control)
 Stepper :: struct { using _: Control, }
 

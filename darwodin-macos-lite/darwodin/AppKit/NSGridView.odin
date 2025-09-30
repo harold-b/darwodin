@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSGridView
 ///
-@(objc_class="NSGridView")
+@(objc_class="NSGridView", objc_superclass=View)
 GridView :: struct { using _: View, }
 

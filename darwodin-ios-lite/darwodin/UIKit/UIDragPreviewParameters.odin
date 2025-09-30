@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDragPreviewParameters
 ///
-@(objc_class="UIDragPreviewParameters")
+@(objc_class="UIDragPreviewParameters", objc_superclass=PreviewParameters)
 DragPreviewParameters :: struct { using _: PreviewParameters, }
 

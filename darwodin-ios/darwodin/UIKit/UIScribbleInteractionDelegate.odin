@@ -21,19 +21,17 @@ ScribbleInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ScribbleInteractionDelegate, objc_name="scribbleInteraction")
-ScribbleInteractionDelegate_scribbleInteraction :: #force_inline proc "c" (self: ^ScribbleInteractionDelegate, interaction: ^ScribbleInteraction, location: CG.Point) -> bool {
-    return msgSend(bool, self, "scribbleInteraction:shouldBeginAtLocation:", interaction, location)
-}
-@(objc_type=ScribbleInteractionDelegate, objc_name="scribbleInteractionShouldDelayFocus")
-ScribbleInteractionDelegate_scribbleInteractionShouldDelayFocus :: #force_inline proc "c" (self: ^ScribbleInteractionDelegate, interaction: ^ScribbleInteraction) -> bool {
-    return msgSend(bool, self, "scribbleInteractionShouldDelayFocus:", interaction)
-}
-@(objc_type=ScribbleInteractionDelegate, objc_name="scribbleInteractionWillBeginWriting")
-ScribbleInteractionDelegate_scribbleInteractionWillBeginWriting :: #force_inline proc "c" (self: ^ScribbleInteractionDelegate, interaction: ^ScribbleInteraction) {
-    msgSend(nil, self, "scribbleInteractionWillBeginWriting:", interaction)
-}
-@(objc_type=ScribbleInteractionDelegate, objc_name="scribbleInteractionDidFinishWriting")
-ScribbleInteractionDelegate_scribbleInteractionDidFinishWriting :: #force_inline proc "c" (self: ^ScribbleInteractionDelegate, interaction: ^ScribbleInteraction) {
-    msgSend(nil, self, "scribbleInteractionDidFinishWriting:", interaction)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ScribbleInteractionDelegate, objc_selector="scribbleInteraction:shouldBeginAtLocation:", objc_name="scribbleInteraction")
+    ScribbleInteractionDelegate_scribbleInteraction :: proc(self: ^ScribbleInteractionDelegate, interaction: ^ScribbleInteraction, location: CG.Point) -> bool ---
+
+    @(objc_type=ScribbleInteractionDelegate, objc_selector="scribbleInteractionShouldDelayFocus:", objc_name="scribbleInteractionShouldDelayFocus")
+    ScribbleInteractionDelegate_scribbleInteractionShouldDelayFocus :: proc(self: ^ScribbleInteractionDelegate, interaction: ^ScribbleInteraction) -> bool ---
+
+    @(objc_type=ScribbleInteractionDelegate, objc_selector="scribbleInteractionWillBeginWriting:", objc_name="scribbleInteractionWillBeginWriting")
+    ScribbleInteractionDelegate_scribbleInteractionWillBeginWriting :: proc(self: ^ScribbleInteractionDelegate, interaction: ^ScribbleInteraction) ---
+
+    @(objc_type=ScribbleInteractionDelegate, objc_selector="scribbleInteractionDidFinishWriting:", objc_name="scribbleInteractionDidFinishWriting")
+    ScribbleInteractionDelegate_scribbleInteractionDidFinishWriting :: proc(self: ^ScribbleInteractionDelegate, interaction: ^ScribbleInteraction) ---
 }

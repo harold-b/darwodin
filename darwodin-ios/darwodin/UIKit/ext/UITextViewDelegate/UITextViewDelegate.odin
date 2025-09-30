@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -133,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_editMenuForTextInRange_suggestedActions(self, textView, range, suggestedActions)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:editMenuForTextInRange:suggestedActions:"), auto_cast textView_editMenuForTextInRange_suggestedActions, "@@:@{_NSRange=LL}@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:editMenuForTextInRange:suggestedActions:"), auto_cast textView_editMenuForTextInRange_suggestedActions, "@@:@{_NSRange=LL}^void") do panic("Failed to register objC method.")
     }
     if vt.textView_willPresentEditMenuWithAnimator != nil {
         textView_willPresentEditMenuWithAnimator :: proc "c" (self: ^UI.TextViewDelegate, _: SEL, textView: ^UI.TextView, animator: ^UI.EditMenuInteractionAnimating) {
@@ -223,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).textView_writingToolsIgnoredRangesInEnclosingRange(self, textView, enclosingRange)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:writingToolsIgnoredRangesInEnclosingRange:"), auto_cast textView_writingToolsIgnoredRangesInEnclosingRange, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:writingToolsIgnoredRangesInEnclosingRange:"), auto_cast textView_writingToolsIgnoredRangesInEnclosingRange, "^void@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.textView_shouldInteractWithURL_inRange_interaction != nil {
         textView_shouldInteractWithURL_inRange_interaction :: proc "c" (self: ^UI.TextViewDelegate, _: SEL, textView: ^UI.TextView, _URL: ^NS.URL, characterRange: NS._NSRange, interaction: UI.TextItemInteraction) -> bool {

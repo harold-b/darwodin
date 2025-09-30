@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITrackingLayoutGuide
 ///
-@(objc_class="UITrackingLayoutGuide")
+@(objc_class="UITrackingLayoutGuide", objc_superclass=LayoutGuide)
 TrackingLayoutGuide :: struct { using _: LayoutGuide, }
 

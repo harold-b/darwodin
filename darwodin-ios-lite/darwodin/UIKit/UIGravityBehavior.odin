@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIGravityBehavior
 ///
-@(objc_class="UIGravityBehavior")
+@(objc_class="UIGravityBehavior", objc_superclass=DynamicBehavior)
 GravityBehavior :: struct { using _: DynamicBehavior, }
 

@@ -21,15 +21,14 @@ AccessibilitySwitch :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityButton,
 }
 
-@(objc_type=AccessibilitySwitch, objc_name="accessibilityValue")
-AccessibilitySwitch_accessibilityValue :: #force_inline proc "c" (self: ^AccessibilitySwitch) -> ^NS.String {
-    return msgSend(^NS.String, self, "accessibilityValue")
-}
-@(objc_type=AccessibilitySwitch, objc_name="accessibilityPerformIncrement")
-AccessibilitySwitch_accessibilityPerformIncrement :: #force_inline proc "c" (self: ^AccessibilitySwitch) -> bool {
-    return msgSend(bool, self, "accessibilityPerformIncrement")
-}
-@(objc_type=AccessibilitySwitch, objc_name="accessibilityPerformDecrement")
-AccessibilitySwitch_accessibilityPerformDecrement :: #force_inline proc "c" (self: ^AccessibilitySwitch) -> bool {
-    return msgSend(bool, self, "accessibilityPerformDecrement")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilitySwitch, objc_selector="accessibilityValue", objc_name="accessibilityValue")
+    AccessibilitySwitch_accessibilityValue :: proc(self: ^AccessibilitySwitch) -> ^NS.String ---
+
+    @(objc_type=AccessibilitySwitch, objc_selector="accessibilityPerformIncrement", objc_name="accessibilityPerformIncrement")
+    AccessibilitySwitch_accessibilityPerformIncrement :: proc(self: ^AccessibilitySwitch) -> bool ---
+
+    @(objc_type=AccessibilitySwitch, objc_selector="accessibilityPerformDecrement", objc_name="accessibilityPerformDecrement")
+    AccessibilitySwitch_accessibilityPerformDecrement :: proc(self: ^AccessibilitySwitch) -> bool ---
 }

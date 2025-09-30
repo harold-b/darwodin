@@ -19,39 +19,32 @@ SwitchPositionInput :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SwitchPositionInput, objc_name="positionDidChangeHandler")
-SwitchPositionInput_positionDidChangeHandler :: #force_inline proc "c" (self: ^SwitchPositionInput) -> ^Objc_Block(proc "c" ()) {
-    return msgSend(^Objc_Block(proc "c" ()), self, "positionDidChangeHandler")
-}
-@(objc_type=SwitchPositionInput, objc_name="setPositionDidChangeHandler")
-SwitchPositionInput_setPositionDidChangeHandler :: #force_inline proc "c" (self: ^SwitchPositionInput, positionDidChangeHandler: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "setPositionDidChangeHandler:", positionDidChangeHandler)
-}
-@(objc_type=SwitchPositionInput, objc_name="position")
-SwitchPositionInput_position :: #force_inline proc "c" (self: ^SwitchPositionInput) -> NS.Integer {
-    return msgSend(NS.Integer, self, "position")
-}
-@(objc_type=SwitchPositionInput, objc_name="positionRange")
-SwitchPositionInput_positionRange :: #force_inline proc "c" (self: ^SwitchPositionInput) -> NS._NSRange {
-    return msgSend(NS._NSRange, self, "positionRange")
-}
-@(objc_type=SwitchPositionInput, objc_name="isSequential")
-SwitchPositionInput_isSequential :: #force_inline proc "c" (self: ^SwitchPositionInput) -> bool {
-    return msgSend(bool, self, "isSequential")
-}
-@(objc_type=SwitchPositionInput, objc_name="canWrap")
-SwitchPositionInput_canWrap :: #force_inline proc "c" (self: ^SwitchPositionInput) -> bool {
-    return msgSend(bool, self, "canWrap")
-}
-@(objc_type=SwitchPositionInput, objc_name="lastPositionTimestamp")
-SwitchPositionInput_lastPositionTimestamp :: #force_inline proc "c" (self: ^SwitchPositionInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastPositionTimestamp")
-}
-@(objc_type=SwitchPositionInput, objc_name="lastPositionLatency")
-SwitchPositionInput_lastPositionLatency :: #force_inline proc "c" (self: ^SwitchPositionInput) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "lastPositionLatency")
-}
-@(objc_type=SwitchPositionInput, objc_name="sources")
-SwitchPositionInput_sources :: #force_inline proc "c" (self: ^SwitchPositionInput) -> ^NS.Set {
-    return msgSend(^NS.Set, self, "sources")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SwitchPositionInput, objc_selector="positionDidChangeHandler", objc_name="positionDidChangeHandler")
+    SwitchPositionInput_positionDidChangeHandler :: proc(self: ^SwitchPositionInput) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=SwitchPositionInput, objc_selector="setPositionDidChangeHandler:", objc_name="setPositionDidChangeHandler")
+    SwitchPositionInput_setPositionDidChangeHandler :: proc(self: ^SwitchPositionInput, positionDidChangeHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=SwitchPositionInput, objc_selector="position", objc_name="position")
+    SwitchPositionInput_position :: proc(self: ^SwitchPositionInput) -> NS.Integer ---
+
+    @(objc_type=SwitchPositionInput, objc_selector="positionRange", objc_name="positionRange")
+    SwitchPositionInput_positionRange :: proc(self: ^SwitchPositionInput) -> NS._NSRange ---
+
+    @(objc_type=SwitchPositionInput, objc_selector="isSequential", objc_name="isSequential")
+    SwitchPositionInput_isSequential :: proc(self: ^SwitchPositionInput) -> bool ---
+
+    @(objc_type=SwitchPositionInput, objc_selector="canWrap", objc_name="canWrap")
+    SwitchPositionInput_canWrap :: proc(self: ^SwitchPositionInput) -> bool ---
+
+    @(objc_type=SwitchPositionInput, objc_selector="lastPositionTimestamp", objc_name="lastPositionTimestamp")
+    SwitchPositionInput_lastPositionTimestamp :: proc(self: ^SwitchPositionInput) -> NS.TimeInterval ---
+
+    @(objc_type=SwitchPositionInput, objc_selector="lastPositionLatency", objc_name="lastPositionLatency")
+    SwitchPositionInput_lastPositionLatency :: proc(self: ^SwitchPositionInput) -> NS.TimeInterval ---
+
+    @(objc_type=SwitchPositionInput, objc_selector="sources", objc_name="sources")
+    SwitchPositionInput_sources :: proc(self: ^SwitchPositionInput) -> ^NS.Set ---
 }

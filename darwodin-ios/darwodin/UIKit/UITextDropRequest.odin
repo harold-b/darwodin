@@ -21,19 +21,17 @@ TextDropRequest :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextDropRequest, objc_name="dropPosition")
-TextDropRequest_dropPosition :: #force_inline proc "c" (self: ^TextDropRequest) -> ^TextPosition {
-    return msgSend(^TextPosition, self, "dropPosition")
-}
-@(objc_type=TextDropRequest, objc_name="suggestedProposal")
-TextDropRequest_suggestedProposal :: #force_inline proc "c" (self: ^TextDropRequest) -> ^TextDropProposal {
-    return msgSend(^TextDropProposal, self, "suggestedProposal")
-}
-@(objc_type=TextDropRequest, objc_name="isSameView")
-TextDropRequest_isSameView :: #force_inline proc "c" (self: ^TextDropRequest) -> bool {
-    return msgSend(bool, self, "isSameView")
-}
-@(objc_type=TextDropRequest, objc_name="dropSession")
-TextDropRequest_dropSession :: #force_inline proc "c" (self: ^TextDropRequest) -> ^DropSession {
-    return msgSend(^DropSession, self, "dropSession")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextDropRequest, objc_selector="dropPosition", objc_name="dropPosition")
+    TextDropRequest_dropPosition :: proc(self: ^TextDropRequest) -> ^TextPosition ---
+
+    @(objc_type=TextDropRequest, objc_selector="suggestedProposal", objc_name="suggestedProposal")
+    TextDropRequest_suggestedProposal :: proc(self: ^TextDropRequest) -> ^TextDropProposal ---
+
+    @(objc_type=TextDropRequest, objc_selector="isSameView", objc_name="isSameView")
+    TextDropRequest_isSameView :: proc(self: ^TextDropRequest) -> bool ---
+
+    @(objc_type=TextDropRequest, objc_selector="dropSession", objc_name="dropSession")
+    TextDropRequest_dropSession :: proc(self: ^TextDropRequest) -> ^DropSession ---
 }

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 @(objc_class="UIObjectRestoration")
 ObjectRestoration :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=ObjectRestoration, objc_name="objectWithRestorationIdentifierPath", objc_is_class_method=true)
-ObjectRestoration_objectWithRestorationIdentifierPath :: #force_inline proc "c" (identifierComponents: ^NS.Array, coder: ^NS.Coder) -> ^StateRestoring {
-    return msgSend(^StateRestoring, ObjectRestoration, "objectWithRestorationIdentifierPath:coder:", identifierComponents, coder)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ObjectRestoration, objc_selector="objectWithRestorationIdentifierPath:coder:", objc_name="objectWithRestorationIdentifierPath", objc_is_class_method=true)
+    ObjectRestoration_objectWithRestorationIdentifierPath :: proc(identifierComponents: ^NS.Array, coder: ^NS.Coder) -> ^StateRestoring ---
 }

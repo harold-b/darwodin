@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTableRowView
 ///
-@(objc_class="NSTableRowView")
+@(objc_class="NSTableRowView", objc_superclass=View)
 TableRowView :: struct { using _: View, 
     using _: AccessibilityRow,
 }

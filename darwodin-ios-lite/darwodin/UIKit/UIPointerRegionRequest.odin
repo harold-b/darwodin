@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPointerRegionRequest
 ///
-@(objc_class="UIPointerRegionRequest")
+@(objc_class="UIPointerRegionRequest", objc_superclass=NS.Object)
 PointerRegionRequest :: struct { using _: NS.Object, }
 

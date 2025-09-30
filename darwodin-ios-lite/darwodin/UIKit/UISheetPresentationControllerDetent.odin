@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UISheetPresentationControllerDetent
 ///
-@(objc_class="UISheetPresentationControllerDetent")
+@(objc_class="UISheetPresentationControllerDetent", objc_superclass=NS.Object)
 SheetPresentationControllerDetent :: struct { using _: NS.Object, }
 

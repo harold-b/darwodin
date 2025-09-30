@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIImageView
 ///
-@(objc_class="UIImageView")
+@(objc_class="UIImageView", objc_superclass=View)
 ImageView :: struct { using _: View, }
 

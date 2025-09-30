@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIActionSheet
 ///
-@(objc_class="UIActionSheet")
+@(objc_class="UIActionSheet", objc_superclass=View)
 ActionSheet :: struct { using _: View, }
 

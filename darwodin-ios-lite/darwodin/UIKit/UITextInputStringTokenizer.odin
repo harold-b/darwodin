@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITextInputStringTokenizer
 ///
-@(objc_class="UITextInputStringTokenizer")
+@(objc_class="UITextInputStringTokenizer", objc_superclass=NS.Object)
 TextInputStringTokenizer :: struct { using _: NS.Object, 
     using _: TextInputTokenizer,
 }

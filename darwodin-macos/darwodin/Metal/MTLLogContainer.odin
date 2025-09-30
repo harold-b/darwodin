@@ -21,3 +21,5 @@ LogContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.FastEnumeration,
 }
 
+@(default_calling_convention="c")
+foreign lib {}

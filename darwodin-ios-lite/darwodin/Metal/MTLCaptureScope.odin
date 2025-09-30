@@ -20,27 +20,23 @@ CaptureScope :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CaptureScope, objc_name="beginScope")
-CaptureScope_beginScope :: #force_inline proc "c" (self: ^CaptureScope) {
-    msgSend(nil, self, "beginScope")
-}
-@(objc_type=CaptureScope, objc_name="endScope")
-CaptureScope_endScope :: #force_inline proc "c" (self: ^CaptureScope) {
-    msgSend(nil, self, "endScope")
-}
-@(objc_type=CaptureScope, objc_name="label")
-CaptureScope_label :: #force_inline proc "c" (self: ^CaptureScope) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=CaptureScope, objc_name="setLabel")
-CaptureScope_setLabel :: #force_inline proc "c" (self: ^CaptureScope, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
-}
-@(objc_type=CaptureScope, objc_name="device")
-CaptureScope_device :: #force_inline proc "c" (self: ^CaptureScope) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=CaptureScope, objc_name="commandQueue")
-CaptureScope_commandQueue :: #force_inline proc "c" (self: ^CaptureScope) -> ^CommandQueue {
-    return msgSend(^CommandQueue, self, "commandQueue")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CaptureScope, objc_selector="beginScope", objc_name="beginScope")
+    CaptureScope_beginScope :: proc(self: ^CaptureScope) ---
+
+    @(objc_type=CaptureScope, objc_selector="endScope", objc_name="endScope")
+    CaptureScope_endScope :: proc(self: ^CaptureScope) ---
+
+    @(objc_type=CaptureScope, objc_selector="label", objc_name="label")
+    CaptureScope_label :: proc(self: ^CaptureScope) -> ^NS.String ---
+
+    @(objc_type=CaptureScope, objc_selector="setLabel:", objc_name="setLabel")
+    CaptureScope_setLabel :: proc(self: ^CaptureScope, label: ^NS.String) ---
+
+    @(objc_type=CaptureScope, objc_selector="device", objc_name="device")
+    CaptureScope_device :: proc(self: ^CaptureScope) -> ^Device ---
+
+    @(objc_type=CaptureScope, objc_selector="commandQueue", objc_name="commandQueue")
+    CaptureScope_commandQueue :: proc(self: ^CaptureScope) -> ^CommandQueue ---
 }

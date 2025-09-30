@@ -18,7 +18,8 @@ GameModelPlayer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=GameModelPlayer, objc_name="playerId")
-GameModelPlayer_playerId :: #force_inline proc "c" (self: ^GameModelPlayer) -> NS.Integer {
-    return msgSend(NS.Integer, self, "playerId")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=GameModelPlayer, objc_selector="playerId", objc_name="playerId")
+    GameModelPlayer_playerId :: proc(self: ^GameModelPlayer) -> NS.Integer ---
 }

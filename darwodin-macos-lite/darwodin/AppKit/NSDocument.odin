@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSDocument
 ///
-@(objc_class="NSDocument")
+@(objc_class="NSDocument", objc_superclass=NS.Object)
 Document :: struct { using _: NS.Object, 
     using _: EditorRegistration,
     using _: NS.FilePresenter,

@@ -21,27 +21,23 @@ TextFinderBarContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextFinderBarContainer, objc_name="findBarViewDidChangeHeight")
-TextFinderBarContainer_findBarViewDidChangeHeight :: #force_inline proc "c" (self: ^TextFinderBarContainer) {
-    msgSend(nil, self, "findBarViewDidChangeHeight")
-}
-@(objc_type=TextFinderBarContainer, objc_name="contentView")
-TextFinderBarContainer_contentView :: #force_inline proc "c" (self: ^TextFinderBarContainer) -> ^View {
-    return msgSend(^View, self, "contentView")
-}
-@(objc_type=TextFinderBarContainer, objc_name="findBarView")
-TextFinderBarContainer_findBarView :: #force_inline proc "c" (self: ^TextFinderBarContainer) -> ^View {
-    return msgSend(^View, self, "findBarView")
-}
-@(objc_type=TextFinderBarContainer, objc_name="setFindBarView")
-TextFinderBarContainer_setFindBarView :: #force_inline proc "c" (self: ^TextFinderBarContainer, findBarView: ^View) {
-    msgSend(nil, self, "setFindBarView:", findBarView)
-}
-@(objc_type=TextFinderBarContainer, objc_name="isFindBarVisible")
-TextFinderBarContainer_isFindBarVisible :: #force_inline proc "c" (self: ^TextFinderBarContainer) -> bool {
-    return msgSend(bool, self, "isFindBarVisible")
-}
-@(objc_type=TextFinderBarContainer, objc_name="setFindBarVisible")
-TextFinderBarContainer_setFindBarVisible :: #force_inline proc "c" (self: ^TextFinderBarContainer, findBarVisible: bool) {
-    msgSend(nil, self, "setFindBarVisible:", findBarVisible)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextFinderBarContainer, objc_selector="findBarViewDidChangeHeight", objc_name="findBarViewDidChangeHeight")
+    TextFinderBarContainer_findBarViewDidChangeHeight :: proc(self: ^TextFinderBarContainer) ---
+
+    @(objc_type=TextFinderBarContainer, objc_selector="contentView", objc_name="contentView")
+    TextFinderBarContainer_contentView :: proc(self: ^TextFinderBarContainer) -> ^View ---
+
+    @(objc_type=TextFinderBarContainer, objc_selector="findBarView", objc_name="findBarView")
+    TextFinderBarContainer_findBarView :: proc(self: ^TextFinderBarContainer) -> ^View ---
+
+    @(objc_type=TextFinderBarContainer, objc_selector="setFindBarView:", objc_name="setFindBarView")
+    TextFinderBarContainer_setFindBarView :: proc(self: ^TextFinderBarContainer, findBarView: ^View) ---
+
+    @(objc_type=TextFinderBarContainer, objc_selector="isFindBarVisible", objc_name="isFindBarVisible")
+    TextFinderBarContainer_isFindBarVisible :: proc(self: ^TextFinderBarContainer) -> bool ---
+
+    @(objc_type=TextFinderBarContainer, objc_selector="setFindBarVisible:", objc_name="setFindBarVisible")
+    TextFinderBarContainer_setFindBarVisible :: proc(self: ^TextFinderBarContainer, findBarVisible: bool) ---
 }

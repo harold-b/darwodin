@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSDecimalNumberHandler
 ///
-@(objc_class="NSDecimalNumberHandler")
+@(objc_class="NSDecimalNumberHandler", objc_superclass=Object)
 DecimalNumberHandler :: struct { using _: Object, 
     using _: DecimalNumberBehaviors,
     using _: Coding,

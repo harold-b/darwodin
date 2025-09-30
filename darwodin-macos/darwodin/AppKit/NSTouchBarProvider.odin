@@ -21,7 +21,8 @@ TouchBarProvider :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TouchBarProvider, objc_name="touchBar")
-TouchBarProvider_touchBar :: #force_inline proc "c" (self: ^TouchBarProvider) -> ^TouchBar {
-    return msgSend(^TouchBar, self, "touchBar")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TouchBarProvider, objc_selector="touchBar", objc_name="touchBar")
+    TouchBarProvider_touchBar :: proc(self: ^TouchBarProvider) -> ^TouchBar ---
 }

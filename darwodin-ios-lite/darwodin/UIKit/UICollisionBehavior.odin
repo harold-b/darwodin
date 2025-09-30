@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICollisionBehavior
 ///
-@(objc_class="UICollisionBehavior")
+@(objc_class="UICollisionBehavior", objc_superclass=DynamicBehavior)
 CollisionBehavior :: struct { using _: DynamicBehavior, }
 

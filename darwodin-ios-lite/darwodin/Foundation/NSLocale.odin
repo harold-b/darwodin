@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSLocale
 ///
-@(objc_class="NSLocale")
+@(objc_class="NSLocale", objc_superclass=Object)
 Locale :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSScroller
 ///
-@(objc_class="NSScroller")
+@(objc_class="NSScroller", objc_superclass=Control)
 Scroller :: struct { using _: Control, }
 

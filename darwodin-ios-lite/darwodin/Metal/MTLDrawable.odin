@@ -20,27 +20,23 @@ Drawable :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Drawable, objc_name="present")
-Drawable_present :: #force_inline proc "c" (self: ^Drawable) {
-    msgSend(nil, self, "present")
-}
-@(objc_type=Drawable, objc_name="presentAtTime")
-Drawable_presentAtTime :: #force_inline proc "c" (self: ^Drawable, presentationTime: CF.TimeInterval) {
-    msgSend(nil, self, "presentAtTime:", presentationTime)
-}
-@(objc_type=Drawable, objc_name="presentAfterMinimumDuration")
-Drawable_presentAfterMinimumDuration :: #force_inline proc "c" (self: ^Drawable, duration: CF.TimeInterval) {
-    msgSend(nil, self, "presentAfterMinimumDuration:", duration)
-}
-@(objc_type=Drawable, objc_name="addPresentedHandler")
-Drawable_addPresentedHandler :: #force_inline proc "c" (self: ^Drawable, block: DrawablePresentedHandler) {
-    msgSend(nil, self, "addPresentedHandler:", block)
-}
-@(objc_type=Drawable, objc_name="presentedTime")
-Drawable_presentedTime :: #force_inline proc "c" (self: ^Drawable) -> CF.TimeInterval {
-    return msgSend(CF.TimeInterval, self, "presentedTime")
-}
-@(objc_type=Drawable, objc_name="drawableID")
-Drawable_drawableID :: #force_inline proc "c" (self: ^Drawable) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "drawableID")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Drawable, objc_selector="present", objc_name="present")
+    Drawable_present :: proc(self: ^Drawable) ---
+
+    @(objc_type=Drawable, objc_selector="presentAtTime:", objc_name="presentAtTime")
+    Drawable_presentAtTime :: proc(self: ^Drawable, presentationTime: CF.TimeInterval) ---
+
+    @(objc_type=Drawable, objc_selector="presentAfterMinimumDuration:", objc_name="presentAfterMinimumDuration")
+    Drawable_presentAfterMinimumDuration :: proc(self: ^Drawable, duration: CF.TimeInterval) ---
+
+    @(objc_type=Drawable, objc_selector="addPresentedHandler:", objc_name="addPresentedHandler")
+    Drawable_addPresentedHandler :: proc(self: ^Drawable, block: DrawablePresentedHandler) ---
+
+    @(objc_type=Drawable, objc_selector="presentedTime", objc_name="presentedTime")
+    Drawable_presentedTime :: proc(self: ^Drawable) -> CF.TimeInterval ---
+
+    @(objc_type=Drawable, objc_selector="drawableID", objc_name="drawableID")
+    Drawable_drawableID :: proc(self: ^Drawable) -> NS.UInteger ---
 }

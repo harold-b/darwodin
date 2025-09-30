@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIWindowSceneGeometryPreferences
 ///
-@(objc_class="UIWindowSceneGeometryPreferences")
+@(objc_class="UIWindowSceneGeometryPreferences", objc_superclass=NS.Object)
 WindowSceneGeometryPreferences :: struct { using _: NS.Object, }
 

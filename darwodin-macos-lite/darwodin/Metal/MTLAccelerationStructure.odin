@@ -20,11 +20,11 @@ AccelerationStructure :: struct { using _: intrinsics.objc_object,
     using _: Resource,
 }
 
-@(objc_type=AccelerationStructure, objc_name="size")
-AccelerationStructure_size :: #force_inline proc "c" (self: ^AccelerationStructure) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "size")
-}
-@(objc_type=AccelerationStructure, objc_name="gpuResourceID")
-AccelerationStructure_gpuResourceID :: #force_inline proc "c" (self: ^AccelerationStructure) -> ResourceID {
-    return msgSend(ResourceID, self, "gpuResourceID")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccelerationStructure, objc_selector="size", objc_name="size")
+    AccelerationStructure_size :: proc(self: ^AccelerationStructure) -> NS.UInteger ---
+
+    @(objc_type=AccelerationStructure, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+    AccelerationStructure_gpuResourceID :: proc(self: ^AccelerationStructure) -> ResourceID ---
 }

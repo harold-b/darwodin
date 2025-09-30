@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPress
 ///
-@(objc_class="UIPress")
+@(objc_class="UIPress", objc_superclass=NS.Object)
 Press :: struct { using _: NS.Object, }
 

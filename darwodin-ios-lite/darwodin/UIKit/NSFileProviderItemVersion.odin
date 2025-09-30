@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSFileProviderItemVersion
 ///
-@(objc_class="NSFileProviderItemVersion")
+@(objc_class="NSFileProviderItemVersion", objc_superclass=NS.Object)
 NSFileProviderItemVersion :: struct { using _: NS.Object, }
 

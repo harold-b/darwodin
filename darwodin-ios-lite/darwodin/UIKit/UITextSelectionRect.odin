@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITextSelectionRect
 ///
-@(objc_class="UITextSelectionRect")
+@(objc_class="UITextSelectionRect", objc_superclass=NS.Object)
 TextSelectionRect :: struct { using _: NS.Object, }
 

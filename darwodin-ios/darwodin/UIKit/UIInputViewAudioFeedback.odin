@@ -21,7 +21,8 @@ InputViewAudioFeedback :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=InputViewAudioFeedback, objc_name="enableInputClicksWhenVisible")
-InputViewAudioFeedback_enableInputClicksWhenVisible :: #force_inline proc "c" (self: ^InputViewAudioFeedback) -> bool {
-    return msgSend(bool, self, "enableInputClicksWhenVisible")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=InputViewAudioFeedback, objc_selector="enableInputClicksWhenVisible", objc_name="enableInputClicksWhenVisible")
+    InputViewAudioFeedback_enableInputClicksWhenVisible :: proc(self: ^InputViewAudioFeedback) -> bool ---
 }

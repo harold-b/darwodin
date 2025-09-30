@@ -13,6 +13,6 @@ import NS "../Foundation"
 ///
 /// CAScrollLayer
 ///
-@(objc_class="CAScrollLayer")
+@(objc_class="CAScrollLayer", objc_superclass=Layer)
 ScrollLayer :: struct { using _: Layer, }
 

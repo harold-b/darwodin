@@ -21,11 +21,12 @@ CollectionViewPrefetching :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CollectionViewPrefetching, objc_name="collectionView_prefetchItemsAtIndexPaths")
-CollectionViewPrefetching_collectionView_prefetchItemsAtIndexPaths :: #force_inline proc "c" (self: ^CollectionViewPrefetching, collectionView: ^CollectionView, indexPaths: ^NS.Array) {
-    msgSend(nil, self, "collectionView:prefetchItemsAtIndexPaths:", collectionView, indexPaths)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CollectionViewPrefetching, objc_selector="collectionView:prefetchItemsAtIndexPaths:", objc_name="collectionView_prefetchItemsAtIndexPaths")
+    CollectionViewPrefetching_collectionView_prefetchItemsAtIndexPaths :: proc(self: ^CollectionViewPrefetching, collectionView: ^CollectionView, indexPaths: ^NS.Array) ---
+
+    @(objc_type=CollectionViewPrefetching, objc_selector="collectionView:cancelPrefetchingForItemsAtIndexPaths:", objc_name="collectionView_cancelPrefetchingForItemsAtIndexPaths")
+    CollectionViewPrefetching_collectionView_cancelPrefetchingForItemsAtIndexPaths :: proc(self: ^CollectionViewPrefetching, collectionView: ^CollectionView, indexPaths: ^NS.Array) ---
 }
-@(objc_type=CollectionViewPrefetching, objc_name="collectionView_cancelPrefetchingForItemsAtIndexPaths")
-CollectionViewPrefetching_collectionView_cancelPrefetchingForItemsAtIndexPaths :: #force_inline proc "c" (self: ^CollectionViewPrefetching, collectionView: ^CollectionView, indexPaths: ^NS.Array) {
-    msgSend(nil, self, "collectionView:cancelPrefetchingForItemsAtIndexPaths:", collectionView, indexPaths)
-}
+

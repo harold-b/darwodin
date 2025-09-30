@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTextCheckingController
 ///
-@(objc_class="NSTextCheckingController")
+@(objc_class="NSTextCheckingController", objc_superclass=NS.Object)
 TextCheckingController :: struct { using _: NS.Object, }
 

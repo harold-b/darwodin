@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIColorPickerViewController
 ///
-@(objc_class="UIColorPickerViewController")
+@(objc_class="UIColorPickerViewController", objc_superclass=ViewController)
 ColorPickerViewController :: struct { using _: ViewController, }
 

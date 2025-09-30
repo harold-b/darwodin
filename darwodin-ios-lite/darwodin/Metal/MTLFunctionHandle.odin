@@ -20,15 +20,14 @@ FunctionHandle :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=FunctionHandle, objc_name="functionType")
-FunctionHandle_functionType :: #force_inline proc "c" (self: ^FunctionHandle) -> FunctionType {
-    return msgSend(FunctionType, self, "functionType")
-}
-@(objc_type=FunctionHandle, objc_name="name")
-FunctionHandle_name :: #force_inline proc "c" (self: ^FunctionHandle) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
-}
-@(objc_type=FunctionHandle, objc_name="device")
-FunctionHandle_device :: #force_inline proc "c" (self: ^FunctionHandle) -> ^Device {
-    return msgSend(^Device, self, "device")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=FunctionHandle, objc_selector="functionType", objc_name="functionType")
+    FunctionHandle_functionType :: proc(self: ^FunctionHandle) -> FunctionType ---
+
+    @(objc_type=FunctionHandle, objc_selector="name", objc_name="name")
+    FunctionHandle_name :: proc(self: ^FunctionHandle) -> ^NS.String ---
+
+    @(objc_type=FunctionHandle, objc_selector="device", objc_name="device")
+    FunctionHandle_device :: proc(self: ^FunctionHandle) -> ^Device ---
 }

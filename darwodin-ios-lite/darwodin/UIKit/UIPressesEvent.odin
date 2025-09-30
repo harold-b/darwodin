@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPressesEvent
 ///
-@(objc_class="UIPressesEvent")
+@(objc_class="UIPressesEvent", objc_superclass=Event)
 PressesEvent :: struct { using _: Event, }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITraitAccessibilityContrast
 ///
-@(objc_class="UITraitAccessibilityContrast")
+@(objc_class="UITraitAccessibilityContrast", objc_superclass=NS.Object)
 TraitAccessibilityContrast :: struct { using _: NS.Object, 
     using _: NSIntegerTraitDefinition,
 }

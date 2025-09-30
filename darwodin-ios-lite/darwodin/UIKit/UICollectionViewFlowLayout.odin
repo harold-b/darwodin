@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICollectionViewFlowLayout
 ///
-@(objc_class="UICollectionViewFlowLayout")
+@(objc_class="UICollectionViewFlowLayout", objc_superclass=CollectionViewLayout)
 CollectionViewFlowLayout :: struct { using _: CollectionViewLayout, }
 

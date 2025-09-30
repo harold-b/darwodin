@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSDateComponents
 ///
-@(objc_class="NSDateComponents")
+@(objc_class="NSDateComponents", objc_superclass=Object)
 DateComponents :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,

@@ -21,3 +21,5 @@ ToolbarDelegate :: struct { using _: intrinsics.objc_object,
     using _: BarPositioningDelegate,
 }
 
+@(default_calling_convention="c")
+foreign lib {}

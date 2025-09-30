@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIEvent
 ///
-@(objc_class="UIEvent")
+@(objc_class="UIEvent", objc_superclass=NS.Object)
 Event :: struct { using _: NS.Object, }
 

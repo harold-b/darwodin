@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnitLength
 ///
-@(objc_class="NSUnitLength")
+@(objc_class="NSUnitLength", objc_superclass=Dimension)
 UnitLength :: struct { using _: Dimension, 
     using _: SecureCoding,
 }

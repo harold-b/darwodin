@@ -21,23 +21,21 @@ ImageDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ImageDelegate, objc_name="imageDidNotDraw")
-ImageDelegate_imageDidNotDraw :: #force_inline proc "c" (self: ^ImageDelegate, sender: ^NS.Image, rect: NS.Rect) -> ^NS.Image {
-    return msgSend(^NS.Image, self, "imageDidNotDraw:inRect:", sender, rect)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ImageDelegate, objc_selector="imageDidNotDraw:inRect:", objc_name="imageDidNotDraw")
+    ImageDelegate_imageDidNotDraw :: proc(self: ^ImageDelegate, sender: ^NS.Image, rect: NS.Rect) -> ^NS.Image ---
+
+    @(objc_type=ImageDelegate, objc_selector="image:willLoadRepresentation:", objc_name="image_willLoadRepresentation")
+    ImageDelegate_image_willLoadRepresentation :: proc(self: ^ImageDelegate, image: ^NS.Image, rep: ^ImageRep) ---
+
+    @(objc_type=ImageDelegate, objc_selector="image:didLoadRepresentationHeader:", objc_name="image_didLoadRepresentationHeader")
+    ImageDelegate_image_didLoadRepresentationHeader :: proc(self: ^ImageDelegate, image: ^NS.Image, rep: ^ImageRep) ---
+
+    @(objc_type=ImageDelegate, objc_selector="image:didLoadPartOfRepresentation:withValidRows:", objc_name="image_didLoadPartOfRepresentation_withValidRows")
+    ImageDelegate_image_didLoadPartOfRepresentation_withValidRows :: proc(self: ^ImageDelegate, image: ^NS.Image, rep: ^ImageRep, rows: NS.Integer) ---
+
+    @(objc_type=ImageDelegate, objc_selector="image:didLoadRepresentation:withStatus:", objc_name="image_didLoadRepresentation_withStatus")
+    ImageDelegate_image_didLoadRepresentation_withStatus :: proc(self: ^ImageDelegate, image: ^NS.Image, rep: ^ImageRep, status: ImageLoadStatus) ---
 }
-@(objc_type=ImageDelegate, objc_name="image_willLoadRepresentation")
-ImageDelegate_image_willLoadRepresentation :: #force_inline proc "c" (self: ^ImageDelegate, image: ^NS.Image, rep: ^ImageRep) {
-    msgSend(nil, self, "image:willLoadRepresentation:", image, rep)
-}
-@(objc_type=ImageDelegate, objc_name="image_didLoadRepresentationHeader")
-ImageDelegate_image_didLoadRepresentationHeader :: #force_inline proc "c" (self: ^ImageDelegate, image: ^NS.Image, rep: ^ImageRep) {
-    msgSend(nil, self, "image:didLoadRepresentationHeader:", image, rep)
-}
-@(objc_type=ImageDelegate, objc_name="image_didLoadPartOfRepresentation_withValidRows")
-ImageDelegate_image_didLoadPartOfRepresentation_withValidRows :: #force_inline proc "c" (self: ^ImageDelegate, image: ^NS.Image, rep: ^ImageRep, rows: NS.Integer) {
-    msgSend(nil, self, "image:didLoadPartOfRepresentation:withValidRows:", image, rep, rows)
-}
-@(objc_type=ImageDelegate, objc_name="image_didLoadRepresentation_withStatus")
-ImageDelegate_image_didLoadRepresentation_withStatus :: #force_inline proc "c" (self: ^ImageDelegate, image: ^NS.Image, rep: ^ImageRep, status: ImageLoadStatus) {
-    msgSend(nil, self, "image:didLoadRepresentation:withStatus:", image, rep, status)
-}
+

@@ -21,15 +21,14 @@ PasteboardWriting :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PasteboardWriting, objc_name="writableTypesForPasteboard")
-PasteboardWriting_writableTypesForPasteboard :: #force_inline proc "c" (self: ^PasteboardWriting, pasteboard: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "writableTypesForPasteboard:", pasteboard)
-}
-@(objc_type=PasteboardWriting, objc_name="writingOptionsForType")
-PasteboardWriting_writingOptionsForType :: #force_inline proc "c" (self: ^PasteboardWriting, type: ^NS.String, pasteboard: ^Pasteboard) -> PasteboardWritingOptions {
-    return msgSend(PasteboardWritingOptions, self, "writingOptionsForType:pasteboard:", type, pasteboard)
-}
-@(objc_type=PasteboardWriting, objc_name="pasteboardPropertyListForType")
-PasteboardWriting_pasteboardPropertyListForType :: #force_inline proc "c" (self: ^PasteboardWriting, type: ^NS.String) -> id {
-    return msgSend(id, self, "pasteboardPropertyListForType:", type)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PasteboardWriting, objc_selector="writableTypesForPasteboard:", objc_name="writableTypesForPasteboard")
+    PasteboardWriting_writableTypesForPasteboard :: proc(self: ^PasteboardWriting, pasteboard: ^Pasteboard) -> ^NS.Array ---
+
+    @(objc_type=PasteboardWriting, objc_selector="writingOptionsForType:pasteboard:", objc_name="writingOptionsForType")
+    PasteboardWriting_writingOptionsForType :: proc(self: ^PasteboardWriting, type: ^NS.String, pasteboard: ^Pasteboard) -> PasteboardWritingOptions ---
+
+    @(objc_type=PasteboardWriting, objc_selector="pasteboardPropertyListForType:", objc_name="pasteboardPropertyListForType")
+    PasteboardWriting_pasteboardPropertyListForType :: proc(self: ^PasteboardWriting, type: ^NS.String) -> id ---
 }

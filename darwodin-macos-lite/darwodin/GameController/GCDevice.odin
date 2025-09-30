@@ -19,23 +19,20 @@ Device :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Device, objc_name="handlerQueue")
-Device_handlerQueue :: #force_inline proc "c" (self: ^Device) -> ^NS.Object {
-    return msgSend(^NS.Object, self, "handlerQueue")
-}
-@(objc_type=Device, objc_name="setHandlerQueue")
-Device_setHandlerQueue :: #force_inline proc "c" (self: ^Device, handlerQueue: ^NS.Object) {
-    msgSend(nil, self, "setHandlerQueue:", handlerQueue)
-}
-@(objc_type=Device, objc_name="vendorName")
-Device_vendorName :: #force_inline proc "c" (self: ^Device) -> ^NS.String {
-    return msgSend(^NS.String, self, "vendorName")
-}
-@(objc_type=Device, objc_name="productCategory")
-Device_productCategory :: #force_inline proc "c" (self: ^Device) -> ^NS.String {
-    return msgSend(^NS.String, self, "productCategory")
-}
-@(objc_type=Device, objc_name="physicalInputProfile")
-Device_physicalInputProfile :: #force_inline proc "c" (self: ^Device) -> ^PhysicalInputProfile {
-    return msgSend(^PhysicalInputProfile, self, "physicalInputProfile")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Device, objc_selector="handlerQueue", objc_name="handlerQueue")
+    Device_handlerQueue :: proc(self: ^Device) -> ^NS.Object ---
+
+    @(objc_type=Device, objc_selector="setHandlerQueue:", objc_name="setHandlerQueue")
+    Device_setHandlerQueue :: proc(self: ^Device, handlerQueue: ^NS.Object) ---
+
+    @(objc_type=Device, objc_selector="vendorName", objc_name="vendorName")
+    Device_vendorName :: proc(self: ^Device) -> ^NS.String ---
+
+    @(objc_type=Device, objc_selector="productCategory", objc_name="productCategory")
+    Device_productCategory :: proc(self: ^Device) -> ^NS.String ---
+
+    @(objc_type=Device, objc_selector="physicalInputProfile", objc_name="physicalInputProfile")
+    Device_physicalInputProfile :: proc(self: ^Device) -> ^PhysicalInputProfile ---
 }

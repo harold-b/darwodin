@@ -20,50 +20,42 @@ IntersectionFunctionTable :: struct { using _: intrinsics.objc_object,
     using _: Resource,
 }
 
-@(objc_type=IntersectionFunctionTable, objc_name="setBuffer")
-IntersectionFunctionTable_setBuffer :: #force_inline proc "c" (self: ^IntersectionFunctionTable, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) {
-    msgSend(nil, self, "setBuffer:offset:atIndex:", buffer, offset, index)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=IntersectionFunctionTable, objc_selector="setBuffer:offset:atIndex:", objc_name="setBuffer")
+    IntersectionFunctionTable_setBuffer :: proc(self: ^IntersectionFunctionTable, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setBuffers:offsets:withRange:", objc_name="setBuffers")
+    IntersectionFunctionTable_setBuffers :: proc(self: ^IntersectionFunctionTable, buffers: ^^Buffer, offsets: ^NS.UInteger, range: NS._NSRange) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setFunction:atIndex:", objc_name="setFunction")
+    IntersectionFunctionTable_setFunction :: proc(self: ^IntersectionFunctionTable, function: ^FunctionHandle, index: NS.UInteger) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setFunctions:withRange:", objc_name="setFunctions")
+    IntersectionFunctionTable_setFunctions :: proc(self: ^IntersectionFunctionTable, functions: ^^FunctionHandle, range: NS._NSRange) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:", objc_name="setOpaqueTriangleIntersectionFunctionWithSignature_atIndex")
+    IntersectionFunctionTable_setOpaqueTriangleIntersectionFunctionWithSignature_atIndex :: proc(self: ^IntersectionFunctionTable, signature: IntersectionFunctionSignature, index: NS.UInteger) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setOpaqueTriangleIntersectionFunctionWithSignature:withRange:", objc_name="setOpaqueTriangleIntersectionFunctionWithSignature_withRange")
+    IntersectionFunctionTable_setOpaqueTriangleIntersectionFunctionWithSignature_withRange :: proc(self: ^IntersectionFunctionTable, signature: IntersectionFunctionSignature, range: NS._NSRange) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setOpaqueCurveIntersectionFunctionWithSignature:atIndex:", objc_name="setOpaqueCurveIntersectionFunctionWithSignature_atIndex")
+    IntersectionFunctionTable_setOpaqueCurveIntersectionFunctionWithSignature_atIndex :: proc(self: ^IntersectionFunctionTable, signature: IntersectionFunctionSignature, index: NS.UInteger) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setOpaqueCurveIntersectionFunctionWithSignature:withRange:", objc_name="setOpaqueCurveIntersectionFunctionWithSignature_withRange")
+    IntersectionFunctionTable_setOpaqueCurveIntersectionFunctionWithSignature_withRange :: proc(self: ^IntersectionFunctionTable, signature: IntersectionFunctionSignature, range: NS._NSRange) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setVisibleFunctionTable:atBufferIndex:", objc_name="setVisibleFunctionTable")
+    IntersectionFunctionTable_setVisibleFunctionTable :: proc(self: ^IntersectionFunctionTable, functionTable: ^VisibleFunctionTable, bufferIndex: NS.UInteger) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="setVisibleFunctionTables:withBufferRange:", objc_name="setVisibleFunctionTables")
+    IntersectionFunctionTable_setVisibleFunctionTables :: proc(self: ^IntersectionFunctionTable, functionTables: ^^VisibleFunctionTable, bufferRange: NS._NSRange) ---
+
+    @(objc_type=IntersectionFunctionTable, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+    IntersectionFunctionTable_gpuResourceID :: proc(self: ^IntersectionFunctionTable) -> ResourceID ---
 }
-@(objc_type=IntersectionFunctionTable, objc_name="setBuffers")
-IntersectionFunctionTable_setBuffers :: #force_inline proc "c" (self: ^IntersectionFunctionTable, buffers: ^^Buffer, offsets: ^NS.UInteger, range: NS._NSRange) {
-    msgSend(nil, self, "setBuffers:offsets:withRange:", buffers, offsets, range)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="setFunction")
-IntersectionFunctionTable_setFunction :: #force_inline proc "c" (self: ^IntersectionFunctionTable, function: ^FunctionHandle, index: NS.UInteger) {
-    msgSend(nil, self, "setFunction:atIndex:", function, index)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="setFunctions")
-IntersectionFunctionTable_setFunctions :: #force_inline proc "c" (self: ^IntersectionFunctionTable, functions: ^^FunctionHandle, range: NS._NSRange) {
-    msgSend(nil, self, "setFunctions:withRange:", functions, range)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="setOpaqueTriangleIntersectionFunctionWithSignature_atIndex")
-IntersectionFunctionTable_setOpaqueTriangleIntersectionFunctionWithSignature_atIndex :: #force_inline proc "c" (self: ^IntersectionFunctionTable, signature: IntersectionFunctionSignature, index: NS.UInteger) {
-    msgSend(nil, self, "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:", signature, index)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="setOpaqueTriangleIntersectionFunctionWithSignature_withRange")
-IntersectionFunctionTable_setOpaqueTriangleIntersectionFunctionWithSignature_withRange :: #force_inline proc "c" (self: ^IntersectionFunctionTable, signature: IntersectionFunctionSignature, range: NS._NSRange) {
-    msgSend(nil, self, "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:", signature, range)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="setOpaqueCurveIntersectionFunctionWithSignature_atIndex")
-IntersectionFunctionTable_setOpaqueCurveIntersectionFunctionWithSignature_atIndex :: #force_inline proc "c" (self: ^IntersectionFunctionTable, signature: IntersectionFunctionSignature, index: NS.UInteger) {
-    msgSend(nil, self, "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:", signature, index)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="setOpaqueCurveIntersectionFunctionWithSignature_withRange")
-IntersectionFunctionTable_setOpaqueCurveIntersectionFunctionWithSignature_withRange :: #force_inline proc "c" (self: ^IntersectionFunctionTable, signature: IntersectionFunctionSignature, range: NS._NSRange) {
-    msgSend(nil, self, "setOpaqueCurveIntersectionFunctionWithSignature:withRange:", signature, range)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="setVisibleFunctionTable")
-IntersectionFunctionTable_setVisibleFunctionTable :: #force_inline proc "c" (self: ^IntersectionFunctionTable, functionTable: ^VisibleFunctionTable, bufferIndex: NS.UInteger) {
-    msgSend(nil, self, "setVisibleFunctionTable:atBufferIndex:", functionTable, bufferIndex)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="setVisibleFunctionTables")
-IntersectionFunctionTable_setVisibleFunctionTables :: #force_inline proc "c" (self: ^IntersectionFunctionTable, functionTables: ^^VisibleFunctionTable, bufferRange: NS._NSRange) {
-    msgSend(nil, self, "setVisibleFunctionTables:withBufferRange:", functionTables, bufferRange)
-}
-@(objc_type=IntersectionFunctionTable, objc_name="gpuResourceID")
-IntersectionFunctionTable_gpuResourceID :: #force_inline proc "c" (self: ^IntersectionFunctionTable) -> ResourceID {
-    return msgSend(ResourceID, self, "gpuResourceID")
-}
+
 @(objc_type=IntersectionFunctionTable, objc_name="setOpaqueTriangleIntersectionFunctionWithSignature")
 IntersectionFunctionTable_setOpaqueTriangleIntersectionFunctionWithSignature :: proc {
     IntersectionFunctionTable_setOpaqueTriangleIntersectionFunctionWithSignature_atIndex,

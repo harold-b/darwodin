@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSPDFInfo
 ///
-@(objc_class="NSPDFInfo")
+@(objc_class="NSPDFInfo", objc_superclass=NS.Object)
 PDFInfo :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.Coding,

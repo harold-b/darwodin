@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UILargeContentViewerInteraction
 ///
-@(objc_class="UILargeContentViewerInteraction")
+@(objc_class="UILargeContentViewerInteraction", objc_superclass=NS.Object)
 LargeContentViewerInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

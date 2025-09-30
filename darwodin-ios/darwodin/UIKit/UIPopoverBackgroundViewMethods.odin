@@ -19,15 +19,14 @@ import CA "../QuartzCore"
 @(objc_class="UIPopoverBackgroundViewMethods")
 PopoverBackgroundViewMethods :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=PopoverBackgroundViewMethods, objc_name="arrowBase", objc_is_class_method=true)
-PopoverBackgroundViewMethods_arrowBase :: #force_inline proc "c" () -> CG.Float {
-    return msgSend(CG.Float, PopoverBackgroundViewMethods, "arrowBase")
-}
-@(objc_type=PopoverBackgroundViewMethods, objc_name="contentViewInsets", objc_is_class_method=true)
-PopoverBackgroundViewMethods_contentViewInsets :: #force_inline proc "c" () -> EdgeInsets {
-    return msgSend(EdgeInsets, PopoverBackgroundViewMethods, "contentViewInsets")
-}
-@(objc_type=PopoverBackgroundViewMethods, objc_name="arrowHeight", objc_is_class_method=true)
-PopoverBackgroundViewMethods_arrowHeight :: #force_inline proc "c" () -> CG.Float {
-    return msgSend(CG.Float, PopoverBackgroundViewMethods, "arrowHeight")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PopoverBackgroundViewMethods, objc_selector="arrowBase", objc_name="arrowBase", objc_is_class_method=true)
+    PopoverBackgroundViewMethods_arrowBase :: proc() -> CG.Float ---
+
+    @(objc_type=PopoverBackgroundViewMethods, objc_selector="contentViewInsets", objc_name="contentViewInsets", objc_is_class_method=true)
+    PopoverBackgroundViewMethods_contentViewInsets :: proc() -> EdgeInsets ---
+
+    @(objc_type=PopoverBackgroundViewMethods, objc_selector="arrowHeight", objc_name="arrowHeight", objc_is_class_method=true)
+    PopoverBackgroundViewMethods_arrowHeight :: proc() -> CG.Float ---
 }

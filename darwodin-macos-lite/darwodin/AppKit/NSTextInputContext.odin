@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSTextInputContext
 ///
-@(objc_class="NSTextInputContext")
+@(objc_class="NSTextInputContext", objc_superclass=NS.Object)
 TextInputContext :: struct { using _: NS.Object, }
 

@@ -20,39 +20,32 @@ Buffer :: struct { using _: intrinsics.objc_object,
     using _: Resource,
 }
 
-@(objc_type=Buffer, objc_name="contents")
-Buffer_contents :: #force_inline proc "c" (self: ^Buffer) -> rawptr {
-    return msgSend(rawptr, self, "contents")
-}
-@(objc_type=Buffer, objc_name="didModifyRange")
-Buffer_didModifyRange :: #force_inline proc "c" (self: ^Buffer, range: NS._NSRange) {
-    msgSend(nil, self, "didModifyRange:", range)
-}
-@(objc_type=Buffer, objc_name="newTextureWithDescriptor")
-Buffer_newTextureWithDescriptor :: #force_inline proc "c" (self: ^Buffer, descriptor: ^TextureDescriptor, offset: NS.UInteger, bytesPerRow: NS.UInteger) -> ^Texture {
-    return msgSend(^Texture, self, "newTextureWithDescriptor:offset:bytesPerRow:", descriptor, offset, bytesPerRow)
-}
-@(objc_type=Buffer, objc_name="addDebugMarker")
-Buffer_addDebugMarker :: #force_inline proc "c" (self: ^Buffer, marker: ^NS.String, range: NS._NSRange) {
-    msgSend(nil, self, "addDebugMarker:range:", marker, range)
-}
-@(objc_type=Buffer, objc_name="removeAllDebugMarkers")
-Buffer_removeAllDebugMarkers :: #force_inline proc "c" (self: ^Buffer) {
-    msgSend(nil, self, "removeAllDebugMarkers")
-}
-@(objc_type=Buffer, objc_name="newRemoteBufferViewForDevice")
-Buffer_newRemoteBufferViewForDevice :: #force_inline proc "c" (self: ^Buffer, device: ^Device) -> ^Buffer {
-    return msgSend(^Buffer, self, "newRemoteBufferViewForDevice:", device)
-}
-@(objc_type=Buffer, objc_name="length")
-Buffer_length :: #force_inline proc "c" (self: ^Buffer) -> NS.UInteger {
-    return msgSend(NS.UInteger, self, "length")
-}
-@(objc_type=Buffer, objc_name="remoteStorageBuffer")
-Buffer_remoteStorageBuffer :: #force_inline proc "c" (self: ^Buffer) -> ^Buffer {
-    return msgSend(^Buffer, self, "remoteStorageBuffer")
-}
-@(objc_type=Buffer, objc_name="gpuAddress")
-Buffer_gpuAddress :: #force_inline proc "c" (self: ^Buffer) -> cffi.uint64_t {
-    return msgSend(cffi.uint64_t, self, "gpuAddress")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Buffer, objc_selector="contents", objc_name="contents")
+    Buffer_contents :: proc(self: ^Buffer) -> rawptr ---
+
+    @(objc_type=Buffer, objc_selector="didModifyRange:", objc_name="didModifyRange")
+    Buffer_didModifyRange :: proc(self: ^Buffer, range: NS._NSRange) ---
+
+    @(objc_type=Buffer, objc_selector="newTextureWithDescriptor:offset:bytesPerRow:", objc_name="newTextureWithDescriptor")
+    Buffer_newTextureWithDescriptor :: proc(self: ^Buffer, descriptor: ^TextureDescriptor, offset: NS.UInteger, bytesPerRow: NS.UInteger) -> ^Texture ---
+
+    @(objc_type=Buffer, objc_selector="addDebugMarker:range:", objc_name="addDebugMarker")
+    Buffer_addDebugMarker :: proc(self: ^Buffer, marker: ^NS.String, range: NS._NSRange) ---
+
+    @(objc_type=Buffer, objc_selector="removeAllDebugMarkers", objc_name="removeAllDebugMarkers")
+    Buffer_removeAllDebugMarkers :: proc(self: ^Buffer) ---
+
+    @(objc_type=Buffer, objc_selector="newRemoteBufferViewForDevice:", objc_name="newRemoteBufferViewForDevice")
+    Buffer_newRemoteBufferViewForDevice :: proc(self: ^Buffer, device: ^Device) -> ^Buffer ---
+
+    @(objc_type=Buffer, objc_selector="length", objc_name="length")
+    Buffer_length :: proc(self: ^Buffer) -> NS.UInteger ---
+
+    @(objc_type=Buffer, objc_selector="remoteStorageBuffer", objc_name="remoteStorageBuffer")
+    Buffer_remoteStorageBuffer :: proc(self: ^Buffer) -> ^Buffer ---
+
+    @(objc_type=Buffer, objc_selector="gpuAddress", objc_name="gpuAddress")
+    Buffer_gpuAddress :: proc(self: ^Buffer) -> cffi.uint64_t ---
 }

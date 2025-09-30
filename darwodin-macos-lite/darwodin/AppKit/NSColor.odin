@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSColor
 ///
-@(objc_class="NSColor")
+@(objc_class="NSColor", objc_superclass=NS.Object)
 Color :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,
@@ -24,766 +24,468 @@ Color :: struct { using _: NS.Object,
     using _: PasteboardWriting,
 }
 
-@(objc_type=Color, objc_name="init")
-Color_init :: #force_inline proc "c" (self: ^Color) -> ^Color {
-    return msgSend(^Color, self, "init")
-}
-@(objc_type=Color, objc_name="initWithCoder")
-Color_initWithCoder :: #force_inline proc "c" (self: ^Color, coder: ^NS.Coder) -> ^Color {
-    return msgSend(^Color, self, "initWithCoder:", coder)
-}
-@(objc_type=Color, objc_name="colorWithColorSpace_components_count", objc_is_class_method=true)
-Color_colorWithColorSpace_components_count :: #force_inline proc "c" (space: ^ColorSpace, components: ^CG.Float, numberOfComponents: NS.Integer) -> ^Color {
-    return msgSend(^Color, Color, "colorWithColorSpace:components:count:", space, components, numberOfComponents)
-}
-@(objc_type=Color, objc_name="colorWithSRGBRed", objc_is_class_method=true)
-Color_colorWithSRGBRed :: #force_inline proc "c" (red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithSRGBRed:green:blue:alpha:", red, green, blue, alpha)
-}
-@(objc_type=Color, objc_name="colorWithGenericGamma22White", objc_is_class_method=true)
-Color_colorWithGenericGamma22White :: #force_inline proc "c" (white: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithGenericGamma22White:alpha:", white, alpha)
-}
-@(objc_type=Color, objc_name="colorWithDisplayP3Red", objc_is_class_method=true)
-Color_colorWithDisplayP3Red :: #force_inline proc "c" (red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithDisplayP3Red:green:blue:alpha:", red, green, blue, alpha)
-}
-@(objc_type=Color, objc_name="colorWithWhite", objc_is_class_method=true)
-Color_colorWithWhite :: #force_inline proc "c" (white: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithWhite:alpha:", white, alpha)
-}
-@(objc_type=Color, objc_name="colorWithRed", objc_is_class_method=true)
-Color_colorWithRed :: #force_inline proc "c" (red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithRed:green:blue:alpha:", red, green, blue, alpha)
-}
-@(objc_type=Color, objc_name="colorWithHue", objc_is_class_method=true)
-Color_colorWithHue :: #force_inline proc "c" (hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithHue:saturation:brightness:alpha:", hue, saturation, brightness, alpha)
-}
-@(objc_type=Color, objc_name="colorWithColorSpace_hue_saturation_brightness_alpha", objc_is_class_method=true)
-Color_colorWithColorSpace_hue_saturation_brightness_alpha :: #force_inline proc "c" (space: ^ColorSpace, hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithColorSpace:hue:saturation:brightness:alpha:", space, hue, saturation, brightness, alpha)
-}
-@(objc_type=Color, objc_name="colorWithCatalogName", objc_is_class_method=true)
-Color_colorWithCatalogName :: #force_inline proc "c" (listName: ^NS.String, colorName: ^NS.String) -> ^Color {
-    return msgSend(^Color, Color, "colorWithCatalogName:colorName:", listName, colorName)
-}
-@(objc_type=Color, objc_name="colorNamed_bundle", objc_is_class_method=true)
-Color_colorNamed_bundle :: #force_inline proc "c" (name: ^NS.String, bundle: ^NS.Bundle) -> ^Color {
-    return msgSend(^Color, Color, "colorNamed:bundle:", name, bundle)
-}
-@(objc_type=Color, objc_name="colorNamed_", objc_is_class_method=true)
-Color_colorNamed_ :: #force_inline proc "c" (name: ^NS.String) -> ^Color {
-    return msgSend(^Color, Color, "colorNamed:", name)
-}
-@(objc_type=Color, objc_name="colorWithName", objc_is_class_method=true)
-Color_colorWithName :: #force_inline proc "c" (colorName: ^NS.String, dynamicProvider: ^Objc_Block(proc "c" (_: ^Appearance) -> ^Color)) -> ^Color {
-    return msgSend(^Color, Color, "colorWithName:dynamicProvider:", colorName, dynamicProvider)
-}
-@(objc_type=Color, objc_name="colorWithDeviceWhite", objc_is_class_method=true)
-Color_colorWithDeviceWhite :: #force_inline proc "c" (white: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithDeviceWhite:alpha:", white, alpha)
-}
-@(objc_type=Color, objc_name="colorWithDeviceRed", objc_is_class_method=true)
-Color_colorWithDeviceRed :: #force_inline proc "c" (red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithDeviceRed:green:blue:alpha:", red, green, blue, alpha)
-}
-@(objc_type=Color, objc_name="colorWithDeviceHue", objc_is_class_method=true)
-Color_colorWithDeviceHue :: #force_inline proc "c" (hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithDeviceHue:saturation:brightness:alpha:", hue, saturation, brightness, alpha)
-}
-@(objc_type=Color, objc_name="colorWithDeviceCyan", objc_is_class_method=true)
-Color_colorWithDeviceCyan :: #force_inline proc "c" (cyan: CG.Float, magenta: CG.Float, yellow: CG.Float, black: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithDeviceCyan:magenta:yellow:black:alpha:", cyan, magenta, yellow, black, alpha)
-}
-@(objc_type=Color, objc_name="colorWithCalibratedWhite", objc_is_class_method=true)
-Color_colorWithCalibratedWhite :: #force_inline proc "c" (white: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithCalibratedWhite:alpha:", white, alpha)
-}
-@(objc_type=Color, objc_name="colorWithCalibratedRed", objc_is_class_method=true)
-Color_colorWithCalibratedRed :: #force_inline proc "c" (red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithCalibratedRed:green:blue:alpha:", red, green, blue, alpha)
-}
-@(objc_type=Color, objc_name="colorWithCalibratedHue", objc_is_class_method=true)
-Color_colorWithCalibratedHue :: #force_inline proc "c" (hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, Color, "colorWithCalibratedHue:saturation:brightness:alpha:", hue, saturation, brightness, alpha)
-}
-@(objc_type=Color, objc_name="colorWithPatternImage", objc_is_class_method=true)
-Color_colorWithPatternImage :: #force_inline proc "c" (image: ^NS.Image) -> ^Color {
-    return msgSend(^Color, Color, "colorWithPatternImage:", image)
-}
-@(objc_type=Color, objc_name="colorUsingType")
-Color_colorUsingType :: #force_inline proc "c" (self: ^Color, type: ColorType) -> ^Color {
-    return msgSend(^Color, self, "colorUsingType:", type)
-}
-@(objc_type=Color, objc_name="colorUsingColorSpace")
-Color_colorUsingColorSpace :: #force_inline proc "c" (self: ^Color, space: ^ColorSpace) -> ^Color {
-    return msgSend(^Color, self, "colorUsingColorSpace:", space)
-}
-@(objc_type=Color, objc_name="colorForControlTint", objc_is_class_method=true)
-Color_colorForControlTint :: #force_inline proc "c" (controlTint: ControlTint) -> ^Color {
-    return msgSend(^Color, Color, "colorForControlTint:", controlTint)
-}
-@(objc_type=Color, objc_name="highlightWithLevel")
-Color_highlightWithLevel :: #force_inline proc "c" (self: ^Color, val: CG.Float) -> ^Color {
-    return msgSend(^Color, self, "highlightWithLevel:", val)
-}
-@(objc_type=Color, objc_name="shadowWithLevel")
-Color_shadowWithLevel :: #force_inline proc "c" (self: ^Color, val: CG.Float) -> ^Color {
-    return msgSend(^Color, self, "shadowWithLevel:", val)
-}
-@(objc_type=Color, objc_name="colorWithSystemEffect")
-Color_colorWithSystemEffect :: #force_inline proc "c" (self: ^Color, systemEffect: ColorSystemEffect) -> ^Color {
-    return msgSend(^Color, self, "colorWithSystemEffect:", systemEffect)
-}
-@(objc_type=Color, objc_name="set")
-Color_set :: #force_inline proc "c" (self: ^Color) {
-    msgSend(nil, self, "set")
-}
-@(objc_type=Color, objc_name="setFill")
-Color_setFill :: #force_inline proc "c" (self: ^Color) {
-    msgSend(nil, self, "setFill")
-}
-@(objc_type=Color, objc_name="setStroke")
-Color_setStroke :: #force_inline proc "c" (self: ^Color) {
-    msgSend(nil, self, "setStroke")
-}
-@(objc_type=Color, objc_name="blendedColorWithFraction")
-Color_blendedColorWithFraction :: #force_inline proc "c" (self: ^Color, fraction: CG.Float, color: ^Color) -> ^Color {
-    return msgSend(^Color, self, "blendedColorWithFraction:ofColor:", fraction, color)
-}
-@(objc_type=Color, objc_name="colorWithAlphaComponent")
-Color_colorWithAlphaComponent :: #force_inline proc "c" (self: ^Color, alpha: CG.Float) -> ^Color {
-    return msgSend(^Color, self, "colorWithAlphaComponent:", alpha)
-}
-@(objc_type=Color, objc_name="getRed")
-Color_getRed :: #force_inline proc "c" (self: ^Color, red: ^CG.Float, green: ^CG.Float, blue: ^CG.Float, alpha: ^CG.Float) {
-    msgSend(nil, self, "getRed:green:blue:alpha:", red, green, blue, alpha)
-}
-@(objc_type=Color, objc_name="getHue")
-Color_getHue :: #force_inline proc "c" (self: ^Color, hue: ^CG.Float, saturation: ^CG.Float, brightness: ^CG.Float, alpha: ^CG.Float) {
-    msgSend(nil, self, "getHue:saturation:brightness:alpha:", hue, saturation, brightness, alpha)
-}
-@(objc_type=Color, objc_name="getWhite")
-Color_getWhite :: #force_inline proc "c" (self: ^Color, white: ^CG.Float, alpha: ^CG.Float) {
-    msgSend(nil, self, "getWhite:alpha:", white, alpha)
-}
-@(objc_type=Color, objc_name="getCyan")
-Color_getCyan :: #force_inline proc "c" (self: ^Color, cyan: ^CG.Float, magenta: ^CG.Float, yellow: ^CG.Float, black: ^CG.Float, alpha: ^CG.Float) {
-    msgSend(nil, self, "getCyan:magenta:yellow:black:alpha:", cyan, magenta, yellow, black, alpha)
-}
-@(objc_type=Color, objc_name="getComponents")
-Color_getComponents :: #force_inline proc "c" (self: ^Color, components: ^CG.Float) {
-    msgSend(nil, self, "getComponents:", components)
-}
-@(objc_type=Color, objc_name="colorFromPasteboard", objc_is_class_method=true)
-Color_colorFromPasteboard :: #force_inline proc "c" (pasteBoard: ^Pasteboard) -> ^Color {
-    return msgSend(^Color, Color, "colorFromPasteboard:", pasteBoard)
-}
-@(objc_type=Color, objc_name="writeToPasteboard")
-Color_writeToPasteboard :: #force_inline proc "c" (self: ^Color, pasteBoard: ^Pasteboard) {
-    msgSend(nil, self, "writeToPasteboard:", pasteBoard)
-}
-@(objc_type=Color, objc_name="drawSwatchInRect")
-Color_drawSwatchInRect :: #force_inline proc "c" (self: ^Color, rect: NS.Rect) {
-    msgSend(nil, self, "drawSwatchInRect:", rect)
-}
-@(objc_type=Color, objc_name="colorWithCGColor", objc_is_class_method=true)
-Color_colorWithCGColor :: #force_inline proc "c" (cgColor: CG.ColorRef) -> ^Color {
-    return msgSend(^Color, Color, "colorWithCGColor:", cgColor)
-}
-@(objc_type=Color, objc_name="type")
-Color_type :: #force_inline proc "c" (self: ^Color) -> ColorType {
-    return msgSend(ColorType, self, "type")
-}
-@(objc_type=Color, objc_name="blackColor", objc_is_class_method=true)
-Color_blackColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "blackColor")
-}
-@(objc_type=Color, objc_name="darkGrayColor", objc_is_class_method=true)
-Color_darkGrayColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "darkGrayColor")
-}
-@(objc_type=Color, objc_name="lightGrayColor", objc_is_class_method=true)
-Color_lightGrayColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "lightGrayColor")
-}
-@(objc_type=Color, objc_name="whiteColor", objc_is_class_method=true)
-Color_whiteColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "whiteColor")
-}
-@(objc_type=Color, objc_name="grayColor", objc_is_class_method=true)
-Color_grayColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "grayColor")
-}
-@(objc_type=Color, objc_name="redColor", objc_is_class_method=true)
-Color_redColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "redColor")
-}
-@(objc_type=Color, objc_name="greenColor", objc_is_class_method=true)
-Color_greenColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "greenColor")
-}
-@(objc_type=Color, objc_name="blueColor", objc_is_class_method=true)
-Color_blueColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "blueColor")
-}
-@(objc_type=Color, objc_name="cyanColor", objc_is_class_method=true)
-Color_cyanColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "cyanColor")
-}
-@(objc_type=Color, objc_name="yellowColor", objc_is_class_method=true)
-Color_yellowColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "yellowColor")
-}
-@(objc_type=Color, objc_name="magentaColor", objc_is_class_method=true)
-Color_magentaColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "magentaColor")
-}
-@(objc_type=Color, objc_name="orangeColor", objc_is_class_method=true)
-Color_orangeColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "orangeColor")
-}
-@(objc_type=Color, objc_name="purpleColor", objc_is_class_method=true)
-Color_purpleColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "purpleColor")
-}
-@(objc_type=Color, objc_name="brownColor", objc_is_class_method=true)
-Color_brownColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "brownColor")
-}
-@(objc_type=Color, objc_name="clearColor", objc_is_class_method=true)
-Color_clearColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "clearColor")
-}
-@(objc_type=Color, objc_name="labelColor", objc_is_class_method=true)
-Color_labelColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "labelColor")
-}
-@(objc_type=Color, objc_name="secondaryLabelColor", objc_is_class_method=true)
-Color_secondaryLabelColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "secondaryLabelColor")
-}
-@(objc_type=Color, objc_name="tertiaryLabelColor", objc_is_class_method=true)
-Color_tertiaryLabelColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "tertiaryLabelColor")
-}
-@(objc_type=Color, objc_name="quaternaryLabelColor", objc_is_class_method=true)
-Color_quaternaryLabelColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "quaternaryLabelColor")
-}
-@(objc_type=Color, objc_name="quinaryLabelColor", objc_is_class_method=true)
-Color_quinaryLabelColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "quinaryLabelColor")
-}
-@(objc_type=Color, objc_name="linkColor", objc_is_class_method=true)
-Color_linkColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "linkColor")
-}
-@(objc_type=Color, objc_name="placeholderTextColor", objc_is_class_method=true)
-Color_placeholderTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "placeholderTextColor")
-}
-@(objc_type=Color, objc_name="windowFrameTextColor", objc_is_class_method=true)
-Color_windowFrameTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "windowFrameTextColor")
-}
-@(objc_type=Color, objc_name="selectedMenuItemTextColor", objc_is_class_method=true)
-Color_selectedMenuItemTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "selectedMenuItemTextColor")
-}
-@(objc_type=Color, objc_name="alternateSelectedControlTextColor", objc_is_class_method=true)
-Color_alternateSelectedControlTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "alternateSelectedControlTextColor")
-}
-@(objc_type=Color, objc_name="headerTextColor", objc_is_class_method=true)
-Color_headerTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "headerTextColor")
-}
-@(objc_type=Color, objc_name="separatorColor", objc_is_class_method=true)
-Color_separatorColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "separatorColor")
-}
-@(objc_type=Color, objc_name="gridColor", objc_is_class_method=true)
-Color_gridColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "gridColor")
-}
-@(objc_type=Color, objc_name="windowBackgroundColor", objc_is_class_method=true)
-Color_windowBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "windowBackgroundColor")
-}
-@(objc_type=Color, objc_name="underPageBackgroundColor", objc_is_class_method=true)
-Color_underPageBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "underPageBackgroundColor")
-}
-@(objc_type=Color, objc_name="controlBackgroundColor", objc_is_class_method=true)
-Color_controlBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "controlBackgroundColor")
-}
-@(objc_type=Color, objc_name="selectedContentBackgroundColor", objc_is_class_method=true)
-Color_selectedContentBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "selectedContentBackgroundColor")
-}
-@(objc_type=Color, objc_name="unemphasizedSelectedContentBackgroundColor", objc_is_class_method=true)
-Color_unemphasizedSelectedContentBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "unemphasizedSelectedContentBackgroundColor")
-}
-@(objc_type=Color, objc_name="alternatingContentBackgroundColors", objc_is_class_method=true)
-Color_alternatingContentBackgroundColors :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, Color, "alternatingContentBackgroundColors")
-}
-@(objc_type=Color, objc_name="findHighlightColor", objc_is_class_method=true)
-Color_findHighlightColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "findHighlightColor")
-}
-@(objc_type=Color, objc_name="textColor", objc_is_class_method=true)
-Color_textColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "textColor")
-}
-@(objc_type=Color, objc_name="textBackgroundColor", objc_is_class_method=true)
-Color_textBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "textBackgroundColor")
-}
-@(objc_type=Color, objc_name="textInsertionPointColor", objc_is_class_method=true)
-Color_textInsertionPointColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "textInsertionPointColor")
-}
-@(objc_type=Color, objc_name="selectedTextColor", objc_is_class_method=true)
-Color_selectedTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "selectedTextColor")
-}
-@(objc_type=Color, objc_name="selectedTextBackgroundColor", objc_is_class_method=true)
-Color_selectedTextBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "selectedTextBackgroundColor")
-}
-@(objc_type=Color, objc_name="unemphasizedSelectedTextBackgroundColor", objc_is_class_method=true)
-Color_unemphasizedSelectedTextBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "unemphasizedSelectedTextBackgroundColor")
-}
-@(objc_type=Color, objc_name="unemphasizedSelectedTextColor", objc_is_class_method=true)
-Color_unemphasizedSelectedTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "unemphasizedSelectedTextColor")
-}
-@(objc_type=Color, objc_name="controlColor", objc_is_class_method=true)
-Color_controlColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "controlColor")
-}
-@(objc_type=Color, objc_name="controlTextColor", objc_is_class_method=true)
-Color_controlTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "controlTextColor")
-}
-@(objc_type=Color, objc_name="selectedControlColor", objc_is_class_method=true)
-Color_selectedControlColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "selectedControlColor")
-}
-@(objc_type=Color, objc_name="selectedControlTextColor", objc_is_class_method=true)
-Color_selectedControlTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "selectedControlTextColor")
-}
-@(objc_type=Color, objc_name="disabledControlTextColor", objc_is_class_method=true)
-Color_disabledControlTextColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "disabledControlTextColor")
-}
-@(objc_type=Color, objc_name="keyboardFocusIndicatorColor", objc_is_class_method=true)
-Color_keyboardFocusIndicatorColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "keyboardFocusIndicatorColor")
-}
-@(objc_type=Color, objc_name="scrubberTexturedBackgroundColor", objc_is_class_method=true)
-Color_scrubberTexturedBackgroundColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "scrubberTexturedBackgroundColor")
-}
-@(objc_type=Color, objc_name="systemRedColor", objc_is_class_method=true)
-Color_systemRedColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemRedColor")
-}
-@(objc_type=Color, objc_name="systemGreenColor", objc_is_class_method=true)
-Color_systemGreenColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemGreenColor")
-}
-@(objc_type=Color, objc_name="systemBlueColor", objc_is_class_method=true)
-Color_systemBlueColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemBlueColor")
-}
-@(objc_type=Color, objc_name="systemOrangeColor", objc_is_class_method=true)
-Color_systemOrangeColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemOrangeColor")
-}
-@(objc_type=Color, objc_name="systemYellowColor", objc_is_class_method=true)
-Color_systemYellowColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemYellowColor")
-}
-@(objc_type=Color, objc_name="systemBrownColor", objc_is_class_method=true)
-Color_systemBrownColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemBrownColor")
-}
-@(objc_type=Color, objc_name="systemPinkColor", objc_is_class_method=true)
-Color_systemPinkColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemPinkColor")
-}
-@(objc_type=Color, objc_name="systemPurpleColor", objc_is_class_method=true)
-Color_systemPurpleColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemPurpleColor")
-}
-@(objc_type=Color, objc_name="systemGrayColor", objc_is_class_method=true)
-Color_systemGrayColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemGrayColor")
-}
-@(objc_type=Color, objc_name="systemTealColor", objc_is_class_method=true)
-Color_systemTealColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemTealColor")
-}
-@(objc_type=Color, objc_name="systemIndigoColor", objc_is_class_method=true)
-Color_systemIndigoColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemIndigoColor")
-}
-@(objc_type=Color, objc_name="systemMintColor", objc_is_class_method=true)
-Color_systemMintColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemMintColor")
-}
-@(objc_type=Color, objc_name="systemCyanColor", objc_is_class_method=true)
-Color_systemCyanColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemCyanColor")
-}
-@(objc_type=Color, objc_name="systemFillColor", objc_is_class_method=true)
-Color_systemFillColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "systemFillColor")
-}
-@(objc_type=Color, objc_name="secondarySystemFillColor", objc_is_class_method=true)
-Color_secondarySystemFillColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "secondarySystemFillColor")
-}
-@(objc_type=Color, objc_name="tertiarySystemFillColor", objc_is_class_method=true)
-Color_tertiarySystemFillColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "tertiarySystemFillColor")
-}
-@(objc_type=Color, objc_name="quaternarySystemFillColor", objc_is_class_method=true)
-Color_quaternarySystemFillColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "quaternarySystemFillColor")
-}
-@(objc_type=Color, objc_name="quinarySystemFillColor", objc_is_class_method=true)
-Color_quinarySystemFillColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "quinarySystemFillColor")
-}
-@(objc_type=Color, objc_name="controlAccentColor", objc_is_class_method=true)
-Color_controlAccentColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "controlAccentColor")
-}
-@(objc_type=Color, objc_name="currentControlTint", objc_is_class_method=true)
-Color_currentControlTint :: #force_inline proc "c" () -> ControlTint {
-    return msgSend(ControlTint, Color, "currentControlTint")
-}
-@(objc_type=Color, objc_name="highlightColor", objc_is_class_method=true)
-Color_highlightColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "highlightColor")
-}
-@(objc_type=Color, objc_name="shadowColor", objc_is_class_method=true)
-Color_shadowColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "shadowColor")
-}
-@(objc_type=Color, objc_name="catalogNameComponent")
-Color_catalogNameComponent :: #force_inline proc "c" (self: ^Color) -> ^NS.String {
-    return msgSend(^NS.String, self, "catalogNameComponent")
-}
-@(objc_type=Color, objc_name="colorNameComponent")
-Color_colorNameComponent :: #force_inline proc "c" (self: ^Color) -> ^NS.String {
-    return msgSend(^NS.String, self, "colorNameComponent")
-}
-@(objc_type=Color, objc_name="localizedCatalogNameComponent")
-Color_localizedCatalogNameComponent :: #force_inline proc "c" (self: ^Color) -> ^NS.String {
-    return msgSend(^NS.String, self, "localizedCatalogNameComponent")
-}
-@(objc_type=Color, objc_name="localizedColorNameComponent")
-Color_localizedColorNameComponent :: #force_inline proc "c" (self: ^Color) -> ^NS.String {
-    return msgSend(^NS.String, self, "localizedColorNameComponent")
-}
-@(objc_type=Color, objc_name="redComponent")
-Color_redComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "redComponent")
-}
-@(objc_type=Color, objc_name="greenComponent")
-Color_greenComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "greenComponent")
-}
-@(objc_type=Color, objc_name="blueComponent")
-Color_blueComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "blueComponent")
-}
-@(objc_type=Color, objc_name="hueComponent")
-Color_hueComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "hueComponent")
-}
-@(objc_type=Color, objc_name="saturationComponent")
-Color_saturationComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "saturationComponent")
-}
-@(objc_type=Color, objc_name="brightnessComponent")
-Color_brightnessComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "brightnessComponent")
-}
-@(objc_type=Color, objc_name="whiteComponent")
-Color_whiteComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "whiteComponent")
-}
-@(objc_type=Color, objc_name="cyanComponent")
-Color_cyanComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "cyanComponent")
-}
-@(objc_type=Color, objc_name="magentaComponent")
-Color_magentaComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "magentaComponent")
-}
-@(objc_type=Color, objc_name="yellowComponent")
-Color_yellowComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "yellowComponent")
-}
-@(objc_type=Color, objc_name="blackComponent")
-Color_blackComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "blackComponent")
-}
-@(objc_type=Color, objc_name="colorSpace")
-Color_colorSpace :: #force_inline proc "c" (self: ^Color) -> ^ColorSpace {
-    return msgSend(^ColorSpace, self, "colorSpace")
-}
-@(objc_type=Color, objc_name="numberOfComponents")
-Color_numberOfComponents :: #force_inline proc "c" (self: ^Color) -> NS.Integer {
-    return msgSend(NS.Integer, self, "numberOfComponents")
-}
-@(objc_type=Color, objc_name="patternImage")
-Color_patternImage :: #force_inline proc "c" (self: ^Color) -> ^NS.Image {
-    return msgSend(^NS.Image, self, "patternImage")
-}
-@(objc_type=Color, objc_name="alphaComponent")
-Color_alphaComponent :: #force_inline proc "c" (self: ^Color) -> CG.Float {
-    return msgSend(CG.Float, self, "alphaComponent")
-}
-@(objc_type=Color, objc_name="CGColor")
-Color_CGColor :: #force_inline proc "c" (self: ^Color) -> CG.ColorRef {
-    return msgSend(CG.ColorRef, self, "CGColor")
-}
-@(objc_type=Color, objc_name="ignoresAlpha", objc_is_class_method=true)
-Color_ignoresAlpha :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, Color, "ignoresAlpha")
-}
-@(objc_type=Color, objc_name="setIgnoresAlpha", objc_is_class_method=true)
-Color_setIgnoresAlpha :: #force_inline proc "c" (ignoresAlpha: bool) {
-    msgSend(nil, Color, "setIgnoresAlpha:", ignoresAlpha)
-}
-@(objc_type=Color, objc_name="colorUsingColorSpaceName_device")
-Color_colorUsingColorSpaceName_device :: #force_inline proc "c" (self: ^Color, name: ^NS.String, deviceDescription: ^NS.Dictionary) -> ^Color {
-    return msgSend(^Color, self, "colorUsingColorSpaceName:device:", name, deviceDescription)
-}
-@(objc_type=Color, objc_name="colorUsingColorSpaceName_")
-Color_colorUsingColorSpaceName_ :: #force_inline proc "c" (self: ^Color, name: ^NS.String) -> ^Color {
-    return msgSend(^Color, self, "colorUsingColorSpaceName:", name)
-}
-@(objc_type=Color, objc_name="controlHighlightColor", objc_is_class_method=true)
-Color_controlHighlightColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "controlHighlightColor")
-}
-@(objc_type=Color, objc_name="controlLightHighlightColor", objc_is_class_method=true)
-Color_controlLightHighlightColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "controlLightHighlightColor")
-}
-@(objc_type=Color, objc_name="controlShadowColor", objc_is_class_method=true)
-Color_controlShadowColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "controlShadowColor")
-}
-@(objc_type=Color, objc_name="controlDarkShadowColor", objc_is_class_method=true)
-Color_controlDarkShadowColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "controlDarkShadowColor")
-}
-@(objc_type=Color, objc_name="scrollBarColor", objc_is_class_method=true)
-Color_scrollBarColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "scrollBarColor")
-}
-@(objc_type=Color, objc_name="knobColor", objc_is_class_method=true)
-Color_knobColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "knobColor")
-}
-@(objc_type=Color, objc_name="selectedKnobColor", objc_is_class_method=true)
-Color_selectedKnobColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "selectedKnobColor")
-}
-@(objc_type=Color, objc_name="windowFrameColor", objc_is_class_method=true)
-Color_windowFrameColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "windowFrameColor")
-}
-@(objc_type=Color, objc_name="selectedMenuItemColor", objc_is_class_method=true)
-Color_selectedMenuItemColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "selectedMenuItemColor")
-}
-@(objc_type=Color, objc_name="headerColor", objc_is_class_method=true)
-Color_headerColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "headerColor")
-}
-@(objc_type=Color, objc_name="secondarySelectedControlColor", objc_is_class_method=true)
-Color_secondarySelectedControlColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "secondarySelectedControlColor")
-}
-@(objc_type=Color, objc_name="alternateSelectedControlColor", objc_is_class_method=true)
-Color_alternateSelectedControlColor :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "alternateSelectedControlColor")
-}
-@(objc_type=Color, objc_name="controlAlternatingRowBackgroundColors", objc_is_class_method=true)
-Color_controlAlternatingRowBackgroundColors :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, Color, "controlAlternatingRowBackgroundColors")
-}
-@(objc_type=Color, objc_name="colorSpaceName")
-Color_colorSpaceName :: #force_inline proc "c" (self: ^Color) -> ^NS.String {
-    return msgSend(^NS.String, self, "colorSpaceName")
-}
-@(objc_type=Color, objc_name="colorWithCIColor", objc_is_class_method=true)
-Color_colorWithCIColor :: #force_inline proc "c" (color: ^CIColor) -> ^Color {
-    return msgSend(^Color, Color, "colorWithCIColor:", color)
-}
-@(objc_type=Color, objc_name="supportsSecureCoding", objc_is_class_method=true)
-Color_supportsSecureCoding :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, Color, "supportsSecureCoding")
-}
-@(objc_type=Color, objc_name="readableTypesForPasteboard", objc_is_class_method=true)
-Color_readableTypesForPasteboard :: #force_inline proc "c" (pasteboard: ^Pasteboard) -> ^NS.Array {
-    return msgSend(^NS.Array, Color, "readableTypesForPasteboard:", pasteboard)
-}
-@(objc_type=Color, objc_name="readingOptionsForType", objc_is_class_method=true)
-Color_readingOptionsForType :: #force_inline proc "c" (type: ^NS.String, pasteboard: ^Pasteboard) -> PasteboardReadingOptions {
-    return msgSend(PasteboardReadingOptions, Color, "readingOptionsForType:pasteboard:", type, pasteboard)
-}
-@(objc_type=Color, objc_name="load", objc_is_class_method=true)
-Color_load :: #force_inline proc "c" () {
-    msgSend(nil, Color, "load")
-}
-@(objc_type=Color, objc_name="initialize", objc_is_class_method=true)
-Color_initialize :: #force_inline proc "c" () {
-    msgSend(nil, Color, "initialize")
-}
-@(objc_type=Color, objc_name="new", objc_is_class_method=true)
-Color_new :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "new")
-}
-@(objc_type=Color, objc_name="allocWithZone", objc_is_class_method=true)
-Color_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^Color {
-    return msgSend(^Color, Color, "allocWithZone:", zone)
-}
-@(objc_type=Color, objc_name="alloc", objc_is_class_method=true)
-Color_alloc :: #force_inline proc "c" () -> ^Color {
-    return msgSend(^Color, Color, "alloc")
-}
-@(objc_type=Color, objc_name="copyWithZone", objc_is_class_method=true)
-Color_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, Color, "copyWithZone:", zone)
-}
-@(objc_type=Color, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-Color_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, Color, "mutableCopyWithZone:", zone)
-}
-@(objc_type=Color, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-Color_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, Color, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=Color, objc_name="conformsToProtocol", objc_is_class_method=true)
-Color_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, Color, "conformsToProtocol:", protocol)
-}
-@(objc_type=Color, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-Color_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, Color, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=Color, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-Color_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, Color, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=Color, objc_name="isSubclassOfClass", objc_is_class_method=true)
-Color_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, Color, "isSubclassOfClass:", aClass)
-}
-@(objc_type=Color, objc_name="resolveClassMethod", objc_is_class_method=true)
-Color_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, Color, "resolveClassMethod:", sel)
-}
-@(objc_type=Color, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-Color_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, Color, "resolveInstanceMethod:", sel)
-}
-@(objc_type=Color, objc_name="hash", objc_is_class_method=true)
-Color_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, Color, "hash")
-}
-@(objc_type=Color, objc_name="superclass", objc_is_class_method=true)
-Color_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Color, "superclass")
-}
-@(objc_type=Color, objc_name="class", objc_is_class_method=true)
-Color_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Color, "class")
-}
-@(objc_type=Color, objc_name="description", objc_is_class_method=true)
-Color_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, Color, "description")
-}
-@(objc_type=Color, objc_name="debugDescription", objc_is_class_method=true)
-Color_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, Color, "debugDescription")
-}
-@(objc_type=Color, objc_name="version", objc_is_class_method=true)
-Color_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, Color, "version")
-}
-@(objc_type=Color, objc_name="setVersion", objc_is_class_method=true)
-Color_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, Color, "setVersion:", aVersion)
-}
-@(objc_type=Color, objc_name="poseAsClass", objc_is_class_method=true)
-Color_poseAsClass :: #force_inline proc "c" (aClass: Class) {
-    msgSend(nil, Color, "poseAsClass:", aClass)
-}
-@(objc_type=Color, objc_name="cancelPreviousPerformRequestsWithTarget_selector_object", objc_is_class_method=true)
-Color_cancelPreviousPerformRequestsWithTarget_selector_object :: #force_inline proc "c" (aTarget: id, aSelector: SEL, anArgument: id) {
-    msgSend(nil, Color, "cancelPreviousPerformRequestsWithTarget:selector:object:", aTarget, aSelector, anArgument)
-}
-@(objc_type=Color, objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
-Color_cancelPreviousPerformRequestsWithTarget_ :: #force_inline proc "c" (aTarget: id) {
-    msgSend(nil, Color, "cancelPreviousPerformRequestsWithTarget:", aTarget)
-}
-@(objc_type=Color, objc_name="accessInstanceVariablesDirectly", objc_is_class_method=true)
-Color_accessInstanceVariablesDirectly :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, Color, "accessInstanceVariablesDirectly")
-}
-@(objc_type=Color, objc_name="useStoredAccessor", objc_is_class_method=true)
-Color_useStoredAccessor :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, Color, "useStoredAccessor")
-}
-@(objc_type=Color, objc_name="keyPathsForValuesAffectingValueForKey", objc_is_class_method=true)
-Color_keyPathsForValuesAffectingValueForKey :: #force_inline proc "c" (key: ^NS.String) -> ^NS.Set {
-    return msgSend(^NS.Set, Color, "keyPathsForValuesAffectingValueForKey:", key)
-}
-@(objc_type=Color, objc_name="automaticallyNotifiesObserversForKey", objc_is_class_method=true)
-Color_automaticallyNotifiesObserversForKey :: #force_inline proc "c" (key: ^NS.String) -> bool {
-    return msgSend(bool, Color, "automaticallyNotifiesObserversForKey:", key)
-}
-@(objc_type=Color, objc_name="setKeys", objc_is_class_method=true)
-Color_setKeys :: #force_inline proc "c" (keys: ^NS.Array, dependentKey: ^NS.String) {
-    msgSend(nil, Color, "setKeys:triggerChangeNotificationsForDependentKey:", keys, dependentKey)
-}
-@(objc_type=Color, objc_name="classFallbacksForKeyedArchiver", objc_is_class_method=true)
-Color_classFallbacksForKeyedArchiver :: #force_inline proc "c" () -> ^NS.Array {
-    return msgSend(^NS.Array, Color, "classFallbacksForKeyedArchiver")
-}
-@(objc_type=Color, objc_name="classForKeyedUnarchiver", objc_is_class_method=true)
-Color_classForKeyedUnarchiver :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Color, "classForKeyedUnarchiver")
-}
-@(objc_type=Color, objc_name="exposeBinding", objc_is_class_method=true)
-Color_exposeBinding :: #force_inline proc "c" (binding: ^NS.String) {
-    msgSend(nil, Color, "exposeBinding:", binding)
-}
-@(objc_type=Color, objc_name="setDefaultPlaceholder", objc_is_class_method=true)
-Color_setDefaultPlaceholder :: #force_inline proc "c" (placeholder: id, marker: id, binding: ^NS.String) {
-    msgSend(nil, Color, "setDefaultPlaceholder:forMarker:withBinding:", placeholder, marker, binding)
-}
-@(objc_type=Color, objc_name="defaultPlaceholderForMarker", objc_is_class_method=true)
-Color_defaultPlaceholderForMarker :: #force_inline proc "c" (marker: id, binding: ^NS.String) -> id {
-    return msgSend(id, Color, "defaultPlaceholderForMarker:withBinding:", marker, binding)
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Color, objc_selector="init", objc_name="init")
+    Color_init :: proc(self: ^Color) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="initWithCoder:", objc_name="initWithCoder")
+    Color_initWithCoder :: proc(self: ^Color, coder: ^NS.Coder) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithColorSpace:components:count:", objc_name="colorWithColorSpace_components_count", objc_is_class_method=true)
+    Color_colorWithColorSpace_components_count :: proc(space: ^ColorSpace, components: ^CG.Float, numberOfComponents: NS.Integer) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithSRGBRed:green:blue:alpha:", objc_name="colorWithSRGBRed", objc_is_class_method=true)
+    Color_colorWithSRGBRed :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithGenericGamma22White:alpha:", objc_name="colorWithGenericGamma22White", objc_is_class_method=true)
+    Color_colorWithGenericGamma22White :: proc(white: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithDisplayP3Red:green:blue:alpha:", objc_name="colorWithDisplayP3Red", objc_is_class_method=true)
+    Color_colorWithDisplayP3Red :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithWhite:alpha:", objc_name="colorWithWhite", objc_is_class_method=true)
+    Color_colorWithWhite :: proc(white: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithRed:green:blue:alpha:", objc_name="colorWithRed", objc_is_class_method=true)
+    Color_colorWithRed :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithHue:saturation:brightness:alpha:", objc_name="colorWithHue", objc_is_class_method=true)
+    Color_colorWithHue :: proc(hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithColorSpace:hue:saturation:brightness:alpha:", objc_name="colorWithColorSpace_hue_saturation_brightness_alpha", objc_is_class_method=true)
+    Color_colorWithColorSpace_hue_saturation_brightness_alpha :: proc(space: ^ColorSpace, hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithCatalogName:colorName:", objc_name="colorWithCatalogName", objc_is_class_method=true)
+    Color_colorWithCatalogName :: proc(listName: ^NS.String, colorName: ^NS.String) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorNamed:bundle:", objc_name="colorNamed_bundle", objc_is_class_method=true)
+    Color_colorNamed_bundle :: proc(name: ^NS.String, bundle: ^NS.Bundle) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorNamed:", objc_name="colorNamed_", objc_is_class_method=true)
+    Color_colorNamed_ :: proc(name: ^NS.String) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithName:dynamicProvider:", objc_name="colorWithName", objc_is_class_method=true)
+    Color_colorWithName :: proc(colorName: ^NS.String, dynamicProvider: ^Objc_Block(proc "c" (_: ^Appearance) -> ^Color)) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithDeviceWhite:alpha:", objc_name="colorWithDeviceWhite", objc_is_class_method=true)
+    Color_colorWithDeviceWhite :: proc(white: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithDeviceRed:green:blue:alpha:", objc_name="colorWithDeviceRed", objc_is_class_method=true)
+    Color_colorWithDeviceRed :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithDeviceHue:saturation:brightness:alpha:", objc_name="colorWithDeviceHue", objc_is_class_method=true)
+    Color_colorWithDeviceHue :: proc(hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithDeviceCyan:magenta:yellow:black:alpha:", objc_name="colorWithDeviceCyan", objc_is_class_method=true)
+    Color_colorWithDeviceCyan :: proc(cyan: CG.Float, magenta: CG.Float, yellow: CG.Float, black: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithCalibratedWhite:alpha:", objc_name="colorWithCalibratedWhite", objc_is_class_method=true)
+    Color_colorWithCalibratedWhite :: proc(white: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithCalibratedRed:green:blue:alpha:", objc_name="colorWithCalibratedRed", objc_is_class_method=true)
+    Color_colorWithCalibratedRed :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithCalibratedHue:saturation:brightness:alpha:", objc_name="colorWithCalibratedHue", objc_is_class_method=true)
+    Color_colorWithCalibratedHue :: proc(hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithPatternImage:", objc_name="colorWithPatternImage", objc_is_class_method=true)
+    Color_colorWithPatternImage :: proc(image: ^NS.Image) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorUsingType:", objc_name="colorUsingType")
+    Color_colorUsingType :: proc(self: ^Color, type: ColorType) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorUsingColorSpace:", objc_name="colorUsingColorSpace")
+    Color_colorUsingColorSpace :: proc(self: ^Color, space: ^ColorSpace) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorForControlTint:", objc_name="colorForControlTint", objc_is_class_method=true)
+    Color_colorForControlTint :: proc(controlTint: ControlTint) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="highlightWithLevel:", objc_name="highlightWithLevel")
+    Color_highlightWithLevel :: proc(self: ^Color, val: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="shadowWithLevel:", objc_name="shadowWithLevel")
+    Color_shadowWithLevel :: proc(self: ^Color, val: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithSystemEffect:", objc_name="colorWithSystemEffect")
+    Color_colorWithSystemEffect :: proc(self: ^Color, systemEffect: ColorSystemEffect) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="set", objc_name="set")
+    Color_set :: proc(self: ^Color) ---
+
+    @(objc_type=Color, objc_selector="setFill", objc_name="setFill")
+    Color_setFill :: proc(self: ^Color) ---
+
+    @(objc_type=Color, objc_selector="setStroke", objc_name="setStroke")
+    Color_setStroke :: proc(self: ^Color) ---
+
+    @(objc_type=Color, objc_selector="blendedColorWithFraction:ofColor:", objc_name="blendedColorWithFraction")
+    Color_blendedColorWithFraction :: proc(self: ^Color, fraction: CG.Float, color: ^Color) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithAlphaComponent:", objc_name="colorWithAlphaComponent")
+    Color_colorWithAlphaComponent :: proc(self: ^Color, alpha: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="getRed:green:blue:alpha:", objc_name="getRed")
+    Color_getRed :: proc(self: ^Color, red: ^CG.Float, green: ^CG.Float, blue: ^CG.Float, alpha: ^CG.Float) ---
+
+    @(objc_type=Color, objc_selector="getHue:saturation:brightness:alpha:", objc_name="getHue")
+    Color_getHue :: proc(self: ^Color, hue: ^CG.Float, saturation: ^CG.Float, brightness: ^CG.Float, alpha: ^CG.Float) ---
+
+    @(objc_type=Color, objc_selector="getWhite:alpha:", objc_name="getWhite")
+    Color_getWhite :: proc(self: ^Color, white: ^CG.Float, alpha: ^CG.Float) ---
+
+    @(objc_type=Color, objc_selector="getCyan:magenta:yellow:black:alpha:", objc_name="getCyan")
+    Color_getCyan :: proc(self: ^Color, cyan: ^CG.Float, magenta: ^CG.Float, yellow: ^CG.Float, black: ^CG.Float, alpha: ^CG.Float) ---
+
+    @(objc_type=Color, objc_selector="getComponents:", objc_name="getComponents")
+    Color_getComponents :: proc(self: ^Color, components: ^CG.Float) ---
+
+    @(objc_type=Color, objc_selector="colorFromPasteboard:", objc_name="colorFromPasteboard", objc_is_class_method=true)
+    Color_colorFromPasteboard :: proc(pasteBoard: ^Pasteboard) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="writeToPasteboard:", objc_name="writeToPasteboard")
+    Color_writeToPasteboard :: proc(self: ^Color, pasteBoard: ^Pasteboard) ---
+
+    @(objc_type=Color, objc_selector="drawSwatchInRect:", objc_name="drawSwatchInRect")
+    Color_drawSwatchInRect :: proc(self: ^Color, rect: NS.Rect) ---
+
+    @(objc_type=Color, objc_selector="colorWithCGColor:", objc_name="colorWithCGColor", objc_is_class_method=true)
+    Color_colorWithCGColor :: proc(cgColor: CG.ColorRef) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="type", objc_name="type")
+    Color_type :: proc(self: ^Color) -> ColorType ---
+
+    @(objc_type=Color, objc_selector="blackColor", objc_name="blackColor", objc_is_class_method=true)
+    Color_blackColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="darkGrayColor", objc_name="darkGrayColor", objc_is_class_method=true)
+    Color_darkGrayColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="lightGrayColor", objc_name="lightGrayColor", objc_is_class_method=true)
+    Color_lightGrayColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="whiteColor", objc_name="whiteColor", objc_is_class_method=true)
+    Color_whiteColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="grayColor", objc_name="grayColor", objc_is_class_method=true)
+    Color_grayColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="redColor", objc_name="redColor", objc_is_class_method=true)
+    Color_redColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="greenColor", objc_name="greenColor", objc_is_class_method=true)
+    Color_greenColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="blueColor", objc_name="blueColor", objc_is_class_method=true)
+    Color_blueColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="cyanColor", objc_name="cyanColor", objc_is_class_method=true)
+    Color_cyanColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="yellowColor", objc_name="yellowColor", objc_is_class_method=true)
+    Color_yellowColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="magentaColor", objc_name="magentaColor", objc_is_class_method=true)
+    Color_magentaColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="orangeColor", objc_name="orangeColor", objc_is_class_method=true)
+    Color_orangeColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="purpleColor", objc_name="purpleColor", objc_is_class_method=true)
+    Color_purpleColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="brownColor", objc_name="brownColor", objc_is_class_method=true)
+    Color_brownColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="clearColor", objc_name="clearColor", objc_is_class_method=true)
+    Color_clearColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="labelColor", objc_name="labelColor", objc_is_class_method=true)
+    Color_labelColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="secondaryLabelColor", objc_name="secondaryLabelColor", objc_is_class_method=true)
+    Color_secondaryLabelColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="tertiaryLabelColor", objc_name="tertiaryLabelColor", objc_is_class_method=true)
+    Color_tertiaryLabelColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="quaternaryLabelColor", objc_name="quaternaryLabelColor", objc_is_class_method=true)
+    Color_quaternaryLabelColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="quinaryLabelColor", objc_name="quinaryLabelColor", objc_is_class_method=true)
+    Color_quinaryLabelColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="linkColor", objc_name="linkColor", objc_is_class_method=true)
+    Color_linkColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="placeholderTextColor", objc_name="placeholderTextColor", objc_is_class_method=true)
+    Color_placeholderTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="windowFrameTextColor", objc_name="windowFrameTextColor", objc_is_class_method=true)
+    Color_windowFrameTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="selectedMenuItemTextColor", objc_name="selectedMenuItemTextColor", objc_is_class_method=true)
+    Color_selectedMenuItemTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="alternateSelectedControlTextColor", objc_name="alternateSelectedControlTextColor", objc_is_class_method=true)
+    Color_alternateSelectedControlTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="headerTextColor", objc_name="headerTextColor", objc_is_class_method=true)
+    Color_headerTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="separatorColor", objc_name="separatorColor", objc_is_class_method=true)
+    Color_separatorColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="gridColor", objc_name="gridColor", objc_is_class_method=true)
+    Color_gridColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="windowBackgroundColor", objc_name="windowBackgroundColor", objc_is_class_method=true)
+    Color_windowBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="underPageBackgroundColor", objc_name="underPageBackgroundColor", objc_is_class_method=true)
+    Color_underPageBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlBackgroundColor", objc_name="controlBackgroundColor", objc_is_class_method=true)
+    Color_controlBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="selectedContentBackgroundColor", objc_name="selectedContentBackgroundColor", objc_is_class_method=true)
+    Color_selectedContentBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="unemphasizedSelectedContentBackgroundColor", objc_name="unemphasizedSelectedContentBackgroundColor", objc_is_class_method=true)
+    Color_unemphasizedSelectedContentBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="alternatingContentBackgroundColors", objc_name="alternatingContentBackgroundColors", objc_is_class_method=true)
+    Color_alternatingContentBackgroundColors :: proc() -> ^NS.Array ---
+
+    @(objc_type=Color, objc_selector="findHighlightColor", objc_name="findHighlightColor", objc_is_class_method=true)
+    Color_findHighlightColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="textColor", objc_name="textColor", objc_is_class_method=true)
+    Color_textColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="textBackgroundColor", objc_name="textBackgroundColor", objc_is_class_method=true)
+    Color_textBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="textInsertionPointColor", objc_name="textInsertionPointColor", objc_is_class_method=true)
+    Color_textInsertionPointColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="selectedTextColor", objc_name="selectedTextColor", objc_is_class_method=true)
+    Color_selectedTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="selectedTextBackgroundColor", objc_name="selectedTextBackgroundColor", objc_is_class_method=true)
+    Color_selectedTextBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="unemphasizedSelectedTextBackgroundColor", objc_name="unemphasizedSelectedTextBackgroundColor", objc_is_class_method=true)
+    Color_unemphasizedSelectedTextBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="unemphasizedSelectedTextColor", objc_name="unemphasizedSelectedTextColor", objc_is_class_method=true)
+    Color_unemphasizedSelectedTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlColor", objc_name="controlColor", objc_is_class_method=true)
+    Color_controlColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlTextColor", objc_name="controlTextColor", objc_is_class_method=true)
+    Color_controlTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="selectedControlColor", objc_name="selectedControlColor", objc_is_class_method=true)
+    Color_selectedControlColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="selectedControlTextColor", objc_name="selectedControlTextColor", objc_is_class_method=true)
+    Color_selectedControlTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="disabledControlTextColor", objc_name="disabledControlTextColor", objc_is_class_method=true)
+    Color_disabledControlTextColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="keyboardFocusIndicatorColor", objc_name="keyboardFocusIndicatorColor", objc_is_class_method=true)
+    Color_keyboardFocusIndicatorColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="scrubberTexturedBackgroundColor", objc_name="scrubberTexturedBackgroundColor", objc_is_class_method=true)
+    Color_scrubberTexturedBackgroundColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemRedColor", objc_name="systemRedColor", objc_is_class_method=true)
+    Color_systemRedColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemGreenColor", objc_name="systemGreenColor", objc_is_class_method=true)
+    Color_systemGreenColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemBlueColor", objc_name="systemBlueColor", objc_is_class_method=true)
+    Color_systemBlueColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemOrangeColor", objc_name="systemOrangeColor", objc_is_class_method=true)
+    Color_systemOrangeColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemYellowColor", objc_name="systemYellowColor", objc_is_class_method=true)
+    Color_systemYellowColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemBrownColor", objc_name="systemBrownColor", objc_is_class_method=true)
+    Color_systemBrownColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemPinkColor", objc_name="systemPinkColor", objc_is_class_method=true)
+    Color_systemPinkColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemPurpleColor", objc_name="systemPurpleColor", objc_is_class_method=true)
+    Color_systemPurpleColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemGrayColor", objc_name="systemGrayColor", objc_is_class_method=true)
+    Color_systemGrayColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemTealColor", objc_name="systemTealColor", objc_is_class_method=true)
+    Color_systemTealColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemIndigoColor", objc_name="systemIndigoColor", objc_is_class_method=true)
+    Color_systemIndigoColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemMintColor", objc_name="systemMintColor", objc_is_class_method=true)
+    Color_systemMintColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemCyanColor", objc_name="systemCyanColor", objc_is_class_method=true)
+    Color_systemCyanColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="systemFillColor", objc_name="systemFillColor", objc_is_class_method=true)
+    Color_systemFillColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="secondarySystemFillColor", objc_name="secondarySystemFillColor", objc_is_class_method=true)
+    Color_secondarySystemFillColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="tertiarySystemFillColor", objc_name="tertiarySystemFillColor", objc_is_class_method=true)
+    Color_tertiarySystemFillColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="quaternarySystemFillColor", objc_name="quaternarySystemFillColor", objc_is_class_method=true)
+    Color_quaternarySystemFillColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="quinarySystemFillColor", objc_name="quinarySystemFillColor", objc_is_class_method=true)
+    Color_quinarySystemFillColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlAccentColor", objc_name="controlAccentColor", objc_is_class_method=true)
+    Color_controlAccentColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="currentControlTint", objc_name="currentControlTint", objc_is_class_method=true)
+    Color_currentControlTint :: proc() -> ControlTint ---
+
+    @(objc_type=Color, objc_selector="highlightColor", objc_name="highlightColor", objc_is_class_method=true)
+    Color_highlightColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="shadowColor", objc_name="shadowColor", objc_is_class_method=true)
+    Color_shadowColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="catalogNameComponent", objc_name="catalogNameComponent")
+    Color_catalogNameComponent :: proc(self: ^Color) -> ^NS.String ---
+
+    @(objc_type=Color, objc_selector="colorNameComponent", objc_name="colorNameComponent")
+    Color_colorNameComponent :: proc(self: ^Color) -> ^NS.String ---
+
+    @(objc_type=Color, objc_selector="localizedCatalogNameComponent", objc_name="localizedCatalogNameComponent")
+    Color_localizedCatalogNameComponent :: proc(self: ^Color) -> ^NS.String ---
+
+    @(objc_type=Color, objc_selector="localizedColorNameComponent", objc_name="localizedColorNameComponent")
+    Color_localizedColorNameComponent :: proc(self: ^Color) -> ^NS.String ---
+
+    @(objc_type=Color, objc_selector="redComponent", objc_name="redComponent")
+    Color_redComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="greenComponent", objc_name="greenComponent")
+    Color_greenComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="blueComponent", objc_name="blueComponent")
+    Color_blueComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="hueComponent", objc_name="hueComponent")
+    Color_hueComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="saturationComponent", objc_name="saturationComponent")
+    Color_saturationComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="brightnessComponent", objc_name="brightnessComponent")
+    Color_brightnessComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="whiteComponent", objc_name="whiteComponent")
+    Color_whiteComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="cyanComponent", objc_name="cyanComponent")
+    Color_cyanComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="magentaComponent", objc_name="magentaComponent")
+    Color_magentaComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="yellowComponent", objc_name="yellowComponent")
+    Color_yellowComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="blackComponent", objc_name="blackComponent")
+    Color_blackComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="colorSpace", objc_name="colorSpace")
+    Color_colorSpace :: proc(self: ^Color) -> ^ColorSpace ---
+
+    @(objc_type=Color, objc_selector="numberOfComponents", objc_name="numberOfComponents")
+    Color_numberOfComponents :: proc(self: ^Color) -> NS.Integer ---
+
+    @(objc_type=Color, objc_selector="patternImage", objc_name="patternImage")
+    Color_patternImage :: proc(self: ^Color) -> ^NS.Image ---
+
+    @(objc_type=Color, objc_selector="alphaComponent", objc_name="alphaComponent")
+    Color_alphaComponent :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="CGColor", objc_name="CGColor")
+    Color_CGColor :: proc(self: ^Color) -> CG.ColorRef ---
+
+    @(objc_type=Color, objc_selector="ignoresAlpha", objc_name="ignoresAlpha", objc_is_class_method=true)
+    Color_ignoresAlpha :: proc() -> bool ---
+
+    @(objc_type=Color, objc_selector="setIgnoresAlpha:", objc_name="setIgnoresAlpha", objc_is_class_method=true)
+    Color_setIgnoresAlpha :: proc(ignoresAlpha: bool) ---
+
+    @(objc_type=Color, objc_selector="colorUsingColorSpaceName:device:", objc_name="colorUsingColorSpaceName_device")
+    Color_colorUsingColorSpaceName_device :: proc(self: ^Color, name: ^NS.String, deviceDescription: ^NS.Dictionary) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorUsingColorSpaceName:", objc_name="colorUsingColorSpaceName_")
+    Color_colorUsingColorSpaceName_ :: proc(self: ^Color, name: ^NS.String) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlHighlightColor", objc_name="controlHighlightColor", objc_is_class_method=true)
+    Color_controlHighlightColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlLightHighlightColor", objc_name="controlLightHighlightColor", objc_is_class_method=true)
+    Color_controlLightHighlightColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlShadowColor", objc_name="controlShadowColor", objc_is_class_method=true)
+    Color_controlShadowColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlDarkShadowColor", objc_name="controlDarkShadowColor", objc_is_class_method=true)
+    Color_controlDarkShadowColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="scrollBarColor", objc_name="scrollBarColor", objc_is_class_method=true)
+    Color_scrollBarColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="knobColor", objc_name="knobColor", objc_is_class_method=true)
+    Color_knobColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="selectedKnobColor", objc_name="selectedKnobColor", objc_is_class_method=true)
+    Color_selectedKnobColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="windowFrameColor", objc_name="windowFrameColor", objc_is_class_method=true)
+    Color_windowFrameColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="selectedMenuItemColor", objc_name="selectedMenuItemColor", objc_is_class_method=true)
+    Color_selectedMenuItemColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="headerColor", objc_name="headerColor", objc_is_class_method=true)
+    Color_headerColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="secondarySelectedControlColor", objc_name="secondarySelectedControlColor", objc_is_class_method=true)
+    Color_secondarySelectedControlColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="alternateSelectedControlColor", objc_name="alternateSelectedControlColor", objc_is_class_method=true)
+    Color_alternateSelectedControlColor :: proc() -> ^Color ---
+
+    @(objc_type=Color, objc_selector="controlAlternatingRowBackgroundColors", objc_name="controlAlternatingRowBackgroundColors", objc_is_class_method=true)
+    Color_controlAlternatingRowBackgroundColors :: proc() -> ^NS.Array ---
+
+    @(objc_type=Color, objc_selector="colorSpaceName", objc_name="colorSpaceName")
+    Color_colorSpaceName :: proc(self: ^Color) -> ^NS.String ---
+
+    @(objc_type=Color, objc_selector="colorWithCIColor:", objc_name="colorWithCIColor", objc_is_class_method=true)
+    Color_colorWithCIColor :: proc(color: ^CIColor) -> ^Color ---
+}
+
 @(objc_type=Color, objc_name="colorWithColorSpace")
 Color_colorWithColorSpace :: proc {
     Color_colorWithColorSpace_components_count,
@@ -800,11 +502,5 @@ Color_colorNamed :: proc {
 Color_colorUsingColorSpaceName :: proc {
     Color_colorUsingColorSpaceName_device,
     Color_colorUsingColorSpaceName_,
-}
-
-@(objc_type=Color, objc_name="cancelPreviousPerformRequestsWithTarget")
-Color_cancelPreviousPerformRequestsWithTarget :: proc {
-    Color_cancelPreviousPerformRequestsWithTarget_selector_object,
-    Color_cancelPreviousPerformRequestsWithTarget_,
 }
 

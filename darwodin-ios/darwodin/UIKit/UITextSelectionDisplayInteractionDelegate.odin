@@ -21,7 +21,8 @@ TextSelectionDisplayInteractionDelegate :: struct { using _: intrinsics.objc_obj
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextSelectionDisplayInteractionDelegate, objc_name="selectionContainerViewBelowTextForSelectionDisplayInteraction")
-TextSelectionDisplayInteractionDelegate_selectionContainerViewBelowTextForSelectionDisplayInteraction :: #force_inline proc "c" (self: ^TextSelectionDisplayInteractionDelegate, interaction: ^TextSelectionDisplayInteraction) -> ^View {
-    return msgSend(^View, self, "selectionContainerViewBelowTextForSelectionDisplayInteraction:", interaction)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextSelectionDisplayInteractionDelegate, objc_selector="selectionContainerViewBelowTextForSelectionDisplayInteraction:", objc_name="selectionContainerViewBelowTextForSelectionDisplayInteraction")
+    TextSelectionDisplayInteractionDelegate_selectionContainerViewBelowTextForSelectionDisplayInteraction :: proc(self: ^TextSelectionDisplayInteractionDelegate, interaction: ^TextSelectionDisplayInteraction) -> ^View ---
 }

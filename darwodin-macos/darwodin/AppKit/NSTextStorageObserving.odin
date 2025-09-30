@@ -21,19 +21,17 @@ TextStorageObserving :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=TextStorageObserving, objc_name="processEditingForTextStorage")
-TextStorageObserving_processEditingForTextStorage :: #force_inline proc "c" (self: ^TextStorageObserving, textStorage: ^TextStorage, editMask: TextStorageEditActions, newCharRange: NS._NSRange, delta: NS.Integer, invalidatedCharRange: NS._NSRange) {
-    msgSend(nil, self, "processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:", textStorage, editMask, newCharRange, delta, invalidatedCharRange)
-}
-@(objc_type=TextStorageObserving, objc_name="performEditingTransactionForTextStorage")
-TextStorageObserving_performEditingTransactionForTextStorage :: #force_inline proc "c" (self: ^TextStorageObserving, textStorage: ^TextStorage, transaction: ^Objc_Block(proc "c" ())) {
-    msgSend(nil, self, "performEditingTransactionForTextStorage:usingBlock:", textStorage, transaction)
-}
-@(objc_type=TextStorageObserving, objc_name="textStorage")
-TextStorageObserving_textStorage :: #force_inline proc "c" (self: ^TextStorageObserving) -> ^TextStorage {
-    return msgSend(^TextStorage, self, "textStorage")
-}
-@(objc_type=TextStorageObserving, objc_name="setTextStorage")
-TextStorageObserving_setTextStorage :: #force_inline proc "c" (self: ^TextStorageObserving, textStorage: ^TextStorage) {
-    msgSend(nil, self, "setTextStorage:", textStorage)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextStorageObserving, objc_selector="processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:", objc_name="processEditingForTextStorage")
+    TextStorageObserving_processEditingForTextStorage :: proc(self: ^TextStorageObserving, textStorage: ^TextStorage, editMask: TextStorageEditActions, newCharRange: NS._NSRange, delta: NS.Integer, invalidatedCharRange: NS._NSRange) ---
+
+    @(objc_type=TextStorageObserving, objc_selector="performEditingTransactionForTextStorage:usingBlock:", objc_name="performEditingTransactionForTextStorage")
+    TextStorageObserving_performEditingTransactionForTextStorage :: proc(self: ^TextStorageObserving, textStorage: ^TextStorage, transaction: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=TextStorageObserving, objc_selector="textStorage", objc_name="textStorage")
+    TextStorageObserving_textStorage :: proc(self: ^TextStorageObserving) -> ^TextStorage ---
+
+    @(objc_type=TextStorageObserving, objc_selector="setTextStorage:", objc_name="setTextStorage")
+    TextStorageObserving_setTextStorage :: proc(self: ^TextStorageObserving, textStorage: ^TextStorage) ---
 }

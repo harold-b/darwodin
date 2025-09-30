@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDocumentProperties
 ///
-@(objc_class="UIDocumentProperties")
+@(objc_class="UIDocumentProperties", objc_superclass=NS.Object)
 DocumentProperties :: struct { using _: NS.Object, }
 

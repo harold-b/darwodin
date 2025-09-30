@@ -21,3 +21,5 @@ FunctionStitchingNode :: struct { using _: intrinsics.objc_object,
     using _: NS.Copying,
 }
 
+@(default_calling_convention="c")
+foreign lib {}

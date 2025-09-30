@@ -21,15 +21,15 @@ FindInteractionDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=FindInteractionDelegate, objc_name="findInteraction_sessionForView")
-FindInteractionDelegate_findInteraction_sessionForView :: #force_inline proc "c" (self: ^FindInteractionDelegate, interaction: ^FindInteraction, view: ^View) -> ^FindSession {
-    return msgSend(^FindSession, self, "findInteraction:sessionForView:", interaction, view)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=FindInteractionDelegate, objc_selector="findInteraction:sessionForView:", objc_name="findInteraction_sessionForView")
+    FindInteractionDelegate_findInteraction_sessionForView :: proc(self: ^FindInteractionDelegate, interaction: ^FindInteraction, view: ^View) -> ^FindSession ---
+
+    @(objc_type=FindInteractionDelegate, objc_selector="findInteraction:didBeginFindSession:", objc_name="findInteraction_didBeginFindSession")
+    FindInteractionDelegate_findInteraction_didBeginFindSession :: proc(self: ^FindInteractionDelegate, interaction: ^FindInteraction, session: ^FindSession) ---
+
+    @(objc_type=FindInteractionDelegate, objc_selector="findInteraction:didEndFindSession:", objc_name="findInteraction_didEndFindSession")
+    FindInteractionDelegate_findInteraction_didEndFindSession :: proc(self: ^FindInteractionDelegate, interaction: ^FindInteraction, session: ^FindSession) ---
 }
-@(objc_type=FindInteractionDelegate, objc_name="findInteraction_didBeginFindSession")
-FindInteractionDelegate_findInteraction_didBeginFindSession :: #force_inline proc "c" (self: ^FindInteractionDelegate, interaction: ^FindInteraction, session: ^FindSession) {
-    msgSend(nil, self, "findInteraction:didBeginFindSession:", interaction, session)
-}
-@(objc_type=FindInteractionDelegate, objc_name="findInteraction_didEndFindSession")
-FindInteractionDelegate_findInteraction_didEndFindSession :: #force_inline proc "c" (self: ^FindInteractionDelegate, interaction: ^FindInteraction, session: ^FindSession) {
-    msgSend(nil, self, "findInteraction:didEndFindSession:", interaction, session)
-}
+

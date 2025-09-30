@@ -12,13 +12,14 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
-@require foreign import lib "system:Foundation.framework"
+@(require, export) foreign import lib "system:Foundation.framework"
 
 OpaqueSecTransformImplementation :: struct {}
 OpaqueSecIdentitySearchRef :: struct {}
@@ -1525,13 +1526,13 @@ RunLoopMode :: distinct ^String
 Comparator :: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> ComparisonResult)
 
 /// NSZone
-Zone :: distinct _NSZone
+Zone :: _NSZone
 
 /// NSRange
-Range :: distinct _NSRange
+Range :: _NSRange
 
 /// unichar
-unichar :: distinct cffi.ushort
+unichar :: cffi.ushort
 
 /// NSItemProviderCompletionHandler
 ItemProviderCompletionHandler :: ^Objc_Block(proc "c" (item: ^SecureCoding, error: ^Error))

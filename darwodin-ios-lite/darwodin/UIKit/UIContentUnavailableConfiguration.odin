@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIContentUnavailableConfiguration
 ///
-@(objc_class="UIContentUnavailableConfiguration")
+@(objc_class="UIContentUnavailableConfiguration", objc_superclass=NS.Object)
 ContentUnavailableConfiguration :: struct { using _: NS.Object, 
     using _: ContentConfiguration,
     using _: NS.SecureCoding,

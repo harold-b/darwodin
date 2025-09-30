@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSProcessInfo
 ///
-@(objc_class="NSProcessInfo")
+@(objc_class="NSProcessInfo", objc_superclass=Object)
 ProcessInfo :: struct { using _: Object, }
 

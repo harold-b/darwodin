@@ -21,19 +21,17 @@ LayoutSupport :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=LayoutSupport, objc_name="length")
-LayoutSupport_length :: #force_inline proc "c" (self: ^LayoutSupport) -> CG.Float {
-    return msgSend(CG.Float, self, "length")
-}
-@(objc_type=LayoutSupport, objc_name="topAnchor")
-LayoutSupport_topAnchor :: #force_inline proc "c" (self: ^LayoutSupport) -> ^NSLayoutYAxisAnchor {
-    return msgSend(^NSLayoutYAxisAnchor, self, "topAnchor")
-}
-@(objc_type=LayoutSupport, objc_name="bottomAnchor")
-LayoutSupport_bottomAnchor :: #force_inline proc "c" (self: ^LayoutSupport) -> ^NSLayoutYAxisAnchor {
-    return msgSend(^NSLayoutYAxisAnchor, self, "bottomAnchor")
-}
-@(objc_type=LayoutSupport, objc_name="heightAnchor")
-LayoutSupport_heightAnchor :: #force_inline proc "c" (self: ^LayoutSupport) -> ^NSLayoutDimension {
-    return msgSend(^NSLayoutDimension, self, "heightAnchor")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LayoutSupport, objc_selector="length", objc_name="length")
+    LayoutSupport_length :: proc(self: ^LayoutSupport) -> CG.Float ---
+
+    @(objc_type=LayoutSupport, objc_selector="topAnchor", objc_name="topAnchor")
+    LayoutSupport_topAnchor :: proc(self: ^LayoutSupport) -> ^NSLayoutYAxisAnchor ---
+
+    @(objc_type=LayoutSupport, objc_selector="bottomAnchor", objc_name="bottomAnchor")
+    LayoutSupport_bottomAnchor :: proc(self: ^LayoutSupport) -> ^NSLayoutYAxisAnchor ---
+
+    @(objc_type=LayoutSupport, objc_selector="heightAnchor", objc_name="heightAnchor")
+    LayoutSupport_heightAnchor :: proc(self: ^LayoutSupport) -> ^NSLayoutDimension ---
 }

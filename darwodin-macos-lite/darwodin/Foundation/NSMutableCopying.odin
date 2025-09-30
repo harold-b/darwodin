@@ -16,7 +16,8 @@ import Sec "../Security"
 @(objc_class="NSMutableCopying")
 MutableCopying :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=MutableCopying, objc_name="mutableCopyWithZone")
-MutableCopying_mutableCopyWithZone :: #force_inline proc "c" (self: ^MutableCopying, zone: ^Zone) -> id {
-    return msgSend(id, self, "mutableCopyWithZone:", zone)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MutableCopying, objc_selector="mutableCopyWithZone:", objc_name="mutableCopyWithZone")
+    MutableCopying_mutableCopyWithZone :: proc(self: ^MutableCopying, zone: ^Zone) -> id ---
 }

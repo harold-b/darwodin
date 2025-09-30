@@ -21,7 +21,8 @@ TextContentStorageDelegate :: struct { using _: intrinsics.objc_object,
     using _: TextContentManagerDelegate,
 }
 
-@(objc_type=TextContentStorageDelegate, objc_name="textContentStorage")
-TextContentStorageDelegate_textContentStorage :: #force_inline proc "c" (self: ^TextContentStorageDelegate, textContentStorage: ^TextContentStorage, range: NS._NSRange) -> ^TextParagraph {
-    return msgSend(^TextParagraph, self, "textContentStorage:textParagraphWithRange:", textContentStorage, range)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextContentStorageDelegate, objc_selector="textContentStorage:textParagraphWithRange:", objc_name="textContentStorage")
+    TextContentStorageDelegate_textContentStorage :: proc(self: ^TextContentStorageDelegate, textContentStorage: ^TextContentStorage, range: NS._NSRange) -> ^TextParagraph ---
 }

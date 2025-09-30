@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UITabSidebarItemRequest
 ///
-@(objc_class="UITabSidebarItemRequest")
+@(objc_class="UITabSidebarItemRequest", objc_superclass=NS.Object)
 TabSidebarItemRequest :: struct { using _: NS.Object, }
 

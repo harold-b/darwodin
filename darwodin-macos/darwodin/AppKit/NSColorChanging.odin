@@ -21,7 +21,8 @@ ColorChanging :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ColorChanging, objc_name="changeColor")
-ColorChanging_changeColor :: #force_inline proc "c" (self: ^ColorChanging, sender: ^ColorPanel) {
-    msgSend(nil, self, "changeColor:", sender)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ColorChanging, objc_selector="changeColor:", objc_name="changeColor")
+    ColorChanging_changeColor :: proc(self: ^ColorChanging, sender: ^ColorPanel) ---
 }

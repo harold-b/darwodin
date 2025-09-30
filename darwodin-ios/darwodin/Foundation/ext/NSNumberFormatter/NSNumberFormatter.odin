@@ -12,11 +12,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import NS "../../"
 
@@ -146,35 +147,6 @@ VTable :: struct {
     setMaximumSignificantDigits: proc(self: ^NS.NumberFormatter, maximumSignificantDigits: NS.UInteger),
     isPartialStringValidationEnabled: proc(self: ^NS.NumberFormatter) -> bool,
     setPartialStringValidationEnabled: proc(self: ^NS.NumberFormatter, partialStringValidationEnabled: bool),
-    load: proc(),
-    initialize: proc(),
-    new: proc() -> ^NS.NumberFormatter,
-    allocWithZone: proc(zone: ^NS._NSZone) -> ^NS.NumberFormatter,
-    alloc: proc() -> ^NS.NumberFormatter,
-    copyWithZone: proc(zone: ^NS._NSZone) -> id,
-    mutableCopyWithZone: proc(zone: ^NS._NSZone) -> id,
-    instancesRespondToSelector: proc(aSelector: SEL) -> bool,
-    conformsToProtocol: proc(protocol: ^NS.Protocol) -> bool,
-    instanceMethodForSelector: proc(aSelector: SEL) -> NS.IMP,
-    instanceMethodSignatureForSelector: proc(aSelector: SEL) -> ^NS.MethodSignature,
-    isSubclassOfClass: proc(aClass: Class) -> bool,
-    resolveClassMethod: proc(sel: SEL) -> bool,
-    resolveInstanceMethod: proc(sel: SEL) -> bool,
-    hash: proc() -> NS.UInteger,
-    superclass: proc() -> Class,
-    class: proc() -> Class,
-    description: proc() -> ^NS.String,
-    debugDescription: proc() -> ^NS.String,
-    version: proc() -> NS.Integer,
-    setVersion: proc(aVersion: NS.Integer),
-    cancelPreviousPerformRequestsWithTarget_selector_object: proc(aTarget: id, aSelector: SEL, anArgument: id),
-    cancelPreviousPerformRequestsWithTarget_: proc(aTarget: id),
-    accessInstanceVariablesDirectly: proc() -> bool,
-    useStoredAccessor: proc() -> bool,
-    keyPathsForValuesAffectingValueForKey: proc(key: ^NS.String) -> ^NS.Set,
-    automaticallyNotifiesObserversForKey: proc(key: ^NS.String) -> bool,
-    classFallbacksForKeyedArchiver: proc() -> ^NS.Array,
-    classForKeyedUnarchiver: proc() -> Class,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -392,7 +364,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForNegativeValues(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNegativeValues"), auto_cast textAttributesForNegativeValues, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNegativeValues"), auto_cast textAttributesForNegativeValues, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForNegativeValues != nil {
         setTextAttributesForNegativeValues :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForNegativeValues: ^NS.Dictionary) {
@@ -402,7 +374,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForNegativeValues(self, textAttributesForNegativeValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNegativeValues:"), auto_cast setTextAttributesForNegativeValues, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNegativeValues:"), auto_cast setTextAttributesForNegativeValues, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.positiveFormat != nil {
         positiveFormat :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -432,7 +404,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForPositiveValues(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForPositiveValues"), auto_cast textAttributesForPositiveValues, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForPositiveValues"), auto_cast textAttributesForPositiveValues, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForPositiveValues != nil {
         setTextAttributesForPositiveValues :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForPositiveValues: ^NS.Dictionary) {
@@ -442,7 +414,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForPositiveValues(self, textAttributesForPositiveValues)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForPositiveValues:"), auto_cast setTextAttributesForPositiveValues, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForPositiveValues:"), auto_cast setTextAttributesForPositiveValues, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.allowsFloats != nil {
         allowsFloats :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> bool {
@@ -592,7 +564,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForZero(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForZero"), auto_cast textAttributesForZero, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForZero"), auto_cast textAttributesForZero, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForZero != nil {
         setTextAttributesForZero :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForZero: ^NS.Dictionary) {
@@ -602,7 +574,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForZero(self, textAttributesForZero)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForZero:"), auto_cast setTextAttributesForZero, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForZero:"), auto_cast setTextAttributesForZero, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.nilSymbol != nil {
         nilSymbol :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -632,7 +604,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForNil(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNil"), auto_cast textAttributesForNil, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNil"), auto_cast textAttributesForNil, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForNil != nil {
         setTextAttributesForNil :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForNil: ^NS.Dictionary) {
@@ -642,7 +614,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForNil(self, textAttributesForNil)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNil:"), auto_cast setTextAttributesForNil, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNil:"), auto_cast setTextAttributesForNil, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.notANumberSymbol != nil {
         notANumberSymbol :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -672,7 +644,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForNotANumber(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNotANumber"), auto_cast textAttributesForNotANumber, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNotANumber"), auto_cast textAttributesForNotANumber, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForNotANumber != nil {
         setTextAttributesForNotANumber :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForNotANumber: ^NS.Dictionary) {
@@ -682,7 +654,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForNotANumber(self, textAttributesForNotANumber)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNotANumber:"), auto_cast setTextAttributesForNotANumber, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNotANumber:"), auto_cast setTextAttributesForNotANumber, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.positiveInfinitySymbol != nil {
         positiveInfinitySymbol :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -712,7 +684,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForPositiveInfinity(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForPositiveInfinity"), auto_cast textAttributesForPositiveInfinity, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForPositiveInfinity"), auto_cast textAttributesForPositiveInfinity, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForPositiveInfinity != nil {
         setTextAttributesForPositiveInfinity :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForPositiveInfinity: ^NS.Dictionary) {
@@ -722,7 +694,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForPositiveInfinity(self, textAttributesForPositiveInfinity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForPositiveInfinity:"), auto_cast setTextAttributesForPositiveInfinity, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForPositiveInfinity:"), auto_cast setTextAttributesForPositiveInfinity, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.negativeInfinitySymbol != nil {
         negativeInfinitySymbol :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -752,7 +724,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).textAttributesForNegativeInfinity(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNegativeInfinity"), auto_cast textAttributesForNegativeInfinity, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textAttributesForNegativeInfinity"), auto_cast textAttributesForNegativeInfinity, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTextAttributesForNegativeInfinity != nil {
         setTextAttributesForNegativeInfinity :: proc "c" (self: ^NS.NumberFormatter, _: SEL, textAttributesForNegativeInfinity: ^NS.Dictionary) {
@@ -762,7 +734,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setTextAttributesForNegativeInfinity(self, textAttributesForNegativeInfinity)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNegativeInfinity:"), auto_cast setTextAttributesForNegativeInfinity, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAttributesForNegativeInfinity:"), auto_cast setTextAttributesForNegativeInfinity, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.positivePrefix != nil {
         positivePrefix :: proc "c" (self: ^NS.NumberFormatter, _: SEL) -> ^NS.String {
@@ -1403,296 +1375,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPartialStringValidationEnabled:"), auto_cast setPartialStringValidationEnabled, "v@:B") do panic("Failed to register objC method.")
-    }
-    if vt.load != nil {
-        load :: proc "c" (self: Class, _: SEL) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).load()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("load"), auto_cast load, "v#:") do panic("Failed to register objC method.")
-    }
-    if vt.initialize != nil {
-        initialize :: proc "c" (self: Class, _: SEL) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).initialize()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("initialize"), auto_cast initialize, "v#:") do panic("Failed to register objC method.")
-    }
-    if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^NS.NumberFormatter {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).new()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.allocWithZone != nil {
-        allocWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> ^NS.NumberFormatter {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).allocWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("allocWithZone:"), auto_cast allocWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.alloc != nil {
-        alloc :: proc "c" (self: Class, _: SEL) -> ^NS.NumberFormatter {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).alloc()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("alloc"), auto_cast alloc, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.copyWithZone != nil {
-        copyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).copyWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("copyWithZone:"), auto_cast copyWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.mutableCopyWithZone != nil {
-        mutableCopyWithZone :: proc "c" (self: Class, _: SEL, zone: ^NS._NSZone) -> id {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).mutableCopyWithZone( zone)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("mutableCopyWithZone:"), auto_cast mutableCopyWithZone, "@#:^void") do panic("Failed to register objC method.")
-    }
-    if vt.instancesRespondToSelector != nil {
-        instancesRespondToSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instancesRespondToSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instancesRespondToSelector:"), auto_cast instancesRespondToSelector, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.conformsToProtocol != nil {
-        conformsToProtocol :: proc "c" (self: Class, _: SEL, protocol: ^NS.Protocol) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).conformsToProtocol( protocol)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("conformsToProtocol:"), auto_cast conformsToProtocol, "B#:@") do panic("Failed to register objC method.")
-    }
-    if vt.instanceMethodForSelector != nil {
-        instanceMethodForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> NS.IMP {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instanceMethodForSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodForSelector:"), auto_cast instanceMethodForSelector, "?#::") do panic("Failed to register objC method.")
-    }
-    if vt.instanceMethodSignatureForSelector != nil {
-        instanceMethodSignatureForSelector :: proc "c" (self: Class, _: SEL, aSelector: SEL) -> ^NS.MethodSignature {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).instanceMethodSignatureForSelector( aSelector)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("instanceMethodSignatureForSelector:"), auto_cast instanceMethodSignatureForSelector, "@#::") do panic("Failed to register objC method.")
-    }
-    if vt.isSubclassOfClass != nil {
-        isSubclassOfClass :: proc "c" (self: Class, _: SEL, aClass: Class) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).isSubclassOfClass( aClass)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("isSubclassOfClass:"), auto_cast isSubclassOfClass, "B#:#") do panic("Failed to register objC method.")
-    }
-    if vt.resolveClassMethod != nil {
-        resolveClassMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).resolveClassMethod( sel)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveClassMethod:"), auto_cast resolveClassMethod, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.resolveInstanceMethod != nil {
-        resolveInstanceMethod :: proc "c" (self: Class, _: SEL, sel: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).resolveInstanceMethod( sel)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("resolveInstanceMethod:"), auto_cast resolveInstanceMethod, "B#::") do panic("Failed to register objC method.")
-    }
-    if vt.hash != nil {
-        hash :: proc "c" (self: Class, _: SEL) -> NS.UInteger {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).hash()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("hash"), auto_cast hash, "L#:") do panic("Failed to register objC method.")
-    }
-    if vt.superclass != nil {
-        superclass :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).superclass()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("superclass"), auto_cast superclass, "##:") do panic("Failed to register objC method.")
-    }
-    if vt.class != nil {
-        class :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).class()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("class"), auto_cast class, "##:") do panic("Failed to register objC method.")
-    }
-    if vt.description != nil {
-        description :: proc "c" (self: Class, _: SEL) -> ^NS.String {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).description()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("description"), auto_cast description, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.debugDescription != nil {
-        debugDescription :: proc "c" (self: Class, _: SEL) -> ^NS.String {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).debugDescription()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("debugDescription"), auto_cast debugDescription, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.version != nil {
-        version :: proc "c" (self: Class, _: SEL) -> NS.Integer {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).version()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("version"), auto_cast version, "l#:") do panic("Failed to register objC method.")
-    }
-    if vt.setVersion != nil {
-        setVersion :: proc "c" (self: Class, _: SEL, aVersion: NS.Integer) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setVersion( aVersion)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("setVersion:"), auto_cast setVersion, "v#:l") do panic("Failed to register objC method.")
-    }
-    if vt.cancelPreviousPerformRequestsWithTarget_selector_object != nil {
-        cancelPreviousPerformRequestsWithTarget_selector_object :: proc "c" (self: Class, _: SEL, aTarget: id, aSelector: SEL, anArgument: id) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_selector_object( aTarget, aSelector, anArgument)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:selector:object:"), auto_cast cancelPreviousPerformRequestsWithTarget_selector_object, "v#:@:@") do panic("Failed to register objC method.")
-    }
-    if vt.cancelPreviousPerformRequestsWithTarget_ != nil {
-        cancelPreviousPerformRequestsWithTarget_ :: proc "c" (self: Class, _: SEL, aTarget: id) {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).cancelPreviousPerformRequestsWithTarget_( aTarget)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("cancelPreviousPerformRequestsWithTarget:"), auto_cast cancelPreviousPerformRequestsWithTarget_, "v#:@") do panic("Failed to register objC method.")
-    }
-    if vt.accessInstanceVariablesDirectly != nil {
-        accessInstanceVariablesDirectly :: proc "c" (self: Class, _: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).accessInstanceVariablesDirectly()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("accessInstanceVariablesDirectly"), auto_cast accessInstanceVariablesDirectly, "B#:") do panic("Failed to register objC method.")
-    }
-    if vt.useStoredAccessor != nil {
-        useStoredAccessor :: proc "c" (self: Class, _: SEL) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).useStoredAccessor()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("useStoredAccessor"), auto_cast useStoredAccessor, "B#:") do panic("Failed to register objC method.")
-    }
-    if vt.keyPathsForValuesAffectingValueForKey != nil {
-        keyPathsForValuesAffectingValueForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.Set {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).keyPathsForValuesAffectingValueForKey( key)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("keyPathsForValuesAffectingValueForKey:"), auto_cast keyPathsForValuesAffectingValueForKey, "@#:@") do panic("Failed to register objC method.")
-    }
-    if vt.automaticallyNotifiesObserversForKey != nil {
-        automaticallyNotifiesObserversForKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> bool {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).automaticallyNotifiesObserversForKey( key)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("automaticallyNotifiesObserversForKey:"), auto_cast automaticallyNotifiesObserversForKey, "B#:@") do panic("Failed to register objC method.")
-    }
-    if vt.classFallbacksForKeyedArchiver != nil {
-        classFallbacksForKeyedArchiver :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).classFallbacksForKeyedArchiver()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classFallbacksForKeyedArchiver"), auto_cast classFallbacksForKeyedArchiver, "@#:") do panic("Failed to register objC method.")
-    }
-    if vt.classForKeyedUnarchiver != nil {
-        classForKeyedUnarchiver :: proc "c" (self: Class, _: SEL) -> Class {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).classForKeyedUnarchiver()
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("classForKeyedUnarchiver"), auto_cast classForKeyedUnarchiver, "##:") do panic("Failed to register objC method.")
     }
 }
 

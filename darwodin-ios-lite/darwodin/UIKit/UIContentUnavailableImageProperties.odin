@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIContentUnavailableImageProperties
 ///
-@(objc_class="UIContentUnavailableImageProperties")
+@(objc_class="UIContentUnavailableImageProperties", objc_superclass=NS.Object)
 ContentUnavailableImageProperties :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,

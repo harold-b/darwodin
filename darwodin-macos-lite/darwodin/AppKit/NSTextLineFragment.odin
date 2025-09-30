@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSTextLineFragment
 ///
-@(objc_class="NSTextLineFragment")
+@(objc_class="NSTextLineFragment", objc_superclass=NS.Object)
 TextLineFragment :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }

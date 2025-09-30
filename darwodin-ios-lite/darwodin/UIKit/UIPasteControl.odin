@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPasteControl
 ///
-@(objc_class="UIPasteControl")
+@(objc_class="UIPasteControl", objc_superclass=Control)
 PasteControl :: struct { using _: Control, }
 

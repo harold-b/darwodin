@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSCalendarDate
 ///
-@(objc_class="NSCalendarDate")
+@(objc_class="NSCalendarDate", objc_superclass=Date)
 CalendarDate :: struct { using _: Date, }
 

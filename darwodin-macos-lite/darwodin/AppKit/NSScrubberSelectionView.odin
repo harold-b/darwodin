@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSScrubberSelectionView
 ///
-@(objc_class="NSScrubberSelectionView")
+@(objc_class="NSScrubberSelectionView", objc_superclass=ScrubberArrangedView)
 ScrubberSelectionView :: struct { using _: ScrubberArrangedView, }
 

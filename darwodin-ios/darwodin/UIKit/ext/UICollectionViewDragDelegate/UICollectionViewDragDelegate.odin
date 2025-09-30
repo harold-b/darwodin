@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -45,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_itemsForBeginningDragSession_atIndexPath(self, collectionView, session, indexPath)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:itemsForBeginningDragSession:atIndexPath:"), auto_cast collectionView_itemsForBeginningDragSession_atIndexPath, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:itemsForBeginningDragSession:atIndexPath:"), auto_cast collectionView_itemsForBeginningDragSession_atIndexPath, "^void@:@@@") do panic("Failed to register objC method.")
     }
     if vt.collectionView_itemsForAddingToDragSession_atIndexPath_point != nil {
         collectionView_itemsForAddingToDragSession_atIndexPath_point :: proc "c" (self: ^UI.CollectionViewDragDelegate, _: SEL, collectionView: ^UI.CollectionView, session: ^UI.DragSession, indexPath: ^NS.IndexPath, point: CG.Point) -> ^NS.Array {
@@ -55,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).collectionView_itemsForAddingToDragSession_atIndexPath_point(self, collectionView, session, indexPath, point)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:itemsForAddingToDragSession:atIndexPath:point:"), auto_cast collectionView_itemsForAddingToDragSession_atIndexPath_point, "@@:@@@{CGPoint=dd}") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:itemsForAddingToDragSession:atIndexPath:point:"), auto_cast collectionView_itemsForAddingToDragSession_atIndexPath_point, "^void@:@@@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.collectionView_dragPreviewParametersForItemAtIndexPath != nil {
         collectionView_dragPreviewParametersForItemAtIndexPath :: proc "c" (self: ^UI.CollectionViewDragDelegate, _: SEL, collectionView: ^UI.CollectionView, indexPath: ^NS.IndexPath) -> ^UI.DragPreviewParameters {

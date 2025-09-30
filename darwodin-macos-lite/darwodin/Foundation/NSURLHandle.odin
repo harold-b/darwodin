@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSURLHandle
 ///
-@(objc_class="NSURLHandle")
+@(objc_class="NSURLHandle", objc_superclass=Object)
 URLHandle :: struct { using _: Object, }
 

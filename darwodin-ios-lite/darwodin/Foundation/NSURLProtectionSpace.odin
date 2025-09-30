@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSURLProtectionSpace
 ///
-@(objc_class="NSURLProtectionSpace")
+@(objc_class="NSURLProtectionSpace", objc_superclass=Object)
 URLProtectionSpace :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,

@@ -18,26 +18,24 @@ KeyedUnarchiverDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=KeyedUnarchiverDelegate, objc_name="unarchiver_cannotDecodeObjectOfClassName_originalClasses")
-KeyedUnarchiverDelegate_unarchiver_cannotDecodeObjectOfClassName_originalClasses :: #force_inline proc "c" (self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver, name: ^String, classNames: ^Array) -> Class {
-    return msgSend(Class, self, "unarchiver:cannotDecodeObjectOfClassName:originalClasses:", unarchiver, name, classNames)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=KeyedUnarchiverDelegate, objc_selector="unarchiver:cannotDecodeObjectOfClassName:originalClasses:", objc_name="unarchiver_cannotDecodeObjectOfClassName_originalClasses")
+    KeyedUnarchiverDelegate_unarchiver_cannotDecodeObjectOfClassName_originalClasses :: proc(self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver, name: ^String, classNames: ^Array) -> Class ---
+
+    @(objc_type=KeyedUnarchiverDelegate, objc_selector="unarchiver:didDecodeObject:", objc_name="unarchiver_didDecodeObject")
+    KeyedUnarchiverDelegate_unarchiver_didDecodeObject :: proc(self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver, object: id) -> id ---
+
+    @(objc_type=KeyedUnarchiverDelegate, objc_selector="unarchiver:willReplaceObject:withObject:", objc_name="unarchiver_willReplaceObject_withObject")
+    KeyedUnarchiverDelegate_unarchiver_willReplaceObject_withObject :: proc(self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver, object: id, newObject: id) ---
+
+    @(objc_type=KeyedUnarchiverDelegate, objc_selector="unarchiverWillFinish:", objc_name="unarchiverWillFinish")
+    KeyedUnarchiverDelegate_unarchiverWillFinish :: proc(self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver) ---
+
+    @(objc_type=KeyedUnarchiverDelegate, objc_selector="unarchiverDidFinish:", objc_name="unarchiverDidFinish")
+    KeyedUnarchiverDelegate_unarchiverDidFinish :: proc(self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver) ---
 }
-@(objc_type=KeyedUnarchiverDelegate, objc_name="unarchiver_didDecodeObject")
-KeyedUnarchiverDelegate_unarchiver_didDecodeObject :: #force_inline proc "c" (self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver, object: id) -> id {
-    return msgSend(id, self, "unarchiver:didDecodeObject:", unarchiver, object)
-}
-@(objc_type=KeyedUnarchiverDelegate, objc_name="unarchiver_willReplaceObject_withObject")
-KeyedUnarchiverDelegate_unarchiver_willReplaceObject_withObject :: #force_inline proc "c" (self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver, object: id, newObject: id) {
-    msgSend(nil, self, "unarchiver:willReplaceObject:withObject:", unarchiver, object, newObject)
-}
-@(objc_type=KeyedUnarchiverDelegate, objc_name="unarchiverWillFinish")
-KeyedUnarchiverDelegate_unarchiverWillFinish :: #force_inline proc "c" (self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver) {
-    msgSend(nil, self, "unarchiverWillFinish:", unarchiver)
-}
-@(objc_type=KeyedUnarchiverDelegate, objc_name="unarchiverDidFinish")
-KeyedUnarchiverDelegate_unarchiverDidFinish :: #force_inline proc "c" (self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver) {
-    msgSend(nil, self, "unarchiverDidFinish:", unarchiver)
-}
+
 @(objc_type=KeyedUnarchiverDelegate, objc_name="unarchiver")
 KeyedUnarchiverDelegate_unarchiver :: proc {
     KeyedUnarchiverDelegate_unarchiver_cannotDecodeObjectOfClassName_originalClasses,

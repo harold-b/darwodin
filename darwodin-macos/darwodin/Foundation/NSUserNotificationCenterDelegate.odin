@@ -18,15 +18,15 @@ UserNotificationCenterDelegate :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=UserNotificationCenterDelegate, objc_name="userNotificationCenter_didDeliverNotification")
-UserNotificationCenterDelegate_userNotificationCenter_didDeliverNotification :: #force_inline proc "c" (self: ^UserNotificationCenterDelegate, center: ^UserNotificationCenter, notification: ^UserNotification) {
-    msgSend(nil, self, "userNotificationCenter:didDeliverNotification:", center, notification)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=UserNotificationCenterDelegate, objc_selector="userNotificationCenter:didDeliverNotification:", objc_name="userNotificationCenter_didDeliverNotification")
+    UserNotificationCenterDelegate_userNotificationCenter_didDeliverNotification :: proc(self: ^UserNotificationCenterDelegate, center: ^UserNotificationCenter, notification: ^UserNotification) ---
+
+    @(objc_type=UserNotificationCenterDelegate, objc_selector="userNotificationCenter:didActivateNotification:", objc_name="userNotificationCenter_didActivateNotification")
+    UserNotificationCenterDelegate_userNotificationCenter_didActivateNotification :: proc(self: ^UserNotificationCenterDelegate, center: ^UserNotificationCenter, notification: ^UserNotification) ---
+
+    @(objc_type=UserNotificationCenterDelegate, objc_selector="userNotificationCenter:shouldPresentNotification:", objc_name="userNotificationCenter_shouldPresentNotification")
+    UserNotificationCenterDelegate_userNotificationCenter_shouldPresentNotification :: proc(self: ^UserNotificationCenterDelegate, center: ^UserNotificationCenter, notification: ^UserNotification) -> bool ---
 }
-@(objc_type=UserNotificationCenterDelegate, objc_name="userNotificationCenter_didActivateNotification")
-UserNotificationCenterDelegate_userNotificationCenter_didActivateNotification :: #force_inline proc "c" (self: ^UserNotificationCenterDelegate, center: ^UserNotificationCenter, notification: ^UserNotification) {
-    msgSend(nil, self, "userNotificationCenter:didActivateNotification:", center, notification)
-}
-@(objc_type=UserNotificationCenterDelegate, objc_name="userNotificationCenter_shouldPresentNotification")
-UserNotificationCenterDelegate_userNotificationCenter_shouldPresentNotification :: #force_inline proc "c" (self: ^UserNotificationCenterDelegate, center: ^UserNotificationCenter, notification: ^UserNotification) -> bool {
-    return msgSend(bool, self, "userNotificationCenter:shouldPresentNotification:", center, notification)
-}
+

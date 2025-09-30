@@ -15,11 +15,12 @@ object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
 import UI "../../"
 
@@ -54,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).hasItemsConformingToTypeIdentifiers(self, typeIdentifiers)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("hasItemsConformingToTypeIdentifiers:"), auto_cast hasItemsConformingToTypeIdentifiers, "B@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hasItemsConformingToTypeIdentifiers:"), auto_cast hasItemsConformingToTypeIdentifiers, "B@:^void") do panic("Failed to register objC method.")
     }
     if vt.canLoadObjectsOfClass != nil {
         canLoadObjectsOfClass :: proc "c" (self: ^UI.DragDropSession, _: SEL, aClass: ^Class) -> bool {
@@ -74,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.protocol_vt).items(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("items"), auto_cast items, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("items"), auto_cast items, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.allowsMoveOperation != nil {
         allowsMoveOperation :: proc "c" (self: ^UI.DragDropSession, _: SEL) -> bool {

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIOpenURLContext
 ///
-@(objc_class="UIOpenURLContext")
+@(objc_class="UIOpenURLContext", objc_superclass=NS.Object)
 OpenURLContext :: struct { using _: NS.Object, }
 

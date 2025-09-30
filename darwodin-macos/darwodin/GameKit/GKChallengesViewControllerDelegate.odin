@@ -16,7 +16,8 @@ import AK "../AppKit"
 @(objc_class="GKChallengesViewControllerDelegate")
 ChallengesViewControllerDelegate :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=ChallengesViewControllerDelegate, objc_name="challengesViewControllerDidFinish")
-ChallengesViewControllerDelegate_challengesViewControllerDidFinish :: #force_inline proc "c" (self: ^ChallengesViewControllerDelegate, viewController: ^ChallengesViewController) {
-    msgSend(nil, self, "challengesViewControllerDidFinish:", viewController)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ChallengesViewControllerDelegate, objc_selector="challengesViewControllerDidFinish:", objc_name="challengesViewControllerDidFinish")
+    ChallengesViewControllerDelegate_challengesViewControllerDidFinish :: proc(self: ^ChallengesViewControllerDelegate, viewController: ^ChallengesViewController) ---
 }

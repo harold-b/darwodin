@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPickerView
 ///
-@(objc_class="UIPickerView")
+@(objc_class="UIPickerView", objc_superclass=View)
 PickerView :: struct { using _: View, 
     using _: NS.Coding,
 }

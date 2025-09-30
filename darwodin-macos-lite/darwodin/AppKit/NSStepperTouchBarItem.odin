@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSStepperTouchBarItem
 ///
-@(objc_class="NSStepperTouchBarItem")
+@(objc_class="NSStepperTouchBarItem", objc_superclass=TouchBarItem)
 StepperTouchBarItem :: struct { using _: TouchBarItem, }
 

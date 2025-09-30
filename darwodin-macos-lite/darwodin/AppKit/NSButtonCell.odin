@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSButtonCell
 ///
-@(objc_class="NSButtonCell")
+@(objc_class="NSButtonCell", objc_superclass=ActionCell)
 ButtonCell :: struct { using _: ActionCell, }
 

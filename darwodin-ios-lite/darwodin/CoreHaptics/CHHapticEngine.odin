@@ -13,206 +13,95 @@ import UI "../UIKit"
 ///
 /// CHHapticEngine
 ///
-@(objc_class="CHHapticEngine")
+@(objc_class="CHHapticEngine", objc_superclass=NS.Object)
 HapticEngine :: struct { using _: NS.Object, }
 
-@(objc_type=HapticEngine, objc_name="capabilitiesForHardware", objc_is_class_method=true)
-HapticEngine_capabilitiesForHardware :: #force_inline proc "c" () -> ^HapticDeviceCapability {
-    return msgSend(^HapticDeviceCapability, HapticEngine, "capabilitiesForHardware")
-}
-@(objc_type=HapticEngine, objc_name="init")
-HapticEngine_init :: #force_inline proc "c" (self: ^HapticEngine) -> ^HapticEngine {
-    return msgSend(^HapticEngine, self, "init")
-}
-@(objc_type=HapticEngine, objc_name="initAndReturnError")
-HapticEngine_initAndReturnError :: #force_inline proc "c" (self: ^HapticEngine, error: ^^NS.Error) -> ^HapticEngine {
-    return msgSend(^HapticEngine, self, "initAndReturnError:", error)
-}
-@(objc_type=HapticEngine, objc_name="initWithAudioSession")
-HapticEngine_initWithAudioSession :: #force_inline proc "c" (self: ^HapticEngine, audioSession: ^AVAudioSession, error: ^^NS.Error) -> ^HapticEngine {
-    return msgSend(^HapticEngine, self, "initWithAudioSession:error:", audioSession, error)
-}
-@(objc_type=HapticEngine, objc_name="startWithCompletionHandler")
-HapticEngine_startWithCompletionHandler :: #force_inline proc "c" (self: ^HapticEngine, completionHandler: HapticCompletionHandler) {
-    msgSend(nil, self, "startWithCompletionHandler:", completionHandler)
-}
-@(objc_type=HapticEngine, objc_name="startAndReturnError")
-HapticEngine_startAndReturnError :: #force_inline proc "c" (self: ^HapticEngine, outError: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "startAndReturnError:", outError)
-}
-@(objc_type=HapticEngine, objc_name="stopWithCompletionHandler")
-HapticEngine_stopWithCompletionHandler :: #force_inline proc "c" (self: ^HapticEngine, completionHandler: HapticCompletionHandler) {
-    msgSend(nil, self, "stopWithCompletionHandler:", completionHandler)
-}
-@(objc_type=HapticEngine, objc_name="notifyWhenPlayersFinished")
-HapticEngine_notifyWhenPlayersFinished :: #force_inline proc "c" (self: ^HapticEngine, finishedHandler: HapticEngineFinishedHandler) {
-    msgSend(nil, self, "notifyWhenPlayersFinished:", finishedHandler)
-}
-@(objc_type=HapticEngine, objc_name="createPlayerWithPattern")
-HapticEngine_createPlayerWithPattern :: #force_inline proc "c" (self: ^HapticEngine, pattern: ^HapticPattern, outError: ^^NS.Error) -> ^HapticPatternPlayer {
-    return msgSend(^HapticPatternPlayer, self, "createPlayerWithPattern:error:", pattern, outError)
-}
-@(objc_type=HapticEngine, objc_name="createAdvancedPlayerWithPattern")
-HapticEngine_createAdvancedPlayerWithPattern :: #force_inline proc "c" (self: ^HapticEngine, pattern: ^HapticPattern, outError: ^^NS.Error) -> ^HapticAdvancedPatternPlayer {
-    return msgSend(^HapticAdvancedPatternPlayer, self, "createAdvancedPlayerWithPattern:error:", pattern, outError)
-}
-@(objc_type=HapticEngine, objc_name="registerAudioResource")
-HapticEngine_registerAudioResource :: #force_inline proc "c" (self: ^HapticEngine, resourceURL: ^NS.URL, options: ^NS.Dictionary, outError: ^^NS.Error) -> HapticAudioResourceID {
-    return msgSend(HapticAudioResourceID, self, "registerAudioResource:options:error:", resourceURL, options, outError)
-}
-@(objc_type=HapticEngine, objc_name="unregisterAudioResource")
-HapticEngine_unregisterAudioResource :: #force_inline proc "c" (self: ^HapticEngine, resourceID: HapticAudioResourceID, outError: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "unregisterAudioResource:error:", resourceID, outError)
-}
-@(objc_type=HapticEngine, objc_name="playPatternFromURL")
-HapticEngine_playPatternFromURL :: #force_inline proc "c" (self: ^HapticEngine, fileURL: ^NS.URL, outError: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "playPatternFromURL:error:", fileURL, outError)
-}
-@(objc_type=HapticEngine, objc_name="playPatternFromData")
-HapticEngine_playPatternFromData :: #force_inline proc "c" (self: ^HapticEngine, data: ^NS.Data, outError: ^^NS.Error) -> bool {
-    return msgSend(bool, self, "playPatternFromData:error:", data, outError)
-}
-@(objc_type=HapticEngine, objc_name="currentTime")
-HapticEngine_currentTime :: #force_inline proc "c" (self: ^HapticEngine) -> NS.TimeInterval {
-    return msgSend(NS.TimeInterval, self, "currentTime")
-}
-@(objc_type=HapticEngine, objc_name="stoppedHandler")
-HapticEngine_stoppedHandler :: #force_inline proc "c" (self: ^HapticEngine) -> HapticEngineStoppedHandler {
-    return msgSend(HapticEngineStoppedHandler, self, "stoppedHandler")
-}
-@(objc_type=HapticEngine, objc_name="setStoppedHandler")
-HapticEngine_setStoppedHandler :: #force_inline proc "c" (self: ^HapticEngine, stoppedHandler: HapticEngineStoppedHandler) {
-    msgSend(nil, self, "setStoppedHandler:", stoppedHandler)
-}
-@(objc_type=HapticEngine, objc_name="resetHandler")
-HapticEngine_resetHandler :: #force_inline proc "c" (self: ^HapticEngine) -> HapticEngineResetHandler {
-    return msgSend(HapticEngineResetHandler, self, "resetHandler")
-}
-@(objc_type=HapticEngine, objc_name="setResetHandler")
-HapticEngine_setResetHandler :: #force_inline proc "c" (self: ^HapticEngine, resetHandler: HapticEngineResetHandler) {
-    msgSend(nil, self, "setResetHandler:", resetHandler)
-}
-@(objc_type=HapticEngine, objc_name="playsHapticsOnly")
-HapticEngine_playsHapticsOnly :: #force_inline proc "c" (self: ^HapticEngine) -> bool {
-    return msgSend(bool, self, "playsHapticsOnly")
-}
-@(objc_type=HapticEngine, objc_name="setPlaysHapticsOnly")
-HapticEngine_setPlaysHapticsOnly :: #force_inline proc "c" (self: ^HapticEngine, playsHapticsOnly: bool) {
-    msgSend(nil, self, "setPlaysHapticsOnly:", playsHapticsOnly)
-}
-@(objc_type=HapticEngine, objc_name="playsAudioOnly")
-HapticEngine_playsAudioOnly :: #force_inline proc "c" (self: ^HapticEngine) -> bool {
-    return msgSend(bool, self, "playsAudioOnly")
-}
-@(objc_type=HapticEngine, objc_name="setPlaysAudioOnly")
-HapticEngine_setPlaysAudioOnly :: #force_inline proc "c" (self: ^HapticEngine, playsAudioOnly: bool) {
-    msgSend(nil, self, "setPlaysAudioOnly:", playsAudioOnly)
-}
-@(objc_type=HapticEngine, objc_name="isMutedForAudio")
-HapticEngine_isMutedForAudio :: #force_inline proc "c" (self: ^HapticEngine) -> bool {
-    return msgSend(bool, self, "isMutedForAudio")
-}
-@(objc_type=HapticEngine, objc_name="setIsMutedForAudio")
-HapticEngine_setIsMutedForAudio :: #force_inline proc "c" (self: ^HapticEngine, isMutedForAudio: bool) {
-    msgSend(nil, self, "setIsMutedForAudio:", isMutedForAudio)
-}
-@(objc_type=HapticEngine, objc_name="isMutedForHaptics")
-HapticEngine_isMutedForHaptics :: #force_inline proc "c" (self: ^HapticEngine) -> bool {
-    return msgSend(bool, self, "isMutedForHaptics")
-}
-@(objc_type=HapticEngine, objc_name="setIsMutedForHaptics")
-HapticEngine_setIsMutedForHaptics :: #force_inline proc "c" (self: ^HapticEngine, isMutedForHaptics: bool) {
-    msgSend(nil, self, "setIsMutedForHaptics:", isMutedForHaptics)
-}
-@(objc_type=HapticEngine, objc_name="isAutoShutdownEnabled")
-HapticEngine_isAutoShutdownEnabled :: #force_inline proc "c" (self: ^HapticEngine) -> bool {
-    return msgSend(bool, self, "isAutoShutdownEnabled")
-}
-@(objc_type=HapticEngine, objc_name="setAutoShutdownEnabled")
-HapticEngine_setAutoShutdownEnabled :: #force_inline proc "c" (self: ^HapticEngine, autoShutdownEnabled: bool) {
-    msgSend(nil, self, "setAutoShutdownEnabled:", autoShutdownEnabled)
-}
-@(objc_type=HapticEngine, objc_name="load", objc_is_class_method=true)
-HapticEngine_load :: #force_inline proc "c" () {
-    msgSend(nil, HapticEngine, "load")
-}
-@(objc_type=HapticEngine, objc_name="initialize", objc_is_class_method=true)
-HapticEngine_initialize :: #force_inline proc "c" () {
-    msgSend(nil, HapticEngine, "initialize")
-}
-@(objc_type=HapticEngine, objc_name="new", objc_is_class_method=true)
-HapticEngine_new :: #force_inline proc "c" () -> ^HapticEngine {
-    return msgSend(^HapticEngine, HapticEngine, "new")
-}
-@(objc_type=HapticEngine, objc_name="allocWithZone", objc_is_class_method=true)
-HapticEngine_allocWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> ^HapticEngine {
-    return msgSend(^HapticEngine, HapticEngine, "allocWithZone:", zone)
-}
-@(objc_type=HapticEngine, objc_name="alloc", objc_is_class_method=true)
-HapticEngine_alloc :: #force_inline proc "c" () -> ^HapticEngine {
-    return msgSend(^HapticEngine, HapticEngine, "alloc")
-}
-@(objc_type=HapticEngine, objc_name="copyWithZone", objc_is_class_method=true)
-HapticEngine_copyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, HapticEngine, "copyWithZone:", zone)
-}
-@(objc_type=HapticEngine, objc_name="mutableCopyWithZone", objc_is_class_method=true)
-HapticEngine_mutableCopyWithZone :: #force_inline proc "c" (zone: ^NS._NSZone) -> id {
-    return msgSend(id, HapticEngine, "mutableCopyWithZone:", zone)
-}
-@(objc_type=HapticEngine, objc_name="instancesRespondToSelector", objc_is_class_method=true)
-HapticEngine_instancesRespondToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, HapticEngine, "instancesRespondToSelector:", aSelector)
-}
-@(objc_type=HapticEngine, objc_name="conformsToProtocol", objc_is_class_method=true)
-HapticEngine_conformsToProtocol :: #force_inline proc "c" (protocol: ^Protocol) -> bool {
-    return msgSend(bool, HapticEngine, "conformsToProtocol:", protocol)
-}
-@(objc_type=HapticEngine, objc_name="instanceMethodForSelector", objc_is_class_method=true)
-HapticEngine_instanceMethodForSelector :: #force_inline proc "c" (aSelector: SEL) -> IMP {
-    return msgSend(IMP, HapticEngine, "instanceMethodForSelector:", aSelector)
-}
-@(objc_type=HapticEngine, objc_name="instanceMethodSignatureForSelector", objc_is_class_method=true)
-HapticEngine_instanceMethodSignatureForSelector :: #force_inline proc "c" (aSelector: SEL) -> ^NS.MethodSignature {
-    return msgSend(^NS.MethodSignature, HapticEngine, "instanceMethodSignatureForSelector:", aSelector)
-}
-@(objc_type=HapticEngine, objc_name="isSubclassOfClass", objc_is_class_method=true)
-HapticEngine_isSubclassOfClass :: #force_inline proc "c" (aClass: Class) -> bool {
-    return msgSend(bool, HapticEngine, "isSubclassOfClass:", aClass)
-}
-@(objc_type=HapticEngine, objc_name="resolveClassMethod", objc_is_class_method=true)
-HapticEngine_resolveClassMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, HapticEngine, "resolveClassMethod:", sel)
-}
-@(objc_type=HapticEngine, objc_name="resolveInstanceMethod", objc_is_class_method=true)
-HapticEngine_resolveInstanceMethod :: #force_inline proc "c" (sel: SEL) -> bool {
-    return msgSend(bool, HapticEngine, "resolveInstanceMethod:", sel)
-}
-@(objc_type=HapticEngine, objc_name="hash", objc_is_class_method=true)
-HapticEngine_hash :: #force_inline proc "c" () -> NS.UInteger {
-    return msgSend(NS.UInteger, HapticEngine, "hash")
-}
-@(objc_type=HapticEngine, objc_name="superclass", objc_is_class_method=true)
-HapticEngine_superclass :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, HapticEngine, "superclass")
-}
-@(objc_type=HapticEngine, objc_name="class", objc_is_class_method=true)
-HapticEngine_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, HapticEngine, "class")
-}
-@(objc_type=HapticEngine, objc_name="description", objc_is_class_method=true)
-HapticEngine_description :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, HapticEngine, "description")
-}
-@(objc_type=HapticEngine, objc_name="debugDescription", objc_is_class_method=true)
-HapticEngine_debugDescription :: #force_inline proc "c" () -> ^NS.String {
-    return msgSend(^NS.String, HapticEngine, "debugDescription")
-}
-@(objc_type=HapticEngine, objc_name="version", objc_is_class_method=true)
-HapticEngine_version :: #force_inline proc "c" () -> NS.Integer {
-    return msgSend(NS.Integer, HapticEngine, "version")
-}
-@(objc_type=HapticEngine, objc_name="setVersion", objc_is_class_method=true)
-HapticEngine_setVersion :: #force_inline proc "c" (aVersion: NS.Integer) {
-    msgSend(nil, HapticEngine, "setVersion:", aVersion)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=HapticEngine, objc_selector="capabilitiesForHardware", objc_name="capabilitiesForHardware", objc_is_class_method=true)
+    HapticEngine_capabilitiesForHardware :: proc() -> ^HapticDeviceCapability ---
+
+    @(objc_type=HapticEngine, objc_selector="init", objc_name="init")
+    HapticEngine_init :: proc(self: ^HapticEngine) -> ^HapticEngine ---
+
+    @(objc_type=HapticEngine, objc_selector="initAndReturnError:", objc_name="initAndReturnError")
+    HapticEngine_initAndReturnError :: proc(self: ^HapticEngine, error: ^^NS.Error) -> ^HapticEngine ---
+
+    @(objc_type=HapticEngine, objc_selector="initWithAudioSession:error:", objc_name="initWithAudioSession")
+    HapticEngine_initWithAudioSession :: proc(self: ^HapticEngine, audioSession: ^AVAudioSession, error: ^^NS.Error) -> ^HapticEngine ---
+
+    @(objc_type=HapticEngine, objc_selector="startWithCompletionHandler:", objc_name="startWithCompletionHandler")
+    HapticEngine_startWithCompletionHandler :: proc(self: ^HapticEngine, completionHandler: HapticCompletionHandler) ---
+
+    @(objc_type=HapticEngine, objc_selector="startAndReturnError:", objc_name="startAndReturnError")
+    HapticEngine_startAndReturnError :: proc(self: ^HapticEngine, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="stopWithCompletionHandler:", objc_name="stopWithCompletionHandler")
+    HapticEngine_stopWithCompletionHandler :: proc(self: ^HapticEngine, completionHandler: HapticCompletionHandler) ---
+
+    @(objc_type=HapticEngine, objc_selector="notifyWhenPlayersFinished:", objc_name="notifyWhenPlayersFinished")
+    HapticEngine_notifyWhenPlayersFinished :: proc(self: ^HapticEngine, finishedHandler: HapticEngineFinishedHandler) ---
+
+    @(objc_type=HapticEngine, objc_selector="createPlayerWithPattern:error:", objc_name="createPlayerWithPattern")
+    HapticEngine_createPlayerWithPattern :: proc(self: ^HapticEngine, pattern: ^HapticPattern, outError: ^^NS.Error) -> ^HapticPatternPlayer ---
+
+    @(objc_type=HapticEngine, objc_selector="createAdvancedPlayerWithPattern:error:", objc_name="createAdvancedPlayerWithPattern")
+    HapticEngine_createAdvancedPlayerWithPattern :: proc(self: ^HapticEngine, pattern: ^HapticPattern, outError: ^^NS.Error) -> ^HapticAdvancedPatternPlayer ---
+
+    @(objc_type=HapticEngine, objc_selector="registerAudioResource:options:error:", objc_name="registerAudioResource")
+    HapticEngine_registerAudioResource :: proc(self: ^HapticEngine, resourceURL: ^NS.URL, options: ^NS.Dictionary, outError: ^^NS.Error) -> HapticAudioResourceID ---
+
+    @(objc_type=HapticEngine, objc_selector="unregisterAudioResource:error:", objc_name="unregisterAudioResource")
+    HapticEngine_unregisterAudioResource :: proc(self: ^HapticEngine, resourceID: HapticAudioResourceID, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="playPatternFromURL:error:", objc_name="playPatternFromURL")
+    HapticEngine_playPatternFromURL :: proc(self: ^HapticEngine, fileURL: ^NS.URL, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="playPatternFromData:error:", objc_name="playPatternFromData")
+    HapticEngine_playPatternFromData :: proc(self: ^HapticEngine, data: ^NS.Data, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="currentTime", objc_name="currentTime")
+    HapticEngine_currentTime :: proc(self: ^HapticEngine) -> NS.TimeInterval ---
+
+    @(objc_type=HapticEngine, objc_selector="stoppedHandler", objc_name="stoppedHandler")
+    HapticEngine_stoppedHandler :: proc(self: ^HapticEngine) -> HapticEngineStoppedHandler ---
+
+    @(objc_type=HapticEngine, objc_selector="setStoppedHandler:", objc_name="setStoppedHandler")
+    HapticEngine_setStoppedHandler :: proc(self: ^HapticEngine, stoppedHandler: HapticEngineStoppedHandler) ---
+
+    @(objc_type=HapticEngine, objc_selector="resetHandler", objc_name="resetHandler")
+    HapticEngine_resetHandler :: proc(self: ^HapticEngine) -> HapticEngineResetHandler ---
+
+    @(objc_type=HapticEngine, objc_selector="setResetHandler:", objc_name="setResetHandler")
+    HapticEngine_setResetHandler :: proc(self: ^HapticEngine, resetHandler: HapticEngineResetHandler) ---
+
+    @(objc_type=HapticEngine, objc_selector="playsHapticsOnly", objc_name="playsHapticsOnly")
+    HapticEngine_playsHapticsOnly :: proc(self: ^HapticEngine) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="setPlaysHapticsOnly:", objc_name="setPlaysHapticsOnly")
+    HapticEngine_setPlaysHapticsOnly :: proc(self: ^HapticEngine, playsHapticsOnly: bool) ---
+
+    @(objc_type=HapticEngine, objc_selector="playsAudioOnly", objc_name="playsAudioOnly")
+    HapticEngine_playsAudioOnly :: proc(self: ^HapticEngine) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="setPlaysAudioOnly:", objc_name="setPlaysAudioOnly")
+    HapticEngine_setPlaysAudioOnly :: proc(self: ^HapticEngine, playsAudioOnly: bool) ---
+
+    @(objc_type=HapticEngine, objc_selector="isMutedForAudio", objc_name="isMutedForAudio")
+    HapticEngine_isMutedForAudio :: proc(self: ^HapticEngine) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="setIsMutedForAudio:", objc_name="setIsMutedForAudio")
+    HapticEngine_setIsMutedForAudio :: proc(self: ^HapticEngine, isMutedForAudio: bool) ---
+
+    @(objc_type=HapticEngine, objc_selector="isMutedForHaptics", objc_name="isMutedForHaptics")
+    HapticEngine_isMutedForHaptics :: proc(self: ^HapticEngine) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="setIsMutedForHaptics:", objc_name="setIsMutedForHaptics")
+    HapticEngine_setIsMutedForHaptics :: proc(self: ^HapticEngine, isMutedForHaptics: bool) ---
+
+    @(objc_type=HapticEngine, objc_selector="isAutoShutdownEnabled", objc_name="isAutoShutdownEnabled")
+    HapticEngine_isAutoShutdownEnabled :: proc(self: ^HapticEngine) -> bool ---
+
+    @(objc_type=HapticEngine, objc_selector="setAutoShutdownEnabled:", objc_name="setAutoShutdownEnabled")
+    HapticEngine_setAutoShutdownEnabled :: proc(self: ^HapticEngine, autoShutdownEnabled: bool) ---
 }

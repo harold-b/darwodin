@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPointerAccessory
 ///
-@(objc_class="UIPointerAccessory")
+@(objc_class="UIPointerAccessory", objc_superclass=NS.Object)
 PointerAccessory :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

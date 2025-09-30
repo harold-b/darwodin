@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIPreviewInteraction
 ///
-@(objc_class="UIPreviewInteraction")
+@(objc_class="UIPreviewInteraction", objc_superclass=NS.Object)
 PreviewInteraction :: struct { using _: NS.Object, }
 

@@ -20,58 +20,48 @@ Function :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=Function, objc_name="newArgumentEncoderWithBufferIndex_")
-Function_newArgumentEncoderWithBufferIndex_ :: #force_inline proc "c" (self: ^Function, bufferIndex: NS.UInteger) -> ^ArgumentEncoder {
-    return msgSend(^ArgumentEncoder, self, "newArgumentEncoderWithBufferIndex:", bufferIndex)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Function, objc_selector="newArgumentEncoderWithBufferIndex:", objc_name="newArgumentEncoderWithBufferIndex_")
+    Function_newArgumentEncoderWithBufferIndex_ :: proc(self: ^Function, bufferIndex: NS.UInteger) -> ^ArgumentEncoder ---
+
+    @(objc_type=Function, objc_selector="newArgumentEncoderWithBufferIndex:reflection:", objc_name="newArgumentEncoderWithBufferIndex_reflection")
+    Function_newArgumentEncoderWithBufferIndex_reflection :: proc(self: ^Function, bufferIndex: NS.UInteger, reflection: ^^Argument) -> ^ArgumentEncoder ---
+
+    @(objc_type=Function, objc_selector="label", objc_name="label")
+    Function_label :: proc(self: ^Function) -> ^NS.String ---
+
+    @(objc_type=Function, objc_selector="setLabel:", objc_name="setLabel")
+    Function_setLabel :: proc(self: ^Function, label: ^NS.String) ---
+
+    @(objc_type=Function, objc_selector="device", objc_name="device")
+    Function_device :: proc(self: ^Function) -> ^Device ---
+
+    @(objc_type=Function, objc_selector="functionType", objc_name="functionType")
+    Function_functionType :: proc(self: ^Function) -> FunctionType ---
+
+    @(objc_type=Function, objc_selector="patchType", objc_name="patchType")
+    Function_patchType :: proc(self: ^Function) -> PatchType ---
+
+    @(objc_type=Function, objc_selector="patchControlPointCount", objc_name="patchControlPointCount")
+    Function_patchControlPointCount :: proc(self: ^Function) -> NS.Integer ---
+
+    @(objc_type=Function, objc_selector="vertexAttributes", objc_name="vertexAttributes")
+    Function_vertexAttributes :: proc(self: ^Function) -> ^NS.Array ---
+
+    @(objc_type=Function, objc_selector="stageInputAttributes", objc_name="stageInputAttributes")
+    Function_stageInputAttributes :: proc(self: ^Function) -> ^NS.Array ---
+
+    @(objc_type=Function, objc_selector="name", objc_name="name")
+    Function_name :: proc(self: ^Function) -> ^NS.String ---
+
+    @(objc_type=Function, objc_selector="functionConstantsDictionary", objc_name="functionConstantsDictionary")
+    Function_functionConstantsDictionary :: proc(self: ^Function) -> ^NS.Dictionary ---
+
+    @(objc_type=Function, objc_selector="options", objc_name="options")
+    Function_options :: proc(self: ^Function) -> FunctionOptions ---
 }
-@(objc_type=Function, objc_name="newArgumentEncoderWithBufferIndex_reflection")
-Function_newArgumentEncoderWithBufferIndex_reflection :: #force_inline proc "c" (self: ^Function, bufferIndex: NS.UInteger, reflection: ^^Argument) -> ^ArgumentEncoder {
-    return msgSend(^ArgumentEncoder, self, "newArgumentEncoderWithBufferIndex:reflection:", bufferIndex, reflection)
-}
-@(objc_type=Function, objc_name="label")
-Function_label :: #force_inline proc "c" (self: ^Function) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=Function, objc_name="setLabel")
-Function_setLabel :: #force_inline proc "c" (self: ^Function, label: ^NS.String) {
-    msgSend(nil, self, "setLabel:", label)
-}
-@(objc_type=Function, objc_name="device")
-Function_device :: #force_inline proc "c" (self: ^Function) -> ^Device {
-    return msgSend(^Device, self, "device")
-}
-@(objc_type=Function, objc_name="functionType")
-Function_functionType :: #force_inline proc "c" (self: ^Function) -> FunctionType {
-    return msgSend(FunctionType, self, "functionType")
-}
-@(objc_type=Function, objc_name="patchType")
-Function_patchType :: #force_inline proc "c" (self: ^Function) -> PatchType {
-    return msgSend(PatchType, self, "patchType")
-}
-@(objc_type=Function, objc_name="patchControlPointCount")
-Function_patchControlPointCount :: #force_inline proc "c" (self: ^Function) -> NS.Integer {
-    return msgSend(NS.Integer, self, "patchControlPointCount")
-}
-@(objc_type=Function, objc_name="vertexAttributes")
-Function_vertexAttributes :: #force_inline proc "c" (self: ^Function) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "vertexAttributes")
-}
-@(objc_type=Function, objc_name="stageInputAttributes")
-Function_stageInputAttributes :: #force_inline proc "c" (self: ^Function) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "stageInputAttributes")
-}
-@(objc_type=Function, objc_name="name")
-Function_name :: #force_inline proc "c" (self: ^Function) -> ^NS.String {
-    return msgSend(^NS.String, self, "name")
-}
-@(objc_type=Function, objc_name="functionConstantsDictionary")
-Function_functionConstantsDictionary :: #force_inline proc "c" (self: ^Function) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "functionConstantsDictionary")
-}
-@(objc_type=Function, objc_name="options")
-Function_options :: #force_inline proc "c" (self: ^Function) -> FunctionOptions {
-    return msgSend(FunctionOptions, self, "options")
-}
+
 @(objc_type=Function, objc_name="newArgumentEncoderWithBufferIndex")
 Function_newArgumentEncoderWithBufferIndex :: proc {
     Function_newArgumentEncoderWithBufferIndex_,

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIPopoverController
 ///
-@(objc_class="UIPopoverController")
+@(objc_class="UIPopoverController", objc_superclass=NS.Object)
 PopoverController :: struct { using _: NS.Object, 
     using _: AppearanceContainer,
 }

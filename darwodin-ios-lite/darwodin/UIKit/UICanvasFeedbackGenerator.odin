@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UICanvasFeedbackGenerator
 ///
-@(objc_class="UICanvasFeedbackGenerator")
+@(objc_class="UICanvasFeedbackGenerator", objc_superclass=FeedbackGenerator)
 CanvasFeedbackGenerator :: struct { using _: FeedbackGenerator, }
 

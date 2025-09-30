@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSItemProvider
 ///
-@(objc_class="NSItemProvider")
+@(objc_class="NSItemProvider", objc_superclass=Object)
 ItemProvider :: struct { using _: Object, 
     using _: Copying,
 }

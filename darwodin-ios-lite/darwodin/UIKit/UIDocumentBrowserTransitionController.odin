@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIDocumentBrowserTransitionController
 ///
-@(objc_class="UIDocumentBrowserTransitionController")
+@(objc_class="UIDocumentBrowserTransitionController", objc_superclass=NS.Object)
 DocumentBrowserTransitionController :: struct { using _: NS.Object, 
     using _: ViewControllerAnimatedTransitioning,
 }

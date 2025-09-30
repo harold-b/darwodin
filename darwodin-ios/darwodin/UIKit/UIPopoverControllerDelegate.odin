@@ -21,15 +21,14 @@ PopoverControllerDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=PopoverControllerDelegate, objc_name="popoverControllerShouldDismissPopover")
-PopoverControllerDelegate_popoverControllerShouldDismissPopover :: #force_inline proc "c" (self: ^PopoverControllerDelegate, popoverController: ^PopoverController) -> bool {
-    return msgSend(bool, self, "popoverControllerShouldDismissPopover:", popoverController)
-}
-@(objc_type=PopoverControllerDelegate, objc_name="popoverControllerDidDismissPopover")
-PopoverControllerDelegate_popoverControllerDidDismissPopover :: #force_inline proc "c" (self: ^PopoverControllerDelegate, popoverController: ^PopoverController) {
-    msgSend(nil, self, "popoverControllerDidDismissPopover:", popoverController)
-}
-@(objc_type=PopoverControllerDelegate, objc_name="popoverController")
-PopoverControllerDelegate_popoverController :: #force_inline proc "c" (self: ^PopoverControllerDelegate, popoverController: ^PopoverController, rect: ^CG.Rect, view: ^^View) {
-    msgSend(nil, self, "popoverController:willRepositionPopoverToRect:inView:", popoverController, rect, view)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PopoverControllerDelegate, objc_selector="popoverControllerShouldDismissPopover:", objc_name="popoverControllerShouldDismissPopover")
+    PopoverControllerDelegate_popoverControllerShouldDismissPopover :: proc(self: ^PopoverControllerDelegate, popoverController: ^PopoverController) -> bool ---
+
+    @(objc_type=PopoverControllerDelegate, objc_selector="popoverControllerDidDismissPopover:", objc_name="popoverControllerDidDismissPopover")
+    PopoverControllerDelegate_popoverControllerDidDismissPopover :: proc(self: ^PopoverControllerDelegate, popoverController: ^PopoverController) ---
+
+    @(objc_type=PopoverControllerDelegate, objc_selector="popoverController:willRepositionPopoverToRect:inView:", objc_name="popoverController")
+    PopoverControllerDelegate_popoverController :: proc(self: ^PopoverControllerDelegate, popoverController: ^PopoverController, rect: ^CG.Rect, view: ^^View) ---
 }

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UISearchBar
 ///
-@(objc_class="UISearchBar")
+@(objc_class="UISearchBar", objc_superclass=View)
 SearchBar :: struct { using _: View, 
     using _: BarPositioning,
     using _: TextInputTraitsProtocol,

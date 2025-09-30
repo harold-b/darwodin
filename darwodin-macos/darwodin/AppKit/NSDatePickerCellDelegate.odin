@@ -21,7 +21,8 @@ DatePickerCellDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=DatePickerCellDelegate, objc_name="datePickerCell")
-DatePickerCellDelegate_datePickerCell :: #force_inline proc "c" (self: ^DatePickerCellDelegate, datePickerCell: ^DatePickerCell, proposedDateValue: ^^NS.Date, proposedTimeInterval: ^NS.TimeInterval) {
-    msgSend(nil, self, "datePickerCell:validateProposedDateValue:timeInterval:", datePickerCell, proposedDateValue, proposedTimeInterval)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DatePickerCellDelegate, objc_selector="datePickerCell:validateProposedDateValue:timeInterval:", objc_name="datePickerCell")
+    DatePickerCellDelegate_datePickerCell :: proc(self: ^DatePickerCellDelegate, datePickerCell: ^DatePickerCell, proposedDateValue: ^^NS.Date, proposedTimeInterval: ^NS.TimeInterval) ---
 }

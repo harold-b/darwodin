@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIDocumentViewControllerLaunchOptions
 ///
-@(objc_class="UIDocumentViewControllerLaunchOptions")
+@(objc_class="UIDocumentViewControllerLaunchOptions", objc_superclass=NS.Object)
 DocumentViewControllerLaunchOptions :: struct { using _: NS.Object, }
 

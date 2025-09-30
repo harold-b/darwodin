@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSearchToolbarItem
 ///
-@(objc_class="NSSearchToolbarItem")
+@(objc_class="NSSearchToolbarItem", objc_superclass=ToolbarItem)
 SearchToolbarItem :: struct { using _: ToolbarItem, }
 

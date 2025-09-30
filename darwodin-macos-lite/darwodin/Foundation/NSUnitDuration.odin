@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSUnitDuration
 ///
-@(objc_class="NSUnitDuration")
+@(objc_class="NSUnitDuration", objc_superclass=Dimension)
 UnitDuration :: struct { using _: Dimension, 
     using _: SecureCoding,
 }

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSStatusBarButton
 ///
-@(objc_class="NSStatusBarButton")
+@(objc_class="NSStatusBarButton", objc_superclass=Button)
 StatusBarButton :: struct { using _: Button, }
 

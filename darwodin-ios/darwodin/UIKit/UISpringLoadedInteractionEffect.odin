@@ -21,7 +21,8 @@ SpringLoadedInteractionEffect :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SpringLoadedInteractionEffect, objc_name="interaction")
-SpringLoadedInteractionEffect_interaction :: #force_inline proc "c" (self: ^SpringLoadedInteractionEffect, interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext) {
-    msgSend(nil, self, "interaction:didChangeWithContext:", interaction, _context)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpringLoadedInteractionEffect, objc_selector="interaction:didChangeWithContext:", objc_name="interaction")
+    SpringLoadedInteractionEffect_interaction :: proc(self: ^SpringLoadedInteractionEffect, interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext) ---
 }

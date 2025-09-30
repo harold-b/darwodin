@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSMiddleSpecifier
 ///
-@(objc_class="NSMiddleSpecifier")
+@(objc_class="NSMiddleSpecifier", objc_superclass=ScriptObjectSpecifier)
 MiddleSpecifier :: struct { using _: ScriptObjectSpecifier, }
 

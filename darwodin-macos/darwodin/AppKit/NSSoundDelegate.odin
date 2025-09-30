@@ -21,7 +21,8 @@ SoundDelegate :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=SoundDelegate, objc_name="sound")
-SoundDelegate_sound :: #force_inline proc "c" (self: ^SoundDelegate, sound: ^Sound, flag: bool) {
-    msgSend(nil, self, "sound:didFinishPlaying:", sound, flag)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SoundDelegate, objc_selector="sound:didFinishPlaying:", objc_name="sound")
+    SoundDelegate_sound :: proc(self: ^SoundDelegate, sound: ^Sound, flag: bool) ---
 }

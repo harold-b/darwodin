@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSFileProviderService
 ///
-@(objc_class="NSFileProviderService")
+@(objc_class="NSFileProviderService", objc_superclass=Object)
 FileProviderService :: struct { using _: Object, }
 

@@ -16,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// UIGraphicsImageRendererFormat
 ///
-@(objc_class="UIGraphicsImageRendererFormat")
+@(objc_class="UIGraphicsImageRendererFormat", objc_superclass=GraphicsRendererFormat)
 GraphicsImageRendererFormat :: struct { using _: GraphicsRendererFormat, }
 

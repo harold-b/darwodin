@@ -18,26 +18,24 @@ URLSessionDataDelegate :: struct { using _: intrinsics.objc_object,
     using _: URLSessionTaskDelegate,
 }
 
-@(objc_type=URLSessionDataDelegate, objc_name="URLSession_dataTask_didReceiveResponse_completionHandler")
-URLSessionDataDelegate_URLSession_dataTask_didReceiveResponse_completionHandler :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, response: ^URLResponse, completionHandler: ^Objc_Block(proc "c" (disposition: URLSessionResponseDisposition))) {
-    msgSend(nil, self, "URLSession:dataTask:didReceiveResponse:completionHandler:", session, dataTask, response, completionHandler)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=URLSessionDataDelegate, objc_selector="URLSession:dataTask:didReceiveResponse:completionHandler:", objc_name="URLSession_dataTask_didReceiveResponse_completionHandler")
+    URLSessionDataDelegate_URLSession_dataTask_didReceiveResponse_completionHandler :: proc(self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, response: ^URLResponse, completionHandler: ^Objc_Block(proc "c" (disposition: URLSessionResponseDisposition))) ---
+
+    @(objc_type=URLSessionDataDelegate, objc_selector="URLSession:dataTask:didBecomeDownloadTask:", objc_name="URLSession_dataTask_didBecomeDownloadTask")
+    URLSessionDataDelegate_URLSession_dataTask_didBecomeDownloadTask :: proc(self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, downloadTask: ^URLSessionDownloadTask) ---
+
+    @(objc_type=URLSessionDataDelegate, objc_selector="URLSession:dataTask:didBecomeStreamTask:", objc_name="URLSession_dataTask_didBecomeStreamTask")
+    URLSessionDataDelegate_URLSession_dataTask_didBecomeStreamTask :: proc(self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, streamTask: ^URLSessionStreamTask) ---
+
+    @(objc_type=URLSessionDataDelegate, objc_selector="URLSession:dataTask:didReceiveData:", objc_name="URLSession_dataTask_didReceiveData")
+    URLSessionDataDelegate_URLSession_dataTask_didReceiveData :: proc(self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, data: ^Data) ---
+
+    @(objc_type=URLSessionDataDelegate, objc_selector="URLSession:dataTask:willCacheResponse:completionHandler:", objc_name="URLSession_dataTask_willCacheResponse_completionHandler")
+    URLSessionDataDelegate_URLSession_dataTask_willCacheResponse_completionHandler :: proc(self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, proposedResponse: ^CachedURLResponse, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^CachedURLResponse))) ---
 }
-@(objc_type=URLSessionDataDelegate, objc_name="URLSession_dataTask_didBecomeDownloadTask")
-URLSessionDataDelegate_URLSession_dataTask_didBecomeDownloadTask :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, downloadTask: ^URLSessionDownloadTask) {
-    msgSend(nil, self, "URLSession:dataTask:didBecomeDownloadTask:", session, dataTask, downloadTask)
-}
-@(objc_type=URLSessionDataDelegate, objc_name="URLSession_dataTask_didBecomeStreamTask")
-URLSessionDataDelegate_URLSession_dataTask_didBecomeStreamTask :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, streamTask: ^URLSessionStreamTask) {
-    msgSend(nil, self, "URLSession:dataTask:didBecomeStreamTask:", session, dataTask, streamTask)
-}
-@(objc_type=URLSessionDataDelegate, objc_name="URLSession_dataTask_didReceiveData")
-URLSessionDataDelegate_URLSession_dataTask_didReceiveData :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, data: ^Data) {
-    msgSend(nil, self, "URLSession:dataTask:didReceiveData:", session, dataTask, data)
-}
-@(objc_type=URLSessionDataDelegate, objc_name="URLSession_dataTask_willCacheResponse_completionHandler")
-URLSessionDataDelegate_URLSession_dataTask_willCacheResponse_completionHandler :: #force_inline proc "c" (self: ^URLSessionDataDelegate, session: ^URLSession, dataTask: ^URLSessionDataTask, proposedResponse: ^CachedURLResponse, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^CachedURLResponse))) {
-    msgSend(nil, self, "URLSession:dataTask:willCacheResponse:completionHandler:", session, dataTask, proposedResponse, completionHandler)
-}
+
 @(objc_type=URLSessionDataDelegate, objc_name="URLSession")
 URLSessionDataDelegate_URLSession :: proc {
     URLSessionDataDelegate_URLSession_dataTask_didReceiveResponse_completionHandler,

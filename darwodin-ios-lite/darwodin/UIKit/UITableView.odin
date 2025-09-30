@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UITableView
 ///
-@(objc_class="UITableView")
+@(objc_class="UITableView", objc_superclass=ScrollView)
 TableView :: struct { using _: ScrollView, 
     using _: NS.Coding,
     using _: DataSourceTranslating,

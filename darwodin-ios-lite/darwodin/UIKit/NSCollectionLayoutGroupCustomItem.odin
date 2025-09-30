@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// NSCollectionLayoutGroupCustomItem
 ///
-@(objc_class="NSCollectionLayoutGroupCustomItem")
+@(objc_class="NSCollectionLayoutGroupCustomItem", objc_superclass=NS.Object)
 NSCollectionLayoutGroupCustomItem :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }

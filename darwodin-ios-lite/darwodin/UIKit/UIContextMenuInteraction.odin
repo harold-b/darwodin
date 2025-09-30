@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIContextMenuInteraction
 ///
-@(objc_class="UIContextMenuInteraction")
+@(objc_class="UIContextMenuInteraction", objc_superclass=NS.Object)
 ContextMenuInteraction :: struct { using _: NS.Object, 
     using _: Interaction,
 }

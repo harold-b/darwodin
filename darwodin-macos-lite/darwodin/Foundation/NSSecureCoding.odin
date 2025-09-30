@@ -18,7 +18,8 @@ SecureCoding :: struct { using _: intrinsics.objc_object,
     using _: Coding,
 }
 
-@(objc_type=SecureCoding, objc_name="supportsSecureCoding", objc_is_class_method=true)
-SecureCoding_supportsSecureCoding :: #force_inline proc "c" () -> bool {
-    return msgSend(bool, SecureCoding, "supportsSecureCoding")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SecureCoding, objc_selector="supportsSecureCoding", objc_name="supportsSecureCoding", objc_is_class_method=true)
+    SecureCoding_supportsSecureCoding :: proc() -> bool ---
 }

@@ -21,7 +21,8 @@ AccessibilityRadioButton :: struct { using _: intrinsics.objc_object,
     using _: AccessibilityButton,
 }
 
-@(objc_type=AccessibilityRadioButton, objc_name="accessibilityValue")
-AccessibilityRadioButton_accessibilityValue :: #force_inline proc "c" (self: ^AccessibilityRadioButton) -> ^NS.Number {
-    return msgSend(^NS.Number, self, "accessibilityValue")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityRadioButton, objc_selector="accessibilityValue", objc_name="accessibilityValue")
+    AccessibilityRadioButton_accessibilityValue :: proc(self: ^AccessibilityRadioButton) -> ^NS.Number ---
 }

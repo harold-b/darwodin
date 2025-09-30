@@ -21,7 +21,8 @@ ViewContentSelectionInfo :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=ViewContentSelectionInfo, objc_name="selectionAnchorRect")
-ViewContentSelectionInfo_selectionAnchorRect :: #force_inline proc "c" (self: ^ViewContentSelectionInfo) -> NS.Rect {
-    return msgSend(NS.Rect, self, "selectionAnchorRect")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewContentSelectionInfo, objc_selector="selectionAnchorRect", objc_name="selectionAnchorRect")
+    ViewContentSelectionInfo_selectionAnchorRect :: proc(self: ^ViewContentSelectionInfo) -> NS.Rect ---
 }

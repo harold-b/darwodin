@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 ///
 /// UIImagePickerController
 ///
-@(objc_class="UIImagePickerController")
+@(objc_class="UIImagePickerController", objc_superclass=NavigationController)
 ImagePickerController :: struct { using _: NavigationController, 
     using _: NS.Coding,
 }

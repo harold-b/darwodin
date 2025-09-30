@@ -18,57 +18,41 @@ Proxy :: struct { using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 
-@(objc_type=Proxy, objc_name="init")
-Proxy_init :: proc "c" (self: ^Proxy) -> ^Proxy {
-    return msgSend(^Proxy, self, "init")
-}
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Proxy, objc_selector="alloc", objc_name="alloc", objc_is_class_method=true)
+    Proxy_alloc :: proc() -> ^Proxy ---
 
+    @(objc_type=Proxy, objc_selector="allocWithZone:", objc_name="allocWithZone", objc_is_class_method=true)
+    Proxy_allocWithZone :: proc(zone: ^Zone) -> ^Proxy ---
 
-@(objc_type=Proxy, objc_name="alloc", objc_is_class_method=true)
-Proxy_alloc :: #force_inline proc "c" () -> ^Proxy {
-    return msgSend(^Proxy, Proxy, "alloc")
-}
-@(objc_type=Proxy, objc_name="allocWithZone", objc_is_class_method=true)
-Proxy_allocWithZone :: #force_inline proc "c" (zone: ^Zone) -> ^Proxy {
-    return msgSend(^Proxy, Proxy, "allocWithZone:", zone)
-}
-@(objc_type=Proxy, objc_name="class", objc_is_class_method=true)
-Proxy_class :: #force_inline proc "c" () -> Class {
-    return msgSend(Class, Proxy, "class")
-}
-@(objc_type=Proxy, objc_name="forwardInvocation")
-Proxy_forwardInvocation :: #force_inline proc "c" (self: ^Proxy, invocation: ^Invocation) {
-    msgSend(nil, self, "forwardInvocation:", invocation)
-}
-@(objc_type=Proxy, objc_name="methodSignatureForSelector")
-Proxy_methodSignatureForSelector :: #force_inline proc "c" (self: ^Proxy, sel: SEL) -> ^MethodSignature {
-    return msgSend(^MethodSignature, self, "methodSignatureForSelector:", sel)
-}
-@(objc_type=Proxy, objc_name="dealloc")
-Proxy_dealloc :: #force_inline proc "c" (self: ^Proxy) {
-    msgSend(nil, self, "dealloc")
-}
-@(objc_type=Proxy, objc_name="finalize")
-Proxy_finalize :: #force_inline proc "c" (self: ^Proxy) {
-    msgSend(nil, self, "finalize")
-}
-@(objc_type=Proxy, objc_name="respondsToSelector", objc_is_class_method=true)
-Proxy_respondsToSelector :: #force_inline proc "c" (aSelector: SEL) -> bool {
-    return msgSend(bool, Proxy, "respondsToSelector:", aSelector)
-}
-@(objc_type=Proxy, objc_name="allowsWeakReference")
-Proxy_allowsWeakReference :: #force_inline proc "c" (self: ^Proxy) -> bool {
-    return msgSend(bool, self, "allowsWeakReference")
-}
-@(objc_type=Proxy, objc_name="retainWeakReference")
-Proxy_retainWeakReference :: #force_inline proc "c" (self: ^Proxy) -> bool {
-    return msgSend(bool, self, "retainWeakReference")
-}
-@(objc_type=Proxy, objc_name="description")
-Proxy_description :: #force_inline proc "c" (self: ^Proxy) -> ^String {
-    return msgSend(^String, self, "description")
-}
-@(objc_type=Proxy, objc_name="debugDescription")
-Proxy_debugDescription :: #force_inline proc "c" (self: ^Proxy) -> ^String {
-    return msgSend(^String, self, "debugDescription")
+    @(objc_type=Proxy, objc_selector="class", objc_name="class", objc_is_class_method=true)
+    Proxy_class :: proc() -> Class ---
+
+    @(objc_type=Proxy, objc_selector="forwardInvocation:", objc_name="forwardInvocation")
+    Proxy_forwardInvocation :: proc(self: ^Proxy, invocation: ^Invocation) ---
+
+    @(objc_type=Proxy, objc_selector="methodSignatureForSelector:", objc_name="methodSignatureForSelector")
+    Proxy_methodSignatureForSelector :: proc(self: ^Proxy, sel: SEL) -> ^MethodSignature ---
+
+    @(objc_type=Proxy, objc_selector="dealloc", objc_name="dealloc")
+    Proxy_dealloc :: proc(self: ^Proxy) ---
+
+    @(objc_type=Proxy, objc_selector="finalize", objc_name="finalize")
+    Proxy_finalize :: proc(self: ^Proxy) ---
+
+    @(objc_type=Proxy, objc_selector="respondsToSelector:", objc_name="respondsToSelector", objc_is_class_method=true)
+    Proxy_respondsToSelector :: proc(aSelector: SEL) -> bool ---
+
+    @(objc_type=Proxy, objc_selector="allowsWeakReference", objc_name="allowsWeakReference")
+    Proxy_allowsWeakReference :: proc(self: ^Proxy) -> bool ---
+
+    @(objc_type=Proxy, objc_selector="retainWeakReference", objc_name="retainWeakReference")
+    Proxy_retainWeakReference :: proc(self: ^Proxy) -> bool ---
+
+    @(objc_type=Proxy, objc_selector="description", objc_name="description")
+    Proxy_description :: proc(self: ^Proxy) -> ^String ---
+
+    @(objc_type=Proxy, objc_selector="debugDescription", objc_name="debugDescription")
+    Proxy_debugDescription :: proc(self: ^Proxy) -> ^String ---
 }

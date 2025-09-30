@@ -19,23 +19,20 @@ import CA "../QuartzCore"
 @(objc_class="NSAnimatablePropertyContainer")
 AnimatablePropertyContainer :: struct { using _: intrinsics.objc_object, }
 
-@(objc_type=AnimatablePropertyContainer, objc_name="animator")
-AnimatablePropertyContainer_animator :: #force_inline proc "c" (self: ^AnimatablePropertyContainer) -> ^AnimatablePropertyContainer {
-    return msgSend(^AnimatablePropertyContainer, self, "animator")
-}
-@(objc_type=AnimatablePropertyContainer, objc_name="animationForKey")
-AnimatablePropertyContainer_animationForKey :: #force_inline proc "c" (self: ^AnimatablePropertyContainer, key: ^NS.String) -> id {
-    return msgSend(id, self, "animationForKey:", key)
-}
-@(objc_type=AnimatablePropertyContainer, objc_name="defaultAnimationForKey", objc_is_class_method=true)
-AnimatablePropertyContainer_defaultAnimationForKey :: #force_inline proc "c" (key: ^NS.String) -> id {
-    return msgSend(id, AnimatablePropertyContainer, "defaultAnimationForKey:", key)
-}
-@(objc_type=AnimatablePropertyContainer, objc_name="animations")
-AnimatablePropertyContainer_animations :: #force_inline proc "c" (self: ^AnimatablePropertyContainer) -> ^NS.Dictionary {
-    return msgSend(^NS.Dictionary, self, "animations")
-}
-@(objc_type=AnimatablePropertyContainer, objc_name="setAnimations")
-AnimatablePropertyContainer_setAnimations :: #force_inline proc "c" (self: ^AnimatablePropertyContainer, animations: ^NS.Dictionary) {
-    msgSend(nil, self, "setAnimations:", animations)
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AnimatablePropertyContainer, objc_selector="animator", objc_name="animator")
+    AnimatablePropertyContainer_animator :: proc(self: ^AnimatablePropertyContainer) -> ^AnimatablePropertyContainer ---
+
+    @(objc_type=AnimatablePropertyContainer, objc_selector="animationForKey:", objc_name="animationForKey")
+    AnimatablePropertyContainer_animationForKey :: proc(self: ^AnimatablePropertyContainer, key: ^NS.String) -> id ---
+
+    @(objc_type=AnimatablePropertyContainer, objc_selector="defaultAnimationForKey:", objc_name="defaultAnimationForKey", objc_is_class_method=true)
+    AnimatablePropertyContainer_defaultAnimationForKey :: proc(key: ^NS.String) -> id ---
+
+    @(objc_type=AnimatablePropertyContainer, objc_selector="animations", objc_name="animations")
+    AnimatablePropertyContainer_animations :: proc(self: ^AnimatablePropertyContainer) -> ^NS.Dictionary ---
+
+    @(objc_type=AnimatablePropertyContainer, objc_selector="setAnimations:", objc_name="setAnimations")
+    AnimatablePropertyContainer_setAnimations :: proc(self: ^AnimatablePropertyContainer, animations: ^NS.Dictionary) ---
 }

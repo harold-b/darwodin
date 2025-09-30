@@ -13,6 +13,6 @@ import Sec "../Security"
 ///
 /// NSNetServiceBrowser
 ///
-@(objc_class="NSNetServiceBrowser")
+@(objc_class="NSNetServiceBrowser", objc_superclass=Object)
 NetServiceBrowser :: struct { using _: Object, }
 

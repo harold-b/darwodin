@@ -20,15 +20,14 @@ CommandBufferEncoderInfo :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
-@(objc_type=CommandBufferEncoderInfo, objc_name="label")
-CommandBufferEncoderInfo_label :: #force_inline proc "c" (self: ^CommandBufferEncoderInfo) -> ^NS.String {
-    return msgSend(^NS.String, self, "label")
-}
-@(objc_type=CommandBufferEncoderInfo, objc_name="debugSignposts")
-CommandBufferEncoderInfo_debugSignposts :: #force_inline proc "c" (self: ^CommandBufferEncoderInfo) -> ^NS.Array {
-    return msgSend(^NS.Array, self, "debugSignposts")
-}
-@(objc_type=CommandBufferEncoderInfo, objc_name="errorState")
-CommandBufferEncoderInfo_errorState :: #force_inline proc "c" (self: ^CommandBufferEncoderInfo) -> CommandEncoderErrorState {
-    return msgSend(CommandEncoderErrorState, self, "errorState")
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CommandBufferEncoderInfo, objc_selector="label", objc_name="label")
+    CommandBufferEncoderInfo_label :: proc(self: ^CommandBufferEncoderInfo) -> ^NS.String ---
+
+    @(objc_type=CommandBufferEncoderInfo, objc_selector="debugSignposts", objc_name="debugSignposts")
+    CommandBufferEncoderInfo_debugSignposts :: proc(self: ^CommandBufferEncoderInfo) -> ^NS.Array ---
+
+    @(objc_type=CommandBufferEncoderInfo, objc_selector="errorState", objc_name="errorState")
+    CommandBufferEncoderInfo_errorState :: proc(self: ^CommandBufferEncoderInfo) -> CommandEncoderErrorState ---
 }

@@ -13,7 +13,7 @@ import Sec "../Security"
 ///
 /// NSLock
 ///
-@(objc_class="NSLock")
+@(objc_class="NSLock", objc_superclass=Object)
 Lock :: struct { using _: Object, 
     using _: Locking,
 }

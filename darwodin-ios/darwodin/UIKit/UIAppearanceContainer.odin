@@ -21,3 +21,5 @@ AppearanceContainer :: struct { using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 
+@(default_calling_convention="c")
+foreign lib {}
