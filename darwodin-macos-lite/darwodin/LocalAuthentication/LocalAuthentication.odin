@@ -6,6 +6,7 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
+import Sec "../Security"
 import AK "../AppKit"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
@@ -19,7 +20,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:LocalAuthentication.framework"
+@(require, export) foreign import lib "system:LocalAuthentication.framework"
 
 
 
@@ -31,10 +32,10 @@ foreign lib {
 /// LABiometryType
 BiometryType :: enum cffi.long {
     None    = 0,
-    None    = 0,
     TouchID = 1,
     FaceID  = 2,
     OpticID = 4,
+    // None = 0,
 }
 
 /// LACompanionType

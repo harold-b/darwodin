@@ -34,6 +34,7 @@ Odin:
   ExternalTypes:
     - ../exports/CoreFoundation.exports.yml
     - ../exports/Foundation.exports.yml
+    - ../exports/Security.exports.yml
 
   ResolvedTypedefs:
     - '[su]?int.*'
@@ -42,12 +43,15 @@ Odin:
     - Name  : LocalAuthentication
       Export: LA
       DarwinLinkLibs: [system:LocalAuthentication.framework]
+      RequiredLink: true
       Filter: .*
 
       # Imports:
       #   - 
 
       # TypeMap:
+      IgnoreEnumItems:
+        - LABiometryNone
 
 
   # Symbol Transformers

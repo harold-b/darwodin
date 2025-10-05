@@ -53,8 +53,8 @@ Odin:
         CFStringEncoding: CF.StringEncoding
         
       IgnoreEnumItems:
-        - ^kCTFont.+Class$
-        - ^kCTFont.+Trait$
+        - kCTFont.+Class$
+        - kCTFont.+Trait$
 
 
   # Symbol Transformers
