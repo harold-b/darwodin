@@ -31,7 +31,7 @@ foreign ObjC {
     objc_allocateClassPair   :: proc "c" (superclass : Class, name : cstring, extraBytes : c.size_t) -> Class ---
     objc_registerClassPair   :: proc "c" (cls : Class) ---
 
-    objc_lookUpClass         :: proc "c" (name: cstring) -> Class ---
+	objc_lookUpClass         :: proc "c" (name: cstring) -> Class ---
     class_getInstanceSize    :: proc "c" (cls: Class) -> c.size_t ---
 
     sel_registerName :: proc "c" (name: cstring) -> SEL ---
@@ -45,10 +45,10 @@ foreign ObjC {
 
 // 	class_addMethod         :: proc "c" (cls: Class, name: SEL, imp: IMP, types: cstring) -> BOOL ---
 // 	class_getInstanceMethod :: proc "c" (cls: Class, name: SEL) -> Method ---
-    class_createInstance    :: proc "c" (cls: Class, extraBytes: c.size_t) -> id ---
+	class_createInstance    :: proc "c" (cls: Class, extraBytes: c.size_t) -> id ---
 
-// method_setImplementation :: proc "c" (method: Method, imp: IMP) ---
-    // object_getIndexedIvars   :: proc(obj: id) -> rawptr ---
+// 	method_setImplementation :: proc "c" (method: Method, imp: IMP) ---
+	// object_getIndexedIvars   :: proc(obj: id) -> rawptr ---
 }
 
 objc_super :: struct {

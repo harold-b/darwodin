@@ -52,6 +52,7 @@ AppKit:
   - NSDraggingInfo
   - NSPasteboard
   - NSSavePanel
+  - NSCursor
 
 UIKit:
   - UIApplication

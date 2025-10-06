@@ -7,6 +7,7 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -15,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSMachBootstrapServer
 ///
-@(objc_class="NSMachBootstrapServer")
+@(objc_class="NSMachBootstrapServer", objc_superclass=PortNameServer)
 MachBootstrapServer :: struct { using _: PortNameServer, }
 

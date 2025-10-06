@@ -7,6 +7,7 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -15,6 +16,6 @@ import CA "../QuartzCore"
 ///
 /// NSSocketPort
 ///
-@(objc_class="NSSocketPort")
+@(objc_class="NSSocketPort", objc_superclass=NS.Port)
 SocketPort :: struct { using _: NS.Port, }
 
