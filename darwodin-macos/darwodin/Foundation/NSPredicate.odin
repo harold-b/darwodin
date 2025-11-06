@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
@@ -28,7 +29,7 @@ foreign lib {
     Predicate_predicateWithFormat_ :: proc(predicateFormat: ^String) -> ^Predicate ---
 
     @(objc_type=Predicate, objc_selector="predicateWithFormat:arguments:", objc_name="predicateWithFormat_arguments", objc_is_class_method=true)
-    Predicate_predicateWithFormat_arguments :: proc(predicateFormat: ^String, argList: cffi.va_list) -> ^Predicate ---
+    Predicate_predicateWithFormat_arguments :: proc(predicateFormat: ^String, argList: ^cffi.va_list) -> ^Predicate ---
 
     @(objc_type=Predicate, objc_selector="predicateFromMetadataQueryString:", objc_name="predicateFromMetadataQueryString", objc_is_class_method=true)
     Predicate_predicateFromMetadataQueryString :: proc(queryString: ^String) -> ^Predicate ---

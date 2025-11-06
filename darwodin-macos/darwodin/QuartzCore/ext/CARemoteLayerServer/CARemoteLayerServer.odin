@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import mach "../../../mach"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import NS "../../../Foundation"
@@ -26,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     sharedServer: proc() -> ^CA.RemoteLayerServer,
-    serverPort: proc(self: ^CA.RemoteLayerServer) -> CF.mach_port_t,
+    serverPort: proc(self: ^CA.RemoteLayerServer) -> mach.port_t,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -47,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharedServer"), auto_cast sharedServer, "@#:") do panic("Failed to register objC method.")
     }
     if vt.serverPort != nil {
-        serverPort :: proc "c" (self: ^CA.RemoteLayerServer, _: SEL) -> CF.mach_port_t {
+        serverPort :: proc "c" (self: ^CA.RemoteLayerServer, _: SEL) -> mach.port_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

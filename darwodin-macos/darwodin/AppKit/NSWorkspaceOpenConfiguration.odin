@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
@@ -93,10 +95,10 @@ foreign lib {
     WorkspaceOpenConfiguration_setAppleEvent :: proc(self: ^WorkspaceOpenConfiguration, appleEvent: ^NS.AppleEventDescriptor) ---
 
     @(objc_type=WorkspaceOpenConfiguration, objc_selector="architecture", objc_name="architecture")
-    WorkspaceOpenConfiguration_architecture :: proc(self: ^WorkspaceOpenConfiguration) -> CF.cpu_type_t ---
+    WorkspaceOpenConfiguration_architecture :: proc(self: ^WorkspaceOpenConfiguration) -> mach.cpu_type_t ---
 
     @(objc_type=WorkspaceOpenConfiguration, objc_selector="setArchitecture:", objc_name="setArchitecture")
-    WorkspaceOpenConfiguration_setArchitecture :: proc(self: ^WorkspaceOpenConfiguration, architecture: CF.cpu_type_t) ---
+    WorkspaceOpenConfiguration_setArchitecture :: proc(self: ^WorkspaceOpenConfiguration, architecture: mach.cpu_type_t) ---
 
     @(objc_type=WorkspaceOpenConfiguration, objc_selector="requiresUniversalLinks", objc_name="requiresUniversalLinks")
     WorkspaceOpenConfiguration_requiresUniversalLinks :: proc(self: ^WorkspaceOpenConfiguration) -> bool ---

@@ -43,10 +43,14 @@ Odin:
   TargetPlatform : Darwin
   ExportTypeMapDir: ../exports
   ExternalTypes:
+    - ../mach/exports/mach.exports.yml
+    - ../libc/libc.exports.yml
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
     - ../exports/Foundation.exports.yml
 
+  ExternalPackageMap:
+    darwin_libc: '../libc'
 
   Packages:
     - Name  : QuartzCore

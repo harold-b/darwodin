@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+set -eo pipefail
+cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+sysroot_macos="$(xcrun --sdk macosx --show-sdk-path)"
+
+# cgen --sysroot ${sysroot_macos} "${sysroot_macos}/usr/include/mach/mach.h" mach.json
+cgen -xc++ --sysroot ${sysroot_macos} "mach.h" mach.json
+csgen mach.yml

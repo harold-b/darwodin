@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
@@ -233,13 +234,13 @@ foreign lib {
     String_initWithFormat_ :: proc(self: ^String, format: ^String) -> ^String ---
 
     @(objc_type=String, objc_selector="initWithFormat:arguments:", objc_name="initWithFormat_arguments")
-    String_initWithFormat_arguments :: proc(self: ^String, format: ^String, argList: cffi.va_list) -> ^String ---
+    String_initWithFormat_arguments :: proc(self: ^String, format: ^String, argList: ^cffi.va_list) -> ^String ---
 
     @(objc_type=String, objc_selector="initWithFormat:locale:", objc_name="initWithFormat_locale")
     String_initWithFormat_locale :: proc(self: ^String, format: ^String, locale: id) -> ^String ---
 
     @(objc_type=String, objc_selector="initWithFormat:locale:arguments:", objc_name="initWithFormat_locale_arguments")
-    String_initWithFormat_locale_arguments :: proc(self: ^String, format: ^String, locale: id, argList: cffi.va_list) -> ^String ---
+    String_initWithFormat_locale_arguments :: proc(self: ^String, format: ^String, locale: id, argList: ^cffi.va_list) -> ^String ---
 
     @(objc_type=String, objc_selector="initWithValidatedFormat:validFormatSpecifiers:error:", objc_name="initWithValidatedFormat_validFormatSpecifiers_error")
     String_initWithValidatedFormat_validFormatSpecifiers_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, error: ^^Error) -> ^String ---
@@ -248,10 +249,10 @@ foreign lib {
     String_initWithValidatedFormat_validFormatSpecifiers_locale_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, error: ^^Error) -> ^String ---
 
     @(objc_type=String, objc_selector="initWithValidatedFormat:validFormatSpecifiers:arguments:error:", objc_name="initWithValidatedFormat_validFormatSpecifiers_arguments_error")
-    String_initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, argList: cffi.va_list, error: ^^Error) -> ^String ---
+    String_initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, argList: ^cffi.va_list, error: ^^Error) -> ^String ---
 
     @(objc_type=String, objc_selector="initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:", objc_name="initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error")
-    String_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: cffi.va_list, error: ^^Error) -> ^String ---
+    String_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: ^cffi.va_list, error: ^^Error) -> ^String ---
 
     @(objc_type=String, objc_selector="initWithData:encoding:", objc_name="initWithData")
     String_initWithData :: proc(self: ^String, data: ^Data, encoding: StringEncoding) -> ^String ---

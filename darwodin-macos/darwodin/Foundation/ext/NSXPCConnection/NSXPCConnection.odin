@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import Sec "../../../Security"
@@ -51,9 +52,9 @@ VTable :: struct {
     invalidationHandler: proc(self: ^NS.XPCConnection) -> ^Objc_Block(proc "c" ()),
     setInvalidationHandler: proc(self: ^NS.XPCConnection, invalidationHandler: ^Objc_Block(proc "c" ())),
     auditSessionIdentifier: proc(self: ^NS.XPCConnection) -> NS.au_asid_t,
-    processIdentifier: proc(self: ^NS.XPCConnection) -> CF.pid_t,
-    effectiveUserIdentifier: proc(self: ^NS.XPCConnection) -> CF.uid_t,
-    effectiveGroupIdentifier: proc(self: ^NS.XPCConnection) -> CF.gid_t,
+    processIdentifier: proc(self: ^NS.XPCConnection) -> libc.pid_t,
+    effectiveUserIdentifier: proc(self: ^NS.XPCConnection) -> libc.uid_t,
+    effectiveGroupIdentifier: proc(self: ^NS.XPCConnection) -> libc.gid_t,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -324,7 +325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("auditSessionIdentifier"), auto_cast auditSessionIdentifier, "i@:") do panic("Failed to register objC method.")
     }
     if vt.processIdentifier != nil {
-        processIdentifier :: proc "c" (self: ^NS.XPCConnection, _: SEL) -> CF.pid_t {
+        processIdentifier :: proc "c" (self: ^NS.XPCConnection, _: SEL) -> libc.pid_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -334,7 +335,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("processIdentifier"), auto_cast processIdentifier, "i@:") do panic("Failed to register objC method.")
     }
     if vt.effectiveUserIdentifier != nil {
-        effectiveUserIdentifier :: proc "c" (self: ^NS.XPCConnection, _: SEL) -> CF.uid_t {
+        effectiveUserIdentifier :: proc "c" (self: ^NS.XPCConnection, _: SEL) -> libc.uid_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -344,7 +345,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectiveUserIdentifier"), auto_cast effectiveUserIdentifier, "I@:") do panic("Failed to register objC method.")
     }
     if vt.effectiveGroupIdentifier != nil {
-        effectiveGroupIdentifier :: proc "c" (self: ^NS.XPCConnection, _: SEL) -> CF.gid_t {
+        effectiveGroupIdentifier :: proc "c" (self: ^NS.XPCConnection, _: SEL) -> libc.gid_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

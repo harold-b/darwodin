@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import mach "../../../mach"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
@@ -51,8 +53,8 @@ VTable :: struct {
     setEnvironment: proc(self: ^AK.WorkspaceOpenConfiguration, environment: ^NS.Dictionary),
     appleEvent: proc(self: ^AK.WorkspaceOpenConfiguration) -> ^NS.AppleEventDescriptor,
     setAppleEvent: proc(self: ^AK.WorkspaceOpenConfiguration, appleEvent: ^NS.AppleEventDescriptor),
-    architecture: proc(self: ^AK.WorkspaceOpenConfiguration) -> CF.cpu_type_t,
-    setArchitecture: proc(self: ^AK.WorkspaceOpenConfiguration, architecture: CF.cpu_type_t),
+    architecture: proc(self: ^AK.WorkspaceOpenConfiguration) -> mach.cpu_type_t,
+    setArchitecture: proc(self: ^AK.WorkspaceOpenConfiguration, architecture: mach.cpu_type_t),
     requiresUniversalLinks: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
     setRequiresUniversalLinks: proc(self: ^AK.WorkspaceOpenConfiguration, requiresUniversalLinks: bool),
 }
@@ -295,7 +297,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAppleEvent:"), auto_cast setAppleEvent, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.architecture != nil {
-        architecture :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> CF.cpu_type_t {
+        architecture :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> mach.cpu_type_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -305,7 +307,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("architecture"), auto_cast architecture, "i@:") do panic("Failed to register objC method.")
     }
     if vt.setArchitecture != nil {
-        setArchitecture :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, architecture: CF.cpu_type_t) {
+        setArchitecture :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, architecture: mach.cpu_type_t) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

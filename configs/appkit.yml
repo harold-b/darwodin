@@ -33,12 +33,16 @@ Odin:
   TargetPlatform   : Darwin
   ExportTypeMapDir : ../exports
   ExternalTypes:
+    - ../mach/exports/mach.exports.yml
+    - ../libc/libc.exports.yml
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
     - ../exports/CoreText.exports.yml
     - ../exports/Security.exports.yml
     - ../exports/Foundation.exports.yml
     - ../exports/QuartzCore.exports.yml
+
+  ExternalPackageMap: { darwin_libc: '../libc' }
 
   ResolvedTypedefs:
     - '[su]?int.*'

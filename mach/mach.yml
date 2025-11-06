@@ -1,0 +1,162 @@
+---
+
+Defs: ./mach.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+
+  ExportTypes:
+    - ^mach.+
+    - ^natural_t$
+    - ^boolean_t$
+    - ^integer_t$
+    - ^clock_res_t$
+    - ^msg_return_t$
+    - ^msg_labels_t$
+    - ^task_.+
+    # - ^task_t$
+    # - ^task_name_t$
+    # - ^task_id_token_t$
+    - ^host_.+
+    - ^cpu_.+
+    - ^kernel_boot_info_t$
+    - ^NDR_record_t$
+    - ^security_token_t$
+    - ^audit_token_t$
+    - ^time_value.+$
+    - ^policy_t$
+    - ^vm_.+$
+    - ^time_value$
+    - ^mem_entry_name_port_t$
+    - ^memory_.+$
+    - ^vm32_object_id_t$
+    - ^memory_object_offset_t$
+    - ^ipc_.+$
+    - ^kobject_description_t$
+    - ^gpu_.+
+
+  ExportMethods:
+    - ^::mach.+
+    - ^::task_for_pid$  # TODO: Include the rest: We should allow automatic reference resolution... So that all types included via typerefs get resolved too (unless mapped or explicitly ignored).
+    - ^::vm_region.+
+    - ^::vm_read.*
+    - ^::vm_behavior_set
+    - ^::vm_deallocate
+    - ^::vm_protect
+    - ^::vm_allocate
+    - ^::vm_wire
+    # - ^::host_.+
+    - ^::host_info$
+    - ^::host_page_size$
+
+  ExportVars:
+    - ^::mach.+
+    - ^::MACH.+
+
+  IgnoreTypes:
+    # TODO: Fix alignment issues
+    - ^mach_core_fileheader_v2$
+    - ^mach_voucher.+$
+    - ^ipc_voucher_t$
+    - ^kern_return_t$
+    - ^vm_behavior_t$
+    - ^vm_prot_t$
+
+  IgnoreMethods:
+    - ^::mach_voucher.+
+    - ^::host_set_UND.+
+
+
+
+Odin:
+  Emit              : true
+  ExportPath        : ./mach.odin
+  BasePackageName   : ''
+  SingleFile        : true
+  TargetPlatform    : Any
+  ExportTypeMapDir  : ./exports
+  NoObjectiveCHeader: true
+  OdinForeignLibName: lib_mach
+  RequireResultsForPointers: true
+  NoDistinctTypedefs: true
+
+  ResolvedTypedefs:
+    - ^__darwin.+
+  #   - off_t
+  #   - ^FT_U?Int.*$
+  #   - ^FT_U?Long$
+  #   - ^FT_U?Short$
+
+  # NonDistinctTypeDefs:
+  #   - '.+'
+
+  ResolvedEnums:
+    - ^mach_vm_range_flags_t$
+
+  Packages:
+    - Name  : mach
+      Filter: .*
+      Export: mach
+      DarwinLinkLibs: [system:System]
+      # WindowsLinkLibs: [lib/windows/libclang.dll]
+      # LinuxLinkLibs: [lib/linux/libclang.so]
+      RequiredLink: true
+
+      # Imports:
+      #   - |
+      #     dispatch_data_t :: rawptr
+
+      # TypeMap:
+      #   mach_vm_range_flags_t:
+      #   FT_Bool: b8
+      #   dispatch_data_t: dispatch_data_t
+      # ExternalTypes:
+
+  # Symbol Transformers
+  EnumTransforms:
+    # - Type: ^(FT).+
+    - Type: .*
+      Transforms:
+        - Kind  : RemoveTypeWordsFromElements
+        - Kind  : RemovePartialTypeNamePrefix
+        - Kind  : RemoveUnderscorePrefix
+        - Kind  : RemoveCommonPrefix
+        - Kind  : UnderscoreNumbers
+  
+  BitSetMap:
+    - Type: vm_prot_t
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: _t
+
+  TypeTransforms:
+    # - Type: FT_.+(_)$
+    #   Transforms:
+    #     - Kind  : RemoveSuffix
+    #       Source: $group0
+    - Type: ^((mach_)(?!vm|task_)|machx_).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0
+    - Type: ^SymbolRole$
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: s
+
+  ProcTransforms:
+    - Type: ^(mach_)(?!vm|memory).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0
+
+  VarTransforms:
+    - Type: ^(mach_|MACH_)(?!vm).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

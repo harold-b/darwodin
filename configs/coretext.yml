@@ -32,10 +32,15 @@ Odin:
   SingleFile     : false
   TargetPlatform : Darwin
   ExportTypeMapDir: ../exports
+
   ExternalTypes:
+    - ../exports/global.exports.yml
+    - ../libc/libc.exports.yml
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
 
+  ExternalPackageMap:
+    darwin_libc: '../libc'
 
   ResolvedTypedefs:
     - '[su]?int.*'

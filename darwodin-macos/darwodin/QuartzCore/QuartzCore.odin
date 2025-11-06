@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
@@ -29,30 +31,30 @@ CVTimeStamp :: struct {}
 
 
 
-GLRendererGenericID       :: 131584
-GLRendererGenericFloatID  :: 132096
-GLRendererAppleSWID       :: 132608
-GLRendererATIRage128ID    :: 135168
-GLRendererATIRadeonID     :: 135680
-GLRendererATIRageProID    :: 136192
-GLRendererATIRadeon8500ID :: 136704
-GLRendererATIRadeon9700ID :: 137216
-GLRendererATIRadeonX1000ID:: 137472
-GLRendererATIRadeonX2000ID:: 137728
-GLRendererATIRadeonX3000ID:: 137984
-GLRendererATIRadeonX4000ID:: 138240
-GLRendererGeForce2MXID    :: 139264
-GLRendererGeForce3ID      :: 139776
-GLRendererGeForceFXID     :: 140288
-GLRendererGeForce8xxxID   :: 140800
-GLRendererGeForceID       :: 141056
-GLRendererVTBladeXP2ID    :: 143360
-GLRendererIntel900ID      :: 147456
-GLRendererIntelX3100ID    :: 147968
-GLRendererIntelHDID       :: 148224
-GLRendererIntelHD4000ID   :: 148480
-GLRendererIntelHD5000ID   :: 148736
-GLRendererMesa3DFXID      :: 262144
+GLRendererGenericID        :: 131584
+GLRendererGenericFloatID   :: 132096
+GLRendererAppleSWID        :: 132608
+GLRendererATIRage128ID     :: 135168
+GLRendererATIRadeonID      :: 135680
+GLRendererATIRageProID     :: 136192
+GLRendererATIRadeon8500ID  :: 136704
+GLRendererATIRadeon9700ID  :: 137216
+GLRendererATIRadeonX1000ID :: 137472
+GLRendererATIRadeonX2000ID :: 137728
+GLRendererATIRadeonX3000ID :: 137984
+GLRendererATIRadeonX4000ID :: 138240
+GLRendererGeForce2MXID     :: 139264
+GLRendererGeForce3ID       :: 139776
+GLRendererGeForceFXID      :: 140288
+GLRendererGeForce8xxxID    :: 140800
+GLRendererGeForceID        :: 141056
+GLRendererVTBladeXP2ID     :: 143360
+GLRendererIntel900ID       :: 147456
+GLRendererIntelX3100ID     :: 147968
+GLRendererIntelHDID        :: 148224
+GLRendererIntelHD4000ID    :: 148480
+GLRendererIntelHD5000ID    :: 148736
+GLRendererMesa3DFXID       :: 262144
 
 foreign lib {
     @(link_name="CATransform3DIdentity") Transform3DIdentity: Transform3D

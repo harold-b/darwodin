@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
@@ -28,7 +29,7 @@ foreign lib {
     Expression_expressionWithFormat_ :: proc(expressionFormat: ^String) -> ^Expression ---
 
     @(objc_type=Expression, objc_selector="expressionWithFormat:arguments:", objc_name="expressionWithFormat_arguments", objc_is_class_method=true)
-    Expression_expressionWithFormat_arguments :: proc(expressionFormat: ^String, argList: cffi.va_list) -> ^Expression ---
+    Expression_expressionWithFormat_arguments :: proc(expressionFormat: ^String, argList: ^cffi.va_list) -> ^Expression ---
 
     @(objc_type=Expression, objc_selector="expressionForConstantValue:", objc_name="expressionForConstantValue", objc_is_class_method=true)
     Expression_expressionForConstantValue :: proc(obj: id) -> ^Expression ---

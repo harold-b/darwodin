@@ -35,7 +35,13 @@ Odin:
   SingleFile     : false
   TargetPlatform : Darwin
   ExportTypeMapDir: ../exports
+
+  ExternalPackageMap:
+    darwin_libc: '../libc'
+
   ExternalTypes:
+    - ../mach/exports/mach.exports.yml
+    - ../libc/libc.exports.yml
     - ../exports/CoreFoundation.exports.yml
 
   ResolvedTypedefs:
@@ -60,7 +66,7 @@ Odin:
         NSObject: NSObject
         MTLDevice: MTLDevice
         _cl_device_id: cl_device_id
-        io_service_t: CF.mach_port_t
+        io_service_t: mach.port_t
 
 
   # Symbol Transformers

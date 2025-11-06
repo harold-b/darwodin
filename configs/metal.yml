@@ -31,12 +31,19 @@ Odin:
   SingleFile     : false
   TargetPlatform : Darwin
   ExportTypeMapDir: ../exports
+
+  ExternalPackageMap:
+    darwin_libc: '../libc'
+
   ExternalTypes:
+    - ../mach/exports/mach.exports.yml
+    - ../libc/libc.exports.yml
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
     - ../exports/Foundation.exports.yml
     - ../exports/QuartzCore.exports.yml
     # - ../exports/AppKit.exports.yml
+
 
   ResolvedTypedefs:
     - '[su]?int.*'
@@ -50,8 +57,8 @@ Odin:
       # Imports:
       #   - 
 
-      TypeMap:
-        task_id_token_t: CF.task_id_token_t
+      # TypeMap:
+      #   task_id_token_t: CF.task_id_token_t
 
 
   # Symbol Transformers

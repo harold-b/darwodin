@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import Sec "../../../Security"
@@ -95,13 +96,13 @@ VTable :: struct {
     initWithUTF8String: proc(self: ^NS.String, nullTerminatedCString: cstring) -> ^NS.String,
     initWithString: proc(self: ^NS.String, aString: ^NS.String) -> ^NS.String,
     initWithFormat_: proc(self: ^NS.String, format: ^NS.String) -> ^NS.String,
-    initWithFormat_arguments: proc(self: ^NS.String, format: ^NS.String, argList: cffi.va_list) -> ^NS.String,
+    initWithFormat_arguments: proc(self: ^NS.String, format: ^NS.String, argList: ^cffi.va_list) -> ^NS.String,
     initWithFormat_locale: proc(self: ^NS.String, format: ^NS.String, locale: id) -> ^NS.String,
-    initWithFormat_locale_arguments: proc(self: ^NS.String, format: ^NS.String, locale: id, argList: cffi.va_list) -> ^NS.String,
+    initWithFormat_locale_arguments: proc(self: ^NS.String, format: ^NS.String, locale: id, argList: ^cffi.va_list) -> ^NS.String,
     initWithValidatedFormat_validFormatSpecifiers_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> ^NS.String,
     initWithValidatedFormat_validFormatSpecifiers_locale_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, error: ^^NS.Error) -> ^NS.String,
-    initWithValidatedFormat_validFormatSpecifiers_arguments_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, argList: cffi.va_list, error: ^^NS.Error) -> ^NS.String,
-    initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, argList: cffi.va_list, error: ^^NS.Error) -> ^NS.String,
+    initWithValidatedFormat_validFormatSpecifiers_arguments_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, argList: ^cffi.va_list, error: ^^NS.Error) -> ^NS.String,
+    initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, argList: ^cffi.va_list, error: ^^NS.Error) -> ^NS.String,
     initWithData: proc(self: ^NS.String, data: ^NS.Data, encoding: NS.StringEncoding) -> ^NS.String,
     initWithBytes: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding) -> ^NS.String,
     initWithBytesNoCopy_length_encoding_freeWhenDone: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, freeBuffer: bool) -> ^NS.String,
@@ -902,7 +903,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:"), auto_cast initWithFormat_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_arguments != nil {
-        initWithFormat_arguments :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, argList: cffi.va_list) -> ^NS.String {
+        initWithFormat_arguments :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, argList: ^cffi.va_list) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -922,7 +923,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:locale:"), auto_cast initWithFormat_locale, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_locale_arguments != nil {
-        initWithFormat_locale_arguments :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, locale: id, argList: cffi.va_list) -> ^NS.String {
+        initWithFormat_locale_arguments :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, locale: id, argList: ^cffi.va_list) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -952,7 +953,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), auto_cast initWithValidatedFormat_validFormatSpecifiers_locale_error, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithValidatedFormat_validFormatSpecifiers_arguments_error != nil {
-        initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, argList: cffi.va_list, error: ^^NS.Error) -> ^NS.String {
+        initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, argList: ^cffi.va_list, error: ^^NS.Error) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -962,7 +963,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), auto_cast initWithValidatedFormat_validFormatSpecifiers_arguments_error, "@@:@@*^void") do panic("Failed to register objC method.")
     }
     if vt.initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error != nil {
-        initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, argList: cffi.va_list, error: ^^NS.Error) -> ^NS.String {
+        initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, argList: ^cffi.va_list, error: ^^NS.Error) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

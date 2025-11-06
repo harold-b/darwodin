@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
@@ -22,5 +24,5 @@ foreign lib {
     RemoteLayerServer_sharedServer :: proc() -> ^RemoteLayerServer ---
 
     @(objc_type=RemoteLayerServer, objc_selector="serverPort", objc_name="serverPort")
-    RemoteLayerServer_serverPort :: proc(self: ^RemoteLayerServer) -> CF.mach_port_t ---
+    RemoteLayerServer_serverPort :: proc(self: ^RemoteLayerServer) -> mach.port_t ---
 }

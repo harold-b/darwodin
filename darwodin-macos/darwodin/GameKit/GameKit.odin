@@ -23,8 +23,8 @@ instancetype :: intrinsics.objc_instancetype
 
 
 
-GameModelMaxScore:: 16777216
-GameModelMinScore:: -16777216
+GameModelMaxScore :: 16777216
+GameModelMinScore :: -16777216
 
 foreign lib {
     @(link_name="GKErrorDomain") ErrorDomain: ^NS.String

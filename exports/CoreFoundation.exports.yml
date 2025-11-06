@@ -2,32 +2,6 @@ PackageName: "CoreFoundation"
 ImportName: "CF"
 
 Structs:
-    __darwin_pthread_handler_rec: CF.__darwin_pthread_handler_rec
-    _opaque_pthread_attr_t: CF._opaque_pthread_attr_t
-    _opaque_pthread_cond_t: CF._opaque_pthread_cond_t
-    _opaque_pthread_condattr_t: CF._opaque_pthread_condattr_t
-    _opaque_pthread_mutex_t: CF._opaque_pthread_mutex_t
-    _opaque_pthread_mutexattr_t: CF._opaque_pthread_mutexattr_t
-    _opaque_pthread_once_t: CF._opaque_pthread_once_t
-    _opaque_pthread_rwlock_t: CF._opaque_pthread_rwlock_t
-    _opaque_pthread_rwlockattr_t: CF._opaque_pthread_rwlockattr_t
-    _opaque_pthread_t: CF._opaque_pthread_t
-    __darwin_arm_exception_state: CF.__darwin_arm_exception_state
-    __darwin_arm_exception_state64: CF.__darwin_arm_exception_state64
-    __darwin_arm_exception_state64_v2: CF.__darwin_arm_exception_state64_v2
-    __darwin_arm_thread_state: CF.__darwin_arm_thread_state
-    __darwin_arm_thread_state64: CF.__darwin_arm_thread_state64
-    __darwin_arm_vfp_state: CF.__darwin_arm_vfp_state
-    __darwin_arm_neon_state64: CF.__darwin_arm_neon_state64
-    __darwin_arm_neon_state: CF.__darwin_arm_neon_state
-    __darwin_arm_debug_state32: CF.__darwin_arm_debug_state32
-    __darwin_arm_debug_state64: CF.__darwin_arm_debug_state64
-    __darwin_arm_cpmu_state64: CF.__darwin_arm_cpmu_state64
-    __darwin_mcontext32: CF.__darwin_mcontext32
-    __darwin_mcontext64: CF.__darwin_mcontext64
-    __darwin_sigaltstack: CF.__darwin_sigaltstack
-    __darwin_ucontext: CF.__darwin_ucontext
-    timespec: CF.timespec
     UnsignedWide: CF.UnsignedWide
     __CFString: CF.__CFString
     CFRange: CF.Range
@@ -91,7 +65,6 @@ Structs:
     dispatch_object_t::dispatch_semaphore_s: CF.dispatch_semaphore_s
     dispatch_object_t::dispatch_data_s: CF.dispatch_data_s
     dispatch_object_t::dispatch_io_s: CF.dispatch_io_s
-    mach_msg_header_t: CF.mach_msg_header_t
     dispatch_source_type_s: CF.dispatch_source_type_s
     CFStreamError: CF.StreamError
     CFStreamClientContext: CF.StreamClientContext
@@ -111,10 +84,6 @@ Structs:
     CFMachPortContext: CF.MachPortContext
     __CFAttributedString: CF.__CFAttributedString
     __CFURLEnumerator: CF.__CFURLEnumerator
-    _acl: CF._acl
-    _acl_entry: CF._acl_entry
-    _acl_permset: CF._acl_permset
-    _acl_flagset: CF._acl_flagset
     __CFFileSecurity: CF.__CFFileSecurity
     __CFStringTokenizer: CF.__CFStringTokenizer
     __CFFileDescriptor: CF.__CFFileDescriptor
@@ -135,59 +104,9 @@ Structs:
     __CFXMLParser: CF.__CFXMLParser
     CFXMLParserCallBacks: CF.XMLParserCallBacks
     CFXMLParserContext: CF.XMLParserContext
-    __mbstate_t: CF.__mbstate_t
     dispatch_object_t: CF.dispatch_object_t
 
 Typedefs:
-    __darwin_natural_t: CF.__darwin_natural_t
-    __darwin_ct_rune_t: CF.__darwin_ct_rune_t
-    __darwin_mbstate_t: CF.__darwin_mbstate_t
-    __darwin_ptrdiff_t: CF.__darwin_ptrdiff_t
-    __darwin_size_t: CF.__darwin_size_t
-    __darwin_va_list: CF.__darwin_va_list
-    __darwin_wchar_t: CF.__darwin_wchar_t
-    __darwin_rune_t: CF.__darwin_rune_t
-    __darwin_clock_t: CF.__darwin_clock_t
-    __darwin_socklen_t: CF.__darwin_socklen_t
-    __darwin_ssize_t: CF.__darwin_ssize_t
-    __darwin_time_t: CF.__darwin_time_t
-    __darwin_blkcnt_t: CF.__darwin_blkcnt_t
-    __darwin_blksize_t: CF.__darwin_blksize_t
-    __darwin_dev_t: CF.__darwin_dev_t
-    __darwin_fsblkcnt_t: CF.__darwin_fsblkcnt_t
-    __darwin_fsfilcnt_t: CF.__darwin_fsfilcnt_t
-    __darwin_gid_t: CF.__darwin_gid_t
-    __darwin_id_t: CF.__darwin_id_t
-    __darwin_ino64_t: CF.__darwin_ino64_t
-    __darwin_ino_t: CF.__darwin_ino_t
-    __darwin_mach_port_name_t: CF.__darwin_mach_port_name_t
-    __darwin_mach_port_t: CF.__darwin_mach_port_t
-    __darwin_mode_t: CF.__darwin_mode_t
-    __darwin_pid_t: CF.__darwin_pid_t
-    __darwin_sigset_t: CF.__darwin_sigset_t
-    __darwin_suseconds_t: CF.__darwin_suseconds_t
-    __darwin_uid_t: CF.__darwin_uid_t
-    __darwin_useconds_t: CF.__darwin_useconds_t
-    __darwin_uuid_t: CF.__darwin_uuid_t
-    __darwin_uuid_string_t: CF.__darwin_uuid_string_t
-    __darwin_pthread_attr_t: CF.__darwin_pthread_attr_t
-    __darwin_pthread_cond_t: CF.__darwin_pthread_cond_t
-    __darwin_pthread_condattr_t: CF.__darwin_pthread_condattr_t
-    __darwin_pthread_key_t: CF.__darwin_pthread_key_t
-    __darwin_pthread_mutex_t: CF.__darwin_pthread_mutex_t
-    __darwin_pthread_mutexattr_t: CF.__darwin_pthread_mutexattr_t
-    __darwin_pthread_once_t: CF.__darwin_pthread_once_t
-    __darwin_pthread_rwlock_t: CF.__darwin_pthread_rwlock_t
-    __darwin_pthread_rwlockattr_t: CF.__darwin_pthread_rwlockattr_t
-    __darwin_pthread_t: CF.__darwin_pthread_t
-    dev_t: CF.dev_t
-    gid_t: CF.gid_t
-    mode_t: CF.mode_t
-    pid_t: CF.pid_t
-    uid_t: CF.uid_t
-    __darwin_nl_item: CF.__darwin_nl_item
-    __darwin_wctrans_t: CF.__darwin_wctrans_t
-    __darwin_wctype_t: CF.__darwin_wctype_t
     UInt8: CF.UInt8
     SInt8: CF.SInt8
     UInt16: CF.UInt16
@@ -322,11 +241,6 @@ Typedefs:
     CFNumberFormatterRef: CF.NumberFormatterRef
     CFURLRef: CF.URLRef
     CFURLBookmarkFileCreationOptions: CF.URLBookmarkFileCreationOptions
-    natural_t: CF.natural_t
-    mach_vm_address_t: CF.mach_vm_address_t
-    mach_port_t: CF.mach_port_t
-    mach_port_type_t: CF.mach_port_type_t
-    mach_port_type_array_t: CF.mach_port_type_array_t
     CFRunLoopMode: CF.RunLoopMode
     CFRunLoopRef: CF.RunLoopRef
     CFRunLoopSourceRef: CF.RunLoopSourceRef
@@ -350,7 +264,6 @@ Typedefs:
     os_workgroup_mpt_attr_t: CF.os_workgroup_mpt_attr_t
     os_workgroup_parallel_t: CF.os_workgroup_parallel_t
     dispatch_function_t: CF.dispatch_function_t
-    mach_timespec_t: CF.mach_timespec_t
     dispatch_time_t: CF.dispatch_time_t
     dispatch_block_t: CF.dispatch_block_t
     dispatch_qos_class_t: CF.dispatch_qos_class_t
@@ -362,7 +275,6 @@ Typedefs:
     dispatch_queue_concurrent_t: CF.dispatch_queue_concurrent_t
     dispatch_queue_priority_t: CF.dispatch_queue_priority_t
     dispatch_queue_attr_t: CF.dispatch_queue_attr_t
-    kern_return_t: CF.kern_return_t
     dispatch_source_t: CF.dispatch_source_t
     dispatch_source_type_t: CF.dispatch_source_type_t
     dispatch_source_mach_send_flags_t: CF.dispatch_source_mach_send_flags_t
@@ -401,7 +313,6 @@ Typedefs:
     CFTreeApplierFunction: CF.TreeApplierFunction
     CFTreeRef: CF.TreeRef
     CFUUIDRef: CF.UUIDRef
-    cpu_type_t: CF.cpu_type_t
     CFBundleRef: CF.BundleRef
     CFPlugInRef: CF.PlugInRef
     CFBundleRefNum: CF.BundleRefNum
@@ -420,7 +331,6 @@ Typedefs:
     CFAttributedStringRef: CF.AttributedStringRef
     CFMutableAttributedStringRef: CF.MutableAttributedStringRef
     CFURLEnumeratorRef: CF.URLEnumeratorRef
-    acl_t: CF.acl_t
     CFFileSecurityRef: CF.FileSecurityRef
     CFStringTokenizerRef: CF.StringTokenizerRef
     CFFileDescriptorNativeDescriptor: CF.FileDescriptorNativeDescriptor
@@ -445,8 +355,6 @@ Enums:
     qos_class_t: CF.qos_class_t
     dispatch_autorelease_frequency_t: CF.dispatch_autorelease_frequency_t
     dispatch_block_flags_t: CF.dispatch_block_flags_t
-    acl_tag_t: CF.acl_tag_t
-    acl_type_t: CF.acl_type_t
     CFComparisonResult: CF.ComparisonResult
     __CFByteOrder: CF.__CFByteOrder
     CFNotificationSuspensionBehavior: CF.NotificationSuspensionBehavior

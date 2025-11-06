@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
@@ -25,11 +27,11 @@ cl_device_id :: struct {}
 
 
 
-FontIndexMax         :: 65534
-FontIndexInvalid     :: 65535
-GlyphMax             :: 65534
-BitmapByteOrder16Host:: 4096
-BitmapByteOrder32Host:: 8192
+FontIndexMax          :: 65534
+FontIndexInvalid      :: 65535
+GlyphMax              :: 65534
+BitmapByteOrder16Host :: 4096
+BitmapByteOrder32Host :: 8192
 
 foreign lib {
     @(link_name="CGPointZero") PointZero: Point
@@ -303,7 +305,7 @@ foreign lib {
     DataProviderCreateSequential :: proc(info: rawptr, callbacks: ^DataProviderSequentialCallbacks) -> DataProviderRef ---
 
     @(link_name="CGDataProviderCreateDirect")
-    DataProviderCreateDirect :: proc(info: rawptr, size: cffi.longlong, callbacks: ^DataProviderDirectCallbacks) -> DataProviderRef ---
+    DataProviderCreateDirect :: proc(info: rawptr, size: libc.off_t, callbacks: ^DataProviderDirectCallbacks) -> DataProviderRef ---
 
     @(link_name="CGDataProviderCreateWithData")
     DataProviderCreateWithData :: proc(info: rawptr, data: rawptr, size: cffi.size_t, releaseData: DataProviderReleaseDataCallback) -> DataProviderRef ---
@@ -1506,7 +1508,7 @@ foreign lib {
     ColorConversionInfoCreateFromList :: proc(options: CF.DictionaryRef, _0: ColorSpaceRef, _1: ColorConversionInfoTransformType, _2: ColorRenderingIntent, #c_vararg args: ..any) -> ColorConversionInfoRef ---
 
     @(link_name="CGColorConversionInfoCreateFromListWithArguments")
-    ColorConversionInfoCreateFromListWithArguments :: proc(options: CF.DictionaryRef, _0: ColorSpaceRef, _1: ColorConversionInfoTransformType, _2: ColorRenderingIntent, _3: cffi.va_list) -> ColorConversionInfoRef ---
+    ColorConversionInfoCreateFromListWithArguments :: proc(options: CF.DictionaryRef, _0: ColorSpaceRef, _1: ColorConversionInfoTransformType, _2: ColorRenderingIntent, _3: ^cffi.va_list) -> ColorConversionInfoRef ---
 
     @(link_name="CGConvertColorDataWithFormat")
     ConvertColorDataWithFormat :: proc(width: cffi.size_t, height: cffi.size_t, dst_data: rawptr, dst_format: ColorDataFormat, src_data: rawptr, src_format: ColorDataFormat, options: CF.DictionaryRef) -> cffi.bool ---
@@ -1803,7 +1805,7 @@ foreign lib {
     DisplayRestoreColorSyncSettings :: proc() ---
 
     @(link_name="CGDisplayIsCaptured")
-    DisplayIsCaptured :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsCaptured :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayCapture")
     DisplayCapture :: proc(display: DirectDisplayID) -> Error ---
@@ -1854,10 +1856,10 @@ foreign lib {
     DisplayAvailableModes :: proc(dsp: DirectDisplayID) -> CF.ArrayRef ---
 
     @(link_name="CGDisplayBestModeForParameters")
-    DisplayBestModeForParameters :: proc(display: DirectDisplayID, bitsPerPixel: cffi.size_t, width: cffi.size_t, height: cffi.size_t, exactMatch: ^cffi.int) -> CF.DictionaryRef ---
+    DisplayBestModeForParameters :: proc(display: DirectDisplayID, bitsPerPixel: cffi.size_t, width: cffi.size_t, height: cffi.size_t, exactMatch: ^mach.boolean_t) -> CF.DictionaryRef ---
 
     @(link_name="CGDisplayBestModeForParametersAndRefreshRate")
-    DisplayBestModeForParametersAndRefreshRate :: proc(display: DirectDisplayID, bitsPerPixel: cffi.size_t, width: cffi.size_t, height: cffi.size_t, refreshRate: RefreshRate, exactMatch: ^cffi.int) -> CF.DictionaryRef ---
+    DisplayBestModeForParametersAndRefreshRate :: proc(display: DirectDisplayID, bitsPerPixel: cffi.size_t, width: cffi.size_t, height: cffi.size_t, refreshRate: RefreshRate, exactMatch: ^mach.boolean_t) -> CF.DictionaryRef ---
 
     @(link_name="CGDisplayCurrentMode")
     DisplayCurrentMode :: proc(display: DirectDisplayID) -> CF.DictionaryRef ---
@@ -1875,7 +1877,7 @@ foreign lib {
     ConfigureDisplayWithDisplayMode :: proc(config: DisplayConfigRef, display: DirectDisplayID, mode: DisplayModeRef, options: CF.DictionaryRef) -> Error ---
 
     @(link_name="CGConfigureDisplayStereoOperation")
-    ConfigureDisplayStereoOperation :: proc(config: DisplayConfigRef, display: DirectDisplayID, stereo: cffi.int, forceBlueLine: cffi.int) -> Error ---
+    ConfigureDisplayStereoOperation :: proc(config: DisplayConfigRef, display: DirectDisplayID, stereo: mach.boolean_t, forceBlueLine: mach.boolean_t) -> Error ---
 
     @(link_name="CGConfigureDisplayMirrorOfDisplay")
     ConfigureDisplayMirrorOfDisplay :: proc(config: DisplayConfigRef, display: DirectDisplayID, master: DirectDisplayID) -> Error ---
@@ -1896,40 +1898,40 @@ foreign lib {
     DisplayRemoveReconfigurationCallback :: proc(callback: DisplayReconfigurationCallBack, userInfo: rawptr) -> Error ---
 
     @(link_name="CGDisplaySetStereoOperation")
-    DisplaySetStereoOperation :: proc(display: DirectDisplayID, stereo: cffi.int, forceBlueLine: cffi.int, option: ConfigureOption) -> Error ---
+    DisplaySetStereoOperation :: proc(display: DirectDisplayID, stereo: mach.boolean_t, forceBlueLine: mach.boolean_t, option: ConfigureOption) -> Error ---
 
     @(link_name="CGDisplayIsActive")
-    DisplayIsActive :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsActive :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayIsAsleep")
-    DisplayIsAsleep :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsAsleep :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayIsOnline")
-    DisplayIsOnline :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsOnline :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayIsMain")
-    DisplayIsMain :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsMain :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayIsBuiltin")
-    DisplayIsBuiltin :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsBuiltin :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayIsInMirrorSet")
-    DisplayIsInMirrorSet :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsInMirrorSet :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayIsAlwaysInMirrorSet")
-    DisplayIsAlwaysInMirrorSet :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsAlwaysInMirrorSet :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayIsInHWMirrorSet")
-    DisplayIsInHWMirrorSet :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsInHWMirrorSet :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayMirrorsDisplay")
     DisplayMirrorsDisplay :: proc(display: DirectDisplayID) -> DirectDisplayID ---
 
     @(link_name="CGDisplayUsesOpenGLAcceleration")
-    DisplayUsesOpenGLAcceleration :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayUsesOpenGLAcceleration :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayIsStereo")
-    DisplayIsStereo :: proc(display: DirectDisplayID) -> cffi.int ---
+    DisplayIsStereo :: proc(display: DirectDisplayID) -> mach.boolean_t ---
 
     @(link_name="CGDisplayPrimaryDisplay")
     DisplayPrimaryDisplay :: proc(display: DirectDisplayID) -> DirectDisplayID ---
@@ -1947,7 +1949,7 @@ foreign lib {
     DisplaySerialNumber :: proc(display: DirectDisplayID) -> cffi.uint32_t ---
 
     @(link_name="CGDisplayIOServicePort")
-    DisplayIOServicePort :: proc(display: DirectDisplayID) -> CF.mach_port_t ---
+    DisplayIOServicePort :: proc(display: DirectDisplayID) -> mach.port_t ---
 
     @(link_name="CGDisplayScreenSize")
     DisplayScreenSize :: proc(display: DirectDisplayID) -> Size ---
@@ -1971,10 +1973,10 @@ foreign lib {
     ReleaseDisplayFadeReservation :: proc(token: DisplayFadeReservationToken) -> Error ---
 
     @(link_name="CGDisplayFade")
-    DisplayFade :: proc(token: DisplayFadeReservationToken, duration: DisplayFadeInterval, startBlend: DisplayBlendFraction, endBlend: DisplayBlendFraction, redBlend: cffi.float, greenBlend: cffi.float, blueBlend: cffi.float, synchronous: cffi.int) -> Error ---
+    DisplayFade :: proc(token: DisplayFadeReservationToken, duration: DisplayFadeInterval, startBlend: DisplayBlendFraction, endBlend: DisplayBlendFraction, redBlend: cffi.float, greenBlend: cffi.float, blueBlend: cffi.float, synchronous: mach.boolean_t) -> Error ---
 
     @(link_name="CGDisplayFadeOperationInProgress")
-    DisplayFadeOperationInProgress :: proc() -> cffi.int ---
+    DisplayFadeOperationInProgress :: proc() -> mach.boolean_t ---
 
     @(link_name="CGDisplayStreamUpdateGetTypeID")
     DisplayStreamUpdateGetTypeID :: proc() -> CF.TypeID ---
@@ -2031,34 +2033,34 @@ foreign lib {
     ReleaseScreenRefreshRects :: proc(rects: ^Rect) ---
 
     @(link_name="CGCursorIsVisible")
-    CursorIsVisible :: proc() -> cffi.int ---
+    CursorIsVisible :: proc() -> mach.boolean_t ---
 
     @(link_name="CGCursorIsDrawnInFramebuffer")
-    CursorIsDrawnInFramebuffer :: proc() -> cffi.int ---
+    CursorIsDrawnInFramebuffer :: proc() -> mach.boolean_t ---
 
     @(link_name="CGWarpMouseCursorPosition")
     WarpMouseCursorPosition :: proc(newCursorPosition: Point) -> Error ---
 
     @(link_name="CGAssociateMouseAndMouseCursorPosition")
-    AssociateMouseAndMouseCursorPosition :: proc(connected: cffi.int) -> Error ---
+    AssociateMouseAndMouseCursorPosition :: proc(connected: mach.boolean_t) -> Error ---
 
     @(link_name="CGWindowServerCreateServerPort")
     WindowServerCreateServerPort :: proc() -> CF.MachPortRef ---
 
     @(link_name="CGEnableEventStateCombining")
-    EnableEventStateCombining :: proc(combineState: cffi.int) -> Error ---
+    EnableEventStateCombining :: proc(combineState: mach.boolean_t) -> Error ---
 
     @(link_name="CGInhibitLocalEvents")
-    InhibitLocalEvents :: proc(inhibit: cffi.int) -> Error ---
+    InhibitLocalEvents :: proc(inhibit: mach.boolean_t) -> Error ---
 
     @(link_name="CGPostMouseEvent")
-    PostMouseEvent :: proc(mouseCursorPosition: Point, updateMouseCursorPosition: cffi.int, buttonCount: ButtonCount, mouseButtonDown: cffi.int, #c_vararg args: ..any) -> Error ---
+    PostMouseEvent :: proc(mouseCursorPosition: Point, updateMouseCursorPosition: mach.boolean_t, buttonCount: ButtonCount, mouseButtonDown: mach.boolean_t, #c_vararg args: ..any) -> Error ---
 
     @(link_name="CGPostScrollWheelEvent")
     PostScrollWheelEvent :: proc(wheelCount: WheelCount, wheel1: cffi.int32_t, #c_vararg args: ..any) -> Error ---
 
     @(link_name="CGPostKeyboardEvent")
-    PostKeyboardEvent :: proc(keyChar: CharCode, virtualKey: KeyCode, keyDown: cffi.int) -> Error ---
+    PostKeyboardEvent :: proc(keyChar: CharCode, virtualKey: KeyCode, keyDown: mach.boolean_t) -> Error ---
 
     @(link_name="CGSetLocalEventsFilterDuringSuppressionState")
     SetLocalEventsFilterDuringSuppressionState :: proc(filter: EventFilterMask, state: EventSuppressionState) -> Error ---
@@ -2154,7 +2156,7 @@ foreign lib {
     EventTapCreateForPSN :: proc(processSerialNumber: rawptr, place: EventTapPlacement, options: EventTapOptions, eventsOfInterest: EventMask, callback: EventTapCallBack, userInfo: rawptr) -> CF.MachPortRef ---
 
     @(link_name="CGEventTapCreateForPid")
-    EventTapCreateForPid :: proc(pid: CF.pid_t, place: EventTapPlacement, options: EventTapOptions, eventsOfInterest: EventMask, callback: EventTapCallBack, userInfo: rawptr) -> CF.MachPortRef ---
+    EventTapCreateForPid :: proc(pid: libc.pid_t, place: EventTapPlacement, options: EventTapOptions, eventsOfInterest: EventMask, callback: EventTapCallBack, userInfo: rawptr) -> CF.MachPortRef ---
 
     @(link_name="CGEventTapEnable")
     EventTapEnable :: proc(tap: CF.MachPortRef, enable: cffi.bool) ---
@@ -2172,7 +2174,7 @@ foreign lib {
     EventPostToPSN :: proc(processSerialNumber: rawptr, event: EventRef) ---
 
     @(link_name="CGEventPostToPid")
-    EventPostToPid :: proc(pid: CF.pid_t, event: EventRef) ---
+    EventPostToPid :: proc(pid: libc.pid_t, event: EventRef) ---
 
     @(link_name="CGGetEventTapList")
     GetEventTapList :: proc(maxNumberOfTaps: cffi.uint32_t, tapList: ^EventTapInformation, eventTapCount: ^cffi.uint32_t) -> Error ---
@@ -2288,7 +2290,7 @@ DataProviderRef :: distinct ^DataProvider
 DataProviderGetBytesCallback :: proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderSkipForwardCallback
-DataProviderSkipForwardCallback :: proc "c" (info: rawptr, count: cffi.longlong) -> cffi.longlong
+DataProviderSkipForwardCallback :: proc "c" (info: rawptr, count: libc.off_t) -> libc.off_t
 
 /// CGDataProviderRewindCallback
 DataProviderRewindCallback :: proc "c" (info: rawptr)
@@ -2297,7 +2299,7 @@ DataProviderRewindCallback :: proc "c" (info: rawptr)
 DataProviderReleaseInfoCallback :: proc "c" (info: rawptr)
 
 /// CGDataProviderGetBytesAtPositionCallback
-DataProviderGetBytesAtPositionCallback :: proc "c" (info: rawptr, buffer: rawptr, pos: cffi.longlong, cnt: cffi.size_t) -> cffi.size_t
+DataProviderGetBytesAtPositionCallback :: proc "c" (info: rawptr, buffer: rawptr, pos: libc.off_t, cnt: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderReleaseDataCallback
 DataProviderReleaseDataCallback :: proc "c" (info: rawptr, data: rawptr, size: cffi.size_t)
@@ -3406,8 +3408,8 @@ __CGEventTapInformation :: struct #align (8) {
     tapPoint:           EventTapLocation,
     options:            EventTapOptions,
     eventsOfInterest:   EventMask,
-    tappingProcess:     CF.pid_t,
-    processBeingTapped: CF.pid_t,
+    tappingProcess:     libc.pid_t,
+    processBeingTapped: libc.pid_t,
     enabled:            cffi.bool,
     minUsecLatency:     cffi.float,
     avgUsecLatency:     cffi.float,

@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import mach "../../../mach"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
@@ -35,7 +37,7 @@ VTable :: struct {
     terminate: proc(self: ^AK.RunningApplication) -> bool,
     forceTerminate: proc(self: ^AK.RunningApplication) -> bool,
     runningApplicationsWithBundleIdentifier: proc(bundleIdentifier: ^NS.String) -> ^NS.Array,
-    runningApplicationWithProcessIdentifier: proc(pid: CF.pid_t) -> ^AK.RunningApplication,
+    runningApplicationWithProcessIdentifier: proc(pid: libc.pid_t) -> ^AK.RunningApplication,
     terminateAutomaticallyTerminableApplications: proc(),
     isTerminated: proc(self: ^AK.RunningApplication) -> bool,
     isFinishedLaunching: proc(self: ^AK.RunningApplication) -> bool,
@@ -47,7 +49,7 @@ VTable :: struct {
     bundleIdentifier: proc(self: ^AK.RunningApplication) -> ^NS.String,
     bundleURL: proc(self: ^AK.RunningApplication) -> ^NS.URL,
     executableURL: proc(self: ^AK.RunningApplication) -> ^NS.URL,
-    processIdentifier: proc(self: ^AK.RunningApplication) -> CF.pid_t,
+    processIdentifier: proc(self: ^AK.RunningApplication) -> libc.pid_t,
     launchDate: proc(self: ^AK.RunningApplication) -> ^NS.Date,
     icon: proc(self: ^AK.RunningApplication) -> ^NS.Image,
     executableArchitecture: proc(self: ^AK.RunningApplication) -> NS.Integer,
@@ -132,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("runningApplicationsWithBundleIdentifier:"), auto_cast runningApplicationsWithBundleIdentifier, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.runningApplicationWithProcessIdentifier != nil {
-        runningApplicationWithProcessIdentifier :: proc "c" (self: Class, _: SEL, pid: CF.pid_t) -> ^AK.RunningApplication {
+        runningApplicationWithProcessIdentifier :: proc "c" (self: Class, _: SEL, pid: libc.pid_t) -> ^AK.RunningApplication {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -252,7 +254,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("executableURL"), auto_cast executableURL, "@@:") do panic("Failed to register objC method.")
     }
     if vt.processIdentifier != nil {
-        processIdentifier :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> CF.pid_t {
+        processIdentifier :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> libc.pid_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -34,6 +34,7 @@ Odin:
   ExportTypeMapDir: ../exports
   ExternalTypes:
     - ../exports/global.exports.yml
+    - ../mach/exports/mach.exports.yml
     - ../exports/CoreFoundation.exports.yml
 
   ResolvedTypedefs:

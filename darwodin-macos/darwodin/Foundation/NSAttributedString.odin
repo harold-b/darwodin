@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
@@ -74,7 +75,7 @@ foreign lib {
     AttributedString_initWithFormat_options_locale :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale) -> ^AttributedString ---
 
     @(objc_type=AttributedString, objc_selector="initWithFormat:options:locale:arguments:", objc_name="initWithFormat_options_locale_arguments")
-    AttributedString_initWithFormat_options_locale_arguments :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: cffi.va_list) -> ^AttributedString ---
+    AttributedString_initWithFormat_options_locale_arguments :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: ^cffi.va_list) -> ^AttributedString ---
 
     @(objc_type=AttributedString, objc_selector="localizedAttributedStringWithFormat:", objc_name="localizedAttributedStringWithFormat_", objc_is_class_method=true)
     AttributedString_localizedAttributedStringWithFormat_ :: proc(format: ^AttributedString) -> ^AttributedString ---
@@ -86,7 +87,7 @@ foreign lib {
     AttributedString_initWithFormat_options_locale_context :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary) -> ^AttributedString ---
 
     @(objc_type=AttributedString, objc_selector="initWithFormat:options:locale:context:arguments:", objc_name="initWithFormat_options_locale_context_arguments")
-    AttributedString_initWithFormat_options_locale_context_arguments :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: cffi.va_list) -> ^AttributedString ---
+    AttributedString_initWithFormat_options_locale_context_arguments :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: ^cffi.va_list) -> ^AttributedString ---
 
     @(objc_type=AttributedString, objc_selector="localizedAttributedStringWithFormat:context:", objc_name="localizedAttributedStringWithFormat_context", objc_is_class_method=true)
     AttributedString_localizedAttributedStringWithFormat_context :: proc(format: ^AttributedString, _context: ^Dictionary) -> ^AttributedString ---

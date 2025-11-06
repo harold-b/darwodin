@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -27,7 +29,6 @@ OS_os_workgroup   :: NSObject
 NSUInteger        :: cffi.ulong
 _NSZone           :: struct {}
 Boolean           :: b8
-task_id_token_t   :: mach_port_t
 boolean_t         :: b32
 
 // StringEncoding :: union #no_nil {
@@ -41,55 +42,55 @@ DISPATCH_TIME_FOREVER   :: 0xFFFFFFFFFFFFFFFF
 
 
 
-OSUnknownByteOrder                         :: 0
-OSLittleEndian                             :: 1
-OSBigEndian                                :: 2
-kNotificationDeliverImmediately            :: 1
-kNotificationPostToAllSessions             :: 2
-kCalendarComponentsWrap                    :: 1
-kSocketAutomaticallyReenableReadCallBack   :: 1
-kSocketAutomaticallyReenableAcceptCallBack :: 2
-kSocketAutomaticallyReenableDataCallBack   :: 3
-kSocketAutomaticallyReenableWriteCallBack  :: 8
-kSocketLeaveErrors                         :: 64
-kSocketCloseOnInvalidate                   :: 128
-DISPATCH_WALLTIME_NOW                      :: 18446744073709551614
-kPropertyListReadCorruptError              :: 3840
-kPropertyListReadUnknownVersionError       :: 3841
-kPropertyListReadStreamError               :: 3842
-kPropertyListWriteStreamError              :: 3851
-kBundleExecutableArchitectureI386          :: 7
-kBundleExecutableArchitecturePPC           :: 18
-kBundleExecutableArchitectureX86_64        :: 16777223
-kBundleExecutableArchitecturePPC64         :: 16777234
-kBundleExecutableArchitectureARM64         :: 16777228
-kMessagePortSuccess                        :: 0
-kMessagePortSendTimeout                    :: -1
-kMessagePortReceiveTimeout                 :: -2
-kMessagePortIsInvalid                      :: -3
-kMessagePortTransportError                 :: -4
-kMessagePortBecameInvalidError             :: -5
-kStringTokenizerUnitWord                   :: 0
-kStringTokenizerUnitSentence               :: 1
-kStringTokenizerUnitParagraph              :: 2
-kStringTokenizerUnitLineBreak              :: 3
-kStringTokenizerUnitWordBoundary           :: 4
-kStringTokenizerAttributeLatinTranscription:: 65536
-kStringTokenizerAttributeLanguage          :: 131072
-kFileDescriptorReadCallBack                :: 1
-kFileDescriptorWriteCallBack               :: 2
-kUserNotificationStopAlertLevel            :: 0
-kUserNotificationNoteAlertLevel            :: 1
-kUserNotificationCautionAlertLevel         :: 2
-kUserNotificationPlainAlertLevel           :: 3
-kUserNotificationDefaultResponse           :: 0
-kUserNotificationAlternateResponse         :: 1
-kUserNotificationOtherResponse             :: 2
-kUserNotificationCancelResponse            :: 3
-kUserNotificationNoDefaultButtonFlag       :: 32
-kUserNotificationUseRadioButtonsFlag       :: 64
-kXMLNodeCurrentVersion                     :: 1
-kNotFound                                  :: -1
+OSUnknownByteOrder                          :: 0
+OSLittleEndian                              :: 1
+OSBigEndian                                 :: 2
+kNotificationDeliverImmediately             :: 1
+kNotificationPostToAllSessions              :: 2
+kCalendarComponentsWrap                     :: 1
+kSocketAutomaticallyReenableReadCallBack    :: 1
+kSocketAutomaticallyReenableAcceptCallBack  :: 2
+kSocketAutomaticallyReenableDataCallBack    :: 3
+kSocketAutomaticallyReenableWriteCallBack   :: 8
+kSocketLeaveErrors                          :: 64
+kSocketCloseOnInvalidate                    :: 128
+DISPATCH_WALLTIME_NOW                       :: 18446744073709551614
+kPropertyListReadCorruptError               :: 3840
+kPropertyListReadUnknownVersionError        :: 3841
+kPropertyListReadStreamError                :: 3842
+kPropertyListWriteStreamError               :: 3851
+kBundleExecutableArchitectureI386           :: 7
+kBundleExecutableArchitecturePPC            :: 18
+kBundleExecutableArchitectureX86_64         :: 16777223
+kBundleExecutableArchitecturePPC64          :: 16777234
+kBundleExecutableArchitectureARM64          :: 16777228
+kMessagePortSuccess                         :: 0
+kMessagePortSendTimeout                     :: -1
+kMessagePortReceiveTimeout                  :: -2
+kMessagePortIsInvalid                       :: -3
+kMessagePortTransportError                  :: -4
+kMessagePortBecameInvalidError              :: -5
+kStringTokenizerUnitWord                    :: 0
+kStringTokenizerUnitSentence                :: 1
+kStringTokenizerUnitParagraph               :: 2
+kStringTokenizerUnitLineBreak               :: 3
+kStringTokenizerUnitWordBoundary            :: 4
+kStringTokenizerAttributeLatinTranscription :: 65536
+kStringTokenizerAttributeLanguage           :: 131072
+kFileDescriptorReadCallBack                 :: 1
+kFileDescriptorWriteCallBack                :: 2
+kUserNotificationStopAlertLevel             :: 0
+kUserNotificationNoteAlertLevel             :: 1
+kUserNotificationCautionAlertLevel          :: 2
+kUserNotificationPlainAlertLevel            :: 3
+kUserNotificationDefaultResponse            :: 0
+kUserNotificationAlternateResponse          :: 1
+kUserNotificationOtherResponse              :: 2
+kUserNotificationCancelResponse             :: 3
+kUserNotificationNoDefaultButtonFlag        :: 32
+kUserNotificationUseRadioButtonsFlag        :: 64
+kXMLNodeCurrentVersion                      :: 1
+kNotFound                                   :: -1
 
 foreign lib {
     @(link_name="kCFCoreFoundationVersionNumber") kCoreFoundationVersionNumber: cffi.double
@@ -1118,13 +1119,13 @@ foreign lib {
     StringCreateWithFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, #c_vararg args: ..any) -> StringRef ---
 
     @(link_name="CFStringCreateWithFormatAndArguments")
-    StringCreateWithFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, arguments: cffi.va_list) -> StringRef ---
+    StringCreateWithFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, format: StringRef, arguments: ^cffi.va_list) -> StringRef ---
 
     @(link_name="CFStringCreateStringWithValidatedFormat")
     StringCreateStringWithValidatedFormat :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, errorPtr: ^ErrorRef, #c_vararg args: ..any) -> StringRef ---
 
     @(link_name="CFStringCreateStringWithValidatedFormatAndArguments")
-    StringCreateStringWithValidatedFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, arguments: cffi.va_list, errorPtr: ^ErrorRef) -> StringRef ---
+    StringCreateStringWithValidatedFormatAndArguments :: proc(alloc: AllocatorRef, formatOptions: DictionaryRef, validFormatSpecifiers: StringRef, format: StringRef, arguments: ^cffi.va_list, errorPtr: ^ErrorRef) -> StringRef ---
 
     @(link_name="CFStringCreateMutable")
     StringCreateMutable :: proc(alloc: AllocatorRef, maxLength: Index) -> MutableStringRef ---
@@ -1262,7 +1263,7 @@ foreign lib {
     StringAppendFormat :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, #c_vararg args: ..any) ---
 
     @(link_name="CFStringAppendFormatAndArguments")
-    StringAppendFormatAndArguments :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, arguments: cffi.va_list) ---
+    StringAppendFormatAndArguments :: proc(theString: MutableStringRef, formatOptions: DictionaryRef, format: StringRef, arguments: ^cffi.va_list) ---
 
     @(link_name="CFStringInsert")
     StringInsert :: proc(str: MutableStringRef, idx: Index, insertedStr: StringRef) ---
@@ -2039,7 +2040,7 @@ foreign lib {
     dispatch_time :: proc(_when: dispatch_time_t, delta: cffi.int64_t) -> dispatch_time_t ---
 
     @(link_name="dispatch_walltime")
-    dispatch_walltime :: proc(_when: ^timespec, delta: cffi.int64_t) -> dispatch_time_t ---
+    dispatch_walltime :: proc(_when: ^libc.timespec, delta: cffi.int64_t) -> dispatch_time_t ---
 
     @(link_name="dispatch_retain")
     dispatch_retain :: proc(object: dispatch_object_t) ---
@@ -2084,7 +2085,7 @@ foreign lib {
     dispatch_debug :: proc(object: dispatch_object_t, message: cstring, #c_vararg args: ..any) ---
 
     @(link_name="dispatch_debugv")
-    dispatch_debugv :: proc(object: dispatch_object_t, message: cstring, ap: cffi.va_list) ---
+    dispatch_debugv :: proc(object: dispatch_object_t, message: cstring, ap: ^cffi.va_list) ---
 
     @(link_name="dispatch_async")
     dispatch_async :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
@@ -2321,16 +2322,16 @@ foreign lib {
     dispatch_io_create :: proc(type: dispatch_io_type_t, fd: dispatch_fd_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_create_with_path")
-    dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: mode_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
+    dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: libc.mode_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_create_with_io")
     dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_read")
-    dispatch_io_read :: proc(channel: dispatch_io_t, offset: cffi.longlong, length: cffi.size_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
+    dispatch_io_read :: proc(channel: dispatch_io_t, offset: libc.off_t, length: cffi.size_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
 
     @(link_name="dispatch_io_write")
-    dispatch_io_write :: proc(channel: dispatch_io_t, offset: cffi.longlong, data: dispatch_data_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
+    dispatch_io_write :: proc(channel: dispatch_io_t, offset: libc.off_t, data: dispatch_data_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
 
     @(link_name="dispatch_io_close")
     dispatch_io_close :: proc(channel: dispatch_io_t, flags: dispatch_io_close_flags_t) ---
@@ -2804,7 +2805,7 @@ foreign lib {
     BundleIsExecutableLoadableForURL :: proc(url: URLRef) -> Boolean ---
 
     @(link_name="CFBundleIsArchitectureLoadable")
-    BundleIsArchitectureLoadable :: proc(arch: cpu_type_t) -> Boolean ---
+    BundleIsArchitectureLoadable :: proc(arch: mach.cpu_type_t) -> Boolean ---
 
     @(link_name="CFBundleGetPlugIn")
     BundleGetPlugIn :: proc(bundle: BundleRef) -> PlugInRef ---
@@ -2927,10 +2928,10 @@ foreign lib {
     MachPortCreate :: proc(allocator: AllocatorRef, callout: MachPortCallBack, _context: ^MachPortContext, shouldFreeInfo: ^Boolean) -> MachPortRef ---
 
     @(link_name="CFMachPortCreateWithPort")
-    MachPortCreateWithPort :: proc(allocator: AllocatorRef, portNum: mach_port_t, callout: MachPortCallBack, _context: ^MachPortContext, shouldFreeInfo: ^Boolean) -> MachPortRef ---
+    MachPortCreateWithPort :: proc(allocator: AllocatorRef, portNum: mach.port_t, callout: MachPortCallBack, _context: ^MachPortContext, shouldFreeInfo: ^Boolean) -> MachPortRef ---
 
     @(link_name="CFMachPortGetPort")
-    MachPortGetPort :: proc(port: MachPortRef) -> mach_port_t ---
+    MachPortGetPort :: proc(port: MachPortRef) -> mach.port_t ---
 
     @(link_name="CFMachPortGetContext")
     MachPortGetContext :: proc(port: MachPortRef, _context: ^MachPortContext) ---
@@ -3056,28 +3057,28 @@ foreign lib {
     FileSecuritySetGroupUUID :: proc(fileSec: FileSecurityRef, groupUUID: UUIDRef) -> Boolean ---
 
     @(link_name="CFFileSecurityCopyAccessControlList")
-    FileSecurityCopyAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: ^acl_t) -> Boolean ---
+    FileSecurityCopyAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: ^libc.acl_t) -> Boolean ---
 
     @(link_name="CFFileSecuritySetAccessControlList")
-    FileSecuritySetAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: acl_t) -> Boolean ---
+    FileSecuritySetAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: libc.acl_t) -> Boolean ---
 
     @(link_name="CFFileSecurityGetOwner")
-    FileSecurityGetOwner :: proc(fileSec: FileSecurityRef, owner: ^uid_t) -> Boolean ---
+    FileSecurityGetOwner :: proc(fileSec: FileSecurityRef, owner: ^libc.uid_t) -> Boolean ---
 
     @(link_name="CFFileSecuritySetOwner")
-    FileSecuritySetOwner :: proc(fileSec: FileSecurityRef, owner: uid_t) -> Boolean ---
+    FileSecuritySetOwner :: proc(fileSec: FileSecurityRef, owner: libc.uid_t) -> Boolean ---
 
     @(link_name="CFFileSecurityGetGroup")
-    FileSecurityGetGroup :: proc(fileSec: FileSecurityRef, group: ^gid_t) -> Boolean ---
+    FileSecurityGetGroup :: proc(fileSec: FileSecurityRef, group: ^libc.gid_t) -> Boolean ---
 
     @(link_name="CFFileSecuritySetGroup")
-    FileSecuritySetGroup :: proc(fileSec: FileSecurityRef, group: gid_t) -> Boolean ---
+    FileSecuritySetGroup :: proc(fileSec: FileSecurityRef, group: libc.gid_t) -> Boolean ---
 
     @(link_name="CFFileSecurityGetMode")
-    FileSecurityGetMode :: proc(fileSec: FileSecurityRef, mode: ^mode_t) -> Boolean ---
+    FileSecurityGetMode :: proc(fileSec: FileSecurityRef, mode: ^libc.mode_t) -> Boolean ---
 
     @(link_name="CFFileSecuritySetMode")
-    FileSecuritySetMode :: proc(fileSec: FileSecurityRef, mode: mode_t) -> Boolean ---
+    FileSecuritySetMode :: proc(fileSec: FileSecurityRef, mode: libc.mode_t) -> Boolean ---
 
     @(link_name="CFFileSecurityClearProperties")
     FileSecurityClearProperties :: proc(fileSec: FileSecurityRef, clearPropertyMask: FileSecurityClearOptions) -> Boolean ---
@@ -3251,153 +3252,6 @@ foreign lib {
     XMLCreateStringByUnescapingEntities :: proc(allocator: AllocatorRef, string: StringRef, entitiesDictionary: DictionaryRef) -> StringRef ---
 
 }
-
-/// __darwin_natural_t
-__darwin_natural_t :: distinct cffi.uint
-
-/// __darwin_ct_rune_t
-__darwin_ct_rune_t :: distinct cffi.int
-
-/// __darwin_mbstate_t
-__darwin_mbstate_t :: distinct __mbstate_t
-
-/// __darwin_ptrdiff_t
-__darwin_ptrdiff_t :: distinct cffi.long
-
-/// __darwin_size_t
-__darwin_size_t :: distinct cffi.ulong
-
-/// __darwin_va_list
-__darwin_va_list :: distinct cffi.va_list
-
-/// __darwin_wchar_t
-__darwin_wchar_t :: distinct cffi.int
-
-/// __darwin_rune_t
-__darwin_rune_t :: distinct __darwin_wchar_t
-
-/// __darwin_clock_t
-__darwin_clock_t :: distinct cffi.ulong
-
-/// __darwin_socklen_t
-__darwin_socklen_t :: distinct cffi.uint32_t
-
-/// __darwin_ssize_t
-__darwin_ssize_t :: distinct cffi.long
-
-/// __darwin_time_t
-__darwin_time_t :: distinct cffi.long
-
-/// __darwin_blkcnt_t
-__darwin_blkcnt_t :: distinct cffi.int64_t
-
-/// __darwin_blksize_t
-__darwin_blksize_t :: distinct cffi.int32_t
-
-/// __darwin_dev_t
-__darwin_dev_t :: distinct cffi.int32_t
-
-/// __darwin_fsblkcnt_t
-__darwin_fsblkcnt_t :: distinct cffi.uint
-
-/// __darwin_fsfilcnt_t
-__darwin_fsfilcnt_t :: distinct cffi.uint
-
-/// __darwin_gid_t
-__darwin_gid_t :: distinct cffi.uint32_t
-
-/// __darwin_id_t
-__darwin_id_t :: distinct cffi.uint32_t
-
-/// __darwin_ino64_t
-__darwin_ino64_t :: distinct cffi.uint64_t
-
-/// __darwin_ino_t
-__darwin_ino_t :: distinct __darwin_ino64_t
-
-/// __darwin_mach_port_name_t
-__darwin_mach_port_name_t :: distinct __darwin_natural_t
-
-/// __darwin_mach_port_t
-__darwin_mach_port_t :: distinct __darwin_mach_port_name_t
-
-/// __darwin_mode_t
-__darwin_mode_t :: distinct cffi.uint16_t
-
-/// __darwin_pid_t
-__darwin_pid_t :: distinct cffi.int32_t
-
-/// __darwin_sigset_t
-__darwin_sigset_t :: distinct cffi.uint32_t
-
-/// __darwin_suseconds_t
-__darwin_suseconds_t :: distinct cffi.int32_t
-
-/// __darwin_uid_t
-__darwin_uid_t :: distinct cffi.uint32_t
-
-/// __darwin_useconds_t
-__darwin_useconds_t :: distinct cffi.uint32_t
-
-/// __darwin_uuid_t
-__darwin_uuid_t :: distinct [16]cffi.uchar
-
-/// __darwin_uuid_string_t
-__darwin_uuid_string_t :: distinct [37]cffi.char
-
-/// __darwin_pthread_attr_t
-__darwin_pthread_attr_t :: distinct _opaque_pthread_attr_t
-
-/// __darwin_pthread_cond_t
-__darwin_pthread_cond_t :: distinct _opaque_pthread_cond_t
-
-/// __darwin_pthread_condattr_t
-__darwin_pthread_condattr_t :: distinct _opaque_pthread_condattr_t
-
-/// __darwin_pthread_key_t
-__darwin_pthread_key_t :: distinct cffi.ulong
-
-/// __darwin_pthread_mutex_t
-__darwin_pthread_mutex_t :: distinct _opaque_pthread_mutex_t
-
-/// __darwin_pthread_mutexattr_t
-__darwin_pthread_mutexattr_t :: distinct _opaque_pthread_mutexattr_t
-
-/// __darwin_pthread_once_t
-__darwin_pthread_once_t :: distinct _opaque_pthread_once_t
-
-/// __darwin_pthread_rwlock_t
-__darwin_pthread_rwlock_t :: distinct _opaque_pthread_rwlock_t
-
-/// __darwin_pthread_rwlockattr_t
-__darwin_pthread_rwlockattr_t :: distinct _opaque_pthread_rwlockattr_t
-
-/// __darwin_pthread_t
-__darwin_pthread_t :: distinct ^_opaque_pthread_t
-
-/// dev_t
-dev_t :: distinct __darwin_dev_t
-
-/// gid_t
-gid_t :: distinct __darwin_gid_t
-
-/// mode_t
-mode_t :: distinct __darwin_mode_t
-
-/// pid_t
-pid_t :: distinct __darwin_pid_t
-
-/// uid_t
-uid_t :: distinct __darwin_uid_t
-
-/// __darwin_nl_item
-__darwin_nl_item :: distinct cffi.int
-
-/// __darwin_wctrans_t
-__darwin_wctrans_t :: distinct cffi.int
-
-/// __darwin_wctype_t
-__darwin_wctype_t :: distinct cffi.uint32_t
 
 /// UInt8
 UInt8 :: distinct cffi.uchar
@@ -3801,21 +3655,6 @@ URLRef :: ^__CFURL
 /// CFURLBookmarkFileCreationOptions
 URLBookmarkFileCreationOptions :: distinct OptionFlags
 
-/// natural_t
-natural_t :: distinct __darwin_natural_t
-
-/// mach_vm_address_t
-mach_vm_address_t :: distinct cffi.uint64_t
-
-/// mach_port_t
-mach_port_t :: distinct __darwin_mach_port_t
-
-/// mach_port_type_t
-mach_port_type_t :: distinct natural_t
-
-/// mach_port_type_array_t
-mach_port_type_array_t :: distinct ^mach_port_type_t
-
 /// CFRunLoopMode
 RunLoopMode :: distinct StringRef
 
@@ -3885,9 +3724,6 @@ os_workgroup_parallel_t :: distinct os_workgroup_t
 /// dispatch_function_t
 dispatch_function_t :: proc "c" (_: rawptr)
 
-/// mach_timespec_t
-mach_timespec_t :: distinct mach_timespec
-
 /// dispatch_time_t
 dispatch_time_t :: distinct cffi.uint64_t
 
@@ -3920,9 +3756,6 @@ dispatch_queue_priority_t :: distinct cffi.long
 
 /// dispatch_queue_attr_t
 dispatch_queue_attr_t :: distinct ^dispatch_queue_attr_s
-
-/// kern_return_t
-kern_return_t :: distinct cffi.int
 
 /// dispatch_source_t
 dispatch_source_t :: distinct ^dispatch_source_s
@@ -4038,9 +3871,6 @@ TreeRef :: ^__CFTree
 /// CFUUIDRef
 UUIDRef :: ^__CFUUID
 
-/// cpu_type_t
-cpu_type_t :: distinct cffi.int
-
 /// CFBundleRef
 BundleRef :: ^__CFBundle
 
@@ -4094,9 +3924,6 @@ MutableAttributedStringRef :: ^__CFAttributedString
 
 /// CFURLEnumeratorRef
 URLEnumeratorRef :: ^__CFURLEnumerator
-
-/// acl_t
-acl_t :: distinct ^_acl
 
 /// CFFileSecurityRef
 FileSecurityRef :: ^__CFFileSecurity
@@ -4182,24 +4009,6 @@ dispatch_block_flags_t :: enum cffi.ulong {
     NO_QOS_CLASS      = 8,
     INHERIT_QOS_CLASS = 16,
     ENFORCE_QOS_CLASS = 32,
-}
-
-/// acl_tag_t
-acl_tag_t :: enum cffi.uint {
-    UNDEFINED_TAG  = 0,
-    EXTENDED_ALLOW = 1,
-    EXTENDED_DENY  = 2,
-}
-
-/// acl_type_t
-acl_type_t :: enum cffi.uint {
-    EXTENDED = 256,
-    ACCESS   = 0,
-    DEFAULT  = 1,
-    AFS      = 2,
-    CODA     = 3,
-    NTFS     = 4,
-    NWFS     = 5,
 }
 
 /// CFComparisonResult
@@ -4797,214 +4606,6 @@ XMLParserStatusCode :: enum cffi.long {
     ErrorNoData                      = 15,
 }
 
-/// __darwin_pthread_handler_rec
-__darwin_pthread_handler_rec :: struct #align (8) {
-    __routine: proc "c" (_: rawptr),
-    __arg:     rawptr,
-    __next:    ^__darwin_pthread_handler_rec,
-}
-#assert(size_of(__darwin_pthread_handler_rec) == 24)
-
-/// _opaque_pthread_attr_t
-_opaque_pthread_attr_t :: struct #align (8) {
-    __sig:    cffi.long,
-    __opaque: [56]cffi.char,
-}
-#assert(size_of(_opaque_pthread_attr_t) == 64)
-
-/// _opaque_pthread_cond_t
-_opaque_pthread_cond_t :: struct #align (8) {
-    __sig:    cffi.long,
-    __opaque: [40]cffi.char,
-}
-#assert(size_of(_opaque_pthread_cond_t) == 48)
-
-/// _opaque_pthread_condattr_t
-_opaque_pthread_condattr_t :: struct #align (8) {
-    __sig:    cffi.long,
-    __opaque: [8]cffi.char,
-}
-#assert(size_of(_opaque_pthread_condattr_t) == 16)
-
-/// _opaque_pthread_mutex_t
-_opaque_pthread_mutex_t :: struct #align (8) {
-    __sig:    cffi.long,
-    __opaque: [56]cffi.char,
-}
-#assert(size_of(_opaque_pthread_mutex_t) == 64)
-
-/// _opaque_pthread_mutexattr_t
-_opaque_pthread_mutexattr_t :: struct #align (8) {
-    __sig:    cffi.long,
-    __opaque: [8]cffi.char,
-}
-#assert(size_of(_opaque_pthread_mutexattr_t) == 16)
-
-/// _opaque_pthread_once_t
-_opaque_pthread_once_t :: struct #align (8) {
-    __sig:    cffi.long,
-    __opaque: [8]cffi.char,
-}
-#assert(size_of(_opaque_pthread_once_t) == 16)
-
-/// _opaque_pthread_rwlock_t
-_opaque_pthread_rwlock_t :: struct #align (8) {
-    __sig:    cffi.long,
-    __opaque: [192]cffi.char,
-}
-#assert(size_of(_opaque_pthread_rwlock_t) == 200)
-
-/// _opaque_pthread_rwlockattr_t
-_opaque_pthread_rwlockattr_t :: struct #align (8) {
-    __sig:    cffi.long,
-    __opaque: [16]cffi.char,
-}
-#assert(size_of(_opaque_pthread_rwlockattr_t) == 24)
-
-/// _opaque_pthread_t
-_opaque_pthread_t :: struct #align (8) {
-    __sig:           cffi.long,
-    __cleanup_stack: ^__darwin_pthread_handler_rec,
-    __opaque:        [8176]cffi.char,
-}
-#assert(size_of(_opaque_pthread_t) == 8192)
-
-/// __darwin_arm_exception_state
-__darwin_arm_exception_state :: struct #align (4) {
-    __exception: cffi.uint32_t,
-    __fsr:       cffi.uint32_t,
-    __far:       cffi.uint32_t,
-}
-#assert(size_of(__darwin_arm_exception_state) == 12)
-
-/// __darwin_arm_exception_state64
-__darwin_arm_exception_state64 :: struct #align (8) {
-    __far:       cffi.uint64_t,
-    __esr:       cffi.uint32_t,
-    __exception: cffi.uint32_t,
-}
-#assert(size_of(__darwin_arm_exception_state64) == 16)
-
-/// __darwin_arm_exception_state64_v2
-__darwin_arm_exception_state64_v2 :: struct #align (8) {
-    __far: cffi.uint64_t,
-    __esr: cffi.uint64_t,
-}
-#assert(size_of(__darwin_arm_exception_state64_v2) == 16)
-
-/// __darwin_arm_thread_state
-__darwin_arm_thread_state :: struct #align (4) {
-    __r:    [13]cffi.uint32_t,
-    __sp:   cffi.uint32_t,
-    __lr:   cffi.uint32_t,
-    __pc:   cffi.uint32_t,
-    __cpsr: cffi.uint32_t,
-}
-#assert(size_of(__darwin_arm_thread_state) == 68)
-
-/// __darwin_arm_thread_state64
-__darwin_arm_thread_state64 :: struct #align (8) {
-    __x:    [29]cffi.uint64_t,
-    __fp:   cffi.uint64_t,
-    __lr:   cffi.uint64_t,
-    __sp:   cffi.uint64_t,
-    __pc:   cffi.uint64_t,
-    __cpsr: cffi.uint32_t,
-    __pad:  cffi.uint32_t,
-}
-#assert(size_of(__darwin_arm_thread_state64) == 272)
-
-/// __darwin_arm_vfp_state
-__darwin_arm_vfp_state :: struct #align (4) {
-    __r:     [64]cffi.uint32_t,
-    __fpscr: cffi.uint32_t,
-}
-#assert(size_of(__darwin_arm_vfp_state) == 260)
-
-/// __darwin_arm_neon_state64
-__darwin_arm_neon_state64 :: struct #align (16) {
-    __v:    [32]u128,
-    __fpsr: cffi.uint32_t,
-    __fpcr: cffi.uint32_t,
-}
-#assert(size_of(__darwin_arm_neon_state64) == 528)
-
-/// __darwin_arm_neon_state
-__darwin_arm_neon_state :: struct #align (16) {
-    __v:    [16]u128,
-    __fpsr: cffi.uint32_t,
-    __fpcr: cffi.uint32_t,
-}
-#assert(size_of(__darwin_arm_neon_state) == 272)
-
-/// __darwin_arm_debug_state32
-__darwin_arm_debug_state32 :: struct #align (8) {
-    __bvr:       [16]cffi.uint32_t,
-    __bcr:       [16]cffi.uint32_t,
-    __wvr:       [16]cffi.uint32_t,
-    __wcr:       [16]cffi.uint32_t,
-    __mdscr_el1: cffi.uint64_t,
-}
-#assert(size_of(__darwin_arm_debug_state32) == 264)
-
-/// __darwin_arm_debug_state64
-__darwin_arm_debug_state64 :: struct #align (8) {
-    __bvr:       [16]cffi.uint64_t,
-    __bcr:       [16]cffi.uint64_t,
-    __wvr:       [16]cffi.uint64_t,
-    __wcr:       [16]cffi.uint64_t,
-    __mdscr_el1: cffi.uint64_t,
-}
-#assert(size_of(__darwin_arm_debug_state64) == 520)
-
-/// __darwin_arm_cpmu_state64
-__darwin_arm_cpmu_state64 :: struct #align (8) {
-    __ctrs: [16]cffi.uint64_t,
-}
-#assert(size_of(__darwin_arm_cpmu_state64) == 128)
-
-/// __darwin_mcontext32
-__darwin_mcontext32 :: struct #align (4) {
-    __es: __darwin_arm_exception_state,
-    __ss: __darwin_arm_thread_state,
-    __fs: __darwin_arm_vfp_state,
-}
-#assert(size_of(__darwin_mcontext32) == 340)
-
-/// __darwin_mcontext64
-__darwin_mcontext64 :: struct #align (16) {
-    __es: __darwin_arm_exception_state64,
-    __ss: __darwin_arm_thread_state64,
-    __ns: __darwin_arm_neon_state64,
-}
-#assert(size_of(__darwin_mcontext64) == 816)
-
-/// __darwin_sigaltstack
-__darwin_sigaltstack :: struct #align (8) {
-    ss_sp:    rawptr,
-    ss_size:  __darwin_size_t,
-    ss_flags: cffi.int,
-}
-#assert(size_of(__darwin_sigaltstack) == 24)
-
-/// __darwin_ucontext
-__darwin_ucontext :: struct #align (8) {
-    uc_onstack:  cffi.int,
-    uc_sigmask:  __darwin_sigset_t,
-    uc_stack:    __darwin_sigaltstack,
-    uc_link:     ^__darwin_ucontext,
-    uc_mcsize:   __darwin_size_t,
-    uc_mcontext: ^__darwin_mcontext64,
-}
-#assert(size_of(__darwin_ucontext) == 56)
-
-/// timespec
-timespec :: struct #align (8) {
-    tv_sec:  __darwin_time_t,
-    tv_nsec: cffi.long,
-}
-#assert(size_of(timespec) == 16)
-
 /// UnsignedWide
 UnsignedWide :: struct #align (2) {
     lo: UInt32,
@@ -5240,7 +4841,7 @@ RunLoopSourceContext1 :: struct #align (8) {
     copyDescription: proc "c" (info: rawptr) -> StringRef,
     equal:           proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
     hash:            proc "c" (info: rawptr) -> HashCode,
-    getPort:         proc "c" (info: rawptr) -> mach_port_t,
+    getPort:         proc "c" (info: rawptr) -> mach.port_t,
     perform:         proc "c" (msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr) -> rawptr,
 }
 #assert(size_of(RunLoopSourceContext1) == 72)
@@ -5349,17 +4950,6 @@ dispatch_data_s :: struct {}
 
 /// dispatch_object_t::dispatch_io_s
 dispatch_io_s :: struct {}
-
-/// mach_msg_header_t
-mach_msg_header_t :: struct #align (4) {
-    msgh_bits:         mach_msg_bits_t,
-    msgh_size:         mach_msg_size_t,
-    msgh_remote_port:  mach_port_t,
-    msgh_local_port:   mach_port_t,
-    msgh_voucher_port: mach_port_name_t,
-    msgh_id:           mach_msg_id_t,
-}
-#assert(size_of(mach_msg_header_t) == 24)
 
 /// dispatch_source_type_s
 dispatch_source_type_s :: struct {}
@@ -5475,18 +5065,6 @@ __CFAttributedString :: struct {}
 
 /// __CFURLEnumerator
 __CFURLEnumerator :: struct {}
-
-/// _acl
-_acl :: struct {}
-
-/// _acl_entry
-_acl_entry :: struct {}
-
-/// _acl_permset
-_acl_permset :: struct {}
-
-/// _acl_flagset
-_acl_flagset :: struct {}
 
 /// __CFFileSecurity
 __CFFileSecurity :: struct {}
@@ -5613,13 +5191,6 @@ XMLParserContext :: struct #align (8) {
     copyDescription: XMLParserCopyDescriptionCallBack,
 }
 #assert(size_of(XMLParserContext) == 40)
-
-/// __mbstate_t
-__mbstate_t :: struct #raw_union #align (8) {
-    __mbstate8: [128]cffi.char,
-    _mbstateL:  cffi.longlong,
-}
-#assert(size_of(__mbstate_t) == 128)
 
 /// dispatch_object_t
 dispatch_object_t :: struct #raw_union #align (8) {

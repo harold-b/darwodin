@@ -40,11 +40,16 @@ Odin:
   EmitObjCExtenders: true
   TargetPlatform   : Darwin
   ExportTypeMapDir : ../exports
+
   ExternalTypes:
     - ../exports/global.exports.yml
+    - ../libc/libc.exports.yml
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
     - ../exports/Security.exports.yml
+
+  ExternalPackageMap:
+    darwin_libc: '../libc'
 
   NonDistinctTypeDefs:
     - ^NSRange$

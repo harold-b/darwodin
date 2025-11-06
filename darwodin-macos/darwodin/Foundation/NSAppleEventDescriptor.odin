@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
@@ -67,7 +68,7 @@ foreign lib {
     AppleEventDescriptor_currentProcessDescriptor :: proc() -> ^AppleEventDescriptor ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="descriptorWithProcessIdentifier:", objc_name="descriptorWithProcessIdentifier", objc_is_class_method=true)
-    AppleEventDescriptor_descriptorWithProcessIdentifier :: proc(processIdentifier: CF.pid_t) -> ^AppleEventDescriptor ---
+    AppleEventDescriptor_descriptorWithProcessIdentifier :: proc(processIdentifier: libc.pid_t) -> ^AppleEventDescriptor ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="descriptorWithBundleIdentifier:", objc_name="descriptorWithBundleIdentifier", objc_is_class_method=true)
     AppleEventDescriptor_descriptorWithBundleIdentifier :: proc(bundleIdentifier: ^String) -> ^AppleEventDescriptor ---

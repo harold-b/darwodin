@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
@@ -43,7 +45,7 @@ foreign lib {
     RunningApplication_runningApplicationsWithBundleIdentifier :: proc(bundleIdentifier: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=RunningApplication, objc_selector="runningApplicationWithProcessIdentifier:", objc_name="runningApplicationWithProcessIdentifier", objc_is_class_method=true)
-    RunningApplication_runningApplicationWithProcessIdentifier :: proc(pid: CF.pid_t) -> ^RunningApplication ---
+    RunningApplication_runningApplicationWithProcessIdentifier :: proc(pid: libc.pid_t) -> ^RunningApplication ---
 
     @(objc_type=RunningApplication, objc_selector="terminateAutomaticallyTerminableApplications", objc_name="terminateAutomaticallyTerminableApplications", objc_is_class_method=true)
     RunningApplication_terminateAutomaticallyTerminableApplications :: proc() ---
@@ -79,7 +81,7 @@ foreign lib {
     RunningApplication_executableURL :: proc(self: ^RunningApplication) -> ^NS.URL ---
 
     @(objc_type=RunningApplication, objc_selector="processIdentifier", objc_name="processIdentifier")
-    RunningApplication_processIdentifier :: proc(self: ^RunningApplication) -> CF.pid_t ---
+    RunningApplication_processIdentifier :: proc(self: ^RunningApplication) -> libc.pid_t ---
 
     @(objc_type=RunningApplication, objc_selector="launchDate", objc_name="launchDate")
     RunningApplication_launchDate :: proc(self: ^RunningApplication) -> ^NS.Date ---

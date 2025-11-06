@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import Sec "../../../Security"
@@ -40,7 +41,7 @@ VTable :: struct {
     listDescriptor: proc() -> ^NS.AppleEventDescriptor,
     recordDescriptor: proc() -> ^NS.AppleEventDescriptor,
     currentProcessDescriptor: proc() -> ^NS.AppleEventDescriptor,
-    descriptorWithProcessIdentifier: proc(processIdentifier: CF.pid_t) -> ^NS.AppleEventDescriptor,
+    descriptorWithProcessIdentifier: proc(processIdentifier: libc.pid_t) -> ^NS.AppleEventDescriptor,
     descriptorWithBundleIdentifier: proc(bundleIdentifier: ^NS.String) -> ^NS.AppleEventDescriptor,
     descriptorWithApplicationURL: proc(applicationURL: ^NS.URL) -> ^NS.AppleEventDescriptor,
     initWithAEDescNoCopy: proc(self: ^NS.AppleEventDescriptor, aeDesc: ^NS.AEDesc) -> ^NS.AppleEventDescriptor,
@@ -240,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("currentProcessDescriptor"), auto_cast currentProcessDescriptor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.descriptorWithProcessIdentifier != nil {
-        descriptorWithProcessIdentifier :: proc "c" (self: Class, _: SEL, processIdentifier: CF.pid_t) -> ^NS.AppleEventDescriptor {
+        descriptorWithProcessIdentifier :: proc "c" (self: Class, _: SEL, processIdentifier: libc.pid_t) -> ^NS.AppleEventDescriptor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

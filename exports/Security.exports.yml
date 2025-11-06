@@ -129,7 +129,6 @@ Structs:
     cssm_x509_revoked_cert_list: Sec.cssm_x509_revoked_cert_list
     cssm_x509_tbs_certlist: Sec.cssm_x509_tbs_certlist
     cssm_x509_signed_crl: Sec.cssm_x509_signed_crl
-    audit_token_t: Sec.audit_token_t
     __SecRandom: Sec.__SecRandom
     __CE_OtherName: Sec.__CE_OtherName
     __CE_GeneralName: Sec.__CE_GeneralName

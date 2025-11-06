@@ -10,7 +10,7 @@ Cpp:
   ExportInternals: true
   DontWrapCFunctions: true
   ExportForwardDeclarations: true
-  
+
   ExportTypes:
     - ^_*CF.+
     - ^_*dispatch_.+
@@ -80,45 +80,12 @@ Cpp:
     - ^ConstStr15Param
     - ^ConstStrFileNameParam
     - ^UnsignedWide
-    - ^integer_t
-    - ^u_int64_t
-    - ^u_int32_t
-    - ^u_int16_t
-    - ^u_int8_t
-    - ^cpu_type_t
-    - ^__darwin_
-    - ^dev_t
-    - ^mach_port_t
-    - ^mach_vm_address_t
-    - ^mach_timespec_t
-    - ^task_port_t
-    - ^kern_return_t
-    - ^mach_msg_header_t
-    - ^pid_t
-    - ^acl_t
-    - ^uid_t
-    - ^gid_t
-    - ^mode_t
-    - ^_acl
-    - ^_acl_entry
-    - ^_acl_permset
-    - ^_acl_flagset
-    - ^io_object_t     
-    - ^io_connect_t
-    - ^io_enumerator_t
-    - ^io_ident_t
-    - ^io_iterator_t
-    - ^io_registry_entry_t
-    - ^io_service_t
     - ^uext_object_t
-    - ^qos_class_t
     - ^unichar
-    - ^natural_t
-    - ^off_t
-    - ^timespec
     - ^[Oo][Ss]_
     - ^_opaque_
     - ^__mbstate_t
+    - ^qos_class_t$
 
 
   ExportMethods:
@@ -151,13 +118,21 @@ Odin:
   TargetPlatform : Darwin
   ExportTypeMapDir: ../exports
 
+  ExternalTypes:
+    - ../mach/exports/mach.exports.yml
+    - ../libc/libc.exports.yml
+
+  ExternalPackageMap:
+    darwin_libc: '../libc'
+
+
   # LinkLibraryNameDarwin: system:Cocoa.framework
   NonDistinctTypeDefs:
     - ^.+Ref$
 
   ResolvedTypedefs:
-    - off_t
     # - ^boolean_t$
+    - ^qos_class_t$
     - CSSM_.+
     - cssm_.+
     - '[su]?int.*'
@@ -180,7 +155,6 @@ Odin:
           NSUInteger        :: cffi.ulong
           _NSZone           :: struct {}
           Boolean           :: b8
-          task_id_token_t   :: mach_port_t
           boolean_t         :: b32
 
           // StringEncoding :: union #no_nil {
@@ -194,16 +168,16 @@ Odin:
 
 
       TypeMap:
-        NSObject: NSObject
+        NSObject:          NSObject
         NSMethodSignature: NSMethodSignature
-        NSString: NSString
-        NSUInteger: NSUInteger
-        _NSZone: _NSZone
-        OS_object: OS_object
-        OS_os_workgroup: OS_os_workgroup
-        Boolean: Boolean
-        CFAbsoluteTime: CFAbsoluteTime
-        CFStringEncoding: StringEncoding
+        NSString:          NSString
+        NSUInteger:        NSUInteger
+        _NSZone:           _NSZone
+        OS_object:         OS_object
+        OS_os_workgroup:   OS_os_workgroup
+        Boolean:           Boolean
+        CFAbsoluteTime:    CFAbsoluteTime
+        CFStringEncoding:  StringEncoding
 
       # ExternalTypes:
 
