@@ -28,6 +28,7 @@ NSUInteger        :: cffi.ulong
 _NSZone           :: struct {}
 Boolean           :: b8
 task_id_token_t   :: mach_port_t
+boolean_t         :: b32
 
 // StringEncoding :: union #no_nil {
 //     StringBuiltInEncodings,
@@ -3802,6 +3803,9 @@ URLBookmarkFileCreationOptions :: distinct OptionFlags
 
 /// natural_t
 natural_t :: distinct __darwin_natural_t
+
+/// mach_vm_address_t
+mach_vm_address_t :: distinct cffi.uint64_t
 
 /// mach_port_t
 mach_port_t :: distinct __darwin_mach_port_t

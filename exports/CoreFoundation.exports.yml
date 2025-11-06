@@ -91,6 +91,7 @@ Structs:
     dispatch_object_t::dispatch_semaphore_s: CF.dispatch_semaphore_s
     dispatch_object_t::dispatch_data_s: CF.dispatch_data_s
     dispatch_object_t::dispatch_io_s: CF.dispatch_io_s
+    mach_msg_header_t: CF.mach_msg_header_t
     dispatch_source_type_s: CF.dispatch_source_type_s
     CFStreamError: CF.StreamError
     CFStreamClientContext: CF.StreamClientContext
@@ -322,6 +323,7 @@ Typedefs:
     CFURLRef: CF.URLRef
     CFURLBookmarkFileCreationOptions: CF.URLBookmarkFileCreationOptions
     natural_t: CF.natural_t
+    mach_vm_address_t: CF.mach_vm_address_t
     mach_port_t: CF.mach_port_t
     mach_port_type_t: CF.mach_port_type_t
     mach_port_type_array_t: CF.mach_port_type_array_t
@@ -348,6 +350,7 @@ Typedefs:
     os_workgroup_mpt_attr_t: CF.os_workgroup_mpt_attr_t
     os_workgroup_parallel_t: CF.os_workgroup_parallel_t
     dispatch_function_t: CF.dispatch_function_t
+    mach_timespec_t: CF.mach_timespec_t
     dispatch_time_t: CF.dispatch_time_t
     dispatch_block_t: CF.dispatch_block_t
     dispatch_qos_class_t: CF.dispatch_qos_class_t

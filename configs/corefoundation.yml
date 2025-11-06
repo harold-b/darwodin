@@ -52,6 +52,7 @@ Cpp:
     - ^UInt64
     - ^SInt64
     # - ^Boolean
+    # - ^boolean_t$
     - ^UnicodeScalarValue;
     - ^UTF32Char
     - ^UniChar
@@ -88,6 +89,11 @@ Cpp:
     - ^__darwin_
     - ^dev_t
     - ^mach_port_t
+    - ^mach_vm_address_t
+    - ^mach_timespec_t
+    - ^task_port_t
+    - ^kern_return_t
+    - ^mach_msg_header_t
     - ^pid_t
     - ^acl_t
     - ^uid_t
@@ -113,7 +119,6 @@ Cpp:
     - ^[Oo][Ss]_
     - ^_opaque_
     - ^__mbstate_t
-    - ^kern_return_t
 
 
   ExportMethods:
@@ -152,7 +157,7 @@ Odin:
 
   ResolvedTypedefs:
     - off_t
-    - boolean_t
+    # - ^boolean_t$
     - CSSM_.+
     - cssm_.+
     - '[su]?int.*'
@@ -176,6 +181,7 @@ Odin:
           _NSZone           :: struct {}
           Boolean           :: b8
           task_id_token_t   :: mach_port_t
+          boolean_t         :: b32
 
           // StringEncoding :: union #no_nil {
           //     StringBuiltInEncodings,

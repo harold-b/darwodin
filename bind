@@ -59,18 +59,20 @@ for f in ${frameworks[@]}; do
     fi
 
     # Implicitly add AppKit/UIKit dependency (external types) for higher-level frameowrks.
-    if [ ${framework_lower} != "corefoundation" ] &&
-       [ ${framework_lower} != "coregraphics" ] &&
-       [ ${framework_lower} != "coretext" ] &&
-       [ ${framework_lower} != "security" ] &&
-       [ ${framework_lower} != "fsevents" ] &&
-       [ ${framework_lower} != "foundation" ] &&
-       [ ${framework_lower} != "quartzcore" ] &&
-       [ ${framework_lower} != "appkit" ] &&
-       [ ${framework_lower} != "uikit" ]; then
-
-        args+=(--odin-external-type ../exports/${appkit}.exports.yml)
+    if darwodin_framework_depends_on_appkit ${framework_lower} ; then
+      args+=(--odin-external-type ../exports/${appkit}.exports.yml)
     fi
+    # if [ ${framework_lower} != "corefoundation" ] &&
+    #    [ ${framework_lower} != "coregraphics" ] &&
+    #    [ ${framework_lower} != "coretext" ] &&
+    #    [ ${framework_lower} != "security" ] &&
+    #    [ ${framework_lower} != "fsevents" ] &&
+    #    [ ${framework_lower} != "foundation" ] &&
+    #    [ ${framework_lower} != "quartzcore" ] &&
+    #    [ ${framework_lower} != "appkit" ] &&
+    #    [ ${framework_lower} != "uikit" ]; then
+        # args+=(--odin-external-type ../exports/${appkit}.exports.yml)
+    # fi
 
     # Test generics
     # args+=(--odin-objc-generics)

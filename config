@@ -6,6 +6,7 @@ darwodin_base_frameworks=(
   CoreFoundation
   CoreGraphics
   CoreText
+  IOKit
   Security
   Foundation
   QuartzCore
@@ -30,13 +31,24 @@ darwodin_ios_frameworks=(
   # UIKit
 )
 
+appkit_dependent_frameworks=(
+  GameKit
+  MetalKit
+)
+
 function darwodin_get_header_for_framework()
 {
   framework=$1
 
   case $framework in
     FSEvents)
-    framework=CoreServices
+      framework="CoreServices/CoreServices"
+      ;;
+    IOKit)
+      framework="IOKit/IOKitLib"
+      ;;
+    *)
+    framework="$framework/$framework"
     ;;
   esac
 
@@ -79,19 +91,29 @@ function darwodin_get_output_folder()
   fi
 }
 
+
 function darwodin_framework_depends_on_appkit()
 {
-  if [ ${framework_lower} != "corefoundation" ] &&
-      [ ${framework_lower} != "coregraphics" ] &&
-      [ ${framework_lower} != "coretext" ] &&
-      [ ${framework_lower} != "security" ] &&
-      [ ${framework_lower} != "fsevents" ] &&
-      [ ${framework_lower} != "foundation" ] &&
-      [ ${framework_lower} != "quartzcore" ] &&
-      [ ${framework_lower} != "appkit" ] &&
-      [ ${framework_lower} != "uikit" ]; then
-    echo 0
-  else
-    echo 1
-  fi
+  framework_lower=$1
+  for f in "${appkit_dependent_frameworks[@]}"; do
+    lower="$(echo $f | tr '[:upper:]' '[:lower:]')"
+    if [[  "${lower}" == "${framework_lower}" ]]; then
+      return 0
+    fi
+  done
+
+  return 1
+  # if [ ${framework_lower} != "corefoundation" ] &&
+  #     [ ${framework_lower} != "coregraphics" ] &&
+  #     [ ${framework_lower} != "coretext" ] &&
+  #     [ ${framework_lower} != "security" ] &&
+  #     [ ${framework_lower} != "fsevents" ] &&
+  #     [ ${framework_lower} != "foundation" ] &&
+  #     [ ${framework_lower} != "quartzcore" ] &&
+  #     [ ${framework_lower} != "appkit" ] &&
+  #     [ ${framework_lower} != "uikit" ]; then
+  #   echo 0
+  # else
+  #   echo 1
+  # fi
 }

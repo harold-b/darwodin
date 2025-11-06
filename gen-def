@@ -66,7 +66,7 @@ echo "Framework: '$framework': '${include}.h'"
 
 
 header="$(mktemp).h"
-echo "#import <${include}/${include}.h>" > $header
+echo "#import <${include}.h>" > $header
 
 defs=()
 # Avoid error "error: property with 'retain (or strong)' attribute must be of object type"
