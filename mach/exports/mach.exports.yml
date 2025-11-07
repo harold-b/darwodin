@@ -178,7 +178,7 @@ Typedefs:
     host_info64_t: mach.host_info64_t
     host_info_data_t: mach.host_info_data_t
     kernel_boot_info_t: mach.kernel_boot_info_t
-    host_flavor_t: mach.host_flavor_t
+    host_flavor_t: mach.host_flavor_int_t
     host_can_has_debugger_info_data_t: mach.host_can_has_debugger_info_data_t
     host_can_has_debugger_info_t: mach.host_can_has_debugger_info_t
     host_basic_info_data_t: mach.host_basic_info_data_t

@@ -1,0 +1,154 @@
+PackageName: "DiskArbitration"
+ImportName: "DA"
+
+Structs:
+    __DASession: DA.__DASession
+    __DADisk: DA.__DADisk
+    __DADissenter: DA.__DADissenter
+
+Typedefs:
+    DASessionRef: DA.SessionRef
+    DAApprovalSessionRef: DA.ApprovalSessionRef
+    DADiskRef: DA.DiskRef
+    DAReturn: DA.Return
+    DADissenterRef: DA.DissenterRef
+    DADiskMountOptions: DA.DiskMountOptions
+    DADiskRenameOptions: DA.DiskRenameOptions
+    DADiskUnmountOptions: DA.DiskUnmountOptions
+    DADiskEjectOptions: DA.DiskEjectOptions
+    DADiskClaimOptions: DA.DiskClaimOptions
+    DADiskOptions: DA.DiskOptions
+    DADiskAppearedCallback: DA.DiskAppearedCallback
+    DADiskDescriptionChangedCallback: DA.DiskDescriptionChangedCallback
+    DADiskDisappearedCallback: DA.DiskDisappearedCallback
+    DADiskMountCallback: DA.DiskMountCallback
+    DADiskMountApprovalCallback: DA.DiskMountApprovalCallback
+    DADiskRenameCallback: DA.DiskRenameCallback
+    DADiskUnmountCallback: DA.DiskUnmountCallback
+    DADiskUnmountApprovalCallback: DA.DiskUnmountApprovalCallback
+    DADiskEjectCallback: DA.DiskEjectCallback
+    DADiskEjectApprovalCallback: DA.DiskEjectApprovalCallback
+    DADiskClaimCallback: DA.DiskClaimCallback
+    DADiskClaimReleaseCallback: DA.DiskClaimReleaseCallback
+    DADiskPeekCallback: DA.DiskPeekCallback
+
+Enums:
+
+ObjCClasses:
+
+ObjCProtocols:
+
+
+Functions:
+    ::DASessionGetTypeID: DA.SessionGetTypeID
+    ::DASessionCreate: DA.SessionCreate
+    ::DASessionScheduleWithRunLoop: DA.SessionScheduleWithRunLoop
+    ::DASessionUnscheduleFromRunLoop: DA.SessionUnscheduleFromRunLoop
+    ::DASessionSetDispatchQueue: DA.SessionSetDispatchQueue
+    ::DAApprovalSessionGetTypeID: DA.ApprovalSessionGetTypeID
+    ::DAApprovalSessionCreate: DA.ApprovalSessionCreate
+    ::DAApprovalSessionScheduleWithRunLoop: DA.ApprovalSessionScheduleWithRunLoop
+    ::DAApprovalSessionUnscheduleFromRunLoop: DA.ApprovalSessionUnscheduleFromRunLoop
+    ::DADiskGetTypeID: DA.DiskGetTypeID
+    ::DADiskCreateFromBSDName: DA.DiskCreateFromBSDName
+    ::DADiskCreateFromIOMedia: DA.DiskCreateFromIOMedia
+    ::DADiskCreateFromVolumePath: DA.DiskCreateFromVolumePath
+    ::DADiskGetBSDName: DA.DiskGetBSDName
+    ::DADiskCopyIOMedia: DA.DiskCopyIOMedia
+    ::DADiskCopyDescription: DA.DiskCopyDescription
+    ::DADiskCopyWholeDisk: DA.DiskCopyWholeDisk
+    ::DADissenterCreate: DA.DissenterCreate
+    ::DADissenterGetStatus: DA.DissenterGetStatus
+    ::DADissenterGetStatusString: DA.DissenterGetStatusString
+    ::DARegisterDiskAppearedCallback: DA.RegisterDiskAppearedCallback
+    ::DARegisterDiskDescriptionChangedCallback: DA.RegisterDiskDescriptionChangedCallback
+    ::DARegisterDiskDisappearedCallback: DA.RegisterDiskDisappearedCallback
+    ::DADiskMount: DA.DiskMount
+    ::DADiskMountWithArguments: DA.DiskMountWithArguments
+    ::DARegisterDiskMountApprovalCallback: DA.RegisterDiskMountApprovalCallback
+    ::DADiskRename: DA.DiskRename
+    ::DADiskUnmount: DA.DiskUnmount
+    ::DARegisterDiskUnmountApprovalCallback: DA.RegisterDiskUnmountApprovalCallback
+    ::DADiskEject: DA.DiskEject
+    ::DARegisterDiskEjectApprovalCallback: DA.RegisterDiskEjectApprovalCallback
+    ::DADiskClaim: DA.DiskClaim
+    ::DADiskIsClaimed: DA.DiskIsClaimed
+    ::DADiskUnclaim: DA.DiskUnclaim
+    ::DARegisterDiskPeekCallback: DA.RegisterDiskPeekCallback
+    ::DADiskGetOptions: DA.DiskGetOptions
+    ::DADiskSetOptions: DA.DiskSetOptions
+    ::DAUnregisterCallback: DA.UnregisterCallback
+    ::DAUnregisterApprovalCallback: DA.UnregisterApprovalCallback
+
+ExternVars:
+    ::kDADiskDescriptionVolumeKindKey: DA.kDiskDescriptionVolumeKindKey
+    ::kDADiskDescriptionVolumeMountableKey: DA.kDiskDescriptionVolumeMountableKey
+    ::kDADiskDescriptionVolumeNameKey: DA.kDiskDescriptionVolumeNameKey
+    ::kDADiskDescriptionVolumeNetworkKey: DA.kDiskDescriptionVolumeNetworkKey
+    ::kDADiskDescriptionVolumePathKey: DA.kDiskDescriptionVolumePathKey
+    ::kDADiskDescriptionVolumeTypeKey: DA.kDiskDescriptionVolumeTypeKey
+    ::kDADiskDescriptionVolumeUUIDKey: DA.kDiskDescriptionVolumeUUIDKey
+    ::kDADiskDescriptionMediaBlockSizeKey: DA.kDiskDescriptionMediaBlockSizeKey
+    ::kDADiskDescriptionMediaBSDMajorKey: DA.kDiskDescriptionMediaBSDMajorKey
+    ::kDADiskDescriptionMediaBSDMinorKey: DA.kDiskDescriptionMediaBSDMinorKey
+    ::kDADiskDescriptionMediaBSDNameKey: DA.kDiskDescriptionMediaBSDNameKey
+    ::kDADiskDescriptionMediaBSDUnitKey: DA.kDiskDescriptionMediaBSDUnitKey
+    ::kDADiskDescriptionMediaContentKey: DA.kDiskDescriptionMediaContentKey
+    ::kDADiskDescriptionMediaEjectableKey: DA.kDiskDescriptionMediaEjectableKey
+    ::kDADiskDescriptionMediaIconKey: DA.kDiskDescriptionMediaIconKey
+    ::kDADiskDescriptionMediaKindKey: DA.kDiskDescriptionMediaKindKey
+    ::kDADiskDescriptionMediaLeafKey: DA.kDiskDescriptionMediaLeafKey
+    ::kDADiskDescriptionMediaNameKey: DA.kDiskDescriptionMediaNameKey
+    ::kDADiskDescriptionMediaPathKey: DA.kDiskDescriptionMediaPathKey
+    ::kDADiskDescriptionMediaRemovableKey: DA.kDiskDescriptionMediaRemovableKey
+    ::kDADiskDescriptionMediaSizeKey: DA.kDiskDescriptionMediaSizeKey
+    ::kDADiskDescriptionMediaTypeKey: DA.kDiskDescriptionMediaTypeKey
+    ::kDADiskDescriptionMediaUUIDKey: DA.kDiskDescriptionMediaUUIDKey
+    ::kDADiskDescriptionMediaWholeKey: DA.kDiskDescriptionMediaWholeKey
+    ::kDADiskDescriptionMediaWritableKey: DA.kDiskDescriptionMediaWritableKey
+    ::kDADiskDescriptionMediaEncryptedKey: DA.kDiskDescriptionMediaEncryptedKey
+    ::kDADiskDescriptionMediaEncryptionDetailKey: DA.kDiskDescriptionMediaEncryptionDetailKey
+    ::kDADiskDescriptionDeviceGUIDKey: DA.kDiskDescriptionDeviceGUIDKey
+    ::kDADiskDescriptionDeviceInternalKey: DA.kDiskDescriptionDeviceInternalKey
+    ::kDADiskDescriptionDeviceModelKey: DA.kDiskDescriptionDeviceModelKey
+    ::kDADiskDescriptionDevicePathKey: DA.kDiskDescriptionDevicePathKey
+    ::kDADiskDescriptionDeviceProtocolKey: DA.kDiskDescriptionDeviceProtocolKey
+    ::kDADiskDescriptionDeviceRevisionKey: DA.kDiskDescriptionDeviceRevisionKey
+    ::kDADiskDescriptionDeviceUnitKey: DA.kDiskDescriptionDeviceUnitKey
+    ::kDADiskDescriptionDeviceVendorKey: DA.kDiskDescriptionDeviceVendorKey
+    ::kDADiskDescriptionDeviceTDMLockedKey: DA.kDiskDescriptionDeviceTDMLockedKey
+    ::kDADiskDescriptionBusNameKey: DA.kDiskDescriptionBusNameKey
+    ::kDADiskDescriptionBusPathKey: DA.kDiskDescriptionBusPathKey
+    ::kDADiskDescriptionFSKitPrefix: DA.kDiskDescriptionFSKitPrefix
+    ::kDADiskDescriptionMatchMediaUnformatted: DA.kDiskDescriptionMatchMediaUnformatted
+    ::kDADiskDescriptionMatchMediaWhole: DA.kDiskDescriptionMatchMediaWhole
+    ::kDADiskDescriptionMatchVolumeMountable: DA.kDiskDescriptionMatchVolumeMountable
+    ::kDADiskDescriptionMatchVolumeUnrecognized: DA.kDiskDescriptionMatchVolumeUnrecognized
+    ::kDADiskDescriptionWatchVolumeName: DA.kDiskDescriptionWatchVolumeName
+    ::kDADiskDescriptionWatchVolumePath: DA.kDiskDescriptionWatchVolumePath
+
+ConstVars:
+    ::kDAReturnSuccess: DA.kReturnSuccess
+    ::kDAReturnError: DA.kReturnError
+    ::kDAReturnBusy: DA.kReturnBusy
+    ::kDAReturnBadArgument: DA.kReturnBadArgument
+    ::kDAReturnExclusiveAccess: DA.kReturnExclusiveAccess
+    ::kDAReturnNoResources: DA.kReturnNoResources
+    ::kDAReturnNotFound: DA.kReturnNotFound
+    ::kDAReturnNotMounted: DA.kReturnNotMounted
+    ::kDAReturnNotPermitted: DA.kReturnNotPermitted
+    ::kDAReturnNotPrivileged: DA.kReturnNotPrivileged
+    ::kDAReturnNotReady: DA.kReturnNotReady
+    ::kDAReturnNotWritable: DA.kReturnNotWritable
+    ::kDAReturnUnsupported: DA.kReturnUnsupported
+    ::kDADiskMountOptionDefault: DA.kDiskMountOptionDefault
+    ::kDADiskMountOptionWhole: DA.kDiskMountOptionWhole
+    ::kDADiskMountOptionNoFollow: DA.kDiskMountOptionNoFollow
+    ::kDADiskRenameOptionDefault: DA.kDiskRenameOptionDefault
+    ::kDADiskUnmountOptionDefault: DA.kDiskUnmountOptionDefault
+    ::kDADiskUnmountOptionForce: DA.kDiskUnmountOptionForce
+    ::kDADiskUnmountOptionWhole: DA.kDiskUnmountOptionWhole
+    ::kDADiskEjectOptionDefault: DA.kDiskEjectOptionDefault
+    ::kDADiskClaimOptionDefault: DA.kDiskClaimOptionDefault
+    ::kDADiskOptionDefault: DA.kDiskOptionDefault
+

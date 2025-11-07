@@ -51,7 +51,12 @@ for f in ${frameworks[@]}; do
     echo "$f"
 
     framework_lower="$(echo $f | tr '[:upper:]' '[:lower:]')"
-    framework_cfg="configs/${framework_lower}.yml"
+    
+    # Check for toml config version first
+    framework_cfg="configs/${framework_lower}.toml"
+    if [[ ! -e "${framework_cfg}" ]]; then
+      framework_cfg="configs/${framework_lower}.yml"
+    fi
 
     args=()
     if [[ ${use_ios} -eq 1 ]]; then

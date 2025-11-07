@@ -1,0 +1,108 @@
+
+Includes = [ './base.toml' ]
+Defs     = '../definitions/macos/diskarbitration.json'
+
+[Cpp]
+Emit                      = false
+ExportInternals           = true
+DontWrapCFunctions        = true
+ExportForwardDeclarations = true
+
+ExportTypes =[
+  '^DA.+',
+  '^__DA.+',
+  '^da_.+',
+]
+
+ExportMethods = [
+  '^::DA.+',
+]
+
+ExportVars = [
+  '^::k?DA.+',
+]
+
+
+[Odin]
+ExternalTypes = [
+  '../exports/global.exports.yml',
+  '../mach/exports/mach.exports.yml',
+  '../exports/CoreFoundation.exports.yml',
+  '../exports/IOKit.exports.yml',
+]
+
+NoDistinctTypedefs = true
+
+ResolvedTypedefs = [
+  '[su]?int.*',
+]
+
+ResolvedTypedefRefs = [
+  '^DADiskMountOptions$',
+  '^DADiskRenameOptions$',
+  '^DADiskUnmountOptions$',
+  '^DADiskEjectOptions$',
+  '^DADiskClaimOptions$',
+  '^DADiskOptions$',
+]
+
+DistinctTypeDefs = [
+]
+
+[[Odin.Packages]]
+Name           = 'DiskArbitration'
+Export         = 'DA'
+DarwinLinkLibs = ['system:DiskArbitration.framework']
+Filter         = '.*'
+
+# Imports = """
+# """
+
+# MacroFilter = [
+#   { File = 'host_info.h', Match = '^HOST_.+$' },
+# ]
+
+# Create enums based on a set of macro definitions.
+# This will also make them available for export, if not 
+# exported by the MacroFilter already
+# [Odin.Packages.MacroEnums]
+# host_flavor_t = { File = 'host_info.h',  Type = 'host_flavor_t_int', Match = 'HOST_.+$' }
+
+
+# [Odin.Packages.TypeMap]
+# kern_return_t = 'mach.kern_return_t'
+
+
+# Symbol Transformers
+[[Odin.EnumTransforms]]
+Type       = '.*'
+Transforms = [
+  { Kind = 'RemoveTypeWordsFromElements' },
+  { Kind = 'RemovePartialTypeNamePrefix' },
+  { Kind = 'RemoveUnderscorePrefix' },
+  { Kind = 'UnderscoreNumbers' },
+]
+
+[[Odin.TypeTransforms]]
+Type       = '^(DA).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.TypeTransforms]]
+Type       = '(Flag|Option|Mask)$'  # Transforms for bit_set types
+Transforms = [{Kind = 'AppendSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = '(Mask|Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
+Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.ProcTransforms]]
+Type       = '^(_*DA|da).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_?kDA).+'
+Transforms = [{ Kind = 'ReplacePrefix', Source = '$group0', Target = 'k' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_*DA).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]

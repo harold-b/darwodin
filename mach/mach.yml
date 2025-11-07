@@ -112,11 +112,18 @@ Odin:
       #   - |
       #     dispatch_data_t :: rawptr
 
-      # TypeMap:
+      TypeMap:
+        host_flavor_t: host_flavor_t
       #   mach_vm_range_flags_t:
       #   FT_Bool: b8
       #   dispatch_data_t: dispatch_data_t
       # ExternalTypes:
+
+      MacroFilter:
+        - { File: 'host_info.h', Match: '^HOST_.+$' }
+
+      MacroEnums:
+        host_flavor_t: { File: 'host_info.h', Type: 'host_flavor_int_t', Match: 'HOST_.+$' }
 
   # Symbol Transformers
   EnumTransforms:
@@ -128,7 +135,7 @@ Odin:
         - Kind  : RemoveUnderscorePrefix
         - Kind  : RemoveCommonPrefix
         - Kind  : UnderscoreNumbers
-  
+
   BitSetMap:
     - Type: vm_prot_t
       Transforms:
@@ -148,6 +155,11 @@ Odin:
       Transforms:
         - Kind  : RemoveSuffix
           Source: s
+    - Type: ^host_flavor_(t)$
+      Transforms:
+        - Kind  : ReplaceSuffix
+          Source: $group0
+          Target: int_t
 
   ProcTransforms:
     - Type: ^(mach_)(?!vm|memory).+

@@ -12,6 +12,43 @@ when ODIN_OS == .Darwin {
 
 
 
+HOST_INFO_MAX                   :: 1024
+HOST_BASIC_INFO                 :: 1
+HOST_SCHED_INFO                 :: 3
+HOST_RESOURCE_SIZES             :: 4
+HOST_PRIORITY_INFO              :: 5
+HOST_SEMAPHORE_TRAPS            :: 7
+HOST_MACH_MSG_TRAP              :: 8
+HOST_VM_PURGABLE                :: 9
+HOST_DEBUG_INFO_INTERNAL        :: 10
+HOST_CAN_HAS_DEBUGGER           :: 11
+HOST_PREFERRED_USER_ARCH        :: 12
+HOST_CAN_HAS_DEBUGGER_COUNT     :: 1
+HOST_BASIC_INFO_COUNT           :: 12
+HOST_SCHED_INFO_COUNT           :: 2
+HOST_RESOURCE_SIZES_COUNT       :: 5
+HOST_PRIORITY_INFO_COUNT        :: 8
+HOST_LOAD_INFO                  :: 1
+HOST_VM_INFO                    :: 2
+HOST_CPU_LOAD_INFO              :: 3
+HOST_VM_INFO64                  :: 4
+HOST_EXTMOD_INFO64              :: 5
+HOST_EXPIRED_TASK_INFO          :: 6
+HOST_LOAD_INFO_COUNT            :: 6
+HOST_VM_PURGABLE_COUNT          :: 68
+HOST_VM_INFO64_COUNT            :: 38
+HOST_VM_INFO64_LATEST_COUNT     :: 38
+HOST_VM_INFO64_REV1_COUNT       :: 38
+HOST_VM_INFO64_REV0_COUNT       :: 24
+HOST_EXTMOD_INFO64_COUNT        :: 12
+HOST_EXTMOD_INFO64_LATEST_COUNT :: 12
+HOST_VM_INFO_COUNT              :: 15
+HOST_VM_INFO_LATEST_COUNT       :: 15
+HOST_VM_INFO_REV2_COUNT         :: 15
+HOST_VM_INFO_REV1_COUNT         :: 14
+HOST_VM_INFO_REV0_COUNT         :: 12
+HOST_CPU_LOAD_INFO_COUNT        :: 4
+HOST_PREFERRED_USER_ARCH_COUNT  :: 2
 
 VM_REGION_SUBMAP_INFO_COUNT_64 :: 19
 
@@ -470,7 +507,7 @@ host_info_data_t :: [1024]integer_t
 kernel_boot_info_t :: [4096]cffi.char
 
 /// host_flavor_t
-host_flavor_t :: integer_t
+host_flavor_int_t :: integer_t
 
 /// host_can_has_debugger_info_data_t
 host_can_has_debugger_info_data_t :: host_can_has_debugger_info
@@ -1186,6 +1223,46 @@ mach_vm_range_tag_t :: enum cffi.ushort {
     DEFAULT = 0,
     DATA    = 1,
     FIXED   = 2,
+}
+
+host_flavor_t :: enum host_flavor_int_t {
+    INFO_MAX                   = 1024,
+    BASIC_INFO                 = 1,
+    SCHED_INFO                 = 3,
+    RESOURCE_SIZES             = 4,
+    PRIORITY_INFO              = 5,
+    SEMAPHORE_TRAPS            = 7,
+    MACH_MSG_TRAP              = 8,
+    VM_PURGABLE                = 9,
+    DEBUG_INFO_INTERNAL        = 10,
+    CAN_HAS_DEBUGGER           = 11,
+    PREFERRED_USER_ARCH        = 12,
+    CAN_HAS_DEBUGGER_COUNT     = 1,
+    BASIC_INFO_COUNT           = 12,
+    SCHED_INFO_COUNT           = 2,
+    RESOURCE_SIZES_COUNT       = 5,
+    PRIORITY_INFO_COUNT        = 8,
+    LOAD_INFO                  = 1,
+    VM_INFO                    = 2,
+    CPU_LOAD_INFO              = 3,
+    VM_INFO64                  = 4,
+    EXTMOD_INFO64              = 5,
+    EXPIRED_TASK_INFO          = 6,
+    LOAD_INFO_COUNT            = 6,
+    VM_PURGABLE_COUNT          = 68,
+    VM_INFO64_COUNT            = 38,
+    VM_INFO64_LATEST_COUNT     = 38,
+    VM_INFO64_REV1_COUNT       = 38,
+    VM_INFO64_REV0_COUNT       = 24,
+    EXTMOD_INFO64_COUNT        = 12,
+    EXTMOD_INFO64_LATEST_COUNT = 12,
+    VM_INFO_COUNT              = 15,
+    VM_INFO_LATEST_COUNT       = 15,
+    VM_INFO_REV2_COUNT         = 15,
+    VM_INFO_REV1_COUNT         = 14,
+    VM_INFO_REV0_COUNT         = 12,
+    CPU_LOAD_INFO_COUNT        = 4,
+    PREFERRED_USER_ARCH_COUNT  = 2,
 }
 
 /// mach_port_status

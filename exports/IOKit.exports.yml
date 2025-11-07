@@ -2,8 +2,8 @@ PackageName: "IOKit"
 ImportName: "IO"
 
 Structs:
-    io_stat_entry: IO.io_stat_entry
-    io_stat_info: IO.io_stat_info
+    io_stat_entry: IO.stat_entry
+    io_stat_info: IO.stat_info
     IOPhysicalRange: IO.PhysicalRange
     IOVirtualRange: IO.VirtualRange
     IONamedValue: IO.NamedValue
@@ -13,8 +13,8 @@ Structs:
     IONotificationPort: IO.NotificationPort
 
 Typedefs:
-    io_stat_info_t: IO.io_stat_info_t
-    io_main_t: IO.io_main_t
+    io_stat_info_t: IO.stat_info_t
+    io_main_t: IO.main_t
     IOReturn: IO.Return
     IOOptionBits: IO.OptionBits
     IOFixed: IO.Fixed
@@ -34,24 +34,24 @@ Typedefs:
     IOPhysicalLength: IO.PhysicalLength
     IOAddressRange: IO.AddressRange
     IOAlignment: IO.Alignment
-    io_object_t: IO.io_object_t
-    io_buf_ptr_t: IO.io_buf_ptr_t
-    io_name_t: IO.io_name_t
-    io_string_t: IO.io_string_t
-    io_string_inband_t: IO.io_string_inband_t
-    io_struct_inband_t: IO.io_struct_inband_t
-    io_user_scalar_t: IO.io_user_scalar_t
-    io_user_reference_t: IO.io_user_reference_t
-    io_scalar_inband_t: IO.io_scalar_inband_t
-    io_async_ref_t: IO.io_async_ref_t
-    io_scalar_inband64_t: IO.io_scalar_inband64_t
-    io_async_ref64_t: IO.io_async_ref64_t
-    io_connect_t: IO.io_connect_t
-    io_enumerator_t: IO.io_enumerator_t
-    io_ident_t: IO.io_ident_t
-    io_iterator_t: IO.io_iterator_t
-    io_registry_entry_t: IO.io_registry_entry_t
-    io_service_t: IO.io_service_t
+    io_object_t: IO.object_t
+    io_buf_ptr_t: IO.buf_ptr_t
+    io_name_t: IO.name_t
+    io_string_t: IO.string_t
+    io_string_inband_t: IO.string_inband_t
+    io_struct_inband_t: IO.struct_inband_t
+    io_user_scalar_t: IO.user_scalar_t
+    io_user_reference_t: IO.user_reference_t
+    io_scalar_inband_t: IO.scalar_inband_t
+    io_async_ref_t: IO.async_ref_t
+    io_scalar_inband64_t: IO.scalar_inband64_t
+    io_async_ref64_t: IO.async_ref64_t
+    io_connect_t: IO.connect_t
+    io_enumerator_t: IO.enumerator_t
+    io_ident_t: IO.ident_t
+    io_iterator_t: IO.iterator_t
+    io_registry_entry_t: IO.registry_entry_t
+    io_service_t: IO.service_t
     IODeviceNumber: IO.DeviceNumber
     IONotificationPortRef: IO.NotificationPortRef
     IOServiceMatchingCallback: IO.ServiceMatchingCallback

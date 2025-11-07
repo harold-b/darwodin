@@ -1,0 +1,148 @@
+
+Includes = [ './base.toml' ]
+Defs     = '../definitions/macos/iokit.json'
+
+[Cpp]
+Emit                      = false
+ExportInternals           = true
+DontWrapCFunctions        = true
+ExportForwardDeclarations = true
+
+ExportTypes =[
+  '^IO.+',
+  '^io_.+',
+]
+
+ExportMethods = [
+  '^::IO.+',
+]
+
+ExportVars = [
+  '^::k?IO.+',
+]
+
+
+[Odin]
+ExternalTypes = [
+  '../exports/global.exports.yml',
+  '../mach/exports/mach.exports.yml',
+  '../exports/CoreFoundation.exports.yml',
+]
+
+ResolvedTypedefs = [
+  '[su]?int.*',
+  # - ^boolean_t$
+]
+
+NoDistinctTypedefs = true
+DistinctTypeDefs = [
+  '^IOCacheMode$',
+  '^DeviceNumber$',
+]
+
+[[Odin.Packages]]
+Name           = 'IOKit'
+Export         = 'IO'
+DarwinLinkLibs = ['system:IOKit.framework']
+Filter         = '.*'
+
+Imports = ["""
+// IOBSD.h
+kBSDKey      :: "IOBSD"     // (BSD subsystem resource)
+kBSDNameKey  :: "BSD Name"  // (an OSString)
+kBSDNamesKey :: "BSD Names" // (an OSDictionary of OSString's, for links)
+kBSDMajorKey :: "BSD Major" // (an OSNumber)
+kBSDMinorKey :: "BSD Minor" // (an OSNumber)
+kBSDUnitKey  :: "BSD Unit"  // (an OSNumber)
+
+// <IOKit/storage/IOStorageDeviceCharacteristics.h>
+kPropertyDeviceCharacteristicsKey  :: "Device Characteristics"
+kPropertyVendorNameKey             :: "Vendor Name"
+kPropertyProductNameKey            :: "Product Name"
+kPropertyProductRevisionLevelKey   :: "Product Revision Level"
+kPropertyProductSerialNumberKey    :: "Serial Number"
+kPropertySupportedCDFeaturesKey    :: "CD Features"
+kPropertySupportedDVDFeaturesKey   :: "DVD Features"
+kPropertySupportedBDFeaturesKey    :: "BD Features"
+kPropertyRigidDiskGeometryKey      :: "Rigid Disk Geometry"
+kPropertySectorCountPerTrackKey    :: "Sector Count per Track"
+kPropertyHeadCountKey              :: "Head Count"
+kPropertyCylinderCountKey          :: "Cylinder Count"
+kPropertyBytesPerPhysicalSectorKey :: "Bytes per Physical Sector"
+kPropertyPhysicalBlockSizeKey      :: "Physical Block Size"
+kPropertyLogicalBlockSizeKey       :: "Logical Block Size"
+kPropertyTargetDiskModeKey         :: "Target Disk Mode"
+kPropertyInvalidStartupDiskKey     :: "Invalid Startup Disk"
+kPropertyMediumTypeKey             :: "Medium Type"
+kPropertyMediumTypeRotationalKey   :: "Rotational"
+kPropertyMediumTypeSolidStateKey   :: "Solid State"
+kPropertyMediumRotationRateKey     :: "Rotation Rate"
+
+
+// <IOKit/storage/IOBlockStorageDevice.h>
+/*!
+ * @defined kIOBlockStorageDeviceClass
+ * @abstract
+ * The name of the IOBlockStorageDevice class.
+ */
+
+kBlockStorageDeviceClass :: "IOBlockStorageDevice"
+
+/*!
+ * @defined kIOBlockStorageDeviceWriteCacheStateKey
+ * @abstract
+ * The name of the property used to get or set the write cache state of the
+ * block storage device.
+ */
+kBlockStorageDeviceWriteCacheStateKey :: "WriteCacheState"
+
+"""]
+
+MacroFilter = [
+  { 'Match' = '^kIO.+' }
+]
+
+# Create enums based on a set of macro definitions.
+# This will also make them available for export, if not 
+# exported by the MacroFilter already
+# [Odin.Packages.MacroEnums]
+# host_flavor_t = { File = 'host_info.h',  Type = 'host_flavor_t_int', Match = 'HOST_.+$' }
+
+
+[Odin.Packages.TypeMap]
+kern_return_t = 'mach.kern_return_t'
+
+
+# Symbol Transformers
+[[Odin.EnumTransforms]]
+Type       = '.*'
+Transforms = [
+  { Kind = 'RemoveTypeWordsFromElements' },
+  { Kind = 'RemovePartialTypeNamePrefix' },
+  { Kind = 'RemoveUnderscorePrefix' },
+  { Kind = 'UnderscoreNumbers' },
+]
+
+[[Odin.TypeTransforms]]
+Type       = '^(IO|io_).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.TypeTransforms]]
+Type       = '(Flag|Option|Mask)$'  # Transforms for bit_set types
+Transforms = [{Kind = 'AppendSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = '(Mask|Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
+Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.ProcTransforms]]
+Type       = '^(_*IO).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_?kIO).+'
+Transforms = [{ Kind = 'ReplacePrefix', Source = '$group0', Target = 'k' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_*IO).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]

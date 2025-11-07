@@ -7,6 +7,7 @@ darwodin_base_frameworks=(
   CoreGraphics
   CoreText
   IOKit
+  DiskArbitration
   Security
   Foundation
   QuartzCore
@@ -54,6 +55,21 @@ function darwodin_get_header_for_framework()
 
   echo $framework
 }
+
+# function get_aditional_framework_includes_for_framework()
+# {
+#   framework=$1
+#   includes=
+
+#   case $framework in
+#     IOKit)
+#       includes=(IOKit/IOBSD.h)
+#       ;;
+#     ;;
+#   esac
+
+#   echo "$includes"
+# }
 
 function darwodin_filter_framework()
 {

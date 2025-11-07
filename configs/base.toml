@@ -1,0 +1,7 @@
+[Odin]
+Emit             = true
+ExportPath       = '..'
+BasePackageName  = 'darwodin'
+SingleFile       = false
+TargetPlatform   = 'Darwin'
+ExportTypeMapDir = '../exports'
