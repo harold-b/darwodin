@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
@@ -99,11 +100,11 @@ foreign lib {
     XPCConnection_auditSessionIdentifier :: proc(self: ^XPCConnection) -> au_asid_t ---
 
     @(objc_type=XPCConnection, objc_selector="processIdentifier", objc_name="processIdentifier")
-    XPCConnection_processIdentifier :: proc(self: ^XPCConnection) -> CF.pid_t ---
+    XPCConnection_processIdentifier :: proc(self: ^XPCConnection) -> libc.pid_t ---
 
     @(objc_type=XPCConnection, objc_selector="effectiveUserIdentifier", objc_name="effectiveUserIdentifier")
-    XPCConnection_effectiveUserIdentifier :: proc(self: ^XPCConnection) -> CF.uid_t ---
+    XPCConnection_effectiveUserIdentifier :: proc(self: ^XPCConnection) -> libc.uid_t ---
 
     @(objc_type=XPCConnection, objc_selector="effectiveGroupIdentifier", objc_name="effectiveGroupIdentifier")
-    XPCConnection_effectiveGroupIdentifier :: proc(self: ^XPCConnection) -> CF.gid_t ---
+    XPCConnection_effectiveGroupIdentifier :: proc(self: ^XPCConnection) -> libc.gid_t ---
 }

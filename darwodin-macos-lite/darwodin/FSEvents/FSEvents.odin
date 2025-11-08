@@ -4,19 +4,22 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
 msgSend                :: intrinsics.objc_send
 
-id       :: ^intrinsics.objc_object
-SEL      :: ^intrinsics.objc_selector
-Class    :: ^intrinsics.objc_class
-IMP      :: rawptr
-Protocol :: distinct id
+id            :: ^intrinsics.objc_object
+SEL           :: ^intrinsics.objc_selector
+Class         :: ^intrinsics.objc_class
+IMP           :: rawptr
+Protocol      :: distinct id
+instancetype :: intrinsics.objc_instancetype
 
-@require foreign import lib "system:CoreServices.framework"
+@(require, export) foreign import lib "system:CoreServices.framework"
 
 // FSEventStreamCreateFlags
 EventStreamCreateFlag :: enum CF.UInt32 {
@@ -69,358 +72,358 @@ EventStreamEventFlags :: bit_set[EventStreamEventFlag; CF.UInt32]
 
 
 
-kTextUnsupportedEncodingErr             :: -8738
-kTextMalformedInputErr                  :: -8739
-kTextUndefinedElementErr                :: -8740
-kTextFlushDefault                       :: 0
-kTextCenter                             :: 1
-kTextFlushRight                         :: -1
-kTextFlushLeft                          :: -2
-kTextEncodingMacRoman                   :: 0
-kTextEncodingMacJapanese                :: 1
-kTextEncodingMacChineseTrad             :: 2
-kTextEncodingMacKorean                  :: 3
-kTextEncodingMacArabic                  :: 4
-kTextEncodingMacHebrew                  :: 5
-kTextEncodingMacGreek                   :: 6
-kTextEncodingMacCyrillic                :: 7
-kTextEncodingMacDevanagari              :: 9
-kTextEncodingMacGurmukhi                :: 10
-kTextEncodingMacGujarati                :: 11
-kTextEncodingMacOriya                   :: 12
-kTextEncodingMacBengali                 :: 13
-kTextEncodingMacTamil                   :: 14
-kTextEncodingMacTelugu                  :: 15
-kTextEncodingMacKannada                 :: 16
-kTextEncodingMacMalayalam               :: 17
-kTextEncodingMacSinhalese               :: 18
-kTextEncodingMacBurmese                 :: 19
-kTextEncodingMacKhmer                   :: 20
-kTextEncodingMacThai                    :: 21
-kTextEncodingMacLaotian                 :: 22
-kTextEncodingMacGeorgian                :: 23
-kTextEncodingMacArmenian                :: 24
-kTextEncodingMacChineseSimp             :: 25
-kTextEncodingMacTibetan                 :: 26
-kTextEncodingMacMongolian               :: 27
-kTextEncodingMacEthiopic                :: 28
-kTextEncodingMacCentralEurRoman         :: 29
-kTextEncodingMacVietnamese              :: 30
-kTextEncodingMacExtArabic               :: 31
-kTextEncodingMacSymbol                  :: 33
-kTextEncodingMacDingbats                :: 34
-kTextEncodingMacTurkish                 :: 35
-kTextEncodingMacCroatian                :: 36
-kTextEncodingMacIcelandic               :: 37
-kTextEncodingMacRomanian                :: 38
-kTextEncodingMacCeltic                  :: 39
-kTextEncodingMacGaelic                  :: 40
-kTextEncodingMacKeyboardGlyphs          :: 41
-kTextEncodingMacTradChinese             :: 2
-kTextEncodingMacRSymbol                 :: 8
-kTextEncodingMacSimpChinese             :: 25
-kTextEncodingMacGeez                    :: 28
-kTextEncodingMacEastEurRoman            :: 29
-kTextEncodingMacUninterp                :: 32
-kTextEncodingMacUnicode                 :: 126
-kTextEncodingMacFarsi                   :: 140
-kTextEncodingMacUkrainian               :: 152
-kTextEncodingMacInuit                   :: 236
-kTextEncodingMacVT100                   :: 252
-kTextEncodingMacHFS                     :: 255
-kTextEncodingUnicodeDefault             :: 256
-kTextEncodingUnicodeV1_1                :: 257
-kTextEncodingISO10646_1993              :: 257
-kTextEncodingUnicodeV2_0                :: 259
-kTextEncodingUnicodeV2_1                :: 259
-kTextEncodingUnicodeV3_0                :: 260
-kTextEncodingUnicodeV3_1                :: 261
-kTextEncodingUnicodeV3_2                :: 262
-kTextEncodingUnicodeV4_0                :: 264
-kTextEncodingUnicodeV5_0                :: 266
-kTextEncodingUnicodeV5_1                :: 267
-kTextEncodingUnicodeV6_0                :: 269
-kTextEncodingUnicodeV6_1                :: 270
-kTextEncodingUnicodeV6_3                :: 272
-kTextEncodingUnicodeV7_0                :: 273
-kTextEncodingUnicodeV8_0                :: 274
-kTextEncodingUnicodeV9_0                :: 275
-kTextEncodingUnicodeV10_0               :: 276
-kTextEncodingUnicodeV11_0               :: 277
-kTextEncodingUnicodeV12_1               :: 278
-kTextEncodingUnicodeV13_0               :: 279
-kTextEncodingUnicodeV14_0               :: 280
-kTextEncodingUnicodeV15_0               :: 281
-kTextEncodingUnicodeV15_1               :: 282
-kTextEncodingISOLatin1                  :: 513
-kTextEncodingISOLatin2                  :: 514
-kTextEncodingISOLatin3                  :: 515
-kTextEncodingISOLatin4                  :: 516
-kTextEncodingISOLatinCyrillic           :: 517
-kTextEncodingISOLatinArabic             :: 518
-kTextEncodingISOLatinGreek              :: 519
-kTextEncodingISOLatinHebrew             :: 520
-kTextEncodingISOLatin5                  :: 521
-kTextEncodingISOLatin6                  :: 522
-kTextEncodingISOLatin7                  :: 525
-kTextEncodingISOLatin8                  :: 526
-kTextEncodingISOLatin9                  :: 527
-kTextEncodingISOLatin10                 :: 528
-kTextEncodingDOSLatinUS                 :: 1024
-kTextEncodingDOSGreek                   :: 1029
-kTextEncodingDOSBalticRim               :: 1030
-kTextEncodingDOSLatin1                  :: 1040
-kTextEncodingDOSGreek1                  :: 1041
-kTextEncodingDOSLatin2                  :: 1042
-kTextEncodingDOSCyrillic                :: 1043
-kTextEncodingDOSTurkish                 :: 1044
-kTextEncodingDOSPortuguese              :: 1045
-kTextEncodingDOSIcelandic               :: 1046
-kTextEncodingDOSHebrew                  :: 1047
-kTextEncodingDOSCanadianFrench          :: 1048
-kTextEncodingDOSArabic                  :: 1049
-kTextEncodingDOSNordic                  :: 1050
-kTextEncodingDOSRussian                 :: 1051
-kTextEncodingDOSGreek2                  :: 1052
-kTextEncodingDOSThai                    :: 1053
-kTextEncodingDOSJapanese                :: 1056
-kTextEncodingDOSChineseSimplif          :: 1057
-kTextEncodingDOSKorean                  :: 1058
-kTextEncodingDOSChineseTrad             :: 1059
-kTextEncodingWindowsLatin1              :: 1280
-kTextEncodingWindowsANSI                :: 1280
-kTextEncodingWindowsLatin2              :: 1281
-kTextEncodingWindowsCyrillic            :: 1282
-kTextEncodingWindowsGreek               :: 1283
-kTextEncodingWindowsLatin5              :: 1284
-kTextEncodingWindowsHebrew              :: 1285
-kTextEncodingWindowsArabic              :: 1286
-kTextEncodingWindowsBalticRim           :: 1287
-kTextEncodingWindowsVietnamese          :: 1288
-kTextEncodingWindowsKoreanJohab         :: 1296
-kTextEncodingUS_ASCII                   :: 1536
-kTextEncodingANSEL                      :: 1537
-kTextEncodingJIS_X0201_76               :: 1568
-kTextEncodingJIS_X0208_83               :: 1569
-kTextEncodingJIS_X0208_90               :: 1570
-kTextEncodingJIS_X0212_90               :: 1571
-kTextEncodingJIS_C6226_78               :: 1572
-kTextEncodingShiftJIS_X0213             :: 1576
-kTextEncodingJIS_X0213_MenKuTen         :: 1577
-kTextEncodingGB_2312_80                 :: 1584
-kTextEncodingGBK_95                     :: 1585
-kTextEncodingGB_18030_2000              :: 1586
-kTextEncodingGB_18030_2005              :: 1586
-kTextEncodingKSC_5601_87                :: 1600
-kTextEncodingKSC_5601_92_Johab          :: 1601
-kTextEncodingCNS_11643_92_P1            :: 1617
-kTextEncodingCNS_11643_92_P2            :: 1618
-kTextEncodingCNS_11643_92_P3            :: 1619
-kTextEncodingISO_2022_JP                :: 2080
-kTextEncodingISO_2022_JP_2              :: 2081
-kTextEncodingISO_2022_JP_1              :: 2082
-kTextEncodingISO_2022_JP_3              :: 2083
-kTextEncodingISO_2022_CN                :: 2096
-kTextEncodingISO_2022_CN_EXT            :: 2097
-kTextEncodingISO_2022_KR                :: 2112
-kTextEncodingEUC_JP                     :: 2336
-kTextEncodingEUC_CN                     :: 2352
-kTextEncodingEUC_TW                     :: 2353
-kTextEncodingEUC_KR                     :: 2368
-kTextEncodingShiftJIS                   :: 2561
-kTextEncodingKOI8_R                     :: 2562
-kTextEncodingBig5                       :: 2563
-kTextEncodingMacRomanLatin1             :: 2564
-kTextEncodingHZ_GB_2312                 :: 2565
-kTextEncodingBig5_HKSCS_1999            :: 2566
-kTextEncodingVISCII                     :: 2567
-kTextEncodingKOI8_U                     :: 2568
-kTextEncodingBig5_E                     :: 2569
-kTextEncodingNextStepLatin              :: 2817
-kTextEncodingNextStepJapanese           :: 2818
-kTextEncodingEBCDIC_LatinCore           :: 3073
-kTextEncodingEBCDIC_CP037               :: 3074
-kTextEncodingMultiRun                   :: 4095
-kTextEncodingUnknown                    :: 65535
-kTextEncodingEBCDIC_US                  :: 3073
-kTextEncodingDefaultVariant             :: 0
-kTextEncodingShiftJIS_X0213_00          :: 1576
-kTextEncodingDefaultFormat              :: 0
-kTextEncodingFullName                   :: 0
-kTextEncodingBaseName                   :: 1
-kTextEncodingVariantName                :: 2
-kTextEncodingFormatName                 :: 3
-kTextScriptDontCare                     :: -128
-kTextLanguageDontCare                   :: -128
-kTextRegionDontCare                     :: -128
-AllowConcurrentAsyncIOBit               :: 3
-AllowConcurrentAsyncIOMask              :: 8
-PleaseCacheBit                          :: 4
-PleaseCacheMask                         :: 16
-NoCacheBit                              :: 5
-NoCacheMask                             :: 32
-RdVerifyBit                             :: 6
-RdVerifyMask                            :: 64
-ForceReadBit                            :: 6
-ForceReadMask                           :: 64
-NewLineBit                              :: 7
-NewLineMask                             :: 128
-NewLineCharMask                         :: 65280
-InvalidVolumeRefNum                     :: 0
-CatInfoNone                             :: 0
-CatInfoTextEncoding                     :: 1
-CatInfoNodeFlags                        :: 2
-CatInfoVolume                           :: 4
-CatInfoParentDirID                      :: 8
-CatInfoNodeID                           :: 16
-CatInfoCreateDate                       :: 32
-CatInfoContentMod                       :: 64
-CatInfoAttrMod                          :: 128
-CatInfoAccessDate                       :: 256
-CatInfoBackupDate                       :: 512
-CatInfoPermissions                      :: 1024
-CatInfoFinderInfo                       :: 2048
-CatInfoFinderXInfo                      :: 4096
-CatInfoValence                          :: 8192
-CatInfoDataSizes                        :: 16384
-CatInfoRsrcSizes                        :: 32768
-CatInfoSharingFlags                     :: 65536
-CatInfoUserPrivs                        :: 131072
-CatInfoUserAccess                       :: 524288
-CatInfoSetOwnership                     :: 1048576
-CatInfoFSFileSecurityRef                :: 4194304
-CatInfoAllDates                         :: 992
-CatInfoGettableInfo                     :: 262143
-CatInfoSettableInfo                     :: 8163
-CatInfoReserved                         :: -262144
-NodeLockedBit                           :: 0
-NodeLockedMask                          :: 1
-NodeResOpenBit                          :: 2
-NodeResOpenMask                         :: 4
-NodeDataOpenBit                         :: 3
-NodeDataOpenMask                        :: 8
-NodeIsDirectoryBit                      :: 4
-NodeIsDirectoryMask                     :: 16
-NodeCopyProtectBit                      :: 6
-NodeCopyProtectMask                     :: 64
-NodeForkOpenBit                         :: 7
-NodeForkOpenMask                        :: 128
-NodeHardLinkBit                         :: 8
-NodeHardLinkMask                        :: 256
-NodeInSharedBit                         :: 2
-NodeInSharedMask                        :: 4
-NodeIsMountedBit                        :: 3
-NodeIsMountedMask                       :: 8
-NodeIsSharePointBit                     :: 5
-NodeIsSharePointMask                    :: 32
-IterateFlat                             :: 0
-IterateSubtree                          :: 1
-IterateDelete                           :: 2
-IterateReserved                         :: -4
-AllocDefaultFlags                       :: 0
-AllocAllOrNothingMask                   :: 1
-AllocContiguousMask                     :: 2
-AllocNoRoundUpMask                      :: 4
-AllocReservedMask                       :: 65528
-VolInfoNone                             :: 0
-VolInfoCreateDate                       :: 1
-VolInfoModDate                          :: 2
-VolInfoBackupDate                       :: 4
-VolInfoCheckedDate                      :: 8
-VolInfoFileCount                        :: 16
-VolInfoDirCount                         :: 32
-VolInfoSizes                            :: 64
-VolInfoBlocks                           :: 128
-VolInfoNextAlloc                        :: 256
-VolInfoRsrcClump                        :: 512
-VolInfoDataClump                        :: 1024
-VolInfoNextID                           :: 2048
-VolInfoFinderInfo                       :: 4096
-VolInfoFlags                            :: 8192
-VolInfoFSInfo                           :: 16384
-VolInfoDriveInfo                        :: 32768
-VolInfoGettableInfo                     :: 65535
-VolInfoSettableInfo                     :: 12292
-VolFlagDefaultVolumeBit                 :: 5
-VolFlagDefaultVolumeMask                :: 32
-VolFlagFilesOpenBit                     :: 6
-VolFlagFilesOpenMask                    :: 64
-VolFlagHardwareLockedBit                :: 7
-VolFlagHardwareLockedMask               :: 128
-VolFlagJournalingActiveBit              :: 14
-VolFlagJournalingActiveMask             :: 16384
-VolFlagSoftwareLockedBit                :: 15
-VolFlagSoftwareLockedMask               :: 32768
-ReplaceObjectDefaultOptions             :: 0
-ReplaceObjectReplaceMetadata            :: 1
-ReplaceObjectSaveOriginalAsABackup      :: 2
-ReplaceObjectReplacePermissionInfo      :: 4
-ReplaceObjectPreservePermissionInfo     :: 8
-ReplaceObjectDoNotCheckObjectWriteAccess:: 16
-PathMakeRefDefaultOptions               :: 0
-PathMakeRefDoNotFollowLeafSymlink       :: 1
-MountServerMarkDoNotDisplay             :: 1
-MountServerMountOnMountDir              :: 4
-MountServerSuppressConnectionUI         :: 64
-MountServerMountWithoutNotification     :: 2
-EjectVolumeForceEject                   :: 1
-UnmountVolumeForceUnmount               :: 1
-FileOperationDefaultOptions             :: 0
-FileOperationOverwrite                  :: 1
-FileOperationSkipSourcePermissionErrors :: 2
-FileOperationDoNotMoveAcrossVolumes     :: 4
-FileOperationSkipPreflight              :: 8
-OperationStageUndefined                 :: 0
-OperationStagePreflighting              :: 1
-OperationStageRunning                   :: 2
-OperationStageComplete                  :: 3
-AliasInfoNone                           :: 0
-AliasInfoVolumeCreateDate               :: 1
-AliasInfoTargetCreateDate               :: 2
-AliasInfoFinderInfo                     :: 4
-AliasInfoIsDirectory                    :: 8
-AliasInfoIDs                            :: 16
-AliasInfoFSInfo                         :: 32
-AliasInfoVolumeFlags                    :: 64
-kTextEncodingsFolderType                :: 3295962488
-KMountVersion                           :: 1179863841
-kTextServiceClass                       :: 1953724003
-kTextEncodingsFolderIcon                :: -999004808
-EventStreamCreateFlagNone               :: 0
-EventStreamCreateFlagUseCFTypes         :: 1
-EventStreamCreateFlagNoDefer            :: 2
-EventStreamCreateFlagWatchRoot          :: 4
-EventStreamCreateFlagIgnoreSelf         :: 8
-EventStreamCreateFlagFileEvents         :: 16
-EventStreamCreateFlagMarkSelf           :: 32
-EventStreamCreateFlagUseExtendedData    :: 64
-EventStreamCreateFlagFullHistory        :: 128
-EventStreamCreateWithDocID              :: 256
-EventStreamEventFlagNone                :: 0
-EventStreamEventFlagMustScanSubDirs     :: 1
-EventStreamEventFlagUserDropped         :: 2
-EventStreamEventFlagKernelDropped       :: 4
-EventStreamEventFlagEventIdsWrapped     :: 8
-EventStreamEventFlagHistoryDone         :: 16
-EventStreamEventFlagRootChanged         :: 32
-EventStreamEventFlagMount               :: 64
-EventStreamEventFlagUnmount             :: 128
-EventStreamEventFlagItemCreated         :: 256
-EventStreamEventFlagItemRemoved         :: 512
-EventStreamEventFlagItemInodeMetaMod    :: 1024
-EventStreamEventFlagItemRenamed         :: 2048
-EventStreamEventFlagItemModified        :: 4096
-EventStreamEventFlagItemFinderInfoMod   :: 8192
-EventStreamEventFlagItemChangeOwner     :: 16384
-EventStreamEventFlagItemXattrMod        :: 32768
-EventStreamEventFlagItemIsFile          :: 65536
-EventStreamEventFlagItemIsDir           :: 131072
-EventStreamEventFlagItemIsSymlink       :: 262144
-EventStreamEventFlagOwnEvent            :: 524288
-EventStreamEventFlagItemIsHardlink      :: 1048576
-EventStreamEventFlagItemIsLastHardlink  :: 2097152
-EventStreamEventFlagItemCloned          :: 4194304
-EventStreamEventIdSinceNow              :: 18446744073709551615
+kTextUnsupportedEncodingErr              :: -8738
+kTextMalformedInputErr                   :: -8739
+kTextUndefinedElementErr                 :: -8740
+kTextFlushDefault                        :: 0
+kTextCenter                              :: 1
+kTextFlushRight                          :: -1
+kTextFlushLeft                           :: -2
+kTextEncodingMacRoman                    :: 0
+kTextEncodingMacJapanese                 :: 1
+kTextEncodingMacChineseTrad              :: 2
+kTextEncodingMacKorean                   :: 3
+kTextEncodingMacArabic                   :: 4
+kTextEncodingMacHebrew                   :: 5
+kTextEncodingMacGreek                    :: 6
+kTextEncodingMacCyrillic                 :: 7
+kTextEncodingMacDevanagari               :: 9
+kTextEncodingMacGurmukhi                 :: 10
+kTextEncodingMacGujarati                 :: 11
+kTextEncodingMacOriya                    :: 12
+kTextEncodingMacBengali                  :: 13
+kTextEncodingMacTamil                    :: 14
+kTextEncodingMacTelugu                   :: 15
+kTextEncodingMacKannada                  :: 16
+kTextEncodingMacMalayalam                :: 17
+kTextEncodingMacSinhalese                :: 18
+kTextEncodingMacBurmese                  :: 19
+kTextEncodingMacKhmer                    :: 20
+kTextEncodingMacThai                     :: 21
+kTextEncodingMacLaotian                  :: 22
+kTextEncodingMacGeorgian                 :: 23
+kTextEncodingMacArmenian                 :: 24
+kTextEncodingMacChineseSimp              :: 25
+kTextEncodingMacTibetan                  :: 26
+kTextEncodingMacMongolian                :: 27
+kTextEncodingMacEthiopic                 :: 28
+kTextEncodingMacCentralEurRoman          :: 29
+kTextEncodingMacVietnamese               :: 30
+kTextEncodingMacExtArabic                :: 31
+kTextEncodingMacSymbol                   :: 33
+kTextEncodingMacDingbats                 :: 34
+kTextEncodingMacTurkish                  :: 35
+kTextEncodingMacCroatian                 :: 36
+kTextEncodingMacIcelandic                :: 37
+kTextEncodingMacRomanian                 :: 38
+kTextEncodingMacCeltic                   :: 39
+kTextEncodingMacGaelic                   :: 40
+kTextEncodingMacKeyboardGlyphs           :: 41
+kTextEncodingMacTradChinese              :: 2
+kTextEncodingMacRSymbol                  :: 8
+kTextEncodingMacSimpChinese              :: 25
+kTextEncodingMacGeez                     :: 28
+kTextEncodingMacEastEurRoman             :: 29
+kTextEncodingMacUninterp                 :: 32
+kTextEncodingMacUnicode                  :: 126
+kTextEncodingMacFarsi                    :: 140
+kTextEncodingMacUkrainian                :: 152
+kTextEncodingMacInuit                    :: 236
+kTextEncodingMacVT100                    :: 252
+kTextEncodingMacHFS                      :: 255
+kTextEncodingUnicodeDefault              :: 256
+kTextEncodingUnicodeV1_1                 :: 257
+kTextEncodingISO10646_1993               :: 257
+kTextEncodingUnicodeV2_0                 :: 259
+kTextEncodingUnicodeV2_1                 :: 259
+kTextEncodingUnicodeV3_0                 :: 260
+kTextEncodingUnicodeV3_1                 :: 261
+kTextEncodingUnicodeV3_2                 :: 262
+kTextEncodingUnicodeV4_0                 :: 264
+kTextEncodingUnicodeV5_0                 :: 266
+kTextEncodingUnicodeV5_1                 :: 267
+kTextEncodingUnicodeV6_0                 :: 269
+kTextEncodingUnicodeV6_1                 :: 270
+kTextEncodingUnicodeV6_3                 :: 272
+kTextEncodingUnicodeV7_0                 :: 273
+kTextEncodingUnicodeV8_0                 :: 274
+kTextEncodingUnicodeV9_0                 :: 275
+kTextEncodingUnicodeV10_0                :: 276
+kTextEncodingUnicodeV11_0                :: 277
+kTextEncodingUnicodeV12_1                :: 278
+kTextEncodingUnicodeV13_0                :: 279
+kTextEncodingUnicodeV14_0                :: 280
+kTextEncodingUnicodeV15_0                :: 281
+kTextEncodingUnicodeV15_1                :: 282
+kTextEncodingISOLatin1                   :: 513
+kTextEncodingISOLatin2                   :: 514
+kTextEncodingISOLatin3                   :: 515
+kTextEncodingISOLatin4                   :: 516
+kTextEncodingISOLatinCyrillic            :: 517
+kTextEncodingISOLatinArabic              :: 518
+kTextEncodingISOLatinGreek               :: 519
+kTextEncodingISOLatinHebrew              :: 520
+kTextEncodingISOLatin5                   :: 521
+kTextEncodingISOLatin6                   :: 522
+kTextEncodingISOLatin7                   :: 525
+kTextEncodingISOLatin8                   :: 526
+kTextEncodingISOLatin9                   :: 527
+kTextEncodingISOLatin10                  :: 528
+kTextEncodingDOSLatinUS                  :: 1024
+kTextEncodingDOSGreek                    :: 1029
+kTextEncodingDOSBalticRim                :: 1030
+kTextEncodingDOSLatin1                   :: 1040
+kTextEncodingDOSGreek1                   :: 1041
+kTextEncodingDOSLatin2                   :: 1042
+kTextEncodingDOSCyrillic                 :: 1043
+kTextEncodingDOSTurkish                  :: 1044
+kTextEncodingDOSPortuguese               :: 1045
+kTextEncodingDOSIcelandic                :: 1046
+kTextEncodingDOSHebrew                   :: 1047
+kTextEncodingDOSCanadianFrench           :: 1048
+kTextEncodingDOSArabic                   :: 1049
+kTextEncodingDOSNordic                   :: 1050
+kTextEncodingDOSRussian                  :: 1051
+kTextEncodingDOSGreek2                   :: 1052
+kTextEncodingDOSThai                     :: 1053
+kTextEncodingDOSJapanese                 :: 1056
+kTextEncodingDOSChineseSimplif           :: 1057
+kTextEncodingDOSKorean                   :: 1058
+kTextEncodingDOSChineseTrad              :: 1059
+kTextEncodingWindowsLatin1               :: 1280
+kTextEncodingWindowsANSI                 :: 1280
+kTextEncodingWindowsLatin2               :: 1281
+kTextEncodingWindowsCyrillic             :: 1282
+kTextEncodingWindowsGreek                :: 1283
+kTextEncodingWindowsLatin5               :: 1284
+kTextEncodingWindowsHebrew               :: 1285
+kTextEncodingWindowsArabic               :: 1286
+kTextEncodingWindowsBalticRim            :: 1287
+kTextEncodingWindowsVietnamese           :: 1288
+kTextEncodingWindowsKoreanJohab          :: 1296
+kTextEncodingUS_ASCII                    :: 1536
+kTextEncodingANSEL                       :: 1537
+kTextEncodingJIS_X0201_76                :: 1568
+kTextEncodingJIS_X0208_83                :: 1569
+kTextEncodingJIS_X0208_90                :: 1570
+kTextEncodingJIS_X0212_90                :: 1571
+kTextEncodingJIS_C6226_78                :: 1572
+kTextEncodingShiftJIS_X0213              :: 1576
+kTextEncodingJIS_X0213_MenKuTen          :: 1577
+kTextEncodingGB_2312_80                  :: 1584
+kTextEncodingGBK_95                      :: 1585
+kTextEncodingGB_18030_2000               :: 1586
+kTextEncodingGB_18030_2005               :: 1586
+kTextEncodingKSC_5601_87                 :: 1600
+kTextEncodingKSC_5601_92_Johab           :: 1601
+kTextEncodingCNS_11643_92_P1             :: 1617
+kTextEncodingCNS_11643_92_P2             :: 1618
+kTextEncodingCNS_11643_92_P3             :: 1619
+kTextEncodingISO_2022_JP                 :: 2080
+kTextEncodingISO_2022_JP_2               :: 2081
+kTextEncodingISO_2022_JP_1               :: 2082
+kTextEncodingISO_2022_JP_3               :: 2083
+kTextEncodingISO_2022_CN                 :: 2096
+kTextEncodingISO_2022_CN_EXT             :: 2097
+kTextEncodingISO_2022_KR                 :: 2112
+kTextEncodingEUC_JP                      :: 2336
+kTextEncodingEUC_CN                      :: 2352
+kTextEncodingEUC_TW                      :: 2353
+kTextEncodingEUC_KR                      :: 2368
+kTextEncodingShiftJIS                    :: 2561
+kTextEncodingKOI8_R                      :: 2562
+kTextEncodingBig5                        :: 2563
+kTextEncodingMacRomanLatin1              :: 2564
+kTextEncodingHZ_GB_2312                  :: 2565
+kTextEncodingBig5_HKSCS_1999             :: 2566
+kTextEncodingVISCII                      :: 2567
+kTextEncodingKOI8_U                      :: 2568
+kTextEncodingBig5_E                      :: 2569
+kTextEncodingNextStepLatin               :: 2817
+kTextEncodingNextStepJapanese            :: 2818
+kTextEncodingEBCDIC_LatinCore            :: 3073
+kTextEncodingEBCDIC_CP037                :: 3074
+kTextEncodingMultiRun                    :: 4095
+kTextEncodingUnknown                     :: 65535
+kTextEncodingEBCDIC_US                   :: 3073
+kTextEncodingDefaultVariant              :: 0
+kTextEncodingShiftJIS_X0213_00           :: 1576
+kTextEncodingDefaultFormat               :: 0
+kTextEncodingFullName                    :: 0
+kTextEncodingBaseName                    :: 1
+kTextEncodingVariantName                 :: 2
+kTextEncodingFormatName                  :: 3
+kTextScriptDontCare                      :: -128
+kTextLanguageDontCare                    :: -128
+kTextRegionDontCare                      :: -128
+AllowConcurrentAsyncIOBit                :: 3
+AllowConcurrentAsyncIOMask               :: 8
+PleaseCacheBit                           :: 4
+PleaseCacheMask                          :: 16
+NoCacheBit                               :: 5
+NoCacheMask                              :: 32
+RdVerifyBit                              :: 6
+RdVerifyMask                             :: 64
+ForceReadBit                             :: 6
+ForceReadMask                            :: 64
+NewLineBit                               :: 7
+NewLineMask                              :: 128
+NewLineCharMask                          :: 65280
+InvalidVolumeRefNum                      :: 0
+CatInfoNone                              :: 0
+CatInfoTextEncoding                      :: 1
+CatInfoNodeFlags                         :: 2
+CatInfoVolume                            :: 4
+CatInfoParentDirID                       :: 8
+CatInfoNodeID                            :: 16
+CatInfoCreateDate                        :: 32
+CatInfoContentMod                        :: 64
+CatInfoAttrMod                           :: 128
+CatInfoAccessDate                        :: 256
+CatInfoBackupDate                        :: 512
+CatInfoPermissions                       :: 1024
+CatInfoFinderInfo                        :: 2048
+CatInfoFinderXInfo                       :: 4096
+CatInfoValence                           :: 8192
+CatInfoDataSizes                         :: 16384
+CatInfoRsrcSizes                         :: 32768
+CatInfoSharingFlags                      :: 65536
+CatInfoUserPrivs                         :: 131072
+CatInfoUserAccess                        :: 524288
+CatInfoSetOwnership                      :: 1048576
+CatInfoFSFileSecurityRef                 :: 4194304
+CatInfoAllDates                          :: 992
+CatInfoGettableInfo                      :: 262143
+CatInfoSettableInfo                      :: 8163
+CatInfoReserved                          :: -262144
+NodeLockedBit                            :: 0
+NodeLockedMask                           :: 1
+NodeResOpenBit                           :: 2
+NodeResOpenMask                          :: 4
+NodeDataOpenBit                          :: 3
+NodeDataOpenMask                         :: 8
+NodeIsDirectoryBit                       :: 4
+NodeIsDirectoryMask                      :: 16
+NodeCopyProtectBit                       :: 6
+NodeCopyProtectMask                      :: 64
+NodeForkOpenBit                          :: 7
+NodeForkOpenMask                         :: 128
+NodeHardLinkBit                          :: 8
+NodeHardLinkMask                         :: 256
+NodeInSharedBit                          :: 2
+NodeInSharedMask                         :: 4
+NodeIsMountedBit                         :: 3
+NodeIsMountedMask                        :: 8
+NodeIsSharePointBit                      :: 5
+NodeIsSharePointMask                     :: 32
+IterateFlat                              :: 0
+IterateSubtree                           :: 1
+IterateDelete                            :: 2
+IterateReserved                          :: -4
+AllocDefaultFlags                        :: 0
+AllocAllOrNothingMask                    :: 1
+AllocContiguousMask                      :: 2
+AllocNoRoundUpMask                       :: 4
+AllocReservedMask                        :: 65528
+VolInfoNone                              :: 0
+VolInfoCreateDate                        :: 1
+VolInfoModDate                           :: 2
+VolInfoBackupDate                        :: 4
+VolInfoCheckedDate                       :: 8
+VolInfoFileCount                         :: 16
+VolInfoDirCount                          :: 32
+VolInfoSizes                             :: 64
+VolInfoBlocks                            :: 128
+VolInfoNextAlloc                         :: 256
+VolInfoRsrcClump                         :: 512
+VolInfoDataClump                         :: 1024
+VolInfoNextID                            :: 2048
+VolInfoFinderInfo                        :: 4096
+VolInfoFlags                             :: 8192
+VolInfoFSInfo                            :: 16384
+VolInfoDriveInfo                         :: 32768
+VolInfoGettableInfo                      :: 65535
+VolInfoSettableInfo                      :: 12292
+VolFlagDefaultVolumeBit                  :: 5
+VolFlagDefaultVolumeMask                 :: 32
+VolFlagFilesOpenBit                      :: 6
+VolFlagFilesOpenMask                     :: 64
+VolFlagHardwareLockedBit                 :: 7
+VolFlagHardwareLockedMask                :: 128
+VolFlagJournalingActiveBit               :: 14
+VolFlagJournalingActiveMask              :: 16384
+VolFlagSoftwareLockedBit                 :: 15
+VolFlagSoftwareLockedMask                :: 32768
+ReplaceObjectDefaultOptions              :: 0
+ReplaceObjectReplaceMetadata             :: 1
+ReplaceObjectSaveOriginalAsABackup       :: 2
+ReplaceObjectReplacePermissionInfo       :: 4
+ReplaceObjectPreservePermissionInfo      :: 8
+ReplaceObjectDoNotCheckObjectWriteAccess :: 16
+PathMakeRefDefaultOptions                :: 0
+PathMakeRefDoNotFollowLeafSymlink        :: 1
+MountServerMarkDoNotDisplay              :: 1
+MountServerMountOnMountDir               :: 4
+MountServerSuppressConnectionUI          :: 64
+MountServerMountWithoutNotification      :: 2
+EjectVolumeForceEject                    :: 1
+UnmountVolumeForceUnmount                :: 1
+FileOperationDefaultOptions              :: 0
+FileOperationOverwrite                   :: 1
+FileOperationSkipSourcePermissionErrors  :: 2
+FileOperationDoNotMoveAcrossVolumes      :: 4
+FileOperationSkipPreflight               :: 8
+OperationStageUndefined                  :: 0
+OperationStagePreflighting               :: 1
+OperationStageRunning                    :: 2
+OperationStageComplete                   :: 3
+AliasInfoNone                            :: 0
+AliasInfoVolumeCreateDate                :: 1
+AliasInfoTargetCreateDate                :: 2
+AliasInfoFinderInfo                      :: 4
+AliasInfoIsDirectory                     :: 8
+AliasInfoIDs                             :: 16
+AliasInfoFSInfo                          :: 32
+AliasInfoVolumeFlags                     :: 64
+kTextEncodingsFolderType                 :: 3295962488
+KMountVersion                            :: 1179863841
+kTextServiceClass                        :: 1953724003
+kTextEncodingsFolderIcon                 :: -999004808
+EventStreamCreateFlagNone                :: 0
+EventStreamCreateFlagUseCFTypes          :: 1
+EventStreamCreateFlagNoDefer             :: 2
+EventStreamCreateFlagWatchRoot           :: 4
+EventStreamCreateFlagIgnoreSelf          :: 8
+EventStreamCreateFlagFileEvents          :: 16
+EventStreamCreateFlagMarkSelf            :: 32
+EventStreamCreateFlagUseExtendedData     :: 64
+EventStreamCreateFlagFullHistory         :: 128
+EventStreamCreateWithDocID               :: 256
+EventStreamEventFlagNone                 :: 0
+EventStreamEventFlagMustScanSubDirs      :: 1
+EventStreamEventFlagUserDropped          :: 2
+EventStreamEventFlagKernelDropped        :: 4
+EventStreamEventFlagEventIdsWrapped      :: 8
+EventStreamEventFlagHistoryDone          :: 16
+EventStreamEventFlagRootChanged          :: 32
+EventStreamEventFlagMount                :: 64
+EventStreamEventFlagUnmount              :: 128
+EventStreamEventFlagItemCreated          :: 256
+EventStreamEventFlagItemRemoved          :: 512
+EventStreamEventFlagItemInodeMetaMod     :: 1024
+EventStreamEventFlagItemRenamed          :: 2048
+EventStreamEventFlagItemModified         :: 4096
+EventStreamEventFlagItemFinderInfoMod    :: 8192
+EventStreamEventFlagItemChangeOwner      :: 16384
+EventStreamEventFlagItemXattrMod         :: 32768
+EventStreamEventFlagItemIsFile           :: 65536
+EventStreamEventFlagItemIsDir            :: 131072
+EventStreamEventFlagItemIsSymlink        :: 262144
+EventStreamEventFlagOwnEvent             :: 524288
+EventStreamEventFlagItemIsHardlink       :: 1048576
+EventStreamEventFlagItemIsLastHardlink   :: 2097152
+EventStreamEventFlagItemCloned           :: 4194304
+EventStreamEventIdSinceNow               :: 18446744073709551615
 
 foreign lib {
     @(link_name="kFSOperationTotalBytesKey") OperationTotalBytesKey: CF.StringRef
@@ -591,25 +594,25 @@ foreign lib {
     GetAsyncMountStatus :: proc(volumeOp: VolumeOperation, status: ^MountStatus, volumeOpStatus: ^CF.OSStatus, mountedVolumeRefNum: ^VolumeRefNum, clientData: ^rawptr) -> CF.OSStatus ---
 
     @(link_name="FSUnmountVolumeSync")
-    UnmountVolumeSync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, dissenter: ^CF.pid_t) -> CF.OSStatus ---
+    UnmountVolumeSync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, dissenter: ^libc.pid_t) -> CF.OSStatus ---
 
     @(link_name="FSUnmountVolumeAsync")
     UnmountVolumeAsync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, volumeOp: VolumeOperation, clientData: rawptr, callback: VolumeUnmountUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSGetAsyncUnmountStatus")
-    GetAsyncUnmountStatus :: proc(volumeOp: VolumeOperation, status: ^UnmountStatus, volumeOpStatus: ^CF.OSStatus, volumeRefNum: ^VolumeRefNum, dissenter: ^CF.pid_t, clientData: ^rawptr) -> CF.OSStatus ---
+    GetAsyncUnmountStatus :: proc(volumeOp: VolumeOperation, status: ^UnmountStatus, volumeOpStatus: ^CF.OSStatus, volumeRefNum: ^VolumeRefNum, dissenter: ^libc.pid_t, clientData: ^rawptr) -> CF.OSStatus ---
 
     @(link_name="FSCancelVolumeOperation")
     CancelVolumeOperation :: proc(volumeOp: VolumeOperation) -> CF.OSStatus ---
 
     @(link_name="FSEjectVolumeSync")
-    EjectVolumeSync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, dissenter: ^CF.pid_t) -> CF.OSStatus ---
+    EjectVolumeSync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, dissenter: ^libc.pid_t) -> CF.OSStatus ---
 
     @(link_name="FSEjectVolumeAsync")
     EjectVolumeAsync :: proc(vRefNum: VolumeRefNum, flags: CF.OptionBits, volumeOp: VolumeOperation, clientData: rawptr, callback: VolumeEjectUPP, runloop: CF.RunLoopRef, runloopMode: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="FSGetAsyncEjectStatus")
-    GetAsyncEjectStatus :: proc(volumeOp: VolumeOperation, status: ^EjectStatus, volumeOpStatus: ^CF.OSStatus, volumeRefNum: ^VolumeRefNum, dissenter: ^CF.pid_t, clientData: ^rawptr) -> CF.OSStatus ---
+    GetAsyncEjectStatus :: proc(volumeOp: VolumeOperation, status: ^EjectStatus, volumeOpStatus: ^CF.OSStatus, volumeRefNum: ^VolumeRefNum, dissenter: ^libc.pid_t, clientData: ^rawptr) -> CF.OSStatus ---
 
     @(link_name="FSCopyDiskIDForVolume")
     CopyDiskIDForVolume :: proc(vRefNum: VolumeRefNum, diskID: ^CF.StringRef) -> CF.OSStatus ---
@@ -714,10 +717,10 @@ foreign lib {
     FileSecuritySetGroupUUID :: proc(fileSec: FileSecurityRef, group: ^CF.UUIDBytes) -> CF.OSStatus ---
 
     @(link_name="FSFileSecurityCopyAccessControlList")
-    FileSecurityCopyAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: ^CF.acl_t) -> CF.OSStatus ---
+    FileSecurityCopyAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: ^libc.acl_t) -> CF.OSStatus ---
 
     @(link_name="FSFileSecuritySetAccessControlList")
-    FileSecuritySetAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: CF.acl_t) -> CF.OSStatus ---
+    FileSecuritySetAccessControlList :: proc(fileSec: FileSecurityRef, accessControlList: libc.acl_t) -> CF.OSStatus ---
 
     @(link_name="FSFileSecurityGetOwner")
     FileSecurityGetOwner :: proc(fileSec: FileSecurityRef, owner: ^CF.UInt32) -> CF.OSStatus ---
@@ -828,13 +831,13 @@ foreign lib {
     EventStreamCreate :: proc(allocator: CF.AllocatorRef, callback: EventStreamCallback, _context: ^EventStreamContext, pathsToWatch: CF.ArrayRef, sinceWhen: EventStreamEventId, latency: CF.TimeInterval, flags: EventStreamCreateFlags) -> EventStreamRef ---
 
     @(link_name="FSEventStreamCreateRelativeToDevice")
-    EventStreamCreateRelativeToDevice :: proc(allocator: CF.AllocatorRef, callback: EventStreamCallback, _context: ^EventStreamContext, deviceToWatch: CF.dev_t, pathsToWatchRelativeToDevice: CF.ArrayRef, sinceWhen: EventStreamEventId, latency: CF.TimeInterval, flags: EventStreamCreateFlags) -> EventStreamRef ---
+    EventStreamCreateRelativeToDevice :: proc(allocator: CF.AllocatorRef, callback: EventStreamCallback, _context: ^EventStreamContext, deviceToWatch: libc.dev_t, pathsToWatchRelativeToDevice: CF.ArrayRef, sinceWhen: EventStreamEventId, latency: CF.TimeInterval, flags: EventStreamCreateFlags) -> EventStreamRef ---
 
     @(link_name="FSEventStreamGetLatestEventId")
     EventStreamGetLatestEventId :: proc(streamRef: ConstFSEventStreamRef) -> EventStreamEventId ---
 
     @(link_name="FSEventStreamGetDeviceBeingWatched")
-    EventStreamGetDeviceBeingWatched :: proc(streamRef: ConstFSEventStreamRef) -> CF.dev_t ---
+    EventStreamGetDeviceBeingWatched :: proc(streamRef: ConstFSEventStreamRef) -> libc.dev_t ---
 
     @(link_name="FSEventStreamCopyPathsBeingWatched")
     EventStreamCopyPathsBeingWatched :: proc(streamRef: ConstFSEventStreamRef) -> CF.ArrayRef ---
@@ -843,13 +846,13 @@ foreign lib {
     EventsGetCurrentEventId :: proc() -> EventStreamEventId ---
 
     @(link_name="FSEventsCopyUUIDForDevice")
-    EventsCopyUUIDForDevice :: proc(dev: CF.dev_t) -> CF.UUIDRef ---
+    EventsCopyUUIDForDevice :: proc(dev: libc.dev_t) -> CF.UUIDRef ---
 
     @(link_name="FSEventsGetLastEventIdForDeviceBeforeTime")
-    EventsGetLastEventIdForDeviceBeforeTime :: proc(dev: CF.dev_t, time: CF.CFAbsoluteTime) -> EventStreamEventId ---
+    EventsGetLastEventIdForDeviceBeforeTime :: proc(dev: libc.dev_t, time: CF.CFAbsoluteTime) -> EventStreamEventId ---
 
     @(link_name="FSEventsPurgeEventsForDeviceUpToEventId")
-    EventsPurgeEventsForDeviceUpToEventId :: proc(dev: CF.dev_t, eventId: EventStreamEventId) -> CF.Boolean ---
+    EventsPurgeEventsForDeviceUpToEventId :: proc(dev: libc.dev_t, eventId: EventStreamEventId) -> CF.Boolean ---
 
     @(link_name="FSEventStreamRetain")
     EventStreamRetain :: proc(streamRef: EventStreamRef) ---
@@ -1025,10 +1028,10 @@ VolumeOperation :: distinct ^OpaqueFSVolumeOperation
 VolumeMountProcPtr :: proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, mountedVolumeRefNum: VolumeRefNum)
 
 /// FSVolumeUnmountProcPtr
-VolumeUnmountProcPtr :: proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: CF.pid_t)
+VolumeUnmountProcPtr :: proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: libc.pid_t)
 
 /// FSVolumeEjectProcPtr
-VolumeEjectProcPtr :: proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: CF.pid_t)
+VolumeEjectProcPtr :: proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: libc.pid_t)
 
 /// FSVolumeMountUPP
 VolumeMountUPP :: distinct VolumeMountProcPtr

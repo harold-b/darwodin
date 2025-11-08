@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import Sec "../../../Security"
@@ -27,7 +28,7 @@ VTable :: struct {
     super: NSObject.VTable,
     expressionWithFormat_argumentArray: proc(expressionFormat: ^NS.String, arguments: ^NS.Array) -> ^NS.Expression,
     expressionWithFormat_: proc(expressionFormat: ^NS.String) -> ^NS.Expression,
-    expressionWithFormat_arguments: proc(expressionFormat: ^NS.String, argList: cffi.va_list) -> ^NS.Expression,
+    expressionWithFormat_arguments: proc(expressionFormat: ^NS.String, argList: ^cffi.va_list) -> ^NS.Expression,
     expressionForConstantValue: proc(obj: id) -> ^NS.Expression,
     expressionForEvaluatedObject: proc() -> ^NS.Expression,
     expressionForVariable: proc(string: ^NS.String) -> ^NS.Expression,
@@ -90,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("expressionWithFormat:"), auto_cast expressionWithFormat_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.expressionWithFormat_arguments != nil {
-        expressionWithFormat_arguments :: proc "c" (self: Class, _: SEL, expressionFormat: ^NS.String, argList: cffi.va_list) -> ^NS.Expression {
+        expressionWithFormat_arguments :: proc "c" (self: Class, _: SEL, expressionFormat: ^NS.String, argList: ^cffi.va_list) -> ^NS.Expression {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

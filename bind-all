@@ -10,10 +10,7 @@ while true; do
     -ios)
       use_ios=1
     ;;
-    -l)
-      lite=1
-    ;;
-    -lite)
+    -l|-lite)
       lite=1
     ;;
   esac
@@ -22,22 +19,21 @@ done
 
 source ./config
 
-frameworks=(
-    ${darwodin_base_frameworks[@]}
-)
-
-
-ios_args=()
-if [[ ${use_ios} -eq 1 ]]; then
-    ios_args+=(-ios)
-fi
-# frameworks+=(${darwodin_ios_frameworks[@]})
-# frameworks+=(${darwodin_macos_frameworks[@]})
 
 if [[ ${lite} -eq 1 ]]; then
     lite_arg="-l"
 fi
 
+
+ios_args=()
+if [[ ${use_ios} -eq 1 ]]; then
+  ios_args+=(-ios)
+  frameworks=($(darwodin_get_ios_frameworks))
+else
+  frameworks=($(darwodin_get_macos_frameworks))
+fi
+
+# Bind Frameworks
 ./bind ${frameworks[@]} ${lite_arg} ${ios_args[@]}
 
 
@@ -46,15 +42,14 @@ out_dir=$(darwodin_get_output_folder "${use_ios}" "${lite}")
 rsync -rah ./ObjectiveC "$out_dir/darwodin/"
 
 
+
 # Create dummy packaged for frameworks not in the target sdk
 excluded_frameworks=
 
 if [[ ${use_ios} -ne 1 ]]; then
     excluded_frameworks=(${darwodin_ios_frameworks[@]})
-    excluded_frameworks+=(UIKit)
 else
     excluded_frameworks=(${darwodin_macos_frameworks[@]})
-    excluded_frameworks+=(AppKit)
 fi
 
 for f in ${excluded_frameworks[@]}; do

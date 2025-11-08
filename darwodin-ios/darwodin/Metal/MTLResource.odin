@@ -4,11 +4,12 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import UI "../UIKit"
 
 
 
@@ -32,7 +33,7 @@ foreign lib {
     Resource_isAliasable :: proc(self: ^Resource) -> bool ---
 
     @(objc_type=Resource, objc_selector="setOwnerWithIdentity:", objc_name="setOwnerWithIdentity")
-    Resource_setOwnerWithIdentity :: proc(self: ^Resource, task_id_token: CF.task_id_token_t) -> CF.kern_return_t ---
+    Resource_setOwnerWithIdentity :: proc(self: ^Resource, task_id_token: mach.task_id_token_t) -> libc.kern_return_t ---
 
     @(objc_type=Resource, objc_selector="label", objc_name="label")
     Resource_label :: proc(self: ^Resource) -> ^NS.String ---

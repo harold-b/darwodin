@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import Sec "../../../Security"
@@ -27,7 +28,7 @@ VTable :: struct {
     super: NSObject.VTable,
     predicateWithFormat_argumentArray: proc(predicateFormat: ^NS.String, arguments: ^NS.Array) -> ^NS.Predicate,
     predicateWithFormat_: proc(predicateFormat: ^NS.String) -> ^NS.Predicate,
-    predicateWithFormat_arguments: proc(predicateFormat: ^NS.String, argList: cffi.va_list) -> ^NS.Predicate,
+    predicateWithFormat_arguments: proc(predicateFormat: ^NS.String, argList: ^cffi.va_list) -> ^NS.Predicate,
     predicateFromMetadataQueryString: proc(queryString: ^NS.String) -> ^NS.Predicate,
     predicateWithValue: proc(value: bool) -> ^NS.Predicate,
     predicateWithBlock: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^NS.Dictionary) -> bool)) -> ^NS.Predicate,
@@ -66,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("predicateWithFormat:"), auto_cast predicateWithFormat_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.predicateWithFormat_arguments != nil {
-        predicateWithFormat_arguments :: proc "c" (self: Class, _: SEL, predicateFormat: ^NS.String, argList: cffi.va_list) -> ^NS.Predicate {
+        predicateWithFormat_arguments :: proc "c" (self: Class, _: SEL, predicateFormat: ^NS.String, argList: ^cffi.va_list) -> ^NS.Predicate {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

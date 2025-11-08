@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import Sec "../../../Security"
@@ -34,7 +35,7 @@ VTable :: struct {
     callStackReturnAddresses: proc(self: ^NS.Exception) -> ^NS.Array,
     callStackSymbols: proc(self: ^NS.Exception) -> ^NS.Array,
     raise_format: proc(name: ^NS.String, format: ^NS.String),
-    raise_format_arguments: proc(name: ^NS.String, format: ^NS.String, argList: cffi.va_list),
+    raise_format_arguments: proc(name: ^NS.String, format: ^NS.String, argList: ^cffi.va_list),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -135,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("raise:format:"), auto_cast raise_format, "v#:@@") do panic("Failed to register objC method.")
     }
     if vt.raise_format_arguments != nil {
-        raise_format_arguments :: proc "c" (self: Class, _: SEL, name: ^NS.String, format: ^NS.String, argList: cffi.va_list) {
+        raise_format_arguments :: proc "c" (self: Class, _: SEL, name: ^NS.String, format: ^NS.String, argList: ^cffi.va_list) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

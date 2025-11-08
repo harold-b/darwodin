@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
@@ -49,7 +50,7 @@ foreign lib {
     Exception_raise_format :: proc(name: ^String, format: ^String) ---
 
     @(objc_type=Exception, objc_selector="raise:format:arguments:", objc_name="raise_format_arguments", objc_is_class_method=true)
-    Exception_raise_format_arguments :: proc(name: ^String, format: ^String, argList: cffi.va_list) ---
+    Exception_raise_format_arguments :: proc(name: ^String, format: ^String, argList: ^cffi.va_list) ---
 }
 
 @(objc_type=Exception, objc_name="raise")

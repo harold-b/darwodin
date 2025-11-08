@@ -7,15 +7,14 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
-import UI "../UIKit"
 
 
 
 ///
 /// GCEventViewController
 ///
-@(objc_class="GCEventViewController", objc_superclass=UI.ViewController)
-EventViewController :: struct { using _: UI.ViewController, }
+@(objc_class="GCEventViewController", objc_superclass=UIViewController)
+EventViewController :: struct { using _: UIViewController, }
 
 @(default_calling_convention="c")
 foreign lib {

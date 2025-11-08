@@ -7,7 +7,6 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
-import UI "../UIKit"
 
 
 
@@ -16,7 +15,7 @@ import UI "../UIKit"
 ///
 @(objc_class="GCEventInteraction", objc_superclass=NS.Object)
 EventInteraction :: struct { using _: NS.Object, 
-    using _: UI.Interaction,
+    using _: UIInteraction,
 }
 
 @(default_calling_convention="c")

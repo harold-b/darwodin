@@ -7,7 +7,6 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
-import UI "../UIKit"
 
 
 

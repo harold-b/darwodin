@@ -9,9 +9,11 @@ darwodin_base_frameworks=(
   IOKit
   DiskArbitration
   Security
+  FSEvents
   Foundation
   QuartzCore
   AppKit
+  UIKit
   Metal
   ModelIO
   MetalKit
@@ -24,18 +26,66 @@ darwodin_base_frameworks=(
 )
 
 darwodin_macos_frameworks=(
-  # AppKit
+  AppKit
   FSEvents
+  DiskArbitration
 )
 
 darwodin_ios_frameworks=(
-  # UIKit
+  UIKit
 )
 
 appkit_dependent_frameworks=(
   GameKit
   MetalKit
 )
+
+
+function darwodin_get_macos_frameworks()
+{
+  local frameworks=()
+  for f in ${darwodin_base_frameworks[@]}; do
+    # If found in iOS frameworks, ignore it
+    local ios_match=""
+    for ios_f in ${darwodin_ios_frameworks[@]}; do
+      if [[ "$f" == "$ios_f" ]]; then
+        ios_match=$ios_f
+        break
+      fi
+    done
+
+    if [[ "$f" == "$ios_match" ]]; then
+      continue
+    fi
+
+    frameworks+=($f)
+  done
+
+  printf "%s\n" "${frameworks[@]}"
+}
+
+function darwodin_get_ios_frameworks()
+{
+  local frameworks=()
+  for f in ${darwodin_base_frameworks[@]}; do
+    # If found in macOS frameworks, ignore it
+    local macos_match=""
+    for macos_f in ${darwodin_macos_frameworks[@]}; do
+      if [[ "$f" == "$macos_f" ]]; then
+        macos_match=$macos_f
+        break
+      fi
+    done
+
+    if [[ "$f" == "$macos_match" ]]; then
+      continue
+    fi
+
+    frameworks+=($f)
+  done
+
+  printf "%s\n" "${frameworks[@]}"
+}
 
 function darwodin_get_header_for_framework()
 {

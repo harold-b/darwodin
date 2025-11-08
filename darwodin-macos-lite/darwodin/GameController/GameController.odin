@@ -7,7 +7,6 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
-import AK "../AppKit"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -27,7 +26,7 @@ IOHIDDeviceRef :: struct {}
 
 
 
-DualSenseAdaptiveTriggerDiscretePositionCount:: 10
+DualSenseAdaptiveTriggerDiscretePositionCount :: 10
 
 foreign lib {
     @(link_name="GCPoint2Zero") Point2Zero: Point2

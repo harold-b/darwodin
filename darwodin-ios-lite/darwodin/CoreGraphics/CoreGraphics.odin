@@ -4,6 +4,8 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
@@ -25,11 +27,11 @@ cl_device_id :: struct {}
 
 
 
-FontIndexMax         :: 65534
-FontIndexInvalid     :: 65535
-GlyphMax             :: 65534
-BitmapByteOrder16Host:: 4096
-BitmapByteOrder32Host:: 8192
+FontIndexMax          :: 65534
+FontIndexInvalid      :: 65535
+GlyphMax              :: 65534
+BitmapByteOrder16Host :: 4096
+BitmapByteOrder32Host :: 8192
 
 foreign lib {
     @(link_name="CGPointZero") PointZero: Point
@@ -278,7 +280,7 @@ foreign lib {
     DataProviderCreateSequential :: proc(info: rawptr, callbacks: ^DataProviderSequentialCallbacks) -> DataProviderRef ---
 
     @(link_name="CGDataProviderCreateDirect")
-    DataProviderCreateDirect :: proc(info: rawptr, size: cffi.longlong, callbacks: ^DataProviderDirectCallbacks) -> DataProviderRef ---
+    DataProviderCreateDirect :: proc(info: rawptr, size: libc.off_t, callbacks: ^DataProviderDirectCallbacks) -> DataProviderRef ---
 
     @(link_name="CGDataProviderCreateWithData")
     DataProviderCreateWithData :: proc(info: rawptr, data: rawptr, size: cffi.size_t, releaseData: DataProviderReleaseDataCallback) -> DataProviderRef ---
@@ -1481,7 +1483,7 @@ foreign lib {
     ColorConversionInfoCreateFromList :: proc(options: CF.DictionaryRef, _0: ColorSpaceRef, _1: ColorConversionInfoTransformType, _2: ColorRenderingIntent, #c_vararg args: ..any) -> ColorConversionInfoRef ---
 
     @(link_name="CGColorConversionInfoCreateFromListWithArguments")
-    ColorConversionInfoCreateFromListWithArguments :: proc(options: CF.DictionaryRef, _0: ColorSpaceRef, _1: ColorConversionInfoTransformType, _2: ColorRenderingIntent, _3: cffi.va_list) -> ColorConversionInfoRef ---
+    ColorConversionInfoCreateFromListWithArguments :: proc(options: CF.DictionaryRef, _0: ColorSpaceRef, _1: ColorConversionInfoTransformType, _2: ColorRenderingIntent, _3: ^cffi.va_list) -> ColorConversionInfoRef ---
 
     @(link_name="CGConvertColorDataWithFormat")
     ConvertColorDataWithFormat :: proc(width: cffi.size_t, height: cffi.size_t, dst_data: rawptr, dst_format: ColorDataFormat, src_data: rawptr, src_format: ColorDataFormat, options: CF.DictionaryRef) -> cffi.bool ---
@@ -1678,7 +1680,7 @@ DataProviderRef :: distinct ^DataProvider
 DataProviderGetBytesCallback :: proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderSkipForwardCallback
-DataProviderSkipForwardCallback :: proc "c" (info: rawptr, count: cffi.longlong) -> cffi.longlong
+DataProviderSkipForwardCallback :: proc "c" (info: rawptr, count: libc.off_t) -> libc.off_t
 
 /// CGDataProviderRewindCallback
 DataProviderRewindCallback :: proc "c" (info: rawptr)
@@ -1687,7 +1689,7 @@ DataProviderRewindCallback :: proc "c" (info: rawptr)
 DataProviderReleaseInfoCallback :: proc "c" (info: rawptr)
 
 /// CGDataProviderGetBytesAtPositionCallback
-DataProviderGetBytesAtPositionCallback :: proc "c" (info: rawptr, buffer: rawptr, pos: cffi.longlong, cnt: cffi.size_t) -> cffi.size_t
+DataProviderGetBytesAtPositionCallback :: proc "c" (info: rawptr, buffer: rawptr, pos: libc.off_t, cnt: cffi.size_t) -> cffi.size_t
 
 /// CGDataProviderReleaseDataCallback
 DataProviderReleaseDataCallback :: proc "c" (info: rawptr, data: rawptr, size: cffi.size_t)

@@ -6,7 +6,6 @@ import cffi "core:c"
 import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
-import AK "../AppKit"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod

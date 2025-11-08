@@ -40,36 +40,36 @@ CTTextAlignment :: distinct cffi.uint8_t
 
 
 
-NSAttachmentCharacter                  :: 65532
-SegmentedControlNoSegment              :: -1
-NSControlCharacterZeroAdvancementAction:: 1
-NSControlCharacterWhitespaceAction     :: 2
-NSControlCharacterHorizontalTabAction  :: 4
-NSControlCharacterLineBreakAction      :: 8
-NSControlCharacterParagraphBreakAction :: 16
-NSControlCharacterContainerBreakAction :: 32
-NSUnderlinePatternSolid                :: 0
-NSUnderlinePatternDot                  :: 256
-NSUnderlinePatternDash                 :: 512
-NSUnderlinePatternDashDot              :: 768
-NSUnderlinePatternDashDotDot           :: 1024
-NSUnderlineByWord                      :: 32768
-LayoutPriorityRequired                 :: 1000.000000
-LayoutPriorityDefaultHigh              :: 750.000000
-LayoutPriorityDragThatCanResizeScene   :: 510.000000
-LayoutPrioritySceneSizeStayPut         :: 500.000000
-LayoutPriorityDragThatCannotResizeScene:: 490.000000
-LayoutPriorityDefaultLow               :: 250.000000
-LayoutPriorityFittingSizeLevel         :: 50.000000
-FocusGroupPriorityIgnored              :: 0
-FocusGroupPriorityPreviouslyFocused    :: 1000
-FocusGroupPriorityPrioritized          :: 2000
-FocusGroupPriorityCurrentlyFocused     :: 9223372036854775807
-TextWritingDirectionNatural            :: -1
-TextWritingDirectionLeftToRight        :: 0
-TextWritingDirectionRightToLeft        :: 1
-StackViewSpacingUseDefault             :: 340282346638528859811704183484516925440.000000
-StackViewSpacingUseSystem              :: 0.000000
+NSAttachmentCharacter                   :: 65532
+SegmentedControlNoSegment               :: -1
+NSControlCharacterZeroAdvancementAction :: 1
+NSControlCharacterWhitespaceAction      :: 2
+NSControlCharacterHorizontalTabAction   :: 4
+NSControlCharacterLineBreakAction       :: 8
+NSControlCharacterParagraphBreakAction  :: 16
+NSControlCharacterContainerBreakAction  :: 32
+NSUnderlinePatternSolid                 :: 0
+NSUnderlinePatternDot                   :: 256
+NSUnderlinePatternDash                  :: 512
+NSUnderlinePatternDashDot               :: 768
+NSUnderlinePatternDashDotDot            :: 1024
+NSUnderlineByWord                       :: 32768
+LayoutPriorityRequired                  :: 1000.000000
+LayoutPriorityDefaultHigh               :: 750.000000
+LayoutPriorityDragThatCanResizeScene    :: 510.000000
+LayoutPrioritySceneSizeStayPut          :: 500.000000
+LayoutPriorityDragThatCannotResizeScene :: 490.000000
+LayoutPriorityDefaultLow                :: 250.000000
+LayoutPriorityFittingSizeLevel          :: 50.000000
+FocusGroupPriorityIgnored               :: 0
+FocusGroupPriorityPreviouslyFocused     :: 1000
+FocusGroupPriorityPrioritized           :: 2000
+FocusGroupPriorityCurrentlyFocused      :: 9223372036854775807
+TextWritingDirectionNatural             :: -1
+TextWritingDirectionLeftToRight         :: 0
+TextWritingDirectionRightToLeft         :: 1
+StackViewSpacingUseDefault              :: 340282346638528859811704183484516925440.000000
+StackViewSpacingUseSystem               :: 0.000000
 
 foreign lib {
     @(link_name="UIAccessibilityTraitNone") AccessibilityTraitNone: AccessibilityTraits

@@ -4,41 +4,57 @@ cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 source ./config
 
-macos_frameworks=(
-    ${darwodin_base_frameworks[@]}
-    ${darwodin_macos_frameworks[@]}
-)
+kind="all"
 
-ios_frameworks=(
-    ${darwodin_base_frameworks[@]}
-    ${darwodin_ios_frameworks[@]}
-)
-
-# MacOS
-echo "=== Generating macOS definitions ==="
-for f in ${macos_frameworks[@]}; do
-
-    # include=$(darwodin_get_header_for_framework $f)
-        
-    flist=($(echo "$f" | tr ',' ' '))
-    for ((i=0; i < ${#flist[@]}; i++ )); do
-        flist[$i]="-f ${flist[$i]}"
-    done
-    ./gen-def ${flist[@]}
+while true; do
+  case $1 in
+    -macos)
+      kind="macos"
+      ;;
+    -ios)
+      kind="ios"
+      ;;
+  esac
+  shift || break
 done
+
+macos_frameworks=($(darwodin_get_macos_frameworks))
+ios_frameworks=($(darwodin_get_ios_frameworks))
+
+
+# macOS
+if [[ "${kind}" == "all" || "${kind}" == "macos" ]]; then
+  echo "=== Generating macOS definitions ==="
+  for f in ${macos_frameworks[@]}; do
+
+      # include=$(darwodin_get_header_for_framework $f)
+
+      flist=($(echo "$f" | tr ',' ' '))
+      for ((i=0; i < ${#flist[@]}; i++ )); do
+          flist[$i]="-f ${flist[$i]}"
+      done
+
+      ./gen-def ${flist[@]}
+  done
+fi
+
+
+if [[ "${kind}" == "all" ]]; then
+  echo ""
+fi
 
 # iOS
-echo ""
-echo ""=== Generating iOS definitions "==="
-for f in ${ios_frameworks[@]}; do
+if [[ "${kind}" == "all" || "${kind}" == "ios" ]]; then
+  echo ""=== Generating iOS definitions "==="
+  for f in ${ios_frameworks[@]}; do
 
-    # include=$(darwodin_get_header_for_framework $f)
+      # include=$(darwodin_get_header_for_framework $f)
 
-    flist=($(echo "$f" | tr ',' ' '))
-    for ((i=0; i < ${#flist[@]}; i++ )); do
-        flist[$i]="-f ${flist[$i]}"
-    done
+      flist=($(echo "$f" | tr ',' ' '))
+      for ((i=0; i < ${#flist[@]}; i++ )); do
+          flist[$i]="-f ${flist[$i]}"
+      done
 
-    ./gen-def -ios ${flist[@]}
-done
-
+      ./gen-def -ios ${flist[@]}
+  done
+fi

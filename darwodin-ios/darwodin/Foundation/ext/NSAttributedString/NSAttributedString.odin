@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../../../ObjectiveC"
+import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import Sec "../../../Security"
@@ -42,11 +43,11 @@ VTable :: struct {
     initWithMarkdown: proc(self: ^NS.AttributedString, markdown: ^NS.Data, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString,
     initWithMarkdownString: proc(self: ^NS.AttributedString, markdownString: ^NS.String, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString,
     initWithFormat_options_locale: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale) -> ^NS.AttributedString,
-    initWithFormat_options_locale_arguments: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, arguments: cffi.va_list) -> ^NS.AttributedString,
+    initWithFormat_options_locale_arguments: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, arguments: ^cffi.va_list) -> ^NS.AttributedString,
     localizedAttributedStringWithFormat_: proc(format: ^NS.AttributedString) -> ^NS.AttributedString,
     localizedAttributedStringWithFormat_options: proc(format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions) -> ^NS.AttributedString,
     initWithFormat_options_locale_context: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary) -> ^NS.AttributedString,
-    initWithFormat_options_locale_context_arguments: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary, arguments: cffi.va_list) -> ^NS.AttributedString,
+    initWithFormat_options_locale_context_arguments: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary, arguments: ^cffi.va_list) -> ^NS.AttributedString,
     localizedAttributedStringWithFormat_context: proc(format: ^NS.AttributedString, _context: ^NS.Dictionary) -> ^NS.AttributedString,
     localizedAttributedStringWithFormat_options_context: proc(format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, _context: ^NS.Dictionary) -> ^NS.AttributedString,
     attributedStringByInflectingString: proc(self: ^NS.AttributedString) -> ^NS.AttributedString,
@@ -230,7 +231,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:"), auto_cast initWithFormat_options_locale, "@@:@L@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_options_locale_arguments != nil {
-        initWithFormat_options_locale_arguments :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, arguments: cffi.va_list) -> ^NS.AttributedString {
+        initWithFormat_options_locale_arguments :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, arguments: ^cffi.va_list) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:context:"), auto_cast initWithFormat_options_locale_context, "@@:@L@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_options_locale_context_arguments != nil {
-        initWithFormat_options_locale_context_arguments :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary, arguments: cffi.va_list) -> ^NS.AttributedString {
+        initWithFormat_options_locale_context_arguments :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary, arguments: ^cffi.va_list) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

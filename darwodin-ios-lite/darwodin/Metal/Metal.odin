@@ -4,11 +4,12 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import UI "../UIKit"
 
 object_getIndexedIvars :: ObjC.object_getIndexedIvars
 class_addMethod        :: ObjC.class_addMethod
@@ -25,8 +26,8 @@ instancetype :: intrinsics.objc_instancetype
 
 
 
-BufferLayoutStrideDynamic:: 18446744073709551615
-AttributeStrideStatic    :: 18446744073709551615
+BufferLayoutStrideDynamic :: 18446744073709551615
+AttributeStrideStatic     :: 18446744073709551615
 
 foreign lib {
     @(link_name="MTLLibraryErrorDomain") LibraryErrorDomain: ^NS.String

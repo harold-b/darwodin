@@ -176,7 +176,6 @@ Odin:
         OS_object:         OS_object
         OS_os_workgroup:   OS_os_workgroup
         Boolean:           Boolean
-        CFAbsoluteTime:    CFAbsoluteTime
         CFStringEncoding:  StringEncoding
 
       # ExternalTypes:
@@ -214,8 +213,7 @@ Odin:
     Transforms:
       - Kind  : RemovePrefix
         Source: kCFStringEncoding
-  
-  
+
   - Type: ^(CF).+
     Transforms:
       - Kind  : RemovePrefix
@@ -232,7 +230,7 @@ Odin:
       Transforms:
       - Kind  : RemoveSuffix
         Source: s
-    - Type: ^(CF).+
+    - Type: ^(CF(?!AbsoluteTime)).+
       Transforms:
         - Kind  : RemovePrefix
           Source: $group0
