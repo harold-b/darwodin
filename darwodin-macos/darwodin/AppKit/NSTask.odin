@@ -1,0 +1,139 @@
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSTask
+///
+@(objc_class="NSTask", objc_superclass=NS.Object)
+Task :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Task, objc_selector="init", objc_name="init")
+    Task_init :: proc(self: ^Task) -> ^Task ---
+
+    @(objc_type=Task, objc_selector="launchAndReturnError:", objc_name="launchAndReturnError")
+    Task_launchAndReturnError :: proc(self: ^Task, error: ^^NS.Error) -> bool ---
+
+    @(objc_type=Task, objc_selector="interrupt", objc_name="interrupt")
+    Task_interrupt :: proc(self: ^Task) ---
+
+    @(objc_type=Task, objc_selector="terminate", objc_name="terminate")
+    Task_terminate :: proc(self: ^Task) ---
+
+    @(objc_type=Task, objc_selector="suspend", objc_name="suspend")
+    Task_suspend :: proc(self: ^Task) -> bool ---
+
+    @(objc_type=Task, objc_selector="resume", objc_name="resume")
+    Task_resume :: proc(self: ^Task) -> bool ---
+
+    @(objc_type=Task, objc_selector="executableURL", objc_name="executableURL")
+    Task_executableURL :: proc(self: ^Task) -> ^NS.URL ---
+
+    @(objc_type=Task, objc_selector="setExecutableURL:", objc_name="setExecutableURL")
+    Task_setExecutableURL :: proc(self: ^Task, executableURL: ^NS.URL) ---
+
+    @(objc_type=Task, objc_selector="arguments", objc_name="arguments")
+    Task_arguments :: proc(self: ^Task) -> ^NS.Array ---
+
+    @(objc_type=Task, objc_selector="setArguments:", objc_name="setArguments")
+    Task_setArguments :: proc(self: ^Task, arguments: ^NS.Array) ---
+
+    @(objc_type=Task, objc_selector="environment", objc_name="environment")
+    Task_environment :: proc(self: ^Task) -> ^NS.Dictionary ---
+
+    @(objc_type=Task, objc_selector="setEnvironment:", objc_name="setEnvironment")
+    Task_setEnvironment :: proc(self: ^Task, environment: ^NS.Dictionary) ---
+
+    @(objc_type=Task, objc_selector="currentDirectoryURL", objc_name="currentDirectoryURL")
+    Task_currentDirectoryURL :: proc(self: ^Task) -> ^NS.URL ---
+
+    @(objc_type=Task, objc_selector="setCurrentDirectoryURL:", objc_name="setCurrentDirectoryURL")
+    Task_setCurrentDirectoryURL :: proc(self: ^Task, currentDirectoryURL: ^NS.URL) ---
+
+    @(objc_type=Task, objc_selector="launchRequirementData", objc_name="launchRequirementData")
+    Task_launchRequirementData :: proc(self: ^Task) -> ^NS.Data ---
+
+    @(objc_type=Task, objc_selector="setLaunchRequirementData:", objc_name="setLaunchRequirementData")
+    Task_setLaunchRequirementData :: proc(self: ^Task, launchRequirementData: ^NS.Data) ---
+
+    @(objc_type=Task, objc_selector="standardInput", objc_name="standardInput")
+    Task_standardInput :: proc(self: ^Task) -> id ---
+
+    @(objc_type=Task, objc_selector="setStandardInput:", objc_name="setStandardInput")
+    Task_setStandardInput :: proc(self: ^Task, standardInput: id) ---
+
+    @(objc_type=Task, objc_selector="standardOutput", objc_name="standardOutput")
+    Task_standardOutput :: proc(self: ^Task) -> id ---
+
+    @(objc_type=Task, objc_selector="setStandardOutput:", objc_name="setStandardOutput")
+    Task_setStandardOutput :: proc(self: ^Task, standardOutput: id) ---
+
+    @(objc_type=Task, objc_selector="standardError", objc_name="standardError")
+    Task_standardError :: proc(self: ^Task) -> id ---
+
+    @(objc_type=Task, objc_selector="setStandardError:", objc_name="setStandardError")
+    Task_setStandardError :: proc(self: ^Task, standardError: id) ---
+
+    @(objc_type=Task, objc_selector="processIdentifier", objc_name="processIdentifier")
+    Task_processIdentifier :: proc(self: ^Task) -> cffi.int ---
+
+    @(objc_type=Task, objc_selector="isRunning", objc_name="isRunning")
+    Task_isRunning :: proc(self: ^Task) -> bool ---
+
+    @(objc_type=Task, objc_selector="terminationStatus", objc_name="terminationStatus")
+    Task_terminationStatus :: proc(self: ^Task) -> cffi.int ---
+
+    @(objc_type=Task, objc_selector="terminationReason", objc_name="terminationReason")
+    Task_terminationReason :: proc(self: ^Task) -> TaskTerminationReason ---
+
+    @(objc_type=Task, objc_selector="terminationHandler", objc_name="terminationHandler")
+    Task_terminationHandler :: proc(self: ^Task) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=Task, objc_selector="setTerminationHandler:", objc_name="setTerminationHandler")
+    Task_setTerminationHandler :: proc(self: ^Task, terminationHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=Task, objc_selector="qualityOfService", objc_name="qualityOfService")
+    Task_qualityOfService :: proc(self: ^Task) -> NS.QualityOfService ---
+
+    @(objc_type=Task, objc_selector="setQualityOfService:", objc_name="setQualityOfService")
+    Task_setQualityOfService :: proc(self: ^Task, qualityOfService: NS.QualityOfService) ---
+
+    @(objc_type=Task, objc_selector="launchedTaskWithExecutableURL:arguments:error:terminationHandler:", objc_name="launchedTaskWithExecutableURL", objc_is_class_method=true)
+    Task_launchedTaskWithExecutableURL :: proc(url: ^NS.URL, arguments: ^NS.Array, error: ^^NS.Error, terminationHandler: ^Objc_Block(proc "c" (_: ^Task))) -> ^Task ---
+
+    @(objc_type=Task, objc_selector="waitUntilExit", objc_name="waitUntilExit")
+    Task_waitUntilExit :: proc(self: ^Task) ---
+
+    @(objc_type=Task, objc_selector="launch", objc_name="launch")
+    Task_launch :: proc(self: ^Task) ---
+
+    @(objc_type=Task, objc_selector="launchedTaskWithLaunchPath:arguments:", objc_name="launchedTaskWithLaunchPath", objc_is_class_method=true)
+    Task_launchedTaskWithLaunchPath :: proc(path: ^NS.String, arguments: ^NS.Array) -> ^Task ---
+
+    @(objc_type=Task, objc_selector="launchPath", objc_name="launchPath")
+    Task_launchPath :: proc(self: ^Task) -> ^NS.String ---
+
+    @(objc_type=Task, objc_selector="setLaunchPath:", objc_name="setLaunchPath")
+    Task_setLaunchPath :: proc(self: ^Task, launchPath: ^NS.String) ---
+
+    @(objc_type=Task, objc_selector="currentDirectoryPath", objc_name="currentDirectoryPath")
+    Task_currentDirectoryPath :: proc(self: ^Task) -> ^NS.String ---
+
+    @(objc_type=Task, objc_selector="setCurrentDirectoryPath:", objc_name="setCurrentDirectoryPath")
+    Task_setCurrentDirectoryPath :: proc(self: ^Task, currentDirectoryPath: ^NS.String) ---
+}

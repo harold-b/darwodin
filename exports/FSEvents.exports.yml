@@ -318,6 +318,18 @@ ExternVars:
     ::kFSOperationUserVisibleObjectsRemainingKey: FS.OperationUserVisibleObjectsRemainingKey
     ::kFSOperationThroughputKey: FS.OperationThroughputKey
 
+ExternTypes:
+    ::kFSOperationTotalBytesKey: CF.StringRef
+    ::kFSOperationBytesCompleteKey: CF.StringRef
+    ::kFSOperationBytesRemainingKey: CF.StringRef
+    ::kFSOperationTotalObjectsKey: CF.StringRef
+    ::kFSOperationObjectsCompleteKey: CF.StringRef
+    ::kFSOperationObjectsRemainingKey: CF.StringRef
+    ::kFSOperationTotalUserVisibleObjectsKey: CF.StringRef
+    ::kFSOperationUserVisibleObjectsCompleteKey: CF.StringRef
+    ::kFSOperationUserVisibleObjectsRemainingKey: CF.StringRef
+    ::kFSOperationThroughputKey: CF.StringRef
+
 ConstVars:
     ::kTextUnsupportedEncodingErr: FS.kTextUnsupportedEncodingErr
     ::kTextMalformedInputErr: FS.kTextMalformedInputErr

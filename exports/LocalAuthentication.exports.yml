@@ -46,5 +46,9 @@ ExternVars:
     ::LATouchIDAuthenticationMaximumAllowableReuseDuration: LA.TouchIDAuthenticationMaximumAllowableReuseDuration
     ::LAErrorDomain: LA.ErrorDomain
 
+ExternTypes:
+    ::LATouchIDAuthenticationMaximumAllowableReuseDuration: NS.TimeInterval
+    ::LAErrorDomain: ^NS.String
+
 ConstVars:
 

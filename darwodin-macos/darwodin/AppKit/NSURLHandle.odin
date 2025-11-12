@@ -1,0 +1,97 @@
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSURLHandle
+///
+@(objc_class="NSURLHandle", objc_superclass=NS.Object)
+URLHandle :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=URLHandle, objc_selector="registerURLHandleClass:", objc_name="registerURLHandleClass", objc_is_class_method=true)
+    URLHandle_registerURLHandleClass :: proc(anURLHandleSubclass: Class) ---
+
+    @(objc_type=URLHandle, objc_selector="URLHandleClassForURL:", objc_name="URLHandleClassForURL", objc_is_class_method=true)
+    URLHandle_URLHandleClassForURL :: proc(anURL: ^NS.URL) -> Class ---
+
+    @(objc_type=URLHandle, objc_selector="status", objc_name="status")
+    URLHandle_status :: proc(self: ^URLHandle) -> URLHandleStatus ---
+
+    @(objc_type=URLHandle, objc_selector="failureReason", objc_name="failureReason")
+    URLHandle_failureReason :: proc(self: ^URLHandle) -> ^NS.String ---
+
+    @(objc_type=URLHandle, objc_selector="addClient:", objc_name="addClient")
+    URLHandle_addClient :: proc(self: ^URLHandle, client: ^URLHandleClient) ---
+
+    @(objc_type=URLHandle, objc_selector="removeClient:", objc_name="removeClient")
+    URLHandle_removeClient :: proc(self: ^URLHandle, client: ^URLHandleClient) ---
+
+    @(objc_type=URLHandle, objc_selector="loadInBackground", objc_name="loadInBackground")
+    URLHandle_loadInBackground :: proc(self: ^URLHandle) ---
+
+    @(objc_type=URLHandle, objc_selector="cancelLoadInBackground", objc_name="cancelLoadInBackground")
+    URLHandle_cancelLoadInBackground :: proc(self: ^URLHandle) ---
+
+    @(objc_type=URLHandle, objc_selector="resourceData", objc_name="resourceData")
+    URLHandle_resourceData :: proc(self: ^URLHandle) -> ^NS.Data ---
+
+    @(objc_type=URLHandle, objc_selector="availableResourceData", objc_name="availableResourceData")
+    URLHandle_availableResourceData :: proc(self: ^URLHandle) -> ^NS.Data ---
+
+    @(objc_type=URLHandle, objc_selector="expectedResourceDataSize", objc_name="expectedResourceDataSize")
+    URLHandle_expectedResourceDataSize :: proc(self: ^URLHandle) -> cffi.longlong ---
+
+    @(objc_type=URLHandle, objc_selector="flushCachedData", objc_name="flushCachedData")
+    URLHandle_flushCachedData :: proc(self: ^URLHandle) ---
+
+    @(objc_type=URLHandle, objc_selector="backgroundLoadDidFailWithReason:", objc_name="backgroundLoadDidFailWithReason")
+    URLHandle_backgroundLoadDidFailWithReason :: proc(self: ^URLHandle, reason: ^NS.String) ---
+
+    @(objc_type=URLHandle, objc_selector="didLoadBytes:loadComplete:", objc_name="didLoadBytes")
+    URLHandle_didLoadBytes :: proc(self: ^URLHandle, newBytes: ^NS.Data, yorn: bool) ---
+
+    @(objc_type=URLHandle, objc_selector="canInitWithURL:", objc_name="canInitWithURL", objc_is_class_method=true)
+    URLHandle_canInitWithURL :: proc(anURL: ^NS.URL) -> bool ---
+
+    @(objc_type=URLHandle, objc_selector="cachedHandleForURL:", objc_name="cachedHandleForURL", objc_is_class_method=true)
+    URLHandle_cachedHandleForURL :: proc(anURL: ^NS.URL) -> ^URLHandle ---
+
+    @(objc_type=URLHandle, objc_selector="initWithURL:cached:", objc_name="initWithURL")
+    URLHandle_initWithURL :: proc(self: ^URLHandle, anURL: ^NS.URL, willCache: bool) -> id ---
+
+    @(objc_type=URLHandle, objc_selector="propertyForKey:", objc_name="propertyForKey")
+    URLHandle_propertyForKey :: proc(self: ^URLHandle, propertyKey: ^NS.String) -> id ---
+
+    @(objc_type=URLHandle, objc_selector="propertyForKeyIfAvailable:", objc_name="propertyForKeyIfAvailable")
+    URLHandle_propertyForKeyIfAvailable :: proc(self: ^URLHandle, propertyKey: ^NS.String) -> id ---
+
+    @(objc_type=URLHandle, objc_selector="writeProperty:forKey:", objc_name="writeProperty")
+    URLHandle_writeProperty :: proc(self: ^URLHandle, propertyValue: id, propertyKey: ^NS.String) -> bool ---
+
+    @(objc_type=URLHandle, objc_selector="writeData:", objc_name="writeData")
+    URLHandle_writeData :: proc(self: ^URLHandle, data: ^NS.Data) -> bool ---
+
+    @(objc_type=URLHandle, objc_selector="loadInForeground", objc_name="loadInForeground")
+    URLHandle_loadInForeground :: proc(self: ^URLHandle) -> ^NS.Data ---
+
+    @(objc_type=URLHandle, objc_selector="beginLoadInBackground", objc_name="beginLoadInBackground")
+    URLHandle_beginLoadInBackground :: proc(self: ^URLHandle) ---
+
+    @(objc_type=URLHandle, objc_selector="endLoadInBackground", objc_name="endLoadInBackground")
+    URLHandle_endLoadInBackground :: proc(self: ^URLHandle) ---
+}

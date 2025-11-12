@@ -84,5 +84,50 @@ ExternVars:
     ::CHHapticPatternKeyParameterCurve: CH.HapticPatternKeyParameterCurve
     ::CHHapticPatternKeyParameterCurveControlPoints: CH.HapticPatternKeyParameterCurveControlPoints
 
+ExternTypes:
+    ::CHHapticEventParameterIDHapticIntensity: ^NS.String
+    ::CHHapticEventParameterIDHapticSharpness: ^NS.String
+    ::CHHapticEventParameterIDAttackTime: ^NS.String
+    ::CHHapticEventParameterIDDecayTime: ^NS.String
+    ::CHHapticEventParameterIDReleaseTime: ^NS.String
+    ::CHHapticEventParameterIDSustained: ^NS.String
+    ::CHHapticEventParameterIDAudioVolume: ^NS.String
+    ::CHHapticEventParameterIDAudioPitch: ^NS.String
+    ::CHHapticEventParameterIDAudioPan: ^NS.String
+    ::CHHapticEventParameterIDAudioBrightness: ^NS.String
+    ::CHHapticDynamicParameterIDHapticIntensityControl: ^NS.String
+    ::CHHapticDynamicParameterIDHapticSharpnessControl: ^NS.String
+    ::CHHapticDynamicParameterIDHapticAttackTimeControl: ^NS.String
+    ::CHHapticDynamicParameterIDHapticDecayTimeControl: ^NS.String
+    ::CHHapticDynamicParameterIDHapticReleaseTimeControl: ^NS.String
+    ::CHHapticDynamicParameterIDAudioVolumeControl: ^NS.String
+    ::CHHapticDynamicParameterIDAudioPanControl: ^NS.String
+    ::CHHapticDynamicParameterIDAudioBrightnessControl: ^NS.String
+    ::CHHapticDynamicParameterIDAudioPitchControl: ^NS.String
+    ::CHHapticDynamicParameterIDAudioAttackTimeControl: ^NS.String
+    ::CHHapticDynamicParameterIDAudioDecayTimeControl: ^NS.String
+    ::CHHapticDynamicParameterIDAudioReleaseTimeControl: ^NS.String
+    ::CHHapticEventTypeHapticTransient: ^NS.String
+    ::CHHapticEventTypeHapticContinuous: ^NS.String
+    ::CHHapticEventTypeAudioContinuous: ^NS.String
+    ::CHHapticEventTypeAudioCustom: ^NS.String
+    ::CHHapticAudioResourceKeyUseVolumeEnvelope: ^NS.String
+    ::CHHapticAudioResourceKeyLoopEnabled: ^NS.String
+    ::CHHapticPatternKeyVersion: ^NS.String
+    ::CHHapticPatternKeyPattern: ^NS.String
+    ::CHHapticPatternKeyEvent: ^NS.String
+    ::CHHapticPatternKeyEventType: ^NS.String
+    ::CHHapticPatternKeyTime: ^NS.String
+    ::CHHapticPatternKeyEventDuration: ^NS.String
+    ::CHHapticPatternKeyEventWaveformPath: ^NS.String
+    ::CHHapticPatternKeyEventParameters: ^NS.String
+    ::CHHapticPatternKeyEventWaveformUseVolumeEnvelope: ^NS.String
+    ::CHHapticPatternKeyEventWaveformLoopEnabled: ^NS.String
+    ::CHHapticPatternKeyParameter: ^NS.String
+    ::CHHapticPatternKeyParameterID: ^NS.String
+    ::CHHapticPatternKeyParameterValue: ^NS.String
+    ::CHHapticPatternKeyParameterCurve: ^NS.String
+    ::CHHapticPatternKeyParameterCurveControlPoints: ^NS.String
+
 ConstVars:
 

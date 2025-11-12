@@ -53,5 +53,24 @@ ExternVars:
     ::MTKModelErrorDomain: MTK.ModelErrorDomain
     ::MTKModelErrorKey: MTK.ModelErrorKey
 
+ExternTypes:
+    ::MTKTextureLoaderErrorDomain: ^NS.String
+    ::MTKTextureLoaderErrorKey: ^NS.String
+    ::MTKTextureLoaderOptionAllocateMipmaps: ^NS.String
+    ::MTKTextureLoaderOptionGenerateMipmaps: ^NS.String
+    ::MTKTextureLoaderOptionSRGB: ^NS.String
+    ::MTKTextureLoaderOptionTextureUsage: ^NS.String
+    ::MTKTextureLoaderOptionTextureCPUCacheMode: ^NS.String
+    ::MTKTextureLoaderOptionTextureStorageMode: ^NS.String
+    ::MTKTextureLoaderOptionCubeLayout: ^NS.String
+    ::MTKTextureLoaderCubeLayoutVertical: ^NS.String
+    ::MTKTextureLoaderOptionOrigin: ^NS.String
+    ::MTKTextureLoaderOriginTopLeft: ^NS.String
+    ::MTKTextureLoaderOriginBottomLeft: ^NS.String
+    ::MTKTextureLoaderOriginFlippedVertically: ^NS.String
+    ::MTKTextureLoaderOptionLoadAsArray: ^NS.String
+    ::MTKModelErrorDomain: ^NS.String
+    ::MTKModelErrorKey: ^NS.String
+
 ConstVars:
 

@@ -173,6 +173,10 @@ ExternVars:
     ::kIOMainPortDefault: IO.kMainPortDefault
     ::kIOMasterPortDefault: IO.kMasterPortDefault
 
+ExternTypes:
+    ::kIOMainPortDefault: mach.port_t
+    ::kIOMasterPortDefault: mach.port_t
+
 ConstVars:
     ::kIODefaultMemoryType: IO.kDefaultMemoryType
     ::kIODefaultCache: IO.kDefaultCache

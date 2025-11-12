@@ -2,10 +2,52 @@ PackageName: "QuartzCore"
 ImportName: "CA"
 
 Structs:
+    _CGLContextObject: CA._CGLContextObject
+    _CGLPixelFormatObject: CA._CGLPixelFormatObject
+    _CGLRendererInfoObject: CA._CGLRendererInfoObject
+    _CGLPBufferObject: CA._CGLPBufferObject
+    __GLsync: CA.__GLsync
+    CGLShareGroupRec: CA.CGLShareGroupRec
+    _cl_device_id: CA._cl_device_id
     CATransform3D: CA.Transform3D
     CAFrameRateRange: CA.FrameRateRange
 
 Typedefs:
+    CGLContextObj: CA.CGLContextObj
+    CGLPixelFormatObj: CA.CGLPixelFormatObj
+    CGLRendererInfoObj: CA.CGLRendererInfoObj
+    CGLPBufferObj: CA.CGLPBufferObj
+    GLbitfield: CA.GLbitfield
+    GLboolean: CA.GLboolean
+    GLbyte: CA.GLbyte
+    GLclampf: CA.GLclampf
+    GLenum: CA.GLenum
+    GLfloat: CA.GLfloat
+    GLint: CA.GLint
+    GLshort: CA.GLshort
+    GLsizei: CA.GLsizei
+    GLubyte: CA.GLubyte
+    GLuint: CA.GLuint
+    GLushort: CA.GLushort
+    GLchar: CA.GLchar
+    GLcharARB: CA.GLcharARB
+    GLhandleARB: CA.GLhandleARB
+    GLdouble: CA.GLdouble
+    GLclampd: CA.GLclampd
+    GLfixed: CA.GLfixed
+    GLhalf: CA.GLhalf
+    GLhalfARB: CA.GLhalfARB
+    GLint64: CA.GLint64
+    GLsync: CA.GLsync
+    GLuint64: CA.GLuint64
+    GLint64EXT: CA.GLint64EXT
+    GLuint64EXT: CA.GLuint64EXT
+    GLintptr: CA.GLintptr
+    GLsizeiptr: CA.GLsizeiptr
+    GLintptrARB: CA.GLintptrARB
+    GLsizeiptrARB: CA.GLsizeiptrARB
+    CGLShareGroupObj: CA.CGLShareGroupObj
+    cl_device_id: CA.cl_device_id
     CAMediaTimingFillMode: CA.MediaTimingFillMode
     CALayerContentsGravity: CA.LayerContentsGravity
     CALayerContentsFormat: CA.LayerContentsFormat
@@ -30,9 +72,19 @@ Typedefs:
     CAValueFunctionName: CA.ValueFunctionName
 
 Enums:
+    CGLPixelFormatAttribute: CA.CGLPixelFormatAttribute
+    CGLRendererProperty: CA.CGLRendererProperty
+    CGLContextEnable: CA.CGLContextEnable
+    CGLGPURestartStatus: CA.CGLGPURestartStatus
+    CGLContextParameter: CA.CGLContextParameter
+    CGLCPContextPriorityRequest: CA.CGLCPContextPriorityRequest
+    CGLGlobalOption: CA.CGLGlobalOption
+    CGLOpenGLProfile: CA.CGLOpenGLProfile
+    CGLError: CA.CGLError
+    CAAutoresizingMask: CA.AutoresizingMask
     CAEdgeAntialiasingMask: CA.EdgeAntialiasingMask
     CACornerMask: CA.CornerMask
-    EAGLRenderingAPI: CA.EAGLRenderingAPI
+    CAConstraintAttribute: CA.ConstraintAttribute
 
 ObjCClasses:
     CAAnimation: CA.Animation
@@ -46,10 +98,9 @@ ObjCClasses:
     CASpringAnimation: CA.SpringAnimation
     CATransition: CA.Transition
     CAAnimationGroup: CA.AnimationGroup
+    CAConstraint: CA.Constraint
+    CAConstraintLayoutManager: CA.ConstraintLayoutManager
     CADisplayLink: CA.DisplayLink
-    EAGLSharegroup: CA.EAGLSharegroup
-    EAGLContext: CA.EAGLContext
-    CAEAGLLayer: CA.EAGLLayer
     CAEDRMetadata: CA.EDRMetadata
     CAMetalLayer: CA.MetalLayer
     CAMetalDisplayLink: CA.MetalDisplayLink
@@ -57,6 +108,9 @@ ObjCClasses:
     CAEmitterCell: CA.EmitterCell
     CAEmitterLayer: CA.EmitterLayer
     CAGradientLayer: CA.GradientLayer
+    CAOpenGLLayer: CA.OpenGLLayer
+    CARemoteLayerClient: CA.RemoteLayerClient
+    CARemoteLayerServer: CA.RemoteLayerServer
     CARenderer: CA.Renderer
     CAReplicatorLayer: CA.ReplicatorLayer
     CAScrollLayer: CA.ScrollLayer
@@ -70,13 +124,65 @@ ObjCProtocols:
     CAMediaTiming: CA.MediaTiming
     CAAction: CA.Action
     CALayerDelegate: CA.LayerDelegate
+    CALayoutManager: CA.LayoutManager
     CAAnimationDelegate: CA.AnimationDelegate
-    EAGLDrawable: CA.EAGLDrawable
     CAMetalDrawable: CA.MetalDrawable
     CAMetalDisplayLinkDelegate: CA.MetalDisplayLinkDelegate
 
 
 Functions:
+    ::CGLSetCurrentContext: CA.CGLSetCurrentContext
+    ::CGLGetCurrentContext: CA.CGLGetCurrentContext
+    ::CGLGetShareGroup: CA.CGLGetShareGroup
+    ::CGLGetDeviceFromGLRenderer: CA.CGLGetDeviceFromGLRenderer
+    ::CGLTexImageIOSurface2D: CA.CGLTexImageIOSurface2D
+    ::CGLChoosePixelFormat: CA.CGLChoosePixelFormat
+    ::CGLDestroyPixelFormat: CA.CGLDestroyPixelFormat
+    ::CGLDescribePixelFormat: CA.CGLDescribePixelFormat
+    ::CGLReleasePixelFormat: CA.CGLReleasePixelFormat
+    ::CGLRetainPixelFormat: CA.CGLRetainPixelFormat
+    ::CGLGetPixelFormatRetainCount: CA.CGLGetPixelFormatRetainCount
+    ::CGLQueryRendererInfo: CA.CGLQueryRendererInfo
+    ::CGLDestroyRendererInfo: CA.CGLDestroyRendererInfo
+    ::CGLDescribeRenderer: CA.CGLDescribeRenderer
+    ::CGLCreateContext: CA.CGLCreateContext
+    ::CGLDestroyContext: CA.CGLDestroyContext
+    ::CGLCopyContext: CA.CGLCopyContext
+    ::CGLRetainContext: CA.CGLRetainContext
+    ::CGLReleaseContext: CA.CGLReleaseContext
+    ::CGLGetContextRetainCount: CA.CGLGetContextRetainCount
+    ::CGLGetPixelFormat: CA.CGLGetPixelFormat
+    ::CGLCreatePBuffer: CA.CGLCreatePBuffer
+    ::CGLDestroyPBuffer: CA.CGLDestroyPBuffer
+    ::CGLDescribePBuffer: CA.CGLDescribePBuffer
+    ::CGLTexImagePBuffer: CA.CGLTexImagePBuffer
+    ::CGLRetainPBuffer: CA.CGLRetainPBuffer
+    ::CGLReleasePBuffer: CA.CGLReleasePBuffer
+    ::CGLGetPBufferRetainCount: CA.CGLGetPBufferRetainCount
+    ::CGLSetOffScreen: CA.CGLSetOffScreen
+    ::CGLGetOffScreen: CA.CGLGetOffScreen
+    ::CGLSetFullScreen: CA.CGLSetFullScreen
+    ::CGLSetFullScreenOnDisplay: CA.CGLSetFullScreenOnDisplay
+    ::CGLSetPBuffer: CA.CGLSetPBuffer
+    ::CGLGetPBuffer: CA.CGLGetPBuffer
+    ::CGLClearDrawable: CA.CGLClearDrawable
+    ::CGLFlushDrawable: CA.CGLFlushDrawable
+    ::CGLEnable: CA.CGLEnable
+    ::CGLDisable: CA.CGLDisable
+    ::CGLIsEnabled: CA.CGLIsEnabled
+    ::CGLSetParameter: CA.CGLSetParameter
+    ::CGLGetParameter: CA.CGLGetParameter
+    ::CGLSetVirtualScreen: CA.CGLSetVirtualScreen
+    ::CGLGetVirtualScreen: CA.CGLGetVirtualScreen
+    ::CGLUpdateContext: CA.CGLUpdateContext
+    ::CGLSetGlobalOption: CA.CGLSetGlobalOption
+    ::CGLGetGlobalOption: CA.CGLGetGlobalOption
+    ::CGLSetOption: CA.CGLSetOption
+    ::CGLGetOption: CA.CGLGetOption
+    ::CGLLockContext: CA.CGLLockContext
+    ::CGLUnlockContext: CA.CGLUnlockContext
+    ::CGLGetVersion: CA.CGLGetVersion
+    ::CGLErrorString: CA.CGLErrorString
     ::CACurrentMediaTime: CA.CurrentMediaTime
     ::CATransform3DIsIdentity: CA.Transform3DIsIdentity
     ::CATransform3DEqualToTransform: CA.Transform3DEqualToTransform
@@ -142,11 +248,6 @@ ExternVars:
     ::kCATransitionFromLeft: CA.TransitionFromLeft
     ::kCATransitionFromTop: CA.TransitionFromTop
     ::kCATransitionFromBottom: CA.TransitionFromBottom
-    ::kEAGLDrawablePropertyRetainedBacking: CA.kEAGLDrawablePropertyRetainedBacking
-    ::kEAGLDrawablePropertyColorFormat: CA.kEAGLDrawablePropertyColorFormat
-    ::kEAGLColorFormatRGBA8: CA.kEAGLColorFormatRGBA8
-    ::kEAGLColorFormatRGB565: CA.kEAGLColorFormatRGB565
-    ::kEAGLColorFormatSRGBA8: CA.kEAGLColorFormatSRGBA8
     ::kCAEmitterLayerPoint: CA.EmitterLayerPoint
     ::kCAEmitterLayerLine: CA.EmitterLayerLine
     ::kCAEmitterLayerRectangle: CA.EmitterLayerRectangle
@@ -209,5 +310,139 @@ ExternVars:
     ::kCAValueFunctionTranslateY: CA.ValueFunctionTranslateY
     ::kCAValueFunctionTranslateZ: CA.ValueFunctionTranslateZ
 
+ExternTypes:
+    ::CATransform3DIdentity: Transform3D
+    ::kCAFillModeForwards: ^NS.String
+    ::kCAFillModeBackwards: ^NS.String
+    ::kCAFillModeBoth: ^NS.String
+    ::kCAFillModeRemoved: ^NS.String
+    ::CAToneMapModeAutomatic: ^NS.String
+    ::CAToneMapModeNever: ^NS.String
+    ::CAToneMapModeIfSupported: ^NS.String
+    ::kCAGravityCenter: ^NS.String
+    ::kCAGravityTop: ^NS.String
+    ::kCAGravityBottom: ^NS.String
+    ::kCAGravityLeft: ^NS.String
+    ::kCAGravityRight: ^NS.String
+    ::kCAGravityTopLeft: ^NS.String
+    ::kCAGravityTopRight: ^NS.String
+    ::kCAGravityBottomLeft: ^NS.String
+    ::kCAGravityBottomRight: ^NS.String
+    ::kCAGravityResize: ^NS.String
+    ::kCAGravityResizeAspect: ^NS.String
+    ::kCAGravityResizeAspectFill: ^NS.String
+    ::kCAContentsFormatRGBA8Uint: ^NS.String
+    ::kCAContentsFormatRGBA16Float: ^NS.String
+    ::kCAContentsFormatGray8Uint: ^NS.String
+    ::kCAFilterNearest: ^NS.String
+    ::kCAFilterLinear: ^NS.String
+    ::kCAFilterTrilinear: ^NS.String
+    ::kCACornerCurveCircular: ^NS.String
+    ::kCACornerCurveContinuous: ^NS.String
+    ::kCAOnOrderIn: ^NS.String
+    ::kCAOnOrderOut: ^NS.String
+    ::kCATransition: ^NS.String
+    ::CAFrameRateRangeDefault: FrameRateRange
+    ::kCAAnimationLinear: ^NS.String
+    ::kCAAnimationDiscrete: ^NS.String
+    ::kCAAnimationPaced: ^NS.String
+    ::kCAAnimationCubic: ^NS.String
+    ::kCAAnimationCubicPaced: ^NS.String
+    ::kCAAnimationRotateAuto: ^NS.String
+    ::kCAAnimationRotateAutoReverse: ^NS.String
+    ::kCATransitionFade: ^NS.String
+    ::kCATransitionMoveIn: ^NS.String
+    ::kCATransitionPush: ^NS.String
+    ::kCATransitionReveal: ^NS.String
+    ::kCATransitionFromRight: ^NS.String
+    ::kCATransitionFromLeft: ^NS.String
+    ::kCATransitionFromTop: ^NS.String
+    ::kCATransitionFromBottom: ^NS.String
+    ::kCAEmitterLayerPoint: ^NS.String
+    ::kCAEmitterLayerLine: ^NS.String
+    ::kCAEmitterLayerRectangle: ^NS.String
+    ::kCAEmitterLayerCuboid: ^NS.String
+    ::kCAEmitterLayerCircle: ^NS.String
+    ::kCAEmitterLayerSphere: ^NS.String
+    ::kCAEmitterLayerPoints: ^NS.String
+    ::kCAEmitterLayerOutline: ^NS.String
+    ::kCAEmitterLayerSurface: ^NS.String
+    ::kCAEmitterLayerVolume: ^NS.String
+    ::kCAEmitterLayerUnordered: ^NS.String
+    ::kCAEmitterLayerOldestFirst: ^NS.String
+    ::kCAEmitterLayerOldestLast: ^NS.String
+    ::kCAEmitterLayerBackToFront: ^NS.String
+    ::kCAEmitterLayerAdditive: ^NS.String
+    ::kCAMediaTimingFunctionLinear: ^NS.String
+    ::kCAMediaTimingFunctionEaseIn: ^NS.String
+    ::kCAMediaTimingFunctionEaseOut: ^NS.String
+    ::kCAMediaTimingFunctionEaseInEaseOut: ^NS.String
+    ::kCAMediaTimingFunctionDefault: ^NS.String
+    ::kCAGradientLayerAxial: ^NS.String
+    ::kCAGradientLayerRadial: ^NS.String
+    ::kCAGradientLayerConic: ^NS.String
+    ::kCARendererColorSpace: ^NS.String
+    ::kCARendererMetalCommandQueue: ^NS.String
+    ::kCAScrollNone: ^NS.String
+    ::kCAScrollVertically: ^NS.String
+    ::kCAScrollHorizontally: ^NS.String
+    ::kCAScrollBoth: ^NS.String
+    ::kCAFillRuleNonZero: ^NS.String
+    ::kCAFillRuleEvenOdd: ^NS.String
+    ::kCALineJoinMiter: ^NS.String
+    ::kCALineJoinRound: ^NS.String
+    ::kCALineJoinBevel: ^NS.String
+    ::kCALineCapButt: ^NS.String
+    ::kCALineCapRound: ^NS.String
+    ::kCALineCapSquare: ^NS.String
+    ::kCATruncationNone: ^NS.String
+    ::kCATruncationStart: ^NS.String
+    ::kCATruncationEnd: ^NS.String
+    ::kCATruncationMiddle: ^NS.String
+    ::kCAAlignmentNatural: ^NS.String
+    ::kCAAlignmentLeft: ^NS.String
+    ::kCAAlignmentRight: ^NS.String
+    ::kCAAlignmentCenter: ^NS.String
+    ::kCAAlignmentJustified: ^NS.String
+    ::kCATransactionAnimationDuration: ^NS.String
+    ::kCATransactionDisableActions: ^NS.String
+    ::kCATransactionAnimationTimingFunction: ^NS.String
+    ::kCATransactionCompletionBlock: ^NS.String
+    ::kCAValueFunctionRotateX: ^NS.String
+    ::kCAValueFunctionRotateY: ^NS.String
+    ::kCAValueFunctionRotateZ: ^NS.String
+    ::kCAValueFunctionScale: ^NS.String
+    ::kCAValueFunctionScaleX: ^NS.String
+    ::kCAValueFunctionScaleY: ^NS.String
+    ::kCAValueFunctionScaleZ: ^NS.String
+    ::kCAValueFunctionTranslate: ^NS.String
+    ::kCAValueFunctionTranslateX: ^NS.String
+    ::kCAValueFunctionTranslateY: ^NS.String
+    ::kCAValueFunctionTranslateZ: ^NS.String
+
 ConstVars:
+    ::kCGLRendererGenericID: CA.GLRendererGenericID
+    ::kCGLRendererGenericFloatID: CA.GLRendererGenericFloatID
+    ::kCGLRendererAppleSWID: CA.GLRendererAppleSWID
+    ::kCGLRendererATIRage128ID: CA.GLRendererATIRage128ID
+    ::kCGLRendererATIRadeonID: CA.GLRendererATIRadeonID
+    ::kCGLRendererATIRageProID: CA.GLRendererATIRageProID
+    ::kCGLRendererATIRadeon8500ID: CA.GLRendererATIRadeon8500ID
+    ::kCGLRendererATIRadeon9700ID: CA.GLRendererATIRadeon9700ID
+    ::kCGLRendererATIRadeonX1000ID: CA.GLRendererATIRadeonX1000ID
+    ::kCGLRendererATIRadeonX2000ID: CA.GLRendererATIRadeonX2000ID
+    ::kCGLRendererATIRadeonX3000ID: CA.GLRendererATIRadeonX3000ID
+    ::kCGLRendererATIRadeonX4000ID: CA.GLRendererATIRadeonX4000ID
+    ::kCGLRendererGeForce2MXID: CA.GLRendererGeForce2MXID
+    ::kCGLRendererGeForce3ID: CA.GLRendererGeForce3ID
+    ::kCGLRendererGeForceFXID: CA.GLRendererGeForceFXID
+    ::kCGLRendererGeForce8xxxID: CA.GLRendererGeForce8xxxID
+    ::kCGLRendererGeForceID: CA.GLRendererGeForceID
+    ::kCGLRendererVTBladeXP2ID: CA.GLRendererVTBladeXP2ID
+    ::kCGLRendererIntel900ID: CA.GLRendererIntel900ID
+    ::kCGLRendererIntelX3100ID: CA.GLRendererIntelX3100ID
+    ::kCGLRendererIntelHDID: CA.GLRendererIntelHDID
+    ::kCGLRendererIntelHD4000ID: CA.GLRendererIntelHD4000ID
+    ::kCGLRendererIntelHD5000ID: CA.GLRendererIntelHD5000ID
+    ::kCGLRendererMesa3DFXID: CA.GLRendererMesa3DFXID
 

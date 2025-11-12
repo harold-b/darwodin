@@ -44,6 +44,8 @@ Odin:
 
   ExternalPackageMap: { darwin_libc: '../libc' }
 
+  ReExportPackages: [ Foundation ]
+
   ResolvedTypedefs:
     - '[su]?int.*'
 

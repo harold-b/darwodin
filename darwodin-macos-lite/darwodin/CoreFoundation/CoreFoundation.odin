@@ -16,7 +16,7 @@ SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
-instancetype :: intrinsics.objc_instancetype
+instancetype  :: intrinsics.objc_instancetype
 
 @(require, export) foreign import lib "system:CoreFoundation.framework"
 
@@ -3395,7 +3395,7 @@ Str15 :: distinct [16]cffi.uchar
 Str32Field :: distinct [34]cffi.uchar
 
 /// StrFileName
-StrFileName :: distinct Str63
+StrFileName :: distinct ^Str63
 
 /// StringPtr
 StringPtr :: distinct ^cffi.uchar

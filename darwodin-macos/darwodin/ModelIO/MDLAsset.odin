@@ -93,10 +93,10 @@ foreign lib {
     Asset_setEndTime :: proc(self: ^Asset, endTime: NS.TimeInterval) ---
 
     @(objc_type=Asset, objc_selector="upAxis", objc_name="upAxis")
-    Asset_upAxis :: proc(self: ^Asset) -> vector_float3 ---
+    Asset_upAxis :: proc(self: ^Asset) -> ^vector_float3 ---
 
     @(objc_type=Asset, objc_selector="setUpAxis:", objc_name="setUpAxis")
-    Asset_setUpAxis :: proc(self: ^Asset, upAxis: vector_float3) ---
+    Asset_setUpAxis :: proc(self: ^Asset, upAxis: ^vector_float3) ---
 
     @(objc_type=Asset, objc_selector="URL", objc_name="URL")
     Asset_URL :: proc(self: ^Asset) -> ^NS.URL ---

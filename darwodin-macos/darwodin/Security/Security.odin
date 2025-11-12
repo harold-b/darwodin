@@ -17,7 +17,7 @@ SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
-instancetype :: intrinsics.objc_instancetype
+instancetype  :: intrinsics.objc_instancetype
 
 @export foreign import lib "system:Security.framework"
 
@@ -4430,7 +4430,7 @@ cssm_base_certs :: struct #align (8) {
 
 /// cssm_access_credentials
 cssm_access_credentials :: struct #align (8) {
-    EntryTag:  CSSM_STRING,
+    EntryTag:  ^CSSM_STRING,
     BaseCerts: cssm_base_certs,
     Samples:   cssm_samplegroup,
     Callback:  CSSM_CHALLENGE_CALLBACK,
@@ -4458,7 +4458,7 @@ cssm_acl_entry_prototype :: struct #align (8) {
     Delegate:      CSSM_BOOL,
     Authorization: cssm_authorizationgroup,
     TimeRange:     cssm_acl_validity_period,
-    EntryTag:      CSSM_STRING,
+    EntryTag:      ^CSSM_STRING,
 }
 #assert(size_of(cssm_acl_entry_prototype) == 152)
 
@@ -4501,7 +4501,7 @@ cssm_acl_edit :: struct #align (8) {
 
 /// cssm_func_name_addr
 cssm_func_name_addr :: struct #align (8) {
-    Name:    CSSM_STRING,
+    Name:    ^CSSM_STRING,
     Address: CSSM_PROC_ADDR,
 }
 #assert(size_of(cssm_func_name_addr) == 80)
@@ -5745,8 +5745,8 @@ cssm_spi_csp_funcs :: struct #align (8) {
     VerifyDevice:                  proc "c" (CSPHandle: CSSM_CSP_HANDLE, DeviceCert: ^cssm_data) -> CSSM_RETURN,
     GetTimeValue:                  proc "c" (CSPHandle: CSSM_CSP_HANDLE, TimeAlgorithm: CSSM_ALGORITHMS, TimeData: ^cssm_data) -> CSSM_RETURN,
     GetOperationalStatistics:      proc "c" (CSPHandle: CSSM_CSP_HANDLE, Statistics: ^cssm_csp_operational_statistics) -> CSSM_RETURN,
-    GetLoginAcl:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
-    GetKeyAcl:                     proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
+    GetLoginAcl:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, SelectionTag: ^^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
+    GetKeyAcl:                     proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, SelectionTag: ^^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
     ChangeKeyAcl:                  proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit, Key: ^cssm_key) -> CSSM_RETURN,
     GetKeyOwner:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
     ChangeKeyOwner:                proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
@@ -5764,7 +5764,7 @@ cssm_spi_dl_funcs :: struct #align (8) {
     CreateRelation:            proc "c" (DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE, RelationName: cstring, NumberOfAttributes: cffi.uint, pAttributeInfo: ^cssm_db_schema_attribute_info, NumberOfIndexes: cffi.uint, pIndexInfo: ^cssm_db_schema_index_info) -> CSSM_RETURN,
     DestroyRelation:           proc "c" (DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE) -> CSSM_RETURN,
     Authenticate:              proc "c" (DLDBHandle: cssm_dl_db_handle, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials) -> CSSM_RETURN,
-    GetDbAcl:                  proc "c" (DLDBHandle: cssm_dl_db_handle, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
+    GetDbAcl:                  proc "c" (DLDBHandle: cssm_dl_db_handle, SelectionTag: ^^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
     ChangeDbAcl:               proc "c" (DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit) -> CSSM_RETURN,
     GetDbOwner:                proc "c" (DLDBHandle: cssm_dl_db_handle, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
     ChangeDbOwner:             proc "c" (DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
@@ -5794,10 +5794,10 @@ cssm_kr_name :: struct #align (8) {
 /// cssm_kr_wrappedproductinfo
 cssm_kr_wrappedproductinfo :: struct #align (4) {
     StandardVersion:     cssm_version,
-    StandardDescription: CSSM_STRING,
+    StandardDescription: ^CSSM_STRING,
     ProductVersion:      cssm_version,
-    ProductDescription:  CSSM_STRING,
-    ProductVendor:       CSSM_STRING,
+    ProductDescription:  ^CSSM_STRING,
+    ProductVendor:       ^CSSM_STRING,
     ProductFlags:        cffi.uint,
 }
 #assert(size_of(cssm_kr_wrappedproductinfo) == 224)

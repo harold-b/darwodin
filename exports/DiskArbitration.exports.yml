@@ -127,6 +127,53 @@ ExternVars:
     ::kDADiskDescriptionWatchVolumeName: DA.kDiskDescriptionWatchVolumeName
     ::kDADiskDescriptionWatchVolumePath: DA.kDiskDescriptionWatchVolumePath
 
+ExternTypes:
+    ::kDADiskDescriptionVolumeKindKey: CF.StringRef
+    ::kDADiskDescriptionVolumeMountableKey: CF.StringRef
+    ::kDADiskDescriptionVolumeNameKey: CF.StringRef
+    ::kDADiskDescriptionVolumeNetworkKey: CF.StringRef
+    ::kDADiskDescriptionVolumePathKey: CF.StringRef
+    ::kDADiskDescriptionVolumeTypeKey: CF.StringRef
+    ::kDADiskDescriptionVolumeUUIDKey: CF.StringRef
+    ::kDADiskDescriptionMediaBlockSizeKey: CF.StringRef
+    ::kDADiskDescriptionMediaBSDMajorKey: CF.StringRef
+    ::kDADiskDescriptionMediaBSDMinorKey: CF.StringRef
+    ::kDADiskDescriptionMediaBSDNameKey: CF.StringRef
+    ::kDADiskDescriptionMediaBSDUnitKey: CF.StringRef
+    ::kDADiskDescriptionMediaContentKey: CF.StringRef
+    ::kDADiskDescriptionMediaEjectableKey: CF.StringRef
+    ::kDADiskDescriptionMediaIconKey: CF.StringRef
+    ::kDADiskDescriptionMediaKindKey: CF.StringRef
+    ::kDADiskDescriptionMediaLeafKey: CF.StringRef
+    ::kDADiskDescriptionMediaNameKey: CF.StringRef
+    ::kDADiskDescriptionMediaPathKey: CF.StringRef
+    ::kDADiskDescriptionMediaRemovableKey: CF.StringRef
+    ::kDADiskDescriptionMediaSizeKey: CF.StringRef
+    ::kDADiskDescriptionMediaTypeKey: CF.StringRef
+    ::kDADiskDescriptionMediaUUIDKey: CF.StringRef
+    ::kDADiskDescriptionMediaWholeKey: CF.StringRef
+    ::kDADiskDescriptionMediaWritableKey: CF.StringRef
+    ::kDADiskDescriptionMediaEncryptedKey: CF.StringRef
+    ::kDADiskDescriptionMediaEncryptionDetailKey: CF.StringRef
+    ::kDADiskDescriptionDeviceGUIDKey: CF.StringRef
+    ::kDADiskDescriptionDeviceInternalKey: CF.StringRef
+    ::kDADiskDescriptionDeviceModelKey: CF.StringRef
+    ::kDADiskDescriptionDevicePathKey: CF.StringRef
+    ::kDADiskDescriptionDeviceProtocolKey: CF.StringRef
+    ::kDADiskDescriptionDeviceRevisionKey: CF.StringRef
+    ::kDADiskDescriptionDeviceUnitKey: CF.StringRef
+    ::kDADiskDescriptionDeviceVendorKey: CF.StringRef
+    ::kDADiskDescriptionDeviceTDMLockedKey: CF.StringRef
+    ::kDADiskDescriptionBusNameKey: CF.StringRef
+    ::kDADiskDescriptionBusPathKey: CF.StringRef
+    ::kDADiskDescriptionFSKitPrefix: CF.StringRef
+    ::kDADiskDescriptionMatchMediaUnformatted: CF.DictionaryRef
+    ::kDADiskDescriptionMatchMediaWhole: CF.DictionaryRef
+    ::kDADiskDescriptionMatchVolumeMountable: CF.DictionaryRef
+    ::kDADiskDescriptionMatchVolumeUnrecognized: CF.DictionaryRef
+    ::kDADiskDescriptionWatchVolumeName: CF.ArrayRef
+    ::kDADiskDescriptionWatchVolumePath: CF.ArrayRef
+
 ConstVars:
     ::kDAReturnSuccess: DA.kReturnSuccess
     ::kDAReturnError: DA.kReturnError

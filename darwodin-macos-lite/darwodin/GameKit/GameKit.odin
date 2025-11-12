@@ -17,7 +17,7 @@ SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
-instancetype :: intrinsics.objc_instancetype
+instancetype  :: intrinsics.objc_instancetype
 
 @export foreign import lib "system:GameKit.framework"
 
@@ -365,21 +365,21 @@ VoiceChatPlayerState :: enum cffi.long {
 
 /// GKBox
 Box :: struct #align (16) {
-    boxMin: vector_float3,
-    boxMax: vector_float3,
+    boxMin: ^vector_float3,
+    boxMax: ^vector_float3,
 }
 #assert(size_of(Box) == 32)
 
 /// GKQuad
 Quad :: struct #align (8) {
-    quadMin: vector_float2,
-    quadMax: vector_float2,
+    quadMin: ^vector_float2,
+    quadMax: ^vector_float2,
 }
 #assert(size_of(Quad) == 16)
 
 /// GKTriangle
 Triangle :: struct #align (16) {
-    points: [3]vector_float3,
+    points: [3]^vector_float3,
 }
 #assert(size_of(Triangle) == 48)
 

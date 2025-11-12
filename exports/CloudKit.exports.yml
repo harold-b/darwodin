@@ -163,5 +163,32 @@ ExternVars:
     ::CKShareTypeKey: CK.ShareTypeKey
     ::CKQueryOperationMaximumResults: CK.QueryOperationMaximumResults
 
+ExternTypes:
+    ::CKRecordTypeUserRecord: ^NS.String
+    ::CKRecordRecordIDKey: ^NS.String
+    ::CKRecordCreatorUserRecordIDKey: ^NS.String
+    ::CKRecordCreationDateKey: ^NS.String
+    ::CKRecordLastModifiedUserRecordIDKey: ^NS.String
+    ::CKRecordModificationDateKey: ^NS.String
+    ::CKRecordParentKey: ^NS.String
+    ::CKRecordShareKey: ^NS.String
+    ::CKCurrentUserDefaultName: ^NS.String
+    ::CKOwnerDefaultName: ^NS.String
+    ::CKAccountChangedNotification: ^NS.String
+    ::CKErrorDomain: ^NS.String
+    ::CKPartialErrorsByItemIDKey: ^NS.String
+    ::CKRecordChangedErrorAncestorRecordKey: ^NS.String
+    ::CKRecordChangedErrorServerRecordKey: ^NS.String
+    ::CKRecordChangedErrorClientRecordKey: ^NS.String
+    ::CKErrorUserDidResetEncryptedDataKey: ^NS.String
+    ::CKErrorRetryAfterKey: ^NS.String
+    ::CKRecordZoneDefaultName: ^NS.String
+    ::CKRecordTypeShare: ^NS.String
+    ::CKRecordNameZoneWideShare: ^NS.String
+    ::CKShareTitleKey: ^NS.String
+    ::CKShareThumbnailImageDataKey: ^NS.String
+    ::CKShareTypeKey: ^NS.String
+    ::CKQueryOperationMaximumResults: NS.UInteger
+
 ConstVars:
 

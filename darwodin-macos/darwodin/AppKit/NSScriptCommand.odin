@@ -1,0 +1,105 @@
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSScriptCommand
+///
+@(objc_class="NSScriptCommand", objc_superclass=NS.Object)
+ScriptCommand :: struct { using _: NS.Object, 
+    using _: NS.Coding,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ScriptCommand, objc_selector="initWithCommandDescription:", objc_name="initWithCommandDescription")
+    ScriptCommand_initWithCommandDescription :: proc(self: ^ScriptCommand, commandDef: ^ScriptCommandDescription) -> ^ScriptCommand ---
+
+    @(objc_type=ScriptCommand, objc_selector="initWithCoder:", objc_name="initWithCoder")
+    ScriptCommand_initWithCoder :: proc(self: ^ScriptCommand, inCoder: ^NS.Coder) -> ^ScriptCommand ---
+
+    @(objc_type=ScriptCommand, objc_selector="performDefaultImplementation", objc_name="performDefaultImplementation")
+    ScriptCommand_performDefaultImplementation :: proc(self: ^ScriptCommand) -> id ---
+
+    @(objc_type=ScriptCommand, objc_selector="executeCommand", objc_name="executeCommand")
+    ScriptCommand_executeCommand :: proc(self: ^ScriptCommand) -> id ---
+
+    @(objc_type=ScriptCommand, objc_selector="currentCommand", objc_name="currentCommand", objc_is_class_method=true)
+    ScriptCommand_currentCommand :: proc() -> ^ScriptCommand ---
+
+    @(objc_type=ScriptCommand, objc_selector="suspendExecution", objc_name="suspendExecution")
+    ScriptCommand_suspendExecution :: proc(self: ^ScriptCommand) ---
+
+    @(objc_type=ScriptCommand, objc_selector="resumeExecutionWithResult:", objc_name="resumeExecutionWithResult")
+    ScriptCommand_resumeExecutionWithResult :: proc(self: ^ScriptCommand, result: id) ---
+
+    @(objc_type=ScriptCommand, objc_selector="commandDescription", objc_name="commandDescription")
+    ScriptCommand_commandDescription :: proc(self: ^ScriptCommand) -> ^ScriptCommandDescription ---
+
+    @(objc_type=ScriptCommand, objc_selector="directParameter", objc_name="directParameter")
+    ScriptCommand_directParameter :: proc(self: ^ScriptCommand) -> id ---
+
+    @(objc_type=ScriptCommand, objc_selector="setDirectParameter:", objc_name="setDirectParameter")
+    ScriptCommand_setDirectParameter :: proc(self: ^ScriptCommand, directParameter: id) ---
+
+    @(objc_type=ScriptCommand, objc_selector="receiversSpecifier", objc_name="receiversSpecifier")
+    ScriptCommand_receiversSpecifier :: proc(self: ^ScriptCommand) -> ^ScriptObjectSpecifier ---
+
+    @(objc_type=ScriptCommand, objc_selector="setReceiversSpecifier:", objc_name="setReceiversSpecifier")
+    ScriptCommand_setReceiversSpecifier :: proc(self: ^ScriptCommand, receiversSpecifier: ^ScriptObjectSpecifier) ---
+
+    @(objc_type=ScriptCommand, objc_selector="evaluatedReceivers", objc_name="evaluatedReceivers")
+    ScriptCommand_evaluatedReceivers :: proc(self: ^ScriptCommand) -> id ---
+
+    @(objc_type=ScriptCommand, objc_selector="arguments", objc_name="arguments")
+    ScriptCommand_arguments :: proc(self: ^ScriptCommand) -> ^NS.Dictionary ---
+
+    @(objc_type=ScriptCommand, objc_selector="setArguments:", objc_name="setArguments")
+    ScriptCommand_setArguments :: proc(self: ^ScriptCommand, arguments: ^NS.Dictionary) ---
+
+    @(objc_type=ScriptCommand, objc_selector="evaluatedArguments", objc_name="evaluatedArguments")
+    ScriptCommand_evaluatedArguments :: proc(self: ^ScriptCommand) -> ^NS.Dictionary ---
+
+    @(objc_type=ScriptCommand, objc_selector="isWellFormed", objc_name="isWellFormed")
+    ScriptCommand_isWellFormed :: proc(self: ^ScriptCommand) -> bool ---
+
+    @(objc_type=ScriptCommand, objc_selector="scriptErrorNumber", objc_name="scriptErrorNumber")
+    ScriptCommand_scriptErrorNumber :: proc(self: ^ScriptCommand) -> NS.Integer ---
+
+    @(objc_type=ScriptCommand, objc_selector="setScriptErrorNumber:", objc_name="setScriptErrorNumber")
+    ScriptCommand_setScriptErrorNumber :: proc(self: ^ScriptCommand, scriptErrorNumber: NS.Integer) ---
+
+    @(objc_type=ScriptCommand, objc_selector="scriptErrorOffendingObjectDescriptor", objc_name="scriptErrorOffendingObjectDescriptor")
+    ScriptCommand_scriptErrorOffendingObjectDescriptor :: proc(self: ^ScriptCommand) -> ^AppleEventDescriptor ---
+
+    @(objc_type=ScriptCommand, objc_selector="setScriptErrorOffendingObjectDescriptor:", objc_name="setScriptErrorOffendingObjectDescriptor")
+    ScriptCommand_setScriptErrorOffendingObjectDescriptor :: proc(self: ^ScriptCommand, scriptErrorOffendingObjectDescriptor: ^AppleEventDescriptor) ---
+
+    @(objc_type=ScriptCommand, objc_selector="scriptErrorExpectedTypeDescriptor", objc_name="scriptErrorExpectedTypeDescriptor")
+    ScriptCommand_scriptErrorExpectedTypeDescriptor :: proc(self: ^ScriptCommand) -> ^AppleEventDescriptor ---
+
+    @(objc_type=ScriptCommand, objc_selector="setScriptErrorExpectedTypeDescriptor:", objc_name="setScriptErrorExpectedTypeDescriptor")
+    ScriptCommand_setScriptErrorExpectedTypeDescriptor :: proc(self: ^ScriptCommand, scriptErrorExpectedTypeDescriptor: ^AppleEventDescriptor) ---
+
+    @(objc_type=ScriptCommand, objc_selector="scriptErrorString", objc_name="scriptErrorString")
+    ScriptCommand_scriptErrorString :: proc(self: ^ScriptCommand) -> ^NS.String ---
+
+    @(objc_type=ScriptCommand, objc_selector="setScriptErrorString:", objc_name="setScriptErrorString")
+    ScriptCommand_setScriptErrorString :: proc(self: ^ScriptCommand, scriptErrorString: ^NS.String) ---
+
+    @(objc_type=ScriptCommand, objc_selector="appleEvent", objc_name="appleEvent")
+    ScriptCommand_appleEvent :: proc(self: ^ScriptCommand) -> ^AppleEventDescriptor ---
+}
