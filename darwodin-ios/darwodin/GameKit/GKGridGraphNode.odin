@@ -19,10 +19,10 @@ GridGraphNode :: struct { using _: GraphNode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GridGraphNode, objc_selector="nodeWithGridPosition:", objc_name="nodeWithGridPosition", objc_is_class_method=true)
-    GridGraphNode_nodeWithGridPosition :: proc(gridPosition: [2]cffi.int) -> ^GridGraphNode ---
+    GridGraphNode_nodeWithGridPosition :: proc(gridPosition: #by_ptr [2]cffi.int) -> ^GridGraphNode ---
 
     @(objc_type=GridGraphNode, objc_selector="initWithGridPosition:", objc_name="initWithGridPosition")
-    GridGraphNode_initWithGridPosition :: proc(self: ^GridGraphNode, gridPosition: [2]cffi.int) -> ^GridGraphNode ---
+    GridGraphNode_initWithGridPosition :: proc(self: ^GridGraphNode, gridPosition: #by_ptr [2]cffi.int) -> ^GridGraphNode ---
 
     @(objc_type=GridGraphNode, objc_selector="gridPosition", objc_name="gridPosition")
     GridGraphNode_gridPosition :: proc(self: ^GridGraphNode) -> [2]cffi.int ---

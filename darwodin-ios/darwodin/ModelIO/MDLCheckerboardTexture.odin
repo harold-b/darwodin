@@ -21,7 +21,7 @@ CheckerboardTexture :: struct { using _: Texture, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CheckerboardTexture, objc_selector="initWithDivisions:name:dimensions:channelCount:channelEncoding:color1:color2:", objc_name="initWithDivisions")
-    CheckerboardTexture_initWithDivisions :: proc(self: ^CheckerboardTexture, divisions: cffi.float, name: ^NS.String, dimensions: [2]cffi.int, channelCount: cffi.int, channelEncoding: TextureChannelEncoding, color1: CG.ColorRef, color2: CG.ColorRef) -> ^CheckerboardTexture ---
+    CheckerboardTexture_initWithDivisions :: proc(self: ^CheckerboardTexture, divisions: cffi.float, name: ^NS.String, dimensions: #by_ptr [2]cffi.int, channelCount: cffi.int, channelEncoding: TextureChannelEncoding, color1: CG.ColorRef, color2: CG.ColorRef) -> ^CheckerboardTexture ---
 
     @(objc_type=CheckerboardTexture, objc_selector="divisions", objc_name="divisions")
     CheckerboardTexture_divisions :: proc(self: ^CheckerboardTexture) -> cffi.float ---

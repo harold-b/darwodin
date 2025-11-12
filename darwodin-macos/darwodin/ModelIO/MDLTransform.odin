@@ -45,58 +45,58 @@ foreign lib {
     Transform_setIdentity :: proc(self: ^Transform) ---
 
     @(objc_type=Transform, objc_selector="translationAtTime:", objc_name="translationAtTime")
-    Transform_translationAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> ^vector_float3 ---
+    Transform_translationAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> vector_float3 ---
 
     @(objc_type=Transform, objc_selector="rotationAtTime:", objc_name="rotationAtTime")
-    Transform_rotationAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> ^vector_float3 ---
+    Transform_rotationAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> vector_float3 ---
 
     @(objc_type=Transform, objc_selector="shearAtTime:", objc_name="shearAtTime")
-    Transform_shearAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> ^vector_float3 ---
+    Transform_shearAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> vector_float3 ---
 
     @(objc_type=Transform, objc_selector="scaleAtTime:", objc_name="scaleAtTime")
-    Transform_scaleAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> ^vector_float3 ---
+    Transform_scaleAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> vector_float3 ---
 
     @(objc_type=Transform, objc_selector="setMatrix:forTime:", objc_name="setMatrix")
     Transform_setMatrix :: proc(self: ^Transform, _matrix: matrix[4,4]f32, time: NS.TimeInterval) ---
 
     @(objc_type=Transform, objc_selector="setTranslation:forTime:", objc_name="setTranslation_forTime")
-    Transform_setTranslation_forTime :: proc(self: ^Transform, translation: ^vector_float3, time: NS.TimeInterval) ---
+    Transform_setTranslation_forTime :: proc(self: ^Transform, translation: #by_ptr vector_float3, time: NS.TimeInterval) ---
 
     @(objc_type=Transform, objc_selector="setRotation:forTime:", objc_name="setRotation_forTime")
-    Transform_setRotation_forTime :: proc(self: ^Transform, rotation: ^vector_float3, time: NS.TimeInterval) ---
+    Transform_setRotation_forTime :: proc(self: ^Transform, rotation: #by_ptr vector_float3, time: NS.TimeInterval) ---
 
     @(objc_type=Transform, objc_selector="setShear:forTime:", objc_name="setShear_forTime")
-    Transform_setShear_forTime :: proc(self: ^Transform, shear: ^vector_float3, time: NS.TimeInterval) ---
+    Transform_setShear_forTime :: proc(self: ^Transform, shear: #by_ptr vector_float3, time: NS.TimeInterval) ---
 
     @(objc_type=Transform, objc_selector="setScale:forTime:", objc_name="setScale_forTime")
-    Transform_setScale_forTime :: proc(self: ^Transform, scale: ^vector_float3, time: NS.TimeInterval) ---
+    Transform_setScale_forTime :: proc(self: ^Transform, scale: #by_ptr vector_float3, time: NS.TimeInterval) ---
 
     @(objc_type=Transform, objc_selector="rotationMatrixAtTime:", objc_name="rotationMatrixAtTime")
     Transform_rotationMatrixAtTime :: proc(self: ^Transform, time: NS.TimeInterval) -> matrix[4,4]f32 ---
 
     @(objc_type=Transform, objc_selector="translation", objc_name="translation")
-    Transform_translation :: proc(self: ^Transform) -> ^vector_float3 ---
+    Transform_translation :: proc(self: ^Transform) -> vector_float3 ---
 
     @(objc_type=Transform, objc_selector="setTranslation:", objc_name="setTranslation_")
-    Transform_setTranslation_ :: proc(self: ^Transform, translation: ^vector_float3) ---
+    Transform_setTranslation_ :: proc(self: ^Transform, translation: #by_ptr vector_float3) ---
 
     @(objc_type=Transform, objc_selector="rotation", objc_name="rotation")
-    Transform_rotation :: proc(self: ^Transform) -> ^vector_float3 ---
+    Transform_rotation :: proc(self: ^Transform) -> vector_float3 ---
 
     @(objc_type=Transform, objc_selector="setRotation:", objc_name="setRotation_")
-    Transform_setRotation_ :: proc(self: ^Transform, rotation: ^vector_float3) ---
+    Transform_setRotation_ :: proc(self: ^Transform, rotation: #by_ptr vector_float3) ---
 
     @(objc_type=Transform, objc_selector="shear", objc_name="shear")
-    Transform_shear :: proc(self: ^Transform) -> ^vector_float3 ---
+    Transform_shear :: proc(self: ^Transform) -> vector_float3 ---
 
     @(objc_type=Transform, objc_selector="setShear:", objc_name="setShear_")
-    Transform_setShear_ :: proc(self: ^Transform, shear: ^vector_float3) ---
+    Transform_setShear_ :: proc(self: ^Transform, shear: #by_ptr vector_float3) ---
 
     @(objc_type=Transform, objc_selector="scale", objc_name="scale")
-    Transform_scale :: proc(self: ^Transform) -> ^vector_float3 ---
+    Transform_scale :: proc(self: ^Transform) -> vector_float3 ---
 
     @(objc_type=Transform, objc_selector="setScale:", objc_name="setScale_")
-    Transform_setScale_ :: proc(self: ^Transform, scale: ^vector_float3) ---
+    Transform_setScale_ :: proc(self: ^Transform, scale: #by_ptr vector_float3) ---
 }
 
 @(objc_type=Transform, objc_name="initWithTransformComponent")

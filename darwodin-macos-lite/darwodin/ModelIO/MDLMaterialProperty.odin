@@ -33,13 +33,13 @@ foreign lib {
     MaterialProperty_initWithName_semantic_float :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: cffi.float) -> ^MaterialProperty ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float2:", objc_name="initWithName_semantic_float2")
-    MaterialProperty_initWithName_semantic_float2 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float2) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_float2 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: #by_ptr vector_float2) -> ^MaterialProperty ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float3:", objc_name="initWithName_semantic_float3")
-    MaterialProperty_initWithName_semantic_float3 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float3) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_float3 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: #by_ptr vector_float3) -> ^MaterialProperty ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float4:", objc_name="initWithName_semantic_float4")
-    MaterialProperty_initWithName_semantic_float4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float4) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_float4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: #by_ptr vector_float4) -> ^MaterialProperty ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:matrix4x4:", objc_name="initWithName_semantic_matrix4x4")
     MaterialProperty_initWithName_semantic_matrix4x4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: matrix[4,4]f32) -> ^MaterialProperty ---
@@ -108,22 +108,22 @@ foreign lib {
     MaterialProperty_setFloatValue :: proc(self: ^MaterialProperty, floatValue: cffi.float) ---
 
     @(objc_type=MaterialProperty, objc_selector="float2Value", objc_name="float2Value")
-    MaterialProperty_float2Value :: proc(self: ^MaterialProperty) -> ^vector_float2 ---
+    MaterialProperty_float2Value :: proc(self: ^MaterialProperty) -> vector_float2 ---
 
     @(objc_type=MaterialProperty, objc_selector="setFloat2Value:", objc_name="setFloat2Value")
-    MaterialProperty_setFloat2Value :: proc(self: ^MaterialProperty, float2Value: ^vector_float2) ---
+    MaterialProperty_setFloat2Value :: proc(self: ^MaterialProperty, float2Value: #by_ptr vector_float2) ---
 
     @(objc_type=MaterialProperty, objc_selector="float3Value", objc_name="float3Value")
-    MaterialProperty_float3Value :: proc(self: ^MaterialProperty) -> ^vector_float3 ---
+    MaterialProperty_float3Value :: proc(self: ^MaterialProperty) -> vector_float3 ---
 
     @(objc_type=MaterialProperty, objc_selector="setFloat3Value:", objc_name="setFloat3Value")
-    MaterialProperty_setFloat3Value :: proc(self: ^MaterialProperty, float3Value: ^vector_float3) ---
+    MaterialProperty_setFloat3Value :: proc(self: ^MaterialProperty, float3Value: #by_ptr vector_float3) ---
 
     @(objc_type=MaterialProperty, objc_selector="float4Value", objc_name="float4Value")
-    MaterialProperty_float4Value :: proc(self: ^MaterialProperty) -> ^vector_float4 ---
+    MaterialProperty_float4Value :: proc(self: ^MaterialProperty) -> vector_float4 ---
 
     @(objc_type=MaterialProperty, objc_selector="setFloat4Value:", objc_name="setFloat4Value")
-    MaterialProperty_setFloat4Value :: proc(self: ^MaterialProperty, float4Value: ^vector_float4) ---
+    MaterialProperty_setFloat4Value :: proc(self: ^MaterialProperty, float4Value: #by_ptr vector_float4) ---
 
     @(objc_type=MaterialProperty, objc_selector="matrix4x4", objc_name="matrix4x4")
     MaterialProperty_matrix4x4 :: proc(self: ^MaterialProperty) -> matrix[4,4]f32 ---

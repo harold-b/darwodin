@@ -56,8 +56,8 @@ foreign lib {
     VertexAttribute_setTime :: proc(self: ^VertexAttribute, time: NS.TimeInterval) ---
 
     @(objc_type=VertexAttribute, objc_selector="initializationValue", objc_name="initializationValue")
-    VertexAttribute_initializationValue :: proc(self: ^VertexAttribute) -> ^vector_float4 ---
+    VertexAttribute_initializationValue :: proc(self: ^VertexAttribute) -> vector_float4 ---
 
     @(objc_type=VertexAttribute, objc_selector="setInitializationValue:", objc_name="setInitializationValue")
-    VertexAttribute_setInitializationValue :: proc(self: ^VertexAttribute, initializationValue: ^vector_float4) ---
+    VertexAttribute_setInitializationValue :: proc(self: ^VertexAttribute, initializationValue: #by_ptr vector_float4) ---
 }

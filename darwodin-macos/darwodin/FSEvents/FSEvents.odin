@@ -1584,7 +1584,7 @@ HFSPlusForkData :: struct #align (2) {
     logicalSize: cffi.ulonglong,
     clumpSize:   cffi.uint,
     totalBlocks: cffi.uint,
-    extents:     ^HFSPlusExtentRecord,
+    extents:     HFSPlusExtentRecord,
 }
 #assert(size_of(HFSPlusForkData) == 80)
 
@@ -1672,8 +1672,8 @@ HFSCatalogFile :: struct #align (2) #max_field_align(2) {
     backupDate:       cffi.uint,
     finderInfo:       FndrOpaqueInfo,
     clumpSize:        cffi.ushort,
-    dataExtents:      ^HFSExtentRecord,
-    rsrcExtents:      ^HFSExtentRecord,
+    dataExtents:      HFSExtentRecord,
+    rsrcExtents:      HFSExtentRecord,
     reserved:         cffi.uint,
 }
 #assert(size_of(HFSCatalogFile) == 102)
@@ -1729,7 +1729,7 @@ HFSPlusAttrForkData :: struct #align (2) {
 HFSPlusAttrExtents :: struct #align (2) {
     recordType: cffi.uint,
     reserved:   cffi.uint,
-    extents:    ^HFSPlusExtentRecord,
+    extents:    HFSPlusExtentRecord,
 }
 #assert(size_of(HFSPlusAttrExtents) == 72)
 
@@ -1790,9 +1790,9 @@ HFSMasterDirectoryBlock :: struct #align (2) #max_field_align(2) {
     drEmbedSigWord: cffi.ushort,
     drEmbedExtent:  HFSExtentDescriptor,
     drXTFlSize:     cffi.uint,
-    drXTExtRec:     ^HFSExtentRecord,
+    drXTExtRec:     HFSExtentRecord,
     drCTFlSize:     cffi.uint,
-    drCTExtRec:     ^HFSExtentRecord,
+    drCTExtRec:     HFSExtentRecord,
 }
 #assert(size_of(HFSMasterDirectoryBlock) == 162)
 

@@ -16,7 +16,7 @@ SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
-instancetype :: intrinsics.objc_instancetype
+instancetype  :: intrinsics.objc_instancetype
 
 @export foreign import lib "system:IOKit.framework"
 
@@ -69,6 +69,207 @@ kBlockStorageDeviceClass :: "IOBlockStorageDevice"
  * block storage device.
  */
 kBlockStorageDeviceWriteCacheStateKey :: "WriteCacheState"
+
+
+// <IOKit/storage/IOMedia.h>
+
+kMediaClass :: "IOMedia"
+
+/*!
+ * @defined kIOMediaContentKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaContentKey property has an OSString
+ * value and contains a description of the media's
+ * contents.  The description is the same as the hint at the time of the
+ * object's creation, but it is possible that the description has been overridden
+ * by a client (which has probed the media and identified the content correctly)
+ * of the media object.  It is more accurate than the hint for this reason.  The
+ * string is formed in the likeness of Apple's "Apple_HFS" strings or in the
+ * likeness of a UUID.
+ */
+
+kMediaContentKey :: "Content"
+
+/*!
+ * @defined kIOMediaContentHintKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaContentHintKey property has an OSString
+ * value and contains a hint of the media's contents.
+ * The hint is set at the time of the object's creation, should the creator have
+ * a clue as to what it may contain.  The hint string does not change for the
+ * lifetime of the object and is formed in the likeness of Apple's "Apple_HFS"
+ * strings or in the likeness of a UUID.
+ */
+
+kMediaContentHintKey :: "Content Hint"
+
+/*!
+ * @defined kIOMediaEjectableKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaEjectableKey property has an OSBoolean
+ * value and describes whether the media is ejectable
+ * from the drive mechanism under software control.  Implies IOMediaRemovable
+ * is also true.
+ */
+
+kMediaEjectableKey :: "Ejectable"
+
+/*!
+ * @defined kIOMediaLeafKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaLeafKey property has an OSBoolean value and describes whether the media is a leaf, that is,
+ * it is the deepest media object in this branch of the I/O Registry.
+ */
+
+kMediaLeafKey :: "Leaf"
+
+/*!
+ * @defined kIOMediaOpenKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaOpenKey property has an OSBoolean value and describes whether
+ * a client presently has an open on this media.
+ */
+
+kMediaOpenKey :: "Open"
+
+/*!
+ * @defined kIOMediaPreferredBlockSizeKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaPreferredBlockSizeKey property has an
+ * OSNumber value and describes the media's natural
+ * block size in bytes.  This information is useful to clients that want to
+ * optimize access to the media.
+ */
+
+kMediaPreferredBlockSizeKey :: "Preferred Block Size"
+
+/*!
+ * @defined kIOMediaRemovableKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaRemovableKey property has an OSBoolean
+ * value and describes whether the media is removable
+ * from the drive mechanism.
+ */
+
+kMediaRemovableKey :: "Removable"
+
+/*!
+ * @defined kIOMediaSizeKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaSizeKey property has an OSNumber value and describes the total length of the media in
+ * bytes.
+ */
+
+kMediaSizeKey :: "Size"
+
+/*!
+ * @defined kIOMediaUUIDKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaUUIDKey property has an OSString value and contains a persistent
+ * Universal Unique Identifier for the media if such an identifier is available.
+ */
+
+kMediaUUIDKey :: "UUID"
+
+/*!
+ * @defined kIOMediaWholeKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaWholeKey property has an OSBoolean
+ * value and describes whether the media is whole, that is,
+ * it represents the whole disk (the physical disk, or a virtual replica
+ * thereof).
+ */
+
+kMediaWholeKey :: "Whole"
+
+/*!
+ * @defined kIOMediaWritableKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaWritableKey property has an OSBoolean
+ * value and describes whether the media is writable.
+ */
+
+kMediaWritableKey :: "Writable"
+
+/*!
+ * @defined kIOMediaContentMaskKey
+ * @abstract
+ * A property of IOMedia clients.
+ * @discussion
+ * The kIOMediaContentMaskKey property has an OSString
+ * value and must exist in all IOMedia clients that
+ * drive new content (that is, produce new media objects).  When the client
+ * matches against the provider media, the value of the client's
+ * kIOMediaContentMaskKey property is used to replace the provider's
+ * kIOMediaContentKey property.
+ */
+
+kMediaContentMaskKey :: "Content Mask"
+
+/*!
+ * @defined kIOMediaIconKey
+ * @abstract
+ * A property of any object in the media stack.
+ * @discussion
+ * kIOMediaIconKey is a property of any object in the media stack that wishes
+ * to override the default icon shown for the media objects in the stack.  It
+ * is usually defined in a provider object below the media object.  It has an
+ * OSDictionary value, with properties identical to the kIOIconKey definition,
+ * that is, kCFBundleIdentifierKey and kIOBundleResourceFileKey.
+ */
+
+kMediaIconKey :: "IOMediaIcon"
+
+/*!
+ * @defined kIOMediaInvalidStartupDiskKey
+ * @abstract
+ * A property of IOMedia objects.
+ * @discussion
+ * The kIOMediaInvalidStartupDiskKey property has an OSBoolean
+ * value and describes whether the media cannot be used as a startup disk
+ */
+
+kMediaInvalidStartupDiskKey :: "Invalid Startup Disk"
+
+/*!
+ * @enum IOMediaAttributeMask
+ * @discussion
+ * The IOMediaAttributeMask bit mask describes various attributes of
+ * the media object, such as its ejectability and its removability.
+ * @constant kIOMediaAttributeEjectableMask
+ * Indicates whether the media is ejectable from the drive mechanism
+ * under software control.  Implies kIOMediaAttributeRemovableMask.
+ * @constant kIOMediaAttributeRemovableMask
+ * Indicates whether the media is removable from the drive mechanism.
+ */
+
+IOMediaAttributeMask :: enum u32 {
+    EjectableMask = 0x00000001,
+    RemovableMask = 0x00000002,
+    ReservedMask  = 0xFFFFFFFC,
+}
 
 
 
@@ -321,7 +522,7 @@ foreign lib {
     ObjectRetain :: proc(object: object_t) -> mach.kern_return_t ---
 
     @(link_name="IOObjectGetClass")
-    ObjectGetClass :: proc(object: object_t, className: name_t) -> mach.kern_return_t ---
+    ObjectGetClass :: proc(object: object_t, className: #by_ptr name_t) -> mach.kern_return_t ---
 
     @(link_name="IOObjectCopyClass")
     ObjectCopyClass :: proc(object: object_t) -> CF.StringRef ---
@@ -333,7 +534,7 @@ foreign lib {
     ObjectCopyBundleIdentifierForClass :: proc(classname: CF.StringRef) -> CF.StringRef ---
 
     @(link_name="IOObjectConformsTo")
-    ObjectConformsTo :: proc(object: object_t, className: name_t) -> CF.boolean_t ---
+    ObjectConformsTo :: proc(object: object_t, className: #by_ptr name_t) -> CF.boolean_t ---
 
     @(link_name="IOObjectIsEqualTo")
     ObjectIsEqualTo :: proc(object: object_t, anObject: object_t) -> CF.boolean_t ---
@@ -363,13 +564,13 @@ foreign lib {
     ServiceGetMatchingServices :: proc(mainPort: mach.port_t, matching: CF.DictionaryRef, existing: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IOServiceAddNotification")
-    ServiceAddNotification :: proc(mainPort: mach.port_t, notificationType: name_t, matching: CF.DictionaryRef, wakePort: mach.port_t, reference: cffi.uintptr_t, notification: ^iterator_t) -> mach.kern_return_t ---
+    ServiceAddNotification :: proc(mainPort: mach.port_t, notificationType: #by_ptr name_t, matching: CF.DictionaryRef, wakePort: mach.port_t, reference: cffi.uintptr_t, notification: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IOServiceAddMatchingNotification")
-    ServiceAddMatchingNotification :: proc(notifyPort: NotificationPortRef, notificationType: name_t, matching: CF.DictionaryRef, callback: ServiceMatchingCallback, refCon: rawptr, notification: ^iterator_t) -> mach.kern_return_t ---
+    ServiceAddMatchingNotification :: proc(notifyPort: NotificationPortRef, notificationType: #by_ptr name_t, matching: CF.DictionaryRef, callback: ServiceMatchingCallback, refCon: rawptr, notification: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IOServiceAddInterestNotification")
-    ServiceAddInterestNotification :: proc(notifyPort: NotificationPortRef, service: service_t, interestType: name_t, callback: ServiceInterestCallback, refCon: rawptr, notification: ^object_t) -> mach.kern_return_t ---
+    ServiceAddInterestNotification :: proc(notifyPort: NotificationPortRef, service: service_t, interestType: #by_ptr name_t, callback: ServiceInterestCallback, refCon: rawptr, notification: ^object_t) -> mach.kern_return_t ---
 
     @(link_name="IOServiceMatchPropertyTable")
     ServiceMatchPropertyTable :: proc(service: service_t, matching: CF.DictionaryRef, matches: ^CF.boolean_t) -> mach.kern_return_t ---
@@ -480,16 +681,16 @@ foreign lib {
     RegistryGetRootEntry :: proc(mainPort: mach.port_t) -> registry_entry_t ---
 
     @(link_name="IORegistryEntryFromPath")
-    RegistryEntryFromPath :: proc(mainPort: mach.port_t, path: string_t) -> registry_entry_t ---
+    RegistryEntryFromPath :: proc(mainPort: mach.port_t, path: #by_ptr string_t) -> registry_entry_t ---
 
     @(link_name="IORegistryEntryCopyFromPath")
     RegistryEntryCopyFromPath :: proc(mainPort: mach.port_t, path: CF.StringRef) -> registry_entry_t ---
 
     @(link_name="IORegistryCreateIterator")
-    RegistryCreateIterator :: proc(mainPort: mach.port_t, plane: name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
+    RegistryCreateIterator :: proc(mainPort: mach.port_t, plane: #by_ptr name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryCreateIterator")
-    RegistryEntryCreateIterator :: proc(entry: registry_entry_t, plane: name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
+    RegistryEntryCreateIterator :: proc(entry: registry_entry_t, plane: #by_ptr name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryIteratorEnterEntry")
     RegistryIteratorEnterEntry :: proc(iterator: iterator_t) -> mach.kern_return_t ---
@@ -498,19 +699,19 @@ foreign lib {
     RegistryIteratorExitEntry :: proc(iterator: iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetName")
-    RegistryEntryGetName :: proc(entry: registry_entry_t, name: name_t) -> mach.kern_return_t ---
+    RegistryEntryGetName :: proc(entry: registry_entry_t, name: #by_ptr name_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetNameInPlane")
-    RegistryEntryGetNameInPlane :: proc(entry: registry_entry_t, plane: name_t, name: name_t) -> mach.kern_return_t ---
+    RegistryEntryGetNameInPlane :: proc(entry: registry_entry_t, plane: #by_ptr name_t, name: #by_ptr name_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetLocationInPlane")
-    RegistryEntryGetLocationInPlane :: proc(entry: registry_entry_t, plane: name_t, location: name_t) -> mach.kern_return_t ---
+    RegistryEntryGetLocationInPlane :: proc(entry: registry_entry_t, plane: #by_ptr name_t, location: #by_ptr name_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetPath")
-    RegistryEntryGetPath :: proc(entry: registry_entry_t, plane: name_t, path: string_t) -> mach.kern_return_t ---
+    RegistryEntryGetPath :: proc(entry: registry_entry_t, plane: #by_ptr name_t, path: #by_ptr string_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryCopyPath")
-    RegistryEntryCopyPath :: proc(entry: registry_entry_t, plane: name_t) -> CF.StringRef ---
+    RegistryEntryCopyPath :: proc(entry: registry_entry_t, plane: #by_ptr name_t) -> CF.StringRef ---
 
     @(link_name="IORegistryEntryGetRegistryEntryID")
     RegistryEntryGetRegistryEntryID :: proc(entry: registry_entry_t, entryID: ^cffi.uint64_t) -> mach.kern_return_t ---
@@ -522,10 +723,10 @@ foreign lib {
     RegistryEntryCreateCFProperty :: proc(entry: registry_entry_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
 
     @(link_name="IORegistryEntrySearchCFProperty")
-    RegistryEntrySearchCFProperty :: proc(entry: registry_entry_t, plane: name_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
+    RegistryEntrySearchCFProperty :: proc(entry: registry_entry_t, plane: #by_ptr name_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
 
     @(link_name="IORegistryEntryGetProperty")
-    RegistryEntryGetProperty :: proc(entry: registry_entry_t, propertyName: name_t, buffer: struct_inband_t, size: ^cffi.uint32_t) -> mach.kern_return_t ---
+    RegistryEntryGetProperty :: proc(entry: registry_entry_t, propertyName: #by_ptr name_t, buffer: #by_ptr struct_inband_t, size: ^cffi.uint32_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntrySetCFProperties")
     RegistryEntrySetCFProperties :: proc(entry: registry_entry_t, properties: CF.TypeRef) -> mach.kern_return_t ---
@@ -534,19 +735,19 @@ foreign lib {
     RegistryEntrySetCFProperty :: proc(entry: registry_entry_t, propertyName: CF.StringRef, property: CF.TypeRef) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetChildIterator")
-    RegistryEntryGetChildIterator :: proc(entry: registry_entry_t, plane: name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
+    RegistryEntryGetChildIterator :: proc(entry: registry_entry_t, plane: #by_ptr name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetChildEntry")
-    RegistryEntryGetChildEntry :: proc(entry: registry_entry_t, plane: name_t, child: ^registry_entry_t) -> mach.kern_return_t ---
+    RegistryEntryGetChildEntry :: proc(entry: registry_entry_t, plane: #by_ptr name_t, child: ^registry_entry_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetParentIterator")
-    RegistryEntryGetParentIterator :: proc(entry: registry_entry_t, plane: name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
+    RegistryEntryGetParentIterator :: proc(entry: registry_entry_t, plane: #by_ptr name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetParentEntry")
-    RegistryEntryGetParentEntry :: proc(entry: registry_entry_t, plane: name_t, parent: ^registry_entry_t) -> mach.kern_return_t ---
+    RegistryEntryGetParentEntry :: proc(entry: registry_entry_t, plane: #by_ptr name_t, parent: ^registry_entry_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryInPlane")
-    RegistryEntryInPlane :: proc(entry: registry_entry_t, plane: name_t) -> CF.boolean_t ---
+    RegistryEntryInPlane :: proc(entry: registry_entry_t, plane: #by_ptr name_t) -> CF.boolean_t ---
 
     @(link_name="IOServiceMatching")
     ServiceMatching :: proc(name: cstring) -> CF.MutableDictionaryRef ---
@@ -564,19 +765,19 @@ foreign lib {
     RegistryEntryIDMatching :: proc(entryID: cffi.uint64_t) -> CF.MutableDictionaryRef ---
 
     @(link_name="IOServiceOFPathToBSDName")
-    ServiceOFPathToBSDName :: proc(mainPort: mach.port_t, openFirmwarePath: name_t, bsdName: name_t) -> mach.kern_return_t ---
+    ServiceOFPathToBSDName :: proc(mainPort: mach.port_t, openFirmwarePath: #by_ptr name_t, bsdName: #by_ptr name_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueSendData")
     CatalogueSendData :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, buffer: cstring, size: cffi.uint32_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueTerminate")
-    CatalogueTerminate :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, description: name_t) -> mach.kern_return_t ---
+    CatalogueTerminate :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, description: #by_ptr name_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueGetData")
     CatalogueGetData :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, buffer: ^cstring, size: ^cffi.uint32_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueModuleLoaded")
-    CatalogueModuleLoaded :: proc(mainPort: mach.port_t, name: name_t) -> mach.kern_return_t ---
+    CatalogueModuleLoaded :: proc(mainPort: mach.port_t, name: #by_ptr name_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueReset")
     CatalogueReset :: proc(mainPort: mach.port_t, flag: cffi.uint32_t) -> mach.kern_return_t ---

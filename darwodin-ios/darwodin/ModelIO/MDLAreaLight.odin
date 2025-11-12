@@ -30,7 +30,7 @@ foreign lib {
     AreaLight_superEllipticPower :: proc(self: ^AreaLight) -> vector_float2 ---
 
     @(objc_type=AreaLight, objc_selector="setSuperEllipticPower:", objc_name="setSuperEllipticPower")
-    AreaLight_setSuperEllipticPower :: proc(self: ^AreaLight, superEllipticPower: vector_float2) ---
+    AreaLight_setSuperEllipticPower :: proc(self: ^AreaLight, superEllipticPower: #by_ptr vector_float2) ---
 
     @(objc_type=AreaLight, objc_selector="aspect", objc_name="aspect")
     AreaLight_aspect :: proc(self: ^AreaLight) -> cffi.float ---

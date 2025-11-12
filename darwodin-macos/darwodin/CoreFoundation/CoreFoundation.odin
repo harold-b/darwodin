@@ -3395,7 +3395,7 @@ Str15 :: distinct [16]cffi.uchar
 Str32Field :: distinct [34]cffi.uchar
 
 /// StrFileName
-StrFileName :: distinct ^Str63
+StrFileName :: distinct Str63
 
 /// StringPtr
 StringPtr :: distinct ^cffi.uchar

@@ -25,13 +25,13 @@ foreign lib {
     Octree_initWithBoundingBox :: proc(self: ^Octree, box: Box, minCellSize: cffi.float) -> instancetype ---
 
     @(objc_type=Octree, objc_selector="addElement:withPoint:", objc_name="addElement_withPoint")
-    Octree_addElement_withPoint :: proc(self: ^Octree, element: id, point: ^vector_float3) -> ^OctreeNode ---
+    Octree_addElement_withPoint :: proc(self: ^Octree, element: id, point: #by_ptr vector_float3) -> ^OctreeNode ---
 
     @(objc_type=Octree, objc_selector="addElement:withBox:", objc_name="addElement_withBox")
     Octree_addElement_withBox :: proc(self: ^Octree, element: id, box: Box) -> ^OctreeNode ---
 
     @(objc_type=Octree, objc_selector="elementsAtPoint:", objc_name="elementsAtPoint")
-    Octree_elementsAtPoint :: proc(self: ^Octree, point: ^vector_float3) -> ^NS.Array ---
+    Octree_elementsAtPoint :: proc(self: ^Octree, point: #by_ptr vector_float3) -> ^NS.Array ---
 
     @(objc_type=Octree, objc_selector="elementsInBox:", objc_name="elementsInBox")
     Octree_elementsInBox :: proc(self: ^Octree, box: Box) -> ^NS.Array ---

@@ -31,8 +31,8 @@ foreign lib {
     CircleObstacle_setRadius :: proc(self: ^CircleObstacle, radius: cffi.float) ---
 
     @(objc_type=CircleObstacle, objc_selector="position", objc_name="position")
-    CircleObstacle_position :: proc(self: ^CircleObstacle) -> ^vector_float2 ---
+    CircleObstacle_position :: proc(self: ^CircleObstacle) -> vector_float2 ---
 
     @(objc_type=CircleObstacle, objc_selector="setPosition:", objc_name="setPosition")
-    CircleObstacle_setPosition :: proc(self: ^CircleObstacle, position: ^vector_float2) ---
+    CircleObstacle_setPosition :: proc(self: ^CircleObstacle, position: #by_ptr vector_float2) ---
 }

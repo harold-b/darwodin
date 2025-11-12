@@ -19,19 +19,19 @@ GridGraph :: struct { using _: Graph, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GridGraph, objc_selector="graphFromGridStartingAt:width:height:diagonalsAllowed:", objc_name="graphFromGridStartingAt_width_height_diagonalsAllowed", objc_is_class_method=true)
-    GridGraph_graphFromGridStartingAt_width_height_diagonalsAllowed :: proc(position: ^[2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool) -> instancetype ---
+    GridGraph_graphFromGridStartingAt_width_height_diagonalsAllowed :: proc(position: #by_ptr [2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool) -> instancetype ---
 
     @(objc_type=GridGraph, objc_selector="initFromGridStartingAt:width:height:diagonalsAllowed:", objc_name="initFromGridStartingAt_width_height_diagonalsAllowed")
-    GridGraph_initFromGridStartingAt_width_height_diagonalsAllowed :: proc(self: ^GridGraph, position: ^[2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool) -> instancetype ---
+    GridGraph_initFromGridStartingAt_width_height_diagonalsAllowed :: proc(self: ^GridGraph, position: #by_ptr [2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool) -> instancetype ---
 
     @(objc_type=GridGraph, objc_selector="graphFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:", objc_name="graphFromGridStartingAt_width_height_diagonalsAllowed_nodeClass", objc_is_class_method=true)
-    GridGraph_graphFromGridStartingAt_width_height_diagonalsAllowed_nodeClass :: proc(position: ^[2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool, nodeClass: Class) -> instancetype ---
+    GridGraph_graphFromGridStartingAt_width_height_diagonalsAllowed_nodeClass :: proc(position: #by_ptr [2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool, nodeClass: Class) -> instancetype ---
 
     @(objc_type=GridGraph, objc_selector="initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:", objc_name="initFromGridStartingAt_width_height_diagonalsAllowed_nodeClass")
-    GridGraph_initFromGridStartingAt_width_height_diagonalsAllowed_nodeClass :: proc(self: ^GridGraph, position: ^[2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool, nodeClass: Class) -> instancetype ---
+    GridGraph_initFromGridStartingAt_width_height_diagonalsAllowed_nodeClass :: proc(self: ^GridGraph, position: #by_ptr [2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool, nodeClass: Class) -> instancetype ---
 
     @(objc_type=GridGraph, objc_selector="nodeAtGridPosition:", objc_name="nodeAtGridPosition")
-    GridGraph_nodeAtGridPosition :: proc(self: ^GridGraph, position: ^[2]cffi.int) -> id ---
+    GridGraph_nodeAtGridPosition :: proc(self: ^GridGraph, position: #by_ptr [2]cffi.int) -> id ---
 
     @(objc_type=GridGraph, objc_selector="connectNodeToAdjacentNodes:", objc_name="connectNodeToAdjacentNodes")
     GridGraph_connectNodeToAdjacentNodes :: proc(self: ^GridGraph, node: ^GridGraphNode) ---
@@ -40,7 +40,7 @@ foreign lib {
     GridGraph_classForGenericArgumentAtIndex :: proc(self: ^GridGraph, index: NS.UInteger) -> Class ---
 
     @(objc_type=GridGraph, objc_selector="gridOrigin", objc_name="gridOrigin")
-    GridGraph_gridOrigin :: proc(self: ^GridGraph) -> ^[2]cffi.int ---
+    GridGraph_gridOrigin :: proc(self: ^GridGraph) -> [2]cffi.int ---
 
     @(objc_type=GridGraph, objc_selector="gridWidth", objc_name="gridWidth")
     GridGraph_gridWidth :: proc(self: ^GridGraph) -> NS.UInteger ---

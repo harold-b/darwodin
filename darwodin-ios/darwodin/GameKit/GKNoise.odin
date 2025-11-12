@@ -40,7 +40,7 @@ foreign lib {
     Noise_noiseWithComponentNoises_selectionNoise_componentBoundaries_boundaryBlendDistances :: proc(noises: ^NS.Array, selectionNoise: ^Noise, componentBoundaries: ^NS.Array, blendDistances: ^NS.Array) -> ^Noise ---
 
     @(objc_type=Noise, objc_selector="valueAtPosition:", objc_name="valueAtPosition")
-    Noise_valueAtPosition :: proc(self: ^Noise, position: vector_float2) -> cffi.float ---
+    Noise_valueAtPosition :: proc(self: ^Noise, position: #by_ptr vector_float2) -> cffi.float ---
 
     @(objc_type=Noise, objc_selector="applyAbsoluteValue", objc_name="applyAbsoluteValue")
     Noise_applyAbsoluteValue :: proc(self: ^Noise) ---
@@ -64,13 +64,13 @@ foreign lib {
     Noise_remapValuesToTerracesWithPeaks :: proc(self: ^Noise, peakInputValues: ^NS.Array, inverted: bool) ---
 
     @(objc_type=Noise, objc_selector="moveBy:", objc_name="moveBy")
-    Noise_moveBy :: proc(self: ^Noise, delta: vector_double3) ---
+    Noise_moveBy :: proc(self: ^Noise, delta: #by_ptr vector_double3) ---
 
     @(objc_type=Noise, objc_selector="scaleBy:", objc_name="scaleBy")
-    Noise_scaleBy :: proc(self: ^Noise, factor: vector_double3) ---
+    Noise_scaleBy :: proc(self: ^Noise, factor: #by_ptr vector_double3) ---
 
     @(objc_type=Noise, objc_selector="rotateBy:", objc_name="rotateBy")
-    Noise_rotateBy :: proc(self: ^Noise, radians: vector_double3) ---
+    Noise_rotateBy :: proc(self: ^Noise, radians: #by_ptr vector_double3) ---
 
     @(objc_type=Noise, objc_selector="addWithNoise:", objc_name="addWithNoise")
     Noise_addWithNoise :: proc(self: ^Noise, noise: ^Noise) ---

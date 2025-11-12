@@ -16,7 +16,7 @@ SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
-instancetype :: intrinsics.objc_instancetype
+instancetype  :: intrinsics.objc_instancetype
 
 @export foreign import lib "system:CloudKit.framework"
 

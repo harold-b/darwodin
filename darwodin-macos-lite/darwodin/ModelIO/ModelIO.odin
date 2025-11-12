@@ -155,7 +155,7 @@ foreign lib {
 LabelRef :: distinct ^__MDLabel
 
 /// MDLVoxelIndex
-VoxelIndex :: distinct ^[4]cffi.int
+VoxelIndex :: distinct [4]cffi.int
 
 /// MDLabelDomain
 LabelDomain :: enum cffi.uint {
@@ -401,15 +401,15 @@ __MDLabel :: struct {}
 
 /// MDLAxisAlignedBoundingBox
 AxisAlignedBoundingBox :: struct #align (16) {
-    maxBounds: ^vector_float3,
-    minBounds: ^vector_float3,
+    maxBounds: vector_float3,
+    minBounds: vector_float3,
 }
 #assert(size_of(AxisAlignedBoundingBox) == 32)
 
 /// MDLVoxelIndexExtent
 VoxelIndexExtent :: struct #align (16) {
-    minimumExtent: ^VoxelIndex,
-    maximumExtent: ^VoxelIndex,
+    minimumExtent: VoxelIndex,
+    maximumExtent: VoxelIndex,
 }
 #assert(size_of(VoxelIndexExtent) == 32)
 

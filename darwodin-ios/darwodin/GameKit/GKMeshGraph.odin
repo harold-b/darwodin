@@ -19,16 +19,16 @@ MeshGraph :: struct { using _: Graph, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshGraph, objc_selector="graphWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:", objc_name="graphWithBufferRadius_minCoordinate_maxCoordinate_nodeClass", objc_is_class_method=true)
-    MeshGraph_graphWithBufferRadius_minCoordinate_maxCoordinate_nodeClass :: proc(bufferRadius: cffi.float, min: vector_float2, max: vector_float2, nodeClass: Class) -> instancetype ---
+    MeshGraph_graphWithBufferRadius_minCoordinate_maxCoordinate_nodeClass :: proc(bufferRadius: cffi.float, min: #by_ptr vector_float2, max: #by_ptr vector_float2, nodeClass: Class) -> instancetype ---
 
     @(objc_type=MeshGraph, objc_selector="initWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:", objc_name="initWithBufferRadius_minCoordinate_maxCoordinate_nodeClass")
-    MeshGraph_initWithBufferRadius_minCoordinate_maxCoordinate_nodeClass :: proc(self: ^MeshGraph, bufferRadius: cffi.float, min: vector_float2, max: vector_float2, nodeClass: Class) -> instancetype ---
+    MeshGraph_initWithBufferRadius_minCoordinate_maxCoordinate_nodeClass :: proc(self: ^MeshGraph, bufferRadius: cffi.float, min: #by_ptr vector_float2, max: #by_ptr vector_float2, nodeClass: Class) -> instancetype ---
 
     @(objc_type=MeshGraph, objc_selector="graphWithBufferRadius:minCoordinate:maxCoordinate:", objc_name="graphWithBufferRadius_minCoordinate_maxCoordinate", objc_is_class_method=true)
-    MeshGraph_graphWithBufferRadius_minCoordinate_maxCoordinate :: proc(bufferRadius: cffi.float, min: vector_float2, max: vector_float2) -> instancetype ---
+    MeshGraph_graphWithBufferRadius_minCoordinate_maxCoordinate :: proc(bufferRadius: cffi.float, min: #by_ptr vector_float2, max: #by_ptr vector_float2) -> instancetype ---
 
     @(objc_type=MeshGraph, objc_selector="initWithBufferRadius:minCoordinate:maxCoordinate:", objc_name="initWithBufferRadius_minCoordinate_maxCoordinate")
-    MeshGraph_initWithBufferRadius_minCoordinate_maxCoordinate :: proc(self: ^MeshGraph, bufferRadius: cffi.float, min: vector_float2, max: vector_float2) -> instancetype ---
+    MeshGraph_initWithBufferRadius_minCoordinate_maxCoordinate :: proc(self: ^MeshGraph, bufferRadius: cffi.float, min: #by_ptr vector_float2, max: #by_ptr vector_float2) -> instancetype ---
 
     @(objc_type=MeshGraph, objc_selector="addObstacles:", objc_name="addObstacles")
     MeshGraph_addObstacles :: proc(self: ^MeshGraph, obstacles: ^NS.Array) ---

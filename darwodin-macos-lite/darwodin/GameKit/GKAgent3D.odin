@@ -22,13 +22,13 @@ foreign lib {
     Agent3D_updateWithDeltaTime :: proc(self: ^Agent3D, seconds: NS.TimeInterval) ---
 
     @(objc_type=Agent3D, objc_selector="position", objc_name="position")
-    Agent3D_position :: proc(self: ^Agent3D) -> ^vector_float3 ---
+    Agent3D_position :: proc(self: ^Agent3D) -> vector_float3 ---
 
     @(objc_type=Agent3D, objc_selector="setPosition:", objc_name="setPosition")
-    Agent3D_setPosition :: proc(self: ^Agent3D, position: ^vector_float3) ---
+    Agent3D_setPosition :: proc(self: ^Agent3D, position: #by_ptr vector_float3) ---
 
     @(objc_type=Agent3D, objc_selector="velocity", objc_name="velocity")
-    Agent3D_velocity :: proc(self: ^Agent3D) -> ^vector_float3 ---
+    Agent3D_velocity :: proc(self: ^Agent3D) -> vector_float3 ---
 
     @(objc_type=Agent3D, objc_selector="rightHanded", objc_name="rightHanded")
     Agent3D_rightHanded :: proc(self: ^Agent3D) -> bool ---
