@@ -27,7 +27,7 @@ foreign lib {
     Agent2D_position :: proc(self: ^Agent2D) -> vector_float2 ---
 
     @(objc_type=Agent2D, objc_selector="setPosition:", objc_name="setPosition")
-    Agent2D_setPosition :: proc(self: ^Agent2D, position: #by_ptr vector_float2) ---
+    Agent2D_setPosition :: proc(self: ^Agent2D, #by_ptr position: vector_float2) ---
 
     @(objc_type=Agent2D, objc_selector="velocity", objc_name="velocity")
     Agent2D_velocity :: proc(self: ^Agent2D) -> vector_float2 ---

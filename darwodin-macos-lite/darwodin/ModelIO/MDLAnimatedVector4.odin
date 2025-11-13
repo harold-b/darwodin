@@ -21,10 +21,10 @@ AnimatedVector4 :: struct { using _: AnimatedValue, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatedVector4, objc_selector="setFloat4:atTime:", objc_name="setFloat4")
-    AnimatedVector4_setFloat4 :: proc(self: ^AnimatedVector4, value: #by_ptr vector_float4, time: NS.TimeInterval) ---
+    AnimatedVector4_setFloat4 :: proc(self: ^AnimatedVector4, #by_ptr value: vector_float4, time: NS.TimeInterval) ---
 
     @(objc_type=AnimatedVector4, objc_selector="setDouble4:atTime:", objc_name="setDouble4")
-    AnimatedVector4_setDouble4 :: proc(self: ^AnimatedVector4, value: #by_ptr vector_double4, time: NS.TimeInterval) ---
+    AnimatedVector4_setDouble4 :: proc(self: ^AnimatedVector4, #by_ptr value: vector_double4, time: NS.TimeInterval) ---
 
     @(objc_type=AnimatedVector4, objc_selector="float4AtTime:", objc_name="float4AtTime")
     AnimatedVector4_float4AtTime :: proc(self: ^AnimatedVector4, time: NS.TimeInterval) -> vector_float4 ---
@@ -33,14 +33,14 @@ foreign lib {
     AnimatedVector4_double4AtTime :: proc(self: ^AnimatedVector4, time: NS.TimeInterval) -> vector_double4 ---
 
     @(objc_type=AnimatedVector4, objc_selector="resetWithFloat4Array:atTimes:count:", objc_name="resetWithFloat4Array")
-    AnimatedVector4_resetWithFloat4Array :: proc(self: ^AnimatedVector4, valuesArray: ^#by_ptr vector_float4, timesArray: ^NS.TimeInterval, count: NS.UInteger) ---
+    AnimatedVector4_resetWithFloat4Array :: proc(self: ^AnimatedVector4, valuesArray: ^vector_float4, timesArray: ^NS.TimeInterval, count: NS.UInteger) ---
 
     @(objc_type=AnimatedVector4, objc_selector="resetWithDouble4Array:atTimes:count:", objc_name="resetWithDouble4Array")
-    AnimatedVector4_resetWithDouble4Array :: proc(self: ^AnimatedVector4, valuesArray: ^#by_ptr vector_double4, timesArray: ^NS.TimeInterval, count: NS.UInteger) ---
+    AnimatedVector4_resetWithDouble4Array :: proc(self: ^AnimatedVector4, valuesArray: ^vector_double4, timesArray: ^NS.TimeInterval, count: NS.UInteger) ---
 
     @(objc_type=AnimatedVector4, objc_selector="getFloat4Array:maxCount:", objc_name="getFloat4Array")
-    AnimatedVector4_getFloat4Array :: proc(self: ^AnimatedVector4, valuesArray: ^#by_ptr vector_float4, maxCount: NS.UInteger) -> NS.UInteger ---
+    AnimatedVector4_getFloat4Array :: proc(self: ^AnimatedVector4, valuesArray: ^vector_float4, maxCount: NS.UInteger) -> NS.UInteger ---
 
     @(objc_type=AnimatedVector4, objc_selector="getDouble4Array:maxCount:", objc_name="getDouble4Array")
-    AnimatedVector4_getDouble4Array :: proc(self: ^AnimatedVector4, valuesArray: ^#by_ptr vector_double4, maxCount: NS.UInteger) -> NS.UInteger ---
+    AnimatedVector4_getDouble4Array :: proc(self: ^AnimatedVector4, valuesArray: ^vector_double4, maxCount: NS.UInteger) -> NS.UInteger ---
 }

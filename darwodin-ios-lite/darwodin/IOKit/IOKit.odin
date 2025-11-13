@@ -522,7 +522,7 @@ foreign lib {
     ObjectRetain :: proc(object: object_t) -> mach.kern_return_t ---
 
     @(link_name="IOObjectGetClass")
-    ObjectGetClass :: proc(object: object_t, className: #by_ptr name_t) -> mach.kern_return_t ---
+    ObjectGetClass :: proc(object: object_t, #by_ptr className: name_t) -> mach.kern_return_t ---
 
     @(link_name="IOObjectCopyClass")
     ObjectCopyClass :: proc(object: object_t) -> CF.StringRef ---
@@ -534,7 +534,7 @@ foreign lib {
     ObjectCopyBundleIdentifierForClass :: proc(classname: CF.StringRef) -> CF.StringRef ---
 
     @(link_name="IOObjectConformsTo")
-    ObjectConformsTo :: proc(object: object_t, className: #by_ptr name_t) -> CF.boolean_t ---
+    ObjectConformsTo :: proc(object: object_t, #by_ptr className: name_t) -> CF.boolean_t ---
 
     @(link_name="IOObjectIsEqualTo")
     ObjectIsEqualTo :: proc(object: object_t, anObject: object_t) -> CF.boolean_t ---
@@ -564,13 +564,13 @@ foreign lib {
     ServiceGetMatchingServices :: proc(mainPort: mach.port_t, matching: CF.DictionaryRef, existing: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IOServiceAddNotification")
-    ServiceAddNotification :: proc(mainPort: mach.port_t, notificationType: #by_ptr name_t, matching: CF.DictionaryRef, wakePort: mach.port_t, reference: cffi.uintptr_t, notification: ^iterator_t) -> mach.kern_return_t ---
+    ServiceAddNotification :: proc(mainPort: mach.port_t, #by_ptr notificationType: name_t, matching: CF.DictionaryRef, wakePort: mach.port_t, reference: cffi.uintptr_t, notification: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IOServiceAddMatchingNotification")
-    ServiceAddMatchingNotification :: proc(notifyPort: NotificationPortRef, notificationType: #by_ptr name_t, matching: CF.DictionaryRef, callback: ServiceMatchingCallback, refCon: rawptr, notification: ^iterator_t) -> mach.kern_return_t ---
+    ServiceAddMatchingNotification :: proc(notifyPort: NotificationPortRef, #by_ptr notificationType: name_t, matching: CF.DictionaryRef, callback: ServiceMatchingCallback, refCon: rawptr, notification: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IOServiceAddInterestNotification")
-    ServiceAddInterestNotification :: proc(notifyPort: NotificationPortRef, service: service_t, interestType: #by_ptr name_t, callback: ServiceInterestCallback, refCon: rawptr, notification: ^object_t) -> mach.kern_return_t ---
+    ServiceAddInterestNotification :: proc(notifyPort: NotificationPortRef, service: service_t, #by_ptr interestType: name_t, callback: ServiceInterestCallback, refCon: rawptr, notification: ^object_t) -> mach.kern_return_t ---
 
     @(link_name="IOServiceMatchPropertyTable")
     ServiceMatchPropertyTable :: proc(service: service_t, matching: CF.DictionaryRef, matches: ^CF.boolean_t) -> mach.kern_return_t ---
@@ -681,16 +681,16 @@ foreign lib {
     RegistryGetRootEntry :: proc(mainPort: mach.port_t) -> registry_entry_t ---
 
     @(link_name="IORegistryEntryFromPath")
-    RegistryEntryFromPath :: proc(mainPort: mach.port_t, path: #by_ptr string_t) -> registry_entry_t ---
+    RegistryEntryFromPath :: proc(mainPort: mach.port_t, #by_ptr path: string_t) -> registry_entry_t ---
 
     @(link_name="IORegistryEntryCopyFromPath")
     RegistryEntryCopyFromPath :: proc(mainPort: mach.port_t, path: CF.StringRef) -> registry_entry_t ---
 
     @(link_name="IORegistryCreateIterator")
-    RegistryCreateIterator :: proc(mainPort: mach.port_t, plane: #by_ptr name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
+    RegistryCreateIterator :: proc(mainPort: mach.port_t, #by_ptr plane: name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryCreateIterator")
-    RegistryEntryCreateIterator :: proc(entry: registry_entry_t, plane: #by_ptr name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
+    RegistryEntryCreateIterator :: proc(entry: registry_entry_t, #by_ptr plane: name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryIteratorEnterEntry")
     RegistryIteratorEnterEntry :: proc(iterator: iterator_t) -> mach.kern_return_t ---
@@ -699,19 +699,19 @@ foreign lib {
     RegistryIteratorExitEntry :: proc(iterator: iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetName")
-    RegistryEntryGetName :: proc(entry: registry_entry_t, name: #by_ptr name_t) -> mach.kern_return_t ---
+    RegistryEntryGetName :: proc(entry: registry_entry_t, #by_ptr name: name_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetNameInPlane")
-    RegistryEntryGetNameInPlane :: proc(entry: registry_entry_t, plane: #by_ptr name_t, name: #by_ptr name_t) -> mach.kern_return_t ---
+    RegistryEntryGetNameInPlane :: proc(entry: registry_entry_t, #by_ptr plane: name_t, #by_ptr name: name_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetLocationInPlane")
-    RegistryEntryGetLocationInPlane :: proc(entry: registry_entry_t, plane: #by_ptr name_t, location: #by_ptr name_t) -> mach.kern_return_t ---
+    RegistryEntryGetLocationInPlane :: proc(entry: registry_entry_t, #by_ptr plane: name_t, #by_ptr location: name_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetPath")
-    RegistryEntryGetPath :: proc(entry: registry_entry_t, plane: #by_ptr name_t, path: #by_ptr string_t) -> mach.kern_return_t ---
+    RegistryEntryGetPath :: proc(entry: registry_entry_t, #by_ptr plane: name_t, #by_ptr path: string_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryCopyPath")
-    RegistryEntryCopyPath :: proc(entry: registry_entry_t, plane: #by_ptr name_t) -> CF.StringRef ---
+    RegistryEntryCopyPath :: proc(entry: registry_entry_t, #by_ptr plane: name_t) -> CF.StringRef ---
 
     @(link_name="IORegistryEntryGetRegistryEntryID")
     RegistryEntryGetRegistryEntryID :: proc(entry: registry_entry_t, entryID: ^cffi.uint64_t) -> mach.kern_return_t ---
@@ -723,10 +723,10 @@ foreign lib {
     RegistryEntryCreateCFProperty :: proc(entry: registry_entry_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
 
     @(link_name="IORegistryEntrySearchCFProperty")
-    RegistryEntrySearchCFProperty :: proc(entry: registry_entry_t, plane: #by_ptr name_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
+    RegistryEntrySearchCFProperty :: proc(entry: registry_entry_t, #by_ptr plane: name_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
 
     @(link_name="IORegistryEntryGetProperty")
-    RegistryEntryGetProperty :: proc(entry: registry_entry_t, propertyName: #by_ptr name_t, buffer: #by_ptr struct_inband_t, size: ^cffi.uint32_t) -> mach.kern_return_t ---
+    RegistryEntryGetProperty :: proc(entry: registry_entry_t, #by_ptr propertyName: name_t, #by_ptr buffer: struct_inband_t, size: ^cffi.uint32_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntrySetCFProperties")
     RegistryEntrySetCFProperties :: proc(entry: registry_entry_t, properties: CF.TypeRef) -> mach.kern_return_t ---
@@ -735,19 +735,19 @@ foreign lib {
     RegistryEntrySetCFProperty :: proc(entry: registry_entry_t, propertyName: CF.StringRef, property: CF.TypeRef) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetChildIterator")
-    RegistryEntryGetChildIterator :: proc(entry: registry_entry_t, plane: #by_ptr name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
+    RegistryEntryGetChildIterator :: proc(entry: registry_entry_t, #by_ptr plane: name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetChildEntry")
-    RegistryEntryGetChildEntry :: proc(entry: registry_entry_t, plane: #by_ptr name_t, child: ^registry_entry_t) -> mach.kern_return_t ---
+    RegistryEntryGetChildEntry :: proc(entry: registry_entry_t, #by_ptr plane: name_t, child: ^registry_entry_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetParentIterator")
-    RegistryEntryGetParentIterator :: proc(entry: registry_entry_t, plane: #by_ptr name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
+    RegistryEntryGetParentIterator :: proc(entry: registry_entry_t, #by_ptr plane: name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryGetParentEntry")
-    RegistryEntryGetParentEntry :: proc(entry: registry_entry_t, plane: #by_ptr name_t, parent: ^registry_entry_t) -> mach.kern_return_t ---
+    RegistryEntryGetParentEntry :: proc(entry: registry_entry_t, #by_ptr plane: name_t, parent: ^registry_entry_t) -> mach.kern_return_t ---
 
     @(link_name="IORegistryEntryInPlane")
-    RegistryEntryInPlane :: proc(entry: registry_entry_t, plane: #by_ptr name_t) -> CF.boolean_t ---
+    RegistryEntryInPlane :: proc(entry: registry_entry_t, #by_ptr plane: name_t) -> CF.boolean_t ---
 
     @(link_name="IOServiceMatching")
     ServiceMatching :: proc(name: cstring) -> CF.MutableDictionaryRef ---
@@ -765,19 +765,19 @@ foreign lib {
     RegistryEntryIDMatching :: proc(entryID: cffi.uint64_t) -> CF.MutableDictionaryRef ---
 
     @(link_name="IOServiceOFPathToBSDName")
-    ServiceOFPathToBSDName :: proc(mainPort: mach.port_t, openFirmwarePath: #by_ptr name_t, bsdName: #by_ptr name_t) -> mach.kern_return_t ---
+    ServiceOFPathToBSDName :: proc(mainPort: mach.port_t, #by_ptr openFirmwarePath: name_t, #by_ptr bsdName: name_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueSendData")
     CatalogueSendData :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, buffer: cstring, size: cffi.uint32_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueTerminate")
-    CatalogueTerminate :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, description: #by_ptr name_t) -> mach.kern_return_t ---
+    CatalogueTerminate :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, #by_ptr description: name_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueGetData")
     CatalogueGetData :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, buffer: ^cstring, size: ^cffi.uint32_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueModuleLoaded")
-    CatalogueModuleLoaded :: proc(mainPort: mach.port_t, name: #by_ptr name_t) -> mach.kern_return_t ---
+    CatalogueModuleLoaded :: proc(mainPort: mach.port_t, #by_ptr name: name_t) -> mach.kern_return_t ---
 
     @(link_name="IOCatalogueReset")
     CatalogueReset :: proc(mainPort: mach.port_t, flag: cffi.uint32_t) -> mach.kern_return_t ---

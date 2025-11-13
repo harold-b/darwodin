@@ -21,10 +21,10 @@ SkyCubeTexture :: struct { using _: Texture, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SkyCubeTexture, objc_selector="initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:upperAtmosphereScattering:groundAlbedo:", objc_name="initWithName_channelEncoding_textureDimensions_turbidity_sunElevation_upperAtmosphereScattering_groundAlbedo")
-    SkyCubeTexture_initWithName_channelEncoding_textureDimensions_turbidity_sunElevation_upperAtmosphereScattering_groundAlbedo :: proc(self: ^SkyCubeTexture, name: ^NS.String, channelEncoding: TextureChannelEncoding, textureDimensions: #by_ptr [2]cffi.int, turbidity: cffi.float, sunElevation: cffi.float, upperAtmosphereScattering: cffi.float, groundAlbedo: cffi.float) -> ^SkyCubeTexture ---
+    SkyCubeTexture_initWithName_channelEncoding_textureDimensions_turbidity_sunElevation_upperAtmosphereScattering_groundAlbedo :: proc(self: ^SkyCubeTexture, name: ^NS.String, channelEncoding: TextureChannelEncoding, #by_ptr textureDimensions: [2]cffi.int, turbidity: cffi.float, sunElevation: cffi.float, upperAtmosphereScattering: cffi.float, groundAlbedo: cffi.float) -> ^SkyCubeTexture ---
 
     @(objc_type=SkyCubeTexture, objc_selector="initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:sunAzimuth:upperAtmosphereScattering:groundAlbedo:", objc_name="initWithName_channelEncoding_textureDimensions_turbidity_sunElevation_sunAzimuth_upperAtmosphereScattering_groundAlbedo")
-    SkyCubeTexture_initWithName_channelEncoding_textureDimensions_turbidity_sunElevation_sunAzimuth_upperAtmosphereScattering_groundAlbedo :: proc(self: ^SkyCubeTexture, name: ^NS.String, channelEncoding: TextureChannelEncoding, textureDimensions: #by_ptr [2]cffi.int, turbidity: cffi.float, sunElevation: cffi.float, sunAzimuth: cffi.float, upperAtmosphereScattering: cffi.float, groundAlbedo: cffi.float) -> ^SkyCubeTexture ---
+    SkyCubeTexture_initWithName_channelEncoding_textureDimensions_turbidity_sunElevation_sunAzimuth_upperAtmosphereScattering_groundAlbedo :: proc(self: ^SkyCubeTexture, name: ^NS.String, channelEncoding: TextureChannelEncoding, #by_ptr textureDimensions: [2]cffi.int, turbidity: cffi.float, sunElevation: cffi.float, sunAzimuth: cffi.float, upperAtmosphereScattering: cffi.float, groundAlbedo: cffi.float) -> ^SkyCubeTexture ---
 
     @(objc_type=SkyCubeTexture, objc_selector="updateTexture", objc_name="updateTexture")
     SkyCubeTexture_updateTexture :: proc(self: ^SkyCubeTexture) ---
@@ -105,7 +105,7 @@ foreign lib {
     SkyCubeTexture_highDynamicRangeCompression :: proc(self: ^SkyCubeTexture) -> vector_float2 ---
 
     @(objc_type=SkyCubeTexture, objc_selector="setHighDynamicRangeCompression:", objc_name="setHighDynamicRangeCompression")
-    SkyCubeTexture_setHighDynamicRangeCompression :: proc(self: ^SkyCubeTexture, highDynamicRangeCompression: #by_ptr vector_float2) ---
+    SkyCubeTexture_setHighDynamicRangeCompression :: proc(self: ^SkyCubeTexture, #by_ptr highDynamicRangeCompression: vector_float2) ---
 }
 
 @(objc_type=SkyCubeTexture, objc_name="initWithName")

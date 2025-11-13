@@ -21,10 +21,10 @@ Light :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Light, objc_selector="irradianceAtPoint:", objc_name="irradianceAtPoint_")
-    Light_irradianceAtPoint_ :: proc(self: ^Light, point: #by_ptr vector_float3) -> CG.ColorRef ---
+    Light_irradianceAtPoint_ :: proc(self: ^Light, #by_ptr point: vector_float3) -> CG.ColorRef ---
 
     @(objc_type=Light, objc_selector="irradianceAtPoint:colorSpace:", objc_name="irradianceAtPoint_colorSpace")
-    Light_irradianceAtPoint_colorSpace :: proc(self: ^Light, point: #by_ptr vector_float3, colorSpace: CG.ColorSpaceRef) -> CG.ColorRef ---
+    Light_irradianceAtPoint_colorSpace :: proc(self: ^Light, #by_ptr point: vector_float3, colorSpace: CG.ColorSpaceRef) -> CG.ColorRef ---
 
     @(objc_type=Light, objc_selector="lightType", objc_name="lightType")
     Light_lightType :: proc(self: ^Light) -> LightType ---

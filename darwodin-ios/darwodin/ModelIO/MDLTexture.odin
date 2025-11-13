@@ -41,13 +41,13 @@ foreign lib {
     Texture_textureCubeWithImagesNamed_bundle :: proc(names: ^NS.Array, bundleOrNil: ^NS.Bundle) -> ^Texture ---
 
     @(objc_type=Texture, objc_selector="irradianceTextureCubeWithTexture:name:dimensions:", objc_name="irradianceTextureCubeWithTexture_name_dimensions", objc_is_class_method=true)
-    Texture_irradianceTextureCubeWithTexture_name_dimensions :: proc(texture: ^Texture, name: ^NS.String, dimensions: #by_ptr [2]cffi.int) -> ^Texture ---
+    Texture_irradianceTextureCubeWithTexture_name_dimensions :: proc(texture: ^Texture, name: ^NS.String, #by_ptr dimensions: [2]cffi.int) -> ^Texture ---
 
     @(objc_type=Texture, objc_selector="irradianceTextureCubeWithTexture:name:dimensions:roughness:", objc_name="irradianceTextureCubeWithTexture_name_dimensions_roughness", objc_is_class_method=true)
-    Texture_irradianceTextureCubeWithTexture_name_dimensions_roughness :: proc(texture: ^Texture, name: ^NS.String, dimensions: #by_ptr [2]cffi.int, roughness: cffi.float) -> ^Texture ---
+    Texture_irradianceTextureCubeWithTexture_name_dimensions_roughness :: proc(texture: ^Texture, name: ^NS.String, #by_ptr dimensions: [2]cffi.int, roughness: cffi.float) -> ^Texture ---
 
     @(objc_type=Texture, objc_selector="initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:", objc_name="initWithData")
-    Texture_initWithData :: proc(self: ^Texture, pixelData: ^NS.Data, topLeftOrigin: bool, name: ^NS.String, dimensions: #by_ptr [2]cffi.int, rowStride: NS.Integer, channelCount: NS.UInteger, channelEncoding: TextureChannelEncoding, isCube: bool) -> ^Texture ---
+    Texture_initWithData :: proc(self: ^Texture, pixelData: ^NS.Data, topLeftOrigin: bool, name: ^NS.String, #by_ptr dimensions: [2]cffi.int, rowStride: NS.Integer, channelCount: NS.UInteger, channelEncoding: TextureChannelEncoding, isCube: bool) -> ^Texture ---
 
     @(objc_type=Texture, objc_selector="writeToURL:", objc_name="writeToURL_")
     Texture_writeToURL_ :: proc(self: ^Texture, _URL: ^NS.URL) -> bool ---

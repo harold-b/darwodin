@@ -34,5 +34,5 @@ foreign lib {
     SphereObstacle_position :: proc(self: ^SphereObstacle) -> vector_float3 ---
 
     @(objc_type=SphereObstacle, objc_selector="setPosition:", objc_name="setPosition")
-    SphereObstacle_setPosition :: proc(self: ^SphereObstacle, position: #by_ptr vector_float3) ---
+    SphereObstacle_setPosition :: proc(self: ^SphereObstacle, #by_ptr position: vector_float3) ---
 }

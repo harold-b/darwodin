@@ -33,7 +33,7 @@ foreign lib {
     VoxelArray_initWithAsset_divisions_interiorNBWidth_exteriorNBWidth_patchRadius :: proc(self: ^VoxelArray, asset: ^Asset, divisions: cffi.int, interiorNBWidth: cffi.float, exteriorNBWidth: cffi.float, patchRadius: cffi.float) -> ^VoxelArray ---
 
     @(objc_type=VoxelArray, objc_selector="voxelExistsAtIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:", objc_name="voxelExistsAtIndex")
-    VoxelArray_voxelExistsAtIndex :: proc(self: ^VoxelArray, index: #by_ptr VoxelIndex, allowAnyX: bool, allowAnyY: bool, allowAnyZ: bool, allowAnyShell: bool) -> bool ---
+    VoxelArray_voxelExistsAtIndex :: proc(self: ^VoxelArray, #by_ptr index: VoxelIndex, allowAnyX: bool, allowAnyY: bool, allowAnyZ: bool, allowAnyShell: bool) -> bool ---
 
     @(objc_type=VoxelArray, objc_selector="voxelsWithinExtent:", objc_name="voxelsWithinExtent")
     VoxelArray_voxelsWithinExtent :: proc(self: ^VoxelArray, extent: VoxelIndexExtent) -> ^NS.Data ---
@@ -42,7 +42,7 @@ foreign lib {
     VoxelArray_voxelIndices :: proc(self: ^VoxelArray) -> ^NS.Data ---
 
     @(objc_type=VoxelArray, objc_selector="setVoxelAtIndex:", objc_name="setVoxelAtIndex")
-    VoxelArray_setVoxelAtIndex :: proc(self: ^VoxelArray, index: #by_ptr VoxelIndex) ---
+    VoxelArray_setVoxelAtIndex :: proc(self: ^VoxelArray, #by_ptr index: VoxelIndex) ---
 
     @(objc_type=VoxelArray, objc_selector="setVoxelsForMesh:divisions:patchRadius:", objc_name="setVoxelsForMesh_divisions_patchRadius")
     VoxelArray_setVoxelsForMesh_divisions_patchRadius :: proc(self: ^VoxelArray, mesh: ^Mesh, divisions: cffi.int, patchRadius: cffi.float) ---
@@ -63,13 +63,13 @@ foreign lib {
     VoxelArray_differenceWithVoxels :: proc(self: ^VoxelArray, voxels: ^VoxelArray) ---
 
     @(objc_type=VoxelArray, objc_selector="indexOfSpatialLocation:", objc_name="indexOfSpatialLocation")
-    VoxelArray_indexOfSpatialLocation :: proc(self: ^VoxelArray, location: #by_ptr vector_float3) -> VoxelIndex ---
+    VoxelArray_indexOfSpatialLocation :: proc(self: ^VoxelArray, #by_ptr location: vector_float3) -> VoxelIndex ---
 
     @(objc_type=VoxelArray, objc_selector="spatialLocationOfIndex:", objc_name="spatialLocationOfIndex")
-    VoxelArray_spatialLocationOfIndex :: proc(self: ^VoxelArray, index: #by_ptr VoxelIndex) -> vector_float3 ---
+    VoxelArray_spatialLocationOfIndex :: proc(self: ^VoxelArray, #by_ptr index: VoxelIndex) -> vector_float3 ---
 
     @(objc_type=VoxelArray, objc_selector="voxelBoundingBoxAtIndex:", objc_name="voxelBoundingBoxAtIndex")
-    VoxelArray_voxelBoundingBoxAtIndex :: proc(self: ^VoxelArray, index: #by_ptr VoxelIndex) -> AxisAlignedBoundingBox ---
+    VoxelArray_voxelBoundingBoxAtIndex :: proc(self: ^VoxelArray, #by_ptr index: VoxelIndex) -> AxisAlignedBoundingBox ---
 
     @(objc_type=VoxelArray, objc_selector="convertToSignedShellField", objc_name="convertToSignedShellField")
     VoxelArray_convertToSignedShellField :: proc(self: ^VoxelArray) ---

@@ -34,5 +34,5 @@ foreign lib {
     CircleObstacle_position :: proc(self: ^CircleObstacle) -> vector_float2 ---
 
     @(objc_type=CircleObstacle, objc_selector="setPosition:", objc_name="setPosition")
-    CircleObstacle_setPosition :: proc(self: ^CircleObstacle, position: #by_ptr vector_float2) ---
+    CircleObstacle_setPosition :: proc(self: ^CircleObstacle, #by_ptr position: vector_float2) ---
 }
