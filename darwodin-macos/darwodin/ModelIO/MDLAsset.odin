@@ -96,7 +96,7 @@ foreign lib {
     Asset_upAxis :: proc(self: ^Asset) -> vector_float3 ---
 
     @(objc_type=Asset, objc_selector="setUpAxis:", objc_name="setUpAxis")
-    Asset_setUpAxis :: proc(self: ^Asset, #by_ptr upAxis: vector_float3) ---
+    Asset_setUpAxis :: proc(self: ^Asset, upAxis: ^vector_float3) ---
 
     @(objc_type=Asset, objc_selector="URL", objc_name="URL")
     Asset_URL :: proc(self: ^Asset) -> ^NS.URL ---

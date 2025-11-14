@@ -25,13 +25,13 @@ foreign lib {
     Quadtree_initWithBoundingQuad :: proc(self: ^Quadtree, quad: Quad, minCellSize: cffi.float) -> instancetype ---
 
     @(objc_type=Quadtree, objc_selector="addElement:withPoint:", objc_name="addElement_withPoint")
-    Quadtree_addElement_withPoint :: proc(self: ^Quadtree, element: id, #by_ptr point: vector_float2) -> ^QuadtreeNode ---
+    Quadtree_addElement_withPoint :: proc(self: ^Quadtree, element: id, point: ^vector_float2) -> ^QuadtreeNode ---
 
     @(objc_type=Quadtree, objc_selector="addElement:withQuad:", objc_name="addElement_withQuad")
     Quadtree_addElement_withQuad :: proc(self: ^Quadtree, element: id, quad: Quad) -> ^QuadtreeNode ---
 
     @(objc_type=Quadtree, objc_selector="elementsAtPoint:", objc_name="elementsAtPoint")
-    Quadtree_elementsAtPoint :: proc(self: ^Quadtree, #by_ptr point: vector_float2) -> ^NS.Array ---
+    Quadtree_elementsAtPoint :: proc(self: ^Quadtree, point: ^vector_float2) -> ^NS.Array ---
 
     @(objc_type=Quadtree, objc_selector="elementsInQuad:", objc_name="elementsInQuad")
     Quadtree_elementsInQuad :: proc(self: ^Quadtree, quad: Quad) -> ^NS.Array ---

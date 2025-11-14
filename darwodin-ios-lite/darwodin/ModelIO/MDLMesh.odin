@@ -108,49 +108,49 @@ foreign lib {
     Mesh_removeAttributeNamed :: proc(self: ^Mesh, name: ^NS.String) ---
 
     @(objc_type=Mesh, objc_selector="initBoxWithExtent:segments:inwardNormals:geometryType:allocator:", objc_name="initBoxWithExtent")
-    Mesh_initBoxWithExtent :: proc(self: ^Mesh, #by_ptr extent: vector_float3, #by_ptr segments: [3]cffi.uint, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_initBoxWithExtent :: proc(self: ^Mesh, extent: ^vector_float3, segments: ^[3]cffi.uint, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="initSphereWithExtent:segments:inwardNormals:geometryType:allocator:", objc_name="initSphereWithExtent")
-    Mesh_initSphereWithExtent :: proc(self: ^Mesh, #by_ptr extent: vector_float3, #by_ptr segments: [2]cffi.uint, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_initSphereWithExtent :: proc(self: ^Mesh, extent: ^vector_float3, segments: ^[2]cffi.uint, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="initHemisphereWithExtent:segments:inwardNormals:cap:geometryType:allocator:", objc_name="initHemisphereWithExtent")
-    Mesh_initHemisphereWithExtent :: proc(self: ^Mesh, #by_ptr extent: vector_float3, #by_ptr segments: [2]cffi.uint, inwardNormals: bool, cap: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_initHemisphereWithExtent :: proc(self: ^Mesh, extent: ^vector_float3, segments: ^[2]cffi.uint, inwardNormals: bool, cap: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="initCylinderWithExtent:segments:inwardNormals:topCap:bottomCap:geometryType:allocator:", objc_name="initCylinderWithExtent")
-    Mesh_initCylinderWithExtent :: proc(self: ^Mesh, #by_ptr extent: vector_float3, #by_ptr segments: [2]cffi.uint, inwardNormals: bool, topCap: bool, bottomCap: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_initCylinderWithExtent :: proc(self: ^Mesh, extent: ^vector_float3, segments: ^[2]cffi.uint, inwardNormals: bool, topCap: bool, bottomCap: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="initCapsuleWithExtent:cylinderSegments:hemisphereSegments:inwardNormals:geometryType:allocator:", objc_name="initCapsuleWithExtent")
-    Mesh_initCapsuleWithExtent :: proc(self: ^Mesh, #by_ptr extent: vector_float3, #by_ptr segments: [2]cffi.uint, hemisphereSegments: cffi.int, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_initCapsuleWithExtent :: proc(self: ^Mesh, extent: ^vector_float3, segments: ^[2]cffi.uint, hemisphereSegments: cffi.int, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="initConeWithExtent:segments:inwardNormals:cap:geometryType:allocator:", objc_name="initConeWithExtent")
-    Mesh_initConeWithExtent :: proc(self: ^Mesh, #by_ptr extent: vector_float3, #by_ptr segments: [2]cffi.uint, inwardNormals: bool, cap: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_initConeWithExtent :: proc(self: ^Mesh, extent: ^vector_float3, segments: ^[2]cffi.uint, inwardNormals: bool, cap: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="initPlaneWithExtent:segments:geometryType:allocator:", objc_name="initPlaneWithExtent")
-    Mesh_initPlaneWithExtent :: proc(self: ^Mesh, #by_ptr extent: vector_float3, #by_ptr segments: [2]cffi.uint, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_initPlaneWithExtent :: proc(self: ^Mesh, extent: ^vector_float3, segments: ^[2]cffi.uint, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="initIcosahedronWithExtent:inwardNormals:geometryType:allocator:", objc_name="initIcosahedronWithExtent")
-    Mesh_initIcosahedronWithExtent :: proc(self: ^Mesh, #by_ptr extent: vector_float3, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_initIcosahedronWithExtent :: proc(self: ^Mesh, extent: ^vector_float3, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="initMeshBySubdividingMesh:submeshIndex:subdivisionLevels:allocator:", objc_name="initMeshBySubdividingMesh")
     Mesh_initMeshBySubdividingMesh :: proc(self: ^Mesh, mesh: ^Mesh, submeshIndex: cffi.int, subdivisionLevels: cffi.uint, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="newBoxWithDimensions:segments:geometryType:inwardNormals:allocator:", objc_name="newBoxWithDimensions", objc_is_class_method=true)
-    Mesh_newBoxWithDimensions :: proc(#by_ptr dimensions: vector_float3, #by_ptr segments: [3]cffi.uint, geometryType: GeometryType, inwardNormals: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_newBoxWithDimensions :: proc(dimensions: ^vector_float3, segments: ^[3]cffi.uint, geometryType: GeometryType, inwardNormals: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="newEllipsoidWithRadii:radialSegments:verticalSegments:geometryType:inwardNormals:hemisphere:allocator:", objc_name="newEllipsoidWithRadii", objc_is_class_method=true)
-    Mesh_newEllipsoidWithRadii :: proc(#by_ptr radii: vector_float3, radialSegments: NS.UInteger, verticalSegments: NS.UInteger, geometryType: GeometryType, inwardNormals: bool, hemisphere: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_newEllipsoidWithRadii :: proc(radii: ^vector_float3, radialSegments: NS.UInteger, verticalSegments: NS.UInteger, geometryType: GeometryType, inwardNormals: bool, hemisphere: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="newCylinderWithHeight:radii:radialSegments:verticalSegments:geometryType:inwardNormals:allocator:", objc_name="newCylinderWithHeight", objc_is_class_method=true)
-    Mesh_newCylinderWithHeight :: proc(height: cffi.float, #by_ptr radii: vector_float2, radialSegments: NS.UInteger, verticalSegments: NS.UInteger, geometryType: GeometryType, inwardNormals: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_newCylinderWithHeight :: proc(height: cffi.float, radii: ^vector_float2, radialSegments: NS.UInteger, verticalSegments: NS.UInteger, geometryType: GeometryType, inwardNormals: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="newCapsuleWithHeight:radii:radialSegments:verticalSegments:hemisphereSegments:geometryType:inwardNormals:allocator:", objc_name="newCapsuleWithHeight", objc_is_class_method=true)
-    Mesh_newCapsuleWithHeight :: proc(height: cffi.float, #by_ptr radii: vector_float2, radialSegments: NS.UInteger, verticalSegments: NS.UInteger, hemisphereSegments: NS.UInteger, geometryType: GeometryType, inwardNormals: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_newCapsuleWithHeight :: proc(height: cffi.float, radii: ^vector_float2, radialSegments: NS.UInteger, verticalSegments: NS.UInteger, hemisphereSegments: NS.UInteger, geometryType: GeometryType, inwardNormals: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="newEllipticalConeWithHeight:radii:radialSegments:verticalSegments:geometryType:inwardNormals:allocator:", objc_name="newEllipticalConeWithHeight", objc_is_class_method=true)
-    Mesh_newEllipticalConeWithHeight :: proc(height: cffi.float, #by_ptr radii: vector_float2, radialSegments: NS.UInteger, verticalSegments: NS.UInteger, geometryType: GeometryType, inwardNormals: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_newEllipticalConeWithHeight :: proc(height: cffi.float, radii: ^vector_float2, radialSegments: NS.UInteger, verticalSegments: NS.UInteger, geometryType: GeometryType, inwardNormals: bool, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="newPlaneWithDimensions:segments:geometryType:allocator:", objc_name="newPlaneWithDimensions", objc_is_class_method=true)
-    Mesh_newPlaneWithDimensions :: proc(#by_ptr dimensions: vector_float2, #by_ptr segments: [2]cffi.uint, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
+    Mesh_newPlaneWithDimensions :: proc(dimensions: ^vector_float2, segments: ^[2]cffi.uint, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="newIcosahedronWithRadius:inwardNormals:geometryType:allocator:", objc_name="newIcosahedronWithRadius_inwardNormals_geometryType_allocator", objc_is_class_method=true)
     Mesh_newIcosahedronWithRadius_inwardNormals_geometryType_allocator :: proc(radius: cffi.float, inwardNormals: bool, geometryType: GeometryType, allocator: ^MeshBufferAllocator) -> ^Mesh ---
@@ -162,7 +162,7 @@ foreign lib {
     Mesh_newSubdividedMesh :: proc(mesh: ^Mesh, submeshIndex: NS.UInteger, subdivisionLevels: NS.UInteger) -> ^Mesh ---
 
     @(objc_type=Mesh, objc_selector="generateAmbientOcclusionTextureWithSize:raysPerSample:attenuationFactor:objectsToConsider:vertexAttributeNamed:materialPropertyNamed:", objc_name="generateAmbientOcclusionTextureWithSize")
-    Mesh_generateAmbientOcclusionTextureWithSize :: proc(self: ^Mesh, #by_ptr textureSize: [2]cffi.int, raysPerSample: NS.Integer, attenuationFactor: cffi.float, objectsToConsider: ^NS.Array, vertexAttributeName: ^NS.String, materialPropertyName: ^NS.String) -> bool ---
+    Mesh_generateAmbientOcclusionTextureWithSize :: proc(self: ^Mesh, textureSize: ^[2]cffi.int, raysPerSample: NS.Integer, attenuationFactor: cffi.float, objectsToConsider: ^NS.Array, vertexAttributeName: ^NS.String, materialPropertyName: ^NS.String) -> bool ---
 
     @(objc_type=Mesh, objc_selector="generateAmbientOcclusionTextureWithQuality:attenuationFactor:objectsToConsider:vertexAttributeNamed:materialPropertyNamed:", objc_name="generateAmbientOcclusionTextureWithQuality")
     Mesh_generateAmbientOcclusionTextureWithQuality :: proc(self: ^Mesh, bakeQuality: cffi.float, attenuationFactor: cffi.float, objectsToConsider: ^NS.Array, vertexAttributeName: ^NS.String, materialPropertyName: ^NS.String) -> bool ---
@@ -174,7 +174,7 @@ foreign lib {
     Mesh_generateAmbientOcclusionVertexColorsWithQuality :: proc(self: ^Mesh, bakeQuality: cffi.float, attenuationFactor: cffi.float, objectsToConsider: ^NS.Array, vertexAttributeName: ^NS.String) -> bool ---
 
     @(objc_type=Mesh, objc_selector="generateLightMapTextureWithTextureSize:lightsToConsider:objectsToConsider:vertexAttributeNamed:materialPropertyNamed:", objc_name="generateLightMapTextureWithTextureSize")
-    Mesh_generateLightMapTextureWithTextureSize :: proc(self: ^Mesh, #by_ptr textureSize: [2]cffi.int, lightsToConsider: ^NS.Array, objectsToConsider: ^NS.Array, vertexAttributeName: ^NS.String, materialPropertyName: ^NS.String) -> bool ---
+    Mesh_generateLightMapTextureWithTextureSize :: proc(self: ^Mesh, textureSize: ^[2]cffi.int, lightsToConsider: ^NS.Array, objectsToConsider: ^NS.Array, vertexAttributeName: ^NS.String, materialPropertyName: ^NS.String) -> bool ---
 
     @(objc_type=Mesh, objc_selector="generateLightMapTextureWithQuality:lightsToConsider:objectsToConsider:vertexAttributeNamed:materialPropertyNamed:", objc_name="generateLightMapTextureWithQuality")
     Mesh_generateLightMapTextureWithQuality :: proc(self: ^Mesh, bakeQuality: cffi.float, lightsToConsider: ^NS.Array, objectsToConsider: ^NS.Array, vertexAttributeName: ^NS.String, materialPropertyName: ^NS.String) -> bool ---

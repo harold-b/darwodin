@@ -25,13 +25,13 @@ foreign lib {
     RTree_initWithMaxNumberOfChildren :: proc(self: ^RTree, maxNumberOfChildren: NS.UInteger) -> instancetype ---
 
     @(objc_type=RTree, objc_selector="addElement:boundingRectMin:boundingRectMax:splitStrategy:", objc_name="addElement")
-    RTree_addElement :: proc(self: ^RTree, element: id, #by_ptr boundingRectMin: vector_float2, #by_ptr boundingRectMax: vector_float2, splitStrategy: RTreeSplitStrategy) ---
+    RTree_addElement :: proc(self: ^RTree, element: id, boundingRectMin: ^vector_float2, boundingRectMax: ^vector_float2, splitStrategy: RTreeSplitStrategy) ---
 
     @(objc_type=RTree, objc_selector="removeElement:boundingRectMin:boundingRectMax:", objc_name="removeElement")
-    RTree_removeElement :: proc(self: ^RTree, element: id, #by_ptr boundingRectMin: vector_float2, #by_ptr boundingRectMax: vector_float2) ---
+    RTree_removeElement :: proc(self: ^RTree, element: id, boundingRectMin: ^vector_float2, boundingRectMax: ^vector_float2) ---
 
     @(objc_type=RTree, objc_selector="elementsInBoundingRectMin:rectMax:", objc_name="elementsInBoundingRectMin")
-    RTree_elementsInBoundingRectMin :: proc(self: ^RTree, #by_ptr rectMin: vector_float2, #by_ptr rectMax: vector_float2) -> ^NS.Array ---
+    RTree_elementsInBoundingRectMin :: proc(self: ^RTree, rectMin: ^vector_float2, rectMax: ^vector_float2) -> ^NS.Array ---
 
     @(objc_type=RTree, objc_selector="queryReserve", objc_name="queryReserve")
     RTree_queryReserve :: proc(self: ^RTree) -> NS.UInteger ---
