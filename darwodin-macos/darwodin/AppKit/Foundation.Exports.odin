@@ -75,6 +75,9 @@ NumberFormatter                        :: NS.NumberFormatter
 MassFormatter                          :: NS.MassFormatter
 LengthFormatter                        :: NS.LengthFormatter
 EnergyFormatter                        :: NS.EnergyFormatter
+RecursiveLock                          :: NS.RecursiveLock
+Cache                                  :: NS.Cache
+DecimalNumberHandler                   :: NS.DecimalNumberHandler
 UnitConverter                          :: NS.UnitConverter
 UnitConverterLinear                    :: NS.UnitConverterLinear
 Unit                                   :: NS.Unit
@@ -102,9 +105,6 @@ UnitSpeed                              :: NS.UnitSpeed
 UnitTemperature                        :: NS.UnitTemperature
 UnitVolume                             :: NS.UnitVolume
 Measurement                            :: NS.Measurement
-RecursiveLock                          :: NS.RecursiveLock
-Cache                                  :: NS.Cache
-DecimalNumberHandler                   :: NS.DecimalNumberHandler
 MeasurementFormatter                   :: NS.MeasurementFormatter
 PersonNameComponents                   :: NS.PersonNameComponents
 PersonNameComponentsFormatter          :: NS.PersonNameComponentsFormatter
@@ -1460,6 +1460,7 @@ foreign Foundation_exports {
     @(link_name="NSHTTPCookieDiscard") HTTPCookieDiscard: ^String
     @(link_name="NSHTTPCookieMaximumAge") HTTPCookieMaximumAge: ^String
     @(link_name="NSHTTPCookiePort") HTTPCookiePort: ^String
+    @(link_name="NSHTTPCookieSetByJavaScript") HTTPCookieSetByJavaScript: ^String
     @(link_name="NSHTTPCookieSameSitePolicy") HTTPCookieSameSitePolicy: ^String
     @(link_name="NSHTTPCookieSameSiteLax") HTTPCookieSameSiteLax: ^String
     @(link_name="NSHTTPCookieSameSiteStrict") HTTPCookieSameSiteStrict: ^String

@@ -78,6 +78,12 @@ WindowSharingRequestNoEligibleSession               :: 67457
 WindowSharingRequestUnspecifiedError                :: 67458
 WindowSharingErrorMinimum                           :: 67456
 WindowSharingErrorMaximum                           :: 67466
+PasteboardMiscellaneousError                        :: 67584
+PasteboardCommunicationError                        :: 67585
+PasteboardInvalidArgumentError                      :: 67586
+PasteboardContentsNotAvailableError                 :: 67587
+PasteboardErrorMinimum                              :: 67584
+PasteboardErrorMaximum                              :: 67839
 UpArrowFunctionKey                                  :: 63232
 DownArrowFunctionKey                                :: 63233
 LeftArrowFunctionKey                                :: 63234
@@ -1128,6 +1134,18 @@ foreign lib {
     @(link_name="NSPasteboardNameRuler") PasteboardNameRuler: ^NS.String
     @(link_name="NSPasteboardNameFind") PasteboardNameFind: ^NS.String
     @(link_name="NSPasteboardNameDrag") PasteboardNameDrag: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternProbableWebURL") PasteboardDetectionPatternProbableWebURL: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternProbableWebSearch") PasteboardDetectionPatternProbableWebSearch: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternNumber") PasteboardDetectionPatternNumber: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternLink") PasteboardDetectionPatternLink: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternPhoneNumber") PasteboardDetectionPatternPhoneNumber: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternEmailAddress") PasteboardDetectionPatternEmailAddress: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternPostalAddress") PasteboardDetectionPatternPostalAddress: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternCalendarEvent") PasteboardDetectionPatternCalendarEvent: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternShipmentTrackingNumber") PasteboardDetectionPatternShipmentTrackingNumber: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternFlightNumber") PasteboardDetectionPatternFlightNumber: ^NS.String
+    @(link_name="NSPasteboardDetectionPatternMoneyAmount") PasteboardDetectionPatternMoneyAmount: ^NS.String
+    @(link_name="NSPasteboardMetadataTypeContentType") PasteboardMetadataTypeContentType: ^NS.String
     @(link_name="NSPasteboardURLReadingFileURLsOnlyKey") PasteboardURLReadingFileURLsOnlyKey: ^NS.String
     @(link_name="NSPasteboardURLReadingContentsConformToTypesKey") PasteboardURLReadingContentsConformToTypesKey: ^NS.String
     @(link_name="NSFileContentsPboardType") FileContentsPboardType: ^NS.String
@@ -1879,6 +1897,7 @@ foreign lib {
     @(link_name="NSTextHighlightStyleAttributeName") TextHighlightStyleAttributeName: ^NS.String
     @(link_name="NSTextHighlightColorSchemeAttributeName") TextHighlightColorSchemeAttributeName: ^NS.String
     @(link_name="NSAdaptiveImageGlyphAttributeName") AdaptiveImageGlyphAttributeName: ^NS.String
+    @(link_name="NSWritingToolsExclusionAttributeName") WritingToolsExclusionAttributeName: ^NS.String
     @(link_name="NSTextEffectLetterpressStyle") TextEffectLetterpressStyle: ^NS.String
     @(link_name="NSTextHighlightStyleDefault") TextHighlightStyleDefault: ^NS.String
     @(link_name="NSTextHighlightColorSchemeDefault") TextHighlightColorSchemeDefault: ^NS.String
@@ -1978,6 +1997,7 @@ foreign lib {
     @(link_name="NSToolbarToggleSidebarItemIdentifier") ToolbarToggleSidebarItemIdentifier: ^NS.String
     @(link_name="NSToolbarToggleInspectorItemIdentifier") ToolbarToggleInspectorItemIdentifier: ^NS.String
     @(link_name="NSToolbarCloudSharingItemIdentifier") ToolbarCloudSharingItemIdentifier: ^NS.String
+    @(link_name="NSToolbarWritingToolsItemIdentifier") ToolbarWritingToolsItemIdentifier: ^NS.String
     @(link_name="NSToolbarSidebarTrackingSeparatorItemIdentifier") ToolbarSidebarTrackingSeparatorItemIdentifier: ^NS.String
     @(link_name="NSToolbarInspectorTrackingSeparatorItemIdentifier") ToolbarInspectorTrackingSeparatorItemIdentifier: ^NS.String
     @(link_name="NSToolbarSeparatorItemIdentifier") ToolbarSeparatorItemIdentifier: ^NS.String
@@ -2403,6 +2423,12 @@ PasteboardType :: distinct ^NS.String
 
 /// NSPasteboardName
 PasteboardName :: distinct ^NS.String
+
+/// NSPasteboardDetectionPattern
+PasteboardDetectionPattern :: distinct ^NS.String
+
+/// NSPasteboardMetadataType
+PasteboardMetadataType :: distinct ^NS.String
 
 /// NSPasteboardReadingOptionKey
 PasteboardReadingOptionKey :: distinct ^NS.String
@@ -3139,6 +3165,14 @@ PressureBehavior :: enum cffi.long {
     PrimaryAccelerator = 3,
     PrimaryDeepClick   = 5,
     PrimaryDeepDrag    = 6,
+}
+
+/// NSPasteboardAccessBehavior
+PasteboardAccessBehavior :: enum cffi.long {
+    Default     = 0,
+    Ask         = 1,
+    AlwaysAllow = 2,
+    AlwaysDeny  = 3,
 }
 
 /// NSPasteboardContentsOptions
@@ -4634,15 +4668,6 @@ WritingToolsResultOptions :: enum cffi.ulong {
     Table     = 8,
 }
 
-/// NSWritingToolsAllowedInputOptions
-WritingToolsAllowedInputOptions :: enum cffi.ulong {
-    Default   = 0,
-    PlainText = 1,
-    RichText  = 2,
-    List      = 4,
-    Table     = 8,
-}
-
 /// NSTextFieldBezelStyle
 TextFieldBezelStyle :: enum cffi.ulong {
     SquareBezel  = 0,
@@ -5386,6 +5411,42 @@ TextLayoutManagerSegmentOptions :: enum cffi.ulong {
     HeadSegmentExtended     = 4,
     TailSegmentExtended     = 8,
     UpstreamAffinity        = 16,
+}
+
+/// NSWritingToolsCoordinatorTextUpdateReason
+WritingToolsCoordinatorTextUpdateReason :: enum cffi.long {
+    Typing   = 0,
+    UndoRedo = 1,
+}
+
+/// NSWritingToolsCoordinatorState
+WritingToolsCoordinatorState :: enum cffi.long {
+    Inactive             = 0,
+    Noninteractive       = 1,
+    InteractiveResting   = 2,
+    InteractiveStreaming = 3,
+}
+
+/// NSWritingToolsCoordinatorTextReplacementReason
+WritingToolsCoordinatorTextReplacementReason :: enum cffi.long {
+    Interactive    = 0,
+    Noninteractive = 1,
+}
+
+/// NSWritingToolsCoordinatorContextScope
+WritingToolsCoordinatorContextScope :: enum cffi.long {
+    UserSelection = 0,
+    FullDocument  = 1,
+    VisibleArea   = 2,
+}
+
+/// NSWritingToolsCoordinatorTextAnimation
+WritingToolsCoordinatorTextAnimation :: enum cffi.long {
+    Anticipate         = 0,
+    Remove             = 1,
+    Insert             = 2,
+    AnticipateInactive = 8,
+    Translate          = 9,
 }
 
 /// _NSModalSession

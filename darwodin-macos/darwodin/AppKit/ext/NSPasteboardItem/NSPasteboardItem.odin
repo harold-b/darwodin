@@ -38,6 +38,9 @@ VTable :: struct {
     dataForType: proc(self: ^AK.PasteboardItem, type: ^NS.String) -> ^NS.Data,
     stringForType: proc(self: ^AK.PasteboardItem, type: ^NS.String) -> ^NS.String,
     propertyListForType: proc(self: ^AK.PasteboardItem, type: ^NS.String) -> id,
+    detectPatternsForPatterns: proc(self: ^AK.PasteboardItem, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedPatterns: ^NS.Set, error: ^NS.Error))),
+    detectValuesForPatterns: proc(self: ^AK.PasteboardItem, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedValues: ^NS.Dictionary, error: ^NS.Error))),
+    detectMetadataForTypes: proc(self: ^AK.PasteboardItem, types: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedMetadata: ^NS.Dictionary, error: ^NS.Error))),
     types: proc(self: ^AK.PasteboardItem) -> ^NS.Array,
 }
 
@@ -127,6 +130,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("propertyListForType:"), auto_cast propertyListForType, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.detectPatternsForPatterns != nil {
+        detectPatternsForPatterns :: proc "c" (self: ^AK.PasteboardItem, _: SEL, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedPatterns: ^NS.Set, error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).detectPatternsForPatterns(self, patterns, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("detectPatternsForPatterns:completionHandler:"), auto_cast detectPatternsForPatterns, "v@:^void?") do panic("Failed to register objC method.")
+    }
+    if vt.detectValuesForPatterns != nil {
+        detectValuesForPatterns :: proc "c" (self: ^AK.PasteboardItem, _: SEL, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedValues: ^NS.Dictionary, error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).detectValuesForPatterns(self, patterns, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("detectValuesForPatterns:completionHandler:"), auto_cast detectValuesForPatterns, "v@:^void?") do panic("Failed to register objC method.")
+    }
+    if vt.detectMetadataForTypes != nil {
+        detectMetadataForTypes :: proc "c" (self: ^AK.PasteboardItem, _: SEL, types: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedMetadata: ^NS.Dictionary, error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).detectMetadataForTypes(self, types, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("detectMetadataForTypes:completionHandler:"), auto_cast detectMetadataForTypes, "v@:^void?") do panic("Failed to register objC method.")
     }
     if vt.types != nil {
         types :: proc "c" (self: ^AK.PasteboardItem, _: SEL) -> ^NS.Array {

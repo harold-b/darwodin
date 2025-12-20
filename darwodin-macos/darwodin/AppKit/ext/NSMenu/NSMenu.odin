@@ -80,6 +80,8 @@ VTable :: struct {
     setFont: proc(self: ^AK.Menu, font: ^AK.Font),
     allowsContextMenuPlugIns: proc(self: ^AK.Menu) -> bool,
     setAllowsContextMenuPlugIns: proc(self: ^AK.Menu, allowsContextMenuPlugIns: bool),
+    automaticallyInsertsWritingToolsItems: proc(self: ^AK.Menu) -> bool,
+    setAutomaticallyInsertsWritingToolsItems: proc(self: ^AK.Menu, automaticallyInsertsWritingToolsItems: bool),
     showsStateColumn: proc(self: ^AK.Menu) -> bool,
     setShowsStateColumn: proc(self: ^AK.Menu, showsStateColumn: bool),
     userInterfaceLayoutDirection: proc(self: ^AK.Menu) -> AK.UserInterfaceLayoutDirection,
@@ -618,6 +620,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsContextMenuPlugIns:"), auto_cast setAllowsContextMenuPlugIns, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyInsertsWritingToolsItems != nil {
+        automaticallyInsertsWritingToolsItems :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).automaticallyInsertsWritingToolsItems(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyInsertsWritingToolsItems"), auto_cast automaticallyInsertsWritingToolsItems, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticallyInsertsWritingToolsItems != nil {
+        setAutomaticallyInsertsWritingToolsItems :: proc "c" (self: ^AK.Menu, _: SEL, automaticallyInsertsWritingToolsItems: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAutomaticallyInsertsWritingToolsItems(self, automaticallyInsertsWritingToolsItems)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyInsertsWritingToolsItems:"), auto_cast setAutomaticallyInsertsWritingToolsItems, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.showsStateColumn != nil {
         showsStateColumn :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {

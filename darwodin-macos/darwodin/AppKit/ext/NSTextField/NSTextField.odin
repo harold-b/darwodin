@@ -67,6 +67,10 @@ VTable :: struct {
     setAllowsDefaultTighteningForTruncation: proc(self: ^AK.TextField, allowsDefaultTighteningForTruncation: bool),
     lineBreakStrategy: proc(self: ^AK.TextField) -> AK.LineBreakStrategy,
     setLineBreakStrategy: proc(self: ^AK.TextField, lineBreakStrategy: AK.LineBreakStrategy),
+    allowsWritingTools: proc(self: ^AK.TextField) -> bool,
+    setAllowsWritingTools: proc(self: ^AK.TextField, allowsWritingTools: bool),
+    allowsWritingToolsAffordance: proc(self: ^AK.TextField) -> bool,
+    setAllowsWritingToolsAffordance: proc(self: ^AK.TextField, allowsWritingToolsAffordance: bool),
     isAutomaticTextCompletionEnabled: proc(self: ^AK.TextField) -> bool,
     setAutomaticTextCompletionEnabled: proc(self: ^AK.TextField, automaticTextCompletionEnabled: bool),
     allowsCharacterPickerTouchBarItem: proc(self: ^AK.TextField) -> bool,
@@ -458,6 +462,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineBreakStrategy:"), auto_cast setLineBreakStrategy, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.allowsWritingTools != nil {
+        allowsWritingTools :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).allowsWritingTools(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsWritingTools"), auto_cast allowsWritingTools, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsWritingTools != nil {
+        setAllowsWritingTools :: proc "c" (self: ^AK.TextField, _: SEL, allowsWritingTools: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAllowsWritingTools(self, allowsWritingTools)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsWritingTools:"), auto_cast setAllowsWritingTools, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.allowsWritingToolsAffordance != nil {
+        allowsWritingToolsAffordance :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).allowsWritingToolsAffordance(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsWritingToolsAffordance"), auto_cast allowsWritingToolsAffordance, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsWritingToolsAffordance != nil {
+        setAllowsWritingToolsAffordance :: proc "c" (self: ^AK.TextField, _: SEL, allowsWritingToolsAffordance: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAllowsWritingToolsAffordance(self, allowsWritingToolsAffordance)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsWritingToolsAffordance:"), auto_cast setAllowsWritingToolsAffordance, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isAutomaticTextCompletionEnabled != nil {
         isAutomaticTextCompletionEnabled :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {

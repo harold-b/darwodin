@@ -74,6 +74,9 @@ foreign lib {
     @(objc_type=URLRequest, objc_selector="allowsPersistentDNS", objc_name="allowsPersistentDNS")
     URLRequest_allowsPersistentDNS :: proc(self: ^URLRequest) -> bool ---
 
+    @(objc_type=URLRequest, objc_selector="cookiePartitionIdentifier", objc_name="cookiePartitionIdentifier")
+    URLRequest_cookiePartitionIdentifier :: proc(self: ^URLRequest) -> ^String ---
+
     @(objc_type=URLRequest, objc_selector="valueForHTTPHeaderField:", objc_name="valueForHTTPHeaderField")
     URLRequest_valueForHTTPHeaderField :: proc(self: ^URLRequest, field: ^String) -> ^String ---
 

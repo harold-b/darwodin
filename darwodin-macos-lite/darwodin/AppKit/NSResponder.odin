@@ -208,6 +208,9 @@ foreign lib {
     @(objc_type=Responder, objc_selector="newWindowForTab:", objc_name="newWindowForTab")
     Responder_newWindowForTab :: proc(self: ^Responder, sender: id) ---
 
+    @(objc_type=Responder, objc_selector="showWritingTools:", objc_name="showWritingTools")
+    Responder_showWritingTools :: proc(self: ^Responder, sender: id) ---
+
     @(objc_type=Responder, objc_selector="performMnemonic:", objc_name="performMnemonic")
     Responder_performMnemonic :: proc(self: ^Responder, string: ^NS.String) -> bool ---
 

@@ -138,6 +138,18 @@ foreign lib {
     @(objc_type=TextField, objc_selector="setLineBreakStrategy:", objc_name="setLineBreakStrategy")
     TextField_setLineBreakStrategy :: proc(self: ^TextField, lineBreakStrategy: LineBreakStrategy) ---
 
+    @(objc_type=TextField, objc_selector="allowsWritingTools", objc_name="allowsWritingTools")
+    TextField_allowsWritingTools :: proc(self: ^TextField) -> bool ---
+
+    @(objc_type=TextField, objc_selector="setAllowsWritingTools:", objc_name="setAllowsWritingTools")
+    TextField_setAllowsWritingTools :: proc(self: ^TextField, allowsWritingTools: bool) ---
+
+    @(objc_type=TextField, objc_selector="allowsWritingToolsAffordance", objc_name="allowsWritingToolsAffordance")
+    TextField_allowsWritingToolsAffordance :: proc(self: ^TextField) -> bool ---
+
+    @(objc_type=TextField, objc_selector="setAllowsWritingToolsAffordance:", objc_name="setAllowsWritingToolsAffordance")
+    TextField_setAllowsWritingToolsAffordance :: proc(self: ^TextField, allowsWritingToolsAffordance: bool) ---
+
     @(objc_type=TextField, objc_selector="isAutomaticTextCompletionEnabled", objc_name="isAutomaticTextCompletionEnabled")
     TextField_isAutomaticTextCompletionEnabled :: proc(self: ^TextField) -> bool ---
 

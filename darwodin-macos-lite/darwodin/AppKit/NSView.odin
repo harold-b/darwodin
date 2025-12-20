@@ -825,6 +825,12 @@ foreign lib {
     @(objc_type=View, objc_selector="renewGState", objc_name="renewGState")
     View_renewGState :: proc(self: ^View) ---
 
+    @(objc_type=View, objc_selector="writingToolsCoordinator", objc_name="writingToolsCoordinator")
+    View_writingToolsCoordinator :: proc(self: ^View) -> ^WritingToolsCoordinator ---
+
+    @(objc_type=View, objc_selector="setWritingToolsCoordinator:", objc_name="setWritingToolsCoordinator")
+    View_setWritingToolsCoordinator :: proc(self: ^View, writingToolsCoordinator: ^WritingToolsCoordinator) ---
+
     @(objc_type=View, objc_selector="enclosingMenuItem", objc_name="enclosingMenuItem")
     View_enclosingMenuItem :: proc(self: ^View) -> ^MenuItem ---
 

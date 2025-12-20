@@ -55,8 +55,6 @@ VTable :: struct {
     setWritingToolsBehavior: proc(self: ^AK.TextInputTraits, writingToolsBehavior: AK.WritingToolsBehavior),
     allowedWritingToolsResultOptions: proc(self: ^AK.TextInputTraits) -> AK.WritingToolsResultOptions,
     setAllowedWritingToolsResultOptions: proc(self: ^AK.TextInputTraits, allowedWritingToolsResultOptions: AK.WritingToolsResultOptions),
-    writingToolsAllowedInputOptions: proc(self: ^AK.TextInputTraits) -> AK.WritingToolsAllowedInputOptions,
-    setWritingToolsAllowedInputOptions: proc(self: ^AK.TextInputTraits, writingToolsAllowedInputOptions: AK.WritingToolsAllowedInputOptions),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -342,26 +340,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedWritingToolsResultOptions:"), auto_cast setAllowedWritingToolsResultOptions, "v@:L") do panic("Failed to register objC method.")
-    }
-    if vt.writingToolsAllowedInputOptions != nil {
-        writingToolsAllowedInputOptions :: proc "c" (self: ^AK.TextInputTraits, _: SEL) -> AK.WritingToolsAllowedInputOptions {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.protocol_vt).writingToolsAllowedInputOptions(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsAllowedInputOptions"), auto_cast writingToolsAllowedInputOptions, "L@:") do panic("Failed to register objC method.")
-    }
-    if vt.setWritingToolsAllowedInputOptions != nil {
-        setWritingToolsAllowedInputOptions :: proc "c" (self: ^AK.TextInputTraits, _: SEL, writingToolsAllowedInputOptions: AK.WritingToolsAllowedInputOptions) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.protocol_vt).setWritingToolsAllowedInputOptions(self, writingToolsAllowedInputOptions)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setWritingToolsAllowedInputOptions:"), auto_cast setWritingToolsAllowedInputOptions, "v@:L") do panic("Failed to register objC method.")
     }
 }
 

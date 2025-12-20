@@ -201,8 +201,6 @@ VTable :: struct {
     setWritingToolsBehavior: proc(self: ^AK.TextView, writingToolsBehavior: AK.WritingToolsBehavior),
     allowedWritingToolsResultOptions: proc(self: ^AK.TextView) -> AK.WritingToolsResultOptions,
     setAllowedWritingToolsResultOptions: proc(self: ^AK.TextView, allowedWritingToolsResultOptions: AK.WritingToolsResultOptions),
-    writingToolsAllowedInputOptions: proc(self: ^AK.TextView) -> AK.WritingToolsAllowedInputOptions,
-    setWritingToolsAllowedInputOptions: proc(self: ^AK.TextView, writingToolsAllowedInputOptions: AK.WritingToolsAllowedInputOptions),
     smartDeleteRangeForProposedRange: proc(self: ^AK.TextView, proposedCharRange: NS._NSRange) -> NS._NSRange,
     toggleSmartInsertDelete: proc(self: ^AK.TextView, sender: id),
     smartInsertForString: proc(self: ^AK.TextView, pasteString: ^NS.String, charRangeToReplace: NS._NSRange, beforeString: ^^NS.String, afterString: ^^NS.String),
@@ -1985,26 +1983,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedWritingToolsResultOptions:"), auto_cast setAllowedWritingToolsResultOptions, "v@:L") do panic("Failed to register objC method.")
-    }
-    if vt.writingToolsAllowedInputOptions != nil {
-        writingToolsAllowedInputOptions :: proc "c" (self: ^AK.TextView, _: SEL) -> AK.WritingToolsAllowedInputOptions {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).writingToolsAllowedInputOptions(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsAllowedInputOptions"), auto_cast writingToolsAllowedInputOptions, "L@:") do panic("Failed to register objC method.")
-    }
-    if vt.setWritingToolsAllowedInputOptions != nil {
-        setWritingToolsAllowedInputOptions :: proc "c" (self: ^AK.TextView, _: SEL, writingToolsAllowedInputOptions: AK.WritingToolsAllowedInputOptions) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setWritingToolsAllowedInputOptions(self, writingToolsAllowedInputOptions)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setWritingToolsAllowedInputOptions:"), auto_cast setWritingToolsAllowedInputOptions, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.smartDeleteRangeForProposedRange != nil {
         smartDeleteRangeForProposedRange :: proc "c" (self: ^AK.TextView, _: SEL, proposedCharRange: NS._NSRange) -> NS._NSRange {

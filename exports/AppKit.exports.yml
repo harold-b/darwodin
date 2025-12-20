@@ -61,6 +61,8 @@ Typedefs:
     NSWorkspaceLaunchConfigurationKey: AK.WorkspaceLaunchConfigurationKey
     NSPasteboardType: AK.PasteboardType
     NSPasteboardName: AK.PasteboardName
+    NSPasteboardDetectionPattern: AK.PasteboardDetectionPattern
+    NSPasteboardMetadataType: AK.PasteboardMetadataType
     NSPasteboardReadingOptionKey: AK.PasteboardReadingOptionKey
     NSNibName: AK.NibName
     NSUserInterfaceItemIdentifier: AK.UserInterfaceItemIdentifier
@@ -335,6 +337,7 @@ Enums:
     NSEventSwipeTrackingOptions: AK.EventSwipeTrackingOptions
     NSEventSubtype: AK.EventSubtype
     NSPressureBehavior: AK.PressureBehavior
+    NSPasteboardAccessBehavior: AK.PasteboardAccessBehavior
     NSPasteboardContentsOptions: AK.PasteboardContentsOptions
     NSPasteboardWritingOptions: AK.PasteboardWritingOptions
     NSPasteboardReadingOptions: AK.PasteboardReadingOptions
@@ -502,7 +505,6 @@ Enums:
     NSTextInputTraitType: AK.TextInputTraitType
     NSWritingToolsBehavior: AK.WritingToolsBehavior
     NSWritingToolsResultOptions: AK.WritingToolsResultOptions
-    NSWritingToolsAllowedInputOptions: AK.WritingToolsAllowedInputOptions
     NSTextFieldBezelStyle: AK.TextFieldBezelStyle
     NSTextInsertionIndicatorDisplayMode: AK.TextInsertionIndicatorDisplayMode
     NSTextInsertionIndicatorAutomaticModeOptions: AK.TextInsertionIndicatorAutomaticModeOptions
@@ -594,6 +596,11 @@ Enums:
     NSTextLayoutFragmentState: AK.TextLayoutFragmentState
     NSTextLayoutManagerSegmentType: AK.TextLayoutManagerSegmentType
     NSTextLayoutManagerSegmentOptions: AK.TextLayoutManagerSegmentOptions
+    NSWritingToolsCoordinatorTextUpdateReason: AK.WritingToolsCoordinatorTextUpdateReason
+    NSWritingToolsCoordinatorState: AK.WritingToolsCoordinatorState
+    NSWritingToolsCoordinatorTextReplacementReason: AK.WritingToolsCoordinatorTextReplacementReason
+    NSWritingToolsCoordinatorContextScope: AK.WritingToolsCoordinatorContextScope
+    NSWritingToolsCoordinatorTextAnimation: AK.WritingToolsCoordinatorTextAnimation
     xpc_session_create_flags_t: AK.xpc_session_create_flags_t
     xpc_listener_create_flags_t: AK.xpc_listener_create_flags_t
     NSComparisonResult: AK.ComparisonResult
@@ -777,6 +784,7 @@ ObjCClasses:
     NSAppearance: AK.Appearance
     NSDraggingItem: AK.DraggingItem
     NSDraggingSession: AK.DraggingSession
+    NSWritingToolsCoordinator: AK.WritingToolsCoordinator
     NSCursor: AK.Cursor
     NSGestureRecognizer: AK.GestureRecognizer
     NSLayoutGuide: AK.LayoutGuide
@@ -1072,6 +1080,9 @@ ObjCClasses:
     NSTextListElement: AK.TextListElement
     NSTextLayoutFragment: AK.TextLayoutFragment
     NSTextViewportLayoutController: AK.TextViewportLayoutController
+    NSWritingToolsCoordinatorAnimationParameters: AK.WritingToolsCoordinatorAnimationParameters
+    NSWritingToolsCoordinatorContext: AK.WritingToolsCoordinatorContext
+    NSTextPreview: AK.TextPreview
     NSArray: AK.Array
     NSAttributedString: AK.AttributedString
     NSString: AK.String
@@ -1132,6 +1143,9 @@ ObjCClasses:
     NSMassFormatter: AK.MassFormatter
     NSLengthFormatter: AK.LengthFormatter
     NSEnergyFormatter: AK.EnergyFormatter
+    NSRecursiveLock: AK.RecursiveLock
+    NSCache: AK.Cache
+    NSDecimalNumberHandler: AK.DecimalNumberHandler
     NSUnitConverter: AK.UnitConverter
     NSUnitConverterLinear: AK.UnitConverterLinear
     NSUnit: AK.Unit
@@ -1159,9 +1173,6 @@ ObjCClasses:
     NSUnitTemperature: AK.UnitTemperature
     NSUnitVolume: AK.UnitVolume
     NSMeasurement: AK.Measurement
-    NSRecursiveLock: AK.RecursiveLock
-    NSCache: AK.Cache
-    NSDecimalNumberHandler: AK.DecimalNumberHandler
     NSMeasurementFormatter: AK.MeasurementFormatter
     NSPersonNameComponents: AK.PersonNameComponents
     NSPersonNameComponentsFormatter: AK.PersonNameComponentsFormatter
@@ -1512,6 +1523,7 @@ ObjCProtocols:
     NSTextContentStorageDelegate: AK.TextContentStorageDelegate
     NSTextLayoutManagerDelegate: AK.TextLayoutManagerDelegate
     NSTextViewportLayoutControllerDelegate: AK.TextViewportLayoutControllerDelegate
+    NSWritingToolsCoordinatorDelegate: AK.WritingToolsCoordinatorDelegate
     NSObject: AK.ObjectProtocol
     NSCopying: AK.Copying
     NSMutableCopying: AK.MutableCopying
@@ -2222,6 +2234,18 @@ ExternVars:
     ::NSPasteboardNameRuler: AK.PasteboardNameRuler
     ::NSPasteboardNameFind: AK.PasteboardNameFind
     ::NSPasteboardNameDrag: AK.PasteboardNameDrag
+    ::NSPasteboardDetectionPatternProbableWebURL: AK.PasteboardDetectionPatternProbableWebURL
+    ::NSPasteboardDetectionPatternProbableWebSearch: AK.PasteboardDetectionPatternProbableWebSearch
+    ::NSPasteboardDetectionPatternNumber: AK.PasteboardDetectionPatternNumber
+    ::NSPasteboardDetectionPatternLink: AK.PasteboardDetectionPatternLink
+    ::NSPasteboardDetectionPatternPhoneNumber: AK.PasteboardDetectionPatternPhoneNumber
+    ::NSPasteboardDetectionPatternEmailAddress: AK.PasteboardDetectionPatternEmailAddress
+    ::NSPasteboardDetectionPatternPostalAddress: AK.PasteboardDetectionPatternPostalAddress
+    ::NSPasteboardDetectionPatternCalendarEvent: AK.PasteboardDetectionPatternCalendarEvent
+    ::NSPasteboardDetectionPatternShipmentTrackingNumber: AK.PasteboardDetectionPatternShipmentTrackingNumber
+    ::NSPasteboardDetectionPatternFlightNumber: AK.PasteboardDetectionPatternFlightNumber
+    ::NSPasteboardDetectionPatternMoneyAmount: AK.PasteboardDetectionPatternMoneyAmount
+    ::NSPasteboardMetadataTypeContentType: AK.PasteboardMetadataTypeContentType
     ::NSPasteboardURLReadingFileURLsOnlyKey: AK.PasteboardURLReadingFileURLsOnlyKey
     ::NSPasteboardURLReadingContentsConformToTypesKey: AK.PasteboardURLReadingContentsConformToTypesKey
     ::NSFileContentsPboardType: AK.FileContentsPboardType
@@ -2973,6 +2997,7 @@ ExternVars:
     ::NSTextHighlightStyleAttributeName: AK.TextHighlightStyleAttributeName
     ::NSTextHighlightColorSchemeAttributeName: AK.TextHighlightColorSchemeAttributeName
     ::NSAdaptiveImageGlyphAttributeName: AK.AdaptiveImageGlyphAttributeName
+    ::NSWritingToolsExclusionAttributeName: AK.WritingToolsExclusionAttributeName
     ::NSTextEffectLetterpressStyle: AK.TextEffectLetterpressStyle
     ::NSTextHighlightStyleDefault: AK.TextHighlightStyleDefault
     ::NSTextHighlightColorSchemeDefault: AK.TextHighlightColorSchemeDefault
@@ -3072,6 +3097,7 @@ ExternVars:
     ::NSToolbarToggleSidebarItemIdentifier: AK.ToolbarToggleSidebarItemIdentifier
     ::NSToolbarToggleInspectorItemIdentifier: AK.ToolbarToggleInspectorItemIdentifier
     ::NSToolbarCloudSharingItemIdentifier: AK.ToolbarCloudSharingItemIdentifier
+    ::NSToolbarWritingToolsItemIdentifier: AK.ToolbarWritingToolsItemIdentifier
     ::NSToolbarSidebarTrackingSeparatorItemIdentifier: AK.ToolbarSidebarTrackingSeparatorItemIdentifier
     ::NSToolbarInspectorTrackingSeparatorItemIdentifier: AK.ToolbarInspectorTrackingSeparatorItemIdentifier
     ::NSToolbarSeparatorItemIdentifier: AK.ToolbarSeparatorItemIdentifier
@@ -3539,6 +3565,7 @@ ExternVars:
     ::NSHTTPCookieDiscard: AK.HTTPCookieDiscard
     ::NSHTTPCookieMaximumAge: AK.HTTPCookieMaximumAge
     ::NSHTTPCookiePort: AK.HTTPCookiePort
+    ::NSHTTPCookieSetByJavaScript: AK.HTTPCookieSetByJavaScript
     ::NSHTTPCookieSameSitePolicy: AK.HTTPCookieSameSitePolicy
     ::NSHTTPCookieSameSiteLax: AK.HTTPCookieSameSiteLax
     ::NSHTTPCookieSameSiteStrict: AK.HTTPCookieSameSiteStrict
@@ -4425,6 +4452,18 @@ ExternTypes:
     ::NSPasteboardNameRuler: ^NS.String
     ::NSPasteboardNameFind: ^NS.String
     ::NSPasteboardNameDrag: ^NS.String
+    ::NSPasteboardDetectionPatternProbableWebURL: ^NS.String
+    ::NSPasteboardDetectionPatternProbableWebSearch: ^NS.String
+    ::NSPasteboardDetectionPatternNumber: ^NS.String
+    ::NSPasteboardDetectionPatternLink: ^NS.String
+    ::NSPasteboardDetectionPatternPhoneNumber: ^NS.String
+    ::NSPasteboardDetectionPatternEmailAddress: ^NS.String
+    ::NSPasteboardDetectionPatternPostalAddress: ^NS.String
+    ::NSPasteboardDetectionPatternCalendarEvent: ^NS.String
+    ::NSPasteboardDetectionPatternShipmentTrackingNumber: ^NS.String
+    ::NSPasteboardDetectionPatternFlightNumber: ^NS.String
+    ::NSPasteboardDetectionPatternMoneyAmount: ^NS.String
+    ::NSPasteboardMetadataTypeContentType: ^NS.String
     ::NSPasteboardURLReadingFileURLsOnlyKey: ^NS.String
     ::NSPasteboardURLReadingContentsConformToTypesKey: ^NS.String
     ::NSFileContentsPboardType: ^NS.String
@@ -5176,6 +5215,7 @@ ExternTypes:
     ::NSTextHighlightStyleAttributeName: ^NS.String
     ::NSTextHighlightColorSchemeAttributeName: ^NS.String
     ::NSAdaptiveImageGlyphAttributeName: ^NS.String
+    ::NSWritingToolsExclusionAttributeName: ^NS.String
     ::NSTextEffectLetterpressStyle: ^NS.String
     ::NSTextHighlightStyleDefault: ^NS.String
     ::NSTextHighlightColorSchemeDefault: ^NS.String
@@ -5275,6 +5315,7 @@ ExternTypes:
     ::NSToolbarToggleSidebarItemIdentifier: ^NS.String
     ::NSToolbarToggleInspectorItemIdentifier: ^NS.String
     ::NSToolbarCloudSharingItemIdentifier: ^NS.String
+    ::NSToolbarWritingToolsItemIdentifier: ^NS.String
     ::NSToolbarSidebarTrackingSeparatorItemIdentifier: ^NS.String
     ::NSToolbarInspectorTrackingSeparatorItemIdentifier: ^NS.String
     ::NSToolbarSeparatorItemIdentifier: ^NS.String
@@ -5384,6 +5425,12 @@ ConstVars:
     ::NSWindowSharingRequestUnspecifiedError: AK.WindowSharingRequestUnspecifiedError
     ::NSWindowSharingErrorMinimum: AK.WindowSharingErrorMinimum
     ::NSWindowSharingErrorMaximum: AK.WindowSharingErrorMaximum
+    ::NSPasteboardMiscellaneousError: AK.PasteboardMiscellaneousError
+    ::NSPasteboardCommunicationError: AK.PasteboardCommunicationError
+    ::NSPasteboardInvalidArgumentError: AK.PasteboardInvalidArgumentError
+    ::NSPasteboardContentsNotAvailableError: AK.PasteboardContentsNotAvailableError
+    ::NSPasteboardErrorMinimum: AK.PasteboardErrorMinimum
+    ::NSPasteboardErrorMaximum: AK.PasteboardErrorMaximum
     ::NSUpArrowFunctionKey: AK.UpArrowFunctionKey
     ::NSDownArrowFunctionKey: AK.DownArrowFunctionKey
     ::NSLeftArrowFunctionKey: AK.LeftArrowFunctionKey

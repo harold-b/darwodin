@@ -412,6 +412,7 @@ errSecCertificateNameNotAllowed           :: -67900
 errSecCertificateValidityPeriodTooLong    :: -67901
 errSecCertificateIsCA                     :: -67902
 errSecCertificateDuplicateExtension       :: -67903
+errSecMissingQualifiedCertStatement       :: -67904
 kSecSubjectItemAttr                       :: 1937072746
 kSecIssuerItemAttr                        :: 1769173877
 kSecSerialNumberItemAttr                  :: 1936614002
@@ -900,6 +901,12 @@ foreign lib {
     @(link_name="kSecPolicyAppleRevocation") kSecPolicyAppleRevocation: CF.StringRef
     @(link_name="kSecPolicyApplePassbookSigning") kSecPolicyApplePassbookSigning: CF.StringRef
     @(link_name="kSecPolicyApplePayIssuerEncryption") kSecPolicyApplePayIssuerEncryption: CF.StringRef
+    @(link_name="kSecPolicyAppleSSLServer") kSecPolicyAppleSSLServer: CF.StringRef
+    @(link_name="kSecPolicyAppleSSLClient") kSecPolicyAppleSSLClient: CF.StringRef
+    @(link_name="kSecPolicyAppleEAPServer") kSecPolicyAppleEAPServer: CF.StringRef
+    @(link_name="kSecPolicyAppleEAPClient") kSecPolicyAppleEAPClient: CF.StringRef
+    @(link_name="kSecPolicyAppleIPSecServer") kSecPolicyAppleIPSecServer: CF.StringRef
+    @(link_name="kSecPolicyAppleIPSecClient") kSecPolicyAppleIPSecClient: CF.StringRef
     @(link_name="kSecPolicyOid") kSecPolicyOid: CF.StringRef
     @(link_name="kSecPolicyName") kSecPolicyName: CF.StringRef
     @(link_name="kSecPolicyClient") kSecPolicyClient: CF.StringRef
@@ -934,6 +941,8 @@ foreign lib {
     @(link_name="kSecTrustRevocationValidUntilDate") kSecTrustRevocationValidUntilDate: CF.StringRef
     @(link_name="kSecTrustCertificateTransparency") kSecTrustCertificateTransparency: CF.StringRef
     @(link_name="kSecTrustCertificateTransparencyWhiteList") kSecTrustCertificateTransparencyWhiteList: CF.StringRef
+    @(link_name="kSecTrustQCStatements") kSecTrustQCStatements: CF.StringRef
+    @(link_name="kSecTrustQWACValidation") kSecTrustQWACValidation: CF.StringRef
     @(link_name="kSecSharedPassword") kSecSharedPassword: CF.StringRef
     @(link_name="kSecOIDADC_CERT_POLICY") kSecOIDADC_CERT_POLICY: CF.StringRef
     @(link_name="kSecOIDAPPLE_CERT_POLICY") kSecOIDAPPLE_CERT_POLICY: CF.StringRef

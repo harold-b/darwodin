@@ -88,6 +88,8 @@ VTable :: struct {
     setProtocolClasses: proc(self: ^NS.URLSessionConfiguration, protocolClasses: ^NS.Array),
     multipathServiceType: proc(self: ^NS.URLSessionConfiguration) -> NS.URLSessionMultipathServiceType,
     setMultipathServiceType: proc(self: ^NS.URLSessionConfiguration, multipathServiceType: NS.URLSessionMultipathServiceType),
+    usesClassicLoadingMode: proc(self: ^NS.URLSessionConfiguration) -> bool,
+    setUsesClassicLoadingMode: proc(self: ^NS.URLSessionConfiguration, usesClassicLoadingMode: bool),
     backgroundSessionConfiguration: proc(identifier: ^NS.String) -> ^NS.URLSessionConfiguration,
 }
 
@@ -717,6 +719,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMultipathServiceType:"), auto_cast setMultipathServiceType, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.usesClassicLoadingMode != nil {
+        usesClassicLoadingMode :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).usesClassicLoadingMode(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("usesClassicLoadingMode"), auto_cast usesClassicLoadingMode, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setUsesClassicLoadingMode != nil {
+        setUsesClassicLoadingMode :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, usesClassicLoadingMode: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setUsesClassicLoadingMode(self, usesClassicLoadingMode)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesClassicLoadingMode:"), auto_cast setUsesClassicLoadingMode, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.backgroundSessionConfiguration != nil {
         backgroundSessionConfiguration :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> ^NS.URLSessionConfiguration {

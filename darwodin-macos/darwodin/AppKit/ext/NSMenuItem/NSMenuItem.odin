@@ -36,6 +36,7 @@ VTable :: struct {
     initWithCoder: proc(self: ^AK.MenuItem, coder: ^NS.Coder) -> ^AK.MenuItem,
     usesUserKeyEquivalents: proc() -> bool,
     setUsesUserKeyEquivalents: proc(usesUserKeyEquivalents: bool),
+    writingToolsItems: proc() -> ^NS.Array,
     menu: proc(self: ^AK.MenuItem) -> ^AK.Menu,
     setMenu: proc(self: ^AK.MenuItem, menu: ^AK.Menu),
     hasSubmenu: proc(self: ^AK.MenuItem) -> bool,
@@ -167,6 +168,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("setUsesUserKeyEquivalents:"), auto_cast setUsesUserKeyEquivalents, "v#:B") do panic("Failed to register objC method.")
+    }
+    if vt.writingToolsItems != nil {
+        writingToolsItems :: proc "c" (self: Class, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).writingToolsItems()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("writingToolsItems"), auto_cast writingToolsItems, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.menu != nil {
         menu :: proc "c" (self: ^AK.MenuItem, _: SEL) -> ^AK.Menu {

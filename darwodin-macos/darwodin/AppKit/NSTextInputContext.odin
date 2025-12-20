@@ -50,6 +50,12 @@ foreign lib {
     @(objc_type=TextInputContext, objc_selector="textInputClientDidEndScrollingOrZooming", objc_name="textInputClientDidEndScrollingOrZooming")
     TextInputContext_textInputClientDidEndScrollingOrZooming :: proc(self: ^TextInputContext) ---
 
+    @(objc_type=TextInputContext, objc_selector="textInputClientDidUpdateSelection", objc_name="textInputClientDidUpdateSelection")
+    TextInputContext_textInputClientDidUpdateSelection :: proc(self: ^TextInputContext) ---
+
+    @(objc_type=TextInputContext, objc_selector="textInputClientDidScroll", objc_name="textInputClientDidScroll")
+    TextInputContext_textInputClientDidScroll :: proc(self: ^TextInputContext) ---
+
     @(objc_type=TextInputContext, objc_selector="localizedNameForInputSource:", objc_name="localizedNameForInputSource", objc_is_class_method=true)
     TextInputContext_localizedNameForInputSource :: proc(inputSourceIdentifier: ^NS.String) -> ^NS.String ---
 

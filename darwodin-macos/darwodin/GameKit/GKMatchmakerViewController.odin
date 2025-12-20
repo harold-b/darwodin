@@ -67,6 +67,9 @@ foreign lib {
 
     @(objc_type=MatchmakerViewController, objc_selector="setHostedPlayer:connected:", objc_name="setHostedPlayer_connected")
     MatchmakerViewController_setHostedPlayer_connected :: proc(self: ^MatchmakerViewController, playerID: ^NS.String, connected: bool) ---
+
+    @(objc_type=MatchmakerViewController, objc_selector="setHostedPlayerReady:", objc_name="setHostedPlayerReady")
+    MatchmakerViewController_setHostedPlayerReady :: proc(self: ^MatchmakerViewController, playerID: ^NS.String) ---
 }
 
 @(objc_type=MatchmakerViewController, objc_name="setHostedPlayer")

@@ -10,6 +10,7 @@ Structs:
     NSDecimal: NS.Decimal
     NSHashEnumerator: NS.HashEnumerator
     NSHashTableCallBacks: NS.HashTableCallBacks
+    NSEdgeInsets: NS.EdgeInsets
     NSMapEnumerator: NS.MapEnumerator
     NSMapTableKeyCallBacks: NS.MapTableKeyCallBacks
     NSMapTableValueCallBacks: NS.MapTableValueCallBacks
@@ -23,6 +24,16 @@ Structs:
     _xpc_dictionary_s: NS._xpc_dictionary_s
     xpc_session_s: NS.xpc_session_s
     xpc_listener_s: NS.xpc_listener_s
+    OpaqueAEDataStorageType: NS.OpaqueAEDataStorageType
+    AEDesc: NS.AEDesc
+    AEKeyDesc: NS.AEKeyDesc
+    AERemoteProcessResolverContext: NS.AERemoteProcessResolverContext
+    AERemoteProcessResolver: NS.AERemoteProcessResolver
+    AEBuildError: NS.AEBuildError
+    OpaqueAEStreamRef: NS.OpaqueAEStreamRef
+    NSAffineTransformStruct: NS.AffineTransformStruct
+    __NSAppleEventManagerSuspension: NS.__NSAppleEventManagerSuspension
+    AEArrayData: NS.AEArrayData
 
 Typedefs:
     NSInteger: NS.Integer
@@ -71,6 +82,10 @@ Typedefs:
     NSKeyValueChangeKey: NS.KeyValueChangeKey
     NSPropertyListReadOptions: NS.PropertyListReadOptions
     NSPropertyListWriteOptions: NS.PropertyListWriteOptions
+    NSSize: NS.Size
+    NSSizeArray: NS.SizeArray
+    NSRect: NS.Rect
+    NSRectArray: NS.RectArray
     NSMapTableOptions: NS.MapTableOptions
     NSSocketNativeHandle: NS.SocketNativeHandle
     NSTextCheckingTypes: NS.TextCheckingTypes
@@ -80,7 +95,6 @@ Typedefs:
     NSStreamSOCKSProxyConfiguration: NS.StreamSOCKSProxyConfiguration
     NSStreamSOCKSProxyVersion: NS.StreamSOCKSProxyVersion
     NSStreamNetworkServiceTypeValue: NS.StreamNetworkServiceTypeValue
-    NSValueTransformerName: NS.ValueTransformerName
     au_asid_t: NS.au_asid_t
     xpc_type_t: NS.xpc_type_t
     xpc_object_t: NS.xpc_object_t
@@ -100,10 +114,49 @@ Typedefs:
     xpc_listener_incoming_session_handler_t: NS.xpc_listener_incoming_session_handler_t
     xpc_array_applier_t: NS.xpc_array_applier_t
     xpc_dictionary_applier_t: NS.xpc_dictionary_applier_t
+    DescType: NS.DescType
+    AEKeyword: NS.AEKeyword
+    AEDataStorageType: NS.AEDataStorageType
+    AEDataStorage: NS.AEDataStorage
+    AEDescPtr: NS.AEDescPtr
+    AEDescList: NS.AEDescList
+    AERecord: NS.AERecord
+    AEAddressDesc: NS.AEAddressDesc
+    AppleEvent: NS.AppleEvent
+    AppleEventPtr: NS.AppleEventPtr
+    AEReturnID: NS.AEReturnID
+    AETransactionID: NS.AETransactionID
+    AEEventClass: NS.AEEventClass
+    AEEventID: NS.AEEventID
+    AEArrayType: NS.AEArrayType
+    AESendPriority: NS.AESendPriority
+    AESendMode: NS.AESendMode
+    AECoerceDescProcPtr: NS.AECoerceDescProcPtr
+    AECoercePtrProcPtr: NS.AECoercePtrProcPtr
+    AECoerceDescUPP: NS.AECoerceDescUPP
+    AECoercePtrUPP: NS.AECoercePtrUPP
+    AECoercionHandlerUPP: NS.AECoercionHandlerUPP
+    AEDisposeExternalProcPtr: NS.AEDisposeExternalProcPtr
+    AEDisposeExternalUPP: NS.AEDisposeExternalUPP
+    AEEventHandlerProcPtr: NS.AEEventHandlerProcPtr
+    AEEventHandlerUPP: NS.AEEventHandlerUPP
+    AEEventSource: NS.AEEventSource
+    AERemoteProcessResolverRef: NS.AERemoteProcessResolverRef
+    AERemoteProcessResolverCallback: NS.AERemoteProcessResolverCallback
+    AEBuildErrorCode: NS.AEBuildErrorCode
+    AEStreamRef: NS.AEStreamRef
+    NSValueTransformerName: NS.ValueTransformerName
     NSLinguisticTagScheme: NS.LinguisticTagScheme
     NSLinguisticTag: NS.LinguisticTag
     NSUndoManagerUserInfoKey: NS.UndoManagerUserInfoKey
     NSUserActivityPersistentIdentifier: NS.UserActivityPersistentIdentifier
+    NSBackgroundActivityCompletionHandler: NS.BackgroundActivityCompletionHandler
+    NSDistributedNotificationCenterType: NS.DistributedNotificationCenterType
+    NSAppleEventManagerSuspensionID: NS.AppleEventManagerSuspensionID
+    NSUserScriptTaskCompletionHandler: NS.UserScriptTaskCompletionHandler
+    NSUserUnixTaskCompletionHandler: NS.UserUnixTaskCompletionHandler
+    NSUserAppleScriptTaskCompletionHandler: NS.UserAppleScriptTaskCompletionHandler
+    NSUserAutomatorTaskCompletionHandler: NS.UserAutomatorTaskCompletionHandler
 
 Enums:
     xpc_session_create_flags_t: NS.xpc_session_create_flags_t
@@ -160,6 +213,7 @@ Enums:
     NSCalculationError: NS.CalculationError
     NSSearchPathDirectory: NS.SearchPathDirectory
     NSSearchPathDomainMask: NS.SearchPathDomainMask
+    NSURLHandleStatus: NS.URLHandleStatus
     NSURLBookmarkCreationOptions: NS.URLBookmarkCreationOptions
     NSURLBookmarkResolutionOptions: NS.URLBookmarkResolutionOptions
     NSVolumeEnumerationOptions: NS.VolumeEnumerationOptions
@@ -176,6 +230,8 @@ Enums:
     NSKeyValueSetMutationKind: NS.KeyValueSetMutationKind
     NSPropertyListMutabilityOptions: NS.PropertyListMutabilityOptions
     NSPropertyListFormat: NS.PropertyListFormat
+    NSRectEdge: NS.RectEdge
+    NSAlignmentOptions: NS.AlignmentOptions
     NSGrammaticalGender: NS.GrammaticalGender
     NSGrammaticalPartOfSpeech: NS.GrammaticalPartOfSpeech
     NSGrammaticalNumber: NS.GrammaticalNumber
@@ -234,6 +290,21 @@ Enums:
     NSURLSessionResponseDisposition: NS.URLSessionResponseDisposition
     NSURLSessionTaskMetricsResourceFetchType: NS.URLSessionTaskMetricsResourceFetchType
     NSURLSessionTaskMetricsDomainResolutionProtocol: NS.URLSessionTaskMetricsDomainResolutionProtocol
+    NSBackgroundActivityResult: NS.BackgroundActivityResult
+    NSNotificationSuspensionBehavior: NS.NotificationSuspensionBehavior
+    NSDistributedNotificationOptions: NS.DistributedNotificationOptions
+    NSTaskTerminationReason: NS.TaskTerminationReason
+    NSXMLNodeOptions: NS.XMLNodeOptions
+    NSXMLNodeKind: NS.XMLNodeKind
+    NSXMLDTDNodeKind: NS.XMLDTDNodeKind
+    NSXMLDocumentContentKind: NS.XMLDocumentContentKind
+    NSAppleEventSendOptions: NS.AppleEventSendOptions
+    NSInsertionPosition: NS.InsertionPosition
+    NSRelativePosition: NS.RelativePosition
+    NSWhoseSubelementIdentifier: NS.WhoseSubelementIdentifier
+    NSSaveOptions: NS.SaveOptions
+    NSTestComparisonOperation: NS.TestComparisonOperation
+    NSUserNotificationActivationType: NS.UserNotificationActivationType
 
 ObjCClasses:
     NSArray: NS.Array
@@ -296,6 +367,9 @@ ObjCClasses:
     NSMassFormatter: NS.MassFormatter
     NSLengthFormatter: NS.LengthFormatter
     NSEnergyFormatter: NS.EnergyFormatter
+    NSRecursiveLock: NS.RecursiveLock
+    NSCache: NS.Cache
+    NSDecimalNumberHandler: NS.DecimalNumberHandler
     NSUnitConverter: NS.UnitConverter
     NSUnitConverterLinear: NS.UnitConverterLinear
     NSUnit: NS.Unit
@@ -323,9 +397,6 @@ ObjCClasses:
     NSUnitTemperature: NS.UnitTemperature
     NSUnitVolume: NS.UnitVolume
     NSMeasurement: NS.Measurement
-    NSRecursiveLock: NS.RecursiveLock
-    NSCache: NS.Cache
-    NSDecimalNumberHandler: NS.DecimalNumberHandler
     NSMeasurementFormatter: NS.MeasurementFormatter
     NSPersonNameComponents: NS.PersonNameComponents
     NSPersonNameComponentsFormatter: NS.PersonNameComponentsFormatter
@@ -340,6 +411,7 @@ ObjCClasses:
     NSRunLoop: NS.RunLoop
     NSFileHandle: NS.FileHandle
     NSPipe: NS.Pipe
+    NSURLHandle: NS.URLHandle
     NSURLQueryItem: NS.URLQueryItem
     NSURLComponents: NS.URLComponents
     NSFileSecurity: NS.FileSecurity
@@ -385,6 +457,7 @@ ObjCClasses:
     NSPortMessage: NS.PortMessage
     NSMachPort: NS.MachPort
     NSMessagePort: NS.MessagePort
+    NSSocketPort: NS.SocketPort
     NSProcessInfo: NS.ProcessInfo
     NSProxy: NS.Proxy
     NSRegularExpression: NS.RegularExpression
@@ -457,6 +530,73 @@ ObjCClasses:
     NSURLSessionWebSocketMessage: NS.URLSessionWebSocketMessage
     NSURLSessionTaskTransactionMetrics: NS.URLSessionTaskTransactionMetrics
     NSUserActivity: NS.UserActivity
+    NSAffineTransform: NS.AffineTransform
+    NSAppleEventDescriptor: NS.AppleEventDescriptor
+    NSAppleScript: NS.AppleScript
+    NSArchiver: NS.Archiver
+    NSUnarchiver: NS.Unarchiver
+    NSBackgroundActivityScheduler: NS.BackgroundActivityScheduler
+    NSCalendarDate: NS.CalendarDate
+    NSDistantObject: NS.DistantObject
+    NSPortNameServer: NS.PortNameServer
+    NSDistantObjectRequest: NS.DistantObjectRequest
+    NSDistributedNotificationCenter: NS.DistributedNotificationCenter
+    NSPortCoder: NS.PortCoder
+    NSMachBootstrapServer: NS.MachBootstrapServer
+    NSMessagePortNameServer: NS.MessagePortNameServer
+    NSSocketPortNameServer: NS.SocketPortNameServer
+    NSProtocolChecker: NS.ProtocolChecker
+    NSTask: NS.Task
+    NSXMLElement: NS.XMLElement
+    NSXMLDocument: NS.XMLDocument
+    NSXMLNode: NS.XMLNode
+    NSXMLDTDNode: NS.XMLDTDNode
+    NSXMLDTD: NS.XMLDTD
+    NSURLDownloadInternal: NS.URLDownloadInternal
+    NSURLDownload: NS.URLDownload
+    NSAppleEventManager: NS.AppleEventManager
+    NSClassDescription: NS.ClassDescription
+    NSDistributedLock: NS.DistributedLock
+    NSGarbageCollector: NS.GarbageCollector
+    NSScriptObjectSpecifier: NS.ScriptObjectSpecifier
+    NSScriptCommandDescription: NS.ScriptCommandDescription
+    NSScriptClassDescription: NS.ScriptClassDescription
+    NSScriptCoercionHandler: NS.ScriptCoercionHandler
+    NSScriptCommand: NS.ScriptCommand
+    NSScriptExecutionContext: NS.ScriptExecutionContext
+    NSScriptWhoseTest: NS.ScriptWhoseTest
+    NSIndexSpecifier: NS.IndexSpecifier
+    NSMiddleSpecifier: NS.MiddleSpecifier
+    NSNameSpecifier: NS.NameSpecifier
+    NSPositionalSpecifier: NS.PositionalSpecifier
+    NSPropertySpecifier: NS.PropertySpecifier
+    NSRandomSpecifier: NS.RandomSpecifier
+    NSRangeSpecifier: NS.RangeSpecifier
+    NSRelativeSpecifier: NS.RelativeSpecifier
+    NSUniqueIDSpecifier: NS.UniqueIDSpecifier
+    NSWhoseSpecifier: NS.WhoseSpecifier
+    NSCloneCommand: NS.CloneCommand
+    NSCloseCommand: NS.CloseCommand
+    NSCountCommand: NS.CountCommand
+    NSCreateCommand: NS.CreateCommand
+    NSDeleteCommand: NS.DeleteCommand
+    NSExistsCommand: NS.ExistsCommand
+    NSGetCommand: NS.GetCommand
+    NSMoveCommand: NS.MoveCommand
+    NSQuitCommand: NS.QuitCommand
+    NSSetCommand: NS.SetCommand
+    NSScriptSuiteRegistry: NS.ScriptSuiteRegistry
+    NSSpecifierTest: NS.SpecifierTest
+    NSLogicalTest: NS.LogicalTest
+    NSSpellServer: NS.SpellServer
+    NSImage: NS.Image
+    NSUserNotificationAction: NS.UserNotificationAction
+    NSUserNotification: NS.UserNotification
+    NSUserNotificationCenter: NS.UserNotificationCenter
+    NSUserScriptTask: NS.UserScriptTask
+    NSUserUnixTask: NS.UserUnixTask
+    NSUserAppleScriptTask: NS.UserAppleScriptTask
+    NSUserAutomatorTask: NS.UserAutomatorTask
 
 ObjCProtocols:
     NSObject: NS.ObjectProtocol
@@ -470,6 +610,7 @@ ObjCProtocols:
     NSItemProviderReading: NS.ItemProviderReading
     NSProgressReporting: NS.ProgressReporting
     NSDecimalNumberBehaviors: NS.DecimalNumberBehaviors
+    NSURLHandleClient: NS.URLHandleClient
     NSFileManagerDelegate: NS.FileManagerDelegate
     NSKeyedArchiverDelegate: NS.KeyedArchiverDelegate
     NSKeyedUnarchiverDelegate: NS.KeyedUnarchiverDelegate
@@ -498,6 +639,10 @@ ObjCProtocols:
     NSURLSessionStreamDelegate: NS.URLSessionStreamDelegate
     NSURLSessionWebSocketDelegate: NS.URLSessionWebSocketDelegate
     NSUserActivityDelegate: NS.UserActivityDelegate
+    NSConnectionDelegate: NS.ConnectionDelegate
+    NSURLDownloadDelegate: NS.URLDownloadDelegate
+    NSSpellServerDelegate: NS.SpellServerDelegate
+    NSUserNotificationCenterDelegate: NS.UserNotificationCenterDelegate
 
 
 Functions:
@@ -520,6 +665,8 @@ Functions:
     ::NSZoneCalloc: NS.ZoneCalloc
     ::NSZoneRealloc: NS.ZoneRealloc
     ::NSZoneFree: NS.ZoneFree
+    ::NSAllocateCollectable: NS.AllocateCollectable
+    ::NSReallocateCollectable: NS.ReallocateCollectable
     ::NSPageSize: NS.PageSize
     ::NSLogPageSize: NS.LogPageSize
     ::NSRoundUpToMultipleOfPageSize: NS.RoundUpToMultipleOfPageSize
@@ -577,6 +724,28 @@ Functions:
     ::NSAllHashTableObjects: NS.AllHashTableObjects
     ::NSCreateHashTableWithZone: NS.CreateHashTableWithZone
     ::NSCreateHashTable: NS.CreateHashTable
+    ::NSEqualPoints: NS.EqualPoints
+    ::NSEqualSizes: NS.EqualSizes
+    ::NSEqualRects: NS.EqualRects
+    ::NSIsEmptyRect: NS.IsEmptyRect
+    ::NSEdgeInsetsEqual: NS.EdgeInsetsEqual
+    ::NSInsetRect: NS.InsetRect
+    ::NSIntegralRect: NS.IntegralRect
+    ::NSIntegralRectWithOptions: NS.IntegralRectWithOptions
+    ::NSUnionRect: NS.UnionRect
+    ::NSIntersectionRect: NS.IntersectionRect
+    ::NSOffsetRect: NS.OffsetRect
+    ::NSDivideRect: NS.DivideRect
+    ::NSPointInRect: NS.PointInRect
+    ::NSMouseInRect: NS.MouseInRect
+    ::NSContainsRect: NS.ContainsRect
+    ::NSIntersectsRect: NS.IntersectsRect
+    ::NSStringFromPoint: NS.StringFromPoint
+    ::NSStringFromSize: NS.StringFromSize
+    ::NSStringFromRect: NS.StringFromRect
+    ::NSPointFromString: NS.PointFromString
+    ::NSSizeFromString: NS.SizeFromString
+    ::NSRectFromString: NS.RectFromString
     ::NSFreeMapTable: NS.FreeMapTable
     ::NSResetMapTable: NS.ResetMapTable
     ::NSCompareMapTables: NS.CompareMapTables
@@ -596,6 +765,9 @@ Functions:
     ::NSAllMapTableValues: NS.AllMapTableValues
     ::NSCreateMapTableWithZone: NS.CreateMapTableWithZone
     ::NSCreateMapTable: NS.CreateMapTable
+    ::NSFileTypeForHFSTypeCode: NS.FileTypeForHFSTypeCode
+    ::NSHFSTypeCodeFromFileType: NS.HFSTypeCodeFromFileType
+    ::NSHFSTypeOfFile: NS.HFSTypeOfFile
 
 ExternVars:
     ::NSFoundationVersionNumber: NS.FoundationVersionNumber
@@ -767,6 +939,17 @@ ExternVars:
     ::NSFileHandleNotificationDataItem: NS.FileHandleNotificationDataItem
     ::NSFileHandleNotificationFileHandleItem: NS.FileHandleNotificationFileHandleItem
     ::NSFileHandleNotificationMonitorModes: NS.FileHandleNotificationMonitorModes
+    ::NSHTTPPropertyStatusCodeKey: NS.HTTPPropertyStatusCodeKey
+    ::NSHTTPPropertyStatusReasonKey: NS.HTTPPropertyStatusReasonKey
+    ::NSHTTPPropertyServerHTTPVersionKey: NS.HTTPPropertyServerHTTPVersionKey
+    ::NSHTTPPropertyRedirectionHeadersKey: NS.HTTPPropertyRedirectionHeadersKey
+    ::NSHTTPPropertyErrorPageDataKey: NS.HTTPPropertyErrorPageDataKey
+    ::NSHTTPPropertyHTTPProxy: NS.HTTPPropertyHTTPProxy
+    ::NSFTPPropertyUserLoginKey: NS.FTPPropertyUserLoginKey
+    ::NSFTPPropertyUserPasswordKey: NS.FTPPropertyUserPasswordKey
+    ::NSFTPPropertyActiveTransferModeKey: NS.FTPPropertyActiveTransferModeKey
+    ::NSFTPPropertyFileOffsetKey: NS.FTPPropertyFileOffsetKey
+    ::NSFTPPropertyFTPProxy: NS.FTPPropertyFTPProxy
     ::NSURLFileScheme: NS.URLFileScheme
     ::NSURLKeysOfUnsetValuesKey: NS.URLKeysOfUnsetValuesKey
     ::NSURLNameKey: NS.URLNameKey
@@ -973,6 +1156,7 @@ ExternVars:
     ::NSHTTPCookieDiscard: NS.HTTPCookieDiscard
     ::NSHTTPCookieMaximumAge: NS.HTTPCookieMaximumAge
     ::NSHTTPCookiePort: NS.HTTPCookiePort
+    ::NSHTTPCookieSetByJavaScript: NS.HTTPCookieSetByJavaScript
     ::NSHTTPCookieSameSitePolicy: NS.HTTPCookieSameSitePolicy
     ::NSHTTPCookieSameSiteLax: NS.HTTPCookieSameSiteLax
     ::NSHTTPCookieSameSiteStrict: NS.HTTPCookieSameSiteStrict
@@ -995,6 +1179,10 @@ ExternVars:
     ::NSKeyValueChangeOldKey: NS.KeyValueChangeOldKey
     ::NSKeyValueChangeIndexesKey: NS.KeyValueChangeIndexesKey
     ::NSKeyValueChangeNotificationIsPriorKey: NS.KeyValueChangeNotificationIsPriorKey
+    ::NSZeroPoint: NS.ZeroPoint
+    ::NSZeroSize: NS.ZeroSize
+    ::NSZeroRect: NS.ZeroRect
+    ::NSEdgeInsetsZero: NS.EdgeInsetsZero
     ::NSInvalidArchiveOperationException: NS.InvalidArchiveOperationException
     ::NSInvalidUnarchiveOperationException: NS.InvalidUnarchiveOperationException
     ::NSKeyedArchiveRootObjectKey: NS.KeyedArchiveRootObjectKey
@@ -1087,6 +1275,32 @@ ExternVars:
     ::NSUbiquitousUserDefaultsDidChangeAccountsNotification: NS.UbiquitousUserDefaultsDidChangeAccountsNotification
     ::NSUbiquitousUserDefaultsCompletedInitialSyncNotification: NS.UbiquitousUserDefaultsCompletedInitialSyncNotification
     ::NSUserDefaultsDidChangeNotification: NS.UserDefaultsDidChangeNotification
+    ::NSWeekDayNameArray: NS.WeekDayNameArray
+    ::NSShortWeekDayNameArray: NS.ShortWeekDayNameArray
+    ::NSMonthNameArray: NS.MonthNameArray
+    ::NSShortMonthNameArray: NS.ShortMonthNameArray
+    ::NSTimeFormatString: NS.TimeFormatString
+    ::NSDateFormatString: NS.DateFormatString
+    ::NSTimeDateFormatString: NS.TimeDateFormatString
+    ::NSShortTimeDateFormatString: NS.ShortTimeDateFormatString
+    ::NSCurrencySymbol: NS.CurrencySymbol
+    ::NSDecimalSeparator: NS.DecimalSeparator
+    ::NSThousandsSeparator: NS.ThousandsSeparator
+    ::NSDecimalDigits: NS.DecimalDigits
+    ::NSAMPMDesignation: NS.AMPMDesignation
+    ::NSHourNameDesignations: NS.HourNameDesignations
+    ::NSYearMonthWeekDesignations: NS.YearMonthWeekDesignations
+    ::NSEarlierTimeDesignations: NS.EarlierTimeDesignations
+    ::NSLaterTimeDesignations: NS.LaterTimeDesignations
+    ::NSThisDayDesignations: NS.ThisDayDesignations
+    ::NSNextDayDesignations: NS.NextDayDesignations
+    ::NSNextNextDayDesignations: NS.NextNextDayDesignations
+    ::NSPriorDayDesignations: NS.PriorDayDesignations
+    ::NSDateTimeOrdering: NS.DateTimeOrdering
+    ::NSInternationalCurrencyString: NS.InternationalCurrencyString
+    ::NSShortDateFormatString: NS.ShortDateFormatString
+    ::NSPositiveCurrencyFormatString: NS.PositiveCurrencyFormatString
+    ::NSNegativeCurrencyFormatString: NS.NegativeCurrencyFormatString
     ::NSNegateBooleanTransformerName: NS.NegateBooleanTransformerName
     ::NSIsNilTransformerName: NS.IsNilTransformerName
     ::NSIsNotNilTransformerName: NS.IsNotNilTransformerName
@@ -1358,6 +1572,26 @@ ExternVars:
     ::NSURLSessionDownloadTaskResumeData: NS.URLSessionDownloadTaskResumeData
     ::NSURLSessionUploadTaskResumeData: NS.URLSessionUploadTaskResumeData
     ::NSUserActivityTypeBrowsingWeb: NS.UserActivityTypeBrowsingWeb
+    ::NSAppleScriptErrorMessage: NS.AppleScriptErrorMessage
+    ::NSAppleScriptErrorNumber: NS.AppleScriptErrorNumber
+    ::NSAppleScriptErrorAppName: NS.AppleScriptErrorAppName
+    ::NSAppleScriptErrorBriefMessage: NS.AppleScriptErrorBriefMessage
+    ::NSAppleScriptErrorRange: NS.AppleScriptErrorRange
+    ::NSConnectionReplyMode: NS.ConnectionReplyMode
+    ::NSConnectionDidDieNotification: NS.ConnectionDidDieNotification
+    ::NSFailedAuthenticationException: NS.FailedAuthenticationException
+    ::NSConnectionDidInitializeNotification: NS.ConnectionDidInitializeNotification
+    ::NSLocalNotificationCenterType: NS.LocalNotificationCenterType
+    ::NSTaskDidTerminateNotification: NS.TaskDidTerminateNotification
+    ::NSAppleEventTimeOutDefault: NS.AppleEventTimeOutDefault
+    ::NSAppleEventTimeOutNone: NS.AppleEventTimeOutNone
+    ::NSAppleEventManagerWillProcessFirstEventNotification: NS.AppleEventManagerWillProcessFirstEventNotification
+    ::NSClassDescriptionNeededForClassNotification: NS.ClassDescriptionNeededForClassNotification
+    ::NSOperationNotSupportedForKeyException: NS.OperationNotSupportedForKeyException
+    ::NSGrammarRange: NS.GrammarRange
+    ::NSGrammarUserDescription: NS.GrammarUserDescription
+    ::NSGrammarCorrections: NS.GrammarCorrections
+    ::NSUserNotificationDefaultSoundName: NS.UserNotificationDefaultSoundName
 
 ExternTypes:
     ::NSFoundationVersionNumber: cffi.double
@@ -1529,6 +1763,17 @@ ExternTypes:
     ::NSFileHandleNotificationDataItem: ^String
     ::NSFileHandleNotificationFileHandleItem: ^String
     ::NSFileHandleNotificationMonitorModes: ^String
+    ::NSHTTPPropertyStatusCodeKey: ^String
+    ::NSHTTPPropertyStatusReasonKey: ^String
+    ::NSHTTPPropertyServerHTTPVersionKey: ^String
+    ::NSHTTPPropertyRedirectionHeadersKey: ^String
+    ::NSHTTPPropertyErrorPageDataKey: ^String
+    ::NSHTTPPropertyHTTPProxy: ^String
+    ::NSFTPPropertyUserLoginKey: ^String
+    ::NSFTPPropertyUserPasswordKey: ^String
+    ::NSFTPPropertyActiveTransferModeKey: ^String
+    ::NSFTPPropertyFileOffsetKey: ^String
+    ::NSFTPPropertyFTPProxy: ^String
     ::NSURLFileScheme: ^String
     ::NSURLKeysOfUnsetValuesKey: ^String
     ::NSURLNameKey: ^String
@@ -1735,6 +1980,7 @@ ExternTypes:
     ::NSHTTPCookieDiscard: ^String
     ::NSHTTPCookieMaximumAge: ^String
     ::NSHTTPCookiePort: ^String
+    ::NSHTTPCookieSetByJavaScript: ^String
     ::NSHTTPCookieSameSitePolicy: ^String
     ::NSHTTPCookieSameSiteLax: ^String
     ::NSHTTPCookieSameSiteStrict: ^String
@@ -1757,6 +2003,10 @@ ExternTypes:
     ::NSKeyValueChangeOldKey: ^String
     ::NSKeyValueChangeIndexesKey: ^String
     ::NSKeyValueChangeNotificationIsPriorKey: ^String
+    ::NSZeroPoint: CG.Point
+    ::NSZeroSize: Size
+    ::NSZeroRect: Rect
+    ::NSEdgeInsetsZero: EdgeInsets
     ::NSInvalidArchiveOperationException: ^String
     ::NSInvalidUnarchiveOperationException: ^String
     ::NSKeyedArchiveRootObjectKey: ^String
@@ -1849,6 +2099,32 @@ ExternTypes:
     ::NSUbiquitousUserDefaultsDidChangeAccountsNotification: ^String
     ::NSUbiquitousUserDefaultsCompletedInitialSyncNotification: ^String
     ::NSUserDefaultsDidChangeNotification: ^String
+    ::NSWeekDayNameArray: ^String
+    ::NSShortWeekDayNameArray: ^String
+    ::NSMonthNameArray: ^String
+    ::NSShortMonthNameArray: ^String
+    ::NSTimeFormatString: ^String
+    ::NSDateFormatString: ^String
+    ::NSTimeDateFormatString: ^String
+    ::NSShortTimeDateFormatString: ^String
+    ::NSCurrencySymbol: ^String
+    ::NSDecimalSeparator: ^String
+    ::NSThousandsSeparator: ^String
+    ::NSDecimalDigits: ^String
+    ::NSAMPMDesignation: ^String
+    ::NSHourNameDesignations: ^String
+    ::NSYearMonthWeekDesignations: ^String
+    ::NSEarlierTimeDesignations: ^String
+    ::NSLaterTimeDesignations: ^String
+    ::NSThisDayDesignations: ^String
+    ::NSNextDayDesignations: ^String
+    ::NSNextNextDayDesignations: ^String
+    ::NSPriorDayDesignations: ^String
+    ::NSDateTimeOrdering: ^String
+    ::NSInternationalCurrencyString: ^String
+    ::NSShortDateFormatString: ^String
+    ::NSPositiveCurrencyFormatString: ^String
+    ::NSNegativeCurrencyFormatString: ^String
     ::NSNegateBooleanTransformerName: ^String
     ::NSIsNilTransformerName: ^String
     ::NSIsNotNilTransformerName: ^String
@@ -2120,8 +2396,30 @@ ExternTypes:
     ::NSURLSessionDownloadTaskResumeData: ^String
     ::NSURLSessionUploadTaskResumeData: ^String
     ::NSUserActivityTypeBrowsingWeb: ^String
+    ::NSAppleScriptErrorMessage: ^String
+    ::NSAppleScriptErrorNumber: ^String
+    ::NSAppleScriptErrorAppName: ^String
+    ::NSAppleScriptErrorBriefMessage: ^String
+    ::NSAppleScriptErrorRange: ^String
+    ::NSConnectionReplyMode: ^String
+    ::NSConnectionDidDieNotification: ^String
+    ::NSFailedAuthenticationException: ^String
+    ::NSConnectionDidInitializeNotification: ^String
+    ::NSLocalNotificationCenterType: ^String
+    ::NSTaskDidTerminateNotification: ^String
+    ::NSAppleEventTimeOutDefault: cffi.double
+    ::NSAppleEventTimeOutNone: cffi.double
+    ::NSAppleEventManagerWillProcessFirstEventNotification: ^String
+    ::NSClassDescriptionNeededForClassNotification: ^String
+    ::NSOperationNotSupportedForKeyException: ^String
+    ::NSGrammarRange: ^String
+    ::NSGrammarUserDescription: ^String
+    ::NSGrammarCorrections: ^String
+    ::NSUserNotificationDefaultSoundName: ^String
 
 ConstVars:
+    ::NSScannedOption: NS.ScannedOption
+    ::NSCollectorDisabledOption: NS.CollectorDisabledOption
     ::NSASCIIStringEncoding: NS.ASCIIStringEncoding
     ::NSNEXTSTEPStringEncoding: NS.NEXTSTEPStringEncoding
     ::NSJapaneseEUCStringEncoding: NS.JapaneseEUCStringEncoding
@@ -2168,6 +2466,73 @@ ConstVars:
     ::NSTextCheckingAllSystemTypes: NS.TextCheckingAllSystemTypes
     ::NSTextCheckingAllCustomTypes: NS.TextCheckingAllCustomTypes
     ::NSTextCheckingAllTypes: NS.TextCheckingAllTypes
+    ::kNSL68kContextNotSupported: NS.L68kContextNotSupported
+    ::kNSLSchedulerError: NS.LSchedulerError
+    ::kNSLBadURLSyntax: NS.LBadURLSyntax
+    ::kNSLNoCarbonLib: NS.LNoCarbonLib
+    ::kNSLUILibraryNotAvailable: NS.LUILibraryNotAvailable
+    ::kNSLNotImplementedYet: NS.LNotImplementedYet
+    ::kNSLErrNullPtrError: NS.LErrNullPtrError
+    ::kNSLSomePluginsFailedToLoad: NS.LSomePluginsFailedToLoad
+    ::kNSLNullNeighborhoodPtr: NS.LNullNeighborhoodPtr
+    ::kNSLNoPluginsForSearch: NS.LNoPluginsForSearch
+    ::kNSLSearchAlreadyInProgress: NS.LSearchAlreadyInProgress
+    ::kNSLNoPluginsFound: NS.LNoPluginsFound
+    ::kNSLPluginLoadFailed: NS.LPluginLoadFailed
+    ::kNSLBadProtocolTypeErr: NS.LBadProtocolTypeErr
+    ::kNSLNullListPtr: NS.LNullListPtr
+    ::kNSLBadClientInfoPtr: NS.LBadClientInfoPtr
+    ::kNSLCannotContinueLookup: NS.LCannotContinueLookup
+    ::kNSLBufferTooSmallForData: NS.LBufferTooSmallForData
+    ::kNSLNoContextAvailable: NS.LNoContextAvailable
+    ::kNSLRequestBufferAlreadyInList: NS.LRequestBufferAlreadyInList
+    ::kNSLInvalidPluginSpec: NS.LInvalidPluginSpec
+    ::kNSLNoSupportForService: NS.LNoSupportForService
+    ::kNSLBadNetConnection: NS.LBadNetConnection
+    ::kNSLBadDataTypeErr: NS.LBadDataTypeErr
+    ::kNSLBadServiceTypeErr: NS.LBadServiceTypeErr
+    ::kNSLBadReferenceErr: NS.LBadReferenceErr
+    ::kNSLNoElementsInList: NS.LNoElementsInList
+    ::kNSLInsufficientOTVer: NS.LInsufficientOTVer
+    ::kNSLInsufficientSysVer: NS.LInsufficientSysVer
+    ::kNSLNotInitialized: NS.LNotInitialized
+    ::kNSLInitializationFailed: NS.LInitializationFailed
+    ::kNSpInitializationFailedErr: NS.pInitializationFailedErr
+    ::kNSpAlreadyInitializedErr: NS.pAlreadyInitializedErr
+    ::kNSpTopologyNotSupportedErr: NS.pTopologyNotSupportedErr
+    ::kNSpPipeFullErr: NS.pPipeFullErr
+    ::kNSpHostFailedErr: NS.pHostFailedErr
+    ::kNSpProtocolNotAvailableErr: NS.pProtocolNotAvailableErr
+    ::kNSpInvalidGameRefErr: NS.pInvalidGameRefErr
+    ::kNSpInvalidParameterErr: NS.pInvalidParameterErr
+    ::kNSpOTNotPresentErr: NS.pOTNotPresentErr
+    ::kNSpOTVersionTooOldErr: NS.pOTVersionTooOldErr
+    ::kNSpMemAllocationErr: NS.pMemAllocationErr
+    ::kNSpAlreadyAdvertisingErr: NS.pAlreadyAdvertisingErr
+    ::kNSpNotAdvertisingErr: NS.pNotAdvertisingErr
+    ::kNSpInvalidAddressErr: NS.pInvalidAddressErr
+    ::kNSpFreeQExhaustedErr: NS.pFreeQExhaustedErr
+    ::kNSpRemovePlayerFailedErr: NS.pRemovePlayerFailedErr
+    ::kNSpAddressInUseErr: NS.pAddressInUseErr
+    ::kNSpFeatureNotImplementedErr: NS.pFeatureNotImplementedErr
+    ::kNSpNameRequiredErr: NS.pNameRequiredErr
+    ::kNSpInvalidPlayerIDErr: NS.pInvalidPlayerIDErr
+    ::kNSpInvalidGroupIDErr: NS.pInvalidGroupIDErr
+    ::kNSpNoPlayersErr: NS.pNoPlayersErr
+    ::kNSpNoGroupsErr: NS.pNoGroupsErr
+    ::kNSpNoHostVolunteersErr: NS.pNoHostVolunteersErr
+    ::kNSpCreateGroupFailedErr: NS.pCreateGroupFailedErr
+    ::kNSpAddPlayerFailedErr: NS.pAddPlayerFailedErr
+    ::kNSpInvalidDefinitionErr: NS.pInvalidDefinitionErr
+    ::kNSpInvalidProtocolRefErr: NS.pInvalidProtocolRefErr
+    ::kNSpInvalidProtocolListErr: NS.pInvalidProtocolListErr
+    ::kNSpTimeoutErr: NS.pTimeoutErr
+    ::kNSpGameTerminatedErr: NS.pGameTerminatedErr
+    ::kNSpConnectFailedErr: NS.pConnectFailedErr
+    ::kNSpSendFailedErr: NS.pSendFailedErr
+    ::kNSpMessageTooBigErr: NS.pMessageTooBigErr
+    ::kNSpCantBlockErr: NS.pCantBlockErr
+    ::kNSpJoinFailedErr: NS.pJoinFailedErr
     ::NSURLErrorCancelledReasonUserForceQuitApplication: NS.URLErrorCancelledReasonUserForceQuitApplication
     ::NSURLErrorCancelledReasonBackgroundUpdatesDisabled: NS.URLErrorCancelledReasonBackgroundUpdatesDisabled
     ::NSURLErrorCancelledReasonInsufficientSystemResources: NS.URLErrorCancelledReasonInsufficientSystemResources
@@ -2308,6 +2673,24 @@ ConstVars:
     ::NSUbiquitousKeyValueStoreInitialSyncChange: NS.UbiquitousKeyValueStoreInitialSyncChange
     ::NSUbiquitousKeyValueStoreQuotaViolationChange: NS.UbiquitousKeyValueStoreQuotaViolationChange
     ::NSUbiquitousKeyValueStoreAccountChange: NS.UbiquitousKeyValueStoreAccountChange
+    ::NSNoScriptError: NS.NoScriptError
+    ::NSReceiverEvaluationScriptError: NS.ReceiverEvaluationScriptError
+    ::NSKeySpecifierEvaluationScriptError: NS.KeySpecifierEvaluationScriptError
+    ::NSArgumentEvaluationScriptError: NS.ArgumentEvaluationScriptError
+    ::NSReceiversCantHandleCommandScriptError: NS.ReceiversCantHandleCommandScriptError
+    ::NSRequiredArgumentsMissingScriptError: NS.RequiredArgumentsMissingScriptError
+    ::NSArgumentsWrongScriptError: NS.ArgumentsWrongScriptError
+    ::NSUnknownKeyScriptError: NS.UnknownKeyScriptError
+    ::NSInternalScriptError: NS.InternalScriptError
+    ::NSOperationNotSupportedForKeyScriptError: NS.OperationNotSupportedForKeyScriptError
+    ::NSCannotCreateScriptCommandError: NS.CannotCreateScriptCommandError
+    ::NSNoSpecifierError: NS.NoSpecifierError
+    ::NSNoTopLevelContainersSpecifierError: NS.NoTopLevelContainersSpecifierError
+    ::NSContainerSpecifierError: NS.ContainerSpecifierError
+    ::NSUnknownKeySpecifierError: NS.UnknownKeySpecifierError
+    ::NSInvalidIndexSpecifierError: NS.InvalidIndexSpecifierError
+    ::NSInternalSpecifierError: NS.InternalSpecifierError
+    ::NSOperationNotSupportedForKeySpecifierError: NS.OperationNotSupportedForKeySpecifierError
     ::NSNotFound: NS.NotFound
     ::NSHashTableStrongMemory: NS.HashTableStrongMemory
     ::NSHashTableZeroingWeakMemory: NS.HashTableZeroingWeakMemory
@@ -2321,4 +2704,6 @@ ConstVars:
     ::NSMapTableWeakMemory: NS.MapTableWeakMemory
     ::NSOperationQueueDefaultMaxConcurrentOperationCount: NS.OperationQueueDefaultMaxConcurrentOperationCount
     ::NSUndoCloseGroupingRunLoopOrdering: NS.UndoCloseGroupingRunLoopOrdering
+    ::NSNotificationDeliverImmediately: NS.NotificationDeliverImmediately
+    ::NSNotificationPostToAllSessions: NS.NotificationPostToAllSessions
 

@@ -51,6 +51,9 @@ foreign lib {
     @(objc_type=AchievementDescription, objc_selector="rarityPercent", objc_name="rarityPercent")
     AchievementDescription_rarityPercent :: proc(self: ^AchievementDescription) -> ^NS.Number ---
 
+    @(objc_type=AchievementDescription, objc_selector="releaseState", objc_name="releaseState")
+    AchievementDescription_releaseState :: proc(self: ^AchievementDescription) -> ReleaseState ---
+
     @(objc_type=AchievementDescription, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
     AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) ---
 

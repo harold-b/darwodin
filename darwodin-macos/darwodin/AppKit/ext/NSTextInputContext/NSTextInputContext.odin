@@ -39,6 +39,8 @@ VTable :: struct {
     invalidateCharacterCoordinates: proc(self: ^AK.TextInputContext),
     textInputClientWillStartScrollingOrZooming: proc(self: ^AK.TextInputContext),
     textInputClientDidEndScrollingOrZooming: proc(self: ^AK.TextInputContext),
+    textInputClientDidUpdateSelection: proc(self: ^AK.TextInputContext),
+    textInputClientDidScroll: proc(self: ^AK.TextInputContext),
     localizedNameForInputSource: proc(inputSourceIdentifier: ^NS.String) -> ^NS.String,
     currentInputContext: proc() -> ^AK.TextInputContext,
     client: proc(self: ^AK.TextInputContext) -> ^AK.TextInputClient,
@@ -147,6 +149,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textInputClientDidEndScrollingOrZooming"), auto_cast textInputClientDidEndScrollingOrZooming, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.textInputClientDidUpdateSelection != nil {
+        textInputClientDidUpdateSelection :: proc "c" (self: ^AK.TextInputContext, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).textInputClientDidUpdateSelection(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textInputClientDidUpdateSelection"), auto_cast textInputClientDidUpdateSelection, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.textInputClientDidScroll != nil {
+        textInputClientDidScroll :: proc "c" (self: ^AK.TextInputContext, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).textInputClientDidScroll(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textInputClientDidScroll"), auto_cast textInputClientDidScroll, "v@:") do panic("Failed to register objC method.")
     }
     if vt.localizedNameForInputSource != nil {
         localizedNameForInputSource :: proc "c" (self: Class, _: SEL, inputSourceIdentifier: ^NS.String) -> ^NS.String {

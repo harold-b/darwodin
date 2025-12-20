@@ -180,6 +180,12 @@ foreign lib {
     @(objc_type=Menu, objc_selector="setAllowsContextMenuPlugIns:", objc_name="setAllowsContextMenuPlugIns")
     Menu_setAllowsContextMenuPlugIns :: proc(self: ^Menu, allowsContextMenuPlugIns: bool) ---
 
+    @(objc_type=Menu, objc_selector="automaticallyInsertsWritingToolsItems", objc_name="automaticallyInsertsWritingToolsItems")
+    Menu_automaticallyInsertsWritingToolsItems :: proc(self: ^Menu) -> bool ---
+
+    @(objc_type=Menu, objc_selector="setAutomaticallyInsertsWritingToolsItems:", objc_name="setAutomaticallyInsertsWritingToolsItems")
+    Menu_setAutomaticallyInsertsWritingToolsItems :: proc(self: ^Menu, automaticallyInsertsWritingToolsItems: bool) ---
+
     @(objc_type=Menu, objc_selector="showsStateColumn", objc_name="showsStateColumn")
     Menu_showsStateColumn :: proc(self: ^Menu) -> bool ---
 

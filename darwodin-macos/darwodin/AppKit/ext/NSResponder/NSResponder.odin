@@ -91,6 +91,7 @@ VTable :: struct {
     willPresentError: proc(self: ^AK.Responder, error: ^NS.Error) -> ^NS.Error,
     performTextFinderAction: proc(self: ^AK.Responder, sender: id),
     newWindowForTab: proc(self: ^AK.Responder, sender: id),
+    showWritingTools: proc(self: ^AK.Responder, sender: id),
     performMnemonic: proc(self: ^AK.Responder, string: ^NS.String) -> bool,
     updateUserActivityState: proc(self: ^AK.Responder, userActivity: ^NS.UserActivity),
     userActivity: proc(self: ^AK.Responder) -> ^NS.UserActivity,
@@ -724,6 +725,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("newWindowForTab:"), auto_cast newWindowForTab, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.showWritingTools != nil {
+        showWritingTools :: proc "c" (self: ^AK.Responder, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).showWritingTools(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showWritingTools:"), auto_cast showWritingTools, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.performMnemonic != nil {
         performMnemonic :: proc "c" (self: ^AK.Responder, _: SEL, string: ^NS.String) -> bool {

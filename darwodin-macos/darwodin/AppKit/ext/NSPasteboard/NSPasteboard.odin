@@ -49,9 +49,13 @@ VTable :: struct {
     dataForType: proc(self: ^AK.Pasteboard, dataType: ^NS.String) -> ^NS.Data,
     propertyListForType: proc(self: ^AK.Pasteboard, dataType: ^NS.String) -> id,
     stringForType: proc(self: ^AK.Pasteboard, dataType: ^NS.String) -> ^NS.String,
+    detectPatternsForPatterns: proc(self: ^AK.Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedPatterns: ^NS.Set, error: ^NS.Error))),
+    detectValuesForPatterns: proc(self: ^AK.Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedValues: ^NS.Dictionary, error: ^NS.Error))),
+    detectMetadataForTypes: proc(self: ^AK.Pasteboard, types: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedMetadata: ^NS.Dictionary, error: ^NS.Error))),
     generalPasteboard: proc() -> ^AK.Pasteboard,
     name: proc(self: ^AK.Pasteboard) -> ^NS.String,
     changeCount: proc(self: ^AK.Pasteboard) -> NS.Integer,
+    accessBehavior: proc(self: ^AK.Pasteboard) -> AK.PasteboardAccessBehavior,
     pasteboardItems: proc(self: ^AK.Pasteboard) -> ^NS.Array,
     types: proc(self: ^AK.Pasteboard) -> ^NS.Array,
     typesFilterableTo: proc(type: ^NS.String) -> ^NS.Array,
@@ -261,6 +265,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("stringForType:"), auto_cast stringForType, "@@:@") do panic("Failed to register objC method.")
     }
+    if vt.detectPatternsForPatterns != nil {
+        detectPatternsForPatterns :: proc "c" (self: ^AK.Pasteboard, _: SEL, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedPatterns: ^NS.Set, error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).detectPatternsForPatterns(self, patterns, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("detectPatternsForPatterns:completionHandler:"), auto_cast detectPatternsForPatterns, "v@:^void?") do panic("Failed to register objC method.")
+    }
+    if vt.detectValuesForPatterns != nil {
+        detectValuesForPatterns :: proc "c" (self: ^AK.Pasteboard, _: SEL, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedValues: ^NS.Dictionary, error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).detectValuesForPatterns(self, patterns, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("detectValuesForPatterns:completionHandler:"), auto_cast detectValuesForPatterns, "v@:^void?") do panic("Failed to register objC method.")
+    }
+    if vt.detectMetadataForTypes != nil {
+        detectMetadataForTypes :: proc "c" (self: ^AK.Pasteboard, _: SEL, types: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedMetadata: ^NS.Dictionary, error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).detectMetadataForTypes(self, types, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("detectMetadataForTypes:completionHandler:"), auto_cast detectMetadataForTypes, "v@:^void?") do panic("Failed to register objC method.")
+    }
     if vt.generalPasteboard != nil {
         generalPasteboard :: proc "c" (self: Class, _: SEL) -> ^AK.Pasteboard {
 
@@ -290,6 +324,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("changeCount"), auto_cast changeCount, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.accessBehavior != nil {
+        accessBehavior :: proc "c" (self: ^AK.Pasteboard, _: SEL) -> AK.PasteboardAccessBehavior {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).accessBehavior(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("accessBehavior"), auto_cast accessBehavior, "l@:") do panic("Failed to register objC method.")
     }
     if vt.pasteboardItems != nil {
         pasteboardItems :: proc "c" (self: ^AK.Pasteboard, _: SEL) -> ^NS.Array {

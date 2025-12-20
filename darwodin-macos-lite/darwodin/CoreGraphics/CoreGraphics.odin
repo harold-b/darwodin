@@ -92,13 +92,14 @@ foreign lib {
     @(link_name="kCGPDFOutlineChildren") PDFOutlineChildren: CF.StringRef
     @(link_name="kCGPDFOutlineDestination") PDFOutlineDestination: CF.StringRef
     @(link_name="kCGPDFOutlineDestinationRect") PDFOutlineDestinationRect: CF.StringRef
-    @(link_name="kCGUse100nitsHLGOOTF") Use100nitsHLGOOTF: CF.StringRef
-    @(link_name="kCGUseBT1886ForCoreVideoGamma") UseBT1886ForCoreVideoGamma: CF.StringRef
-    @(link_name="kCGSkipBoostToHDR") SkipBoostToHDR: CF.StringRef
     @(link_name="kCGEXRToneMappingGammaDefog") EXRToneMappingGammaDefog: CF.StringRef
     @(link_name="kCGEXRToneMappingGammaExposure") EXRToneMappingGammaExposure: CF.StringRef
     @(link_name="kCGEXRToneMappingGammaKneeLow") EXRToneMappingGammaKneeLow: CF.StringRef
     @(link_name="kCGEXRToneMappingGammaKneeHigh") EXRToneMappingGammaKneeHigh: CF.StringRef
+    @(link_name="kCGUse100nitsHLGOOTF") Use100nitsHLGOOTF: CF.StringRef
+    @(link_name="kCGUseBT1886ForCoreVideoGamma") UseBT1886ForCoreVideoGamma: CF.StringRef
+    @(link_name="kCGSkipBoostToHDR") SkipBoostToHDR: CF.StringRef
+    @(link_name="kCGUseLegacyHDREcosystem") UseLegacyHDREcosystem: CF.StringRef
     @(link_name="kCGColorConversionBlackPointCompensation") ColorConversionBlackPointCompensation: CF.StringRef
     @(link_name="kCGColorConversionTRCSize") ColorConversionTRCSize: CF.StringRef
     @(link_name="kCGPDFContextMediaBox") PDFContextMediaBox: CF.StringRef
@@ -1510,6 +1511,12 @@ foreign lib {
     @(link_name="CGColorConversionInfoCreateFromListWithArguments")
     ColorConversionInfoCreateFromListWithArguments :: proc(options: CF.DictionaryRef, _0: ColorSpaceRef, _1: ColorConversionInfoTransformType, _2: ColorRenderingIntent, _3: ^cffi.va_list) -> ColorConversionInfoRef ---
 
+    @(link_name="CGColorConversionInfoCreateForToneMapping")
+    ColorConversionInfoCreateForToneMapping :: proc(from: ColorSpaceRef, source_headroom: cffi.float, to: ColorSpaceRef, target_headroom: cffi.float, method: ToneMapping, options: CF.DictionaryRef, error: ^CF.ErrorRef) -> ColorConversionInfoRef ---
+
+    @(link_name="CGColorConversionInfoConvertData")
+    ColorConversionInfoConvertData :: proc(info: ColorConversionInfoRef, width: cffi.size_t, height: cffi.size_t, dst_data: rawptr, dst_format: ColorBufferFormat, src_data: rawptr, src_format: ColorBufferFormat, options: CF.DictionaryRef) -> cffi.bool ---
+
     @(link_name="CGConvertColorDataWithFormat")
     ConvertColorDataWithFormat :: proc(width: cffi.size_t, height: cffi.size_t, dst_data: rawptr, dst_format: ColorDataFormat, src_data: rawptr, src_format: ColorDataFormat, options: CF.DictionaryRef) -> cffi.bool ---
 
@@ -2721,6 +2728,16 @@ PDFAccessPermissions :: enum cffi.uint {
     AllowsFormFieldEntry       = 128,
 }
 
+/// CGToneMapping
+ToneMapping :: enum cffi.uint {
+    Default                  = 0,
+    ImageSpecificLumaScaling = 1,
+    ReferenceWhiteBased      = 2,
+    ITURecommended           = 3,
+    EXRGamma                 = 4,
+    None                     = 5,
+}
+
 /// CGPathDrawingMode
 PathDrawingMode :: enum cffi.int {
     Fill         = 0,
@@ -2787,16 +2804,6 @@ BlendMode :: enum cffi.int {
     XOR             = 25,
     PlusDarker      = 26,
     PlusLighter     = 27,
-}
-
-/// CGToneMapping
-ToneMapping :: enum cffi.uint {
-    Default                  = 0,
-    ImageSpecificLumaScaling = 1,
-    ReferenceWhiteBased      = 2,
-    ITURecommended           = 3,
-    EXRGamma                 = 4,
-    None                     = 5,
 }
 
 /// CGColorConversionInfoTransformType
@@ -3334,6 +3341,16 @@ FunctionCallbacks :: struct #align (8) {
 
 /// CGColorConversionInfo
 ColorConversionInfo :: struct {}
+
+/// CGColorBufferFormat
+ColorBufferFormat :: struct #align (8) {
+    version:          cffi.uint32_t,
+    bitmapInfo:       BitmapInfo,
+    bitsPerComponent: cffi.size_t,
+    bitsPerPixel:     cffi.size_t,
+    bytesPerRow:      cffi.size_t,
+}
+#assert(size_of(ColorBufferFormat) == 32)
 
 /// CGColorDataFormat
 ColorDataFormat :: struct #align (8) {

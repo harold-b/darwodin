@@ -704,6 +704,7 @@ foreign lib {
     @(link_name="NSHTTPCookieDiscard") HTTPCookieDiscard: ^String
     @(link_name="NSHTTPCookieMaximumAge") HTTPCookieMaximumAge: ^String
     @(link_name="NSHTTPCookiePort") HTTPCookiePort: ^String
+    @(link_name="NSHTTPCookieSetByJavaScript") HTTPCookieSetByJavaScript: ^String
     @(link_name="NSHTTPCookieSameSitePolicy") HTTPCookieSameSitePolicy: ^String
     @(link_name="NSHTTPCookieSameSiteLax") HTTPCookieSameSiteLax: ^String
     @(link_name="NSHTTPCookieSameSiteStrict") HTTPCookieSameSiteStrict: ^String
@@ -1168,7 +1169,7 @@ foreign lib {
     Log :: proc(_0: id, #c_vararg args: ..any) ---
 
     @(link_name="NSLogv")
-    Logv :: proc(_0: id, _1: ^cffi.va_list) ---
+    Logv :: proc(_0: id, _1: cstring) ---
 
     @(link_name="NSDefaultMallocZone")
     DefaultMallocZone :: proc() -> ^Zone ---

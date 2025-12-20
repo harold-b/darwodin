@@ -98,6 +98,9 @@ foreign lib {
 
     @(objc_type=Score, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
     Score_challengeComposeControllerWithMessage_players_completion :: proc(self: ^Score, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^AK.ViewController ---
+
+    @(objc_type=Score, objc_selector="challengeComposeControllerWithPlayers:message:completionHandler:", objc_name="challengeComposeControllerWithPlayers")
+    Score_challengeComposeControllerWithPlayers :: proc(self: ^Score, playerIDs: ^NS.Array, message: ^NS.String, completionHandler: ChallengeComposeCompletionBlock) -> ^AK.ViewController ---
 }
 
 @(objc_type=Score, objc_name="initWithLeaderboardIdentifier")

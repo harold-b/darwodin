@@ -20,35 +20,20 @@ Controller :: struct { using _: NS.Object,
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=Controller, objc_selector="capture", objc_name="capture")
-    Controller_capture :: proc(self: ^Controller) -> ^Controller ---
-
     @(objc_type=Controller, objc_selector="controllers", objc_name="controllers", objc_is_class_method=true)
     Controller_controllers :: proc() -> ^NS.Array ---
 
-    @(objc_type=Controller, objc_selector="startWirelessControllerDiscoveryWithCompletionHandler:", objc_name="startWirelessControllerDiscoveryWithCompletionHandler", objc_is_class_method=true)
-    Controller_startWirelessControllerDiscoveryWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ())) ---
-
-    @(objc_type=Controller, objc_selector="stopWirelessControllerDiscovery", objc_name="stopWirelessControllerDiscovery", objc_is_class_method=true)
-    Controller_stopWirelessControllerDiscovery :: proc() ---
-
-    @(objc_type=Controller, objc_selector="controllerWithMicroGamepad", objc_name="controllerWithMicroGamepad", objc_is_class_method=true)
-    Controller_controllerWithMicroGamepad :: proc() -> ^Controller ---
-
-    @(objc_type=Controller, objc_selector="controllerWithExtendedGamepad", objc_name="controllerWithExtendedGamepad", objc_is_class_method=true)
-    Controller_controllerWithExtendedGamepad :: proc() -> ^Controller ---
-
     @(objc_type=Controller, objc_selector="supportsHIDDevice:", objc_name="supportsHIDDevice", objc_is_class_method=true)
     Controller_supportsHIDDevice :: proc(device: IOHIDDeviceRef) -> bool ---
+
+    @(objc_type=Controller, objc_selector="current", objc_name="current", objc_is_class_method=true)
+    Controller_current :: proc() -> ^Controller ---
 
     @(objc_type=Controller, objc_selector="controllerPausedHandler", objc_name="controllerPausedHandler")
     Controller_controllerPausedHandler :: proc(self: ^Controller) -> ^Objc_Block(proc "c" ()) ---
 
     @(objc_type=Controller, objc_selector="setControllerPausedHandler:", objc_name="setControllerPausedHandler")
     Controller_setControllerPausedHandler :: proc(self: ^Controller, controllerPausedHandler: ^Objc_Block(proc "c" ())) ---
-
-    @(objc_type=Controller, objc_selector="current", objc_name="current", objc_is_class_method=true)
-    Controller_current :: proc() -> ^Controller ---
 
     @(objc_type=Controller, objc_selector="shouldMonitorBackgroundEvents", objc_name="shouldMonitorBackgroundEvents", objc_is_class_method=true)
     Controller_shouldMonitorBackgroundEvents :: proc() -> bool ---
@@ -58,9 +43,6 @@ foreign lib {
 
     @(objc_type=Controller, objc_selector="isAttachedToDevice", objc_name="isAttachedToDevice")
     Controller_isAttachedToDevice :: proc(self: ^Controller) -> bool ---
-
-    @(objc_type=Controller, objc_selector="isSnapshot", objc_name="isSnapshot")
-    Controller_isSnapshot :: proc(self: ^Controller) -> bool ---
 
     @(objc_type=Controller, objc_selector="playerIndex", objc_name="playerIndex")
     Controller_playerIndex :: proc(self: ^Controller) -> ControllerPlayerIndex ---
@@ -94,4 +76,22 @@ foreign lib {
 
     @(objc_type=Controller, objc_selector="haptics", objc_name="haptics")
     Controller_haptics :: proc(self: ^Controller) -> ^DeviceHaptics ---
+
+    @(objc_type=Controller, objc_selector="capture", objc_name="capture")
+    Controller_capture :: proc(self: ^Controller) -> ^Controller ---
+
+    @(objc_type=Controller, objc_selector="controllerWithMicroGamepad", objc_name="controllerWithMicroGamepad", objc_is_class_method=true)
+    Controller_controllerWithMicroGamepad :: proc() -> ^Controller ---
+
+    @(objc_type=Controller, objc_selector="controllerWithExtendedGamepad", objc_name="controllerWithExtendedGamepad", objc_is_class_method=true)
+    Controller_controllerWithExtendedGamepad :: proc() -> ^Controller ---
+
+    @(objc_type=Controller, objc_selector="isSnapshot", objc_name="isSnapshot")
+    Controller_isSnapshot :: proc(self: ^Controller) -> bool ---
+
+    @(objc_type=Controller, objc_selector="startWirelessControllerDiscoveryWithCompletionHandler:", objc_name="startWirelessControllerDiscoveryWithCompletionHandler", objc_is_class_method=true)
+    Controller_startWirelessControllerDiscoveryWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=Controller, objc_selector="stopWirelessControllerDiscovery", objc_name="stopWirelessControllerDiscovery", objc_is_class_method=true)
+    Controller_stopWirelessControllerDiscovery :: proc() ---
 }

@@ -48,6 +48,9 @@ foreign lib {
     @(objc_type=MenuItem, objc_selector="setUsesUserKeyEquivalents:", objc_name="setUsesUserKeyEquivalents", objc_is_class_method=true)
     MenuItem_setUsesUserKeyEquivalents :: proc(usesUserKeyEquivalents: bool) ---
 
+    @(objc_type=MenuItem, objc_selector="writingToolsItems", objc_name="writingToolsItems", objc_is_class_method=true)
+    MenuItem_writingToolsItems :: proc() -> ^NS.Array ---
+
     @(objc_type=MenuItem, objc_selector="menu", objc_name="menu")
     MenuItem_menu :: proc(self: ^MenuItem) -> ^Menu ---
 

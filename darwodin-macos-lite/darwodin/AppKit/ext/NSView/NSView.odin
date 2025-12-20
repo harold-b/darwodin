@@ -295,6 +295,8 @@ VTable :: struct {
     releaseGState: proc(self: ^AK.View),
     setUpGState: proc(self: ^AK.View),
     renewGState: proc(self: ^AK.View),
+    writingToolsCoordinator: proc(self: ^AK.View) -> ^AK.WritingToolsCoordinator,
+    setWritingToolsCoordinator: proc(self: ^AK.View, writingToolsCoordinator: ^AK.WritingToolsCoordinator),
     enclosingMenuItem: proc(self: ^AK.View) -> ^AK.MenuItem,
     candidateListTouchBarItem: proc(self: ^AK.View) -> ^AK.CandidateListTouchBarItem,
     reflectScrolledClipView: proc(self: ^AK.View, clipView: ^AK.ClipView),
@@ -3022,6 +3024,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("renewGState"), auto_cast renewGState, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.writingToolsCoordinator != nil {
+        writingToolsCoordinator :: proc "c" (self: ^AK.View, _: SEL) -> ^AK.WritingToolsCoordinator {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).writingToolsCoordinator(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator"), auto_cast writingToolsCoordinator, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWritingToolsCoordinator != nil {
+        setWritingToolsCoordinator :: proc "c" (self: ^AK.View, _: SEL, writingToolsCoordinator: ^AK.WritingToolsCoordinator) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setWritingToolsCoordinator(self, writingToolsCoordinator)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWritingToolsCoordinator:"), auto_cast setWritingToolsCoordinator, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.enclosingMenuItem != nil {
         enclosingMenuItem :: proc "c" (self: ^AK.View, _: SEL) -> ^AK.MenuItem {

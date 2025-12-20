@@ -547,12 +547,6 @@ foreign lib {
     @(objc_type=TextView, objc_selector="setAllowedWritingToolsResultOptions:", objc_name="setAllowedWritingToolsResultOptions")
     TextView_setAllowedWritingToolsResultOptions :: proc(self: ^TextView, allowedWritingToolsResultOptions: WritingToolsResultOptions) ---
 
-    @(objc_type=TextView, objc_selector="writingToolsAllowedInputOptions", objc_name="writingToolsAllowedInputOptions")
-    TextView_writingToolsAllowedInputOptions :: proc(self: ^TextView) -> WritingToolsAllowedInputOptions ---
-
-    @(objc_type=TextView, objc_selector="setWritingToolsAllowedInputOptions:", objc_name="setWritingToolsAllowedInputOptions")
-    TextView_setWritingToolsAllowedInputOptions :: proc(self: ^TextView, writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions) ---
-
     @(objc_type=TextView, objc_selector="smartDeleteRangeForProposedRange:", objc_name="smartDeleteRangeForProposedRange")
     TextView_smartDeleteRangeForProposedRange :: proc(self: ^TextView, proposedCharRange: NS._NSRange) -> NS._NSRange ---
 

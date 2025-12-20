@@ -90,6 +90,9 @@ foreign lib {
     @(objc_type=LocalPlayer, objc_selector="loadFriendsWithIdentifiers:completionHandler:", objc_name="loadFriendsWithIdentifiers")
     LocalPlayer_loadFriendsWithIdentifiers :: proc(self: ^LocalPlayer, identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (friends: ^NS.Array, error: ^NS.Error))) ---
 
+    @(objc_type=LocalPlayer, objc_selector="presentFriendRequestCreatorFromViewController:error:", objc_name="presentFriendRequestCreatorFromViewController")
+    LocalPlayer_presentFriendRequestCreatorFromViewController :: proc(self: ^LocalPlayer, viewController: ^AK.ViewController, error: ^^NS.Error) -> bool ---
+
     @(objc_type=LocalPlayer, objc_selector="presentFriendRequestCreatorFromWindow:error:", objc_name="presentFriendRequestCreatorFromWindow")
     LocalPlayer_presentFriendRequestCreatorFromWindow :: proc(self: ^LocalPlayer, window: ^AK.Window, error: ^^NS.Error) -> bool ---
 

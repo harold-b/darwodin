@@ -106,10 +106,4 @@ foreign lib {
 
     @(objc_type=TextInputTraits, objc_selector="setAllowedWritingToolsResultOptions:", objc_name="setAllowedWritingToolsResultOptions")
     TextInputTraits_setAllowedWritingToolsResultOptions :: proc(self: ^TextInputTraits, allowedWritingToolsResultOptions: WritingToolsResultOptions) ---
-
-    @(objc_type=TextInputTraits, objc_selector="writingToolsAllowedInputOptions", objc_name="writingToolsAllowedInputOptions")
-    TextInputTraits_writingToolsAllowedInputOptions :: proc(self: ^TextInputTraits) -> WritingToolsAllowedInputOptions ---
-
-    @(objc_type=TextInputTraits, objc_selector="setWritingToolsAllowedInputOptions:", objc_name="setWritingToolsAllowedInputOptions")
-    TextInputTraits_setWritingToolsAllowedInputOptions :: proc(self: ^TextInputTraits, writingToolsAllowedInputOptions: WritingToolsAllowedInputOptions) ---
 }

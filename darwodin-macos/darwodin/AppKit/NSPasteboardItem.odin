@@ -50,6 +50,15 @@ foreign lib {
     @(objc_type=PasteboardItem, objc_selector="propertyListForType:", objc_name="propertyListForType")
     PasteboardItem_propertyListForType :: proc(self: ^PasteboardItem, type: ^NS.String) -> id ---
 
+    @(objc_type=PasteboardItem, objc_selector="detectPatternsForPatterns:completionHandler:", objc_name="detectPatternsForPatterns")
+    PasteboardItem_detectPatternsForPatterns :: proc(self: ^PasteboardItem, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedPatterns: ^NS.Set, error: ^NS.Error))) ---
+
+    @(objc_type=PasteboardItem, objc_selector="detectValuesForPatterns:completionHandler:", objc_name="detectValuesForPatterns")
+    PasteboardItem_detectValuesForPatterns :: proc(self: ^PasteboardItem, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedValues: ^NS.Dictionary, error: ^NS.Error))) ---
+
+    @(objc_type=PasteboardItem, objc_selector="detectMetadataForTypes:completionHandler:", objc_name="detectMetadataForTypes")
+    PasteboardItem_detectMetadataForTypes :: proc(self: ^PasteboardItem, types: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedMetadata: ^NS.Dictionary, error: ^NS.Error))) ---
+
     @(objc_type=PasteboardItem, objc_selector="types", objc_name="types")
     PasteboardItem_types :: proc(self: ^PasteboardItem) -> ^NS.Array ---
 }
