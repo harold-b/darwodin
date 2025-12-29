@@ -97,11 +97,14 @@ foreign lib {
     @(objc_type=Bundle, objc_selector="pathsForResourcesOfType:inDirectory:forLocalization:", objc_name="pathsForResourcesOfType_inDirectory_forLocalization")
     Bundle_pathsForResourcesOfType_inDirectory_forLocalization :: proc(self: ^Bundle, ext: ^String, subpath: ^String, localizationName: ^String) -> ^Array ---
 
-    @(objc_type=Bundle, objc_selector="localizedStringForKey:value:table:", objc_name="localizedStringForKey")
-    Bundle_localizedStringForKey :: proc(self: ^Bundle, key: ^String, value: ^String, tableName: ^String) -> ^String ---
+    @(objc_type=Bundle, objc_selector="localizedStringForKey:value:table:", objc_name="localizedStringForKey_value_table")
+    Bundle_localizedStringForKey_value_table :: proc(self: ^Bundle, key: ^String, value: ^String, tableName: ^String) -> ^String ---
 
     @(objc_type=Bundle, objc_selector="localizedAttributedStringForKey:value:table:", objc_name="localizedAttributedStringForKey")
     Bundle_localizedAttributedStringForKey :: proc(self: ^Bundle, key: ^String, value: ^String, tableName: ^String) -> ^AttributedString ---
+
+    @(objc_type=Bundle, objc_selector="localizedStringForKey:value:table:localizations:", objc_name="localizedStringForKey_value_table_localizations")
+    Bundle_localizedStringForKey_value_table_localizations :: proc(self: ^Bundle, key: ^String, value: ^String, tableName: ^String, localizations: ^Array) -> ^String ---
 
     @(objc_type=Bundle, objc_selector="objectForInfoDictionaryKey:", objc_name="objectForInfoDictionaryKey")
     Bundle_objectForInfoDictionaryKey :: proc(self: ^Bundle, key: ^String) -> id ---
@@ -229,6 +232,12 @@ Bundle_pathForResource :: proc {
 Bundle_pathsForResourcesOfType :: proc {
     Bundle_pathsForResourcesOfType_inDirectory,
     Bundle_pathsForResourcesOfType_inDirectory_forLocalization,
+}
+
+@(objc_type=Bundle, objc_name="localizedStringForKey")
+Bundle_localizedStringForKey :: proc {
+    Bundle_localizedStringForKey_value_table,
+    Bundle_localizedStringForKey_value_table_localizations,
 }
 
 @(objc_type=Bundle, objc_name="preferredLocalizationsFromArray")

@@ -50,6 +50,8 @@ VTable :: struct {
     setRequiresDNSSECValidation: proc(self: ^NS.MutableURLRequest, requiresDNSSECValidation: bool),
     allowsPersistentDNS: proc(self: ^NS.MutableURLRequest) -> bool,
     setAllowsPersistentDNS: proc(self: ^NS.MutableURLRequest, allowsPersistentDNS: bool),
+    cookiePartitionIdentifier: proc(self: ^NS.MutableURLRequest) -> ^NS.String,
+    setCookiePartitionIdentifier: proc(self: ^NS.MutableURLRequest, cookiePartitionIdentifier: ^NS.String),
     setValue: proc(self: ^NS.MutableURLRequest, value: ^NS.String, field: ^NS.String),
     addValue: proc(self: ^NS.MutableURLRequest, value: ^NS.String, field: ^NS.String),
     _HTTPMethod: proc(self: ^NS.MutableURLRequest) -> ^NS.String,
@@ -312,6 +314,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsPersistentDNS:"), auto_cast setAllowsPersistentDNS, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.cookiePartitionIdentifier != nil {
+        cookiePartitionIdentifier :: proc "c" (self: ^NS.MutableURLRequest, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).cookiePartitionIdentifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cookiePartitionIdentifier"), auto_cast cookiePartitionIdentifier, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCookiePartitionIdentifier != nil {
+        setCookiePartitionIdentifier :: proc "c" (self: ^NS.MutableURLRequest, _: SEL, cookiePartitionIdentifier: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setCookiePartitionIdentifier(self, cookiePartitionIdentifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCookiePartitionIdentifier:"), auto_cast setCookiePartitionIdentifier, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.setValue != nil {
         setValue :: proc "c" (self: ^NS.MutableURLRequest, _: SEL, value: ^NS.String, field: ^NS.String) {

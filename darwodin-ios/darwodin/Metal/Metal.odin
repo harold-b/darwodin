@@ -188,19 +188,17 @@ HazardTrackingMode :: enum cffi.ulong {
 }
 
 /// MTLResourceOptions
-ResourceOptions :: enum cffi.ulong {
-    CPUCacheModeDefaultCache        = 0,
-    CPUCacheModeWriteCombined       = 1,
-    StorageModeShared               = 0,
-    StorageModeManaged              = 16,
-    StorageModePrivate              = 32,
-    StorageModeMemoryless           = 48,
-    HazardTrackingModeDefault       = 0,
-    HazardTrackingModeUntracked     = 256,
-    HazardTrackingModeTracked       = 512,
-    OptionCPUCacheModeDefault       = 0,
-    OptionCPUCacheModeWriteCombined = 1,
+ResourceOption :: enum cffi.ulong {
+    CPUCacheModeWriteCombined       = 0,
+    StorageModeManaged              = 4,
+    StorageModePrivate              = 5,
+    HazardTrackingModeUntracked     = 8,
+    HazardTrackingModeTracked       = 9,
+    OptionCPUCacheModeWriteCombined = 0,
 }
+ResourceOptions :: bit_set[ResourceOption; cffi.ulong]
+
+ResourceOptions_StorageModeMemoryless :: ResourceOptions { .StorageModeManaged, .StorageModePrivate, }
 
 /// MTLPixelFormat
 PixelFormat :: enum cffi.ulong {

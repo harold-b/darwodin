@@ -85,6 +85,8 @@ VTable :: struct {
     setWritingToolsBehavior: proc(self: ^UI.TextView, writingToolsBehavior: UI.WritingToolsBehavior),
     allowedWritingToolsResultOptions: proc(self: ^UI.TextView) -> UI.WritingToolsResultOptions,
     setAllowedWritingToolsResultOptions: proc(self: ^UI.TextView, allowedWritingToolsResultOptions: UI.WritingToolsResultOptions),
+    subclassForWritingToolsCoordinator: proc(self: ^UI.TextView) -> Class,
+    writingToolsCoordinator: proc(self: ^UI.TextView) -> ^UI.WritingToolsCoordinator,
     textFormattingConfiguration: proc(self: ^UI.TextView) -> ^UI.TextFormattingViewControllerConfiguration,
     setTextFormattingConfiguration: proc(self: ^UI.TextView, textFormattingConfiguration: ^UI.TextFormattingViewControllerConfiguration),
     interactionState: proc(self: ^UI.TextView) -> id,
@@ -667,6 +669,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedWritingToolsResultOptions:"), auto_cast setAllowedWritingToolsResultOptions, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.subclassForWritingToolsCoordinator != nil {
+        subclassForWritingToolsCoordinator :: proc "c" (self: ^UI.TextView, _: SEL) -> Class {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).subclassForWritingToolsCoordinator(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subclassForWritingToolsCoordinator"), auto_cast subclassForWritingToolsCoordinator, "#@:") do panic("Failed to register objC method.")
+    }
+    if vt.writingToolsCoordinator != nil {
+        writingToolsCoordinator :: proc "c" (self: ^UI.TextView, _: SEL) -> ^UI.WritingToolsCoordinator {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).writingToolsCoordinator(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator"), auto_cast writingToolsCoordinator, "@@:") do panic("Failed to register objC method.")
     }
     if vt.textFormattingConfiguration != nil {
         textFormattingConfiguration :: proc "c" (self: ^UI.TextView, _: SEL) -> ^UI.TextFormattingViewControllerConfiguration {

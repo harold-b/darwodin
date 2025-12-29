@@ -70,6 +70,7 @@ VTable :: struct {
     replaceRange_withAttributedText: proc(self: ^UI.TextInput, range: ^UI.TextRange, attributedText: ^NS.AttributedString),
     willPresentWritingTools: proc(self: ^UI.TextInput),
     didDismissWritingTools: proc(self: ^UI.TextInput),
+    insertInputSuggestion: proc(self: ^UI.TextInput, inputSuggestion: ^UI.InputSuggestion),
     selectedTextRange: proc(self: ^UI.TextInput) -> ^UI.TextRange,
     setSelectedTextRange: proc(self: ^UI.TextInput, selectedTextRange: ^UI.TextRange),
     markedTextRange: proc(self: ^UI.TextInput) -> ^UI.TextRange,
@@ -542,6 +543,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("didDismissWritingTools"), auto_cast didDismissWritingTools, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.insertInputSuggestion != nil {
+        insertInputSuggestion :: proc "c" (self: ^UI.TextInput, _: SEL, inputSuggestion: ^UI.InputSuggestion) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).insertInputSuggestion(self, inputSuggestion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertInputSuggestion:"), auto_cast insertInputSuggestion, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectedTextRange != nil {
         selectedTextRange :: proc "c" (self: ^UI.TextInput, _: SEL) -> ^UI.TextRange {

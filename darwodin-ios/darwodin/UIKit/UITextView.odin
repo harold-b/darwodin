@@ -196,6 +196,12 @@ foreign lib {
     @(objc_type=TextView, objc_selector="setAllowedWritingToolsResultOptions:", objc_name="setAllowedWritingToolsResultOptions")
     TextView_setAllowedWritingToolsResultOptions :: proc(self: ^TextView, allowedWritingToolsResultOptions: WritingToolsResultOptions) ---
 
+    @(objc_type=TextView, objc_selector="subclassForWritingToolsCoordinator", objc_name="subclassForWritingToolsCoordinator")
+    TextView_subclassForWritingToolsCoordinator :: proc(self: ^TextView) -> Class ---
+
+    @(objc_type=TextView, objc_selector="writingToolsCoordinator", objc_name="writingToolsCoordinator")
+    TextView_writingToolsCoordinator :: proc(self: ^TextView) -> ^WritingToolsCoordinator ---
+
     @(objc_type=TextView, objc_selector="textFormattingConfiguration", objc_name="textFormattingConfiguration")
     TextView_textFormattingConfiguration :: proc(self: ^TextView) -> ^TextFormattingViewControllerConfiguration ---
 

@@ -106,6 +106,7 @@ ErrorCode :: enum cffi.long {
     ICloudUnavailable                = 35,
     LockdownMode                     = 36,
     AppUnlisted                      = 37,
+    DebugMode                        = 38,
     FriendListDescriptionMissing     = 100,
     FriendListRestricted             = 101,
     FriendListDenied                 = 102,
@@ -116,6 +117,13 @@ ErrorCode :: enum cffi.long {
 PhotoSize :: enum cffi.long {
     Small  = 0,
     Normal = 1,
+}
+
+/// GKReleaseState
+ReleaseState :: enum cffi.ulong {
+    Unknown     = 0,
+    Released    = 1,
+    Prereleased = 2,
 }
 
 /// GKLeaderboardTimeScope

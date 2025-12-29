@@ -124,4 +124,10 @@ foreign lib {
 
     @(objc_type=TextInputTraitsProtocol, objc_selector="setAllowedWritingToolsResultOptions:", objc_name="setAllowedWritingToolsResultOptions")
     TextInputTraitsProtocol_setAllowedWritingToolsResultOptions :: proc(self: ^TextInputTraitsProtocol, allowedWritingToolsResultOptions: WritingToolsResultOptions) ---
+
+    @(objc_type=TextInputTraitsProtocol, objc_selector="conversationContext", objc_name="conversationContext")
+    TextInputTraitsProtocol_conversationContext :: proc(self: ^TextInputTraitsProtocol) -> ^ConversationContext ---
+
+    @(objc_type=TextInputTraitsProtocol, objc_selector="setConversationContext:", objc_name="setConversationContext")
+    TextInputTraitsProtocol_setConversationContext :: proc(self: ^TextInputTraitsProtocol, conversationContext: ^ConversationContext) ---
 }

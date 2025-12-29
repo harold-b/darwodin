@@ -103,4 +103,7 @@ foreign lib {
 
     @(objc_type=ResponderStandardEditActions, objc_selector="export:", objc_name="export")
     ResponderStandardEditActions_export :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
+    @(objc_type=ResponderStandardEditActions, objc_selector="showWritingTools:", objc_name="showWritingTools")
+    ResponderStandardEditActions_showWritingTools :: proc(self: ^ResponderStandardEditActions, sender: id) ---
 }

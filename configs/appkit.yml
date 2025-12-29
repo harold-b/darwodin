@@ -76,12 +76,39 @@ Odin:
           QTMovie :: NS.Object
           UTType :: NS.Object
 
-          GCGamepadSnapShotDataV100 :: struct {}
-          GCExtendedGamepadSnapshotData :: struct {}
+          GCGamepadSnapShotDataV100         :: struct {}
+          GCExtendedGamepadSnapshotData     :: struct {}
           GCExtendedGamepadSnapShotDataV100 :: struct {}
-          GCMicroGamepadSnapshotData :: struct {}
-          GCMicroGamepadSnapShotDataV100 :: struct {}
+          GCMicroGamepadSnapshotData        :: struct {}
+          GCMicroGamepadSnapShotDataV100    :: struct {}
 
+          // Helper array iterator
+          Array_Iterator :: struct($T: typeid) {
+              array: ^NS.Array,
+              length: int,
+              index:  int,
+          }
+
+          array_iter :: proc( $T: typeid, array: ^NS.Array ) -> Array_Iterator(T) {
+              return Array_Iterator(T) {
+                  array  = array,
+                  length = int(array->count()),
+                  index  = 0,
+              }
+          }
+
+          array_next :: proc( it: ^Array_Iterator($T) ) -> (val: ^T, idx: int, cond: bool) {
+              if it.index >= it.length {
+                  return
+              }
+
+              val      = auto_cast it.array->objectAtIndex(auto_cast it.index)
+              it.index += 1
+              cond     = true
+              return
+          }
+
+  
       TypeMap:
         CKShare: CKShare
         CKShareMetadata: CKShareMetadata

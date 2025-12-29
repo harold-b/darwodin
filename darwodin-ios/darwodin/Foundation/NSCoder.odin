@@ -133,8 +133,14 @@ foreign lib {
     @(objc_type=Coder, objc_selector="decodeDoubleForKey:", objc_name="decodeDoubleForKey")
     Coder_decodeDoubleForKey :: proc(self: ^Coder, key: ^String) -> cffi.double ---
 
-    @(objc_type=Coder, objc_selector="decodeBytesForKey:returnedLength:", objc_name="decodeBytesForKey")
-    Coder_decodeBytesForKey :: proc(self: ^Coder, key: ^String, lengthp: ^UInteger) -> ^cffi.uint8_t ---
+    @(objc_type=Coder, objc_selector="decodeBytesForKey:returnedLength:", objc_name="decodeBytesForKey_returnedLength")
+    Coder_decodeBytesForKey_returnedLength :: proc(self: ^Coder, key: ^String, lengthp: ^UInteger) -> ^cffi.uint8_t ---
+
+    @(objc_type=Coder, objc_selector="decodeBytesWithMinimumLength:", objc_name="decodeBytesWithMinimumLength")
+    Coder_decodeBytesWithMinimumLength :: proc(self: ^Coder, length: UInteger) -> rawptr ---
+
+    @(objc_type=Coder, objc_selector="decodeBytesForKey:minimumLength:", objc_name="decodeBytesForKey_minimumLength")
+    Coder_decodeBytesForKey_minimumLength :: proc(self: ^Coder, key: ^String, length: UInteger) -> ^cffi.uint8_t ---
 
     @(objc_type=Coder, objc_selector="encodeInteger:forKey:", objc_name="encodeInteger")
     Coder_encodeInteger :: proc(self: ^Coder, value: Integer, key: ^String) ---
@@ -210,6 +216,12 @@ Coder_encodeConditionalObject :: proc {
 Coder_encodeBytes :: proc {
     Coder_encodeBytes_length,
     Coder_encodeBytes_length_forKey,
+}
+
+@(objc_type=Coder, objc_name="decodeBytesForKey")
+Coder_decodeBytesForKey :: proc {
+    Coder_decodeBytesForKey_returnedLength,
+    Coder_decodeBytesForKey_minimumLength,
 }
 
 @(objc_type=Coder, objc_name="decodeValueOfObjCType")

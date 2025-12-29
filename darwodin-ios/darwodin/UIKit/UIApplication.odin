@@ -228,6 +228,9 @@ foreign lib {
     @(objc_type=Application, objc_selector="registerObjectForStateRestoration:restorationIdentifier:", objc_name="registerObjectForStateRestoration", objc_is_class_method=true)
     Application_registerObjectForStateRestoration :: proc(object: ^StateRestoring, restorationIdentifier: ^NS.String) ---
 
+    @(objc_type=Application, objc_selector="defaultStatusForCategory:error:", objc_name="defaultStatusForCategory")
+    Application_defaultStatusForCategory :: proc(self: ^Application, category: ApplicationCategory, error: ^^NS.Error) -> ApplicationCategoryDefaultStatus ---
+
     @(objc_type=Application, objc_selector="setStatusBarHidden:animated:", objc_name="setStatusBarHidden_animated")
     Application_setStatusBarHidden_animated :: proc(self: ^Application, hidden: bool, animated: bool) ---
 

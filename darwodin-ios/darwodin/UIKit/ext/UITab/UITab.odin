@@ -32,6 +32,8 @@ VTable :: struct {
     init: proc(self: ^UI.Tab) -> ^UI.Tab,
     new: proc() -> ^UI.Tab,
     identifier: proc(self: ^UI.Tab) -> ^NS.String,
+    isEnabled: proc(self: ^UI.Tab) -> bool,
+    setEnabled: proc(self: ^UI.Tab, enabled: bool),
     title: proc(self: ^UI.Tab) -> ^NS.String,
     setTitle: proc(self: ^UI.Tab, title: ^NS.String),
     image: proc(self: ^UI.Tab) -> ^UI.Image,
@@ -54,6 +56,7 @@ VTable :: struct {
     setHiddenByDefault: proc(self: ^UI.Tab, hiddenByDefault: bool),
     allowsHiding: proc(self: ^UI.Tab) -> bool,
     setAllowsHiding: proc(self: ^UI.Tab, allowsHiding: bool),
+    hasVisiblePlacement: proc(self: ^UI.Tab) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -102,6 +105,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.isEnabled != nil {
+        isEnabled :: proc "c" (self: ^UI.Tab, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isEnabled"), auto_cast isEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setEnabled != nil {
+        setEnabled :: proc "c" (self: ^UI.Tab, _: SEL, enabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setEnabled(self, enabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setEnabled:"), auto_cast setEnabled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
         title :: proc "c" (self: ^UI.Tab, _: SEL) -> ^NS.String {
@@ -322,6 +345,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsHiding:"), auto_cast setAllowsHiding, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.hasVisiblePlacement != nil {
+        hasVisiblePlacement :: proc "c" (self: ^UI.Tab, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).hasVisiblePlacement(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hasVisiblePlacement"), auto_cast hasVisiblePlacement, "B@:") do panic("Failed to register objC method.")
     }
 }
 

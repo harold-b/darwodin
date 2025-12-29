@@ -46,5 +46,17 @@ foreign lib {
 
     @(objc_type=TabBarControllerSidebarDelegate, objc_selector="tabBarController:sidebar:contextMenuConfigurationForTab:", objc_name="tabBarController_sidebar_contextMenuConfigurationForTab")
     TabBarControllerSidebarDelegate_tabBarController_sidebar_contextMenuConfigurationForTab :: proc(self: ^TabBarControllerSidebarDelegate, tabBarController: ^TabBarController, sidebar: ^TabBarControllerSidebar, tab: ^Tab) -> ^ContextMenuConfiguration ---
+
+    @(objc_type=TabBarControllerSidebarDelegate, objc_selector="tabBarController:sidebar:itemsForBeginningDragSession:tab:", objc_name="tabBarController_sidebar_itemsForBeginningDragSession_tab")
+    TabBarControllerSidebarDelegate_tabBarController_sidebar_itemsForBeginningDragSession_tab :: proc(self: ^TabBarControllerSidebarDelegate, tabBarController: ^TabBarController, sidebar: ^TabBarControllerSidebar, dragSession: ^DragSession, tab: ^Tab) -> ^NS.Array ---
+
+    @(objc_type=TabBarControllerSidebarDelegate, objc_selector="tabBarController:sidebar:itemsForAddingToDragSession:tab:", objc_name="tabBarController_sidebar_itemsForAddingToDragSession_tab")
+    TabBarControllerSidebarDelegate_tabBarController_sidebar_itemsForAddingToDragSession_tab :: proc(self: ^TabBarControllerSidebarDelegate, tabBarController: ^TabBarController, sidebar: ^TabBarControllerSidebar, dragSession: ^DragSession, tab: ^Tab) -> ^NS.Array ---
+
+    @(objc_type=TabBarControllerSidebarDelegate, objc_selector="tabBarController:sidebar:sidebarAction:group:operationForAcceptingItemsFromDropSession:", objc_name="tabBarController_sidebar_sidebarAction_group_operationForAcceptingItemsFromDropSession")
+    TabBarControllerSidebarDelegate_tabBarController_sidebar_sidebarAction_group_operationForAcceptingItemsFromDropSession :: proc(self: ^TabBarControllerSidebarDelegate, tabBarController: ^TabBarController, sidebar: ^TabBarControllerSidebar, sidebarAction: ^Action, group: ^TabGroup, session: ^DropSession) -> DropOperation ---
+
+    @(objc_type=TabBarControllerSidebarDelegate, objc_selector="tabBarController:sidebar:sidebarAction:group:acceptItemsFromDropSession:", objc_name="tabBarController_sidebar_sidebarAction_group_acceptItemsFromDropSession")
+    TabBarControllerSidebarDelegate_tabBarController_sidebar_sidebarAction_group_acceptItemsFromDropSession :: proc(self: ^TabBarControllerSidebarDelegate, tabBarController: ^TabBarController, sidebar: ^TabBarControllerSidebar, sidebarAction: ^Action, group: ^TabGroup, session: ^DropSession) ---
 }
 

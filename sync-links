@@ -21,9 +21,9 @@ source ./config
 set +e
 darwodin_variants=(
     $(darwodin_get_output_folder 0 0)
-    $(darwodin_get_output_folder 0 1)
+    # $(darwodin_get_output_folder 0 1)
     $(darwodin_get_output_folder 1 0)
-    $(darwodin_get_output_folder 1 1)
+    # $(darwodin_get_output_folder 1 1)
 )
 
 for folder in ${darwodin_variants[@]}; do

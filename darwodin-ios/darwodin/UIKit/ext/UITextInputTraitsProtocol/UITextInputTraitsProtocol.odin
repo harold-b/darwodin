@@ -59,6 +59,8 @@ VTable :: struct {
     setWritingToolsBehavior: proc(self: ^UI.TextInputTraitsProtocol, writingToolsBehavior: UI.WritingToolsBehavior),
     allowedWritingToolsResultOptions: proc(self: ^UI.TextInputTraitsProtocol) -> UI.WritingToolsResultOptions,
     setAllowedWritingToolsResultOptions: proc(self: ^UI.TextInputTraitsProtocol, allowedWritingToolsResultOptions: UI.WritingToolsResultOptions),
+    conversationContext: proc(self: ^UI.TextInputTraitsProtocol) -> ^UI.ConversationContext,
+    setConversationContext: proc(self: ^UI.TextInputTraitsProtocol, conversationContext: ^UI.ConversationContext),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -404,6 +406,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowedWritingToolsResultOptions:"), auto_cast setAllowedWritingToolsResultOptions, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.conversationContext != nil {
+        conversationContext :: proc "c" (self: ^UI.TextInputTraitsProtocol, _: SEL) -> ^UI.ConversationContext {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).conversationContext(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("conversationContext"), auto_cast conversationContext, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setConversationContext != nil {
+        setConversationContext :: proc "c" (self: ^UI.TextInputTraitsProtocol, _: SEL, conversationContext: ^UI.ConversationContext) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setConversationContext(self, conversationContext)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setConversationContext:"), auto_cast setConversationContext, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

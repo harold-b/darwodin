@@ -97,6 +97,7 @@ VTable :: struct {
     completeStateRestoration: proc(self: ^UI.Application),
     ignoreSnapshotOnNextApplicationLaunch: proc(self: ^UI.Application),
     registerObjectForStateRestoration: proc(object: ^UI.StateRestoring, restorationIdentifier: ^NS.String),
+    defaultStatusForCategory: proc(self: ^UI.Application, category: UI.ApplicationCategory, error: ^^NS.Error) -> UI.ApplicationCategoryDefaultStatus,
     setStatusBarHidden_animated: proc(self: ^UI.Application, hidden: bool, animated: bool),
     setStatusBarOrientation_animated: proc(self: ^UI.Application, interfaceOrientation: UI.InterfaceOrientation, animated: bool),
     setStatusBarStyle_animated: proc(self: ^UI.Application, statusBarStyle: UI.StatusBarStyle, animated: bool),
@@ -806,6 +807,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("registerObjectForStateRestoration:restorationIdentifier:"), auto_cast registerObjectForStateRestoration, "v#:@@") do panic("Failed to register objC method.")
+    }
+    if vt.defaultStatusForCategory != nil {
+        defaultStatusForCategory :: proc "c" (self: ^UI.Application, _: SEL, category: UI.ApplicationCategory, error: ^^NS.Error) -> UI.ApplicationCategoryDefaultStatus {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).defaultStatusForCategory(self, category, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("defaultStatusForCategory:error:"), auto_cast defaultStatusForCategory, "l@:l^void") do panic("Failed to register objC method.")
     }
     if vt.setStatusBarHidden_animated != nil {
         setStatusBarHidden_animated :: proc "c" (self: ^UI.Application, _: SEL, hidden: bool, animated: bool) {

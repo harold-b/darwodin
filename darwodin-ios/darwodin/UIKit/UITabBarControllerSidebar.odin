@@ -51,6 +51,12 @@ foreign lib {
     @(objc_type=TabBarControllerSidebar, objc_selector="setPreferredLayout:", objc_name="setPreferredLayout")
     TabBarControllerSidebar_setPreferredLayout :: proc(self: ^TabBarControllerSidebar, preferredLayout: TabBarControllerSidebarLayout) ---
 
+    @(objc_type=TabBarControllerSidebar, objc_selector="navigationOverflowItems", objc_name="navigationOverflowItems")
+    TabBarControllerSidebar_navigationOverflowItems :: proc(self: ^TabBarControllerSidebar) -> ^DeferredMenuElement ---
+
+    @(objc_type=TabBarControllerSidebar, objc_selector="setNavigationOverflowItems:", objc_name="setNavigationOverflowItems")
+    TabBarControllerSidebar_setNavigationOverflowItems :: proc(self: ^TabBarControllerSidebar, navigationOverflowItems: ^DeferredMenuElement) ---
+
     @(objc_type=TabBarControllerSidebar, objc_selector="headerContentConfiguration", objc_name="headerContentConfiguration")
     TabBarControllerSidebar_headerContentConfiguration :: proc(self: ^TabBarControllerSidebar) -> ^ContentConfiguration ---
 

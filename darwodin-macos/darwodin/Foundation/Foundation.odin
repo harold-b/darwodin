@@ -23,8 +23,28 @@ instancetype  :: intrinsics.objc_instancetype
 @(require, export) foreign import lib "system:Foundation.framework"
 
 OpaqueSecTransformImplementation :: struct {}
-OpaqueSecIdentitySearchRef :: struct {}
-OpaquePolicySearchRef :: struct {}
+OpaqueSecIdentitySearchRef       :: struct {}
+OpaquePolicySearchRef            :: struct {}
+
+to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^String {
+    return String.alloc()->initWithBytes(raw_data(str), UInteger(len(str)), UTF8StringEncoding)
+}
+
+to_ns_string_no_copy :: #force_inline proc "contextless" ( str: string ) -> ^String {
+    return String.alloc()->initWithBytesNoCopy(raw_data(str), UInteger(len(str)), UTF8StringEncoding, false)
+}
+
+to_odin_string :: proc( ns_str: ^String, allocator := context.allocator ) -> string {
+    length := ns_str->lengthOfBytesUsingEncoding(UTF8StringEncoding)
+    dest := make([]u8, int(length)+1, allocator)
+
+    runtime.mem_copy_non_overlapping(raw_data(dest), rawptr(ns_str->UTF8String()), int(length))
+    return string(dest[:length])
+}
+
+tmp_to_odin_string :: #force_inline proc ( ns_str: ^String ) -> string {
+    return to_odin_string(ns_str, context.temp_allocator)
+}
 
 
 

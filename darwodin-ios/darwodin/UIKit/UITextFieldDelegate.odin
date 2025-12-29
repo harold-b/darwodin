@@ -58,6 +58,9 @@ foreign lib {
 
     @(objc_type=TextFieldDelegate, objc_selector="textField:willDismissEditMenuWithAnimator:", objc_name="textField_willDismissEditMenuWithAnimator")
     TextFieldDelegate_textField_willDismissEditMenuWithAnimator :: proc(self: ^TextFieldDelegate, textField: ^TextField, animator: ^EditMenuInteractionAnimating) ---
+
+    @(objc_type=TextFieldDelegate, objc_selector="textField:insertInputSuggestion:", objc_name="textField_insertInputSuggestion")
+    TextFieldDelegate_textField_insertInputSuggestion :: proc(self: ^TextFieldDelegate, textField: ^TextField, inputSuggestion: ^InputSuggestion) ---
 }
 
 @(objc_type=TextFieldDelegate, objc_name="textFieldDidEndEditing")

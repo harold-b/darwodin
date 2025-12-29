@@ -38,6 +38,8 @@ VTable :: struct {
     setHidden: proc(self: ^UI.TabBarControllerSidebar, hidden: bool),
     preferredLayout: proc(self: ^UI.TabBarControllerSidebar) -> UI.TabBarControllerSidebarLayout,
     setPreferredLayout: proc(self: ^UI.TabBarControllerSidebar, preferredLayout: UI.TabBarControllerSidebarLayout),
+    navigationOverflowItems: proc(self: ^UI.TabBarControllerSidebar) -> ^UI.DeferredMenuElement,
+    setNavigationOverflowItems: proc(self: ^UI.TabBarControllerSidebar, navigationOverflowItems: ^UI.DeferredMenuElement),
     headerContentConfiguration: proc(self: ^UI.TabBarControllerSidebar) -> ^UI.ContentConfiguration,
     setHeaderContentConfiguration: proc(self: ^UI.TabBarControllerSidebar, headerContentConfiguration: ^UI.ContentConfiguration),
     footerContentConfiguration: proc(self: ^UI.TabBarControllerSidebar) -> ^UI.ContentConfiguration,
@@ -152,6 +154,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredLayout:"), auto_cast setPreferredLayout, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.navigationOverflowItems != nil {
+        navigationOverflowItems :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL) -> ^UI.DeferredMenuElement {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).navigationOverflowItems(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("navigationOverflowItems"), auto_cast navigationOverflowItems, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setNavigationOverflowItems != nil {
+        setNavigationOverflowItems :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL, navigationOverflowItems: ^UI.DeferredMenuElement) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setNavigationOverflowItems(self, navigationOverflowItems)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNavigationOverflowItems:"), auto_cast setNavigationOverflowItems, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.headerContentConfiguration != nil {
         headerContentConfiguration :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL) -> ^UI.ContentConfiguration {

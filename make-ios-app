@@ -1,55 +1,60 @@
-#!/usr/bin/env bash
-set -eo pipefail
-cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+# set -eo pipefail
+# cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-app_name=OdinMetal
-bin_dir=.bin
-app_bundle_dir="${bin_dir}/${app_name}.app"
-ios_src_dir=samples/ios_app
+function build_ios_app() {
+  local app_name=$1
+  local bin_dir=$2
+  local plist_path=$3
+  local launchscreen_path=$4
+  local exe_path=$5
+  local deployment_target=$6
 
-# set -x
-echo 'Create bundle dir'
-rm -rf "${app_bundle_dir}"
-mkdir -p "${app_bundle_dir}"
+  local app_bundle_dir="${bin_dir}/${app_name}.app"
 
+  local exe_name="$(basename ${exe_path})"
+  local exe_dir="$(dirname ${exe_path})"
 
-echo 'Copy bundle files'
-cp ${bin_dir}/main ${app_bundle_dir}/
-cp -r ${bin_dir}/main.dSYM ${app_bundle_dir}/
-cp ${ios_src_dir}/Info.plist ${app_bundle_dir}/
-plutil -convert binary1 ${app_bundle_dir}/Info.plist
+  # set -x
+  echo 'Create iOS App bundle dir'
+  rm -rf "${app_bundle_dir}"
+  mkdir -p "${app_bundle_dir}"
 
-# Compile LaunchScreen
-echo 'Compile LaunchScreen'
-ibtool --errors --warnings --notices \
-  --module ${app_name} \
-  --target-device iphone \
-  --target-device ipad \
-  --minimum-deployment-target 17.0 \
-  --auto-activate-custom-fonts \
-  --output-format human-readable-text \
-  --output-partial-info-plist "${bin_dir}/LaunchScreen-SBPartialInfo.plist" \
-  --compilation-directory "${bin_dir}" \
-  "${ios_src_dir}/LaunchScreen.storyboard"
+  echo 'Copy bundle files'
+  cp ${bin_dir}/main ${app_bundle_dir}/
+  cp -r ${bin_dir}/main.dSYM ${app_bundle_dir}/
+  cp ${plist_path} ${app_bundle_dir}/
 
-# Link LaunchScreen
-echo 'Link LaunchScreen'
-ibtool --errors --warnings --notices \
-  --module ${app_name} \
-  --target-device iphone \
-  --target-device ipad \
-  --minimum-deployment-target 17.0 \
-  --output-format human-readable-text \
-  --link "${app_bundle_dir}" \
-  "${bin_dir}/LaunchScreen.storyboardc"
+  # Convert plist to binary
+  plutil -convert binary1 ${app_bundle_dir}/Info.plist
 
+  # Compile LaunchScreen
+  echo 'Compile LaunchScreen'
+  ibtool --errors --warnings --notices \
+    --module ${app_name} \
+    --target-device iphone \
+    --target-device ipad \
+    --minimum-deployment-target ${deployment_target} \
+    --auto-activate-custom-fonts \
+    --output-format human-readable-text \
+    --output-partial-info-plist "${bin_dir}/LaunchScreen-SBPartialInfo.plist" \
+    --compilation-directory "${bin_dir}" \
+    "${launchscreen_path}"
 
-# Sign
-echo 'Codesign'
-/usr/bin/codesign --force --sign - \
-  --entitlements "${ios_src_dir}/Entitelments.plist" \
-  --timestamp=none \
-  --generate-entitlement-der ${app_bundle_dir}
+  # Link LaunchScreen
+  echo 'Link LaunchScreen'
+  ibtool --errors --warnings --notices \
+    --module ${app_name} \
+    --target-device iphone \
+    --target-device ipad \
+    --minimum-deployment-target ${deployment_target} \
+    --output-format human-readable-text \
+    --link "${app_bundle_dir}" \
+    "${bin_dir}/LaunchScreen.storyboardc"
 
-
-
+  # Sign
+  echo 'Codesign'
+  /usr/bin/codesign --force --sign - \
+    --entitlements "${ios_src_dir}/Entitelments.plist" \
+    --timestamp=none \
+    --generate-entitlement-der ${app_bundle_dir}
+}

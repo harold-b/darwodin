@@ -52,8 +52,9 @@ VTable :: struct {
     pathForResource_ofType_inDirectory_forLocalization: proc(self: ^NS.Bundle, name: ^NS.String, ext: ^NS.String, subpath: ^NS.String, localizationName: ^NS.String) -> ^NS.String,
     pathsForResourcesOfType_inDirectory: proc(self: ^NS.Bundle, ext: ^NS.String, subpath: ^NS.String) -> ^NS.Array,
     pathsForResourcesOfType_inDirectory_forLocalization: proc(self: ^NS.Bundle, ext: ^NS.String, subpath: ^NS.String, localizationName: ^NS.String) -> ^NS.Array,
-    localizedStringForKey: proc(self: ^NS.Bundle, key: ^NS.String, value: ^NS.String, tableName: ^NS.String) -> ^NS.String,
+    localizedStringForKey_value_table: proc(self: ^NS.Bundle, key: ^NS.String, value: ^NS.String, tableName: ^NS.String) -> ^NS.String,
     localizedAttributedStringForKey: proc(self: ^NS.Bundle, key: ^NS.String, value: ^NS.String, tableName: ^NS.String) -> ^NS.AttributedString,
+    localizedStringForKey_value_table_localizations: proc(self: ^NS.Bundle, key: ^NS.String, value: ^NS.String, tableName: ^NS.String, localizations: ^NS.Array) -> ^NS.String,
     objectForInfoDictionaryKey: proc(self: ^NS.Bundle, key: ^NS.String) -> id,
     classNamed: proc(self: ^NS.Bundle, className: ^NS.String) -> Class,
     preferredLocalizationsFromArray_: proc(localizationsArray: ^NS.Array) -> ^NS.Array,
@@ -356,15 +357,15 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("pathsForResourcesOfType:inDirectory:forLocalization:"), auto_cast pathsForResourcesOfType_inDirectory_forLocalization, "^void@:@@@") do panic("Failed to register objC method.")
     }
-    if vt.localizedStringForKey != nil {
-        localizedStringForKey :: proc "c" (self: ^NS.Bundle, _: SEL, key: ^NS.String, value: ^NS.String, tableName: ^NS.String) -> ^NS.String {
+    if vt.localizedStringForKey_value_table != nil {
+        localizedStringForKey_value_table :: proc "c" (self: ^NS.Bundle, _: SEL, key: ^NS.String, value: ^NS.String, tableName: ^NS.String) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).localizedStringForKey(self, key, value, tableName)
+            return (cast(^VTable)vt_ctx.super_vt).localizedStringForKey_value_table(self, key, value, tableName)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedStringForKey:value:table:"), auto_cast localizedStringForKey, "@@:@@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedStringForKey:value:table:"), auto_cast localizedStringForKey_value_table, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.localizedAttributedStringForKey != nil {
         localizedAttributedStringForKey :: proc "c" (self: ^NS.Bundle, _: SEL, key: ^NS.String, value: ^NS.String, tableName: ^NS.String) -> ^NS.AttributedString {
@@ -375,6 +376,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("localizedAttributedStringForKey:value:table:"), auto_cast localizedAttributedStringForKey, "@@:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.localizedStringForKey_value_table_localizations != nil {
+        localizedStringForKey_value_table_localizations :: proc "c" (self: ^NS.Bundle, _: SEL, key: ^NS.String, value: ^NS.String, tableName: ^NS.String, localizations: ^NS.Array) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).localizedStringForKey_value_table_localizations(self, key, value, tableName, localizations)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("localizedStringForKey:value:table:localizations:"), auto_cast localizedStringForKey_value_table_localizations, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.objectForInfoDictionaryKey != nil {
         objectForInfoDictionaryKey :: proc "c" (self: ^NS.Bundle, _: SEL, key: ^NS.String) -> id {

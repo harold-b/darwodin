@@ -98,5 +98,8 @@ foreign lib {
 
     @(objc_type=TextViewDelegate, objc_selector="textView:didEndFormattingWithViewController:", objc_name="textView_didEndFormattingWithViewController")
     TextViewDelegate_textView_didEndFormattingWithViewController :: proc(self: ^TextViewDelegate, textView: ^TextView, viewController: ^TextFormattingViewController) ---
+
+    @(objc_type=TextViewDelegate, objc_selector="textView:insertInputSuggestion:", objc_name="textView_insertInputSuggestion")
+    TextViewDelegate_textView_insertInputSuggestion :: proc(self: ^TextViewDelegate, textView: ^TextView, inputSuggestion: ^InputSuggestion) ---
 }
 

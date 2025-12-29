@@ -33,6 +33,12 @@ foreign lib {
     @(objc_type=Tab, objc_selector="identifier", objc_name="identifier")
     Tab_identifier :: proc(self: ^Tab) -> ^NS.String ---
 
+    @(objc_type=Tab, objc_selector="isEnabled", objc_name="isEnabled")
+    Tab_isEnabled :: proc(self: ^Tab) -> bool ---
+
+    @(objc_type=Tab, objc_selector="setEnabled:", objc_name="setEnabled")
+    Tab_setEnabled :: proc(self: ^Tab, enabled: bool) ---
+
     @(objc_type=Tab, objc_selector="title", objc_name="title")
     Tab_title :: proc(self: ^Tab) -> ^NS.String ---
 
@@ -98,4 +104,7 @@ foreign lib {
 
     @(objc_type=Tab, objc_selector="setAllowsHiding:", objc_name="setAllowsHiding")
     Tab_setAllowsHiding :: proc(self: ^Tab, allowsHiding: bool) ---
+
+    @(objc_type=Tab, objc_selector="hasVisiblePlacement", objc_name="hasVisiblePlacement")
+    Tab_hasVisiblePlacement :: proc(self: ^Tab) -> bool ---
 }

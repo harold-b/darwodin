@@ -207,6 +207,12 @@ foreign lib {
     @(objc_type=URLSessionConfiguration, objc_selector="setMultipathServiceType:", objc_name="setMultipathServiceType")
     URLSessionConfiguration_setMultipathServiceType :: proc(self: ^URLSessionConfiguration, multipathServiceType: URLSessionMultipathServiceType) ---
 
+    @(objc_type=URLSessionConfiguration, objc_selector="usesClassicLoadingMode", objc_name="usesClassicLoadingMode")
+    URLSessionConfiguration_usesClassicLoadingMode :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setUsesClassicLoadingMode:", objc_name="setUsesClassicLoadingMode")
+    URLSessionConfiguration_setUsesClassicLoadingMode :: proc(self: ^URLSessionConfiguration, usesClassicLoadingMode: bool) ---
+
     @(objc_type=URLSessionConfiguration, objc_selector="backgroundSessionConfiguration:", objc_name="backgroundSessionConfiguration", objc_is_class_method=true)
     URLSessionConfiguration_backgroundSessionConfiguration :: proc(identifier: ^String) -> ^URLSessionConfiguration ---
 }

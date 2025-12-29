@@ -91,6 +91,12 @@ foreign lib {
     @(objc_type=MutableURLRequest, objc_selector="setAllowsPersistentDNS:", objc_name="setAllowsPersistentDNS")
     MutableURLRequest_setAllowsPersistentDNS :: proc(self: ^MutableURLRequest, allowsPersistentDNS: bool) ---
 
+    @(objc_type=MutableURLRequest, objc_selector="cookiePartitionIdentifier", objc_name="cookiePartitionIdentifier")
+    MutableURLRequest_cookiePartitionIdentifier :: proc(self: ^MutableURLRequest) -> ^String ---
+
+    @(objc_type=MutableURLRequest, objc_selector="setCookiePartitionIdentifier:", objc_name="setCookiePartitionIdentifier")
+    MutableURLRequest_setCookiePartitionIdentifier :: proc(self: ^MutableURLRequest, cookiePartitionIdentifier: ^String) ---
+
     @(objc_type=MutableURLRequest, objc_selector="setValue:forHTTPHeaderField:", objc_name="setValue")
     MutableURLRequest_setValue :: proc(self: ^MutableURLRequest, value: ^String, field: ^String) ---
 

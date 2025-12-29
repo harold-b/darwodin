@@ -33,6 +33,10 @@ VTable :: struct {
     tabBarController_sidebar_leadingSwipeActionsConfigurationForTab: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, tab: ^UI.Tab) -> ^UI.SwipeActionsConfiguration,
     tabBarController_sidebar_trailingSwipeActionsConfigurationForTab: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, tab: ^UI.Tab) -> ^UI.SwipeActionsConfiguration,
     tabBarController_sidebar_contextMenuConfigurationForTab: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, tab: ^UI.Tab) -> ^UI.ContextMenuConfiguration,
+    tabBarController_sidebar_itemsForBeginningDragSession_tab: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, dragSession: ^UI.DragSession, tab: ^UI.Tab) -> ^NS.Array,
+    tabBarController_sidebar_itemsForAddingToDragSession_tab: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, dragSession: ^UI.DragSession, tab: ^UI.Tab) -> ^NS.Array,
+    tabBarController_sidebar_sidebarAction_group_operationForAcceptingItemsFromDropSession: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, sidebarAction: ^UI.Action, group: ^UI.TabGroup, session: ^UI.DropSession) -> UI.DropOperation,
+    tabBarController_sidebar_sidebarAction_group_acceptItemsFromDropSession: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, sidebarAction: ^UI.Action, group: ^UI.TabGroup, session: ^UI.DropSession),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -118,6 +122,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:sidebar:contextMenuConfigurationForTab:"), auto_cast tabBarController_sidebar_contextMenuConfigurationForTab, "@@:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.tabBarController_sidebar_itemsForBeginningDragSession_tab != nil {
+        tabBarController_sidebar_itemsForBeginningDragSession_tab :: proc "c" (self: ^UI.TabBarControllerSidebarDelegate, _: SEL, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, dragSession: ^UI.DragSession, tab: ^UI.Tab) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).tabBarController_sidebar_itemsForBeginningDragSession_tab(self, tabBarController, sidebar, dragSession, tab)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:sidebar:itemsForBeginningDragSession:tab:"), auto_cast tabBarController_sidebar_itemsForBeginningDragSession_tab, "^void@:@@@@") do panic("Failed to register objC method.")
+    }
+    if vt.tabBarController_sidebar_itemsForAddingToDragSession_tab != nil {
+        tabBarController_sidebar_itemsForAddingToDragSession_tab :: proc "c" (self: ^UI.TabBarControllerSidebarDelegate, _: SEL, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, dragSession: ^UI.DragSession, tab: ^UI.Tab) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).tabBarController_sidebar_itemsForAddingToDragSession_tab(self, tabBarController, sidebar, dragSession, tab)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:sidebar:itemsForAddingToDragSession:tab:"), auto_cast tabBarController_sidebar_itemsForAddingToDragSession_tab, "^void@:@@@@") do panic("Failed to register objC method.")
+    }
+    if vt.tabBarController_sidebar_sidebarAction_group_operationForAcceptingItemsFromDropSession != nil {
+        tabBarController_sidebar_sidebarAction_group_operationForAcceptingItemsFromDropSession :: proc "c" (self: ^UI.TabBarControllerSidebarDelegate, _: SEL, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, sidebarAction: ^UI.Action, group: ^UI.TabGroup, session: ^UI.DropSession) -> UI.DropOperation {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).tabBarController_sidebar_sidebarAction_group_operationForAcceptingItemsFromDropSession(self, tabBarController, sidebar, sidebarAction, group, session)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:sidebar:sidebarAction:group:operationForAcceptingItemsFromDropSession:"), auto_cast tabBarController_sidebar_sidebarAction_group_operationForAcceptingItemsFromDropSession, "L@:@@@@@") do panic("Failed to register objC method.")
+    }
+    if vt.tabBarController_sidebar_sidebarAction_group_acceptItemsFromDropSession != nil {
+        tabBarController_sidebar_sidebarAction_group_acceptItemsFromDropSession :: proc "c" (self: ^UI.TabBarControllerSidebarDelegate, _: SEL, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, sidebarAction: ^UI.Action, group: ^UI.TabGroup, session: ^UI.DropSession) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).tabBarController_sidebar_sidebarAction_group_acceptItemsFromDropSession(self, tabBarController, sidebar, sidebarAction, group, session)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:sidebar:sidebarAction:group:acceptItemsFromDropSession:"), auto_cast tabBarController_sidebar_sidebarAction_group_acceptItemsFromDropSession, "v@:@@@@@") do panic("Failed to register objC method.")
     }
 }
 

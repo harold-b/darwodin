@@ -37,6 +37,7 @@ VTable :: struct {
     textField_editMenuForCharactersInRange_suggestedActions: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, range: NS._NSRange, suggestedActions: ^NS.Array) -> ^UI.Menu,
     textField_willPresentEditMenuWithAnimator: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, animator: ^UI.EditMenuInteractionAnimating),
     textField_willDismissEditMenuWithAnimator: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, animator: ^UI.EditMenuInteractionAnimating),
+    textField_insertInputSuggestion: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, inputSuggestion: ^UI.InputSuggestion),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -162,6 +163,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textField:willDismissEditMenuWithAnimator:"), auto_cast textField_willDismissEditMenuWithAnimator, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.textField_insertInputSuggestion != nil {
+        textField_insertInputSuggestion :: proc "c" (self: ^UI.TextFieldDelegate, _: SEL, textField: ^UI.TextField, inputSuggestion: ^UI.InputSuggestion) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).textField_insertInputSuggestion(self, textField, inputSuggestion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textField:insertInputSuggestion:"), auto_cast textField_insertInputSuggestion, "v@:@@") do panic("Failed to register objC method.")
     }
 }
 

@@ -64,7 +64,9 @@ VTable :: struct {
     decodeInt64ForKey: proc(self: ^NS.Coder, key: ^NS.String) -> cffi.int64_t,
     decodeFloatForKey: proc(self: ^NS.Coder, key: ^NS.String) -> cffi.float,
     decodeDoubleForKey: proc(self: ^NS.Coder, key: ^NS.String) -> cffi.double,
-    decodeBytesForKey: proc(self: ^NS.Coder, key: ^NS.String, lengthp: ^NS.UInteger) -> ^cffi.uint8_t,
+    decodeBytesForKey_returnedLength: proc(self: ^NS.Coder, key: ^NS.String, lengthp: ^NS.UInteger) -> ^cffi.uint8_t,
+    decodeBytesWithMinimumLength: proc(self: ^NS.Coder, length: NS.UInteger) -> rawptr,
+    decodeBytesForKey_minimumLength: proc(self: ^NS.Coder, key: ^NS.String, length: NS.UInteger) -> ^cffi.uint8_t,
     encodeInteger: proc(self: ^NS.Coder, value: NS.Integer, key: ^NS.String),
     decodeIntegerForKey: proc(self: ^NS.Coder, key: ^NS.String) -> NS.Integer,
     decodeObjectOfClass: proc(self: ^NS.Coder, aClass: Class, key: ^NS.String) -> id,
@@ -473,15 +475,35 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("decodeDoubleForKey:"), auto_cast decodeDoubleForKey, "d@:@") do panic("Failed to register objC method.")
     }
-    if vt.decodeBytesForKey != nil {
-        decodeBytesForKey :: proc "c" (self: ^NS.Coder, _: SEL, key: ^NS.String, lengthp: ^NS.UInteger) -> ^cffi.uint8_t {
+    if vt.decodeBytesForKey_returnedLength != nil {
+        decodeBytesForKey_returnedLength :: proc "c" (self: ^NS.Coder, _: SEL, key: ^NS.String, lengthp: ^NS.UInteger) -> ^cffi.uint8_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).decodeBytesForKey(self, key, lengthp)
+            return (cast(^VTable)vt_ctx.super_vt).decodeBytesForKey_returnedLength(self, key, lengthp)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeBytesForKey:returnedLength:"), auto_cast decodeBytesForKey, "^void@:@^void") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeBytesForKey:returnedLength:"), auto_cast decodeBytesForKey_returnedLength, "^void@:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.decodeBytesWithMinimumLength != nil {
+        decodeBytesWithMinimumLength :: proc "c" (self: ^NS.Coder, _: SEL, length: NS.UInteger) -> rawptr {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).decodeBytesWithMinimumLength(self, length)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeBytesWithMinimumLength:"), auto_cast decodeBytesWithMinimumLength, "^void@:L") do panic("Failed to register objC method.")
+    }
+    if vt.decodeBytesForKey_minimumLength != nil {
+        decodeBytesForKey_minimumLength :: proc "c" (self: ^NS.Coder, _: SEL, key: ^NS.String, length: NS.UInteger) -> ^cffi.uint8_t {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).decodeBytesForKey_minimumLength(self, key, length)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("decodeBytesForKey:minimumLength:"), auto_cast decodeBytesForKey_minimumLength, "^void@:@L") do panic("Failed to register objC method.")
     }
     if vt.encodeInteger != nil {
         encodeInteger :: proc "c" (self: ^NS.Coder, _: SEL, value: NS.Integer, key: ^NS.String) {

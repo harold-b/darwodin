@@ -246,6 +246,9 @@ Enums:
     UIBackgroundFetchResult: UI.BackgroundFetchResult
     UIBackgroundRefreshStatus: UI.BackgroundRefreshStatus
     UIApplicationState: UI.ApplicationState
+    UIApplicationCategory: UI.ApplicationCategory
+    UIApplicationCategoryDefaultStatus: UI.ApplicationCategoryDefaultStatus
+    UIApplicationCategoryDefaultErrorCode: UI.ApplicationCategoryDefaultErrorCode
     UIModalTransitionStyle: UI.ModalTransitionStyle
     UIModalPresentationStyle: UI.ModalPresentationStyle
     UIContainerBackgroundStyle: UI.ContainerBackgroundStyle
@@ -427,6 +430,13 @@ Enums:
     UITabGroupSidebarAppearance: UI.TabGroupSidebarAppearance
     UITabBarControllerSidebarLayout: UI.TabBarControllerSidebarLayout
     UITextFormattingViewControllerComponentSize: UI.TextFormattingViewControllerComponentSize
+    UIWritingToolsCoordinatorTextUpdateReason: UI.WritingToolsCoordinatorTextUpdateReason
+    UIWritingToolsCoordinatorState: UI.WritingToolsCoordinatorState
+    UIWritingToolsCoordinatorTextReplacementReason: UI.WritingToolsCoordinatorTextReplacementReason
+    UIWritingToolsCoordinatorContextScope: UI.WritingToolsCoordinatorContextScope
+    UIWritingToolsCoordinatorTextAnimation: UI.WritingToolsCoordinatorTextAnimation
+    UIMailConversationEntryKind: UI.MailConversationEntryKind
+    UIMessageConversationEntryDataKind: UI.MessageConversationEntryDataKind
     NSTextListOptions: UI.NSTextListOptions
     NSTextSelectionGranularity: UI.NSTextSelectionGranularity
     NSTextSelectionAffinity: UI.NSTextSelectionAffinity
@@ -552,6 +562,8 @@ ObjCClasses:
     UIPinchGestureRecognizer: UI.PinchGestureRecognizer
     UIScrollView: UI.ScrollView
     UIAccessibilityCustomAction: UI.AccessibilityCustomAction
+    UIConversationEntry: UI.ConversationEntry
+    UIConversationContext: UI.ConversationContext
     UITextInputPasswordRules: UI.TextInputPasswordRules
     NSTextAlternatives: UI.NSTextAlternatives
     UITextPosition: UI.TextPosition
@@ -560,6 +572,7 @@ ObjCClasses:
     UIBarButtonItemGroup: UI.BarButtonItemGroup
     UIBarButtonItem: UI.BarButtonItem
     NSAdaptiveImageGlyph: UI.NSAdaptiveImageGlyph
+    UIInputSuggestion: UI.InputSuggestion
     UIDictationPhrase: UI.DictationPhrase
     UITextPlaceholder: UI.TextPlaceholder
     UITextInputStringTokenizer: UI.TextInputStringTokenizer
@@ -734,7 +747,6 @@ ObjCClasses:
     UIDocumentPickerExtensionViewController: UI.DocumentPickerExtensionViewController
     UICloudSharingController: UI.CloudSharingController
     NSFileProviderItemVersion: UI.NSFileProviderItemVersion
-    NSFileProviderDomain: UI.NSFileProviderDomain
     NSFileProviderExtension: UI.NSFileProviderExtension
     UIBlurEffect: UI.BlurEffect
     UIVibrancyEffect: UI.VibrancyEffect
@@ -839,6 +851,7 @@ ObjCClasses:
     NSTextRange: UI.NSTextRange
     UITextFormattingViewController: UI.TextFormattingViewController
     UITextFormattingViewControllerConfiguration: UI.TextFormattingViewControllerConfiguration
+    UIWritingToolsCoordinator: UI.WritingToolsCoordinator
     UIToolbarAppearance: UI.ToolbarAppearance
     UIVideoEditorController: UI.VideoEditorController
     UIWebViewInternal: UI.WebViewInternal
@@ -942,6 +955,13 @@ ObjCClasses:
     UITextFormattingViewControllerFormattingDescriptor: UI.TextFormattingViewControllerFormattingDescriptor
     UITextFormattingViewControllerChangeValue: UI.TextFormattingViewControllerChangeValue
     UITextFormattingViewControllerComponent: UI.TextFormattingViewControllerComponent
+    UIWritingToolsCoordinatorContext: UI.WritingToolsCoordinatorContext
+    UIWritingToolsCoordinatorAnimationParameters: UI.WritingToolsCoordinatorAnimationParameters
+    UISmartReplySuggestion: UI.SmartReplySuggestion
+    UIMailConversationContext: UI.MailConversationContext
+    UIMailConversationEntry: UI.MailConversationEntry
+    UIMessageConversationEntry: UI.MessageConversationEntry
+    UIMessageConversationContext: UI.MessageConversationContext
     NSTextContentManager: UI.NSTextContentManager
     NSTextElement: UI.NSTextElement
     NSTextParagraph: UI.NSTextParagraph
@@ -1174,6 +1194,7 @@ ObjCProtocols:
     UITabBarControllerSidebarDelegate: UI.TabBarControllerSidebarDelegate
     UITabBarControllerSidebarAnimating: UI.TabBarControllerSidebarAnimating
     UITextFormattingViewControllerDelegate: UI.TextFormattingViewControllerDelegate
+    UIWritingToolsCoordinatorDelegate: UI.WritingToolsCoordinatorDelegate
     NSTextSelectionDataSource: UI.NSTextSelectionDataSource
     NSTextViewportLayoutControllerDelegate: UI.NSTextViewportLayoutControllerDelegate
     NSTextContentManagerDelegate: UI.NSTextContentManagerDelegate
@@ -1266,6 +1287,7 @@ Functions:
     ::UIVideoAtPathIsCompatibleWithSavedPhotosAlbum: UI.VideoAtPathIsCompatibleWithSavedPhotosAlbum
     ::UISaveVideoAtPathToSavedPhotosAlbum: UI.SaveVideoAtPathToSavedPhotosAlbum
     ::UIFloatRangeIsInfinite: UI.FloatRangeIsInfinite
+    ::UIWritingToolsCoordinatorTextAnimationDebugDescription: UI.WritingToolsCoordinatorTextAnimationDebugDescription
 
 ExternVars:
     ::UIAccessibilityTraitNone: UI.AccessibilityTraitNone
@@ -1397,6 +1419,7 @@ ExternVars:
     ::NSTextHighlightStyleAttributeName: UI.NSTextHighlightStyleAttributeName
     ::NSTextHighlightColorSchemeAttributeName: UI.NSTextHighlightColorSchemeAttributeName
     ::NSAdaptiveImageGlyphAttributeName: UI.NSAdaptiveImageGlyphAttributeName
+    ::NSWritingToolsExclusionAttributeName: UI.NSWritingToolsExclusionAttributeName
     ::NSTextEffectLetterpressStyle: UI.NSTextEffectLetterpressStyle
     ::NSTextHighlightStyleDefault: UI.NSTextHighlightStyleDefault
     ::NSTextHighlightColorSchemeDefault: UI.NSTextHighlightColorSchemeDefault
@@ -1450,6 +1473,7 @@ ExternVars:
     ::UIMenuHide: UI.MenuHide
     ::UIMenuQuit: UI.MenuQuit
     ::UIMenuNewScene: UI.MenuNewScene
+    ::UIMenuOpen: UI.MenuOpen
     ::UIMenuOpenRecent: UI.MenuOpenRecent
     ::UIMenuClose: UI.MenuClose
     ::UIMenuPrint: UI.MenuPrint
@@ -1606,6 +1630,9 @@ ExternVars:
     ::UIMinimumKeepAliveTimeout: UI.MinimumKeepAliveTimeout
     ::UIApplicationBackgroundFetchIntervalMinimum: UI.ApplicationBackgroundFetchIntervalMinimum
     ::UIApplicationBackgroundFetchIntervalNever: UI.ApplicationBackgroundFetchIntervalNever
+    ::UIApplicationCategoryDefaultErrorDomain: UI.ApplicationCategoryDefaultErrorDomain
+    ::UIApplicationCategoryDefaultStatusLastProvidedDateErrorKey: UI.ApplicationCategoryDefaultStatusLastProvidedDateErrorKey
+    ::UIApplicationCategoryDefaultRetryAvailabilityDateErrorKey: UI.ApplicationCategoryDefaultRetryAvailabilityDateErrorKey
     ::UITrackingRunLoopMode: UI.TrackingRunLoopMode
     ::UIApplicationDidEnterBackgroundNotification: UI.ApplicationDidEnterBackgroundNotification
     ::UIApplicationWillEnterForegroundNotification: UI.ApplicationWillEnterForegroundNotification
@@ -1639,6 +1666,7 @@ ExternVars:
     ::UIApplicationLaunchOptionsUserActivityTypeKey: UI.ApplicationLaunchOptionsUserActivityTypeKey
     ::UIApplicationLaunchOptionsCloudKitShareMetadataKey: UI.ApplicationLaunchOptionsCloudKitShareMetadataKey
     ::UIApplicationOpenSettingsURLString: UI.ApplicationOpenSettingsURLString
+    ::UIApplicationOpenDefaultApplicationsSettingsURLString: UI.ApplicationOpenDefaultApplicationsSettingsURLString
     ::UIApplicationOpenNotificationSettingsURLString: UI.ApplicationOpenNotificationSettingsURLString
     ::UIApplicationOpenURLOptionsSourceApplicationKey: UI.ApplicationOpenURLOptionsSourceApplicationKey
     ::UIApplicationOpenURLOptionsAnnotationKey: UI.ApplicationOpenURLOptionsAnnotationKey
@@ -2044,6 +2072,7 @@ ExternTypes:
     ::NSTextHighlightStyleAttributeName: ^NS.String
     ::NSTextHighlightColorSchemeAttributeName: ^NS.String
     ::NSAdaptiveImageGlyphAttributeName: ^NS.String
+    ::NSWritingToolsExclusionAttributeName: ^NS.String
     ::NSTextEffectLetterpressStyle: ^NS.String
     ::NSTextHighlightStyleDefault: ^NS.String
     ::NSTextHighlightColorSchemeDefault: ^NS.String
@@ -2097,6 +2126,7 @@ ExternTypes:
     ::UIMenuHide: ^NS.String
     ::UIMenuQuit: ^NS.String
     ::UIMenuNewScene: ^NS.String
+    ::UIMenuOpen: ^NS.String
     ::UIMenuOpenRecent: ^NS.String
     ::UIMenuClose: ^NS.String
     ::UIMenuPrint: ^NS.String
@@ -2253,6 +2283,9 @@ ExternTypes:
     ::UIMinimumKeepAliveTimeout: NS.TimeInterval
     ::UIApplicationBackgroundFetchIntervalMinimum: NS.TimeInterval
     ::UIApplicationBackgroundFetchIntervalNever: NS.TimeInterval
+    ::UIApplicationCategoryDefaultErrorDomain: ^NS.String
+    ::UIApplicationCategoryDefaultStatusLastProvidedDateErrorKey: ^NS.String
+    ::UIApplicationCategoryDefaultRetryAvailabilityDateErrorKey: ^NS.String
     ::UITrackingRunLoopMode: ^NS.String
     ::UIApplicationDidEnterBackgroundNotification: ^NS.String
     ::UIApplicationWillEnterForegroundNotification: ^NS.String
@@ -2286,6 +2319,7 @@ ExternTypes:
     ::UIApplicationLaunchOptionsUserActivityTypeKey: ^NS.String
     ::UIApplicationLaunchOptionsCloudKitShareMetadataKey: ^NS.String
     ::UIApplicationOpenSettingsURLString: ^NS.String
+    ::UIApplicationOpenDefaultApplicationsSettingsURLString: ^NS.String
     ::UIApplicationOpenNotificationSettingsURLString: ^NS.String
     ::UIApplicationOpenURLOptionsSourceApplicationKey: ^NS.String
     ::UIApplicationOpenURLOptionsAnnotationKey: ^NS.String

@@ -158,6 +158,9 @@ foreign lib {
     @(objc_type=TextInput, objc_selector="didDismissWritingTools", objc_name="didDismissWritingTools")
     TextInput_didDismissWritingTools :: proc(self: ^TextInput) ---
 
+    @(objc_type=TextInput, objc_selector="insertInputSuggestion:", objc_name="insertInputSuggestion")
+    TextInput_insertInputSuggestion :: proc(self: ^TextInput, inputSuggestion: ^InputSuggestion) ---
+
     @(objc_type=TextInput, objc_selector="selectedTextRange", objc_name="selectedTextRange")
     TextInput_selectedTextRange :: proc(self: ^TextInput) -> ^TextRange ---
 

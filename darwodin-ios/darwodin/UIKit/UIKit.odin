@@ -201,6 +201,7 @@ foreign lib {
     @(link_name="NSTextHighlightStyleAttributeName") NSTextHighlightStyleAttributeName: ^NS.String
     @(link_name="NSTextHighlightColorSchemeAttributeName") NSTextHighlightColorSchemeAttributeName: ^NS.String
     @(link_name="NSAdaptiveImageGlyphAttributeName") NSAdaptiveImageGlyphAttributeName: ^NS.String
+    @(link_name="NSWritingToolsExclusionAttributeName") NSWritingToolsExclusionAttributeName: ^NS.String
     @(link_name="NSTextEffectLetterpressStyle") NSTextEffectLetterpressStyle: ^NS.String
     @(link_name="NSTextHighlightStyleDefault") NSTextHighlightStyleDefault: ^NS.String
     @(link_name="NSTextHighlightColorSchemeDefault") NSTextHighlightColorSchemeDefault: ^NS.String
@@ -254,6 +255,7 @@ foreign lib {
     @(link_name="UIMenuHide") MenuHide: ^NS.String
     @(link_name="UIMenuQuit") MenuQuit: ^NS.String
     @(link_name="UIMenuNewScene") MenuNewScene: ^NS.String
+    @(link_name="UIMenuOpen") MenuOpen: ^NS.String
     @(link_name="UIMenuOpenRecent") MenuOpenRecent: ^NS.String
     @(link_name="UIMenuClose") MenuClose: ^NS.String
     @(link_name="UIMenuPrint") MenuPrint: ^NS.String
@@ -410,6 +412,9 @@ foreign lib {
     @(link_name="UIMinimumKeepAliveTimeout") MinimumKeepAliveTimeout: NS.TimeInterval
     @(link_name="UIApplicationBackgroundFetchIntervalMinimum") ApplicationBackgroundFetchIntervalMinimum: NS.TimeInterval
     @(link_name="UIApplicationBackgroundFetchIntervalNever") ApplicationBackgroundFetchIntervalNever: NS.TimeInterval
+    @(link_name="UIApplicationCategoryDefaultErrorDomain") ApplicationCategoryDefaultErrorDomain: ^NS.String
+    @(link_name="UIApplicationCategoryDefaultStatusLastProvidedDateErrorKey") ApplicationCategoryDefaultStatusLastProvidedDateErrorKey: ^NS.String
+    @(link_name="UIApplicationCategoryDefaultRetryAvailabilityDateErrorKey") ApplicationCategoryDefaultRetryAvailabilityDateErrorKey: ^NS.String
     @(link_name="UITrackingRunLoopMode") TrackingRunLoopMode: ^NS.String
     @(link_name="UIApplicationDidEnterBackgroundNotification") ApplicationDidEnterBackgroundNotification: ^NS.String
     @(link_name="UIApplicationWillEnterForegroundNotification") ApplicationWillEnterForegroundNotification: ^NS.String
@@ -443,6 +448,7 @@ foreign lib {
     @(link_name="UIApplicationLaunchOptionsUserActivityTypeKey") ApplicationLaunchOptionsUserActivityTypeKey: ^NS.String
     @(link_name="UIApplicationLaunchOptionsCloudKitShareMetadataKey") ApplicationLaunchOptionsCloudKitShareMetadataKey: ^NS.String
     @(link_name="UIApplicationOpenSettingsURLString") ApplicationOpenSettingsURLString: ^NS.String
+    @(link_name="UIApplicationOpenDefaultApplicationsSettingsURLString") ApplicationOpenDefaultApplicationsSettingsURLString: ^NS.String
     @(link_name="UIApplicationOpenNotificationSettingsURLString") ApplicationOpenNotificationSettingsURLString: ^NS.String
     @(link_name="UIApplicationOpenURLOptionsSourceApplicationKey") ApplicationOpenURLOptionsSourceApplicationKey: ^NS.String
     @(link_name="UIApplicationOpenURLOptionsAnnotationKey") ApplicationOpenURLOptionsAnnotationKey: ^NS.String
@@ -957,6 +963,9 @@ foreign lib {
 
     @(link_name="UIFloatRangeIsInfinite")
     FloatRangeIsInfinite :: proc(range: FloatRange) -> bool ---
+
+    @(link_name="UIWritingToolsCoordinatorTextAnimationDebugDescription")
+    WritingToolsCoordinatorTextAnimationDebugDescription :: proc(animationType: WritingToolsCoordinatorTextAnimation) -> ^NS.String ---
 
 }
 
@@ -2463,6 +2472,23 @@ ApplicationState :: enum cffi.long {
     Background = 2,
 }
 
+/// UIApplicationCategory
+ApplicationCategory :: enum cffi.long {
+    WebBrowser = 1,
+}
+
+/// UIApplicationCategoryDefaultStatus
+ApplicationCategoryDefaultStatus :: enum cffi.long {
+    Unavailable = 0,
+    IsDefault   = 1,
+    NotDefault  = 2,
+}
+
+/// UIApplicationCategoryDefaultErrorCode
+ApplicationCategoryDefaultErrorCode :: enum cffi.long {
+    RateLimited = 1,
+}
+
 /// UIModalTransitionStyle
 ModalTransitionStyle :: enum cffi.long {
     CoverVertical  = 0,
@@ -2686,6 +2712,7 @@ BarButtonSystemItem :: enum cffi.long {
     Redo          = 22,
     PageCurl      = 23,
     Close         = 24,
+    WritingTools  = 25,
 }
 
 /// UICollectionViewScrollPosition
@@ -3661,15 +3688,17 @@ PressPhase :: enum cffi.long {
 
 /// UIPressType
 PressType :: enum cffi.long {
-    UpArrow    = 0,
-    DownArrow  = 1,
-    LeftArrow  = 2,
-    RightArrow = 3,
-    Select     = 4,
-    Menu       = 5,
-    PlayPause  = 6,
-    PageUp     = 30,
-    PageDown   = 31,
+    UpArrow             = 0,
+    DownArrow           = 1,
+    LeftArrow           = 2,
+    RightArrow          = 3,
+    Select              = 4,
+    Menu                = 5,
+    PlayPause           = 6,
+    PageUp              = 30,
+    PageDown            = 31,
+    TVRemoteOneTwoThree = 32,
+    TVRemoteFourColors  = 33,
 }
 
 /// UIProgressViewStyle
@@ -4125,6 +4154,57 @@ TextFormattingViewControllerComponentSize :: enum cffi.long {
     Regular    = 3,
     Large      = 4,
     ExtraLarge = 5,
+}
+
+/// UIWritingToolsCoordinatorTextUpdateReason
+WritingToolsCoordinatorTextUpdateReason :: enum cffi.long {
+    Typing   = 0,
+    UndoRedo = 1,
+}
+
+/// UIWritingToolsCoordinatorState
+WritingToolsCoordinatorState :: enum cffi.long {
+    Inactive             = 0,
+    Noninteractive       = 1,
+    InteractiveResting   = 2,
+    InteractiveStreaming = 3,
+}
+
+/// UIWritingToolsCoordinatorTextReplacementReason
+WritingToolsCoordinatorTextReplacementReason :: enum cffi.long {
+    Interactive    = 0,
+    Noninteractive = 1,
+}
+
+/// UIWritingToolsCoordinatorContextScope
+WritingToolsCoordinatorContextScope :: enum cffi.long {
+    UserSelection = 0,
+    FullDocument  = 1,
+    VisibleArea   = 2,
+}
+
+/// UIWritingToolsCoordinatorTextAnimation
+WritingToolsCoordinatorTextAnimation :: enum cffi.long {
+    Anticipate = 0,
+    Remove     = 1,
+    Insert     = 2,
+}
+
+/// UIMailConversationEntryKind
+MailConversationEntryKind :: enum cffi.long {
+    None        = 0,
+    Personal    = 1,
+    Promotion   = 2,
+    Social      = 3,
+    Transaction = 4,
+    News        = 5,
+}
+
+/// UIMessageConversationEntryDataKind
+MessageConversationEntryDataKind :: enum cffi.long {
+    Text       = 0,
+    Attachment = 1,
+    Other      = 2,
 }
 
 /// NSTextListOptions

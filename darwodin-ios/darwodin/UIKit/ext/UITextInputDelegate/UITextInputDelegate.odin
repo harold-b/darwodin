@@ -29,6 +29,7 @@ VTable :: struct {
     selectionDidChange: proc(self: ^UI.TextInputDelegate, textInput: ^UI.TextInput),
     textWillChange: proc(self: ^UI.TextInputDelegate, textInput: ^UI.TextInput),
     textDidChange: proc(self: ^UI.TextInputDelegate, textInput: ^UI.TextInput),
+    conversationContext: proc(self: ^UI.TextInputDelegate, _context: ^UI.ConversationContext, textInput: ^UI.TextInput),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -74,6 +75,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidChange:"), auto_cast textDidChange, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.conversationContext != nil {
+        conversationContext :: proc "c" (self: ^UI.TextInputDelegate, _: SEL, _context: ^UI.ConversationContext, textInput: ^UI.TextInput) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).conversationContext(self, _context, textInput)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("conversationContext:didChange:"), auto_cast conversationContext, "v@:@@") do panic("Failed to register objC method.")
     }
 }
 

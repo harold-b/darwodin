@@ -34,4 +34,7 @@ foreign lib {
 
     @(objc_type=TextInputDelegate, objc_selector="textDidChange:", objc_name="textDidChange")
     TextInputDelegate_textDidChange :: proc(self: ^TextInputDelegate, textInput: ^TextInput) ---
+
+    @(objc_type=TextInputDelegate, objc_selector="conversationContext:didChange:", objc_name="conversationContext")
+    TextInputDelegate_conversationContext :: proc(self: ^TextInputDelegate, _context: ^ConversationContext, textInput: ^TextInput) ---
 }

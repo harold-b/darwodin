@@ -50,6 +50,7 @@ VTable :: struct {
     textView_didBeginFormattingWithViewController: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, viewController: ^UI.TextFormattingViewController),
     textView_willEndFormattingWithViewController: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, viewController: ^UI.TextFormattingViewController),
     textView_didEndFormattingWithViewController: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, viewController: ^UI.TextFormattingViewController),
+    textView_insertInputSuggestion: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, inputSuggestion: ^UI.InputSuggestion),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -305,6 +306,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textView:didEndFormattingWithViewController:"), auto_cast textView_didEndFormattingWithViewController, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.textView_insertInputSuggestion != nil {
+        textView_insertInputSuggestion :: proc "c" (self: ^UI.TextViewDelegate, _: SEL, textView: ^UI.TextView, inputSuggestion: ^UI.InputSuggestion) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).textView_insertInputSuggestion(self, textView, inputSuggestion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:insertInputSuggestion:"), auto_cast textView_insertInputSuggestion, "v@:@@") do panic("Failed to register objC method.")
     }
 }
 

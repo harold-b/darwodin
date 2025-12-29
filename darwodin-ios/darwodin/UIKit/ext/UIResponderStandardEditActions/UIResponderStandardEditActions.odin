@@ -52,6 +52,7 @@ VTable :: struct {
     duplicate: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     move: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     export: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    showWritingTools: proc(self: ^UI.ResponderStandardEditActions, sender: id),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -327,6 +328,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("export:"), auto_cast export, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.showWritingTools != nil {
+        showWritingTools :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).showWritingTools(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showWritingTools:"), auto_cast showWritingTools, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

@@ -2724,6 +2724,9 @@ foreign lib {
     @(link_name="CFBundleCopyLocalizedString")
     BundleCopyLocalizedString :: proc(bundle: BundleRef, key: StringRef, value: StringRef, tableName: StringRef) -> StringRef ---
 
+    @(link_name="CFBundleCopyLocalizedStringForLocalizations")
+    BundleCopyLocalizedStringForLocalizations :: proc(bundle: BundleRef, key: StringRef, value: StringRef, tableName: StringRef, localizations: ArrayRef) -> StringRef ---
+
     @(link_name="CFBundleCopyResourceURLInDirectory")
     BundleCopyResourceURLInDirectory :: proc(bundleURL: URLRef, resourceName: StringRef, resourceType: StringRef, subDirName: StringRef) -> URLRef ---
 

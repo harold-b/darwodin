@@ -93,6 +93,9 @@ foreign lib {
     @(objc_type=LocalPlayer, objc_selector="presentFriendRequestCreatorFromViewController:error:", objc_name="presentFriendRequestCreatorFromViewController")
     LocalPlayer_presentFriendRequestCreatorFromViewController :: proc(self: ^LocalPlayer, viewController: ^UI.ViewController, error: ^^NS.Error) -> bool ---
 
+    @(objc_type=LocalPlayer, objc_selector="presentFriendRequestCreatorFromWindow:error:", objc_name="presentFriendRequestCreatorFromWindow")
+    LocalPlayer_presentFriendRequestCreatorFromWindow :: proc(self: ^LocalPlayer, window: ^UI.Window, error: ^^NS.Error) -> bool ---
+
     @(objc_type=LocalPlayer, objc_selector="authenticateHandler", objc_name="authenticateHandler")
     LocalPlayer_authenticateHandler :: proc(self: ^LocalPlayer) -> ^Objc_Block(proc "c" ()) ---
 

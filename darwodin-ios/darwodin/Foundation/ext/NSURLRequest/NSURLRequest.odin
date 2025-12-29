@@ -43,6 +43,7 @@ VTable :: struct {
     attribution: proc(self: ^NS.URLRequest) -> NS.URLRequestAttribution,
     requiresDNSSECValidation: proc(self: ^NS.URLRequest) -> bool,
     allowsPersistentDNS: proc(self: ^NS.URLRequest) -> bool,
+    cookiePartitionIdentifier: proc(self: ^NS.URLRequest) -> ^NS.String,
     valueForHTTPHeaderField: proc(self: ^NS.URLRequest, field: ^NS.String) -> ^NS.String,
     _HTTPMethod: proc(self: ^NS.URLRequest) -> ^NS.String,
     allHTTPHeaderFields: proc(self: ^NS.URLRequest) -> ^NS.Dictionary,
@@ -228,6 +229,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsPersistentDNS"), auto_cast allowsPersistentDNS, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.cookiePartitionIdentifier != nil {
+        cookiePartitionIdentifier :: proc "c" (self: ^NS.URLRequest, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).cookiePartitionIdentifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cookiePartitionIdentifier"), auto_cast cookiePartitionIdentifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.valueForHTTPHeaderField != nil {
         valueForHTTPHeaderField :: proc "c" (self: ^NS.URLRequest, _: SEL, field: ^NS.String) -> ^NS.String {
