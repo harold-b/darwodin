@@ -1,0 +1,116 @@
+
+Includes = [ './base.toml' ]
+Defs     = '../definitions/macos/coremedia.json'
+
+[Cpp]
+Emit                      = false
+ExportInternals           = true
+DontWrapCFunctions        = true
+ExportForwardDeclarations = true
+
+ExportTypes = [
+  '^_?CM.+',
+  '^OpaqueCM.+',
+  '^opaqueCM.+',
+  '^ColorSync.+',
+]
+
+ExportMethods = [
+  '^::CM.+',
+]
+
+ExportVars = [
+  '^::k?CM.+',
+]
+
+
+[Odin]
+ExternalTypes = [
+  '../exports/global.exports.yml',
+  '../mach/exports/mach.exports.yml',
+  '../exports/CoreFoundation.exports.yml',
+  '../exports/CoreAudio.exports.yml',
+  '../exports/CoreGraphics.exports.yml',
+  '../exports/Security.exports.yml',
+]
+
+ResolvedTypedefs = [
+  '[su]?int.*',
+  # - ^boolean_t$
+  '^CGFloat',
+  '^Fixed$',
+  '^Float32$',
+  '^Float64$',
+  '^Byte$',
+]
+
+NoDistinctTypedefs = true
+DistinctTypeDefs = [
+  # '^IOCacheMode$',
+  # '^DeviceNumber$',
+]
+
+[[Odin.Packages]]
+Name           = 'CoreMedia'
+Export         = 'CM'
+DarwinLinkLibs = ['system:CoreMedia.framework']
+Filter         = '.*'
+
+Imports = ["""
+NCMDeviceProfileInfo :: struct {}
+CVImageBufferRef     :: struct {}
+CVPixelBufferPoolRef :: struct {}
+CVPixelBufferRef     :: struct {}
+"""]
+
+MacroFilter = [
+  { 'Match' = '^CM.+' }
+]
+
+# Create enums based on a set of macro definitions.
+# This will also make them available for export, if not 
+# exported by the MacroFilter already
+# [Odin.Packages.MacroEnums]
+# host_flavor_t = { File = 'host_info.h',  Type = 'host_flavor_t_int', Match = 'HOST_.+$' }
+
+[Odin.Packages.TypeMap]
+CFStringEncoding = 'CF.StringEncoding'
+
+
+# Symbol Transformers
+[[Odin.EnumTransforms]]
+Type       = '.*'
+Transforms = [
+  { Kind = 'RemoveTypeWordsFromElements' },
+  { Kind = 'RemovePartialTypeNamePrefix' },
+  { Kind = 'RemoveUnderscorePrefix' },
+  { Kind = 'UnderscoreNumbers' },
+]
+
+[[Odin.TypeTransforms]]
+Type       = '^(CM).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.TypeTransforms]]
+Type       = '^[0-9].+'
+Transforms = [{ Kind = 'AppendPrefix', Source = '_' }]
+
+[[Odin.TypeTransforms]]
+Type       = '(Flag|Option|Mask)$'  # Transforms for bit_set types
+Transforms = [{Kind = 'AppendSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = '(Mask|Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
+Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.ProcTransforms]]
+Type       = '^(_*CM).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_?kCM).+'
+Transforms = [{ Kind = 'ReplacePrefix', Source = '$group0', Target = 'k' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_*CM).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]

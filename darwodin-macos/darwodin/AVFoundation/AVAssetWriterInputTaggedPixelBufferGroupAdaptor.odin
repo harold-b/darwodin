@@ -1,0 +1,48 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVAssetWriterInputTaggedPixelBufferGroupAdaptor
+///
+@(objc_class="AVAssetWriterInputTaggedPixelBufferGroupAdaptor", objc_superclass=NS.Object)
+AssetWriterInputTaggedPixelBufferGroupAdaptor :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="init", objc_name="init")
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_init :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> ^AssetWriterInputTaggedPixelBufferGroupAdaptor ---
+
+    @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_new :: proc() -> ^AssetWriterInputTaggedPixelBufferGroupAdaptor ---
+
+    @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:", objc_name="assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput", objc_is_class_method=true)
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput :: proc(input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> ^AssetWriterInputTaggedPixelBufferGroupAdaptor ---
+
+    @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="initWithAssetWriterInput:sourcePixelBufferAttributes:", objc_name="initWithAssetWriterInput")
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor, input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> ^AssetWriterInputTaggedPixelBufferGroupAdaptor ---
+
+    @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="appendTaggedPixelBufferGroup:withPresentationTime:", objc_name="appendTaggedPixelBufferGroup")
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_appendTaggedPixelBufferGroup :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor, taggedPixelBufferGroup: CM.TaggedBufferGroupRef, presentationTime: CM.Time) -> bool ---
+
+    @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="assetWriterInput", objc_name="assetWriterInput")
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_assetWriterInput :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> ^AssetWriterInput ---
+
+    @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="sourcePixelBufferAttributes", objc_name="sourcePixelBufferAttributes")
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_sourcePixelBufferAttributes :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> ^NS.Dictionary ---
+
+    @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="pixelBufferPool", objc_name="pixelBufferPool")
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_pixelBufferPool :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> CVPixelBufferPoolRef ---
+}

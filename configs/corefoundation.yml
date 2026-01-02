@@ -125,10 +125,12 @@ Odin:
   ExternalPackageMap:
     darwin_libc: '../libc'
 
+  NoDistinctTypedefs: true
+  # DistinctTypeDefs:  
+  #   - 
 
-  # LinkLibraryNameDarwin: system:Cocoa.framework
-  NonDistinctTypeDefs:
-    - ^.+Ref$
+  # NonDistinctTypeDefs:
+  #   - ^.+Ref$
 
   ResolvedTypedefs:
     # - ^boolean_t$

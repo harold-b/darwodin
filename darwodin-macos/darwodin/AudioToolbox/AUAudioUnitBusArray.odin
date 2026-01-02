@@ -1,0 +1,67 @@
+package darwodin_AudioToolbox
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CA "../CoreAudio"
+import CM "../CoreMedia"
+import NS "../Foundation"
+
+
+
+///
+/// AUAudioUnitBusArray
+///
+@(objc_class="AUAudioUnitBusArray", objc_superclass=NS.Object)
+AUAudioUnitBusArray :: struct { using _: NS.Object, 
+    using _: NS.FastEnumeration,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AUAudioUnitBusArray, objc_selector="init", objc_name="init")
+    AUAudioUnitBusArray_init :: proc(self: ^AUAudioUnitBusArray) -> ^AUAudioUnitBusArray ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="initWithAudioUnit:busType:busses:", objc_name="initWithAudioUnit_busType_busses")
+    AUAudioUnitBusArray_initWithAudioUnit_busType_busses :: proc(self: ^AUAudioUnitBusArray, owner: ^AUAudioUnit, busType: AUAudioUnitBusType, busArray: ^NS.Array) -> ^AUAudioUnitBusArray ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="initWithAudioUnit:busType:", objc_name="initWithAudioUnit_busType")
+    AUAudioUnitBusArray_initWithAudioUnit_busType :: proc(self: ^AUAudioUnitBusArray, owner: ^AUAudioUnit, busType: AUAudioUnitBusType) -> ^AUAudioUnitBusArray ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
+    AUAudioUnitBusArray_objectAtIndexedSubscript :: proc(self: ^AUAudioUnitBusArray, index: NS.UInteger) -> ^AUAudioUnitBus ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="setBusCount:error:", objc_name="setBusCount")
+    AUAudioUnitBusArray_setBusCount :: proc(self: ^AUAudioUnitBusArray, count: NS.UInteger, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="addObserverToAllBusses:forKeyPath:options:context:", objc_name="addObserverToAllBusses")
+    AUAudioUnitBusArray_addObserverToAllBusses :: proc(self: ^AUAudioUnitBusArray, observer: ^NS.Object, keyPath: ^NS.String, options: NS.KeyValueObservingOptions, _context: rawptr) ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="removeObserverFromAllBusses:forKeyPath:context:", objc_name="removeObserverFromAllBusses")
+    AUAudioUnitBusArray_removeObserverFromAllBusses :: proc(self: ^AUAudioUnitBusArray, observer: ^NS.Object, keyPath: ^NS.String, _context: rawptr) ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="count", objc_name="count")
+    AUAudioUnitBusArray_count :: proc(self: ^AUAudioUnitBusArray) -> NS.UInteger ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="isCountChangeable", objc_name="isCountChangeable")
+    AUAudioUnitBusArray_isCountChangeable :: proc(self: ^AUAudioUnitBusArray) -> bool ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="ownerAudioUnit", objc_name="ownerAudioUnit")
+    AUAudioUnitBusArray_ownerAudioUnit :: proc(self: ^AUAudioUnitBusArray) -> ^AUAudioUnit ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="busType", objc_name="busType")
+    AUAudioUnitBusArray_busType :: proc(self: ^AUAudioUnitBusArray) -> AUAudioUnitBusType ---
+
+    @(objc_type=AUAudioUnitBusArray, objc_selector="replaceBusses:", objc_name="replaceBusses")
+    AUAudioUnitBusArray_replaceBusses :: proc(self: ^AUAudioUnitBusArray, busArray: ^NS.Array) ---
+}
+
+@(objc_type=AUAudioUnitBusArray, objc_name="initWithAudioUnit")
+AUAudioUnitBusArray_initWithAudioUnit :: proc {
+    AUAudioUnitBusArray_initWithAudioUnit_busType_busses,
+    AUAudioUnitBusArray_initWithAudioUnit_busType,
+}
+

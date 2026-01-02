@@ -1,0 +1,135 @@
+
+Includes = [ './base.toml' ]
+Defs     = '../definitions/macos/avfoundation.json'
+
+[Cpp]
+Emit                      = false
+ExportInternals           = true
+DontWrapCFunctions        = true
+ExportForwardDeclarations = true
+
+ExportTypes = [
+  '^_?AV.+',
+
+  # These belong to CoreVideo, but we're adding it for now in order to avoid including CV entirely
+  '^CVTimeStamp$',
+  '^CVSMPTETime$',
+]
+
+ExportMethods = [
+  '^::AV.+',
+]
+
+ExportVars = [
+  '^::k?AV.+',
+]
+
+IgnoreTypes = [
+  # These are ignored for the time being due to their dependence on ImageIO framework
+  '^AVMetadataMachineReadableCodeObject$',
+  '^AVPortraitEffectsMatte$',
+  '^AVSemanticSegmentationMatte$',
+  '^AVDepthData$',
+]
+
+[Odin]
+ExternalTypes = [
+  '../exports/global.exports.yml',
+  '../mach/exports/mach.exports.yml',
+  '../exports/CoreFoundation.exports.yml',
+  '../exports/CoreGraphics.exports.yml',
+  '../exports/CoreMedia.exports.yml',
+  '../exports/Foundation.exports.yml',
+  '../exports/QuartzCore.exports.yml',
+  '../exports/AudioToolbox.exports.yml',
+]
+
+ResolvedTypedefs = [
+  '[su]?int.*',
+  # - ^boolean_t$
+  '^CGFloat',
+  '^Float32$',
+  '^Float64$',
+]
+
+NoDistinctTypedefs = true
+DistinctTypeDefs = [
+  '^IOCacheMode$',
+  '^DeviceNumber$',
+]
+
+[[Odin.Packages]]
+Name           = 'AVFoundation'
+Export         = 'AV'
+DarwinLinkLibs = ['system:AVFoundation.framework']
+Filter         = '.*'
+
+Imports = ["""
+// Avoiding binding CoreImage & CoreVideo for now, opaque references for the moment
+CVImageBufferRef     :: struct {}
+CVPixelBufferPoolRef :: struct {}
+CVPixelBufferRef     :: struct {}
+CIContext            :: struct {}
+CIImage              :: struct {}
+UTType               :: struct {}
+
+MTAudioProcessingTapRef :: struct {} // From MediaToolbox
+
+// NOTE: These have been ignored for the time being due to its dependence on the ImageIO framework
+DepthData                  :: ^NS.Object
+PortraitEffectsMatte       :: ^NS.Object
+SemanticSegmentationMatte  :: ^NS.Object
+"""]
+
+MacroFilter = [
+  { 'Match' = '^AV.+' }
+]
+
+# Create enums based on a set of macro definitions.
+# This will also make them available for export, if not 
+# exported by the MacroFilter already
+# [Odin.Packages.MacroEnums]
+# host_flavor_t = { File = 'host_info.h',  Type = 'host_flavor_t_int', Match = 'HOST_.+$' }
+
+
+[Odin.Packages.TypeMap]
+# TODO: We must ensure the alignment of these match. Check for alignment info in modelio.yml
+matrix_float3x3 = 'matrix[3, 3]f32'
+
+# /*! @abstract A matrix with 3 rows and 4 columns.                             */
+# typedef struct { simd_float3 columns[4]; } simd_float4x3;
+matrix_float4x3 = 'matrix[3, 4]f32'
+
+# Symbol Transformers
+[[Odin.EnumTransforms]]
+Type       = '.*'
+Transforms = [
+  { Kind = 'RemoveTypeWordsFromElements' },
+  { Kind = 'RemovePartialTypeNamePrefix' },
+  { Kind = 'RemoveUnderscorePrefix' },
+  { Kind = 'UnderscoreNumbers' },
+]
+
+[[Odin.TypeTransforms]]
+Type       = '^(AV).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.TypeTransforms]]
+Type       = '(Flag|Option|Mask)$'  # Transforms for bit_set types
+Transforms = [{Kind = 'AppendSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = '(Mask|Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
+Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.ProcTransforms]]
+Type       = '^(_*AV).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+# [[Odin.VarTransforms]]
+# Type       = '^(_?AV).+'
+# Transforms = [{ Kind = 'ReplacePrefix', Source = '$group0', Target = 'k' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_*AV).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]

@@ -1,0 +1,41 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVPlayerItemAccessLog
+///
+@(objc_class="AVPlayerItemAccessLog", objc_superclass=NS.Object)
+PlayerItemAccessLog :: struct { using _: NS.Object, 
+    using _: NS.Copying,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PlayerItemAccessLog, objc_selector="init", objc_name="init")
+    PlayerItemAccessLog_init :: proc(self: ^PlayerItemAccessLog) -> ^PlayerItemAccessLog ---
+
+    @(objc_type=PlayerItemAccessLog, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    PlayerItemAccessLog_new :: proc() -> ^PlayerItemAccessLog ---
+
+    @(objc_type=PlayerItemAccessLog, objc_selector="extendedLogData", objc_name="extendedLogData")
+    PlayerItemAccessLog_extendedLogData :: proc(self: ^PlayerItemAccessLog) -> ^NS.Data ---
+
+    @(objc_type=PlayerItemAccessLog, objc_selector="extendedLogDataStringEncoding", objc_name="extendedLogDataStringEncoding")
+    PlayerItemAccessLog_extendedLogDataStringEncoding :: proc(self: ^PlayerItemAccessLog) -> NS.StringEncoding ---
+
+    @(objc_type=PlayerItemAccessLog, objc_selector="events", objc_name="events")
+    PlayerItemAccessLog_events :: proc(self: ^PlayerItemAccessLog) -> ^NS.Array ---
+}

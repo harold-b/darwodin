@@ -1,0 +1,47 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVFragmentedMovie
+///
+@(objc_class="AVFragmentedMovie", objc_superclass=Movie)
+FragmentedMovie :: struct { using _: Movie, 
+    using _: FragmentMinding,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=FragmentedMovie, objc_selector="tracks", objc_name="tracks")
+    FragmentedMovie_tracks :: proc(self: ^FragmentedMovie) -> ^NS.Array ---
+
+    @(objc_type=FragmentedMovie, objc_selector="trackWithTrackID:", objc_name="trackWithTrackID")
+    FragmentedMovie_trackWithTrackID :: proc(self: ^FragmentedMovie, trackID: CM.PersistentTrackID) -> ^FragmentedMovieTrack ---
+
+    @(objc_type=FragmentedMovie, objc_selector="loadTrackWithTrackID:completionHandler:", objc_name="loadTrackWithTrackID")
+    FragmentedMovie_loadTrackWithTrackID :: proc(self: ^FragmentedMovie, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" (_: ^FragmentedMovieTrack, _1: ^NS.Error))) ---
+
+    @(objc_type=FragmentedMovie, objc_selector="tracksWithMediaType:", objc_name="tracksWithMediaType")
+    FragmentedMovie_tracksWithMediaType :: proc(self: ^FragmentedMovie, mediaType: ^NS.String) -> ^NS.Array ---
+
+    @(objc_type=FragmentedMovie, objc_selector="loadTracksWithMediaType:completionHandler:", objc_name="loadTracksWithMediaType")
+    FragmentedMovie_loadTracksWithMediaType :: proc(self: ^FragmentedMovie, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+
+    @(objc_type=FragmentedMovie, objc_selector="tracksWithMediaCharacteristic:", objc_name="tracksWithMediaCharacteristic")
+    FragmentedMovie_tracksWithMediaCharacteristic :: proc(self: ^FragmentedMovie, mediaCharacteristic: ^NS.String) -> ^NS.Array ---
+
+    @(objc_type=FragmentedMovie, objc_selector="loadTracksWithMediaCharacteristic:completionHandler:", objc_name="loadTracksWithMediaCharacteristic")
+    FragmentedMovie_loadTracksWithMediaCharacteristic :: proc(self: ^FragmentedMovie, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+}

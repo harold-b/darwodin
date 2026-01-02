@@ -6,6 +6,8 @@ darwodin_base_frameworks=(
   CoreFoundation
   CoreGraphics
   CoreText
+  CoreAudio
+  CoreMedia
   IOKit
   DiskArbitration
   Security
@@ -23,6 +25,8 @@ darwodin_base_frameworks=(
   CloudKit
   GameKit
   CoreHaptics
+  AudioToolbox
+  AVFoundation
 )
 
 darwodin_macos_frameworks=(

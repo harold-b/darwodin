@@ -1,0 +1,60 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVMutableCaptionRegion
+///
+@(objc_class="AVMutableCaptionRegion", objc_superclass=CaptionRegion)
+MutableCaptionRegion :: struct { using _: CaptionRegion, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MutableCaptionRegion, objc_selector="init", objc_name="init")
+    MutableCaptionRegion_init :: proc(self: ^MutableCaptionRegion) -> ^MutableCaptionRegion ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier")
+    MutableCaptionRegion_initWithIdentifier :: proc(self: ^MutableCaptionRegion, identifier: ^NS.String) -> ^MutableCaptionRegion ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="origin", objc_name="origin")
+    MutableCaptionRegion_origin :: proc(self: ^MutableCaptionRegion) -> CaptionPoint ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="setOrigin:", objc_name="setOrigin")
+    MutableCaptionRegion_setOrigin :: proc(self: ^MutableCaptionRegion, origin: CaptionPoint) ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="size", objc_name="size")
+    MutableCaptionRegion_size :: proc(self: ^MutableCaptionRegion) -> CaptionSize ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="setSize:", objc_name="setSize")
+    MutableCaptionRegion_setSize :: proc(self: ^MutableCaptionRegion, size: CaptionSize) ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="scroll", objc_name="scroll")
+    MutableCaptionRegion_scroll :: proc(self: ^MutableCaptionRegion) -> CaptionRegionScroll ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="setScroll:", objc_name="setScroll")
+    MutableCaptionRegion_setScroll :: proc(self: ^MutableCaptionRegion, scroll: CaptionRegionScroll) ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="displayAlignment", objc_name="displayAlignment")
+    MutableCaptionRegion_displayAlignment :: proc(self: ^MutableCaptionRegion) -> CaptionRegionDisplayAlignment ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="setDisplayAlignment:", objc_name="setDisplayAlignment")
+    MutableCaptionRegion_setDisplayAlignment :: proc(self: ^MutableCaptionRegion, displayAlignment: CaptionRegionDisplayAlignment) ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="writingMode", objc_name="writingMode")
+    MutableCaptionRegion_writingMode :: proc(self: ^MutableCaptionRegion) -> CaptionRegionWritingMode ---
+
+    @(objc_type=MutableCaptionRegion, objc_selector="setWritingMode:", objc_name="setWritingMode")
+    MutableCaptionRegion_setWritingMode :: proc(self: ^MutableCaptionRegion, writingMode: CaptionRegionWritingMode) ---
+}

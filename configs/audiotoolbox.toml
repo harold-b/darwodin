@@ -1,0 +1,123 @@
+
+Includes = [ './base.toml' ]
+Defs     = '../definitions/macos/audiotoolbox.json'
+
+[Cpp]
+Emit                      = false
+ExportInternals           = true
+DontWrapCFunctions        = true
+ExportForwardDeclarations = true
+
+ExportTypes = [
+  '^Audio.+',
+  '^AU.+',
+  '^OpaqueAudio.+',
+  '^OpaqueAU.+',
+  '^ComponentInstanceRecord$',
+  '^MIDI.+',
+  '^SMPT.+$',
+  '^TimeStamp$',
+  '.+FDF$',
+  '^CallHostBlock$',
+  '^SystemSoundID$',
+  '^(Opaque)?MusicSequence$',
+]
+
+IgnoreTypes = [
+  '^AUDistanceAttenuationData',
+]
+
+ExportMethods = [
+  '^::Audio.+',
+  '^::AU.+',
+]
+
+ExportVars = [
+  '^::k?Audio.+',
+  '^::k?AU.+',
+]
+
+
+[Odin]
+ExternalTypes = [
+  '../exports/global.exports.yml',
+  '../mach/exports/mach.exports.yml',
+  '../exports/CoreFoundation.exports.yml',
+  '../exports/CoreAudio.exports.yml',
+  '../exports/CoreMedia.exports.yml',
+  '../exports/Foundation.exports.yml',
+]
+
+ReExportPackages = [ 'CoreAudio' ]
+
+ResolvedTypedefs = [
+  '[su]?int.*',
+  '^Float32$',
+  '^Float64$',
+  '^Byte$',
+]
+
+NoDistinctTypedefs = true
+DistinctTypeDefs = [
+]
+
+[[Odin.Packages]]
+Name           = 'AudioToolbox'
+Export         = 'Audio'
+DarwinLinkLibs = ['system:AudioToolbox.framework']
+Filter         = '.*'
+
+Imports = ["""
+AVAudioFormat     :: struct {}
+OpaqueAudioFileID :: struct {}
+FSRef             :: struct {}
+"""]
+
+MacroFilter = [
+  { 'Match' = '^(Audio|AU).+' }
+]
+
+# Create enums based on a set of macro definitions.
+# This will also make them available for export, if not 
+# exported by the MacroFilter already
+# [Odin.Packages.MacroEnums]
+# host_flavor_t = { File = 'host_info.h',  Type = 'host_flavor_t_int', Match = 'HOST_.+$' }
+
+
+# [Odin.Packages.TypeMap]
+# kern_return_t = 'mach.kern_return_t'
+
+
+# Symbol Transformers
+[[Odin.EnumTransforms]]
+Type       = '.*'
+Transforms = [
+  { Kind = 'RemoveTypeWordsFromElements' },
+  { Kind = 'RemovePartialTypeNamePrefix' },
+  { Kind = 'RemoveUnderscorePrefix' },
+  { Kind = 'UnderscoreNumbers' },
+]
+
+[[Odin.TypeTransforms]]
+Type       = '^(Audio).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.TypeTransforms]]
+Type       = '(Flag|Option|Mask)$'  # Transforms for bit_set types
+Transforms = [{Kind = 'AppendSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = '(Mask|Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
+Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.ProcTransforms]]
+Type       = '^(_*Audio).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_?kAudio).+'
+Transforms = [{ Kind = 'ReplacePrefix', Source = '$group0', Target = 'k' }]
+
+[[Odin.VarTransforms]]
+Type       = '^(_*Audio).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]

@@ -1,0 +1,66 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVAudioNode
+///
+@(objc_class="AVAudioNode", objc_superclass=NS.Object)
+AudioNode :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AudioNode, objc_selector="reset", objc_name="reset")
+    AudioNode_reset :: proc(self: ^AudioNode) ---
+
+    @(objc_type=AudioNode, objc_selector="inputFormatForBus:", objc_name="inputFormatForBus")
+    AudioNode_inputFormatForBus :: proc(self: ^AudioNode, bus: AudioNodeBus) -> ^AudioFormat ---
+
+    @(objc_type=AudioNode, objc_selector="outputFormatForBus:", objc_name="outputFormatForBus")
+    AudioNode_outputFormatForBus :: proc(self: ^AudioNode, bus: AudioNodeBus) -> ^AudioFormat ---
+
+    @(objc_type=AudioNode, objc_selector="nameForInputBus:", objc_name="nameForInputBus")
+    AudioNode_nameForInputBus :: proc(self: ^AudioNode, bus: AudioNodeBus) -> ^NS.String ---
+
+    @(objc_type=AudioNode, objc_selector="nameForOutputBus:", objc_name="nameForOutputBus")
+    AudioNode_nameForOutputBus :: proc(self: ^AudioNode, bus: AudioNodeBus) -> ^NS.String ---
+
+    @(objc_type=AudioNode, objc_selector="installTapOnBus:bufferSize:format:block:", objc_name="installTapOnBus")
+    AudioNode_installTapOnBus :: proc(self: ^AudioNode, bus: AudioNodeBus, bufferSize: AudioFrameCount, format: ^AudioFormat, tapBlock: AudioNodeTapBlock) ---
+
+    @(objc_type=AudioNode, objc_selector="removeTapOnBus:", objc_name="removeTapOnBus")
+    AudioNode_removeTapOnBus :: proc(self: ^AudioNode, bus: AudioNodeBus) ---
+
+    @(objc_type=AudioNode, objc_selector="engine", objc_name="engine")
+    AudioNode_engine :: proc(self: ^AudioNode) -> ^AudioEngine ---
+
+    @(objc_type=AudioNode, objc_selector="numberOfInputs", objc_name="numberOfInputs")
+    AudioNode_numberOfInputs :: proc(self: ^AudioNode) -> NS.UInteger ---
+
+    @(objc_type=AudioNode, objc_selector="numberOfOutputs", objc_name="numberOfOutputs")
+    AudioNode_numberOfOutputs :: proc(self: ^AudioNode) -> NS.UInteger ---
+
+    @(objc_type=AudioNode, objc_selector="lastRenderTime", objc_name="lastRenderTime")
+    AudioNode_lastRenderTime :: proc(self: ^AudioNode) -> ^AudioTime ---
+
+    @(objc_type=AudioNode, objc_selector="AUAudioUnit", objc_name="AUAudioUnit")
+    AudioNode_AUAudioUnit :: proc(self: ^AudioNode) -> ^Audio.AUAudioUnit ---
+
+    @(objc_type=AudioNode, objc_selector="latency", objc_name="latency")
+    AudioNode_latency :: proc(self: ^AudioNode) -> NS.TimeInterval ---
+
+    @(objc_type=AudioNode, objc_selector="outputPresentationLatency", objc_name="outputPresentationLatency")
+    AudioNode_outputPresentationLatency :: proc(self: ^AudioNode) -> NS.TimeInterval ---
+}

@@ -1,0 +1,56 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVVideoOutputSpecification
+///
+@(objc_class="AVVideoOutputSpecification", objc_superclass=NS.Object)
+VideoOutputSpecification :: struct { using _: NS.Object, 
+    using _: NS.Copying,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=VideoOutputSpecification, objc_selector="init", objc_name="init")
+    VideoOutputSpecification_init :: proc(self: ^VideoOutputSpecification) -> ^VideoOutputSpecification ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    VideoOutputSpecification_new :: proc() -> ^VideoOutputSpecification ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="initWithTagCollections:", objc_name="initWithTagCollections")
+    VideoOutputSpecification_initWithTagCollections :: proc(self: ^VideoOutputSpecification, tagCollections: ^NS.Array) -> ^VideoOutputSpecification ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="setOutputPixelBufferAttributes:forTagCollection:", objc_name="setOutputPixelBufferAttributes")
+    VideoOutputSpecification_setOutputPixelBufferAttributes :: proc(self: ^VideoOutputSpecification, pixelBufferAttributes: ^NS.Dictionary, tagCollection: CM.TagCollectionRef) ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="setOutputSettings:forTagCollection:", objc_name="setOutputSettings")
+    VideoOutputSpecification_setOutputSettings :: proc(self: ^VideoOutputSpecification, outputSettings: ^NS.Dictionary, tagCollection: CM.TagCollectionRef) ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="preferredTagCollections", objc_name="preferredTagCollections")
+    VideoOutputSpecification_preferredTagCollections :: proc(self: ^VideoOutputSpecification) -> ^NS.Array ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="defaultPixelBufferAttributes", objc_name="defaultPixelBufferAttributes")
+    VideoOutputSpecification_defaultPixelBufferAttributes :: proc(self: ^VideoOutputSpecification) -> ^NS.Dictionary ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="setDefaultPixelBufferAttributes:", objc_name="setDefaultPixelBufferAttributes")
+    VideoOutputSpecification_setDefaultPixelBufferAttributes :: proc(self: ^VideoOutputSpecification, defaultPixelBufferAttributes: ^NS.Dictionary) ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="defaultOutputSettings", objc_name="defaultOutputSettings")
+    VideoOutputSpecification_defaultOutputSettings :: proc(self: ^VideoOutputSpecification) -> ^NS.Dictionary ---
+
+    @(objc_type=VideoOutputSpecification, objc_selector="setDefaultOutputSettings:", objc_name="setDefaultOutputSettings")
+    VideoOutputSpecification_setDefaultOutputSettings :: proc(self: ^VideoOutputSpecification, defaultOutputSettings: ^NS.Dictionary) ---
+}

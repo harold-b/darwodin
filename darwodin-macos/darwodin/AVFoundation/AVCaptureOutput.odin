@@ -1,0 +1,45 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVCaptureOutput
+///
+@(objc_class="AVCaptureOutput", objc_superclass=NS.Object)
+CaptureOutput :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CaptureOutput, objc_selector="init", objc_name="init")
+    CaptureOutput_init :: proc(self: ^CaptureOutput) -> ^CaptureOutput ---
+
+    @(objc_type=CaptureOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    CaptureOutput_new :: proc() -> ^CaptureOutput ---
+
+    @(objc_type=CaptureOutput, objc_selector="connectionWithMediaType:", objc_name="connectionWithMediaType")
+    CaptureOutput_connectionWithMediaType :: proc(self: ^CaptureOutput, mediaType: ^NS.String) -> ^CaptureConnection ---
+
+    @(objc_type=CaptureOutput, objc_selector="transformedMetadataObjectForMetadataObject:connection:", objc_name="transformedMetadataObjectForMetadataObject")
+    CaptureOutput_transformedMetadataObjectForMetadataObject :: proc(self: ^CaptureOutput, metadataObject: ^MetadataObject, connection: ^CaptureConnection) -> ^MetadataObject ---
+
+    @(objc_type=CaptureOutput, objc_selector="metadataOutputRectOfInterestForRect:", objc_name="metadataOutputRectOfInterestForRect")
+    CaptureOutput_metadataOutputRectOfInterestForRect :: proc(self: ^CaptureOutput, rectInOutputCoordinates: CG.Rect) -> CG.Rect ---
+
+    @(objc_type=CaptureOutput, objc_selector="rectForMetadataOutputRectOfInterest:", objc_name="rectForMetadataOutputRectOfInterest")
+    CaptureOutput_rectForMetadataOutputRectOfInterest :: proc(self: ^CaptureOutput, rectInMetadataOutputCoordinates: CG.Rect) -> CG.Rect ---
+
+    @(objc_type=CaptureOutput, objc_selector="connections", objc_name="connections")
+    CaptureOutput_connections :: proc(self: ^CaptureOutput) -> ^NS.Array ---
+}
