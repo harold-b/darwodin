@@ -25,6 +25,9 @@ ExportTypes = [
 
 IgnoreTypes = [
   '^AUDistanceAttenuationData',
+  '^AudioFormatID',
+  '^AudioFormatFlag',
+  '^AudioFormatFlags',
 ]
 
 ExportMethods = [

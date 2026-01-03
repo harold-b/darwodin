@@ -1758,12 +1758,6 @@ foreign lib {
 
 }
 
-/// AudioFormatID
-FormatID :: CF.UInt32
-
-/// AudioFormatFlags
-FormatFlags :: CF.UInt32
-
 /// AudioComponent
 Component :: ^OpaqueAudioComponent
 

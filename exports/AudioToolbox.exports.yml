@@ -119,8 +119,6 @@ Structs:
     AudioHardwareIOProcStreamUsage: Audio.HardwareIOProcStreamUsage
 
 Typedefs:
-    AudioFormatID: Audio.FormatID
-    AudioFormatFlags: Audio.FormatFlags
     AudioComponent: Audio.Component
     AudioComponentInstance: Audio.ComponentInstance
     AudioComponentMethod: Audio.ComponentMethod
