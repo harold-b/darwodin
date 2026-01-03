@@ -31,8 +31,6 @@ HardwareIOProcStreamUsage :: CA.HardwareIOProcStreamUsage
 /// Typedefs
 SampleType                   :: CA.SampleType
 UnitSampleType               :: CA.UnitSampleType
-FormatID                     :: CA.FormatID
-FormatFlags                  :: CA.FormatFlags
 ChannelLabel                 :: CA.ChannelLabel
 ChannelLayoutTag             :: CA.ChannelLayoutTag
 SessionID                    :: CA.SessionID
@@ -55,6 +53,9 @@ StreamID                     :: CA.StreamID
 StreamPropertyListenerProc   :: CA.StreamPropertyListenerProc
 
 /// Enums
+FormatID                     :: CA.FormatID
+FormatFlag                   :: CA.FormatFlag
+FormatFlags                  :: CA.FormatFlags
 SMPTETimeType                :: CA.SMPTETimeType
 SMPTETimeFlags               :: CA.SMPTETimeFlags
 TimeStampFlags               :: CA.TimeStampFlags

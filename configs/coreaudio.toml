@@ -7,6 +7,7 @@ Emit                      = false
 ExportInternals           = true
 DontWrapCFunctions        = true
 ExportForwardDeclarations = true
+KeepAnonymousEnums        = true
 
 ExportTypes =[
   '^Audio.+',
@@ -22,6 +23,9 @@ ExportTypes =[
 
 IgnoreTypes = [
   '^AUDistanceAttenuationData',
+  '^AudioFormatID$',
+  '^AudioFormatFlag$',
+  '^AudioFormatFlags$',
 ]
 
 ExportMethods = [
@@ -53,6 +57,12 @@ NoDistinctTypedefs = true
 DistinctTypeDefs = [
 ]
 
+AnonymousEnums = [
+  { Name = "AudioFormatID",    FieldMatch = [ "^kAudioFormat(?!Flag).+" ] },
+  { Name = "AudioFormatFlag",  FieldMatch = [ "^(kAudioFormatFlag(Is|sAre)|kLinearPCMFormatFlag|kAppleLosslessFormatFlag_).+" ] },
+  { Name = "AudioFormatFlags", FieldMatch = [ "^kAudioFormatFlags(?!Are).+" ] },
+]
+
 [[Odin.Packages]]
 Name           = 'CoreAudio'
 Export         = 'CA'
@@ -73,18 +83,27 @@ MacroFilter = [
 # host_flavor_t = { File = 'host_info.h',  Type = 'host_flavor_t_int', Match = 'HOST_.+$' }
 
 
-# [Odin.Packages.TypeMap]
-# kern_return_t = 'mach.kern_return_t'
+
+
+[Odin.Packages.TypeMap]
+AudioFormatFlags = 'FormatFlag'
 
 
 # Symbol Transformers
 [[Odin.EnumTransforms]]
 Type       = '.*'
 Transforms = [
+  { Kind = 'RemoveCommonPrefix' },
   { Kind = 'RemoveTypeWordsFromElements' },
   { Kind = 'RemovePartialTypeNamePrefix' },
   { Kind = 'RemoveUnderscorePrefix' },
   { Kind = 'UnderscoreNumbers' },
+]
+
+[[Odin.EnumTransforms]]
+Type       = '^AudioFormatFlag'
+Transforms = [
+  { Kind = 'ReplacePrefix', Source = 'sAre', Target ='Are' },
 ]
 
 [[Odin.TypeTransforms]]
@@ -92,12 +111,21 @@ Type       = '^(Audio).+'
 Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
 
 [[Odin.TypeTransforms]]
-Type       = '(Flag|Option|Mask)$'  # Transforms for bit_set types
+Type       = '(Mask|(?<!Format)Flag|Option)$'  # Transforms for bit_set types
 Transforms = [{Kind = 'AppendSuffix', Source = 's' }]
 
+[[Odin.TypeTransforms]]
+Type       = '^ChannelBitmap$'  # Transforms for bit_set types
+Transforms = [{Kind = 'RemoveSuffix', Source = 'Bit' }]
+
 [[Odin.BitSetMap]]
-Type       = '(Mask|Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
+Type       = '(Mask|(?<!Format)Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
 Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = '^AudioChannelBitmap$' # Transforms the enum that will generate a bit_set to not have a collision type
+Transforms = [{ Kind = 'AppendSuffix', Source = 'Bit' }]
+
 
 [[Odin.ProcTransforms]]
 Type       = '^(_*Audio).+'

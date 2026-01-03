@@ -21,8 +21,6 @@ Structs:
 Typedefs:
     AudioSampleType: CA.SampleType
     AudioUnitSampleType: CA.UnitSampleType
-    AudioFormatID: CA.FormatID
-    AudioFormatFlags: CA.FormatFlags
     AudioChannelLabel: CA.ChannelLabel
     AudioChannelLayoutTag: CA.ChannelLayoutTag
     AudioSessionID: CA.SessionID
@@ -45,6 +43,9 @@ Typedefs:
     AudioStreamPropertyListenerProc: CA.StreamPropertyListenerProc
 
 Enums:
+    AudioFormatID: CA.FormatID
+    AudioFormatFlag: CA.FormatFlag
+    AudioFormatFlags: CA.FormatFlags
     SMPTETimeType: CA.SMPTETimeType
     SMPTETimeFlags: CA.SMPTETimeFlags
     AudioTimeStampFlags: CA.TimeStampFlags

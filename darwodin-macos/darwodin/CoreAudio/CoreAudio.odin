@@ -931,12 +931,6 @@ SampleType :: cffi.float
 /// AudioUnitSampleType
 UnitSampleType :: cffi.float
 
-/// AudioFormatID
-FormatID :: CF.UInt32
-
-/// AudioFormatFlags
-FormatFlags :: CF.UInt32
-
 /// AudioChannelLabel
 ChannelLabel :: CF.UInt32
 
@@ -997,114 +991,194 @@ StreamID :: ObjectID
 /// AudioStreamPropertyListenerProc
 StreamPropertyListenerProc :: proc "c" (inStream: StreamID, inChannel: CF.UInt32, inPropertyID: DevicePropertyID, inClientData: rawptr) -> CF.OSStatus
 
+/// AudioFormatID
+FormatID :: enum cffi.uint {
+    LinearPCM            = 1819304813,
+    AC3                  = 1633889587,
+    _60958AC3            = 1667326771,
+    AppleIMA4            = 1768775988,
+    MPEG4AAC             = 1633772320,
+    MPEG4CELP            = 1667591280,
+    MPEG4HVXC            = 1752594531,
+    MPEG4TwinVQ          = 1953986161,
+    MACE3                = 1296122675,
+    MACE6                = 1296122678,
+    ULaw                 = 1970037111,
+    ALaw                 = 1634492791,
+    QDesign              = 1363430723,
+    QDesign2             = 1363430706,
+    QUALCOMM             = 1365470320,
+    MPEGLayer1           = 778924081,
+    MPEGLayer2           = 778924082,
+    MPEGLayer3           = 778924083,
+    TimeCode             = 1953066341,
+    MIDIStream           = 1835623529,
+    ParameterValueStream = 1634760307,
+    AppleLossless        = 1634492771,
+    MPEG4AAC_HE          = 1633772392,
+    MPEG4AAC_LD          = 1633772396,
+    MPEG4AAC_ELD         = 1633772389,
+    MPEG4AAC_ELD_SBR     = 1633772390,
+    MPEG4AAC_ELD_V2      = 1633772391,
+    MPEG4AAC_HE_V2       = 1633772400,
+    MPEG4AAC_Spatial     = 1633772403,
+    MPEGD_USAC           = 1970495843,
+    AMR                  = 1935764850,
+    AMR_WB               = 1935767394,
+    Audible              = 1096107074,
+    iLBC                 = 1768710755,
+    DVIIntelIMA          = 1836253201,
+    MicrosoftGSM         = 1836253233,
+    AES3                 = 1634038579,
+    EnhancedAC3          = 1700998451,
+    FLAC                 = 1718378851,
+    Opus                 = 1869641075,
+    APAC                 = 1634754915,
+}
+
+/// AudioFormatFlag
+FormatFlag :: enum cffi.uint {
+    IsFloat                          = 1,
+    IsBigEndian                      = 2,
+    IsSignedInteger                  = 4,
+    IsPacked                         = 8,
+    IsAlignedHigh                    = 16,
+    IsNonInterleaved                 = 32,
+    IsNonMixable                     = 64,
+    AreAllClear                      = 2147483648,
+    LinearPCMFormatFlagIsFloat       = 1,
+    LinearPCMFormatFlagIsBigEndian   = 2,
+    LinearPCMFormatFlagIsSignedInteger = 4,
+    LinearPCMFormatFlagIsPacked      = 8,
+    LinearPCMFormatFlagIsAlignedHigh = 16,
+    LinearPCMFormatFlagIsNonInterleaved = 32,
+    LinearPCMFormatFlagIsNonMixable  = 64,
+    LinearPCMFormatFlagsSampleFractionShift = 7,
+    LinearPCMFormatFlagsSampleFractionMask = 8064,
+    LinearPCMFormatFlagsAreAllClear  = 2147483648,
+    AppleLosslessFormatFlag_16BitSourceData = 1,
+    AppleLosslessFormatFlag_20BitSourceData = 2,
+    AppleLosslessFormatFlag_24BitSourceData = 3,
+    AppleLosslessFormatFlag_32BitSourceData = 4,
+}
+
+/// AudioFormatFlags
+FormatFlags :: enum cffi.uint {
+    NativeEndian      = 0,
+    Canonical         = 9,
+    UnitCanonical     = 41,
+    NativeFloatPacked = 9,
+}
+
 /// SMPTETimeType
 SMPTETimeType :: enum cffi.uint {
-    kSMPTETimeType24       = 0,
-    kSMPTETimeType25       = 1,
-    kSMPTETimeType30Drop   = 2,
-    kSMPTETimeType30       = 3,
-    kSMPTETimeType2997     = 4,
-    kSMPTETimeType2997Drop = 5,
-    kSMPTETimeType60       = 6,
-    kSMPTETimeType5994     = 7,
-    kSMPTETimeType60Drop   = 8,
-    kSMPTETimeType5994Drop = 9,
-    kSMPTETimeType50       = 10,
-    kSMPTETimeType2398     = 11,
+    _24       = 0,
+    _25       = 1,
+    _30Drop   = 2,
+    _30       = 3,
+    _2997     = 4,
+    _2997Drop = 5,
+    _60       = 6,
+    _5994     = 7,
+    _60Drop   = 8,
+    _5994Drop = 9,
+    _50       = 10,
+    _2398     = 11,
 }
 
 /// SMPTETimeFlags
 SMPTETimeFlag :: enum cffi.uint {
-    kSMPTETimeValid   = 0,
-    kSMPTETimeRunning = 1,
+    Valid   = 0,
+    Running = 1,
 }
 SMPTETimeFlags :: bit_set[SMPTETimeFlag; cffi.uint]
 
 /// AudioTimeStampFlags
 TimeStampFlag :: enum cffi.uint {
-    kAudioTimeStampSampleTimeValid   = 0,
-    kAudioTimeStampHostTimeValid     = 1,
-    kAudioTimeStampRateScalarValid   = 2,
-    kAudioTimeStampWordClockTimeValid = 3,
-    kAudioTimeStampSMPTETimeValid    = 4,
+    SampleTimeValid    = 0,
+    HostTimeValid      = 1,
+    RateScalarValid    = 2,
+    WordClockTimeValid = 3,
+    SMPTETimeValid     = 4,
 }
 TimeStampFlags :: bit_set[TimeStampFlag; cffi.uint]
 
-TimeStampFlags_kAudioTimeStampSampleHostTimeValid :: TimeStampFlags { .kAudioTimeStampSampleTimeValid, .kAudioTimeStampHostTimeValid, }
+TimeStampFlags_SampleHostTimeValid :: TimeStampFlags { .SampleTimeValid, .HostTimeValid, }
 
 /// AudioChannelBitmap
-ChannelBitmap :: enum cffi.uint {
-    kAudioChannelBit_Left            = 1,
-    kAudioChannelBit_Right           = 2,
-    kAudioChannelBit_Center          = 4,
-    kAudioChannelBit_LFEScreen       = 8,
-    kAudioChannelBit_LeftSurround    = 16,
-    kAudioChannelBit_RightSurround   = 32,
-    kAudioChannelBit_LeftCenter      = 64,
-    kAudioChannelBit_RightCenter     = 128,
-    kAudioChannelBit_CenterSurround  = 256,
-    kAudioChannelBit_LeftSurroundDirect = 512,
-    kAudioChannelBit_RightSurroundDirect = 1024,
-    kAudioChannelBit_TopCenterSurround = 2048,
-    kAudioChannelBit_VerticalHeightLeft = 4096,
-    kAudioChannelBit_VerticalHeightCenter = 8192,
-    kAudioChannelBit_VerticalHeightRight = 16384,
-    kAudioChannelBit_TopBackLeft     = 32768,
-    kAudioChannelBit_TopBackCenter   = 65536,
-    kAudioChannelBit_TopBackRight    = 131072,
-    kAudioChannelBit_LeftTopFront    = 4096,
-    kAudioChannelBit_CenterTopFront  = 8192,
-    kAudioChannelBit_RightTopFront   = 16384,
-    kAudioChannelBit_LeftTopMiddle   = 2097152,
-    kAudioChannelBit_CenterTopMiddle = 2048,
-    kAudioChannelBit_RightTopMiddle  = 8388608,
-    kAudioChannelBit_LeftTopRear     = 16777216,
-    kAudioChannelBit_CenterTopRear   = 33554432,
-    kAudioChannelBit_RightTopRear    = 67108864,
+ChannelBitmapBit :: enum cffi.uint {
+    Left                 = 0,
+    Right                = 1,
+    Center               = 2,
+    LFEScreen            = 3,
+    LeftSurround         = 4,
+    RightSurround        = 5,
+    LeftCenter           = 6,
+    RightCenter          = 7,
+    CenterSurround       = 8,
+    LeftSurroundDirect   = 9,
+    RightSurroundDirect  = 10,
+    TopCenterSurround    = 11,
+    VerticalHeightLeft   = 12,
+    VerticalHeightCenter = 13,
+    VerticalHeightRight  = 14,
+    TopBackLeft          = 15,
+    TopBackCenter        = 16,
+    TopBackRight         = 17,
+    LeftTopFront         = 12,
+    CenterTopFront       = 13,
+    RightTopFront        = 14,
+    LeftTopMiddle        = 21,
+    CenterTopMiddle      = 11,
+    RightTopMiddle       = 23,
+    LeftTopRear          = 24,
+    CenterTopRear        = 25,
+    RightTopRear         = 26,
 }
+ChannelBitmap :: bit_set[ChannelBitmapBit; cffi.uint]
 
 /// AudioChannelFlags
 ChannelFlag :: enum cffi.uint {
-    kAudioChannelFlags_RectangularCoordinates = 0,
-    kAudioChannelFlags_SphericalCoordinates = 1,
-    kAudioChannelFlags_Meters        = 2,
+    RectangularCoordinates = 0,
+    SphericalCoordinates   = 1,
+    Meters                 = 2,
 }
 ChannelFlags :: bit_set[ChannelFlag; cffi.uint]
 
 /// AudioChannelCoordinateIndex
 ChannelCoordinateIndex :: enum cffi.uint {
-    kAudioChannelCoordinates_LeftRight = 0,
-    kAudioChannelCoordinates_BackFront = 1,
-    kAudioChannelCoordinates_DownUp  = 2,
-    kAudioChannelCoordinates_Azimuth = 0,
-    kAudioChannelCoordinates_Elevation = 1,
-    kAudioChannelCoordinates_Distance = 2,
+    LeftRight = 0,
+    BackFront = 1,
+    DownUp    = 2,
+    Azimuth   = 0,
+    Elevation = 1,
+    Distance  = 2,
 }
 
 /// AudioHardwarePowerHint
 HardwarePowerHint :: enum cffi.uint {
-    kAudioHardwarePowerHintNone      = 0,
-    kAudioHardwarePowerHintFavorSavingPower = 1,
+    None             = 0,
+    FavorSavingPower = 1,
 }
 
 /// AudioLevelControlTransferFunction
 LevelControlTransferFunction :: enum cffi.uint {
-    kAudioLevelControlTranferFunctionLinear = 0,
-    kAudioLevelControlTranferFunction1Over3 = 1,
-    kAudioLevelControlTranferFunction1Over2 = 2,
-    kAudioLevelControlTranferFunction3Over4 = 3,
-    kAudioLevelControlTranferFunction3Over2 = 4,
-    kAudioLevelControlTranferFunction2Over1 = 5,
-    kAudioLevelControlTranferFunction3Over1 = 6,
-    kAudioLevelControlTranferFunction4Over1 = 7,
-    kAudioLevelControlTranferFunction5Over1 = 8,
-    kAudioLevelControlTranferFunction6Over1 = 9,
-    kAudioLevelControlTranferFunction7Over1 = 10,
-    kAudioLevelControlTranferFunction8Over1 = 11,
-    kAudioLevelControlTranferFunction9Over1 = 12,
-    kAudioLevelControlTranferFunction10Over1 = 13,
-    kAudioLevelControlTranferFunction11Over1 = 14,
-    kAudioLevelControlTranferFunction12Over1 = 15,
+    Linear   = 0,
+    _1Over3  = 1,
+    _1Over2  = 2,
+    _3Over4  = 3,
+    _3Over2  = 4,
+    _2Over1  = 5,
+    _3Over1  = 6,
+    _4Over1  = 7,
+    _5Over1  = 8,
+    _6Over1  = 9,
+    _7Over1  = 10,
+    _8Over1  = 11,
+    _9Over1  = 12,
+    _10Over1 = 13,
+    _11Over1 = 14,
+    _12Over1 = 15,
 }
 
 /// AudioValueRange
@@ -1142,7 +1216,7 @@ BufferList :: struct #align (8) {
 StreamBasicDescription :: struct #align (8) {
     mSampleRate:       cffi.double,
     mFormatID:         FormatID,
-    mFormatFlags:      FormatFlags,
+    mFormatFlags:      FormatFlag,
     mBytesPerPacket:   CF.UInt32,
     mFramesPerPacket:  CF.UInt32,
     mBytesPerFrame:    CF.UInt32,

@@ -119,6 +119,8 @@ Structs:
     AudioHardwareIOProcStreamUsage: Audio.HardwareIOProcStreamUsage
 
 Typedefs:
+    AudioFormatID: Audio.FormatID
+    AudioFormatFlags: Audio.FormatFlags
     AudioComponent: Audio.Component
     AudioComponentInstance: Audio.ComponentInstance
     AudioComponentMethod: Audio.ComponentMethod
@@ -302,8 +304,6 @@ Typedefs:
     AudioSessionPropertyListener: Audio.SessionPropertyListener
     AudioSampleType: Audio.SampleType
     AudioUnitSampleType: Audio.UnitSampleType
-    AudioFormatID: Audio.FormatID
-    AudioFormatFlags: Audio.FormatFlags
     AudioChannelLabel: Audio.ChannelLabel
     AudioChannelLayoutTag: Audio.ChannelLayoutTag
     AudioSessionID: Audio.SessionID
@@ -368,6 +368,9 @@ Enums:
     AudioBalanceFadeType: Audio.BalanceFadeType
     AudioQueueProcessingTapFlags: Audio.QueueProcessingTapFlags
     AudioUnitEventType: Audio.UnitEventType
+    AudioFormatID: Audio.FormatID
+    AudioFormatFlag: Audio.FormatFlag
+    AudioFormatFlags: Audio.FormatFlags
     SMPTETimeType: Audio.SMPTETimeType
     SMPTETimeFlags: Audio.SMPTETimeFlags
     AudioTimeStampFlags: Audio.TimeStampFlags
