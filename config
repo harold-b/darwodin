@@ -33,6 +33,7 @@ darwodin_macos_frameworks=(
   AppKit
   FSEvents
   DiskArbitration
+  CoreAudio
 )
 
 darwodin_ios_frameworks=(
@@ -94,6 +95,7 @@ function darwodin_get_ios_frameworks()
 function darwodin_get_header_for_framework()
 {
   framework=$1
+  is_ios=$2
 
   case $framework in
     FSEvents)
@@ -102,9 +104,17 @@ function darwodin_get_header_for_framework()
     IOKit)
       framework="IOKit/IOKitLib"
       ;;
+
+    CoreAudio|coreaudio)
+      if [[ $is_ios -eq 1 ]]; then
+        framework=AudioToolbox/AudioToolbox
+      else
+        framework=CoreAudio/CoreAudio
+      fi
+      ;;
     *)
     framework="$framework/$framework"
-    ;;
+      ;;
   esac
 
   echo $framework

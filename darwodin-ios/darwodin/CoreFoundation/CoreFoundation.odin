@@ -3165,199 +3165,199 @@ foreign lib {
 }
 
 /// UInt8
-UInt8 :: distinct cffi.uchar
+UInt8 :: cffi.uchar
 
 /// SInt8
-SInt8 :: distinct cffi.schar
+SInt8 :: cffi.schar
 
 /// UInt16
-UInt16 :: distinct cffi.ushort
+UInt16 :: cffi.ushort
 
 /// SInt16
-SInt16 :: distinct cffi.short
+SInt16 :: cffi.short
 
 /// UInt32
-UInt32 :: distinct cffi.uint
+UInt32 :: cffi.uint
 
 /// SInt32
-SInt32 :: distinct cffi.int
+SInt32 :: cffi.int
 
 /// SInt64
-SInt64 :: distinct cffi.longlong
+SInt64 :: cffi.longlong
 
 /// UInt64
-UInt64 :: distinct cffi.ulonglong
+UInt64 :: cffi.ulonglong
 
 /// Ptr
-Ptr :: distinct cstring
+Ptr :: cstring
 
 /// Handle
-Handle :: distinct ^Ptr
+Handle :: ^Ptr
 
 /// Size
-Size :: distinct cffi.long
+Size :: cffi.long
 
 /// OSErr
-OSErr :: distinct SInt16
+OSErr :: SInt16
 
 /// OSStatus
-OSStatus :: distinct SInt32
+OSStatus :: SInt32
 
 /// LogicalAddress
-LogicalAddress :: distinct rawptr
+LogicalAddress :: rawptr
 
 /// ConstLogicalAddress
-ConstLogicalAddress :: distinct rawptr
+ConstLogicalAddress :: rawptr
 
 /// PhysicalAddress
-PhysicalAddress :: distinct rawptr
+PhysicalAddress :: rawptr
 
 /// BytePtr
-BytePtr :: distinct ^UInt8
+BytePtr :: ^UInt8
 
 /// ByteCount
-ByteCount :: distinct cffi.ulong
+ByteCount :: cffi.ulong
 
 /// ByteOffset
-ByteOffset :: distinct cffi.ulong
+ByteOffset :: cffi.ulong
 
 /// Duration
-Duration :: distinct SInt32
+Duration :: SInt32
 
 /// AbsoluteTime
-AbsoluteTime :: distinct UnsignedWide
+AbsoluteTime :: UnsignedWide
 
 /// OptionBits
-OptionBits :: distinct UInt32
+OptionBits :: UInt32
 
 /// ItemCount
-ItemCount :: distinct cffi.ulong
+ItemCount :: cffi.ulong
 
 /// PBVersion
-PBVersion :: distinct UInt32
+PBVersion :: UInt32
 
 /// ScriptCode
-ScriptCode :: distinct SInt16
+ScriptCode :: SInt16
 
 /// LangCode
-LangCode :: distinct SInt16
+LangCode :: SInt16
 
 /// RegionCode
-RegionCode :: distinct SInt16
+RegionCode :: SInt16
 
 /// FourCharCode
-FourCharCode :: distinct UInt32
+FourCharCode :: UInt32
 
 /// OSType
-OSType :: distinct FourCharCode
+OSType :: FourCharCode
 
 /// ResType
-ResType :: distinct FourCharCode
+ResType :: FourCharCode
 
 /// OSTypePtr
-OSTypePtr :: distinct ^OSType
+OSTypePtr :: ^OSType
 
 /// ResTypePtr
-ResTypePtr :: distinct ^ResType
+ResTypePtr :: ^ResType
 
 /// SRefCon
-SRefCon :: distinct rawptr
+SRefCon :: rawptr
 
 /// UTF32Char
-UTF32Char :: distinct UInt32
+UTF32Char :: UInt32
 
 /// UniChar
-UniChar :: distinct UInt16
+UniChar :: UInt16
 
 /// UTF16Char
-UTF16Char :: distinct UInt16
+UTF16Char :: UInt16
 
 /// UTF8Char
-UTF8Char :: distinct UInt8
+UTF8Char :: UInt8
 
 /// UniCharPtr
-UniCharPtr :: distinct ^UniChar
+UniCharPtr :: ^UniChar
 
 /// UniCharCount
-UniCharCount :: distinct cffi.ulong
+UniCharCount :: cffi.ulong
 
 /// UniCharCountPtr
-UniCharCountPtr :: distinct ^UniCharCount
+UniCharCountPtr :: ^UniCharCount
 
 /// Str255
-Str255 :: distinct [256]cffi.uchar
+Str255 :: [256]cffi.uchar
 
 /// Str63
-Str63 :: distinct [64]cffi.uchar
+Str63 :: [64]cffi.uchar
 
 /// Str32
-Str32 :: distinct [33]cffi.uchar
+Str32 :: [33]cffi.uchar
 
 /// Str31
-Str31 :: distinct [32]cffi.uchar
+Str31 :: [32]cffi.uchar
 
 /// Str27
-Str27 :: distinct [28]cffi.uchar
+Str27 :: [28]cffi.uchar
 
 /// Str15
-Str15 :: distinct [16]cffi.uchar
+Str15 :: [16]cffi.uchar
 
 /// Str32Field
-Str32Field :: distinct [34]cffi.uchar
+Str32Field :: [34]cffi.uchar
 
 /// StrFileName
-StrFileName :: distinct Str63
+StrFileName :: Str63
 
 /// StringPtr
-StringPtr :: distinct ^cffi.uchar
+StringPtr :: ^cffi.uchar
 
 /// StringHandle
-StringHandle :: distinct ^StringPtr
+StringHandle :: ^StringPtr
 
 /// ConstStringPtr
-ConstStringPtr :: distinct ^cffi.uchar
+ConstStringPtr :: ^cffi.uchar
 
 /// ConstStr255Param
-ConstStr255Param :: distinct ^cffi.uchar
+ConstStr255Param :: ^cffi.uchar
 
 /// ConstStr63Param
-ConstStr63Param :: distinct ^cffi.uchar
+ConstStr63Param :: ^cffi.uchar
 
 /// ConstStr32Param
-ConstStr32Param :: distinct ^cffi.uchar
+ConstStr32Param :: ^cffi.uchar
 
 /// ConstStr31Param
-ConstStr31Param :: distinct ^cffi.uchar
+ConstStr31Param :: ^cffi.uchar
 
 /// ConstStr27Param
-ConstStr27Param :: distinct ^cffi.uchar
+ConstStr27Param :: ^cffi.uchar
 
 /// ConstStr15Param
-ConstStr15Param :: distinct ^cffi.uchar
+ConstStr15Param :: ^cffi.uchar
 
 /// ConstStrFileNameParam
-ConstStrFileNameParam :: distinct ConstStr63Param
+ConstStrFileNameParam :: ConstStr63Param
 
 /// SignedByte
-SignedByte :: distinct SInt8
+SignedByte :: SInt8
 
 /// UnsignedWidePtr
-UnsignedWidePtr :: distinct ^UnsignedWide
+UnsignedWidePtr :: ^UnsignedWide
 
 /// CFAllocatorTypeID
-AllocatorTypeID :: distinct cffi.ulonglong
+AllocatorTypeID :: cffi.ulonglong
 
 /// CFTypeID
-TypeID :: distinct cffi.ulong
+TypeID :: cffi.ulong
 
 /// CFOptionFlags
-OptionFlags :: distinct cffi.ulong
+OptionFlags :: cffi.ulong
 
 /// CFHashCode
-HashCode :: distinct cffi.ulong
+HashCode :: cffi.ulong
 
 /// CFIndex
-Index :: distinct cffi.long
+Index :: cffi.long
 
 /// CFTypeRef
 TypeRef :: rawptr
@@ -3453,7 +3453,7 @@ BinaryHeapApplierFunction :: proc "c" (val: rawptr, _context: rawptr)
 BinaryHeapRef :: ^__CFBinaryHeap
 
 /// CFBit
-Bit :: distinct UInt32
+Bit :: UInt32
 
 /// CFBitVectorRef
 BitVectorRef :: ^__CFBitVector
@@ -3462,7 +3462,7 @@ BitVectorRef :: ^__CFBitVector
 MutableBitVectorRef :: ^__CFBitVector
 
 /// CFByteOrder
-ByteOrder :: distinct Index
+ByteOrder :: Index
 
 /// CFDictionaryRetainCallBack
 DictionaryRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
@@ -3489,7 +3489,7 @@ DictionaryRef :: ^__CFDictionary
 MutableDictionaryRef :: ^__CFDictionary
 
 /// CFNotificationName
-NotificationName :: distinct StringRef
+NotificationName :: StringRef
 
 /// CFNotificationCenterRef
 NotificationCenterRef :: ^__CFNotificationCenter
@@ -3498,22 +3498,22 @@ NotificationCenterRef :: ^__CFNotificationCenter
 NotificationCallback :: proc "c" (center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef)
 
 /// CFLocaleIdentifier
-LocaleIdentifier :: distinct StringRef
+LocaleIdentifier :: StringRef
 
 /// CFLocaleKey
-LocaleKey :: distinct StringRef
+LocaleKey :: StringRef
 
 /// CFLocaleRef
 LocaleRef :: ^__CFLocale
 
 /// CFCalendarIdentifier
-CalendarIdentifier :: distinct StringRef
+CalendarIdentifier :: StringRef
 
 /// CFTimeInterval
-TimeInterval :: distinct cffi.double
+TimeInterval :: cffi.double
 
 /// CFAbsoluteTime
-CFAbsoluteTime :: distinct TimeInterval
+CFAbsoluteTime :: TimeInterval
 
 /// CFDateRef
 DateRef :: ^__CFDate
@@ -3534,7 +3534,7 @@ CharacterSetRef :: ^__CFCharacterSet
 MutableCharacterSetRef :: ^__CFCharacterSet
 
 /// CFErrorDomain
-ErrorDomain :: distinct StringRef
+ErrorDomain :: StringRef
 
 /// CFErrorRef
 ErrorRef :: ^__CFError
@@ -3543,7 +3543,7 @@ ErrorRef :: ^__CFError
 CalendarRef :: ^__CFCalendar
 
 /// CFDateFormatterKey
-DateFormatterKey :: distinct StringRef
+DateFormatterKey :: StringRef
 
 /// CFDateFormatterRef
 DateFormatterRef :: ^__CFDateFormatter
@@ -3555,7 +3555,7 @@ BooleanRef :: ^__CFBoolean
 NumberRef :: ^__CFNumber
 
 /// CFNumberFormatterKey
-NumberFormatterKey :: distinct StringRef
+NumberFormatterKey :: StringRef
 
 /// CFNumberFormatterRef
 NumberFormatterRef :: ^__CFNumberFormatter
@@ -3564,10 +3564,10 @@ NumberFormatterRef :: ^__CFNumberFormatter
 URLRef :: ^__CFURL
 
 /// CFURLBookmarkFileCreationOptions
-URLBookmarkFileCreationOptions :: distinct OptionFlags
+URLBookmarkFileCreationOptions :: OptionFlags
 
 /// CFRunLoopMode
-RunLoopMode :: distinct StringRef
+RunLoopMode :: StringRef
 
 /// CFRunLoopRef
 RunLoopRef :: ^__CFRunLoop
@@ -3594,7 +3594,7 @@ SocketRef :: ^__CFSocket
 SocketCallBack :: proc "c" (s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr)
 
 /// CFSocketNativeHandle
-SocketNativeHandle :: distinct cffi.int
+SocketNativeHandle :: cffi.int
 
 /// os_function_t
 os_function_t :: proc "c" (_: rawptr)
@@ -3603,130 +3603,130 @@ os_function_t :: proc "c" (_: rawptr)
 os_block_t :: ^Objc_Block(proc "c" ())
 
 /// os_workgroup_t
-os_workgroup_t :: distinct ^os_workgroup_s
+os_workgroup_t :: ^os_workgroup_s
 
 /// os_workgroup_attr_s
-os_workgroup_attr_s :: distinct os_workgroup_attr_opaque_s
+os_workgroup_attr_s :: os_workgroup_attr_opaque_s
 
 /// os_workgroup_attr_t
-os_workgroup_attr_t :: distinct ^os_workgroup_attr_opaque_s
+os_workgroup_attr_t :: ^os_workgroup_attr_opaque_s
 
 /// os_workgroup_join_token_s
-os_workgroup_join_token_s :: distinct os_workgroup_join_token_opaque_s
+os_workgroup_join_token_s :: os_workgroup_join_token_opaque_s
 
 /// os_workgroup_join_token_t
-os_workgroup_join_token_t :: distinct ^os_workgroup_join_token_opaque_s
+os_workgroup_join_token_t :: ^os_workgroup_join_token_opaque_s
 
 /// os_workgroup_index
-os_workgroup_index :: distinct cffi.uint32_t
+os_workgroup_index :: cffi.uint32_t
 
 /// os_workgroup_working_arena_destructor_t
 os_workgroup_working_arena_destructor_t :: proc "c" (_: rawptr)
 
 /// os_workgroup_mpt_attr_s
-os_workgroup_mpt_attr_s :: distinct os_workgroup_max_parallel_threads_attr_s
+os_workgroup_mpt_attr_s :: os_workgroup_max_parallel_threads_attr_s
 
 /// os_workgroup_mpt_attr_t
-os_workgroup_mpt_attr_t :: distinct ^os_workgroup_max_parallel_threads_attr_s
+os_workgroup_mpt_attr_t :: ^os_workgroup_max_parallel_threads_attr_s
 
 /// os_workgroup_parallel_t
-os_workgroup_parallel_t :: distinct os_workgroup_t
+os_workgroup_parallel_t :: os_workgroup_t
 
 /// dispatch_function_t
 dispatch_function_t :: proc "c" (_: rawptr)
 
 /// dispatch_time_t
-dispatch_time_t :: distinct cffi.uint64_t
+dispatch_time_t :: cffi.uint64_t
 
 /// dispatch_block_t
 dispatch_block_t :: ^Objc_Block(proc "c" ())
 
 /// dispatch_qos_class_t
-dispatch_qos_class_t :: distinct qos_class_t
+dispatch_qos_class_t :: qos_class_t
 
 /// dispatch_queue_t
-dispatch_queue_t :: distinct ^dispatch_queue_s
+dispatch_queue_t :: ^dispatch_queue_s
 
 /// dispatch_queue_global_t
-dispatch_queue_global_t :: distinct dispatch_queue_t
+dispatch_queue_global_t :: dispatch_queue_t
 
 /// dispatch_queue_serial_executor_t
-dispatch_queue_serial_executor_t :: distinct dispatch_queue_t
+dispatch_queue_serial_executor_t :: dispatch_queue_t
 
 /// dispatch_queue_serial_t
-dispatch_queue_serial_t :: distinct dispatch_queue_t
+dispatch_queue_serial_t :: dispatch_queue_t
 
 /// dispatch_queue_main_t
-dispatch_queue_main_t :: distinct dispatch_queue_serial_t
+dispatch_queue_main_t :: dispatch_queue_serial_t
 
 /// dispatch_queue_concurrent_t
-dispatch_queue_concurrent_t :: distinct dispatch_queue_t
+dispatch_queue_concurrent_t :: dispatch_queue_t
 
 /// dispatch_queue_priority_t
-dispatch_queue_priority_t :: distinct cffi.long
+dispatch_queue_priority_t :: cffi.long
 
 /// dispatch_queue_attr_t
-dispatch_queue_attr_t :: distinct ^dispatch_queue_attr_s
+dispatch_queue_attr_t :: ^dispatch_queue_attr_s
 
 /// dispatch_source_t
-dispatch_source_t :: distinct ^dispatch_source_s
+dispatch_source_t :: ^dispatch_source_s
 
 /// dispatch_source_type_t
-dispatch_source_type_t :: distinct ^dispatch_source_type_s
+dispatch_source_type_t :: ^dispatch_source_type_s
 
 /// dispatch_source_mach_send_flags_t
-dispatch_source_mach_send_flags_t :: distinct cffi.ulong
+dispatch_source_mach_send_flags_t :: cffi.ulong
 
 /// dispatch_source_mach_recv_flags_t
-dispatch_source_mach_recv_flags_t :: distinct cffi.ulong
+dispatch_source_mach_recv_flags_t :: cffi.ulong
 
 /// dispatch_source_memorypressure_flags_t
-dispatch_source_memorypressure_flags_t :: distinct cffi.ulong
+dispatch_source_memorypressure_flags_t :: cffi.ulong
 
 /// dispatch_source_proc_flags_t
-dispatch_source_proc_flags_t :: distinct cffi.ulong
+dispatch_source_proc_flags_t :: cffi.ulong
 
 /// dispatch_source_vnode_flags_t
-dispatch_source_vnode_flags_t :: distinct cffi.ulong
+dispatch_source_vnode_flags_t :: cffi.ulong
 
 /// dispatch_source_timer_flags_t
-dispatch_source_timer_flags_t :: distinct cffi.ulong
+dispatch_source_timer_flags_t :: cffi.ulong
 
 /// dispatch_group_t
-dispatch_group_t :: distinct ^dispatch_group_s
+dispatch_group_t :: ^dispatch_group_s
 
 /// dispatch_semaphore_t
-dispatch_semaphore_t :: distinct ^dispatch_semaphore_s
+dispatch_semaphore_t :: ^dispatch_semaphore_s
 
 /// dispatch_once_t
-dispatch_once_t :: distinct cffi.intptr_t
+dispatch_once_t :: cffi.intptr_t
 
 /// dispatch_data_t
-dispatch_data_t :: distinct ^dispatch_data_s
+dispatch_data_t :: ^dispatch_data_s
 
 /// dispatch_data_applier_t
 dispatch_data_applier_t :: ^Objc_Block(proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool)
 
 /// dispatch_fd_t
-dispatch_fd_t :: distinct cffi.int
+dispatch_fd_t :: cffi.int
 
 /// dispatch_io_t
-dispatch_io_t :: distinct ^dispatch_io_s
+dispatch_io_t :: ^dispatch_io_s
 
 /// dispatch_io_type_t
-dispatch_io_type_t :: distinct cffi.ulong
+dispatch_io_type_t :: cffi.ulong
 
 /// dispatch_io_handler_t
 dispatch_io_handler_t :: ^Objc_Block(proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int))
 
 /// dispatch_io_close_flags_t
-dispatch_io_close_flags_t :: distinct cffi.ulong
+dispatch_io_close_flags_t :: cffi.ulong
 
 /// dispatch_workloop_t
-dispatch_workloop_t :: distinct dispatch_queue_t
+dispatch_workloop_t :: dispatch_queue_t
 
 /// CFStreamPropertyKey
-StreamPropertyKey :: distinct StringRef
+StreamPropertyKey :: StringRef
 
 /// CFReadStreamRef
 ReadStreamRef :: ^__CFReadStream
@@ -3789,7 +3789,7 @@ BundleRef :: ^__CFBundle
 PlugInRef :: ^__CFBundle
 
 /// CFBundleRefNum
-BundleRefNum :: distinct cffi.int
+BundleRefNum :: cffi.int
 
 /// CFMessagePortRef
 MessagePortRef :: ^__CFMessagePort
@@ -3843,7 +3843,7 @@ FileSecurityRef :: ^__CFFileSecurity
 StringTokenizerRef :: ^__CFStringTokenizer
 
 /// CFFileDescriptorNativeDescriptor
-FileDescriptorNativeDescriptor :: distinct cffi.int
+FileDescriptorNativeDescriptor :: cffi.int
 
 /// CFFileDescriptorRef
 FileDescriptorRef :: ^__CFFileDescriptor

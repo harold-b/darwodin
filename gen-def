@@ -60,7 +60,7 @@ out_file="${framework_lower}.json"
 
 if [[ -z "$include" ]]; then
   # The header might not match the framework, so map it if necessarry
-  include=$(darwodin_get_header_for_framework $framework)
+  include=$(darwodin_get_header_for_framework $framework $use_ios)
 fi
 
 echo "Framework: '$framework': '${include}.h'"

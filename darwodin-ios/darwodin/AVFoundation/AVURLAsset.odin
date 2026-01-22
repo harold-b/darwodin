@@ -1,0 +1,72 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVURLAsset
+///
+@(objc_class="AVURLAsset", objc_superclass=Asset)
+URLAsset :: struct { using _: Asset, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=URLAsset, objc_selector="init", objc_name="init")
+    URLAsset_init :: proc(self: ^URLAsset) -> ^URLAsset ---
+
+    @(objc_type=URLAsset, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    URLAsset_new :: proc() -> ^URLAsset ---
+
+    @(objc_type=URLAsset, objc_selector="audiovisualTypes", objc_name="audiovisualTypes", objc_is_class_method=true)
+    URLAsset_audiovisualTypes :: proc() -> ^NS.Array ---
+
+    @(objc_type=URLAsset, objc_selector="audiovisualMIMETypes", objc_name="audiovisualMIMETypes", objc_is_class_method=true)
+    URLAsset_audiovisualMIMETypes :: proc() -> ^NS.Array ---
+
+    @(objc_type=URLAsset, objc_selector="isPlayableExtendedMIMEType:", objc_name="isPlayableExtendedMIMEType", objc_is_class_method=true)
+    URLAsset_isPlayableExtendedMIMEType :: proc(extendedMIMEType: ^NS.String) -> bool ---
+
+    @(objc_type=URLAsset, objc_selector="URLAssetWithURL:options:", objc_name="URLAssetWithURL", objc_is_class_method=true)
+    URLAsset_URLAssetWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary) -> ^URLAsset ---
+
+    @(objc_type=URLAsset, objc_selector="initWithURL:options:", objc_name="initWithURL")
+    URLAsset_initWithURL :: proc(self: ^URLAsset, _URL: ^NS.URL, options: ^NS.Dictionary) -> ^URLAsset ---
+
+    @(objc_type=URLAsset, objc_selector="URL", objc_name="URL")
+    URLAsset_URL :: proc(self: ^URLAsset) -> ^NS.URL ---
+
+    @(objc_type=URLAsset, objc_selector="httpSessionIdentifier", objc_name="httpSessionIdentifier")
+    URLAsset_httpSessionIdentifier :: proc(self: ^URLAsset) -> ^NS.UUID ---
+
+    @(objc_type=URLAsset, objc_selector="resourceLoader", objc_name="resourceLoader")
+    URLAsset_resourceLoader :: proc(self: ^URLAsset) -> ^AssetResourceLoader ---
+
+    @(objc_type=URLAsset, objc_selector="assetCache", objc_name="assetCache")
+    URLAsset_assetCache :: proc(self: ^URLAsset) -> ^AssetCache ---
+
+    @(objc_type=URLAsset, objc_selector="compatibleTrackForCompositionTrack:", objc_name="compatibleTrackForCompositionTrack")
+    URLAsset_compatibleTrackForCompositionTrack :: proc(self: ^URLAsset, compositionTrack: ^CompositionTrack) -> ^AssetTrack ---
+
+    @(objc_type=URLAsset, objc_selector="findCompatibleTrackForCompositionTrack:completionHandler:", objc_name="findCompatibleTrackForCompositionTrack")
+    URLAsset_findCompatibleTrackForCompositionTrack :: proc(self: ^URLAsset, compositionTrack: ^CompositionTrack, completionHandler: ^Objc_Block(proc "c" (_: ^AssetTrack, _1: ^NS.Error))) ---
+
+    @(objc_type=URLAsset, objc_selector="variants", objc_name="variants")
+    URLAsset_variants :: proc(self: ^URLAsset) -> ^NS.Array ---
+
+    @(objc_type=URLAsset, objc_selector="mediaExtensionProperties", objc_name="mediaExtensionProperties")
+    URLAsset_mediaExtensionProperties :: proc(self: ^URLAsset) -> ^MediaExtensionProperties ---
+
+    @(objc_type=URLAsset, objc_selector="mayRequireContentKeysForMediaDataProcessing", objc_name="mayRequireContentKeysForMediaDataProcessing")
+    URLAsset_mayRequireContentKeysForMediaDataProcessing :: proc(self: ^URLAsset) -> bool ---
+}

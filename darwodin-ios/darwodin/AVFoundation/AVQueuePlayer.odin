@@ -1,0 +1,48 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVQueuePlayer
+///
+@(objc_class="AVQueuePlayer", objc_superclass=Player)
+QueuePlayer :: struct { using _: Player, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=QueuePlayer, objc_selector="queuePlayerWithItems:", objc_name="queuePlayerWithItems", objc_is_class_method=true)
+    QueuePlayer_queuePlayerWithItems :: proc(items: ^NS.Array) -> ^QueuePlayer ---
+
+    @(objc_type=QueuePlayer, objc_selector="initWithItems:", objc_name="initWithItems")
+    QueuePlayer_initWithItems :: proc(self: ^QueuePlayer, items: ^NS.Array) -> ^QueuePlayer ---
+
+    @(objc_type=QueuePlayer, objc_selector="items", objc_name="items")
+    QueuePlayer_items :: proc(self: ^QueuePlayer) -> ^NS.Array ---
+
+    @(objc_type=QueuePlayer, objc_selector="advanceToNextItem", objc_name="advanceToNextItem")
+    QueuePlayer_advanceToNextItem :: proc(self: ^QueuePlayer) ---
+
+    @(objc_type=QueuePlayer, objc_selector="canInsertItem:afterItem:", objc_name="canInsertItem")
+    QueuePlayer_canInsertItem :: proc(self: ^QueuePlayer, item: ^PlayerItem, afterItem: ^PlayerItem) -> bool ---
+
+    @(objc_type=QueuePlayer, objc_selector="insertItem:afterItem:", objc_name="insertItem")
+    QueuePlayer_insertItem :: proc(self: ^QueuePlayer, item: ^PlayerItem, afterItem: ^PlayerItem) ---
+
+    @(objc_type=QueuePlayer, objc_selector="removeItem:", objc_name="removeItem")
+    QueuePlayer_removeItem :: proc(self: ^QueuePlayer, item: ^PlayerItem) ---
+
+    @(objc_type=QueuePlayer, objc_selector="removeAllItems", objc_name="removeAllItems")
+    QueuePlayer_removeAllItems :: proc(self: ^QueuePlayer) ---
+}

@@ -46,6 +46,32 @@ tmp_to_odin_string :: #force_inline proc ( ns_str: ^String ) -> string {
     return to_odin_string(ns_str, context.temp_allocator)
 }
 
+// Helper array iterator
+Array_Iterator :: struct($T: typeid) {
+    array: ^Array,
+    length: int,
+    index:  int,
+}
+
+array_iter :: proc( $T: typeid, array: ^Array ) -> Array_Iterator(T) {
+    return Array_Iterator(T) {
+        array  = array,
+        length = int(array->count()),
+        index  = 0,
+    }
+}
+
+array_next :: proc( it: ^Array_Iterator($T) ) -> (val: ^T, idx: int, cond: bool) {
+    if it.index >= it.length {
+        return
+    }
+
+    val      = auto_cast it.array->objectAtIndex(auto_cast it.index)
+    it.index += 1
+    cond     = true
+    return
+}
+
 
 
 ASCIIStringEncoding                                  :: 1

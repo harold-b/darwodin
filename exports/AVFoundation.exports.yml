@@ -137,7 +137,6 @@ Enums:
     AVDelegatingPlaybackCoordinatorSeekOptions: AV.DelegatingPlaybackCoordinatorSeekOptions
     AVPlayerItemStatus: AV.PlayerItemStatus
     AVVariantPreferences: AV.VariantPreferences
-    AVContentAuthorizationStatus: AV.ContentAuthorizationStatus
     AVPlayerLooperStatus: AV.PlayerLooperStatus
     AVPlayerLooperItemOrdering: AV.PlayerLooperItemOrdering
     AVPlayerInterstitialEventRestrictions: AV.PlayerInterstitialEventRestrictions
@@ -511,6 +510,7 @@ ObjCClasses:
     AVSynchronizedLayerInternal: AV.SynchronizedLayerInternal
     AVSynchronizedLayer: AV.SynchronizedLayer
     AVVideoPerformanceMetricsInternal: AV.VideoPerformanceMetricsInternal
+    AVDisplayCriteriaInternal: AV.DisplayCriteriaInternal
     AVAudioBuffer: AV.AudioBuffer
     AVAudioPCMBuffer: AV.AudioPCMBuffer
     AVAudioCompressedBuffer: AV.AudioCompressedBuffer
@@ -1231,13 +1231,6 @@ ExternVars:
     ::AVAssetExportPresetPassthrough: AV.AssetExportPresetPassthrough
     ::AVAssetExportPresetAppleProRes422LPCM: AV.AssetExportPresetAppleProRes422LPCM
     ::AVAssetExportPresetAppleProRes4444LPCM: AV.AssetExportPresetAppleProRes4444LPCM
-    ::AVAssetExportPresetAppleM4VCellular: AV.AssetExportPresetAppleM4VCellular
-    ::AVAssetExportPresetAppleM4ViPod: AV.AssetExportPresetAppleM4ViPod
-    ::AVAssetExportPresetAppleM4V480pSD: AV.AssetExportPresetAppleM4V480pSD
-    ::AVAssetExportPresetAppleM4VAppleTV: AV.AssetExportPresetAppleM4VAppleTV
-    ::AVAssetExportPresetAppleM4VWiFi: AV.AssetExportPresetAppleM4VWiFi
-    ::AVAssetExportPresetAppleM4V720pHD: AV.AssetExportPresetAppleM4V720pHD
-    ::AVAssetExportPresetAppleM4V1080pHD: AV.AssetExportPresetAppleM4V1080pHD
     ::AVAssetImageGeneratorApertureModeCleanAperture: AV.AssetImageGeneratorApertureModeCleanAperture
     ::AVAssetImageGeneratorApertureModeProductionAperture: AV.AssetImageGeneratorApertureModeProductionAperture
     ::AVAssetImageGeneratorApertureModeEncodedPixels: AV.AssetImageGeneratorApertureModeEncodedPixels
@@ -1285,7 +1278,6 @@ ExternVars:
     ::AVErrorPresentationTimeStampKey: AV.ErrorPresentationTimeStampKey
     ::AVErrorPersistentTrackIDKey: AV.ErrorPersistentTrackIDKey
     ::AVErrorFileTypeKey: AV.ErrorFileTypeKey
-    ::AVErrorDiscontinuityFlagsKey: AV.ErrorDiscontinuityFlagsKey
     ::AVMetadataCommonIdentifierTitle: AV.MetadataCommonIdentifierTitle
     ::AVMetadataCommonIdentifierCreator: AV.MetadataCommonIdentifierCreator
     ::AVMetadataCommonIdentifierSubject: AV.MetadataCommonIdentifierSubject
@@ -1621,7 +1613,6 @@ ExternVars:
     ::AVPlayerItemTimeJumpedOriginatingParticipantKey: AV.PlayerItemTimeJumpedOriginatingParticipantKey
     ::AVPlayerItemLegibleOutputTextStylingResolutionDefault: AV.PlayerItemLegibleOutputTextStylingResolutionDefault
     ::AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly: AV.PlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly
-    ::AVPlayerItemTrackVideoFieldModeDeinterlaceFields: AV.PlayerItemTrackVideoFieldModeDeinterlaceFields
     ::AVPlayerInterstitialEventNoCue: AV.PlayerInterstitialEventNoCue
     ::AVPlayerInterstitialEventJoinCue: AV.PlayerInterstitialEventJoinCue
     ::AVPlayerInterstitialEventLeaveCue: AV.PlayerInterstitialEventLeaveCue
@@ -2371,13 +2362,6 @@ ExternTypes:
     ::AVAssetExportPresetPassthrough: ^NS.String
     ::AVAssetExportPresetAppleProRes422LPCM: ^NS.String
     ::AVAssetExportPresetAppleProRes4444LPCM: ^NS.String
-    ::AVAssetExportPresetAppleM4VCellular: ^NS.String
-    ::AVAssetExportPresetAppleM4ViPod: ^NS.String
-    ::AVAssetExportPresetAppleM4V480pSD: ^NS.String
-    ::AVAssetExportPresetAppleM4VAppleTV: ^NS.String
-    ::AVAssetExportPresetAppleM4VWiFi: ^NS.String
-    ::AVAssetExportPresetAppleM4V720pHD: ^NS.String
-    ::AVAssetExportPresetAppleM4V1080pHD: ^NS.String
     ::AVAssetImageGeneratorApertureModeCleanAperture: ^NS.String
     ::AVAssetImageGeneratorApertureModeProductionAperture: ^NS.String
     ::AVAssetImageGeneratorApertureModeEncodedPixels: ^NS.String
@@ -2425,7 +2409,6 @@ ExternTypes:
     ::AVErrorPresentationTimeStampKey: ^NS.String
     ::AVErrorPersistentTrackIDKey: ^NS.String
     ::AVErrorFileTypeKey: ^NS.String
-    ::AVErrorDiscontinuityFlagsKey: ^NS.String
     ::AVMetadataCommonIdentifierTitle: ^NS.String
     ::AVMetadataCommonIdentifierCreator: ^NS.String
     ::AVMetadataCommonIdentifierSubject: ^NS.String
@@ -2761,7 +2744,6 @@ ExternTypes:
     ::AVPlayerItemTimeJumpedOriginatingParticipantKey: ^NS.String
     ::AVPlayerItemLegibleOutputTextStylingResolutionDefault: ^NS.String
     ::AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly: ^NS.String
-    ::AVPlayerItemTrackVideoFieldModeDeinterlaceFields: ^NS.String
     ::AVPlayerInterstitialEventNoCue: ^NS.String
     ::AVPlayerInterstitialEventJoinCue: ^NS.String
     ::AVPlayerInterstitialEventLeaveCue: ^NS.String

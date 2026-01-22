@@ -1,0 +1,93 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVMutableMetadataItem
+///
+@(objc_class="AVMutableMetadataItem", objc_superclass=MetadataItem)
+MutableMetadataItem :: struct { using _: MetadataItem, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MutableMetadataItem, objc_selector="metadataItem", objc_name="metadataItem", objc_is_class_method=true)
+    MutableMetadataItem_metadataItem :: proc() -> ^MutableMetadataItem ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="identifier", objc_name="identifier")
+    MutableMetadataItem_identifier :: proc(self: ^MutableMetadataItem) -> ^NS.String ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setIdentifier:", objc_name="setIdentifier")
+    MutableMetadataItem_setIdentifier :: proc(self: ^MutableMetadataItem, identifier: ^NS.String) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="extendedLanguageTag", objc_name="extendedLanguageTag")
+    MutableMetadataItem_extendedLanguageTag :: proc(self: ^MutableMetadataItem) -> ^NS.String ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setExtendedLanguageTag:", objc_name="setExtendedLanguageTag")
+    MutableMetadataItem_setExtendedLanguageTag :: proc(self: ^MutableMetadataItem, extendedLanguageTag: ^NS.String) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="locale", objc_name="locale")
+    MutableMetadataItem_locale :: proc(self: ^MutableMetadataItem) -> ^NS.Locale ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setLocale:", objc_name="setLocale")
+    MutableMetadataItem_setLocale :: proc(self: ^MutableMetadataItem, locale: ^NS.Locale) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="time", objc_name="time")
+    MutableMetadataItem_time :: proc(self: ^MutableMetadataItem) -> CM.Time ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setTime:", objc_name="setTime")
+    MutableMetadataItem_setTime :: proc(self: ^MutableMetadataItem, time: CM.Time) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="duration", objc_name="duration")
+    MutableMetadataItem_duration :: proc(self: ^MutableMetadataItem) -> CM.Time ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setDuration:", objc_name="setDuration")
+    MutableMetadataItem_setDuration :: proc(self: ^MutableMetadataItem, duration: CM.Time) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="dataType", objc_name="dataType")
+    MutableMetadataItem_dataType :: proc(self: ^MutableMetadataItem) -> ^NS.String ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setDataType:", objc_name="setDataType")
+    MutableMetadataItem_setDataType :: proc(self: ^MutableMetadataItem, dataType: ^NS.String) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="value", objc_name="value")
+    MutableMetadataItem_value :: proc(self: ^MutableMetadataItem) -> ^id ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setValue:", objc_name="setValue")
+    MutableMetadataItem_setValue :: proc(self: ^MutableMetadataItem, value: ^id) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="extraAttributes", objc_name="extraAttributes")
+    MutableMetadataItem_extraAttributes :: proc(self: ^MutableMetadataItem) -> ^NS.Dictionary ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setExtraAttributes:", objc_name="setExtraAttributes")
+    MutableMetadataItem_setExtraAttributes :: proc(self: ^MutableMetadataItem, extraAttributes: ^NS.Dictionary) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="startDate", objc_name="startDate")
+    MutableMetadataItem_startDate :: proc(self: ^MutableMetadataItem) -> ^NS.Date ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setStartDate:", objc_name="setStartDate")
+    MutableMetadataItem_setStartDate :: proc(self: ^MutableMetadataItem, startDate: ^NS.Date) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="keySpace", objc_name="keySpace")
+    MutableMetadataItem_keySpace :: proc(self: ^MutableMetadataItem) -> ^NS.String ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setKeySpace:", objc_name="setKeySpace")
+    MutableMetadataItem_setKeySpace :: proc(self: ^MutableMetadataItem, keySpace: ^NS.String) ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="key", objc_name="key")
+    MutableMetadataItem_key :: proc(self: ^MutableMetadataItem) -> ^id ---
+
+    @(objc_type=MutableMetadataItem, objc_selector="setKey:", objc_name="setKey")
+    MutableMetadataItem_setKey :: proc(self: ^MutableMetadataItem, key: ^id) ---
+}

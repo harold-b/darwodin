@@ -5,90 +5,6 @@ Structs:
     CMTime: CM.Time
     CMTimeRange: CM.TimeRange
     CMTimeMapping: CM.TimeMapping
-    _CMSDecoder: CM._CMSDecoder
-    _CMSEncoder: CM._CMSEncoder
-    ColorSyncMD5: CM.ColorSyncMD5
-    ColorSyncTransform: CM.ColorSyncTransform
-    ColorSyncCMM: CM.ColorSyncCMM
-    CMDateTime: CM.DateTime
-    CMFixedXYColor: CM.FixedXYColor
-    CMFixedXYZColor: CM.FixedXYZColor
-    CMXYZColor: CM.XYZColor
-    CM2Header: CM._2Header
-    CM4Header: CM._4Header
-    CMTagRecord: CM.TagRecord
-    CMTagElemTable: CM.TagElemTable
-    CM2Profile: CM._2Profile
-    CMAdaptationMatrixType: CM.AdaptationMatrixType
-    CMCurveType: CM.CurveType
-    CMDataType: CM.DataType
-    CMDateTimeType: CM.DateTimeType
-    CMLut16Type: CM.Lut16Type
-    CMLut8Type: CM.Lut8Type
-    CMMultiFunctLutType: CM.MultiFunctLutType
-    CMMultiFunctCLUTType: CM.MultiFunctCLUTType
-    CMMeasurementType: CM.MeasurementType
-    CMNamedColorType: CM.NamedColorType
-    CMNamedColor2EntryType: CM.NamedColor2EntryType
-    CMNamedColor2Type: CM.NamedColor2Type
-    CMNativeDisplayInfo: CM.NativeDisplayInfo
-    CMNativeDisplayInfoType: CM.NativeDisplayInfoType
-    CMParametricCurveType: CM.ParametricCurveType
-    CMTextDescriptionType: CM.TextDescriptionType
-    CMTextType: CM.TextType
-    CMUnicodeTextType: CM.UnicodeTextType
-    CMScreeningChannelRec: CM.ScreeningChannelRec
-    CMScreeningType: CM.ScreeningType
-    CMSignatureType: CM.SignatureType
-    CMS15Fixed16ArrayType: CM.S15Fixed16ArrayType
-    CMU16Fixed16ArrayType: CM.U16Fixed16ArrayType
-    CMUInt8ArrayType: CM.UInt8ArrayType
-    CMUInt16ArrayType: CM.UInt16ArrayType
-    CMUInt32ArrayType: CM.UInt32ArrayType
-    CMUInt64ArrayType: CM.UInt64ArrayType
-    CMViewingConditionsType: CM.ViewingConditionsType
-    CMXYZType: CM.XYZType
-    CMProfileSequenceDescType: CM.ProfileSequenceDescType
-    CMUcrBgType: CM.UcrBgType
-    CMIntentCRDVMSize: CM.IntentCRDVMSize
-    CMPS2CRDVMSizeType: CM.PS2CRDVMSizeType
-    CMVideoCardGammaTable: CM.VideoCardGammaTable
-    CMVideoCardGammaFormula: CM.VideoCardGammaFormula
-    CMVideoCardGamma: CM.VideoCardGamma
-    CMVideoCardGammaType: CM.VideoCardGammaType
-    CMMakeAndModel: CM.MakeAndModel
-    CMMakeAndModelType: CM.MakeAndModelType
-    CMMultiLocalizedUniCodeEntryRec: CM.MultiLocalizedUniCodeEntryRec
-    CMMultiLocalizedUniCodeType: CM.MultiLocalizedUniCodeType
-    OpaqueCMProfileRef: CM.OpaqueCMProfileRef
-    OpaqueCMWorldRef: CM.OpaqueCMWorldRef
-    CMConcatProfileSet: CM.ConcatProfileSet
-    CMRGBColor: CM.RGBColor
-    CMCMYKColor: CM.CMYKColor
-    CMCMYColor: CM.CMYColor
-    CMHLSColor: CM.HLSColor
-    CMHSVColor: CM.HSVColor
-    CMLabColor: CM.LabColor
-    CMLuvColor: CM.LuvColor
-    CMYxyColor: CM.YxyColor
-    CMGrayColor: CM.GrayColor
-    CMMultichannel5Color: CM.Multichannel5Color
-    CMMultichannel6Color: CM.Multichannel6Color
-    CMMultichannel7Color: CM.Multichannel7Color
-    CMMultichannel8Color: CM.Multichannel8Color
-    CMNamedColor: CM.NamedColor
-    CMMInfo: CM.MInfo
-    CMBitmap: CM.Bitmap
-    CMHandleLocation: CM.HandleLocation
-    CMPathLocation: CM.PathLocation
-    CMBufferLocation: CM.BufferLocation
-    CMProfileLocation: CM.ProfileLocation
-    CMProfileIterateData: CM.ProfileIterateData
-    CMFloatBitmap: CM.FloatBitmap
-    CMDeviceScope: CM.DeviceScope
-    CMDeviceInfo: CM.DeviceInfo
-    CMDeviceProfileInfo: CM.DeviceProfileInfo
-    CMDeviceProfileArray: CM.DeviceProfileArray
     opaqueCMFormatDescription: CM.opaqueCMFormatDescription
     CMVideoDimensions: CM.VideoDimensions
     OpaqueCMBlockBuffer: CM.OpaqueCMBlockBuffer
@@ -106,9 +22,6 @@ Structs:
     OpaqueCMMemoryPool: CM.OpaqueCMMemoryPool
     OpaqueCMClock: CM.OpaqueCMClock
     OpaqueCMTimebase: CM.OpaqueCMTimebase
-    CMAppleProfileHeader: CM.AppleProfileHeader
-    CMColor: CM.Color
-    CMProfLoc: CM.ProfLoc
 
 Typedefs:
     CMItemCount: CM.ItemCount
@@ -119,51 +32,6 @@ Typedefs:
     CMTimeValue: CM.TimeValue
     CMTimeScale: CM.TimeScale
     CMTimeEpoch: CM.TimeEpoch
-    CMSDecoderRef: CM.SDecoderRef
-    CMSEncoderRef: CM.SEncoderRef
-    ColorSyncMutableProfileRef: CM.ColorSyncMutableProfileRef
-    ColorSyncProfileIterateCallback: CM.ColorSyncProfileIterateCallback
-    ColorSyncTransformRef: CM.ColorSyncTransformRef
-    ColorSyncDataLayout: CM.ColorSyncDataLayout
-    ColorSyncCMMRef: CM.ColorSyncCMMRef
-    ColorSyncCMMIterateCallback: CM.ColorSyncCMMIterateCallback
-    CMMInitializeLinkProfileProc: CM.MInitializeLinkProfileProc
-    CMMInitializeTransformProc: CM.MInitializeTransformProc
-    CMMApplyTransformProc: CM.MApplyTransformProc
-    CMMCreateTransformPropertyProc: CM.MCreateTransformPropertyProc
-    ColorSyncDeviceProfileIterateCallback: CM.ColorSyncDeviceProfileIterateCallback
-    CMXYZComponent: CM.XYZComponent
-    CMProfileMD5: CM.ProfileMD5
-    CMProfileMD5Ptr: CM.ProfileMD5Ptr
-    CM2ProfilePtr: CM._2ProfilePtr
-    CM2ProfileHandle: CM._2ProfileHandle
-    CMMultiFunctLutA2BType: CM.MultiFunctLutA2BType
-    CMMultiFunctLutB2AType: CM.MultiFunctLutB2AType
-    CMProfileRef: CM.ProfileRef
-    CMWorldRef: CM.WorldRef
-    CMDisplayIDType: CM.DisplayIDType
-    CMChromaticAdaptation: CM.ChromaticAdaptation
-    CMFlattenProcPtr: CM.FlattenProcPtr
-    CMFlattenUPP: CM.FlattenUPP
-    CMBitmapCallBackProcPtr: CM.BitmapCallBackProcPtr
-    CMBitmapCallBackUPP: CM.BitmapCallBackUPP
-    CMConcatCallBackProcPtr: CM.ConcatCallBackProcPtr
-    CMConcatCallBackUPP: CM.ConcatCallBackUPP
-    CMBitmapColorSpace: CM.BitmapColorSpace
-    CMProfileIterateProcPtr: CM.ProfileIterateProcPtr
-    CMProfileIterateUPP: CM.ProfileIterateUPP
-    CMMIterateProcPtr: CM.MIterateProcPtr
-    CMMIterateUPP: CM.MIterateUPP
-    CMLabToLabProcPtr: CM.LabToLabProcPtr
-    CMDeviceState: CM.DeviceState
-    CMDeviceID: CM.DeviceID
-    CMDeviceProfileID: CM.DeviceProfileID
-    CMDeviceClass: CM.DeviceClass
-    CMDeviceProfileScope: CM.DeviceProfileScope
-    CMDeviceInfoPtr: CM.DeviceInfoPtr
-    CMDeviceProfileArrayPtr: CM.DeviceProfileArrayPtr
-    CMIterateDeviceInfoProcPtr: CM.IterateDeviceInfoProcPtr
-    CMIterateDeviceProfileProcPtr: CM.IterateDeviceProfileProcPtr
     CMFormatDescriptionRef: CM.FormatDescriptionRef
     CMMediaType: CM.MediaType
     CMAudioCodecType: CM.AudioCodecType
@@ -233,12 +101,6 @@ Typedefs:
 Enums:
     CMTimeFlags: CM.TimeFlags
     CMTimeRoundingMethod: CM.TimeRoundingMethod
-    CMSSignerStatus: CM.SSignerStatus
-    CMSSignedAttributes: CM.SSignedAttributes
-    CMSCertificateChainMode: CM.SCertificateChainMode
-    ColorSyncDataDepth: CM.ColorSyncDataDepth
-    ColorSyncAlphaInfo: CM.ColorSyncAlphaInfo
-    CMFloatBitmapFlags: CM.FloatBitmapFlags
     CMTagError: CM.TagError
     CMTagCategory: CM.TagCategory
     CMTagDataType: CM.TagDataType
@@ -295,48 +157,6 @@ Functions:
     ::CMTimeMappingMakeFromDictionary: CM.TimeMappingMakeFromDictionary
     ::CMTimeMappingCopyDescription: CM.TimeMappingCopyDescription
     ::CMTimeMappingShow: CM.TimeMappingShow
-    ::CMSDecoderGetTypeID: CM.SDecoderGetTypeID
-    ::CMSDecoderCreate: CM.SDecoderCreate
-    ::CMSDecoderUpdateMessage: CM.SDecoderUpdateMessage
-    ::CMSDecoderFinalizeMessage: CM.SDecoderFinalizeMessage
-    ::CMSDecoderSetDetachedContent: CM.SDecoderSetDetachedContent
-    ::CMSDecoderCopyDetachedContent: CM.SDecoderCopyDetachedContent
-    ::CMSDecoderSetSearchKeychain: CM.SDecoderSetSearchKeychain
-    ::CMSDecoderGetNumSigners: CM.SDecoderGetNumSigners
-    ::CMSDecoderCopySignerStatus: CM.SDecoderCopySignerStatus
-    ::CMSDecoderCopySignerEmailAddress: CM.SDecoderCopySignerEmailAddress
-    ::CMSDecoderCopySignerCert: CM.SDecoderCopySignerCert
-    ::CMSDecoderIsContentEncrypted: CM.SDecoderIsContentEncrypted
-    ::CMSDecoderCopyEncapsulatedContentType: CM.SDecoderCopyEncapsulatedContentType
-    ::CMSDecoderCopyAllCerts: CM.SDecoderCopyAllCerts
-    ::CMSDecoderCopyContent: CM.SDecoderCopyContent
-    ::CMSDecoderCopySignerSigningTime: CM.SDecoderCopySignerSigningTime
-    ::CMSDecoderCopySignerTimestamp: CM.SDecoderCopySignerTimestamp
-    ::CMSDecoderCopySignerTimestampWithPolicy: CM.SDecoderCopySignerTimestampWithPolicy
-    ::CMSDecoderCopySignerTimestampCertificates: CM.SDecoderCopySignerTimestampCertificates
-    ::CMSEncoderGetTypeID: CM.SEncoderGetTypeID
-    ::CMSEncoderCreate: CM.SEncoderCreate
-    ::CMSEncoderSetSignerAlgorithm: CM.SEncoderSetSignerAlgorithm
-    ::CMSEncoderAddSigners: CM.SEncoderAddSigners
-    ::CMSEncoderCopySigners: CM.SEncoderCopySigners
-    ::CMSEncoderAddRecipients: CM.SEncoderAddRecipients
-    ::CMSEncoderCopyRecipients: CM.SEncoderCopyRecipients
-    ::CMSEncoderSetHasDetachedContent: CM.SEncoderSetHasDetachedContent
-    ::CMSEncoderGetHasDetachedContent: CM.SEncoderGetHasDetachedContent
-    ::CMSEncoderSetEncapsulatedContentType: CM.SEncoderSetEncapsulatedContentType
-    ::CMSEncoderSetEncapsulatedContentTypeOID: CM.SEncoderSetEncapsulatedContentTypeOID
-    ::CMSEncoderCopyEncapsulatedContentType: CM.SEncoderCopyEncapsulatedContentType
-    ::CMSEncoderAddSupportingCerts: CM.SEncoderAddSupportingCerts
-    ::CMSEncoderCopySupportingCerts: CM.SEncoderCopySupportingCerts
-    ::CMSEncoderAddSignedAttributes: CM.SEncoderAddSignedAttributes
-    ::CMSEncoderSetCertificateChainMode: CM.SEncoderSetCertificateChainMode
-    ::CMSEncoderGetCertificateChainMode: CM.SEncoderGetCertificateChainMode
-    ::CMSEncoderUpdateContent: CM.SEncoderUpdateContent
-    ::CMSEncoderCopyEncodedContent: CM.SEncoderCopyEncodedContent
-    ::CMSEncode: CM.SEncode
-    ::CMSEncodeContent: CM.SEncodeContent
-    ::CMSEncoderCopySignerTimestamp: CM.SEncoderCopySignerTimestamp
-    ::CMSEncoderCopySignerTimestampWithPolicy: CM.SEncoderCopySignerTimestampWithPolicy
     ::CMFormatDescriptionCreate: CM.FormatDescriptionCreate
     ::CMFormatDescriptionGetTypeID: CM.FormatDescriptionGetTypeID
     ::CMFormatDescriptionEqual: CM.FormatDescriptionEqual
@@ -658,11 +478,6 @@ Functions:
     ::CMMetadataDataTypeRegistryDataTypeIsBaseDataType: CM.MetadataDataTypeRegistryDataTypeIsBaseDataType
     ::CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType: CM.MetadataDataTypeRegistryGetBaseDataTypeForConformingDataType
     ::CMAudioClockCreate: CM.AudioClockCreate
-    ::CMAudioDeviceClockCreate: CM.AudioDeviceClockCreate
-    ::CMAudioDeviceClockCreateFromAudioDeviceID: CM.AudioDeviceClockCreateFromAudioDeviceID
-    ::CMAudioDeviceClockSetAudioDeviceUID: CM.AudioDeviceClockSetAudioDeviceUID
-    ::CMAudioDeviceClockSetAudioDeviceID: CM.AudioDeviceClockSetAudioDeviceID
-    ::CMAudioDeviceClockGetAudioDevice: CM.AudioDeviceClockGetAudioDevice
 
 ExternVars:
     ::kCMTimeInvalid: CM.kTimeInvalid
@@ -681,12 +496,6 @@ ExternVars:
     ::kCMTimeMappingInvalid: CM.kTimeMappingInvalid
     ::kCMTimeMappingSourceKey: CM.kTimeMappingSourceKey
     ::kCMTimeMappingTargetKey: CM.kTimeMappingTargetKey
-    ::kCMSEncoderDigestAlgorithmSHA1: CM.kSEncoderDigestAlgorithmSHA1
-    ::kCMSEncoderDigestAlgorithmSHA256: CM.kSEncoderDigestAlgorithmSHA256
-    ::kCMMInitializeLinkProfileProcName: CM.kMInitializeLinkProfileProcName
-    ::kCMMInitializeTransformProcName: CM.kMInitializeTransformProcName
-    ::kCMMApplyTransformProcName: CM.kMApplyTransformProcName
-    ::kCMMCreateTransformPropertyProcName: CM.kMCreateTransformPropertyProcName
     ::kCMFormatDescriptionExtension_OriginalCompressionSettings: CM.kFormatDescriptionExtension_OriginalCompressionSettings
     ::kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms: CM.kFormatDescriptionExtension_SampleDescriptionExtensionAtoms
     ::kCMFormatDescriptionExtension_VerbatimSampleDescription: CM.kFormatDescriptionExtension_VerbatimSampleDescription
@@ -1030,12 +839,6 @@ ExternTypes:
     ::kCMTimeMappingInvalid: TimeMapping
     ::kCMTimeMappingSourceKey: CF.StringRef
     ::kCMTimeMappingTargetKey: CF.StringRef
-    ::kCMSEncoderDigestAlgorithmSHA1: CF.StringRef
-    ::kCMSEncoderDigestAlgorithmSHA256: CF.StringRef
-    ::kCMMInitializeLinkProfileProcName: CF.StringRef
-    ::kCMMInitializeTransformProcName: CF.StringRef
-    ::kCMMApplyTransformProcName: CF.StringRef
-    ::kCMMCreateTransformPropertyProcName: CF.StringRef
     ::kCMFormatDescriptionExtension_OriginalCompressionSettings: CF.StringRef
     ::kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms: CF.StringRef
     ::kCMFormatDescriptionExtension_VerbatimSampleDescription: CF.StringRef

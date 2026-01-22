@@ -4,7 +4,7 @@ ImportName: "Audio"
 Structs:
     AudioComponentDescription: Audio.ComponentDescription
     OpaqueAudioComponent: Audio.OpaqueAudioComponent
-    ComponentInstanceRecord: Audio.ComponentInstanceRecord
+    OpaqueAudioComponentInstance: Audio.OpaqueAudioComponentInstance
     AudioComponentPlugInInterface: Audio.ComponentPlugInInterface
     AudioCodecMagicCookieInfo: Audio.CodecMagicCookieInfo
     AudioCodecPrimeInfo: Audio.CodecPrimeInfo
@@ -18,8 +18,6 @@ Structs:
     AUPreset: Audio.AUPreset
     AudioUnitFrequencyResponseBin: Audio.UnitFrequencyResponseBin
     AUDependentParameter: Audio.AUDependentParameter
-    AudioUnitCocoaViewInfo: Audio.UnitCocoaViewInfo
-    AUHostVersionIdentifier: Audio.AUHostVersionIdentifier
     MIDIPacketList: Audio.MIDIPacketList
     AUMIDIOutputCallbackStruct: Audio.AUMIDIOutputCallbackStruct
     AUInputSamplesInOutputCallbackStruct: Audio.AUInputSamplesInOutputCallbackStruct
@@ -30,23 +28,12 @@ Structs:
     AudioUnitParameterNameInfo: Audio.UnitParameterNameInfo
     AudioUnitParameterStringFromValue: Audio.UnitParameterStringFromValue
     AudioUnitParameterValueFromString: Audio.UnitParameterValueFromString
-    AUParameterMIDIMapping: Audio.AUParameterMIDIMapping
-    AudioUnitOtherPluginDesc: Audio.UnitOtherPluginDesc
-    AudioUnitParameterValueTranslation: Audio.UnitParameterValueTranslation
-    AudioUnitPresetMAS_SettingData: Audio.UnitPresetMAS_SettingData
-    AudioUnitPresetMAS_Settings: Audio.UnitPresetMAS_Settings
     AudioOutputUnitMIDICallbacks: Audio.OutputUnitMIDICallbacks
     AudioOutputUnitStartAtTimeParams: Audio.OutputUnitStartAtTimeParams
     AUVoiceIOOtherAudioDuckingConfiguration: Audio.AUVoiceIOOtherAudioDuckingConfiguration
     AudioUnitMeterClipping: Audio.UnitMeterClipping
     AUSamplerInstrumentData: Audio.AUSamplerInstrumentData
-    AUNumVersion: Audio.AUNumVersion
-    AUHostIdentifier: Audio.AUHostIdentifier
-    AudioUnitMIDIControlMapping: Audio.UnitMIDIControlMapping
-    AudioUnitParameterValueName: Audio.UnitParameterValueName
     AUSamplerBankPresetData: Audio.AUSamplerBankPresetData
-    MIDIDataChunk: Audio.MIDIDataChunk
-    AudioRecordingChunk: Audio.RecordingChunk
     AURecordedParameterEvent: Audio.AURecordedParameterEvent
     AUParameterAutomationEvent: Audio.AUParameterAutomationEvent
     MIDISysexSendRequest: Audio.MIDISysexSendRequest
@@ -99,8 +86,6 @@ Structs:
     MIDIMetaEvent: Audio.MIDIMetaEvent
     AUPresetEvent: Audio.AUPresetEvent
     OpaqueMusicSequence: Audio.OpaqueMusicSequence
-    AudioFileFDFTable: Audio.FileFDFTable
-    AudioFileFDFTableExtended: Audio.FileFDFTableExtended
     AURenderEvent: Audio.AURenderEvent
     AudioValueRange: Audio.ValueRange
     AudioValueTranslation: Audio.ValueTranslation
@@ -169,8 +154,6 @@ Typedefs:
     AudioUnitParameterIDName: Audio.UnitParameterIDName
     AudioUnitRemoteControlEventListener: Audio.UnitRemoteControlEventListener
     AUVoiceIOMutedSpeechActivityEventListener: Audio.AUVoiceIOMutedSpeechActivityEventListener
-    MIDIDataChunkPtr: Audio.MIDIDataChunkPtr
-    AudioRecordingChunkPtr: Audio.RecordingChunkPtr
     AUValue: Audio.AUValue
     AUParameterAddress: Audio.AUParameterAddress
     AUParameterObserver: Audio.AUParameterObserver
@@ -191,7 +174,6 @@ Typedefs:
     MIDIReadBlock: Audio.MIDIReadBlock
     MIDICompletionProc: Audio.MIDICompletionProc
     MIDICompletionProcUMP: Audio.MIDICompletionProcUMP
-    AUAudioObjectID: Audio.AUAudioObjectID
     MIDIChannelNumber: Audio.MIDIChannelNumber
     AUAudioUnitStatus: Audio.AUAudioUnitStatus
     AUAudioFrameCount: Audio.AUAudioFrameCount
@@ -247,6 +229,10 @@ Typedefs:
     AudioQueueInputCallback: Audio.QueueInputCallback
     AudioQueuePropertyListenerProc: Audio.QueuePropertyListenerProc
     AudioQueueProcessingTapCallback: Audio.QueueProcessingTapCallback
+    AudioSessionPropertyID: Audio.SessionPropertyID
+    AudioSessionInterruptionType: Audio.SessionInterruptionType
+    AudioSessionInterruptionListener: Audio.SessionInterruptionListener
+    AudioSessionPropertyListener: Audio.SessionPropertyListener
     SystemSoundID: Audio.SystemSoundID
     AudioServicesPropertyID: Audio.ServicesPropertyID
     AudioServicesSystemSoundCompletionProc: Audio.ServicesSystemSoundCompletionProc
@@ -257,49 +243,6 @@ Typedefs:
     AUParameterListenerProc: Audio.AUParameterListenerProc
     AUEventListenerProc: Audio.AUEventListenerProc
     MusicSequence: Audio.MusicSequence
-    AudioFileComponent: Audio.FileComponent
-    AudioFileComponentPropertyID: Audio.FileComponentPropertyID
-    ReadBytesFDF: Audio.ReadBytesFDF
-    WriteBytesFDF: Audio.WriteBytesFDF
-    ReadPacketsFDF: Audio.ReadPacketsFDF
-    ReadPacketDataFDF: Audio.ReadPacketDataFDF
-    WritePacketsFDF: Audio.WritePacketsFDF
-    GetPropertyInfoFDF: Audio.GetPropertyInfoFDF
-    GetPropertyFDF: Audio.GetPropertyFDF
-    SetPropertyFDF: Audio.SetPropertyFDF
-    CountUserDataFDF: Audio.CountUserDataFDF
-    GetUserDataSizeFDF: Audio.GetUserDataSizeFDF
-    GetUserDataFDF: Audio.GetUserDataFDF
-    SetUserDataFDF: Audio.SetUserDataFDF
-    AudioFileComponentCreateURLProc: Audio.FileComponentCreateURLProc
-    AudioFileComponentOpenURLProc: Audio.FileComponentOpenURLProc
-    AudioFileComponentOpenWithCallbacksProc: Audio.FileComponentOpenWithCallbacksProc
-    AudioFileComponentInitializeWithCallbacksProc: Audio.FileComponentInitializeWithCallbacksProc
-    AudioFileComponentCloseProc: Audio.FileComponentCloseProc
-    AudioFileComponentOptimizeProc: Audio.FileComponentOptimizeProc
-    AudioFileComponentReadBytesProc: Audio.FileComponentReadBytesProc
-    AudioFileComponentWriteBytesProc: Audio.FileComponentWriteBytesProc
-    AudioFileComponentReadPacketsProc: Audio.FileComponentReadPacketsProc
-    AudioFileComponentReadPacketDataProc: Audio.FileComponentReadPacketDataProc
-    AudioFileComponentWritePacketsProc: Audio.FileComponentWritePacketsProc
-    AudioFileComponentGetPropertyInfoProc: Audio.FileComponentGetPropertyInfoProc
-    AudioFileComponentGetPropertyProc: Audio.FileComponentGetPropertyProc
-    AudioFileComponentSetPropertyProc: Audio.FileComponentSetPropertyProc
-    AudioFileComponentCountUserDataProc: Audio.FileComponentCountUserDataProc
-    AudioFileComponentGetUserDataSizeProc: Audio.FileComponentGetUserDataSizeProc
-    AudioFileComponentGetUserDataSize64Proc: Audio.FileComponentGetUserDataSize64Proc
-    AudioFileComponentGetUserDataProc: Audio.FileComponentGetUserDataProc
-    AudioFileComponentGetUserDataAtOffsetProc: Audio.FileComponentGetUserDataAtOffsetProc
-    AudioFileComponentSetUserDataProc: Audio.FileComponentSetUserDataProc
-    AudioFileComponentRemoveUserDataProc: Audio.FileComponentRemoveUserDataProc
-    AudioFileComponentExtensionIsThisFormatProc: Audio.FileComponentExtensionIsThisFormatProc
-    AudioFileComponentFileDataIsThisFormatProc: Audio.FileComponentFileDataIsThisFormatProc
-    AudioFileComponentGetGlobalInfoSizeProc: Audio.FileComponentGetGlobalInfoSizeProc
-    AudioFileComponentGetGlobalInfoProc: Audio.FileComponentGetGlobalInfoProc
-    AudioSessionPropertyID: Audio.SessionPropertyID
-    AudioSessionInterruptionType: Audio.SessionInterruptionType
-    AudioSessionInterruptionListener: Audio.SessionInterruptionListener
-    AudioSessionPropertyListener: Audio.SessionPropertyListener
     AudioSampleType: Audio.SampleType
     AudioUnitSampleType: Audio.UnitSampleType
     AudioChannelLabel: Audio.ChannelLabel
@@ -333,7 +276,6 @@ Enums:
     AudioUnitParameterUnit: Audio.UnitParameterUnit
     AudioUnitParameterOptions: Audio.UnitParameterOptions
     AudioUnitRemoteControlEvent: Audio.UnitRemoteControlEvent
-    AUParameterMIDIMappingFlags: Audio.AUParameterMIDIMappingFlags
     AUVoiceIOSpeechActivityEvent: Audio.AUVoiceIOSpeechActivityEvent
     AUVoiceIOOtherAudioDuckingLevel: Audio.AUVoiceIOOtherAudioDuckingLevel
     AUSpatializationAlgorithm: Audio.AUSpatializationAlgorithm
@@ -402,7 +344,6 @@ Functions:
     ::AudioComponentCopyName: Audio.ComponentCopyName
     ::AudioComponentGetDescription: Audio.ComponentGetDescription
     ::AudioComponentGetVersion: Audio.ComponentGetVersion
-    ::AudioComponentGetIcon: Audio.ComponentGetIcon
     ::AudioComponentInstanceNew: Audio.ComponentInstanceNew
     ::AudioComponentInstantiate: Audio.ComponentInstantiate
     ::AudioComponentInstanceDispose: Audio.ComponentInstanceDispose
@@ -439,6 +380,8 @@ Functions:
     ::AudioUnitProcessMultiple: Audio.UnitProcessMultiple
     ::AudioUnitReset: Audio.UnitReset
     ::AudioOutputUnitPublish: Audio.OutputUnitPublish
+    ::AudioOutputUnitGetHostIcon: Audio.OutputUnitGetHostIcon
+    ::AudioComponentGetIcon: Audio.ComponentGetIcon
     ::AudioComponentGetLastActiveTime: Audio.ComponentGetLastActiveTime
     ::AudioComponentCopyIcon: Audio.ComponentCopyIcon
     ::AudioUnitExtensionSetComponentList: Audio.UnitExtensionSetComponentList
@@ -450,9 +393,6 @@ Functions:
     ::AUGraphGetNodeCount: Audio.AUGraphGetNodeCount
     ::AUGraphGetIndNode: Audio.AUGraphGetIndNode
     ::AUGraphNodeInfo: Audio.AUGraphNodeInfo
-    ::AUGraphNewNodeSubGraph: Audio.AUGraphNewNodeSubGraph
-    ::AUGraphGetNodeInfoSubGraph: Audio.AUGraphGetNodeInfoSubGraph
-    ::AUGraphIsNodeSubGraph: Audio.AUGraphIsNodeSubGraph
     ::AUGraphConnectNodeInput: Audio.AUGraphConnectNodeInput
     ::AUGraphSetNodeInputCallback: Audio.AUGraphSetNodeInputCallback
     ::AUGraphDisconnectNodeInput: Audio.AUGraphDisconnectNodeInput
@@ -475,12 +415,6 @@ Functions:
     ::AUGraphGetMaxCPULoad: Audio.AUGraphGetMaxCPULoad
     ::AUGraphAddRenderNotify: Audio.AUGraphAddRenderNotify
     ::AUGraphRemoveRenderNotify: Audio.AUGraphRemoveRenderNotify
-    ::AUGraphNewNode: Audio.AUGraphNewNode
-    ::AUGraphGetNodeInfo: Audio.AUGraphGetNodeInfo
-    ::AUGraphGetNumberOfConnections: Audio.AUGraphGetNumberOfConnections
-    ::AUGraphGetConnectionInfo: Audio.AUGraphGetConnectionInfo
-    ::AUGraphCountNodeConnections: Audio.AUGraphCountNodeConnections
-    ::AUGraphGetNodeConnections: Audio.AUGraphGetNodeConnections
     ::AudioConverterPrepare: Audio.ConverterPrepare
     ::AudioConverterNew: Audio.ConverterNew
     ::AudioConverterNewSpecific: Audio.ConverterNewSpecific
@@ -493,7 +427,6 @@ Functions:
     ::AudioConverterConvertBuffer: Audio.ConverterConvertBuffer
     ::AudioConverterFillComplexBuffer: Audio.ConverterFillComplexBuffer
     ::AudioConverterConvertComplexBuffer: Audio.ConverterConvertComplexBuffer
-    ::AudioConverterFillBuffer: Audio.ConverterFillBuffer
     ::AudioFileCreateWithURL: Audio.FileCreateWithURL
     ::AudioFileOpenURL: Audio.FileOpenURL
     ::AudioFileInitializeWithCallbacks: Audio.FileInitializeWithCallbacks
@@ -517,9 +450,6 @@ Functions:
     ::AudioFileSetProperty: Audio.FileSetProperty
     ::AudioFileGetGlobalInfoSize: Audio.FileGetGlobalInfoSize
     ::AudioFileGetGlobalInfo: Audio.FileGetGlobalInfo
-    ::AudioFileCreate: Audio.FileCreate
-    ::AudioFileInitialize: Audio.FileInitialize
-    ::AudioFileOpen: Audio.FileOpen
     ::AudioFileStreamOpen: Audio.FileStreamOpen
     ::AudioFileStreamParseBytes: Audio.FileStreamParseBytes
     ::AudioFileStreamSeek: Audio.FileStreamSeek
@@ -564,13 +494,15 @@ Functions:
     ::AudioQueueProcessingTapDispose: Audio.QueueProcessingTapDispose
     ::AudioQueueProcessingTapGetSourceAudio: Audio.QueueProcessingTapGetSourceAudio
     ::AudioQueueProcessingTapGetQueueTime: Audio.QueueProcessingTapGetQueueTime
-    ::AudioHardwareServiceHasProperty: Audio.HardwareServiceHasProperty
-    ::AudioHardwareServiceIsPropertySettable: Audio.HardwareServiceIsPropertySettable
-    ::AudioHardwareServiceGetPropertyDataSize: Audio.HardwareServiceGetPropertyDataSize
-    ::AudioHardwareServiceGetPropertyData: Audio.HardwareServiceGetPropertyData
-    ::AudioHardwareServiceSetPropertyData: Audio.HardwareServiceSetPropertyData
-    ::AudioHardwareServiceAddPropertyListener: Audio.HardwareServiceAddPropertyListener
-    ::AudioHardwareServiceRemovePropertyListener: Audio.HardwareServiceRemovePropertyListener
+    ::AudioSessionInitialize: Audio.SessionInitialize
+    ::AudioSessionSetActive: Audio.SessionSetActive
+    ::AudioSessionSetActiveWithFlags: Audio.SessionSetActiveWithFlags
+    ::AudioSessionGetProperty: Audio.SessionGetProperty
+    ::AudioSessionSetProperty: Audio.SessionSetProperty
+    ::AudioSessionGetPropertySize: Audio.SessionGetPropertySize
+    ::AudioSessionAddPropertyListener: Audio.SessionAddPropertyListener
+    ::AudioSessionRemovePropertyListener: Audio.SessionRemovePropertyListener
+    ::AudioSessionRemovePropertyListenerWithUserData: Audio.SessionRemovePropertyListenerWithUserData
     ::AudioServicesCreateSystemSoundID: Audio.ServicesCreateSystemSoundID
     ::AudioServicesDisposeSystemSoundID: Audio.ServicesDisposeSystemSoundID
     ::AudioServicesPlayAlertSoundWithCompletion: Audio.ServicesPlayAlertSoundWithCompletion
@@ -598,45 +530,6 @@ Functions:
     ::AUParameterValueToLinear: Audio.AUParameterValueToLinear
     ::AUParameterFormatValue: Audio.AUParameterFormatValue
     ::AudioWorkIntervalCreate: Audio.WorkIntervalCreate
-    ::AudioFileComponentCreateURL: Audio.FileComponentCreateURL
-    ::AudioFileComponentOpenURL: Audio.FileComponentOpenURL
-    ::AudioFileComponentOpenWithCallbacks: Audio.FileComponentOpenWithCallbacks
-    ::AudioFileComponentInitializeWithCallbacks: Audio.FileComponentInitializeWithCallbacks
-    ::AudioFileComponentCloseFile: Audio.FileComponentCloseFile
-    ::AudioFileComponentOptimize: Audio.FileComponentOptimize
-    ::AudioFileComponentReadBytes: Audio.FileComponentReadBytes
-    ::AudioFileComponentWriteBytes: Audio.FileComponentWriteBytes
-    ::AudioFileComponentReadPackets: Audio.FileComponentReadPackets
-    ::AudioFileComponentReadPacketData: Audio.FileComponentReadPacketData
-    ::AudioFileComponentWritePackets: Audio.FileComponentWritePackets
-    ::AudioFileComponentGetPropertyInfo: Audio.FileComponentGetPropertyInfo
-    ::AudioFileComponentGetProperty: Audio.FileComponentGetProperty
-    ::AudioFileComponentSetProperty: Audio.FileComponentSetProperty
-    ::AudioFileComponentCountUserData: Audio.FileComponentCountUserData
-    ::AudioFileComponentGetUserDataSize: Audio.FileComponentGetUserDataSize
-    ::AudioFileComponentGetUserDataSize64: Audio.FileComponentGetUserDataSize64
-    ::AudioFileComponentGetUserData: Audio.FileComponentGetUserData
-    ::AudioFileComponentGetUserDataAtOffset: Audio.FileComponentGetUserDataAtOffset
-    ::AudioFileComponentSetUserData: Audio.FileComponentSetUserData
-    ::AudioFileComponentRemoveUserData: Audio.FileComponentRemoveUserData
-    ::AudioFileComponentExtensionIsThisFormat: Audio.FileComponentExtensionIsThisFormat
-    ::AudioFileComponentFileDataIsThisFormat: Audio.FileComponentFileDataIsThisFormat
-    ::AudioFileComponentFileIsThisFormat: Audio.FileComponentFileIsThisFormat
-    ::AudioFileComponentDataIsThisFormat: Audio.FileComponentDataIsThisFormat
-    ::AudioFileComponentGetGlobalInfoSize: Audio.FileComponentGetGlobalInfoSize
-    ::AudioFileComponentGetGlobalInfo: Audio.FileComponentGetGlobalInfo
-    ::AudioFileComponentCreate: Audio.FileComponentCreate
-    ::AudioFileComponentInitialize: Audio.FileComponentInitialize
-    ::AudioFileComponentOpenFile: Audio.FileComponentOpenFile
-    ::AudioSessionInitialize: Audio.SessionInitialize
-    ::AudioSessionSetActive: Audio.SessionSetActive
-    ::AudioSessionSetActiveWithFlags: Audio.SessionSetActiveWithFlags
-    ::AudioSessionGetProperty: Audio.SessionGetProperty
-    ::AudioSessionSetProperty: Audio.SessionSetProperty
-    ::AudioSessionGetPropertySize: Audio.SessionGetPropertySize
-    ::AudioSessionAddPropertyListener: Audio.SessionAddPropertyListener
-    ::AudioSessionRemovePropertyListener: Audio.SessionRemovePropertyListener
-    ::AudioSessionRemovePropertyListenerWithUserData: Audio.SessionRemovePropertyListenerWithUserData
     ::AudioObjectShow: Audio.ObjectShow
     ::AudioObjectHasProperty: Audio.ObjectHasProperty
     ::AudioObjectIsPropertySettable: Audio.ObjectIsPropertySettable
@@ -742,9 +635,6 @@ ExternTypes:
     ::kAudioSession_OutputDestinationKey_Description: CF.StringRef
 
 ConstVars:
-    ::kAudioDecoderComponentType: Audio.kDecoderComponentType
-    ::kAudioEncoderComponentType: Audio.kEncoderComponentType
-    ::kAudioUnityCodecComponentType: Audio.kUnityCodecComponentType
     ::kAudioCodecPropertySupportedInputFormats: Audio.kCodecPropertySupportedInputFormats
     ::kAudioCodecPropertySupportedOutputFormats: Audio.kCodecPropertySupportedOutputFormats
     ::kAudioCodecPropertyAvailableInputSampleRates: Audio.kCodecPropertyAvailableInputSampleRates
@@ -878,10 +768,7 @@ ConstVars:
     ::kAudioUnitManufacturer_Apple: Audio.kUnitManufacturer_Apple
     ::kAudioUnitSubType_GenericOutput: Audio.kUnitSubType_GenericOutput
     ::kAudioUnitSubType_VoiceProcessingIO: Audio.kUnitSubType_VoiceProcessingIO
-    ::kAudioUnitSubType_HALOutput: Audio.kUnitSubType_HALOutput
-    ::kAudioUnitSubType_DefaultOutput: Audio.kUnitSubType_DefaultOutput
-    ::kAudioUnitSubType_SystemOutput: Audio.kUnitSubType_SystemOutput
-    ::kAudioUnitSubType_DLSSynth: Audio.kUnitSubType_DLSSynth
+    ::kAudioUnitSubType_RemoteIO: Audio.kUnitSubType_RemoteIO
     ::kAudioUnitSubType_Sampler: Audio.kUnitSubType_Sampler
     ::kAudioUnitSubType_MIDISynth: Audio.kUnitSubType_MIDISynth
     ::kAudioUnitSubType_AUConverter: Audio.kUnitSubType_AUConverter
@@ -894,6 +781,7 @@ ConstVars:
     ::kAudioUnitSubType_AUiPodTimeOther: Audio.kUnitSubType_AUiPodTimeOther
     ::kAudioUnitSubType_RoundTripAAC: Audio.kUnitSubType_RoundTripAAC
     ::kAudioUnitSubType_TimePitch: Audio.kUnitSubType_TimePitch
+    ::kAudioUnitSubType_AUiPodTime: Audio.kUnitSubType_AUiPodTime
     ::kAudioUnitSubType_PeakLimiter: Audio.kUnitSubType_PeakLimiter
     ::kAudioUnitSubType_DynamicsProcessor: Audio.kUnitSubType_DynamicsProcessor
     ::kAudioUnitSubType_LowPassFilter: Audio.kUnitSubType_LowPassFilter
@@ -908,23 +796,11 @@ ConstVars:
     ::kAudioUnitSubType_NBandEQ: Audio.kUnitSubType_NBandEQ
     ::kAudioUnitSubType_Reverb2: Audio.kUnitSubType_Reverb2
     ::kAudioUnitSubType_AUSoundIsolation: Audio.kUnitSubType_AUSoundIsolation
-    ::kAudioUnitSubType_GraphicEQ: Audio.kUnitSubType_GraphicEQ
-    ::kAudioUnitSubType_MultiBandCompressor: Audio.kUnitSubType_MultiBandCompressor
-    ::kAudioUnitSubType_MatrixReverb: Audio.kUnitSubType_MatrixReverb
-    ::kAudioUnitSubType_Pitch: Audio.kUnitSubType_Pitch
-    ::kAudioUnitSubType_AUFilter: Audio.kUnitSubType_AUFilter
-    ::kAudioUnitSubType_NetSend: Audio.kUnitSubType_NetSend
-    ::kAudioUnitSubType_RogerBeep: Audio.kUnitSubType_RogerBeep
+    ::kAudioUnitSubType_AUiPodEQ: Audio.kUnitSubType_AUiPodEQ
     ::kAudioUnitSubType_MultiChannelMixer: Audio.kUnitSubType_MultiChannelMixer
     ::kAudioUnitSubType_MatrixMixer: Audio.kUnitSubType_MatrixMixer
     ::kAudioUnitSubType_SpatialMixer: Audio.kUnitSubType_SpatialMixer
-    ::kAudioUnitSubType_StereoMixer: Audio.kUnitSubType_StereoMixer
-    ::kAudioUnitSubType_3DMixer: Audio.kUnitSubType_3DMixer
-    ::kAudioUnitSubType_SphericalHeadPanner: Audio.kUnitSubType_SphericalHeadPanner
-    ::kAudioUnitSubType_VectorPanner: Audio.kUnitSubType_VectorPanner
-    ::kAudioUnitSubType_SoundFieldPanner: Audio.kUnitSubType_SoundFieldPanner
-    ::kAudioUnitSubType_HRTFPanner: Audio.kUnitSubType_HRTFPanner
-    ::kAudioUnitSubType_NetReceive: Audio.kUnitSubType_NetReceive
+    ::kAudioUnitSubType_AU3DMixerEmbedded: Audio.kUnitSubType_AU3DMixerEmbedded
     ::kAudioUnitSubType_ScheduledSoundPlayer: Audio.kUnitSubType_ScheduledSoundPlayer
     ::kAudioUnitSubType_AudioFilePlayer: Audio.kUnitSubType_AudioFilePlayer
     ::kAudioUnitErr_InvalidProperty: Audio.kUnitErr_InvalidProperty
@@ -1035,12 +911,6 @@ ConstVars:
     ::kAudioUnitProperty_RenderContextObserver: Audio.kUnitProperty_RenderContextObserver
     ::kAudioUnitProperty_LastRenderSampleTime: Audio.kUnitProperty_LastRenderSampleTime
     ::kAudioUnitProperty_LoadedOutOfProcess: Audio.kUnitProperty_LoadedOutOfProcess
-    ::kAudioUnitProperty_FastDispatch: Audio.kUnitProperty_FastDispatch
-    ::kAudioUnitProperty_SetExternalBuffer: Audio.kUnitProperty_SetExternalBuffer
-    ::kAudioUnitProperty_GetUIComponentList: Audio.kUnitProperty_GetUIComponentList
-    ::kAudioUnitProperty_CocoaUI: Audio.kUnitProperty_CocoaUI
-    ::kAudioUnitProperty_IconLocation: Audio.kUnitProperty_IconLocation
-    ::kAudioUnitProperty_AUHostIdentifier: Audio.kUnitProperty_AUHostIdentifier
     ::kAudioUnitProperty_MIDIOutputCallbackInfo: Audio.kUnitProperty_MIDIOutputCallbackInfo
     ::kAudioUnitProperty_MIDIOutputCallback: Audio.kUnitProperty_MIDIOutputCallback
     ::kAudioUnitProperty_MIDIOutputEventListCallback: Audio.kUnitProperty_MIDIOutputEventListCallback
@@ -1052,18 +922,6 @@ ConstVars:
     ::kAudioUnitProperty_PeerURL: Audio.kUnitProperty_PeerURL
     ::kAudioUnitClumpID_System: Audio.kUnitClumpID_System
     ::kAudioUnitParameterName_Full: Audio.kUnitParameterName_Full
-    ::kAudioUnitProperty_AllParameterMIDIMappings: Audio.kUnitProperty_AllParameterMIDIMappings
-    ::kAudioUnitProperty_AddParameterMIDIMapping: Audio.kUnitProperty_AddParameterMIDIMapping
-    ::kAudioUnitProperty_RemoveParameterMIDIMapping: Audio.kUnitProperty_RemoveParameterMIDIMapping
-    ::kAudioUnitProperty_HotMapParameterMIDIMapping: Audio.kUnitProperty_HotMapParameterMIDIMapping
-    ::kAudioUnitOfflineProperty_InputSize: Audio.kUnitOfflineProperty_InputSize
-    ::kAudioUnitOfflineProperty_OutputSize: Audio.kUnitOfflineProperty_OutputSize
-    ::kAudioUnitOfflineProperty_StartOffset: Audio.kUnitOfflineProperty_StartOffset
-    ::kAudioUnitOfflineProperty_PreflightRequirements: Audio.kUnitOfflineProperty_PreflightRequirements
-    ::kAudioUnitOfflineProperty_PreflightName: Audio.kUnitOfflineProperty_PreflightName
-    ::kAudioUnitProperty_DistanceAttenuationData: Audio.kUnitProperty_DistanceAttenuationData
-    ::kAudioUnitMigrateProperty_FromPlugin: Audio.kUnitMigrateProperty_FromPlugin
-    ::kAudioUnitMigrateProperty_OldAutomation: Audio.kUnitMigrateProperty_OldAutomation
     ::kAudioUnitProperty_SampleRateConverterComplexity: Audio.kUnitProperty_SampleRateConverterComplexity
     ::kAudioUnitSampleRateConverterComplexity_Linear: Audio.kUnitSampleRateConverterComplexity_Linear
     ::kAudioUnitSampleRateConverterComplexity_Normal: Audio.kUnitSampleRateConverterComplexity_Normal
@@ -1087,11 +945,11 @@ ConstVars:
     ::kAUVoiceIOProperty_MuteOutput: Audio.kAUVoiceIOProperty_MuteOutput
     ::kAUVoiceIOProperty_MutedSpeechActivityEventListener: Audio.kAUVoiceIOProperty_MutedSpeechActivityEventListener
     ::kAUVoiceIOProperty_OtherAudioDuckingConfiguration: Audio.kAUVoiceIOProperty_OtherAudioDuckingConfiguration
+    ::kAUVoiceIOProperty_DuckNonVoiceAudio: Audio.kAUVoiceIOProperty_DuckNonVoiceAudio
     ::kAUVoiceIOProperty_VoiceProcessingQuality: Audio.kAUVoiceIOProperty_VoiceProcessingQuality
     ::kAUNBandEQProperty_NumberOfBands: Audio.kAUNBandEQProperty_NumberOfBands
     ::kAUNBandEQProperty_MaxNumberOfBands: Audio.kAUNBandEQProperty_MaxNumberOfBands
     ::kAUNBandEQProperty_BiquadCoefficients: Audio.kAUNBandEQProperty_BiquadCoefficients
-    ::kAUVoiceIOErr_UnexpectedNumberOfInputChannels: Audio.kAUVoiceIOErr_UnexpectedNumberOfInputChannels
     ::kAudioUnitProperty_MeteringMode: Audio.kUnitProperty_MeteringMode
     ::kAudioUnitProperty_MatrixLevels: Audio.kUnitProperty_MatrixLevels
     ::kAudioUnitProperty_MatrixDimensions: Audio.kUnitProperty_MatrixDimensions
@@ -1132,61 +990,8 @@ ConstVars:
     ::kAudioUnitProperty_DeferredRendererPullSize: Audio.kUnitProperty_DeferredRendererPullSize
     ::kAudioUnitProperty_DeferredRendererExtraLatency: Audio.kUnitProperty_DeferredRendererExtraLatency
     ::kAudioUnitProperty_DeferredRendererWaitFrames: Audio.kUnitProperty_DeferredRendererWaitFrames
-    ::kAUNetReceiveProperty_Hostname: Audio.kAUNetReceiveProperty_Hostname
-    ::kAUNetReceiveProperty_Password: Audio.kAUNetReceiveProperty_Password
-    ::kAUNetSendProperty_PortNum: Audio.kAUNetSendProperty_PortNum
-    ::kAUNetSendProperty_TransmissionFormat: Audio.kAUNetSendProperty_TransmissionFormat
-    ::kAUNetSendProperty_TransmissionFormatIndex: Audio.kAUNetSendProperty_TransmissionFormatIndex
-    ::kAUNetSendProperty_ServiceName: Audio.kAUNetSendProperty_ServiceName
-    ::kAUNetSendProperty_Disconnect: Audio.kAUNetSendProperty_Disconnect
-    ::kAUNetSendProperty_Password: Audio.kAUNetSendProperty_Password
-    ::kAUNetSendPresetFormat_PCMFloat32: Audio.kAUNetSendPresetFormat_PCMFloat32
-    ::kAUNetSendPresetFormat_PCMInt24: Audio.kAUNetSendPresetFormat_PCMInt24
-    ::kAUNetSendPresetFormat_PCMInt16: Audio.kAUNetSendPresetFormat_PCMInt16
-    ::kAUNetSendPresetFormat_Lossless24: Audio.kAUNetSendPresetFormat_Lossless24
-    ::kAUNetSendPresetFormat_Lossless16: Audio.kAUNetSendPresetFormat_Lossless16
-    ::kAUNetSendPresetFormat_ULaw: Audio.kAUNetSendPresetFormat_ULaw
-    ::kAUNetSendPresetFormat_IMA4: Audio.kAUNetSendPresetFormat_IMA4
-    ::kAUNetSendPresetFormat_AAC_128kbpspc: Audio.kAUNetSendPresetFormat_AAC_128kbpspc
-    ::kAUNetSendPresetFormat_AAC_96kbpspc: Audio.kAUNetSendPresetFormat_AAC_96kbpspc
-    ::kAUNetSendPresetFormat_AAC_80kbpspc: Audio.kAUNetSendPresetFormat_AAC_80kbpspc
-    ::kAUNetSendPresetFormat_AAC_64kbpspc: Audio.kAUNetSendPresetFormat_AAC_64kbpspc
-    ::kAUNetSendPresetFormat_AAC_48kbpspc: Audio.kAUNetSendPresetFormat_AAC_48kbpspc
-    ::kAUNetSendPresetFormat_AAC_40kbpspc: Audio.kAUNetSendPresetFormat_AAC_40kbpspc
-    ::kAUNetSendPresetFormat_AAC_32kbpspc: Audio.kAUNetSendPresetFormat_AAC_32kbpspc
-    ::kAUNetSendPresetFormat_AAC_LD_64kbpspc: Audio.kAUNetSendPresetFormat_AAC_LD_64kbpspc
-    ::kAUNetSendPresetFormat_AAC_LD_48kbpspc: Audio.kAUNetSendPresetFormat_AAC_LD_48kbpspc
-    ::kAUNetSendPresetFormat_AAC_LD_40kbpspc: Audio.kAUNetSendPresetFormat_AAC_LD_40kbpspc
-    ::kAUNetSendPresetFormat_AAC_LD_32kbpspc: Audio.kAUNetSendPresetFormat_AAC_LD_32kbpspc
-    ::kAUNetSendNumPresetFormats: Audio.kAUNetSendNumPresetFormats
-    ::kAudioUnitParameterFlag_Global: Audio.kUnitParameterFlag_Global
-    ::kAudioUnitParameterFlag_Input: Audio.kUnitParameterFlag_Input
-    ::kAudioUnitParameterFlag_Output: Audio.kUnitParameterFlag_Output
-    ::kAudioUnitParameterFlag_Group: Audio.kUnitParameterFlag_Group
-    ::kAudioUnitParameterFlag_HasName: Audio.kUnitParameterFlag_HasName
-    ::kAudioUnitProperty_SRCAlgorithm: Audio.kUnitProperty_SRCAlgorithm
-    ::kAudioUnitProperty_MIDIControlMapping: Audio.kUnitProperty_MIDIControlMapping
-    ::kAudioUnitProperty_CurrentPreset: Audio.kUnitProperty_CurrentPreset
-    ::kAudioUnitProperty_ParameterValueName: Audio.kUnitProperty_ParameterValueName
-    ::kAudioUnitProperty_BusCount: Audio.kUnitProperty_BusCount
-    ::kAudioOfflineUnitProperty_InputSize: Audio.kOfflineUnitProperty_InputSize
-    ::kAudioOfflineUnitProperty_OutputSize: Audio.kOfflineUnitProperty_OutputSize
-    ::kAudioUnitSRCAlgorithm_Polyphase: Audio.kUnitSRCAlgorithm_Polyphase
-    ::kAudioUnitSRCAlgorithm_MediumQuality: Audio.kUnitSRCAlgorithm_MediumQuality
-    ::kAudioUnitProperty_PannerMode: Audio.kUnitProperty_PannerMode
-    ::kAudioUnitProperty_SpeakerConfiguration: Audio.kUnitProperty_SpeakerConfiguration
     ::kAUSamplerProperty_LoadPresetFromBank: Audio.kAUSamplerProperty_LoadPresetFromBank
     ::kAUSamplerProperty_BankAndPreset: Audio.kAUSamplerProperty_BankAndPreset
-    ::kAudioSupportFolderType: Audio.kSupportFolderType
-    ::kAudioPresetsFolderType: Audio.kPresetsFolderType
-    ::kAudioSoundsFolderType: Audio.kSoundsFolderType
-    ::kAudioSoundBanksFolderType: Audio.kSoundBanksFolderType
-    ::kAudioAlertSoundsFolderType: Audio.kAlertSoundsFolderType
-    ::kAudioPlugInsFolderType: Audio.kPlugInsFolderType
-    ::kAudioComponentsFolderType: Audio.kComponentsFolderType
-    ::kAudioDigidesignFolderType: Audio.kDigidesignFolderType
-    ::kAudioVSTFolderType: Audio.kVSTFolderType
-    ::AudioRecordingID: Audio.RecordingID
     ::AUEventSampleTimeImmediate: Audio.AUEventSampleTimeImmediate
     ::kAudioOutputUnitRange: Audio.kOutputUnitRange
     ::kAudioOutputUnitStartSelect: Audio.kOutputUnitStartSelect
@@ -1240,16 +1045,6 @@ ConstVars:
     ::kAUSoundIsolationParam_SoundToIsolate: Audio.kAUSoundIsolationParam_SoundToIsolate
     ::kAUSoundIsolationSoundType_HighQualityVoice: Audio.kAUSoundIsolationSoundType_HighQualityVoice
     ::kAUSoundIsolationSoundType_Voice: Audio.kAUSoundIsolationSoundType_Voice
-    ::kAUNetReceiveParam_Status: Audio.kAUNetReceiveParam_Status
-    ::kAUNetReceiveParam_NumParameters: Audio.kAUNetReceiveParam_NumParameters
-    ::kAUNetSendParam_Status: Audio.kAUNetSendParam_Status
-    ::kAUNetSendParam_NumParameters: Audio.kAUNetSendParam_NumParameters
-    ::kAUNetStatus_NotConnected: Audio.kAUNetStatus_NotConnected
-    ::kAUNetStatus_Connected: Audio.kAUNetStatus_Connected
-    ::kAUNetStatus_Overflow: Audio.kAUNetStatus_Overflow
-    ::kAUNetStatus_Underflow: Audio.kAUNetStatus_Underflow
-    ::kAUNetStatus_Connecting: Audio.kAUNetStatus_Connecting
-    ::kAUNetStatus_Listening: Audio.kAUNetStatus_Listening
     ::kAUGraphErr_NodeNotFound: Audio.kAUGraphErr_NodeNotFound
     ::kAUGraphErr_InvalidConnection: Audio.kAUGraphErr_InvalidConnection
     ::kAUGraphErr_OutputNodeErr: Audio.kAUGraphErr_OutputNodeErr
@@ -1288,8 +1083,6 @@ ConstVars:
     ::kAudioConverterPropertySettings: Audio.kConverterPropertySettings
     ::kAudioConverterPropertyBitDepthHint: Audio.kConverterPropertyBitDepthHint
     ::kAudioConverterPropertyFormatList: Audio.kConverterPropertyFormatList
-    ::kAudioConverterPropertyDithering: Audio.kConverterPropertyDithering
-    ::kAudioConverterPropertyDitherBitDepth: Audio.kConverterPropertyDitherBitDepth
     ::kAudioConverterQuality_Max: Audio.kConverterQuality_Max
     ::kAudioConverterQuality_High: Audio.kConverterQuality_High
     ::kAudioConverterQuality_Medium: Audio.kConverterQuality_Medium
@@ -1309,8 +1102,11 @@ ConstVars:
     ::kAudioConverterErr_RequiresPacketDescriptionsError: Audio.kConverterErr_RequiresPacketDescriptionsError
     ::kAudioConverterErr_InputSampleRateOutOfRange: Audio.kConverterErr_InputSampleRateOutOfRange
     ::kAudioConverterErr_OutputSampleRateOutOfRange: Audio.kConverterErr_OutputSampleRateOutOfRange
+    ::kAudioConverterErr_HardwareInUse: Audio.kConverterErr_HardwareInUse
+    ::kAudioConverterErr_NoHardwarePermission: Audio.kConverterErr_NoHardwarePermission
     ::kAudioConverterPropertyMaximumInputBufferSize: Audio.kConverterPropertyMaximumInputBufferSize
     ::kAudioConverterSampleRateConverterAlgorithm: Audio.kConverterSampleRateConverterAlgorithm
+    ::kAudioConverterPropertyCanResumeFromInterruption: Audio.kConverterPropertyCanResumeFromInterruption
     ::kAudioFileAIFFType: Audio.kFileAIFFType
     ::kAudioFileAIFCType: Audio.kFileAIFCType
     ::kAudioFileWAVEType: Audio.kFileWAVEType
@@ -1485,6 +1281,9 @@ ConstVars:
     ::kAudioFormatProperty_BalanceFade: Audio.kFormatProperty_BalanceFade
     ::kAudioFormatProperty_ID3TagSize: Audio.kFormatProperty_ID3TagSize
     ::kAudioFormatProperty_ID3TagToDictionary: Audio.kFormatProperty_ID3TagToDictionary
+    ::kAudioFormatProperty_HardwareCodecCapabilities: Audio.kFormatProperty_HardwareCodecCapabilities
+    ::kAudioDecoderComponentType: Audio.kDecoderComponentType
+    ::kAudioEncoderComponentType: Audio.kEncoderComponentType
     ::kAudioFormatUnspecifiedError: Audio.kFormatUnspecifiedError
     ::kAudioFormatUnsupportedPropertyError: Audio.kFormatUnsupportedPropertyError
     ::kAudioFormatBadPropertySizeError: Audio.kFormatBadPropertySizeError
@@ -1535,78 +1334,19 @@ ConstVars:
     ::kAudioQueueTimePitchAlgorithm_Spectral: Audio.kQueueTimePitchAlgorithm_Spectral
     ::kAudioQueueTimePitchAlgorithm_TimeDomain: Audio.kQueueTimePitchAlgorithm_TimeDomain
     ::kAudioQueueTimePitchAlgorithm_Varispeed: Audio.kQueueTimePitchAlgorithm_Varispeed
+    ::kAudioQueueTimePitchAlgorithm_LowQualityZeroLatency: Audio.kQueueTimePitchAlgorithm_LowQualityZeroLatency
+    ::kAudioQueueProperty_HardwareCodecPolicy: Audio.kQueueProperty_HardwareCodecPolicy
+    ::kAudioQueueHardwareCodecPolicy_Default: Audio.kQueueHardwareCodecPolicy_Default
+    ::kAudioQueueHardwareCodecPolicy_UseSoftwareOnly: Audio.kQueueHardwareCodecPolicy_UseSoftwareOnly
+    ::kAudioQueueHardwareCodecPolicy_UseHardwareOnly: Audio.kQueueHardwareCodecPolicy_UseHardwareOnly
+    ::kAudioQueueHardwareCodecPolicy_PreferSoftware: Audio.kQueueHardwareCodecPolicy_PreferSoftware
+    ::kAudioQueueHardwareCodecPolicy_PreferHardware: Audio.kQueueHardwareCodecPolicy_PreferHardware
     ::kAudioQueueProperty_ChannelAssignments: Audio.kQueueProperty_ChannelAssignments
     ::kAudioQueueParam_Volume: Audio.kQueueParam_Volume
     ::kAudioQueueParam_PlayRate: Audio.kQueueParam_PlayRate
     ::kAudioQueueParam_Pitch: Audio.kQueueParam_Pitch
     ::kAudioQueueParam_VolumeRampTime: Audio.kQueueParam_VolumeRampTime
     ::kAudioQueueParam_Pan: Audio.kQueueParam_Pan
-    ::kAudioHardwareServiceProperty_ServiceRestarted: Audio.kHardwareServiceProperty_ServiceRestarted
-    ::kAudioHardwareServiceDeviceProperty_VirtualMainVolume: Audio.kHardwareServiceDeviceProperty_VirtualMainVolume
-    ::kAudioHardwareServiceDeviceProperty_VirtualMasterVolume: Audio.kHardwareServiceDeviceProperty_VirtualMasterVolume
-    ::kAudioHardwareServiceDeviceProperty_VirtualMainBalance: Audio.kHardwareServiceDeviceProperty_VirtualMainBalance
-    ::kAudioHardwareServiceDeviceProperty_VirtualMasterBalance: Audio.kHardwareServiceDeviceProperty_VirtualMasterBalance
-    ::kAudioServicesNoError: Audio.kServicesNoError
-    ::kAudioServicesUnsupportedPropertyError: Audio.kServicesUnsupportedPropertyError
-    ::kAudioServicesBadPropertySizeError: Audio.kServicesBadPropertySizeError
-    ::kAudioServicesBadSpecifierSizeError: Audio.kServicesBadSpecifierSizeError
-    ::kAudioServicesSystemSoundUnspecifiedError: Audio.kServicesSystemSoundUnspecifiedError
-    ::kAudioServicesSystemSoundClientTimedOutError: Audio.kServicesSystemSoundClientTimedOutError
-    ::kAudioServicesSystemSoundExceededMaximumDurationError: Audio.kServicesSystemSoundExceededMaximumDurationError
-    ::kAudioServicesPropertyIsUISound: Audio.kServicesPropertyIsUISound
-    ::kAudioServicesPropertyCompletePlaybackIfAppDies: Audio.kServicesPropertyCompletePlaybackIfAppDies
-    ::kAUParameterListener_AnyParameter: Audio.kAUParameterListener_AnyParameter
-    ::kAudioToolboxErr_InvalidSequenceType: Audio.kToolboxErr_InvalidSequenceType
-    ::kAudioToolboxErr_TrackIndexError: Audio.kToolboxErr_TrackIndexError
-    ::kAudioToolboxErr_TrackNotFound: Audio.kToolboxErr_TrackNotFound
-    ::kAudioToolboxErr_EndOfTrack: Audio.kToolboxErr_EndOfTrack
-    ::kAudioToolboxErr_StartOfTrack: Audio.kToolboxErr_StartOfTrack
-    ::kAudioToolboxErr_IllegalTrackDestination: Audio.kToolboxErr_IllegalTrackDestination
-    ::kAudioToolboxErr_NoSequence: Audio.kToolboxErr_NoSequence
-    ::kAudioToolboxErr_InvalidEventType: Audio.kToolboxErr_InvalidEventType
-    ::kAudioToolboxErr_InvalidPlayerState: Audio.kToolboxErr_InvalidPlayerState
-    ::kAudioToolboxErr_CannotDoInCurrentContext: Audio.kToolboxErr_CannotDoInCurrentContext
-    ::kAudioToolboxError_NoTrackDestination: Audio.kToolboxError_NoTrackDestination
-    ::kAudioFileComponent_CanRead: Audio.kFileComponent_CanRead
-    ::kAudioFileComponent_CanWrite: Audio.kFileComponent_CanWrite
-    ::kAudioFileComponent_FileTypeName: Audio.kFileComponent_FileTypeName
-    ::kAudioFileComponent_UTIsForType: Audio.kFileComponent_UTIsForType
-    ::kAudioFileComponent_MIMETypesForType: Audio.kFileComponent_MIMETypesForType
-    ::kAudioFileComponent_ExtensionsForType: Audio.kFileComponent_ExtensionsForType
-    ::kAudioFileComponent_AvailableFormatIDs: Audio.kFileComponent_AvailableFormatIDs
-    ::kAudioFileComponent_AvailableStreamDescriptionsForFormat: Audio.kFileComponent_AvailableStreamDescriptionsForFormat
-    ::kAudioFileComponent_FastDispatchTable: Audio.kFileComponent_FastDispatchTable
-    ::kAudioFileComponent_HFSTypeCodesForType: Audio.kFileComponent_HFSTypeCodesForType
-    ::kAudioFileCreateSelect: Audio.kFileCreateSelect
-    ::kAudioFileOpenSelect: Audio.kFileOpenSelect
-    ::kAudioFileInitializeSelect: Audio.kFileInitializeSelect
-    ::kAudioFileOpenWithCallbacksSelect: Audio.kFileOpenWithCallbacksSelect
-    ::kAudioFileInitializeWithCallbacksSelect: Audio.kFileInitializeWithCallbacksSelect
-    ::kAudioFileCloseSelect: Audio.kFileCloseSelect
-    ::kAudioFileOptimizeSelect: Audio.kFileOptimizeSelect
-    ::kAudioFileReadBytesSelect: Audio.kFileReadBytesSelect
-    ::kAudioFileWriteBytesSelect: Audio.kFileWriteBytesSelect
-    ::kAudioFileReadPacketsSelect: Audio.kFileReadPacketsSelect
-    ::kAudioFileWritePacketsSelect: Audio.kFileWritePacketsSelect
-    ::kAudioFileGetPropertyInfoSelect: Audio.kFileGetPropertyInfoSelect
-    ::kAudioFileGetPropertySelect: Audio.kFileGetPropertySelect
-    ::kAudioFileSetPropertySelect: Audio.kFileSetPropertySelect
-    ::kAudioFileExtensionIsThisFormatSelect: Audio.kFileExtensionIsThisFormatSelect
-    ::kAudioFileFileIsThisFormatSelect: Audio.kFileFileIsThisFormatSelect
-    ::kAudioFileDataIsThisFormatSelect: Audio.kFileDataIsThisFormatSelect
-    ::kAudioFileGetGlobalInfoSizeSelect: Audio.kFileGetGlobalInfoSizeSelect
-    ::kAudioFileGetGlobalInfoSelect: Audio.kFileGetGlobalInfoSelect
-    ::kAudioFileCountUserDataSelect: Audio.kFileCountUserDataSelect
-    ::kAudioFileGetUserDataSizeSelect: Audio.kFileGetUserDataSizeSelect
-    ::kAudioFileGetUserDataSelect: Audio.kFileGetUserDataSelect
-    ::kAudioFileSetUserDataSelect: Audio.kFileSetUserDataSelect
-    ::kAudioFileRemoveUserDataSelect: Audio.kFileRemoveUserDataSelect
-    ::kAudioFileCreateURLSelect: Audio.kFileCreateURLSelect
-    ::kAudioFileOpenURLSelect: Audio.kFileOpenURLSelect
-    ::kAudioFileFileDataIsThisFormatSelect: Audio.kFileFileDataIsThisFormatSelect
-    ::kAudioFileReadPacketDataSelect: Audio.kFileReadPacketDataSelect
-    ::kAudioFileGetUserDataSize64Select: Audio.kFileGetUserDataSize64Select
-    ::kAudioFileGetUserDataAtOffsetSelect: Audio.kFileGetUserDataAtOffsetSelect
     ::kAudioSessionNoError: Audio.kSessionNoError
     ::kAudioSessionNotInitialized: Audio.kSessionNotInitialized
     ::kAudioSessionAlreadyInitialized: Audio.kSessionAlreadyInitialized
@@ -1675,6 +1415,27 @@ ConstVars:
     ::kAudioSessionCategory_UserInterfaceSoundEffects: Audio.kSessionCategory_UserInterfaceSoundEffects
     ::kAudioSessionCategory_LiveAudio: Audio.kSessionCategory_LiveAudio
     ::kAudioSessionProperty_AudioRoute: Audio.kSessionProperty_AudioRoute
+    ::kAudioServicesNoError: Audio.kServicesNoError
+    ::kAudioServicesUnsupportedPropertyError: Audio.kServicesUnsupportedPropertyError
+    ::kAudioServicesBadPropertySizeError: Audio.kServicesBadPropertySizeError
+    ::kAudioServicesBadSpecifierSizeError: Audio.kServicesBadSpecifierSizeError
+    ::kAudioServicesSystemSoundUnspecifiedError: Audio.kServicesSystemSoundUnspecifiedError
+    ::kAudioServicesSystemSoundClientTimedOutError: Audio.kServicesSystemSoundClientTimedOutError
+    ::kAudioServicesSystemSoundExceededMaximumDurationError: Audio.kServicesSystemSoundExceededMaximumDurationError
+    ::kAudioServicesPropertyIsUISound: Audio.kServicesPropertyIsUISound
+    ::kAudioServicesPropertyCompletePlaybackIfAppDies: Audio.kServicesPropertyCompletePlaybackIfAppDies
+    ::kAUParameterListener_AnyParameter: Audio.kAUParameterListener_AnyParameter
+    ::kAudioToolboxErr_InvalidSequenceType: Audio.kToolboxErr_InvalidSequenceType
+    ::kAudioToolboxErr_TrackIndexError: Audio.kToolboxErr_TrackIndexError
+    ::kAudioToolboxErr_TrackNotFound: Audio.kToolboxErr_TrackNotFound
+    ::kAudioToolboxErr_EndOfTrack: Audio.kToolboxErr_EndOfTrack
+    ::kAudioToolboxErr_StartOfTrack: Audio.kToolboxErr_StartOfTrack
+    ::kAudioToolboxErr_IllegalTrackDestination: Audio.kToolboxErr_IllegalTrackDestination
+    ::kAudioToolboxErr_NoSequence: Audio.kToolboxErr_NoSequence
+    ::kAudioToolboxErr_InvalidEventType: Audio.kToolboxErr_InvalidEventType
+    ::kAudioToolboxErr_InvalidPlayerState: Audio.kToolboxErr_InvalidPlayerState
+    ::kAudioToolboxErr_CannotDoInCurrentContext: Audio.kToolboxErr_CannotDoInCurrentContext
+    ::kAudioToolboxError_NoTrackDestination: Audio.kToolboxError_NoTrackDestination
     ::kAudio_NoError: Audio.k_NoError
     ::kAudio_UnimplementedError: Audio.k_UnimplementedError
     ::kAudio_FileNotFoundError: Audio.k_FileNotFoundError

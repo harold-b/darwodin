@@ -1,0 +1,51 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVAssetResourceLoader
+///
+@(objc_class="AVAssetResourceLoader", objc_superclass=NS.Object)
+AssetResourceLoader :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AssetResourceLoader, objc_selector="init", objc_name="init")
+    AssetResourceLoader_init :: proc(self: ^AssetResourceLoader) -> ^AssetResourceLoader ---
+
+    @(objc_type=AssetResourceLoader, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    AssetResourceLoader_new :: proc() -> ^AssetResourceLoader ---
+
+    @(objc_type=AssetResourceLoader, objc_selector="setDelegate:queue:", objc_name="setDelegate")
+    AssetResourceLoader_setDelegate :: proc(self: ^AssetResourceLoader, delegate: ^AssetResourceLoaderDelegate, delegateQueue: CF.dispatch_queue_t) ---
+
+    @(objc_type=AssetResourceLoader, objc_selector="delegate", objc_name="delegate")
+    AssetResourceLoader_delegate :: proc(self: ^AssetResourceLoader) -> ^AssetResourceLoaderDelegate ---
+
+    @(objc_type=AssetResourceLoader, objc_selector="delegateQueue", objc_name="delegateQueue")
+    AssetResourceLoader_delegateQueue :: proc(self: ^AssetResourceLoader) -> CF.dispatch_queue_t ---
+
+    @(objc_type=AssetResourceLoader, objc_selector="preloadsEligibleContentKeys", objc_name="preloadsEligibleContentKeys")
+    AssetResourceLoader_preloadsEligibleContentKeys :: proc(self: ^AssetResourceLoader) -> bool ---
+
+    @(objc_type=AssetResourceLoader, objc_selector="setPreloadsEligibleContentKeys:", objc_name="setPreloadsEligibleContentKeys")
+    AssetResourceLoader_setPreloadsEligibleContentKeys :: proc(self: ^AssetResourceLoader, preloadsEligibleContentKeys: bool) ---
+
+    @(objc_type=AssetResourceLoader, objc_selector="sendsCommonMediaClientDataAsHTTPHeaders", objc_name="sendsCommonMediaClientDataAsHTTPHeaders")
+    AssetResourceLoader_sendsCommonMediaClientDataAsHTTPHeaders :: proc(self: ^AssetResourceLoader) -> bool ---
+
+    @(objc_type=AssetResourceLoader, objc_selector="setSendsCommonMediaClientDataAsHTTPHeaders:", objc_name="setSendsCommonMediaClientDataAsHTTPHeaders")
+    AssetResourceLoader_setSendsCommonMediaClientDataAsHTTPHeaders :: proc(self: ^AssetResourceLoader, sendsCommonMediaClientDataAsHTTPHeaders: bool) ---
+}

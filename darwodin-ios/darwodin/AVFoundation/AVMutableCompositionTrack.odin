@@ -1,0 +1,93 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVMutableCompositionTrack
+///
+@(objc_class="AVMutableCompositionTrack", objc_superclass=CompositionTrack)
+MutableCompositionTrack :: struct { using _: CompositionTrack, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MutableCompositionTrack, objc_selector="insertTimeRange:ofTrack:atTime:error:", objc_name="insertTimeRange")
+    MutableCompositionTrack_insertTimeRange :: proc(self: ^MutableCompositionTrack, timeRange: CM.TimeRange, track: ^AssetTrack, startTime: CM.Time, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="insertTimeRanges:ofTracks:atTime:error:", objc_name="insertTimeRanges")
+    MutableCompositionTrack_insertTimeRanges :: proc(self: ^MutableCompositionTrack, timeRanges: ^NS.Array, tracks: ^NS.Array, startTime: CM.Time, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="insertEmptyTimeRange:", objc_name="insertEmptyTimeRange")
+    MutableCompositionTrack_insertEmptyTimeRange :: proc(self: ^MutableCompositionTrack, timeRange: CM.TimeRange) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="removeTimeRange:", objc_name="removeTimeRange")
+    MutableCompositionTrack_removeTimeRange :: proc(self: ^MutableCompositionTrack, timeRange: CM.TimeRange) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="scaleTimeRange:toDuration:", objc_name="scaleTimeRange")
+    MutableCompositionTrack_scaleTimeRange :: proc(self: ^MutableCompositionTrack, timeRange: CM.TimeRange, duration: CM.Time) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="validateTrackSegments:error:", objc_name="validateTrackSegments")
+    MutableCompositionTrack_validateTrackSegments :: proc(self: ^MutableCompositionTrack, trackSegments: ^NS.Array, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="addTrackAssociationToTrack:type:", objc_name="addTrackAssociationToTrack")
+    MutableCompositionTrack_addTrackAssociationToTrack :: proc(self: ^MutableCompositionTrack, compositionTrack: ^CompositionTrack, trackAssociationType: ^NS.String) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="removeTrackAssociationToTrack:type:", objc_name="removeTrackAssociationToTrack")
+    MutableCompositionTrack_removeTrackAssociationToTrack :: proc(self: ^MutableCompositionTrack, compositionTrack: ^CompositionTrack, trackAssociationType: ^NS.String) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="isEnabled", objc_name="isEnabled")
+    MutableCompositionTrack_isEnabled :: proc(self: ^MutableCompositionTrack) -> bool ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="setEnabled:", objc_name="setEnabled")
+    MutableCompositionTrack_setEnabled :: proc(self: ^MutableCompositionTrack, enabled: bool) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="naturalTimeScale", objc_name="naturalTimeScale")
+    MutableCompositionTrack_naturalTimeScale :: proc(self: ^MutableCompositionTrack) -> CM.TimeScale ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="setNaturalTimeScale:", objc_name="setNaturalTimeScale")
+    MutableCompositionTrack_setNaturalTimeScale :: proc(self: ^MutableCompositionTrack, naturalTimeScale: CM.TimeScale) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="languageCode", objc_name="languageCode")
+    MutableCompositionTrack_languageCode :: proc(self: ^MutableCompositionTrack) -> ^NS.String ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="setLanguageCode:", objc_name="setLanguageCode")
+    MutableCompositionTrack_setLanguageCode :: proc(self: ^MutableCompositionTrack, languageCode: ^NS.String) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="extendedLanguageTag", objc_name="extendedLanguageTag")
+    MutableCompositionTrack_extendedLanguageTag :: proc(self: ^MutableCompositionTrack) -> ^NS.String ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="setExtendedLanguageTag:", objc_name="setExtendedLanguageTag")
+    MutableCompositionTrack_setExtendedLanguageTag :: proc(self: ^MutableCompositionTrack, extendedLanguageTag: ^NS.String) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="preferredTransform", objc_name="preferredTransform")
+    MutableCompositionTrack_preferredTransform :: proc(self: ^MutableCompositionTrack) -> CG.AffineTransform ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="setPreferredTransform:", objc_name="setPreferredTransform")
+    MutableCompositionTrack_setPreferredTransform :: proc(self: ^MutableCompositionTrack, preferredTransform: CG.AffineTransform) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="preferredVolume", objc_name="preferredVolume")
+    MutableCompositionTrack_preferredVolume :: proc(self: ^MutableCompositionTrack) -> cffi.float ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="setPreferredVolume:", objc_name="setPreferredVolume")
+    MutableCompositionTrack_setPreferredVolume :: proc(self: ^MutableCompositionTrack, preferredVolume: cffi.float) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="segments", objc_name="segments")
+    MutableCompositionTrack_segments :: proc(self: ^MutableCompositionTrack) -> ^NS.Array ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="setSegments:", objc_name="setSegments")
+    MutableCompositionTrack_setSegments :: proc(self: ^MutableCompositionTrack, segments: ^NS.Array) ---
+
+    @(objc_type=MutableCompositionTrack, objc_selector="replaceFormatDescription:withFormatDescription:", objc_name="replaceFormatDescription")
+    MutableCompositionTrack_replaceFormatDescription :: proc(self: ^MutableCompositionTrack, originalFormatDescription: CM.FormatDescriptionRef, replacementFormatDescription: CM.FormatDescriptionRef) ---
+}

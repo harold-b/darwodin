@@ -1,0 +1,48 @@
+package darwodin_AVFoundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CM "../CoreMedia"
+import NS "../Foundation"
+import CA "../QuartzCore"
+import Audio "../AudioToolbox"
+
+
+
+///
+/// AVAssetWriterInputPixelBufferAdaptor
+///
+@(objc_class="AVAssetWriterInputPixelBufferAdaptor", objc_superclass=NS.Object)
+AssetWriterInputPixelBufferAdaptor :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="init", objc_name="init")
+    AssetWriterInputPixelBufferAdaptor_init :: proc(self: ^AssetWriterInputPixelBufferAdaptor) -> ^AssetWriterInputPixelBufferAdaptor ---
+
+    @(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    AssetWriterInputPixelBufferAdaptor_new :: proc() -> ^AssetWriterInputPixelBufferAdaptor ---
+
+    @(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="assetWriterInputPixelBufferAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:", objc_name="assetWriterInputPixelBufferAdaptorWithAssetWriterInput", objc_is_class_method=true)
+    AssetWriterInputPixelBufferAdaptor_assetWriterInputPixelBufferAdaptorWithAssetWriterInput :: proc(input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> ^AssetWriterInputPixelBufferAdaptor ---
+
+    @(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="initWithAssetWriterInput:sourcePixelBufferAttributes:", objc_name="initWithAssetWriterInput")
+    AssetWriterInputPixelBufferAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputPixelBufferAdaptor, input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> ^AssetWriterInputPixelBufferAdaptor ---
+
+    @(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="appendPixelBuffer:withPresentationTime:", objc_name="appendPixelBuffer")
+    AssetWriterInputPixelBufferAdaptor_appendPixelBuffer :: proc(self: ^AssetWriterInputPixelBufferAdaptor, pixelBuffer: CVPixelBufferRef, presentationTime: CM.Time) -> bool ---
+
+    @(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="assetWriterInput", objc_name="assetWriterInput")
+    AssetWriterInputPixelBufferAdaptor_assetWriterInput :: proc(self: ^AssetWriterInputPixelBufferAdaptor) -> ^AssetWriterInput ---
+
+    @(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="sourcePixelBufferAttributes", objc_name="sourcePixelBufferAttributes")
+    AssetWriterInputPixelBufferAdaptor_sourcePixelBufferAttributes :: proc(self: ^AssetWriterInputPixelBufferAdaptor) -> ^NS.Dictionary ---
+
+    @(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="pixelBufferPool", objc_name="pixelBufferPool")
+    AssetWriterInputPixelBufferAdaptor_pixelBufferPool :: proc(self: ^AssetWriterInputPixelBufferAdaptor) -> CVPixelBufferPoolRef ---
+}
