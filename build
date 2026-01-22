@@ -17,7 +17,6 @@ debug_args=(
 )
 extra_args=()
 
-lite=
 ios=
 iphonesim=
 is_lib=
@@ -39,12 +38,6 @@ while true; do
         # -use-separate-modules
         -use-single-module
       )
-    ;;
-    -lite)
-      lite=1
-    ;;
-    -l)
-      lite=1
     ;;
     -ios)
       ios=1
@@ -68,12 +61,7 @@ while true; do
 done
 
 
-root='.'
-if [[ ${lite} -eq 1 ]]; then
-  root="./darwodin-macos-lite"
-else
-  root="./darwodin-macos"
-fi
+root="./darwodin-macos"
 
 if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
   root="./darwodin-ios"
@@ -82,10 +70,6 @@ if [[ "${ios}" -eq 1 ]] || [[ "${iphonesim}" -eq 1 ]]; then
     extra_args+=(-subtarget:iphone)
   else
     extra_args+=(-subtarget:iphonesimulator)
-  fi
-
-  if [[ ${lite} -eq 1 ]]; then
-    root="./darwodin-ios-lite"
   fi
 fi
 

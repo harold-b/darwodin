@@ -7,7 +7,7 @@ import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
-import AK "../AppKit"
+import UI "../UIKit"
 
 
 
@@ -26,10 +26,10 @@ foreign lib {
     VirtualControllerElementConfiguration_setHidden :: proc(self: ^VirtualControllerElementConfiguration, hidden: bool) ---
 
     @(objc_type=VirtualControllerElementConfiguration, objc_selector="path", objc_name="path")
-    VirtualControllerElementConfiguration_path :: proc(self: ^VirtualControllerElementConfiguration) -> ^UIBezierPath ---
+    VirtualControllerElementConfiguration_path :: proc(self: ^VirtualControllerElementConfiguration) -> ^UI.BezierPath ---
 
     @(objc_type=VirtualControllerElementConfiguration, objc_selector="setPath:", objc_name="setPath")
-    VirtualControllerElementConfiguration_setPath :: proc(self: ^VirtualControllerElementConfiguration, path: ^UIBezierPath) ---
+    VirtualControllerElementConfiguration_setPath :: proc(self: ^VirtualControllerElementConfiguration, path: ^UI.BezierPath) ---
 
     @(objc_type=VirtualControllerElementConfiguration, objc_selector="actsAsTouchpad", objc_name="actsAsTouchpad")
     VirtualControllerElementConfiguration_actsAsTouchpad :: proc(self: ^VirtualControllerElementConfiguration) -> bool ---

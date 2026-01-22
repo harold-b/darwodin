@@ -1,0 +1,89 @@
+Includes = [ './base.toml' ]
+Defs     = '../definitions/macos/gamecontroller.json'
+
+[Cpp]
+Emit                      = false
+ExportInternals           = true
+DontWrapCFunctions        = true
+ExportForwardDeclarations = true
+
+ExportTypes = [
+  '^_*GC.+'
+]
+
+ExportMethods = [
+  '^::GC.+'
+]
+
+ExportVars = [
+  '^::k?GC.+'
+]
+
+# IgnoreTypes  : []
+# IgnoreMethods: []
+
+[Odin]
+ExternalTypes = [
+  '../exports/CoreFoundation.exports.yml',
+  '../exports/CoreGraphics.exports.yml',
+  '../exports/Foundation.exports.yml',
+  '../exports/AppKit.exports.yml',
+]
+
+ResolvedTypedefs = [
+  '[su]?int.*',
+]
+
+[[Odin.Packages]]
+Name           = 'GameController'
+Export         = 'GC'
+DarwinLinkLibs = [ 'system:GameController.framework' ]
+Filter         =  '.*'
+
+Imports = ['''
+  CHHapticEngine :: NS.Object
+  IOHIDDeviceRef :: struct {}
+''']
+
+[Odin.Packages.TypeMap]
+CHHapticEngine = 'CHHapticEngine'
+IOHIDDeviceRef = 'IOHIDDeviceRef'
+
+
+# Symbol Transformers
+[[Odin.EnumTransforms]]
+Type       = '.*'
+Transforms = [
+  # - Kind  : RemoveTypeWordsFromElements
+  { Kind = 'RemovePartialTypeNamePrefix' },
+  { Kind = 'RemoveUnderscorePrefix' },
+  { Kind = 'UnderscoreNumbers' },
+]
+
+[[Odin.TypeTransforms]]
+Type       = '^(GC).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.TypeTransforms]]
+Type       = 'Flag$' # Transforms for bit_set types
+Transforms =[{ Kind = 'AppendSuffix', Source = 's' }]
+
+[[Odin.TypeTransforms]]
+Type       = 'Mask$'
+Transforms = [{ Kind = 'None' }]
+
+[[Odin.BitSetMap]]
+Type       = 'Flags?$'
+Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = 'Mask$'
+Transforms = [{ Kind = 'AppendSuffix', Source = 'Flag' }]
+
+[[Odin.ProcTransforms]]
+Type       = '^(_*GC).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+[[Odin.VarTransforms]]
+Type = '^(_*GC).+'
+Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
