@@ -62,6 +62,8 @@ Typedefs:
     MTLCommonCounterSet: MTL.CommonCounterSet
     MTL4NewBinaryFunctionCompletionHandler: MTL.MTL4NewBinaryFunctionCompletionHandler
     MTL4NewMachineLearningPipelineStateCompletionHandler: MTL.MTL4NewMachineLearningPipelineStateCompletionHandler
+    MTLDeviceNotificationName: MTL.DeviceNotificationName
+    MTLDeviceNotificationHandler: MTL.DeviceNotificationHandler
     MTLTimestamp: MTL.Timestamp
     MTLCommandBufferHandler: MTL.CommandBufferHandler
     MTLDrawablePresentedHandler: MTL.DrawablePresentedHandler
@@ -115,6 +117,7 @@ Enums:
     MTLIOCompressionMethod: MTL.IOCompressionMethod
     MTLFeatureSet: MTL.FeatureSet
     MTLGPUFamily: MTL.GPUFamily
+    MTLDeviceLocation: MTL.DeviceLocation
     MTLPipelineOption: MTL.PipelineOptions
     MTLReadWriteTextureTier: MTL.ReadWriteTextureTier
     MTLArgumentBuffersTier: MTL.ArgumentBuffersTier
@@ -439,6 +442,8 @@ ObjCProtocols:
 Functions:
     ::MTLCreateSystemDefaultDevice: MTL.CreateSystemDefaultDevice
     ::MTLCopyAllDevices: MTL.CopyAllDevices
+    ::MTLCopyAllDevicesWithObserver: MTL.CopyAllDevicesWithObserver
+    ::MTLRemoveDeviceObserver: MTL.RemoveDeviceObserver
     ::MTLIOCompressionContextDefaultChunkSize: MTL.IOCompressionContextDefaultChunkSize
     ::MTLIOCreateCompressionContext: MTL.IOCreateCompressionContext
     ::MTLIOCompressionContextAppendData: MTL.IOCompressionContextAppendData
@@ -466,6 +471,9 @@ ExternVars:
     ::MTLCommonCounterSetStageUtilization: MTL.CommonCounterSetStageUtilization
     ::MTLCommonCounterSetStatistic: MTL.CommonCounterSetStatistic
     ::MTLCounterErrorDomain: MTL.CounterErrorDomain
+    ::MTLDeviceWasAddedNotification: MTL.DeviceWasAddedNotification
+    ::MTLDeviceRemovalRequestedNotification: MTL.DeviceRemovalRequestedNotification
+    ::MTLDeviceWasRemovedNotification: MTL.DeviceWasRemovedNotification
     ::MTLCommandBufferErrorDomain: MTL.CommandBufferErrorDomain
     ::MTLCommandBufferEncoderInfoErrorKey: MTL.CommandBufferEncoderInfoErrorKey
     ::MTL4CommandQueueErrorDomain: MTL.MTL4CommandQueueErrorDomain
@@ -497,6 +505,9 @@ ExternTypes:
     ::MTLCommonCounterSetStageUtilization: ^NS.String
     ::MTLCommonCounterSetStatistic: ^NS.String
     ::MTLCounterErrorDomain: ^NS.String
+    ::MTLDeviceWasAddedNotification: ^NS.String
+    ::MTLDeviceRemovalRequestedNotification: ^NS.String
+    ::MTLDeviceWasRemovedNotification: ^NS.String
     ::MTLCommandBufferErrorDomain: ^NS.String
     ::MTLCommandBufferEncoderInfoErrorKey: ^NS.String
     ::MTL4CommandQueueErrorDomain: ^NS.String

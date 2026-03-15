@@ -56,7 +56,7 @@ foreign lib {
     @(link_name="MTLDeviceWasRemovedNotification") DeviceWasRemovedNotification: ^NS.String
     @(link_name="MTLCommandBufferErrorDomain") CommandBufferErrorDomain: ^NS.String
     @(link_name="MTLCommandBufferEncoderInfoErrorKey") CommandBufferEncoderInfoErrorKey: ^NS.String
-    @(link_name="MTL4CommandQueueErrorDomain") 4CommandQueueErrorDomain: ^NS.String
+    @(link_name="MTL4CommandQueueErrorDomain") MTL4CommandQueueErrorDomain: ^NS.String
     @(link_name="MTLCaptureErrorDomain") CaptureErrorDomain: ^NS.String
     @(link_name="MTLDynamicLibraryDomain") DynamicLibraryDomain: ^NS.String
     @(link_name="MTLLogStateErrorDomain") LogStateErrorDomain: ^NS.String
