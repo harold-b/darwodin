@@ -95,13 +95,13 @@ Odin:
         Source: s
 
   ProcTransforms:
-  - Type: ^(_*MTL).+
+  - Type: ^(_*MTL(?!4)).+
     Transforms:
     - Kind  : RemovePrefix
       Source: $group0
 
   VarTransforms:
-    - Type: ^(_*MTL).+
+    - Type: ^(_*MTL(?!4)).+
       Transforms:
         - Kind  : RemovePrefix
           Source: $group0
