@@ -49,6 +49,9 @@ Odin:
     - boolean_t
     - '[su]?int.*'
 
+  NonDistinctTypeDefs:
+    - ^CGFloat$
+
   Packages:
     - Name  : CoreGraphics
       Export: CG

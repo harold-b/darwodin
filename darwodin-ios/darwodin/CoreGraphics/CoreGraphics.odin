@@ -1750,7 +1750,7 @@ foreign lib {
 }
 
 /// CGFloat
-Float :: distinct cffi.double
+Float :: cffi.double
 
 /// IOSurfaceRef
 IOSurfaceRef :: distinct ^__IOSurface
